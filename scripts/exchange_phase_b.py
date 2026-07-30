@@ -277,18 +277,29 @@ def main() -> int:
         # empty bundle. Only a day with NO bundle AND NO authored packages
         # is genuinely nothing to apply.
         sys.path.insert(0, str(ROOT / "scripts"))
-        from ingest_authored import collect          # noqa: E402
-        if collect(args.date):
-            print(f"[phase-b] NO BUNDLE for {args.date}, but ChatGPT "
-                  f"authored packages — Phase A must have failed to run. "
-                  f"Proceeding in ingest-only mode.")
+        from exchange_phase_a import load_packages as _lp   # noqa: E402
+        from ingest_authored import collect                 # noqa: E402
+        authored_waiting = collect(args.date)
+        already_there = _lp(args.channel, args.date)
+        if authored_waiting or already_there:
+            # Phase A never ran or died before writing. Two shapes land here
+            # and BOTH still have a shippable day:
+            #   · ChatGPT authored the slate anyway (its instructions say to)
+            #   · Claude's packages exist but never got media/punch-up,
+            #     because the thing that finds media IS Phase A
+            # Bailing would throw away a whole day over a failed cron.
+            print(f"[phase-b] NO BUNDLE for {args.date} — Phase A did not "
+                  f"run. Rescuing: {len(authored_waiting)} authored by "
+                  f"ChatGPT, {len(already_there)} already on disk.")
             print("::warning::Phase A produced no bundle; Phase B is "
-                  "rescuing the day from ChatGPT-authored packages alone.")
+                  "rescuing the day. Media was never searched for, so every "
+                  "shot goes through self-fill.")
             bundle = {"schema": "rescue", "date": str(args.date),
-                      "mode": "author", "packages": [], "requests": []}
+                      "mode": "author", "packages": [], "requests": [],
+                      "rescue": True}
         else:
-            print(f"[phase-b] no bundle for {args.date} and nothing "
-                  f"authored — nothing to apply")
+            print(f"[phase-b] no bundle for {args.date}, nothing authored "
+                  f"and no packages on disk — nothing to apply")
             return 2
 
     done = xb.is_done(args.date)
@@ -301,6 +312,14 @@ def main() -> int:
     response = xb.read_response(args.date)
     idx = xb.response_index(response)
     if response is None:
+        if done:
+            # DONE says "I finished" but the payload will not parse. That is
+            # a truncated or half-committed write, not a no-show, and on a
+            # takeover day it means the ENTIRE day is missing. Never quiet.
+            print("::error::DONE marker is present for "
+                  f"{args.date} but response.json is missing or unparseable "
+                  "— ChatGPT's work did not land. Commit response.json FIRST, "
+                  "verify it, then commit DONE as a SEPARATE commit.")
         print("[phase-b] no response.json — ChatGPT contributed nothing; "
               "self-fill + originals only")
 
@@ -342,6 +361,12 @@ def main() -> int:
     # here or they render as bare keyword stock.
     new_slugs = {Path(p).stem.split("_", 1)[-1]
                  for p in authored.get("promoted") or []}
+    if bundle.get("rescue"):
+        # No bundle means no `requests`, so the normal media loop below has
+        # nothing to iterate. Everything on disk is uncovered — treat the
+        # whole slate as freshly authored so it all goes through the media
+        # pass instead of rendering on bare keyword stock.
+        new_slugs |= set(packages)
 
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
@@ -427,6 +452,19 @@ def main() -> int:
     print(f"[phase-b] punch-up: {p['applied']} applied, "
           f"{p.get('kept', 0)} kept (editor's call), "
           f"{p['rejected']} rejected, {p['absent']} not offered")
+    # An editor that keeps EVERYTHING has stopped editing. That is usually
+    # over-caution about the claim guard, which only protects numbers,
+    # entities and beat structure — wording is free to change within them.
+    offered = p["applied"] + p.get("kept", 0) + p["rejected"]
+    if offered >= 3 and p["applied"] == 0 and p.get("kept", 0) == offered:
+        print(f"::warning::punch-up: ChatGPT kept ALL {offered} scripts "
+              f"unchanged. Check the editor_notes — a whole slate kept "
+              f"usually means over-caution about the claim guard, not "
+              f"{offered} scripts that all already landed.")
+    if p["rejected"] and p["rejected"] >= p["applied"]:
+        print(f"::warning::punch-up: {p['rejected']} rejected vs "
+              f"{p['applied']} applied — the rewrites are breaking claims. "
+              f"See the per-package problems above.")
 
     if args.dry_run:
         print("[phase-b] dry run — packages not written")

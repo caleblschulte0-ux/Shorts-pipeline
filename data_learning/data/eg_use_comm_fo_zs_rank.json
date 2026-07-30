@@ -1,0 +1,38 @@
+{
+  "key": "eg_use_comm_fo_zs_rank",
+  "title": "Fossil fuel energy consumption",
+  "unit": "% of total",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Fossil fuel energy consumption",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.USE.COMM.FO.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Kosovo",
+      "value": 86.1
+    },
+    {
+      "label": "Albania",
+      "value": 0.0
+    },
+    {
+      "label": "Algeria",
+      "value": 0.0
+    },
+    {
+      "label": "Angola",
+      "value": 0.0
+    },
+    {
+      "label": "Antigua and Barbuda",
+      "value": 0.0
+    }
+  ]
+}

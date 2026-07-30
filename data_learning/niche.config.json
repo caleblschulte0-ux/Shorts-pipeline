@@ -17558,6 +17558,180 @@
           "say": "United States leads at 148,553 total route-km. China is 109,767 total route-km. Canada \u2014 48,150 total route-km."
         }
       ]
+    },
+    {
+      "slug": "india-s-153-868-700-hectares-beat-america-s-farmland",
+      "title": "India's 153,868,700 Hectares Beat America's Farmland",
+      "hook": "A country three times smaller than the US just out-farmed it.",
+      "closing": "The numbers don't round themselves \u2014 this is what the data actually says.",
+      "hashtags": [
+        "shorts",
+        "datafacts",
+        "worldstats",
+        "geography",
+        "didyouknow"
+      ],
+      "question": "Which of these numbers surprised you the most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_arbl_ha_rank",
+          "params": {
+            "file": "ag_lnd_arbl_ha_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 ARABLE LAND",
+          "topic": "Arable land",
+          "say": "India tops the world with 153,868,700 hectares of arable land, just ahead of the United States at 151,563,525, despite having far less total territory.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat_field",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat_field",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat_field",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat_field",
+                "data": {
+                  "value_from": "item:3"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "wheat_field",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_xpd_ehex_pc_cd_rank",
+          "params": {
+            "file": "sh_xpd_ehex_pc_cd_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 EXTERNAL HEALTH EX",
+          "topic": "External health expenditure per capita",
+          "say": "Tuvalu receives 467.7 dollars per person in external health aid, more than Micronesia's 362.9, Palau's 311.9, Naoero's 307.8, and the Marshall Islands' 205.1.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pill_bottle",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 50.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pill_bottle",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 50.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pill_bottle",
+                "data": {
+                  "value_from": "item:2",
+                  "per_value": 50.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pill_bottle",
+                "data": {
+                  "value_from": "item:3",
+                  "per_value": 50.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "pill_bottle",
+                "data": {
+                  "value_from": "item:4",
+                  "per_value": 50.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_comm_fo_zs_rank",
+          "params": {
+            "file": "eg_use_comm_fo_zs_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 FOSSIL FUEL ENERGY",
+          "topic": "Fossil fuel energy consumption",
+          "say": "Kosovo runs on fossil fuels for 86.1 percent of its energy, while Albania, Algeria, and Angola each sit at exactly 0.0 percent.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "gas_pump",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "gas_pump",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "gas_pump",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "words_by": "brain"
     }
   ],
   "videos": [

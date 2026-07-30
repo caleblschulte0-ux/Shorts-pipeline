@@ -75,6 +75,21 @@ download and rejects a mismatch — that is how substitution and truncation get
 caught (an earlier attempt delivered a corrupt 2-colour placeholder whose
 claimed hash did not match its bytes).
 
+## Every package gets an editorial decision — including on a normal day
+
+For each entry in `packages`, return **either** the rewritten fields **or**
+`"kept": true` with a one-line `editor_note` saying why it already lands
+("hook already 4 words + ?, voice present, kicker names Gary"). An entry
+with neither is a skipped job, not a decision.
+
+**`kept` means you read it and it works — not that the guard looked
+strict.** The claim guard only protects numbers, entities, and beat
+structure. Wording is entirely yours to improve inside those limits, and
+that is most of what a punch-up is. Returning a whole slate untouched is a
+red flag, not caution; if you keep more than half a slate, every
+`editor_note` had better say something specific. Phase B logs a warning
+when every script comes back kept.
+
 ## Mode `author` — the takeover (you are the brain today)
 
 `bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
@@ -157,15 +172,49 @@ from a deterministic template when no brain was reachable. So:
 The takeover exists for the day everything on the Claude side is dead. On
 that day the thing that writes `bundle.json` may itself have failed to run,
 so **absence of a bundle is not permission to do nothing.** Decide from the
-repo, not from the bundle:
+repo, not from the bundle.
 
-1. Look at `state/trending_packages/<today UTC, YYYYMMDD>/`.
-2. **Fewer than 6 package files (or the folder does not exist)?** That is a
-   takeover day. Write the shortfall as a 2 + 2 + 2 slate per the format
-   specs below, and put them in `authored` in
-   `exchange/bundles/<date>/response.json` — creating that folder and file
-   yourself if they do not exist. Write `DONE` next to it when finished.
-3. **6 files already there?** Nothing to author. Do your normal jobs.
+**Count the slate correctly.** Look at
+`state/trending_packages/<today UTC, YYYYMMDD>/` and count only real
+packages: **skip any filename beginning with `_`** (`_schedule.json` is
+config) and skip reports/metadata (`report.json`, `manifest.json`,
+`index.json`, `meta.json`, `authored_report.json`, `phase_b_report.json`).
+A real package always carries at least one of `script`, `text`, `series`,
+`shots`, `subreddit`, or `broll_query`. Getting this wrong cancels the
+takeover: five real packages plus `_schedule.json` looks like a full six.
+
+**Write only the shortfall, and restore the 2 + 2 + 2 mix.**
+
+| Real packages present | What you write |
+|---|---|
+| 0 | all six — 2 reddit_story, 2 text_card, 2 graph_race |
+| 1–5 | only the missing ones, choosing formats so the day ends at 2 + 2 + 2 |
+| 6 | nothing to author — do your normal jobs |
+
+Count what exists by format first, then fill the gaps. If the day already
+has 2 reddit_story and 1 text_card, you write 1 text_card and 2 graph_race —
+not six of anything.
+
+**With no bundle you also have no spec, so go read it.** The per-format
+rules and the media pointer shape normally arrive inside
+`bundle.json.authoring_requests`. When there is no bundle, read them from
+the repo instead — `shared/authoring_brief.py`, the `FORMAT_SPECS` dict
+(required fields and rules per format) and `MEDIA_CONTRACT` (the image
+pointer shape and the checks it will face). Do not guess the schema.
+
+**Commit in two separate steps, in this order:**
+
+1. Commit `exchange/bundles/<date>/response.json` to `main`. Then **read it
+   back from `main` and confirm it is complete and parses.**
+2. Only then, as a **second, separate commit**, create
+   `exchange/bundles/<date>/DONE`.
+
+`DONE` is what fires the render. Writing it in the same commit as
+`response.json` means a truncated or half-written payload triggers the
+render anyway, and on a takeover day that costs the entire day. Two
+commits, with a verification between them, is the whole safeguard. (If
+`DONE` ever arrives over an unreadable `response.json`, Phase B logs a
+hard error naming this rule.)
 
 Phase B reads `authored` whether or not a bundle exists, so a slate you
 write with no bundle present still renders and still uploads. Its 12:45 UTC
