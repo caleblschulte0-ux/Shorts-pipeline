@@ -23,9 +23,7 @@
     {
       "phrase": "A sinkhole opened where?",
       "query": "sinkhole road pavement",
-      "mascot_pose": "think",
-      "image_url": "https://images.pexels.com/photos/11574520/pexels-photo-11574520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "mascot_pose": "think"
     },
     {
       "phrase": "severe storms tore through Madison County, North Carolina",
@@ -47,16 +45,12 @@
     },
     {
       "phrase": "tornado warnings up across the whole western half of the state",
-      "query": "tornado warning radar",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Radar_collage_of_a_long-lived_supercell_radar_on_December_10-11%2C_2021.png",
-      "media_origin": "self_fill"
+      "query": "tornado warning radar"
     },
     {
       "phrase": "Then the ground gave out",
       "query": "collapsed pavement hole",
-      "mascot_pose": "shock",
-      "image_url": "https://images.pexels.com/photos/5138311/pexels-photo-5138311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "mascot_pose": "shock"
     },
     {
       "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
@@ -76,15 +70,11 @@
       "pin_query": "Not",
       "pin_context": "A Sinkhole Opened Right at a Funeral Home",
       "news_query": "Not",
-      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
-      "image_url": "https://live.staticflickr.com/8463/8150681666_77173105ef_b.jpg",
-      "media_origin": "self_fill"
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home"
     },
     {
       "phrase": "Not a backyard",
-      "query": "suburban backyard",
-      "image_url": "https://live.staticflickr.com/5594/14247149703_d6959150b9_b.jpg",
-      "media_origin": "self_fill"
+      "query": "suburban backyard"
     },
     {
       "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
@@ -97,22 +87,16 @@
     },
     {
       "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
-      "query": "flooded street storm damage",
-      "image_url": "https://pixabay.com/get/g6365128646431bf17deb1d61d1ae3161ddbdbfbf01f7c605a8c74a528ed48099e55a132813657c4d0553ec94f4e3bfcccfb38779cdedbd5b6a4d8e456fe70dea_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "flooded street storm damage"
     },
     {
       "phrase": "the earth picked the one already handling the dead",
-      "query": "sinkhole hole ground",
-      "image_url": "https://pixabay.com/get/g6134c8482b7394139a7ec037a7f8417345cff368d5d9a37838a681aef4878b6eb012f8202d781a05f4c658be4e4c79a9a144b5cb5abd64078f0ddd6232829e86_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "sinkhole hole ground"
     },
     {
       "phrase": "why the funeral home",
       "query": "funeral home exterior",
-      "mascot_pose": "dismiss",
-      "image_url": "https://pixabay.com/get/g53d0ccd987f4905e2127d42df65ea783dbf5df465073cc8fac25ebb25a98caf9769c13e41688f6d0e69bda092e4b91743e68f9bfb83aebe9cb18e83997fbef90_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "dismiss"
     }
   ],
   "punches": [
@@ -158,6 +142,5 @@
     }
   ],
   "music_vibe": "dark",
-  "bottom_theme": "auto",
-  "punched_up": true
+  "bottom_theme": "auto"
 }

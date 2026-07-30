@@ -23,9 +23,7 @@
     {
       "phrase": "One goat, zero enclosures?",
       "query": "goat pen fence",
-      "mascot_pose": "think",
-      "image_url": "https://pixabay.com/get/g14c335f41684f7ed203aa05efe50f7f70a628f1ea1bf194f8ac82292e91d583a896f99c8eaa50423a74cad209c61fca9ffabe0a39c773ac4b5f2d0d7b98f1fd8_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "think"
     },
     {
       "phrase": "A nonprofit in Rosepine, Louisiana bought him",
@@ -38,9 +36,7 @@
     },
     {
       "phrase": "kids could practice goat roping",
-      "query": "kids rodeo roping",
-      "image_url": "https://pixabay.com/get/g33a25bdd892572540ac63f13f26690d7d17a685b3a15472bb8994031702ede3210842c733cbd3e300fa5535ad0bd87767d866d52c1b4bc7b98a8b38e57a7a419_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "kids rodeo roping"
     },
     {
       "phrase": "Gary had other plans",
@@ -53,34 +49,24 @@
     },
     {
       "phrase": "broke out of the horse pen",
-      "query": "horse pen fence",
-      "image_url": "https://pixabay.com/get/g106d307e5daf7333a52fddfb6dc595c00e92c88c34f08d16531a103c3e310952f1228620bd9846541def013e90309f0caf5a181809e05aaf0ea0a0a44bead002_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "horse pen fence"
     },
     {
       "phrase": "Then a stall",
-      "query": "barn stall interior",
-      "image_url": "https://pixabay.com/get/g92cc5d3ca36f72e6bd3a8586617ebc0ccc3ede7d562510d8df9ff7815d6b8cb231944a6925dae1487dd47efce0b3f4493000cb6a8711004fa44b8ce72255253a_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "barn stall interior"
     },
     {
       "phrase": "Then a kennel",
-      "query": "dog kennel enclosure",
-      "image_url": "https://pixabay.com/get/g69cf2d42fd9dee4a86b693f488581bbe12ca489821cbb41da1bb9ffcc0bcff86698f09bb36875e767e6536fcc38e80bb71df1c9b01387680df4b09b96d028408_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "dog kennel enclosure"
     },
     {
       "phrase": "reinforced, extra latches",
-      "query": "metal latch lock",
-      "image_url": "https://pixabay.com/get/g3388314c3953c53262f527829ed591cf750724d7087953cf577b16806ec71f4b8070ce30166ee667b61ebcf9096bef5f9af6b8a3346b435ecbe88fd68e42c00b_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "metal latch lock"
     },
     {
       "phrase": "Gary found the gap",
       "query": "goat escaping fence",
-      "mascot_pose": "laugh",
-      "image_url": "https://pixabay.com/get/gcb153b16d073eea8b138ed9b835792fd84dee6ba606789c546984de8b9d02d36ffe1d7fbafd71474b2f09ae3d5b01bc431e8474ffdee3dfc3d14adecf28fb476_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "laugh"
     },
     {
       "phrase": "the shoulder of U.S. Highway 171",
@@ -114,16 +100,12 @@
     },
     {
       "phrase": "nobody can catch him",
-      "query": "domestic goat close up",
-      "image_url": "https://pixabay.com/get/gf268391af596b72fa47df741788ed5fb2d5559d55ec307f1ef66a02c711ecdb29421e6d239ae802a362675cdd341761c13f6b5a103afae3c966d5c99ff6a90ec_1280.jpg",
-      "media_origin": "self_fill"
+      "query": "domestic goat close up"
     },
     {
       "phrase": "the humans, or the goat",
       "query": "goat face close up",
-      "mascot_pose": "dismiss",
-      "image_url": "https://pixabay.com/get/g82be0394751951226516d8c6d6f42ad272ea0c8a586138a40a8eb1c4b74469c82262de0550d21572f65774fae86086d49876d09016185048f720dff8e7ed1da3_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "dismiss"
     }
   ],
   "punches": [
@@ -164,6 +146,5 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto",
-  "punched_up": true
+  "bottom_theme": "auto"
 }
