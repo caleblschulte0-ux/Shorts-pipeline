@@ -5,11 +5,11 @@ Rendering first would be wasted work: ChatGPT changes both the scripts and the
 visuals, and we are not re-rendering.
 
 ```
-04:30  Phase A   author'd packages -> resolve media -> JUDGE every shot
+09:45  Phase A   author'd packages -> resolve media -> JUDGE every shot
                  writes ONE bundle: scripts + media health + gap requests
                  commits, then STOPS.  Nothing renders.
          │
-05:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
+10:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
                  · generates the requested images/animations -> Google Drive
                  · punches up the scripts
                  · commits response.json, then DONE   ← written LAST
@@ -57,7 +57,7 @@ a **self-fill** pass: the funnel again with the gloves off (wider providers,
 lower floor, accept the weak-but-real candidates the judge rejected). Worst
 case a shot ships weaker than we wanted; we never ship nothing.
 
-The **backstop cron** (`exchange_phase_b.yml`, 06:15 UTC) exists for the same
+The **backstop cron** (`exchange_phase_b.yml`, 11:30 UTC) exists for the same
 reason: if ChatGPT never writes DONE, the push trigger never fires, and without
 the backstop the day would never render at all. It no-ops when Phase B already
 ran for that date.
@@ -99,9 +99,9 @@ allowed — entity comparison runs against the other text's full word set.
 
 | Step | Fires on |
 |---|---|
-| **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `30 4 * * *` backstop + dispatch |
-| **ChatGPT** | its own 05:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
-| **Phase B** | `push` on `exchange/bundles/*/DONE` + `15 6 * * *` backstop + dispatch |
+| **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `45 9 * * *` backstop, `push` on packages + dispatch |
+| **ChatGPT** | its own 10:00 scheduled task, reading `exchange/bundles/<date>/bundle.json` |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` + `30 11 * * *` backstop + dispatch |
 | **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
 
 ### The trigger that had to MOVE — read before changing any of this
@@ -109,7 +109,7 @@ allowed — entity comparison runs against the other text's full word set.
 `daily.yml` used to fire on `workflow_run: Auto-merge claude PRs` **and** on a
 `state/trending_packages/**` push. Both meant "render the instant the Routine's
 packages land". With the exchange in place that **races and always wins**: the
-render would finish long before ChatGPT's 05:00 task, using pre-ChatGPT media
+render would finish long before ChatGPT's 10:00 task, using pre-ChatGPT media
 and the un-punched scripts, every single day — while everything still looked
 green. Nothing would have alerted us.
 
@@ -125,11 +125,11 @@ Shorts", so they now run roughly 1.5–2h later in the morning as well.
 
 | Step | UTC |
 |---|---|
-| Claude Routine authors | ~03:45 |
-| Phase A (auto on auto-merge; cron backstop) | 04:30 |
-| ChatGPT task | 05:00 |
-| Phase B (auto on DONE; cron backstop) | 06:15 |
-| Render | ~06:30 |
+| Claude Routine authors | ~09:19 (observed) |
+| Phase A (auto on auto-merge; 09:45 cron backstop) | ~09:20 |
+| ChatGPT task | 10:00 |
+| Phase B (auto on DONE; 11:30 cron backstop) | ~10:30 |
+| Render (~60-70 min) | ~10:45 |
 | **Uploads** | **8:00, 9:30, 11:00, 12:30, 2:00, 3:30 CENTRAL — fixed wall-clock, unaffected** |
 
 The chain's timing is decoupled from posting: publish slots are
@@ -144,6 +144,41 @@ authoring earlier means less overnight news has accumulated for the Routine's
 ChatGPT Tasks are set in local time. If ChatGPT runs *after* the Phase B
 backstop, the backstop renders pre-ChatGPT media every day and everything still
 looks green.
+
+### Post-mortem 2026-07-30 — the first live day, and why it silently did nothing
+
+Worth reading before touching any trigger here. The chain was fully deployed
+and every workflow was green, yet the exchange contributed nothing:
+
+```
+02:58  exchange workflows land on main
+07:12  Phase A runs (its 04:30 cron fired 2h42m LATE) — succeeds in 10s
+       because state/trending_packages/20260730/ does not exist yet
+09:19  the Routine's packages land (PR #198, auto-merged)
+       -> Phase A does NOT re-run
+10:32  render + upload, no bundle, no ChatGPT media, no punch-ups
+```
+
+Three failures, each individually enough to kill the day:
+
+1. **The cron was scheduled BEFORE the thing it depends on.** 04:30 was a
+   guess at the Routine's time; the Routine actually authors ~09:19. Phase A
+   looked for packages five hours before they existed. Now 09:45.
+2. **The event trigger that should have saved it never fired.** Phase A had
+   `workflow_run: {workflows: [Auto-merge claude PRs], branches: [main]}`.
+   For `workflow_run`, `branches` matches the **triggering run's** head
+   branch — and auto-merge.yml runs in the pull request's context, so its
+   head_branch is the PR branch, never `main`. The filter excluded the only
+   event it existed to catch. **Do not add `branches:` back.**
+3. **GitHub cron drift is hours, not minutes.** The 04:30 cron fired at
+   07:12. Crons are a backstop; the event trigger must be the primary path.
+
+The failure mode to internalise: **a Phase A that finds no packages exits 0.**
+That is correct behaviour (a day with no gaps is a valid successful Phase A),
+but it means this class of bug is invisible in the Actions tab — everything is
+green and the exchange is simply absent. If you want to know whether the
+exchange actually ran on a given day, check for
+`exchange/bundles/<date>/bundle.json`, not for a green checkmark.
 
 ### What the operator's Claude Routine must do
 

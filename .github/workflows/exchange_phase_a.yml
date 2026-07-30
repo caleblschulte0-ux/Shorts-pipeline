@@ -24,18 +24,38 @@ on:
         type: boolean
         default: false
   # PRIMARY TRIGGER: the Claude Routine authors the day's packages and opens a
-  # PR; auto-merge lands it; this runs the moment that completes. It took this
-  # slot over FROM daily.yml, which used to render here — rendering at package
-  # -landing time would use pre-ChatGPT media and defeat the whole exchange.
+  # PR; auto-merge lands it; this runs the moment that completes.
+  #
+  # NO `branches:` FILTER — and that is deliberate. On 2026-07-30 this had
+  # `branches: [main]` and NEVER FIRED: for workflow_run, `branches` matches
+  # the TRIGGERING run's head branch, and auto-merge.yml runs in the pull
+  # request's context, so its head_branch is the PR branch
+  # (claude/determined-galileo-bj5ifl that day) — never `main`. The filter
+  # excluded the only event it was supposed to catch. Do not add it back.
   workflow_run:
     workflows: ["Auto-merge claude PRs"]
     types: [completed]
+  # SECOND PATH: packages pushed straight to main (no PR). GITHUB_TOKEN-
+  # authored pushes cannot fire this, so it only covers a human/PAT push —
+  # still worth having, it costs nothing.
+  push:
     branches: [main]
-  # BACKSTOP: 04:30 UTC, ahead of ChatGPT's 05:00 task, in case the Routine
-  # authored outside the PR path. Phase A never renders, so a duplicate run
-  # only rewrites the same bundle — harmless.
+    paths:
+      - 'state/trending_packages/**'
+      - 'state/third_packages/**'
+  # BACKSTOP: 09:45 UTC — AFTER the Routine authors (observed 09:19 UTC on
+  # 2026-07-30), not before it.
+  #
+  # This was 04:30, which was a guess at the Routine's time and was wrong by
+  # ~5 hours: Phase A ran at 07:12 (GitHub fired the 04:30 cron 2h42m late),
+  # found no packages because they landed at 09:19, exited clean in 10s, and
+  # never ran again. No bundle was written, so ChatGPT correctly reported
+  # nothing to do and the day rendered without the exchange.
+  #
+  # Two lessons encoded here: schedule AFTER the thing you depend on, and
+  # never rely on cron timing alone — GitHub's drift is measured in hours.
   schedule:
-    - cron: '30 4 * * *'
+    - cron: '45 9 * * *'
 
 permissions:
   contents: write   # commit the bundle + resolved media pins
