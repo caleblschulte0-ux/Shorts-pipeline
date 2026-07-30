@@ -308,10 +308,15 @@ def build_bundle(date: str, packages: list[dict],
         ] + [j for j in bundle["instructions"]["two_jobs"]]
         bundle["instructions"]["takeover_note"] = (
             "`packages` and `requests` cover whatever WAS authored before you "
-            "— often nothing. Do both jobs: author the shortfall, and still "
-            "handle media/punch-up for anything already there. Media for the "
-            "packages you write is found on our side after promotion; you do "
-            "not need to source images for them.")
+            "— on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: "
+            "write the packages AND supply the media for every shot in them, "
+            "in this one pass. Nothing downstream gets a second chance to ask "
+            "you for anything — the next thing that runs is the renderer. "
+            "Attach each shot's image to the shot itself as `media` (same "
+            "Drive + sha256 pointer shape you use in the `media` array); see "
+            "`authoring_request.media_contract`. Anything you leave without "
+            "media we will try to fill from stock, which is the weaker "
+            "outcome this exists to avoid.")
     return bundle
 
 

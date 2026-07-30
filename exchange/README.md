@@ -83,6 +83,45 @@ own writing brain (a Claude Routine) did not run and the reserve bank could
 not cover the day. **There is no slate. Without you the channel posts
 nothing.**
 
+### On a takeover day you own the WHOLE day — words AND pictures
+
+This is the part that is easy to get wrong. On a normal day the pipeline
+finds the media first and asks you only to fill the gaps it judged. **On a
+takeover day the packages did not exist when that search ran**, so there is
+nothing to search for and no `requests` entries for the work you are about
+to invent. The next thing that runs after you is the renderer.
+
+So: **every shot of every `reddit_story` you author needs an image you
+generated, attached to the shot itself.** Same Drive + sha256 pointer you
+already produce, just inline on the shot instead of in the `media` array:
+
+```json
+"shots": [
+  {"phrase": "the office fridge", "query": "office kitchen",
+   "media": {
+     "status": "fulfilled",
+     "drive": {"file_id": "1AbC…", "public": true,
+               "download_url": "https://drive.google.com/uc?export=download&id=1AbC…"},
+     "image": {"sha256": "…64 hex of the exact bytes…", "bytes": 1554380,
+               "format": "png", "width": 1080, "height": 1080}
+   }}
+]
+```
+
+`text_card` and `graph_race` have no `shots` and need no media from you —
+the renderer sources their b-roll from `broll_query` and draws the chart.
+
+Every pointer is verified on arrival exactly like a normal-day one: SHA-256
+recomputed from the downloaded bytes, a full pixel decode, a placeholder
+check (≤8 distinct colours is refused), and an HTML permission page from a
+non-public Drive file is detected and refused. **A pointer that fails is
+dropped and that shot falls back to stock self-fill** — which is the weaker
+outcome the takeover exists to avoid.
+
+If you genuinely cannot generate an image for a shot, leave `media` off it
+and say so. Honest omission costs one shot. A fabricated pointer or a wrong
+hash is worse, because we trust it until it fails.
+
 ### `authoring_requests` — one entry per channel that needs a brain
 
 **This is the whole signal.** If Claude did its job, `authoring_requests` is

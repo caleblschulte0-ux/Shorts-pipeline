@@ -326,3 +326,139 @@ class TestSubscriptionIsFullyDead(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestChatGPTSuppliesItsOwnMedia(unittest.TestCase):
+    """On a takeover day ChatGPT writes the script AND generates the
+    pictures in the same pass — nothing downstream gets a second chance to
+    ask it for anything. The bundle used to tell it the opposite."""
+
+    def test_brief_carries_the_media_contract(self):
+        req = brief.build_request("20260801", "trending")
+        mc = req["media_contract"]
+        self.assertIn("Every shot", mc["rule"])
+        self.assertIn("media", mc["shape"]["shots"][0])
+        self.assertTrue(any("SUPPLY THE MEDIA" in r for r in req["hard_rules"]))
+
+    def test_takeover_note_asks_for_media_not_the_opposite(self):
+        """Regression: the note used to read 'you do not need to source
+        images for them', which is exactly the job we want done."""
+        b = xb.build_bundle("20260801", [], [],
+                            brief.build_request("20260801", "trending"))
+        note = b["instructions"]["takeover_note"]
+        self.assertNotIn("do not need to source", note)
+        self.assertIn("supply the media", note.lower())
+
+    def test_contract_exempts_the_formats_with_no_shots(self):
+        mc = brief.MEDIA_CONTRACT
+        self.assertIn("no `shots`", mc["text_card_and_graph_race"])
+
+    def test_contract_is_honest_about_failing(self):
+        self.assertIn("honest", brief.MEDIA_CONTRACT["if_you_cannot"])
+
+
+class TestAuthoredMediaSurvivesIngest(IngestTestCase):
+    def test_shot_media_pointers_reach_the_promoted_package(self):
+        pkg = reddit_pkg(slug="with-pictures")
+        pkg["shots"][0]["media"] = {
+            "status": "fulfilled",
+            "drive": {"file_id": "abc"},
+            "image": {"sha256": "0" * 64, "format": "png"}}
+        self.write_response([pkg])
+        ing.ingest("20260801", "trending", target=6)
+        on_disk = json.loads(self.day_files()[0].read_text())
+        self.assertEqual(on_disk["shots"][0]["media"]["drive"]["file_id"],
+                         "abc", "ChatGPT's own image pointer was dropped")
+
+
+class TestAuthoredMediaVerification(unittest.TestCase):
+    """Exercises the REAL download+verify path over file:// URLs, so the
+    hash / decode / placeholder gates are genuinely run — no network, no
+    mocks standing in for the thing under test."""
+
+    def setUp(self):
+        import exchange_phase_b as pb
+        self.pb = pb
+        self.tmp = Path(tempfile.mkdtemp(prefix="authmedia-"))
+        self._saved_cache = pb.MEDIA_CACHE
+        pb.MEDIA_CACHE = self.tmp / "cache"
+
+    def tearDown(self):
+        self.pb.MEDIA_CACHE = self._saved_cache
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _png(self, name: str, colorful: bool = True) -> tuple[str, str]:
+        """Write a PNG, return (file:// url, sha256)."""
+        import hashlib
+        from PIL import Image
+        im = Image.new("RGB", (64, 64))
+        if colorful:
+            im.putdata([(x * 3 % 256, y * 5 % 256, (x + y) % 256)
+                        for y in range(64) for x in range(64)])
+        path = self.tmp / name
+        im.save(path)
+        blob = path.read_bytes()
+        return f"file://{path}", hashlib.sha256(blob).hexdigest()
+
+    def _pointer(self, url: str, sha: str) -> dict:
+        return {"status": "fulfilled", "drive": {"download_url": url},
+                "image": {"sha256": sha, "format": "png"}}
+
+    def _cover(self, pkg: dict) -> dict:
+        report = {"media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0}}
+        self.pb.cover_authored(pkg, report, no_self_fill=True)
+        return report
+
+    def test_a_verified_pointer_is_pinned_to_the_shot(self):
+        url, sha = self._png("good.png")
+        pkg = reddit_pkg(slug="verified")
+        pkg["shots"][0]["media"] = self._pointer(url, sha)
+        report = self._cover(pkg)
+        self.assertEqual(report["media"]["fulfilled"], 1)
+        self.assertEqual(pkg["shots"][0]["media_origin"], "chatgpt_authored")
+        self.assertTrue(Path(pkg["shots"][0]["image_url"]).exists())
+
+    def test_a_wrong_hash_is_refused(self):
+        url, _ = self._png("tampered.png")
+        pkg = reddit_pkg(slug="tampered")
+        pkg["shots"][0]["media"] = self._pointer(url, "f" * 64)
+        report = self._cover(pkg)
+        self.assertEqual(report["media"]["fulfilled"], 0)
+        self.assertIsNone(pkg["shots"][0].get("image_url"))
+
+    def test_a_flat_placeholder_is_refused(self):
+        url, sha = self._png("flat.png", colorful=False)
+        pkg = reddit_pkg(slug="flat")
+        pkg["shots"][0]["media"] = self._pointer(url, sha)
+        self.assertEqual(self._cover(pkg)["media"]["fulfilled"], 0)
+
+    def test_the_pointer_is_consumed_not_left_on_the_package(self):
+        """`media` is a transport field — it must not reach the renderer."""
+        url, sha = self._png("consumed.png")
+        pkg = reddit_pkg(slug="consumed")
+        pkg["shots"][0]["media"] = self._pointer(url, sha)
+        self._cover(pkg)
+        self.assertNotIn("media", pkg["shots"][0])
+
+    def test_shots_without_a_pointer_are_left_for_self_fill(self):
+        url, sha = self._png("one.png")
+        pkg = reddit_pkg(slug="partial")
+        pkg["shots"][0]["media"] = self._pointer(url, sha)
+        report = self._cover(pkg)
+        self.assertEqual(report["media"]["fulfilled"], 1)
+        self.assertEqual(report["media"]["unfilled"], len(pkg["shots"]) - 1)
+
+    def test_entity_resolution_cannot_erase_chatgpt_media(self):
+        """`enrich_package` writes `image_url: None` onto shots it cannot
+        resolve. Run it AFTER pinning and it silently erases verified
+        ChatGPT images — the 2026-07-30 failure shape, where 23 good images
+        were discarded with every workflow green."""
+        url, sha = self._png("order.png")
+        pkg = reddit_pkg(slug="ordering")
+        for shot in pkg["shots"]:
+            shot["media"] = self._pointer(url, sha)
+        report = self._cover(pkg)
+        self.assertEqual(report["media"]["fulfilled"], len(pkg["shots"]))
+        for shot in pkg["shots"]:
+            self.assertTrue(shot.get("image_url"),
+                            "a verified ChatGPT image was erased")

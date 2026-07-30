@@ -118,6 +118,56 @@ FORMAT_SPECS = {
 }
 
 
+# On a NORMAL day the pipeline finds the media first and only asks ChatGPT to
+# fill the judged gaps. On a TAKEOVER day the packages do not exist when that
+# search runs, so there is nothing to search FOR — which means the same pass
+# that writes the script has to bring its own pictures. ChatGPT owns the whole
+# day, or the day ships on stock filler.
+#
+# The pointer shape is deliberately identical to the `media` array entries it
+# already produces, so Phase B verifies it with the SAME code path: SHA-256
+# against the claim, a full pixel decode, and a placeholder check. A pointer
+# that fails any of those is dropped and that shot falls to self-fill.
+MEDIA_CONTRACT = {
+    "rule": ("Every shot in every package you author needs an image. Attach "
+             "it to the shot itself as `media` — do not put authored-package "
+             "images in the top-level `media` array, which is keyed by "
+             "request_id and has no request for work you invented."),
+    "shape": {
+        "shots": [{
+            "phrase": "...exact substring of your script...",
+            "query": "...what the shot shows...",
+            "media": {
+                "status": "fulfilled",
+                "drive": {"file_id": "1AbC...",
+                          "download_url": "https://drive.google.com/uc?"
+                                          "export=download&id=1AbC...",
+                          "public": True},
+                "image": {"sha256": "...64 hex of the exact bytes...",
+                          "bytes": 1554380, "format": "png",
+                          "width": 1080, "height": 1080},
+            },
+        }],
+    },
+    "verified_on_arrival": [
+        "SHA-256 recomputed from the downloaded bytes — a mismatch is "
+        "refused, never pinned.",
+        "Full pixel decode — an undecodable file is refused.",
+        "Placeholder check — an image with <= 8 distinct colours is refused.",
+        "A Drive file that is not link-visible serves an HTML page instead; "
+        "that is detected and refused.",
+    ],
+    "if_you_cannot": ("Leave `media` off that shot and say so honestly. We "
+                      "self-fill it from real stock media — weaker, but it "
+                      "ships. A fabricated pointer or a wrong hash is worse "
+                      "than an honest omission."),
+    "text_card_and_graph_race": ("These formats have no `shots` and need no "
+                                 "media from you — the renderer sources "
+                                 "b-roll from `broll_query` and draws the "
+                                 "chart itself."),
+}
+
+
 def _recent_titles(channel: str, days: int = RECENT_DAYS) -> list[str]:
     """Titles from the last few authored days — a takeover slate must not
     repeat what the channel just posted."""
@@ -207,6 +257,9 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
             "TOS-safe: no slurs, no explicit content, no gore.",
             "`slug` lowercase kebab-case; filenames/order 01..06 grouped by "
             "format.",
+            "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you "
+            "write needs an image attached as `media` per `media_contract`. "
+            "This is the one pass — nothing downstream asks you again.",
             "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact "
             "substring of its `script`; every `highlight` is an exact "
             "substring of its `text`; every `series.values` has the same "
@@ -225,6 +278,7 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
         "read_first": ["CLAUDE_ROUTINE_INSTRUCTIONS.md",
                        "data_learning/SCHULTE_MEDIA_BRAIN.md",
                        "docs/FALLBACKS.md"],
+        "media_contract": MEDIA_CONTRACT,
     }
 
 
