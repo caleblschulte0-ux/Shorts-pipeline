@@ -308,9 +308,25 @@ class TestSubscriptionIsFullyDead(unittest.TestCase):
         out = self._phase_b()
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         self.assertIn("NO BUNDLE", out.stdout)
-        self.assertIn("ingest-only mode", out.stdout)
+        self.assertIn("Rescuing:", out.stdout)
         promoted = sorted(p.name for p in self.day.glob("*.json"))
         self.assertEqual(len(promoted), 3, promoted)
+
+    def test_claude_packages_with_no_bundle_are_still_covered(self):
+        """The remaining edge: all six packages exist but Phase A died, so
+        nothing ever searched for their media. Bailing would render a full
+        Claude-authored slate on bare keyword stock. There is nothing for
+        ChatGPT to author here — the day just needs its media pass."""
+        self.day.mkdir(parents=True, exist_ok=True)
+        for i in range(2):
+            (self.day / f"0{i + 1}_claude.json").write_text(
+                json.dumps(reddit_pkg(slug=f"claude-wrote-{i}")))
+        out = self._phase_b()
+        self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
+        self.assertIn("NO BUNDLE", out.stdout)
+        self.assertIn("2 already on disk", out.stdout)
+        self.assertIn("shots have media", out.stdout,
+                      "the existing slate never went through the media pass")
 
     def test_the_rescue_still_validates(self):
         """Skipping Phase A must not also skip the gate."""

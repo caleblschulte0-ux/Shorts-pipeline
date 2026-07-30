@@ -143,5 +143,72 @@ class TestFallbackBrainIsVisible(unittest.TestCase):
                          rtd.format_report("2026-08-01", results))
 
 
+
+class TestSlateCounting(unittest.TestCase):
+    """The slate COUNT decides whether ChatGPT is asked to take over, so a
+    config or report file counted as a package silently cancels the
+    takeover — five real packages plus `_schedule.json` reads as six."""
+
+    def setUp(self):
+        import exchange_phase_a as pa
+        self.pa = pa
+        self.tmp = Path(tempfile.mkdtemp(prefix="count-"))
+        self._saved = dict(pa.PACKAGE_DIRS)
+        self._saved_root = pa.ROOT
+        pa.ROOT = self.tmp
+        (self.tmp / "state" / "trending_packages" / "20260801").mkdir(
+            parents=True)
+
+    def tearDown(self):
+        self.pa.PACKAGE_DIRS.clear()
+        self.pa.PACKAGE_DIRS.update(self._saved)
+        self.pa.ROOT = self._saved_root
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _write(self, name: str, obj) -> None:
+        (self.tmp / "state" / "trending_packages" / "20260801" / name
+         ).write_text(json.dumps(obj))
+
+    def _pkg(self, i: int) -> dict:
+        return {"slug": f"real-{i}", "title": f"T{i}",
+                "subreddit": "pettyrevenge", "script": "words " * 40,
+                "shots": [{"phrase": "words", "query": "q"}]}
+
+    def test_underscore_config_is_not_a_package(self):
+        for i in range(5):
+            self._write(f"0{i + 1}_real.json", self._pkg(i))
+        self._write("_schedule.json", {"slots": ["08:00", "09:30"]})
+        got = self.pa.load_packages("trending", "20260801")
+        self.assertEqual(len(got), 5,
+                         "_schedule.json was counted as a package — the "
+                         "takeover would never fire on a 5-package day")
+
+    def test_report_files_are_not_packages(self):
+        self._write("01_real.json", self._pkg(0))
+        self._write("report.json", {"generated": True, "ok": 6})
+        self.assertEqual(len(self.pa.load_packages("trending", "20260801")), 1)
+
+    def test_a_json_with_no_package_markers_is_skipped(self):
+        self._write("01_real.json", self._pkg(0))
+        self._write("02_notes.json", {"note": "remember to fix the thing"})
+        self.assertEqual(len(self.pa.load_packages("trending", "20260801")), 1)
+
+    def test_every_real_format_still_counts(self):
+        self._write("01_reddit.json", self._pkg(0))
+        self._write("02_card.json", {"format": "text_card", "slug": "c",
+                                     "text": "words", "broll_query": "x"})
+        self._write("03_graph.json", {"format": "graph_race", "slug": "g",
+                                      "years": [1, 2], "series": [{"a": 1}]})
+        self._write("04_legacy.json", {"slug": "l", "script": "words",
+                                       "shots": [{"phrase": "w"}]})
+        self.assertEqual(len(self.pa.load_packages("trending", "20260801")), 4,
+                         "a real package shape was dropped")
+
+    def test_unreadable_json_is_skipped_not_fatal(self):
+        self._write("01_real.json", self._pkg(0))
+        (self.tmp / "state" / "trending_packages" / "20260801"
+         / "02_broken.json").write_text("{not json")
+        self.assertEqual(len(self.pa.load_packages("trending", "20260801")), 1)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
