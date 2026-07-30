@@ -84,3 +84,30 @@ alone. Unblock one of:
   Drive limitation — the connector cannot set anyone-with-link sharing.
 - **Accept a no-footage cut** authored entirely from scene/character
   vignettes, and let the two gate fixes above land first.
+
+## Addendum — the director's gates re-run offline on the finished cut
+
+The CI gate report only goes to stdout, so the gates were re-run locally
+against the downloaded master to name the beats. Results:
+
+- `dead_fraction` **0.39** — 86 of 218s read as dead. `mean_appeal` 0.628.
+  Twelve boring stretches. One stale span, `88.5–96.0s`.
+- Hard-dull beats, all `DEVELOP`, all with `fix=motion`:
+  **beat 8** (appeal 0.477), **beat 12** (dead stretch, 0.564),
+  **beat 16** (0.402). The floor is 0.55.
+- The cool judge flags 9 suspects. **Five of them are the CHAPTER cards** —
+  beats 2, 6, 10, 14, 19, appeal **0.32 · 0.33 · 0.37 · 0.40 · 0.38**.
+  Every single chapter title card scores below the dull floor.
+
+Two things follow.
+
+**The three hard-dull beats all ask for `motion`** — moving footage — which
+is exactly what the funnel cannot supply cleanly. That closes the loop: the
+director's own prescribed repair is blocked by the same missing providers.
+
+**The five chapter cards are dull by construction, and that needs no
+footage at all.** A held title plate cannot clear a 0.55 appeal floor.
+This is the one part of the failure that is fully fixable in-engine, and it
+makes the no-footage option viable: redesign the chapter transition so it
+carries motion or a character beat instead of a frozen plate, and five dead
+beats become live ones without a single new asset.
