@@ -257,18 +257,94 @@ def _grade(im):
     return Image.fromarray(a.astype(np.uint8), "RGB")
 
 
+# THE APPEAL FLOOR. The dullness gate scores a frame on colourfulness, edge
+# density and contrast (scripts/interest_judge._appeal) and rejects anything
+# under 0.55. Measured across the scene library, only work_scene cleared it: the
+# dim, low-saturation rooms these scenes are designed with — a slumped figure in
+# a darkening room reads as tedium, which is the POINT — land at 0.29-0.51 and
+# every film that used a character scene for personality got flagged dull.
+#
+# A scene may be dim by design. It may not be objectively unwatchable. This is
+# the colourist's pass: measure the finished frame and, only when it falls under
+# the floor, lift contrast and saturation toward it. A frame already above the
+# floor is returned untouched, so the look of a scene that works is never
+# "corrected" — and because the lift is proportional to the shortfall, a dim
+# scene stays dimmer than a bright one. Mood survives; deadness does not.
+_APPEAL_FLOOR = 0.60          # above the gate's 0.55 so a re-encode has margin
+_LIFT_MAX = 1.85              # ceiling on the stretch — never a blown-out frame
+
+
+def _appeal_of(a) -> float:
+    """The dullness gate's own metric, on an RGB float array. Kept in step with
+    scripts/interest_judge._appeal — if that moves, this must move with it."""
+    small = a[::max(1, a.shape[0] // 90), ::max(1, a.shape[1] // 160)]
+    R, G, B = small[..., 0], small[..., 1], small[..., 2]
+    rg, yb = R - G, 0.5 * (R + G) - B
+    colour = float(np.hypot(rg.std(), yb.std())
+                   + 0.3 * np.hypot(rg.mean(), yb.mean()))
+    g = small.mean(2)
+    lap = np.abs(4 * g[1:-1, 1:-1] - g[:-2, 1:-1] - g[2:, 1:-1]
+                 - g[1:-1, :-2] - g[1:-1, 2:])
+    return (0.45 * min(1.0, colour / 45.0)
+            + 0.35 * min(1.0, float((lap > 18).mean()) / 0.16)
+            + 0.20 * min(1.0, float(g.std()) / 55.0))
+
+
+def _apply_lift(a, black: float, gain: float):
+    """The grade itself: lift the black point, then expand contrast and
+    saturation about the NEW luminance (using the pre-lift luminance here
+    desaturates instead of saturating)."""
+    b = a + black
+    nmid = float(b.mean())
+    b = nmid + (b - nmid) * gain
+    nlum = b.mean(2, keepdims=True)
+    return np.clip(nlum + (b - nlum) * gain, 0, 255)
+
+
+def _lift_params(im) -> tuple[float, float] | None:
+    """Decide ONE grade for the whole scene from its first frame, or None if the
+    scene already clears the floor.
+
+    Per-frame adaptation would be wrong twice over: a grade that re-derives
+    itself every frame breathes visibly as the scene's own lighting animates
+    (these scenes deliberately darken or brighten over their run), and measuring
+    every frame costs more than the drawing does. A colourist grades a SHOT.
+
+    NEVER-WORSE GUARANTEE: the candidate grade is measured and returned only if
+    it actually scores higher than doing nothing. A frame near the floor can
+    otherwise come out BELOW where it started — lifting the black point raises
+    mean luminance, which shrinks the normalised contrast term faster than the
+    saturation term grows."""
+    a = np.asarray(im, np.float32)
+    have = _appeal_of(a)
+    if have >= _APPEAL_FLOOR:
+        return None
+    k = min(1.0, (_APPEAL_FLOOR - have) / max(_APPEAL_FLOOR, 1e-6))
+    black = max(0.0, 46.0 - float(a.mean())) * k
+    gain = 1.0 + (_LIFT_MAX - 1.0) * k
+    return (black, gain) if _appeal_of(_apply_lift(a, black, gain)) > have else None
+
+
 def _render(draw_fn, out: Path, seconds: float, bg_fn):
     """Pipe raw RGB straight to ffmpeg. bg_fn(i,n)->Image builds the per-frame
     environment; draw_fn(i,n,im)->Image adds the character + props + accent.
-    A per-chapter color grade (set_mood) is applied to every finished frame."""
+    A per-chapter color grade (set_mood) and the appeal floor are applied to
+    every finished frame."""
     n = max(2, int(round(seconds * FPS)))
     proc = subprocess.Popen(
         ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo",
          "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
          "-c:v", "libx264", "-crf", "18", "-preset", "medium",
          "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
+    lift = None
     for i in range(n):
         im = _grade(draw_fn(i, n, bg_fn(i, n)).convert("RGB"))
+        if i == 0:                      # one grade, decided once, held all shot
+            lift = _lift_params(im)
+        if lift is not None:
+            im = Image.fromarray(
+                _apply_lift(np.asarray(im, np.float32), *lift).astype(np.uint8),
+                "RGB")
         proc.stdin.write(im.tobytes())
     proc.stdin.close()
     proc.wait()
