@@ -21,6 +21,29 @@ visuals, and we are not re-rendering.
                  packages now final -> render
 ```
 
+## Mode `author` — ChatGPT takes over the writing
+
+The bundle carries a top-level `mode`. Normally `"punch_up"`. When Phase A
+finds the day short of packages — the Claude Routine did not run and the
+reserve bank could not cover it — it flips to **`"author"`** and adds an
+`authoring_request` (`shared/authoring_brief.py`). ChatGPT then writes the
+day's slate itself into `response.json`'s `authored` array, and Phase B
+validates and promotes it before doing anything else.
+
+```
+Phase A  0 packages, bank empty  ->  mode:"author", write:6, mix 2/2/2
+ChatGPT  reads authoring_request, writes response.json.authored[] + DONE
+Phase B  ingest_authored.py: validate -> promote -> quarantine failures
+         cover media for the new packages, then the normal Phase B work
+```
+
+The brief hands ChatGPT the complete per-format spec as DATA, generated from
+the same constants the validator enforces — so what we ask for and what we
+accept cannot drift. Promotion runs
+`package_buffer.structural_problems()`, the same gate the reserve bank uses.
+A package that fails is quarantined into `authored_report.json` with its
+reasons; the rest of the slate ships. Full trace: `docs/FALLBACKS.md` §6.
+
 ## Why one bundle, not two asks
 
 The punch-up is better when the writer can see what will be on screen, and

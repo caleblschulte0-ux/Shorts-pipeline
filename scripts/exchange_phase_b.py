@@ -188,6 +188,43 @@ def self_fill(pkg: dict, shot_index: int) -> str | None:
     return None
 
 
+def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False
+                   ) -> None:
+    """Find media for a package ChatGPT authored after Phase A had already
+    run. Same two lanes Phase A and Phase B already use — entity resolution
+    first, then the gloves-off self-fill for whatever is still bare — so a
+    takeover slate is illustrated the same way a normal one is.
+
+    Formats without `shots` (text_card, graph_race) need nothing here: the
+    renderer sources their b-roll from `broll_query` and draws the chart."""
+    shots = pkg.get("shots") or []
+    if not shots:
+        return
+    try:
+        from funnel import entity_media
+        entity_media.enrich_package(pkg, verbose=False)
+    except Exception as exc:                         # noqa: BLE001
+        print(f"[phase-b] entity media unavailable for {pkg.get('slug')} "
+              f"({exc}) — self-fill only")
+
+    for i, shot in enumerate(shots):
+        if shot.get("image_url"):
+            continue
+        if no_self_fill:
+            report["media"]["unfilled"] += 1
+            continue
+        url = self_fill(pkg, i)
+        if url:
+            shot["image_url"] = url
+            shot["media_origin"] = "self_fill_authored"
+            report["media"]["self_filled"] += 1
+        else:
+            report["media"]["unfilled"] += 1
+    filled = sum(1 for s in shots if s.get("image_url"))
+    print(f"[phase-b] authored {pkg.get('slug')}: {filled}/{len(shots)} "
+          f"shots have media")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--date", required=True)
@@ -195,6 +232,8 @@ def main() -> int:
     ap.add_argument("--require-done", action="store_true",
                     help="exit 2 unless ChatGPT wrote the DONE marker")
     ap.add_argument("--no-self-fill", action="store_true")
+    ap.add_argument("--no-ingest", action="store_true",
+                    help="skip promoting ChatGPT-authored packages")
     ap.add_argument("--no-punchup", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -218,12 +257,32 @@ def main() -> int:
               "self-fill + originals only")
 
     sys.path.insert(0, str(ROOT / "scripts"))
+
+    # AUTHORING TAKEOVER, step 2. If the bundle carried an authoring request,
+    # ChatGPT may have written the day's packages itself. Promote them BEFORE
+    # loading the slate — validated first, so a malformed package is
+    # quarantined with reasons instead of reaching a renderer.
+    authored = {"promoted": [], "rejected": []}
+    if not args.no_ingest:
+        from ingest_authored import ingest          # noqa: E402
+        authored = ingest(args.date, args.channel,
+                          target=int(bundle.get("authoring_request", {})
+                                     .get("target", 6)),
+                          dry_run=args.dry_run)
+
     from exchange_phase_a import load_packages      # noqa: E402
     packages = {p.get("slug"): p for p in
                 load_packages(args.channel, args.date)}
+    # Packages ChatGPT just wrote were not around when Phase A found media,
+    # so they carry no `requests` and no `image_url` anywhere. Cover them
+    # here or they render as bare keyword stock.
+    new_slugs = {Path(p).stem.split("_", 1)[-1]
+                 for p in authored.get("promoted") or []}
 
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
+              "authored": {"promoted": len(authored.get("promoted") or []),
+                           "rejected": len(authored.get("rejected") or [])},
               "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0},
               "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
               "details": []}
@@ -260,6 +319,14 @@ def main() -> int:
 
         report["media"]["unfilled"] += 1
         report["details"].append({"request_id": rid, "outcome": "unfilled"})
+
+    # ---- media for freshly-authored packages -----------------------------
+    # These missed Phase A entirely, so nothing has looked for their visuals.
+    for slug in sorted(new_slugs):
+        pkg = packages.get(slug)
+        if not pkg:
+            continue
+        cover_authored(pkg, report, no_self_fill=args.no_self_fill)
 
     # ---- punch-up (guarded) ---------------------------------------------
     if not args.no_punchup:

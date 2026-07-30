@@ -174,6 +174,16 @@ things worth knowing without opening it:
   CLOSED — no Claude *and* no `GEMINI_API_KEY` means the explainer channel
   publishes nothing (`post_stories.py` refuses `SHOWRUNNER=off` on a
   publish run).
+- **Two lines cover a dead brain, in order.** The **reserve bank** first,
+  then the **ChatGPT authoring takeover** (`shared/authoring_brief.py` +
+  `scripts/ingest_authored.py`): Phase A puts an `authoring_request` in the
+  bundle, ChatGPT writes the day's packages, Phase B validates and promotes
+  them. Nothing ChatGPT writes is trusted — promotion runs the same
+  structural gate the bank and the renderers use, and a failure is
+  quarantined into `authored_report.json`, never rendered. The takeover
+  covers TRENDING only; explainer publishing is blocked by the showrunner
+  (needs `GEMINI_API_KEY`), and third-channel packages describe clips to
+  capture, not prose to write.
 - **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
   banked EVERGREEN packages drawn automatically when a day comes up short.
   `fill` is a no-op on a normal day, so it runs unconditionally in both

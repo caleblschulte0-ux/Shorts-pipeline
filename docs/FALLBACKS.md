@@ -15,15 +15,16 @@ Everything at risk is upstream — authoring and judging.
 Three paths can produce `state/trending_packages/<date>/`, tried in this
 order by the time the render runs:
 
-| # | Path | Runs on | If it's gone |
+| # | Path | Runs on | When it fires |
 |---|---|---|---|
-| 1 | The Routine (~09:19 UTC) | Claude subscription | nothing authored; no PR; no auto-merge |
-| 2 | `daily.yml` "Brain" step | `CLAUDE_CODE_OAUTH_TOKEN` | `continue-on-error`, logs a warning, leaves the dir empty |
-| 3 | **Reserve bank** | nothing — plain Python, offline | draws banked evergreen packages |
-| 4 | Groq via `shared/script_generator._call_llm` | `GROQ_API_KEY` | 6K TPM free tier; struggles writing six scripts back to back |
+| 1 | The Routine (~09:19 UTC) | Claude subscription | normally; the real brain |
+| 2 | **Reserve bank** (§5) | nothing — plain Python, offline | 09:45 UTC, if the day is short |
+| 3 | **ChatGPT takeover** (§6) | ChatGPT scheduled task | 6:00 AM Central, if the day is *still* short |
+| 4 | `daily.yml` "Brain" step | `CLAUDE_CODE_OAUTH_TOKEN` | at render time, if the dir is still empty |
+| 5 | Groq via `shared/script_generator._call_llm` | `GROQ_API_KEY` | last resort; 6K TPM free tier, struggles with six scripts |
 
-Path 3 is new (see §5). Before it existed, a dead subscription meant paths
-1 and 2 both produced nothing and the day fell straight to Groq — or to
+Paths 2 and 3 are new. Before they existed, a dead subscription meant paths
+1 and 4 both produced nothing and the day fell straight to Groq — or to
 `run_trending_daily.most_recent_package_dir()`, which re-serves **yesterday's
 already-posted slate**. Both are bad outcomes that looked green in the
 Actions tab.
@@ -122,11 +123,53 @@ roughly a week of Routine runs before it holds a full slate of cover; the
 `CLAUDE_ROUTINE_INSTRUCTIONS.md` tells the Routine to write one extra
 evergreen package whenever it sees that.
 
-## 6. Summary — what actually breaks
+## 6. The ChatGPT authoring takeover — the brain of last resort
+
+`shared/authoring_brief.py` + `scripts/ingest_authored.py`. When Phase A
+finds the day still short *after* the reserve fill, it puts an
+`authoring_request` in the same `bundle.json` ChatGPT already reads at 6:00
+AM Central and flips the bundle's `mode` to `"author"`. ChatGPT writes the
+missing packages into its `response.json`; Phase B validates and promotes
+them; the renderer cannot tell the difference.
+
+```
+09:45 UTC  Phase A   0 packages, bank empty
+                     -> bundle.json  mode:"author", authoring_request{write:6, mix:2/2/2}
+11:00 UTC  ChatGPT   reads the brief, writes response.json.authored[], DONE
+           Phase B   INGEST: validate -> promote -> quarantine failures
+                     cover media for the new packages (entity + self-fill)
+                     -> daily.yml renders + uploads on the normal slots
+```
+
+Why the timing works: Phase A's backstop cron is 09:45 UTC = 4:45 AM
+Central, so the brief is always on disk before ChatGPT's 6:00 AM task looks.
+
+**Nothing ChatGPT writes is trusted.** Promotion runs the same structural
+gate the reserve bank and the renderers use
+(`package_buffer.structural_problems`), so the brief, the bank, and the
+ingest cannot drift apart — we ask for exactly what we accept. A package
+that fails is written to `exchange/bundles/<date>/authored_report.json` with
+its reasons and does not ship; the rest of the slate is unaffected. Slugs
+are path-sanitised before they become filenames.
+
+The one rule the takeover inherits and does not relax: **the slate is
+2 + 2 + 2**. The brief asks for the mix, and the ingest warns loudly if what
+comes back is six of one format — the exact regression of 2026-07-30.
+
+What the takeover deliberately does NOT cover:
+
+- **Explainer / curiosity.** ChatGPT could write the words, but publishing
+  is gated by the showrunner (§4), which needs Claude or Gemini. Authoring
+  is not the blocker there — the judge is. Set `GEMINI_API_KEY`.
+- **Third channel.** Its packages describe Twitch clips to capture
+  (`proof_plan`, `capture`), not prose to write. There is nothing for a
+  text model to take over.
+
+## 7. Summary — what actually breaks
 
 | Secret / subscription gone | Consequence |
 |---|---|
-| Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. Trending draws from the reserve; when the reserve empties, Groq writes. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
+| Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. Trending draws from the reserve, then ChatGPT authors the day (§6); only if BOTH miss does Groq write. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
 | `GEMINI_API_KEY` | Showrunner has no fallback judge → explainer publishes nothing if Claude is also down. Media judging gets dumber. |
 | `GROQ_API_KEY` | Last-resort writer gone; ranking degrades. Harmless while packages are authored. |
 | ChatGPT task | Policy A: Phase B self-fills, backstop cron renders. A weaker shot beats no video. |

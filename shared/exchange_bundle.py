@@ -75,8 +75,17 @@ def _max_requests() -> int:
 
 
 def build_bundle(date: str, packages: list[dict],
-                 judge_reports: list[dict]) -> dict:
-    """Assemble the day's ask. Pure function — easy to test, no IO."""
+                 judge_reports: list[dict],
+                 authoring_request: dict | None = None) -> dict:
+    """Assemble the day's ask. Pure function — easy to test, no IO.
+
+    `authoring_request` is the AUTHORING TAKEOVER brief (see
+    `shared/authoring_brief.py`): present only when the day came up short of
+    packages, which means the Claude Routine did not run and the reserve bank
+    could not cover it. When present the bundle's `mode` flips to `"author"`
+    and ChatGPT writes the missing packages itself. Both jobs can be live at
+    once — 2 authored packages still want their media judged and punched up
+    while the other 4 get written from scratch."""
     by_slug = {r.get("slug"): r for r in (judge_reports or [])}
     anim_left = _anim_budget()
     cap = _max_requests()
@@ -146,15 +155,17 @@ def build_bundle(date: str, packages: list[dict],
             "requested": pkg_requests,
         })
 
-    return {
+    bundle = {
         "schema": SCHEMA,
         "date": str(date),
         "status": "open",
+        "mode": "author" if authoring_request else "punch_up",
         "response_path": f"exchange/bundles/{date}/response.json",
         "done_marker": f"exchange/bundles/{date}/DONE",
         "counts": {"packages": len(items), "requests": len(requests),
                    "animations": sum(1 for r in requests
-                                     if r["kind"] == "animation")},
+                                     if r["kind"] == "animation"),
+                   "to_author": (authoring_request or {}).get("write", 0)},
         "packages": items,
         "requests": requests,
         "instructions": {
@@ -271,12 +282,35 @@ def build_bundle(date: str, packages: list[dict],
         },
     }
 
+    if authoring_request:
+        # TAKEOVER. Front of the bundle, and the two_jobs list is rewritten
+        # so the authoring job cannot read as an optional extra bolted on
+        # after the media/punch-up work.
+        bundle["authoring_request"] = authoring_request
+        bundle["instructions"]["two_jobs"] = [
+            "0. AUTHOR THE DAY — READ `authoring_request` FIRST. The channel's "
+            "own writing brain did not run today and the reserve bank could "
+            "not cover it, so there is no slate. You are the brain: write the "
+            "missing packages per the spec in `authoring_request.formats` and "
+            "return them in this response's `authored` array. Without this "
+            "the channel posts NOTHING today.",
+        ] + [j for j in bundle["instructions"]["two_jobs"]]
+        bundle["instructions"]["takeover_note"] = (
+            "`packages` and `requests` cover whatever WAS authored before you "
+            "— often nothing. Do both jobs: author the shortfall, and still "
+            "handle media/punch-up for anything already there. Media for the "
+            "packages you write is found on our side after promotion; you do "
+            "not need to source images for them.")
+    return bundle
+
 
 def write_bundle(date: str, packages: list[dict],
-                 judge_reports: list[dict]) -> Path | None:
+                 judge_reports: list[dict],
+                 authoring_request: dict | None = None) -> Path | None:
     """Phase A: persist the day's bundle. Returns its path, or None."""
     try:
-        bundle = build_bundle(date, packages, judge_reports)
+        bundle = build_bundle(date, packages, judge_reports,
+                              authoring_request)
         d = bundle_dir(date)
         d.mkdir(parents=True, exist_ok=True)
         path = d / "bundle.json"

@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from funnel import media_judge                     # noqa: E402
+from shared import authoring_brief as brief         # noqa: E402
 from shared import exchange_bundle as xb           # noqa: E402
 from shared.fsutil import atomic_write_json        # noqa: E402
 
@@ -103,11 +104,32 @@ def main() -> int:
     ap.add_argument("--no-resolve", action="store_true",
                     help="skip media finding; judge only what is pinned "
                          "(offline testing)")
+    ap.add_argument("--target", type=int, default=6,
+                    help="packages the day should have; a shortfall becomes "
+                         "an authoring request to ChatGPT (default 6)")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
     packages = load_packages(args.channel, args.date)
-    if not packages:
+
+    # AUTHORING TAKEOVER. A short day means the Claude Routine did not run
+    # AND the reserve bank could not cover it (the workflow fills from the
+    # bank immediately before this). Rather than exit 0 with nothing to ask
+    # for — which is exactly how a dead authoring night stayed invisible —
+    # put an authoring brief in the bundle and let ChatGPT be the brain.
+    authoring_request = None
+    if len(packages) < args.target:
+        authoring_request = brief.build_request(
+            args.date, args.channel, have_packages=packages,
+            target=args.target,
+            reason=(f"only {len(packages)} of {args.target} packages exist "
+                    f"for {args.date}: the Claude authoring Routine did not "
+                    f"run and the reserve bank could not cover the day"))
+        print(f"[phase-a] TAKEOVER: {len(packages)}/{args.target} packages — "
+              f"asking ChatGPT to author {authoring_request['write']} "
+              f"({', '.join(f'{n}x{f}' for f, n in authoring_request['mix'].items() if n)})")
+
+    if not packages and not authoring_request:
         print(f"[phase-a] no packages for {args.channel} {args.date} — "
               f"nothing to ask for")
         return 0
@@ -120,7 +142,8 @@ def main() -> int:
             pkg, None, usage_penalties=usage_penalties(pkg))
         reports.append(report)
 
-    bundle = xb.build_bundle(args.date, packages, reports)
+    bundle = xb.build_bundle(args.date, packages, reports,
+                             authoring_request)
 
     if args.json:
         print(json.dumps(bundle, indent=2)[:4000])
@@ -156,7 +179,8 @@ def main() -> int:
             print(f"[phase-a] WARN could not save resolved media for "
                   f"{pkg.get('slug')}: {exc}")
 
-    path = xb.write_bundle(args.date, packages, reports)
+    path = xb.write_bundle(args.date, packages, reports,
+                           authoring_request)
     if path is None:
         print("[phase-a] ERROR: could not write bundle")
         return 1

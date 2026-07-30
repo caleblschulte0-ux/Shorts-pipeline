@@ -75,6 +75,58 @@ download and rejects a mismatch — that is how substitution and truncation get
 caught (an earlier attempt delivered a corrupt 2-colour placeholder whose
 claimed hash did not match its bytes).
 
+## Mode `author` — the takeover (you are the brain today)
+
+`bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
+your job is media + script editing. When it is **`"author"`**, the channel's
+own writing brain (a Claude Routine) did not run and the reserve bank could
+not cover the day. **There is no slate. Without you the channel posts
+nothing.**
+
+Everything you need is in `bundle.json` → `authoring_request`:
+
+| Field | What it is |
+|---|---|
+| `write` | how many packages to write |
+| `mix` | how many of each format — the slate is **2 + 2 + 2**, never 6 of one |
+| `formats` | the complete spec per format: required fields, shape, rules |
+| `hard_rules` | the mechanical checks we run on your output |
+| `do_not_repeat` | titles the channel posted recently |
+| `quality_bar` | the voice to write in |
+
+**Where to put them** — add an `authored` array to the same `response.json`
+you already write, one complete package object per entry:
+
+```json
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "authored": [ { "...one full package..." }, { "..." } ],
+  "media": [ ... ],
+  "packages": [ ... ]
+}
+```
+
+One file write, no new plumbing. If that fails, the fallback is one file per
+package at `exchange/bundles/<date>/authored/NN_slug.json` — both are read.
+
+**Do not write into `state/trending_packages/` yourself.** Everything you
+author is validated before promotion. A package that fails is quarantined
+with its reasons into `authored_report.json` and simply does not ship — it
+does not break the rest of the slate, and it does not silently render either.
+
+What gets a package rejected, mechanically:
+
+- a shot/punch `phrase` that is not an exact substring of its `script`
+- a `highlight` that is not an exact substring of its `text`
+- a `series.values` whose length differs from `years`
+- a `graph_race` whose leader peaks under 1,000 or grows less than 3×
+  (the renderer refuses it — see `authoring_request.formats.graph_race`)
+- a title that repeats something the channel posted in the last 6 days
+- a missing required field for that format
+
+Write fewer good packages rather than more weak ones. Four that land beat six
+that don't, and an honest short slate is a valid outcome.
+
 ## Run log (what has actually been proven)
 
 | Run | Transport (files.list -> file_uri -> Drive) | Image content | Sharing |

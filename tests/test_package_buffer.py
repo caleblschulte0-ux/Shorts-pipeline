@@ -40,7 +40,7 @@ def reddit_pkg(slug="office-printer-justice", **over) -> dict:
               "straight from the tap. He never touched that fridge again, "
               "and he never once admitted why.")
     pkg = {"version": 1, "subreddit": "pettyrevenge", "slug": slug,
-           "title": "He Stopped Stealing Lunches After One Sandwich",
+           "title": f"He Stopped Stealing Lunches: {slug}",
            "hashtags": [f"#tag{i}" for i in range(12)],
            "script": script,
            "shots": [{"phrase": "office fridge", "query": "office kitchen"},
@@ -59,7 +59,7 @@ def text_card_pkg(slug="shrinkflation-chips", **over) -> dict:
             "far easier to hide than a price increase.\n\n"
             "You are paying more per ounce and the label never says so.")
     pkg = {"version": 1, "format": "text_card", "slug": slug,
-           "title": "The Bag Is The Same Size", "duration": 6,
+           "title": f"The Bag Is The Same Size: {slug}", "duration": 6,
            "broll_query": "potato chips",
            "hashtags": [f"#tag{i}" for i in range(12)],
            "text": text,
@@ -72,7 +72,8 @@ def text_card_pkg(slug="shrinkflation-chips", **over) -> dict:
 
 def graph_pkg(slug="streaming-vs-cable", **over) -> dict:
     pkg = {"version": 1, "format": "graph_race", "slug": slug,
-           "title": "Streaming Overtook Cable", "y_label": "Subscribers",
+           "title": f"Streaming Overtook Cable: {slug}",
+           "y_label": "Subscribers",
            "duration": 13, "source": "Sources: company filings",
            "hashtags": [f"#tag{i}" for i in range(12)],
            "years": [2010, 2012, 2014, 2016, 2018, 2020, 2022],
