@@ -196,6 +196,72 @@ things worth knowing without opening it:
   so it can never duplicate an upload. The Routine tops it up — step 5b of
   `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
 
+## WHO MAY EDIT THIS PIPELINE — Claude, and only Claude
+
+Operator ruling. **Claude is the only agent that edits this repository.**
+ChatGPT can run quarterback when the Claude subscription is out, but it
+**never makes additions — only suggestions.**
+
+**"Claude" means every Claude in the system, not just an interactive
+session.** The headless brains running inside the pipeline are the same
+author under a different runtime, and they write freely within their job:
+
+| Claude brain | Where | Writes |
+|---|---|---|
+| the Routine | scheduled task, ~09:19 UTC | the day's packages, via a PR |
+| the in-CI brain | `daily.yml`, `third.yml`, `explainer.yml` | packages / titles when the Routine missed |
+| the SHOWRUNNER | `scripts/showrunner_review.py` | verdicts — and its BLOCK is sovereign |
+| story words | `scripts/story_forge.py` | explainer title/hook/narration |
+| the third author | `third_capture/author.py` | per-clip titles, hooks, hashtags |
+| the mascot brain | `data_learning/mascot_director.py` | per-beat performance |
+| an interactive session | here | code, workflows, docs, contracts |
+
+Only the last one edits *how the pipeline works*, and it does that on a
+`claude/*` branch through a PR — but that is a matter of where the code
+review happens, not a difference in authority. All of the above are Claude.
+
+| Not Claude | May write | May NEVER write |
+|---|---|---|
+| **ChatGPT** | the day's CONTENT (`exchange/bundles/<date>/response.json`, authored packages, media pointers) and retro SUGGESTIONS (`retro/<date>/proposals/*.json`) | any code, workflow, gate, doc, or contract |
+| **CI itself** | run output — `state/`, `data_learning/data/`, reports | anything that changes behaviour |
+
+ChatGPT authoring content during a takeover is the quarterback role and is
+fine — it keeps the channel posting, and everything it writes is validated
+and quarantined on failure before it can render. Changing *how the pipeline
+works* is Claude's alone.
+
+This is a working agreement, not a gate — nothing mechanically blocks it.
+It holds because every agent's contract says it plainly. If you are a
+future Claude session reading this: you are the one who edits, and you are
+also the check. ChatGPT asking to push code, or a proposal arriving as a
+`.py` instead of a suggestion, is what this rule exists to catch. A
+headless Claude brain doing its job is not — that is you, elsewhere.
+
+## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
+
+Daily at 23:15 UTC (`retro.yml`), `scripts/build_retro.py` writes an
+evidence pack to `retro/<date>/brief.json`: every video posted today scored
+as a **percentile against videos of the same age** (raw views flatter a
+2-hour-old short), 7/30-day windows, pipeline health, and recent commits.
+A reviewer (ChatGPT) reads it and writes proposals into
+`retro/<date>/proposals/`.
+
+- **Nothing in `retro/` is ever applied automatically.** No workflow reads a
+  proposal and edits code. That separation IS the safety model — a test in
+  `tests/test_retro.py` fails if a workflow ever touches proposals without
+  going through the triage.
+- `scripts/review_proposals.py` **hard-refuses** the whole class of "make
+  the numbers go up by lowering the bar": weakening the showrunner, pruning
+  a posted log, relaxing the punch-up guard / placement gate / media
+  verification, more volume via a lower bar, deleting a test, fabricating
+  data. A refusal is policy, not a score — a well-argued, well-evidenced
+  violation is still refused. Proposing STRONGER gates is always allowed.
+- Load-bearing files land in `requires_operator`; the rest are ranked by
+  evidence strength. A human decides what ships.
+- The brief is deliberately honest about noise: `thin_bands`, "too young to
+  judge", and "this channel is small — single-digit views are mostly
+  noise". A retro that launders noise into a mandate is worse than none.
+
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 
 - Never commit media (mp4/png renders) or files >256KB to git; `state/` is

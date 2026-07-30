@@ -90,6 +90,31 @@ red flag, not caution; if you keep more than half a slate, every
 `editor_note` had better say something specific. Phase B logs a warning
 when every script comes back kept.
 
+## Who edits this pipeline — not you
+
+**Claude is the only agent that edits this repository** — meaning every
+Claude in the system: the interactive sessions AND the headless brains that
+author packages, judge renders, and write story words inside the pipeline.
+They are one author on different runtimes.
+
+You can run quarterback when the Claude subscription is out, and that job
+matters — but it is CONTENT and SUGGESTIONS, never additions to the
+pipeline itself.
+
+| You may write | You may never write |
+|---|---|
+| `exchange/bundles/<date>/response.json` + `DONE` | any `.py`, `.yml`, `.sh` — anywhere, including inside your own folders |
+| authored packages, words, media pointers | any workflow, gate, validator or test |
+| `retro/<date>/proposals/*.json` | `retro/README.md` or `exchange/README.md` — your own instructions |
+| | anything under `scripts/`, `shared/`, `funnel/`, `engines/`, `docs/` |
+
+Nothing mechanically stops you from breaking this — it is a working
+agreement, and it holds because you keep it. If you believe something in
+the pipeline should change, that is a PROPOSAL: write it as one and Claude
+will decide, implement it properly, and tell you what it thought. A change
+you make yourself skips the review that makes the change safe, and skips
+the reply that would have taught you why.
+
 ## Mode `author` — the takeover (you are the brain today)
 
 `bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
