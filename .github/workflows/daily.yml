@@ -275,6 +275,27 @@ jobs:
           [ "$N" -eq 0 ] && echo "::warning::BRAIN produced 0 packages; run will fall to Groq."
           exit 0
 
+      # LAST-RESORT COVER. The brain above is the only Claude-authored path
+      # in this workflow, and it is `continue-on-error` by design — a lapsed
+      # subscription, a revoked token, or a failed npm install all land here
+      # with an empty package directory. Before that becomes "Groq writes six
+      # scripts" (rate-limited, weak) or "re-serve yesterday's already-posted
+      # slate", draw banked evergreen packages instead. A no-op on any day
+      # the brain worked.
+      - name: Reserve bank — cover a dead brain
+        if: steps.preflight.outputs.skip == ''
+        continue-on-error: true
+        run: |
+          set -e
+          TODAY=$(date -u +%Y%m%d)
+          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
+            python scripts/package_reserve.py deposit \
+              --dir state/package_buffer/inbox --source routine --delete
+          fi
+          python scripts/package_reserve.py status
+          python scripts/package_reserve.py fill --date "$TODAY" \
+            --reason "daily.yml brain authored nothing"
+
       - name: Run daily orchestrator
         id: run
         # Gate on the kill switch: without this the orchestrator uploaded even
