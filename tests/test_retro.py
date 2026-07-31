@@ -263,16 +263,36 @@ class TestContractAndCodeAgree(unittest.TestCase):
         self.assertIn("ever applied automatically", text)
         self.assertIn("no workflow reads", text)
 
-    def test_no_workflow_applies_a_proposal(self):
-        """The safety model is that no automation reads a proposal and
-        edits code. Assert it, so a future workflow cannot quietly add it."""
+    def test_no_workflow_applies_a_proposal_untriaged_or_unrecorded(self):
+        """The safety model, stated precisely.
+
+        A proposal may reach production only if it was TRIAGED first (so the
+        refusal list ran) and a VERDICT was RECORDED (so nothing is applied
+        silently). Two workflows legitimately touch proposals:
+
+            retro.yml         triages   -> review_proposals.py
+            retro_decide.yml  decides   -> pending_decisions.py (reads the
+                                           triage) + retro_reply.py (records)
+
+        Anything else that touches proposals, or either of these losing its
+        half of the contract, is the failure this guards."""
+        allowed = {
+            "retro.yml": ["review_proposals.py"],
+            "retro_decide.yml": ["pending_decisions.py", "retro_reply.py"],
+        }
         for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
             body = wf.read_text()
             if "proposals" not in body:
                 continue
             self.assertNotIn("apply_proposal", body)
-            self.assertIn("review_proposals.py", body,
-                          f"{wf.name} touches proposals without triaging them")
+            self.assertIn(wf.name, allowed,
+                          f"{wf.name} touches proposals but is not one of the "
+                          f"two workflows allowed to")
+            for required in allowed[wf.name]:
+                self.assertIn(required, body,
+                              f"{wf.name} lost its {required} step — a "
+                              f"proposal could now be acted on untriaged "
+                              f"or without a recorded verdict")
 
 
 if __name__ == "__main__":

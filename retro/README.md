@@ -141,6 +141,7 @@ do not write it again. That is what makes re-running you safe.
 {"proposals": [{
   "proposal_id": "20260801-graph-hook",
   "review_date": "20260801",
+  "title": "Graph race hook overlay is too long",
   "channel": "trending", "format": "graph_race",
   "category": "content", "confidence": "medium",
   "problem_class": "packaging",
@@ -162,6 +163,10 @@ do not write it again. That is what makes re-running you safe.
   "new_evidence_since": ""
 }]}
 ```
+
+**Every field above is required except `new_evidence_since`.** This example
+is checked by a test (`test_readme_example_passes_validation`) — if the
+validator and this document ever disagree, that test fails. Copy it.
 
 `problem_class` must be one of `brief.problem_classes` — and picking it is
 not a formality. **A render that failed or an upload that never went

@@ -1,0 +1,189 @@
+name: Retro decide (Claude answers the proposals)
+
+# The half of the loop that was missing. ChatGPT reviews and proposes;
+# triage sorts; and then — until now — nothing happened unless a human
+# remembered. A proposal that is never answered is worse than one that is
+# declined, because the reviewer cannot tell "we disagreed" from "nobody
+# looked", so it keeps re-filing and never learns the channel's constraints.
+#
+# This is CLAUDE deciding, which the governance note in CLAUDE.md permits and
+# in fact requires: Claude is the only agent that edits the pipeline, and the
+# headless brains are Claude. ChatGPT never gets write access to code here —
+# it only ever wrote the proposal that this reads.
+#
+# Runs 08:00 Central (both DST candidates, in-code gate), a few hours after
+# the ~7pm reviewer, so a night's proposals are answered by morning.
+#
+# NEVER blocks production: everything is continue-on-error, and the daily
+# render workflows do not depend on this in any way.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Review date to decide (blank = all pending, oldest first)'
+        required: false
+        default: ''
+  schedule:
+    - cron: '0 13 * * *'   # 08:00 Central during CDT
+    - cron: '0 14 * * *'   # 08:00 Central during CST
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  decide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: retro-decide
+      cancel-in-progress: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Is it really 8am in Chicago?
+        id: when
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          now = datetime.now(ZoneInfo("America/Chicago"))
+          scheduled = os.environ.get("GITHUB_EVENT_NAME") == "schedule"
+          print(f"go={'true' if (not scheduled) or now.hour == 8 else 'false'}")
+          print(f"local={now:%Y-%m-%d %H:%M %Z}")
+          PY
+
+      - name: What is waiting?
+        id: pending
+        if: steps.when.outputs.go == 'true'
+        run: |
+          set -e
+          python3 scripts/pending_decisions.py
+          N=$(python3 scripts/pending_decisions.py --json \
+              | python3 -c "import json,sys; print(json.load(sys.stdin)['count'])")
+          echo "count=$N" >> "$GITHUB_OUTPUT"
+
+      - name: Install Claude CLI
+        if: steps.when.outputs.go == 'true' && steps.pending.outputs.count != '0'
+        continue-on-error: true
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            || echo "::warning::claude-code install failed — decisions deferred to tomorrow"
+
+      # Claude reads the triage, decides every pending proposal, implements
+      # what it accepts, and records a durable verdict for each. The verdicts
+      # are the point: even a run where nothing is implemented must leave the
+      # ledger complete, so the reviewer knows where it stands.
+      - name: Claude decides
+        if: steps.when.outputs.go == 'true' && steps.pending.outputs.count != '0'
+        continue-on-error: true
+        timeout-minutes: 30
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          set +e
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::no CLAUDE_CODE_OAUTH_TOKEN — proposals stay pending"
+            exit 0
+          fi
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          BRANCH="claude/retro-decisions-$(date -u +%Y%m%d-%H%M)"
+          git checkout -b "$BRANCH"
+
+          cat > "$RUNNER_TEMP/prompt.txt" <<'EOF'
+          You are Claude deciding on the retro reviewer's proposals. Read
+          `retro/README.md` and `CLAUDE.md` first — especially the section on
+          who may edit this pipeline, and the showrunner rules.
+
+          Run `python3 scripts/pending_decisions.py` to see what is waiting.
+          For EACH pending proposal:
+
+          1. Read the proposal and the day's `retro/<date>/brief.json`.
+             Check its evidence actually supports it.
+          2. Decide: adopt / revise / decline / needs_evidence / deferred.
+             Declining well is a good outcome. Do NOT adopt something just
+             because it was proposed — but do not ignore it either.
+          3. If you ADOPT: implement the change yourself, minimally and
+             reversibly. Prefer one variable. Run the tests.
+          4. Record the verdict — this is mandatory for every proposal,
+             including the ones you decline:
+
+             python3 scripts/retro_reply.py --date <date> --file <file> \
+               --verdict <verdict> --because "<your real reasoning>" \
+               --shipped <files you changed> \
+               --channel <channel> --format <format>
+
+             On an adopt that claims a measurable effect, also register the
+             experiment so it gets read out in a week rather than forgotten:
+               --experiment "<hypothesis>" --metric <metric> \
+               --direction up|down --baseline <number> \
+               --min-days 7 --min-samples 10
+
+          RULES
+          - Never weaken the showrunner, a posted log, the punch-up guard,
+            the placement gate, or any media verification. If a proposal
+            asks for that, decline it and say why.
+          - `--because` is read by the reviewer tomorrow. Write the real
+            reason, including what you changed about their idea and why.
+            That reasoning is how it learns this channel's constraints.
+          - Leave no pending proposal unanswered. `deferred` with a reason
+            is a legitimate answer; silence is not.
+          - Do not touch anything unrelated to the proposals.
+
+          Finish by printing each proposal and the verdict you gave it.
+          EOF
+
+          claude -p "$(cat "$RUNNER_TEMP/prompt.txt")" \
+            --allowedTools "Read,Write,Edit,Bash" \
+            --permission-mode acceptEdits \
+            --model "${BRAIN_MODEL:-sonnet}" \
+            --output-format text 2>&1 | tail -60 \
+            || echo "::warning::decide run errored — proposals stay pending"
+
+          # Always persist the verdicts, even if implementation went nowhere.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no changes to push"
+            exit 0
+          fi
+          git commit -q -m "retro: Claude's decisions on pending proposals
+
+          Verdicts recorded via retro_reply.py. See retro/state/ledger.jsonl.
+
+          Co-authored-by: Claude <noreply@anthropic.com>"
+          git push -u origin "$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "retro: decisions $(date -u +%Y-%m-%d)" \
+            --body "Automated retro decisions. Verdicts in \
+          \`retro/state/ledger.jsonl\`; any implementation is in the diff." \
+            || echo "::warning::could not open PR"
+        continue-on-error: true
+
+      - name: Anything still unanswered?
+        if: steps.when.outputs.go == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+        run: |
+          LEFT=$(python3 scripts/pending_decisions.py --json \
+                 | python3 -c "import json,sys; print(json.load(sys.stdin)['count'])")
+          if [ "$LEFT" != "0" ]; then
+            echo "::warning::$LEFT proposal(s) still have no verdict"
+            python3 scripts/pending_decisions.py > /tmp/pending.md
+            gh issue comment "$ISSUE" --repo "${{ github.repository }}" \
+              --body-file /tmp/pending.md || true
+          else
+            echo "every proposal has a verdict"
+          fi

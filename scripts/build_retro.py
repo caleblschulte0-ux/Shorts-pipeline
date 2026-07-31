@@ -641,6 +641,8 @@ def main() -> int:
                     help="YYYYMMDD (default: today UTC)")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite a brief that has already been reviewed")
     args = ap.parse_args()
 
     date = args.date or datetime.now(timezone.utc).strftime("%Y%m%d")
@@ -656,15 +658,31 @@ def main() -> int:
         return 0
 
     out = RETRO_ROOT / date
+    # A PUBLISHED BRIEF IS IMMUTABLE. Once a reviewer has answered it, its
+    # numbers are the evidence their proposals cite — rewriting it with
+    # newer analytics silently invalidates every one of those citations and
+    # makes the evidence check fail on work that was correct when written.
+    already = out / "brief.json"
+    answered = (out / "proposals.json").exists() or any(
+        (out / "proposals").glob("*.json")) if (out / "proposals").is_dir() \
+        else (out / "proposals.json").exists()
+    if already.exists() and answered and not args.force:
+        print(f"[retro] {date} was already reviewed — refusing to overwrite "
+              f"a published brief (use --force only if you mean it)")
+        return 0
+
     out.mkdir(parents=True, exist_ok=True)
     (out / "brief.json").write_text(json.dumps(brief, indent=2) + "\n")
     (out / "brief.md").write_text(to_markdown(brief))
     (out / "summary.md").write_text(executive_summary(brief))
     (out / "proposals").mkdir(exist_ok=True)
     (out / "proposals" / ".gitkeep").touch()
-    print(f"\n[retro] wrote {(out / 'brief.json').relative_to(ROOT)} "
-          f"({len(json.dumps(brief)):,} bytes)")
-    print(f"[retro] summary at {(out / 'summary.md').relative_to(ROOT)}")
+    try:
+        where = (out / "brief.json").relative_to(ROOT)
+    except ValueError:              # retro root redirected (tests)
+        where = out / "brief.json"
+    print(f"\n[retro] wrote {where} ({len(json.dumps(brief)):,} bytes)")
+    print(f"[retro] summary at {out / 'summary.md'}")
     print(f"[retro] the reviewer writes retro/{date}/proposals.json")
     return 0
 
