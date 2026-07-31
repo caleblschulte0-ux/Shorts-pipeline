@@ -349,7 +349,12 @@ def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
         if hit:
             # hand the resolved clip to the normal footage path: a local file
             # (already downloaded by the gate) pinned to its clean window.
-            foot = {"kind": "footage", "seconds": seconds,
+            # CUT TO WHAT THE CLIP HAS. motion_first may return a shorter clean
+            # window than the beat asked for (stock clips are 3-6s); running the
+            # shot past it would drift off the end of the source. A slightly
+            # shorter real shot beats the card this used to fall back to.
+            win = float(hit.get("window") or seconds)
+            foot = {"kind": "footage", "seconds": min(seconds, win),
                     "ss": hit["ss"], "push": float(shot.get("push", 1.06)),
                     "direction": shot.get("direction", "in"),
                     "_local_src": hit["path"],

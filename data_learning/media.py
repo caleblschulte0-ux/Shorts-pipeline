@@ -313,6 +313,10 @@ MOTION_FLOOR = 5.0        # mean frame-diff below this = too sleepy to beat a ca
 # LOW_MOTION line so an escalated clip can never re-introduce a dead beat.
 MOTION_REL_FLOOR = 0.08   # a clip must actually name the subject to count as "it"
 
+# The shortest clean window worth taking. Below this a "moving clip" is a
+# flash, not a shot — better an honest still than a stutter.
+MIN_WINDOW = 2.5
+
 
 def _best_dynamic_window(clip: Path, seconds: float, max_probe: int = 6):
     """Scan a source's clean windows and return the MOST DYNAMIC (ss, motion) —
@@ -412,11 +416,31 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
         try:
             if not dest.exists() or dest.stat().st_size < 1024:
                 acquire(c, dest)
-            ss, mv = _best_dynamic_window(dest, seconds)
+            # A BEAT IS NOT DENIED FOOTAGE FOR BEING LONG. Requiring one clip to
+            # cover the whole beat made any ~6s beat unservable, because stock
+            # clips are 3-6s. Measured on the same query, candidates and second:
+            #   6.0s -> nothing clears     3.5s -> pexels motion=32.4
+            # So a good, on-subject, genuinely moving clip was discarded and the
+            # beat downgraded to a card purely for asking too much of it — which
+            # is what kept shared-air's PAYOFF a card in every run, and produced
+            # the SYNC mismatch that followed ("person" narrated over a sun).
+            # Take the longest clean window the clip really has, down to a floor,
+            # and TELL the caller how long it is so the shot can be cut to fit.
+            want = float(seconds)
+            ss = mv = None
+            while want >= MIN_WINDOW:
+                ss, mv = _best_dynamic_window(dest, want)
+                if ss is not None:
+                    break
+                want = round(want * 0.7, 2)
             if ss is None:
                 log(f"[motion-first] {str(c.get('title',''))[:38]!r}: no clean "
-                    f"{seconds:.1f}s window — skipping")
+                    f"window even at {MIN_WINDOW:.1f}s — skipping")
                 continue
+            if want < seconds:
+                log(f"[motion-first] {str(c.get('title',''))[:38]!r}: no "
+                    f"{seconds:.1f}s window, but a clean {want:.1f}s one — "
+                    "taking it and cutting the shot to fit")
             if mv < min_motion:
                 log(f"[motion-first] {str(c.get('title',''))[:38]!r}: best window "
                     f"only moves {mv} (< {min_motion}) — too sleepy to beat a "
@@ -428,7 +452,11 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
             return {"source": c.get("source"), "nasa_id": c.get("nasa_id"),
                     "url": c.get("url"), "path": str(dest), "ss": round(ss, 2),
                     "title": c.get("title", ""), "license": c.get("license", ""),
-                    "motion": mv, "relevance": round(rel, 2)}
+                    "motion": mv, "relevance": round(rel, 2),
+                    # how much clean footage this clip ACTUALLY has from `ss` —
+                    # never more than was asked for, sometimes less. The caller
+                    # must cut to it rather than run off the end of the clip.
+                    "window": round(min(want, float(seconds)), 2)}
         except Exception as e:  # noqa: BLE001 — a bad candidate must not abort
             log(f"[motion-first] probe failed ({str(e)[:56]}) — next candidate")
     log(f"[motion-first] no moving clip cleared the bar for {query!r} "
