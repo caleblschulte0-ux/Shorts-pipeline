@@ -314,7 +314,36 @@ jobs:
           )"
           fi
           BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
-          if [ -z "$BRAIN_SLUGS" ]; then echo "no target stories; skipping brain"; exit 0; fi
+          # HANDS OFF what the forge already authored. The forge writes a
+          # VALIDATED element-kit scene per segment; this step then rewrote the
+          # same field with its own free-form {mechanic, concept} shape, which
+          # the scene renderer can't draw — so the segment fell back to a plain
+          # chart. That is precisely the "two chart builds and one frozen number
+          # card, the data is stated not demonstrated" the gate has been
+          # blocking. Only stories with NO kit scene need directing.
+          BRAIN_SLUGS="$(python3 - "$BRAIN_SLUGS" <<'PY'
+          import json, sys
+          want = sys.argv[1].split()
+          cfg = json.load(open('data_learning/niche.config.json'))
+          by = {s['slug']: s for s in cfg.get('stories', [])}
+          keep = []
+          for sl in want:
+              st = by.get(sl)
+              if not st:
+                  continue
+              kit = sum(1 for sg in st.get('segments', [])
+                        if isinstance(sg.get('scene'), dict)
+                        and sg['scene'].get('elements'))
+              if kit < len(st.get('segments', [])):
+                  keep.append(sl)
+              else:
+                  print(f"[brain] {sl}: forge scenes intact — skipping",
+                        file=sys.stderr)
+          print(' '.join(keep))
+          PY
+          )"
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
+          if [ -z "$BRAIN_SLUGS" ]; then echo "every target already has authored scenes; skipping brain"; exit 0; fi
           echo "brain targets: $BRAIN_SLUGS"
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || \
             { echo "::warning::claude CLI install failed — skipping brain"; exit 0; }
