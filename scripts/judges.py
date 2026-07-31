@@ -103,6 +103,22 @@ def _render_run(run: dict, rejects_only: bool) -> None:
           f"{'  [dry-run]' if run.get('dry_run') else ''}")
     print(brain_line)
 
+    dead = run.get("dead_sources") or {}
+    if dead:
+        # a source that returned nothing is lost supply — surface it so the
+        # allowlist can be pruned on evidence instead of guesswork
+        broke = {k: v for k, v in dead.items() if v.get("fail")}
+        empty = [k for k, v in dead.items() if not v.get("fail")]
+        if broke:
+            print(f"   dead sources: {len(broke)} ERRORED — "
+                  + ", ".join(f"{k} ({v.get('err', '?')})"
+                              for k, v in list(broke.items())[:6])
+                  + (" ..." if len(broke) > 6 else ""))
+        if empty:
+            print(f"   quiet sources: {len(empty)} returned 0 clips — "
+                  + ", ".join(empty[:8])
+                  + (" ..." if len(empty) > 8 else ""))
+
     clips = run.get("clips") or []
     shown = 0
     for c in clips:

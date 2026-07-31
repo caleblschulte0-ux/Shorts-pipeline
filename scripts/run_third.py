@@ -58,6 +58,29 @@ _BANGER_CACHE: dict = {}
 _JUDGES: dict = {}
 
 
+# ------------------------------------------------- source health
+# A source that fails every run is silent lost supply: it costs an API
+# call and a log line each time and contributes nothing. rumble:AdinLive
+# has failed on BOTH url shapes every run for days and nobody could see it
+# without reading the log. Recording per-source outcomes turns "is this
+# allowlist any good?" into data — dead handles become prunable, and a
+# widened allowlist can be judged on what it actually returns.
+_SOURCE_HEALTH: dict = {}
+
+
+def _source_health(platform: str, ch: str, *, ok: bool,
+                   clips: int = 0, err: str = "") -> None:
+    try:
+        k = f"{platform}:{ch}"
+        e = _SOURCE_HEALTH.setdefault(k, {"ok": 0, "fail": 0, "clips": 0})
+        e["ok" if ok else "fail"] += 1
+        e["clips"] += int(clips)
+        if err:
+            e["err"] = err[:60]
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _any_judgment() -> bool:
     """Did ANY content judge actually evaluate this slot's clip?
 
@@ -1108,10 +1131,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     for platform, chans in sources.items():
                         for ch in chans:
                             try:
-                                pool += clip_edit.discover(
+                                got = clip_edit.discover(
                                     platform, ch, top=spec.get("top", 8),
                                     range_=window)
+                                pool += got
+                                _source_health(platform, ch, ok=True,
+                                               clips=len(got))
                             except Exception as e:  # noqa: BLE001
+                                _source_health(platform, ch, ok=False,
+                                               err=f"{type(e).__name__}")
                                 print(f"::warning::discover {platform}:{ch} "
                                       f"failed ({type(e).__name__}) — "
                                       "skipped", flush=True)
@@ -1821,6 +1849,12 @@ def main() -> int:
             # where they half-failed picked SOME blind. Neither was
             # legible before — `ok`/`fail` counts make it a one-line read.
             "brain": author.brain_health(),
+            # Only the sources that PRODUCED NOTHING are worth keeping —
+            # a healthy source is uninteresting and 60+ entries would bloat
+            # state/ (small-JSON rule, docs/STORAGE_AUDIT.md). This is the
+            # prune list: handles that cost an API call and returned zero.
+            "dead_sources": {k: v for k, v in _SOURCE_HEALTH.items()
+                             if v.get("clips", 0) == 0},
             "clips": [{k: r.get(k) for k in
                        ("slug", "ok", "skipped", "render_level", "layout",
                         "self_healed", "error", "judges")
