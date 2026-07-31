@@ -1,0 +1,42 @@
+{
+  "score": 5,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 0,
+    "data_demo": 0,
+    "mascot": 0,
+    "craft": 0,
+    "pace": 0,
+    "payoff": 0,
+    "temporal_craft": 1
+  },
+  "auto_fails": [
+    "temporal_gate: duplicate_ratio 0.498 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+  ],
+  "checks": {
+    "temporal_gate": {
+      "fail": true,
+      "evidence": "duplicate_ratio 0.498 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 100
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.498,
+    "effective_fps": 12.0,
+    "max_dup_run": 31
+  },
+  "judge": "code-temporal-pregate",
+  "one_line": "blocked before vision review: duplicate_ratio 0.498 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+  "problems": [
+    "duplicate_ratio 0.498 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+  ],
+  "fixes": [
+    "raise real motion per output frame (see temporal thresholds)"
+  ]
+}

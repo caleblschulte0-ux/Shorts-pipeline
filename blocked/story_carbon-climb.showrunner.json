@@ -1,0 +1,77 @@
+{
+ "score": 56,
+ "verdict": "block",
+ "dimensions": {
+  "hook": 2,
+  "data_demo": 3,
+  "mascot": 3,
+  "craft": 1,
+  "pace": 2,
+  "payoff": 1,
+  "temporal_craft": 1
+ },
+ "auto_fails": [],
+ "checks": {
+  "junk_imagery": {
+   "present": false,
+   "evidence": "Every beat is native vector artwork \u2014 line chart (seg0:end), decade bar race (seg2:mid) and the rigged mascot; no stock photo or garbled AI cutout appears in any frame."
+  },
+  "decorative_mascot": {
+   "present": false,
+   "evidence": "Real setup->action->payoff: at hook@0.3 he grips a rope at the 1960 baseline, by hook@2.2 he has hauled the filled curve up to 1990, and at seg1:mid he is hoisted to the 2025 peak \u2014 he moves and his position is the stat."
+  },
+  "bare_number_card": {
+   "present": false,
+   "evidence": "No beat is a number on a blob; 13.1/15.7/15.3/20.4 at payoff@-1.8 are printed inside the racing bars whose lengths encode them."
+  },
+  "dead_air": {
+   "present": false,
+   "evidence": "Bars grow continuously between seg2:start and seg2:end and motion facts report longest_static_s=0.0 with max_dup_run of 6 frames (~0.25s)."
+  },
+  "empty_void": {
+   "present": false,
+   "evidence": "dark_fraction=0.0 and the card carries gradient, gridlines and source rule; the empty upper third at seg1:start/seg1:mid is wasted space but not a black void."
+  }
+ },
+ "motion": {
+  "longest_static_s": 0.0,
+  "static_at_s": null,
+  "dark_fraction": 0.0,
+  "sampled": 99
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.331,
+  "effective_fps": 16.1,
+  "max_dup_run": 6
+ },
+ "judge": "headless-claude",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "occlusion_layout_collision",
+  "visible_evidence": "At seg3:start through payoff@-0.4 the closing speech bubble is painted over the top of the chart: the 1960s row \u2014 the baseline of the whole 'nearly triple' comparison \u2014 is hidden behind it, the mascot is reduced to a pair of disembodied legs poking out under the bubble, and the caption 'Did you realize it was accelerating? Tell me below.' is printed straight across the 2000s bar and its 20.4 label. No 2010s row is ever visible even though the narration and the closing both hang on it.",
+  "root_cause": "The closing callout and the burned-in caption are z-ordered above the bar block and anchored to fixed positions that overlap it, while the mascot stays pinned to the lead bar behind the bubble; the bar list is also truncated at the 2000s so the decade the script names has no row.",
+  "repair_goal": "Reflow the closing beat so the punchline is legible: render all decade rows including the 2010s (with the 1960s row and its value visible for contrast), move the closing bubble into the empty band beneath the bars instead of over them, keep the caption clear of any bar, and reposition the mascot so his whole body reads beside the bubble rather than behind it."
+ },
+ "one_line": "A genuinely good idea with a mascot who really performs \u2014 but the final beat covers its own punchline with a speech bubble and colliding caption text, so the comparison the video is built on never lands.",
+ "problems": [
+  "seg3: the closing bubble covers the 1960s bar row, so the 'nearly triple' comparison has no visible baseline (seg3:start, payoff@-1.8).",
+  "seg3: the mascot is occluded by the bubble down to just his legs and shoes, reading as a render bug rather than a performance (seg3:mid, payoff@-0.4).",
+  "seg3: the caption 'Did you realize it was accelerating? Tell me below.' is stamped across the 2000s bar and collides with its 20.4 label, plus a second 'COMMENT BELOW' line (payoff@-1.8).",
+  "seg1: the mascot is cropped by the right frame edge and his body sits on top of the 427 value label, leaving only '.4' readable (seg1:end).",
+  "Bar values stay blank for the entire race (seg2:start through seg2:end) and only appear after the closing bubble has already covered the top row, so the viewer cannot read the comparison while it is happening.",
+  "Captions at seg1:start ('317 parts of') and seg2:start ('added under 9') render dark grey and half-clipped at the bottom canvas edge instead of the white treatment used elsewhere.",
+  "The 2010s \u2014 the decade the script's key stat is about ('over 24') \u2014 has no row anywhere in the bar race.",
+  "seg1: the upper third of the card between the subtitle and the top gridline is entirely empty while the chart is squeezed into the lower half."
+ ],
+ "fixes": [
+  "Move the closing callout into the free space below the bar block (or shrink the bars to make room) so no decade row is ever covered, and drop its opacity over any overlap.",
+  "Add the 2010s row to the decade race and hold the 1960s row on screen through the close so the ~9 vs ~24 contrast is visible in one frame.",
+  "Reveal each bar's value as that bar finishes growing rather than all at once at the end, so the race is readable while it runs.",
+  "Give the caption band a reserved lane clear of the bar rows and the mascot, and suppress the duplicate 'COMMENT BELOW' line when a caption is already on screen.",
+  "Clamp the mascot's anchor to the safe area so he never crosses the right frame edge, and offset him from value labels (seg1:end) so numbers stay legible.",
+  "Use the consistent white caption treatment throughout \u2014 seg1:start and seg2:start currently render dark and clipped.",
+  "Raise the chart baseline or enlarge the plot to fill the empty upper third in seg1."
+ ]
+}
