@@ -25,9 +25,7 @@
     {
       "phrase": "My reserved spot, again",
       "query": "parking lot numbered spot",
-      "mascot_pose": "shock",
-      "image_url": "https://pixabay.com/get/g57c398acd8a78a02a0985a7e2e560829cb54448f0fe0acdde22e50146b21e26d8ab39db171a3b7f07425bd8a63f4030f3b6ae88e19c181c90e2cf2f332e9418d_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "shock"
     },
     {
       "phrase": "assigned space is spot 14",
@@ -52,79 +50,62 @@
     {
       "phrase": "2 polite notes on the windshield",
       "query": "note on windshield",
-      "mascot_pose": "idle",
-      "image_url": "https://live.staticflickr.com/2086/1943283082_bb48d4801c_b.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "unauthorized vehicle in a numbered spot",
       "query": "no parking sign",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/g44279cc3e3158725be1a8b4388237e017bce379882e7e39f46a3b89a43086fbf6323192caa81b61c362470dd5fb907b0cd2508216b29dd3e2be8de4469d67541_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "towed at the owner's expense",
       "query": "tow truck hooking car",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/g6c167bc7ebb31ba717c4c2b856122563752bb37173e4fc1d1bbee402d65e61309a8d2f8693d9756e8048506a91cc8ef4c55c07cbcdfa7a00110cda699a5c6101_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "called the property office",
       "query": "office phone call desk",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/g9100261451d269fd011d7deec71c59c238541e2d2f89e656707c061d327ae8c4ab09e5edd6ba4bdcbd469fa7c743fba685aeb44e9dd597cfb8625b4aaf0de42c_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "handed over my dated notes",
       "query": "handwritten note paper",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/gc259704936506917716b66dd068cc9c5e11fcf6da15bfc657c2b79ca0ed0fbae5819762d3e2ad62fb680ca93ff359148a800ce5408c7b982ae59e9baaa80a426_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "SUV vanished from spot 14",
       "query": "empty parking space",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/g3c59c26bd411f8c21510aaea8436e48ad2c189ce3d3d11fc8c7631658012770a7ce92bdb77716ade8a39ba8e2f34889bb2ebaac1b28bbb5134721dd147ce3a4a_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "around 10 a.m.",
       "query": "office building morning",
-      "mascot_pose": "idle",
-      "image_url": "https://pixabay.com/get/g84d0c3c3452718a35f77fbcf779c15942829429b99dddee3be54260e047104db9a1aaca7e6273d5eb19db1d401efd3f445a2f126792cf672efd804593727de29_1280.jpg",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "mid performance review",
       "query": "office meeting review",
-      "mascot_pose": "idle",
-      "image_url": "https://images.pexels.com/photos/8171198/pexels-photo-8171198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "someone texted him his car was gone",
       "query": "phone text notification",
-      "mascot_pose": "idle",
-      "image_url": "https://images.pexels.com/photos/7821762/pexels-photo-7821762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "Tough meeting to sit through with THAT on your mind",
       "query": "stressed man conference room",
       "mascot_pose": "laugh",
-      "image_url": "https://images.pexels.com/photos/3132388/pexels-photo-3132388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "pin_query": "Tough",
+      "pin_context": "Someone kept stealing my numbered parking spot at work",
+      "news_query": "Tough",
+      "news_angle": "Someone kept stealing my numbered parking spot at work",
+      "image_url": "https://live.staticflickr.com/5132/5401097937_93000437c8_b.jpg"
     },
     {
       "phrase": "whose name is on spot 14 now",
       "query": "parking lot empty spot",
-      "mascot_pose": "dismiss",
-      "image_url": "https://images.pexels.com/photos/28764002/pexels-photo-28764002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "mascot_pose": "dismiss"
     }
   ],
   "punches": [

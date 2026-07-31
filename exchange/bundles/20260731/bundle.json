@@ -364,15 +364,14 @@
     },
     "immutability": "This block is the CONTRACT for this production date. It is frozen at bundle creation: if config/channel_registry.json changes afterwards, the 07:00 finalizer still works these numbers, and the new rules begin with the next date's bundle. Read doctrine at `source_commit`, not at HEAD."
   },
-  "mode": "author",
+  "mode": "punch_up",
   "response_path": "exchange/bundles/20260731/response.json",
   "done_marker": "exchange/bundles/20260731/DONE",
   "counts": {
     "packages": 6,
-    "requests": 24,
+    "requests": 23,
     "animations": 0,
-    "to_author": 0,
-    "channels_needing_a_brain": 1
+    "to_author": 0
   },
   "packages": [
     {
@@ -594,8 +593,8 @@
           "shot_index": 12,
           "phrase": "Tough meeting to sit through with THAT on your mind",
           "query": "stressed man conference room",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 13,
@@ -606,12 +605,12 @@
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 3,
         "weak": 0,
-        "missing": 12,
+        "missing": 11,
         "unknown": 0
       },
-      "strong_fraction": 0.143,
+      "strong_fraction": 0.214,
       "requested": [
         "02_reddit-parking-spot-tow-s0-3a730fba60f1",
         "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
@@ -623,7 +622,6 @@
         "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
         "02_reddit-parking-spot-tow-s10-544a12d8626a",
         "02_reddit-parking-spot-tow-s11-cbe5037f535c",
-        "02_reddit-parking-spot-tow-s12-beef450763a5",
         "02_reddit-parking-spot-tow-s13-1c7e604d1af9"
       ]
     },
@@ -1258,32 +1256,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
-      "safe_request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
-      "drive_filename": "20260731__02_reddit-parking-spot-tow-s12-beef450763a5.png",
-      "prompt_sha256": "7fa21b21944e493e1462d7095f51896917239eeb531c51a4350ba99a01b27608",
-      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s12-beef450763a5.json",
-      "slug": "02_reddit-parking-spot-tow",
-      "shot_index": 12,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man conference room. It accompanies the narration: \"Tough meeting to sit through with THAT on your mind\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
       "safe_request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
       "drive_filename": "20260731__02_reddit-parking-spot-tow-s13-1c7e604d1af9.png",
@@ -1435,7 +1407,6 @@
       "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
     },
     "two_jobs": [
-      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but curiosity do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -1474,39 +1445,6 @@
       "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
     ],
     "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
-    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches.",
-    "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
-  },
-  "authoring_requests": {
-    "curiosity": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260731",
-      "channel": "curiosity",
-      "job": "stock_queue",
-      "reason": "only 2 un-posted curiosity stories remain (registry minimum 3); the Claude routine that normally stocks this queue did not run",
-      "write": 1,
-      "required": [
-        "slug",
-        "title",
-        "hook",
-        "closing",
-        "question",
-        "hashtags",
-        "segments"
-      ],
-      "hard_rules": [
-        "Long-form curiosity: one genuinely surprising thing explained properly, not a listicle. Read data_learning/CURIOSITY_BRAIN.md for the voice and the topic bank.",
-        "Every factual claim must be real and checkable. No invented statistics \u2014 this channel's whole premise is that the numbers are true.",
-        "`slug` lowercase kebab-case, not already in data_learning/curiosity.config.json."
-      ],
-      "queued_now": [
-        "kola-deepest-hole",
-        "sitting-still-speed"
-      ],
-      "where": {
-        "preferred": "an `authored_curiosity` array in response.json, one story object per entry"
-      }
-    }
-  },
-  "authoring_request": null
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches."
+  }
 }
