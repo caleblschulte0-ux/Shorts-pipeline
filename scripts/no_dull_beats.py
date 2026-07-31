@@ -481,7 +481,10 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
         import hook_director
     except Exception:
         return None
-    line = str(beats[0].get("narration", "")).split(".")[0]
+    # the opening AS HEARD, not the fragment before the first period — see
+    # hook_director.opening_line (a hook that opened "Breathe in." was graded on
+    # two words and could never clear the gate)
+    line = hook_director.opening_line(beats[0].get("narration", ""))
     secs = 6.0
     try:
         bm = json.loads(Path(beatmap).read_text())

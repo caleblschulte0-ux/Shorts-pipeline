@@ -26,7 +26,10 @@ REPO = Path(__file__).resolve().parent.parent
 for p in (REPO, REPO / "scripts"):
     sys.path.insert(0, str(p))
 
-from hook_director import grade_line  # noqa: E402
+# the SAME extraction the production gate uses — if these two ever diverge, a
+# story passes here and fails after a two-hour render, which is exactly the
+# failure this script exists to prevent
+from hook_director import grade_line, opening_line  # noqa: E402
 
 MIN_SCORE = 2          # below this the opening is not doing a hook's job
 STORIES = REPO / "data_learning" / "pro_stories"
@@ -39,7 +42,7 @@ def check(path: Path) -> tuple[bool, str]:
         return False, f"unreadable ({str(e)[:60]})"
     if not beats:
         return False, "no beats"
-    line = str(beats[0].get("narration", "")).strip()
+    line = opening_line(beats[0].get("narration", ""))
     if not line:
         return False, "opening beat has no narration"
     g = grade_line(line)

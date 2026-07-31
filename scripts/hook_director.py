@@ -44,6 +44,39 @@ CONTEXT = re.compile(r"^(to understand|first,? we|before we|let'?s start|imagine
                      re.I)
 
 
+HOOK_WORDS = 40        # roughly what a viewer hears in the first ~6-8 seconds
+
+# a sentence ends at . ! or ? followed by space + capital — NOT at a decimal
+# point ("10.5 million"), an abbreviation, or an ellipsis
+_SENT_END = re.compile(r"(?<=[.!?])\s+(?=[\"'(\[]?[A-Z0-9])")
+
+
+def opening_line(narration: str, max_words: int = HOOK_WORDS) -> str:
+    """The text the HOOK GATE should judge: the opening as a viewer hears it.
+
+    This exists because the gate used to grade `narration.split(".")[0]` — the
+    text before the FIRST period. A film opening "Breathe in. Hold it. You are
+    holding 10 sextillion molecules..." was therefore graded on the two words
+    "Breathe in", which carry no number, no stakes and no question, so it
+    tripped NO_GAP_NO_STAKES no matter what followed. Any hook that opens on a
+    short imperative was unpassable, and a decimal ("10.5 million") split the
+    number in half.
+
+    A hook is not one sentence, it is the first few seconds. Take whole
+    sentences up to a word budget, so a short opening beat is joined to what it
+    sets up instead of being judged alone."""
+    s = " ".join(str(narration or "").split())
+    if not s:
+        return ""
+    out: list[str] = []
+    for part in _SENT_END.split(s):
+        nxt = out + [part]
+        if out and len(" ".join(nxt).split()) > max_words:
+            break
+        out = nxt
+    return " ".join(out) if out else " ".join(s.split()[:max_words])
+
+
 def grade_line(line: str) -> dict:
     """0-5 line score + tripped gates (THROAT_CLEARING / CONTEXT_SETTING /
     NO_GAP_NO_STAKES)."""
