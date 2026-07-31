@@ -1,5 +1,33 @@
 # Daily Routine Instructions
 
+> ## Your job did NOT end after authoring
+>
+> Two things now follow the packages. Both are quick, and skipping them is
+> how the improvement loop quietly dies:
+>
+> **1. Top up the reserve bank** — step 5b below.
+>
+> **2. Answer any pending retro proposals.** The reviewer writes proposals
+> each evening; `retro_decide.yml` normally answers them at 8am Central, but
+> if it did not run, they are still waiting:
+>
+> ```bash
+> python3 scripts/pending_decisions.py
+> ```
+>
+> If anything is listed, decide each one and record a verdict — including
+> the ones you decline. A proposal that is never answered is worse than one
+> declined: the reviewer cannot tell "we disagreed" from "nobody looked", so
+> it re-files the same idea forever and never learns.
+>
+> ```bash
+> python3 scripts/retro_reply.py --date <date> --file <file> \
+>   --verdict adopt|revise|decline|needs_evidence|deferred \
+>   --because "the real reason — the reviewer reads this tomorrow"
+> ```
+>
+> Full contract: `retro/README.md`.
+
 You're running the daily script-writing routine for the Shorts-pipeline channel
 (faceless YouTube Shorts, 45-second doomscroll explainers). Your job: write the
 day's 6 script packages and push them. **Your job ends there** — an automatic

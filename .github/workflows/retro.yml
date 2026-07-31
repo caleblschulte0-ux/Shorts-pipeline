@@ -10,10 +10,18 @@ name: Retro (daily self-review)
 # let an in-code America/Chicago check decide which one is really 6:15pm
 # local. The wrong one exits immediately.
 #
-# The proposal trigger derives review_date FROM THE CHANGED PATH. Substituting
-# the current UTC date there was a real bug: the brief is written at ~23:15
-# UTC, a reviewer answers it after midnight, and the push would have triaged
-# an empty folder for "today" while yesterday's proposals sat untouched.
+# TWO SEPARATE QUESTIONS, deliberately not conflated:
+#
+#   what GitHub BUILDS   always today's Chicago date, every night. A brief is
+#                        a snapshot of a day; back-filling one would rewrite
+#                        published evidence.
+#   what ChatGPT REVIEWS the mailbox — the oldest brief with no proposals.
+#                        A missed review stays reviewable without ever
+#                        blocking or altering tomorrow's brief.
+#
+# A proposals push runs TRIAGE ONLY. No analytics refresh, no experiment
+# advance, no brief rebuild, no rollup — all of those would move the evidence
+# out from under the proposals that were just written against it.
 
 on:
   workflow_dispatch:
@@ -104,12 +112,17 @@ jobs:
                    | grep -oE 'retro/[0-9]{8}/' | head -1 | cut -d/ -f2 || true)
             WHY="derived from the changed proposals path"
           else
-            # Scheduled: the mailbox knows which brief is still unanswered,
-            # which may be an older day the reviewer missed.
-            DATE=$(python3 scripts/retro_mailbox.py --next-date)
-            WHY="oldest unreviewed brief from the mailbox"
-            [ -z "$DATE" ] && { DATE="${{ steps.when.outputs.today }}"; \
-              WHY="nothing open; building today's brief"; }
+            # SCHEDULED RUNS ALWAYS BUILD TODAY'S CENTRAL DATE.
+            #
+            # This used to take the mailbox's oldest-unanswered date, which
+            # conflated two different questions. The mailbox decides what
+            # CHATGPT REVIEWS; it must never decide what GITHUB BUILDS.
+            # Using it here meant one missed review stopped today's brief
+            # from ever existing AND rewrote a published historical brief
+            # with today's analytics — corrupting the evidence a reviewer
+            # had already reasoned from.
+            DATE="${{ steps.when.outputs.today }}"
+            WHY="today in Chicago — the nightly brief is never a back-fill"
           fi
           [ -z "$DATE" ] && { echo "::error::could not resolve a review date"; exit 1; }
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
@@ -118,7 +131,13 @@ jobs:
       # Fresh numbers, best-effort. A stale brief is still worth building; a
       # failed analytics call must never stop the loop.
       - name: Refresh analytics
-        if: steps.when.outputs.go == 'true' && inputs.triage_only != true
+        # NOT on a proposals push: refreshing analytics and rebuilding the
+        # brief would move the evidence out from under the proposals that
+        # were just written against it.
+        if: >-
+          steps.when.outputs.go == 'true'
+          && github.event_name != 'push'
+          && inputs.triage_only != true
         continue-on-error: true
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
@@ -131,12 +150,15 @@ jobs:
       # so the brief reports true sample counts and flips anything whose
       # window has closed to readout_due.
       - name: Advance experiment sample counts
-        if: steps.when.outputs.go == 'true'
+        if: steps.when.outputs.go == 'true' && github.event_name != 'push'
         continue-on-error: true
         run: python3 scripts/advance_experiments.py
 
       - name: Build the brief
-        if: steps.when.outputs.go == 'true' && inputs.triage_only != true
+        if: >-
+          steps.when.outputs.go == 'true'
+          && github.event_name != 'push'
+          && inputs.triage_only != true
         continue-on-error: true
         run: python3 scripts/build_retro.py --date "${{ steps.d.outputs.date }}"
 
@@ -146,7 +168,10 @@ jobs:
         run: python3 scripts/review_proposals.py --date "${{ steps.d.outputs.date }}"
 
       - name: Weekly rollup (Sundays)
-        if: steps.when.outputs.go == 'true' && inputs.triage_only != true
+        if: >-
+          steps.when.outputs.go == 'true'
+          && github.event_name != 'push'
+          && inputs.triage_only != true
         continue-on-error: true
         run: |
           DOW=$(TZ=America/Chicago date +%u)
@@ -161,13 +186,24 @@ jobs:
         run: |
           set -e
           D="${{ steps.d.outputs.date }}"
-          bash scripts/ci_commit_state.sh \
-            "retro: brief + triage for $D [skip ci]" \
-            "retro/$D" retro/state state/analytics state/analytics_explainer \
-            state/analytics_curiosity state/analytics_third
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # Triage-only: commit the verdict files, never the brief or the
+            # analytics that produced it.
+            bash scripts/ci_commit_state.sh \
+              "retro: triage for $D [skip ci]" \
+              "retro/$D/triage.json" "retro/$D/triage.md" retro/state
+          else
+            bash scripts/ci_commit_state.sh \
+              "retro: brief + triage for $D [skip ci]" \
+              "retro/$D" retro/state state/analytics state/analytics_explainer \
+              state/analytics_curiosity state/analytics_third
+          fi
 
       - name: Post the executive summary
-        if: steps.when.outputs.go == 'true' && inputs.triage_only != true
+        if: >-
+          steps.when.outputs.go == 'true'
+          && github.event_name != 'push'
+          && inputs.triage_only != true
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}

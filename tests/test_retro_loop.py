@@ -431,3 +431,31 @@ class TestFullArcDryRun(unittest.TestCase):
         self.assertEqual(ledger[-1]["commit"], "abc123def456")
         self.assertEqual(ledger[-1]["experiment_id"], e["id"])
         self.assertEqual(ex.all_experiments()[0]["status"], "adopted")
+
+
+class TestReadmeAndValidatorAgree(unittest.TestCase):
+    """The reviewer follows retro/README.md literally. If the documented
+    example does not pass the validator, every proposal it writes is
+    malformed and the loop produces nothing — a failure that looks like the
+    reviewer being bad at its job."""
+
+    def _readme_example(self) -> dict:
+        import re
+        text = (ROOT / "retro" / "README.md").read_text()
+        m = re.search(r'\{"proposals": \[\{(.*?)\}\]\}', text, re.S)
+        self.assertIsNotNone(m, "the README lost its proposal example")
+        return json.loads('{"proposals": [{' + m.group(1) + '}]}')["proposals"][0]
+
+    def test_readme_example_passes_validation(self):
+        ex = self._readme_example()
+        self.assertEqual(rp.check_shape(ex), [],
+                         "the documented example fails the validator")
+
+    def test_readme_example_has_every_required_field(self):
+        ex = self._readme_example()
+        missing = [k for k in rp.REQUIRED if k not in ex]
+        self.assertEqual(missing, [],
+                         f"README example omits required field(s): {missing}")
+
+    def test_readme_example_is_not_refused_on_policy(self):
+        self.assertEqual(rp.check_forbidden(self._readme_example()), [])
