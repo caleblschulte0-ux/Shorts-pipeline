@@ -78,9 +78,6 @@
       ],
       "kick": [
         "adinross"
-      ],
-      "rumble": [
-        "AdinLive"
       ]
     },
     "core": [
@@ -103,7 +100,16 @@
     "min_pool": 8,
     "min_banger": 0.5,
     "min_banger_content": 0.7,
-    "max_per_streamer": 2
+    "max_per_streamer": 2,
+    "sources_parked": {
+      "rumble": {
+        "channels": [
+          "AdinLive"
+        ],
+        "reason": "HTTP 403 bot-wall at rumble.com edge from CI egress (verified 2026-07-31: real channel and nonsense slug 403 identically). 0/168 posts ever. Restore when a route exists.",
+        "parked_on": "2026-07-31"
+      }
+    }
   },
   "hashtags": [
     "streamerclips",
