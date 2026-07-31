@@ -1,56 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260713",
-      "dry_run": false,
-      "ts": "2026-07-13T11:49:14+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 6,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 39,
-        "with_retention": 23,
-        "with_curve": 4,
-        "fetched_at": "2026-07-12T23:58:22.175946+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260713-1",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)"
-        },
-        {
-          "slug": "clip-20260713-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260713-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "two_shot",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260713-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260713-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        }
-      ]
-    },
-    {
       "date": "20260715",
       "dry_run": false,
       "ts": "2026-07-15T01:42:48+00:00",
@@ -1537,6 +1487,102 @@
           "render_level": "full",
           "layout": "wide",
           "self_healed": false
+        }
+      ]
+    },
+    {
+      "date": "20260731",
+      "dry_run": false,
+      "ts": "2026-07-31T13:01:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 111,
+        "with_retention": 98,
+        "with_curve": 14,
+        "fetched_at": "2026-07-31T11:06:18.299992+00:00"
+      },
+      "brain": {
+        "ok": 19,
+        "fail": 0
+      },
+      "clips": [
+        {
+          "slug": "clip-20260731-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "injury/shock, visible consequence",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "injury reveal, real pain reaction",
+              "floor": 0.7,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween: Jason Has To Throw The Towel In Kick Boxing And It Goes Wrong"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.62,
+              "problems": [
+                "large dark/blurred padding bands above and below the gameplay footage reduce how much of the frame the subject occupies",
+                "several timestamps (5.7s-8.9s, 15.4s-18.6s) show mostly blurred/empty content with the subject small or barely visible"
+              ]
+            }
+          }
+        },
+        {
+          "slug": "clip-20260731-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.7 (rambling bit, no clear payoff)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "rambling bit, no clear payoff",
+              "floor": 0.7,
+              "verdict": "reject"
+            }
+          }
+        },
+        {
+          "slug": "clip-20260731-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
+        },
+        {
+          "slug": "clip-20260731-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "kaicenat/kaicenat-about-cenat-2026w31",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            }
+          }
         }
       ]
     }
