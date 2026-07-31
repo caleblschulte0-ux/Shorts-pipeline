@@ -365,6 +365,43 @@ exactly what we are killing. Same energy as the Part-2 "EXPLAIN one thing"
 philosophy below, applied to quirky news.
 
 ### Voice — write like a person, not a press release
+### Land a joke. Actually land one.
+
+"Dry wit" has been in this doc for months and **not one video has ever made
+anyone laugh** — because an adjective is not an instruction. So, concretely:
+
+**One dry aside per script**, on any subject that allows it. One. A second
+reads as trying. Put it AFTER the fact it reacts to, never in the first two
+seconds — the hook earns attention, the aside spends it.
+
+The shapes that work in this narrator's mouth:
+
+| Move | Example |
+|---|---|
+| **flat undercut** — state the absurd fact, react in 3-6 words | "The chase lasted two hours. Top speed: twelve." |
+| **mundane detail** — name the one boring specific amid chaos | "He fled on foot, still holding the salad." |
+| **understatement** — a disaster as a mild inconvenience | "This did not go well for the bees." |
+| **callback kicker** — return to the hook with one word changed | hook "nobody checked the roof" → "somebody should have checked the roof" |
+| **deadpan attribution** — quote officialese straight, let it sit | "The report calls this 'an unplanned pond entry'." |
+
+**Never**: puns, setup-then-punchline, exclamation marks, "wait for it",
+"you won't believe", emoji, or telling the viewer it was funny
+("hilariously", "comedy gold"). Those read as a bot performing humour,
+which is the one thing this voice cannot survive.
+
+**HARD GATE — some stories stay completely straight.** Anything involving
+death, injury, crime victims, war, illness, or a missing person. A quip
+there is not a tone miss; it is unrecoverable. Check before you write:
+
+```bash
+python3 -c "import sys,json; sys.path.insert(0,'.')
+from shared import levity
+print(levity.brief_for(json.load(open('<your package>.json'))))"
+```
+
+If nothing genuinely occurs to you, ship it straight. A forced joke is
+worse than none.
+
 The narrator is a deadpan, slightly incredulous friend telling you the most
 ridiculous thing they read today. Dry wit, real reactions, second person,
 contractions. It has a TAKE. It's allowed to be amused, skeptical, or

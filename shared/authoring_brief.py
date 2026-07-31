@@ -34,7 +34,16 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from shared import levity as _levity             # noqa: E402
 from shared import package_buffer as _buf        # noqa: E402
+
+
+def _levity_moves() -> list:
+    return _levity.MOVES
+
+
+def _levity_never() -> list:
+    return _levity.ANTI_PATTERNS
 
 SCHEMA = "chatgpt-authoring-request/v1"
 
@@ -267,6 +276,17 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
             "and a failure means that package is dropped from the slate.",
         ],
         "do_not_repeat": _recent_titles(channel),
+        "levity": {
+            "rule": ("Land ONE dry aside per script where the subject "
+                     "allows it. This channel has never made anyone laugh "
+                     "and that is a real gap, not a style preference."),
+            "moves": _levity_moves(),
+            "never": _levity_never(),
+            "hard_gate": ("NO joke on anything involving death, injury, "
+                          "crime victims, war, illness or missing persons. "
+                          "Those stay completely straight — a quip there is "
+                          "not a tone miss, it is unrecoverable."),
+        },
         "quality_bar": (
             "You are standing in for the channel's brain, not filling a "
             "quota. A deadpan, slightly incredulous friend telling you the "
