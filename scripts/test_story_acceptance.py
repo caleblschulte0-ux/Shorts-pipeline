@@ -702,7 +702,7 @@ def main() -> int:  # noqa: C901
            "__file__": str(REPO / "scripts" / "run_third.py")}
     # slice to a STABLE marker, not a line count: adding a helper used to
     # cut this mid-function and break every test below it
-    _hdr = _rt_src[:_rt_src.index("ANALYTICS_LATEST = ")]
+    _hdr = _rt_src[:_rt_src.index("def _load_log")]
     exec(compile(_hdr, "run_third", "exec"), _ns)
 
     class _Boom:
@@ -840,6 +840,58 @@ def main() -> int:  # noqa: C901
           "def _source_health" in _rt_src
           and _rt_src.split("def _source_health")[1].split("def ")[0]
           .count("except Exception:") == 1)
+
+    # ---- dead adapters: diagnosable, and parked when unfixable ---------
+    # rumble 403s at the domain edge from CI egress (a real channel and a
+    # nonsense slug 403 identically), so neither url form can ever win.
+    # It was undiagnosable because both handlers printed only the
+    # exception TYPE while yt-dlp's own message sat unused in e.output.
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("discovery surfaces yt-dlp's own error, not just the type",
+          'getattr(e, "output", "")' in _ce_src2
+          and 'getattr(e, "output", "")' in _rt_src)
+    check("rumble no longer drops every row on unknown duration",
+          'platform == "rumble" and dur > 120' in _ce_src2
+          and 'dur == 0 or dur > 120' not in _ce_src2)
+    check("kick's silent zero-clip result now warns",
+          "yielded 0 " in _ce_src2)
+    check("curl_cffi pinned in requirements (stops env drift)",
+          "curl_cffi" in (REPO / "requirements.txt").read_text())
+    check("rumble parked out of active sources with a recorded reason",
+          "rumble" not in _cfg["sources"]
+          and "403" in _cfg["sources_parked"]["rumble"]["reason"])
+    check("parking preserves the handle for restoration",
+          _cfg["sources_parked"]["rumble"]["channels"] == ["AdinLive"])
+
+    # ---- VOD mining (funnel/ — shared media capability) ----------------
+    # Clip discovery only sees what a human chose to clip. On a thin day
+    # the moment a clipper MISSED is often seconds away from one they got.
+    from funnel import vod_miner as _vm
+    check("vod_miner refuses without helix coordinates (invents nothing)",
+          _vm.maybe_mine({"url": "x"}, "/tmp") == [])
+    check("vod_miner never raises (supply is best-effort)",
+          _vm.maybe_mine(None, "/nonexistent") == [])
+    check("mined urls are identifiable as synthetic",
+          _vm.is_mined("vodmine://v/1")
+          and not _vm.is_mined("https://twitch.tv/a/clip/b"))
+    # A mined moment keys on video_id AND offset. Keying on the last url
+    # segment alone would collide two VODs sharing an offset — in the
+    # POSTED LOG, where a collision means a duplicate upload.
+    check("mined clip keys are distinct across VODs at the same offset",
+          _ns["_clip_key"]("vodmine://AAA/900")
+          != _ns["_clip_key"]("vodmine://BBB/900"))
+    check("twitch dedupe identity is unchanged by that",
+          _ns["_clip_key"]("https://clips.twitch.tv/Slug")
+          == _ns["_clip_key"]("https://twitch.tv/ch/clip/Slug"))
+    check("mining is gated on a thin pool, not run every time",
+          "if len(cands) < min_pool:" in _rt_src)
+    check("a mined candidate skips the download (already extracted)",
+          'if pick.get("mined"):' in _rt_src)
+    check("mined candidates still face the same content gate",
+          _rt_src.index('pick.get("mined")')
+          < _rt_src.index("content gate: transcript-aware score"))
+    check("vod_miner lives in funnel/ (shared media capability)",
+          (REPO / "funnel" / "vod_miner.py").exists())
 
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no
