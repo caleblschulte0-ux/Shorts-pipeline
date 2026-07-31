@@ -10,8 +10,11 @@ Resolution order (all keyless, all cached under cache/series_icons/):
   1. explicit `http(s)://` URL in the spec       — the author knows best
   2. flag: 2-letter country code or a 🇺🇸-style flag emoji  -> flagcdn.com
   3. a known-country NAME ("United States", "China")        -> flagcdn.com
-  4. anything else (brand, company, person, org) -> funnel.entity_media,
-     i.e. Wikipedia -> Commons -> news og:image (already disk-cached)
+  4. anything else (brand, company, org) -> LOGO ONLY: Commons file
+     search for "<name> logo", then Wikipedia's infobox image, each kept
+     only if the filename reads as a mark (logo/wordmark/icon/.svg).
+     News photos are deliberately NOT used — a press shot of a founder
+     is worse than initials, because a face doesn't say the brand.
 
 Returns None when nothing resolves — callers MUST have an offline visual
 fallback (engines.chart_race draws an initials badge). Never raises.
@@ -24,6 +27,7 @@ from __future__ import annotations
 
 import re
 import unicodedata
+import urllib.parse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -120,6 +124,39 @@ def _download(url: str, out: Path) -> Path | None:
     return out if out.exists() else None
 
 
+def _looks_like_logo(url: str) -> bool:
+    """Filename heuristic. An icon must READ as the brand at 30px, so a
+    photograph never qualifies — a press shot of a company's founder is
+    worse than initials, because the viewer has to decode a face."""
+    name = urllib.parse.unquote(url.rsplit("/", 1)[-1]).lower()
+    if any(w in name for w in ("logo", "wordmark", "icon", "emblem",
+                               "symbol", "brandmark", "crest", "seal")):
+        return True
+    # SVG-derived PNGs on Commons are almost always marks, not photos
+    return ".svg" in name
+
+
+def _brand_logo_url(name: str) -> str | None:
+    """A LOGO for a brand/company/org — never a news photo. Commons file
+    search first (its filenames say what the image is), then Wikipedia's
+    infobox image, which for a company is normally the wordmark."""
+    from funnel import topic_media
+    try:
+        for u in topic_media._commons_files(f"{name} logo", limit=5):
+            if _looks_like_logo(u):
+                return u
+    except Exception as e:  # noqa: BLE001
+        print(f"  [series_icons] commons logo search failed {name!r}: {e}")
+    try:
+        u = topic_media._wikipedia_image(name)
+        if u and _looks_like_logo(u):
+            return u
+    except Exception as e:  # noqa: BLE001
+        print(f"  [series_icons] wikipedia image failed {name!r}: {e}")
+    print(f"  [series_icons] no logo for {name!r} — initials badge")
+    return None
+
+
 def resolve(name: str, *, icon: str | None = None, kind: str | None = None,
             context: str = "") -> Path | None:
     """Best-effort local PNG for a series. `icon` overrides `name`
@@ -142,12 +179,7 @@ def resolve(name: str, *, icon: str | None = None, kind: str | None = None,
     if kind == "flag":
         return None
 
-    try:
-        from funnel import entity_media
-        url = entity_media.resolve_entity_media(spec, context)
-    except Exception as e:  # noqa: BLE001
-        print(f"  [series_icons] entity lookup failed {spec!r}: {e}")
-        return None
+    url = _brand_logo_url(spec)
     if not url:
         return None
     try:
