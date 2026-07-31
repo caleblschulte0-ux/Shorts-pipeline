@@ -3,48 +3,6 @@
     {
       "date": "20260715",
       "dry_run": false,
-      "ts": "2026-07-15T11:24:17+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 8,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 46,
-        "with_retention": 38,
-        "with_curve": 9,
-        "fetched_at": "2026-07-15T10:20:42.684947+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260715-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260715-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260715-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260715-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260715-5",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260715",
-      "dry_run": false,
       "ts": "2026-07-15T14:57:54+00:00",
       "feedback": {
         "snapshot": true,
@@ -1589,6 +1547,104 @@
                   "why": "director found no genuine arc"
                 }
               ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "date": "20260731",
+      "dry_run": false,
+      "ts": "2026-07-31T16:18:49+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 111,
+        "with_retention": 98,
+        "with_curve": 14,
+        "fetched_at": "2026-07-31T14:19:26.375439+00:00"
+      },
+      "brain": {
+        "ok": 25,
+        "fail": 0
+      },
+      "clips": [
+        {
+          "slug": "clip-20260731-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260731-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.7 (vague reaction, no clear payoff)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague sad emote, no event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "vague reaction, no clear payoff",
+              "floor": 0.7,
+              "verdict": "reject"
+            }
+          }
+        },
+        {
+          "slug": "clip-20260731-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.7 (routine gameplay narration, no stakes)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "routine gameplay narration, no stakes",
+              "floor": 0.7,
+              "verdict": "reject"
+            }
+          }
+        },
+        {
+          "slug": "clip-20260731-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (confused chat about phone service)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "stableronaldo/stableronaldo-about-call-2026w31",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                },
+                {
+                  "cluster": "kaicenat/kaicenat-about-backstage-2026w31",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.75,
+              "why": "peer pressure kiss drama, social stakes",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "confused chat about phone service",
+              "floor": 0.7,
+              "verdict": "reject"
             }
           }
         }
