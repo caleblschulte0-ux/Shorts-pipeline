@@ -700,8 +700,10 @@ def main() -> int:  # noqa: C901
     import json as _js
     _ns = {"__name__": "_probe", "json": _js,
            "__file__": str(REPO / "scripts" / "run_third.py")}
-    exec(compile("\n".join(_rt_src.splitlines()[:130]), "run_third", "exec"),
-         _ns)
+    # slice to a STABLE marker, not a line count: adding a helper used to
+    # cut this mid-function and break every test below it
+    _hdr = _rt_src[:_rt_src.index("ANALYTICS_LATEST = ")]
+    exec(compile(_hdr, "run_third", "exec"), _ns)
 
     class _Boom:
         def __repr__(self): raise ValueError("unserialisable")
@@ -802,6 +804,42 @@ def main() -> int:  # noqa: C901
     # normal post when reading back
     check("judges viewer renders the selection verdict",
           "selection" in (REPO / "scripts" / "judges.py").read_text())
+
+    # ---- SUPPLY: allowlist width + source health -----------------------
+    # 2026-07-31: four candidates inspected, all weak on transcript. Not a
+    # gate problem — a supply one. A wider allowlist only helps if dead
+    # handles are visible, so they can be pruned on evidence not guesswork.
+    _cfg = _js.loads((REPO / "state" / "third_packages"
+                       / "default_clip.json").read_text())["capture"]
+    _tw = _cfg["sources"]["twitch"]
+    check("twitch allowlist widened past the starved 30",
+          len(_tw) >= 60, f"{len(_tw)} channels")
+    check("no duplicate handles in the allowlist",
+          len(_tw) == len(set(_tw)))
+    check("core stays small so new names deprioritize, not dominate",
+          len(_cfg["core"]) <= 15 and set(_cfg["core"]) <= set(_tw))
+    _sh = _ns["_source_health"]
+    _SH = _ns["_SOURCE_HEALTH"]
+    _SH.clear()
+    _sh("twitch", "alive", ok=True, clips=6)
+    _sh("twitch", "quiet", ok=True, clips=0)
+    _sh("rumble", "AdinLive", ok=False, err="CalledProcessError")
+    _sh("rumble", "AdinLive", ok=False, err="CalledProcessError")
+    check("source health counts clips returned",
+          _SH["twitch:alive"]["clips"] == 6)
+    check("a failing source accumulates failures with the error kind",
+          _SH["rumble:AdinLive"]["fail"] == 2
+          and _SH["rumble:AdinLive"]["err"] == "CalledProcessError")
+    check("only zero-yield sources are persisted (state stays small)",
+          '"dead_sources"' in _rt_src
+          and 'v.get("clips", 0) == 0' in _rt_src)
+    _jsrc = (REPO / "scripts" / "judges.py").read_text()
+    check("viewer separates ERRORED sources from merely quiet ones",
+          "ERRORED" in _jsrc and "returned 0 clips" in _jsrc)
+    check("source health never raises (it runs inside discovery)",
+          "def _source_health" in _rt_src
+          and _rt_src.split("def _source_health")[1].split("def ")[0]
+          .count("except Exception:") == 1)
 
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no
