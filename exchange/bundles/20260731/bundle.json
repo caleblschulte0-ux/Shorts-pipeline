@@ -24,6 +24,7 @@
     "punchup_mission": {
       "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS. If a script already lands \u2014 hook under 5 words ending ?/!, real voice, kicker naming the story \u2014 say so and keep it. Do not change for the sake of changing.",
       "per_package_verdict": "Every entry in your response's `packages` array carries either the rewritten fields, or `\"kept\": true` plus a one-line `editor_note` saying why it already works (e.g. 'hook already 4 words + ?, voice present, kicker names Gary'). An entry with neither is a skipped job. MAKE A REAL DECISION PER PACKAGE: `kept` means you read it and it already lands, not that the guard looked strict. Keeping the whole slate is a red flag, not caution \u2014 the guard only protects numbers, entities and beat structure, and wording is yours to improve freely within them. If you keep more than half a slate, say why in each `editor_note`.",
+      "levity": "LAND A JOKE when the subject allows one. The doctrine has said 'dry wit' for months and this channel has never once made anyone laugh, because an adjective is not an instruction. Concretely: ONE dry aside per script, placed after the fact it reacts to, never in the first two seconds. The shapes that work \u2014 state the absurd fact flat then react in 3-6 words ('Top speed: twelve.'); name the one mundane detail amid chaos ('still holding the salad'); understate the disaster ('This did not go well for the bees'). NEVER puns, setup-punchline, exclamation marks, 'wait for it', or telling the viewer it was funny. And NEVER on a script involving death, injury, crime victims, war or illness \u2014 those stay completely straight. If nothing genuinely occurs to you, ship it straight; a forced joke is worse than none. See shared/levity.py.",
       "house_voice": "A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today. Dry wit, real reactions, second person, contractions. It is allowed to be amused, skeptical or appalled. Accuracy is non-negotiable; attitude is MANDATORY.",
       "do_this": [
         "HOOK: first sentence must be <=5 words and end with ? or ! \u2014 'A kangaroo did WHAT?', 'Why fire 30,000?'. This earns the 3-second hold; it is the highest-leverage line in the video.",
@@ -201,6 +202,47 @@
         "Netflix vs Cable TV Subscribers (US, millions)",
         "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it."
       ],
+      "levity": {
+        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
+        "moves": [
+          {
+            "name": "the flat undercut",
+            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
+            "example": "The chase lasted two hours. Top speed: twelve."
+          },
+          {
+            "name": "the mundane detail",
+            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
+            "example": "He fled on foot, still holding the salad."
+          },
+          {
+            "name": "the understatement",
+            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
+            "example": "This did not go well for the bees."
+          },
+          {
+            "name": "the callback kicker",
+            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
+            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
+          },
+          {
+            "name": "the deadpan attribution",
+            "how": "Quote officialese straight and let it sit. Do not mock it.",
+            "example": "The report calls this 'an unplanned pond entry'."
+          }
+        ],
+        "never": [
+          "puns and wordplay",
+          "setup-then-punchline structure",
+          "'wait for it', 'plot twist', 'you won't believe'",
+          "exclamation marks",
+          "telling the viewer it was funny ('hilariously', 'comedy gold')",
+          "emoji, 'lol', 'lmao'",
+          "sarcasm aimed at a person rather than a situation",
+          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
+        ],
+        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
+      },
       "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
       "read_first": [
         "CLAUDE_ROUTINE_INSTRUCTIONS.md",
@@ -414,6 +456,47 @@
       "Netflix vs Cable TV Subscribers (US, millions)",
       "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it."
     ],
+    "levity": {
+      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
+      "moves": [
+        {
+          "name": "the flat undercut",
+          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
+          "example": "The chase lasted two hours. Top speed: twelve."
+        },
+        {
+          "name": "the mundane detail",
+          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
+          "example": "He fled on foot, still holding the salad."
+        },
+        {
+          "name": "the understatement",
+          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
+          "example": "This did not go well for the bees."
+        },
+        {
+          "name": "the callback kicker",
+          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
+          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
+        },
+        {
+          "name": "the deadpan attribution",
+          "how": "Quote officialese straight and let it sit. Do not mock it.",
+          "example": "The report calls this 'an unplanned pond entry'."
+        }
+      ],
+      "never": [
+        "puns and wordplay",
+        "setup-then-punchline structure",
+        "'wait for it', 'plot twist', 'you won't believe'",
+        "exclamation marks",
+        "telling the viewer it was funny ('hilariously', 'comedy gold')",
+        "emoji, 'lol', 'lmao'",
+        "sarcasm aimed at a person rather than a situation",
+        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
+      ],
+      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
+    },
     "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
     "read_first": [
       "CLAUDE_ROUTINE_INSTRUCTIONS.md",
