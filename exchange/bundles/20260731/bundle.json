@@ -36,8 +36,8 @@
           "shot_index": 2,
           "phrase": "build a storage shed in my own backyard",
           "query": "backyard storage shed",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
@@ -118,15 +118,14 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 2,
         "weak": 0,
-        "missing": 13,
+        "missing": 12,
         "unknown": 0
       },
-      "strong_fraction": 0.071,
+      "strong_fraction": 0.143,
       "requested": [
         "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
-        "01_reddit-hoa-shed-approval-s2-a2fabee1c883",
         "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
         "01_reddit-hoa-shed-approval-s4-442499836d66",
         "01_reddit-hoa-shed-approval-s5-a1c266204818",
@@ -262,7 +261,8 @@
         "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
         "02_reddit-parking-spot-tow-s10-544a12d8626a",
         "02_reddit-parking-spot-tow-s11-cbe5037f535c",
-        "02_reddit-parking-spot-tow-s12-beef450763a5"
+        "02_reddit-parking-spot-tow-s12-beef450763a5",
+        "02_reddit-parking-spot-tow-s13-1c7e604d1af9"
       ]
     },
     {
@@ -325,6 +325,10 @@
   "requests": [
     {
       "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s0-09daaf0defb4.png",
+      "prompt_sha256": "5432dd9fb7e3ad3f37aa197e04bc122214ac3076ea8f03ba16ac1eb75b233ef1",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s0-09daaf0defb4.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 0,
       "kind": "image",
@@ -346,29 +350,11 @@
       "verdict": "missing"
     },
     {
-      "request_id": "01_reddit-hoa-shed-approval-s2-a2fabee1c883",
-      "slug": "01_reddit-hoa-shed-approval",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: backyard storage shed. It accompanies the narration: \"build a storage shed in my own backyard\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s3-16a3f5fba808.png",
+      "prompt_sha256": "9a55209c3f1a979a76722d9d33150f3a5aa2270409477cb61e054f6c1fb0bf96",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s3-16a3f5fba808.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 3,
       "kind": "image",
@@ -391,6 +377,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s4-442499836d66.png",
+      "prompt_sha256": "7ac325a9a03a4ef92ef702152111375fa3896f0bf44dc2713e12cc9be2201876",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s4-442499836d66.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 4,
       "kind": "image",
@@ -413,6 +403,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s5-a1c266204818.png",
+      "prompt_sha256": "70c945574b1ae481c85d16d3cce0c8a01e6009b98b64da4bd656c40883d4c64d",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s5-a1c266204818.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 5,
       "kind": "image",
@@ -435,6 +429,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s6-c28e3181c00b.png",
+      "prompt_sha256": "0c2e28b202134a08893b9593eb7391aeca2bc3c8877d941d63737c95d475328c",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s6-c28e3181c00b.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 6,
       "kind": "image",
@@ -457,6 +455,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s7-9b02212e1f56.png",
+      "prompt_sha256": "560eaae85c4bfe75267f99e58e12a9f865f154a8651d32873d3ac3a3642783a6",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s7-9b02212e1f56.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 7,
       "kind": "image",
@@ -479,6 +481,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s8-4f6018ab5e5f.png",
+      "prompt_sha256": "75b53776fc34f751cbb70eedc9e5bb138590a18b41e87f7925bd597a7488386e",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s8-4f6018ab5e5f.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 8,
       "kind": "image",
@@ -501,6 +507,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s9-27e530d2231a.png",
+      "prompt_sha256": "3abd24a5ab930b0d7f2fa47bfe0ac7809a024bf77422c7d9b56adf388af225fa",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s9-27e530d2231a.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 9,
       "kind": "image",
@@ -523,6 +533,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s10-c1d1f1bdde32.png",
+      "prompt_sha256": "e83999b4d0052dff71604d5816af06f86a3742eecf24750cc11154b072b4c407",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s10-c1d1f1bdde32.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 10,
       "kind": "image",
@@ -545,6 +559,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s11-0d3cb050317f.png",
+      "prompt_sha256": "da66bdbde37ec7787c8546454496d530641bbe0b4914cb943d8e8071204a7f59",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s11-0d3cb050317f.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 11,
       "kind": "image",
@@ -567,6 +585,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s12-a58c501e7cad.png",
+      "prompt_sha256": "c32297af7a1cb5d770bd128e0cc622e9ef01262db12e0f452d31a0b38c599607",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s12-a58c501e7cad.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 12,
       "kind": "image",
@@ -589,6 +611,10 @@
     },
     {
       "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "safe_request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "drive_filename": "20260731__01_reddit-hoa-shed-approval-s13-3665066959bc.png",
+      "prompt_sha256": "5b4b0b947ee91e2ca66a72b0fc0f668d36fe67dc24c49270b19f05dcf36a7cae",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s13-3665066959bc.json",
       "slug": "01_reddit-hoa-shed-approval",
       "shot_index": 13,
       "kind": "image",
@@ -611,6 +637,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "safe_request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s0-3a730fba60f1.png",
+      "prompt_sha256": "d817ad159961ccf0bf012303b110922d1d9e49c3481f728e054586a1e0d6f39b",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s0-3a730fba60f1.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 0,
       "kind": "image",
@@ -633,6 +663,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "safe_request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s3-cda46ccffdeb.png",
+      "prompt_sha256": "10628b58110b80f035a3fa6b7e803d53bbd56746ae24a2ee24133a9c8250ef73",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s3-cda46ccffdeb.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 3,
       "kind": "image",
@@ -655,6 +689,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "safe_request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s4-b4a5d2c55431.png",
+      "prompt_sha256": "9fbd7cec9e4fdbead3001a2dd301e0d080792010897dbc22b0c2b271e7a24815",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s4-b4a5d2c55431.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 4,
       "kind": "image",
@@ -677,6 +715,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "safe_request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s5-0a2f31899938.png",
+      "prompt_sha256": "227118d1e2f6dfc71ca097efdc22cd83a6f0e573ed06aeae472ab21acb092fc5",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s5-0a2f31899938.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 5,
       "kind": "image",
@@ -699,6 +741,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "safe_request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s6-45eaafc32795.png",
+      "prompt_sha256": "38835501ef32c6168ae6d53846a74baf908767fdd6966a9ca64ab5af557030e2",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s6-45eaafc32795.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 6,
       "kind": "image",
@@ -721,6 +767,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "safe_request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s7-c31b14028ca5.png",
+      "prompt_sha256": "f569824de238daebce7731a9da3f7fe1f42d97af8df272651ceb4d20af9cf8fa",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s7-c31b14028ca5.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 7,
       "kind": "image",
@@ -743,6 +793,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "safe_request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s8-b1321636a503.png",
+      "prompt_sha256": "66a53e25c4ad2c6ce5c1d74296972448926bf80dc312f7d94503c47de3303207",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s8-b1321636a503.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 8,
       "kind": "image",
@@ -765,6 +819,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "safe_request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s9-4f2fdfe65969.png",
+      "prompt_sha256": "4ff0cf3d3ce0d7dcccd5ae02d2bb77b626c765d40ec68b5a711c3bfa672436ee",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s9-4f2fdfe65969.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 9,
       "kind": "image",
@@ -787,6 +845,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "safe_request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s10-544a12d8626a.png",
+      "prompt_sha256": "8863602e23dc464cb6515dacf1bd4c1d86a6e3a3ceb6dac64053bceea578afa6",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s10-544a12d8626a.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 10,
       "kind": "image",
@@ -809,6 +871,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "safe_request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s11-cbe5037f535c.png",
+      "prompt_sha256": "40e91b8e0ca8a0a4ab582ca126e3396f6121d18f5bf296dd0e08403e54bfddda",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s11-cbe5037f535c.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 11,
       "kind": "image",
@@ -831,6 +897,10 @@
     },
     {
       "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "safe_request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s12-beef450763a5.png",
+      "prompt_sha256": "7fa21b21944e493e1462d7095f51896917239eeb531c51a4350ba99a01b27608",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s12-beef450763a5.json",
       "slug": "02_reddit-parking-spot-tow",
       "shot_index": 12,
       "kind": "image",
@@ -850,13 +920,161 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "safe_request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "drive_filename": "20260731__02_reddit-parking-spot-tow-s13-1c7e604d1af9.png",
+      "prompt_sha256": "5c65cab1b7713e2a0cebae86b38fcaf966513adc1ff6ce10f4fd3aa90b9bf323",
+      "checkpoint_path": "exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s13-1c7e604d1af9.json",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 13,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: parking lot empty spot. It accompanies the narration: \"whose name is on spot 14 now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
     }
   ],
+  "media_protocol": {
+    "schema": "chatgpt-media-checkpoint/v1",
+    "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
+    "checkpoint_dir": "exchange/bundles/20260731/media-progress/",
+    "claims_dir": "exchange/bundles/20260731/media-progress/claims/",
+    "checkpoint_path": "exchange/bundles/20260731/media-progress/<safe_request_id>.json",
+    "filename_rule": "Upload every asset to Drive as `20260731__<safe_request_id>.<ext>`. Each bundle request already carries its exact `drive_filename` \u2014 use that string verbatim.",
+    "safe_request_id": "The request_id with anything outside [A-Za-z0-9._-] replaced by `-`; if that changed the string (or it exceeded 72 chars), an 8-hex sha256 of the ORIGINAL is appended so two different requests can never share one file. Bundle requests publish theirs as `safe_request_id`.",
+    "authored_shot_request_id": "For a shot inside a package YOU authored there is no bundle request, so build the id yourself: `authored-<slug>-s<shot_index>`, where <slug> is the package's slug lowercased with anything outside [a-z0-9-] replaced by `-`. It must be derived from slug + shot index ONLY \u2014 never from the prompt, a timestamp, or a counter \u2014 so the 07:00 worker recomputes the identical string from the package on disk.",
+    "bundle_identity": "sha256 of this bundle.json file's exact bytes. Compute it; do not guess. Every checkpoint records it, and a checkpoint whose identity does not match the current bundle is REFUSED \u2014 that is how an image made for a prompt that has since changed gets kept out of the video.",
+    "checkpoint_fields": {
+      "schema": "chatgpt-media-checkpoint/v1",
+      "schema_version": 1,
+      "date": "20260731",
+      "bundle": {
+        "identity": "<sha256 of bundle.json>",
+        "path": "exchange/bundles/20260731/bundle.json"
+      },
+      "request_id": "<the id from the bundle, or the authored-shot id>",
+      "safe_request_id": "<as above>",
+      "request_kind": "bundle_request | authored_shot",
+      "package_id": "<authored_shot only: the package slug>",
+      "shot_index": "<authored_shot only: integer>",
+      "prompt_sha256": "<sha256 of the prompt text you actually used>",
+      "prompt_used": "<that prompt, verbatim>",
+      "status": "verified | failed | in_progress | skipped",
+      "attempt": 1,
+      "worker": "media | finalizer",
+      "drive": {
+        "folder_id": "\u2026",
+        "file_id": "\u2026",
+        "filename": "20260731__<safe_request_id>.png",
+        "download_url": "\u2026",
+        "sharing": "anyone_with_link | domain | private | unknown"
+      },
+      "image": {
+        "sha256": "<64 hex of the exact bytes>",
+        "bytes": 0,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified_at": "<ISO8601 Z>",
+      "error": {
+        "code": "\u2026",
+        "step": "\u2026",
+        "message": "\u2026"
+      },
+      "retryable": false
+    },
+    "recovery_order": [
+      "1. Read the checkpoint. Valid + verified + same bundle identity + same prompt -> REUSE it. Do not re-generate.",
+      "2. Otherwise search Drive for the EXACT deterministic filename.",
+      "3. Exactly one match -> download it, hash the bytes, confirm it decodes, and write the checkpoint from what you actually found. A filename is a lookup key, never evidence about content.",
+      "4. More than one match -> CONFLICTED. Report it and move on; do not guess which file belongs to the request.",
+      "5. Only when nothing is reusable, generate it."
+    ],
+    "claims": {
+      "path": "exchange/bundles/20260731/media-progress/claims/<safe_request_id>.json",
+      "semantics": "Create-only. If the file already exists and its `expires_at` is in the future, someone else is on it \u2014 skip that request. An EXPIRED claim is inert: take it over and say so. A verified checkpoint supersedes any claim, including a live one.",
+      "lease_seconds": 900,
+      "fields": [
+        "schema",
+        "date",
+        "bundle.identity",
+        "request_id",
+        "safe_request_id",
+        "worker",
+        "worker_run_id",
+        "created_at",
+        "expires_at",
+        "lease_seconds"
+      ]
+    },
+    "workers": {
+      "media": {
+        "role": "MEDIA worker",
+        "runs_at": "06:00 America/Chicago",
+        "job": "Generate, upload and VERIFY every image the day needs, and record each one as a checkpoint the moment it verifies.",
+        "may_write": [
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json"
+        ],
+        "must_never_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json"
+        ],
+        "rules": [
+          "Checkpoint after EVERY verified image, one file per request \u2014 not one batch at the end. A run that dies at image 19 of 24 must leave 18 recoverable results behind, not zero.",
+          "Never write response.json. Never write DONE. DONE fires the render, and at 06:00 nothing has been authored or punched up yet \u2014 writing it would ship half a day with everything green.",
+          "Work the deterministic filename from the bundle. Uploading under any other name makes the image unrecoverable if your checkpoint is lost."
+        ]
+      },
+      "finalizer": {
+        "role": "FINALIZER worker",
+        "runs_at": "07:00 America/Chicago",
+        "job": "Recover what the media worker did, fill whatever it missed, punch up the scripts, author anything the Claude side left undone, then write response.json and \u2014 separately \u2014 DONE.",
+        "may_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json",
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json",
+          "retro/*/proposals/*.json"
+        ],
+        "must_never_write": [],
+        "rules": [
+          "START by reading media-progress/. Every verified checkpoint is an image that already exists on Drive \u2014 re-generating it burns the budget AND produces a different picture than the one the checkpoint names.",
+          "Fill the gaps the media worker left, checkpointing each one the same way. You are the second attempt, not a separate pipeline.",
+          "Do the explainer and curiosity work even when trending already has six packages. Those are separate channels with separate asks; a full trending slate says nothing about either of them.",
+          "Commit response.json, READ IT BACK from main and confirm it parses, and only THEN commit DONE as a second commit. DONE is the only thing that fires the render."
+        ]
+      }
+    },
+    "honesty": "A checkpoint is a claim that you verified bytes. Writing one for an image you did not download and hash is worse than writing nothing, because the next worker will skip the work believing it is done."
+  },
   "instructions": {
     "read_first": "exchange/README.md",
+    "who_runs_what": {
+      "media_worker_0600": "MEDIA ONLY. Work `requests` (and, on a takeover, the shots of the packages you author). Upload under the `drive_filename` each request carries, verify the bytes, and write a checkpoint the moment each image verifies \u2014 one file per request, not one batch at the end. NEVER write response.json and NEVER write DONE.",
+      "finalizer_0700": "RECOVER FIRST: read media-progress/ before generating anything \u2014 a verified checkpoint is an image that already exists, and re-making it both burns the budget and produces a different picture than the one recorded. Then fill the gaps, punch up the scripts, do the explainer/curiosity work (even if trending is full), write response.json, verify it reads back, and only then commit DONE as a SECOND commit.",
+      "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
+    },
     "two_jobs": [
-      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today and the reserve bank could not cover it, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
-      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but curiosity do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
+      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
     "punchup_mission": {

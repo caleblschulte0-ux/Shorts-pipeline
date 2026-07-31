@@ -40,7 +40,12 @@
     {
       "phrase": "build a storage shed in my own backyard",
       "query": "backyard storage shed",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "backyard",
+      "pin_context": "residential yard storage shed",
+      "news_query": "backyard",
+      "news_angle": "A homeowner built a storage shed in their backyard, which was initially approved by the HOA.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/StateLibQld_1_162315_Irene_and_Cecil_Harveyson_posing_in_their_backyard_in_Ashgrove%2C_Brisbane%2C_ca._1929.jpg"
     },
     {
       "phrase": "wrote back four words",
