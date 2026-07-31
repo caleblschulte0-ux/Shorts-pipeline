@@ -6,14 +6,852 @@
   "response_path": "exchange/bundles/20260731/response.json",
   "done_marker": "exchange/bundles/20260731/DONE",
   "counts": {
-    "packages": 0,
-    "requests": 0,
+    "packages": 6,
+    "requests": 24,
     "animations": 0,
-    "to_author": 6,
-    "channels_needing_a_brain": 2
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
-  "packages": [],
-  "requests": [],
+  "packages": [
+    {
+      "slug": "01_reddit-hoa-shed-approval",
+      "title": "The HOA fined me for a shed they approved in writing",
+      "script": "They fined me for THAT? 3 years ago I emailed the HOA board president and asked if I could build a storage shed in my own backyard. She wrote back four words: approved, no issue. Last month a brand-new board measured my yard against some outdated map and mailed me a $500 violation for an unapproved structure. I forwarded her original email, timestamp and all, still sitting untouched in my inbox. Funny how an approval that apparently expires never once said so in writing. The new board president went silent for 12 days. Then came the reversal, fine dropped, a full year of dues waived, and a bylaw rewrite so a signed approval can never quietly vanish again. So who's actually reading their own paperwork now?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "fined me for THAT",
+          "query": "violation notice letter",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "emailed the HOA board president",
+          "query": "laptop email typing",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "build a storage shed in my own backyard",
+          "query": "backyard storage shed",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "wrote back four words",
+          "query": "email reply screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "measured my yard against some outdated map",
+          "query": "tape measure yard",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "mailed me a $500 violation",
+          "query": "certified mail envelope",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "forwarded her original email, timestamp and all",
+          "query": "email inbox screenshot",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "still sitting untouched in my inbox",
+          "query": "phone inbox unread",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "an approval that apparently expires",
+          "query": "calendar pages flipping",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "went silent for 12 days",
+          "query": "phone screen no messages",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "fine dropped",
+          "query": "crossed out invoice",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "a full year of dues waived",
+          "query": "handshake agreement",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "a bylaw rewrite",
+          "query": "committee meeting table",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "reading their own paperwork now",
+          "query": "stack of documents desk",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 2,
+        "weak": 0,
+        "missing": 12,
+        "unknown": 0
+      },
+      "strong_fraction": 0.143,
+      "requested": [
+        "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+        "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+        "01_reddit-hoa-shed-approval-s4-442499836d66",
+        "01_reddit-hoa-shed-approval-s5-a1c266204818",
+        "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+        "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+        "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+        "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+        "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+        "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+        "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+        "01_reddit-hoa-shed-approval-s13-3665066959bc"
+      ]
+    },
+    {
+      "slug": "02_reddit-parking-spot-tow",
+      "title": "Someone kept stealing my numbered parking spot at work",
+      "script": "My reserved spot, again? My assigned space is spot 14, painted number and everything, and for 3 straight weeks the same white SUV parked in it every single morning. I left 2 polite notes on the windshield asking the driver to check the number. Nothing changed. Building policy says an unauthorized vehicle in a numbered spot after 2 written warnings gets towed at the owner's expense, no exceptions. So on week 3 I called the property office, handed over my dated notes, and let them make the call. The SUV vanished from spot 14 around 10 a.m. Turned out the driver was 2 floors up, mid performance review, when someone texted him his car was gone. Tough meeting to sit through with THAT on your mind. So whose name is on spot 14 now?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "My reserved spot, again",
+          "query": "parking lot numbered spot",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "assigned space is spot 14",
+          "query": "parking space number painted",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "same white SUV parked in it every single morning",
+          "query": "white SUV parked",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "2 polite notes on the windshield",
+          "query": "note on windshield",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "unauthorized vehicle in a numbered spot",
+          "query": "no parking sign",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "towed at the owner's expense",
+          "query": "tow truck hooking car",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "called the property office",
+          "query": "office phone call desk",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "handed over my dated notes",
+          "query": "handwritten note paper",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "SUV vanished from spot 14",
+          "query": "empty parking space",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "around 10 a.m.",
+          "query": "office building morning",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "mid performance review",
+          "query": "office meeting review",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "someone texted him his car was gone",
+          "query": "phone text notification",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "Tough meeting to sit through with THAT on your mind",
+          "query": "stressed man conference room",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "whose name is on spot 14 now",
+          "query": "parking lot empty spot",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 2,
+        "weak": 0,
+        "missing": 12,
+        "unknown": 0
+      },
+      "strong_fraction": 0.143,
+      "requested": [
+        "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+        "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+        "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+        "02_reddit-parking-spot-tow-s5-0a2f31899938",
+        "02_reddit-parking-spot-tow-s6-45eaafc32795",
+        "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+        "02_reddit-parking-spot-tow-s8-b1321636a503",
+        "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+        "02_reddit-parking-spot-tow-s10-544a12d8626a",
+        "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+        "02_reddit-parking-spot-tow-s12-beef450763a5",
+        "02_reddit-parking-spot-tow-s13-1c7e604d1af9"
+      ]
+    },
+    {
+      "slug": "03_textcard-ceuta-border-crisis",
+      "title": "Spain Just Sent Its Military Into One Of Its Own Cities",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "04_textcard-nj-pig-escape",
+      "title": "15 Pigs Just Took Over A New Jersey Highway",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "05_graph-openai-anthropic-valuation",
+      "title": "OpenAI vs Anthropic: Valuation By Year",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "06_graph-wildfire-acres-burned",
+      "title": "US Wildfire Acres Burned By Year",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: violation notice letter. It accompanies the narration: \"fined me for THAT\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: email reply screen. It accompanies the narration: \"wrote back four words\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tape measure yard. It accompanies the narration: \"measured my yard against some outdated map\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: certified mail envelope. It accompanies the narration: \"mailed me a $500 violation\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: email inbox screenshot. It accompanies the narration: \"forwarded her original email, timestamp and all\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone inbox unread. It accompanies the narration: \"still sitting untouched in my inbox\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: calendar pages flipping. It accompanies the narration: \"an approval that apparently expires\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen no messages. It accompanies the narration: \"went silent for 12 days\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: crossed out invoice. It accompanies the narration: \"fine dropped\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: handshake agreement. It accompanies the narration: \"a full year of dues waived\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: committee meeting table. It accompanies the narration: \"a bylaw rewrite\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 13,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stack of documents desk. It accompanies the narration: \"reading their own paperwork now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: parking lot numbered spot. It accompanies the narration: \"My reserved spot, again\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: note on windshield. It accompanies the narration: \"2 polite notes on the windshield\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: no parking sign. It accompanies the narration: \"unauthorized vehicle in a numbered spot\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tow truck hooking car. It accompanies the narration: \"towed at the owner's expense\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office phone call desk. It accompanies the narration: \"called the property office\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: handwritten note paper. It accompanies the narration: \"handed over my dated notes\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: empty parking space. It accompanies the narration: \"SUV vanished from spot 14\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office building morning. It accompanies the narration: \"around 10 a.m.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office meeting review. It accompanies the narration: \"mid performance review\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone text notification. It accompanies the narration: \"someone texted him his car was gone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man conference room. It accompanies the narration: \"Tough meeting to sit through with THAT on your mind\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "slug": "02_reddit-parking-spot-tow",
+      "shot_index": 13,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: parking lot empty spot. It accompanies the narration: \"whose name is on spot 14 now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
   "instructions": {
     "read_first": "exchange/README.md",
     "two_jobs": [
@@ -60,230 +898,6 @@
     "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
   },
   "authoring_requests": {
-    "trending": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260731",
-      "channel": "trending",
-      "reason": "only 0 of 6 packages exist for 20260731: the Claude authoring Routine did not run and the reserve bank could not cover the day",
-      "authored_already": 0,
-      "target": 6,
-      "write": 6,
-      "mix": {
-        "reddit_story": 2,
-        "text_card": 2,
-        "graph_race": 2
-      },
-      "where": {
-        "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-        "alternative": "Or commit one file per package to exchange/bundles/20260731/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-        "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-      },
-      "formats": {
-        "reddit_story": {
-          "how_to_signal": "omit the `format` field, set `subreddit`",
-          "renderer": "make_reddit_story.py",
-          "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-          "required": [
-            "subreddit",
-            "slug",
-            "title",
-            "hashtags",
-            "script",
-            "shots",
-            "punches",
-            "music_vibe"
-          ],
-          "subreddit_options": [
-            "pettyrevenge",
-            "MaliciousCompliance",
-            "ProRevenge",
-            "entitledparents",
-            "TalesFromTheCustomer",
-            "IDontWorkHereLady"
-          ],
-          "rules": [
-            "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-            "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-            "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query, mascot_pose}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-            "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-            "At most 3 non-idle mascot poses."
-          ]
-        },
-        "text_card": {
-          "how_to_signal": "set \"format\": \"text_card\"",
-          "renderer": "make_text_card.py",
-          "shape": "big typographic card over a looping topical b-roll clip, no voice-over",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "duration",
-            "broll_query",
-            "text",
-            "highlights",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "60-100 words of `text` in 2-3 short paragraphs separated by \\n\\n.",
-            "First line is a scroll-stopping claim; last line is a punchy kicker.",
-            "8-12 `highlights`, each an EXACT substring of `text` \u2014 these get the gold emphasis treatment.",
-            "`broll_query` is a 1-3 word CONCRETE filmable thing (\"potato chips\", not \"consumer economics\").",
-            "`duration` 6. No `shots`, no `script`, no `subreddit`."
-          ]
-        },
-        "graph_race": {
-          "how_to_signal": "set \"format\": \"graph_race\"",
-          "renderer": "make_graph_race.py",
-          "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "y_label",
-            "duration",
-            "source",
-            "years",
-            "series",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-            "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-            "BIG NUMBERS \u2014 a HARD renderer gate, not a preference: the chart is REFUSED if the leader peaks under 1,000 or grows less than 3x (1.6x when there is a lead change). A line creeping from 12 to 40 is an instant reject.",
-            "Prefer a dramatic crossover or collapse mid-video.",
-            "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-            "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-          ]
-        }
-      },
-      "hard_rules": [
-        "Write EXACTLY 6 package(s) in the mix above \u2014 2 x reddit_story, 2 x text_card, 2 x graph_race.",
-        "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-        "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-        "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-        "TOS-safe: no slurs, no explicit content, no gore.",
-        "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-        "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-        "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-      ],
-      "do_not_repeat": [
-        "A Sinkhole Opened Right at a Funeral Home",
-        "This Goat Cannot Be Contained",
-        "Superman Got Arrested in Florida",
-        "An Entire Reservation Just Got Evacuated",
-        "Iran Just Attacked a US Base in Jordan",
-        "The FCC Just Banned Humanoid Robots",
-        "My landlord tried to keep my deposit for damage from my own move-in video.",
-        "A woman said she basically ran the store. The real manager was standing behind her.",
-        "The asteroid didn't kill the dinosaurs with fire",
-        "A sixth person has died from an outbreak in NYC's air",
-        "Nvidia vs AMD: Data Center Revenue by Year",
-        "India vs China: The Population Race",
-        "My manager said enforce the return policy exactly. I didn't know he wrote it.",
-        "My neighbor blocked my driveway every night. The cones exposed something else.",
-        "There's a parasite hiding in your salad bag right now",
-        "Sperm whales sleep standing straight up",
-        "Orbital Rocket Launches per Year by Provider",
-        "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
-        "The mechanic said my transmission was shot. I'd already marked the old one.",
-        "Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'",
-        "Orcas were just filmed destroying a sunfish for no reason at all",
-        "Tens of thousands just got evacuated from one of Europe's top tourist spots",
-        "Global EV Sales by Region (millions/year)",
-        "Renewable Share of Electricity: US vs China vs Germany",
-        "My manager said overtime 'isn't tracked' - so I tracked it myself",
-        "My noisy neighbor said 'good luck proving it' - so I did",
-        "Your groceries didn't get more expensive - they got smaller",
-        "Printer ink is one of the most expensive liquids you can buy",
-        "Staffed Lighthouses by Country Since 1900",
-        "Netflix vs Cable TV Subscribers (US, millions)",
-        "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it."
-      ],
-      "levity": {
-        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-        "moves": [
-          {
-            "name": "the flat undercut",
-            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-            "example": "The chase lasted two hours. Top speed: twelve."
-          },
-          {
-            "name": "the mundane detail",
-            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-            "example": "He fled on foot, still holding the salad."
-          },
-          {
-            "name": "the understatement",
-            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-            "example": "This did not go well for the bees."
-          },
-          {
-            "name": "the callback kicker",
-            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-          },
-          {
-            "name": "the deadpan attribution",
-            "how": "Quote officialese straight and let it sit. Do not mock it.",
-            "example": "The report calls this 'an unplanned pond entry'."
-          }
-        ],
-        "never": [
-          "puns and wordplay",
-          "setup-then-punchline structure",
-          "'wait for it', 'plot twist', 'you won't believe'",
-          "exclamation marks",
-          "telling the viewer it was funny ('hilariously', 'comedy gold')",
-          "emoji, 'lol', 'lmao'",
-          "sarcasm aimed at a person rather than a situation",
-          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-        ],
-        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-      },
-      "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-      "read_first": [
-        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-        "docs/FALLBACKS.md"
-      ],
-      "media_contract": {
-        "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-        "shape": {
-          "shots": [
-            {
-              "phrase": "...exact substring of your script...",
-              "query": "...what the shot shows...",
-              "media": {
-                "status": "fulfilled",
-                "drive": {
-                  "file_id": "1AbC...",
-                  "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                  "public": true
-                },
-                "image": {
-                  "sha256": "...64 hex of the exact bytes...",
-                  "bytes": 1554380,
-                  "format": "png",
-                  "width": 1080,
-                  "height": 1080
-                }
-              }
-            }
-          ]
-        },
-        "verified_on_arrival": [
-          "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-          "Full pixel decode \u2014 an undecodable file is refused.",
-          "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-          "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-        ],
-        "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-        "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-      }
-    },
     "curiosity": {
       "schema": "chatgpt-authoring-request/v1",
       "date": "20260731",
@@ -314,228 +928,5 @@
       }
     }
   },
-  "authoring_request": {
-    "schema": "chatgpt-authoring-request/v1",
-    "date": "20260731",
-    "channel": "trending",
-    "reason": "only 0 of 6 packages exist for 20260731: the Claude authoring Routine did not run and the reserve bank could not cover the day",
-    "authored_already": 0,
-    "target": 6,
-    "write": 6,
-    "mix": {
-      "reddit_story": 2,
-      "text_card": 2,
-      "graph_race": 2
-    },
-    "where": {
-      "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-      "alternative": "Or commit one file per package to exchange/bundles/20260731/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-      "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-    },
-    "formats": {
-      "reddit_story": {
-        "how_to_signal": "omit the `format` field, set `subreddit`",
-        "renderer": "make_reddit_story.py",
-        "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-        "required": [
-          "subreddit",
-          "slug",
-          "title",
-          "hashtags",
-          "script",
-          "shots",
-          "punches",
-          "music_vibe"
-        ],
-        "subreddit_options": [
-          "pettyrevenge",
-          "MaliciousCompliance",
-          "ProRevenge",
-          "entitledparents",
-          "TalesFromTheCustomer",
-          "IDontWorkHereLady"
-        ],
-        "rules": [
-          "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-          "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-          "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-          "6-8 `shots`: {phrase, query, mascot_pose}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-          "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-          "At most 3 non-idle mascot poses."
-        ]
-      },
-      "text_card": {
-        "how_to_signal": "set \"format\": \"text_card\"",
-        "renderer": "make_text_card.py",
-        "shape": "big typographic card over a looping topical b-roll clip, no voice-over",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "duration",
-          "broll_query",
-          "text",
-          "highlights",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "60-100 words of `text` in 2-3 short paragraphs separated by \\n\\n.",
-          "First line is a scroll-stopping claim; last line is a punchy kicker.",
-          "8-12 `highlights`, each an EXACT substring of `text` \u2014 these get the gold emphasis treatment.",
-          "`broll_query` is a 1-3 word CONCRETE filmable thing (\"potato chips\", not \"consumer economics\").",
-          "`duration` 6. No `shots`, no `script`, no `subreddit`."
-        ]
-      },
-      "graph_race": {
-        "how_to_signal": "set \"format\": \"graph_race\"",
-        "renderer": "make_graph_race.py",
-        "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "y_label",
-          "duration",
-          "source",
-          "years",
-          "series",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-          "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-          "BIG NUMBERS \u2014 a HARD renderer gate, not a preference: the chart is REFUSED if the leader peaks under 1,000 or grows less than 3x (1.6x when there is a lead change). A line creeping from 12 to 40 is an instant reject.",
-          "Prefer a dramatic crossover or collapse mid-video.",
-          "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-          "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-        ]
-      }
-    },
-    "hard_rules": [
-      "Write EXACTLY 6 package(s) in the mix above \u2014 2 x reddit_story, 2 x text_card, 2 x graph_race.",
-      "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-      "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-      "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-      "TOS-safe: no slurs, no explicit content, no gore.",
-      "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-      "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-      "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-    ],
-    "do_not_repeat": [
-      "A Sinkhole Opened Right at a Funeral Home",
-      "This Goat Cannot Be Contained",
-      "Superman Got Arrested in Florida",
-      "An Entire Reservation Just Got Evacuated",
-      "Iran Just Attacked a US Base in Jordan",
-      "The FCC Just Banned Humanoid Robots",
-      "My landlord tried to keep my deposit for damage from my own move-in video.",
-      "A woman said she basically ran the store. The real manager was standing behind her.",
-      "The asteroid didn't kill the dinosaurs with fire",
-      "A sixth person has died from an outbreak in NYC's air",
-      "Nvidia vs AMD: Data Center Revenue by Year",
-      "India vs China: The Population Race",
-      "My manager said enforce the return policy exactly. I didn't know he wrote it.",
-      "My neighbor blocked my driveway every night. The cones exposed something else.",
-      "There's a parasite hiding in your salad bag right now",
-      "Sperm whales sleep standing straight up",
-      "Orbital Rocket Launches per Year by Provider",
-      "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
-      "The mechanic said my transmission was shot. I'd already marked the old one.",
-      "Someone kept stealing my lunch, so I labeled the ghost pepper one 'diet special'",
-      "Orcas were just filmed destroying a sunfish for no reason at all",
-      "Tens of thousands just got evacuated from one of Europe's top tourist spots",
-      "Global EV Sales by Region (millions/year)",
-      "Renewable Share of Electricity: US vs China vs Germany",
-      "My manager said overtime 'isn't tracked' - so I tracked it myself",
-      "My noisy neighbor said 'good luck proving it' - so I did",
-      "Your groceries didn't get more expensive - they got smaller",
-      "Printer ink is one of the most expensive liquids you can buy",
-      "Staffed Lighthouses by Country Since 1900",
-      "Netflix vs Cable TV Subscribers (US, millions)",
-      "Robert Downey Jr. spent 11 years saving the universe. Now he's trying to end it."
-    ],
-    "levity": {
-      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-      "moves": [
-        {
-          "name": "the flat undercut",
-          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-          "example": "The chase lasted two hours. Top speed: twelve."
-        },
-        {
-          "name": "the mundane detail",
-          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-          "example": "He fled on foot, still holding the salad."
-        },
-        {
-          "name": "the understatement",
-          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-          "example": "This did not go well for the bees."
-        },
-        {
-          "name": "the callback kicker",
-          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-        },
-        {
-          "name": "the deadpan attribution",
-          "how": "Quote officialese straight and let it sit. Do not mock it.",
-          "example": "The report calls this 'an unplanned pond entry'."
-        }
-      ],
-      "never": [
-        "puns and wordplay",
-        "setup-then-punchline structure",
-        "'wait for it', 'plot twist', 'you won't believe'",
-        "exclamation marks",
-        "telling the viewer it was funny ('hilariously', 'comedy gold')",
-        "emoji, 'lol', 'lmao'",
-        "sarcasm aimed at a person rather than a situation",
-        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-      ],
-      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-    },
-    "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-    "read_first": [
-      "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-      "data_learning/SCHULTE_MEDIA_BRAIN.md",
-      "docs/FALLBACKS.md"
-    ],
-    "media_contract": {
-      "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-      "shape": {
-        "shots": [
-          {
-            "phrase": "...exact substring of your script...",
-            "query": "...what the shot shows...",
-            "media": {
-              "status": "fulfilled",
-              "drive": {
-                "file_id": "1AbC...",
-                "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                "public": true
-              },
-              "image": {
-                "sha256": "...64 hex of the exact bytes...",
-                "bytes": 1554380,
-                "format": "png",
-                "width": 1080,
-                "height": 1080
-              }
-            }
-          }
-        ]
-      },
-      "verified_on_arrival": [
-        "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-        "Full pixel decode \u2014 an undecodable file is refused.",
-        "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-        "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-      ],
-      "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-      "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-    }
-  }
+  "authoring_request": null
 }
