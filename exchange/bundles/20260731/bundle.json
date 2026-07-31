@@ -36,8 +36,8 @@
           "shot_index": 2,
           "phrase": "build a storage shed in my own backyard",
           "query": "backyard storage shed",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 3,
@@ -118,14 +118,15 @@
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 1,
         "weak": 0,
-        "missing": 12,
+        "missing": 13,
         "unknown": 0
       },
-      "strong_fraction": 0.143,
+      "strong_fraction": 0.071,
       "requested": [
         "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+        "01_reddit-hoa-shed-approval-s2-a2fabee1c883",
         "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
         "01_reddit-hoa-shed-approval-s4-442499836d66",
         "01_reddit-hoa-shed-approval-s5-a1c266204818",
@@ -261,8 +262,7 @@
         "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
         "02_reddit-parking-spot-tow-s10-544a12d8626a",
         "02_reddit-parking-spot-tow-s11-cbe5037f535c",
-        "02_reddit-parking-spot-tow-s12-beef450763a5",
-        "02_reddit-parking-spot-tow-s13-1c7e604d1af9"
+        "02_reddit-parking-spot-tow-s12-beef450763a5"
       ]
     },
     {
@@ -329,6 +329,28 @@
       "shot_index": 0,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: violation notice letter. It accompanies the narration: \"fined me for THAT\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s2-a2fabee1c883",
+      "slug": "01_reddit-hoa-shed-approval",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: backyard storage shed. It accompanies the narration: \"build a storage shed in my own backyard\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -813,28 +835,6 @@
       "shot_index": 12,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: stressed man conference room. It accompanies the narration: \"Tough meeting to sit through with THAT on your mind\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
-      "slug": "02_reddit-parking-spot-tow",
-      "shot_index": 13,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: parking lot empty spot. It accompanies the narration: \"whose name is on spot 14 now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

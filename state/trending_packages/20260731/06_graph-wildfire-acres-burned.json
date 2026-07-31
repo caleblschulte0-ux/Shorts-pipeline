@@ -23,9 +23,27 @@
     "shorts",
     "trending"
   ],
-  "years": [2020, 2021, 2022, 2023, 2024, 2025],
+  "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
   "series": [
-    {"name": "US wildfires", "color": "#ff6b35", "values": [10.12, 7.1, 7.6, 2.69, 8.92, 5.13]}
+    {
+      "name": "US wildfires",
+      "color": "#ff6b35",
+      "values": [
+        10.12,
+        7.1,
+        7.6,
+        2.69,
+        8.92,
+        5.13
+      ]
+    }
   ],
   "music_vibe": "dark"
 }
