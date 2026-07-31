@@ -560,6 +560,291 @@ def main() -> int:  # noqa: C901
     check("visual_beats gated on vision_ok, not sheet existence (#1)",
           "if vision_ok else []" in sa_src)
 
+    # ---- public-title quality floor ------------------------------------
+    # 2026-07-29 shipped "WWWW", "w max" and "ron shaking ahh" as real
+    # YouTube titles: both author brains were down, and safe_title passed the
+    # clipper's hype through because it was SAFE. Safety is not quality.
+    from third_capture import author as _au
+    check("pure hype title is low-signal", _au.title_is_low_signal("WWWW"))
+    check("hype + one word is low-signal", _au.title_is_low_signal("w max"))
+    check("bare noun title is low-signal", _au.title_is_low_signal("SUBURB"))
+    check("short tease is low-signal", _au.title_is_low_signal("Is he back?"))
+    check("informative title is NOT low-signal",
+          not _au.title_is_low_signal(
+              "Kai Cenat Gives Out The First Streamer University Diploma"))
+    check("ugly but informative title survives",
+          not _au.title_is_low_signal(
+              "jasons camera ,an gets pass code to his room"))
+    # the floor replaces noise with a safe, coherent channel line
+    _t = _au.fallback_title("stableronaldo", "WWWW",
+                            "yo what the hell is that bro he actually did it")
+    check("hype title replaced", not _au.title_is_low_signal(_t)
+          and "WWWW" not in _t)
+    check("replacement names the streamer", "Stableronaldo" in _t)
+    # a good raw title is left alone
+    _good = "Kai Cenat Gives Out The First Streamer University Diploma"
+    check("good raw title passes through untouched",
+          _au.fallback_title("kaicenat", _good, "anything") == _good)
+    _n = _au.fallback_title("silky", "SUBURB", "uh um like yeah")
+    check("bare noun -> neutral title, not hype",
+          not _au.title_is_low_signal(_n) and "SUBURB" not in _n)
+    # Quoting the transcript directly produced 3/3 incoherent titles on real
+    # 07-29 data ("Oh My God Aloki Aloki Got Some Dude Damn"). The floor must
+    # make NO specific claim — only the author brain picks a real moment.
+    _real = ("oh my god aloki aloki got some dude damn that was actually "
+             "insane did you see what just happened there")
+    check("floor does not quote the transcript",
+          "aloki" not in _au.fallback_title("stableronaldo", "w", _real).lower())
+    # ...but a multi-clip day must not ship the same line repeatedly
+    _batch = {_au.fallback_title(s, "W", "") for s in
+              ("kaicenat", "stableronaldo", "plaqueboymax", "xqc", "silky")}
+    check("neutral titles vary across a batch", len(_batch) >= 3)
+    check("neutral title is stable for the same clip",
+          _au.fallback_title("xqc", "W", "") ==
+          _au.fallback_title("xqc", "W", ""))
+    check("every fallback title is within YouTube's 100 chars",
+          all(len(_au.fallback_title(s, r, t)) <= 100 for s, r, t in [
+              ("x", "W", "a" * 400), ("y", "z" * 300, ""),
+              ("streamer", "w", " ".join(["word"] * 200))]))
+    # authoring failure must be LOUD (it silently degraded on 07-29)
+    import inspect as _i
+    check("total authoring failure logs a warning",
+          "AUTHORING FAILED" in _i.getsource(_au.author_package))
+    _rt_src = (REPO / "scripts" / "run_third.py").read_text()
+    check("run_third routes the raw title through the quality floor",
+          "author.fallback_title" in _rt_src)
+
+    # ---- brain-health gate (blind-slate incident, 07-29 morning) --------
+    # Every rank/author/scene call failed for ~90 min and the run still
+    # published 4 view-count-picked clips. The gate must trip on proven
+    # total failure, never on flakiness, and the run must consult it.
+    _saved = dict(_au._BRAIN)
+    try:
+        _au._BRAIN.update(ok=0, fail=0)
+        check("fresh state: brain not down", not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=2)
+        check("2 failures alone do not trip the gate (min 3 calls)",
+              not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=3)
+        check("3 failures, 0 ok -> brain down", _au.brain_down())
+        _au._BRAIN.update(ok=1, fail=9)
+        check("a single success proves the path — gate never trips",
+              not _au.brain_down())
+    finally:
+        _au._BRAIN.update(_saved)
+    check("rank_clips records brain outcomes",
+          "_brain_note" in _i.getsource(_au.rank_clips))
+    check("author_package records brain outcomes",
+          "_brain_note" in _i.getsource(_au.author_package))
+    check("run_third consults the gate before filling a slot",
+          "author.brain_down()" in _rt_src)
+    check("gate has an explicit operator override",
+          "THIRD_ALLOW_BLIND" in _rt_src)
+    check("gated slots are skipped, not errored (no retry churn)",
+          "brain down — blind-slate gate" in _rt_src)
+
+    # ---- judge verdicts are SEEABLE ------------------------------------
+    # Every brain judges each slot, but the reasoning lived only in the CI
+    # log — expiring, and ~1200 lines to read. These lock the capture path
+    # (verdicts recorded on BOTH the posted and rejected branches) and the
+    # renderer that makes them legible without log archaeology.
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("_judges", REPO / "scripts"
+                                         / "judges.py")
+    _j = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_j)
+
+    _rt = _ilu.spec_from_file_location("_rt", REPO / "scripts"
+                                       / "run_third.py")
+    # don't execute run_third (it has side effects) — assert on source
+    check("run_third records banger verdicts", '_judge("banger"' in _rt_src)
+    check("run_third records content-gate verdicts",
+          '_judge("content"' in _rt_src)
+    check("run_third records vision verdicts", '_judge("vision"' in _rt_src)
+    check("run_third records render_qa verdicts",
+          '_judge("render_qa"' in _rt_src)
+    check("run_third records title provenance", '_judge("title"' in _rt_src)
+    check("run_third records story-director cluster verdicts",
+          "_story_verdict(" in _rt_src)
+    check("verdicts attach on the ERROR path too (rejects matter most)",
+          _rt_src.index('result["judges"]')
+          > _rt_src.index('result["error"] = f"{type(e).__name__}'))
+    check("verdicts persist into the run stats",
+          '"judges")' in _rt_src and '"brain": author.brain_health()'
+          in _rt_src)
+    check("blocklisted clips record WHY, not just that they were blocked",
+          '"rejected_by"' in _rt_src and '"rejected_why"' in _rt_src)
+    # the renderer must distinguish the two failure shapes that look
+    # identical in the posted log but mean opposite things
+    check("viewer flags a BLIND pick (can't-score default)",
+          "BLIND" in "".join(_j._fmt_judge(
+              "banger", {"score": 0.5, "blind": True})))
+    check("viewer does not flag a real score as blind",
+          "BLIND" not in "".join(_j._fmt_judge(
+              "banger", {"score": 0.6, "why": "real reason"})))
+    _sd = "".join(_j._fmt_judge("story_director", {"clusters": [
+        {"cluster": "a", "outcome": "starved", "why": "no analyzable"},
+        {"cluster": "b", "outcome": "not_a_story", "why": "no arc"}]}))
+    check("viewer separates a STARVED story from a genuine no-arc",
+          "STARVED" in _sd and "no arc" in _sd)
+    check("viewer marks an unavailable judge as DOWN, not as a pass",
+          "DOWN" in "".join(_j._fmt_judge(
+              "vision", {"verdict": "unavailable"})))
+    check("viewer names the title floor when authoring produced nothing",
+          "FLOOR" in "".join(_j._fmt_judge(
+              "title", {"source": "floor", "kept_raw": False})))
+    # _judge must coerce to JSON-SAFE primitives AT THE DOOR. Storing a raw
+    # object survives _judge but detonates at the json.dumps on attach —
+    # which runs OUTSIDE the render's try block, so it would kill the slot.
+    # Found by probing before ship; this locks it.
+    import json as _js
+    _ns = {"__name__": "_probe", "json": _js,
+           "__file__": str(REPO / "scripts" / "run_third.py")}
+    exec(compile("\n".join(_rt_src.splitlines()[:130]), "run_third", "exec"),
+         _ns)
+
+    class _Boom:
+        def __repr__(self): raise ValueError("unserialisable")
+        def __str__(self): return "<obj>"
+    _ns["_judge"]("probe", bad=_Boom(), s="x" * 400, f=1.23456789,
+                  lst=["y" * 400] * 20, b=True, n=3, empty=None)
+    _pj = _ns["_JUDGES"]["probe"]
+    check("_judge survives an unserialisable value", "bad" in _pj)
+    check("_judge output is JSON-serialisable (the real failure mode)",
+          _js.loads(_js.dumps(_ns["_JUDGES"]))["probe"]["bad"] == "<obj>")
+    check("_judge truncates long strings", len(_pj["s"]) == 160)
+    check("_judge caps and truncates lists",
+          len(_pj["lst"]) == 5 and len(_pj["lst"][0]) == 160)
+    check("_judge keeps bools/ints intact, drops empties",
+          _pj["b"] is True and _pj["n"] == 3 and "empty" not in _pj)
+    check("the attach path cannot raise either",
+          "default=str" in _rt_src and "[judges] not recorded" in _rt_src)
+
+    # ---- UNJUDGED GATE -------------------------------------------------
+    # 2026-07-30: three clips shipped that NOTHING had judged. All three
+    # content gates fail open independently — and the selection floor
+    # fails open by exactly zero margin, because the can't-score default
+    # (0.5) equals min_banger (0.5), so `banger >= min_banger` is True on
+    # a fully blind run. The gate refuses to publish when not one content
+    # judge could evaluate the clip.
+    _aj, _J = _ns["_any_judgment"], _ns["_JUDGES"]
+    _jd = _ns["_judge"]
+
+    def _scen(*calls):
+        _J.clear()
+        for c in calls:
+            c()
+        return _aj()
+
+    check("blind ranker + content and vision down -> UNJUDGED (07-30 case)",
+          not _scen(lambda: _jd("banger", score=0.5, blind=True),
+                    lambda: _jd("content", verdict="unavailable"),
+                    lambda: _jd("vision", verdict="unavailable")))
+    check("a real banger score is enough to ship",
+          _scen(lambda: _jd("banger", score=0.62, why="r", blind=False)))
+    check("content gate alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("content", score=0.81, verdict="pass")))
+    check("vision alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("vision", verdict="pass", confidence=0.9)))
+    check("a content-gate REJECT still counts as a judgment",
+          _scen(lambda: _jd("content", score=0.2, verdict="reject")))
+    check("mechanical checks alone do NOT count as judgment",
+          not _scen(lambda: _jd("render_qa", verdict="pass")))
+    check("no verdicts at all -> unjudged", not _scen())
+    check("operator-specified clips are never treated as unjudged",
+          _scen(lambda: _jd("banger", source="operator-specified",
+                            blind=False))
+          and "operator-specified" in _rt_src)
+    check("the gate is wired into the publish path",
+          "_any_judgment()" in _rt_src and "unjudged: no content judge"
+          in _rt_src)
+    # the CALL SITE (not the def) must raise _SkipSlot: a deliberate skip
+    # doesn't retry, and retrying would just fetch another unjudged clip
+    _call = _rt_src.index("not _any_judgment()")
+    check("unjudged is a SKIP, not an error (retry gets another blind clip)",
+          "_SkipSlot" in _rt_src[_call:_call + 200]
+          and "RuntimeError" not in _rt_src[_call:_call + 200])
+    check("stories are exempt (the director is their judge)",
+          'led.get("kind") == "twitch_clip" and not _any_judgment()'
+          in _rt_src)
+
+    # ---- ESCALATION over giving up -------------------------------------
+    # 2026-07-31: two slots posted nothing on "quality floor: best banger
+    # 0.45 < 0.5". That score judges the clipper's TWITCH TITLE ('sadge',
+    # 'foams') — the clip was binned without ever being downloaded or
+    # transcribed, while a STRICTER transcript judge (0.70) sat unused
+    # downstream. An empty slot is a failure, not a success.
+    check("a failed title floor escalates instead of skipping",
+          "[rescue]" in _rt_src and "postable = rescue" in _rt_src)
+    check("escalation goes to the transcript judge, a HIGHER bar",
+          "min_banger_content" in _rt_src
+          and float(_rt_src.split('spec.get("min_banger_content", ')[1]
+                    .split(")")[0])
+          > float(_rt_src.split('spec.get("min_banger", ')[1].split(")")[0]))
+    check("a hard floor still exists (spam is not worth transcribing)",
+          'spec.get("rescue_floor", 0.25)' in _rt_src
+          and "nothing worth " in _rt_src)
+    check("the hard floor is below the title floor it rescues from",
+          0.25 < 0.50)
+    # a rescued clip has already been judged weak once — it must EARN the
+    # slot, so an unavailable transcript judge is a retry, never a ship
+    check("rescue fails CLOSED when the transcript judge is unavailable",
+          'cb is None and _JUDGES.get(' in _rt_src
+          and "must EARN its slot" in _rt_src)
+    check("a normal (non-rescued) clip still fails OPEN on that judge",
+          "cb is not None and cb < content_floor" in _rt_src)
+    check("the escalation is recorded as a verdict, not silent",
+          '_judge("selection", verdict="rescue"' in _rt_src
+          and '_judge("selection", verdict="skip"' in _rt_src)
+    # the viewer must show it, or the operator can't tell a rescue from a
+    # normal post when reading back
+    check("judges viewer renders the selection verdict",
+          "selection" in (REPO / "scripts" / "judges.py").read_text())
+
+    # ---- engines/render_qa: shared mechanical render-QA ----------------
+    # First ANALYSIS engine in the shared layer. Logic tier only here (no
+    # ffmpeg): parsers, registry wiring, verdict semantics, consumers.
+    from engines import render_qa as _rq
+    import engines as _eng
+    check("render_qa registered in the shared engine registry",
+          _eng.REGISTRY.get("render_qa", {}).get("kind") == "module")
+    check("render_qa provisioning entry exists (pure-ffmpeg, empty deps)",
+          __import__("engines.provision", fromlist=["_PIP_DEPS"])
+          ._PIP_DEPS.get("render_qa") == [])
+    _bd = _rq._black_intervals(
+        "[blackdetect] black_start:14.1 black_end:14.72 black_duration:0.62")
+    check("blackdetect stderr parses to intervals", _bd == [(14.1, 14.72)])
+    check("freezedetect stderr parses to spans",
+          _rq._freeze_spans("lavfi.freezedetect.freeze_duration: 3.4\n"
+                            "freeze_duration: 2.1") == [3.4, 2.1])
+    check("maybe_check is fail-open when the analyzer is absent",
+          _rq.maybe_check("/nonexistent/x.mp4") is None)
+    check("verdict semantics documented: None=analyzer, ok=False=defect",
+          "None = the ANALYZER failed" in (_rq.maybe_check.__doc__ or ""))
+    check("clip_qa runs the free engine pass before the paid vision call",
+          "render_qa" in _i.getsource(__import__(
+              "third_capture.clip_qa", fromlist=["review"]).review))
+    check("story renderer fails closed on a broken stitch",
+          "render_qa rejected the stitch" in (REPO / "third_capture"
+                                              / "story.py").read_text())
+
+    # ---- closing guard + source bar-strip (simple_fallback fixes) ------
+    _ce_src = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("closing guard exists (symmetric to the opening guard)",
+          "def _closing_guard" in _ce_src)
+    check("closing guard runs in the cut flow before caption rebase",
+          _ce_src.index("_closing_guard(raw, t0, t1)")
+          < _ce_src.index('"w": w["w"], "s": w["s"] - t0'))
+    check("ledger records the closing trim", "closing_trim_s" in _ce_src)
+    check("source bar-strip exists for the blur-fill graph",
+          "def _content_crop" in _ce_src and "{bar_crop}split" in _ce_src)
+    check("blur foreground is clamped inside the canvas",
+          "force_original_aspect_ratio=decrease[fgs]" in _ce_src)
+    check("render output is capped at the cut length (-t)",
+          '"-t", f"{dur:.3f}"' in _ce_src)
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")

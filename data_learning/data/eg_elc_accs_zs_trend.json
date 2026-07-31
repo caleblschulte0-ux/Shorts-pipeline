@@ -1,0 +1,48 @@
+{
+  "key": "eg_elc_accs_zs_trend",
+  "title": "Access to electricity",
+  "unit": "% of population",
+  "geography": "World",
+  "time_coverage": "1998-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Access to electricity",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1998",
+      "value": 73.2,
+      "period": "1998"
+    },
+    {
+      "label": "2003",
+      "value": 80.0,
+      "period": "2003"
+    },
+    {
+      "label": "2008",
+      "value": 82.7,
+      "period": "2008"
+    },
+    {
+      "label": "2014",
+      "value": 86.2,
+      "period": "2014"
+    },
+    {
+      "label": "2019",
+      "value": 90.1,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 91.9,
+      "period": "2024"
+    }
+  ]
+}

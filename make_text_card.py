@@ -152,15 +152,38 @@ def _dur(p: Path) -> float:
         return 0.0
 
 
+def _topic_photo_clip(query: str, target: float,
+                      workdir: Path) -> Path | None:
+    """Fallback tier between stock VIDEO and gameplay: find a topical PHOTO
+    (Wikipedia/Commons/Openverse via the funnel) and animate it with the
+    shared Ken Burns engine so the top pane still shows the topic."""
+    from funnel import topic_media
+    from engines.still_motion import maybe_kenburns
+    for url in topic_media.search(query)[:4]:
+        try:
+            raw = topic_media._get(url)
+            img = workdir / "topic_photo.img"
+            img.write_bytes(raw)
+            Image.open(img).verify()          # reject HTML/error payloads
+            out = maybe_kenburns(img, workdir / "topic_kb.mp4", target,
+                                 size=(W, TOP_H), bg_color="black")
+            if out is not None and _dur(out) > 0.5:
+                print(f"      [top] topic photo+kenburns: {query!r} -> {url}")
+                return out
+        except Exception:  # noqa: BLE001
+            continue
+    return None
+
+
 def _resolve_top_source(query: str | None, workdir: Path,
                         gameplay_tag: str) -> tuple[Path, bool]:
     """Get the source clip for the top pane. Prefer TOPIC-RELEVANT stock
-    footage (chips story -> chips clip) so viewers can picture it; only fall
-    back to a gameplay clip if stock sourcing is unavailable/fails. Returns
-    (path, is_stock)."""
+    footage (chips story -> chips clip) so viewers can picture it; then a
+    topical photo animated with the shared kenburns engine; gameplay only
+    as the last resort. Returns (path, is_stock)."""
     if query:
         try:
-            import stock_search
+            from funnel import stock_search as stock_search
             c = stock_search.fetch_top(query, workdir / "stock")
             p = Path(c["path"])
             if p.exists() and _dur(p) > 0.5:
@@ -169,6 +192,13 @@ def _resolve_top_source(query: str | None, workdir: Path,
                 return p, True
         except Exception as e:  # noqa: BLE001
             print(f"      [top] stock {query!r} failed ({type(e).__name__}: "
+                  f"{e}); trying topic photo")
+        try:
+            kb = _topic_photo_clip(query, 8.0, workdir)
+            if kb is not None:
+                return kb, True
+        except Exception as e:  # noqa: BLE001
+            print(f"      [top] photo fallback failed ({type(e).__name__}: "
                   f"{e}); falling back to gameplay")
     clips = [p for p in GAMEPLAY_DIR.iterdir()
              if p.suffix.lower() in (".mp4", ".mov", ".mkv", ".webm")] \

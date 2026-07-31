@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "06_graph-lottery-jackpots",
+  "title": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+  "y_label": "Record jackpot ($ billions)",
+  "duration": 13,
+  "source": "Sources: Mega Millions & Powerball official jackpot records (approx.)",
+  "hashtags": [
+    "lottery",
+    "megamillions",
+    "powerball",
+    "money",
+    "data",
+    "chart",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral",
+    "jackpot",
+    "finance"
+  ],
+  "years": [
+    2012,
+    2016,
+    2018,
+    2019,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Mega Millions",
+      "color": "#ffaa30",
+      "values": [
+        0.656,
+        0.656,
+        1.537,
+        1.537,
+        1.537,
+        1.602
+      ]
+    },
+    {
+      "name": "Powerball",
+      "color": "#4a90e2",
+      "values": [
+        0.588,
+        1.586,
+        1.586,
+        1.586,
+        2.04,
+        2.04
+      ]
+    }
+  ],
+  "music_vibe": "dark"
+}

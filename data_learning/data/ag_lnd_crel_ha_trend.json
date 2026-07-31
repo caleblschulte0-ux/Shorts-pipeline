@@ -1,0 +1,48 @@
+{
+  "key": "ag_lnd_crel_ha_trend",
+  "title": "Land under cereal production",
+  "unit": "hectares",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Land under cereal production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.CREL.HA",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 554738591,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 589208772,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 691681844,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 670991658,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 724692671,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 415702088,
+      "period": "2024"
+    }
+  ]
+}

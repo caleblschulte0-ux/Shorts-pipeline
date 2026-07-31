@@ -1,0 +1,26 @@
+{
+  "_doc": "Deterministic benchmark suite (ChatGPT review §3). Frozen archetype stories with STRUCTURAL requirements — not expected scores. A renderer change must improve the suite MEDIAN, not rescue one slug. Validated by scripts/benchmark_validate.py against the chart build artifacts (frames + attach sidecars), offline and free.",
+  "requirements": {
+    "hook": {
+      "visual_present_at_frame_1": true,
+      "primary_action_before_s": 0.4
+    },
+    "mascot": {
+      "contact_required": true,
+      "state_changes": 3,
+      "causes_data_change": true
+    },
+    "ending": {
+      "new_information": true,
+      "payoff_action": true
+    }
+  },
+  "stories": [
+    {"slug": "carbon-climb", "archetype": "trend"},
+    {"slug": "population-giants", "archetype": "ranking"},
+    {"slug": "world-power-mix", "archetype": "part_to_whole"},
+    {"slug": "grocery-squeeze", "archetype": "money_transformation"},
+    {"slug": "ocean-unexplored", "archetype": "scale"},
+    {"slug": "two-americas-cost", "archetype": "direct_comparison"}
+  ]
+}

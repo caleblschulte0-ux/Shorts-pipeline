@@ -1,0 +1,48 @@
+{
+  "key": "ag_yld_crel_kg_trend",
+  "title": "Cereal yield",
+  "unit": "kg per hectare",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Cereal yield",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.YLD.CREL.KG",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 1953,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 2534,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 2732,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 3119,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 3894,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 3955,
+      "period": "2024"
+    }
+  ]
+}

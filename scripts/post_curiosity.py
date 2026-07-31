@@ -52,7 +52,7 @@ def _load_log() -> dict:
 
 
 def _save_log(log: dict) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log)
 
 
@@ -237,7 +237,7 @@ def main() -> int:
     args = ap.parse_args()
 
     if args.check_channel:
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         me = YouTubeUploader(channel=args.channel).whoami()
         print(f"token maps to channel: title={me['title']!r} "
               f"handle={me['handle']!r} id={me['id']}")
@@ -366,12 +366,12 @@ def main() -> int:
                 "+00:00", "Z")
 
         if uploader is None:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             uploader = YouTubeUploader(channel=args.channel)
         desc = _description(sc, meta)
         thumb = out.with_suffix(".jpg")
         try:
-            from localize import localize_meta
+            from shared.localize import localize_meta
             localizations = localize_meta(
                 sc.get("title", slug), _human_body(sc),
                 "\n\n" + _chapters_block(meta))

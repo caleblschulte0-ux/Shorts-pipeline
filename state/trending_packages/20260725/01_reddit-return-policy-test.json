@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "subreddit": "MaliciousCompliance",
+  "slug": "01_reddit-return-policy-test",
+  "title": "My manager said enforce the return policy exactly. I didn't know he wrote it.",
+  "hashtags": [
+    "reddit",
+    "storytime",
+    "maliciouscompliance",
+    "revenge",
+    "justice",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying",
+    "workplace"
+  ],
+  "script": "My new manager told me to enforce our return policy exactly as written, no exceptions, after corporate caught him making favors for regulars. Two days later a man in an expensive suit slapped a receipt on my counter demanding a full refund on a generator he'd bought fourteen months ago and clearly run through three storm seasons already. I smiled, pointed at the ninety-day policy sign taped right where he'd been standing, and told him corporate said no exceptions, full stop. He turned red and shouted that he'd get my manager fired by lunch for hiring someone this rigid. An hour later my manager called me into his office grinning, because the man in the suit was the regional director who'd rewritten that policy himself last month specifically to test if anyone would actually follow it. I got a raise. He got a memo reminding him what he'd signed.",
+  "shots": [
+    {
+      "phrase": "enforce our return policy exactly as written",
+      "query": "retail store checkout counter receipt",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "slapped a receipt on my counter",
+      "query": "hand slapping receipt on store counter",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "a generator he'd bought fourteen months ago",
+      "query": "portable generator garage storm",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "pointed at the ninety-day policy sign",
+      "query": "store return policy sign taped counter",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "he'd get my manager fired by lunch",
+      "query": "angry customer pointing arguing retail",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the regional director who'd rewritten that policy himself",
+      "query": "businessman office suit hallway",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "I got a raise",
+      "query": "paycheck envelope raise",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no exceptions, full stop",
+      "text": "NO EXCEPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the regional director who'd rewritten that policy himself",
+      "text": "HE WROTE THE RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "I got a raise",
+      "text": "RAISE EARNED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "a memo reminding him what he'd signed",
+      "text": "OWNED BY HIS OWN POLICY",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "dark"
+}

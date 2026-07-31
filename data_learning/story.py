@@ -37,6 +37,11 @@ class Segment:
     topic: str
     role: str = ""
     kind: str = ""                      # viz kind; "diorama" renders full-frame
+    host_baked: bool = False            # Data is composited INTO the chart this
+                                        # beat (hide the travelling overlay)
+    insight: object = None              # kept so the renderer can RE-RENDER the
+                                        # chart at frames = beat*30 (true 30fps)
+                                        # once the beat's duration is known
     # Every data point's pixel within the chart PNG: [{value, px, py}, ...].
     anchors: list = field(default_factory=list)
 
@@ -208,7 +213,11 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # The viz director assigns each segment's DEPICTION (honouring the LLM's
     # authored concept, else best-fit by data shape). Never bare numbers, no
     # repeated depiction in a video, >=1 novelty. Seed by slug for stable variety.
-    viz_director.assign(inss, seed=abs(hash(story_cfg["slug"])) % 997)
+    # STABLE seed: Python's str hash is randomized per process, which made viz
+    # + performance selection vary run to run. crc32 is deterministic forever.
+    import zlib as _zl
+    viz_director.assign(inss,
+                        seed=_zl.crc32(story_cfg["slug"].encode()) % 997)
     # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
     # the end so the video opens on a map / diorama / scene. Stable within groups.
     # Long-form stories with a hand-authored narrative arc opt out with
@@ -222,11 +231,12 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
         if inss and inss[0].kind == "trend":  # all-trend video: don't lead w/ a line
             inss[0].kind = "bubbles"
     for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
-        # A short "build" frame sequence (bars grow / line draws on) ending on
-        # the exact static chart — the renderer plays it then holds the last
-        # frame. Anchors come from the final frame so the rings still land.
+        # Render a CHEAP build here (few frames) just to resolve anchors from the
+        # final frame + settle any viz fallback-hop. The studio renderer
+        # RE-RENDERS the real build at frames = beat*30 once it knows the beat
+        # length, so playback is true 30fps with no held frames.
         cpath, anchors = charts.render_story_build(
-            ins, chart_dir, f"{story_cfg['slug']}_seg{i:02d}")
+            ins, chart_dir, f"{story_cfg['slug']}_seg{i:02d}", frames=6)
         say = seg_cfg.get("say")
         if say:
             # Writer-authored line: reference a number, then explain what it
@@ -247,7 +257,9 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
             sources.append(footer)
         segments.append(Segment(
             sentence, str(cpath) if cpath else None, punches, footer,
-            ins.topic, role=seg_cfg.get("role", ""), kind=ins.kind, anchors=anchors))
+            ins.topic, role=seg_cfg.get("role", ""), kind=ins.kind,
+            host_baked=getattr(ins, "host_baked", False), insight=ins,
+            anchors=anchors))
 
     return Story(
         slug=story_cfg["slug"],

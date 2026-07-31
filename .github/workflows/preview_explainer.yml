@@ -1,0 +1,306 @@
+name: Preview Explainer Render (mascot, no upload)
+
+# Renders ONE committed explainer story with the real studio renderer
+# (studio_render.py — the path that draws the mascot host) to a downloadable
+# mp4, WITHOUT uploading to YouTube. This is how you actually watch the host
+# 'Data' animate in a finished video before anything ships.
+#
+# Fire from Actions -> "Preview Explainer Render" -> Run workflow, pick the
+# branch, optionally set a story slug (default: grocery-squeeze).
+#
+# Blender is intentionally NOT installed: the 3D opener/closer bookends are
+# guarded and fall back to the 2D body, and the mascot lives in the 2D body —
+# so skipping Blender keeps the preview fast and robust. TTS runs on local
+# Kokoro (no keys needed); Speechify is used instead if its secret is set.
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Story slug(s) to render (space-separated), or "benchmark" for the full 6-story suite'
+        required: false
+        default: 'grocery-squeeze'
+      mode:
+        description: 'repair = bounded repair loop (proving mode, default); oneshot = single render (debug only)'
+        required: false
+        default: 'repair'
+  # Push trigger so this workflow can run from a feature branch before it ever
+  # lands on the default branch: bump .github/triggers/preview_explainer (e.g.
+  # `date > .github/triggers/preview_explainer`) to fire a fresh render.
+  push:
+    paths:
+      - '.github/triggers/preview_explainer'
+
+permissions:
+  contents: write   # push the rendered mp4 to the preview-renders branch
+
+concurrency:
+  group: preview-explainer-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120   # repair mode renders up to 3 attempts per slug
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Scoring calibration + repair-loop logic (fail fast, no deps)
+        run: |
+          # The score is only trustworthy if it still SEPARATES weak < baseline
+          # < strong with the ship/block line in the gap, and the self-repair
+          # loop's keep-best/bounded control flow must hold. Pure-function
+          # checks, no deps — run before we spend minutes rendering.
+          python3 data_learning/tests/test_showrunner_scoring.py
+          python3 data_learning/tests/test_repair_loop.py
+
+      - name: Install system deps (ffmpeg only — no Blender for a fast preview)
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/microsoft*.list \
+                     /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
+          sudo apt-get update -qq || sudo apt-get update -qq || true
+          # libcairo2: cairosvg rasterises the mascot director's per-scene SVG.
+          sudo apt-get install -y -q ffmpeg libcairo2
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt -r data_learning/requirements.txt
+
+      - name: Mascot primitive approval gate (fail fast, pre-render)
+        run: |
+          # Every performance primitive the director can select must pass in
+          # ISOLATION (body present, distinct start/mid/end silhouettes, visible
+          # progression, no clipping) BEFORE we spend minutes rendering. A
+          # primitive that regresses here never reaches production.
+          python3 data_learning/tests/test_mascot_primitives.py
+
+      - name: Benchmark suite structural gate (fail fast, pre-render)
+        run: |
+          # The 6-archetype benchmark suite's STRUCTURAL requirements (hook
+          # motion by 0.4s, mascot contact EVERY frame, >=3 performance beats,
+          # cause+consequence, ending payoff) must hold across the WHOLE suite
+          # — a renderer change must not rescue one slug by breaking another.
+          python3 scripts/benchmark_validate.py --frames 10
+
+      - name: Cache Kokoro TTS models (~350MB)
+        id: cache-kokoro
+        uses: actions/cache@v4
+        with:
+          path: kokoro_models/
+          key: kokoro-onnx-v1.0
+          restore-keys: |
+            kokoro-onnx-
+
+      - name: Download Kokoro TTS models if cache miss
+        if: steps.cache-kokoro.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx"
+          curl -fsSL -o kokoro_models/voices-v1.0.bin \
+            "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
+          ls -lh kokoro_models/
+
+      - name: Install Claude Code CLI (headless showrunner brain)
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed — showrunner falls back to Gemini"
+
+      - name: Render one story (dry-run, no upload)
+        id: render
+        env:
+          # Optional media keys (hook photo / b-roll) — each provider stays
+          # silent if unset; the render still works. No YouTube secrets.
+          SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
+          KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # SHOWRUNNER: the headless taste gate reviews the render (dry run
+          # logs the verdict; it never uploads here). Uses whichever vision
+          # backend has a key — Anthropic if set, else free Gemini. GROQ lets
+          # the viz brain invent mechanics during the preview render too.
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The Claude headless brain (OAuth token) — the showrunner's preferred
+          # judge, same credential the pipeline's brain already runs on.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          # Let the headless brain AUTHOR each scene's mascot bit so Data does a
+          # content-tied performance instead of a rotated whimsy prop (a fruit
+          # cart on a CO2 story is the 'decorative mascot' the gate blocks). Falls
+          # back to a neutral 'presenting the chart' pose if the brain is
+          # unreachable — never an off-topic prop.
+          # Mascot performances are now AUTHORED IN CODE (deterministic animated
+          # data-actions: push the bar / ride the line / hoist the slice) — no
+          # brain call, so the mascot is free and identical every render (the
+          # run-to-run pose variance is gone). MASCOT_BRAIN stays off.
+          MASCOT_BRAIN: '0'
+          # Staged quality milestones (data_learning/quality_milestones.py):
+          # phase 1 = median >= 70 + no hard failures. Raising this tightens the
+          # BUILD-TIME temporal hard-fail thresholds (checked in code before the
+          # vision review) — the floor rises phase by phase, never a blind jump
+          # to a bar that blocks everything.
+          QUALITY_PHASE: '1'
+          # Only contact-VERIFIED depictions (mascot mechanically coupled to the
+          # data object) may be selected. Scene/mechanic inventions rejoin once
+          # they can guarantee contact (see viz_director._CONTACT_OK).
+          STRICT_CONTACT: '1'
+        run: |
+          SLUGS="${{ github.event.inputs.slug }}"
+          MODE="${{ github.event.inputs.mode }}"
+          # On a push preview there's no input slug — take the FIRST LINE of the
+          # trigger file when it is one or more bare slug tokens (space/comma
+          # separated), so a push can batch several stories in one render job.
+          # A note/timestamp first line falls through to the default.
+          if [ -z "$SLUGS" ]; then
+            CAND=$(head -n1 .github/triggers/preview_explainer 2>/dev/null | tr ',' ' ' | tr -d '\r')
+            if printf '%s' "$CAND" | grep -qE '^[a-z0-9][a-z0-9 -]+$'; then SLUGS="$CAND"; fi
+          fi
+          [ -z "$SLUGS" ] && SLUGS="grocery-squeeze"
+          [ -z "$MODE" ] && MODE="repair"
+          # export for later steps (the publish step's verdict-log guard)
+          echo "SLUGS=$SLUGS" >> "$GITHUB_ENV"
+          # "benchmark" = the FULL 6-archetype suite as COMPLETE videos
+          # (hook + narration + captions + all scenes + ending + audio + judge).
+          if [ "$SLUGS" = "benchmark" ]; then
+            SLUGS=$(python3 -c "import json;print(' '.join(s['slug'] for s in json.load(open('data_learning/benchmarks/suite.json'))['stories']))")
+          fi
+          echo "Rendering explainer stories: $SLUGS (mode=$MODE, dry-run, no upload)"
+          if [ "$MODE" = "oneshot" ]; then
+            # DEBUG ONLY: a single render, no repair. Not the proving path.
+            python scripts/post_stories.py --dry-run --force --slugs $SLUGS
+          else
+            # PROVING PATH: every slug goes through the bounded repair loop —
+            # baseline render -> judge -> structured weakest-scene -> three
+            # structural candidates -> keep-best with TRANSACTIONAL promotion/
+            # rollback (output/repair_runs/<slug>/<run_id>/attempt_N).
+            for S in $SLUGS; do
+              echo "==== repair loop: $S ===="
+              python scripts/repair_loop.py --slug "$S" --max-iters 2 || true
+            done
+          fi
+          # Surface the SHOWRUNNER's actual verdict — the vision gate that WATCHED
+          # each finished video. This is the quality judgment of record, not a
+          # human eyeballing stills. (dry-run fails open, so a verdict with no
+          # score means the gate couldn't run — that is itself the honest state.)
+          for S in $SLUGS; do
+            echo "======== SHOWRUNNER VERDICT ($S) ========"
+            cat "output/story_$S.showrunner.json" 2>/dev/null \
+              || echo '{"note":"no verdict written — the review gate did not run (no vision backend / infra error)"}'
+            echo "============================================="
+            echo "-------- per-scene metrics ($S) --------"
+            cat output/scenes/${S}_scene*.json 2>/dev/null || echo "(none)"
+            echo
+          done
+          # VISUAL benchmark (perceptual half of the suite): a vision judge
+          # answers what a VIEWER sees in the finished videos (contact looks
+          # real, action understandable, hook compelling, ending lands, ...).
+          # Without it the merged benchmark can never claim a full pass.
+          python3 scripts/benchmark_visual.py --slugs $SLUGS || true
+          # FULL-RUN AGGREGATE (Phase gates read this): median / lowest /
+          # hard-failures / fps across every slug in this run, appended to the
+          # consecutive-run history state/benchmark_runs.jsonl.
+          python3 scripts/benchmark_report.py --slugs $SLUGS || true
+          # FAILURE CENSUS (informational): classify this run's failures into
+          # recurring engineering classes against the running verdict history.
+          python3 scripts/failure_census.py --last 20 || true
+          # 90 CLUB + REJECT LIBRARY: bank winning plans and hard-failure
+          # negative knowledge so future generation retrieves before inventing.
+          python3 scripts/exemplar_store.py harvest || true
+
+      - name: List rendered output
+        if: always()
+        run: |
+          echo "=== output/ ==="
+          ls -lh output/ 2>/dev/null || echo "(no output dir)"
+
+      - name: Publish render to preview-renders branch
+        if: always()
+        run: |
+          ls output/*.mp4 >/dev/null 2>&1 || { echo "no mp4s rendered — skipping"; exit 0; }
+          tmp=$(mktemp -d)
+          mkdir -p "$tmp/blocked"
+          # THE GATE ACTUALLY GATES: only a SHIP-verdict video is published as a
+          # watchable mp4. A blocked video keeps its frames + verdict (under
+          # blocked/, for debugging WHY it blocked) but NO mp4 — so a video the
+          # showrunner rejected can never be surfaced as something to watch.
+          for mp4 in output/*.mp4; do
+            base=$(basename "$mp4")
+            slug=$(basename "$mp4" .mp4); slug="${slug#story_}"
+            vj="output/story_${slug}.showrunner.json"
+            verdict=$(python3 -c "import json;print(json.load(open('$vj')).get('verdict',''))" 2>/dev/null || echo "")
+            # Frames (from the original) travel for BOTH ship and block so the
+            # composition is always debuggable end-to-end.
+            DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$mp4" 2>/dev/null | cut -d. -f1)
+            [ -z "$DUR" ] && DUR=40
+            if [ "$verdict" = "ship" ]; then
+              fdir="$tmp"
+              if ffmpeg -y -loglevel error -i "$mp4" \
+                   -vf "scale=720:-2" -c:v libx264 -preset veryfast -crf 30 \
+                   -c:a aac -b:a 96k -movflags +faststart "$tmp/$base"; then
+                echo "SHIP  $slug -> published watchable ($(du -h "$tmp/$base" | cut -f1))"
+              else
+                cp "$mp4" "$tmp"/ || true
+              fi
+            else
+              fdir="$tmp/blocked"
+              echo "BLOCK $slug ($verdict) -> mp4 WITHHELD; frames+verdict only"
+            fi
+            for pct in 4 12 20 30 40 50 60 70 80 88 96; do
+              ts=$(( DUR * pct / 100 ))
+              ffmpeg -y -loglevel error -ss "$ts" -i "$mp4" -frames:v 1 \
+                "$fdir/story_${slug}.frame$(printf '%02d' $pct).png" 2>/dev/null || true
+            done
+            cp "$vj" "$fdir"/ 2>/dev/null || true
+          done
+          # PRESERVE the score HISTORY across force-pushes: fetch the running
+          # verdict log, append this run's compact record, keep it in the commit.
+          git fetch -q origin preview-renders 2>/dev/null || true
+          git show origin/preview-renders:verdicts-log.jsonl > "$tmp/verdicts-log.jsonl" 2>/dev/null || true
+          # Only THIS run's slugs are logged — stray verdict files (e.g. test
+          # artifacts) must never pollute the durable verdict history.
+          for S in $SLUGS; do
+            j="output/story_${S}.showrunner.json"
+            [ -f "$j" ] || continue
+            python3 scripts/append_verdict_log.py "$j" >> "$tmp/verdicts-log.jsonl" || true
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan preview-renders
+          git reset
+          cp -r "$tmp"/* .
+          git add -f *.mp4 *.png *.json *.jsonl blocked 2>/dev/null || true
+          git commit -m "explainer preview render $(date -u +%FT%TZ)" || { echo "nothing to commit"; exit 0; }
+          git push -f origin preview-renders
+
+      - name: Upload rendered video
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: explainer-preview
+          path: |
+            output/*.mp4
+            output/*.jpg
+            output/scenes/**/*.json
+            output/repair_runs/**/verdict.json
+            output/repair_runs/**/scene_plan.json
+            output/repair_runs/**/winner.json
+            state/failure_census.json
+            state/benchmark_full.json
+            quality/**/*.json
+          if-no-files-found: warn
+          retention-days: 14

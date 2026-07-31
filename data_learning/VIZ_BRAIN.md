@@ -1,5 +1,10 @@
 # Visualization BRAIN — invent the depiction for every data point
 
+> **Heads-up (2026-07-30): the TRENDING/DAILY channel's chain changed — THIS channel's flow did NOT.** For trending only: packages -> auto-merge -> Exchange Phase A -> ChatGPT -> Phase B -> render, so never dispatch `daily.yml` after authoring (it is the LAST step of that chain). THIS channel's authoring, triggers, and workflow are unchanged — follow this playbook exactly as written. Details: `docs/EXCHANGE_PIPELINE.md`.
+
+
+> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X`. **Building something new? It does NOT go in this channel's folder**: media finding/generation → `funnel/`, render capability → `engines/`, anything else reusable → `shared/`. If a second channel could ever use it, it lives up the funnel — never copied into a channel. Channel folders hold only what is truly channel-specific. See `docs/PIPELINE_LAYOUT.md`.
+
 You are the creative director of the `@short_explainer67` data channel. Your job:
 for each segment of each story about to render, invent the **single most creative,
 image-first way to depict THAT data**, and write it into the segment's `scene`

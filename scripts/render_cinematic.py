@@ -250,7 +250,7 @@ def main():
     a=ap.parse_args()
     # Dedupe against the explainer posted-log BEFORE rendering: a re-dispatch
     # of the workflow must not upload the same story twice.
-    from fsutil import atomic_write_json, load_json
+    from shared.fsutil import atomic_write_json, load_json
     log_path=ROOT/"state"/"explainer_posted_log.json"
     if a.upload:
         log=load_json(log_path, {"posted": {}})
@@ -264,7 +264,7 @@ def main():
     print(f"[cine] rendered {out} ({meta['duration']:.1f}s)")
     if a.upload:
         from datetime import datetime, timezone
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         up=YouTubeUploader(channel=a.channel)
         res=up.upload(str(out),title=meta["title"],description=meta["description"],
                       tags=meta["tags"],publish_at=a.publish_at or None,category="27")

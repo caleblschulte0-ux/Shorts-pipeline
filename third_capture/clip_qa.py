@@ -385,6 +385,20 @@ def review(video: Path, led: dict, work: Path) -> dict:
     sheet_rel = None
     try:
         _mechanical(video, led, problems)
+        # SHARED ENGINE PASS (engines/render_qa): mechanical defect classes
+        # the local checks miss — a black TAIL under the 0.7s blackdetect
+        # floor, stream-end freezes, double-letterboxing. Free and offline,
+        # so it runs BEFORE the paid vision call; on 2026-07-29 a solid-
+        # black final frame burned a full render + vision round-trip that
+        # this pass rejects in seconds. maybe_* contract: None (engine
+        # absent/failed) leaves behavior exactly as before.
+        try:
+            from engines.render_qa import maybe_check
+            rqa = maybe_check(video)
+            if rqa and not rqa["ok"]:
+                problems.extend(f"render_qa: {p}" for p in rqa["problems"])
+        except ImportError:
+            pass
         dur = float(_probe(video)["format"].get("duration") or 0)
         sheet = work / f"{video.stem}.qa.jpg"
         if contact_sheet(video, sheet) is not None:

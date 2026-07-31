@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -52,7 +53,7 @@ def _load_log(path: Path = LOG_PATH) -> dict:
 
 
 def _save_log(log: dict, path: Path = LOG_PATH) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(path, log)
 
 
@@ -123,6 +124,11 @@ def main() -> int:
                          "(read-only, posts nothing)")
     ap.add_argument("--dry-run", action="store_true",
                     help="render but do not upload")
+    ap.add_argument("--publish", action="store_true",
+                    help="EXPLICITLY opt in to uploading. Without this (and "
+                         "without PUBLISH_ENABLED=1) publishing is FROZEN: the "
+                         "pipeline renders + reviews but never uploads. The "
+                         "channel's fail-closed kill-switch.")
     ap.add_argument("--force", action="store_true",
                     help="re-post even if the slug is in the posted log")
     ap.add_argument("--every-hours", type=float, default=0.0,
@@ -136,6 +142,10 @@ def main() -> int:
     ap.add_argument("--log", type=Path, default=LOG_PATH,
                     help="posted-log JSON (default: state/"
                          "explainer_posted_log.json)")
+    ap.add_argument("--repair", type=int, default=2,
+                    help="on a showrunner BLOCK, restructure the weakest scene "
+                         "and re-render this many times before giving up "
+                         "(0 = never repair)")
     ap.add_argument("--max-per-run", type=int, default=0,
                     help="render at most N new videos this run (0 = all); the "
                          "rest wait for the next run. Guards the CI job cap now "
@@ -143,7 +153,7 @@ def main() -> int:
     args = ap.parse_args()
 
     if args.check_channel:
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         me = YouTubeUploader(channel=args.channel).whoami()
         print(f"token maps to channel: title={me['title']!r} "
               f"handle={me['handle']!r} id={me['id']}")
@@ -164,12 +174,36 @@ def main() -> int:
     rendered = 0
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
 
+    # FAIL-CLOSED publish control. Publishing is FROZEN unless explicitly opted
+    # into; nothing here can silently upload. See scripts/editorial_gate.py.
+    from scripts import editorial_gate as _eg
+    frozen = not args.dry_run and not _eg.publish_enabled(args.publish)
+    if frozen:
+        print("[post_stories] PUBLISH FROZEN — rendering + reviewing only, NOT "
+              "uploading. Pass --publish (or set PUBLISH_ENABLED=1) to upload.",
+              flush=True)
+
     for slug in slugs:
         sc = stories[slug]
         if not args.force and slug in log["posted"]:
             print(f"[{slug}] already posted -> {log['posted'][slug].get('url')}, "
                   f"skipping (use --force to repost)")
             continue
+
+        # PRE-RENDER editorial gate (#2 real data, #3 premise bar). A story that
+        # can never publish — synthetic numbers, or a searchable-noun premise —
+        # is HELD before we spend a render on it. Previews (--dry-run) still
+        # render so the result can be eyeballed, but the verdict is printed.
+        pre = _eg.pre_render_verdict(sc)
+        if not pre["ok"]:
+            print(f"[{slug}] EDITORIAL HOLD (pre-render): "
+                  + "; ".join(pre["reasons"][:8]), flush=True)
+            if not args.dry_run:
+                results.append({"slug": slug, "ok": False,
+                                "error": "editorial_hold",
+                                "reasons": pre["reasons"]})
+                continue
+
         if args.max_per_run and rendered >= args.max_per_run:
             print(f"[{slug}] deferred to next run (hit --max-per-run="
                   f"{args.max_per_run})")
@@ -180,9 +214,116 @@ def main() -> int:
         from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out, config_path=args.config)
 
+        # SHOWRUNNER gate  (see the repair loop below: a BLOCK is a diagnosis
+        # to act on, not the end of the story) — the editor with a veto. A headless Claude actually
+        # WATCHES the finished video (extracts frames + reads the transcript)
+        # and grades it against docs/DIRECTOR.md. Its verdict is authoritative.
+        #
+        # Fail direction depends on intent: on a PUBLISH run the gate fails
+        # CLOSED — if the reviewer can't run (no key, API/ffmpeg error, timeout)
+        # we do NOT know the video is good, so we HOLD it. Only a preview/frozen
+        # run fails open (so iteration isn't blocked by infra). "If this is not
+        # clearly good, it does not publish."
+        will_upload = not args.dry_run and not frozen
+        blocked = False
+        verdict = {}
+        ctx = {"slug": slug, "title": sc.get("title"),
+               "hook": sc.get("hook"), "closing": sc.get("closing"),
+               "segments": [s.get("say") or s.get("topic")
+                            for s in sc.get("segments", [])][:8]}
+        if os.environ.get("SHOWRUNNER", "on").lower() not in ("off", "0",
+                                                              "false"):
+            try:
+                from scripts import showrunner_review as _sr
+                verdict = _sr.review_video(out, context=ctx)
+                out.with_suffix(".showrunner.json").write_text(
+                    json.dumps(verdict, indent=2))
+                _sr.append_ledger(slug, verdict)   # durable record of record
+                tag = "BLOCK" if _sr.should_block(verdict) else "SHIP"
+                print(f"[{slug}] showrunner {tag} score={verdict.get('score')}"
+                      f" — {verdict.get('one_line')}", flush=True)
+                for fx in verdict.get("fixes", [])[:5]:
+                    print(f"   fix: {fx}", flush=True)
+                blocked = _sr.should_block(verdict)
+                # A verdict with no score means the reviewer never actually saw
+                # the video (infra). On a publish run that is a HOLD, not a pass.
+                if will_upload and verdict.get("score") is None:
+                    print(f"[{slug}] showrunner produced no real verdict — "
+                          f"HOLDING (fail-closed on a publish run).", flush=True)
+                    blocked = True
+            except Exception as e:  # noqa: BLE001
+                if will_upload:
+                    print(f"[{slug}] showrunner FAILED and this is a publish "
+                          f"run — HOLDING (fail-closed): {e}", flush=True)
+                    blocked = True
+                else:
+                    print(f"[{slug}] showrunner skipped (preview, not blocking):"
+                          f" {e}", flush=True)
+        elif will_upload:
+            # The taste gate is the price of publishing; it can't be switched off
+            # on a real upload run.
+            print(f"[{slug}] SHOWRUNNER=off is not allowed on a publish run — "
+                  f"HOLDING.", flush=True)
+            blocked = True
+
+        # ---- BOUNDED SELF-REPAIR ------------------------------------------
+        # The gate's verdict names the weakest scene and why. Rather than drop
+        # the video there, restructure that ONE scene (scene_repair picks a
+        # claim-compatible depiction, objective-gated then vision-ranked),
+        # re-render, and let the gate judge again. The gate still decides —
+        # this only gives it a better cut to judge. Bounded: a cut only ever
+        # uploads on a SHIP verdict, so a repair that lands worse simply keeps
+        # the video held, exactly as before.
+        repairs = 0
+        while (blocked and repairs < args.repair
+               and (verdict or {}).get("score") is not None):
+            repairs += 1
+            try:
+                from scripts import scene_repair as _sr2
+                plan = _sr2.propose(slug, verdict, apply_plan=True)
+                print(f"[{slug}] repair {repairs}/{args.repair}: seg "
+                      f"{plan.get('seg')} -> {plan.get('chosen')}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[{slug}] repair {repairs} could not plan a fix: "
+                      f"{str(e)[:120]}", flush=True)
+                break
+            studio_render.render(slug, out, config_path=args.config)
+            try:
+                from scripts import showrunner_review as _sr
+                verdict = _sr.review_video(out, context=ctx)
+                out.with_suffix(".showrunner.json").write_text(
+                    json.dumps(verdict, indent=2))
+                _sr.append_ledger(slug, verdict)
+                blocked = _sr.should_block(verdict)
+                if will_upload and verdict.get("score") is None:
+                    blocked = True
+                print(f"[{slug}] after repair {repairs}: "
+                      f"{'BLOCK' if blocked else 'SHIP'} "
+                      f"score={verdict.get('score')} — "
+                      f"{verdict.get('one_line')}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"[{slug}] re-review failed — holding: {e}", flush=True)
+                blocked = True
+                break
+
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")
-            results.append({"slug": slug, "ok": True, "url": "(dry-run)"})
+            results.append({"slug": slug, "ok": True,
+                            "url": "(dry-run)" if not blocked
+                                   else "(dry-run, showrunner BLOCK)"})
+            continue
+
+        if blocked:
+            print(f"[{slug}] NOT POSTING — held by the review gate as not up to "
+                  f"standard. See {out.name}.showrunner.json.", flush=True)
+            results.append({"slug": slug, "ok": False,
+                            "error": "showrunner_block"})
+            continue
+
+        if frozen:
+            print(f"[{slug}] rendered + reviewed OK, but PUBLISH FROZEN — not "
+                  f"uploading. Re-run with --publish to release.", flush=True)
+            results.append({"slug": slug, "ok": True, "url": "(frozen)"})
             continue
 
         publish_at = None
@@ -192,7 +333,7 @@ def main() -> int:
             when += timedelta(hours=args.every_hours)
 
         if uploader is None:                 # lazy import → clear error if deps
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             uploader = YouTubeUploader(channel=args.channel)
         print(f"[{slug}] uploading"
               + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
@@ -201,7 +342,7 @@ def main() -> int:
         thumb = out.with_suffix(".jpg")
         # Localized titles/descriptions (best-effort; English always ships).
         try:
-            from localize import localize_meta
+            from shared.localize import localize_meta
             localizations = localize_meta(
                 sc.get("title", slug), _human_body(sc), _desc_suffix(sc))
         except Exception as e:  # noqa: BLE001 — never let i18n block a post

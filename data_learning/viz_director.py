@@ -84,6 +84,46 @@ def renderable(kind: str) -> bool:
             or kind in CARD_KINDS)
 
 
+# Depictions whose renderer BAKES a mechanically-coupled host (charts._bake_host
+# with an attachment record): the contact-verified set. Kinds that auto-route to
+# one of these (waffle_grid/share -> stack, pictograph -> race, timeline ->
+# trend) count too.
+_CONTACT_OK = frozenset({
+    "trend", "timeline", "pictorial_race", "rank", "bars", "comparison",
+    "stack", "share", "waffle_grid", "pictograph", "bubbles",
+    "geo_us", "geo_world"})
+
+
+def _images_on() -> bool:
+    """Whether AI/photo image SCENES are enabled. Default OFF — the channel is
+    moving away from AI-image 'slop' (which, without a clean cutout, renders as
+    a blob) to clean DETERMINISTIC charts + the mascot performing on them.
+    Re-enable the image-first scenes/mechanics with VIZ_IMAGES=on."""
+    return os.environ.get("VIZ_IMAGES", "off").lower() in ("on", "1", "true")
+
+
+def _deterministic_candidates(f: dict) -> list[str]:
+    """Clean, image-free depictions that always render well: a trend line for a
+    time series, a donut/waffle for a share, the GAUGE for a lone stat, ranked
+    rounded bars for a comparison — bubbles as the terminal guarantee."""
+    det: list[str] = []
+    if f["has_period"]:
+        det += ["trend", "timeline"]
+    if f["is_share"]:
+        det += ["waffle_grid", "share"]
+    if f["n"] == 1:
+        det += ["fill_vessel"]          # the radial gauge (Data rides it)
+    else:
+        det += ["pictorial_race"]       # ranked rounded bars w/ icon caps
+    seen, out = set(), []
+    for k in det:
+        if k not in seen and renderable(k):
+            seen.add(k)
+            out.append(k)
+    out.append("bubbles")
+    return out
+
+
 # --- Feature extraction ------------------------------------------------------
 def _features(ins) -> dict:
     vals = [p.value for p in ins.items if p.value is not None]
@@ -128,6 +168,10 @@ def _candidates(ins, f: dict) -> list[str]:
     # Place data always maps.
     if f["place"]:
         return [f["place"]]
+    # Default path: clean deterministic charts (no AI image scenes). Image-first
+    # depictions return only when VIZ_IMAGES=on and a real cutout is viable.
+    if not _images_on():
+        return _deterministic_candidates(f)
     ranked: list[str] = []
     # Speeds / velocities -> a RACE (real photos moving on a highway / in water).
     if f["speed"] and f["n"] >= 2:
@@ -148,7 +192,13 @@ def _candidates(ins, f: dict) -> list[str]:
     # never an abstract bar/trend. Checked before the ranking branch so a single
     # value shows the TOPIC's photo, not a stray item label.
     if f["n"] <= 2:
-        ranked += ["fill_scene", "diorama"]
+        # A lone shock stat: the premium GAUGE (a radial dial that sweeps to
+        # the value, Data riding the arc up) is the reliable, image-free
+        # demonstration and the right default now that auto-photos are gated.
+        # The image-first fill_scene stays as the next option for when a real
+        # subject photo is available (vision-gated re-entry, later).
+        ranked += (["fill_vessel"] if f["n"] == 1 else []) + \
+            ["fill_scene", "diorama"]
     # One value dwarfs the rest of a real (3+) list -> real photos of each.
     elif f["dominance"] >= 2.0:
         ranked += ["rank_scene", "diorama", "fill_scene"]
@@ -210,7 +260,7 @@ def _invent_scene(ins):
         return _invent_cache[key]
     scene = None
     try:
-        from script_generator import _strip_fence
+        from shared.script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]
@@ -268,7 +318,7 @@ def _llm_try(sysp: str, user: str) -> str:
     also paid, so it doesn't hit the free-tier 429 wall that was silently dropping
     every invention. Falls over to Gemini then Groq if Claude isn't configured or
     errors. (Override the order with VIZ_INVENT_BACKENDS="gemini,groq".)"""
-    from script_generator import _call_llm
+    from shared.script_generator import _call_llm
     pref = os.environ.get("VIZ_INVENT_BACKENDS", "anthropic,gemini,groq")
     have = {"anthropic": "ANTHROPIC_API_KEY", "gemini": "GEMINI_API_KEY",
             "groq": "GROQ_API_KEY"}
@@ -366,7 +416,7 @@ def _invent_mechanic(ins):
         return _mech_cache[key]
     spec = None
     try:
-        from script_generator import _strip_fence
+        from shared.script_generator import _strip_fence
         items = [{"label": p.label, "value": p.value,
                   **({"period": p.period} if getattr(p, "period", None) else {})}
                  for p in ins.items]
@@ -408,8 +458,16 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     chosen: list[str | None] = [None] * n
     used: set[str] = set()
     images = 0
+    # STRICT_CONTACT=1: only depictions with a VERIFIED mascot coupling (Data
+    # mechanically attached to the data object — contact + cause + consequence)
+    # may be chosen. Scene/mechanic inventions are skipped until they can
+    # guarantee contact. The benchmark validator and the preview pipeline run in
+    # this mode; production opts in via env.
+    strict = os.environ.get("STRICT_CONTACT", "0") == "1"
 
     def _take(i: int, kind: str) -> bool:
+        if strict and kind not in _CONTACT_OK:
+            return False
         nonlocal images
         meta = KINDS.get(kind, {})
         # place/trend/real-photo depictions may repeat (all good); the lazy shape
@@ -433,7 +491,7 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     # Only if that can't be produced does it fall to composing from the kit. This
     # is the "make something new first, then get creative with the kit" path; it
     # OVERRIDES any baked choice and falls through silently if the LLM is down.
-    if os.environ.get("VIZ_INVENT", "1") != "0":
+    if os.environ.get("VIZ_INVENT", "1") != "0" and _images_on():
         for i in order:
             if feats[i]["place"]:
                 continue
@@ -458,6 +516,8 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     for i in order:
         if chosen[i]:
             continue
+        if strict:
+            continue          # scenes/mechanics are not contact-verified yet
         sc = getattr(inss[i], "scene", None)
         if isinstance(sc, dict) and ("code" in sc or "mechanic" in sc):
             if viz_scene.validate_mechanic(sc) and images + 2 <= image_budget \
@@ -517,3 +577,22 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             ins.kind = "scene"
         else:
             ins.kind = k                         # "scene" already has ins.scene set
+
+    # STORY-LEVEL PERFORMANCE DIRECTION (review Phase 5.2): choose each scene's
+    # mascot performance HERE — the one place that sees the whole story — from
+    # the scene's CLAIM, with anti-repetition across families. The charts honor
+    # ins.perf_override/perf_spec, so no two beats default to the same family
+    # and a story can never become drag/drag/drag.
+    try:
+        from . import mascot_director as _md
+        used_families: set = set()
+        for j, ins in enumerate(inss):
+            spec = _md.performance_for(
+                ins.kind, getattr(ins, "main_insight", "") or "",
+                (ins.items[0].label if getattr(ins, "items", None) else ""),
+                used_families=used_families, seed=seed + j)
+            ins.perf_override = spec["action"]
+            ins.perf_spec = spec
+            used_families.add(spec.get("family", spec["action"]))
+    except Exception:  # noqa: BLE001 — direction must never break assignment
+        pass

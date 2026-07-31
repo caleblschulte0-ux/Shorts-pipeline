@@ -593,7 +593,7 @@ def _seg_dataset(seg: dict) -> dict:
 def _direct_batch(stories: list, examples: list | None = None) -> dict:
     """Ask the LLM (creative director) to INVENT a depiction per segment for a
     batch of existing stories. Returns {slug: [{scene|viz, ...}, ...per segment]}."""
-    from script_generator import _call_llm, _strip_fence
+    from shared.script_generator import _call_llm, _strip_fence
     kit = "\n".join(f"  - {k}: {v}" for k, v in SCENE_ELEMENTS.items())
     menu = "\n".join(f"  - {k}: {v}" for k, v in VIZ_VOCAB.items())
     briefs = []
@@ -693,7 +693,7 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
 
 def _generate(cfg: dict, n: int) -> list[dict]:
     import os
-    from script_generator import _call_llm, _strip_fence
+    from shared.script_generator import _call_llm, _strip_fence
     # Reliability order: paid/stable backends FIRST, flaky free Groq LAST.
     # The author used to always pick Groq (free) whenever GROQ_API_KEY was set,
     # get 429-starved, and ship ~1 story instead of the whole top-up — which is
@@ -748,7 +748,26 @@ def main() -> int:
                     help="print what would be added; don't write files")
     ap.add_argument("--max-attempts", type=int, default=5,
                     help="LLM batches to try before giving up")
+    ap.add_argument("--i-understand-this-writes-illustrative-numbers",
+                    action="store_true", dest="override",
+                    help="required override: this tool authors LLM 'illustrative' "
+                         "numbers, which the editorial gate BANS from publishing. "
+                         "It exists only for local experimentation now.")
     args = ap.parse_args()
+
+    # EDITORIAL RESET: authoring synthetic stories to keep the queue full is
+    # disabled by default. Invented "illustrative" numbers can never publish
+    # (scripts/editorial_gate.py), so filling the queue with them only creates
+    # the illusion of a stocked channel. A real data channel starts from one
+    # verifiable fact, added by hand — not from "we need four more videos".
+    if not getattr(args, "override", False) and not args.dry_run:
+        print("author_stories is disabled by the editorial reset.\n"
+              "It writes LLM 'illustrative' numbers, which the editorial gate "
+              "bans from publishing. Add REAL, cited datasets by hand instead.\n"
+              "For local experimentation only, re-run with --dry-run, or "
+              "--i-understand-this-writes-illustrative-numbers.",
+              file=sys.stderr)
+        return 1
 
     cfg = json.loads(CONFIG.read_text())
     if args.backfill:

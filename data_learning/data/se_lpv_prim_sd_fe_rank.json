@@ -1,0 +1,38 @@
+{
+  "key": "se_lpv_prim_sd_fe_rank",
+  "title": "Female primary school age children out-of-school (%)",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Female primary school age children out-of-school (%)",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SE.LPV.PRIM.SD.FE",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Niger",
+      "value": 100.0
+    },
+    {
+      "label": "Congo, Dem. Rep.",
+      "value": 64.1
+    },
+    {
+      "label": "Pakistan",
+      "value": 37.9
+    },
+    {
+      "label": "Mali",
+      "value": 37.7
+    },
+    {
+      "label": "Chad",
+      "value": 35.7
+    }
+  ]
+}

@@ -8,3 +8,8 @@ matplotlib>=3.7
 Pillow>=10.0
 numpy>=1.24
 requests>=2.31        # already in base; listed for standalone installs
+# cairosvg rasterises the mascot ACTION director's per-scene SVG (Data +
+# prop, posed to interact) to a transparent PNG at render time. Optional:
+# if it or its system lib (libcairo2) is missing, the director falls back to
+# the pre-baked idle host PNG, so the render still completes.
+cairosvg>=2.7

@@ -1,0 +1,25 @@
+{
+  "key": "population_top_countries",
+  "title": "Most populous countries",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "World Population Prospects 2022",
+    "publisher": "United Nations, Department of Economic and Social Affairs",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-07-24"
+  },
+  "notes": "Mid-year 2023 population, top countries, in millions.",
+  "points": [
+    {"label": "China", "value": 1425.9},
+    {"label": "India", "value": 1417.2},
+    {"label": "United States", "value": 338.3},
+    {"label": "Indonesia", "value": 275.5},
+    {"label": "Pakistan", "value": 240.5},
+    {"label": "Nigeria", "value": 223.8},
+    {"label": "Brazil", "value": 215.3},
+    {"label": "Bangladesh", "value": 171.0}
+  ]
+}

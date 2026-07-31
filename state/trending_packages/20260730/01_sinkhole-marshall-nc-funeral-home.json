@@ -1,0 +1,163 @@
+{
+  "version": 8,
+  "slug": "sinkhole-marshall-nc-funeral-home",
+  "title": "A Sinkhole Opened Right at a Funeral Home",
+  "hashtags": [
+    "marshallnc",
+    "northcarolina",
+    "sinkhole",
+    "funeralhome",
+    "tornadowarning",
+    "madisoncounty",
+    "severeweather",
+    "weirdnews",
+    "naturaldisaster",
+    "stormdamage",
+    "wnc",
+    "freakevent",
+    "breakingnews",
+    "extremeweather"
+  ],
+  "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina \u2014 a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine \u2014 the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+  "shots": [
+    {
+      "phrase": "A sinkhole opened where?",
+      "query": "sinkhole road pavement",
+      "mascot_pose": "think",
+      "image_url": "https://images.pexels.com/photos/11574520/pexels-photo-11574520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "severe storms tore through Madison County, North Carolina",
+      "query": "storm dark clouds",
+      "pin_query": "Madison County",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Madison County",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/3133/2911357073_445ac364ec_b.jpg"
+    },
+    {
+      "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+      "query": "funnel cloud sky",
+      "pin_query": "Marshall",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Marshall",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/5521/13910166598_ccf22a65af_b.jpg"
+    },
+    {
+      "phrase": "tornado warnings up across the whole western half of the state",
+      "query": "tornado warning radar",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Radar_collage_of_a_long-lived_supercell_radar_on_December_10-11%2C_2021.png",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Then the ground gave out",
+      "query": "collapsed pavement hole",
+      "mascot_pose": "shock",
+      "image_url": "https://images.pexels.com/photos/5138311/pexels-photo-5138311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+      "query": "funeral home building",
+      "evidence_urls": [
+        "https://wlos.com/news/local/storm-leaves-sinkhole-at-madison-funeral-home-as-funnel-cloud-spotted-near-laurel-road-closures-power-outages-flooding-downed-trees-911-calls"
+      ],
+      "pin_query": "Madison Funeral Home",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Madison Funeral Home",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/4137/4864473542_40593f9539_b.jpg"
+    },
+    {
+      "phrase": "Not a field",
+      "query": "empty rural field",
+      "pin_query": "Not",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Not",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://live.staticflickr.com/8463/8150681666_77173105ef_b.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Not a backyard",
+      "query": "suburban backyard",
+      "image_url": "https://live.staticflickr.com/5594/14247149703_d6959150b9_b.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+      "query": "county official briefing",
+      "pin_query": "Rod Honeycutt",
+      "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+      "news_query": "Rod Honeycutt",
+      "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Interview_with_Col._%28Ret%29_Rod_Honeycutt.jpg"
+    },
+    {
+      "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+      "query": "flooded street storm damage",
+      "image_url": "https://pixabay.com/get/g6365128646431bf17deb1d61d1ae3161ddbdbfbf01f7c605a8c74a528ed48099e55a132813657c4d0553ec94f4e3bfcccfb38779cdedbd5b6a4d8e456fe70dea_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "the earth picked the one already handling the dead",
+      "query": "sinkhole hole ground",
+      "image_url": "https://pixabay.com/get/g6134c8482b7394139a7ec037a7f8417345cff368d5d9a37838a681aef4878b6eb012f8202d781a05f4c658be4e4c79a9a144b5cb5abd64078f0ddd6232829e86_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "why the funeral home",
+      "query": "funeral home exterior",
+      "mascot_pose": "dismiss",
+      "image_url": "https://pixabay.com/get/g53d0ccd987f4905e2127d42df65ea783dbf5df465073cc8fac25ebb25a98caf9769c13e41688f6d0e69bda092e4b91743e68f9bfb83aebe9cb18e83997fbef90_1280.jpg",
+      "media_origin": "self_fill"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "A sinkhole opened where",
+      "text": "SINKHOLE OPENS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a funnel cloud spotted",
+      "text": "FUNNEL CLOUD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Then the ground gave out",
+      "text": "GROUND GAVE OUT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Madison Funeral Home",
+      "text": "AT A FUNERAL HOME",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "nobody was hurt",
+      "text": "NO INJURIES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "downed trees",
+      "text": "TREES DOWN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "knocked-out power",
+      "text": "POWER OUT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "handling the dead",
+      "text": "ALREADY HANDLING THE DEAD",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto",
+  "punched_up": true
+}

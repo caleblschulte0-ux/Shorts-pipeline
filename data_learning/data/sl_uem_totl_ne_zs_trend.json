@@ -1,0 +1,48 @@
+{
+  "key": "sl_uem_totl_ne_zs_trend",
+  "title": "Unemployment, total (% of total labor force)",
+  "unit": "national estimate",
+  "geography": "World",
+  "time_coverage": "1994-2022",
+  "insight_type": "trend",
+  "source": {
+    "name": "Unemployment, total (% of total labor force)",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SL.UEM.TOTL.NE.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1994",
+      "value": 4.35,
+      "period": "1994"
+    },
+    {
+      "label": "2005",
+      "value": 5.21,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 5.15,
+      "period": "2010"
+    },
+    {
+      "label": "2014",
+      "value": 5.25,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 5.97,
+      "period": "2018"
+    },
+    {
+      "label": "2022",
+      "value": 5.08,
+      "period": "2022"
+    }
+  ]
+}

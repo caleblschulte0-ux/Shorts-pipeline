@@ -1,0 +1,48 @@
+{
+  "key": "sn_itk_defc_zs_trend",
+  "title": "Prevalence of undernourishment",
+  "unit": "% of population",
+  "geography": "World",
+  "time_coverage": "2001-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Prevalence of undernourishment",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2001",
+      "value": 12.8,
+      "period": "2001"
+    },
+    {
+      "label": "2005",
+      "value": 11.9,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 8.7,
+      "period": "2010"
+    },
+    {
+      "label": "2014",
+      "value": 7.7,
+      "period": "2014"
+    },
+    {
+      "label": "2019",
+      "value": 7.8,
+      "period": "2019"
+    },
+    {
+      "label": "2023",
+      "value": 8.5,
+      "period": "2023"
+    }
+  ]
+}

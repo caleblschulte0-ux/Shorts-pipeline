@@ -51,7 +51,25 @@ SCALE_Y = CHART_H / CHART_PNG_H
 FOOT_Y = CHART_Y + CHART_H + 10
 FOOT_H = (H - FOOT_Y) & ~1       # keep even (yuv420p / filter sizing)
 
-MASCOT_SIZE = 300                # the brand's face — a real, central presence
+# Chart kinds that composite the host directly into the chart PNG (Data rides
+# the animated element). The travelling overlay is hidden on these beats.
+HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
+# Card chart kinds that now BAKE the host into their frames (charts._bake_host):
+# Data is drawn inside the chart riding/pushing/building the data, so the
+# travelling overlay must be suppressed for these beats — keyed by KIND so it's
+# robust regardless of when the host_baked flag propagates.
+BAKED_CHART_KINDS = frozenset({
+    "trend", "timeline", "pictorial_race", "rank", "comparison", "bars",
+    "waffle_grid", "share", "pictograph", "stack"})
+
+
+def _seg_is_baked(seg) -> bool:
+    return (getattr(seg, "kind", "") in BAKED_CHART_KINDS
+            or getattr(seg, "kind", "") in HOST_BAKED_KINDS
+            or getattr(seg, "host_baked", False)
+            or getattr(getattr(seg, "insight", None), "host_baked", False))
+
+MASCOT_SIZE = 520                # the brand's face — the lead, a big central presence
 SIDE_ANGLE = 16                  # near-horizontal point (toward a number beside it)
 UP_ANGLE = 90                    # points up (hook / closing / fallback)
 MASCOT_HOME = ((W - MASCOT_SIZE) // 2, 520)   # hook / closing rest spot
@@ -751,8 +769,57 @@ def _round_rect_tail(x0, y0, x1, y1, r=30, tail_x=540, tip=(540, 520)) -> str:
     return " ".join(p)
 
 
+def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
+                        hook_dur: float = 3.0):
+    """Assemble a RECEIPT cold-open from the story's OWN data: category jumps as
+    line items + a dollar total that races from its first year to its last.
+    Returns (printf_pattern, nframes) or None if the story lacks the pieces
+    (then the plain hero-number hook is used)."""
+    try:
+        cats = dollars = None
+        for seg in story_cfg.get("segments", []):
+            fn = (seg.get("params") or {}).get("file") or f"{seg.get('key', '')}.json"
+            p = REPO / "data_learning" / "data" / fn
+            if not p.exists():
+                continue
+            data = json.loads(p.read_text())
+            pts = data.get("points", [])
+            unit = (data.get("unit") or "").lower()
+            has_period = len([1 for q in pts if q.get("period")]) >= 2
+            if not has_period and len(pts) >= 3 and cats is None:
+                cats = data
+            if unit in ("dollars", "usd") and has_period and dollars is None:
+                sp = sorted(pts, key=lambda q: float(q["period"]))
+                dollars = (float(sp[0]["value"]), float(sp[-1]["value"]))
+        if not cats or not dollars:
+            return None
+        cu = (cats.get("unit") or "").lower()
+
+        def _fmt(v):
+            s = f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer() else f"{v:,.1f}"
+            if cu in ("percent", "%", "pct"):
+                return "+" + s + "%"
+            if cu in ("dollars", "usd"):
+                return "$" + s
+            return s
+        lines = [(str(q["label"])[:12], _fmt(float(q["value"])))
+                 for q in cats.get("points", [])[:5]]
+        lo, hi = dollars
+        pct = int(round((hi / lo - 1) * 100)) if lo else 0
+        pat, _ = charts.render_hook_receipt(
+            work / "receipt", slug, "RECEIPT", lines, lo, hi, "dollars",
+            stamp=(f"+{pct}%" if pct else ""),
+            frames=int(max(24, min(180, round(hook_dur * 30)))))
+        import glob as _glob
+        return pat, len(_glob.glob(pat.replace("%02d", "*")))
+    except Exception as e:  # noqa: BLE001 — never let the cold-open kill a render
+        print(f"[studio] hook receipt skipped: {e}", flush=True)
+        return None
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
-                    accent: str = "&H4FD1F5&") -> None:
+                    accent: str = "&H4FD1F5&", hook_visual: bool = False,
+                    chart_hook: bool = False) -> None:
     acc = accent.strip("&H").rstrip("&")          # bare BBGGRR for inline tags
     head = f"""[Script Info]
 ScriptType: v4.00+
@@ -782,8 +849,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         step = (s1 - s0) / len(chunks)
         for j, ch in enumerate(chunks):
             cs, ce = s0 + j * step, s0 + (j + 1) * step
+            # Pin narration to a CONSISTENT lower-band plate (below the tall
+            # chart) with a heavy outline — so it never lands on the chart or
+            # collides with the host performing inside it.
+            cap = ("{\\an2\\pos(540,1734)\\fs62\\c&HFFFFFF&\\b1\\bord7"
+                   "\\3c&H0A0C12&\\shad0\\fad(70,70)}" + ch.strip())
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Cap,,0,0,0,,"
-                         f"{ch.strip()}")
+                         f"{cap}")
 
     # 0: HOOK — LEAD WITH THE PUNCHLINE. The single biggest shock-number slams
     # onto frame 1 as the hero (the same gut-punch the thumbnail promises),
@@ -792,13 +864,24 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # at t=0, which is the only moment that decides whether they keep watching.
     h0, h1 = windows[0]
     headline = _headline_number(st)
-    if headline:
+    # A bare share % ("22%") slammed on frame 1 is meaningless without its whole
+    # and reads as the 'bare number card' the gate blocks — so when the OPENING
+    # beat is a part-of-whole depiction (waffle / pie / share), suppress the hero
+    # number and let the mascot + the share chart carry the hook. A striking
+    # standalone value (427 ppm, 1.4 billion) still leads.
+    _share_lead = (st.segments and getattr(st.segments[0], "kind", "") in
+                   ("share", "waffle_grid", "pie", "donut", "pictorial_pie"))
+    # When a full-frame HOOK VISUAL (the receipt) is on screen it IS the hero —
+    # the big number + claim would just collide with it, so they're suppressed
+    # and the receipt + VO captions carry the open. A chart-led hook (chart_hook)
+    # or a share-led open likewise drops the giant number (the chart carries it).
+    if headline and not hook_visual and not _share_lead and not chart_hook:
         # Hero number: huge, accent-filled, punches in hard on the first frame.
         num = ("{\\an5\\pos(540,235)\\fs240\\1c" + accent + "\\3c&H101010&"
                "\\bord7\\shad0\\fad(0,90)\\fscx150\\fscy150"
                "\\t(0,150,\\fscx100\\fscy100)\\blur1.2}" + headline)
         lines.append(f"Dialogue: 1,{_ass_time(h0)},{_ass_time(h1)},Hook,,0,0,0,,{num}")
-    hchunks = _chunks(st.hook, 2)          # 2-word bursts = faster, bigger words
+    hchunks = _chunks(st.hook, 2) if not hook_visual else []
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
@@ -848,9 +931,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # CLOSING — the mascot delivers its quip in a speech bubble (the focus),
     # with the sources shrunk to tiny text at the very bottom.
     c0, c1 = windows[-1]
+    cd = max(1.2, c1 - c0)
+    # STAGGER the closing reveals across the WHOLE window so content keeps
+    # appearing (no long frozen 'read the card' hold — the dead-air the gate
+    # measures). Bubble+quip land first, the question ~40% in, the CTA ~62% in
+    # with a bounce, so nothing sits static for 4s.
+    qs = c0 + 0.40 * cd
+    cs = c0 + 0.62 * cd
     bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
-              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 524))
+              + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
               + "{\\p0}")
     lines.append(f"Dialogue: 4,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{bubble}")
     quip = ("{\\an5\\pos(540,308)\\fs54\\c&HFFFFFF&\\b1\\bord0\\shad2"
@@ -859,14 +949,25 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
     if question:
-        q = ("{\\an5\\pos(540,842)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
-             "\\shad0\\fad(450,0)}" + _wrap(question, 24))
-        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        cta = ("{\\an5\\pos(540,952)\\fs54\\c&H" + acc + "&\\b1\\bord5\\3c&H000000&"
-               "\\shad0\\fad(450,0)\\fscx82\\fscy82\\t(450,780,\\fscx100\\fscy100)}"
-               "COMMENT BELOW ▼")
-        lines.append(f"Dialogue: 5,{_ass_time(c0)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
-    src = " · ".join(st.sources)
+        q = ("{\\an5\\pos(540,1330)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+             "\\shad0\\fad(300,0)}" + _wrap(question, 24))
+        lines.append(f"Dialogue: 5,{_ass_time(qs)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
+        # CTA pops in late (below the big central mascot) with a bounce.
+        cta = ("{\\an5\\move(540,1454,540,1442,0,900)\\fs54\\c&H" + acc
+               + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
+               "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
+        lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
+    # Dedupe + strip the 'Source:' prefix each footer already carries, so the
+    # line reads 'Sources: NOAA ...' ONCE — not 'Sources: Source: X · Source: X'
+    # (the duplicate the gate flagged when both segments share a publisher).
+    _uniq = []
+    for _f in st.sources:
+        _f = _f.strip()
+        if _f.lower().startswith("source:"):
+            _f = _f[len("source:"):].strip()
+        if _f and _f not in _uniq:
+            _uniq.append(_f)
+    src = " · ".join(_uniq)
     src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
                "\\fad(200,0)}Sources: " + src)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
@@ -942,13 +1043,15 @@ def _screen_box(a):
     return cx, cy, a["w"] * SCALE_X, a["h"] * SCALE_Y
 
 
-def _place_mascot(active, seg_anchors):
+def _place_mascot(active, seg_anchors, scale: float = 1.0):
     """Stand the mascot right beside the active number, inside the chart, in
     empty space that doesn't cover ANY number. Returns (body_cx, body_cy,
     variant) where variant is 'L' (left of number, points right), 'R' (right
-    of number, points left) or 'U' (fallback below the card, points up)."""
+    of number, points left) or 'U' (fallback below the card, points up).
+    ``scale`` sizes his footprint so a smaller in-chart host fits beside a bar
+    where a full-size one would be pushed out to the 'U' fallback."""
     S = MASCOT_SIZE
-    bw, bh = 0.52 * S, 0.78 * S
+    bw, bh = 0.52 * S * scale, 0.78 * S * scale
     acx, acy, aw, ah = _screen_box(active)
     obox = []
     for o in seg_anchors:
@@ -978,6 +1081,76 @@ def _place_mascot(active, seg_anchors):
     return acx, CHART_Y + CHART_H + bh * 0.55, "U"
 
 
+# Data is the MAIN CHARACTER and he PERFORMS ON THE DATA. For each beat he is
+# staged beside that beat's star data point and given a stat-tied bit that
+# matches the depiction — he rides the climbing line to its peak, shoves the
+# tallest bar, presents the filling grid. Not parked at the bottom. (Poses come
+# from the director; this maps the KIND to the bit + how big he is in-chart.)
+_DATA_BIT = {
+    "trend":          ("ride_peak", "point"),      # ride up to the line's top
+    "timeline":       ("ride_peak", "point"),
+    "pictorial_race": ("shove_top", "present_up"), # push the winning bar
+    "rank":           ("shove_top", "present_up"),
+    "bars":           ("shove_top", "present_up"),
+    "comparison":     ("shove_top", "present_up"), # push the bigger column
+    "waffle_grid":    ("present_fill", "present_up"),
+    "share":          ("present_fill", "present_up"),
+    "pictograph":     ("present_fill", "present_up"),
+    "bubbles":        ("beside_hero", "point"),
+    "geo_world":      ("beside_hero", "point"),
+    "geo_us":         ("beside_hero", "point"),
+    "geo_city":       ("beside_hero", "point"),
+}
+IN_CHART_SCALE = 0.66     # smaller so he fits beside a bar without covering it
+
+
+def _hero_anchor(seg):
+    """The STAR data point of a beat — the one Data performs on. The point the
+    spoken line names if we can find it, else the peak value (tallest bar /
+    highest point / biggest slice)."""
+    anchors = getattr(seg, "anchors", None)
+    if not anchors:
+        return None
+    for p in getattr(seg, "punches", []) or []:
+        a = _anchor_for_punch(seg, p)
+        if a is not None:
+            return a
+    return max(anchors, key=lambda a: a.get("value", 0.0))
+
+
+def _stage_on_data(seg, w0, w1, pose, prev_tl):
+    """Stage Data ON this beat's winning datum, performing an ANIMATED action on
+    it: he SWEEPS in from the smallest datum (setup travel) up onto the winner
+    (tallest bar / line peak / biggest slice), where his authored data-action
+    (push the bar / ride the line / hoist the slice) loops in place. Feet on the
+    element, right edge just LEFT of the tip so he never covers the value number
+    (collision rule). ``pose`` is the animated action spec. Returns (seq_tuple,
+    entry_xy) or None if the beat has no anchors."""
+    anchors = getattr(seg, "anchors", None)
+    if not anchors:
+        return None
+    isc = 0.62
+    S = MASCOT_SIZE
+    Sk = S * isc
+
+    def _tl(cx, cy):                    # centre -> full-size top-left, clamped
+        return (min(max(cx - S / 2, 2.0), float(W - S - 2)),
+                min(max(cy - S / 2, 2.0), float(H - S - 2)))
+
+    def _onto(a):                       # stand ON element a (feet on top, off #)
+        cx, cy, _w, _h = _screen_box(a)
+        cxc = max(cx - Sk * 0.5 - 15.0, float(CHART_X) + Sk * 0.5 + 6.0)
+        return _tl(cxc, cy - Sk * 0.40)
+
+    peak = max(anchors, key=lambda a: a.get("value", 0.0))
+    low = min(anchors, key=lambda a: a.get("value", 0.0))
+    tlx, tly = _onto(peak)
+    entry = _onto(low)                  # sweep up from the smallest datum
+    # The authored actions face right/up (push -> extends the bar, ride -> up the
+    # slope), so no mirroring.
+    return (tlx, tly, w0, w1, SIDE_ANGLE, False, pose, isc), entry
+
+
 def _piecewise(kfs, axis: int) -> str:
     """Smoothstep ffmpeg expression interpolating x/y across keyframes."""
     ts = [k[0] for k in kfs]
@@ -993,210 +1166,100 @@ def _piecewise(kfs, axis: int) -> str:
 
 
 # --------------------------------------------------------------------------
-# Blender 3D bookends (VIZ_BRAIN hard rule: scene 1 + the payoff are 3D).
-# --------------------------------------------------------------------------
-BLENDER_HERO = REPO / "data_learning" / "blender_hero.py"
-
-
-def _seg_points(story_cfg: dict, idx: int) -> list[dict]:
-    """Load a segment's data points as blender_hero spec points, or []."""
-    try:
-        seg = story_cfg["segments"][idx]
-        fn = (seg.get("params") or {}).get("file") or f"{seg.get('key','')}.json"
-        data = json.loads((REPO / "data_learning" / "data" / fn).read_text())
-        unit = (data.get("unit") or "").strip()
-        pts = []
-        for p in data.get("points", [])[:5]:
-            v = float(p["value"])
-            disp = f"{v:,.0f}" if abs(v) >= 100 else f"{v:g}"
-            if unit:
-                disp = f"{disp}{unit}" if unit in ("%",) else f"{disp} {unit}"
-            pts.append({"label": str(p["label"])[:22], "value": v, "display": disp})
-        # need distinct values for a meaningful 3D reveal
-        return pts if len({p["value"] for p in pts}) >= 2 else []
-    except Exception:  # noqa: BLE001
-        return []
-
-
-def _hero_clip(points: list[dict], title: str, work: Path, kind: str,
-               accent: str, seconds: float, grow: bool = True) -> Path | None:
-    """Render a Blender 3D monolith-reveal clip (W x H, 30fps, silent) or None.
-    Best-effort: missing binary / any failure returns None so the caller ships
-    the normal 2D video instead of dying. grow=False = full chart from frame 1
-    (a punchy OPENER — the first second must grip, not build from black)."""
-    import shutil
-    import subprocess
-    if not shutil.which("blender") or not BLENDER_HERO.exists() or len(points) < 2:
-        return None
-    spec = {"points": points[:5], "title": title, "accent": accent,
-            "seconds": seconds, "fps": 12, "grow": grow, "engine": "eevee",
-            "res_x": 720, "res_y": 1280, "samples": 10}
-    sf = work / f"hero_{kind}.json"
-    sf.write_text(json.dumps(spec))
-    od = work / f"hero_{kind}"
-    od.mkdir(exist_ok=True)
-    import os
-    env = {**os.environ, "LIBGL_ALWAYS_SOFTWARE": "1", "EGL_PLATFORM": "surfaceless"}
-    try:
-        subprocess.run(["blender", "-b", "--factory-startup", "--python",
-                        str(BLENDER_HERO), "--", str(sf), str(od)],
-                       check=True, capture_output=True, timeout=600, env=env)
-    except Exception as e:  # noqa: BLE001
-        print(f"[studio] blender {kind} skipped: {str(e)[:160]}", file=sys.stderr)
-        return None
-    frames = sorted(od.glob("hero_*.png"))
-    if len(frames) < 2:
-        return None
-    clip = work / f"hero_{kind}.mp4"
-    try:
-        _run(["ffmpeg", "-y", "-loglevel", "error",
-              "-framerate", "12", "-i", str(od / "hero_%04d.png"),
-              "-f", "lavfi", "-t", f"{seconds:.2f}",
-              "-i", "anullsrc=channel_layout=stereo:sample_rate=48000",
-              "-vf", f"minterpolate=fps=30,scale={W}:{H},setsar=1,format=yuv420p",
-              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
-              "-b:a", "160k", "-shortest", str(clip)])
-    except Exception as e:  # noqa: BLE001
-        print(f"[studio] hero encode {kind} skipped: {str(e)[:160]}", file=sys.stderr)
-        return None
-    return clip if clip.exists() else None
-
-
-def _hook_clip(story_cfg: dict, st, work: Path, theme: dict,
-               seconds: float = 1.9) -> Path | None:
-    """A high-energy KINETIC cold-open: the shock number SLAMS in (scale +
-    shake), then the curiosity question flashes, over impact SFX. No photo
-    dependency, no dead air (the whoosh/thumps carry it), no chart. This is the
-    scroll-stopper; the VO hook continues on the body right after."""
-    import math
-    import random
-    from PIL import Image, ImageDraw
-    pts = _seg_points(story_cfg, 0)
-    if not pts:
-        return None
-    champ = max(pts, key=lambda p: p["value"])
-    disp = champ.get("display") or str(champ["value"])
-    num, unit = (disp.rsplit(" ", 1) if " " in disp else (disp, ""))
-    q = (getattr(st, "question", "") or "HOW?").strip().upper()[:22]
-    accent = tuple(int((theme.get("accent") or "#4FD1C5").lstrip("#")[i:i+2], 16)
-                   for i in (0, 2, 4))
-
-    def ease(x):
-        return 0 if x < 0 else (1 if x > 1 else 1 - (1-x)**3)
-    bg = Image.new("RGBA", (W, H), (6, 8, 16, 255))
-    m = ImageDraw.Draw(bg)
-    nsz = 260
-    nf = _font(nsz)
-    nbb = m.textbbox((0, 0), num, font=nf)
-    if nbb[2]-nbb[0] > 940:
-        nsz = max(60, int(nsz * 940 / (nbb[2]-nbb[0])))
-    fr = work / "hookf"
-    fr.mkdir(exist_ok=True)
-    n = int(seconds * FPS)
-    q_at = seconds - 0.8
-    for i in range(n):
-        t = i / FPS
-        img = bg.copy()
-        dr = ImageDraw.Draw(img)
-
-        def ctext(txt, size, y, fill):
-            f = _font(size)
-            b = dr.textbbox((0, 0), txt, font=f)
-            dr.text((W//2 - (b[2]-b[0])//2, y), txt, font=f, fill=fill)
-        # NUMBER slams in (0-0.3s) with a quick shake, holds, then the unit
-        na = ease(min(1, t / 0.28))
-        shake = int((1 - min(1, t/0.32)) * random.uniform(-1, 1) * 26)
-        scale = 0.5 + 0.5*na + (0.16*(1-na) if na < 1 else 0)
-        fsz = max(30, int(nsz * scale))
-        f = _font(fsz)
-        nb = dr.textbbox((0, 0), num, font=f)
-        col = tuple(int(c*na) for c in accent)
-        dr.text((W//2 - (nb[2]-nb[0])//2 + shake, 470), num, font=f, fill=col)
-        if unit and t > 0.14:
-            ua = ease((t-0.14)/0.22)
-            ctext(unit.upper(), 96, 770,          # fixed (clear of the number)
-                  tuple(int(v*ua) for v in (245, 248, 255)))
-        # QUESTION flashes in near the end, punchy
-        if t > q_at:
-            qa = ease((t - q_at) / 0.28)
-            qs = 1.0 + 0.22*(1-qa)
-            ctext(q, max(40, int(118*qs)), 1180, accent)
-        img.convert("RGB").save(fr / f"h{i:04d}.png")
-    # impact audio: thumps on the number slam, the unit, and the question
-    aud = work / "hook_aud.wav"
-    d2 = 0.16
-    try:
-        _run(["ffmpeg", "-y", "-loglevel", "error", "-filter_complex",
-              (f"sine=f=115:d=0.32,afade=t=out:st=0:d=0.32[a0];"
-               f"sine=f=150:d=0.24,adelay=150|150,afade=t=out:st=0.15:d=0.24[a1];"
-               f"sine=f=90:d=0.4,adelay={int(q_at*1000)}|{int(q_at*1000)},"
-               f"afade=t=out:st={q_at:.2f}:d=0.4[a2];"
-               f"[a0][a1][a2]amix=inputs=3:normalize=0,volume=2.2,"
-               f"aformat=sample_rates=48000:channel_layouts=stereo[o]"),
-              "-map", "[o]", "-t", f"{seconds:.2f}", str(aud)])
-    except Exception:  # noqa: BLE001
-        aud = None
-    clip = work / "hook_open.mp4"
-    if aud and aud.exists():
-        ain = ["-i", str(aud)]
-    else:
-        ain = ["-f", "lavfi", "-t", f"{seconds:.2f}",
-               "-i", "anullsrc=channel_layout=stereo:sample_rate=48000"]
-    try:
-        _run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
-              "-i", str(fr / "h%04d.png"), *ain,
-              "-vf", f"scale={W}:{H},setsar=1,format=yuv420p",
-              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-c:a", "aac",
-              "-b:a", "160k", "-shortest", str(clip)])
-    except Exception as e:  # noqa: BLE001
-        print(f"[studio] hook clip skipped: {str(e)[:160]}", file=sys.stderr)
-        return None
-    return clip if clip.exists() else None
-
-
-def _add_3d_bookends(story_cfg: dict, st, work: Path, theme: dict,
-                     out_path: Path) -> None:
-    """Open on a real HOOK card (attention-grab, not a chart) and close on a 3D
-    payoff. Guarded end-to-end: if anything fails, the body video is left
-    untouched so a render never dies over this layer."""
-    accent = theme.get("accent") or "#4FD1C5"
-    # KINETIC cold-open (shock number slam + question + impact SFX) grabs the
-    # scroll; the body's VO hook + full-bleed photo continue right after. 3D is
-    # the payoff closer.
-    opener = _hook_clip(story_cfg, st, work, theme, 1.9)
-    closer = _hero_clip(_seg_points(story_cfg, -1), st.title, work, "close", accent, 3.0,
-                        grow=True)
-    if not opener and not closer:
-        return
-    body = work / "body_core.mp4"
-    try:
-        out_path.replace(body)
-        parts = [p for p in (opener, body, closer) if p]
-        inp = []
-        for p in parts:
-            inp += ["-i", str(p)]
-        n = len(parts)
-        fc = ""
-        for i in range(n):
-            fc += (f"[{i}:v]scale={W}:{H},fps=30,setsar=1,format=yuv420p[v{i}];"
-                   f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo[a{i}];")
-        fc += "".join(f"[v{i}][a{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=1[v][a]"
-        _run(["ffmpeg", "-y", "-loglevel", "error", *inp,
-              "-filter_complex", fc, "-map", "[v]", "-map", "[a]",
-              "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "22",
-              "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart",
-              str(out_path)])
-        print(f"[studio] 3D bookends stitched (open={bool(opener)} close={bool(closer)})")
-    except Exception as e:  # noqa: BLE001
-        print(f"[studio] bookend stitch failed ({str(e)[:160]}); shipping 2D body",
-              file=sys.stderr)
-        if not out_path.exists() and body.exists():
-            body.replace(out_path)
-
-
-# --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
+def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
+    """Encode each scene's chart build alone (tiny 540x960 proxy) and measure it
+    with the SAME temporal detector + hard gate the reviewer uses. One JSON per
+    scene under output/scenes/ — the scene-level metrics + verdict that make
+    repair scene-addressable (fix the failing scene, not the whole video)."""
+    import glob as _g
+    import json as _sj
+    import subprocess as _sp
+    import tempfile as _tf
+    sdir = out_path.parent / "scenes"
+    sdir.mkdir(parents=True, exist_ok=True)
+    sys.path.insert(0, str(REPO))
+    try:
+        from scripts.showrunner_review import _temporal_evidence, \
+            temporal_hard_fail
+    except Exception:  # noqa: BLE001
+        return
+    for i, seg in enumerate(st.segments):
+        if not seg.chart_path:
+            continue
+        pat = seg.chart_path
+        n = len(_g.glob(pat.replace("%02d", "*")))
+        if n < 2:
+            continue
+        mp4 = work / f"scene_{i:02d}.mp4"
+        import shutil as _sh
+        _ff = _sh.which("ffmpeg")
+        if not _ff:
+            try:
+                import imageio_ffmpeg
+                _ff = imageio_ffmpeg.get_ffmpeg_exe()
+            except Exception:  # noqa: BLE001
+                return
+        try:
+            _sp.run(
+                [_ff, "-y", "-loglevel", "error",
+                 "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
+                 "-framerate", "30", "-i", pat,
+                 "-filter_complex",
+                 "[1:v]scale=540:-1,format=rgba[c];"
+                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
+            with _tf.TemporaryDirectory() as td:
+                ev = _temporal_evidence(mp4, Path(td))
+            gate = temporal_hard_fail(ev)
+            attach_p = Path(pat.replace("_build%02d.png", "_attach.json"))
+            attach = (_sj.loads(attach_p.read_text())
+                      if attach_p.exists() else {})
+            # SCENE PACKAGE: output/scenes/{slug}/segment_{i}/ holding the
+            # scene's own mp4, metrics and a scene-level verdict — the same
+            # scene ids the full-video judge references (segN == segment_N).
+            seg_dir = sdir / slug / f"segment_{i}"
+            seg_dir.mkdir(parents=True, exist_ok=True)
+            import shutil as _shm
+            _shm.copy2(mp4, seg_dir / "scene.mp4")
+            metrics = {"slug": slug, "scene": i, "id": f"segment_{i}",
+                       "kind": getattr(seg, "kind", ""),
+                       "frames": n, "temporal": ev,
+                       "performance": attach.get("performance"),
+                       "contact_frames": attach.get("contact_frames"),
+                       "timeline": attach.get("timeline")}
+            (seg_dir / "metrics.json").write_text(_sj.dumps(metrics))
+            # Scene VERDICT — code-graded dimensions (motion/cadence/contact).
+            # Perceptual dims (clarity, composition, narrative, payoff,
+            # caption interaction) are judged at the full-video level by the
+            # vision showrunner referencing these same segment ids; they are
+            # explicitly marked unscored here, never silently passed.
+            fps = ev.get("effective_fps") or 0.0
+            sc_verdict = {
+                "id": f"segment_{i}",
+                "verdict": "fail" if gate else "pass",
+                "gate": gate or "pass",
+                "dimensions": {
+                    "motion": 3 if fps >= 24 else 2 if fps >= 17 else
+                    1 if fps >= 11 else 0,
+                    "mascot_contact": 3 if (attach.get("contact_frames", 0)
+                                            >= n) else 0,
+                    "clarity": None, "data_demonstration": None,
+                    "composition": None, "narrative_progression": None,
+                    "payoff": None, "caption_interaction": None,
+                },
+                "unscored_note": "None dims are perceptual — graded by the "
+                                 "full-video vision judge against this same "
+                                 "segment id",
+            }
+            (seg_dir / "verdict.json").write_text(_sj.dumps(sc_verdict))
+            print(f"[studio] segment_{i} metrics: fps={fps} "
+                  f"gate={sc_verdict['gate']}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"[studio] scene{i} metrics failed: {e}", flush=True)
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
            config_path: Path | None = None) -> Path:
     """`config_path` lets a sibling channel (e.g. curiosity) render from its
@@ -1220,6 +1283,26 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     with tempfile.TemporaryDirectory() as td:
         work = Path(td)
         st = story.build(story_cfg, cfg, work, REPO)
+        # SCENE PLAN: apply any repaired scene choices (state/scene_plans/{slug}
+        # .json, written by scripts/scene_repair.py keep-best selection). A plan
+        # LOCKS that segment's kind + performance — scene-addressable repair,
+        # not a whole-video reroll.
+        try:
+            _pf = REPO / "state" / "scene_plans" / f"{slug}.json"
+            if _pf.exists():
+                import json as _pj
+                _plan = _pj.loads(_pf.read_text())
+                for _i, _seg in enumerate(st.segments):
+                    _p = _plan.get(str(_i))
+                    if _p and getattr(_seg, "insight", None):
+                        _seg.insight.kind = _p["viz"]
+                        _seg.insight.plan_locked = True
+                        _seg.insight.perf_override = _p.get("perf")
+                        _seg.kind = _p["viz"]
+                        print(f"[studio] scene plan seg{_i}: "
+                              f"{_p['viz']}+{_p.get('perf')}", flush=True)
+        except Exception as e:  # noqa: BLE001 — a bad plan never kills a render
+            print(f"[studio] scene plan skipped: {e}", flush=True)
         # Custom thumbnail next to the video (title-aligned packaging). Cheap —
         # reuses the already-built story; the uploader picks it up by path.
         try:
@@ -1230,6 +1313,72 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         narration, windows = synth_narration(sentences, work, voice)
         total = _dur(narration) + 0.3
 
+        # HOOK VISUAL: a receipt cold-open (built from the story's own data) when
+        # the data supports it. Computed HERE (before the 30fps re-render) so the
+        # opening chart can LEAD the hook when there is no receipt — otherwise the
+        # hook is ~3s of a mascot on the gradient with no data on screen, which is
+        # the empty_void / decorative_mascot the gate blocks. The data
+        # demonstration should be the star from frame 1.
+        receipt = _build_hook_receipt(story_cfg, work, slug,
+                                      hook_dur=windows[0][1] - windows[0][0])
+        lead_hook = receipt is None          # seg0's chart carries the cold-open
+
+        # TRUE 30fps: re-render each chart at frames = span*30 now that the beat
+        # length is known, so the build animates smoothly across the WHOLE window
+        # (no held/duplicate frames — the choppiness the temporal grade caught).
+        # seg0 spans hook+seg0 when it leads the hook, so it builds continuously
+        # from frame 1 with no frozen hook.
+        # The LAST chart likewise spans its beat + the CLOSING when there's no
+        # receipt, so the payoff isn't a mascot-on-void either — a data recap
+        # holds the frame while Data lands the takeaway.
+        lead_payoff = receipt is None
+        last_i = len(st.segments) - 1
+        chart_dir = work / "charts"
+        disp_start: dict = {}                 # per-seg chart DISPLAY start (s0)
+        disp_end: dict = {}                   # per-seg chart DISPLAY end (s1)
+        for i, seg in enumerate(st.segments):
+            wi = windows[1 + i] if 1 + i < len(windows) else None
+            if not (wi and getattr(seg, "insight", None) and seg.chart_path):
+                continue
+            start = windows[0][0] if (i == 0 and lead_hook) else wi[0]
+            end = windows[-1][1] if (i == last_i and lead_payoff) else wi[1]
+            disp_start[i] = start
+            disp_end[i] = end
+            # EXACTLY ceil(dur*30) frames so the build spans the beat 1:1 at 30fps
+            # (played at cfps=30 below) — no low-fps source resampled into the
+            # 30fps master. Cap 600 (=20s) is a safety bound, not a rate limiter.
+            import math as _mfr
+            # Cap 1200 (=40s), raised from 600. The opening segment carries the
+            # hook lead, so its display window is the longest in the video — at
+            # 600 it ran out of frames partway and froze for the remainder,
+            # which is why segment_0 kept measuring under 1 fps while the other
+            # two now sit at 14-16. The cap is a safety bound, and the scene
+            # renderer is ~8x cheaper per frame since the compress_level/resize
+            # fixes, so covering a long window is affordable.
+            nfr = int(max(30, min(1200, _mfr.ceil((end - start) * 30))))
+            # Build LINEARLY across the WHOLE window (no early completion): the
+            # chart + Data keep moving the entire beat, so there is never a
+            # finished-and-held stretch (that was the dead_air / 5fps). Data
+            # climbing the line the whole time IS the hook's motion.
+            try:
+                cpath, _a = charts.render_story_build(
+                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
+                    hook_lead=(i == 0 and lead_hook))   # opening chart bursts up
+                if cpath:
+                    seg.chart_path = str(cpath)
+            except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
+                print(f"[studio] 30fps re-render seg{i} skipped: {e}", flush=True)
+
+        # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
+        # reviewer's own cadence detector + the build-time temporal gate on it,
+        # writing output/scenes/{slug}_sceneN.json. When a video fails, the
+        # repair loop reads these to target the failing SCENE instead of
+        # re-rolling the whole video; they also make every scene debuggable.
+        try:
+            _scene_metrics(st, slug, work, out_path)
+        except Exception as e:  # noqa: BLE001 — metrics never fail a render
+            print(f"[studio] scene metrics skipped: {e}", flush=True)
+
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png", seed=theme["seed"])
         footmask = work / "foot_mask.png"
         _make_mandel_mask(footmask, W, FOOT_H, feather=130, bottom=70)
@@ -1237,8 +1386,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # Full soundtrack: narration + ducked theme music + visual-synced SFX.
         soundtrack = _build_soundtrack(narration, windows, events, total,
                                        theme.get("vibe", "calm"), work, slug)
+        # A full-frame receipt suppresses BOTH the hero number and the hook text
+        # (it IS the open). A chart-led hook keeps the punchy hook TEXT but drops
+        # the giant hero number so it doesn't collide with the chart.
         ass = work / "cap.ass"
-        build_story_ass(st, windows, events, ass, accent=accent_ass)
+        build_story_ass(st, windows, events, ass, accent=accent_ass,
+                        hook_visual=bool(receipt), chart_hook=lead_hook)
         ass_esc = str(ass).replace("\\", "/").replace(":", "\\:")
 
         # Ordered mascot sequence: hook (up, centred), one per number (tucked
@@ -1246,15 +1399,167 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         S = MASCOT_SIZE
         import os as _osm
         _clean = _osm.environ.get("LEGACY_LOOK") != "1"
+        # The action DIRECTOR puts Data INTO each scene doing a topic-specific
+        # thing (juggling eggs, on the soup cans, shoving the cart, riding the
+        # chart) instead of a generic reaction. Optional — if it or its SVG
+        # rasteriser is unavailable the seq carries plain pose names and the
+        # host still renders, just without props.
+        try:
+            from data_learning import mascot_director as _director
+        except Exception:  # noqa: BLE001
+            _director = None
+
+        def _seg_spec(i):
+            """A director spec for segment i (its whole beat), or a pose name.
+            Gauge beats bake Data INTO the chart (he rides the arc), so the
+            travelling overlay is hidden there to avoid a duplicate mascot."""
+            # Beats that composite Data straight INTO the chart (he rides the
+            # gauge arc / walks the timeline dot): suppress the traveling
+            # overlay so there's exactly one host on the beat. Covered either by
+            # a baked chart kind or a scene mechanic that flagged host_baked.
+            if _seg_is_baked(st.segments[i]):
+                return {"hidden": True}
+            if not _director:
+                return ("point", "shock", "point", "think")[i % 4]
+            try:
+                seg = st.segments[i]
+                val = ""
+                if getattr(seg, "anchors", None):
+                    v = seg.anchors[0].get("value")
+                    if v is not None:
+                        val = story._fmtnum(v)
+                # Per-scene performance: a bespoke pose generated for THIS beat
+                # (brain-authored when MASCOT_BRAIN is on, else a distinct preset
+                # rotated by scene index so no two beats reuse the same act).
+                return _director.author_performance(
+                    subject=f"{seg.topic} {seg.sentence}", label=seg.topic,
+                    value=val, kind=getattr(seg, "kind", ""), index=i)
+            except Exception:  # noqa: BLE001
+                return "shock"
+
+        entries: dict = {}                 # seq index -> glide start (sweep-in)
         if _clean:
-            # HOST mode: one big mascot planted in the lower third (fills the
-            # space the b-roll used to, gestures up at the data, never covers a
-            # number). Consistent brand presence, no jumping around.
-            home = (float((W - S) // 2), float(H - S - 250))
-            seq = [(home[0], home[1], 0.0, total, UP_ANGLE, False)]
+            # MASCOT-FIRST composition. Data is the camera: the video is built
+            # around WHERE HE IS and WHAT HE'S DOING. He is NEVER parked — each
+            # beat sends him to a different spot and he TRAVELS there across the
+            # whole beat (see the overlay glide below), so his x/y is always
+            # changing (never static >4s): he paces side to side, rides UP into
+            # the chart on data beats, walks the cart across. Action per beat
+            # comes from the director; position comes from this trajectory.
+            gap_fill = _director.default_host() if _director else "idle"
+            nseg = len(st.segments)
+            Cx = float((W - S) // 2)
+            # A card chart lives in the TOP region; the space BELOW it used to be
+            # dead black. Data works that lower "stage" — he never stands on the
+            # chart (covering the data), he fills the bottom and presents it from
+            # below. He paces across the stage (x alternates) so he keeps moving.
+            stage_y = min(float(CHART_Y + CHART_H + 8), float(H - S - 120))
+            Lx, Rx = 60.0, float(W - S - 60)
+
+            def _spot(i, action):
+                if action == "ride":                 # ride UP into the chart
+                    return Rx if i % 2 else Lx, float(H * 0.24)
+                x = Lx if i % 2 == 0 else Rx          # pace across the stage
+                return x, stage_y
+
+            # HOOK: Data REACTS with a bespoke bit. When a visual fills the top
+            # (the receipt, OR the opening chart leading the hook) he presents it
+            # from the lower stage at normal size — big enough to read, not so big
+            # he covers the data. With NO top visual he is the central hero, large.
+            hook_leads = bool(receipt) or lead_hook
+            hook_y = stage_y if hook_leads else float(H * 0.40)
+            hook_scale = 1.0 if hook_leads else 1.45
+            home = (Cx, hook_y)
+            hook_perf = gap_fill
+            if _director:
+                try:
+                    hnum = _headline_number(st) or ""
+                    hook_perf = _director.author_performance(
+                        subject=f"{st.hook} {st.title}", label="",
+                        value=hnum, kind="hook", index=nseg + 1)
+                except Exception:  # noqa: BLE001
+                    hook_perf = gap_fill
+            seq = []
+            # entries[k] = where Data's glide STARTS for seq[k] (his sweep-in
+            # point); absent -> he glides from his previous spot. Set for data
+            # beats so he sweeps UP onto the datum (a moving bit + smooth cadence).
+            entries: dict = {}
+
+            def _add(entry_tuple, entry_xy=None):
+                if entry_xy is not None:
+                    entries[len(seq)] = entry_xy
+                seq.append(entry_tuple)
+
+            # When the opening chart leads the hook, Data performs ON it from
+            # frame 1 (sweeping onto its star datum) instead of standing below it.
+            staged_hook = None
+            def _act(seg, phase="action"):
+                # Deterministic, on-topic, ANIMATED action for this chart kind
+                # (push the bar / ride the line / hoist the slice; a celebration
+                # on the payoff). No brain call -> free + no run-to-run variance.
+                kind = getattr(seg, "kind", "")
+                if _director and hasattr(_director, "data_action_spec"):
+                    return _director.data_action_spec(kind, phase)
+                return "cheer" if phase == "payoff" else "point"
+
+            # If the opening chart BAKES the host in (Data rides the drawing
+            # line/bar), add NO overlay for the hook — he's already in the chart.
+            _hook_baked = bool(st.segments) and _seg_is_baked(st.segments[0])
+            if lead_hook and st.segments and not _hook_baked:
+                staged_hook = _stage_on_data(st.segments[0], windows[0][0],
+                                             windows[0][1], _act(st.segments[0]),
+                                             None)
+            if staged_hook is not None:
+                _add(staged_hook[0], staged_hook[1])
+            elif not _hook_baked:
+                _add((Cx, hook_y, windows[0][0], windows[0][1],
+                      UP_ANGLE, False, hook_perf, hook_scale))
+            for i in range(nseg):
+                wi = windows[1 + i] if 1 + i < len(windows) else None
+                if not wi:
+                    continue
+                spec = _seg_spec(i)
+                if isinstance(spec, dict) and spec.get("hidden"):
+                    continue                       # host baked into the chart
+                # Data sweeps up onto THIS beat's winning datum and performs his
+                # authored ANIMATED action ON it (push / ride / hoist) — moves in
+                # place (not a frozen sticker), on-topic (no random prop).
+                staged = _stage_on_data(st.segments[i], wi[0], wi[1],
+                                        _act(st.segments[i]), None)
+                if staged is not None:
+                    _add(staged[0], staged[1])
+                else:                              # no anchor -> fall to the stage
+                    x, y = _spot(i, "")
+                    _add((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
+            # CLOSING: Data is the SPEAKER — big and central so his celebration
+            # is the payoff and nothing sits frozen.
+            close_act = _director.celebrate() if _director else "cheer"
+            # With a recap chart behind the payoff, Data presents from the lower
+            # stage at normal size (so he doesn't cover it); with an empty payoff
+            # he is the big central celebration that lands the takeaway.
+            close_y = stage_y if lead_payoff else float(H * 0.30)
+            close_scale = 1.0 if lead_payoff else 1.55
+            # With a recap chart behind the payoff, Data sweeps ON it (beside its
+            # star datum) rather than standing below; otherwise he is the big
+            # central celebration.
+            # If the recap chart bakes the host in, add NO closing overlay.
+            _close_baked = bool(st.segments) and _seg_is_baked(st.segments[-1])
+            staged_close = None
+            if lead_payoff and st.segments and not _close_baked:
+                staged_close = _stage_on_data(st.segments[-1], windows[-1][0],
+                                              windows[-1][1],
+                                              _act(st.segments[-1], "payoff"),
+                                              None)
+            if staged_close is not None:
+                _add(staged_close[0], staged_close[1])
+            elif not _close_baked:
+                _add((Cx, close_y, windows[-1][0], windows[-1][1],
+                      UP_ANGLE, False, close_act, close_scale))
         else:
+            gap_fill = "idle"
             home = (float(MASCOT_HOME[0]), float(MASCOT_HOME[1]))
-            seq = [(home[0], home[1], windows[0][0], windows[0][1], UP_ANGLE, False)]
+            seq = [(home[0], home[1], windows[0][0], windows[0][1],
+                    UP_ANGLE, False, "idle", 1.0)]
             for e in events:
                 if e["anchor"]:
                     bcx, bcy, variant = _place_mascot(
@@ -1265,24 +1570,63 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 tly = min(max(bcy - S / 2, 2), H - S - 2)
                 seq.append((tlx, tly, e["w0"], e["w1"],
                             UP_ANGLE if variant == "U" else SIDE_ANGLE,
-                            variant == "R"))
-            seq.append((home[0], home[1], windows[-1][0], windows[-1][1], UP_ANGLE, False))
+                            variant == "R",
+                            "idle" if variant == "U" else "point", 1.0))
+            seq.append((home[0], home[1], windows[-1][0], windows[-1][1],
+                        UP_ANGLE, False, "idle", 1.0))
 
         # Guarantee the host is on-screen for EVERY frame. Any beat whose line
         # names no on-chart number produces no events, which left a hole in the
         # tiling above and made the mascot briefly vanish. Sort by start time
         # and patch every gap (and the head/tail) with the home/up mascot so
         # coverage runs unbroken from 0 to the end of the video.
+        # BAKED spans: time ranges where a chart already draws the host INSIDE it
+        # (charts._bake_host). The gap-filler must NOT drop a second standing host
+        # over these — that was the duplicate 'clipboard Data' welded to the frame.
+        baked_spans = []
+        for _bi, _bseg in enumerate(st.segments):
+            if _seg_is_baked(_bseg) and _bi in disp_start:
+                baked_spans.append((disp_start[_bi], disp_end[_bi]))
+
+        def _baked_at(t):
+            return any(a - 0.06 <= t <= b + 0.06 for a, b in baked_spans)
+
+        # FULLY-BAKED story: Data lives entirely INSIDE the charts every beat, so
+        # the traveling/gap-fill overlay must add NOTHING — otherwise the home
+        # host parks at bottom-centre through the hook/payoff windows (when
+        # lead_hook/lead_payoff are off those windows aren't in baked_spans),
+        # which the gate reads as a SECOND, pixel-identical, decorative Data.
+        if st.segments and all(_seg_is_baked(s) for s in st.segments):
+            gap_fill = {"hidden": True}
+
         seq.sort(key=lambda s: s[2])
         filled, cursor = [], 0.0
+
+        def _fill_gap(a, b):                 # add a home host over [a,b] MINUS baked spans
+            segs = [(a, b)]
+            for (ba, bb) in baked_spans:
+                nxt = []
+                for (sa, sb) in segs:
+                    if bb <= sa or ba >= sb:
+                        nxt.append((sa, sb)); continue
+                    if ba > sa:
+                        nxt.append((sa, min(ba, sb)))
+                    if bb < sb:
+                        nxt.append((max(bb, sa), sb))
+                segs = nxt
+            for (sa, sb) in segs:
+                if sb - sa > 0.15:
+                    filled.append((home[0], home[1], sa, sb,
+                                   UP_ANGLE, False, gap_fill, 1.0))
+
         for entry in seq:
             w0, w1 = entry[2], entry[3]
             if w0 - cursor > 0.05:
-                filled.append((home[0], home[1], cursor, w0, UP_ANGLE, False))
+                _fill_gap(cursor, w0)
             filled.append(entry)
             cursor = max(cursor, w1)
         if total - cursor > 0.05:
-            filled.append((home[0], home[1], cursor, total, UP_ANGLE, False))
+            _fill_gap(cursor, total)
         seq = filled
 
         import os as _os2
@@ -1291,10 +1635,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # central role. LEGACY_LOOK=1 restores the old bokeh + b-roll strip.
         CLEAN = _os2.environ.get("LEGACY_LOOK") != "1"
         mascot_movs = []
-        for k, (_x, _y, _w0, _w1, angle, flip) in enumerate(seq):
+        for k, (_x, _y, _w0, _w1, angle, flip, act, sc) in enumerate(seq):
             mv = work / f"masc_{k}.mov"
-            mascot.build_mascot_loop(mv, size=S, seconds=2.2,
-                                     point_angle=float(angle), flip=flip)
+            Sk = int(round(S * sc))              # per-beat mascot size
+            if isinstance(act, dict) and act.get("hidden"):
+                # Data is baked into the chart this beat (e.g. riding the gauge)
+                # — overlay nothing, but keep the index aligned with a blank mov.
+                mascot.build_blank_loop(mv, size=Sk)
+            elif isinstance(act, dict):
+                # director spec → Data doing a scene-specific action with a prop.
+                # 30fps so his body/prop motion matches the smooth ffmpeg glide
+                # (was 20fps → he slid smoothly but his pose stuttered).
+                mascot.build_scene_loop(mv, act, size=Sk, seconds=2.2,
+                                        flip=flip, fps=30)
+            else:
+                mascot.build_mascot_loop(mv, size=Sk, seconds=2.2,
+                                         point_angle=float(angle), flip=flip,
+                                         pose=act)
             mascot_movs.append(mv)
 
         # Bottom footage: round-robin through the per-style b-roll clips so
@@ -1315,8 +1672,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             print(f"[studio] hook image skipped: {e}", flush=True)
 
         # Inputs: 0 gradient, 1 bokeh, 2 footage, 3 mask, [hook img], charts, mascots, audio
-        _grad = (("0x0C0E13", "0x0E1118", "0x12161F", "0x0A0C11")
-                 if CLEAN else theme["grad"])       # CLEAN = flat dark editorial
+        # CLEAN = dark EDITORIAL gradient with genuine depth: a lifted blue/slate
+        # diagonal (mean well above the dark threshold) fading to near-black
+        # corners. The old palette sat so dark the whole frame read as a black
+        # VOID on beats without a chart (hook/payoff) — the gate's empty_void
+        # flag. This keeps the professional dark look but gives the frame body.
+        _grad = (("0x10131C", "0x1E2740", "0x243141", "0x0D0F16")
+                 if CLEAN else theme["grad"])
         inputs = ["-f", "lavfi", "-i",
                   ambient.gradient_lavfi(total, colors=_grad)]
         inputs += ["-loop", "1", "-i", str(bokeh)]
@@ -1333,12 +1695,41 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             inputs += ["-loop", "1", "-i", str(hook_img)]
             hook_idx = idx
             idx += 1
+        receipt_idx = None
+        if receipt:
+            rpat, rnfr = receipt
+            hw = windows[0][1] - windows[0][0]
+            rfps = max(18.0, min(30.0, rnfr / max(0.8, hw - 0.2)))
+            inputs += ["-framerate", f"{rfps:.2f}", "-i", rpat]
+            receipt_idx = idx
+            idx += 1
         seg_idx = {}
+        import glob as _glob
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
-                # chart_path is a printf build sequence (..._build%02d.png);
-                # read it at 24fps so the bars/line draw on.
-                inputs += ["-framerate", "24", "-i", seg.chart_path]
+                # chart_path is a printf build sequence (..._build%02d.png). Play
+                # it at a framerate that spans MOST of the beat instead of a fixed
+                # 24fps that finishes in <1s and then freezes — that static hold
+                # is what tanks pace / reads as dead air. tpad below covers only a
+                # short tail.
+                nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
+                wi = windows[1 + i] if 1 + i < len(windows) else None
+                # Span the DISPLAY window (seg0 includes the hook, the last chart
+                # includes the closing) so the build's framerate matches how long
+                # it's shown.
+                _s0 = disp_start.get(i, wi[0] if wi else 0.0)
+                _s1 = disp_end.get(i, wi[1] if wi else 2.0)
+                beat = (_s1 - _s0)
+                # Play at a smooth framerate (>=18fps) so growth doesn't step in
+                # visible jumps; with ~60 build frames this spans typical beats,
+                # and a short settle tail on longer beats stays under dead-air.
+                # EXACTLY 30fps (== the export rate) so no source frame is ever
+                # duplicated/dropped into the master timeline (ChatGPT: "remove
+                # dynamic source FPS completely"). nfr is ceil(beat*30) so the
+                # build spans the beat 1:1 at 30fps; a short settle tail (tpad)
+                # covers rounding. No 18-30 range, no resampling judder.
+                cfps = 30.0
+                inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
         masc_input = []
@@ -1353,8 +1744,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # Flat dark editorial bg + a thin brand accent bar at the very top,
             # a soft vignette to settle the eye. No orbs, no blur haze.
             _ac = (theme.get("accent") or "#4FD1C5").lstrip("#")
+            # LOWER-THIRD PANEL: the band below the chart card used to be bare
+            # gradient — the gate's 'dead navy strip / empty_void'. Fill it with a
+            # subtle raised panel + an accent divider so it reads as an
+            # intentional caption zone (a pro lower-third), not wasted space.
             fc = [f"[0:v]format=rgba,vignette=PI/6,"
-                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill[bg]"]
+                  f"drawbox=x=0:y=0:w={W}:h=8:color=0x{_ac}@1.0:t=fill,"
+                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h={FOOT_H}:color=0x161D2E@0.62:t=fill,"
+                  f"drawbox=x=0:y={FOOT_Y}:w={W}:h=5:color=0x{_ac}@0.55:t=fill[bg]"]
         else:
             fc = ambient.bg_filter(1, fps=FPS)    # -> [bg]
         if CLEAN:
@@ -1396,6 +1793,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"[{prev}][hookimg]overlay=0:0:"
                 f"enable='between(t,0,{he:.2f})'[hk]")
             prev = "hk"
+        # HOOK RECEIPT: the total races up over the hook window, then holds
+        # briefly and fades as the first chart arrives. Full-frame; Data reacts
+        # below it (mascot overlay is drawn after this).
+        if receipt_idx is not None:
+            he = windows[0][1]
+            fc.append(
+                f"[{receipt_idx}:v]tpad=stop_mode=clone:stop_duration={he + 0.5:.2f},"
+                f"setpts=PTS-STARTPTS,scale={W}:{H},format=rgba,"
+                f"fade=t=out:st={max(0.1, he - 0.3):.2f}:d=0.3:alpha=1[rcpt]")
+            fc.append(
+                f"[{prev}][rcpt]overlay=0:0:enable='between(t,0,{he:.2f})'[rk]")
+            prev = "rk"
         # Charts DRAW ON: the build sequence plays (~0.7s) then tpad holds the
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
@@ -1404,8 +1813,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             if i not in seg_idx:
                 continue
             gi = seg_idx[i]
-            s0, s1 = windows[1 + i]
-            fd = 0.3
+            # s0/s1 are the DISPLAY window — the opening chart leads the hook and
+            # the last chart trails into the closing, so neither bookend is a void.
+            s0 = disp_start.get(i, windows[1 + i][0])
+            s1 = disp_end.get(i, windows[1 + i][1])
+            fd = 0.14        # short cross-fade so no frame lands on near-black
             hold = max(0.5, (s1 - s0)) + 1.0
             # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
             # at 1080x1920 and fill the whole frame; card charts/maps stay in the
@@ -1417,22 +1829,41 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
                 f"scale={vw}:{vh},format=rgba,"
-                f"fade=t=in:st={s0:.2f}:d=0.18:alpha=1,"
+                f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
                 f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
-        # Mascots — each slides in from the previous spot (feels like it walks).
+        # Mascots — Data TRAVELS. He glides from his previous spot to this
+        # beat's spot across the WHOLE beat (not a quick slide-then-park), so
+        # his x/y is always changing — he's never static in one place. A gentle
+        # bob rides on top. In CLEAN this traces a path around the frame; in
+        # legacy it still walks between numbers.
         prev_tl = home
-        for k, (tlx, tly, w0, w1, _a, _f) in enumerate(seq):
+        for k, (tlx, tly, w0, w1, _a, _f, _p, sc) in enumerate(seq):
             gi = masc_input[k]
-            # Calmer: a slower glide (0.55s) and a gentle bob.
-            xe = _piecewise([(w0, prev_tl[0]), (w0 + 0.55, tlx)], 1)
-            ye = f"({_piecewise([(w0, prev_tl[1]), (w0 + 0.55, tly)], 1)})+3*sin(1.3*t)"
-            fc.append(f"[{gi}:v]format=rgba,scale={S}:{S}[mk{k}]")
-            fc.append(f"[{prev}][mk{k}]overlay=x='{xe}':y='{ye}':eval=frame:"
-                      f"enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+            # Glide across nearly the WHOLE beat (settle only the last ~8%), and
+            # ride a continuous 2D idle on top — a vertical bob plus a small
+            # horizontal sway — so Data is NEVER globally static, even when he's
+            # "parked". A static host is what the temporal grade reads as a held
+            # frame (the payoff's static pose). Keep him alive every frame.
+            # Sweep in FAST (arrive by ~30% of the beat), then hold position and
+            # PERFORM the animated action for the rest — so the sampled frames
+            # catch him ACTING on the data, not endlessly sliding across it.
+            arrive = w0 + max(0.4, (w1 - w0) * 0.30)
+            # A data beat sweeps in from its own entry point (onto the datum);
+            # otherwise Data glides from where he last was.
+            start = entries.get(k, prev_tl)
+            xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
+                  f"+6*sin(1.3*t)")
+            ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
+                  f"+9*sin(2.1*t)")
+            Sk = int(round(S * sc))
+            off = (Sk - S) // 2            # keep the bigger sprite centred on target
+            fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
+            fc.append(f"[{prev}][mk{k}]overlay=x='({xe})-{off}':y='({ye})-{off}':"
+                      f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
@@ -1450,12 +1881,25 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         if use_broll:
             _advance_broll(total)
 
-        # 3D bookends — open on a Blender hero and close on one (VIZ_BRAIN hard
-        # rule). Guarded: any failure leaves the finished 2D body in place.
-        try:
-            _add_3d_bookends(story_cfg, st, work, theme, out_path)
-        except Exception as e:  # noqa: BLE001
-            print(f"[studio] 3D bookends skipped: {str(e)[:160]}", file=sys.stderr)
+        # RESET (one controlled format): the video is a SINGLE render pass. The
+        # old 3D Blender bookends + a separately-stitched kinetic cold-open were
+        # an extra layer stapled on around the body — redundant with the body's
+        # own hero-number hook and outro. Removed, so there is exactly one
+        # format: flat dark bg, one real chart, Data, narration, captions.
+
+    # Render manifest: the actual beat windows so the showrunner samples frames
+    # at real scene boundaries (hook / each segment / payoff) instead of blind
+    # evenly-spaced stills.
+    try:
+        manifest = {
+            "slug": slug, "total": round(total, 2),
+            "hook_window": [round(windows[0][0], 2), round(windows[0][1], 2)],
+            "segment_windows": [[round(a, 2), round(b, 2)] for a, b in windows],
+            "kinds": [getattr(s, "kind", "") for s in st.segments],
+        }
+        out_path.with_suffix(".manifest.json").write_text(json.dumps(manifest))
+    except Exception as e:  # noqa: BLE001
+        print(f"[studio] manifest skipped: {e}", file=sys.stderr)
 
     print(f"[studio] story '{slug}': {len(st.segments)} charts, "
           f"{len(sentences)} beats, {total:.1f}s -> {out_path}")

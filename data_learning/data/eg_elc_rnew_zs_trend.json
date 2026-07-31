@@ -1,0 +1,48 @@
+{
+  "key": "eg_elc_rnew_zs_trend",
+  "title": "Renewable electricity output",
+  "unit": "% of total electricity output",
+  "geography": "World",
+  "time_coverage": "1990-2021",
+  "insight_type": "trend",
+  "source": {
+    "name": "Renewable electricity output",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.ELC.RNEW.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 19.3,
+      "period": "1990"
+    },
+    {
+      "label": "1996",
+      "value": 19.4,
+      "period": "1996"
+    },
+    {
+      "label": "2002",
+      "value": 18.3,
+      "period": "2002"
+    },
+    {
+      "label": "2009",
+      "value": 19.7,
+      "period": "2009"
+    },
+    {
+      "label": "2015",
+      "value": 23.0,
+      "period": "2015"
+    },
+    {
+      "label": "2021",
+      "value": 27.8,
+      "period": "2021"
+    }
+  ]
+}

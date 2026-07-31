@@ -1,0 +1,48 @@
+{
+  "schema": "chatgpt-media-request/v1",
+  "date": "2026-07-29",
+  "status": "open",
+  "purpose": "DECISIVE TEST — the GitHub writer is UTF-8 text only, so raster bytes cannot be committed directly. Two workarounds are tested in ONE round trip: (A) base64-encode the image into a text file, (B) hand back the image URL as text and let us download it. BOTH must be attempted for every request. We are not accepting a vector-only outcome.",
+  "drop_branch": "media-dropbox",
+  "drop_path": "drops/2026-07-29-b64/",
+  "delivery_contract": {
+    "rule": "Attempt BOTH channel A and channel B for every request. Reporting one does not excuse skipping the other. Partial success is valuable; silence is not.",
+    "channel_a_base64": {
+      "what": "Write the raw bytes of the GENERATED raster image, base64-encoded, as a UTF-8 text file.",
+      "file": "<request_id>/image.<ext>.b64",
+      "format": "standard base64 of the raw image bytes. Line breaks every 76 chars are fine. NO data: URI prefix, NO markdown fences, NO quotes, NO JSON wrapper — the file contains ONLY the base64 payload.",
+      "field": "report the path in the result's \"files\" array"
+    },
+    "channel_b_url": {
+      "what": "Whatever URL your image tool produced for the generated image — the direct asset link, sandbox path, or file id.",
+      "field": "report it in the result's \"urls\" array (array of strings), and put any auth/expiry caveat in \"notes\"",
+      "why": "Even a short-lived URL is useful: our render job runs same-day and can download it. Give us the URL even if you believe it will expire, and say when you think it expires."
+    }
+  },
+  "requests": [
+    {
+      "id": "b64-image-001",
+      "kind": "image_raster",
+      "channel": "test",
+      "slug": "b64-capability-test",
+      "prompt": "A photorealistic close-up of a single ripe orange resting on a black reflective surface, dramatic side lighting, shallow depth of field.",
+      "style": "photorealistic, cinematic lighting",
+      "width": 1024,
+      "height": 1024,
+      "accepts": ["b64_png", "b64_jpg", "b64_webp", "url"],
+      "max_bytes": 6000000,
+      "notes": "This MUST be a real generated raster image from your image tool — NOT hand-written SVG or vector code. Vector is already proven and is not what this test measures. Attempt channel A AND channel B."
+    }
+  ],
+  "diagnostics_required": {
+    "instruction": "If either channel fails, the manifest MUST name the exact step that blocked it. Vague failure notes make this test worthless.",
+    "steps_to_report_on": [
+      "generate — could your image tool produce the image at all?",
+      "access — could you read/see the resulting file or its bytes from the same task context?",
+      "encode — could you base64-encode those bytes?",
+      "write — could you commit the encoded text file to the branch?",
+      "url — did the image tool expose any URL, path, or file id, and what is it?"
+    ],
+    "note": "Report per-step: worked / failed / not-attempted, with one line of why. A precise 'access failed: the image tool output is not visible to the file writer' is a SUCCESSFUL test result. 'Unsupported' with no step named is a FAILED one."
+  }
+}

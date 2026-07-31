@@ -259,7 +259,7 @@ def main():
     meta=render_story(st,out,work)
     print(f"[v2] rendered {out} ({meta['duration']:.1f}s), beats={[b['mechanic'] for b in st['beats']]}")
     if a.upload:
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         res=YouTubeUploader(channel=a.channel).upload(str(out),title=meta["title"],
             description=meta["description"],tags=meta["tags"],publish_at=a.publish_at or None,category="27")
         print(f"[v2] uploaded {res}")

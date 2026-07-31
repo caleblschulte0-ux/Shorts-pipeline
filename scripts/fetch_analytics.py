@@ -76,7 +76,7 @@ def _youtube_service(channel: str = ""):
     auth so `channel="explainer"` reads YOUTUBE_TOKEN_JSON_EXPLAINER (the
     second channel) and "" reads the original YOUTUBE_TOKEN_JSON — no auth
     logic duplicated."""
-    from uploaders import YouTubeUploader
+    from shared.uploaders import YouTubeUploader
     return YouTubeUploader(channel=channel)._service()
 
 
@@ -85,7 +85,7 @@ def _analytics_service(channel: str = ""):
     the analytics scope (older tokens) or anything goes wrong building it.
     Never raises — retention is an enhancement, view counts are the baseline."""
     try:
-        from uploaders import YouTubeUploader
+        from shared.uploaders import YouTubeUploader
         return YouTubeUploader(channel=channel).analytics_service()
     except Exception as e:  # noqa: BLE001
         print(f"[analytics] retention service unavailable ({e})",
@@ -640,7 +640,7 @@ def main() -> int:
 
     out_dir.mkdir(parents=True, exist_ok=True)
     today = datetime.now(timezone.utc).strftime("%Y%m%d")
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(out_dir / f"{today}.json", snap)
     atomic_write_json(out_dir / "latest.json", snap)
 

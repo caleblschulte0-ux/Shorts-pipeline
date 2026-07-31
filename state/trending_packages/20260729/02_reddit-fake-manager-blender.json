@@ -1,0 +1,86 @@
+{
+  "version": 1,
+  "subreddit": "IDontWorkHereLady",
+  "slug": "02_reddit-fake-manager-blender",
+  "title": "A woman said she basically ran the store. The real manager was standing behind her.",
+  "hashtags": [
+    "reddit",
+    "storytime",
+    "idontworkherelady",
+    "karma",
+    "retail",
+    "customerservice",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying",
+    "justice"
+  ],
+  "script": "A woman cut in front of six people at the return counter and announced that she basically ran this store and I'd better process her cash refund on a receipt-less blender before she called corporate on my first day. I told her store policy required a manager for any refund over fifty dollars without a receipt, and she rolled her eyes and said fine, go get one, like she was doing me a favor. I paged for backup and my actual manager walked up behind her while she was still mid-rant about how replaceable I was. My manager asked her name, typed it into the system, and calmly explained that her return privileges had already been suspended two months ago for the exact same blender scam at our other location across town. Security walked her out empty-handed while she screamed that she knew the regional director personally. He does. He's the one who flagged her account.",
+  "shots": [
+    {
+      "phrase": "cut in front of six people at the return counter",
+      "query": "retail store return counter line",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "she basically ran this store",
+      "query": "woman pointing finger arguing store",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "a receipt-less blender",
+      "query": "kitchen blender box counter",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "go get one, like she was doing me a favor",
+      "query": "woman rolling eyes dismissive",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "my actual manager walked up behind her",
+      "query": "store manager walking up retail floor",
+      "mascot_pose": "point"
+    },
+    {
+      "phrase": "her return privileges had already been suspended two months ago",
+      "query": "computer screen account flagged",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "Security walked her out empty-handed",
+      "query": "security escorting person out store",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "He's the one who flagged her account",
+      "query": "manager closing laptop confident",
+      "mascot_pose": "idle"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "she basically ran this store",
+      "text": "\"RUNS\" THIS STORE?",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "her return privileges had already been suspended two months ago",
+      "text": "ALREADY BANNED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Security walked her out empty-handed",
+      "text": "ESCORTED OUT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He's the one who flagged her account",
+      "text": "HE FLAGGED HER",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}

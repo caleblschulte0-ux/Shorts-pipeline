@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "05_graph-openai-anthropic-valuation",
+  "title": "OpenAI vs Anthropic: Valuation By Year",
+  "y_label": "Valuation ($ billions)",
+  "duration": 13,
+  "source": "Sources: OpenAI and Anthropic funding-round announcements 2023-2026, compiled via CNBC, Reuters and Morning Brew valuation trackers",
+  "hashtags": [
+    "openai",
+    "anthropic",
+    "ai",
+    "valuation",
+    "startups",
+    "tech",
+    "chatgpt",
+    "claude",
+    "ipo",
+    "artificialintelligence",
+    "funding",
+    "moneymoves",
+    "fyp",
+    "shorts",
+    "trending"
+  ],
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "OpenAI",
+      "color": "#10a37f",
+      "values": [
+        29,
+        157,
+        300,
+        852
+      ]
+    },
+    {
+      "name": "Anthropic",
+      "color": "#d97757",
+      "values": [
+        4.1,
+        18.5,
+        183,
+        965
+      ]
+    }
+  ],
+  "music_vibe": "cinematic"
+}

@@ -49,7 +49,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 from scripts.discover_topic import discover_all  # noqa: E402
 from scripts import rank_topics  # noqa: E402
-import script_generator  # noqa: E402
+from shared import script_generator as script_generator  # noqa: E402
 import make_explainer_stacked  # noqa: E402
 
 STATE_DIR = REPO / "state"
@@ -85,7 +85,34 @@ REPORT_JSON = REPO / "daily_report.json"
 # 6 publish slots in UTC. Maps to 9am, 11am, 1pm, 3pm, 5pm, 7pm EDT
 # (UTC-4). The action fires at 12 UTC = 8am EDT so the first slot is
 # +1hr and the rest spread through the workday.
-DEFAULT_PUBLISH_HOURS_UTC = [13, 15, 17, 19, 21, 23]
+# Publish slots as CENTRAL wall-clock times (operator ruling 2026-07-30:
+# 8:00am, 9:30am, 11:00am, ... — 90-minute spacing across the morning/early
+# afternoon). Defined in local Central and converted to UTC at runtime so the
+# real posting time does NOT drift an hour every DST changeover, which a
+# hardcoded UTC list would. Override per-run with PUBLISH_SLOTS_CENTRAL
+# ("8:00,9:30,11:00" style) without a code change.
+PUBLISH_TZ = "America/Chicago"
+DEFAULT_PUBLISH_SLOTS_CENTRAL = [
+    (8, 0), (9, 30), (11, 0), (12, 30), (14, 0), (15, 30),
+]
+
+
+def _publish_slots() -> list[tuple[int, int]]:
+    """Slots as (hour, minute) in Central. Env override, else the default."""
+    raw = os.environ.get("PUBLISH_SLOTS_CENTRAL", "").strip()
+    if not raw:
+        return list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
+    out: list[tuple[int, int]] = []
+    for part in raw.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        try:
+            h, _, m = part.partition(":")
+            out.append((int(h), int(m or 0)))
+        except ValueError:
+            print(f"[schedule] bad PUBLISH_SLOTS_CENTRAL entry {part!r} ignored")
+    return out or list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
 
 
 def load_log() -> dict:
@@ -98,26 +125,51 @@ def load_log() -> dict:
 
 
 def save_log(log: dict) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
-def schedule_times(now: datetime, n: int, hours: list[int]) -> list[str]:
-    """Pick the next n hour-slots ≥5 min in the future, walking into
-    tomorrow if needed. Returns ISO-8601 strings in UTC."""
-    base = now.replace(hour=0, minute=0, second=0, microsecond=0)
+def schedule_times(now: datetime, n: int,
+                   slots: "list[tuple[int, int]] | None" = None) -> list[str]:
+    """Pick the next n publish slots ≥5 min out, walking into tomorrow if
+    needed. Slots are (hour, minute) in Central wall-clock; the return value is
+    ISO-8601 UTC, which is what the YouTube API wants.
+
+    Central-local rather than fixed UTC so 8:00am stays 8:00am across DST.
+    Falls back to a fixed UTC offset if the tz database is unavailable.
+    """
+    slots = list(slots or _publish_slots())
     cutoff = now + timedelta(minutes=5)
+
+    tz = None
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(PUBLISH_TZ)
+    except Exception as exc:  # noqa: BLE001 - no tzdata: degrade, don't crash
+        print(f"[schedule] {PUBLISH_TZ} unavailable ({type(exc).__name__}); "
+              f"falling back to a fixed UTC-5 offset", flush=True)
+
     picks: list[datetime] = []
     for day_offset in range(3):
-        for hour in hours:
-            t = base + timedelta(days=day_offset, hours=hour)
+        local_day = (now.astimezone(tz) if tz else now - timedelta(hours=5))
+        local_day = (local_day + timedelta(days=day_offset)).replace(
+            hour=0, minute=0, second=0, microsecond=0)
+        for hour, minute in slots:
+            if tz is not None:
+                t = local_day.replace(hour=hour, minute=minute,
+                                      tzinfo=tz).astimezone(timezone.utc)
+            else:
+                t = (local_day.replace(hour=hour, minute=minute,
+                                       tzinfo=timezone.utc)
+                     + timedelta(hours=5))
             if t > cutoff:
                 picks.append(t)
             if len(picks) >= n:
                 break
         if len(picks) >= n:
             break
-    return [t.strftime("%Y-%m-%dT%H:%M:%SZ") for t in picks[:n]]
+    return [t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            for t in picks[:n]]
 
 
 def _slug(s: str, n: int = 40) -> str:
@@ -146,7 +198,7 @@ def _illustration_quarantine(pkg: dict) -> str | None:
     if MIN_ILLUSTRATION_PCT <= 0:
         return None
     try:
-        import entity_media
+        from funnel import entity_media as entity_media
         report = entity_media.validate_package(pkg)
     except Exception as e:  # noqa: BLE001
         print(f"[quarantine] validator error, allowing render: "
@@ -232,8 +284,8 @@ def _backfill_illustrations(pkg: dict) -> None:
     illustration coverage so a good story isn't quarantined for thin
     imagery. Best-effort — no-ops if generation/network is unavailable."""
     try:
-        import gemini_images
-        import entity_media
+        from funnel import gemini_images as gemini_images
+        from funnel import entity_media as entity_media
     except Exception:  # noqa: BLE001
         return
     try:
@@ -310,7 +362,7 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
     block: str | None = None
     thumb: str | None = None
     try:
-        import gemini_images
+        from funnel import gemini_images as gemini_images
     except Exception:  # noqa: BLE001
         return None, None
     # Feature 3 — vision QA (blocks only broken/unsafe; fail-open).
@@ -363,10 +415,38 @@ def most_recent_package_dir() -> Path | None:
     return max(candidates, key=lambda p: p.name)
 
 
+def posted_titles() -> set[str]:
+    """Every title this channel has already uploaded.
+
+    The only upload guard used to be a 6-hour rolling window, which stops a
+    double-fire on the SAME day and nothing else. That was survivable while
+    `most_recent_package_dir()` was a rare last resort — but a Claude weekly
+    limit produces a 1-3 day gap several times a month, and on day two of a
+    gap that fallback serves day one's slate 24h later, straight past the
+    6-hour window, and re-uploads every video. This is the title-level guard
+    that makes the stale-slate path safe."""
+    try:
+        log = load_log()
+    except Exception:                                # noqa: BLE001
+        return set()
+    out = set()
+    for e in log.get("posted", []) or []:
+        for key in ("title", "topic"):
+            v = (e.get(key) or "").strip()
+            if v:
+                out.add(v.casefold())
+    return out
+
+
 def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
     """Return (source_dir, packages). Prefers today's dir; falls back
     to the most-recent YYYYMMDD/ on disk so a missing routine run
-    doesn't force the expensive Groq fallback path."""
+    doesn't force the expensive Groq fallback path.
+
+    Anything already in the posted log is dropped, whichever dir it came
+    from. If that empties a stale dir we return nothing and let the caller
+    fall through to Groq — a weaker NEW script beats a duplicate upload,
+    and a duplicate is the one failure the posted logs exist to prevent."""
     candidates = [todays_package_dir(), most_recent_package_dir()]
     seen: set[Path] = set()
     for d in candidates:
@@ -379,13 +459,47 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
                 continue  # _schedule.json etc. are config, not packages
             try:
                 pkg = json.loads(p.read_text())
-                pkg.setdefault("_path", str(p.relative_to(REPO)))
+                try:
+                    pkg.setdefault("_path", str(p.relative_to(REPO)))
+                except ValueError:       # package dir redirected (tests)
+                    pkg.setdefault("_path", str(p))
                 pkgs.append(pkg)
             except json.JSONDecodeError as e:
                 print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
                       file=sys.stderr)
-        if pkgs:
-            return d, pkgs
+        already = posted_titles()
+        fresh = [p for p in pkgs
+                 if (p.get("title") or "").strip().casefold() not in already]
+        dropped = len(pkgs) - len(fresh)
+        if dropped:
+            print(f"[run_trending_daily] {d.name}: dropped {dropped} "
+                  f"package(s) already in the posted log — refusing to "
+                  f"re-upload", flush=True)
+        # RENDERING ELIGIBILITY. A retired format still RENDERS — its
+        # renderer is kept so already-posted videos stay reproducible, and
+        # refusing here would throw away a whole day over a policy change
+        # made after the packages were authored. But it is never silent: a
+        # retired format reaching the renderer means promotion let it
+        # through, and that is a bug worth seeing in the run log.
+        try:
+            from shared import channel_registry as _reg
+            for pkg in fresh:
+                fid = _reg.classify(pkg, "trending")
+                if fid and not _reg.is_authorable("trending", fid):
+                    print(f"::warning::{pkg.get('slug')} uses the RETIRED "
+                          f"format {fid!r} — rendering it, but nothing "
+                          f"should be authoring it "
+                          f"(config/channel_registry.json)", flush=True)
+        except Exception as exc:                     # noqa: BLE001
+            print(f"[run_trending_daily] registry check unavailable: {exc}",
+                  flush=True)
+        if fresh:
+            if d != todays_package_dir():
+                print(f"[run_trending_daily] WARNING using STALE packages "
+                      f"from {d.name} — today's dir is empty. The reserve "
+                      f"bank and the ChatGPT takeover both came up short.",
+                      flush=True)
+            return d, fresh
     return None, []
 
 
@@ -395,12 +509,20 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     result: dict = {
         "topic": pkg.get("topic", pkg.get("title", "untitled")),
         "title": pkg.get("title"),
+        "format": pkg.get("format") or (
+            "reddit" if pkg.get("subreddit") else "explainer"),
         "publish_at": publish_at,
         "ok": False,
         "video_url": None,
         "error": None,
         "elapsed_seconds": 0.0,
         "package_path": pkg.get("_path"),
+        # WHO wrote this package. A Claude weekly limit puts the channel on
+        # a fallback brain for a day or three at a time, several times a
+        # month — often enough that it must be visible in the daily report
+        # and the phone push, not buried in an Actions log nobody opens.
+        "source": ("chatgpt" if pkg.get("_authored_by") == "chatgpt-takeover"
+                   else "reserve" if pkg.get("_reserve") else "brain"),
     }
     t_start = time.time()
     # text_card packages carry no shots — the payload is the text block, not
@@ -414,6 +536,19 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
     reason = None if _is_text_card else _illustration_quarantine(pkg)
+    # DATA DRAMA gate (graph_race only): bigger is better. Small, slow,
+    # flat numbers make a chart nobody watches, so a weak dataset never
+    # gets rendered — the batch continues without it and the report says
+    # exactly why, so the next authoring pass can pick better data.
+    if reason is None and pkg.get("format") == "graph_race":
+        try:
+            from engines import chart_race
+            verdict = chart_race.assess(pkg)
+            if not verdict["ok"]:
+                reason = "weak data: " + "; ".join(verdict["reasons"])
+        except Exception as e:  # noqa: BLE001 — never fail a run on the gate
+            print(f"  [drama gate skipped] {type(e).__name__}: {e}",
+                  flush=True)
     if reason is not None:
         result["error"] = f"quarantined: {reason}"
         result["quarantined"] = True
@@ -444,7 +579,7 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             result["ok"] = True
             result["video_url"] = "(dry-run)"
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             # `channel` selects which YOUTUBE_TOKEN_JSON_* secret the
             # uploader reads. Empty/missing → baller_bro_2_0 (the
             # original `YOUTUBE_TOKEN_JSON`). Set on the package by
@@ -539,7 +674,7 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
             result["ok"] = True
             result["video_url"] = "(dry-run)"
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             print(f"[{topic.query!r}] uploading...", flush=True)
             uploader = YouTubeUploader()
             upload_result = uploader.upload(
@@ -568,9 +703,28 @@ def format_report(date_str: str, results: list[dict]) -> str:
     success = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    # Fallback-brain banner. Goes ABOVE the counts because ntfy only sends
+    # the first ~20 lines of this file to the phone.
+    by_source: dict[str, int] = {}
+    for r in results:
+        by_source[r.get("source") or "brain"] = (
+            by_source.get(r.get("source") or "brain", 0) + 1)
+    banner = []
+    if by_source.get("chatgpt"):
+        banner.append(f"> **ChatGPT wrote {by_source['chatgpt']} of today's "
+                      f"{len(results)} packages** — the Claude Routine did "
+                      f"not run (weekly limit?).")
+    if by_source.get("reserve"):
+        banner.append(f"> **{by_source['reserve']} package(s) came from the "
+                      f"reserve bank** — top it up when Claude is back: "
+                      f"`python scripts/package_reserve.py status`.")
+    if banner:
+        banner.append("")
+
     lines = [
         f"# Daily Trending Shorts — {date_str}",
         "",
+        *banner,
         f"- queued: **{len(results)}**",
         f"- succeeded: **{len(success)}**",
         f"- quarantined (off-topic imagery): **{len(quarantined)}**",
@@ -615,7 +769,7 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
     keep the old relevant-theme diversity. Mutates pkgs in place."""
     try:
         import make_explainer_stacked as mes
-        import themed_bottom
+        from shared import themed_bottom as themed_bottom
     except Exception:  # noqa: BLE001
         return
     tags = mes._seeded_gameplay_tags() or list(mes.GAMEPLAY_TAGS)
@@ -730,7 +884,7 @@ def main() -> int:
         print(f"[preflight] today's packages: {pkg_files}", flush=True)
 
     now = datetime.now(timezone.utc)
-    sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
+    sched = schedule_times(now, args.count)
 
     # Path A: pre-written packages dropped by a scheduled Claude Code
     # session. Render + upload directly, no LLM script generation. If
@@ -768,8 +922,7 @@ def main() -> int:
                 print(f"[schedule] bad _schedule.json ignored: {e}", flush=True)
         import math
         eff = min(args.count, len(prewritten))
-        sched = schedule_times(
-            now, max(1, math.ceil(eff / per_slot)), DEFAULT_PUBLISH_HOURS_UTC)
+        sched = schedule_times(now, max(1, math.ceil(eff / per_slot)))
         results: list[dict] = []
         sched_idx = 0
         for pkg in prewritten[:args.count]:
@@ -844,6 +997,7 @@ def main() -> int:
             log["posted"].append({
                 "topic": r["topic"],
                 "title": r.get("title"),
+                "format": r.get("format"),
                 "video_url": r["video_url"],
                 "publish_at": r.get("publish_at"),
                 "posted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

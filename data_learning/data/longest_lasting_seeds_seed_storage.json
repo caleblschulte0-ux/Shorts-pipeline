@@ -1,0 +1,28 @@
+{
+  "key": "longest_lasting_seeds_seed_storage",
+  "title": "Seed Storage",
+  "unit": "degrees",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-25"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Coldest Storage Temperature",
+      "value": -20.0,
+      "period": "recorded"
+    },
+    {
+      "label": "Warmest Storage Temperature",
+      "value": 20.0,
+      "period": "recorded"
+    }
+  ]
+}

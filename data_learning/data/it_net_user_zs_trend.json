@@ -1,0 +1,48 @@
+{
+  "key": "it_net_user_zs_trend",
+  "title": "Individuals using the Internet",
+  "unit": "% of population",
+  "geography": "World",
+  "time_coverage": "2005-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Individuals using the Internet",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2005",
+      "value": 15.6,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 25.3,
+      "period": "2009"
+    },
+    {
+      "label": "2013",
+      "value": 35.3,
+      "period": "2013"
+    },
+    {
+      "label": "2017",
+      "value": 46.3,
+      "period": "2017"
+    },
+    {
+      "label": "2021",
+      "value": 63.8,
+      "period": "2021"
+    },
+    {
+      "label": "2025",
+      "value": 73.6,
+      "period": "2025"
+    }
+  ]
+}

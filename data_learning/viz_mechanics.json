@@ -254,5 +254,47 @@
   "concept": "spider silk threads weave a web of strength, with each data point represented as a node with its label and value",
   "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nfor i in range(n):\n    v = values[i]\n    a = 2 * math.pi * i / n\n    nx = cx + int(300 * math.cos(a))\n    ny = cy + int(300 * math.sin(a))\n    d.line([cx, cy, nx, ny], fill=rgba(HIGHLIGHT, 255), width=4)\n    img = subject_image(labels[i].lower())\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        if h > 150:\n            h = 150\n            w = int(h * asp)\n        paste(img, nx - w // 2, ny - h // 2, w, h)\n    text(str(int(v)) + ' MPa', nx, ny + 20, size=32, color=TEXT, center=True)\n    text(labels[i], nx, ny + 60, size=28, center=True)\nfor i in range(n):\n    v = values[i]\n    a = 2 * math.pi * i / n\n    nx = cx + int(300 * math.cos(a))\n    ny = cy + int(300 * math.sin(a))\n    for j in range(n):\n        if i != j:\n            v2 = values[j]\n            a2 = 2 * math.pi * j / n\n            nx2 = cx + int(300 * math.cos(a2))\n            ny2 = cy + int(300 * math.sin(a2))\n            d.line([nx, ny, nx2, ny2], fill=rgba(ACCENT, int(128 * reveal)), width=2)\n",
   "topic": "Natural Materials"
+ },
+ {
+  "sig": "c01a21c69a40",
+  "mechanic": "drip-trail",
+  "concept": "a trail of water droplets rises from the desert floor, with each droplet's size and label representing the data points",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    y = RTOP + 200 + i * 150\n    img = subject_image('water droplet')\n    if img is not None:\n        asp = img.width / img.height\n        w = int(30.0 * (v / vmax) * reveal)\n        h = int(w / asp)\n        paste(img, RX0 + 20, y, w, h)\n    text(labels[i], RX0 + 60, y + h // 2, size=38, center=False)\n    text(str(int(v)) + ' mm/yr', RX0 + 220, y + h // 2, size=38, center=False)\n    trail_len = int(200.0 * reveal)\n    for j in range(trail_len):\n        d.ellipse([RX0 + 20 + j * 2, y + h // 2 - 5, RX0 + 20 + j * 2 + 5, y + h // 2 + 5], fill=rgba(HIGHLIGHT, 128))\n",
+  "topic": "Drop vs Puddle"
+ },
+ {
+  "sig": "62c6f879039e",
+  "mechanic": "rootgrowth",
+  "concept": "A botanical garden scene where roots of different plants grow and rise from the bottom to represent the root growth rate of each data point",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = RBOT\nd.rectangle([RX0, RTOP, RX1, RBOT], fill=rgba((34, 139, 34), 100))\nfor i in range(n):\n    v = values[i]\n    x = RX0 + (i + 0.5) * (RX1 - RX0) / n\n    h = lerp(0, 600, clamp(v / vmax))\n    root_h = int(h * reveal)\n    d.line([x, cy, x, cy - root_h], fill=rgba(ACCENT, 255), width=8)\n    img = subject_image('roots')\n    if img is not None:\n        asp = img.width / img.height\n        w = 40\n        h = int(w / asp)\n        paste(img, x - w // 2, cy - root_h - h, w, h)\n    text(labels[i], x, cy + 40, size=36, color=TEXT, center=True)\n    text(str(v) + ' inches', x, cy - root_h - 60, size=36, color=TEXT, center=True)\n",
+  "topic": "Root Growth Rate"
+ },
+ {
+  "sig": "f0ba0042702f",
+  "mechanic": "root-system",
+  "concept": "A tree's roots grow in size and spread as the reveal progresses, with each data point displayed as a labeled and sized root segment",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nn = len(values)\nfor i in range(n):\n    v = values[i]\n    ang = 2 * math.pi * i / n\n    r = 200 * clamp(v / vmax)\n    rx = cx + int(r * reveal * math.cos(ang))\n    ry = cy + int(r * reveal * math.sin(ang))\n    d.line([cx, cy, rx, ry], fill=rgba(HIGHLIGHT, 255), width=8)\n    text(labels[i], rx, ry, size=32, color=TEXT, center=True)\n    text(str(int(v)), rx, ry + 40, size=38, color=TEXT, center=True)\n    img = subject_image('tree root')\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        paste(img, rx - w // 2, ry - h // 2, w, h)\ntrunk = subject_image('tree trunk')\nif trunk is not None:\n    asp = trunk.width / trunk.height\n    w = 80\n    h = int(w / asp)\n    paste(trunk, cx - w // 2, cy - h // 2, w, h)\n",
+  "topic": "Root System Size"
+ },
+ {
+  "sig": "40e7bc2dfb70",
+  "mechanic": "seedling",
+  "concept": "a seedling grows from a seed, with its height and leaves filling out as the reveal progresses, while a clock face in the background fills up to represent the oldest seed planted",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nimg = subject_image('seed')\nif img is not None:\n    asp = img.width / img.height\n    w = 120\n    h = int(w / asp)\n    paste(img, cx - w // 2, cy + 200, w, h)\ntext(labels[0], cx, cy + 250, size=40, color=ACCENT, center=True)\ntext(str(int(values[0])) + ' years', cx, cy + 300, size=62, color=HIGHLIGHT, center=True)\nd.ellipse([cx - 16, cy + 160, cx + 16, cy + 200], fill=rgba(ACCENT, 255))\nsh = 100 + int(300 * reveal)\nd.line([cx, cy + 200, cx, cy - sh], fill=rgba(HIGHLIGHT, 255), width=8)\nd.ellipse([cx - 30, cy - sh - 30, cx + 30, cy - sh + 30], fill=rgba(HIGHLIGHT, 255))\nfor i in range(1, n):\n    v = values[i]\n    cx2 = clamp((v / vmax) * (RX1 - RX0) + RX0, RX0, RX1)\n    cy2 = cy - 50\n    d.ellipse([cx2 - 8, cy2 - 8, cx2 + 8, cy2 + 8], fill=rgba(ACCENT, 255))\n    text(str(int(v)) + ' years', cx2, cy2 + 30, size=32, color=TEXT, center=True)\n    text(labels[i], cx2, cy2 + 60, size=26, color=TEXT, center=True)\n",
+  "topic": "Oldest Seed Ever Planted"
+ },
+ {
+  "sig": "27dcbc8316f0",
+  "mechanic": "seed-vault",
+  "concept": "a vault fills with seeds as the reveal progresses, with each data point represented by a seed of varying size and label",
+  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nn = len(values)\nfor i in range(n):\n    v = values[i]\n    r = 20 + 50 * (v / vmax)\n    x = cx + (i - (n - 1) // 2) * 120\n    y = cy + (1 - reveal) * 400\n    d.ellipse([x - r, y - r, x + r, y + r], fill=rgba(ACCENT, 128))\n    if reveal > 0.5:\n        text(labels[i], x, y + r + 30, size=32, color=TEXT, center=True)\n        text(str(int(v)) + ' years', x, y + r + 70, size=32, color=TEXT, center=True)\nimg = subject_image('seed')\nif img is not None:\n    asp = img.width / img.height\n    w = 80\n    h = int(w / asp)\n    if h > 80:\n        h = 80\n        w = int(h * asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\n",
+  "topic": "Seed Longevity"
+ },
+ {
+  "sig": "ef9539a8c696",
+  "mechanic": "thermometer",
+  "concept": "two thermometers with mercury columns rising to indicate the warmest and coldest storage temperatures",
+  "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    r = 30\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rectangle([cxs - r, cy - 200, cxs + r, cy + 200], fill=rgba(TEXT, 90))\n    d.rectangle([cxs - r + 5, cy - 200 + 5, cxs + r - 5, cy - 200 + 5 + int(190 * clamp(v / vmax)) * reveal], fill=rgba(col, 255))\n    d.line([cxs, cy + 200, cxs, cy + 220], fill=rgba(TEXT, 255), width=5)\n    img = subject_image('flame') if i == 0 else subject_image('ice cube')\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        if h > 100:\n            h = 100\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy + 220, w, h)\n    text(labels[i], cxs, cy - 250, size=38, color=col, center=True)\n    text(str(int(v)) + '°C', cxs, cy + 250, size=48, color=col, center=True)\n",
+  "topic": "Seed Storage"
  }
 ]

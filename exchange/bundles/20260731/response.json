@@ -1,0 +1,1078 @@
+{
+  "schema": "shorts-pipeline-bundle-response/v1",
+  "date": "20260731",
+  "status": "partial",
+  "summary": {
+    "day_type": "normal",
+    "pre_existing_valid_packages": 6,
+    "package_shortfall": 0,
+    "missing_mix": {
+      "reddit_story": 0,
+      "text_card": 0,
+      "graph_race": 0
+    },
+    "media_requested": 24,
+    "images_generated_final": 24,
+    "image_generation_attempts": 26,
+    "images_uploaded": 24,
+    "images_verified": 24,
+    "packages_rewritten": 2,
+    "packages_kept": 4,
+    "authored_trending": 0,
+    "authored_explainer": 0,
+    "authored_curiosity": 1
+  },
+  "media": [
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1tDhvLjBJChb5jcgKdAKtFdzU5CmIekOf",
+        "name": "01_reddit-hoa-shed-approval-s0-09daaf0defb4.png",
+        "link": "https://drive.google.com/file/d/1tDhvLjBJChb5jcgKdAKtFdzU5CmIekOf/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1tDhvLjBJChb5jcgKdAKtFdzU5CmIekOf",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: violation notice letter. It accompanies the narration: \"fined me for THAT\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "898cb39d04459c3a5eced3ac610df5eb00e9c429362fbc66c54e53cf37a82833",
+        "bytes": 2069375,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1gVEscoVkX0q00srKo4AU2TnVXWStwie8",
+        "name": "01_reddit-hoa-shed-approval-s3-16a3f5fba808.png",
+        "link": "https://drive.google.com/file/d/1gVEscoVkX0q00srKo4AU2TnVXWStwie8/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gVEscoVkX0q00srKo4AU2TnVXWStwie8",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: email reply screen. It accompanies the narration: \"wrote back four words\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "10b735ebb9c2741f54503a79ed42b636ea42b609ea2e294474d496806d408128",
+        "bytes": 1888252,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1jcwJCzebxvGL-Xhrcal9owj1aySOpOhM",
+        "name": "01_reddit-hoa-shed-approval-s4-442499836d66.png",
+        "link": "https://drive.google.com/file/d/1jcwJCzebxvGL-Xhrcal9owj1aySOpOhM/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1jcwJCzebxvGL-Xhrcal9owj1aySOpOhM",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: tape measure yard. It accompanies the narration: \"measured my yard against some outdated map\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "4782b903d0c40b6e3ccd087b1a859b320eebc8ca4235d1cf96299eca04b96738",
+        "bytes": 2637800,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1NzsXIrNYNDXDxX0Pxpmi4tr6VbXfIhwk",
+        "name": "01_reddit-hoa-shed-approval-s5-a1c266204818.png",
+        "link": "https://drive.google.com/file/d/1NzsXIrNYNDXDxX0Pxpmi4tr6VbXfIhwk/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1NzsXIrNYNDXDxX0Pxpmi4tr6VbXfIhwk",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: certified mail envelope. It accompanies the narration: \"mailed me a $500 violation\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "144c69e75b761e1fcdd82a10cf2a0119e2b2a2856c46dc1c4f438599c68f8bd4",
+        "bytes": 1860148,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1zJnGu3KPzlFWowJTB2ZV3piDOhTYTNxj",
+        "name": "01_reddit-hoa-shed-approval-s6-c28e3181c00b.png",
+        "link": "https://drive.google.com/file/d/1zJnGu3KPzlFWowJTB2ZV3piDOhTYTNxj/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1zJnGu3KPzlFWowJTB2ZV3piDOhTYTNxj",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: email inbox screenshot. It accompanies the narration: \"forwarded her original email, timestamp and all\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "df8a4a60b2a1bcbec2cde42fa67fddc87594edfd3f103fc151476e6eda13fc60",
+        "bytes": 1671052,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1WQkxZryeUVh9sTPC9lyVeflz2Re3WeAl",
+        "name": "01_reddit-hoa-shed-approval-s7-9b02212e1f56.png",
+        "link": "https://drive.google.com/file/d/1WQkxZryeUVh9sTPC9lyVeflz2Re3WeAl/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1WQkxZryeUVh9sTPC9lyVeflz2Re3WeAl",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: phone inbox unread. It accompanies the narration: \"still sitting untouched in my inbox\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "992e9dcedd4eab05fc0a20ea843896fc9a81ffbd59d67da54dc806cd9cfe814e",
+        "bytes": 1774027,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "13Jr3DPuVVx-I97pygHY_Vzkw1Z4JBsj4",
+        "name": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f.png",
+        "link": "https://drive.google.com/file/d/13Jr3DPuVVx-I97pygHY_Vzkw1Z4JBsj4/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=13Jr3DPuVVx-I97pygHY_Vzkw1Z4JBsj4",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: calendar pages flipping. It accompanies the narration: \"an approval that apparently expires\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "d805ba3af9441614738d061906ff1eddbfb23e3e79773df9f4bb89ba4ecfa5b8",
+        "bytes": 1893735,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1uFB09KoGFVU2MN0s_iHc5cXn7lJFJrkM",
+        "name": "01_reddit-hoa-shed-approval-s9-27e530d2231a.png",
+        "link": "https://drive.google.com/file/d/1uFB09KoGFVU2MN0s_iHc5cXn7lJFJrkM/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1uFB09KoGFVU2MN0s_iHc5cXn7lJFJrkM",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: phone screen no messages. It accompanies the narration: \"went silent for 12 days\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "5b21838f1a3325fe00fa9ceb0e3934030147c814f78f5b01f5c5d3b93c40e404",
+        "bytes": 1569001,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1QgzK1tbEB6096_buSsI7aWc_GNnLigHF",
+        "name": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32.png",
+        "link": "https://drive.google.com/file/d/1QgzK1tbEB6096_buSsI7aWc_GNnLigHF/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QgzK1tbEB6096_buSsI7aWc_GNnLigHF",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: crossed out invoice. It accompanies the narration: \"fine dropped\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "39ec6cc4b2b47984624e5cb47446d83db7ef7d4aeea2016c8e85a53313797ec3",
+        "bytes": 2090580,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1BsTNI6DNb4uefpvqWaj4dzMrNlePGsY6",
+        "name": "01_reddit-hoa-shed-approval-s11-0d3cb050317f.png",
+        "link": "https://drive.google.com/file/d/1BsTNI6DNb4uefpvqWaj4dzMrNlePGsY6/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1BsTNI6DNb4uefpvqWaj4dzMrNlePGsY6",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: handshake agreement. It accompanies the narration: \"a full year of dues waived\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "4560b183426b29052304e5417bbd43e294e8faf9147b20428f0ef923f8ed2bf5",
+        "bytes": 2019017,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1Sy8II9qzAtvDh0KrjJDJM5PW1Ut-UiYO",
+        "name": "01_reddit-hoa-shed-approval-s12-a58c501e7cad.png",
+        "link": "https://drive.google.com/file/d/1Sy8II9qzAtvDh0KrjJDJM5PW1Ut-UiYO/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Sy8II9qzAtvDh0KrjJDJM5PW1Ut-UiYO",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: committee meeting table. It accompanies the narration: \"a bylaw rewrite\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "ffb79c48a5bbd115c64e0df07a0cb399ffe676f23f5285b6a29c1930f4f5bc41",
+        "bytes": 1839319,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "169hxJ5KmOpcQdZllkZBxo16OrcS_Hok0",
+        "name": "01_reddit-hoa-shed-approval-s13-3665066959bc.png",
+        "link": "https://drive.google.com/file/d/169hxJ5KmOpcQdZllkZBxo16OrcS_Hok0/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=169hxJ5KmOpcQdZllkZBxo16OrcS_Hok0",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: stack of documents desk. It accompanies the narration: \"reading their own paperwork now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "f76f5bab5ff53e95b426505c638eef0fa15928a6720ecb54aa96e82c02034618",
+        "bytes": 1621673,
+        "format": "png",
+        "width": 1122,
+        "height": 1402
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1PCOh7uwdbT1Is9989qVT1J1SyM9P8mQN",
+        "name": "02_reddit-parking-spot-tow-s0-3a730fba60f1.png",
+        "link": "https://drive.google.com/file/d/1PCOh7uwdbT1Is9989qVT1J1SyM9P8mQN/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1PCOh7uwdbT1Is9989qVT1J1SyM9P8mQN",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: parking lot numbered spot. It accompanies the narration: \"My reserved spot, again\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "7cd9bd1b2813faf7cd4bda9bd30bf6dd4f74bc02d962cd9d479afd1faf427967",
+        "bytes": 2549726,
+        "format": "png",
+        "width": 1023,
+        "height": 1537
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1G0OCKdW5-iaXCCSzhckUcm2u7_8zRYxU",
+        "name": "02_reddit-parking-spot-tow-s3-cda46ccffdeb.png",
+        "link": "https://drive.google.com/file/d/1G0OCKdW5-iaXCCSzhckUcm2u7_8zRYxU/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1G0OCKdW5-iaXCCSzhckUcm2u7_8zRYxU",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: note on windshield. It accompanies the narration: \"2 polite notes on the windshield\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "47c1581ee4857a3975d030d300463350d472e847fc7c393452bdd85676424a01",
+        "bytes": 1788393,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "status": "partial",
+      "drive": {
+        "file_id": "15GRP_O02bcvBP5M5AQfaFp1uZGn7TvJb",
+        "name": "02_reddit-parking-spot-tow-s4-b4a5d2c55431.png",
+        "link": "https://drive.google.com/file/d/15GRP_O02bcvBP5M5AQfaFp1uZGn7TvJb/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=15GRP_O02bcvBP5M5AQfaFp1uZGn7TvJb",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: no parking sign. It accompanies the narration: \"unauthorized vehicle in a numbered spot\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "8db30e93c9ec204ea9439bcde0f18f0bf7617578af18e725c7e11de4b00f58d3",
+        "bytes": 2067010,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access. Visual QA note: two exact-prompt generations did not clearly depict the requested no-parking sign; the second exact-prompt result was uploaded as the best available output."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "124CAJ79mWsdyzUBZJerjQ8n93UWxfFx7",
+        "name": "02_reddit-parking-spot-tow-s5-0a2f31899938.png",
+        "link": "https://drive.google.com/file/d/124CAJ79mWsdyzUBZJerjQ8n93UWxfFx7/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=124CAJ79mWsdyzUBZJerjQ8n93UWxfFx7",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: tow truck hooking car. It accompanies the narration: \"towed at the owner's expense\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "14181f750308c105e805e5684db52856bd3b9970aa3679e21b3816f7f5fd025a",
+        "bytes": 2699883,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1evICEjl5PFGaQGUJLBHX-XjLph2Ud7cb",
+        "name": "02_reddit-parking-spot-tow-s6-45eaafc32795.png",
+        "link": "https://drive.google.com/file/d/1evICEjl5PFGaQGUJLBHX-XjLph2Ud7cb/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1evICEjl5PFGaQGUJLBHX-XjLph2Ud7cb",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: office phone call desk. It accompanies the narration: \"called the property office\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "d5c14c077f82285df5db64b9d6b5fc719af92cc66241587c4177ece76aeba665",
+        "bytes": 1900366,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "12aL7SZVHJIcg4gd5VxG9UMXq0n6sNXF5",
+        "name": "02_reddit-parking-spot-tow-s7-c31b14028ca5.png",
+        "link": "https://drive.google.com/file/d/12aL7SZVHJIcg4gd5VxG9UMXq0n6sNXF5/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=12aL7SZVHJIcg4gd5VxG9UMXq0n6sNXF5",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: handwritten note paper. It accompanies the narration: \"handed over my dated notes\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "9c9a58035727b658c025fa7bfd2590cbe2ad1a7dbd48f49d7c393a35ca4b1971",
+        "bytes": 2608046,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "14KhG-yu7oji5-rqkQoLGQW7Ecs46tMV0",
+        "name": "02_reddit-parking-spot-tow-s8-b1321636a503.png",
+        "link": "https://drive.google.com/file/d/14KhG-yu7oji5-rqkQoLGQW7Ecs46tMV0/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=14KhG-yu7oji5-rqkQoLGQW7Ecs46tMV0",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: empty parking space. It accompanies the narration: \"SUV vanished from spot 14\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "4950fa956277300acc5f1166c74adeee54b389188b02dfbd478b191677790844",
+        "bytes": 2640055,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1D-zS-VaaW9QGck2NC240pPvOtdVb69SA",
+        "name": "02_reddit-parking-spot-tow-s9-4f2fdfe65969.png",
+        "link": "https://drive.google.com/file/d/1D-zS-VaaW9QGck2NC240pPvOtdVb69SA/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1D-zS-VaaW9QGck2NC240pPvOtdVb69SA",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: office building morning. It accompanies the narration: \"around 10 a.m.\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "c9466f02a993e5c144d107bc15f3f5689dc71e047369524c64d209dc527bc15b",
+        "bytes": 1849047,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1w2A-soMIbsJR74eeumoSWU0mu2-V4sGB",
+        "name": "02_reddit-parking-spot-tow-s10-544a12d8626a.png",
+        "link": "https://drive.google.com/file/d/1w2A-soMIbsJR74eeumoSWU0mu2-V4sGB/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1w2A-soMIbsJR74eeumoSWU0mu2-V4sGB",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: office meeting review. It accompanies the narration: \"mid performance review\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "babc413d737b909ba602ae84ac83d1dff0041a63a005eab4cb19f25bbd636512",
+        "bytes": 1941953,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1jmABfQOP2ERGFdEvyZ7m_S02pldAZ8Xx",
+        "name": "02_reddit-parking-spot-tow-s11-cbe5037f535c.png",
+        "link": "https://drive.google.com/file/d/1jmABfQOP2ERGFdEvyZ7m_S02pldAZ8Xx/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1jmABfQOP2ERGFdEvyZ7m_S02pldAZ8Xx",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: phone text notification. It accompanies the narration: \"someone texted him his car was gone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "b30a76038039ea1922a1ec0c076da9c6c84b2443511c106921e94120d0d2edf8",
+        "bytes": 1748006,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1IdSql8VKJaPGv0aU7jy_F4xnoS1-fUcd",
+        "name": "02_reddit-parking-spot-tow-s12-beef450763a5.png",
+        "link": "https://drive.google.com/file/d/1IdSql8VKJaPGv0aU7jy_F4xnoS1-fUcd/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IdSql8VKJaPGv0aU7jy_F4xnoS1-fUcd",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: stressed man conference room. It accompanies the narration: \"Tough meeting to sit through with THAT on your mind\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "04e96a665c7ed638c0f5f68d08279aa6bec6c97647ba96dcb203d8c9428e108f",
+        "bytes": 1692055,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "status": "fulfilled",
+      "drive": {
+        "file_id": "1M6dTtja84FG0QuytdVdtLQML7lbJM59R",
+        "name": "02_reddit-parking-spot-tow-s13-1c7e604d1af9.png",
+        "link": "https://drive.google.com/file/d/1M6dTtja84FG0QuytdVdtLQML7lbJM59R/view?usp=drivesdk",
+        "download_url": "https://drive.google.com/uc?export=download&id=1M6dTtja84FG0QuytdVdtLQML7lbJM59R",
+        "public": true
+      },
+      "image": {
+        "prompt_used": "An editorial illustration for a short-form video: parking lot empty spot. It accompanies the narration: \"whose name is on spot 14 now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+        "sha256": "5cd835084e9827fadb89558785c8b17f674d4dcc024917903c0e52616f9b9951",
+        "bytes": 2734167,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "file_id_matches": true,
+        "bytes_match": true,
+        "parent_folder_matches": true,
+        "public_link_visible": true,
+        "note": "Fetched the uploaded Drive bytes, recomputed SHA-256 and PNG dimensions, and verified inherited anyone-reader access."
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "01_reddit-hoa-shed-approval",
+      "status": "rewritten",
+      "kept": false,
+      "title": "The HOA fined me for a shed they approved in writing",
+      "script": "They fined me for THAT? The HOA mailed me a $500 violation for a storage shed it approved in writing 3 years ago. I had emailed the HOA board president before building it in my own backyard. She wrote back four words: approved, no issue. Last month, a brand-new board measured my yard against some outdated map and decided the approval had apparently evaporated. Very convenient expiration date. I forwarded her original email, timestamp and all, still sitting untouched in my inbox. The new board president went silent for 12 days. Then the fine dropped, a full year of dues was waived, and they rewrote the bylaw so a signed approval can never quietly vanish again. So who at the HOA is reading their own paperwork now?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "They fined me for THAT",
+          "query": "violation notice letter"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "emailed the HOA board president",
+          "query": "laptop email typing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "building it in my own backyard",
+          "query": "backyard storage shed"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "wrote back four words",
+          "query": "email reply screen"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "measured my yard against some outdated map",
+          "query": "tape measure yard"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "mailed me a $500 violation",
+          "query": "certified mail envelope"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "forwarded her original email, timestamp and all",
+          "query": "email inbox screenshot"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "still sitting untouched in my inbox",
+          "query": "phone inbox unread"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "approval had apparently evaporated",
+          "query": "calendar pages flipping"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "went silent for 12 days",
+          "query": "phone screen no messages"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "fine dropped",
+          "query": "crossed out invoice"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "a full year of dues was waived",
+          "query": "handshake agreement"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "rewrote the bylaw",
+          "query": "committee meeting table"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "reading their own paperwork now",
+          "query": "stack of documents desk"
+        }
+      ],
+      "editor_note": "Front-loaded the written approval and $500 reversal, tightened the deadpan escalation, and made the kicker explicitly name the HOA."
+    },
+    {
+      "slug": "02_reddit-parking-spot-tow",
+      "status": "rewritten",
+      "kept": false,
+      "title": "Someone kept stealing my numbered parking spot at work",
+      "script": "My reserved spot, again? For 3 straight weeks, the same white SUV took spot 14—my assigned space, painted number and everything—every single morning. I left 2 polite notes on the windshield asking the driver to check the number. Nothing changed. Building policy says an unauthorized vehicle in a numbered spot after 2 written warnings gets towed at the owner's expense, no exceptions. Subtle system, really. On week 3, I called the property office, handed over my dated notes, and let them make the call. The SUV vanished from spot 14 around 10 a.m. The driver was 2 floors up, mid performance review, when someone texted him his car was gone. Tough meeting to sit through with THAT on your mind. So whose name is on spot 14 now?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "My reserved spot, again",
+          "query": "parking lot numbered spot"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "spot 14—my assigned space",
+          "query": "parking space number painted"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "same white SUV took spot 14",
+          "query": "white SUV parked"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "2 polite notes on the windshield",
+          "query": "note on windshield"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "unauthorized vehicle in a numbered spot",
+          "query": "no parking sign"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "towed at the owner's expense",
+          "query": "tow truck hooking car"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "called the property office",
+          "query": "office phone call desk"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "handed over my dated notes",
+          "query": "handwritten note paper"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "SUV vanished from spot 14",
+          "query": "empty parking space"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "around 10 a.m.",
+          "query": "office building morning"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "mid performance review",
+          "query": "office meeting review"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "someone texted him his car was gone",
+          "query": "phone text notification"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "Tough meeting to sit through with THAT on your mind",
+          "query": "stressed man conference room"
+        },
+        {
+          "shot_index": 13,
+          "phrase": "whose name is on spot 14 now",
+          "query": "parking lot empty spot"
+        }
+      ],
+      "editor_note": "Front-loaded the repeated theft of spot 14, sharpened the tow payoff, and made the kicker explicitly return to spot 14."
+    },
+    {
+      "slug": "03_textcard-ceuta-border-crisis",
+      "status": "kept",
+      "kept": true,
+      "title": "Spain Just Sent Its Military Into One Of Its Own Cities",
+      "script": null,
+      "shots": [],
+      "editor_note": "Bundle exposes only a concise, specific title for this renderer-native package; no script, series, or shot phrase text was supplied to rewrite safely."
+    },
+    {
+      "slug": "04_textcard-nj-pig-escape",
+      "status": "kept",
+      "kept": true,
+      "title": "15 Pigs Just Took Over A New Jersey Highway",
+      "script": null,
+      "shots": [],
+      "editor_note": "Bundle exposes only a concise, specific title for this renderer-native package; no script, series, or shot phrase text was supplied to rewrite safely."
+    },
+    {
+      "slug": "05_graph-openai-anthropic-valuation",
+      "status": "kept",
+      "kept": true,
+      "title": "OpenAI vs Anthropic: Valuation By Year",
+      "script": null,
+      "shots": [],
+      "editor_note": "Bundle exposes only a concise, specific title for this renderer-native package; no script, series, or shot phrase text was supplied to rewrite safely."
+    },
+    {
+      "slug": "06_graph-wildfire-acres-burned",
+      "status": "kept",
+      "kept": true,
+      "title": "US Wildfire Acres Burned By Year",
+      "script": null,
+      "shots": [],
+      "editor_note": "Bundle exposes only a concise, specific title for this renderer-native package; no script, series, or shot phrase text was supplied to rewrite safely."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [],
+  "authored_curiosity": [
+    {
+      "slug": "your-personal-inflation-rate",
+      "keep_order": true,
+      "title": "Why Your Inflation Rate Isn’t the Official Number",
+      "hook": "The government says prices rose 3.5 percent. Your grocery bill, rent, and gas tank may swear that number is fiction—but the number can be correct and still not describe you. The trick is hidden inside one enormous imaginary shopping basket, and almost nobody buys exactly what is in it.",
+      "closing": "The official inflation rate measures the country’s basket. Your inflation rate is the receipt you actually carry home.",
+      "question": "Which part of your budget feels furthest from 3.5 percent? Tell me below.",
+      "caption": "The June 2026 Consumer Price Index rose 3.5 percent, but that does not mean every household’s costs rose 3.5 percent. CPI is a weighted national basket, while your real spending mix may lean harder toward shelter, food, gasoline, or medical care. Which part of your budget feels furthest from the headline number?",
+      "hashtags": [
+        "inflation",
+        "cpi",
+        "personalfinance",
+        "costofliving",
+        "economics",
+        "money",
+        "prices",
+        "rent",
+        "groceries",
+        "gasprices",
+        "data",
+        "curiosity"
+      ],
+      "segments": [
+        {
+          "source": "bls",
+          "key": "CUUR0000SA0",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. Consumer Price Index: All Items",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE HEADLINE",
+          "topic": "what the official inflation rate measures",
+          "say": "Start with the headline. In June 2026, the Consumer Price Index for all urban consumers was 333.952, and prices were 3.5 percent higher than a year earlier. That number is real. But it is not a receipt from one average American. It is the movement of a giant weighted basket designed to represent spending across urban households. The index tells us what happened to that basket—not necessarily to yours.",
+          "broll": [
+            "grocery checkout close up",
+            "gas pump price display"
+          ]
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SA0",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "CPI Basket Relative Importance",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE BASKET",
+          "topic": "how CPI weights household spending",
+          "say": "The basket is weighted, and the weights do most of the magic. In the June table, shelter carried 35.149 percent of the index, food 13.447 percent, and energy 7.791 percent. Spend half your income on rent and almost nothing on gasoline, and your basket already looks different. Drive all day for work, own your home outright, or feed a large family, and it looks different again. CPI combines those lives into one national measuring stick.",
+          "broll": [
+            "household budget notebook",
+            "shopping cart overhead"
+          ],
+          "scene": "cutaway"
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SAH1",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. Consumer Price Index: Shelter",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "trend",
+          "hero": true,
+          "role": "3 · THE BIGGEST WEIGHT",
+          "topic": "why shelter dominates the basket",
+          "say": "Shelter is the heavyweight. It was 35.149 percent of the basket and rose 3.3 percent over the year. Rent of primary residence rose 2.8 percent, while owners’ equivalent rent rose 3.3 percent. That last category estimates what homeowners would pay to rent their own homes; it is not a bill they receive. So two people can live under roofs that look identical while the index and their bank accounts tell very different stories.",
+          "broll": [
+            "apartment buildings city",
+            "house keys on table"
+          ]
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SAF1",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. Consumer Price Index: Food",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "comparison",
+          "role": "4 · TWO FOOD STORIES",
+          "topic": "groceries versus eating out",
+          "say": "Food split into two different stories. Overall food prices were 3.0 percent higher than a year earlier. Food at home rose 2.7 percent, while food away from home rose 3.4 percent. Someone who cooks every meal did not buy the same inflation as someone who lives on restaurant food. Even inside the grocery aisle, the basket averages many categories together, so the item you buy every week can move much faster—or slower—than the food headline.",
+          "broll": [
+            "grocery aisle shopping",
+            "restaurant kitchen service"
+          ]
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SA0E",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. Consumer Price Index: Energy",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "trend",
+          "role": "5 · THE WHIPLASH",
+          "topic": "why energy changes personal inflation quickly",
+          "say": "Energy is where the basket can snap sideways. Energy prices were up 15.7 percent over the year, and gasoline was up 26.7 percent. But gasoline also fell 9.7 percent in June alone. Both statements are true because one compares twelve months and the other compares one month. If you filled a tank that week, the monthly drop mattered. If you budgeted against last summer, the annual jump mattered. One product, two clocks, two completely different feelings.",
+          "broll": [
+            "gas station filling car",
+            "electric meter spinning"
+          ],
+          "scene": "zoomout"
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SA0L1E",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. CPI: All Items Less Food and Energy",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "comparison",
+          "role": "6 · REMOVE THE NOISY PARTS",
+          "topic": "what core inflation leaves out",
+          "say": "Economists often remove food and energy to see the slower signal underneath. In June, that core measure was up 2.6 percent over the year, below the 3.5 percent all-items rate. That does not mean food and fuel are unimportant; it means they are volatile enough to blur the underlying trend. Your household cannot remove dinner or commuting from its budget, which is exactly why a calmer economic indicator can feel nothing like daily life.",
+          "broll": [
+            "economist reviewing paper charts",
+            "family dinner table"
+          ]
+        },
+        {
+          "source": "bls",
+          "key": "CUUR0000SAM2",
+          "params": {
+            "start_year": 2025,
+            "end_year": 2026,
+            "observations": 13,
+            "title": "U.S. Consumer Price Index: Medical Care Services",
+            "unit": "index",
+            "time_coverage": "June 2025–June 2026",
+            "source_name": "U.S. Bureau of Labor Statistics, Consumer Price Index — June 2026",
+            "source_url": "https://www.bls.gov/news.release/cpi.t01.htm"
+          },
+          "insight_type": "comparison",
+          "role": "7 · YOUR NUMBER",
+          "topic": "why personal inflation differs",
+          "say": "Now build your own answer. Hospital services rose 5.1 percent over the year, while used cars and trucks fell 1.8 percent. A household paying a hospital bill and buying no car experiences the first number, not the second. Another household may experience the reverse. The official 3.5 percent is not wrong; it answers a national question. Your personal inflation rate answers a different one: what happened to the exact things you bought, in the amounts you actually bought them?",
+          "broll": [
+            "hospital corridor empty",
+            "used car dealership lot"
+          ]
+        }
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "step": "files.list -> connector-native file_id -> Google_Drive.upload_file",
+      "detail": "This automation runtime did not expose files.list. Uploads succeeded through the runtime-hosted local file handoff accepted by Google_Drive.upload_file, then every Drive object was independently read back and verified. This is an explicit transport deviation from the contract."
+    },
+    {
+      "step": "requested image geometry",
+      "detail": "The image generator returned 1024x1536 PNG files rather than the requested 1080x1080. The response reports the real dimensions for every uploaded file."
+    },
+    {
+      "step": "editorial punch-up for four renderer-native packages",
+      "detail": "The two text_card and two graph_race bundle entries exposed only titles; no text, series, or shot phrase payload was present. They are explicitly kept with editor notes instead of inventing protected content."
+    },
+    {
+      "step": "visual QA for 02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "detail": "The exact no-parking-sign prompt was generated twice, but neither result clearly depicted the requested sign. The second exact-prompt result was uploaded and fully byte-verified; no substitute prompt was used."
+    }
+  ],
+  "generated_at": "2026-07-31T11:33:56.884Z"
+}

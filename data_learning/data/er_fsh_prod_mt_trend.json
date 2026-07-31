@@ -1,0 +1,48 @@
+{
+  "key": "er_fsh_prod_mt_trend",
+  "title": "Total fisheries production",
+  "unit": "metric tons",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Total fisheries production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/ER.FSH.PROD.MT",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 56432926,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 71055453,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 114461514,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 142660467,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 193120017,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 235811491,
+      "period": "2024"
+    }
+  ]
+}

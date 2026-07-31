@@ -46,6 +46,85 @@ OUTPUT_DIR = REPO / "output"
 # previous slot's (same board minus what we just posted).
 _BANGER_CACHE: dict = {}
 
+# ------------------------------------------------------------- judges
+# Several brains judge every slot — the banger ranker, the transcript-aware
+# content gate, the story director, the vision critic, the render_qa engine
+# — and until now their reasoning existed ONLY in the CI log, which expires
+# and takes ~1200 lines to read. Answering "why was this clip rejected?" a
+# day later meant log archaeology. These verdicts are recorded per slot and
+# persisted into state/third_qa_stats.json, where `scripts/judges.py`
+# renders them. Kept deliberately small (reasons truncated) — state/ is for
+# small JSON only (docs/STORAGE_AUDIT.md).
+_JUDGES: dict = {}
+
+
+def _any_judgment() -> bool:
+    """Did ANY content judge actually evaluate this slot's clip?
+
+    Reads the verdicts recorded for the current slot. True when at least
+    one of the three content judges produced a real opinion:
+      - the banger ranker scored it (not the blind can't-score default)
+      - the content gate returned a transcript-aware score
+      - the vision critic looked at the frames
+    Mechanical checks (preflight, render_qa) deliberately do NOT count:
+    they prove the file isn't broken, never that the clip is worth posting.
+    """
+    j = _JUDGES
+    if not j.get("banger", {}).get("blind", True):
+        return True
+    if j.get("content", {}).get("verdict") in ("pass", "reject"):
+        return True
+    if j.get("vision", {}).get("verdict") in ("pass", "reject"):
+        return True
+    return False
+
+
+def _story_verdict(label: str, outcome: str, why: str) -> None:
+    """One cluster's fate at the story director's hands. Appends (a slot
+    considers several clusters), so the record shows the whole deliberation
+    — critically, WHETHER a story failed because no arc existed or because
+    the analysis was starved. Those look identical in the posted log today
+    and mean completely different things."""
+    try:
+        _JUDGES.setdefault("story_director", {}).setdefault(
+            "clusters", []).append(
+                {"cluster": str(label)[:60], "outcome": outcome,
+                 "why": str(why)[:140]})
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _judge(name: str, **fields) -> None:
+    """Record what one judge thought about the CURRENT slot. Merges, so a
+    judge that speaks twice (e.g. a retry) keeps its latest verdict. Never
+    raises — an observability path must not be able to fail a render."""
+    try:
+        clean = {}
+        for k, v in fields.items():
+            if v is None or v == "":
+                continue
+            # Coerce to JSON-SAFE primitives here, at the door. Storing a
+            # raw object survives this function but detonates later at the
+            # json.dumps on attach — and that call sits outside the render's
+            # try block, so a bad verdict value would kill the whole slot.
+            # An observability path must not be able to do that.
+            if isinstance(v, str):
+                v = v[:160]
+            elif isinstance(v, bool) or isinstance(v, int):
+                pass
+            elif isinstance(v, float):
+                v = round(v, 3)
+            elif isinstance(v, (list, tuple)):
+                v = [str(x)[:160] for x in list(v)[:5]]
+            else:
+                v = str(v)[:160]
+            clean[k] = v
+        if clean:
+            _JUDGES.setdefault(name, {}).update(clean)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 ANALYTICS_LATEST = REPO / "state" / "analytics_third" / "latest.json"
 EVENTS_FILE = REPO / "state" / "third_events.json"
 
@@ -302,7 +381,7 @@ def _load_log() -> dict:
 
 
 def _save_log(log: dict) -> None:
-    from fsutil import atomic_write_json
+    from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log)
 
 
@@ -408,7 +487,7 @@ def _crosspost(mp4: Path, title: str, description: str,
     if os.environ.get("TIKTOK_ACCESS_TOKEN_THIRD") or \
             os.environ.get("TIKTOK_ACCESS_TOKEN"):
         try:
-            from uploaders import TikTokUploader
+            from shared.uploaders import TikTokUploader
             up = TikTokUploader(channel="third").upload(
                 file_path=mp4, title=title, description=description, tags=tags)
             out["tiktok"] = getattr(up, "url", str(up))
@@ -418,7 +497,7 @@ def _crosspost(mp4: Path, title: str, description: str,
     if all(os.environ.get(k) for k in
            ("META_ACCESS_TOKEN", "IG_USER_ID", "REELS_PUBLIC_HOST")):
         try:
-            from uploaders import InstagramUploader
+            from shared.uploaders import InstagramUploader
             up = InstagramUploader().upload(
                 file_path=mp4, title=title, description=description, tags=tags)
             out["instagram"] = getattr(up, "url", str(up))
@@ -679,7 +758,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         from third_capture import clip_edit, clip_qa, storyline
         from third_capture import scene_analysis, story_director
         from third_capture import story as story_mod
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         spec = pkg["capture"]
         sources_cfg = spec.get("sources") or \
             {"twitch": spec.get("channels", [])}
@@ -775,6 +854,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 reports.append(rep)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
+                _story_verdict(who, "starved",
+                               f"<2 analyzable sources ({len(reports)}) — "
+                               "scene analysis could not read the clips")
                 continue
 
             # ---- semantic subclustering (reviewer #8): the people cluster
@@ -796,6 +878,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 if not edl:
                     print(f"[story] {elbl}: director says not a story",
                           flush=True)
+                    _story_verdict(elbl, "not_a_story",
+                                   "director found no genuine arc")
                     continue
                 plan_urls = [b["source_id"] for b in edl["beats"]]
                 if storyline.story_key(plan_urls) in shipped or \
@@ -923,6 +1007,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             dry_run: bool, publish_at, log: dict) -> dict:
     slug = pkg["slug"]
     result = {"slug": slug, "ok": False}
+    _JUDGES.clear()          # verdicts are per-slot
     if slug in log["posted"]:
         result.update(ok=True, skipped="already posted")
         return result
@@ -953,6 +1038,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
             from third_capture import clip_edit
             spec = pkg["capture"]
             if spec.get("clip_url"):
+                # An explicitly-authored package: a human (or the Routine)
+                # picked this exact clip, so it never meets the ranker. That
+                # IS a judgment — record it, or the unjudged gate below
+                # would skip a deliberately-chosen clip.
+                _judge("banger", source="operator-specified", blind=False)
                 info = clip_edit.download(spec["clip_url"], work)
                 platform = spec.get("platform", "twitch")
                 streamer = spec["credit"]
@@ -1136,10 +1226,48 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 postable = [c for c in shortlist if c["banger"] >= min_banger]
                 if not postable:
                     best_b = max((c["banger"] for c in shortlist), default=0.0)
-                    raise _SkipSlot(
-                        f"quality floor: best banger {best_b:.2f} < "
-                        f"{min_banger} across {len(shortlist)} candidates — "
-                        "posting fewer, not a dud")
+                    # ESCALATE, DON'T GIVE UP (2026-07-31). An empty slot is
+                    # a failure this used to report as success. Worse, the
+                    # banger score judges the clipper's TWITCH TITLE, not the
+                    # clip — the day's rejects read 'sadge' -> "vague emote
+                    # reaction" and 'foams' -> "vague title, no discernible
+                    # payoff". Those are verdicts on a one-word title, and we
+                    # were binning the clip without ever downloading or
+                    # transcribing it.
+                    #
+                    # A STRICTER judge already sits downstream: the content
+                    # gate re-scores on the real transcript at 0.70. So when
+                    # nothing clears the title floor, hand the best material
+                    # to that judge instead of skipping. If it rejects, the
+                    # slot's existing retry blocklists the clip and tries the
+                    # next candidate. The bar goes UP (0.70 transcript vs
+                    # 0.50 title) and the evidence gets better — this is more
+                    # work, not a weaker gate.
+                    rescue_floor = float(spec.get("rescue_floor", 0.25))
+                    rescue = [c for c in shortlist
+                              if c["banger"] >= rescue_floor]
+                    if not rescue:
+                        # everything is transparent spam (giveaway/subathon/
+                        # sponsor bait sits <0.25) — a transcript pass on
+                        # that is wasted runner time, not a missed video.
+                        _judge("selection", verdict="skip",
+                               why=f"best title score {best_b:.2f} < hard "
+                                   f"floor {rescue_floor} across "
+                                   f"{len(shortlist)} candidates")
+                        raise _SkipSlot(
+                            f"quality floor: best banger {best_b:.2f} < "
+                            f"{rescue_floor} (hard floor) across "
+                            f"{len(shortlist)} candidates — nothing worth "
+                            "transcribing")
+                    print(f"::warning::[rescue] nothing clears the title "
+                          f"floor ({best_b:.2f} < {min_banger}) — escalating "
+                          f"{len(rescue)} candidate(s) to the TRANSCRIPT "
+                          f"judge rather than skipping the slot", flush=True)
+                    _judge("selection", verdict="rescue",
+                           why=f"best title score {best_b:.2f} < "
+                               f"{min_banger}; escalated to the transcript "
+                               f"judge (bar 0.70) instead of skipping")
+                    postable = rescue
                 pick = postable[0]
                 # FINAL DEDUPE GUARD (never post the same clip twice): the
                 # shortlist was already filtered by posted_keys, so this only
@@ -1149,6 +1277,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     raise _SkipSlot(
                         f"dedupe guard: {_clip_key(pick['url'])} already "
                         "posted — refusing a duplicate")
+                # what the ranking brain thought of the clip we CHOSE. A
+                # 0.5 with no reason is the can't-score default — i.e. the
+                # pick was made on raw velocity, blind. Recording it makes
+                # a blindly-ranked slate visible after the fact.
+                _judge("banger", score=pick.get("banger"),
+                       why=pick.get("banger_why"),
+                       blind=(not pick.get("banger_why")
+                              and pick.get("banger") == 0.5))
                 info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
 
@@ -1211,16 +1347,39 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     rescore = {}
                 cb, cwhy = rescore.get(info["url"], (None, ""))
                 content_floor = float(spec.get("min_banger_content", 0.70))
+                _judge("content", score=cb, why=cwhy, floor=content_floor,
+                       verdict=("unavailable" if cb is None else
+                                "reject" if cb < content_floor else "pass"))
                 if cb is not None and cb < content_floor:
                     log["posted"][
                         f"rejected-{_clip_key(info['url']) or slug}"] = {
                         "source_url": info["url"], "streamer": streamer,
                         "title": info["title"], "qa_rejected": True,
+                        # WHY it was rejected, not just THAT it was — the
+                        # blocklist entry is the durable record a human or a
+                        # later brain reads back.
+                        "rejected_by": "content gate",
+                        "rejected_why": f"{cb:.2f} < {content_floor} "
+                                        f"({cwhy or 'no reason given'})"[:180],
                         "ts": datetime.now(timezone.utc).isoformat(),
                     }
                     raise RuntimeError(
                         f"content gate: transcript-aware score {cb:.2f} < "
                         f"{content_floor} ({cwhy or 'no reason'})")
+                # A RESCUED clip (one that failed the title floor and was
+                # escalated here) fails CLOSED. Normally this gate fails
+                # open so a flaky brain never costs a good clip — but a
+                # rescue has ALREADY been judged weak once, so an
+                # unavailable transcript judge means nothing credible has
+                # vouched for it. Shipping then is exactly the "post shit"
+                # outcome the escalation exists to avoid. Retry the slot:
+                # the next candidate may score, or the brain may recover.
+                if cb is None and _JUDGES.get(
+                        "selection", {}).get("verdict") == "rescue":
+                    raise RuntimeError(
+                        "rescue needs the transcript judge and it is "
+                        "unavailable — a weak-title clip must EARN its slot, "
+                        "retrying with another candidate")
 
             # DIRECTOR COMPLETENESS GATE (§9): if the brain judges the clip
             # starts mid-action with no context OR its payoff is cut off,
@@ -1258,6 +1417,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     direct=(meta or {}).get("edit"),
                     edit_mode=edit_mode)
                 if meta:
+                    _judge("title", source="authored", title=meta["title"])
                     led["authored_title"] = meta["title"]
                     led["authored_tags"] = meta["hashtags"]
                     led["authored_caption"] = author.scrub_text(
@@ -1273,7 +1433,21 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # Sanitise it HERE, at the one place it enters the ledger, so
                 # an unsafe raw title can NEVER reach any public surface (live
                 # incident: "Silky Calls Him Gay" shipped via this path).
-                led["clip_title"] = author.safe_title(info["title"], streamer)
+                # safe_title alone only blocks UNSAFE text — it happily passed
+                # "WWWW" and "w max" through as public titles on 2026-07-29.
+                # fallback_title adds the quality floor, using the transcript
+                # (what was actually said) when the clipper's title is noise.
+                led["clip_title"] = author.fallback_title(
+                    streamer, info["title"],
+                    " ".join(w["w"] for w in (words or [])))
+                if not (meta or {}).get("title"):
+                    # authoring produced nothing — say which floor tier the
+                    # public title came from, so a generic batch is legible
+                    # in the record instead of looking intentional
+                    _judge("title", source="floor",
+                           title=led["clip_title"], raw=info["title"],
+                           kept_raw=(led["clip_title"] == author.safe_title(
+                               info["title"], streamer)))
                 led["clipper"] = info["clipper"]
                 led["streamer"] = streamer
                 led["platform"] = platform
@@ -1291,6 +1465,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 qa = clip_qa.review(out_mp4, led, work)
                 led["qa"] = {k: qa[k] for k in
                              ("verdict", "problems", "vision")}
+                # Split the two critics apart: the free mechanical engine
+                # and the paid vision judge fail for very different reasons
+                # and deserve separate verdicts in the record.
+                _judge("render_qa", verdict=qa["verdict"],
+                       problems=[p for p in qa["problems"]
+                                 if not p.startswith("vision:")])
+                _vis = qa.get("vision")
+                _judge("vision",
+                       verdict=("unavailable" if not _vis else
+                                "pass" if _vis.get("publish") else "reject"),
+                       confidence=(_vis or {}).get("confidence"),
+                       problems=(_vis or {}).get("problems"))
                 ledger_path = work / f"{slug}.ledger.json"
                 ledger_path.write_text(json.dumps(led, indent=2) + "\n")
                 if qa["verdict"] != "fail":
@@ -1337,6 +1523,29 @@ def process(pkg: dict, pkg_path: Path | None, *,
             composer.compose(pkg_path, ledger_path, out_mp4)
         result["video_path"] = str(out_mp4.relative_to(REPO))
         result["ledger"] = str(ledger_path.relative_to(REPO))
+        # UNJUDGED GATE (2026-07-30): every CONTENT quality gate in this
+        # pipeline fails OPEN when its judge is unreachable, and on that
+        # date all three were down at once, so three clips shipped that
+        # nothing had judged:
+        #   1. selection floor — the can't-score default is 0.5 and
+        #      min_banger is 0.5, so `banger >= min_banger` is True by
+        #      exactly zero margin: a blind run always clears the floor.
+        #   2. content gate — `if cb is not None and cb < floor` skips
+        #      entirely when the brain returns nothing.
+        #   3. vision critic — `bool(vision and not vision["publish"])` is
+        #      False when vision is None.
+        # Each fail-open is defensible alone (never lose a good clip to a
+        # flaky brain). Together they mean a clip can reach the channel
+        # with ZERO content judgment behind it. This is the backstop: if
+        # not one judge could evaluate it, don't publish it. A single
+        # working judge is enough to ship — this only fires when the slate
+        # would otherwise be chosen on raw view count alone.
+        # Skip (not error): retrying would just fetch another unjudged clip.
+        if led.get("kind") == "twitch_clip" and not _any_judgment():
+            raise _SkipSlot(
+                "unjudged: no content judge could evaluate this clip "
+                "(ranker blind, content gate and vision both unavailable) "
+                "— refusing to publish on view count alone")
         # Final safety choke: no matter which path produced it (authored,
         # raw fallback, sim/cli template), the public title is scrubbed one
         # last time before it can reach an uploader.
@@ -1365,13 +1574,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     "ts": datetime.now(timezone.utc).isoformat(),
                 }
         else:
-            from uploaders import YouTubeUploader
+            from shared.uploaders import YouTubeUploader
             description = _description(pkg, led)
             # every language: extended locale set (clipper content is
             # visual-first, so localized metadata travels worldwide)
             localizations = None
             try:
-                from localize import translate_metadata, ALL_LANGS
+                from shared.localize import translate_metadata, ALL_LANGS
                 localizations = translate_metadata(title, description,
                                                    langs=ALL_LANGS)
             except Exception as e:  # noqa: BLE001
@@ -1459,6 +1668,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
         print(f"[skip] {slug}: {e}", flush=True)
     except Exception as e:  # noqa: BLE001
         result["error"] = f"{type(e).__name__}: {e}"
+    # Attach on BOTH paths: a rejected clip's verdicts are the interesting
+    # ones, and they used to die with the CI log. Belt-and-braces — _judge
+    # already coerces to JSON-safe primitives, and this runs OUTSIDE the
+    # render's try, so it must not be able to raise either.
+    try:
+        if _JUDGES:
+            result["judges"] = json.loads(json.dumps(_JUDGES, default=str))
+    except Exception as e:  # noqa: BLE001
+        print(f"[judges] not recorded for {slug}: {e}", flush=True)
     result["took_s"] = round(time.time() - t0, 1)
     return result
 
@@ -1541,8 +1759,31 @@ def main() -> int:
     # until one ships or we run dry. A deliberate skip (quality floor / dedupe
     # guard) is not a failure and does not retry. Failures fail fast (the dark
     # gate + preflight reject bad sources in ~2s), so retries are cheap.
+    # 3 attempts now buy MORE than they used to: a slot whose shortlist
+    # fails the title floor no longer skips instantly — it escalates each
+    # candidate to the transcript judge, so these attempts get spent on
+    # real inspection instead of going unused. Held at 3 deliberately: each
+    # attempt costs a download + whisper pass (~90s) and the job's ceiling
+    # is 120 min (a run died on that wall on 2026-07-25).
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
+        # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call
+        # failed for ~90 min and the run still shipped 4 clips — picked by
+        # raw view count (banger pinned at 0.5), no scene analysis, fallback
+        # titles. Each per-call fallback degraded "gracefully"; nothing saw
+        # the pattern. Once the brain is provably down (3+ tasks, zero
+        # successes), stop filling slots: the remaining slugs stay unposted
+        # and the next run (cron/chain) retries them when the brain is back.
+        # Slots already shipped this run stay shipped and get committed.
+        if author.brain_down() and not os.environ.get("THIRD_ALLOW_BLIND"):
+            h = author.brain_health()
+            print(f"::error::[brain] DOWN ({h['fail']} failed brain tasks, "
+                  f"0 ok) — refusing to publish a blind slate. Remaining "
+                  f"slots left for the next run. Set THIRD_ALLOW_BLIND=1 "
+                  f"to override.", flush=True)
+            results.append({"slug": pkg["slug"], "ok": False,
+                            "skipped": "brain down — blind-slate gate"})
+            continue
         publish_at = None
         if publish_base and pkg["slug"] not in log["posted"]:
             publish_at = (publish_base + slot_gap * slot) \
@@ -1575,12 +1816,18 @@ def main() -> int:
             "date": args.date, "dry_run": args.dry_run,
             "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "feedback": feedback,
+            # How the brains actually fared this run. A run where every
+            # brain task failed picked its clips on raw view count; one
+            # where they half-failed picked SOME blind. Neither was
+            # legible before — `ok`/`fail` counts make it a one-line read.
+            "brain": author.brain_health(),
             "clips": [{k: r.get(k) for k in
                        ("slug", "ok", "skipped", "render_level", "layout",
-                        "self_healed", "error") if r.get(k) is not None}
+                        "self_healed", "error", "judges")
+                       if r.get(k) is not None}
                       for r in results],
         })
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         atomic_write_json(stats_path, {"runs": hist[-30:]})
     except Exception as e:  # noqa: BLE001 — stats never fail the run
         print(f"[stats] skipped: {e}", flush=True)

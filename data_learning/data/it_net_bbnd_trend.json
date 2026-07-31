@@ -1,0 +1,48 @@
+{
+  "key": "it_net_bbnd_trend",
+  "title": "Fixed broadband subscriptions",
+  "unit": "",
+  "geography": "World",
+  "time_coverage": "2005-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Fixed broadband subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.BBND",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2005",
+      "value": 219600000,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 468100000,
+      "period": "2009"
+    },
+    {
+      "label": "2013",
+      "value": 692400000,
+      "period": "2013"
+    },
+    {
+      "label": "2017",
+      "value": 1027000000,
+      "period": "2017"
+    },
+    {
+      "label": "2021",
+      "value": 1330000000,
+      "period": "2021"
+    },
+    {
+      "label": "2025",
+      "value": 1654000000,
+      "period": "2025"
+    }
+  ]
+}

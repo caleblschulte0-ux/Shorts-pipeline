@@ -18,7 +18,7 @@ def main() -> int:
     ap.add_argument("--channel", default="explainer")
     ap.add_argument("ids", nargs="+")
     a = ap.parse_args()
-    from uploaders import YouTubeUploader
+    from shared.uploaders import YouTubeUploader
     svc = YouTubeUploader(channel=a.channel)._service()
     bad = 0
     for vid in a.ids:

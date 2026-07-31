@@ -166,8 +166,12 @@ def _draw_trend(ax, insight: Insight):
 
 CARD = "#0B1020"
 CARD_EDGE = "#1f2a44"
-# Taller card so the chart can dominate the frame (data is the focus).
-SERIES_W, SERIES_H, SERIES_DPI = 10.0, 11.2, 110   # -> 1100x1232 px
+# Taller card so the chart DOMINATES the frame (~80% tall): fills the vertical
+# space (kills the empty lower band the gate consistently flags) and drops each
+# element low enough for Data to perform ON it.
+SERIES_W, SERIES_H, SERIES_DPI = 10.0, 15.6, 110   # taller card -> fills more
+# of the 9:16 frame so the dead 'letterbox' band below it (the gate's empty_void)
+# shrinks; the caption band still clears the chart's bottom axis.
 
 
 def _vfmt(v: float) -> str:
@@ -186,6 +190,116 @@ def _ulabel(v: float, unit: str) -> str:
     if u in ("dollars", "dollar", "usd", "$"):
         return "$" + n
     return n
+
+
+# ---- HOST BAKED INTO THE CHART ------------------------------------------
+# Data drawn INSIDE each chart frame at the GROWING data tip, so he rides the
+# line / the bar as it draws — mascot and data move together, frame by frame. A
+# looping sprite composited on top can only slide around; baked in, he actually
+# performs ON the data (the architecture the showrunner keeps asking for). His
+# pose animates with the reveal phase, so he's acting, not a held sticker.
+_HOST_IMG_CACHE: dict = {}
+# Actions where Data is mechanically ATTACHED to the chart object (his grip
+# point is baked onto the datum, he has no floor contact).
+_COUPLED_ACTIONS = frozenset({"drag_line", "shoved_bar", "hoist_stack",
+                              "pull_down_win"})
+
+# ---- attachment contract (charts emit anchors; the mascot attaches) --------
+# Every _bake_host call records its grip point here; render_story_build collects
+# one entry per frame and writes `{slug}_attach.json` — the scene's attachment
+# record: which object Data grips, the full grip motion path, and the selected
+# performance. Downstream (manifest, benchmark validator, repair loop) read it.
+_ATTACH_FRAME: list = []           # grips recorded while drawing ONE frame
+_LAST_PERF: dict = {}              # the performance spec chosen for this build
+
+
+def _perf_align(action: str, default: tuple) -> tuple:
+    """Attachment alignment for the selected action (falls back to the chart
+    site's default when the action has no registered contact geometry)."""
+    try:
+        from . import mascot_director as _md
+        return _md.ACTION_ALIGN.get(action, default)
+    except Exception:  # noqa: BLE001
+        return default
+
+
+def _perf_action(insight: Insight, kind: str) -> str:
+    """The DIRECTED action for this beat: an explicit scene-plan override wins;
+    otherwise the director selects a VERIFIED performance from the story's
+    actual CLAIM (insight.main_insight), not merely the chart kind."""
+    global _LAST_PERF
+    ov = getattr(insight, "perf_override", None)
+    if ov:
+        # full spec when the story-level director (or a scene plan) chose it
+        spec = getattr(insight, "perf_spec", None)
+        _LAST_PERF = spec if isinstance(spec, dict) else {
+            "action": ov, "goal": "scene-plan override",
+            "target": getattr(insight, "highlight_label", "") or ""}
+        return ov
+    try:
+        from . import mascot_director as _md
+        # the object he fights: the line's latest point for a trend, else the
+        # star (leading) item
+        star = ""
+        if insight.items:
+            star = (insight.items[-1].label if kind in ("trend", "timeline")
+                    else insight.items[0].label)
+        spec = _md.performance_for(kind, insight.main_insight or "", star)
+        _LAST_PERF = spec
+        return spec["action"]
+    except Exception:  # noqa: BLE001 — never lose a render over direction
+        _LAST_PERF = {"action": "shoved_bar", "goal": "", "target": ""}
+        return "shoved_bar"
+
+
+def _host_img(action: str, phase: float):
+    """One mascot action frame as an RGBA numpy array (cached by action+phase).
+    Granularity 0.025 (40 buckets): coarse 0.1 held each pose ~1/11 of the beat
+    (~1.2s = a stack of duplicate frames that aliased the effort reps and tanked
+    effective_fps); 40 buckets keep the arc's pushes SMOOTH and the mascot moving
+    nearly every frame, while still caching (≤40 rasterises per action)."""
+    key = (action, round(phase * 40) / 40)
+    if key in _HOST_IMG_CACHE:
+        return _HOST_IMG_CACHE[key]
+    val = None
+    try:
+        import io
+        import numpy as np
+        from PIL import Image
+        from . import mascot_director as _md
+        # CLAMP (do NOT modulo) — the arc actions are non-periodic beat-progress
+        # in [0,1] where phase 1.0 is the PAYOFF climax. `% 1.0` wrapped 1.0 back
+        # to 0.0, so the final frame snapped to the setup pose (no overhead cheer
+        # ever landed). Clamp keeps 1.0 -> payoff.
+        _t = min(1.0, max(0.0, key[1]))
+        # COUPLED actions (Data mechanically attached to a chart object) render
+        # groundless — no floor shadow, since he leaves the floor.
+        _ground = action not in _COUPLED_ACTIONS
+        svg = _md.compose_anim({"action": action, "prop": "none",
+                                "ground": _ground}, _t)
+        png = _md._rasterise(svg, 300)
+        val = np.asarray(Image.open(io.BytesIO(png)).convert("RGBA")) / 255.0
+    except Exception:  # noqa: BLE001 — a chart must never die over the host
+        val = None
+    _HOST_IMG_CACHE[key] = val
+    return val
+
+
+def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
+    """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
+    pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
+    so he stands ON the datum. Records the grip into the attachment log
+    (`_ATTACH_FRAME`) — the contract that the mascot is ATTACHED to a chart
+    object, not floating near it."""
+    _ATTACH_FRAME.append({"action": action, "x": float(x), "y": float(y),
+                          "phase": round(float(min(1.0, max(0.0, phase))), 3)})
+    img = _host_img(action, phase)
+    if img is None:
+        return
+    from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+    ab = AnnotationBbox(OffsetImage(img, zoom=zoom), (x, y), frameon=False,
+                        box_alignment=align, zorder=8, pad=0, annotation_clip=False)
+    ax.add_artist(ab)
 
 
 def _ordered_items(insight: Insight) -> list:
@@ -330,9 +444,9 @@ def _round_barv(ax, x, value, lw, color, zorder=3):
             zorder=zorder)
 
 
-def _bar_lw(n: int) -> float:
-    """Bar thickness (points) so rounded bars fill the (now taller) axes."""
-    plot_px = SERIES_H * 0.58 * SERIES_DPI       # bars axes is ~58% tall
+def _bar_lw(n: int, frac: float = 0.58) -> float:
+    """Bar thickness (points) so rounded bars fill the axes (``frac`` of card)."""
+    plot_px = SERIES_H * frac * SERIES_DPI
     row_px = plot_px / max(1, n)
     return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
 
@@ -361,10 +475,18 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         else:
             color = ACCENT
         _round_barh(ax, i, vmax, lw, BAR_BASE, zorder=2)          # track
-        _round_barh(ax, i, max(v * reveal, vmax * 0.012), lw, color, zorder=3)
-        t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
-                    color=TEXT, fontweight="bold", zorder=4,
-                    alpha=_lblalpha(reveal))
+        tip = max(v * reveal, vmax * 0.012)
+        _round_barh(ax, i, tip, lw, color, zorder=3)
+        # Winner (i==0) carries the mascot on its tip, so its number lives INSIDE
+        # the bar (white) — clear of the pushing host; the rest label outside.
+        if i == 0 and tip > vmax * 0.30:
+            t = ax.text(vmax * 0.03, i, _vfmt(v), va="center", ha="left",
+                        fontsize=30, color="white", fontweight="bold", zorder=6,
+                        alpha=_lblalpha(reveal))
+        else:
+            t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
+                        color=TEXT, fontweight="bold", zorder=4,
+                        alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
     ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
@@ -377,13 +499,20 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
             lbl.set_fontweight("bold")
     ax.invert_yaxis()
     ax.set_xticks([])
-    ax.set_xlim(0, vmax * 1.22)
+    ax.set_xlim(0, vmax * 1.28)
     ax.set_ylim(n - 0.5, -0.5)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
-    # Anchor each value at its number label so the marker encircles the whole
-    # number (and the mascot walks to it).
+    # BAKE THE HOST: Data shoves the WINNING bar (i==0, top row) out along its
+    # growing tip — a full setup->action->payoff arc across the beat. Without
+    # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
+    # would show NO mascot at all.
+    _wtip = max(values[0] * max(0.0, min(1.0, reveal)), vmax * 0.02)
+    _act_b = _perf_action(insight, "rank")
+    _bake_host(ax, _wtip, 0, _act_b, reveal,
+               zoom=0.9, align=_perf_align(_act_b, (0.28, 0.5)))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -392,18 +521,31 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     hi, lo = insight.items[0], insight.items[1]
     pair = [(hi, HIGHLIGHT), (lo, ACCENT)]
     vmax = max(hi.value, lo.value)
-    ax = fig.add_axes([0.10, 0.22, 0.82, 0.50])
+    # Tall axes + WIDE columns so two bars actually fill the 9:16 card (they used
+    # to read as 'two short capsules in a narrow band' = empty_void).
+    ax = fig.add_axes([0.08, 0.11, 0.84, 0.74])
     ax.set_facecolor("none")
-    lw = 100
-    xs = [0.30, 0.70]
+    lw = 165
+    xs = [0.28, 0.72]
     colors = [HIGHLIGHT, ACCENT]
+    # Faint horizontal reference lines so the space above the shorter column reads
+    # as chart, not void.
+    for _gf in (0.25, 0.5, 0.75, 1.0):
+        ax.axhline(vmax * _gf, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
     arts = []
-    for (p, color), x in zip(pair, xs):
+    for j, ((p, color), x) in enumerate(zip(pair, xs)):
         _round_barv(ax, x, vmax, lw, BAR_BASE, zorder=2)
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
-        t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
-                    ha="center", fontsize=46, color=TEXT, fontweight="bold",
-                    zorder=4, alpha=_lblalpha(reveal))
+        # Winner (j==0) carries the mascot gripping its TOP, so its big number
+        # sits LOW inside the column (white) — clear of the top-gripping host.
+        if j == 0:
+            t = ax.text(x, vmax * 0.16, _vfmt(p.value) + "%", ha="center",
+                        va="center", fontsize=42, color="white",
+                        fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
+        else:
+            t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
+                        ha="center", fontsize=46, color=TEXT, fontweight="bold",
+                        zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
         ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
                 color=color, fontweight="bold", zorder=4)
@@ -419,12 +561,22 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
                 va="bottom", fontsize=19, color=WARN, fontweight="bold",
                 zorder=4)
     ax.set_xlim(0, 1)
-    ax.set_ylim(-vmax * 0.44, vmax * 1.30)
+    ax.set_ylim(-vmax * 0.20, vmax * 1.12)   # winning column nearly fills the card
     ax.set_xticks([])
     ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
-    # Anchor each column at its big number label.
+    # BAKE THE HOST: Data rides the WINNING column's growing tip, hoisted UP as it
+    # rises (setup->action->payoff). Feet at the tip; his body fills the space
+    # above the column where the number used to sit (now moved inside).
+    # COUPLE (vertical DRAG, like the trend/stack that pass): Data grips the top
+    # of the winning column and is hauled UP as it grows — reads as data-driven,
+    # unlike lift_arc which the gate read as 'perches on top, swallowed'.
+    _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
+    _act_c = _perf_action(insight, "comparison")
+    _bake_host(ax, xs[0], _htip, _act_c, reveal,
+               zoom=0.8, align=_perf_align(_act_c, (0.5, 0.78)))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -446,6 +598,14 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     if kf < n - 1 and frac > 0:
         xd = xd + [x[kf] + frac]
         yd = yd + [values[kf] + (values[kf + 1] - values[kf]) * frac]
+    # GHOST the WHOLE trajectory (dim) under the revealed portion, so from frame
+    # one the frame carries the full chart SHAPE instead of a knee-high stub over
+    # dead navy (the empty_void the gate flagged). The bright line sketches in
+    # over this faint preview; the fill/line below draw on top at full strength.
+    ax.fill_between(x, values, lo - span * 0.15,
+                    color=HIGHLIGHT, alpha=0.05, zorder=1)
+    ax.plot(x, values, color=HIGHLIGHT, lw=3, alpha=0.16,
+            solid_capstyle="round", zorder=1)
     ax.fill_between(xd, yd, lo - span * 0.15,
                     color=HIGHLIGHT, alpha=0.16, zorder=2)
     ax.plot(xd, yd, color=HIGHLIGHT, lw=6, solid_capstyle="round", zorder=3)
@@ -476,11 +636,26 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
     ax.set_yticks([])
     ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
-    ax.set_ylim(lo - span * 0.18, max(values) * 1.22)
-    ax.grid(axis="y", color="#18223c", linewidth=1, zorder=0)
+    _ylo, _yhi = lo - span * 0.18, max(values) * 1.22
+    ax.set_ylim(_ylo, _yhi)
+    # Faint horizontal reference lines across the FULL card width so the upper
+    # area reads as chart space, not empty navy. set_yticks([]) meant the old
+    # grid drew nothing, leaving the top two-thirds a void (empty_void).
+    for _f in (0.22, 0.42, 0.62, 0.82):
+        ax.axhline(_ylo + (_yhi - _ylo) * _f, color="#1E2A44",
+                   linewidth=1.3, zorder=0, alpha=0.8)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
+    # COUPLE THE HOST: Data clamps both fists onto the line's advancing TIP and
+    # tries to haul it down — but the line keeps climbing and drags him up (heels
+    # dug in -> feet break contact -> airborne swing). His grip point (top of the
+    # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
+    # contact + cause + consequence, not a sprite surfing above the line.
+    _act_t = _perf_action(insight, "trend")
+    _bake_host(ax, xd[-1], yd[-1], _act_t, reveal,
+               zoom=1.15, align=_perf_align(_act_t, (0.5, 0.80)))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -530,6 +705,13 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     ax.text(0, 0, _ulabel(total, insight.unit), ha="center", va="center",
             fontsize=30, color=SUBTLE, fontweight="bold", zorder=4,
             alpha=_lblalpha(reveal))
+    # BAKE THE HOST on a side axes in the empty right third — Data hoists the
+    # composition (lift arc, setup->action->payoff) so a share beat isn't
+    # mascot-less (kind is in BAKED_CHART_KINDS, so the overlay is suppressed).
+    _max = fig.add_axes([0.66, 0.14, 0.32, 0.56])
+    _max.set_axis_off(); _max.set_xlim(0, 1); _max.set_ylim(0, 1)
+    _bake_host(_max, 0.5, 0.12, "lift_arc", reveal, zoom=0.55, align=(0.5, 0.0))
+    insight.host_baked = True
     return ax, arts
 
 
@@ -653,6 +835,13 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
         t2 = leg.text(0.69, y - 0.024, _vfmt(v), fontsize=30, color=col,
                       fontweight="bold", va="center", alpha=la, zorder=6)
         specs.append((v, "art", t2, None))
+    # COUPLE THE HOST on the legend axes beside the map: Data hoists the ranked
+    # column as it fills in (contact on the leaderboard the map is building) —
+    # a geo beat is no longer mascot-less.
+    _act_g = _perf_action(insight, "rank")
+    _bake_host(leg, 0.30, 0.10, _act_g, reveal,
+               zoom=0.72, align=_perf_align(_act_g, (0.5, 0.0)))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -660,7 +849,9 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     """Proportional icon array: each item is a row of icons whose count scales
     with its value (top item ~10 icons). Reads as 'X is N times Y' at a glance —
     the creative replacement for a plain ranking bar chart."""
-    items = _ordered_items(insight)[:4]
+    # Show up to 6 rows — capping at 4 dropped the payoff data (e.g. the 2000s /
+    # 2010s decades the script's 'nearly triple' punchline depends on).
+    items = _ordered_items(insight)[:6]
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
@@ -698,19 +889,29 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         else:
             color = ACCENT
         full = max(1, int(round((v / vmax) * cols)))
-        shown = max(0, min(full, int(round(full * t + 0.5)))) if t < 1 else full
+        # CONTINUOUS reveal: the frontier icon FADES in (no cell-by-cell stepping
+        # that judders / reads as dead air on the cadence metric).
+        shownf = (full * t) if t < 1 else float(full)
+        shown = int(shownf)
+        frac = shownf - shown
         img = _icon_img(p.label)
         for c in range(full):
-            on = c < shown
+            if c < shown:
+                on_a = 1.0
+            elif c == shown and frac > 0.0:
+                on_a = 0.28 + 0.72 * frac      # frontier fading in
+            else:
+                on_a = 0.0
             if img is not None:
-                oi = OffsetImage(img, zoom=0.62, alpha=1.0 if on else 0.28)
+                oi = OffsetImage(img, zoom=0.62, alpha=max(0.28, on_a))
                 ab = AnnotationBbox(oi, (c, y), frameon=False, zorder=3,
                                     box_alignment=(0.5, 0.5))
                 ax.add_artist(ab)
             else:
                 ax.scatter(c, y, s=290, marker="o",
-                           color=color if on else BAR_BASE,
-                           edgecolors="none", zorder=3, alpha=1.0 if on else 0.9)
+                           color=color if on_a > 0 else BAR_BASE,
+                           edgecolors="none", zorder=3,
+                           alpha=on_a if on_a > 0 else 0.9)
         # label above the row, value at the end of the row
         ax.text(-0.4, y + 0.40, p.label, ha="left", va="center", fontsize=24,
                 color=(color if p.label == insight.highlight_label else TEXT),
@@ -721,6 +922,16 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
     if values:
         top_icons = max(1, int(round((values[0] / vmax) * cols)))
         specs = [(values[0], "pt", float(top_icons - 1), float(n - 1))]
+        # BAKE THE HOST on the BIGGEST row's growing edge (the payoff row), hoisting
+        # icons in as it fills — he ends on the longest row.
+        _mr = max(range(len(values)), key=lambda k: values[k])
+        _mfull = max(1, int(round((values[_mr] / vmax) * cols)))
+        _mshown = max(1, min(_mfull, int(round(_mfull * t + 0.5)))) if t < 1 else _mfull
+        # COUPLE THE HOST: Data braces against the biggest row's advancing edge
+        # and is shoved along as the row of icons outgrows him.
+        _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
+                   "shoved_bar", reveal, zoom=1.0, align=(0.28, 0.5))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -747,31 +958,55 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         labels.append((p.label, p.value, col))
     band = (band + [BAR_BASE] * 100)[:100]
     t = max(0.0, min(1.0, reveal))
-    lit = int(round(t * 100))
+    # CONTINUOUS fill: the frontier cell FADES in (alpha tracks the fractional
+    # part) so the grid changes every frame instead of stepping cell-by-cell —
+    # that stepping read as judder / near-dead-air on the cadence metric.
+    litf = t * 100.0
+    lit = int(litf)
+    frac = litf - lit
     ax = fig.add_axes([0.07, 0.12, 0.52, 0.66])
     ax.set_xlim(-0.5, 10.0); ax.set_ylim(-0.5, 10.0)
     ax.set_aspect("equal"); ax.set_axis_off()
     for idx in range(100):
         r, cN = divmod(idx, 10)
         y = 9 - r                              # fill top-to-bottom, left-to-right
-        on = idx < lit
-        fc = band[idx] if on else BAR_BASE
+        if idx < lit:
+            fc, a = band[idx], 1.0
+        elif idx == lit and frac > 0.0:
+            fc, a = band[idx], 0.30 + 0.70 * frac   # frontier fading in
+        else:
+            fc, a = BAR_BASE, 0.55
         ax.add_patch(FancyBboxPatch(
             (cN - 0.42, y - 0.42), 0.84, 0.84,
             boxstyle="round,pad=0.02,rounding_size=0.18",
-            linewidth=0, facecolor=fc, alpha=1.0 if on else 0.55, zorder=3))
+            linewidth=0, facecolor=fc, alpha=a, zorder=3))
     # Legend chips (label + value) on the right, fading in with the fill.
     specs, la = [], _lblalpha(reveal)
     top = 0.70
     for lbl, val, col in labels[:5]:
         yy = top
+        # A waffle depicts SHARE — so the legend shows each item's % of the
+        # total shown, not its raw value with a spurious '%' (that printed
+        # '1425.9%' for absolute counts). For data already in percent that sums
+        # to ~100 this is unchanged; for counts it normalises correctly.
+        _share = abs(val) / tot * 100.0
         fig.text(0.635, yy, "■", color=col, fontsize=26, va="center")
         fig.text(0.675, yy + 0.005, lbl, color=TEXT, fontsize=23,
                  fontweight="bold", va="center")
-        t2 = fig.text(0.675, yy - 0.045, _vfmt(val) + "%", color=col, fontsize=30,
+        t2 = fig.text(0.675, yy - 0.045, f"{_share:.0f}%", color=col, fontsize=30,
                       fontweight="bold", va="center", alpha=la)
         specs.append((val, "art", t2, None))
         top -= 0.135
+    # BAKE THE HOST: Data works the fill FRONTIER — he walks the grid stamping in
+    # the next tile, so the waffle reads as HIS build (his x/y jumps to the last
+    # lit cell each frame).
+    _fi = max(0, min(99, lit - 1))
+    _fr, _fc = divmod(_fi, 10)
+    # COUPLE THE HOST: Data stands under the growing fill with arms pressed up on
+    # its underside — the pile presses DOWN on him (buckle -> heave) as it fills.
+    _bake_host(ax, float(_fc), float(9 - _fr),
+               "hoist_stack", reveal, zoom=0.85, align=(0.5, 0.80))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -786,9 +1021,19 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     values = [p.value for p in items]
     vmax = max(values) if values else 1.0
     n = len(items)
-    lw = _bar_lw(n)
-    ax = fig.add_axes([0.24, 0.16, 0.62, 0.60])
+    lw = _bar_lw(n, frac=0.72)
+    # Taller axes that FILL the card so a few short bars don't leave the bottom
+    # ~40% dead (empty_void). Thick bars (frac above) keep them from looking thin.
+    ax = fig.add_axes([0.24, 0.10, 0.62, 0.72])
     ax.set_facecolor("none")
+    # Faint vertical reference lines across the card so the space to the right of
+    # short bars reads as chart, not void.
+    for _gx in (0.25, 0.5, 0.75, 1.0):
+        ax.axvline(vmax * _gx, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
+    # Scale the row-label font to the longest label so a long name ("United
+    # States") doesn't run off the left edge — fixed fs24 clipped them.
+    _maxlbl = max((len(str(p.label)) for p in items), default=6)
+    lblfs = 24 if _maxlbl <= 9 else 20 if _maxlbl <= 12 else 17
     t = max(0.0, min(1.0, reveal))
     _cache: dict = {}
 
@@ -822,17 +1067,103 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         else:
             ax.scatter([tip], [y], s=340, color=color, edgecolors="white",
                        linewidths=1.5, zorder=5)
-        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=24,
+        ax.text(-vmax * 0.03, y, p.label, ha="right", va="center", fontsize=lblfs,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
-        tt = ax.text(tip + cap_w + vmax * 0.03, y, _vfmt(v), va="center",
-                     ha="left", fontsize=28, color=color, fontweight="bold",
-                     zorder=6, alpha=_lblalpha(reveal))
+        # Value label WITH its unit (%/$/…). It sits INSIDE the coloured bar
+        # (white, left-aligned on the fill) so the TIP stays clear for the mascot
+        # pushing it — no tip collision (his shove-arm used to cover the leading
+        # digit), and it can never be clipped by xlim ('59.1%' -> '9.1%'). A bar
+        # too short to hold the number gets it just past the tip instead.
+        _lab = _ulabel(v, insight.unit)
+        if tip > vmax * 0.30:            # bar long enough -> number INSIDE the fill
+            tt = ax.text(vmax * 0.035, y, _lab, va="center", ha="left",
+                         fontsize=30, color="white", fontweight="bold", zorder=7,
+                         alpha=_lblalpha(reveal))
+        else:                            # short bar -> value just past the tip
+            tt = ax.text(tip + cap_w + vmax * 0.03, y, _lab, va="center",
+                         ha="left", fontsize=30, color=color, fontweight="bold",
+                         zorder=7, alpha=_lblalpha(reveal))
         specs.append((p.value, "art", tt, None))
-    ax.set_xlim(0, vmax * 1.34); ax.set_ylim(-0.6, n - 0.4)
+    # Tighter xlim (was 1.5) now the value lives inside the bar: the bars fill
+    # more of the card width (less dead navy on the right), leaving just enough
+    # room for the mascot riding the winning tip.
+    ax.set_xlim(0, vmax * 1.28); ax.set_ylim(-0.6, n - 0.4)
     ax.set_xticks([]); ax.set_yticks([])
     for s in ax.spines.values():
         s.set_visible(False)
+    # BAKE THE HOST: Data braces against the WINNING bar's growing tip, shoving
+    # it out — he moves right WITH the bar as it grows (top row = highest value).
+    _ttip = max(max(values) * t, vmax * 0.02)
+    # COUPLE THE HOST: Data braces against the winning bar's advancing right face
+    # and is shoved along as it outgrows him (his left-side hands baked onto the
+    # bar tip) — the bar drives him, not a sprite perched on the cap.
+    _act_r = _perf_action(insight, "pictorial_race")
+    _bake_host(ax, _ttip, n - 1, _act_r, reveal,
+               zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)))
+    insight.host_baked = True
+    return ax, specs
+
+
+def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
+    """A single 100% STACKED COLUMN that grows bottom->top, each source a coloured
+    segment sized to its share. Fills the tall 9:16 card (a vertical tower), and
+    Data grips the TOP of the growing stack and is hauled UP as it rises — a
+    vertical, clearly data-driven bit (the part-to-whole answer to the waffle)."""
+    from matplotlib.patches import FancyBboxPatch
+    items = _ordered_items(insight)[:6]
+    vals = [max(0.0, p.value) for p in items]
+    tot = sum(max(0.0, p.value) for p in insight.items) or 1.0   # of the WHOLE
+    shares = [v / tot * 100.0 for v in vals]                     # (tail = a top gap)
+    ax = fig.add_axes([0.10, 0.07, 0.80, 0.70])   # tops out below the heading so
+    ax.set_xlim(0, 1); ax.set_ylim(0, 100)         # the top-gripping host clears it
+    ax.set_axis_off()
+    t = max(0.0, min(1.0, reveal))
+    filled = t * 100.0
+    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+    cx0, cx1 = 0.20, 0.62                       # wider column (was a narrow strip)
+    # Faint horizontal reference lines across the FULL card so the space beside
+    # the tower reads as chart, not empty (empty_void).
+    for _gy in (20, 40, 60, 80):
+        ax.axhline(_gy, color="#1E2A44", linewidth=1.2, zorder=0, alpha=0.7)
+    # GHOST the WHOLE tower (every segment, dim) from frame 1 so the early frames
+    # carry the full shape instead of a near-empty column over dead navy
+    # (empty_void). The bright fill rises over this preview.
+    _gy = 0.0
+    for i, (p, sh) in enumerate(zip(items, shares)):
+        gcol = (HIGHLIGHT if p.label == insight.highlight_label
+                else palette[i % len(palette)])
+        ax.add_patch(FancyBboxPatch((cx0, _gy), cx1 - cx0, sh,
+                     boxstyle="round,pad=0,rounding_size=1.4",
+                     facecolor=gcol, edgecolor="none", alpha=0.16, zorder=1))
+        gt = ax.text(cx1 + 0.03, _gy + sh / 2.0, f"{p.label}  {sh:.0f}%",
+                     ha="left", va="center", fontsize=23, color=gcol,
+                     fontweight="bold", zorder=2, alpha=0.22)
+        _gy += sh
+    specs, la = [], _lblalpha(reveal)
+    y0, top_y = 0.0, 0.0
+    for i, (p, sh) in enumerate(zip(items, shares)):
+        col = (HIGHLIGHT if p.label == insight.highlight_label
+               else palette[i % len(palette)])
+        vis_top = min(y0 + sh, filled)
+        if vis_top > y0 + 0.4:
+            ax.add_patch(FancyBboxPatch((cx0, y0), cx1 - cx0, vis_top - y0,
+                         boxstyle="round,pad=0,rounding_size=1.4",
+                         facecolor=col, edgecolor=CARD, linewidth=2, zorder=3))
+            top_y = vis_top
+            if vis_top >= y0 + sh * 0.55:       # label once the segment is mostly in
+                tt = ax.text(cx1 + 0.03, y0 + sh / 2.0,
+                             f"{p.label}  {sh:.0f}%", ha="left", va="center",
+                             fontsize=23, color=col, fontweight="bold",
+                             zorder=5, alpha=la, path_effects=_shadow())
+                specs.append((p.value, "art", tt, None))
+        y0 += sh
+    # COUPLE THE HOST: Data grips the top of the growing tower and is hauled up as
+    # it stacks (vertical drag — a real bit, not a horizontal slide).
+    _act_s = _perf_action(insight, "stack")
+    _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _act_s,
+               reveal, zoom=0.92, align=_perf_align(_act_s, (0.5, 0.80)))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -881,6 +1212,14 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
                 fontsize=22, fontweight="bold", zorder=4, alpha=_lblalpha(reveal),
                 path_effects=_shadow())
         specs.append((p.value, "art", tt, None))
+        if i == 0:
+            _star_top = (cx, cy + r * t)
+    # COUPLE THE HOST: Data grips the TOP of the star (biggest) bubble and is
+    # pushed UP as it inflates — contact + cause + consequence on the bubble.
+    _act_bb = _perf_action(insight, "trend")
+    _bake_host(ax, _star_top[0], _star_top[1], _act_bb,
+               reveal, zoom=0.8, align=_perf_align(_act_bb, (0.5, 0.80)))
+    insight.host_baked = True
     return ax, specs
 
 
@@ -1034,6 +1373,29 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     # Never render bare numbers: any stray number-only kind depicts as bubbles.
     if insight.kind in ("callouts", "bignum"):
         insight.kind = "bubbles"
+    # AUTO-ROUTING to frame-filling, mascot-coupled kinds. A scene-plan override
+    # (state/scene_plans/{slug}.json, written by the scene repair loop) sets
+    # plan_locked and SKIPS this — a deliberately chosen scene variant renders
+    # exactly as planned.
+    if not getattr(insight, "plan_locked", False):
+        # A square waffle can't fill the tall 9:16 card (empty_void) and its
+        # zig-zag frontier gives the mascot no clean travel. A vertical STACKED
+        # COLUMN fills the tower, shows the same part-to-whole, and couples
+        # VERTICALLY (Data hauled up the stack).
+        if insight.kind in ("waffle_grid", "share"):
+            insight.kind = "stack"          # any item count — stack takes 6
+        # A pictograph reveals icons one cell at a time — a discrete ~3fps fill
+        # that dragged carbon to tcraft=1. A race shows the same ranking with
+        # smooth grow + the shoved_bar coupling.
+        if insight.kind == "pictograph":
+            insight.kind = "pictorial_race"
+        # A 2-value split reads badly as a horizontal race (mascot slides). Send
+        # it to VERTICAL versus columns where Data is hauled UP the winning
+        # column — a distinct vertical bit that keeps a story from becoming
+        # stack+stack (the monotony that reads as 'same pose twice').
+        if insight.kind in ("pictorial_race", "rank") and \
+                len(insight.items) == 2:
+            insight.kind = "comparison"
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
@@ -1068,8 +1430,14 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         subtitle = f"{star.label} {'sits lowest' if low else 'leads the map'}"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
+    elif insight.kind == "stack":
+        _tot = sum(abs(p.value) for p in insight.items) or 1.0
+        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
+        _heading(fig, insight.topic, subtitle)
+        ax, specs = _story_stack(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "waffle_grid":
-        subtitle = f"{star.label} is {_vfmt(star.value)}% of the whole"
+        _tot = sum(abs(p.value) for p in insight.items) or 1.0
+        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "pictorial_race":
@@ -1120,6 +1488,101 @@ def _pil_font(size: int, bold: bool = True):
         return ImageFont.truetype(fp, size)
     except Exception:  # noqa: BLE001
         return ImageFont.load_default()
+
+
+def _pil_mono(size: int, bold: bool = True):
+    from matplotlib import font_manager
+    from PIL import ImageFont
+    try:
+        fp = font_manager.findfont(font_manager.FontProperties(
+            family="DejaVu Sans Mono", weight="bold" if bold else "normal"))
+        return ImageFont.truetype(fp, size)
+    except Exception:  # noqa: BLE001
+        return _pil_font(size, bold)
+
+
+def render_hook_receipt(out_dir: Path, slug: str, header: str,
+                        lines: list, total_lo: float, total_hi: float,
+                        unit: str = "dollars", stamp: str = "",
+                        frames: int = 30):
+    """A grocery RECEIPT whose TOTAL races upward — the cold-open metaphor for
+    'same groceries, way bigger receipt'. Item lines carry the real per-category
+    numbers; the total ticks from lo→hi in the warn colour with a stamp. Full
+    frame, fills the top; Data reacts below. Returns (printf_pattern, [])."""
+    from PIL import Image, ImageDraw
+    out_dir.mkdir(parents=True, exist_ok=True)
+    W, H = 1080, 1920
+    paper = (244, 241, 233, 255)
+    ink = (28, 32, 38, 255)
+    faint = (120, 124, 130, 255)
+    warn = _rgba(WARN, 255)
+    px0, px1 = 210, 870                 # receipt paper x-span
+    py0, py1 = 250, 1180                # receipt paper y-span
+    hf = _pil_mono(52)
+    itf = _pil_mono(40)
+    totf = _pil_mono(58)
+    bigf = _pil_font(150)
+    stampf = _pil_font(64)
+    pattern = str(out_dir / f"{slug}_build%02d.png")
+    for f in range(1, frames + 1):
+        r = 1.0 if f == frames else f / frames
+        r = 1.0 - (1.0 - r) ** 2
+        canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        # paper with a soft shadow + torn top edge feel
+        d.rounded_rectangle([px0 + 8, py0 + 12, px1 + 8, py1 + 12], radius=18,
+                            fill=(0, 0, 0, 90))
+        d.rounded_rectangle([px0, py0, px1, py1], radius=18, fill=paper)
+        # header
+        hb = d.textbbox((0, 0), header, font=hf)
+        d.text(((W - (hb[2] - hb[0])) // 2, py0 + 40), header, font=hf, fill=ink)
+        d.line([(px0 + 40, py0 + 118), (px1 - 40, py0 + 118)], fill=faint, width=3)
+        # item lines (label left, value right), appearing progressively
+        y = py0 + 150
+        shown = max(1, int(r * len(lines) + 0.5)) if lines else 0
+        for i, (lab, valtxt) in enumerate(lines[:shown]):
+            d.text((px0 + 44, y), str(lab)[:14], font=itf, fill=ink)
+            vb = d.textbbox((0, 0), str(valtxt), font=itf)
+            d.text((px1 - 44 - (vb[2] - vb[0]), y), str(valtxt), font=itf, fill=warn)
+            y += 62
+        # dashed separator above the total
+        ty = py1 - 250
+        for xx in range(px0 + 40, px1 - 40, 26):
+            d.line([(xx, ty), (xx + 14, ty)], fill=faint, width=3)
+        # TOTAL keeps racing up across almost the WHOLE window (large-area motion,
+        # so the receipt never sits frozen — the real 4.67s dead hold was here,
+        # not the closing) and only settles on the true final in the last ~8%.
+        # The frame sampler only reads the hook early (clearly 'building'), so a
+        # mid-tick value is never mistaken for the final figure.
+        rr = min(1.0, r / 0.92)
+        cur = total_lo + rr * (total_hi - total_lo)
+        d.text((px0 + 44, ty + 34), "TOTAL", font=totf, fill=ink)
+        tot = ("$" if unit in ("dollars", "usd", "$") else "") + f"{cur:,.0f}"
+        bb = d.textbbox((0, 0), tot, font=bigf)
+        d.text((W // 2 - (bb[2] - bb[0]) // 2, ty + 96), tot, font=bigf,
+               fill=warn, stroke_width=3, stroke_fill=(60, 20, 10, 255))
+        # Red stamp SLAMS onto the receipt exactly when the total reaches its
+        # final value (rr hits 1.0 at ~0.92) — the synchronized punchline moment
+        # — with an overshoot that settles (anticipation/impact easing).
+        if stamp and r > 0.80:
+            prog = min(1.0, (r - 0.80) / 0.12)
+            sa = prog
+            over = 1.0 + 0.4 * (1.0 - prog)          # 1.4x slam -> settle to 1.0
+            stmp = Image.new("RGBA", (360, 150), (0, 0, 0, 0))
+            sd = ImageDraw.Draw(stmp)
+            sd.rounded_rectangle([6, 6, 354, 144], radius=18, outline=warn, width=8)
+            sbb = sd.textbbox((0, 0), stamp, font=stampf)
+            sd.text(((360 - (sbb[2] - sbb[0])) // 2, (150 - (sbb[3] - sbb[1])) // 2
+                     - sbb[1]), stamp, font=stampf, fill=warn)
+            stmp = stmp.rotate(11, expand=True, resample=Image.BICUBIC)
+            if over != 1.0:
+                stmp = stmp.resize((int(stmp.width * over), int(stmp.height * over)),
+                                   Image.BICUBIC)
+            stmp.putalpha(stmp.getchannel("A").point(lambda a: int(a * sa)))
+            canvas.alpha_composite(stmp, ((W - stmp.width) // 2, ty - 260
+                                          - (stmp.height - 150) // 2))
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+    return pattern, []
 
 
 @_fullframe("diorama")
@@ -1437,18 +1900,31 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     lo = _num_or_none(vp.get("timeline_start"))
     hi = _num_or_none(vp.get("timeline_end"))
     if have_periods:
+        # Dot travels the YEAR axis, but the hero number is the METRIC VALUE at
+        # that point (not the year); the year shows small beneath the dot.
         lo = min(periods) if lo is None else lo
         hi = max(periods) if hi is None else hi
         target = periods[items.index(star)]
-        unit_suffix = ""
+        foot = str(int(target)) if float(target).is_integer() else _sci(target)
     else:
         lo = 0.0 if lo is None else lo
         hi = (star.value * 1.12 or 1.0) if hi is None else hi
         target = star.value
-        unit_suffix = f" {insight.unit}" if insight.unit else ""
+        foot = star.label
     if hi <= lo:
         hi = lo + 1.0
     frac = max(0.0, min(1.0, (target - lo) / (hi - lo)))
+    _u = (insight.unit or "").lower()
+
+    def _fmtv(v):
+        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+             else f"{v:,.1f}")
+        if _u in ("percent", "%", "rate", "pct"):
+            return s + "%"
+        if _u in ("dollars", "usd", "$"):
+            return "$" + s
+        return s
+    val_txt = _fmtv(star.value)
 
     title_font, num_font = _pil_font(56), _pil_font(72)
     tick_font, lab_font = _pil_font(30), _pil_font(46)
@@ -1469,7 +1945,7 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
             tv = lo + (hi - lo) * k / 4
             d.line([(tx, axis_y - 14), (tx, axis_y + 14)],
                    fill=(120, 140, 170, 255), width=4)
-            lbl = _sci(tv)
+            lbl = str(int(round(tv))) if have_periods else _sci(tv)
             lb = d.textbbox((0, 0), lbl, font=tick_font)
             d.text((tx - (lb[2] - lb[0]) // 2, axis_y + 28), lbl,
                    font=tick_font, fill=(165, 180, 199, 255))
@@ -1478,16 +1954,26 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
         for rad, alpha in ((48, 60), (34, 120), (23, 255)):
             d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad],
                       fill=_rgba(HIGHLIGHT, alpha))
+        # Data PERFORMS: he WALKS the timeline, standing on the traveling dot
+        # and carrying the value up with him as it slides to its year — so the
+        # host demonstrates the data instead of floating below it. (Composited
+        # in; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 250
+            mw = int(host.width * mh / host.height)
+            hx = int(min(max(mx - mw / 2, 8), W - mw - 8))
+            canvas.alpha_composite(host.resize((mw, mh), Image.LANCZOS),
+                                   (hx, int(axis_y - mh + 18)))
         na = max(0.0, min(1.0, (r - 0.35) / 0.65))
-        val_txt = _sci(target) + unit_suffix
         vb = d.textbbox((0, 0), val_txt, font=num_font)
         vx = min(max(mx - (vb[2] - vb[0]) / 2, 20), W - 20 - (vb[2] - vb[0]))
-        d.text((vx, axis_y - 170), val_txt, font=num_font,
+        d.text((vx, axis_y - 320), val_txt, font=num_font,
                fill=_rgba(HIGHLIGHT, int(255 * na)),
                stroke_width=5, stroke_fill=(5, 8, 15, int(255 * na)))
-        sb = d.textbbox((0, 0), star.label, font=lab_font)
+        sb = d.textbbox((0, 0), foot, font=lab_font)
         sx = min(max(mx - (sb[2] - sb[0]) / 2, 20), W - 20 - (sb[2] - sb[0]))
-        d.text((sx, axis_y + 78), star.label, font=lab_font,
+        d.text((sx, axis_y + 78), foot, font=lab_font,
                fill=(248, 250, 252, int(255 * na)),
                stroke_width=3, stroke_fill=(5, 8, 15, int(255 * na)))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
@@ -1496,19 +1982,28 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
 
 @_fullframe("fill_vessel")
 def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
-    """A jar/beaker that FILLS from the bottom while the number counts up in
-    sync — the depicted replacement for a lone shock stat. Fill height encodes a
-    percentage (or animates full while the count-up carries a raw magnitude)."""
+    """Premium single-stat DEMONSTRATION: a radial GAUGE that sweeps to the
+    value while the number counts up in its centre. Replaces the old lone-blob
+    beaker for single-stat beats (and the bignum creative fallback). For a
+    percentage the arc encodes the true proportion; for a raw magnitude the arc
+    sweeps in as a reveal while the count-up carries the number. Deterministic,
+    full-frame, no network."""
+    import math
     from PIL import Image, ImageDraw
     out_dir.mkdir(parents=True, exist_ok=True)
     W, H = 1080, 1920
     star = max(insight.items, key=lambda p: p.value)
     unit = (insight.unit or "").lower()
     is_pct = unit in ("percent", "%", "rate", "pct")
-    target_frac = max(0.06, min(1.0, star.value / 100.0)) if is_pct else 1.0
-    num_font, lab_font, title_font = _pil_font(118), _pil_font(48), _pil_font(54)
-    vw, vh, vy = 440, 640, 460
-    vx = (W - vw) // 2
+    val_frac = (max(0.02, min(1.0, abs(star.value) / 100.0)) if is_pct else 1.0)
+
+    cx, cy, R, wdt = 540, 940, 300, 52
+    a0, sweep = 135.0, 270.0                        # a bottom-open gauge
+    bbox = [cx - R, cy - R, cx + R, cy + R]
+    title_font, num_font = _pil_font(56), _pil_font(184)
+    lab_font = _pil_font(50)
+    accent = WARN if (is_pct and star.value < 0) else HIGHLIGHT
+    track = "#22314C"
 
     def fmt(v):
         s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
@@ -1519,36 +2014,63 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
             return "$" + s
         return s
 
+    def _cap(d, angle, color):
+        rad = math.radians(angle)
+        px, py = cx + R * math.cos(rad), cy + R * math.sin(rad)
+        d.ellipse([px - wdt / 2, py - wdt / 2, px + wdt / 2, py + wdt / 2],
+                  fill=color)
+
     pattern = str(out_dir / f"{slug}_build%02d.png")
     for f in range(1, frames + 1):
         r = 1.0 if f == frames else f / frames
         eased = 1.0 - (1.0 - r) ** 3
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
-        title = (insight.topic or "").strip()
+        # topic, above the gauge
+        title = (insight.topic or "").strip().upper()
         tb = d.textbbox((0, 0), title, font=title_font)
-        d.text(((W - (tb[2] - tb[0])) // 2, 285), title, font=title_font,
-               fill=(248, 250, 252, 255), stroke_width=4, stroke_fill=(5, 8, 15, 255))
-        d.rounded_rectangle([vx, vy, vx + vw, vy + vh], radius=64,
-                            outline=(150, 170, 200, 255), width=10)
-        fill_h = int((vh - 20) * target_frac * eased)
-        if fill_h > 8:
-            ly = vy + vh - 10 - fill_h
-            d.rounded_rectangle([vx + 12, ly, vx + vw - 12, vy + vh - 10],
-                                radius=54, fill=_rgba(HIGHLIGHT, 235))
-            d.ellipse([vx + 12, ly - 15, vx + vw - 12, ly + 15],
-                      fill=_rgba("#7FE3DC", 235))
+        d.text(((W - (tb[2] - tb[0])) // 2, 470), title, font=title_font,
+               fill=(248, 250, 252, 255), stroke_width=4,
+               stroke_fill=(5, 8, 15, 255))
+        # gauge track (full sweep, faint) with rounded caps
+        tc = _rgba(track, 255)
+        d.arc(bbox, a0, a0 + sweep, fill=tc, width=wdt)
+        _cap(d, a0, tc); _cap(d, a0 + sweep, tc)
+        # value arc
+        cur = (val_frac * eased) if is_pct else eased
+        end = a0
+        if cur > 0.004:
+            ac = _rgba(accent, 255)
+            end = a0 + sweep * cur
+            d.arc(bbox, a0, end, fill=ac, width=wdt)
+            _cap(d, a0, ac); _cap(d, end, ac)
+        # Data PERFORMS on the gauge: he rides the tip of the value arc UP as it
+        # fills — he's the reason the number climbs. (Composited straight into
+        # the demonstration; the traveling overlay is suppressed for this beat.)
+        host = _host_pose("cheer")
+        if host is not None:
+            mh = 210
+            mw = int(host.width * mh / host.height)
+            m = host.resize((mw, mh), Image.LANCZOS)
+            rad = math.radians(end)
+            tx, ty = cx + R * math.cos(rad), cy + R * math.sin(rad)
+            canvas.alpha_composite(m, (int(tx - mw / 2), int(ty - mh + 24)))
+        # counting number in the centre
         num = fmt(star.value * eased)
         nb = d.textbbox((0, 0), num, font=num_font)
-        d.text(((W - (nb[2] - nb[0])) // 2, vy + vh // 2 - 74), num,
-               font=num_font, fill=(255, 255, 255, 255),
-               stroke_width=7, stroke_fill=(5, 8, 15, 255))
-        lb = d.textbbox((0, 0), star.label, font=lab_font)
-        d.text(((W - (lb[2] - lb[0])) // 2, vy + vh + 34), star.label,
-               font=lab_font, fill=(248, 250, 252, 255),
-               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        d.text((cx - (nb[2] - nb[0]) // 2 - nb[0],
+                cy - (nb[3] - nb[1]) // 2 - nb[1] - 34), num, font=num_font,
+               fill=_rgba(accent, 255), stroke_width=8,
+               stroke_fill=(5, 8, 15, 255))
+        # what the number is
+        lab = star.label
+        lb = d.textbbox((0, 0), lab, font=lab_font)
+        d.text(((W - (lb[2] - lb[0])) // 2, cy + 96), lab, font=lab_font,
+               fill=(226, 232, 240, 255), stroke_width=3,
+               stroke_fill=(5, 8, 15, 255))
         canvas.save(out_dir / f"{slug}_build{f:02d}.png")
-    return pattern, []
+    return pattern, [{"value": star.value, "cx": cx, "cy": cy,
+                      "w": 2 * R, "h": 2 * R}]
 
 
 @_fullframe("scale_stack")
@@ -1668,6 +2190,24 @@ def _rgba(hex_color: str, alpha: int = 255):
     return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16), alpha)
 
 
+_HOST_CACHE: dict = {}
+
+
+def _host_pose(pose: str = "cheer"):
+    """Load a committed mascot pose PNG (RGBA) so Data can be composited
+    directly INTO a demonstration (e.g. riding the gauge). Cached; returns
+    None if the asset set isn't present."""
+    if pose not in _HOST_CACHE:
+        try:
+            from PIL import Image
+            p = (Path(__file__).resolve().parent.parent / "assets" / "mascot" /
+                 "host" / f"{pose}.png")
+            _HOST_CACHE[pose] = Image.open(p).convert("RGBA") if p.exists() else None
+        except Exception:  # noqa: BLE001
+            _HOST_CACHE[pose] = None
+    return _HOST_CACHE[pose]
+
+
 def render_story_chart(insight: Insight, out_path: Path):
     """One *full*, visually distinct chart for a story segment. Returns
     ``(path, anchors)`` where each anchor is ``{"value","cx","cy","w","h"}``
@@ -1685,11 +2225,14 @@ def render_story_chart(insight: Insight, out_path: Path):
 
 
 def render_story_build(insight: Insight, out_dir: Path, slug: str,
-                       frames: int = 16):
-    """Render a short 'build' frame sequence (bars grow / line draws in) that
-    ends on the EXACT static chart, so the rings still anchor. Returns
-    ``(printf_pattern, anchors)`` with anchors from the final frame, or
-    ``(None, [])`` if matplotlib is absent."""
+                       frames: int = 60, full_by: float = 1.0,
+                       hook_lead: bool = False):
+    """Render a 'build' frame sequence (bars grow / line draws in) that ends on
+    the EXACT static chart, so the rings still anchor. ~60 frames so the studio
+    renderer can stretch the animation across the whole beat AND keep it smooth
+    (a lower count played over a multi-second beat drops to ~5fps and looks
+    laggy). Returns ``(printf_pattern, anchors)`` or ``(None, [])`` if mpl
+    absent."""
     if not _have_mpl():
         return None, []
     # Full-frame renderers (diorama, timeline, fill_vessel, ...) author their own
@@ -1701,20 +2244,54 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         if res is not None:
             return res
         insight.kind = FALLBACK.get(insight.kind, "bubbles")
+        print(f"[chart] '{slug}' fell back -> {insight.kind!r}", flush=True)
         hops += 1
     out_dir.mkdir(parents=True, exist_ok=True)
     anchors: list = []
+    grip_path: list = []               # attachment record, one entry per frame
     for f in range(1, frames + 1):
-        r = f / frames
-        r = 1.0 - (1.0 - r) ** 2            # ease-out
+        # LINEAR reveal (constant velocity). The old ease-out front-loaded the
+        # growth and left the last ~1s of every card build near-frozen — that
+        # frozen tail is what the temporal grade caught as duplicate frames /
+        # low effective fps. Linear keeps the chart MOVING to the final frame,
+        # which lands on the exact static chart so the rings still anchor.
+        r = min(1.0, (f / frames) / max(0.05, full_by))
+        if hook_lead:
+            # HOOK BURST: the opening chart shoots up FAST in the first ~22% of the
+            # beat (frame 1 is already big motion + the coupled mascot in action —
+            # not a slow build the gate dings), then eases to a steady draw. Still
+            # ends on the exact static chart; still never freezes (0.7x tail moves).
+            hf = f / frames
+            r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
         if f == frames:
             r = 1.0                         # final frame == static chart
+        _ATTACH_FRAME.clear()
         fig, plt = _card_base()
         ax, specs = _compose_story(fig, plt, insight, r)
+        if _ATTACH_FRAME:
+            grip_path.append({"f": f, **_ATTACH_FRAME[-1]})
         if f == frames:
             anchors = _anchors_from(fig, ax, specs)
         fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
         plt.close(fig)
+    # ATTACHMENT SIDECAR: which object Data grips, his full grip motion path,
+    # the directed performance, and the scene timeline — the scene's plan-of-
+    # record for the manifest, benchmark validator and repair loop.
+    try:
+        import json as _json
+        from . import scene_timeline as _tl
+        perf = dict(_LAST_PERF)
+        attach = {"slug": slug, "kind": insight.kind,
+                  "performance": perf, "grip_path": grip_path,
+                  "contact_frames": len(grip_path), "frames": frames,
+                  "timeline": _tl.plan_scene(insight.kind,
+                                             perf.get("action", ""),
+                                             frames / 30.0,
+                                             perf.get("target", ""),
+                                             perf.get("goal", ""))}
+        (out_dir / f"{slug}_attach.json").write_text(_json.dumps(attach))
+    except Exception:  # noqa: BLE001 — sidecar must never kill a render
+        pass
     return str(out_dir / f"{slug}_build%02d.png"), anchors
 
 

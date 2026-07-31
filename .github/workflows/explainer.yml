@@ -111,7 +111,7 @@ jobs:
     # Raised from 60: each video now renders a 3D opener+closer, so a batch
     # needs more headroom. Paired with post_stories --max-per-run so a run
     # still can't blow this cap.
-    timeout-minutes: 120
+    timeout-minutes: 300
     concurrency:
       group: explainer-stories
       cancel-in-progress: false
@@ -150,8 +150,10 @@ jobs:
           # rasteriser) so the 3D hero renders on a GPU-less runner. EEVEE is
           # ~25x faster than Cycles here, which is what makes a 3D beat per video
           # affordable inside the job cap.
+          # libcairo2: cairosvg rasterises the mascot action director's
+          # per-scene SVG (Data + prop) to PNG at render time.
           sudo apt-get install -y -q ffmpeg blender \
-            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2
+            libegl1 libgl1 libglx-mesa0 libgl1-mesa-dri libgles2 libcairo2
 
       - name: Install Python deps
         run: |
@@ -244,6 +246,42 @@ jobs:
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
+      - name: Install Claude Code CLI (brain for the forge + showrunner)
+        run: |
+          command -v claude >/dev/null 2>&1 && { echo "claude CLI present"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed"
+
+      - name: Top up the queue with REAL, sourced stories (story forge)
+        if: inputs.mode != 'verify' && inputs.mode != 'unpublish'
+        env:
+          # The forge writes the WORDS and the SCENE through the headless
+          # brain. Both were silently unavailable before: this step ran BEFORE
+          # the CLI was installed and without the OAuth token, so every forged
+          # story shipped deterministic fallback copy and no scene at all.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # The empty queue was a SOURCING problem, not a rendering one. The
+          # forge fetches live World Bank / OWID series (real publisher, real
+          # access date, officiality=official) and writes stories around them,
+          # so the queue refills with material that can actually PUBLISH. The
+          # LLM writes only the words; every number comes from the source.
+          TOPUP="${{ inputs.topup }}"; [ -z "$TOPUP" ] && TOPUP="8"
+          rm -f state/forge_last.json
+          # --count, not --top-up. The queue's "un-posted" count included the
+          # three benchmark FIXTURES (carbon-climb, population-giants,
+          # world-power-mix), which are suite inputs and carry no authored
+          # scene — so a top-up decided the queue was full, forged nothing,
+          # and the run spent itself re-rendering fixtures the gate rejects.
+          # Every posting run now forges fresh, scene-authored material.
+          python3 scripts/story_forge.py --count "$TOPUP" || \
+            echo "::warning::forge could not top up (network?) — using the existing queue"
+          python3 scripts/editorial_gate.py 2>&1 | tail -5 || true
+
       # THE BRAIN. Runs CLAUDE (the Claude Code CLI, authed by the operator's
       # subscription via CLAUDE_CODE_OAUTH_TOKEN — NOT an API key) right before we
       # render, so Claude itself invents the depiction for every data point and
@@ -276,7 +314,36 @@ jobs:
           )"
           fi
           BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
-          if [ -z "$BRAIN_SLUGS" ]; then echo "no target stories; skipping brain"; exit 0; fi
+          # HANDS OFF what the forge already authored. The forge writes a
+          # VALIDATED element-kit scene per segment; this step then rewrote the
+          # same field with its own free-form {mechanic, concept} shape, which
+          # the scene renderer can't draw — so the segment fell back to a plain
+          # chart. That is precisely the "two chart builds and one frozen number
+          # card, the data is stated not demonstrated" the gate has been
+          # blocking. Only stories with NO kit scene need directing.
+          BRAIN_SLUGS="$(python3 - "$BRAIN_SLUGS" <<'PY'
+          import json, sys
+          want = sys.argv[1].split()
+          cfg = json.load(open('data_learning/niche.config.json'))
+          by = {s['slug']: s for s in cfg.get('stories', [])}
+          keep = []
+          for sl in want:
+              st = by.get(sl)
+              if not st:
+                  continue
+              kit = sum(1 for sg in st.get('segments', [])
+                        if isinstance(sg.get('scene'), dict)
+                        and sg['scene'].get('elements'))
+              if kit < len(st.get('segments', [])):
+                  keep.append(sl)
+              else:
+                  print(f"[brain] {sl}: forge scenes intact — skipping",
+                        file=sys.stderr)
+          print(' '.join(keep))
+          PY
+          )"
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
+          if [ -z "$BRAIN_SLUGS" ]; then echo "every target already has authored scenes; skipping brain"; exit 0; fi
           echo "brain targets: $BRAIN_SLUGS"
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || \
             { echo "::warning::claude CLI install failed — skipping brain"; exit 0; }
@@ -286,9 +353,12 @@ jobs:
           and quality gate in one. FIRST read data_learning/VIZ_BRAIN.md — it is
           your complete playbook (toolkit, hard rules, QA checklist, schemas).
           Work on ONLY these story slugs: ${BRAIN_SLUGS}. Be FAST and efficient —
-          this runs in CI on a tight time budget. Do NOT render frames or images
-          and do NOT run any visual "look" loop; the renderer handles all visuals
-          at render time. Steps:
+          this runs in CI on a tight time budget. This is a PRE-render direction
+          pass only; skip frame-rendering here for time. The AUTHORITATIVE visual
+          review happens AFTER render, on the finished video, in the fail-closed
+          showrunner gate (scripts/showrunner_review.py) — that is what actually
+          looks at the output and can block a publish, so nothing ships un-seen.
+          Steps:
           1. Skim state/brain_context.json (obey its guardrails) and read each
              target story's segment data files. Keep this quick — no deep ledger
              or analytics trawl.
@@ -324,6 +394,13 @@ jobs:
           python scripts/validate_scenes.py $BRAIN_SLUGS || \
             echo "::warning::some scenes still invalid — renderer will fall back for those"
 
+      - name: Install Claude Code CLI (headless showrunner brain)
+        run: |
+          command -v claude >/dev/null 2>&1 && { echo "claude CLI already present"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed — showrunner falls back to Gemini"
+
       - name: Run
         env:
           # Render-time depiction invention is ON. Freshly top-up-authored stories
@@ -332,6 +409,12 @@ jobs:
           # viz_director invents a varied depiction per segment at render time,
           # preferring Anthropic (reliable) over the 429-prone free tiers.
           VIZ_INVENT: '1'
+          # Only depictions with a VERIFIED mascot coupling may be chosen —
+          # the same mode the benchmark suite and the preview pipeline prove
+          # against. Production was the one path still running without it,
+          # which is how scenes reached the gate with a decorative mascot and
+          # a chart that never moved.
+          STRICT_CONTACT: '1'
           # Native multi-channel routing: post_stories uses channel "explainer",
           # so the uploader reads YOUTUBE_TOKEN_JSON_EXPLAINER. The original
           # YOUTUBE_TOKEN_JSON (other channel) is never referenced here.
@@ -351,6 +434,11 @@ jobs:
           # doesn't hit the free-tier 429s that were dropping the invention. If the
           # secret is unset this is empty -> the director falls over to Gemini/Groq.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # The Claude HEADLESS BRAIN (Claude subscription OAuth token, not an API
+          # key). The SHOWRUNNER taste gate (scripts/showrunner_review.py) uses it
+          # to WATCH each render and block boring/sloppy videos — Bearer + the
+          # oauth beta header, no separate ANTHROPIC_API_KEY needed.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Speechify cloud TTS for the narration (trial): studio_render uses it
           # when the key is present and falls back to the local Kokoro voice the
           # moment it errors/quota-limits. Voice + model overridable via repo
@@ -358,6 +446,12 @@ jobs:
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
           SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
           SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
+          # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the
+          # operator's switch and the operator has turned it on: the channel
+          # posts again. Nothing that judges QUALITY changes — real-data
+          # provenance, the premise bar and the fail-closed showrunner veto
+          # still decide what is allowed out.
+          PUBLISH_ENABLED: '1'
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
@@ -372,27 +466,58 @@ jobs:
           # Blank slugs => omit --slugs entirely, so post_stories targets EVERY
           # story in config and dedupes against the posted-log (i.e. posts all
           # un-posted). No hardcoded slate to fall stale.
+          # Blank slugs: target exactly the stories THIS run forged (they
+          # carry authored element-kit scenes). Without this the run burns its
+          # budget re-rendering older scene-less stories the gate already
+          # rejected, and never reaches the new ones.
+          if [ -z "$SLUGS" ] && [ -f state/forge_last.json ]; then
+            FRESH=$(python3 -c "import json;print(' '.join(json.load(open('state/forge_last.json')).get('slugs',[])))" 2>/dev/null || true)
+            [ -n "$FRESH" ] && SLUGS="$FRESH" && echo "targeting freshly forged: $SLUGS"
+          fi
+          # If the forge added nothing (every fresh indicator used, or a bad
+          # network day), fall back to the REAL queue: un-posted stories minus
+          # the benchmark fixtures, which are suite inputs and not publishable.
+          # Exiting here instead — as this step used to — meant a run could
+          # finish green having posted nothing while a dozen sourced, titled
+          # stories sat waiting.
+          if [ -z "$SLUGS" ]; then
+            SLUGS="$(python3 - <<'PY'
+          import json, os
+          FIXTURES = {"carbon-climb", "population-giants", "world-power-mix"}
+          cfg = json.load(open('data_learning/niche.config.json'))
+          posted = set()
+          p = 'state/explainer_posted_log.json'
+          if os.path.exists(p):
+              posted = set(json.load(open(p)).get('posted', {}))
+          out = [s['slug'] for s in cfg.get('stories', [])
+                 if s['slug'] not in posted and s['slug'] not in FIXTURES]
+          print(' '.join(out))
+          PY
+          )"
+            [ -n "$SLUGS" ] && echo "forge added nothing — posting the existing queue: $SLUGS"
+          fi
+          if [ -z "$SLUGS" ]; then
+            echo "::warning::nothing to post: forge added nothing and the queue is empty"
+            exit 0
+          fi
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"
           FORCEFLAG=""; [ "${{ inputs.force }}" = "true" ] && FORCEFLAG="--force"
           # Buffer of 8 un-posted so posting 4+/day never runs the queue dry even
           # on a bad authoring day (2026-07-11: queue hit 0, only 1 posted).
           TOPUP="${{ inputs.topup }}";               [ -z "$TOPUP" ] && TOPUP="8"
           export YOUTUBE_EXPECTED_CHANNEL="$EXPECTED"
-          # Keep the queue full: AUTHOR brand-new, non-duplicate stories (with
-          # illustrative data) so the channel never runs dry and has to re-post
-          # duplicates. Runs for queue-driven modes and the manual 'author' mode.
-          # Soft-fails (no LLM key / transient error) so posting still proceeds.
-          case "$MODE" in
-            author|schedule|auto|all)
-              python scripts/author_stories.py --top-up "$TOPUP" --max-attempts 6 \
-                || echo "author step skipped (no LLM key or transient error)" ;;
-          esac
-          # Manual 'author' mode also CREATIVE-DIRECTS the whole back catalogue:
-          # the LLM picks the most entertaining depiction for every existing
-          # story's segments (viz + params). One-shot level-up; soft-fails.
+          # RESET (editorial control system): the automatic queue-filler is GONE.
+          # Authoring brand-new stories with LLM "illustrative" numbers to keep
+          # the queue full is the opposite of a data channel — zero videos on a
+          # weak day beats four invented ones. Synthetic stories can no longer
+          # publish anyway (editorial_gate rejects officiality=illustrative), so
+          # topping up the queue with them is pure waste. The manual 'author'
+          # mode is intentionally a NO-OP now; real stories are added by hand
+          # from a real, cited dataset.
           if [ "$MODE" = "author" ]; then
-            python scripts/author_stories.py --backfill \
-              || echo "backfill skipped (no LLM key or transient error)"
+            echo "author mode is disabled by the editorial reset: add real, "
+            echo "sourced datasets by hand instead of authoring illustrative "
+            echo "numbers to fill the queue. Nothing authored."
           fi
           # Self-heal any un-renderable chart specs (single-point "comparison"
           # charts the package generator sometimes emits) before we render, so
@@ -401,14 +526,22 @@ jobs:
           echo "mode=$MODE expected=$EXPECTED every=$EVERY start=$START slugs='${SLUGS:-<all un-posted>}'"
           case "$MODE" in
             author)
-              echo "author-only mode: queue topped up to >=$TOPUP un-posted, not posting." ;;
+              echo "author mode disabled by the editorial reset (see above)." ;;
             verify)
               python scripts/post_stories.py --check-channel ;;
             canary)
-              python scripts/post_stories.py --slugs "${{ inputs.canary_slug }}" ;;
+              # A canary is a REAL publish of one video — the only way to learn.
+              # It still has to clear the fail-closed editorial + review gates,
+              # and only uploads because PUBLISH_ENABLED is set explicitly here.
+              PUBLISH_ENABLED=1 python scripts/post_stories.py \
+                --slugs "${{ inputs.canary_slug }}" --publish ;;
             schedule)
+              # Renders, reviews and uploads (PUBLISH_ENABLED is set above).
+              # The editorial gate and the showrunner veto still govern every
+              # video — this only lifts the FREEZE, it bypasses no judgment.
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
-                --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
+                --every-hours "$EVERY" --start-in-hours "$START" \
+                --max-per-run 3 --repair 1 ;;
             all)
               python scripts/post_stories.py $SLUGFLAG --max-per-run 4 ;;
             unpublish)
@@ -477,6 +610,7 @@ jobs:
           bash scripts/ci_commit_state.sh \
             "explainer: update posted log + analytics [skip ci]" \
             state/explainer_posted_log.json state/analytics_explainer \
+            state/forge_used.json \
             state/video_ledger.json state/brain_context.json \
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json

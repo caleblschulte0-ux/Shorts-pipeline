@@ -1,0 +1,38 @@
+{
+  "key": "sp_urb_totl_rank",
+  "title": "Urban population",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2025",
+  "insight_type": "rank",
+  "source": {
+    "name": "Urban population",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SP.URB.TOTL",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 933170560
+    },
+    {
+      "label": "India",
+      "value": 522441248
+    },
+    {
+      "label": "United States",
+      "value": 274084705
+    },
+    {
+      "label": "Brazil",
+      "value": 187652232
+    },
+    {
+      "label": "Indonesia",
+      "value": 169698146
+    }
+  ]
+}

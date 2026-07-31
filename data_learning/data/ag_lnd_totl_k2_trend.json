@@ -1,0 +1,48 @@
+{
+  "key": "ag_lnd_totl_k2_trend",
+  "title": "Land area",
+  "unit": "sq. km",
+  "geography": "World",
+  "time_coverage": "1972-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Land area",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.TOTL.K2",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 104217084,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 104215245,
+      "period": "1982"
+    },
+    {
+      "label": "1992",
+      "value": 125847588,
+      "period": "1992"
+    },
+    {
+      "label": "2003",
+      "value": 127200488,
+      "period": "2003"
+    },
+    {
+      "label": "2013",
+      "value": 129933831,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 129763686,
+      "period": "2023"
+    }
+  ]
+}

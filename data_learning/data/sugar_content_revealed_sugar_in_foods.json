@@ -1,0 +1,33 @@
+{
+  "key": "sugar_content_revealed_sugar_in_foods",
+  "title": "Sugar in Foods",
+  "unit": "",
+  "geography": "",
+  "time_coverage": "",
+  "insight_type": "comparison",
+  "source": {
+    "name": "Illustrative dataset",
+    "publisher": "Illustrative",
+    "url": "",
+    "officiality": "illustrative",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Illustrative figures; approximate real-world values for visual storytelling.",
+  "points": [
+    {
+      "label": "Soda",
+      "value": 39.0,
+      "period": "2022"
+    },
+    {
+      "label": "Cookie",
+      "value": 25.0,
+      "period": "2022"
+    },
+    {
+      "label": "Fruit Juice",
+      "value": 30.0,
+      "period": "2022"
+    }
+  ]
+}

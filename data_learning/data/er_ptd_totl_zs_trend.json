@@ -1,0 +1,48 @@
+{
+  "key": "er_ptd_totl_zs_trend",
+  "title": "Terrestrial and marine protected areas",
+  "unit": "% of total territorial area",
+  "geography": "World",
+  "time_coverage": "2013-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Terrestrial and marine protected areas",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/ER.PTD.TOTL.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2013",
+      "value": 11.1,
+      "period": "2013"
+    },
+    {
+      "label": "2015",
+      "value": 12.1,
+      "period": "2015"
+    },
+    {
+      "label": "2018",
+      "value": 14.1,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 14.8,
+      "period": "2020"
+    },
+    {
+      "label": "2023",
+      "value": 14.9,
+      "period": "2023"
+    },
+    {
+      "label": "2025",
+      "value": 17.0,
+      "period": "2025"
+    }
+  ]
+}

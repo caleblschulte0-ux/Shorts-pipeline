@@ -1,0 +1,48 @@
+{
+  "key": "sh_med_beds_zs_trend",
+  "title": "Hospital beds",
+  "unit": "per 1,000 people",
+  "geography": "World",
+  "time_coverage": "1975-2021",
+  "insight_type": "trend",
+  "source": {
+    "name": "Hospital beds",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.MED.BEDS.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1975",
+      "value": 2.4,
+      "period": "1975"
+    },
+    {
+      "label": "2000",
+      "value": 3.13,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 2.88,
+      "period": "2005"
+    },
+    {
+      "label": "2011",
+      "value": 2.74,
+      "period": "2011"
+    },
+    {
+      "label": "2016",
+      "value": 2.92,
+      "period": "2016"
+    },
+    {
+      "label": "2021",
+      "value": 3.29,
+      "period": "2021"
+    }
+  ]
+}

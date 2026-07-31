@@ -1,0 +1,86 @@
+name: Story Forge (keep the queue full of REAL stories)
+
+# The channel's supply line. The queue used to run dry because the only way to
+# refill it was an LLM inventing numbers — which the editorial gate refuses to
+# publish, so a "full" queue still shipped nothing.
+#
+# This job goes and GETS data instead: live World Bank (WDI) indicators
+# discovered from the catalogue at run time, written with honest provenance
+# (publisher, url, access_date, officiality=official), composed into stories
+# whose WORDS are written by the brain and whose NUMBERS come only from the
+# source. Every forged story must clear the editorial gate (real data +
+# premise bar), actually build, and not duplicate anything already covered.
+#
+# Runs on a schedule so there is always material to post, and can be fired by
+# hand when the queue needs a push.
+
+on:
+  schedule:
+    - cron: '20 5,17 * * *'      # twice daily, ahead of the posting windows
+  workflow_dispatch:
+    inputs:
+      top_up:
+        description: 'keep at least this many un-posted stories'
+        required: false
+        default: '10'
+      count:
+        description: 'force exactly N new stories (overrides top_up when set)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+concurrency:
+  group: story-forge
+  cancel-in-progress: false
+
+jobs:
+  forge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch
+        run: |
+          if [ -f PAUSED ]; then echo "Pipeline paused (PAUSED file)."; exit 1; fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python deps
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt -r data_learning/requirements.txt
+
+      - name: Forge stories from live open data
+        env:
+          # The brain writes the WORDS only. If no key is reachable the forge
+          # falls back to deterministic copy — it never invents a number either
+          # way, so the datasets stay citable.
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          COUNT="${{ inputs.count }}"
+          TOPUP="${{ inputs.top_up }}"; [ -z "$TOPUP" ] && TOPUP="10"
+          if [ -n "$COUNT" ]; then
+            python3 scripts/story_forge.py --count "$COUNT"
+          else
+            python3 scripts/story_forge.py --top-up "$TOPUP"
+          fi
+
+      - name: Show what the editorial gate makes of the queue
+        run: python3 scripts/editorial_gate.py 2>&1 | tail -20
+
+      - name: Commit the new stories + datasets
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "story forge: new real-data stories [skip ci]" \
+            data_learning/niche.config.json data_learning/data \
+            state/forge_used.json
