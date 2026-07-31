@@ -24,6 +24,13 @@ from urllib.parse import quote
 from data_learning.footage_hybrid import _get
 
 
+# Every provider request identifies this app. It is not cosmetic: Pexels'
+# bot protection returns 403 to Python's default `Python-urllib/3.x` agent
+# and 200 to this one, same key and host. A missing header here is
+# indistinguishable from a dead API key at the call site.
+UA = "OpenRangeInteractive/1.0 (science education)"
+
+
 def describe(v: dict, source: str) -> str:
     """A candidate's HUMAN-READABLE subject.
 
@@ -65,14 +72,34 @@ def slug_words(page_url: str) -> str:
 
 
 def search_pexels(query: str, limit: int = 8) -> list[dict]:
+    """Pexels, with a pre-fetched fallback for any future outage.
+
+    The 403s that starved five films were NOT an outage and not the key — they
+    were the missing User-Agent below. The cache stays because a provider that
+    works today is not one that always will, but it is a safety net now, not the
+    fix. See data_learning/stock_cache.py."""
+    from data_learning import stock_cache
+    return stock_cache.wrap("pexels", query, lambda: _search_pexels(query, limit))
+
+
+def _search_pexels(query: str, limit: int = 8) -> list[dict]:
     key = os.environ.get("PEXELS_API_KEY")
     if not key:
         return []
     import urllib.request
+    # A REAL USER-AGENT IS REQUIRED. Pexels answers 200 to this exact key with
+    # curl's UA and 403 to the same key, same host, same second, with Python's
+    # default `Python-urllib/3.11` — its bot protection refuses the stock agent.
+    # This one missing header cost five consecutive films their Pexels supply:
+    # every render fell back to Pixabay alone, and the beats Pixabay could not
+    # serve degraded to cards, which the director then flagged as stale spans.
+    # It looked exactly like a blocked API key or a blocked CI IP range, and it
+    # was neither. The DOWNLOAD paths below already set a UA, which is why
+    # fetching clips always worked while searching for them never did.
     req = urllib.request.Request(
         f"https://api.pexels.com/videos/search?query={quote(query)}"
         f"&per_page={limit}&size=medium",
-        headers={"Authorization": key})
+        headers={"Authorization": key, "User-Agent": UA})
     d = json.loads(urllib.request.urlopen(req, timeout=30).read())
     out = []
     for v in d.get("videos", []):
@@ -89,6 +116,14 @@ def search_pexels(query: str, limit: int = 8) -> list[dict]:
 
 
 def search_pixabay(query: str, limit: int = 8) -> list[dict]:
+    """Pixabay, with the same pre-fetched fallback — it answers from CI today,
+    but a provider that works is not a provider that always will."""
+    from data_learning import stock_cache
+    return stock_cache.wrap("pixabay", query,
+                            lambda: _search_pixabay(query, limit))
+
+
+def _search_pixabay(query: str, limit: int = 8) -> list[dict]:
     key = os.environ.get("PIXABAY_API_KEY")
     if not key:
         return []
@@ -234,8 +269,7 @@ def download(url: str, dest: Path) -> Path:
     """Fetch a stock/CC clip. Source URLs (Commons, archive, Pexels) are already
     valid/encoded, so fetch as-is — do NOT re-quote (that double-encodes %20)."""
     import urllib.request
-    req = urllib.request.Request(url, headers={"User-Agent":
-                                 "OpenRangeInteractive/1.0 (science education)"})
+    req = urllib.request.Request(url, headers={"User-Agent": UA})
     dest.write_bytes(urllib.request.urlopen(req, timeout=180).read())
     return dest
 
