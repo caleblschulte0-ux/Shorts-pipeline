@@ -1,41 +1,6 @@
 # Daily Trending Shorts — 2026-07-31
 
-- queued: **6**
-- succeeded: **5**
-- quarantined (off-topic imagery): **1**
-- failed: **0**
-
-## Posted
-- **The HOA fined me for a shed they approved in writing**
-  - topic: The HOA fined me for a shed they approved in writing
-  - publishes: `2026-07-31T13:00:00Z`
-  - https://youtube.com/shorts/xH02b19seJ8
-  - took: 157.9s
-- **Spain Just Sent Its Military Into One Of Its Own Cities**
-  - topic: Spain Just Sent Its Military Into One Of Its Own Cities
-  - publishes: `2026-07-31T14:30:00Z`
-  - https://youtube.com/shorts/g3-RPlNku78
-  - took: 27.1s
-- **15 Pigs Just Took Over A New Jersey Highway**
-  - topic: 15 Pigs Just Took Over A New Jersey Highway
-  - publishes: `2026-07-31T16:00:00Z`
-  - https://youtube.com/shorts/xsVHNaDqDGQ
-  - took: 25.7s
-- **OpenAI vs Anthropic: Valuation By Year**
-  - topic: OpenAI vs Anthropic: Valuation By Year
-  - publishes: `2026-07-31T17:30:00Z`
-  - https://youtube.com/shorts/pwIXmXY9spU
-  - took: 90.6s
-- **US Wildfire Acres Burned By Year**
-  - topic: US Wildfire Acres Burned By Year
-  - publishes: `2026-07-31T19:00:00Z`
-  - https://youtube.com/shorts/ea2orXlWyOI
-  - took: 78.1s
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **Someone kept stealing my numbered parking spot at work**
-  - quarantined: vision QA: broken — The top half of all frames, which is expected to be a news/stock photo, is instead showing abstract game animation, indicating a rendering error where the incorrect content type is displayed.
-
+Already posted 5 short(s) in the last 6 hours; skipped duplicate trigger.
 
 ## Format scoreboard (A/B/C test)
 
