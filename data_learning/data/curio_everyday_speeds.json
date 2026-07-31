@@ -15,23 +15,19 @@
  "points": [
   {
    "label": "Space station",
-   "value": 28000,
-   "asset": "iss"
+   "value": 28000
   },
   {
    "label": "Rifle bullet",
-   "value": 3400,
-   "asset": "bullet"
+   "value": 3400
   },
   {
    "label": "Jet airliner",
-   "value": 900,
-   "asset": "jet"
+   "value": 900
   },
   {
    "label": "Usain Bolt",
-   "value": 45,
-   "asset": "human"
+   "value": 45
   }
  ]
 }

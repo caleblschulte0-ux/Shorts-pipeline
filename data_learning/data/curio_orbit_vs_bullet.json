@@ -11,17 +11,15 @@
   "officiality": "reference",
   "access_date": "2026-07-08"
  },
- "notes": "Real published figures, rounded. A high-velocity rifle bullet leaves the muzzle around 940 m/s ≈ 3,400 km/h; Earth's orbital speed is ~107,000 km/h — roughly 30x faster. Earth covers ~29.8 km every second (149 km in 5 s).",
+ "notes": "Real published figures, rounded. A high-velocity rifle bullet leaves the muzzle around 940 m/s ≈ 3,400 km/h; Earth's orbital speed is ~107,000 km/h — roughly 30x faster.",
  "points": [
   {
    "label": "Earth's orbit",
-   "value": 107000,
-   "asset": "earth"
+   "value": 107000
   },
   {
    "label": "Rifle bullet",
-   "value": 3400,
-   "asset": "bullet"
+   "value": 3400
   }
  ]
 }

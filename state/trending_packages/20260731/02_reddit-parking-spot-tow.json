@@ -95,7 +95,12 @@
     {
       "phrase": "Tough meeting to sit through with THAT on your mind",
       "query": "stressed man conference room",
-      "mascot_pose": "laugh"
+      "mascot_pose": "laugh",
+      "pin_query": "Tough",
+      "pin_context": "Someone kept stealing my numbered parking spot at work",
+      "news_query": "Tough",
+      "news_angle": "Someone kept stealing my numbered parking spot at work",
+      "image_url": "https://live.staticflickr.com/5132/5401097937_93000437c8_b.jpg"
     },
     {
       "phrase": "whose name is on spot 14 now",
