@@ -22,123 +22,29 @@
   ],
   "script": "They fined me for THAT? 3 years ago I emailed the HOA board president and asked if I could build a storage shed in my own backyard. She wrote back four words: approved, no issue. Last month a brand-new board measured my yard against some outdated map and mailed me a $500 violation for an unapproved structure. I forwarded her original email, timestamp and all, still sitting untouched in my inbox. Funny how an approval that apparently expires never once said so in writing. The new board president went silent for 12 days. Then came the reversal, fine dropped, a full year of dues waived, and a bylaw rewrite so a signed approval can never quietly vanish again. So who's actually reading their own paperwork now?",
   "shots": [
-    {
-      "phrase": "fined me for THAT",
-      "query": "violation notice letter",
-      "mascot_pose": "shock"
-    },
-    {
-      "phrase": "emailed the HOA board president",
-      "query": "laptop email typing",
-      "mascot_pose": "idle",
-      "pin_query": "HOA",
-      "pin_context": "homeowners association board",
-      "news_query": "HOA",
-      "news_angle": "The HOA fined a homeowner for a shed they had previously approved in writing.",
-      "image_url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg"
-    },
-    {
-      "phrase": "build a storage shed in my own backyard",
-      "query": "backyard storage shed",
-      "mascot_pose": "idle",
-      "pin_query": "backyard",
-      "pin_context": "residential yard storage shed",
-      "news_query": "backyard",
-      "news_angle": "A homeowner built a storage shed in their backyard that was initially approved by the HOA.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/StateLibQld_1_162315_Irene_and_Cecil_Harveyson_posing_in_their_backyard_in_Ashgrove%2C_Brisbane%2C_ca._1929.jpg"
-    },
-    {
-      "phrase": "wrote back four words",
-      "query": "email reply screen",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "measured my yard against some outdated map",
-      "query": "tape measure yard",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "mailed me a $500 violation",
-      "query": "certified mail envelope",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "forwarded her original email, timestamp and all",
-      "query": "email inbox screenshot",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "still sitting untouched in my inbox",
-      "query": "phone inbox unread",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "an approval that apparently expires",
-      "query": "calendar pages flipping",
-      "mascot_pose": "think"
-    },
-    {
-      "phrase": "went silent for 12 days",
-      "query": "phone screen no messages",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "fine dropped",
-      "query": "crossed out invoice",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "a full year of dues waived",
-      "query": "handshake agreement",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "a bylaw rewrite",
-      "query": "committee meeting table",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "reading their own paperwork now",
-      "query": "stack of documents desk",
-      "mascot_pose": "dismiss"
-    }
+    {"phrase": "fined me for THAT", "query": "violation notice letter", "mascot_pose": "shock"},
+    {"phrase": "emailed the HOA board president", "query": "laptop email typing", "mascot_pose": "idle"},
+    {"phrase": "build a storage shed in my own backyard", "query": "backyard storage shed", "mascot_pose": "idle"},
+    {"phrase": "wrote back four words", "query": "email reply screen", "mascot_pose": "idle"},
+    {"phrase": "measured my yard against some outdated map", "query": "tape measure yard", "mascot_pose": "idle"},
+    {"phrase": "mailed me a $500 violation", "query": "certified mail envelope", "mascot_pose": "idle"},
+    {"phrase": "forwarded her original email, timestamp and all", "query": "email inbox screenshot", "mascot_pose": "idle"},
+    {"phrase": "still sitting untouched in my inbox", "query": "phone inbox unread", "mascot_pose": "idle"},
+    {"phrase": "an approval that apparently expires", "query": "calendar pages flipping", "mascot_pose": "think"},
+    {"phrase": "went silent for 12 days", "query": "phone screen no messages", "mascot_pose": "idle"},
+    {"phrase": "fine dropped", "query": "crossed out invoice", "mascot_pose": "idle"},
+    {"phrase": "a full year of dues waived", "query": "handshake agreement", "mascot_pose": "idle"},
+    {"phrase": "a bylaw rewrite", "query": "committee meeting table", "mascot_pose": "idle"},
+    {"phrase": "reading their own paperwork now", "query": "stack of documents desk", "mascot_pose": "dismiss"}
   ],
   "punches": [
-    {
-      "phrase": "wrote back four words",
-      "text": "APPROVED. NO ISSUE.",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "mailed me a $500 violation",
-      "text": "$500 FINE",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "forwarded her original email, timestamp and all",
-      "text": "RECEIPTS",
-      "color": "#ffffff"
-    },
-    {
-      "phrase": "went silent for 12 days",
-      "text": "12 DAYS SILENT",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "fine dropped",
-      "text": "FINE: GONE",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "a full year of dues waived",
-      "text": "FREE YEAR",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "a bylaw rewrite",
-      "text": "RULES REWRITTEN",
-      "color": "#ffffff"
-    }
+    {"phrase": "wrote back four words", "text": "APPROVED. NO ISSUE.", "color": "#50ff80"},
+    {"phrase": "mailed me a $500 violation", "text": "$500 FINE", "color": "#ff3030"},
+    {"phrase": "forwarded her original email, timestamp and all", "text": "RECEIPTS", "color": "#ffffff"},
+    {"phrase": "went silent for 12 days", "text": "12 DAYS SILENT", "color": "#ffaa30"},
+    {"phrase": "fine dropped", "text": "FINE: GONE", "color": "#50ff80"},
+    {"phrase": "a full year of dues waived", "text": "FREE YEAR", "color": "#50ff80"},
+    {"phrase": "a bylaw rewrite", "text": "RULES REWRITTEN", "color": "#ffffff"}
   ],
   "music_vibe": "dark"
 }

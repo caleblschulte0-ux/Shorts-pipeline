@@ -1,4 +1,96 @@
-{
-  "skipped": true,
-  "recent_posts": 6
-}
+[
+  {
+    "topic": "The HOA fined me for a shed they approved in writing",
+    "title": "The HOA fined me for a shed they approved in writing",
+    "format": "reddit",
+    "publish_at": "2026-07-31T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xH02b19seJ8",
+    "error": null,
+    "elapsed_seconds": 157.9,
+    "package_path": "state/trending_packages/20260731/01_reddit-hoa-shed-approval.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-092337_the_hoa_fined_me_for_a_shed_they_approve.mp4",
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Someone kept stealing my numbered parking spot at work",
+    "title": "Someone kept stealing my numbered parking spot at work",
+    "format": "reddit",
+    "publish_at": "2026-07-31T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The top half of all frames, which is expected to be a news/stock photo, is instead showing abstract game animation, indicating a rendering error where the incorrect content type is displayed.",
+    "elapsed_seconds": 121.7,
+    "package_path": "state/trending_packages/20260731/02_reddit-parking-spot-tow.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-092615_someone_kept_stealing_my_numbered_parkin.mp4",
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The top half of all frames, which is expected to be a news/stock photo, is instead showing abstract game animation, indicating a rendering error where the incorrect content type is displayed."
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "Spain Just Sent Its Military Into One Of Its Own Cities",
+    "title": "Spain Just Sent Its Military Into One Of Its Own Cities",
+    "format": "text_card",
+    "publish_at": "2026-07-31T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/g3-RPlNku78",
+    "error": null,
+    "elapsed_seconds": 27.1,
+    "package_path": "state/trending_packages/20260731/03_textcard-ceuta-border-crisis.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-092749_spain_just_sent_its_military_into_one_of.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "15 Pigs Just Took Over A New Jersey Highway",
+    "title": "15 Pigs Just Took Over A New Jersey Highway",
+    "format": "text_card",
+    "publish_at": "2026-07-31T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xsVHNaDqDGQ",
+    "error": null,
+    "elapsed_seconds": 25.7,
+    "package_path": "state/trending_packages/20260731/04_textcard-nj-pig-escape.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-092816_15_pigs_just_took_over_a_new_jersey_high.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "OpenAI vs Anthropic: Valuation By Year",
+    "title": "OpenAI vs Anthropic: Valuation By Year",
+    "format": "graph_race",
+    "publish_at": "2026-07-31T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/pwIXmXY9spU",
+    "error": null,
+    "elapsed_seconds": 90.6,
+    "package_path": "state/trending_packages/20260731/05_graph-openai-anthropic-valuation.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-092841_openai_vs_anthropic__valuation_by_year.mp4",
+    "channel": "default"
+  },
+  {
+    "topic": "US Wildfire Acres Burned By Year",
+    "title": "US Wildfire Acres Burned By Year",
+    "format": "graph_race",
+    "publish_at": "2026-07-31T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ea2orXlWyOI",
+    "error": null,
+    "elapsed_seconds": 78.1,
+    "package_path": "state/trending_packages/20260731/06_graph-wildfire-acres-burned.json",
+    "source": "brain",
+    "video_path": "output/daily_20260731-093012_us_wildfire_acres_burned_by_year.mp4",
+    "channel": "default"
+  }
+]

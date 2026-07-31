@@ -23,33 +23,10 @@
     "shorts",
     "trending"
   ],
-  "years": [
-    2023,
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2023, 2024, 2025, 2026],
   "series": [
-    {
-      "name": "OpenAI",
-      "color": "#10a37f",
-      "values": [
-        29,
-        157,
-        300,
-        852
-      ]
-    },
-    {
-      "name": "Anthropic",
-      "color": "#d97757",
-      "values": [
-        4.1,
-        18.5,
-        183,
-        965
-      ]
-    }
+    {"name": "OpenAI", "color": "#10a37f", "values": [29, 157, 300, 852]},
+    {"name": "Anthropic", "color": "#d97757", "values": [4.1, 18.5, 183, 965]}
   ],
   "music_vibe": "cinematic"
 }

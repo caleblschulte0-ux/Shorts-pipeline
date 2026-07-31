@@ -22,123 +22,29 @@
   ],
   "script": "My reserved spot, again? My assigned space is spot 14, painted number and everything, and for 3 straight weeks the same white SUV parked in it every single morning. I left 2 polite notes on the windshield asking the driver to check the number. Nothing changed. Building policy says an unauthorized vehicle in a numbered spot after 2 written warnings gets towed at the owner's expense, no exceptions. So on week 3 I called the property office, handed over my dated notes, and let them make the call. The SUV vanished from spot 14 around 10 a.m. Turned out the driver was 2 floors up, mid performance review, when someone texted him his car was gone. Tough meeting to sit through with THAT on your mind. So whose name is on spot 14 now?",
   "shots": [
-    {
-      "phrase": "My reserved spot, again",
-      "query": "parking lot numbered spot",
-      "mascot_pose": "shock"
-    },
-    {
-      "phrase": "assigned space is spot 14",
-      "query": "parking space number painted",
-      "mascot_pose": "idle",
-      "pin_query": "spot 14",
-      "pin_context": "parking spot number sign",
-      "news_query": "spot 14",
-      "news_angle": "Spot 14 being occupied by an unauthorized vehicle despite having a painted number.",
-      "image_url": "https://live.staticflickr.com/5483/10271175336_0c3b0d31e4_b.jpg"
-    },
-    {
-      "phrase": "same white SUV parked in it every single morning",
-      "query": "white SUV parked",
-      "mascot_pose": "idle",
-      "pin_query": "white SUV",
-      "pin_context": "vehicle car parked",
-      "news_query": "white SUV",
-      "news_angle": "The white SUV was parked in spot 14 without authorization for three straight weeks.",
-      "image_url": "https://live.staticflickr.com/5727/20310096144_84c276d974_b.jpg"
-    },
-    {
-      "phrase": "2 polite notes on the windshield",
-      "query": "note on windshield",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "unauthorized vehicle in a numbered spot",
-      "query": "no parking sign",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "towed at the owner's expense",
-      "query": "tow truck hooking car",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "called the property office",
-      "query": "office phone call desk",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "handed over my dated notes",
-      "query": "handwritten note paper",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "SUV vanished from spot 14",
-      "query": "empty parking space",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "around 10 a.m.",
-      "query": "office building morning",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "mid performance review",
-      "query": "office meeting review",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "someone texted him his car was gone",
-      "query": "phone text notification",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "Tough meeting to sit through with THAT on your mind",
-      "query": "stressed man conference room",
-      "mascot_pose": "laugh"
-    },
-    {
-      "phrase": "whose name is on spot 14 now",
-      "query": "parking lot empty spot",
-      "mascot_pose": "dismiss"
-    }
+    {"phrase": "My reserved spot, again", "query": "parking lot numbered spot", "mascot_pose": "shock"},
+    {"phrase": "assigned space is spot 14", "query": "parking space number painted", "mascot_pose": "idle"},
+    {"phrase": "same white SUV parked in it every single morning", "query": "white SUV parked", "mascot_pose": "idle"},
+    {"phrase": "2 polite notes on the windshield", "query": "note on windshield", "mascot_pose": "idle"},
+    {"phrase": "unauthorized vehicle in a numbered spot", "query": "no parking sign", "mascot_pose": "idle"},
+    {"phrase": "towed at the owner's expense", "query": "tow truck hooking car", "mascot_pose": "idle"},
+    {"phrase": "called the property office", "query": "office phone call desk", "mascot_pose": "idle"},
+    {"phrase": "handed over my dated notes", "query": "handwritten note paper", "mascot_pose": "idle"},
+    {"phrase": "SUV vanished from spot 14", "query": "empty parking space", "mascot_pose": "idle"},
+    {"phrase": "around 10 a.m.", "query": "office building morning", "mascot_pose": "idle"},
+    {"phrase": "mid performance review", "query": "office meeting review", "mascot_pose": "idle"},
+    {"phrase": "someone texted him his car was gone", "query": "phone text notification", "mascot_pose": "idle"},
+    {"phrase": "Tough meeting to sit through with THAT on your mind", "query": "stressed man conference room", "mascot_pose": "laugh"},
+    {"phrase": "whose name is on spot 14 now", "query": "parking lot empty spot", "mascot_pose": "dismiss"}
   ],
   "punches": [
-    {
-      "phrase": "assigned space is spot 14",
-      "text": "SPOT 14",
-      "color": "#ffffff"
-    },
-    {
-      "phrase": "same white SUV parked in it every single morning",
-      "text": "3 WEEKS STRAIGHT",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "2 polite notes on the windshield",
-      "text": "2 WARNINGS",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "towed at the owner's expense",
-      "text": "TOWED",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "SUV vanished from spot 14",
-      "text": "GONE",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "mid performance review",
-      "text": "WORST TIMING",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "whose name is on spot 14 now",
-      "text": "SPOT 14: MINE",
-      "color": "#50ff80"
-    }
+    {"phrase": "assigned space is spot 14", "text": "SPOT 14", "color": "#ffffff"},
+    {"phrase": "same white SUV parked in it every single morning", "text": "3 WEEKS STRAIGHT", "color": "#ffaa30"},
+    {"phrase": "2 polite notes on the windshield", "text": "2 WARNINGS", "color": "#ffaa30"},
+    {"phrase": "towed at the owner's expense", "text": "TOWED", "color": "#ff3030"},
+    {"phrase": "SUV vanished from spot 14", "text": "GONE", "color": "#ff3030"},
+    {"phrase": "mid performance review", "text": "WORST TIMING", "color": "#ffaa30"},
+    {"phrase": "whose name is on spot 14 now", "text": "SPOT 14: MINE", "color": "#50ff80"}
   ],
   "music_vibe": "hiphop"
 }
