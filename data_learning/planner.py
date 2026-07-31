@@ -46,6 +46,42 @@ NEUTRAL_SCENES = ("scene_free", "scene_hold", "scene_walkout", "scene_queue",
                   "scene_work", "scene_screen", "scene_sleep")
 
 
+def _phase_lengths(secs: float, maxu: float) -> list[float]:
+    """Split a beat into phases none longer than max_unchanged.
+
+    A footage beat already develops across phases; a DESIGNED beat did not — it
+    emitted one shot for its whole duration, so a 9.5s scene was 9.5s of one
+    picture. That is measured directly as dead time (the novelty gate reported a
+    STALE 114.5-124.0s span on exactly such a beat) and it is the largest single
+    contributor to a film's dead fraction.
+
+    Phases are equal so the cut lands on a rhythm rather than leaving a runt
+    tail, and the count is reduced rather than emitting anything under MIN_SHOT:
+    two long-ish shots read better than three stutters."""
+    if secs <= maxu:
+        return [secs]
+    n = max(2, int(-(-secs // maxu)))          # ceil
+    while n > 2 and secs / n < MIN_SHOT:
+        n -= 1
+    return [secs / n] * n
+
+
+def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
+                  number: str = "", label: str = "", mood=None) -> list[dict]:
+    """A designed/character beat as a SEQUENCE. Each phase moves the same figure
+    to a different situation (rotating the neutral scenes), so a long beat keeps
+    introducing something new instead of holding one drawing. The narration
+    rides only the first phase; the rest are silent visual development."""
+    out = []
+    for k, dur in enumerate(_phase_lengths(secs, maxu)):
+        sh = {"kind": NEUTRAL_SCENES[(bi + k) % len(NEUTRAL_SCENES)],
+              "seconds": dur, "number": number, "label": label, "mood": mood}
+        if k == 0 and line:
+            sh["line"] = line
+        out.append(sh)
+    return out
+
+
 def _beat_seconds(dur: float) -> float:
     return max(MIN_SHOT, LEAD + dur + TAIL) if dur else 4.0
 
@@ -97,12 +133,12 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                                        not (b.get("image") or b.get("footage"))):
             # rotate by beat index so converting several cards does not just
             # trade a repeated card for a repeated scene
-            kind = NEUTRAL_SCENES[bi % len(NEUTRAL_SCENES)]
             num = b.get("number") or {}
-            emit({"kind": kind, "seconds": secs, "line": line,
-                  "number": num.get("text", ""),
-                  "label": num.get("label", "") or b.get("text", ""),
-                  "mood": (b.get("flat") or {}).get("mood")})
+            for sh in _scene_phases(bi, secs, maxu, line=line,
+                                    number=num.get("text", ""),
+                                    label=num.get("label", "") or b.get("text", ""),
+                                    mood=(b.get("flat") or {}).get("mood")):
+                emit(sh)
             continue
 
         # ---- pure designed-2D beat (orbit, galaxy, comparison, title) —
@@ -115,6 +151,19 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                 emit({**sh, "seconds": maxu - 0.4, "line": line})
                 emit(_footage(foot, secs - (maxu - 0.4), b,
                                       phase="development"))
+            elif secs > maxu:
+                # A DESIGNED BEAT MAY NOT HOLD ONE PICTURE PAST max_unchanged.
+                # Play the authored card for its allowance, then DEVELOP: real
+                # footage when the beat offered any, otherwise character scenes,
+                # which both break the hold and put a person on screen — the
+                # direction the taste judge asks for anyway.
+                emit({**sh, "seconds": maxu - 0.4, "line": line})
+                rest = secs - (maxu - 0.4)
+                if foot:
+                    emit(_footage(foot, rest, b, phase="development"))
+                else:
+                    for ph in _scene_phases(bi + 1, rest, maxu):
+                        emit(ph)
             else:
                 emit({**sh, "seconds": secs, "line": line})
             continue
@@ -231,7 +280,20 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
             # depict shot resolves to a clip (or the still fallback) at render.
             subject = _motion_eligible(b, img)
             if subject:
-                emit(_depict(b, img, secs, subject, line=line))
+                # A DEPICTION BEAT IS STILL A BEAT. This emitted ONE shot for the
+                # beat's whole length — so a 9s beat was a single held picture,
+                # and when motion-first missed, 9s of one frozen still. The
+                # text+image path above already splits at max_unchanged; a beat
+                # carrying narration alone got no such treatment, which is why
+                # 15 of 20 beats rendered over the limit and half the film
+                # measured dead. Same law for both: play the depiction for its
+                # allowance, then keep developing.
+                if secs > maxu and not is_last:
+                    emit(_depict(b, img, maxu, subject, line=line))
+                    for sh in _chunk_image(img, secs - maxu, maxu):
+                        emit(sh)
+                else:
+                    emit(_depict(b, img, secs, subject, line=line))
                 continue
             for k, sh in enumerate(_chunk_image(img, secs, maxu)):
                 if k == 0 and line:
