@@ -638,7 +638,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
     The gates have always produced a precise, timecoded diagnosis and always
     thrown it away into the log. Writing it to the package is what lets the
     repair planner act on it instead of the owner reading it."""
-    rc = _run(story_path, out, rounds)
+    rc = _direct(story_path, out, rounds)
     try:
         pkg = out.with_name(out.stem + "_pkg")
         pkg.mkdir(parents=True, exist_ok=True)
@@ -651,7 +651,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
     return rc
 
 
-def _run(story_path: Path, out: Path, rounds: int = 3) -> int:
+def _direct(story_path: Path, out: Path, rounds: int = 3) -> int:
     story = json.loads(story_path.read_text())
     beats = story["beats"]
     work = out.parent / f"{out.stem}_ndb_work"
