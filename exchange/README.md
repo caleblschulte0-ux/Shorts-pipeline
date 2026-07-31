@@ -20,6 +20,52 @@ exchange/responses/<id>.json    it writes  — verified Drive pointer + sha256
 scripts/fetch_exchange_media.py            — downloads, verifies, hands to render
 ```
 
+## Which contract wins — read this before anything else
+
+Channel policy has exactly one source, and it is never a document. In
+descending authority:
+
+1. **`exchange/bundles/<date>/bundle.json` → `contract`.** If a bundle
+   exists for a date, its frozen snapshot governs THAT date completely —
+   counts, formats, your responsibilities, media requirements, protected
+   fields, schema versions. It does not change once written.
+2. **`config/channel_registry.json`.** Governs any date that has no bundle
+   yet, and every no-bundle takeover. Read it directly when there is no
+   bundle.
+3. **The doctrine files the snapshot names** (with their hashes and a
+   `source_commit`). These govern STYLE inside the snapshot — voice, topic
+   selection, per-format writing rules. Read them at `source_commit`, not at
+   HEAD, so an edit made after your day opened cannot change your
+   instructions mid-run.
+4. **Examples in this README are EXPLANATORY ONLY.** Every JSON block, table
+   and format name below is an illustration. If one contradicts the snapshot
+   or the registry, it is out of date and the snapshot wins. Never author a
+   format because you saw it here.
+5. **Conversation memory and your scheduled-task wording NEVER define channel
+   policy.** Not the number of packages, not the format mix, not which
+   channels exist. If your prompt says "six packages, 2+2+2" and the contract
+   says something else, the contract is right and your prompt is stale — that
+   is exactly why the numbers were taken out of prompts.
+
+<!-- BEGIN GENERATED SLATE — regenerate with `python -m shared.channel_registry --markdown` -->
+| Channel | Per day | Active formats | Retired | ChatGPT does |
+|---|---|---|---|---|
+| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
+| `explainer` | 1 | 1x `data_story` | — | editorial_review |
+| `third` | 3 | 3x `clip` | — | nothing |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
+
+<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- END GENERATED SLATE -->
+
+That table is generated from the registry. It is a CONVENIENCE, not the
+authority — the snapshot in the day's bundle is.
+
+Everything under `contract.channels.<id>` is resolved for you: `target_count`,
+`target_mix`, `shortfall`, `active_formats`, `retired_formats`,
+`chatgpt_roles`, `media_requirements`, `queue`, `protected_fields`,
+`allowed_editorial_mutations`, `doctrine`. Do not recompute any of it.
+
 ## Two workers, one day — read this first
 
 The day is worked by **two scheduled tasks an hour apart**, not one:
@@ -322,7 +368,7 @@ thing, and each has its own array in your `response.json`:
 
 | Channel in `authoring_requests` | `job` | You write | Return in |
 |---|---|---|---|
-| `trending` | author | 6 packages, 2+2+2 | `authored` |
+| `trending` | author | exactly `contract.channels.trending.shortfall` — see the snapshot | `authored` |
 | `explainer` | `rewrite_words` | title / hook / says / closing per story | `authored_explainer` |
 | `curiosity` | `stock_queue` | whole long-form stories | `authored_curiosity` |
 
@@ -359,17 +405,18 @@ A real package always carries at least one of `script`, `text`, `series`,
 `shots`, `subreddit`, or `broll_query`. Getting this wrong cancels the
 takeover: five real packages plus `_schedule.json` looks like a full six.
 
-**Write only the shortfall, and restore the 2 + 2 + 2 mix.**
+**Write only the shortfall the contract states.** Do not compute a mix
+from memory or from the examples below.
 
-| Real packages present | What you write |
+| Real packages present (per `shortfall`) | What you write |
 |---|---|
-| 0 | all six — 2 reddit_story, 2 text_card, 2 graph_race |
-| 1–5 | only the missing ones, choosing formats so the day ends at 2 + 2 + 2 |
-| 6 | no **trending** packages — but see below, you are probably not done |
+| 0 | the whole `target_mix` |
+| some, but short | only the missing ones, in the formats `shortfall` names |
+| at target | no **trending** packages — but see below, you are probably not done |
 
-Count what exists by format first, then fill the gaps. If the day already
-has 2 reddit_story and 1 text_card, you write 1 text_card and 2 graph_race —
-not six of anything.
+Count what exists by format first, then fill the gaps. `shortfall` in the
+contract has already done exactly that — use it rather than recomputing, and
+never assume a format is in play because you have seen it before.
 
 **A full trending slate does not end your authoring job.** Explainer and
 curiosity are separate channels with separate asks, and six trending packages
@@ -412,7 +459,7 @@ Everything you need is in `bundle.json` → `authoring_request`:
 | Field | What it is |
 |---|---|
 | `write` | how many packages to write |
-| `mix` | how many of each format — the slate is **2 + 2 + 2**, never 6 of one |
+| `mix` | how many of each ACTIVE format to write. Retired formats are absent, not zeroed |
 | `formats` | the complete spec per format: required fields, shape, rules |
 | `hard_rules` | the mechanical checks we run on your output |
 | `do_not_repeat` | titles the channel posted recently |

@@ -29,6 +29,28 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import run_trending_daily as rtd                     # noqa: E402
 
 
+# --------------------------------------------------------------------------
+# These tests are about MECHANISM, not about today's operator ruling. They run
+# against a fixture registry carrying the mix they were written for, so a
+# future mix change in config/channel_registry.json breaks only the tests that
+# are ABOUT the ruling (tests/test_channel_registry.py) instead of these.
+# --------------------------------------------------------------------------
+from tests.registry_fixture import LEGACY_MIX, registry   # noqa: E402
+
+_FIXTURE = None
+
+
+def setUpModule():
+    global _FIXTURE
+    _FIXTURE = registry(LEGACY_MIX)
+    _FIXTURE.__enter__()
+
+
+def tearDownModule():
+    if _FIXTURE is not None:
+        _FIXTURE.__exit__(None, None, None)
+
+
 class GapTestCase(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="gap-"))

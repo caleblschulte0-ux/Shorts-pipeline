@@ -76,45 +76,43 @@ chain takes over and renders later.
 >   ships YOUR original if it tries. So write facts you're happy to keep.
 > - Full detail: `docs/EXCHANGE_PIPELINE.md`.
 
-## ⚠️ THE SLATE IS THREE FORMATS — 2 + 2 + 2, NOT 6 OF ONE
+## ⚠️ THE SLATE COMES FROM THE REGISTRY — NEVER FROM THIS FILE
 
-**Read this before you write a single package.** This channel is no longer the
-old "photo on top, gameplay on bottom" single format. It runs an A/B/C format
-test and posts **six videos a day: two of each format.**
+**`config/channel_registry.json` is the only authority for how many videos
+this channel ships and in which formats.** Read it, or run:
 
-On 2026-07-29 the slate was correct — 2 `reddit_story`, 2 `text_card`,
-2 `graph_race`. On 2026-07-30 it regressed to **six stacked/explainer packages**
-because this instruction lived only in the Routine's own prompt and never in
-this file, so a session reading this doc fresh authored six of the format the
-doc describes in detail. That is what this section exists to prevent.
+```bash
+python -m shared.channel_registry --mix trending   # one line, the whole ruling
+python -m shared.channel_registry                  # every channel
+```
 
-| Format | `format` field | Shape | Renderer |
-|---|---|---|---|
-| Reddit story | *(omit `format`, set `subreddit`)* | full-screen gameplay + post card + TTS | `make_reddit_story.py` |
-| Text card | `"text_card"` | big typographic card over topical b-roll | `make_text_card.py` |
-| Graph race | `"graph_race"` | animated multi-series chart race | `make_graph_race.py` |
+This heading used to state the mix itself. On 2026-07-31 the operator moved
+trending to a graph-led slate and retired `text_card`; the ruling landed in
+`daily.yml`'s prompt and nowhere else, so this file, `package_buffer.py`,
+`authoring_brief.py` and three tables in `exchange/README.md` all went on
+saying something that was no longer true — and the reserve bank kept banking
+a retired format. **Any number written down twice is a number that will
+disagree with itself.**
 
-**Two of each, every day.** Name them so the slate is obvious at a glance:
-`01_reddit-…`, `02_reddit-…`, `03_textcard-…`, `04_textcard-…`,
-`05_graph-…`, `06_graph-…`.
+<!-- BEGIN GENERATED SLATE — python -m shared.channel_registry --markdown -->
+| Channel | Per day | Active formats | Retired | ChatGPT does |
+|---|---|---|---|---|
+| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
+| `explainer` | 1 | 1x `data_story` | — | editorial_review |
+| `third` | 3 | 3x `clip` | — | nothing |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
 
-### Required fields per format
+<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- END GENERATED SLATE -->
 
-**`text_card`** — `format`, `slug`, `title`, `duration`, `broll_query`,
-`text` (the on-screen copy; `\n\n` separates cards), `highlights` (words to
-emphasize), `hashtags`, `music_vibe`. No `shots`, no `script`.
+The registry also decides which formats are RETIRED. A retired format is
+absent from the authoring brief entirely and is rejected at promotion, so
+authoring one wastes the whole package — check before you write, not after.
 
-**`graph_race`** — `format`, `slug`, `title`, `y_label`, `duration`, `source`
-(cite it — real numbers only), `years`, `series` (each `{name, color, values}`),
-`hashtags`, `music_vibe`. No `shots`, no `script`. Numbers must be REAL and
-sourced; this format is a data claim on screen.
-
-**Reddit story** — the `shots` + `script` shape documented below, plus
-`subreddit`.
-
-The stacked/explainer format documented in the rest of Part 1 is the FALLBACK
-shape, not the default slate. Do not ship six of it.
-
+Per-format writing rules (what a good `graph_race` looks like, the substring
+requirements, the drama gate) are doctrine and still live below in this file
+and in `shared/authoring_brief.py:FORMAT_SPECS`. The registry says WHAT to
+write and HOW MANY; those say HOW.
 
 ## Steps
 

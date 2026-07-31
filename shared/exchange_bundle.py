@@ -78,7 +78,8 @@ def _max_requests() -> int:
 def build_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
                  authoring_request: dict | None = None,
-                 channel_requests: dict | None = None) -> dict:
+                 channel_requests: dict | None = None,
+                 contract: dict | None = None) -> dict:
     """Assemble the day's ask. Pure function — easy to test, no IO.
 
     `authoring_request` is the AUTHORING TAKEOVER brief (see
@@ -171,6 +172,13 @@ def build_bundle(date: str, packages: list[dict],
         "schema": SCHEMA,
         "date": str(date),
         "status": "open",
+        # THE CONTRACT SNAPSHOT. Resolved once from
+        # config/channel_registry.json and frozen here. Everything downstream
+        # — both ChatGPT workers, Phase B validation, promotion — reads THIS,
+        # not the live registry, so a registry edit between 06:00 and 07:00
+        # cannot change the day mid-flight. New rules start with the next
+        # bundle. See exchange/README.md "Which contract wins".
+        "contract": contract,
         "mode": ("author" if (authoring_request or channel_requests)
                  else "punch_up"),
         "response_path": f"exchange/bundles/{date}/response.json",
@@ -398,14 +406,28 @@ def build_bundle(date: str, packages: list[dict],
     return bundle
 
 
+def existing_contract(date: str) -> dict | None:
+    """The contract already frozen for this date, if a bundle exists.
+
+    Phase A re-runs (a backstop cron, a manual dispatch) must NOT re-resolve
+    the registry: the 06:00 media worker may already be working the old
+    numbers, and moving the goalposts under it is how half a slate gets
+    generated against one plan and half against another."""
+    b = read_bundle(date)
+    if isinstance(b, dict) and isinstance(b.get("contract"), dict):
+        return b["contract"]
+    return None
+
+
 def write_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
                  authoring_request: dict | None = None,
-                 channel_requests: dict | None = None) -> Path | None:
+                 channel_requests: dict | None = None,
+                 contract: dict | None = None) -> Path | None:
     """Phase A: persist the day's bundle. Returns its path, or None."""
     try:
         bundle = build_bundle(date, packages, judge_reports,
-                              authoring_request, channel_requests)
+                              authoring_request, channel_requests, contract)
         d = bundle_dir(date)
         d.mkdir(parents=True, exist_ok=True)
         path = d / "bundle.json"

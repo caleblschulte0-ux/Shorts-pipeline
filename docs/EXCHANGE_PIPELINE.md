@@ -151,7 +151,8 @@ day's slate itself into `response.json`'s `authored` array, and Phase B
 validates and promotes it before doing anything else.
 
 ```
-Phase A  0 packages, bank empty  ->  mode:"author", write:6, mix 2/2/2
+Phase A  0 packages, bank empty  ->  mode:"author", write + mix resolved
+                                     from config/channel_registry.json
 ChatGPT  reads authoring_request, writes response.json.authored[] + DONE
 Phase B  ingest_authored.py: validate -> promote -> quarantine failures
          cover media for the new packages, then the normal Phase B work

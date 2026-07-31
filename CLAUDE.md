@@ -43,13 +43,51 @@ single source of truth; `assets/mascot/host/*.svg|png` are generated from it
 character, so change it only on an explicit request — and regenerate the
 assets in the same commit.
 
-**Trending is THREE formats, 2 each, 6/day**: `reddit_story` (gameplay +
-post card + TTS), `text_card` (typographic card over b-roll), `graph_race`
-(animated chart). It is NOT the old single stacked/gameplay format — that is
-a fallback shape only. Full spec + required fields per format:
-`CLAUDE_ROUTINE_INSTRUCTIONS.md` (top section). It regressed to 6-of-one on
+## `config/channel_registry.json` is the ONLY place channel policy lives
+
+How many videos a channel ships, in which formats, which formats are retired,
+what ChatGPT is responsible for, queue minimums, media requirements, where
+output goes — **all of it is in one JSON file**, resolved through
+`shared/channel_registry.py`:
+
+```bash
+python -m shared.channel_registry            # every channel, one line each
+python -m shared.channel_registry --mix trending
+python -m shared.channel_registry --validate
+python -m shared.channel_registry --markdown # the table docs embed
+```
+
+Change that file and everything inherits: the Routine prompt, Phase A's
+bundle, ChatGPT's authoring brief, media requests, Phase B validation,
+promotion, the reserve bank, and the no-bundle takeover. **No scheduled-task
+prose ever needs editing.** Never write a count or a mix anywhere else —
+`tests/test_no_second_source_of_truth.py` runs in the auto-merge gate and
+fails the PR if a second copy grows back. That test exists because the
+2026-07-31 graph-led ruling landed in one of five places that stated the mix,
+and the reserve bank went on banking a retired format with everything green.
+
+- **A day's bundle FREEZES the registry** into `bundle.json.contract`
+  (revision, sha256, `source_commit`, resolved plan per channel, doctrine
+  hashes). That snapshot governs that date; a registry change starts with the
+  next bundle. `--rebuild-contract` is the deliberate migration.
+- **Precedence**: the date's snapshot → the registry → the doctrine files it
+  names (read at `source_commit`) → docs, which are explanatory only.
+- **A missing or invalid registry fails CLOSED.** Falling back to a
+  historical mix is how a retired format gets authored on a day nobody is
+  watching.
+- Deep editorial doctrine stays in its own files (voice, topic banks,
+  per-format writing rules). The registry says WHAT and HOW MANY; those say
+  HOW. Verify the whole chain offline with
+  `python scripts/registry_acceptance.py`.
+
+Trending's formats are `reddit_story` (gameplay + post card + TTS) and
+`graph_race` (animated chart); `text_card` is retired. **Those are the
+current values, not a rule — read the registry.** It is NOT the old single
+stacked/gameplay format, which is a fallback shape only. Per-format writing
+specs: `CLAUDE_ROUTINE_INSTRUCTIONS.md` and
+`shared/authoring_brief.py:FORMAT_SPECS`. It regressed to 6-of-one on
 2026-07-30 because the spec lived only in the Routine's prompt; if you ever
-see a slate of six identical formats, that is the bug.
+see a slate of one format, that is the bug.
 
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 
