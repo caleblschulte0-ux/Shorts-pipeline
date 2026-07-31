@@ -25,7 +25,9 @@
     {
       "phrase": "fined me for THAT",
       "query": "violation notice letter",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "image_url": "https://pixabay.com/get/gcf5f769abb3638b05e24cba82749e03a73a76b87aa877b467c01fb06f84428e07e50f0aca04bc1080b46c52d677c7d39ca9d29e45cecadf60c7b9bef01c09c5c_1280.png",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "emailed the HOA board president",
@@ -50,57 +52,79 @@
     {
       "phrase": "wrote back four words",
       "query": "email reply screen",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g3cd96b4928cb0dc41a0f6115032d014af6c3b7a8cc6f134af8a7bd05463081561305080726c0a4677cc6e335e7ad64a3464146a8799f116d596f688f00a5f5ce_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "measured my yard against some outdated map",
       "query": "tape measure yard",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/5512/14510767525_ecd0577b4b_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "mailed me a $500 violation",
       "query": "certified mail envelope",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g8bda36213a0de8c05438e86722f2a7aa4057f01a96763929e13b7b0f4189e2bb571b3f4365e85adad0c2b3d10fb09205c9408dd19766664df4293bd05ce19750_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "forwarded her original email, timestamp and all",
       "query": "email inbox screenshot",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g3d85e3b9515d08a56660be4e1eab273b6615ed60da8173e87ee9ecc97072abfe3d7ac25eb40e408730024527c380f6eb26aa2c0e14488bd03b5216b449daa178_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "still sitting untouched in my inbox",
       "query": "phone inbox unread",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g8845bc86370233e037e93a53dbab700aaea8fd38c7fe4a08ba5d8713483c16cd96f4b973c3591190fec20eb07f9f245edcaf530b5b1109888324e52b5a818e2f_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "an approval that apparently expires",
       "query": "calendar pages flipping",
-      "mascot_pose": "think"
+      "mascot_pose": "think",
+      "image_url": "https://images.pexels.com/photos/8042344/pexels-photo-8042344.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "went silent for 12 days",
       "query": "phone screen no messages",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/gd17c6808916b7014271b828047e025737ea3026a05f63493d43d7e0924641770d448a05c93dbf9eb050e139254a294865a05d7f763ab546d6ce94b5a14055d0c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "fine dropped",
       "query": "crossed out invoice",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g7e185548443018d6366feded4dd7361c9d957a0e2a784927d80eebbb07e0d5114765f6ff43ec1a03badc7f0b1c6c3e2e299e93605446c3bce620785a03917f1e_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a full year of dues waived",
       "query": "handshake agreement",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g5cc1e0fceddba1e7103e35502b4adacfe1ca6666bad683a4ef2efdbd51414231a57fb4c7273a3973fedcd862340f165a0933a9c5b97c0d7beb82c0557ea1e4c1_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a bylaw rewrite",
       "query": "committee meeting table",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g058ff1c58cdbc4e07d49b307fa388de2e9ccb691fc1fad1f20a93e8bfeb0e856dc90016241aa3c6ea1cd27571294cada221e39aa9e4df584ce519ca47b260dcb_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "reading their own paperwork now",
       "query": "stack of documents desk",
-      "mascot_pose": "dismiss"
+      "mascot_pose": "dismiss",
+      "image_url": "https://pixabay.com/get/g9464a5384e65f321c3c32b787f8168bf502b48acf47ce0528c524814becbecd0c174daebd8ecdc7b2302dac57f4e90fa506197bbd5a1154493afedd61769855a_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
