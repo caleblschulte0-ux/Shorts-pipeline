@@ -127,6 +127,7 @@ jobs:
           python scripts/test_judge_production_wiring.py
           python scripts/test_auto_repair.py
           python scripts/test_repair_effect.py
+          python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 
       - name: "Layer 2e — decision-machinery drill: deterministic 50-story fault campaign"
