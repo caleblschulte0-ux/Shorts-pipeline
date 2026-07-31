@@ -26,6 +26,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from funnel import media_judge                       # noqa: E402
 from shared import authoring_brief as brief          # noqa: E402
+from shared import channel_registry as reg           # noqa: E402
 from shared import exchange_bundle as xb             # noqa: E402
 from shared import media_checkpoint as mc            # noqa: E402
 from tests.test_package_buffer import (               # noqa: E402
@@ -58,9 +59,9 @@ class TestDryRunFixture(unittest.TestCase):
 class TestTakeoverMatrix(unittest.TestCase):
     """Every shape of short day, and what the bundle must say about it."""
 
-    def _bundle(self, packages, *, target=6, channel_requests=None):
+    def _bundle(self, packages, *, target=None, channel_requests=None):
         req = None
-        if len(packages) < target:
+        if len(packages) < (target or reg.target_count("trending")):
             req = brief.build_request(DATE, "trending",
                                       have_packages=packages, target=target)
         reports = [media_judge.judge_package(p, None) for p in packages]
@@ -68,31 +69,51 @@ class TestTakeoverMatrix(unittest.TestCase):
                                channel_requests or ({"trending": req} if req
                                                     else None))
 
-    def test_zero_packages_asks_for_the_full_slate(self):
+    def test_zero_packages_asks_for_the_whole_registered_slate(self):
+        """Expectations DERIVED from the registry, never restated. A test
+        that repeats the mix is just a ninth copy of the ruling."""
         b = self._bundle([])
         self.assertEqual(b["mode"], "author")
-        self.assertEqual(b["authoring_request"]["write"], 6)
         self.assertEqual(b["authoring_request"]["mix"],
-                         {"reddit_story": 2, "text_card": 2, "graph_race": 2})
+                         reg.target_mix("trending"))
+        self.assertEqual(b["authoring_request"]["write"],
+                         reg.target_count("trending"))
 
     def test_partial_days_ask_only_for_the_shortfall(self):
-        cases = {
-            1: ([reddit_pkg(slug="a")], {"reddit_story": 1, "text_card": 2,
-                                    "graph_race": 2}),
-            3: ([reddit_pkg(slug="a"), reddit_pkg(slug="b"), text_card_pkg(slug="c")],
-                {"reddit_story": 0, "text_card": 1, "graph_race": 2}),
-            5: ([reddit_pkg(slug="a"), reddit_pkg(slug="b"), text_card_pkg(slug="c"),
-                 text_card_pkg(slug="d"), graph_pkg(slug="e")],
-                {"reddit_story": 0, "text_card": 0, "graph_race": 1}),
-        }
-        for have, (pkgs, want) in cases.items():
-            b = self._bundle(pkgs)
-            self.assertEqual(b["authoring_request"]["mix"], want, have)
-            self.assertEqual(b["authoring_request"]["write"], 6 - have, have)
+        """Build a partial day out of whatever the registry currently wants,
+        so this keeps working through any future mix change."""
+        mix = reg.target_mix("trending")
+        makers = {"reddit_story": reddit_pkg, "text_card": text_card_pkg,
+                  "graph_race": graph_pkg}
+        have, i = [], 0
+        for fid, n in mix.items():
+            maker = makers.get(fid)
+            if not maker:
+                continue
+            for _ in range(max(0, n - 1)):      # one short of each
+                have.append(maker(slug=f"partial-{i}"))
+                i += 1
+        b = self._bundle(have)
+        want = {fid: mix[fid] - sum(1 for p in have
+                                    if reg.classify(p, "trending") == fid)
+                for fid in mix}
+        self.assertEqual(b["authoring_request"]["mix"], want)
+        self.assertEqual(b["authoring_request"]["write"], sum(want.values()))
+
+    @staticmethod
+    def _full_slate():
+        """A complete slate for whatever the registry currently asks for."""
+        makers = {"reddit_story": reddit_pkg, "text_card": text_card_pkg,
+                  "graph_race": graph_pkg}
+        out, i = [], 0
+        for fid, n in reg.target_mix("trending").items():
+            for _ in range(n):
+                out.append(makers[fid](slug=f"full-{i}"))
+                i += 1
+        return out
 
     def test_a_full_slate_is_punch_up_mode(self):
-        pkgs = [reddit_pkg(slug="a"), reddit_pkg(slug="b"), text_card_pkg(slug="c"),
-                text_card_pkg(slug="d"), graph_pkg(slug="e"), graph_pkg(slug="f")]
+        pkgs = self._full_slate()
         b = self._bundle(pkgs)
         self.assertEqual(b["mode"], "punch_up")
         self.assertNotIn("authoring_request", b)
@@ -102,8 +123,7 @@ class TestTakeoverMatrix(unittest.TestCase):
         so 'nothing to author' — and the explainer rewrite silently never
         happens. Explainer and curiosity are separate channels with separate
         asks."""
-        pkgs = [reddit_pkg(slug="a"), reddit_pkg(slug="b"), text_card_pkg(slug="c"),
-                text_card_pkg(slug="d"), graph_pkg(slug="e"), graph_pkg(slug="f")]
+        pkgs = self._full_slate()
         b = self._bundle(pkgs, channel_requests={
             "explainer": {"channel": "explainer", "job": "rewrite_words",
                           "write": 2},

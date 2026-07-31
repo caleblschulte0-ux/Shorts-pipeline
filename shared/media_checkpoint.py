@@ -932,6 +932,41 @@ def media_entry_problems(entry, *, date, bundle_id=None, request_id=None,
     return problems
 
 
+def contract_problems(response, bundle) -> list[str]:
+    """Was this response written against THIS bundle's contract snapshot?
+
+    A response may declare which contract it answered — `registry_revision`,
+    `registry_sha256`, `source_commit`, `production_date`. When it does, the
+    values must match the bundle's frozen snapshot. A worker that read a
+    newer registry, or yesterday's bundle, is answering a different question
+    than the one this day asked, and its counts and formats will be wrong in
+    ways nothing downstream can see.
+
+    Silence is tolerated (an older worker simply does not declare it), but a
+    WRONG declaration is refused outright — a mismatch is evidence, not noise.
+    """
+    problems: list[str] = []
+    if not isinstance(response, dict) or not isinstance(bundle, dict):
+        return problems
+    contract = bundle.get("contract")
+    if not isinstance(contract, dict):
+        return problems
+    declared = response.get("contract") or response.get("answered_contract")
+    if not isinstance(declared, dict):
+        return problems
+    for field in ("registry_revision", "registry_sha256", "source_commit",
+                  "production_date"):
+        want, got = contract.get(field), declared.get(field)
+        if got in (None, "") or want in (None, ""):
+            continue
+        if str(got) != str(want):
+            problems.append(
+                f"response answers contract {field}={str(got)[:16]!r} but "
+                f"this bundle froze {str(want)[:16]!r} — the worker read a "
+                f"different plan than the one this day was built on")
+    return problems
+
+
 def validate_response_media(response, bundle, *, date, bundle_id=None,
                             require_checkpoint: bool = False) -> dict:
     """Walk EVERY media pointer in a response and say which ones may be used.
@@ -945,10 +980,14 @@ def validate_response_media(response, bundle, *, date, bundle_id=None,
     different requests) can only be done with the whole response in view,
     which is why this exists rather than only the per-entry function."""
     out = {"date": normalize_date(date), "ok": [], "rejected": [],
-           "warnings": [], "counts": {}}
+           "warnings": [], "counts": {}, "contract_problems": []}
     if not isinstance(response, dict):
         out["counts"] = {"checked": 0, "ok": 0, "rejected": 0}
         return out
+
+    # A response written against the WRONG contract taints every pointer in
+    # it, so this is checked once up front rather than per entry.
+    out["contract_problems"] = contract_problems(response, bundle)
 
     reqs = {str(r.get("request_id")): r
             for r in (bundle or {}).get("requests") or []

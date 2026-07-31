@@ -28,6 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from shared import channel_registry as reg         # noqa: E402
 from shared import exchange_bundle as xb           # noqa: E402
 from shared import media_checkpoint as mc          # noqa: E402
 from shared import punchup_guard                   # noqa: E402
@@ -398,9 +399,23 @@ def main() -> int:
             print("::warning::Phase A produced no bundle; Phase B is "
                   "rescuing the day. Media was never searched for, so every "
                   "shot goes through self-fill.")
+            # NO BUNDLE MEANS NO FROZEN CONTRACT, so resolve one live. This
+            # is the ONLY path allowed to read the registry directly, and it
+            # fails closed: guessing a historical mix here is how a retired
+            # format reaches a slate on the one day nobody is watching.
+            try:
+                rescue_contract = reg.plan(args.date,
+                                           {args.channel: already_there})
+            except reg.RegistryError as exc:
+                print(f"::error::no bundle AND the channel registry is "
+                      f"unusable ({exc}). Refusing to guess a slate.")
+                return 2
+            print(f"[phase-b] rescue contract from registry rev "
+                  f"{rescue_contract['registry_revision']}: "
+                  f"{reg.mix_sentence(args.channel)}")
             bundle = {"schema": "rescue", "date": str(args.date),
                       "mode": "author", "packages": [], "requests": [],
-                      "rescue": True}
+                      "rescue": True, "contract": rescue_contract}
         else:
             print(f"[phase-b] no bundle for {args.date}, nothing authored "
                   f"and no packages on disk — nothing to apply")
@@ -468,6 +483,16 @@ def main() -> int:
         require_checkpoint=require_cp)
     refused = {r["request_id"]: r["problems"]
                for r in validation.get("rejected") or []}
+    if validation.get("contract_problems"):
+        # The whole response answers a different plan. Every pointer in it is
+        # suspect, so none are used and the day self-fills.
+        for why in validation["contract_problems"]:
+            print(f"::error::[phase-b] CONTRACT MISMATCH — {why}")
+        print("[phase-b] refusing every media pointer in this response: it "
+              "was written against a different contract snapshot")
+        for r in bundle.get("requests") or []:
+            refused.setdefault(r["request_id"],
+                               list(validation["contract_problems"]))
     for w in validation.get("warnings") or []:
         print(f"[phase-b] checkpoint warning {w['request_id']}: "
               f"{w['problem']}")
@@ -491,9 +516,24 @@ def main() -> int:
     if not args.no_ingest:
         from ingest_authored import (ingest, ingest_curiosity,  # noqa: E402
                                      ingest_explainer)
-        authored = ingest(args.date, args.channel,
-                          target=int(bundle.get("authoring_request", {})
-                                     .get("target", 6)),
+        # THE TARGET COMES FROM THE DAY'S FROZEN CONTRACT. Not a literal,
+        # and not the live registry: promotion has to agree with the plan the
+        # workers were given, even if the registry moved since.
+        contract = bundle.get("contract") or {}
+        ch_plan = (contract.get("channels") or {}).get(args.channel) or {}
+        target = ch_plan.get("target_count")
+        if target is None:
+            target = (bundle.get("authoring_request") or {}).get("target")
+        if target is None:
+            try:
+                target = reg.target_count(args.channel)
+            except reg.RegistryError as exc:
+                print(f"::error::no contract in the bundle and the registry "
+                      f"is unusable ({exc}) — refusing to guess a slate size")
+                return 2
+        print(f"[phase-b] promotion target {target} "
+              f"(registry rev {contract.get('registry_revision', '?')})")
+        authored = ingest(args.date, args.channel, target=int(target),
                           dry_run=args.dry_run)
         # The other channels ChatGPT can stand in for. Explainer gets WORDS
         # for stories whose numbers are already real (punch-up-guarded);

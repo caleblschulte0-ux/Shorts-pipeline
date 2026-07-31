@@ -828,6 +828,43 @@ class TestResponseValidation(_TempBundles):
         out = self._validate({"media": [self._entry(drive=dict(drive))]})
         self.assertEqual(out["rejected"], [])
 
+    # -- the response must answer THIS bundle's contract ------------------
+    def test_a_response_answering_another_contract_is_refused(self):
+        """A worker that read a newer registry, or yesterday's bundle, is
+        answering a different question — its counts and formats will be wrong
+        in ways nothing downstream can see."""
+        self.bundle["contract"] = {"registry_revision": 1,
+                                   "registry_sha256": "a" * 64,
+                                   "source_commit": "abc123",
+                                   "production_date": DATE}
+        self._checkpoint()
+        out = self._validate({"contract": {"registry_revision": 2,
+                                           "registry_sha256": "b" * 64},
+                              "media": [self._entry()]})
+        self.assertEqual(len(out["contract_problems"]), 2, out)
+        self.assertTrue(any("registry_revision" in p
+                            for p in out["contract_problems"]))
+
+    def test_a_matching_contract_declaration_passes(self):
+        self.bundle["contract"] = {"registry_revision": 3,
+                                   "registry_sha256": "c" * 64,
+                                   "production_date": DATE}
+        self._checkpoint()
+        out = self._validate({"contract": {"registry_revision": 3,
+                                           "registry_sha256": "c" * 64,
+                                           "production_date": DATE},
+                              "media": [self._entry()]})
+        self.assertEqual(out["contract_problems"], [])
+        self.assertEqual(out["rejected"], [])
+
+    def test_a_silent_response_is_tolerated(self):
+        """An older worker simply does not declare a contract. Silence is
+        not evidence of a mismatch; a WRONG declaration is."""
+        self.bundle["contract"] = {"registry_revision": 3}
+        self._checkpoint()
+        out = self._validate({"media": [self._entry()]})
+        self.assertEqual(out["contract_problems"], [])
+
     def test_garbage_response_never_raises(self):
         for junk in (None, [], "x", {}, {"media": "not a list"},
                      {"media": [None, 3, {"request_id": None}]}):

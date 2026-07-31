@@ -475,6 +475,24 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
             print(f"[run_trending_daily] {d.name}: dropped {dropped} "
                   f"package(s) already in the posted log — refusing to "
                   f"re-upload", flush=True)
+        # RENDERING ELIGIBILITY. A retired format still RENDERS — its
+        # renderer is kept so already-posted videos stay reproducible, and
+        # refusing here would throw away a whole day over a policy change
+        # made after the packages were authored. But it is never silent: a
+        # retired format reaching the renderer means promotion let it
+        # through, and that is a bug worth seeing in the run log.
+        try:
+            from shared import channel_registry as _reg
+            for pkg in fresh:
+                fid = _reg.classify(pkg, "trending")
+                if fid and not _reg.is_authorable("trending", fid):
+                    print(f"::warning::{pkg.get('slug')} uses the RETIRED "
+                          f"format {fid!r} — rendering it, but nothing "
+                          f"should be authoring it "
+                          f"(config/channel_registry.json)", flush=True)
+        except Exception as exc:                     # noqa: BLE001
+            print(f"[run_trending_daily] registry check unavailable: {exc}",
+                  flush=True)
         if fresh:
             if d != todays_package_dir():
                 print(f"[run_trending_daily] WARNING using STALE packages "

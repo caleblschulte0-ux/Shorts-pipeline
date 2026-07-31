@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """A/B/C format scoreboard for the trending channel.
 
-The channel posts 6/day across three formats (reddit, text_card,
-graph_race). This joins the authored packages (title -> format) with the
+The channel's daily mix lives in config/channel_registry.json. This joins the authored packages (title -> format) with the
 analytics snapshot (title -> views/engagement) and rolls up per-format
 performance, so the daily report shows WHICH FORMAT IS WINNING instead of
 per-video noise. Runs best-effort in CI right after the analytics fetch.
@@ -21,7 +20,24 @@ ANALYTICS = ROOT / "state" / "analytics" / "latest.json"
 OUT_JSON = ROOT / "state" / "format_scoreboard.json"
 OUT_MD = ROOT / "state" / "format_scoreboard.md"
 
-FORMATS = ("reddit", "text_card", "graph_race", "explainer")
+def _formats() -> tuple[str, ...]:
+    """Every format the scoreboard buckets by — from the registry, INCLUDING
+    retired ones. A retired format still has months of posted videos behind
+    it, and dropping it from the scoreboard would erase the evidence that
+    justified retiring it."""
+    try:
+        from shared import channel_registry as _reg
+        known = set()
+        for cid in _reg.channel_ids(enabled_only=False):
+            known |= set(_reg.formats(cid, state=None))
+        return tuple(sorted(known | {"explainer"}))
+    except Exception:                                # noqa: BLE001
+        # Analytics must never take the pipeline down. A scoreboard that
+        # buckets nothing is a bad report, not a lost day.
+        return ("reddit_story", "text_card", "graph_race", "explainer")
+
+
+FORMATS = _formats()
 
 
 def _norm(t: str) -> str:

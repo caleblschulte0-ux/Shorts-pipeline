@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from shared import channel_registry as _reg      # noqa: E402
 from shared import levity as _levity             # noqa: E402
 from shared import package_buffer as _buf        # noqa: E402
 
@@ -47,12 +48,16 @@ def _levity_never() -> list:
 
 SCHEMA = "chatgpt-authoring-request/v1"
 
-# The slate is 2 + 2 + 2 (CLAUDE_ROUTINE_INSTRUCTIONS.md). A takeover honours
-# the same mix — a day of six identical formats is the regression that doc
-# exists to prevent, and a fallback brain must not reintroduce it.
-SLATE_MIX = dict(_buf.TARGET_MIX)
+# THE SLATE IS NOT DECLARED HERE. `SLATE_MIX` used to be a copy of a constant
+# in package_buffer, which was itself a copy of a heading in
+# CLAUDE_ROUTINE_INSTRUCTIONS.md — three copies of one ruling, and when the
+# operator changed it only a fourth place (daily.yml's prompt) was updated.
+# The takeover then kept asking ChatGPT for a retired format.
+#
+# Everything now resolves through config/channel_registry.json.
 
-# How many days back a takeover slate must not collide with.
+# How many days back a takeover slate must not collide with. Registry-driven
+# per channel; this is only the fallback for a channel that omits it.
 RECENT_DAYS = 6
 
 FORMAT_SPECS = {
@@ -221,16 +226,20 @@ def _recent_titles(channel: str, days: int = RECENT_DAYS) -> list[str]:
     return out[:40]
 
 
-def missing_mix(have_packages: list[dict], target: int) -> dict:
-    """How many of each format the day still needs, honouring 2/2/2."""
-    have = {f: 0 for f in _buf.FORMATS}
-    for pkg in have_packages or []:
-        f = _buf.format_of(pkg)
-        if f in have:
-            have[f] += 1
-    need = {f: max(0, SLATE_MIX.get(f, 0) - have[f]) for f in _buf.FORMATS}
-    # If the target is smaller than a full slate, trim worst-covered-last.
-    short = max(0, target - sum(have.values()))
+def missing_mix(have_packages: list[dict], target: int | None = None,
+                channel: str = "trending") -> dict:
+    """How many of each ACTIVE format the day still needs.
+
+    Straight from the registry: it classifies what exists, subtracts, and
+    never returns a retired format at all. `target` is accepted for callers
+    that want a smaller-than-full day (a manual partial run); when it is
+    below the registry's own count the ask is trimmed worst-covered-last.
+    Passing None — the normal case — means "whatever the registry says"."""
+    need = _reg.shortfall(channel, have_packages or [])
+    if target is None:
+        return need
+    have_count = len(have_packages or [])
+    short = max(0, int(target) - have_count)
     while sum(need.values()) > short:
         biggest = max(need, key=lambda f: need[f])
         if need[biggest] == 0:
@@ -239,12 +248,47 @@ def missing_mix(have_packages: list[dict], target: int) -> dict:
     return need
 
 
+def active_format_specs(channel: str = "trending", reg=None) -> dict:
+    """The writing spec for the formats that are ACTIVE today.
+
+    FORMAT_SPECS holds how to WRITE each format — prose rules a validator
+    cannot generate. Which formats are OFFERED, and their required fields,
+    come from the registry, so retiring a format removes it from the brief
+    without touching this file. A retired format is not listed at all rather
+    than listed with a zero: a brief that mentions text_card is a brief that
+    can produce one."""
+    out = {}
+    for fid in _reg.active_formats(channel, reg):
+        spec = dict(FORMAT_SPECS.get(fid) or {})
+        registry_spec = _reg.format_spec(channel, fid, reg)
+        required = registry_spec.get("required_fields")
+        if required:
+            spec["required"] = list(required)
+        spec["renderer"] = registry_spec.get("renderer", spec.get("renderer"))
+        spec["media"] = _reg.media_requirements(channel, fid, reg)
+        spec["target_today"] = int(registry_spec.get("target", 0))
+        if not spec.get("rules"):
+            spec["rules"] = [
+                f"No prose spec is recorded for {fid!r} in "
+                f"shared/authoring_brief.py:FORMAT_SPECS. Follow "
+                f"`required` and the channel doctrine, and say in your "
+                f"response that the spec was thin."]
+        out[fid] = spec
+    return out
+
+
 def build_request(date: str, channel: str, *, have_packages: list[dict] | None
-                  = None, target: int = 6, reason: str = "") -> dict:
-    """The authoring brief handed to ChatGPT inside the day's bundle."""
+                  = None, target: int | None = None, reason: str = "") -> dict:
+    """The authoring brief handed to ChatGPT inside the day's bundle.
+
+    Every number in it comes from config/channel_registry.json. `target`
+    stays available for a deliberately partial manual run; None means "the
+    registry decides", which is what every automatic caller passes."""
     have_packages = have_packages or []
-    need = missing_mix(have_packages, target)
+    need = missing_mix(have_packages, target, channel)
     total = sum(need.values())
+    registry_target = _reg.target_count(channel)
+    retired = _reg.retired_formats(channel)
     return {
         "schema": SCHEMA,
         "date": str(date),
@@ -252,9 +296,18 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
         "reason": reason or ("the Claude authoring Routine did not run and "
                              "the reserve bank could not cover the day"),
         "authored_already": len(have_packages),
-        "target": target,
+        "target": int(target) if target is not None else registry_target,
+        "registry_target": registry_target,
         "write": total,
         "mix": need,
+        "retired_formats": retired,
+        "retired_note": (
+            f"These formats are RETIRED and must not be authored: "
+            f"{', '.join(retired)}. They are absent from `formats` and from "
+            f"`mix` on purpose. If an example anywhere — a README, an old "
+            f"bundle, a remembered instruction — shows one, the registry "
+            f"wins." if retired else
+            "No formats are retired for this channel."),
         "where": {
             "preferred": (
                 "Add an `authored` array to the SAME response.json you "
@@ -271,7 +324,7 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
                 "anything that fails validation is quarantined with reasons "
                 "rather than silently rendered."),
         },
-        "formats": FORMAT_SPECS,
+        "formats": active_format_specs(channel),
         "hard_rules": [
             f"Write EXACTLY {total} package(s) in the mix above — "
             f"{', '.join(f'{n} x {f}' for f, n in need.items() if n)}.",
@@ -322,8 +375,8 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
     }
 
 
-def validate_authored(pkg: dict, *, known_titles: set[str] | None = None
-                      ) -> list[str]:
+def validate_authored(pkg: dict, *, known_titles: set[str] | None = None,
+                      channel: str = "trending") -> list[str]:
     """Problems that disqualify a ChatGPT-authored package from promotion.
 
     Deliberately the SAME structural gate the reserve bank uses, so the
@@ -332,27 +385,34 @@ def validate_authored(pkg: dict, *, known_titles: set[str] | None = None
     today, so "this morning" is correct language there and only wrong in
     the bank."""
     problems = _buf.structural_problems(pkg)
+    # THE RETIREMENT GATE. A retired format must not reach a slate no matter
+    # who wrote it — a remembered instruction, a README example, or an old
+    # constant. Structural validity is not the question; authorisation is.
+    fid = _reg.classify(pkg, channel)
+    if fid and not _reg.is_authorable(channel, fid):
+        spec = _reg.format_spec(channel, fid)
+        problems.append(
+            f"format {fid!r} is {spec.get('state')} for {channel} "
+            f"(since {spec.get('retired_on', 'unknown')}): "
+            f"{spec.get('retired_because', 'see config/channel_registry.json')}")
+    elif not fid:
+        problems.append(
+            f"package matches no format registered for {channel} "
+            f"(active: {', '.join(_reg.active_formats(channel))})")
     title = (pkg.get("title") or "").strip()
     if known_titles and title and title in known_titles:
         problems.append(f"title repeats a recently posted video: {title!r}")
     return problems
 
 
-def slate_problems(packages: list[dict], *, target: int = 6) -> list[str]:
-    """Slate-level complaints — the 6-of-one regression, mostly."""
-    out = []
-    counts: dict[str, int] = {}
-    for pkg in packages:
-        counts[_buf.format_of(pkg)] = counts.get(_buf.format_of(pkg), 0) + 1
-    slugs = [(_p.get("slug") or "") for _p in packages]
-    dupes = {s for s in slugs if slugs.count(s) > 1 and s}
-    if dupes:
-        out.append(f"duplicate slugs in one slate: {', '.join(sorted(dupes))}")
-    if len(packages) >= target and len(counts) == 1:
-        out.append(f"the whole slate is one format ({next(iter(counts))}) — "
-                   f"the slate is 2 + 2 + 2 (see "
-                   f"CLAUDE_ROUTINE_INSTRUCTIONS.md)")
-    return out
+def slate_problems(packages: list[dict], *, target: int | None = None,
+                   channel: str = "trending") -> list[str]:
+    """Slate-level complaints — monoculture and RETIRED formats.
+
+    Delegated to the registry so "what a good slate looks like" has exactly
+    one definition. `target` is ignored except for backwards compatibility;
+    the registry's own count is authoritative."""
+    return _reg.slate_problems(channel, packages)
 
 
 _SAFE_SLUG = re.compile(r"[^a-z0-9-]+")
@@ -385,12 +445,42 @@ def safe_slug(slug: str, fallback: str = "authored") -> str:
 #       does not exist until the run happens. Nothing to hand ChatGPT ahead
 #       of time. It self-heals to Groq, then to a safe raw clip title.
 
-NICHE_CONFIG = ROOT / "data_learning" / "niche.config.json"
-CURIOSITY_CONFIG = ROOT / "data_learning" / "curiosity.config.json"
-EXPLAINER_LOG = ROOT / "state" / "explainer_posted_log.json"
-CURIOSITY_LOG = ROOT / "state" / "curiosity_posted_log.json"
-# Below this many un-posted curiosity stories, ask ChatGPT for more.
-CURIOSITY_MIN_QUEUE = 3
+# Paths and thresholds come from the registry — these names remain as
+# properties so existing callers keep working, but nothing is typed twice.
+#: Test seam. Production leaves this empty; tests point a channel's config or
+#: posted log at a temp file WITHOUT having to fake a whole registry, and
+#: without reintroducing a module-level constant that could drift.
+PATH_OVERRIDES: dict[tuple[str, str], Path] = {}
+
+
+def _cfg_path(channel: str, key: str = "config") -> Path:
+    override = PATH_OVERRIDES.get((channel, key))
+    if override is not None:
+        return Path(override)
+    return ROOT / _reg.paths(channel)[key]
+
+
+def _queue_min(channel: str) -> int:
+    q = _reg.queue_rule(channel) or {}
+    return int(q.get("minimum_unposted") or 0)
+
+
+# RESOLVED LAZILY. At import time a broken registry would raise here and the
+# traceback would come from an import statement three frames from the cause —
+# Phase A could not catch it and print the one thing an operator needs to see.
+# Module __getattr__ defers the lookup to first use, where the caller can.
+_LAZY_PATHS = {
+    "NICHE_CONFIG": ("explainer", "config"),
+    "CURIOSITY_CONFIG": ("curiosity", "config"),
+    "EXPLAINER_LOG": ("explainer", "posted_log"),
+    "CURIOSITY_LOG": ("curiosity", "posted_log"),
+}
+
+
+def __getattr__(name):
+    if name in _LAZY_PATHS:
+        return _cfg_path(*_LAZY_PATHS[name])
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 def _load(path: Path, default):
@@ -417,8 +507,8 @@ def explainer_word_request(date: str) -> dict | None:
     This is a rewrite job, not an authoring job: the numbers are already
     right and must not move. Phase B runs `shared.punchup_guard` over what
     comes back, so a rewrite that touches a number is rejected outright."""
-    cfg = _load(NICHE_CONFIG, {})
-    posted = _posted_slugs(EXPLAINER_LOG)
+    cfg = _load(_cfg_path("explainer"), {})
+    posted = _posted_slugs(_cfg_path("explainer", "posted_log"))
     needy = [s for s in cfg.get("stories") or []
              if s.get("words_by") == "deterministic"
              and s.get("slug") not in posted]
@@ -463,11 +553,12 @@ def explainer_word_request(date: str) -> dict | None:
 def curiosity_queue_request(date: str) -> dict | None:
     """The curiosity queue is stocked by the Claude routine, so a dark Claude
     drains it. Ask for long-form stories when it runs short."""
-    cfg = _load(CURIOSITY_CONFIG, {})
-    posted = _posted_slugs(CURIOSITY_LOG)
+    cfg = _load(_cfg_path("curiosity"), {})
+    posted = _posted_slugs(_cfg_path("curiosity", "posted_log"))
     unposted = [s for s in cfg.get("stories") or []
                 if s.get("slug") and s["slug"] not in posted]
-    if len(unposted) >= CURIOSITY_MIN_QUEUE:
+    minimum = _queue_min("curiosity")
+    if len(unposted) >= minimum:
         return None
     return {
         "schema": SCHEMA,
@@ -475,9 +566,9 @@ def curiosity_queue_request(date: str) -> dict | None:
         "channel": "curiosity",
         "job": "stock_queue",
         "reason": (f"only {len(unposted)} un-posted curiosity stories "
-                   f"remain (want >= {CURIOSITY_MIN_QUEUE}); the Claude "
+                   f"remain (registry minimum {minimum}); the Claude "
                    f"routine that normally stocks this queue did not run"),
-        "write": CURIOSITY_MIN_QUEUE - len(unposted),
+        "write": minimum - len(unposted),
         "required": ["slug", "title", "hook", "closing", "question",
                      "hashtags", "segments"],
         "hard_rules": [

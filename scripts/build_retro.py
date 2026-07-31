@@ -511,8 +511,31 @@ def build(date: str) -> dict:
         "pipeline_health": pipeline_health(date),
         "levity": levity_coverage(),
         "repo": repo_state(),
+        # THE RULING THE DAY WAS SHIPPED UNDER. A proposal that says "graph
+        # races underperform" means nothing without knowing how many the
+        # channel was actually running — and the answer changes over time.
+        "channel_contract": _contract_snapshot(),
         "your_job": "retro/README.md",
     }
+
+
+def _contract_snapshot() -> dict:
+    """What config/channel_registry.json said when this brief was built."""
+    try:
+        from shared import channel_registry as _reg
+        return {
+            "registry_revision": _reg.revision(),
+            "registry_sha256": _reg.sha256(),
+            "channels": {cid: {"target_count": _reg.target_count(cid),
+                               "target_mix": _reg.target_mix(cid),
+                               "retired": _reg.retired_formats(cid)}
+                         for cid in _reg.channel_ids()},
+            "note": ("Proposals are judged against THIS ruling. A change to "
+                     "the mix is a change to what the numbers mean — compare "
+                     "revisions before comparing performance."),
+        }
+    except Exception as exc:                         # noqa: BLE001
+        return {"error": f"registry unreadable: {exc}"}
 
 
 def executive_summary(brief: dict) -> str:

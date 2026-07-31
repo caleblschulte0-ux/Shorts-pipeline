@@ -23,6 +23,28 @@ sys.path.insert(0, str(ROOT))
 from shared import package_buffer as buf  # noqa: E402
 
 
+# --------------------------------------------------------------------------
+# These tests are about MECHANISM, not about today's operator ruling. They run
+# against a fixture registry carrying the mix they were written for, so a
+# future mix change in config/channel_registry.json breaks only the tests that
+# are ABOUT the ruling (tests/test_channel_registry.py) instead of these.
+# --------------------------------------------------------------------------
+from tests.registry_fixture import LEGACY_MIX, registry   # noqa: E402
+
+_FIXTURE = None
+
+
+def setUpModule():
+    global _FIXTURE
+    _FIXTURE = registry(LEGACY_MIX)
+    _FIXTURE.__enter__()
+
+
+def tearDownModule():
+    if _FIXTURE is not None:
+        _FIXTURE.__exit__(None, None, None)
+
+
 def reddit_pkg(slug="office-printer-justice", **over) -> dict:
     script = ("My coworker kept stealing my lunch from the office fridge. "
               "I labeled it with my name in permanent marker. I hid it "
@@ -235,9 +257,9 @@ class TestDeposit(BankTestCase):
         self.assertIsNotNone(buf.deposit(pkg, source="test", force=True)[0])
 
     def test_low_water(self):
-        self.assertEqual(set(buf.low_formats()), set(buf.FORMATS))
+        self.assertEqual(set(buf.low_formats()), set(buf.formats()))
         self.bank_all()
-        self.assertEqual(set(buf.low_formats()), set(buf.FORMATS))  # 2 < 4
+        self.assertEqual(set(buf.low_formats()), set(buf.formats()))  # 2 < 4
 
 
 class TestDraw(BankTestCase):
@@ -362,7 +384,7 @@ class TestAgainstTheRealCorpus(unittest.TestCase):
                     pkg = json.loads(p.read_text())
                 except Exception:                      # noqa: BLE001
                     continue
-                if buf.format_of(pkg) not in buf.FORMATS:
+                if buf.format_of(pkg) not in buf.formats():
                     continue
                 checked += 1
                 if buf.eligible(pkg)[0]:

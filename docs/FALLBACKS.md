@@ -172,7 +172,7 @@ them; the renderer cannot tell the difference.
 
 ```
 09:45 UTC  Phase A   0 packages, bank empty
-                     -> bundle.json  mode:"author", authoring_request{write:6, mix:2/2/2}
+                     -> bundle.json  mode:"author", authoring_request{write, mix} <- registry
 11:00 UTC  ChatGPT   reads the brief, writes response.json.authored[], DONE
            Phase B   INGEST: validate -> promote -> quarantine failures
                      cover media for the new packages (entity + self-fill)
@@ -191,7 +191,8 @@ its reasons and does not ship; the rest of the slate is unaffected. Slugs
 are path-sanitised before they become filenames.
 
 The one rule the takeover inherits and does not relax: **the slate is
-2 + 2 + 2**. The brief asks for the mix, and the ingest warns loudly if what
+whatever `config/channel_registry.json` currently says**. The brief
+asks for that mix, and the ingest warns loudly if what
 comes back is six of one format — the exact regression of 2026-07-30.
 
 ### Does it survive with nothing on the Claude side running?
