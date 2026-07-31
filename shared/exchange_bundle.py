@@ -207,6 +207,23 @@ def build_bundle(date: str, packages: list[dict],
                     "beat structure, and wording is yours to improve freely "
                     "within them. If you keep more than half a slate, say "
                     "why in each `editor_note`."),
+                "levity": (
+                    "LAND A JOKE when the subject allows one. The doctrine "
+                    "has said 'dry wit' for months and this channel has "
+                    "never once made anyone laugh, because an adjective is "
+                    "not an instruction. Concretely: ONE dry aside per "
+                    "script, placed after the fact it reacts to, never in "
+                    "the first two seconds. The shapes that work — state "
+                    "the absurd fact flat then react in 3-6 words ('Top "
+                    "speed: twelve.'); name the one mundane detail amid "
+                    "chaos ('still holding the salad'); understate the "
+                    "disaster ('This did not go well for the bees'). NEVER "
+                    "puns, setup-punchline, exclamation marks, 'wait for "
+                    "it', or telling the viewer it was funny. And NEVER on "
+                    "a script involving death, injury, crime victims, war "
+                    "or illness — those stay completely straight. If "
+                    "nothing genuinely occurs to you, ship it straight; a "
+                    "forced joke is worse than none. See shared/levity.py."),
                 "house_voice": (
                     "A deadpan, slightly incredulous friend telling you the "
                     "most ridiculous thing they read today. Dry wit, real "

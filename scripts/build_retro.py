@@ -276,6 +276,42 @@ def channel_report(name: str, path: str, today: str) -> dict:
     }
 
 
+def levity_coverage() -> dict:
+    """Are the videos actually funny anywhere?
+
+    Tracked because "dry wit" sat in the doctrine for months while the
+    channel made nobody laugh, and nothing anywhere would have shown that.
+    A number in the brief is harder to ignore than an adjective in a doc."""
+    try:
+        from shared import levity
+    except Exception as exc:                         # noqa: BLE001
+        return {"error": str(exc)[:80]}
+    import glob as _glob
+    eligible = landed = straight = 0
+    for f in sorted(_glob.glob(str(ROOT / "state" / "trending_packages"
+                                   / "2026*" / "*.json")))[-60:]:
+        pkg = _load(f, {})
+        if not isinstance(pkg, dict):
+            continue
+        text = pkg.get("script") or pkg.get("text") or ""
+        if len(str(text).split()) < 40:
+            continue
+        if not levity.allowed(pkg)[0]:
+            straight += 1
+            continue
+        eligible += 1
+        landed += bool(levity.has_levity(text)["has_levity"])
+    return {
+        "eligible_scripts": eligible,
+        "with_levity": landed,
+        "pct": round(100.0 * landed / eligible, 1) if eligible else None,
+        "kept_straight_by_the_gate": straight,
+        "note": ("Detects the SHAPE of an aside, not whether it is funny. "
+                 "A low number is a real finding; a high one is not proof "
+                 "the channel is entertaining."),
+    }
+
+
 def pipeline_health(today: str) -> dict:
     """Did the machine work, separately from whether the videos landed?"""
     out: dict = {}
@@ -473,6 +509,7 @@ def build(date: str) -> dict:
             "outcome ONLY when `what_you_owe_today.must_do` is 0."),
         "channels": channels,
         "pipeline_health": pipeline_health(date),
+        "levity": levity_coverage(),
         "repo": repo_state(),
         "your_job": "retro/README.md",
     }
