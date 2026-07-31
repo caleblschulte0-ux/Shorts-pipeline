@@ -130,6 +130,7 @@ jobs:
           python scripts/test_hook_opening.py
           python scripts/test_director_findings.py
           python scripts/test_verdict_authority.py
+          python scripts/test_treatment_aware.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 

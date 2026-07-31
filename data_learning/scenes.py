@@ -257,12 +257,22 @@ def _grade(im):
     return Image.fromarray(a.astype(np.uint8), "RGB")
 
 
-# THE APPEAL FLOOR. The dullness gate scores a frame on colourfulness, edge
-# density and contrast (scripts/interest_judge._appeal) and rejects anything
-# under 0.55. Measured across the scene library, only work_scene cleared it: the
-# dim, low-saturation rooms these scenes are designed with — a slumped figure in
-# a darkening room reads as tedium, which is the POINT — land at 0.29-0.51 and
-# every film that used a character scene for personality got flagged dull.
+# THE APPEAL FLOOR — a legibility floor, NOT a dullness gate.
+#
+# Measured across the scene library with interest_judge._appeal (colourfulness +
+# edge density + contrast), only work_scene cleared 0.55; the dim, low-saturation
+# rooms these scenes are designed with land at 0.29-0.51.
+#
+# That number was originally read as proof the dullness gate rejects character
+# scenes for not photographing well, and reported as a contradiction with the
+# taste judge, which demands them. It is not: `no_dull_beats.dull_beats` never
+# applies the appeal floor to a DESIGNED beat — it flags one only when the
+# picture is genuinely static, and then asks for it to be animated rather than
+# replaced (scripts/test_treatment_aware.py locks that in).
+#
+# The lift below is still worth doing for the reason it can be defended on: a
+# frame at 0.29 is objectively hard to look at, and dim scenes drag mean_appeal
+# and the dead-time analysis down. It buys watchability, not a passing grade.
 #
 # A scene may be dim by design. It may not be objectively unwatchable. This is
 # the colourist's pass: measure the finished frame and, only when it falls under
