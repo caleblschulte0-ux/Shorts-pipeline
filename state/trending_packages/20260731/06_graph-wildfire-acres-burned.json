@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "06_graph-wildfire-acres-burned",
+  "title": "US Wildfire Acres Burned By Year",
+  "y_label": "Acres burned (millions)",
+  "duration": 13,
+  "source": "Source: National Interagency Fire Center (NIFC) annual wildland fire statistics, 2020-2025",
+  "hashtags": [
+    "wildfire",
+    "wildfires",
+    "climate",
+    "disaster",
+    "nifc",
+    "forestfire",
+    "drought",
+    "weather",
+    "environment",
+    "naturaldisaster",
+    "usa",
+    "wildfireseason",
+    "fyp",
+    "shorts",
+    "trending"
+  ],
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {"name": "US wildfires", "color": "#ff6b35", "values": [10.12, 7.1, 7.6, 2.69, 8.92, 5.13]}
+  ],
+  "music_vibe": "dark"
+}
