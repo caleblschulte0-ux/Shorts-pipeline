@@ -57,8 +57,13 @@ def good_image(sha=SHA_A, **kw):
     return img
 
 
-def good_drive(file_id="1AbCdEf", **kw):
+def good_drive(file_id="1AbCdEf", *, request_id="r1", date=DATE, fmt="png",
+               **kw):
+    """A COMPLETE Drive record. Every field here is compared against the
+    checkpoint, so a helper that quietly omitted one would hide the very
+    checks these tests exist to prove."""
     d = {"file_id": file_id, "folder_id": "1FolderX",
+         "filename": mc.deterministic_filename(date, request_id, fmt),
          "download_url": f"https://drive.google.com/uc?export=download&id={file_id}",
          "sharing": "anyone_with_link"}
     d.update(kw)
@@ -298,11 +303,28 @@ class TestCheckpoints(_TempBundles):
 
     def test_thin_records_are_refused(self):
         cases = {
-            "no drive.file_id": dict(drive={"sharing": "anyone_with_link"}),
-            "image.sha256 missing or not 64 hex": dict(
-                image=good_image(sha="nope")),
+            "no drive.file_id": dict(
+                drive={"sharing": "anyone_with_link", "folder_id": "1F",
+                       "filename": mc.deterministic_filename(DATE, "r1")}),
+            "no drive.folder_id": dict(
+                drive={"sharing": "anyone_with_link", "file_id": "1A",
+                       "filename": mc.deterministic_filename(DATE, "r1")}),
+            "not 64 hex": dict(image=good_image(sha="nope")),
             "image.bytes missing or zero": dict(image=good_image(bytes=0)),
             "image.width missing or zero": dict(image=good_image(width=0)),
+            # sharing and filename are new agreement fields — a checkpoint
+            # that omits either is a claim we cannot act on.
+            "not 'anyone_with_link'": dict(
+                drive=good_drive(sharing="private")),
+            "no drive.filename": dict(drive=good_drive(filename="")),
+            "not the deterministic": dict(
+                drive=good_drive(filename="whatever.png")),
+            "drive.filename names request": dict(
+                drive=good_drive(
+                    filename=mc.deterministic_filename(DATE, "SOMEONE-ELSE"))),
+            "drive.filename is dated": dict(
+                drive=good_drive(
+                    filename=mc.deterministic_filename("20260101", "r1"))),
         }
         for expect, kw in cases.items():
             problems = mc.checkpoint_problems(self._cp(**kw), date=DATE,
@@ -525,8 +547,8 @@ class TestResponseValidation(_TempBundles):
 
     def _checkpoint(self, **kw):
         base = dict(date=DATE, request_id=self.rid, bundle_id=self.bid,
-                    prompt=self.req["prompt_verbatim"], drive=good_drive(),
-                    image=good_image())
+                    prompt=self.req["prompt_verbatim"],
+                    drive=good_drive(request_id=self.rid), image=good_image())
         base.update(kw)
         cp = mc.build_checkpoint(**base)
         mc.write_checkpoint(DATE, cp)
@@ -534,7 +556,7 @@ class TestResponseValidation(_TempBundles):
 
     def _entry(self, **kw):
         e = {"request_id": self.rid, "status": "fulfilled",
-             "drive": good_drive(), "image": good_image()}
+             "drive": good_drive(request_id=self.rid), "image": good_image()}
         e.update(kw)
         return e
 
@@ -551,14 +573,14 @@ class TestResponseValidation(_TempBundles):
     def test_hash_disagreeing_with_the_checkpoint_is_refused(self):
         self._checkpoint()
         out = self._validate({"media": [self._entry(image=good_image(SHA_B))]})
-        self.assertTrue(any("hash disagrees" in p
+        self.assertTrue(any("image.sha256 disagrees" in p
                             for p in out["rejected"][0]["problems"]))
 
     def test_byte_count_disagreeing_is_refused(self):
         self._checkpoint()
         out = self._validate(
             {"media": [self._entry(image=good_image(bytes=99))]})
-        self.assertTrue(any("byte count disagrees" in p
+        self.assertTrue(any("image.bytes disagrees" in p
                             for p in out["rejected"][0]["problems"]))
 
     def test_fabricated_hash_is_refused(self):
@@ -611,33 +633,36 @@ class TestResponseValidation(_TempBundles):
         self.assertTrue(any("prompt changed" in p
                             for p in out["rejected"][0]["problems"]))
 
-    def test_one_drive_file_cannot_answer_two_different_asks(self):
-        r2 = self.bundle["requests"][1]
-        for req, sha in ((self.req, SHA_A), (r2, SHA_B)):
-            mc.write_checkpoint(DATE, mc.build_checkpoint(
-                date=DATE, request_id=req["request_id"], bundle_id=self.bid,
-                prompt=req["prompt_verbatim"], drive=good_drive("SAME"),
-                image=good_image(sha)))
-        out = self._validate({"media": [
-            self._entry(image=good_image(SHA_A), drive=good_drive("SAME")),
-            {"request_id": r2["request_id"], "status": "fulfilled",
-             "drive": good_drive("SAME"), "image": good_image(SHA_B)}]})
-        self.assertTrue(any("already used by request" in p
-                            for r in out["rejected"] for p in r["problems"]),
-                        out["rejected"])
+    def test_one_drive_file_under_two_requests_refuses_BOTH(self):
+        """Even when the bytes are IDENTICAL and both pointers agree with
+        their own checkpoints perfectly.
 
-    def test_the_same_file_for_an_identical_result_is_allowed(self):
+        Matching hashes are not a licence to share a file: two requests are
+        two different lines of script, and one image answering both is a shot
+        doing double duty — which is how a slate ends up visually repeating.
+        Both sides go, because nothing here can say which request legitimately
+        owns the file, and guessing is the same coin flip `plan_recovery`
+        refuses on duplicate filenames."""
         r2 = self.bundle["requests"][1]
+        rid2 = r2["request_id"]
         for req in (self.req, r2):
+            rid = req["request_id"]
             mc.write_checkpoint(DATE, mc.build_checkpoint(
-                date=DATE, request_id=req["request_id"], bundle_id=self.bid,
-                prompt=req["prompt_verbatim"], drive=good_drive("SAME"),
+                date=DATE, request_id=rid, bundle_id=self.bid,
+                prompt=req["prompt_verbatim"],
+                drive=good_drive("SAME", request_id=rid),
                 image=good_image(SHA_A)))
         out = self._validate({"media": [
-            self._entry(drive=good_drive("SAME")),
-            {"request_id": r2["request_id"], "status": "fulfilled",
-             "drive": good_drive("SAME"), "image": good_image(SHA_A)}]})
-        self.assertEqual(out["rejected"], [])
+            self._entry(drive=good_drive("SAME", request_id=self.rid)),
+            {"request_id": rid2, "status": "fulfilled",
+             "drive": good_drive("SAME", request_id=rid2),
+             "image": good_image(SHA_A)}]})
+        self.assertEqual(out["ok"], [], "a shared file survived validation")
+        self.assertEqual({r["request_id"] for r in out["rejected"]},
+                         {self.rid, rid2})
+        for r in out["rejected"]:
+            self.assertTrue(any("claimed by TWO requests" in p
+                                for p in r["problems"]), r)
 
     def test_missing_checkpoint_warns_by_default_and_fails_when_required(self):
         soft = self._validate({"media": [self._entry()]})
@@ -664,15 +689,15 @@ class TestResponseValidation(_TempBundles):
         mc.write_checkpoint(DATE, mc.build_checkpoint(
             date=DATE, request_id=rid, bundle_id=self.bid,
             request_kind="authored_shot", package_id="kangaroo-court",
-            shot_index=1, prompt="anything", drive=good_drive(),
-            image=good_image()))
+            shot_index=1, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
         out = self._validate({"authored": [{
             "slug": "kangaroo-court",
             "shots": [{"phrase": "a"},
-                      {"phrase": "b", "media": {"request_id": rid,
-                                                "status": "fulfilled",
-                                                "drive": good_drive(),
-                                                "image": good_image()}}]}]})
+                      {"phrase": "b", "media": {
+                          "request_id": rid, "status": "fulfilled",
+                          "drive": good_drive(request_id=rid),
+                          "image": good_image()}}]}]})
         self.assertEqual(out["rejected"], [])
         self.assertEqual(out["ok"], [rid])
 
@@ -681,12 +706,12 @@ class TestResponseValidation(_TempBundles):
         mc.write_checkpoint(DATE, mc.build_checkpoint(
             date=DATE, request_id=rid, bundle_id=self.bid,
             request_kind="authored_shot", package_id="A DIFFERENT PACKAGE",
-            shot_index=1, prompt="anything", drive=good_drive(),
-            image=good_image()))
+            shot_index=1, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
         out = self._validate({"authored": [{
             "slug": "kangaroo-court",
             "shots": [{}, {"media": {"status": "fulfilled",
-                                     "drive": good_drive(),
+                                     "drive": good_drive(request_id=rid),
                                      "image": good_image()}}]}]})
         self.assertTrue(any("wrong" in p or "belongs to package" in p
                             for p in out["rejected"][0]["problems"]),
@@ -697,12 +722,12 @@ class TestResponseValidation(_TempBundles):
         mc.write_checkpoint(DATE, mc.build_checkpoint(
             date=DATE, request_id=rid, bundle_id=self.bid,
             request_kind="authored_shot", package_id="kangaroo-court",
-            shot_index=4, prompt="anything", drive=good_drive(),
-            image=good_image()))
+            shot_index=4, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
         out = self._validate({"authored": [{
             "slug": "kangaroo-court",
             "shots": [{}, {"media": {"status": "fulfilled",
-                                     "drive": good_drive(),
+                                     "drive": good_drive(request_id=rid),
                                      "image": good_image()}}]}]})
         self.assertTrue(any("shot 4" in p
                             for p in out["rejected"][0]["problems"]),
@@ -713,15 +738,95 @@ class TestResponseValidation(_TempBundles):
         mc.write_checkpoint(DATE, mc.build_checkpoint(
             date=DATE, request_id=rid, bundle_id=self.bid,
             request_kind="bundle_request", package_id="kangaroo-court",
-            shot_index=0, prompt="anything", drive=good_drive(),
-            image=good_image()))
+            shot_index=0, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
         out = self._validate({"authored": [{
             "slug": "kangaroo-court",
             "shots": [{"media": {"status": "fulfilled",
-                                 "drive": good_drive(),
+                                 "drive": good_drive(request_id=rid),
                                  "image": good_image()}}]}]})
         self.assertTrue(any("request_kind" in p
                             for p in out["rejected"][0]["problems"]))
+
+    # -- correction 4: agreement is field by field, not just the hash -----
+    def test_every_agreement_field_is_compared(self):
+        """Hash and byte count only say the CONTENT matches. An image can
+        verify byte-for-byte and still be under a name nobody can recover, in
+        the wrong folder, or private — so every field is checked, and this
+        test walks all of them so none can be quietly dropped later."""
+        cases = {
+            ("drive", "file_id"): "SOMETHING-ELSE",
+            ("drive", "folder_id"): "1WrongFolder",
+            ("image", "sha256"): SHA_B,
+            ("image", "bytes"): 999,
+            ("image", "format"): "webp",
+            ("image", "width"): 640,
+            ("image", "height"): 480,
+        }
+        for (section, field), wrong in cases.items():
+            self._checkpoint()
+            entry = self._entry()
+            entry[section] = dict(entry[section])
+            entry[section][field] = wrong
+            out = self._validate({"media": [entry]})
+            self.assertTrue(out["rejected"], (section, field))
+            self.assertTrue(
+                any(f"{section}.{field} disagrees" in p or
+                    f"{section}.{field}" in p
+                    for p in out["rejected"][0]["problems"]),
+                (section, field, out["rejected"][0]["problems"]))
+
+    def test_a_field_present_on_the_checkpoint_but_missing_here_is_refused(self):
+        for section, field in (("drive", "folder_id"), ("drive", "filename"),
+                               ("image", "width"), ("image", "format")):
+            self._checkpoint()
+            entry = self._entry()
+            entry[section] = {k: v for k, v in entry[section].items()
+                              if k != field}
+            out = self._validate({"media": [entry]})
+            self.assertTrue(out["rejected"], (section, field))
+
+    def test_the_deterministic_filename_is_compared(self):
+        self._checkpoint()
+        out = self._validate({"media": [self._entry(
+            drive=good_drive(request_id="a-different-request"))]})
+        self.assertTrue(any("drive.filename" in p
+                            for p in out["rejected"][0]["problems"]),
+                        out["rejected"])
+
+    def test_a_private_drive_file_is_refused_even_when_it_matches(self):
+        """Drive serves an HTML permission page instead of bytes for anything
+        not link-visible. 'I uploaded it' and 'you can fetch it' are separate
+        claims and only one of them puts a picture in the video."""
+        self._checkpoint(drive=good_drive(request_id=self.rid,
+                                          sharing="private"))
+        out = self._validate({"media": [self._entry(
+            drive=good_drive(request_id=self.rid, sharing="private"))]})
+        self.assertTrue(any("anyone_with_link" in p
+                            for p in out["rejected"][0]["problems"]),
+                        out["rejected"])
+
+    def test_sharing_disagreement_is_refused(self):
+        self._checkpoint()
+        out = self._validate({"media": [self._entry(
+            drive=good_drive(request_id=self.rid, sharing="private"))]})
+        self.assertTrue(any("sharing disagrees" in p
+                            for p in out["rejected"][0]["problems"]),
+                        out["rejected"])
+
+    def test_legacy_public_true_still_reads_as_link_visible(self):
+        """Older pointers said `public: true` rather than naming a state.
+        That is the same assertion and must keep working."""
+        self.assertEqual(mc.sharing_of({"public": True}), mc.PUBLIC_SHARING)
+        self.assertEqual(mc.sharing_of({"public": False}), "private")
+        self.assertEqual(mc.sharing_of({}), "unknown")
+        self.assertEqual(mc.sharing_of(None), "unknown")
+        drive = good_drive(request_id=self.rid)
+        drive.pop("sharing")
+        drive["public"] = True
+        self._checkpoint(drive=dict(drive))
+        out = self._validate({"media": [self._entry(drive=dict(drive))]})
+        self.assertEqual(out["rejected"], [])
 
     def test_garbage_response_never_raises(self):
         for junk in (None, [], "x", {}, {"media": "not a list"},

@@ -35,6 +35,85 @@ from shared.fsutil import atomic_write_json        # noqa: E402
 
 MEDIA_CACHE = ROOT / "cache" / "exchange"
 
+# --------------------------------------------------------------------------
+# The backstop window
+# --------------------------------------------------------------------------
+# GitHub crons are UTC. The ChatGPT finalizer is a LOCAL-time task at 7:00 AM
+# America/Chicago, which is 12:00 UTC in summer (CDT) and 13:00 UTC in winter
+# (CST) — it moves an hour twice a year and a fixed UTC cron does not.
+#
+# The old backstop sat at 12:45 UTC. In summer that is 7:45 Central, 45 minutes
+# into the finalizer's run; in WINTER it is 6:45 Central, FIFTEEN MINUTES
+# BEFORE THE FINALIZER EVEN STARTS. For half the year the backstop would have
+# rendered an unfinished day — no punch-up, no authored packages, whatever
+# media happened to have landed — and every workflow would have been green.
+#
+# Fixed by not trusting UTC at all: the workflow fires BOTH candidate hours and
+# this gate decides in America/Chicago local time, which is correct in both
+# halves of the year by construction. The backstop may only start once the
+# finalizer has had its full window.
+FINALIZER_HOUR_CENTRAL = 7
+FINALIZER_WINDOW_MINUTES = 90        # 07:00 -> 08:30 Central, both seasons
+# If response.json was written this recently and DONE has not landed yet, the
+# finalizer is mid-commit (it commits the response, reads it back, THEN commits
+# DONE). Starting on top of that reads a half-finished day.
+FINALIZER_ACTIVE_MINUTES = 20
+CENTRAL_TZ = "America/Chicago"
+
+
+def backstop_status(date: str, now_utc=None) -> dict:
+    """May a backstop run right now? Decided in Central time, never in UTC.
+
+    Returns {ready, reason, local, earliest_local}. Fails OPEN on a broken
+    clock or a missing tzdata: a backstop that never runs is how a no-show day
+    ships nothing at all, which is the outcome the backstop exists to prevent.
+    """
+    from datetime import datetime, time, timedelta, timezone
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(CENTRAL_TZ)
+    except Exception as exc:                             # noqa: BLE001
+        return {"ready": True, "local": "?", "earliest_local": "?",
+                "reason": f"no tzdata ({exc}) — proceeding rather than "
+                          f"skipping the day"}
+
+    now = now_utc or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    local = now.astimezone(tz)
+    start = datetime.combine(local.date(),
+                             time(FINALIZER_HOUR_CENTRAL, 0), tzinfo=tz)
+    earliest = start + timedelta(minutes=FINALIZER_WINDOW_MINUTES)
+    out = {"local": local.strftime("%Y-%m-%d %H:%M %Z"),
+           "earliest_local": earliest.strftime("%H:%M %Z")}
+
+    if local < earliest:
+        out.update(ready=False, reason=(
+            f"it is {out['local']} — the 07:00 Central finalizer has not had "
+            f"its {FINALIZER_WINDOW_MINUTES}-minute window yet (earliest "
+            f"{out['earliest_local']}). Rendering now would ship an "
+            f"unfinished day."))
+        return out
+
+    d = xb.bundle_dir(date)
+    resp, done = d / "response.json", d / "DONE"
+    if resp.exists() and not done.exists():
+        try:
+            age = (now - datetime.fromtimestamp(resp.stat().st_mtime,
+                                                tz=timezone.utc))
+            if age < timedelta(minutes=FINALIZER_ACTIVE_MINUTES):
+                out.update(ready=False, reason=(
+                    f"response.json landed {int(age.total_seconds() / 60)} "
+                    f"min ago and DONE has not — the finalizer is mid-commit. "
+                    f"Deferring rather than reading a half-written day."))
+                return out
+        except Exception:                                # noqa: BLE001
+            pass
+
+    out.update(ready=True, reason=f"{out['local']} — the finalizer's window "
+                                  f"closed at {out['earliest_local']}")
+    return out
+
 
 def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
     """Resolve one request's media to a verified local file.
@@ -276,13 +355,21 @@ def main() -> int:
                     help="skip promoting ChatGPT-authored packages")
     ap.add_argument("--no-punchup", action="store_true")
     ap.add_argument("--require-checkpoints", action="store_true",
-                    help="refuse any media pointer with no media-progress "
-                         "checkpoint behind it (default: warn and fall back "
-                         "to byte verification)")
+                    help="force checkpoint enforcement even on a no-DONE "
+                         "emergency backstop run")
+    ap.add_argument("--backstop", action="store_true",
+                    help="scheduled backstop: no-op unless the 07:00 Central "
+                         "finalizer has had its full window")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
-    require_cp = (args.require_checkpoints
-                  or os.environ.get("EXCHANGE_REQUIRE_CHECKPOINTS") == "1")
+
+    if args.backstop:
+        st = backstop_status(args.date)
+        print(f"[phase-b] backstop check: {st['reason']}")
+        if not st["ready"]:
+            print("[phase-b] backstop deferring — the DONE push will fire "
+                  "this run properly, or the next backstop hour will.")
+            return 0
 
     bundle = xb.read_bundle(args.date)
     if not bundle:
@@ -322,6 +409,27 @@ def main() -> int:
     done = xb.is_done(args.date)
     print(f"[phase-b] {args.date}: DONE marker "
           f"{'present' if done else 'ABSENT (proceeding — Policy A)'}")
+
+    # CHECKPOINTS ARE MANDATORY ONCE DONE SAYS THE WORKERS FINISHED.
+    #
+    # DONE is ChatGPT's assertion that both workers ran to completion. If they
+    # did, every image it points at has a checkpoint — writing one is the media
+    # worker's whole job. A pointer with no checkpoint on a DONE run therefore
+    # is not "a worker that skipped a step", it is an image nobody recorded
+    # verifying, and accepting it with a warning is exactly the shape of
+    # failure this contract was built to end: green everywhere, unverified
+    # media on screen.
+    #
+    # The exception is the no-DONE emergency backstop. On that path ChatGPT
+    # never finished — often never started — so there are no checkpoints to
+    # require, and demanding them would turn "ChatGPT was late" into "the
+    # channel posts nothing". Policy A still holds where it was meant to.
+    require_cp = (done or args.require_checkpoints
+                  or os.environ.get("EXCHANGE_REQUIRE_CHECKPOINTS") == "1")
+    print(f"[phase-b] checkpoints are "
+          f"{'REQUIRED' if require_cp else 'advisory'} on this run "
+          f"({'DONE present' if done else 'no-DONE emergency backstop'})")
+
     if args.require_done and not done:
         print("[phase-b] --require-done set and no marker — deferring")
         return 2

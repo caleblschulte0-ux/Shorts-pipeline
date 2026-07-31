@@ -80,6 +80,21 @@ DEFAULT_LEASE_SECONDS = 900
 REQUEST_KINDS = ("bundle_request", "authored_shot")
 STATUSES = ("in_progress", "verified", "failed", "skipped")
 SHARING_STATES = ("anyone_with_link", "domain", "private", "unknown")
+#: The only sharing state we can actually consume. Drive serves an HTML
+#: permission page instead of bytes for anything else, so "we uploaded it" and
+#: "you can fetch it" are different claims and only this one covers both.
+PUBLIC_SHARING = "anyone_with_link"
+
+#: Every field a response pointer and its checkpoint must agree on, exactly.
+#: Hash + bytes alone is not enough: an image that verifies byte-for-byte can
+#: still be sitting in the wrong folder, under the wrong name (so nobody can
+#: recover it), or private (so nobody can fetch it). Agreement on the bytes is
+#: agreement about content; these are agreement about the ASSET.
+AGREEMENT_FIELDS = (
+    ("drive", "filename"), ("drive", "file_id"), ("drive", "folder_id"),
+    ("image", "sha256"), ("image", "bytes"), ("image", "format"),
+    ("image", "width"), ("image", "height"),
+)
 
 #: Extensions we will accept as a generated asset. `jpeg` normalizes to `jpg`
 #: so one image cannot occupy two filenames.
@@ -219,6 +234,20 @@ def parse_filename(name) -> dict | None:
             "ext": m.group("ext").lower()}
 
 
+def sharing_of(drive) -> str:
+    """Normalized sharing state, tolerating the older `public: true` shape."""
+    if not isinstance(drive, dict):
+        return "unknown"
+    state = str(drive.get("sharing") or "").strip().lower()
+    if state in SHARING_STATES:
+        return state
+    if drive.get("public") is True:
+        return PUBLIC_SHARING
+    if drive.get("public") is False:
+        return "private"
+    return "unknown"
+
+
 def prompt_sha256(prompt) -> str:
     """Hash of the exact prompt text. A changed prompt means a stale image —
     this is what stops yesterday's picture riding a re-worded line."""
@@ -280,7 +309,11 @@ def build_checkpoint(*, date, request_id, bundle_id, request_kind="bundle_reques
     fmt = normalize_ext((image or {}).get("format") if image else "png")
     drive = dict(drive or {})
     drive.setdefault("filename", deterministic_filename(date, rid, fmt))
-    drive.setdefault("sharing", "unknown")
+    # Normalized, never defaulted to a guess: an unrecorded sharing state
+    # stays "unknown" and fails validation, because assuming a file is
+    # link-visible is how an HTML permission page ends up being treated as an
+    # image. `public: true` is the older way of saying the same thing.
+    drive["sharing"] = sharing_of(drive)
     cp = {
         "schema": SCHEMA,
         "schema_version": SCHEMA_VERSION,
@@ -386,29 +419,59 @@ def checkpoint_problems(cp, *, date, bundle_id=None, request_id=None,
         problems.append(f"unknown request_kind {cp.get('request_kind')!r}")
 
     if require_verified:
+        # A checkpoint asserts "these bytes exist, at this address, and I can
+        # fetch them". All three parts get checked: the hash covers the bytes,
+        # the folder/filename cover recoverability, and the sharing state
+        # covers whether anyone downstream can actually read it. A verified
+        # checkpoint missing any of them is a claim we cannot act on.
         if cp.get("status") != "verified":
             problems.append(f"status is {cp.get('status')!r}, not 'verified'")
         drive, image = cp.get("drive") or {}, cp.get("image") or {}
         if not str(drive.get("file_id") or "").strip():
             problems.append("no drive.file_id")
-        if not str(drive.get("filename") or "").strip():
-            problems.append("no drive.filename")
-        sha = str(image.get("sha256") or "").lower()
-        if not _HEX64.match(sha):
-            problems.append("image.sha256 missing or not 64 hex")
-        try:
-            if int(image.get("bytes") or 0) <= 0:
-                problems.append("image.bytes missing or zero")
-        except Exception:                                # noqa: BLE001
-            problems.append("image.bytes is not a number")
-        if not image.get("format"):
-            problems.append("image.format missing")
-        for dim in ("width", "height"):
-            try:
-                if int(image.get(dim) or 0) <= 0:
-                    problems.append(f"image.{dim} missing or zero")
-            except Exception:                            # noqa: BLE001
-                problems.append(f"image.{dim} is not a number")
+        if not str(drive.get("folder_id") or "").strip():
+            problems.append("no drive.folder_id — without it a lost "
+                            "checkpoint cannot be recovered by listing")
+        share = sharing_of(drive)
+        if share != PUBLIC_SHARING:
+            problems.append(
+                f"drive sharing is {share!r}, not {PUBLIC_SHARING!r} — Drive "
+                f"serves an HTML permission page instead of bytes for "
+                f"anything else, so this asset is not actually fetchable")
+        problems += _filename_problems(drive.get("filename"),
+                                       date=cp.get("date") or date,
+                                       request_id=cp.get("request_id"),
+                                       fmt=image.get("format"))
+        problems += _image_problems(image)
+    return problems
+
+
+def _filename_problems(name, *, date, request_id, fmt=None) -> list[str]:
+    """Is this the deterministic name, for THIS request, on THIS day?
+
+    Checked field by field rather than by string equality against one
+    candidate: the extension has to be allowed to follow the actual bytes
+    (a generator that returns webp instead of png is a format surprise, not
+    an identity mismatch), while the date and the request id are identity and
+    must be exact."""
+    if not str(name or "").strip():
+        return ["no drive.filename — the deterministic name is what makes an "
+                "orphaned upload recoverable"]
+    parsed = parse_filename(name)
+    if not parsed:
+        return [f"drive.filename {str(name)!r} is not the deterministic "
+                f"<date>__<safe_request_id>.<ext> shape"]
+    problems = []
+    if parsed["date"] != normalize_date(date):
+        problems.append(f"drive.filename is dated {parsed['date']}, "
+                        f"not {normalize_date(date)}")
+    want = safe_request_id(request_id)
+    if parsed["safe_request_id"] != want:
+        problems.append(f"drive.filename names request "
+                        f"{parsed['safe_request_id']!r}, not {want!r}")
+    if fmt and parsed["ext"] != normalize_ext(fmt):
+        problems.append(f"drive.filename ends .{parsed['ext']} but the image "
+                        f"is {normalize_ext(fmt)}")
     return problems
 
 
@@ -813,28 +876,38 @@ def media_entry_problems(entry, *, date, bundle_id=None, request_id=None,
                                      bundle_id=bundle_id, request_id=rid,
                                      prompt=prompt)]
 
-    cp_img = checkpoint.get("image") or {}
-    ent_img = entry.get("image") or {}
-    cp_sha = str(cp_img.get("sha256") or "").lower()
-    ent_sha = str(ent_img.get("sha256") or "").lower()
-    if cp_sha and ent_sha and cp_sha != ent_sha:
-        problems.append(f"hash disagrees with its checkpoint "
-                        f"({ent_sha[:12]}… vs {cp_sha[:12]}…) — the response "
-                        f"and the verified image are not the same file")
-    try:
-        cp_bytes, ent_bytes = int(cp_img.get("bytes") or 0), \
-            int(ent_img.get("bytes") or 0)
-        if cp_bytes and ent_bytes and cp_bytes != ent_bytes:
-            problems.append(f"byte count disagrees with its checkpoint "
-                            f"({ent_bytes:,} vs {cp_bytes:,})")
-    except Exception:                                    # noqa: BLE001
-        pass
+    # EXACT AGREEMENT, field by field. Hash and byte count alone say the
+    # CONTENT matches; they say nothing about whether the response points at
+    # the same asset the worker verified. An image can hash correctly and
+    # still be named something unrecoverable, live in the wrong folder, or be
+    # private — and "private" means Drive hands the renderer an HTML
+    # permission page. Any disagreement means the response and the checkpoint
+    # are describing two different things, and we do not get to pick.
+    problems += _filename_problems(drive.get("filename"), date=date,
+                                   request_id=rid,
+                                   fmt=(entry.get("image") or {}).get("format"))
+    for section, field in AGREEMENT_FIELDS:
+        want = (checkpoint.get(section) or {}).get(field)
+        got = (entry.get(section) or {}).get(field)
+        if want in (None, "") and got in (None, ""):
+            continue                    # already reported as a missing field
+        if got in (None, ""):
+            problems.append(f"{section}.{field} missing from the response "
+                            f"but recorded on the checkpoint")
+            continue
+        if str(want).strip().lower() != str(got).strip().lower():
+            problems.append(
+                f"{section}.{field} disagrees with its checkpoint "
+                f"({str(got)[:24]!r} vs {str(want)[:24]!r}) — the response "
+                f"and the verified asset are not the same file")
 
-    cp_fid = str((checkpoint.get("drive") or {}).get("file_id") or "")
-    ent_fid = str(drive.get("file_id") or "")
-    if cp_fid and ent_fid and cp_fid != ent_fid:
-        problems.append(f"drive.file_id disagrees with its checkpoint "
-                        f"({ent_fid[:12]}… vs {cp_fid[:12]}…)")
+    ent_share, cp_share = sharing_of(drive), sharing_of(checkpoint.get("drive"))
+    if ent_share != cp_share:
+        problems.append(f"drive sharing disagrees with its checkpoint "
+                        f"({ent_share!r} vs {cp_share!r})")
+    elif ent_share != PUBLIC_SHARING:
+        problems.append(f"drive sharing is {ent_share!r}, not "
+                        f"{PUBLIC_SHARING!r} — not fetchable")
 
     if checkpoint.get("request_kind") != expect_kind:
         problems.append(f"checkpoint request_kind "
@@ -884,8 +957,12 @@ def validate_response_media(response, bundle, *, date, bundle_id=None,
         bundle_id = bundle_identity(date)
 
     seen_rids: dict[str, str] = {}
-    file_ids: dict[str, tuple[str, str, str]] = {}
+    file_ids: dict[str, tuple[str, str]] = {}
     checked = 0
+
+    def _reject(rid, where, problems):
+        out["rejected"].append({"request_id": rid, "where": where,
+                                "problems": problems})
 
     def _record(rid, where, problems, entry):
         nonlocal checked
@@ -896,26 +973,35 @@ def validate_response_media(response, bundle, *, date, bundle_id=None,
             out["warnings"].append({"request_id": rid, "where": where,
                                     "problem": s})
         if hard:
-            out["rejected"].append({"request_id": rid, "where": where,
-                                    "problems": hard})
+            _reject(rid, where, hard)
             return
         out["ok"].append(rid)
-        # Cross-entry: a Drive file may legitimately back two requests only if
-        # the ask and the bytes are identical. Anything else is one image being
-        # passed off as two, which is how a slate ends up visually repeating.
+
+        # ONE DRIVE FILE, ONE REQUEST. Matching hashes are not a licence to
+        # share a file: two requests are two different lines of script, and an
+        # image that answers both is one shot doing double duty — which is how
+        # a slate ends up visually repeating itself. It is also how a mistake
+        # hides, because the second pointer looks perfectly verified.
+        #
+        # BOTH sides are rejected, not just the later one. We cannot tell
+        # which request legitimately owns the file, and guessing here is the
+        # same coin flip `plan_recovery` refuses to make on duplicate
+        # filenames. Both fall through to self-fill.
         fid = str((entry.get("drive") or {}).get("file_id") or "")
-        sha = str((entry.get("image") or {}).get("sha256") or "").lower()
-        if fid:
-            prev = file_ids.get(fid)
-            if prev and prev[0] != rid and prev[1] != sha:
-                out["rejected"].append({
-                    "request_id": rid, "where": where,
-                    "problems": [f"drive.file_id {fid[:12]}… is already used "
-                                 f"by request {prev[0]!r} with different bytes "
-                                 f"— one file cannot answer two different asks"]})
-                out["ok"].remove(rid)
-                return
-            file_ids.setdefault(fid, (rid, sha, where))
+        if not fid:
+            return
+        prev = file_ids.get(fid)
+        if prev and prev[0] != rid:
+            why = (f"drive.file_id {fid[:12]}… is claimed by TWO requests "
+                   f"({prev[0]!r} and {rid!r}) — one Drive file cannot answer "
+                   f"two different asks, and we cannot tell which one owns it")
+            _reject(rid, where, [why])
+            out["ok"].remove(rid)
+            if prev[0] in out["ok"]:
+                out["ok"].remove(prev[0])
+                _reject(prev[0], prev[1], [why])
+            return
+        file_ids.setdefault(fid, (rid, where))
 
     top = response.get("media") or response.get("results") or []
     if not isinstance(top, list):

@@ -103,21 +103,43 @@ agree exactly. `validate_response_media()` rejects:
   is attached to
 - a checkpoint from a different day or a different bundle identity
 - a prompt that changed since the image was made
-- a missing, short, or non-hex `image.sha256`; a hash or byte count that
-  disagrees with the checkpoint; a `drive.file_id` that disagrees
-- missing `width` / `height` / `format`
+- a missing, short, or non-hex `image.sha256`
+- **any disagreement with the checkpoint** across `drive.filename`,
+  `drive.file_id`, `drive.folder_id`, `image.sha256`, `image.bytes`,
+  `image.format`, `image.width`, `image.height`, and the sharing state — hash
+  and byte count alone say the *content* matches, and say nothing about
+  whether the pointer names the same asset the worker verified
+- a sharing state other than `anyone_with_link` on either side: Drive serves
+  an HTML permission page instead of bytes for anything else, so "uploaded"
+  and "fetchable" are separate claims
+- a `drive.filename` that is not the deterministic name, is dated wrong, or
+  names a different request
 - duplicate `request_id`s in one response
-- one Drive `file_id` answering two different requests with different bytes
+- **one Drive `file_id` under more than one `request_id` — both sides are
+  refused**, even when the hashes are identical. Two requests are two lines
+  of script; one image answering both is a shot doing double duty. Nothing
+  can say which request owns the file, and guessing is the same coin flip
+  `plan_recovery` refuses on duplicate filenames.
 - an authored shot's image attached to the wrong package or the wrong shot
 - an authored shot's image placed in the **top-level** `media` array (that
   array is keyed by bundle `request_id`, and there is no bundle request for a
   package ChatGPT invented)
 
-A **missing** checkpoint is a warning, not a rejection — the byte verification
-under it (SHA-256 + full decode + placeholder check) is independent and strong
-on its own, and hard-failing would mean a worker that skipped its checkpoints
-loses every image to stock self-fill. Pass `--require-checkpoints` (or
-`EXCHANGE_REQUIRE_CHECKPOINTS=1`) to make it strict.
+### Checkpoints are mandatory on any DONE-triggered run
+
+`DONE` is ChatGPT's assertion that both workers ran to completion. If they
+did, every image it points at has a checkpoint — writing one is the media
+worker's whole job. So on a DONE run **a pointer with no checkpoint is
+refused** and that shot self-fills from stock. Accepting it with a warning
+would be the exact failure this contract was built to end: green everywhere,
+unverified media on screen.
+
+The single exception is the **no-DONE emergency backstop**. On that path
+ChatGPT never finished — often never started — so there are no checkpoints to
+require, and demanding them would turn "ChatGPT was late" into "the channel
+posts nothing". Policy A still holds where it was meant to.
+`--require-checkpoints` / `EXCHANGE_REQUIRE_CHECKPOINTS=1` forces strictness
+on that path too.
 
 ## Mode `author` — ChatGPT takes over the writing
 
@@ -180,10 +202,11 @@ a **self-fill** pass: the funnel again with the gloves off (wider providers,
 lower floor, accept the weak-but-real candidates the judge rejected). Worst
 case a shot ships weaker than we wanted; we never ship nothing.
 
-The **backstop cron** (`exchange_phase_b.yml`, 12:45 UTC) exists for the same
-reason: if ChatGPT never writes DONE, the push trigger never fires, and without
-the backstop the day would never render at all. It no-ops when Phase B already
-ran for that date.
+The **backstop schedule** (`exchange_phase_b.yml`) exists for the same reason:
+if ChatGPT never writes DONE, the push trigger never fires, and without the
+backstop the day would never render at all. It no-ops when Phase B already ran
+for that date, and — see the DST note below — it runs at **08:30 Central in
+both seasons**, never on top of a live finalizer.
 
 **Pollinations is retired as the AI-image path.** Every AI-generated image
 comes from ChatGPT; the self-fill pass finds *real* media instead.
@@ -217,7 +240,8 @@ allowed — entity comparison runs against the other text's full word set.
 | `--no-self-fill` | off | Skip the gloves-off pass (leaves gaps unfilled). |
 | `--no-punchup` | off | Ignore script rewrites entirely. |
 | `--require-done` | off | Phase B defers instead of proceeding without ChatGPT. |
-| `--require-checkpoints` / `EXCHANGE_REQUIRE_CHECKPOINTS=1` | off | Refuse any media pointer with no `media-progress` checkpoint behind it. Default warns and falls back to byte verification. |
+| `--require-checkpoints` / `EXCHANGE_REQUIRE_CHECKPOINTS=1` | off | Force checkpoint enforcement on a **no-DONE** backstop run. A DONE-triggered run always requires them. |
+| `--backstop` | off | Scheduled runs only: no-op unless the 07:00 Central finalizer has had its full 90-minute window. |
 
 ## Wiring (LIVE as of 2026-07-30)
 
@@ -226,7 +250,7 @@ allowed — entity comparison runs against the other text's full word set.
 | **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `45 9 * * *` backstop, `push` on packages + dispatch |
 | **ChatGPT MEDIA** | its own **6:00 AM Central** task (11:00 UTC summer / 12:00 UTC winter), reading `exchange/bundles/<date>/bundle.json`. Writes checkpoints only. |
 | **ChatGPT FINALIZER** | its own **7:00 AM Central** task (12:00 UTC summer / 13:00 UTC winter). Writes `response.json`, then `DONE`. |
-| **Phase B** | `push` on `exchange/bundles/*/DONE` **and nothing else** + `45 12 * * *` backstop + dispatch |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` **and nothing else** + backstop candidates `30 13 * * *` / `30 14 * * *` (gated to 08:30 Central) + dispatch |
 | **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
 
 ### The trigger that had to MOVE — read before changing any of this
@@ -253,7 +277,7 @@ Shorts", so they now run roughly 1.5–2h later in the morning as well.
 | Claude Routine authors | ~09:19 (observed) |
 | Phase A (auto on auto-merge; 09:45 cron backstop) | ~09:20 |
 | ChatGPT task | **6:00 AM Central** = 11:00 UTC (CDT) / 12:00 UTC (CST) |
-| Phase B (auto on DONE; 12:45 UTC cron backstop) | ~11:20 |
+| Phase B (auto on DONE; backstop 08:30 CENTRAL, both seasons) | ~12:20 |
 | Render (~60-70 min) | ~11:25-12:35 |
 | **Uploads** | **8:00, 9:30, 11:00, 12:30, 2:00, 3:30 CENTRAL — fixed wall-clock, unaffected** |
 
@@ -266,13 +290,34 @@ authoring earlier means less overnight news has accumulated for the Routine's
 "happened today / just announced" rule.
 
 **The DST trap, and how it is handled.** These crons are UTC; ChatGPT Tasks
-are LOCAL time. The operator's task runs 6:00 AM Central, which is 11:00 UTC in
-summer (CDT) but 12:00 UTC in winter (CST) — it moves an hour twice a year and
-the crons do not. That is why Phase B's backstop sits at **12:45 UTC**: late
-enough to be after ChatGPT in BOTH halves of the year. A backstop earlier than
-ChatGPT would render pre-ChatGPT media every day for half the year, silently,
-with every workflow green. If the operator ever moves the ChatGPT task, the
-Phase B backstop must move with it — later, never earlier.
+are LOCAL time. The **finalizer** runs 7:00 AM Central, which is 12:00 UTC in
+summer (CDT) and 13:00 UTC in winter (CST) — it moves an hour twice a year and
+a fixed UTC cron does not.
+
+A single UTC cron cannot solve this and the first attempt proved it. The
+backstop sat at **12:45 UTC**, which is 7:45 Central in summer — 45 minutes
+*into* the finalizer's run — and **6:45 Central in winter, fifteen minutes
+before the finalizer even starts**. For half the year it would have rendered a
+day with no punch-up and no authored packages, silently, with every workflow
+green.
+
+The fix is to stop trusting UTC. Two candidate crons fire (`30 13` and
+`30 14` UTC) and `--backstop` decides in **America/Chicago** which one is
+real:
+
+| | 13:30 UTC | 14:30 UTC |
+|---|---|---|
+| summer (CDT) | 8:30 Central — **runs** | 9:30 Central — no-ops (already applied) |
+| winter (CST) | 7:30 Central — too early, no-ops | 8:30 Central — **runs** |
+
+So the backstop always lands 90 minutes after the finalizer *starts*, in both
+halves of the year. It also defers if `response.json` landed in the last 20
+minutes without a `DONE` — that is a finalizer mid-commit, and reading it then
+gets a half-written day.
+
+If the operator ever moves the ChatGPT finalizer, move
+`FINALIZER_HOUR_CENTRAL` in `scripts/exchange_phase_b.py`; the crons are only
+the two candidate wake-ups. `tests/test_split_worker.py` asserts both seasons.
 
 ### Post-mortem 2026-07-30 — the first live day, and why it silently did nothing
 

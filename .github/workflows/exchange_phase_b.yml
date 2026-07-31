@@ -36,7 +36,7 @@ on:
         type: boolean
         default: false
       require_checkpoints:
-        description: 'Refuse media pointers with no media-progress checkpoint'
+        description: 'Force checkpoint enforcement even without DONE (a DONE run always requires them)'
         required: false
         type: boolean
         default: false
@@ -47,21 +47,28 @@ on:
   # BACKSTOP: if ChatGPT never writes DONE, the push trigger never fires and
   # the day would never render at all.
   #
-  # 12:45 UTC is chosen to be SAFE IN BOTH DST HALVES. The operator's ChatGPT
-  # task runs 6:00 AM Central, and ChatGPT Tasks are LOCAL time while these
-  # crons are UTC — so ChatGPT fires 11:00 UTC in summer (CDT) and 12:00 UTC
-  # in winter (CST). A backstop before that would render pre-ChatGPT media
-  # every day for half the year, silently, with everything green. 12:45 gives
-  # ChatGPT 105 min of room in summer and 45 min in winter.
+  # THESE HOURS ARE BOTH CANDIDATES, NOT TWO RUNS. GitHub crons are UTC; the
+  # ChatGPT FINALIZER is a LOCAL-time task at 7:00 AM America/Chicago, so it
+  # fires 12:00 UTC in summer (CDT) and 13:00 UTC in winter (CST) — it moves an
+  # hour twice a year and a fixed UTC cron does not.
   #
-  # Normal path is unaffected: Phase B fires on the DONE push the moment
-  # ChatGPT finishes (~11:20 summer), render 11:25-12:35, first publish slot
-  # 13:00 UTC / 08:00 Central — comfortable. The backstop only runs on a
-  # genuine no-show, and on those days the 08:00 slot may be missed;
-  # schedule_times() simply takes the next free slot (09:30 Central). Shipping
-  # one slot later beats shipping pre-ChatGPT media.
+  #   13:30 UTC  =  8:30 CDT (summer, RUNS)  /  7:30 CST (winter, too early)
+  #   14:30 UTC  =  9:30 CDT (summer, no-op) /  8:30 CST (winter, RUNS)
+  #
+  # `--backstop` decides in Central time which of the two is the real one, so
+  # the backstop always lands 90 minutes after the finalizer STARTS, in both
+  # halves of the year. The other hour exits 0 having done nothing.
+  #
+  # This replaced a single 12:45 UTC cron, which was 7:45 Central in summer —
+  # 45 minutes INTO the finalizer's run — and 6:45 Central in winter, FIFTEEN
+  # MINUTES BEFORE THE FINALIZER STARTED. For half the year it would have
+  # rendered a day with no punch-up and no authored packages, with every check
+  # green. If the operator ever moves the ChatGPT task, move
+  # FINALIZER_HOUR_CENTRAL in scripts/exchange_phase_b.py with it — the crons
+  # here are only the two candidate wake-ups.
   schedule:
-    - cron: '45 12 * * *'
+    - cron: '30 13 * * *'
+    - cron: '30 14 * * *'
 
 permissions:
   contents: write
@@ -137,6 +144,9 @@ jobs:
           FLAGS=""
           [ "${{ inputs.require_done }}" = "true" ] && FLAGS="$FLAGS --require-done"
           [ "${{ inputs.require_checkpoints }}" = "true" ] && FLAGS="$FLAGS --require-checkpoints"
+          # Scheduled runs are backstops: no-op unless the 07:00 Central
+          # finalizer has had its full window (decided in Central, not UTC).
+          [ "${{ github.event_name }}" = "schedule" ] && FLAGS="$FLAGS --backstop"
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
           python scripts/exchange_phase_b.py \
             --date "${{ steps.which.outputs.date }}" \
