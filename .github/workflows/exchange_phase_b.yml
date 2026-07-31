@@ -10,6 +10,13 @@ name: Exchange Phase B (consume ChatGPT, self-fill, ready to render)
 # Phase A found — a weaker shot beats no video.
 
 on:
+  # DONE IS THE ONLY TRIGGER. The day is now worked by TWO ChatGPT tasks —
+  # a 06:00 Central MEDIA worker and a 07:00 Central FINALIZER — and the media
+  # worker pushes checkpoints to exchange/bundles/*/media-progress/** all
+  # through its run. If any of those paths fired this workflow, Phase B would
+  # render at 06:05 with no punch-up, no authored packages, and two thirds of
+  # the images still missing, and every check would be green. Keep this list
+  # to DONE alone; a checkpoint push must never start a render.
   push:
     branches: [main]
     paths:
@@ -25,6 +32,11 @@ on:
         default: 'trending'
       require_done:
         description: 'Defer unless ChatGPT wrote DONE'
+        required: false
+        type: boolean
+        default: false
+      require_checkpoints:
+        description: 'Refuse media pointers with no media-progress checkpoint'
         required: false
         type: boolean
         default: false
@@ -124,6 +136,7 @@ jobs:
           set -e
           FLAGS=""
           [ "${{ inputs.require_done }}" = "true" ] && FLAGS="$FLAGS --require-done"
+          [ "${{ inputs.require_checkpoints }}" = "true" ] && FLAGS="$FLAGS --require-checkpoints"
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
           python scripts/exchange_phase_b.py \
             --date "${{ steps.which.outputs.date }}" \

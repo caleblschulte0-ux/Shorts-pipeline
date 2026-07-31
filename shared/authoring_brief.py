@@ -166,6 +166,17 @@ MEDIA_CONTRACT = {
         "A Drive file that is not link-visible serves an HTML page instead; "
         "that is detected and refused.",
     ],
+    "checkpoint_every_shot": (
+        "Each of these images ALSO needs a checkpoint, exactly like a bundle "
+        "request: `exchange/bundles/<date>/media-progress/"
+        "<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the "
+        "package slug in `package_id`, and the shot index in `shot_index`. "
+        "There is no bundle request behind an authored shot, so build the id "
+        "yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything "
+        "outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index "
+        "ONLY — the 07:00 finalizer recomputes the identical string from the "
+        "package on disk, and it cannot do that from a prompt or a counter. "
+        "Upload the file as `<date>__<safe_request_id>.png`."),
     "if_you_cannot": ("Leave `media` off that shot and say so honestly. We "
                       "self-fill it from real stock media — weaker, but it "
                       "ships. A fabricated pointer or a wrong hash is worse "
