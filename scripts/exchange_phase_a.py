@@ -31,6 +31,7 @@ sys.path.insert(0, str(ROOT))
 from funnel import media_judge                     # noqa: E402
 from shared import authoring_brief as brief         # noqa: E402
 from shared import exchange_bundle as xb           # noqa: E402
+from shared import media_checkpoint as mc          # noqa: E402
 from shared.fsutil import atomic_write_json        # noqa: E402
 
 PACKAGE_DIRS = {
@@ -226,6 +227,16 @@ def main() -> int:
         return 1
     ready = xb.mark_ready(args.date)
     print(f"[phase-a] wrote {path.relative_to(ROOT)}")
+    # The identity both workers must record in every checkpoint. Printed so a
+    # run log shows exactly which ask the day's checkpoints belong to — if
+    # Phase A is re-run with different prompts this string changes and every
+    # earlier checkpoint stops matching, which is the intended behaviour.
+    ident = mc.bundle_identity(args.date)
+    if ident:
+        print(f"[phase-a] bundle identity sha256={ident}")
+        print(f"[phase-a] checkpoints go in "
+              f"exchange/bundles/{args.date}/"
+              f"{mc.PROGRESS_DIRNAME}/<safe_request_id>.json")
     if ready:
         print(f"[phase-a] wrote {ready.relative_to(ROOT)} — "
               f"commit these; ChatGPT answers next")

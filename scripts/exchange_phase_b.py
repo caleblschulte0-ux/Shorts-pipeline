@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from shared import exchange_bundle as xb           # noqa: E402
+from shared import media_checkpoint as mc          # noqa: E402
 from shared import punchup_guard                   # noqa: E402
 from shared.fsutil import atomic_write_json        # noqa: E402
 
@@ -188,8 +189,8 @@ def self_fill(pkg: dict, shot_index: int) -> str | None:
     return None
 
 
-def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False
-                   ) -> None:
+def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False,
+                   date: str = "", rejected: dict | None = None) -> None:
     """Find media for a package ChatGPT authored after Phase A had already
     run. Same two lanes Phase A and Phase B already use — entity resolution
     first, then the gloves-off self-fill for whatever is still bare — so a
@@ -224,7 +225,17 @@ def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False
         pointer = shot.pop("media", None)
         if not isinstance(pointer, dict):
             continue
-        local = fetch_media(xb.request_key(slug, i, "authored"), pointer)
+        # The id the media worker used at 06:00, recomputed here from the
+        # package on disk. Derived from slug + shot index ONLY, so it survives
+        # the punch-up rewording that a content-addressed key would not.
+        rid = mc.authored_shot_request_id(slug, i)
+        why = (rejected or {}).get(rid)
+        if why:
+            print(f"[phase-b] {slug} shot {i}: REFUSED ChatGPT media — "
+                  + "; ".join(why[:2]))
+            report["media"]["refused"] = report["media"].get("refused", 0) + 1
+            continue
+        local = fetch_media(rid, pointer)
         if local:
             shot["image_url"] = str(local)
             shot["media_origin"] = "chatgpt_authored"
@@ -264,8 +275,14 @@ def main() -> int:
     ap.add_argument("--no-ingest", action="store_true",
                     help="skip promoting ChatGPT-authored packages")
     ap.add_argument("--no-punchup", action="store_true")
+    ap.add_argument("--require-checkpoints", action="store_true",
+                    help="refuse any media pointer with no media-progress "
+                         "checkpoint behind it (default: warn and fall back "
+                         "to byte verification)")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+    require_cp = (args.require_checkpoints
+                  or os.environ.get("EXCHANGE_REQUIRE_CHECKPOINTS") == "1")
 
     bundle = xb.read_bundle(args.date)
     if not bundle:
@@ -323,6 +340,39 @@ def main() -> int:
         print("[phase-b] no response.json — ChatGPT contributed nothing; "
               "self-fill + originals only")
 
+    # ---- checkpoint validation ------------------------------------------
+    # Every media pointer in the response is a CLAIM. The checkpoint under
+    # media-progress/ is the record of the moment those bytes were actually
+    # verified, written by whichever worker did the work. Where both exist
+    # they must agree exactly; where they disagree, something was edited
+    # after the fact or two different images are in play, and neither is
+    # something to put in a video.
+    #
+    # A MISSING checkpoint is a warning, not a rejection, unless
+    # --require-checkpoints is set. The byte-level verification in
+    # fetch_media (sha256 + full decode + placeholder check) is independent
+    # and strong on its own, and hard-failing here would mean a worker that
+    # skipped its checkpoints loses every image to stock self-fill — a
+    # regression dressed up as strictness.
+    bundle_id = mc.bundle_identity(args.date)
+    validation = mc.validate_response_media(
+        response, bundle, date=args.date, bundle_id=bundle_id,
+        require_checkpoint=require_cp)
+    refused = {r["request_id"]: r["problems"]
+               for r in validation.get("rejected") or []}
+    for w in validation.get("warnings") or []:
+        print(f"[phase-b] checkpoint warning {w['request_id']}: "
+              f"{w['problem']}")
+    for r in validation.get("rejected") or []:
+        print(f"::warning::[phase-b] REFUSED media for "
+              f"{r['request_id']} ({r['where']}): {r['problems'][0]}")
+    c = validation.get("counts") or {}
+    if c.get("checked"):
+        print(f"[phase-b] checkpoints: {c.get('ok', 0)} usable, "
+              f"{c.get('rejected', 0)} refused, "
+              f"{c.get('warnings', 0)} unrecorded "
+              f"(bundle identity {str(bundle_id or 'none')[:12]}…)")
+
     sys.path.insert(0, str(ROOT / "scripts"))
 
     # AUTHORING TAKEOVER, step 2. If the bundle carried an authoring request,
@@ -372,7 +422,13 @@ def main() -> int:
               "done_marker": done, "had_response": response is not None,
               "authored": {"promoted": len(authored.get("promoted") or []),
                            "rejected": len(authored.get("rejected") or [])},
-              "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0},
+              "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0,
+                        "refused": 0},
+              "checkpoints": {"bundle_identity": bundle_id,
+                              "required": require_cp,
+                              **(validation.get("counts") or {}),
+                              "rejected_detail": validation.get("rejected"),
+                              "warnings_detail": validation.get("warnings")},
               "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
               "details": []}
 
@@ -387,7 +443,17 @@ def main() -> int:
         if sidx >= len(shots):
             continue
 
-        local = fetch_media(rid, idx["media"].get(rid))
+        if rid in refused:
+            # Refused on the checkpoint contract, before a byte is fetched.
+            # Fall straight through to self-fill: a pointer we cannot trust
+            # is worth exactly as much as no pointer at all.
+            report["media"]["refused"] += 1
+            report["details"].append({"request_id": rid,
+                                      "outcome": "refused",
+                                      "problems": refused[rid]})
+            local = None
+        else:
+            local = fetch_media(rid, idx["media"].get(rid))
         if local:
             shots[sidx]["image_url"] = str(local)
             shots[sidx]["media_origin"] = "chatgpt"
@@ -415,7 +481,8 @@ def main() -> int:
         pkg = packages.get(slug)
         if not pkg:
             continue
-        cover_authored(pkg, report, no_self_fill=args.no_self_fill)
+        cover_authored(pkg, report, no_self_fill=args.no_self_fill,
+                       date=args.date, rejected=refused)
 
     # ---- punch-up (guarded) ---------------------------------------------
     if not args.no_punchup:
@@ -448,7 +515,8 @@ def main() -> int:
 
     m, p = report["media"], report["punchup"]
     print(f"[phase-b] media: {m['fulfilled']} from ChatGPT, "
-          f"{m['self_filled']} self-filled, {m['unfilled']} unfilled")
+          f"{m['self_filled']} self-filled, {m['unfilled']} unfilled, "
+          f"{m.get('refused', 0)} refused on the checkpoint contract")
     print(f"[phase-b] punch-up: {p['applied']} applied, "
           f"{p.get('kept', 0)} kept (editor's call), "
           f"{p['rejected']} rejected, {p['absent']} not offered")

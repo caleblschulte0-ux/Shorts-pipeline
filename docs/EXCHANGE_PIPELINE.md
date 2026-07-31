@@ -6,20 +6,118 @@ visuals, and we are not re-rendering.
 
 ```
 09:45  Phase A   author'd packages -> resolve media -> JUDGE every shot
-                 writes ONE bundle: scripts + media health + gap requests
+                 writes ONE bundle: scripts + media health + gap requests,
+                 each with its DETERMINISTIC Drive filename
                  commits, then STOPS.  Nothing renders.
          │
-11:00  ChatGPT   reads exchange/bundles/<date>/bundle.json
-                 · generates the requested images/animations -> Google Drive
-                 · punches up the scripts
-                 · commits response.json, then DONE   ← written LAST
+06:00  ChatGPT MEDIA worker (Central)
+                 reads exchange/bundles/<date>/bundle.json
+                 · generates the requested images -> Google Drive, under the
+                   filename the bundle already published
+                 · verifies bytes, writes ONE CHECKPOINT PER IMAGE to
+                   exchange/bundles/<date>/media-progress/
+                 · NEVER writes response.json.  NEVER writes DONE.
          │
-   ↓ the DONE push fires Phase B (no clock guessing)
+07:00  ChatGPT FINALIZER (Central)
+                 · reads media-progress/ FIRST — reuses every verified image,
+                   adopts orphans by exact filename, generates only the rest
+                 · punches up the scripts, authors anything Claude left undone
+                   (including explainer/curiosity even when trending is full)
+                 · commits response.json, reads it back, THEN commits DONE
          │
-       Phase B   verified Drive pull -> pin media -> SELF-FILL the rest
+   ↓ the DONE push fires Phase B (and DONE alone — a checkpoint push must not)
+         │
+       Phase B   validate every pointer against its checkpoint
+                 verified Drive pull -> pin media -> SELF-FILL the rest
                  apply punch-ups that survive the claim guard
                  packages now final -> render
 ```
+
+## The split (2026-07-31) — two workers, one day
+
+The exchange used to be one ChatGPT task doing everything in one pass. It is
+now **two tasks an hour apart**, and they cannot see each other's context —
+only this repository. So the repo carries their shared memory.
+
+| | 06:00 Central | 07:00 Central |
+|---|---|---|
+| | **MEDIA worker** | **FINALIZER** |
+| Job | generate + upload + verify images | recover, fill gaps, punch up, author, ship |
+| Writes | `media-progress/*.json`, `media-progress/claims/*.json` | all of that **plus** `response.json`, `authored/*.json`, then `DONE` |
+| Never writes | `response.json`, `DONE`, `authored/` | — |
+
+Three mechanisms make that work, all in `shared/media_checkpoint.py`:
+
+**1. A checkpoint per image, written the moment it verifies.** One small JSON
+at `exchange/bundles/<date>/media-progress/<safe_request_id>.json` recording
+the Drive file, the exact bytes' SHA-256, the prompt that produced it, and the
+bundle it belongs to. A worker that dies at image 19 of 24 leaves 18
+recoverable results, not zero. The full field list ships inside every bundle
+at `bundle.json` → `media_protocol`, generated from the same constants the
+validator enforces.
+
+**2. Deterministic filenames, published before anyone starts.** Every asset
+uploads as `<date>__<safe_request_id>.<ext>`, and every bundle request already
+carries the exact string as `drive_filename`. That ordering is the whole
+reason an orphan is recoverable: a file can only be found by name if the name
+was agreed on in advance. `safe_request_id` appends an 8-hex digest of the
+original whenever sanitizing changed it, so `a/b` and `a:b` can never collapse
+onto one file.
+
+For a shot inside a package ChatGPT authored there is no bundle request, so
+the id is built from **slug + shot index only**: `authored-<slug>-s<n>`. Not
+content-addressed, deliberately — the finalizer's punch-up rewords prompts,
+and a content-addressed id would orphan every authored image the moment it
+did.
+
+**3. Recovery order, and a filename is never proof.**
+
+1. Valid + `verified` + same bundle identity + same prompt → **reuse**.
+2. Otherwise search Drive for the **exact** deterministic filename.
+3. One match → **download it, hash the bytes**, and write the checkpoint from
+   what was actually there.
+4. Two or more matches → **conflicted**. Report; never guess.
+5. Only when nothing is reusable, generate.
+
+`plan_recovery()` takes the Drive listing as **data**, supplied by the worker.
+Nothing in the pipeline talks to Drive — we gained a validator, not a
+dependency.
+
+**Bundle identity** is the SHA-256 of the day's `bundle.json` bytes. Every
+checkpoint records it; a checkpoint whose identity does not match the current
+bundle is refused. Re-run Phase A with different prompts and yesterday's
+checkpoints stop matching — which is exactly right.
+
+**Claims** are create-only leases at `media-progress/claims/<id>.json` with a
+15-minute default. A live claim by another run means "skip this one". An
+**expired** claim is inert — a crashed worker must not leave a tombstone that
+costs one image per crash, forever. A verified checkpoint beats any claim.
+
+### What Phase B refuses
+
+Every media pointer in `response.json` is a *claim*; the checkpoint is the
+record of the moment those bytes were verified. Where both exist they must
+agree exactly. `validate_response_media()` rejects:
+
+- a `request_id` that is not in the bundle, or does not match the request it
+  is attached to
+- a checkpoint from a different day or a different bundle identity
+- a prompt that changed since the image was made
+- a missing, short, or non-hex `image.sha256`; a hash or byte count that
+  disagrees with the checkpoint; a `drive.file_id` that disagrees
+- missing `width` / `height` / `format`
+- duplicate `request_id`s in one response
+- one Drive `file_id` answering two different requests with different bytes
+- an authored shot's image attached to the wrong package or the wrong shot
+- an authored shot's image placed in the **top-level** `media` array (that
+  array is keyed by bundle `request_id`, and there is no bundle request for a
+  package ChatGPT invented)
+
+A **missing** checkpoint is a warning, not a rejection — the byte verification
+under it (SHA-256 + full decode + placeholder check) is independent and strong
+on its own, and hard-failing would mean a worker that skipped its checkpoints
+loses every image to stock self-fill. Pass `--require-checkpoints` (or
+`EXCHANGE_REQUIRE_CHECKPOINTS=1`) to make it strict.
 
 ## Mode `author` — ChatGPT takes over the writing
 
@@ -57,6 +155,8 @@ the same breath. One round trip, one wait.
 | `funnel/media_judge.py` | Script-aware scoring: "the line says X, this is the image — does it land?" Returns `strong`/`weak`/`missing` + the AI prompt for gaps. |
 | `shared/exchange_bundle.py` | Builds the day's bundle; reads the response; owns the READY/DONE markers. |
 | `shared/punchup_guard.py` | Mechanically enforces that a rewrite changed *wording*, never *claims* or beat structure. |
+| `shared/media_checkpoint.py` | The split-worker contract: checkpoint schema, deterministic filenames, bundle identity, claims/leases, orphan recovery, worker boundaries, and the Phase B response validator. |
+| `scripts/exchange_dry_run.py` | The 8-step offline fixture that stands in for both ChatGPT workers. |
 | `scripts/exchange_phase_a.py` | Phase A entrypoint. Resolves media, judges, writes the bundle. **Never renders.** |
 | `scripts/exchange_phase_b.py` | Phase B entrypoint. Pulls media, self-fills, applies guarded punch-ups. |
 | `scripts/fetch_exchange_media.py` | The paranoid downloader (hash + full pixel decode + placeholder detection). |
@@ -117,14 +217,16 @@ allowed — entity comparison runs against the other text's full word set.
 | `--no-self-fill` | off | Skip the gloves-off pass (leaves gaps unfilled). |
 | `--no-punchup` | off | Ignore script rewrites entirely. |
 | `--require-done` | off | Phase B defers instead of proceeding without ChatGPT. |
+| `--require-checkpoints` / `EXCHANGE_REQUIRE_CHECKPOINTS=1` | off | Refuse any media pointer with no `media-progress` checkpoint behind it. Default warns and falls back to byte verification. |
 
 ## Wiring (LIVE as of 2026-07-30)
 
 | Step | Fires on |
 |---|---|
 | **Phase A** | `workflow_run` on **Auto-merge claude PRs** (the Routine's packages landing) + `45 9 * * *` backstop, `push` on packages + dispatch |
-| **ChatGPT** | its own 6:00 AM Central task (11:00 UTC summer / 12:00 UTC winter), reading `exchange/bundles/<date>/bundle.json` |
-| **Phase B** | `push` on `exchange/bundles/*/DONE` + `45 12 * * *` backstop + dispatch |
+| **ChatGPT MEDIA** | its own **6:00 AM Central** task (11:00 UTC summer / 12:00 UTC winter), reading `exchange/bundles/<date>/bundle.json`. Writes checkpoints only. |
+| **ChatGPT FINALIZER** | its own **7:00 AM Central** task (12:00 UTC summer / 13:00 UTC winter). Writes `response.json`, then `DONE`. |
+| **Phase B** | `push` on `exchange/bundles/*/DONE` **and nothing else** + `45 12 * * *` backstop + dispatch |
 | **Render** (`daily.yml`) | `workflow_run` on **Exchange Phase B** + manual `.github/triggers/daily` |
 
 ### The trigger that had to MOVE — read before changing any of this
@@ -216,10 +318,21 @@ the last step of the chain, not the next one. Full note at the top of
 ## Testing
 
 ```bash
-python -m unittest tests.test_exchange          # judge + bundle + guard, offline
+python -m unittest tests.test_exchange           # judge + bundle + guard
+python -m unittest tests.test_media_checkpoint   # the split-worker contract
+python -m unittest tests.test_split_worker       # end-to-end + takeover matrix
+python scripts/exchange_dry_run.py               # the 8-step fixture, offline
 python scripts/exchange_phase_a.py --date <D> --channel trending --dry-run
 python scripts/exchange_phase_b.py --date <D> --channel trending --dry-run
 ```
+
+`scripts/exchange_dry_run.py` stands in for both ChatGPT workers and walks the
+whole day: Phase A publishes the filenames, the media worker checkpoints one
+image and then **dies** mid-run, the finalizer reuses the first and adopts the
+second as an orphan by exact filename, an authored shot gets its own
+checkpoint, `response.json` lands before `DONE`, and Phase B refuses a hash
+edited after the fact. Exit 0 means the contract holds; a failure names the
+step.
 
 The full handshake was simulated end-to-end before shipping: Phase A wrote a
 bundle for 2 gaps, a faked ChatGPT response fulfilled one and offered a

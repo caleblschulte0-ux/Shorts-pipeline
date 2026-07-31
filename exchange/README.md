@@ -20,6 +20,103 @@ exchange/responses/<id>.json    it writes  — verified Drive pointer + sha256
 scripts/fetch_exchange_media.py            — downloads, verifies, hands to render
 ```
 
+## Two workers, one day — read this first
+
+The day is worked by **two scheduled tasks an hour apart**, not one:
+
+| | When | Job | Writes | Never writes |
+|---|---|---|---|---|
+| **MEDIA worker** | 06:00 Central | generate + upload + verify every image | `media-progress/*.json`, `media-progress/claims/*.json` | `response.json`, `DONE`, `authored/` |
+| **FINALIZER** | 07:00 Central | recover, fill gaps, punch up, author, ship | everything above **plus** `response.json`, `authored/*.json`, then `DONE` | — |
+
+**`DONE` is the only thing that fires the render.** Not a `response.json`
+push, not a checkpoint push, not a package push. The media worker writing
+`DONE` at 06:00 would render an hour before anything was authored or punched
+up — with every check green.
+
+### The two of you cannot see each other. These files are how you talk.
+
+The 07:00 task does not inherit the 06:00 task's context; it inherits this
+repository. So every verified image gets a **checkpoint** written the moment
+it verifies:
+
+```
+exchange/bundles/<date>/media-progress/<safe_request_id>.json
+exchange/bundles/<date>/media-progress/claims/<safe_request_id>.json
+```
+
+Full field list, generated from the code that validates it, is in every
+bundle at `bundle.json` → `media_protocol`. The schema itself lives in
+`shared/media_checkpoint.py`.
+
+**Checkpoint after every single image, not once at the end.** A run that dies
+at image 19 of 24 must leave 18 recoverable results behind, not zero. That is
+the entire reason this exists.
+
+### Deterministic filenames
+
+Every asset uploads to Drive as:
+
+```
+<date>__<safe_request_id>.<ext>          e.g. 20260731__spacex-catch-s2-9f1c4a.png
+```
+
+Each bundle request already carries the exact string as `drive_filename` —
+**use it verbatim**, it is published before you start. `safe_request_id` is
+the request id with anything outside `[A-Za-z0-9._-]` replaced by `-`; if
+that changed the string (or it was longer than 72 chars) an 8-hex sha256 of
+the original is appended, so two different requests can never land on one
+file.
+
+For a shot inside a package **you** authored there is no bundle request, so
+build the id yourself:
+
+```
+authored-<slug>-s<shot_index>
+```
+
+`<slug>` lowercased, anything outside `[a-z0-9-]` replaced by `-`. Derive it
+from **slug + shot index only** — never from the prompt, a timestamp, or a
+counter. The 07:00 worker recomputes the identical string from the package on
+disk, and it cannot do that from a prompt it never saw (and which the
+punch-up may have since reworded).
+
+### Recovering an orphan — in this order
+
+An orphan is an image that reached Drive while its checkpoint did not.
+
+1. **Read the checkpoint.** Valid, `verified`, same bundle identity, same
+   prompt → **reuse it. Do not regenerate.** Regenerating burns budget *and*
+   produces a different picture than the one the checkpoint names.
+2. Otherwise search Drive for the **exact** deterministic filename.
+3. Exactly one match → **download it, hash the bytes, confirm it decodes**,
+   and write the checkpoint from what you actually found. A filename is a
+   lookup key; it is never evidence about content.
+4. More than one match → **conflicted**. Report it and move on. Drive allows
+   duplicate names, and guessing is a coin flip on what ends up in the video.
+5. Only when nothing is reusable, generate it.
+
+### Bundle identity
+
+Every checkpoint records `bundle.identity` — the **sha256 of that day's
+`bundle.json` file bytes**. Compute it; do not guess. A checkpoint whose
+identity does not match the current bundle is refused, which is how an image
+made for a prompt that has since changed stays out of the video.
+
+### Claims (so you two never make the same image twice)
+
+Before generating, create `media-progress/claims/<safe_request_id>.json`
+**create-only**. If it already exists and `expires_at` is in the future,
+someone is on it — skip that request. An **expired** claim is inert: take it
+over. A verified checkpoint beats any claim, including a live one. Default
+lease is 15 minutes.
+
+### Honesty applies to checkpoints too
+
+A checkpoint asserts *you downloaded these bytes and hashed them*. Writing
+one for an image you did not verify is worse than writing nothing, because
+the next worker will skip the work believing it is done.
+
 ## The bridge (why this works when /mnt/data did not)
 
 The Drive connector will not accept a sandbox path (`/mnt/data/foo.png`) or a
@@ -104,9 +201,10 @@ pipeline itself.
 | You may write | You may never write |
 |---|---|
 | `exchange/bundles/<date>/response.json` + `DONE` | any `.py`, `.yml`, `.sh` — anywhere, including inside your own folders |
-| authored packages, words, media pointers | any workflow, gate, validator or test |
-| `retro/<date>/proposals/*.json` | `retro/README.md` or `exchange/README.md` — your own instructions |
-| | anything under `scripts/`, `shared/`, `funnel/`, `engines/`, `docs/` |
+| `exchange/bundles/<date>/media-progress/**` (checkpoints + claims) | any workflow, gate, validator or test |
+| authored packages, words, media pointers | `retro/README.md` or `exchange/README.md` — your own instructions |
+| `retro/<date>/proposals/*.json` | anything under `scripts/`, `shared/`, `funnel/`, `engines/`, `docs/` |
+| | `state/**` — promotion is our side's job, and it validates first |
 
 Nothing mechanically stops you from breaking this — it is a working
 agreement, and it holds because you keep it. If you believe something in
@@ -148,8 +246,19 @@ already produce, just inline on the shot instead of in the `media` array:
 ]
 ```
 
+Each of those images also needs a **checkpoint**, with
+`"request_kind": "authored_shot"`, the package slug in `package_id`, the
+shot index in `shot_index`, and the request id built as
+`authored-<slug>-s<shot_index>` (see *Two workers, one day* above). Upload
+the file as `<date>__authored-<slug>-s<shot_index>.png`.
+
 `text_card` and `graph_race` have no `shots` and need no media from you —
 the renderer sources their b-roll from `broll_query` and draws the chart.
+
+**Do not put authored-shot images in the top-level `media` array.** That
+array is keyed by bundle `request_id`, and there is no bundle request for a
+package you invented — Phase B rejects any entry there whose id looks like an
+authored shot.
 
 Every pointer is verified on arrival exactly like a normal-day one: SHA-256
 recomputed from the downloaded bytes, a full pixel decode, a placeholder
@@ -214,11 +323,21 @@ takeover: five real packages plus `_schedule.json` looks like a full six.
 |---|---|
 | 0 | all six — 2 reddit_story, 2 text_card, 2 graph_race |
 | 1–5 | only the missing ones, choosing formats so the day ends at 2 + 2 + 2 |
-| 6 | nothing to author — do your normal jobs |
+| 6 | no **trending** packages — but see below, you are probably not done |
 
 Count what exists by format first, then fill the gaps. If the day already
 has 2 reddit_story and 1 text_card, you write 1 text_card and 2 graph_race —
 not six of anything.
+
+**A full trending slate does not end your authoring job.** Explainer and
+curiosity are separate channels with separate asks, and six trending packages
+say nothing about either of them. Check `authoring_requests` for *every*
+channel listed, not just `trending`. The bundle spells this out in
+`instructions.two_jobs[0]` when trending is full and another channel is not.
+With no bundle at all, check both configs yourself: any
+`data_learning/niche.config.json` story with `"words_by": "deterministic"`
+that has not posted needs a rewrite, and fewer than 3 un-posted stories in
+`data_learning/curiosity.config.json` means that queue needs stock.
 
 **With no bundle you also have no spec, so go read it.** The per-format
 rules and the media pointer shape normally arrive inside

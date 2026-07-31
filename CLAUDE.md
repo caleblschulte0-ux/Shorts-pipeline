@@ -127,6 +127,18 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   backstop cron). A weaker shot beats no video.
 - `shared/punchup_guard.py` is not advisory: a rewrite that changes any
   number/date/entity or the beat structure is rejected and the original ships.
+- **ChatGPT is TWO workers now** (2026-07-31): a **06:00 Central MEDIA worker**
+  (generate + upload + verify images, checkpoint each one, never writes
+  `response.json` or `DONE`) and a **07:00 Central FINALIZER** (recover, fill
+  gaps, punch up, author, then `response.json` and `DONE` as separate commits).
+  They cannot see each other's context, so the repo is their shared memory:
+  `exchange/bundles/<date>/media-progress/<safe_request_id>.json`, contract in
+  `shared/media_checkpoint.py`. **`DONE` is the only thing that fires Phase B**
+  — a checkpoint push must never start a render, or the day renders at 06:05
+  with nothing authored and every check green. Filenames are deterministic
+  (`<date>__<safe_request_id>.png`) and published in the bundle BEFORE either
+  worker starts, which is what makes an orphaned upload recoverable. Verify the
+  contract offline with `python scripts/exchange_dry_run.py`.
 - **The chain is LIVE and automatic** (2026-07-30): Routine authors packages ->
   auto-merge -> **Phase A** -> ChatGPT -> DONE -> **Phase B** -> daily.yml
   renders. `daily.yml` NO LONGER fires on auto-merge or on a
