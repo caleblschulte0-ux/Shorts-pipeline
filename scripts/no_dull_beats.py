@@ -499,11 +499,70 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
         return None
 
 
+# THE DIRECTOR'S FINDINGS AS DATA, not as log text.
+#
+# Every complaint below was already being computed and printed — HOOK_WEAK, the
+# dull beats, the timecoded stale spans, the card budget. None of it became
+# `findings[]`, so repair_planner received an empty list and the auto-repairer
+# idled through five consecutive production runs while the director had seven
+# specific, timecoded complaints on screen. A diagnosis only a human can read is
+# not a diagnosis the loop can act on.
+#
+# Codes match repair_planner.CATALOG so each one becomes a repair task.
+_DIR_FINDINGS: list[dict] = []
+_LAST_STALE: list = []
+
+
+def _finding(code, target, complaint, severity="major", fix=""):
+    f = {"judge": "director", "defect_code": code, "severity": severity,
+         "target": target, "complaint": complaint}
+    if fix:
+        f["recommended_fix"] = fix
+    return f
+
+
+def _collect_findings(hv, interest, dull, excess) -> list[dict]:
+    out: list[dict] = []
+    if hv is not None and not hv.get("pass"):
+        gates = list(hv.get("line_gates") or []) + list(hv.get("gates") or [])
+        out.append(_finding(
+            "HOOK_WEAK", "beat 0",
+            f"hook scored {hv.get('total')}/10; gates={gates or '-'}",
+            severity="blocker",
+            fix="re-open the film: the first seconds must state a promise and move"))
+    for d in dull or []:
+        # a designed card is dull for being STATIC, a footage beat for being
+        # unwatchable — the planner needs to know which, or it prescribes the
+        # wrong repair (footage for a card the viewer needs to read)
+        out.append(_finding(
+            "DULL_BEAT", f"beat {d.get('beat')}",
+            f"{d.get('job', '')}: {d.get('why', '')}".strip(": "),
+            fix=("raise the card's motion, keep the graphic"
+                 if d.get("kind") == "animate" else
+                 "escalate to motion of the beat's subject")))
+    for span in _LAST_STALE or []:
+        try:
+            a, b = float(span[0]), float(span[1])
+        except Exception:  # noqa: BLE001 — a malformed span is not a crash
+            continue
+        out.append(_finding(
+            "STALE_SPAN", f"{a:.1f}-{b:.1f}s",
+            f"nothing new for {b - a:.1f}s",
+            fix="cut, or introduce a genuinely new element inside the span"))
+    if excess:
+        out.append(_finding(
+            "CARDS_OVER_BUDGET", "film", str(excess), severity="blocker",
+            fix="carry beats with character scenes / footage; cards a minority"))
+    return out
+
+
 def _gate_report(verdict: str, hv, interest, dull, escalated, beats,
                  excess=None, beatmap=None) -> None:
     """The DIRECTOR's ordered scorecard — proves every gate RAN, in order of
     importance, and shows what each did (passed / fixed / stuck). No gate can be
     silently skipped: if it isn't on this list, it wasn't run."""
+    global _DIR_FINDINGS
+    _DIR_FINDINGS = _collect_findings(hv, interest, dull, excess)
     print("\n=== DIRECTOR — gate report (order of importance) ===")
     # 1. HOOK (the opening decides retention — nothing matters more)
     if hv is None:
@@ -574,6 +633,25 @@ def _record_memory(slug: str, work: Path, rnd: int, stderr: str) -> None:
 
 
 def run(story_path: Path, out: Path, rounds: int = 3) -> int:
+    """Render + direct, then PERSIST the director's findings beside the film.
+
+    The gates have always produced a precise, timecoded diagnosis and always
+    thrown it away into the log. Writing it to the package is what lets the
+    repair planner act on it instead of the owner reading it."""
+    rc = _run(story_path, out, rounds)
+    try:
+        pkg = out.with_name(out.stem + "_pkg")
+        pkg.mkdir(parents=True, exist_ok=True)
+        (pkg / "director_findings.json").write_text(
+            json.dumps({"director_rc": rc, "findings": _DIR_FINDINGS},
+                       indent=2) + "\n")
+    except Exception as e:  # noqa: BLE001 — evidence capture never fails a render
+        print(f"[ndb] could not persist director findings ({str(e)[:80]})",
+              file=sys.stderr)
+    return rc
+
+
+def _run(story_path: Path, out: Path, rounds: int = 3) -> int:
     story = json.loads(story_path.read_text())
     beats = story["beats"]
     work = out.parent / f"{out.stem}_ndb_work"
@@ -662,6 +740,7 @@ def run(story_path: Path, out: Path, rounds: int = 3) -> int:
         # is a BLOCKER (motion is not novelty): a held card or a slow single-idea
         # reveal fails here even if it 'moves'.
         stale = novelty_check(out)
+        globals()["_LAST_STALE"] = stale
         card_frac, cards_over = composition_budget(beats, beatmap)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "
               f"appeal={interest.get('mean_appeal')} — {len(dull)} dull beat(s), "

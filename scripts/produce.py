@@ -210,6 +210,25 @@ def record_judging(slug: str, out: Path, story: dict | None = None,
     verdicts = judge_loop.run_judges(out, judge_adapters.default_specs(deep=deep),
                                      store, attempt, ctx=ctx)
     combined = judge_loop.combine(verdicts)
+    # THE DIRECTOR IS A JUDGE TOO. Its gates produce the most specific diagnosis
+    # in the pipeline — timecoded stale spans, per-beat dullness with the right
+    # repair kind, the hook verdict — and none of it used to reach the planner,
+    # which is why the auto-repairer idled through five production runs on an
+    # empty task list while the director had seven complaints on screen.
+    try:
+        dj = json.loads((out.with_name(out.stem + "_pkg") /
+                         "director_findings.json").read_text())
+        df = dj.get("findings") or []
+        if df:
+            combined["findings"] = list(combined.get("findings") or []) + df
+            combined["n_findings"] = len(combined["findings"])
+            print(f"[produce] {slug}: +{len(df)} director finding(s) into the "
+                  "repair plan")
+    except FileNotFoundError:
+        pass
+    except Exception as e:  # noqa: BLE001 — a bad sidecar must not lose the judging
+        print(f"[produce] {slug}: director findings unreadable ({str(e)[:80]})",
+              file=sys.stderr)
     combined["decision"] = judge_policy.decide(combined, pol)
     combined["attempt"] = attempt
     combined["director_rc"] = director_rc
@@ -296,6 +315,79 @@ def _try_resume(slug: str, out: Path, story_path: Path) -> int | None:
     return rc
 
 
+def _mp4_hash(out: Path) -> str | None:
+    """The rendered film's identity, for the circuit breaker. None when it can
+    not be computed — an unknown hash must never look like an unchanged one."""
+    try:
+        import artifact_identity
+        return artifact_identity.sha256_file(out) if out.exists() else None
+    except Exception:  # noqa: BLE001 — identity is diagnostic here, never fatal
+        return None
+
+
+def _reconcile_verdict(slug: str, result: dict) -> None:
+    """ONE verdict system. Mutates `result` in place.
+
+    evaluate() is the legacy gate; the judge policy is the binding quality
+    verdict. Attaching the policy decision as data while RETURNING the legacy
+    status is split-brain — the repairer acted on the new decision while the
+    stopping condition and the batch layer read the old one, so a film the
+    policy would advance could still be reported quarantined, and vice versa.
+
+    The two are ANDed, never swapped. The policy may VETO a pass but never grant
+    one: evaluate() holds the fail-closed conditions the policy does not model —
+    a render that died, a missing narration track, an unresolved licence — and a
+    quality score must not publish a film that is broken."""
+    j = result.get("judging") or {}
+    adv = j.get("advance")
+    if adv is None:
+        return                      # no judging record: never invent a verdict
+    blockers = list(j.get("blockers") or [])
+    result["legacy_status"] = result.get("status")
+    if not adv and result.get("status") == "pass":
+        result["status"] = "quarantine"
+        result["reasons"] = list(result.get("reasons") or []) + [
+            "judge policy withholds advance"
+            + (f": {'; '.join(blockers[:3])}" if blockers else "")]
+        print(f"[produce] {slug}: legacy gate passed but the judge policy "
+              "withholds advance — quarantined on the binding verdict")
+    elif adv and result.get("status") != "pass":
+        print(f"[produce] {slug}: judge policy would advance, but evaluate() "
+              f"still blocks: {'; '.join(result.get('reasons', [])[:2])}")
+
+
+def _round_signature(result: dict) -> tuple:
+    """What this round COMPLAINED and what it SCORED — the pair the circuit
+    breaker compares across renders."""
+    fs = findings_of(result)
+    return (tuple(sorted(f"{f.get('defect_code','')}@{f.get('target','')}"
+                         for f in fs)),
+            str((result.get("judging") or {}).get("overall_10")))
+
+
+def _judge_suspect(prev_sig, cur_sig, prev_hash, cur_hash) -> bool:
+    """True when the FILM changed but the verdict did not move at all.
+
+    That combination indicts the judge's INPUT, not the film. It is exactly what
+    four consecutive renders looked like while the hook gate was grading only
+    the text before the first period. Requires two known, DIFFERENT hashes — an
+    unknown hash must never be mistaken for a changed one, and an unchanged
+    render repeating itself is the film's fault, not the judge's."""
+    return bool(prev_sig is not None and cur_sig == prev_sig
+                and prev_hash and cur_hash and prev_hash != cur_hash)
+
+
+def findings_of(result: dict) -> list[dict]:
+    """The complaints behind a round's verdict, from the judging record if it
+    ran and the produce reasons otherwise, so the breaker can compare rounds
+    even when the judges abstained."""
+    j = result.get("judging") or {}
+    if isinstance(j.get("findings"), list):
+        return j["findings"]
+    return [{"defect_code": r[:60], "target": "film"}
+            for r in (result.get("reasons") or [])]
+
+
 def _repair_attempts() -> int:
     """How many render->judge->repair rounds one produce() call may spend.
 
@@ -355,6 +447,8 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
     pkg = out.with_name(out.stem + "_pkg")
     repair_log: list[dict] = []
     result: dict = {}
+    prev_sig: tuple | None = None
+    prev_hash: str | None = None
     for attempt_i in range(1, budget + 1):
         if attempt_i > 1:
             print(f"[produce] {slug}: === repair attempt {attempt_i}/{budget} "
@@ -362,6 +456,26 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
         result = _render_and_judge(slug, out, story_path, story, rounds)
         if result.get("status") == "pass" or attempt_i == budget:
             break
+
+        # JUDGE-MALFUNCTION CIRCUIT BREAKER. If the FILM materially changed but
+        # the complaint and the score came back byte-identical, the suspect is
+        # the judge's input, not the film. That is not hypothetical: the hook
+        # gate graded `narration.split(".")[0]` and so returned the same verdict
+        # and the same score for four consecutive ~2-hour renders, including one
+        # whose opening had been rewritten specifically to clear it. This check
+        # would have caught it on the second attempt instead of the fourth.
+        sig = _round_signature(result)
+        cur_hash = _mp4_hash(out)
+        if _judge_suspect(prev_sig, sig, prev_hash, cur_hash):
+            msg = ("judge malfunction suspected: the render CHANGED "
+                   f"({prev_hash[:12]}… -> {cur_hash[:12]}…) but every complaint "
+                   "and the score are identical — inspect what the judge is "
+                   "being given before spending another render")
+            print(f"[produce] {slug}: {msg}", file=sys.stderr)
+            result.setdefault("reasons", []).append(msg)
+            result["judge_malfunction_suspected"] = True
+            break
+        prev_sig, prev_hash = sig, cur_hash
 
         # ---- apply the judges' ranked plan to the beats, then re-render THAT.
         # The FINDINGS are the source of truth, not the stored plan: a plan is
@@ -513,6 +627,7 @@ def _render_and_judge(slug: str, out: Path, story_path: Path, story: dict,
     except Exception as e:  # noqa: BLE001 — evidence capture never kills a render
         print(f"[produce] {slug}: judging evidence capture failed ({str(e)[:120]})",
               file=sys.stderr)
+    _reconcile_verdict(slug, result)
     # the round's own verdict; produce() prints the FINAL one after the loop
     print(f"[produce] {slug}: round verdict — {result['status'].upper()}"
           + ("" if result["status"] == "pass"
