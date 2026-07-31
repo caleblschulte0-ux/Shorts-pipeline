@@ -1226,10 +1226,48 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 postable = [c for c in shortlist if c["banger"] >= min_banger]
                 if not postable:
                     best_b = max((c["banger"] for c in shortlist), default=0.0)
-                    raise _SkipSlot(
-                        f"quality floor: best banger {best_b:.2f} < "
-                        f"{min_banger} across {len(shortlist)} candidates — "
-                        "posting fewer, not a dud")
+                    # ESCALATE, DON'T GIVE UP (2026-07-31). An empty slot is
+                    # a failure this used to report as success. Worse, the
+                    # banger score judges the clipper's TWITCH TITLE, not the
+                    # clip — the day's rejects read 'sadge' -> "vague emote
+                    # reaction" and 'foams' -> "vague title, no discernible
+                    # payoff". Those are verdicts on a one-word title, and we
+                    # were binning the clip without ever downloading or
+                    # transcribing it.
+                    #
+                    # A STRICTER judge already sits downstream: the content
+                    # gate re-scores on the real transcript at 0.70. So when
+                    # nothing clears the title floor, hand the best material
+                    # to that judge instead of skipping. If it rejects, the
+                    # slot's existing retry blocklists the clip and tries the
+                    # next candidate. The bar goes UP (0.70 transcript vs
+                    # 0.50 title) and the evidence gets better — this is more
+                    # work, not a weaker gate.
+                    rescue_floor = float(spec.get("rescue_floor", 0.25))
+                    rescue = [c for c in shortlist
+                              if c["banger"] >= rescue_floor]
+                    if not rescue:
+                        # everything is transparent spam (giveaway/subathon/
+                        # sponsor bait sits <0.25) — a transcript pass on
+                        # that is wasted runner time, not a missed video.
+                        _judge("selection", verdict="skip",
+                               why=f"best title score {best_b:.2f} < hard "
+                                   f"floor {rescue_floor} across "
+                                   f"{len(shortlist)} candidates")
+                        raise _SkipSlot(
+                            f"quality floor: best banger {best_b:.2f} < "
+                            f"{rescue_floor} (hard floor) across "
+                            f"{len(shortlist)} candidates — nothing worth "
+                            "transcribing")
+                    print(f"::warning::[rescue] nothing clears the title "
+                          f"floor ({best_b:.2f} < {min_banger}) — escalating "
+                          f"{len(rescue)} candidate(s) to the TRANSCRIPT "
+                          f"judge rather than skipping the slot", flush=True)
+                    _judge("selection", verdict="rescue",
+                           why=f"best title score {best_b:.2f} < "
+                               f"{min_banger}; escalated to the transcript "
+                               f"judge (bar 0.70) instead of skipping")
+                    postable = rescue
                 pick = postable[0]
                 # FINAL DEDUPE GUARD (never post the same clip twice): the
                 # shortlist was already filtered by posted_keys, so this only
@@ -1328,6 +1366,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     raise RuntimeError(
                         f"content gate: transcript-aware score {cb:.2f} < "
                         f"{content_floor} ({cwhy or 'no reason'})")
+                # A RESCUED clip (one that failed the title floor and was
+                # escalated here) fails CLOSED. Normally this gate fails
+                # open so a flaky brain never costs a good clip — but a
+                # rescue has ALREADY been judged weak once, so an
+                # unavailable transcript judge means nothing credible has
+                # vouched for it. Shipping then is exactly the "post shit"
+                # outcome the escalation exists to avoid. Retry the slot:
+                # the next candidate may score, or the brain may recover.
+                if cb is None and _JUDGES.get(
+                        "selection", {}).get("verdict") == "rescue":
+                    raise RuntimeError(
+                        "rescue needs the transcript judge and it is "
+                        "unavailable — a weak-title clip must EARN its slot, "
+                        "retrying with another candidate")
 
             # DIRECTOR COMPLETENESS GATE (§9): if the brain judges the clip
             # starts mid-action with no context OR its payoff is cut off,
@@ -1707,6 +1759,12 @@ def main() -> int:
     # until one ships or we run dry. A deliberate skip (quality floor / dedupe
     # guard) is not a failure and does not retry. Failures fail fast (the dark
     # gate + preflight reject bad sources in ~2s), so retries are cheap.
+    # 3 attempts now buy MORE than they used to: a slot whose shortlist
+    # fails the title floor no longer skips instantly — it escalates each
+    # candidate to the transcript judge, so these attempts get spent on
+    # real inspection instead of going unused. Held at 3 deliberately: each
+    # attempt costs a download + whisper pass (~90s) and the job's ceiling
+    # is 120 min (a run died on that wall on 2026-07-25).
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
         # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call

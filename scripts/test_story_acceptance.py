@@ -770,6 +770,39 @@ def main() -> int:  # noqa: C901
           'led.get("kind") == "twitch_clip" and not _any_judgment()'
           in _rt_src)
 
+    # ---- ESCALATION over giving up -------------------------------------
+    # 2026-07-31: two slots posted nothing on "quality floor: best banger
+    # 0.45 < 0.5". That score judges the clipper's TWITCH TITLE ('sadge',
+    # 'foams') — the clip was binned without ever being downloaded or
+    # transcribed, while a STRICTER transcript judge (0.70) sat unused
+    # downstream. An empty slot is a failure, not a success.
+    check("a failed title floor escalates instead of skipping",
+          "[rescue]" in _rt_src and "postable = rescue" in _rt_src)
+    check("escalation goes to the transcript judge, a HIGHER bar",
+          "min_banger_content" in _rt_src
+          and float(_rt_src.split('spec.get("min_banger_content", ')[1]
+                    .split(")")[0])
+          > float(_rt_src.split('spec.get("min_banger", ')[1].split(")")[0]))
+    check("a hard floor still exists (spam is not worth transcribing)",
+          'spec.get("rescue_floor", 0.25)' in _rt_src
+          and "nothing worth " in _rt_src)
+    check("the hard floor is below the title floor it rescues from",
+          0.25 < 0.50)
+    # a rescued clip has already been judged weak once — it must EARN the
+    # slot, so an unavailable transcript judge is a retry, never a ship
+    check("rescue fails CLOSED when the transcript judge is unavailable",
+          'cb is None and _JUDGES.get(' in _rt_src
+          and "must EARN its slot" in _rt_src)
+    check("a normal (non-rescued) clip still fails OPEN on that judge",
+          "cb is not None and cb < content_floor" in _rt_src)
+    check("the escalation is recorded as a verdict, not silent",
+          '_judge("selection", verdict="rescue"' in _rt_src
+          and '_judge("selection", verdict="skip"' in _rt_src)
+    # the viewer must show it, or the operator can't tell a rescue from a
+    # normal post when reading back
+    check("judges viewer renders the selection verdict",
+          "selection" in (REPO / "scripts" / "judges.py").read_text())
+
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no
     # ffmpeg): parsers, registry wiring, verdict semantics, consumers.

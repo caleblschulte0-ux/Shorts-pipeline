@@ -69,6 +69,16 @@ def _fmt_judge(name: str, v: dict) -> list[str]:
         out.append(f"    title       {note}")
         if v.get("title"):
             out.append(f"                  \"{v['title']}\"")
+    elif name == "selection":
+        # a RESCUE means the title floor failed and the clip was escalated
+        # to the transcript judge rather than the slot being abandoned —
+        # the operator should be able to see that happened
+        v_ = v.get("verdict")
+        label = {"rescue": "RESCUED (escalated to the transcript judge)",
+                 "skip": "SKIPPED (below the hard floor)"}.get(v_, v_ or "?")
+        out.append(f"    selection   {label}")
+        if v.get("why"):
+            out.append(f"                  · {v['why']}")
     elif name == "story_director":
         for c in v.get("clusters") or []:
             mark = MARK.get(c.get("outcome"), c.get("outcome", "?"))
@@ -108,7 +118,8 @@ def _render_run(run: dict, rejects_only: bool) -> None:
         if not judges:
             print("    (no judge verdicts recorded)")
             continue
-        for name in ("banger", "content", "story_director", "title",
+        for name in ("selection", "banger", "content",
+                     "story_director", "title",
                      "render_qa", "vision"):
             if name in judges:
                 for line in _fmt_judge(name, judges[name]):
