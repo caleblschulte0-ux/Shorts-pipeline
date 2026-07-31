@@ -21,9 +21,14 @@ Spec (same shape as the trending channel's graph_race package):
    "duration": 12, "hook": "Wait for 1990..."}   # hook + icon optional
 Colors are optional — a curated palette fills gaps deterministically.
 
+The KEY (icon + name + value per series) is parked in the dead band
+between the title and the plot, and the title is measured + wrapped to fit
+the frame, so neither can ever cover the lines or run off-screen.
+
 `assess(spec)` scores DATA DRAMA (magnitude + movement) and callers should
 gate on it before rendering: small, slow, flat numbers make a boring
-video (see MIN_PEAK / MIN_SWING). Units are normalized first, so a spec
+video, and a single-series chart is not a race at all (see MIN_SERIES /
+MIN_PEAK / MIN_SWING). Units are normalized first, so a spec
 written as 11.5 with y_label "EVs sold (millions)" both renders as
 "11.5M" and is judged on its real magnitude — see `normalize()`.
 
@@ -57,6 +62,7 @@ _FONT = str(Path(__file__).resolve().parent.parent / "assets" / "fonts"
 # "Moves" is the hard gate: the biggest swing (peak/trough, in EITHER
 # direction — a 600 -> 1 collapse is as dramatic as 1 -> 600) must clear
 # MIN_SWING, or MIN_SWING_CROSSOVER when the lead actually changes hands.
+MIN_SERIES = 2             # a one-line chart is not a race
 MIN_PEAK = 50.0            # post-normalization; catches 0-10 index data
 MIN_SWING = 3.0
 CROSSOVER_SWING = 1.6
@@ -74,7 +80,18 @@ _UNIT_WORDS = [
 # Icon sizes in px (portrait 1080x1920). Leaderboard icons stay small
 # so they never crowd the rank + name text beside them.
 TIP_ICON_PX = 40
-BOARD_ICON_PX = 34
+TIP_ICON_MAX_W = 92        # wordmarks are wide — cap so they don't sprawl
+BOARD_ICON_PX = 24
+BOARD_ICON_MAX_W = 52
+
+# Vertical layout in figure fractions. The key lives in the dead band
+# between the title and the plot, so it can never cover the lines.
+TITLE_TOP = 0.965          # title grows DOWNWARD from here (va="top")
+KEY_TOP = 0.855
+KEY_STEP = 0.030           # 4 series -> lowest row 0.765, plot top 0.74
+KEY_X_ICON = 0.155
+KEY_X_NAME = 0.225
+KEY_X_VALUE = 0.90
 
 
 def _smoothstep(p: float) -> float:
@@ -154,6 +171,11 @@ def assess(spec: dict) -> dict:
                 "reasons": ["no series/years"]}
 
     reasons: list[str] = []
+    # A single line is not a race — there is nobody to beat, so there is no
+    # reason to keep watching. Operator ruling: always at least 2 things.
+    if len(series) < MIN_SERIES:
+        reasons.append(f"only {len(series)} series — a race needs at least "
+                       f"{MIN_SERIES} things to compare")
     peak = max(max(s["values"]) for s in series)
     # biggest peak-to-trough swing across the series — direction agnostic.
     # A series touching 0 is an infinite ratio; report it as the cap
@@ -202,19 +224,76 @@ def _initials(name: str) -> str:
     return (name.strip()[:2] or "?").upper()
 
 
-def _icon_zoom(arr, target_px: float) -> float:
-    """Scale factor that renders `arr` at ~target_px tall."""
-    h = getattr(arr, "shape", [target_px])[0] or target_px
-    return float(target_px) / float(h)
-
-
-def _icon_width(arr, target_px: float) -> float:
-    """On-screen width in px when drawn `target_px` tall (flags are wide,
-    so the tip label has to clear more than the icon's height)."""
+def _icon_zoom(arr, target_h: float, max_w: float | None = None) -> float:
+    """Scale factor for `arr` at ~target_h tall, capped so a very wide
+    wordmark ("ANTHROPIC" at 160x18) doesn't sprawl across the chart."""
     shape = getattr(arr, "shape", None)
     if not shape or len(shape) < 2 or not shape[0]:
-        return target_px
-    return target_px * (shape[1] / shape[0])
+        return 1.0
+    h, w = float(shape[0]), float(shape[1])
+    zoom = target_h / h
+    if max_w and w * zoom > max_w:
+        zoom = max_w / w
+    return zoom
+
+
+def _icon_width(arr, target_h: float, max_w: float | None = None) -> float:
+    """On-screen width in px at the same scale `_icon_zoom` would pick —
+    the tip label has to clear the icon, and flags/wordmarks are wide."""
+    shape = getattr(arr, "shape", None)
+    if not shape or len(shape) < 2 or not shape[0]:
+        return target_h
+    return float(shape[1]) * _icon_zoom(arr, target_h, max_w)
+
+
+def _fit_title(fig, text: str, font_path: str | None, max_w_px: float,
+               max_lines: int = 2, hi: int = 46, lo: int = 26):
+    """Wrap + auto-shrink a title so it NEVER runs off frame.
+
+    matplotlib's own `wrap=True` measures against the figure, not the
+    band we allot, and silently overflowed long titles off both edges
+    (seen in production). This measures the real rendered width with the
+    canvas renderer and steps the size down until the text fits
+    `max_lines` lines of `max_w_px`. Returns (text_with_newlines, fp).
+    """
+    import matplotlib.font_manager as fm
+    words = text.split()
+    if not words:
+        return text, fm.FontProperties(size=hi)
+    try:
+        renderer = fig.canvas.get_renderer()
+    except Exception:  # noqa: BLE001 — no renderer: trust the caller's size
+        return text, (fm.FontProperties(fname=font_path, size=hi)
+                      if font_path else fm.FontProperties(weight="bold",
+                                                          size=hi))
+
+    def _fp(size):
+        return (fm.FontProperties(fname=font_path, size=size) if font_path
+                else fm.FontProperties(weight="bold", size=size))
+
+    def _width(s, fp):
+        probe = fig.text(0, 0, s, fontproperties=fp)
+        w = probe.get_window_extent(renderer=renderer).width
+        probe.remove()
+        return w
+
+    for size in range(hi, lo - 1, -2):
+        fp = _fp(size)
+        lines, cur = [], ""
+        for w in words:
+            trial = f"{cur} {w}".strip()
+            if cur and _width(trial, fp) > max_w_px:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = trial
+        if cur:
+            lines.append(cur)
+        # a single word wider than the band can't be fixed by wrapping
+        if len(lines) <= max_lines and all(_width(x, fp) <= max_w_px
+                                           for x in lines):
+            return "\n".join(lines), fp
+    return "\n".join(words[:max_lines]), _fp(lo)
 
 
 def _spread(pos: list[float], min_sep: float, floor: float,
@@ -287,8 +366,6 @@ def render(spec: dict, out: str | Path, *,
                   f"— using initials badges")
 
     have_font = os.path.exists(_FONT)
-    title_font = fm.FontProperties(fname=_FONT, size=46) if have_font \
-        else fm.FontProperties(weight="bold", size=40)
     year_font = fm.FontProperties(fname=_FONT, size=96) if have_font \
         else fm.FontProperties(weight="bold", size=84)
     hook_font = fm.FontProperties(fname=_FONT, size=54) if have_font \
@@ -308,6 +385,28 @@ def render(spec: dict, out: str | Path, *,
         fig = plt.figure(figsize=(W / dpi, H / dpi), dpi=dpi)
         fig.patch.set_facecolor("#000000")
         ax = fig.add_axes([0.13, 0.30, 0.82, 0.44])
+        # Fit the title ONCE (measuring costs a canvas draw), not per frame.
+        fig.canvas.draw()
+        title_text, title_font = _fit_title(
+            fig, title, _FONT if have_font else None, max_w_px=W * 0.92)
+
+        # ADAPTIVE VERTICAL LAYOUT. A 1-line title leaves room a 2-line one
+        # doesn't, and 4 series need a taller key than 2 — so measure the
+        # real title block, hang the key under it, and shrink the plot to
+        # whatever is left. Nothing can then collide at any title length.
+        key_top = KEY_TOP
+        try:
+            probe = fig.text(0.5, TITLE_TOP, title_text, ha="center",
+                             va="top", fontproperties=title_font,
+                             linespacing=1.15)
+            renderer = fig.canvas.get_renderer()
+            key_top = probe.get_window_extent(renderer).y0 / H - 0.025
+            probe.remove()
+        except Exception:  # noqa: BLE001 — fall back to the static constant
+            pass
+        key_bottom = key_top - KEY_STEP * max(0, len(series) - 1)
+        ax_top = max(0.45, key_bottom - 0.035)
+        ax.set_position([0.13, 0.30, 0.82, ax_top - 0.30])
         cam_top = 0.0            # dynamic y "camera": only ever zooms out
         extra: list = []         # per-frame figure-level artists to recycle
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
@@ -325,8 +424,9 @@ def render(spec: dict, out: str | Path, *,
                 a.remove()
             extra = []
             ax.set_facecolor("#000000")
-            fig.text(0.5, 0.88, title, color="white", ha="center",
-                     va="center", fontproperties=title_font, wrap=True)
+            fig.text(0.5, TITLE_TOP, title_text, color="white",
+                     ha="center", va="top", fontproperties=title_font,
+                     linespacing=1.15)
 
             tips = []
             for s in series:
@@ -383,15 +483,16 @@ def render(spec: dict, out: str | Path, *,
                 if art is None:
                     off = 8
                 else:
-                    iw = _icon_width(art, TIP_ICON_PX)
+                    iw = _icon_width(art, TIP_ICON_PX, TIP_ICON_MAX_W)
                     ax.add_artist(AnnotationBbox(
-                        OffsetImage(art, zoom=_icon_zoom(art, TIP_ICON_PX)),
+                        OffsetImage(art, zoom=_icon_zoom(art, TIP_ICON_PX,
+                                                         TIP_ICON_MAX_W)),
                         (cur, ly),
                         xybox=(-(iw / 2 + 6) if near_end else iw / 2 + 6, 0),
                         boxcoords="offset points",
                         frameon=True, pad=0.15, zorder=6,
                         bboxprops=dict(edgecolor=s["color"], linewidth=2,
-                                       facecolor="#0b0f17",
+                                       facecolor="white",
                                        boxstyle="round,pad=0.18"),
                         annotation_clip=False))
                     off = iw + 16
@@ -404,37 +505,39 @@ def render(spec: dict, out: str | Path, *,
                             zorder=5, clip_on=False,
                             annotation_clip=False)
 
-            # live leaderboard, upper-left of the chart band. Every row is
-            # icon (or initials badge) + name + value, so the viewer never
-            # has to map a colour back to a legend.
-            ly = 0.70
+            # THE KEY: compact icon + name + value rows parked in the
+            # dead band between the title and the plot, so it never sits
+            # on top of the lines it is labelling (operator note: "move
+            # the key, make it a bit smaller and out of the way").
+            ly = key_top
             for rank, (cv, s, _xs, _ys) in enumerate(tips):
                 art = icons.get(s["name"])
                 if art is not None:
                     ab = AnnotationBbox(
-                        OffsetImage(art, zoom=_icon_zoom(art, BOARD_ICON_PX)),
-                        (0.205, ly - 0.012), xycoords="figure fraction",
+                        OffsetImage(art, zoom=_icon_zoom(art, BOARD_ICON_PX,
+                                                         BOARD_ICON_MAX_W)),
+                        (KEY_X_ICON, ly), xycoords="figure fraction",
                         frameon=True, zorder=6,
-                        bboxprops=dict(edgecolor=s["color"], linewidth=2,
-                                       facecolor="#0b0f17",
-                                       boxstyle="round,pad=0.2"),
+                        bboxprops=dict(edgecolor=s["color"], linewidth=1.5,
+                                       facecolor="white",
+                                       boxstyle="round,pad=0.18"),
                         annotation_clip=False)
                     fig.add_artist(ab)
                     extra.append(ab)
                 else:
-                    fig.text(0.205, ly - 0.012, _initials(s["name"]),
+                    fig.text(KEY_X_ICON, ly, _initials(s["name"]),
                              color="#0b0f17", ha="center", va="center",
-                             fontsize=17, fontweight="bold",
-                             bbox=dict(boxstyle="circle,pad=0.42",
+                             fontsize=11, fontweight="bold",
+                             bbox=dict(boxstyle="circle,pad=0.34",
                                        facecolor=s["color"],
                                        edgecolor="none"))
-                fig.text(0.272, ly, f"{rank + 1}. {s['name']}",
+                fig.text(KEY_X_NAME, ly, f"{rank + 1}. {s['name']}",
                          color=s["color"], ha="left", va="center",
-                         fontsize=21, fontweight="bold")
-                fig.text(0.272, ly - 0.024, _fmt_compact(cv), color="white",
-                         ha="left", va="center", fontsize=27,
+                         fontsize=17, fontweight="bold")
+                fig.text(KEY_X_VALUE, ly, _fmt_compact(cv), color="white",
+                         ha="right", va="center", fontsize=19,
                          fontweight="bold")
-                ly -= 0.066
+                ly -= KEY_STEP
 
             # big year counter under the chart
             fig.text(0.5, 0.225, str(int(round(cur))), color="white",

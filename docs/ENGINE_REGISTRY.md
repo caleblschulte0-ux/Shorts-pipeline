@@ -55,7 +55,7 @@ result or `None`, never raising into a caller; engines never write outside
 | **themed_bottom** | procedural game engine (own physics/easing) | trending bottom-half | in-repo engine, self-contained |
 | **Higgsfield** | AI still→motion (paid API) | dormant (`HIGGSFIELD_ENABLE=1`) | the architectural template for `maybe_*` |
 | **chart_race** | animated multi-series chart race (eased timeline, y-camera zoom, spread tip labels, per-series icons, leaderboard, hook overlay) — silent mp4, caller muxes audio; `assess()` enforces the big-numbers data bar | trending `graph_race` format (`make_graph_race.py`) | registered module engine (`engines/chart_race.py`), `maybe_chart_race` contract, matplotlib+ffmpeg only |
-| **series_icons** (funnel) | resolve a country flag / brand mark for a named data series (keyless: flagcdn + Wikipedia/Commons via `entity_media`), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
+| **series_icons** (funnel) | resolve a country flag / brand LOGO for a named data series (keyless: flagcdn + Commons/Wikipedia logo search; news photos rejected), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
 
 ### svg_motion (added 2026-07-30 — capability sprint)
 
