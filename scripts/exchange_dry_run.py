@@ -128,6 +128,7 @@ class Fixture:
             "request_id": request_id,
             "status": "fulfilled",
             "drive": {"file_id": up["file_id"],
+                      "folder_id": "dry-run-folder",
                       "download_url": up["download_url"],
                       "filename": Path(up["path"]).name,
                       "sharing": "anyone_with_link"},
@@ -273,9 +274,28 @@ def run(verbose: bool = True) -> dict:              # noqa: C901
         bad = mc.validate_response_media(tampered, bundle, date=DATE,
                                          bundle_id=bid)
         fx.check(s, len(bad["rejected"]) == 1
-                 and any("hash disagrees" in p
+                 and any("image.sha256 disagrees" in p
                          for p in bad["rejected"][0]["problems"]),
                  "a hash edited after the fact is refused")
+
+        # Two requests pointing at one Drive file. Caught twice over: the
+        # deterministic filename can only belong to one of them, and the
+        # one-file-one-request rule catches whatever slips past that.
+        shared = json.loads(json.dumps(response))
+        shared["media"][1]["drive"]["file_id"] = \
+            shared["media"][0]["drive"]["file_id"]
+        dupe = mc.validate_response_media(shared, bundle, date=DATE,
+                                          bundle_id=bid)
+        fx.check(s, dupe["rejected"],
+                 "one Drive file under two request ids is refused")
+
+        private = json.loads(json.dumps(response))
+        private["media"][0]["drive"]["sharing"] = "private"
+        shut = mc.validate_response_media(private, bundle, date=DATE,
+                                          bundle_id=bid)
+        fx.check(s, any("sharing disagrees" in p
+                        for r in shut["rejected"] for p in r["problems"]),
+                 "a pointer that is not link-visible is refused")
 
         misplaced = json.loads(json.dumps(response))
         misplaced["media"].append(fx.pointer(up3, arid))

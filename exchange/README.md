@@ -111,6 +111,46 @@ someone is on it — skip that request. An **expired** claim is inert: take it
 over. A verified checkpoint beats any claim, including a live one. Default
 lease is 15 minutes.
 
+### Every field must match — not just the hash
+
+When Phase B reads your `response.json`, it compares each pointer against the
+checkpoint you wrote, field by field: **filename, file_id, folder_id, sha256,
+bytes, format, width, height, and sharing.** Any disagreement refuses that
+image and the shot falls back to stock.
+
+Hash and byte count alone only say the *content* matches. They say nothing
+about whether the pointer names the same asset you verified — an image can
+hash perfectly and still be under a name nobody can recover, in the wrong
+folder, or private. **Copy the values out of the checkpoint. Do not
+re-describe the file from memory.**
+
+`sharing` must be `"anyone_with_link"` on both. Anything else and Drive hands
+our downloader an HTML permission page instead of bytes, so "I uploaded it"
+and "you can fetch it" are different claims and only that one covers both.
+
+### One Drive file, one request
+
+A `file_id` may appear under exactly **one** `request_id`. Two requests are
+two different lines of script; an image answering both is one shot doing
+double duty, which is how a slate ends up visually repeating itself.
+
+Identical hashes are not an exemption. If the same file shows up under two
+request ids, **both** are refused — we cannot tell which one legitimately
+owns it, and guessing is the same coin flip we refuse to make on duplicate
+filenames. Generate the second image.
+
+### Checkpoints are MANDATORY on any day you write DONE
+
+`DONE` is your assertion that both workers ran to completion. If they did,
+every image you point at has a checkpoint — writing one is the media worker's
+whole job. So on a DONE run, **a pointer with no checkpoint is refused** and
+that shot self-fills from stock.
+
+The only exception is our own emergency backstop, which runs when you never
+wrote `DONE` at all. There are no checkpoints to require on a day you did not
+finish, and demanding them would turn "ChatGPT was late" into "the channel
+posts nothing".
+
 ### Honesty applies to checkpoints too
 
 A checkpoint asserts *you downloaded these bytes and hashed them*. Writing
@@ -238,7 +278,9 @@ already produce, just inline on the shot instead of in the `media` array:
   {"phrase": "the office fridge", "query": "office kitchen",
    "media": {
      "status": "fulfilled",
-     "drive": {"file_id": "1AbC…", "public": true,
+     "drive": {"file_id": "1AbC…", "folder_id": "1FolderXyz…",
+               "filename": "20260731__authored-my-slug-s0.png",
+               "sharing": "anyone_with_link",
                "download_url": "https://drive.google.com/uc?export=download&id=1AbC…"},
      "image": {"sha256": "…64 hex of the exact bytes…", "bytes": 1554380,
                "format": "png", "width": 1080, "height": 1080}

@@ -139,6 +139,18 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   (`<date>__<safe_request_id>.png`) and published in the bundle BEFORE either
   worker starts, which is what makes an orphaned upload recoverable. Verify the
   contract offline with `python scripts/exchange_dry_run.py`.
+  Three rules that are not negotiable: **a DONE run REQUIRES checkpoints**
+  (only the no-DONE emergency backstop may accept media without them); a
+  pointer must match its checkpoint on **every** field (filename, file_id,
+  folder_id, sha256, bytes, format, width, height, link-visible sharing), not
+  just the hash; and **one Drive file may back exactly one request** — a
+  file_id under two request_ids refuses BOTH, identical hashes included.
+- **Phase B's backstop is 08:30 CENTRAL, from two UTC crons** (`30 13` and
+  `30 14`), gated in-code by `zoneinfo` — never a single UTC cron. The old
+  12:45 UTC one was 6:45 Central in WINTER, fifteen minutes before the 07:00
+  finalizer starts, so for half the year it would have rendered an unfinished
+  day with everything green. If the ChatGPT finalizer ever moves, move
+  `FINALIZER_HOUR_CENTRAL` in `scripts/exchange_phase_b.py`, not the crons.
 - **The chain is LIVE and automatic** (2026-07-30): Routine authors packages ->
   auto-merge -> **Phase A** -> ChatGPT -> DONE -> **Phase B** -> daily.yml
   renders. `daily.yml` NO LONGER fires on auto-merge or on a

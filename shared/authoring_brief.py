@@ -149,15 +149,24 @@ MEDIA_CONTRACT = {
             "media": {
                 "status": "fulfilled",
                 "drive": {"file_id": "1AbC...",
+                          "folder_id": "1FolderXyz...",
+                          "filename": "<date>__authored-<slug>-s0.png",
                           "download_url": "https://drive.google.com/uc?"
                                           "export=download&id=1AbC...",
-                          "public": True},
+                          "sharing": "anyone_with_link"},
                 "image": {"sha256": "...64 hex of the exact bytes...",
                           "bytes": 1554380, "format": "png",
                           "width": 1080, "height": 1080},
             },
         }],
     },
+    "every_field_must_match_the_checkpoint": (
+        "filename, file_id, folder_id, sha256, bytes, format, width, height "
+        "and sharing are ALL compared against the checkpoint you wrote, and "
+        "any disagreement refuses the image. Hash and byte count alone say "
+        "the CONTENT matches; they say nothing about whether the pointer "
+        "names the same asset you verified. Copy the values from the "
+        "checkpoint — do not re-describe the file from memory."),
     "verified_on_arrival": [
         "SHA-256 recomputed from the downloaded bytes — a mismatch is "
         "refused, never pinned.",
