@@ -163,6 +163,7 @@ def run(verbose: bool = True) -> dict:              # noqa: C901
         report = media_judge.judge_package(PKG, None)
         xb.write_bundle(DATE, [PKG], [report])
         bundle = xb.read_bundle(DATE)
+        mc.write_bundle_identity(DATE, bundle)
         bid = mc.bundle_identity(DATE)
         reqs = bundle.get("requests") or []
         fx.check(s, len(reqs) >= 2, f"{len(reqs)} request(s) in the bundle")
@@ -198,6 +199,28 @@ def run(verbose: bool = True) -> dict:              # noqa: C901
                  "request two has no checkpoint — an orphan on Drive")
         fx.check(s, not mc.claim_active(mc.read_claim(DATE, r2["request_id"])),
                  "its abandoned claim has expired and no longer blocks")
+
+        # -- 3b. PHASE A RE-RUNS MID-FLIGHT ---------------------------------
+        # The 2026-08-01 failure. Phase A fires on every auto-merge; that day
+        # it rewrote bundle.json six times, the last FIVE HOURS after the
+        # media worker finished. When identity was the file's sha256, every
+        # checkpoint written before that rewrite was orphaned — and a DONE run
+        # requires checkpoints, so all 17 verified images would have been
+        # refused. The ask did not change; only the file did.
+        s = fx.step(3, "Phase A re-runs mid-flight without orphaning anything")
+        s["step"] = 3.5
+        before = mc.bundle_identity(DATE)
+        rejudged = media_judge.judge_package(PKG, None)
+        xb.write_bundle(DATE, [PKG], [rejudged])       # rewrites the file
+        mc.write_bundle_identity(DATE, xb.read_bundle(DATE))
+        fx.check(s, mc.bundle_identity(DATE) == before,
+                 "identity survived a Phase A rewrite (the ask did not change)")
+        fx.check(s, mc.checkpoint_reusable(
+            mc.read_checkpoint(DATE, r1["request_id"]), date=DATE,
+            bundle_id=mc.bundle_identity(DATE),
+            request_id=r1["request_id"], prompt=r1["prompt_verbatim"]),
+            "the media worker's checkpoint is still valid afterwards")
+        bid = mc.bundle_identity(DATE)
 
         # -- 4. The finalizer recovers --------------------------------------
         s = fx.step(4, "Finalizer recovers instead of regenerating")

@@ -281,17 +281,88 @@ def identity_of_bytes(blob: bytes) -> str:
     return hashlib.sha256(blob or b"").hexdigest()
 
 
-def bundle_identity(date) -> str | None:
-    """sha256 of the day's `bundle.json` EXACTLY as it sits on disk.
+IDENTITY_FILE = "BUNDLE_ID"
 
-    Deliberately over the raw file bytes, not a re-serialized dict: two
-    processes that both read the file get the same answer without agreeing on
-    JSON formatting first. Re-running Phase A with identical output keeps the
-    identity (so checkpoints survive an idempotent re-run); changing a single
-    prompt breaks it (so they do not survive a real edit)."""
+
+def ask_fingerprint(bundle) -> str:
+    """Hash of WHAT WE ASKED FOR, not of the file that carries it.
+
+    The identity used to be the sha256 of `bundle.json`'s raw bytes. That
+    broke on 2026-08-01 in a way nothing could see: Phase A runs on every
+    auto-merge, it re-judges media each time, and it rewrote `bundle.json`
+    SIX times that day — the last one five hours after the 06:00 worker had
+    finished. Every one of the 17 checkpoints then read as "made for a
+    DIFFERENT bundle", and because a DONE run now requires checkpoints, all
+    17 verified images would have been refused.
+
+    The fix is to hash the ASK: request ids, their prompts, their agreed
+    filenames, plus the registry snapshot the day is contracted to. A
+    re-judge that changes nothing a worker acts on leaves this untouched, so
+    the checkpoints survive. Change a prompt, add a request, or migrate the
+    contract and it moves — which is exactly when they should die."""
+    if not isinstance(bundle, dict):
+        return ""
+    reqs = []
+    for r in bundle.get("requests") or []:
+        if not isinstance(r, dict):
+            continue
+        reqs.append("|".join(str(r.get(k) or "") for k in
+                             ("request_id", "prompt_sha256", "drive_filename",
+                              "kind", "slug", "shot_index")))
+    contract = bundle.get("contract") or {}
+    parts = [
+        f"date={normalize_date(bundle.get('date'))}",
+        f"registry={contract.get('registry_sha256') or ''}",
+        f"revision={contract.get('registry_revision') or ''}",
+        f"commit={contract.get('source_commit') or ''}",
+        "requests=" + "\n".join(sorted(reqs)),
+    ]
+    return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()
+
+
+def bundle_identity(date) -> str | None:
+    """The day's identity — read from the `BUNDLE_ID` sidecar Phase A writes.
+
+    A sidecar rather than a hash the workers compute themselves, for two
+    reasons. It is stable across the cosmetic `bundle.json` rewrites that
+    used to invalidate every checkpoint (see `ask_fingerprint`), and a worker
+    that only has to COPY a string cannot get the hashing wrong.
+
+    Falls back to hashing `bundle.json` for bundles written before the
+    sidecar existed, so old days stay readable."""
+    d = bundle_dir(date)
     try:
-        return identity_of_bytes((bundle_dir(date) / "bundle.json")
-                                 .read_bytes())
+        text = (d / IDENTITY_FILE).read_text().strip()
+        if _HEX64.match(text.lower()):
+            return text.lower()
+    except Exception:                                    # noqa: BLE001
+        pass
+    try:
+        return identity_of_bytes((d / "bundle.json").read_bytes())
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
+def write_bundle_identity(date, bundle) -> str | None:
+    """Publish the day's identity, keeping it STABLE while the ask is.
+
+    Returns the identity in force after the call. Only rewrites the sidecar
+    when `ask_fingerprint` actually moved — that stability is the whole
+    point."""
+    try:
+        d = bundle_dir(date)
+        d.mkdir(parents=True, exist_ok=True)
+        want = ask_fingerprint(bundle)
+        path = d / IDENTITY_FILE
+        try:
+            if path.read_text().strip().lower() == want:
+                return want                  # unchanged — leave it alone
+        except Exception:                                # noqa: BLE001
+            pass
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(want + "\n")
+        os.replace(tmp, path)
+        return want
     except Exception:                                    # noqa: BLE001
         return None
 
@@ -1147,11 +1218,15 @@ def protocol_block(date) -> dict:
             "prompt, a timestamp, or a counter — so the 07:00 worker "
             "recomputes the identical string from the package on disk."),
         "bundle_identity": (
-            "sha256 of this bundle.json file's exact bytes. Compute it; do "
-            "not guess. Every checkpoint records it, and a checkpoint whose "
-            "identity does not match the current bundle is REFUSED — that is "
-            "how an image made for a prompt that has since changed gets kept "
-            "out of the video."),
+            f"READ IT FROM exchange/bundles/{d}/{IDENTITY_FILE} — a single "
+            f"line of 64 hex. Copy that string into every checkpoint's "
+            f"`bundle.identity`. Do NOT hash bundle.json yourself: Phase A "
+            f"re-runs and rewrites that file through the day, and on "
+            f"2026-08-01 it did so five hours after the media worker "
+            f"finished, which would have invalidated all 17 of its verified "
+            f"images. The sidecar only changes when the ASK changes — a new "
+            f"request, a changed prompt, a contract migration — which is "
+            f"exactly when a checkpoint should stop being valid."),
         "checkpoint_fields": {
             "schema": SCHEMA, "schema_version": SCHEMA_VERSION,
             "date": d, "bundle": {"identity": "<sha256 of bundle.json>",

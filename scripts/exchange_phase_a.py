@@ -255,6 +255,27 @@ def main() -> int:
         print("[phase-a] dry run — nothing written")
         return 0
 
+    # DO NOT MOVE THE GOALPOSTS UNDER A WORKER THAT IS ALREADY RUNNING.
+    # If checkpoints exist, the 06:00 media worker has started (or finished).
+    # Rewriting the ask now orphans its work. A re-judge that changes nothing
+    # is harmless and allowed through; a changed ask is refused unless the
+    # operator explicitly migrates the day.
+    existing_cps = mc.all_checkpoints(args.date)
+    if existing_cps and not args.rebuild_contract:
+        live = mc.ask_fingerprint(bundle)
+        frozen_id = mc.bundle_identity(args.date)
+        if frozen_id and live != frozen_id:
+            print(f"::warning::{len(existing_cps)} checkpoint(s) already "
+                  f"exist for {args.date} and the ASK has changed "
+                  f"({str(frozen_id)[:12]}… -> {live[:12]}…). Refusing to "
+                  f"rewrite the bundle — that would orphan every image the "
+                  f"media worker has already verified. Re-run with "
+                  f"--rebuild-contract to migrate the day deliberately.")
+            print(f"[phase-a] leaving {args.date}'s bundle as it stands")
+            return 0
+        print(f"[phase-a] {len(existing_cps)} checkpoint(s) exist and the ask "
+              f"is unchanged — safe to refresh the bundle")
+
     for pkg in packages:
         pkg_path = pkg.get("_path")
         if not pkg_path:
@@ -277,9 +298,18 @@ def main() -> int:
     # run log shows exactly which ask the day's checkpoints belong to — if
     # Phase A is re-run with different prompts this string changes and every
     # earlier checkpoint stops matching, which is the intended behaviour.
-    ident = mc.bundle_identity(args.date)
+    # PUBLISH THE IDENTITY, and keep it stable while the ask is.
+    #
+    # Phase A runs on every auto-merge — six times on 2026-08-01, the last
+    # five hours AFTER the 06:00 media worker finished. When identity was the
+    # sha256 of bundle.json's bytes, each of those rewrites silently killed
+    # every checkpoint written before it, and a DONE run (which now requires
+    # checkpoints) would have refused all 17 verified images. The sidecar
+    # moves only when `ask_fingerprint` moves.
+    ident = mc.write_bundle_identity(args.date, xb.read_bundle(args.date))
     if ident:
-        print(f"[phase-a] bundle identity sha256={ident}")
+        print(f"[phase-a] bundle identity {ident[:16]}… "
+              f"-> exchange/bundles/{args.date}/{mc.IDENTITY_FILE}")
         print(f"[phase-a] checkpoints go in "
               f"exchange/bundles/{args.date}/"
               f"{mc.PROGRESS_DIRNAME}/<safe_request_id>.json")
