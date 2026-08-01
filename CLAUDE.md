@@ -21,6 +21,13 @@ So, in this repo:
   "run it before uploads". Five modules were in that state at the
   2026-08-01 audit. A capability nothing calls is not a capability, and a
   doc claiming otherwise is a lie the next session inherits.
+  All five are now wired or honestly demoted, and the usual reason one was
+  "missing" turned out to be that a channel had already grown its own copy
+  privately — **look for the duplicate before you write the caller.** When
+  you consolidate copies, the test is EQUIVALENCE against the originals
+  (`tests/test_captions.py` is the pattern: the old implementations kept
+  verbatim as oracles, compared over generated input). A cleanup that
+  quietly re-cuts every video is not a cleanup.
 
 The standing audit record — what was found, what was fixed, what is
 deliberately left and why — is `docs/SYSTEM_AUDIT.md`.
@@ -32,10 +39,23 @@ config + posted-log + token env, not by folders — see
 
 ## The showrunner is the permanent, autonomous quality authority — DO NOT WEAKEN IT
 
-The explainer channel fails CLOSED (see `docs/EDITORIAL_RESET.md`). The
-headless-Claude SHOWRUNNER (`scripts/showrunner_review.py`) is the standing
-editor-with-a-veto and it is **load-bearing** — treat it like the posted
-logs, never as something to trim:
+The explainer channel fails CLOSED (see `docs/EDITORIAL_RESET.md`), and as
+of 2026-08-01 **so does trending**. The headless-Claude SHOWRUNNER
+(`scripts/showrunner_review.py`) is the standing editor-with-a-veto and it is
+**load-bearing** — treat it like the posted logs, never as something to trim:
+
+- **The policy lives in ONE place: `shared/showrunner_gate.py`.** Both
+  publishing channels call it; `decide()` is pure, so the fail-closed rules
+  are testable without rendering anything. Never re-implement it inline in a
+  channel — that is how trending went six months shipping 6 unwatched videos
+  a day while explainer was gated. The evidence that settled it is in
+  `docs/SYSTEM_AUDIT.md` §B: explainer 1/day gated, best video 1,063 views;
+  trending 6/day ungated, best video 45.
+- **A fail-closed gate with no judge holds everything.** Any workflow that
+  publishes MUST carry `CLAUDE_CODE_OAUTH_TOKEN` (or `GEMINI_API_KEY` as the
+  fallback judge) on the render step, and say so in its preflight. Without
+  that check the run renders a full slate and publishes none of it, green
+  the whole way.
 
 - It judges via the **Claude HEADLESS BRAIN** (the `claude` CLI on the
   `CLAUDE_CODE_OAUTH_TOKEN` subscription), NOT the paid Anthropic API. Keep
@@ -125,17 +145,27 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
 `third_capture/`, orchestrators in `scripts/`.
 
 - Import canonically: `from funnel import media_funnel`,
-  `from shared import uploaders`. The old root names (`media_funnel.py`,
-  `fsutil.py`, …) still exist as sys.modules shims — legacy imports keep
-  working and share the same module object — but write NEW code against
-  the packages.
+  `from shared import uploaders`. **The 18 root shims are GONE** (deleted
+  2026-08-01) — `import fsutil` is now an ImportError, not a deprecation.
+  `tests/test_repo_layout.py` keeps the root clean and stops them growing
+  back.
 - New shared capability → `funnel/` (media), `engines/` (render engine),
   `shared/` (everything else). Never copy shared logic into a channel.
-- Capability sprint 2026-07-30 added: `shared/video_qa.py` (finished-render
-  QA — run it before uploads), `shared/captions.py` (karaoke ASS captions),
-  `funnel/feeds.py` + `funnel/article_extract.py` (research intake), and
-  the `svg_motion` engine (animated vector cards). All opt-in, all tested
-  via `python -m unittest tests.test_capabilities`.
+- The 2026-07-30 sprint's five capabilities are all WIRED as of 2026-08-01
+  (they spent a day as the exact thing rule zero forbids):
+  `shared/video_qa.py` runs on every trending render; `shared/captions.py`
+  is the single caption grouper for `make_reddit_story`,
+  `make_explainer_stacked` and `third_capture/clip_edit` (each delegating
+  with parameters that reproduce its old output EXACTLY — see
+  `tests/test_captions.py`, which holds that against the original
+  implementations); `funnel/feeds.py` backs `scripts/discover_topic.py`;
+  `funnel/article_extract.py` fills `topic.snippets` so the writer works
+  from the real article instead of a headline. `engines/svg_motion.py` is
+  `experimental` with a decision date — it has no consumer and says so.
+- **The engine registry has to tell the truth.** `active` + not `gated`
+  means something really imports it; `tests/test_engine_registry_honesty.py`
+  checks the metadata against the code in both directions, because it was
+  once wrong in both at the same time.
 
 ## The story forge keeps the queue full of REAL data
 

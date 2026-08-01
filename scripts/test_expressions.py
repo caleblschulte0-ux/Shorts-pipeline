@@ -100,6 +100,54 @@ TEST_CASES = [
 ]
 
 
+#: The size a finished clip must clear — the same threshold the assertions
+#: below use, so a cached file can never be "good enough to reuse but not
+#: good enough to pass".
+MIN_CLIP_BYTES = 100_000
+
+
+def _usable_cached_clip(out: Path, case: "ExpressionTestCase") -> bool:
+    """Is an existing clip a COMPLETE render we can reuse?
+
+    This used to be a bare `if out.exists(): return out`, which made an
+    interrupted render permanently poisonous: kill a run mid-write (a
+    timeout, a Ctrl-C, a full disk) and the truncated mp4 is handed to every
+    future run, which then fails the size check forever. `housing_expr.mp4`
+    sat at 69 KB against a 2.5 s / ~300 KB expectation and the suite reported
+    "1 failed" on a scene that renders perfectly — the renderer was fine, the
+    cache was lying.
+
+    So the cache is validated, not trusted: big enough, and long enough.
+    Anything short is deleted and re-rendered.
+    """
+    if not out.exists():
+        return False
+    if out.stat().st_size < MIN_CLIP_BYTES:
+        print(f"  [cache] {out.name} is {out.stat().st_size} B — truncated "
+              f"render, re-doing it")
+        out.unlink(missing_ok=True)
+        return False
+    dur = _probe_duration(out)
+    if dur is not None and dur < case.duration * 0.9:
+        print(f"  [cache] {out.name} is {dur:.2f}s of an expected "
+              f"{case.duration:.2f}s — incomplete render, re-doing it")
+        out.unlink(missing_ok=True)
+        return False
+    return True
+
+
+def _probe_duration(path: Path) -> float | None:
+    """Clip duration in seconds, or None if ffprobe can't say."""
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(path)],
+            capture_output=True, text=True, timeout=30)
+        return float((out.stdout or "").strip())
+    except Exception:                                    # noqa: BLE001
+        return None
+
+
 def render_test_clip(
     case: ExpressionTestCase,
     with_expression: bool,
@@ -117,8 +165,8 @@ def render_test_clip(
     suffix = "_expr" if with_expression else "_baseline"
     out = TESTS_DIR / f"{case.name}{suffix}.mp4"
 
-    if out.exists():
-        return out  # Skip if already rendered
+    if _usable_cached_clip(out, case):
+        return out  # already rendered, and rendered COMPLETELY
 
     # Prepare extra dict
     extra = {}

@@ -433,7 +433,7 @@ def main() -> int:
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at, "duration": dur,
         }
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         atomic_write_json(args.log, log)
         results.append({"slug": slug, "ok": True, "url": url})
         posted_this_run += 1

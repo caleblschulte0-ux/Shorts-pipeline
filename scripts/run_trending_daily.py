@@ -470,6 +470,79 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
     return thumb, block
 
 
+#: How much article text to hand the writer per source. Enough to carry the
+#: actual facts, short enough not to swamp the prompt.
+RESEARCH_CHARS = int(os.environ.get("RESEARCH_CHARS", "1200"))
+RESEARCH_MAX_URLS = int(os.environ.get("RESEARCH_MAX_URLS", "2"))
+
+
+def _research(topic) -> None:
+    """Fill `topic.snippets` with the ACTUAL article text behind the topic.
+
+    A topic discovered from an RSS feed arrives as a headline and a link.
+    `snippets` — which `script_generator.generate` takes as its context
+    argument — was left empty, so the writer had the title and nothing else
+    and invented the middle of the story. `funnel/article_extract.py` was
+    built to fix exactly that and was then imported by nothing (audit
+    finding C).
+
+    Best-effort by contract: a fetch failure, a paywall, a parse miss, no
+    network — all leave `snippets` as they were and the run proceeds with
+    the headline, exactly as before. Research must never cost the day.
+    """
+    if getattr(topic, "snippets", None):
+        return                                  # already has context
+    urls = [u for u in (getattr(topic, "urls", None) or []) if u][
+        :RESEARCH_MAX_URLS]
+    if not urls:
+        return
+    got: list[str] = []
+    for url in urls:
+        try:
+            from funnel import article_extract
+            art = article_extract.extract(url)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"  [research] {url[:60]} skipped: "
+                  f"{type(exc).__name__}: {str(exc)[:60]}", flush=True)
+            continue
+        text = (art or {}).get("text") or ""
+        if len(text) < 200:
+            continue                            # a nav bar, not an article
+        got.append(text[:RESEARCH_CHARS])
+    if got:
+        topic.snippets = got
+        print(f"  [research] pulled {len(got)} article(s), "
+              f"{sum(len(g) for g in got)} chars of real source text",
+              flush=True)
+
+
+def _showrunner(pkg: dict, out_path: Path, result: dict, *,
+                will_upload: bool) -> dict:
+    """The taste gate. Six videos a day used to ship here unwatched.
+
+    `docs/SYSTEM_AUDIT.md` §B/§D: explainer ships 1/day through this gate and
+    has a 1,063-view video; trending shipped 6/day through nothing and has
+    never beaten 45. That is not an argument for levelling explainer down.
+
+    The policy (fail CLOSED on a publish run, `SHOWRUNNER=off` refused on a
+    publish run, a BLOCK is sovereign) lives in `shared/showrunner_gate.py`
+    so there is exactly one copy of it for every channel."""
+    from shared import showrunner_gate
+    ctx = {"slug": _slug(result.get("topic") or ""),
+           "title": result.get("title") or pkg.get("title"),
+           "hook": (pkg.get("hook") or "") or None,
+           "format": pkg.get("format"),
+           "segments": [s.get("say") or s.get("text") or s.get("caption")
+                        for s in (pkg.get("shots") or [])][:8]}
+    gate = showrunner_gate.run(out_path, slug=ctx["slug"], context=ctx,
+                               will_upload=will_upload)
+    showrunner_gate.log(gate, ctx["slug"])
+    result["showrunner"] = {"blocked": gate["blocked"],
+                            "reason": gate["reason"],
+                            "score": (gate.get("verdict") or {}).get("score")}
+    return gate
+
+
 def todays_package_dir() -> Path:
     """Where a scheduled Claude Code session is expected to drop the
     day's hand-written packages. Format: state/trending_packages/YYYYMMDD/."""
@@ -654,6 +727,15 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
             print(f"[{result['topic']!r}] QUARANTINED — {qa_block}", flush=True)
             return result
 
+        # SHOWRUNNER — the editor with a veto, now on this channel too.
+        gate = _showrunner(pkg, out_path, result, will_upload=not dry_run)
+        if gate["blocked"]:
+            result["error"] = f"showrunner_block: {gate['reason']}"
+            result["blocked"] = True
+            print(f"[{result['topic']!r}] NOT POSTING — held by the "
+                  f"showrunner. {gate['reason']}", flush=True)
+            return result
+
         if dry_run:
             result["ok"] = True
             result["video_url"] = "(dry-run)"
@@ -709,6 +791,11 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
     t_start = time.time()
 
     try:
+        # 0. RESEARCH. A topic discovered from RSS arrives as a headline and
+        # nothing else, so the writer has been inventing the middle of the
+        # story from the title alone. Pull the actual article text first.
+        _research(topic)
+
         # 1. Groq writes the script package (with validation + retry).
         print(f"[{topic.query!r}] generating script...", flush=True)
         pkg = script_generator.generate(
@@ -746,6 +833,17 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
             result["error"] = f"quarantined: {qa_block}"
             result["quarantined"] = True
             print(f"[{topic.query!r}] QUARANTINED — {qa_block}", flush=True)
+            return result
+
+        # SHOWRUNNER — same gate as the pre-written path. A video generated
+        # on the fly gets no less scrutiny than an authored one; if anything
+        # it has had less human attention.
+        gate = _showrunner(pkg, out_path, result, will_upload=not dry_run)
+        if gate["blocked"]:
+            result["error"] = f"showrunner_block: {gate['reason']}"
+            result["blocked"] = True
+            print(f"[{topic.query!r}] NOT POSTING — held by the showrunner. "
+                  f"{gate['reason']}", flush=True)
             return result
 
         # 3. Upload (unless dry-run).

@@ -225,46 +225,20 @@ def main() -> int:
         # run fails open (so iteration isn't blocked by infra). "If this is not
         # clearly good, it does not publish."
         will_upload = not args.dry_run and not frozen
-        blocked = False
-        verdict = {}
         ctx = {"slug": slug, "title": sc.get("title"),
                "hook": sc.get("hook"), "closing": sc.get("closing"),
                "segments": [s.get("say") or s.get("topic")
                             for s in sc.get("segments", [])][:8]}
-        if os.environ.get("SHOWRUNNER", "on").lower() not in ("off", "0",
-                                                              "false"):
-            try:
-                from scripts import showrunner_review as _sr
-                verdict = _sr.review_video(out, context=ctx)
-                out.with_suffix(".showrunner.json").write_text(
-                    json.dumps(verdict, indent=2))
-                _sr.append_ledger(slug, verdict)   # durable record of record
-                tag = "BLOCK" if _sr.should_block(verdict) else "SHIP"
-                print(f"[{slug}] showrunner {tag} score={verdict.get('score')}"
-                      f" — {verdict.get('one_line')}", flush=True)
-                for fx in verdict.get("fixes", [])[:5]:
-                    print(f"   fix: {fx}", flush=True)
-                blocked = _sr.should_block(verdict)
-                # A verdict with no score means the reviewer never actually saw
-                # the video (infra). On a publish run that is a HOLD, not a pass.
-                if will_upload and verdict.get("score") is None:
-                    print(f"[{slug}] showrunner produced no real verdict — "
-                          f"HOLDING (fail-closed on a publish run).", flush=True)
-                    blocked = True
-            except Exception as e:  # noqa: BLE001
-                if will_upload:
-                    print(f"[{slug}] showrunner FAILED and this is a publish "
-                          f"run — HOLDING (fail-closed): {e}", flush=True)
-                    blocked = True
-                else:
-                    print(f"[{slug}] showrunner skipped (preview, not blocking):"
-                          f" {e}", flush=True)
-        elif will_upload:
-            # The taste gate is the price of publishing; it can't be switched off
-            # on a real upload run.
-            print(f"[{slug}] SHOWRUNNER=off is not allowed on a publish run — "
-                  f"HOLDING.", flush=True)
-            blocked = True
+        # The policy — fail CLOSED on a publish run, SHOWRUNNER=off refused on
+        # a publish run, a BLOCK is sovereign — moved to
+        # `shared/showrunner_gate.py` so the trending channel (6 videos a day,
+        # previously unwatched) runs the SAME gate rather than a second copy
+        # of it. See docs/SYSTEM_AUDIT.md §D.
+        from shared import showrunner_gate as _gate
+        gate = _gate.run(out, slug=slug, context=ctx, will_upload=will_upload)
+        _gate.log(gate, slug)
+        blocked = gate["blocked"]
+        verdict = gate["verdict"]
 
         # ---- BOUNDED SELF-REPAIR ------------------------------------------
         # The gate's verdict names the weakest scene and why. Rather than drop
@@ -288,23 +262,14 @@ def main() -> int:
                       f"{str(e)[:120]}", flush=True)
                 break
             studio_render.render(slug, out, config_path=args.config)
-            try:
-                from scripts import showrunner_review as _sr
-                verdict = _sr.review_video(out, context=ctx)
-                out.with_suffix(".showrunner.json").write_text(
-                    json.dumps(verdict, indent=2))
-                _sr.append_ledger(slug, verdict)
-                blocked = _sr.should_block(verdict)
-                if will_upload and verdict.get("score") is None:
-                    blocked = True
-                print(f"[{slug}] after repair {repairs}: "
-                      f"{'BLOCK' if blocked else 'SHIP'} "
-                      f"score={verdict.get('score')} — "
-                      f"{verdict.get('one_line')}", flush=True)
-            except Exception as e:  # noqa: BLE001
-                print(f"[{slug}] re-review failed — holding: {e}", flush=True)
-                blocked = True
-                break
+            gate = _gate.run(out, slug=slug, context=ctx,
+                             will_upload=will_upload)
+            blocked = gate["blocked"]
+            verdict = gate["verdict"]
+            print(f"[{slug}] after repair {repairs}: "
+                  f"{'BLOCK' if blocked else 'SHIP'} "
+                  f"score={verdict.get('score')} — "
+                  f"{verdict.get('one_line') or gate['reason']}", flush=True)
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")

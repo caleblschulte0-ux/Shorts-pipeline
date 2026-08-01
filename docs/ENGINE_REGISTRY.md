@@ -1,5 +1,13 @@
 # Engine Registry
 
+> **The `consumers` and `status` fields are CHECKED against the code** by
+> `tests/test_engine_registry_honesty.py`. `active` + not `gated` must have
+> a real importer; every consumer it names must actually import it; and
+> `experimental` must carry a `decision_date` so "not yet" cannot quietly
+> become "forever". On 2026-08-01 this registry was wrong in BOTH directions
+> at once — `still_motion` claimed no consumers while two renderers called
+> it, and `svg_motion` claimed production status with no caller at all.
+
 *The capability layer for every channel. Code lives in `engines/`; this doc is
 the human/brain-readable registry and the triage record. Companion audit:
 `docs/STORAGE_AUDIT.md`.*
@@ -58,6 +66,13 @@ result or `None`, never raising into a caller; engines never write outside
 | **series_icons** (funnel) | resolve a country flag / brand LOGO for a named data series (keyless: flagcdn + Commons/Wikipedia logo search; news photos rejected), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
 
 ### svg_motion (added 2026-07-30 — capability sprint)
+
+> **STATUS 2026-08-01: demoted `active` -> `experimental`, decision date
+> 2026-09-01.** It has no consumer. It was built for animated cards and
+> `text_card` — the card format it would have served — was retired the next
+> day. Claiming `active` was the exact lie rule zero is about. Adopt it (a
+> `graph_race` stat pop and the `reddit_story` post card are the live
+> candidates) or delete it by the decision date.
 
 Animated vector renders: the caller supplies `frame_fn(t) -> svg` (t∈[0,1]),
 the engine rasterizes every frame via cairosvg and assembles with ffmpeg.

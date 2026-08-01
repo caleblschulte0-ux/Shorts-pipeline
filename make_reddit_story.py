@@ -92,22 +92,25 @@ def _ass_t(t: float) -> str:
 
 
 def _chunk_words(words: list[base.Word]) -> list[list[base.Word]]:
-    """Group Whisper words into short caption chunks (2-3 words)."""
-    chunks: list[list[base.Word]] = []
-    cur: list[base.Word] = []
-    for w in words:
-        if not w.text.strip():
-            continue
-        cur.append(w)
-        joined = " ".join(x.text.strip() for x in cur)
-        ends_sentence = w.text.strip()[-1] in ".!?,"
-        if len(cur) >= CAP_MAX_WORDS or len(joined) >= CAP_MAX_CHARS \
-                or ends_sentence:
-            chunks.append(cur)
-            cur = []
-    if cur:
-        chunks.append(cur)
-    return chunks
+    """Group Whisper words into short caption chunks (2-3 words).
+
+    The grouping math lives in `shared/captions.py` — it was written for
+    exactly this and then imported by nothing while five renderers each kept
+    a near-identical private copy. The parameters below reproduce this
+    renderer's previous behaviour EXACTLY (`tests/test_captions.py` asserts
+    that against the original implementation), so this is a de-duplication,
+    not a change to how the captions look. The STYLING stays here: channels
+    own their look, `shared/captions.py` owns the timing.
+    """
+    from shared import captions
+    return captions.group_words(
+        words,
+        max_words=CAP_MAX_WORDS,
+        max_chars=CAP_MAX_CHARS,
+        break_on_punct=True,
+        max_gap=float("inf"),      # this renderer never broke on a pause…
+        max_span=float("inf"),     # …nor on total on-screen time
+    )
 
 
 def _clean(t: str) -> str:
