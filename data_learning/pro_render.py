@@ -152,17 +152,46 @@ def _footage_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
     else:
         ss = None
     if ss is None:
-        picked, reports = fh.pick_window(src, seconds,
-                                         at=float(shot.get("at", 0.5)))
+        # A SHORT CLIP MUST DEGRADE, NOT DETONATE. This used to demand a clean
+        # window as long as the whole beat and raise when a 4s stock clip could
+        # not serve a 9.7s one — which killed the ENTIRE render, turning a beat
+        # that would previously have fallen back to a card into zero video.
+        # Step the ask down the same way media.motion_first does, and use the
+        # longest clean window the clip really has.
+        want, picked, reports = float(seconds), None, []
+        while want >= media_min_window():
+            picked, reports = fh.pick_window(src, want,
+                                             at=float(shot.get("at", 0.5)))
+            if picked is not None:
+                break
+            want = round(want * 0.7, 2)
         if picked is None:
             raise RuntimeError(
                 f"no clean window in {src.name} for a {seconds:.1f}s beat "
-                f"(inspected {len(reports)})")
+                f"(inspected {len(reports)}, tried down to "
+                f"{media_min_window():.1f}s)")
+        if want < seconds:
+            # Only the SEARCH relaxes. `seconds` stays the beat's length so the
+            # picture still covers its narration — shortening the shot here
+            # would desync every clip after it.
+            print(f"[pro] {src.name}: no {seconds:.1f}s clean window; starting "
+                  f"from the clean {want:.1f}s one at {picked:.1f}s",
+                  file=sys.stderr)
         ss = picked
     fh.full_frame_beat(src, ss, seconds, out,
                        push=float(shot.get("push", 1.05)),
                        direction=shot.get("direction", "in"))
     return out  # keep src cached; the story reuses it across beats
+
+
+def media_min_window() -> float:
+    """The shortest clean window worth cutting to — shared with the media gate
+    so the renderer and the selector cannot disagree about what is usable."""
+    try:
+        from data_learning.media import MIN_WINDOW
+        return float(MIN_WINDOW)
+    except Exception:  # noqa: BLE001 — a missing constant must not break a render
+        return 2.5
 
 
 def _overlay_number(base: Path, shot: dict, out: Path):

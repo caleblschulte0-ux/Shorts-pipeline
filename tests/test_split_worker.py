@@ -39,14 +39,18 @@ DATE = "29991230"
 # the fixture
 # --------------------------------------------------------------------------
 class TestDryRunFixture(unittest.TestCase):
-    def test_all_eight_steps_pass(self):
+    def test_every_dry_run_step_passes(self):
         out = subprocess.run(
             [sys.executable, "scripts/exchange_dry_run.py", "--json"],
             cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         report = json.loads(out.stdout)
         self.assertEqual(report["passed"], report["total"])
-        self.assertEqual(report["total"], 8)
+        # Count is a floor, not a fixture: steps get ADDED when a new failure
+        # mode is found (3.5 came from the 2026-08-01 identity drift). Pinning
+        # an exact number just means the next real scenario gets left out to
+        # keep a test quiet.
+        self.assertGreaterEqual(report["total"], 8)
         for step in report["steps"]:
             self.assertTrue(step["checks"], f"step {step['step']} asserts "
                                             f"nothing")

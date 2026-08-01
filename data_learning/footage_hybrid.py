@@ -363,11 +363,26 @@ def full_frame_beat(src: Path, ss: float, dur: float, out: Path,
           f"crop={W * 2}:{H * 2},"
           f"zoompan=z='{z}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
           f"d=1:s={W}x{H}:fps={FPS},format=yuv420p")
+    # A SHOT MUST BE EXACTLY AS LONG AS ITS BEAT. `-t` on a source that runs
+    # out early yields a SHORT clip and ffmpeg exits 0 — so the concat comes up
+    # short and every clip after it drifts off its narration, silently. Stock
+    # clips are 3-6s and beats can be 10s, so this is the common case, not the
+    # edge one: loop the input when the tail from `ss` cannot cover `dur`.
+    try:
+        avail = _duration(src) - ss
+    except Exception:  # noqa: BLE001 — an unprobeable source just takes the loop
+        avail = 0.0
+    pre = ["ffmpeg", "-y", "-loglevel", "error"]
+    if avail >= dur + 0.05:
+        cmd = pre + ["-ss", f"{ss:.3f}", "-i", str(src)]
+    else:
+        # output-side seek: `-ss` before `-i` is not applied per loop iteration,
+        # so it would still run dry. Slower to decode, correct in length.
+        cmd = pre + ["-stream_loop", "-1", "-i", str(src), "-ss", f"{ss:.3f}"]
     subprocess.run(
-        ["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{ss:.3f}",
-         "-i", str(src), "-t", f"{dur:.3f}", "-vf", vf, "-an",
-         "-r", str(FPS), "-c:v", "libx264", "-preset", "medium",
-         "-crf", "18", str(out)], check=True)
+        cmd + ["-t", f"{dur:.3f}", "-vf", vf, "-an",
+               "-r", str(FPS), "-c:v", "libx264", "-preset", "medium",
+               "-crf", "18", str(out)], check=True)
     return out
 
 

@@ -203,6 +203,70 @@ on the next `DONE`.
 
 ---
 
+## Second pass, same day: the alarm, and the bug that would have eaten tomorrow
+
+### The identity drift — this one would have broken tomorrow, silently
+
+Chasing the wrong-bundle bug turned up a worse one right behind it.
+
+Bundle identity was the **sha256 of `bundle.json`'s raw bytes**. Phase A fires
+on every auto-merge and re-judges media each time — it rewrote that file **six
+times on 2026-08-01**, the last one at 12:25 UTC, *five hours after* the 06:00
+media worker finished at 07:04.
+
+Every rewrite silently invalidated every checkpoint written before it. And
+because a DONE run now **requires** checkpoints (fixed earlier today), the
+next clean day would have refused all seventeen verified images and
+stock-filled the whole slate. The strictness I added this morning would have
+turned a cosmetic rewrite into a total media loss.
+
+**Fixed two ways:**
+
+1. Identity now hashes **the ask**, not the file — `ask_fingerprint()` over
+   request ids, prompt hashes, agreed filenames and the registry snapshot. A
+   re-judge that changes nothing a worker acts on leaves it untouched; a
+   changed prompt or a new request moves it, which is exactly when a
+   checkpoint should die.
+2. It is published as a sidecar, `exchange/bundles/<date>/BUNDLE_ID`, that
+   workers **copy** instead of computing. A worker that only copies a string
+   cannot hash the wrong thing.
+
+Plus: **Phase A now refuses to rewrite a bundle whose ask changed while
+checkpoints exist.** Moving the goalposts under a running worker needs
+`--rebuild-contract` and says so loudly.
+
+Step 3.5 of `scripts/exchange_dry_run.py` reproduces the exact scenario — a
+Phase A rewrite mid-flight — and asserts the checkpoint survives it.
+
+### The alarm — so nothing is silent again
+
+`scripts/daily_alarm.py` + `.github/workflows/alarm.yml`, 01:15 UTC daily.
+
+Every failure this pipeline has had reported on the **steps** it ran, never on
+the **outcome** it produced, and a step can succeed at the wrong thing. The
+alarm checks outcomes against `config/channel_registry.json`: did each channel
+ship its target, did the exchange actually land, was ChatGPT's media pinned,
+did a retired format ship, is the reserve bank covered.
+
+It comments on the tracking issue **only when something is wrong** — a daily
+"all good" is how people stop reading — and fails the run so it is red in the
+Actions tab.
+
+Verified against both real incidents: it flags 2026-07-27 (`no_posts_*` ×4)
+and 2026-08-01 (`done_but_no_report`, critical). 14 tests pin it, including
+the false-alarm cases — it defers publishing checks mid-day, because an alarm
+that cries wolf is one people learn to ignore.
+
+### The scripts/ suite — 34 live tests nothing ran
+
+Triaged rather than deleted, because triage found them alive: **34 of the 37
+pass**. Two need a render environment (skipped by name in CI, honestly, not
+quietly). One — `test_run_ledger.py` — had been failing since `overall_10`
+became a required verdict field, and nobody knew because nothing ran it. The
+fixture was stale, not the gate; fixed. All 35 now run in the auto-merge gate.
+
+---
+
 ## NOT fixed — needs your decision or a destructive action
 
 ### A. 1.21 GB of git history, ~1.15 GB of it abandoned branches
@@ -219,6 +283,11 @@ Five of those branches are already merged into `main` and safe to drop:
 git branch -r --merged origin/main | grep -v HEAD | grep origin/claude/ \
   | sed 's|origin/||' | xargs -n1 git push origin --delete
 ```
+
+**Attempted and blocked.** Only one branch is currently fully merged
+(`claude/shorts-pipeline-data-handoff-ea2zmb`), and this session's git proxy
+refuses branch deletion (`fatal: the remote end hung up`). Run it from a
+normal clone.
 
 Reclaiming the rest means rewriting history on branches that are not merged —
 `git filter-repo --path-glob '*.mp4' --invert-paths` plus a force-push, which

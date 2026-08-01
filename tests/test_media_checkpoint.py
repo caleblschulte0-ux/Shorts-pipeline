@@ -228,16 +228,68 @@ class TestBundleCarriesTheContract(_TempBundles):
 # bundle identity
 # --------------------------------------------------------------------------
 class TestBundleIdentity(_TempBundles):
-    def test_identity_is_stable_and_changes_with_content(self):
+    """Identity tracks THE ASK, not the file that carries it.
+
+    It used to be the sha256 of bundle.json's bytes. Phase A runs on every
+    auto-merge and re-judges media each time — six rewrites on 2026-08-01,
+    the last five hours AFTER the 06:00 worker finished. Every one silently
+    invalidated the checkpoints written before it, and because a DONE run now
+    requires checkpoints, all 17 verified images would have been refused."""
+
+    def _bundle(self, *reqs, registry_sha="reg-a"):
+        return {"date": DATE, "contract": {"registry_sha256": registry_sha,
+                                           "registry_revision": 1},
+                "requests": [{"request_id": r, "prompt_sha256": f"p-{r}",
+                              "drive_filename": f"{DATE}__{r}.png",
+                              "kind": "image", "slug": "s", "shot_index": 0}
+                             for r in reqs]}
+
+    def test_a_cosmetic_rewrite_does_NOT_move_the_identity(self):
+        """The 2026-08-01 bug, pinned. Phase A re-judging media changes the
+        file without changing anything a worker acts on."""
+        b = self._bundle("r1", "r2")
+        first = mc.write_bundle_identity(DATE, b)
+        noisy = dict(b, packages=[{"media_health": {"strong": 3}}],
+                     generated_at="later", status="open")
+        self.assertEqual(mc.ask_fingerprint(noisy), first)
+        self.assertEqual(mc.write_bundle_identity(DATE, noisy), first)
+        self.assertEqual(mc.bundle_identity(DATE), first)
+
+    def test_request_order_does_not_move_it(self):
+        a = mc.ask_fingerprint(self._bundle("r1", "r2"))
+        b = mc.ask_fingerprint(self._bundle("r2", "r1"))
+        self.assertEqual(a, b)
+
+    def test_a_CHANGED_ASK_does_move_it(self):
+        base = mc.ask_fingerprint(self._bundle("r1"))
+        self.assertNotEqual(base, mc.ask_fingerprint(self._bundle("r1", "r2")))
+        self.assertNotEqual(base, mc.ask_fingerprint(
+            self._bundle("r1", registry_sha="reg-b")))
+        changed = self._bundle("r1")
+        changed["requests"][0]["prompt_sha256"] = "different"
+        self.assertNotEqual(base, mc.ask_fingerprint(changed))
+
+    def test_the_sidecar_is_what_readers_get(self):
+        b = self._bundle("r1")
+        ident = mc.write_bundle_identity(DATE, b)
+        self.assertEqual(mc.bundle_identity(DATE), ident)
+        self.assertTrue((mc.bundle_dir(DATE) / mc.IDENTITY_FILE).exists())
+
+    def test_old_bundles_without_a_sidecar_still_resolve(self):
         self.write_bundle({"a": 1})
-        first = mc.bundle_identity(DATE)
-        self.assertTrue(first)
-        self.assertEqual(first, mc.bundle_identity(DATE))
-        self.write_bundle({"a": 2})
-        self.assertNotEqual(first, mc.bundle_identity(DATE))
+        self.assertTrue(mc.bundle_identity(DATE))
+
+    def test_a_corrupt_sidecar_falls_back_rather_than_lying(self):
+        self.write_bundle({"a": 1})
+        (mc.bundle_dir(DATE) / mc.IDENTITY_FILE).write_text("not-a-hash")
+        self.assertTrue(mc.bundle_identity(DATE))
 
     def test_missing_bundle_is_none_not_a_crash(self):
         self.assertIsNone(mc.bundle_identity("20991231"))
+
+    def test_garbage_never_raises(self):
+        for junk in (None, [], "x", {}):
+            self.assertIsInstance(mc.ask_fingerprint(junk), str)
 
 
 # --------------------------------------------------------------------------
