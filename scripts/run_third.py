@@ -587,7 +587,11 @@ def _checkpoint_log(why: str) -> None:
         subprocess.run(
             ["bash", str(REPO / "scripts" / "ci_commit_state.sh"),
              f"third: checkpoint posted log ({why}) [skip ci]",
-             "state/third_posted_log.json"],
+             # ALL the state this run mutates, not just the log. On a push
+             # race ci_commit_state hard-resets to origin and restores only
+             # the paths it was GIVEN — anything else this run had already
+             # written would be silently reverted mid-flight.
+             "state/third_posted_log.json", "state/third_events.json"],
             cwd=str(REPO), timeout=120, check=False)
     except Exception as e:  # noqa: BLE001
         print(f"[checkpoint] {why}: {e}", flush=True)

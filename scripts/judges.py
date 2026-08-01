@@ -264,6 +264,24 @@ def main() -> int:
     for r in runs:
         _render_run(r, a.rejects)
 
+    # PENDING CLAIMS need a human. The slot was reserved right before the
+    # upload started and the upload never reported success — so the video
+    # may or may not be live on YouTube. Deduping it is the safe default
+    # (never post twice), but somebody should look.
+    try:
+        _log = json.loads(LOG.read_text()).get("posted", {})
+        pend = {k: v for k, v in _log.items() if v.get("pending")}
+    except Exception:  # noqa: BLE001
+        pend = {}
+    if pend:
+        print(f"\n=== PENDING UPLOAD CLAIMS ({len(pend)}) — check the channel")
+        for k, v in pend.items():
+            print(f"  {k}  {str(v.get('title', ''))[:60]!r}  "
+                  f"{v.get('ts', '')}")
+        print("  These slots are deduped (they will not be re-attempted). "
+              "If the video is NOT on the channel, the clip was lost — "
+              "that is the deliberate trade against a duplicate upload.")
+
     blocked = _rejects_from_log(a.date or str(runs[-1].get("date", "")))
     if blocked:
         print(f"\n=== blocklisted sources ({len(blocked)}) — "

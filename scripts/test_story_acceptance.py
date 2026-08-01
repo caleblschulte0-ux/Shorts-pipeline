@@ -1159,6 +1159,16 @@ def main() -> int:  # noqa: C901
           < _rt_src.index("YouTubeUploader(channel=\"third\").upload("))
     check("the claim is persisted, not just held in memory",
           '_claim\n            _save_log(log)' in _rt_src)
+    check("a pending claim never enters analytics (it has no video URL)",
+          'e.get("pending")' in
+          (REPO / "scripts" / "fetch_analytics.py").read_text())
+    check("pending claims are surfaced for a human — the video may or may "
+          "not be live and only a person can tell",
+          "PENDING UPLOAD CLAIMS" in (REPO / "scripts" / "judges.py").read_text())
+    check("a checkpoint carries every state file the run mutates, since a "
+          "push race hard-resets and restores only what it was given",
+          '"state/third_posted_log.json", "state/third_events.json"'
+          in _rt_src)
     check("the posted log is checkpointed to main mid-run (a run killed "
           "at the 120min wall must not desync dedupe state)",
           "_checkpoint_log(" in _rt_src
