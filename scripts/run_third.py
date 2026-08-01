@@ -478,6 +478,15 @@ def _deadline_passed() -> bool:
 
 
 _SWEEP_CACHE: dict = {}
+# Clips judged decent-but-not-great this run: {clip_key: content_score}.
+# NOT the blocklist — these are eligible again tomorrow, and eligible again
+# on this run's final attempt. Banning a 0.55 clip forever is how one thin
+# day turns into a thinner one.
+_RUN_EXCLUDE: dict = {}
+
+# How many candidates a slot may try before giving up. Module-level because
+# the content gate's graded floor keys off the attempt number too.
+MAX_SLOT_ATTEMPTS = 3
 
 
 def _sweep(clip_edit, sources: dict, window: str, top: int) -> list:
@@ -1272,7 +1281,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
 
 
 def process(pkg: dict, pkg_path: Path | None, *,
-            dry_run: bool, publish_at, log: dict) -> dict:
+            dry_run: bool, publish_at, log: dict,
+            attempt: int = 1) -> dict:
     slug = pkg["slug"]
     result = {"slug": slug, "ok": False}
     _JUDGES.clear()          # verdicts are per-slot
@@ -1323,6 +1333,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # never posted twice, even across a ledger hiccup.
                 posted_keys = {_clip_key(v.get("source_url", ""))
                                for v in log["posted"].values()}
+                # Clips passed over EARLIER THIS RUN for missing a higher
+                # attempt's bar (never for being bad — those are in the
+                # blocklist above). On the final attempt the bar is already
+                # at the auto-reject line, so the best of them comes back
+                # rather than the slot ending empty.
+                if attempt < MAX_SLOT_ATTEMPTS:
+                    posted_keys |= set(_RUN_EXCLUDE)
+                elif _RUN_EXCLUDE:
+                    print(f"[content] final attempt — reconsidering "
+                          f"{len(_RUN_EXCLUDE)} clip(s) passed over earlier "
+                          f"(best {max(_RUN_EXCLUDE.values()):.2f})",
+                          flush=True)
                 # sources: {"twitch": [...], "kick": [...], "rumble": [...]}
                 # (legacy "channels" list = twitch). A platform that's
                 # blocked/unreachable logs a warning and never kills the
@@ -1701,26 +1723,81 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     streamer, info["title"], snip,
                     sheet=str(sheet) if have_sheet else "",
                     views=info.get("views", 0))
+                # ---- THE FLOOR IS GRADED, NOT A CLIFF -----------------
+                # 2026-08-01: this gate rejected 17 of 17 clips and the
+                # channel shipped one video, for the second day running.
+                # The cause was arithmetic, not luck. The rubric anchors
+                # HIGH at 0.8-1.0 and MEDIUM at 0.4-0.6 — it has NO anchor
+                # between 0.6 and 0.8, so it never emits a score there.
+                # min_banger_content was 0.70: parked in a dead zone of its
+                # own scale. Across every score ever recorded (n=18) the
+                # maximum was 0.55 and the median 0.20. A threshold above
+                # the judge's entire achievable range is not a quality bar,
+                # it is an off switch, and it had been off since the gate
+                # went in.
+                #
+                # The answer is NOT to drop the bar to whatever ships (that
+                # is how you post garbage). It is to keep REACHING for a
+                # great clip and stop letting the slot die empty when a
+                # decent one was right there. So:
+                #   attempt 1  -> the full aspirational bar
+                #   attempt 2  -> the middle of the rubric's MEDIUM band
+                #   final      -> the hard floor: the rubric's own
+                #                 AUTOMATIC-REJECT line and nothing lower
+                # Below the hard floor is the stuff the rubric itself names
+                # as auto-reject — sponsor reads, menu/setup talk, routine
+                # gameplay, insider chat. Those are refused on EVERY
+                # attempt and always will be. Today that line alone would
+                # have refused 11 of 17 while letting 4 real clips post.
                 content_floor = float(spec.get("min_banger_content", 0.70))
-                _judge("content", score=cb, why=cwhy, floor=content_floor,
+                hard = float(spec.get("content_hard_floor", 0.35))
+                hard = min(hard, content_floor)
+                ladder = [content_floor,
+                          (content_floor + hard) / 2.0,
+                          hard]
+                eff_floor = ladder[min(attempt, len(ladder)) - 1]
+                if eff_floor < content_floor:
+                    print(f"[content] attempt {attempt}: bar relaxed "
+                          f"{content_floor:.2f} -> {eff_floor:.2f} (never "
+                          f"below the auto-reject line {hard:.2f}) — an "
+                          f"empty slot is not better than a decent clip",
+                          flush=True)
+                _judge("content", score=cb, why=cwhy, floor=eff_floor,
+                       aspirational=content_floor, attempt=attempt,
                        saw_frames=saw,
                        verdict=("unavailable" if cb is None else
-                                "reject" if cb < content_floor else "pass"))
-                if cb is not None and cb < content_floor:
-                    _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
-                        "source_url": info["url"], "streamer": streamer,
-                        "title": info["title"], "qa_rejected": True,
-                        # WHY it was rejected, not just THAT it was — the
-                        # blocklist entry is the durable record a human or a
-                        # later brain reads back.
-                        "rejected_by": "content gate",
-                        "rejected_why": f"{cb:.2f} < {content_floor} "
-                                        f"({cwhy or 'no reason given'})"[:180],
-                        "ts": datetime.now(timezone.utc).isoformat(),
-                    })
+                                "reject" if cb < eff_floor else "pass"))
+                if cb is not None and cb < eff_floor:
+                    # Only a clip under the HARD floor earns a permanent
+                    # blocklist entry — that list is for genuinely bad
+                    # clips. One that merely missed today's higher bar is
+                    # passed over for this run and stays eligible later;
+                    # banning it forever is how a thin day compounds.
+                    if cb < hard:
+                        _blocklist(
+                            log,
+                            f"rejected-{_clip_key(info['url']) or slug}", {
+                                "source_url": info["url"],
+                                "streamer": streamer,
+                                "title": info["title"], "qa_rejected": True,
+                                # WHY it was rejected, not just THAT it was
+                                # — the blocklist entry is the durable
+                                # record a human or a later brain reads.
+                                "rejected_by": "content gate",
+                                "rejected_why":
+                                    f"{cb:.2f} < {hard} "
+                                    f"({cwhy or 'no reason given'})"[:180],
+                                "ts": datetime.now(timezone.utc).isoformat(),
+                            })
+                    else:
+                        _RUN_EXCLUDE[_clip_key(info["url"])] = cb
+                        print(f"[content] {cb:.2f} clears the auto-reject "
+                              f"line but misses this attempt's "
+                              f"{eff_floor:.2f} — passed over for this run, "
+                              f"NOT blocklisted", flush=True)
                     raise RuntimeError(
                         f"content gate: transcript-aware score {cb:.2f} < "
-                        f"{content_floor} ({cwhy or 'no reason'})")
+                        f"{eff_floor} ({cwhy or 'no reason'})")
                 # A RESCUED clip (one that failed the title floor and was
                 # escalated here) fails CLOSED. Normally this gate fails
                 # open so a flaky brain never costs a good clip — but a
@@ -2222,7 +2299,6 @@ def main() -> int:
     # real inspection instead of going unused. Held at 3 deliberately: each
     # attempt costs a download + whisper pass (~90s) and the job's ceiling
     # is 120 min (a run died on that wall on 2026-07-25).
-    MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
         # WALL-CLOCK DEADLINE. third.yml's ceiling is 120 minutes and a run
         # was killed on it (2026-07-25) — with three videos already live on
@@ -2265,7 +2341,7 @@ def main() -> int:
         r = None
         for attempt in range(1, MAX_SLOT_ATTEMPTS + 1):
             r = process(pkg, path, dry_run=args.dry_run,
-                        publish_at=publish_at, log=log)
+                        publish_at=publish_at, log=log, attempt=attempt)
             if r.get("ok") or r.get("skipped"):
                 break
             r["attempts"] = attempt
