@@ -32,34 +32,48 @@
     },
     {
       "phrase": "new imports",
-      "query": "shipping cargo containers"
+      "query": "shipping cargo containers",
+      "image_url": "https://pixabay.com/get/g170dbc44b0e2ef21874ca07f4cd87afe3d37812e632777569731bed1b5b6dbeec6c520c2b10bee0c197c6be75174911073c7aea970e740a9b50db9224fd49772_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "foreign-made humanoid robots, robot dogs",
       "query": "quadruped robot dog",
       "evidence_urls": [
         "https://techcrunch.com/2026/07/29/us-government-bans-new-foreign-made-humanoids-robot-dogs-and-solar-inverters-citing-risks-to-national-security/"
-      ]
+      ],
+      "image_url": "https://pixabay.com/get/g15ba211b4228e0704ac36c8cbe0928cdce2372618d7f6460fb519230b66d29b1a22e189c3a41862be99b6e344fd365614e465a20916ecd86d314b035dee7a4ec_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "covered list",
-      "query": "government document stamp"
+      "query": "government document stamp",
+      "image_url": "https://pixabay.com/get/g2eef5577a15170fcbf5db9aaceee7996a7c480e804cda9e51de48dbd67303a558d91957d3b39f7f99d707104437b3b8c71035f0911c2dfdf1ddc6289b2a40905_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "banned from entering the U.S.",
-      "query": "customs border checkpoint"
+      "query": "customs border checkpoint",
+      "image_url": "https://pixabay.com/get/g53d8b8fea213b5dddc305c58222b5650971f05070a36704af5c913a4696792f9c9c6981c32a3b646edb530154cbed9bac1907cee9470c0cf6afc7d2fed62a5d9_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "remotely controlled",
-      "query": "remote control device"
+      "query": "remote control device",
+      "image_url": "https://pixabay.com/get/g21cf892b77615593e285d41b34331c288b555a96e058a713f08db3ad2eaeaf8576dc13003f131233bdc533b1328b00cf7fba4fbe0fa850d7c6ceb3fc930008d0_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "used for surveillance",
-      "query": "security camera surveillance"
+      "query": "security camera surveillance",
+      "image_url": "https://pixabay.com/get/gc7d8f20d84f80e5e2970bb1cf428179a4600e21d843d78c7ef781e040b50f25afa991ba523b23cd0a115b13c80583e141d2527f5273b8ecba06890bebe2df69d_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "hijacked in a cyberattack",
-      "query": "computer code cyberattack"
+      "query": "computer code cyberattack",
+      "image_url": "https://live.staticflickr.com/8116/29723649810_8cb4a06489_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "China makes about 85 percent",
@@ -101,7 +115,9 @@
     },
     {
       "phrase": "a diplomatic flashpoint",
-      "query": "diplomats handshake meeting"
+      "query": "diplomats handshake meeting",
+      "image_url": "https://pixabay.com/get/gc1a3e6503308b8970f8f87c1ff42a6db41a1f77e2141aaf11a6985ff654cf7834dce58873ea6eae071baf8b1386298d7ca078fbea7799462fa766cef0c3e104d_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
