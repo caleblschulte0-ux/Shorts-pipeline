@@ -24,17 +24,38 @@
     "viral",
     "trending"
   ],
-  "years": [2018, 2020, 2022, 2023, 2024, 2026],
+  "years": [
+    2018,
+    2020,
+    2022,
+    2023,
+    2024,
+    2026
+  ],
   "series": [
     {
       "name": "Weekly earthquakes",
       "color": "#ff3030",
-      "values": [3, 8, 20, 35, 50, 70]
+      "values": [
+        3,
+        8,
+        20,
+        35,
+        50,
+        70
+      ]
     },
     {
       "name": "Ground uplift (cm)",
       "color": "#ffaa30",
-      "values": [35, 55, 85, 110, 130, 150]
+      "values": [
+        35,
+        55,
+        85,
+        110,
+        130,
+        150
+      ]
     }
   ],
   "music_vibe": "dark"
