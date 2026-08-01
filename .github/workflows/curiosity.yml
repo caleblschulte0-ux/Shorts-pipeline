@@ -275,6 +275,15 @@ jobs:
           # cut, 2 rounds fit with margin and 3 would risk timing out, which
           # would deliver nothing at all instead of a judged quarantine.
           CURIOSITY_REPAIR_ATTEMPTS: ${{ inputs.repair_attempts || '2' }}
+          # ...and the attempt COUNT alone cannot honour that cap, because it
+          # does not know how long a cut takes. The 2026-08-01 shared-air run
+          # proved the comment above optimistic: attempt 1 took 145 min, so
+          # round 2 began with ~3h of job left and the round-1 package was at
+          # risk of dying with the runner. Give the producer the real clock —
+          # the job's 335 min less ~35 for setup, caches, media probe and the
+          # artifact uploads — so it can decline a render it cannot finish and
+          # ship the judged package it already has.
+          CURIOSITY_WALLCLOCK_S: '18000'
           # PHASE-3 ROUTING (docs/CURIOSITY_RECOVERY_MANIFEST.md):
           # - the canonical producer is the ONLY default renderer; legacy needs
           #   an operator to export CURIOSITY_RENDERER=legacy by hand.

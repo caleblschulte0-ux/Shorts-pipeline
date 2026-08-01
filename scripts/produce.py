@@ -29,6 +29,7 @@ import argparse
 import json
 import os
 import sys
+import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -410,6 +411,54 @@ def _repair_attempts() -> int:
         return 2
 
 
+def _wallclock_budget_s() -> float | None:
+    """Seconds this produce() may spend in total, or None for unbounded.
+
+    A COUNT is the wrong unit for the repair budget and always was. The count
+    docstring above already names the failure — "a CI job that exceeds its wall
+    clock delivers nothing at all" — but two attempts of an unknown-length film
+    cannot be checked against a clock nobody passed in. So the loop would begin
+    a third full render with forty minutes left, get killed mid-encode, and the
+    run would end with NO mp4, no package and no verdict: strictly worse than
+    the quarantine it already had in hand after round one.
+
+    The workflow sets this from its own `timeout-minutes` less the setup and
+    upload margin, so the producer knows the clock it is actually running
+    against instead of guessing.
+    """
+    raw = os.environ.get("CURIOSITY_WALLCLOCK_S", "").strip()
+    if not raw:
+        return None
+    try:
+        v = float(raw)
+    except ValueError:
+        return None
+    return v if v > 0 else None
+
+
+def _time_for_another_round(started: float, last_round_s: float,
+                            slug: str) -> bool:
+    """Is there room for one more FULL render before the job is killed?
+
+    Judged on the last round's real duration, not an estimate — the next render
+    is the same film with a few beats changed, so it costs about the same. A
+    1.15x allowance covers repairs that add work; anything tighter would gamble
+    the artifact that is already on disk.
+    """
+    budget = _wallclock_budget_s()
+    if budget is None:
+        return True
+    left = budget - (time.monotonic() - started)
+    need = last_round_s * 1.15
+    if left >= need:
+        return True
+    print(f"[produce] {slug}: stopping after this attempt — the last round took "
+          f"{last_round_s / 60:.0f} min and only {left / 60:.0f} min of the "
+          f"{budget / 60:.0f} min budget is left. Shipping the package in hand "
+          "instead of being killed mid-render with nothing.", file=sys.stderr)
+    return False
+
+
 def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
             attempts: int | None = None) -> dict:
     """Render -> judge -> REPAIR -> re-render until the policy is satisfied or the
@@ -458,12 +507,24 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
     result: dict = {}
     prev_sig: tuple | None = None
     prev_hash: str | None = None
+    started = time.monotonic()
     for attempt_i in range(1, budget + 1):
         if attempt_i > 1:
             print(f"[produce] {slug}: === repair attempt {attempt_i}/{budget} "
                   f"— re-rendering the REVISED story ({story_path.name}) ===")
+        round_began = time.monotonic()
         result = _render_and_judge(slug, out, story_path, story, rounds)
+        round_s = time.monotonic() - round_began
         if result.get("status") == "pass" or attempt_i == budget:
+            break
+        # A QUARANTINE IN HAND BEATS A TIMEOUT. Never start a render the clock
+        # cannot finish — being killed mid-encode loses the mp4, the package
+        # and the verdict this round already earned.
+        if not _time_for_another_round(started, round_s, slug):
+            result.setdefault("reasons", []).append(
+                f"stopped after attempt {attempt_i}/{budget}: not enough wall "
+                f"clock left for another {round_s / 60:.0f} min render")
+            result["stopped_on_wallclock"] = True
             break
 
         # JUDGE-MALFUNCTION CIRCUIT BREAKER. If the FILM materially changed but
