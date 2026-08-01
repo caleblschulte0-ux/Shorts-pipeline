@@ -2118,6 +2118,47 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.7 (just plans stream, no payoff)",
       "ts": "2026-08-01T13:14:53.088306+00:00"
+    },
+    "rejected-mildmuddygoldfishbrainslug-k-a8jrur4qgvqz_4": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MildMuddyGoldfishBrainSlug-k-A8JruR4qgvqz_4",
+      "streamer": "kaicenat",
+      "title": "security kai\ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (chaotic movement, no clear payoff)",
+      "ts": "2026-08-01T13:50:12.623673+00:00"
+    },
+    "rejected-apatheticprettiestchickensaltbae-vclptf7ntxbhltfc": {
+      "source_url": "https://www.twitch.tv/emiru/clip/ApatheticPrettiestChickenSaltBae-VClpTF7ntxBhltfC",
+      "streamer": "emiru",
+      "title": "SAN DIEGO COMICCON WITH @ALINITY AND @ARIASAKI !! HOSTING MARVEL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (casual hair chat, no payoff)",
+      "ts": "2026-08-01T13:52:57.801110+00:00"
+    },
+    "rejected-kindkindstaplebcwarrior-u4bcqe1snra52nz_": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/KindKindStapleBCWarrior-U4bCQE1snra52nZ_",
+      "streamer": "jasontheween",
+      "title": "Jasontheween Rizz Actually Landed On Her",
+      "qa_rejected": true,
+      "ts": "2026-08-01T13:59:28.897334+00:00"
+    },
+    "rejected-solidamusedtardigradekippa-a1fipc6gtypajyal": {
+      "source_url": "https://www.twitch.tv/lacy/clip/SolidAmusedTardigradeKippa-A1FIPc6GTyPAJYAL",
+      "streamer": "lacy",
+      "title": "lacy rips it",
+      "qa_rejected": true,
+      "ts": "2026-08-01T13:59:38.672709+00:00"
+    },
+    "rejected-thankfuldeadorangekappaross-f4nsltw_aioezu7p": {
+      "source_url": "https://www.twitch.tv/agent00/clip/ThankfulDeadOrangeKappaRoss-f4NsLtW_AIOeZu7p",
+      "streamer": "agent00",
+      "title": "Is that Emily?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just driving, chatting, no payoff)",
+      "ts": "2026-08-01T14:01:51.726861+00:00"
     }
   }
 }

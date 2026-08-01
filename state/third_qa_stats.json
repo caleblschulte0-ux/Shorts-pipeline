@@ -1,78 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260717",
-      "dry_run": false,
-      "ts": "2026-07-17T11:50:50+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 50,
-        "with_retention": 40,
-        "with_curve": 12,
-        "fetched_at": "2026-07-17T10:18:01.606943+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260717-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260717-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260717-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260717-4",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Every frame has a large blown-out white/blank band (top third) obscuring most of the frame; vision: Footage is heavily blurred/soft with no clear subject in most frames; vision: Captions/word "
-        },
-        {
-          "slug": "clip-20260717-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: frames at ~7-9s show a completely unrelated glitchy tiled/checkered texture instead of the subjects, looks like a broken; vision: 11.5s frame is solid black; vision: several frames are just bl"
-        },
-        {
-          "slug": "clip-20260717-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260717-7",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260717-8",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        }
-      ]
-    },
-    {
       "date": "20260718",
       "dry_run": false,
       "ts": "2026-07-18T12:36:58+00:00",
@@ -1947,6 +1875,179 @@
             }
           },
           "took_s": 48.5
+        }
+      ]
+    },
+    {
+      "date": "20260801",
+      "dry_run": false,
+      "ts": "2026-08-01T14:01:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 112,
+        "with_retention": 102,
+        "with_curve": 15,
+        "fetched_at": "2026-08-01T13:15:04.074932+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260801-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (chaotic movement, no clear payoff)",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "security incident, visible emotional rea",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "chaotic movement, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 46.7
+        },
+        {
+          "slug": "clip-20260801-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260801-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Subject/action is not clearly visible in most sampled frames (3.5s, 8.2s, 10.5s, 12.8s, 15.2s, 17.5s, 19.8s, 22.2s, 24.5; vision: Opening hook frame at 1.2s pairs the 'HIS RIZZ ACTUALLY WORKED",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "vague rizz win, generic",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "cheesy rizz line, mild reaction, no real",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Rizz Actually Landed On Her"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.65,
+              "problems": [
+                "Subject/action is not clearly visible in most sampled frames (3.5s, 8.2s, 10.5s, 12.8s, 15.2s, 17.5s, 19.8s, 22.2s, 24.5",
+                "Opening hook frame at 1.2s pairs the 'HIS RIZZ ACTUALLY WORKED' text card with an oddly cropped, blurry close-up (just a",
+                "Only a small minority of frames (roughly 5.8s and a couple others) show people clearly in frame; the clip reads as mostl"
+              ]
+            }
+          },
+          "took_s": 391.1
+        },
+        {
+          "slug": "clip-20260801-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (just driving, chatting, no payoff)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "recognition/curiosity hook, vague",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "just driving, chatting, no payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 56.3
         }
       ]
     }
