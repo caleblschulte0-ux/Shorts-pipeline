@@ -1,14 +1,14 @@
 {
-  "key": "ag_con_fert_zs_trend",
-  "title": "Fertilizer consumption",
-  "unit": "kilograms per hectare of arable land",
+  "key": "ag_lnd_arbl_ha_pc_trend",
+  "title": "Arable land",
+  "unit": "hectares per person",
   "geography": "World",
   "time_coverage": "1972-2023",
   "insight_type": "trend",
   "source": {
-    "name": "Fertilizer consumption",
+    "name": "Arable land",
     "publisher": "World Bank",
-    "url": "https://data.worldbank.org/indicator/AG.CON.FERT.ZS",
+    "url": "https://data.worldbank.org/indicator/AG.LND.ARBL.HA.PC",
     "officiality": "official",
     "access_date": "2026-08-01"
   },
@@ -16,32 +16,32 @@
   "points": [
     {
       "label": "1972",
-      "value": 61.8,
+      "value": 0.29,
       "period": "1972"
     },
     {
       "label": "1982",
-      "value": 87.0,
+      "value": 0.25,
       "period": "1982"
     },
     {
       "label": "1992",
-      "value": 94.0,
+      "value": 0.25,
       "period": "1992"
     },
     {
       "label": "2003",
-      "value": 109.8,
+      "value": 0.21,
       "period": "2003"
     },
     {
       "label": "2013",
-      "value": 133.4,
+      "value": 0.19,
       "period": "2013"
     },
     {
       "label": "2023",
-      "value": 137.6,
+      "value": 0.17,
       "period": "2023"
     }
   ]

@@ -1,0 +1,48 @@
+{
+  "key": "en_ghg_ch4_ag_mt_ce_ar5_trend",
+  "title": "Methane (CH4) emissions from Agriculture",
+  "unit": "Mt CO2e",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Methane (CH4) emissions from Agriculture",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.GHG.CH4.AG.MT.CE.AR5",
+    "officiality": "official",
+    "access_date": "2026-08-01"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-01. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 2932,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 3329,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 3542,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 3632,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 4036,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 4334,
+      "period": "2024"
+    }
+  ]
+}
