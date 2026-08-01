@@ -344,6 +344,37 @@ def _best_dynamic_window(clip: Path, seconds: float, max_probe: int = 6):
     return best_ss, best_mv
 
 
+def _interleave_sources(cands: list[dict]) -> list[dict]:
+    """Round-robin the relevance-ranked candidates across their SOURCES.
+
+    The probe budget (`max_probe`) is small because probing means downloading a
+    clip and scanning it. A flat relevance sort spends that budget on whichever
+    provider happened to return the most rows, so a provider with 32 candidates
+    buries one with 6 — even when the buried one is the only provider that can
+    actually serve the beat.
+
+    That is not hypothetical. `child running outdoors sunlight` resolves to a
+    good Pexels clip when Pexels is the only key present, and reverted to a card
+    in CI where Pixabay is also live and crowds the top of the list. Same query,
+    same code, same second — only the number of competing rows differed. The
+    beat's payoff was decided by provider verbosity.
+
+    Order within a source is preserved, so this never promotes a worse match
+    ahead of a better one from the same provider — it only guarantees that every
+    provider gets looked at before any provider gets looked at twice.
+    """
+    by_src: dict[str, list[dict]] = {}
+    for c in cands:
+        by_src.setdefault(str(c.get("source") or "?"), []).append(c)
+    out: list[dict] = []
+    while by_src:
+        for src in list(by_src):
+            out.append(by_src[src].pop(0))
+            if not by_src[src]:
+                del by_src[src]
+    return out
+
+
 def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
                  *, min_motion: float = MOTION_FLOOR,
                  min_rel: float = MOTION_REL_FLOOR, max_probe: int = 3,
@@ -391,6 +422,7 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
             return None
         cands = ground
     cands.sort(key=lambda c: _relevance(c.get("title", ""), query), reverse=True)
+    cands = _interleave_sources(cands)
     probed = 0
     skipped = 0
     for c in cands:

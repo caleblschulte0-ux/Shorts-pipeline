@@ -79,5 +79,27 @@ def main():
     )
 
 
+def test_probe_budget_is_shared_across_providers():
+    """A provider must not be buried by another provider's verbosity.
+
+    `max_probe` is 3 because probing means downloading and scanning a clip. With
+    a flat relevance sort, Pixabay's 32 rows pushed Pexels' 6 past the budget, so
+    the only provider that could serve the beat was never looked at. That is why
+    'child running outdoors sunlight' resolved locally (Pexels-only key) and
+    reverted to a card in CI (both keys live). Same query, same code — decided by
+    how many rows each provider happened to return.
+    """
+    from data_learning.media import _interleave_sources
+    cands = ([{"source": "pixabay", "n": i} for i in range(32)]
+             + [{"source": "pexels", "n": i} for i in range(6)])
+    top = _interleave_sources(cands)[:3]
+    assert any(c["source"] == "pexels" for c in top), top
+    # order WITHIN a provider is preserved — never promote a worse match
+    order = [c["n"] for c in _interleave_sources(cands) if c["source"] == "pexels"]
+    assert order == sorted(order), order
+    print("ok  the probe budget reaches every provider (pexels was rank 33)")
+
+
 if __name__ == "__main__":
+    test_probe_budget_is_shared_across_providers()
     main()
