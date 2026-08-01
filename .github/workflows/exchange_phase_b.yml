@@ -88,7 +88,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          # DEPTH 2, NOT 1. `git log -1 --name-only` on a depth-1 clone has no
+          # parent to diff against, so git reports EVERY FILE IN THE TREE as
+          # added — see "Resolve the date" below, which that broke silently.
+          fetch-depth: 2
 
       - name: Pre-flight — kill switch
         run: |
@@ -110,12 +113,35 @@ jobs:
           set -e
           DATE="${{ inputs.date }}"
           if [ -z "$DATE" ] && [ "${{ github.event_name }}" = "push" ]; then
-            # Take the date from the DONE path that triggered this run.
-            DATE=$(git log -1 --name-only --pretty=format: \
+            # THE DATE COMES FROM THE COMMIT THAT ACTUALLY CHANGED, and it
+            # must be a real DIFF.
+            #
+            # This used to be `git log -1 --name-only` on a `fetch-depth: 1`
+            # clone. A shallow clone's single commit is GRAFTED — it has no
+            # parent — so git lists every file in the tree as added, the grep
+            # matched EVERY bundle's DONE marker, and `head -1` picked the
+            # OLDEST. On 2026-08-01 the DONE for 20260801 fired Phase B and it
+            # ran against 20260730: it re-applied a two-day-old bundle, wrote
+            # that day's phase_b_report, and exited green. Today's answer was
+            # never consumed.
+            #
+            # It looked fine on 2026-07-30 only because the oldest bundle and
+            # the current date were the same day. The error grows by one day
+            # for every day the repo keeps another DONE marker.
+            DATE=$(git diff-tree --no-commit-id --name-only -r HEAD \
                    | grep -oE 'exchange/bundles/[0-9-]+/DONE' \
-                   | head -1 | cut -d/ -f3 || true)
+                   | sort -r | head -1 | cut -d/ -f3 || true)
           fi
           [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          # Belt and braces: whatever we resolved must actually have a DONE.
+          # A wrong-but-plausible date is the failure mode above, and it is
+          # invisible without this check.
+          if [ "${{ github.event_name }}" = "push" ] \
+             && [ ! -f "exchange/bundles/$DATE/DONE" ]; then
+            echo "::error::resolved $DATE from the push but "\
+                 "exchange/bundles/$DATE/DONE does not exist"
+            exit 1
+          fi
           echo "date=$DATE" >> "$GITHUB_OUTPUT"
           echo "answering bundle date: $DATE"
 
