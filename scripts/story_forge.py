@@ -399,19 +399,35 @@ def _claude_words(sysmsg: str, user: str) -> dict | None:
         return None
 
 
-def _brain_words(dss: list[dict]) -> dict | None:
+def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
     brief = []
     for d in dss:
         pts = ", ".join(f"{p['label']}={p['value']}" for p in d["points"])
         brief.append(f"- {d['title']} ({d['unit'] or 'units'}), "
                      f"{d['insight_type']}, {d['geography']}: {pts}")
+    # These are the EXACT criteria the adversarial publish-time judge applies
+    # (scripts/editorial_gate.premise_ok). Writing to a softer bar is why the
+    # forge kept banking stories that passed here and were held at publish:
+    # "India's 153,868,700 hectares beat America's farmland" is a geography
+    # comparison, not a reversal, and the judge said so.
     sysmsg = (
         "You write YouTube Shorts data explainers. HARD RULE: every number you "
         "write must appear VERBATIM in the data given to you — you may never "
         "invent, round differently, or extrapolate a number. Your job is the "
-        "WORDS. The title must reverse an expectation and carry one "
-        "consequential number; a bare noun phrase ('Forest Area By Country') is "
-        "forbidden. The hook is one spoken line that makes scrolling stop.")
+        "WORDS.\n"
+        "The TITLE must reverse a specific expectation the viewer already "
+        "holds AND hang on one consequential number. A ruthless editor will "
+        "REJECT it otherwise. Automatic rejects:\n"
+        "  - a bare noun phrase ('Forest Area By Country')\n"
+        "  - a league table or geography comparison ('India Beats America On "
+        "Farmland', 'Russia Has The Most Forest') — being biggest is not "
+        "surprising\n"
+        "  - a number with no belief attached to it\n"
+        "What passes: the viewer believes X, the data says NOT-X, and one "
+        "number proves it ('Landlines Fell Below Their 1993 Level', 'Cities "
+        "Are Growing Half As Fast As In 1983'). Ask yourself what the viewer "
+        "would have guessed, then write the title that corrects them.\n"
+        "The hook is one spoken line that makes scrolling stop.")
     kit = ("  object      — a drawable SUBJECT cut-out sized by its value. "
            "region 'ground-row' for a row of 2-5 of them. needs subject + "
            "data.value_from ('item:0','item:1',... or 'star').\n"
@@ -435,11 +451,14 @@ def _brain_words(dss: list[dict]) -> dict | None:
             "[{...}]}]} where says AND scenes each have exactly "
             f"{len(dss)} entries, one per dataset in order. Each say speaks "
             "that dataset's actual numbers in spoken English (~22 words).")
+    if reject_note:
+        user += ("\n\nYour previous title was REJECTED by the editor for this "
+                 f"reason — fix exactly this:\n{reject_note}")
     out = _claude_words(sysmsg, user)
     if out and out.get("title") and out.get("hook"):
         return out
     try:
-        from script_generator import _call_llm, _strip_fence
+        from shared.script_generator import _call_llm, _strip_fence
         raw = _strip_fence(_call_llm(sysmsg, user))
         m = re.search(r"\{.*\}", raw, re.S)
         out = json.loads(m.group(0))
@@ -458,6 +477,25 @@ def _brain_words(dss: list[dict]) -> dict | None:
 # path the benchmark suite actually validates.
 
 
+def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
+    """Ask the brain for words until the PUBLISH-TIME premise judge accepts
+    them (up to 3 tries), feeding each rejection back in. A story that only
+    passes the deterministic floor gets held at publish and wastes a render."""
+    from scripts import editorial_gate as eg
+    last = None
+    for attempt in range(3):
+        w = _brain_words(dss, reject_note=last)
+        if not w:
+            break
+        v = eg.premise_ok({"title": w.get("title", ""), "hook": w.get("hook", "")},
+                          use_llm=True)
+        if v["ok"]:
+            return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
+        last = "; ".join(v["reasons"])[:300]
+        print(f"    [premise] rejected: {last[:120]}")
+    return _fallback_words(dss), "deterministic"
+
+
 def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
     # WHO wrote the words. The numbers always come from the source, but the
     # title/hook/narration come from a brain — and when no brain is reachable
@@ -466,9 +504,7 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
     # children out-of-school". Recording it here is what lets the exchange
     # SEE that Claude contributed nothing and hand the words to ChatGPT
     # instead of shipping that. See shared/authoring_brief.py.
-    words = _brain_words(dss)
-    words_by = "brain" if words else "deterministic"
-    words = words or _fallback_words(dss)
+    words, words_by = _words_that_clear_the_bar(dss)
     title = str(words.get("title", "")).strip()
     slug = _slugify(title)
     if not slug or slug in used_slugs:
@@ -615,7 +651,8 @@ def forge(count: int, dry_run: bool = False) -> int:
                     json.dumps(out, indent=2))
             entry = {k: v for k, v in story.items() if not k.startswith("_")}
             cfg.setdefault("stories", []).append(entry)
-            CONFIG.write_text(json.dumps(cfg, indent=2))
+            from shared.fsutil import write_json_if_changed
+            write_json_if_changed(CONFIG, cfg)
             USED.parent.mkdir(parents=True, exist_ok=True)
             USED.write_text(json.dumps(
                 {"indicators": sorted(used_inds), "updated": TODAY}, indent=1))

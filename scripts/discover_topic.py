@@ -224,14 +224,29 @@ def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[
     """RSS feeds where each <item> is one story (BBC, NPR, HN, etc.).
     Not the Google Trends format — that one bundles multiple news items
     per <item>."""
-    root = ET.fromstring(raw)
+    # PARSING is `funnel/feeds.py` — the shared research-intake reader, which
+    # was written for exactly this and then imported by nothing (audit
+    # finding C). Delegating also buys Atom support and namespace handling
+    # that this function never had, so a feed that is Atom rather than RSS
+    # now yields topics instead of silently yielding none.
+    #
+    # The RANKING-side post-processing below stays here: the BBC/NPR suffix
+    # strip and the headline pair are this script's editorial choices, not
+    # feed parsing.
+    from funnel import feeds
+
+    if isinstance(raw, bytes):
+        xml_text = raw.decode("utf-8", "replace")
+    else:
+        xml_text = str(raw)
+
     out: list[Topic] = []
-    for it in root.findall(".//item")[:max_items]:
-        title = (it.findtext("title") or "").strip()
+    for e in feeds.parse_feed_text(xml_text, source)[:max_items]:
+        title = (e.get("title") or "").strip()
         if not title:
             continue
-        desc = (it.findtext("description") or "").strip()
-        link = (it.findtext("link") or "").strip()
+        desc = (e.get("summary") or "").strip()
+        link = (e.get("link") or "").strip()
         # Strip the trailing source attribution BBC tacks on (" - BBC News").
         title = re.sub(r"\s+[-|]\s+(BBC News|NPR|NPR\.org).*$", "", title)
         headlines = [title]
@@ -245,7 +260,7 @@ def _parse_generic_rss(raw: bytes, source: str, *, max_items: int = 50) -> list[
             headlines=headlines,
             urls=[link] if link else [],
             sources=[source],
-            published_at=_parse_rfc822_date(it.findtext("pubDate")),
+            published_at=_parse_rfc822_date(e.get("published")),
         ))
     return out
 

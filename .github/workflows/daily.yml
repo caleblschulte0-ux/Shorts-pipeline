@@ -206,6 +206,8 @@ jobs:
           GROQ: ${{ secrets.GROQ_API_KEY }}
           PEXELS: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY: ${{ secrets.PIXABAY_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
@@ -213,6 +215,18 @@ jobs:
           [ -z "$GROQ" ] && { echo "::error::missing secret GROQ_API_KEY (free key at https://console.groq.com/keys)"; missing=1; }
           [ -z "$PEXELS" ] && { echo "::error::missing secret PEXELS_API_KEY"; missing=1; }
           [ -z "$PIXABAY" ] && { echo "::error::missing secret PIXABAY_API_KEY"; missing=1; }
+          # THE SHOWRUNNER NOW GATES THIS CHANNEL, AND IT FAILS CLOSED.
+          # With no vision judge available every video is HELD, so the run
+          # would render six shorts over ~40 minutes and publish none of
+          # them. Checking here turns that into an immediate, named failure
+          # instead of a silent zero-post day. This is a check being ADDED,
+          # never a way to skip the gate — there is no bypass, only a
+          # clearer reason.
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no vision judge available (need CLAUDE_CODE_OAUTH_TOKEN, or GEMINI_API_KEY as fallback)."
+            echo "::error::The showrunner gates this channel and fails closed, so every video would be held."
+            missing=1
+          fi
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
@@ -325,10 +339,16 @@ jobs:
           # error message tells you which one is missing.
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-          # Optional: enables Gemini assists — custom thumbnails, shot
-          # image backfill (free image models only), and vision QA on the
-          # finished video. Skips silently if unset, so it's not in the
-          # required-secrets preflight.
+          # THE SHOWRUNNER. This channel ships 6 videos a day and, until now,
+          # nothing watched any of them (docs/SYSTEM_AUDIT.md §D). The gate
+          # judges on the headless-Claude SUBSCRIPTION via this token — the
+          # `claude` CLI installed by the brain step above, in this same job —
+          # never the paid API. Without it the gate falls back to Gemini
+          # below; with neither, the preflight has already failed the run.
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Gemini: the showrunner's only fallback judge, plus the optional
+          # assists — custom thumbnails, shot image backfill (free image
+          # models only), and vision QA on the finished video.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}

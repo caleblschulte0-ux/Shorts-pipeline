@@ -142,7 +142,7 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
         import sys
         if str(REPO) not in sys.path:
             sys.path.insert(0, str(REPO))
-        from script_generator import _call_llm  # type: ignore
+        from shared.script_generator import _call_llm  # type: ignore
         sysmsg = (
             "You are a ruthless YouTube Shorts editor. Your ONLY job is to "
             "REJECT weak premises. A premise passes ONLY if it reverses a "

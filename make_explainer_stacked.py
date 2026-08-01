@@ -288,20 +288,24 @@ def _ass_escape(text: str) -> str:
 
 def group_words(words: list[Word], max_chars: int = 22, max_words: int = 5) -> list[Word]:
     """Group whisper words into caption chunks, flushing on punctuation
-    boundaries so phrases like NORTH CAROLINA or FALL APART stay together."""
-    chunks: list[Word] = []
-    bucket: list[Word] = []
-    for w in words:
-        bucket.append(w)
-        joined = " ".join(b.text for b in bucket)
-        tail = w.text.rstrip()
-        boundary = tail.endswith((".", ",", "!", "?", ":", ";"))
-        if boundary or len(joined) >= max_chars or len(bucket) >= max_words:
-            chunks.append(Word(bucket[0].start, bucket[-1].end, joined))
-            bucket = []
-    if bucket:
-        chunks.append(Word(bucket[0].start, bucket[-1].end, " ".join(b.text for b in bucket)))
-    return chunks
+    boundaries so phrases like NORTH CAROLINA or FALL APART stay together.
+
+    The grouping math is `shared/captions.group_words` — one implementation
+    for every renderer instead of the five near-identical private copies the
+    2026-08-01 audit found (finding C). The arguments below reproduce this
+    function's previous behaviour exactly, including the wider punctuation
+    set and the fact that it does NOT drop blank words;
+    `tests/test_captions.py` asserts that against the original.
+
+    The merge into one `Word` per chunk stays here — that is this renderer's
+    caption model, not shared timing math."""
+    from shared import captions
+    return [Word(g[0].start, g[-1].end, " ".join(b.text for b in g))
+            for g in captions.group_words(
+                words, max_words=max_words, max_chars=max_chars,
+                break_on_punct=True, break_chars=".,!?:;",
+                drop_empty=False, strip_join=False,
+                max_gap=float("inf"), max_span=float("inf"))]
 
 
 def write_captions_ass(chunks: list[Word], path: Path, margin_v: int) -> None:

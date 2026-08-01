@@ -45,12 +45,16 @@
     {
       "phrase": "snapped a photo of it before I left",
       "query": "phone camera photo document",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/6282081/pexels-photo-6282081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "2 months later they charged my card anyway",
       "query": "credit card charge statement",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/6098/6361168427_416dc9a2c7_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "no record I'd ever canceled",
@@ -65,7 +69,9 @@
     {
       "phrase": "emailed the photo, timestamp and all",
       "query": "email attachment screen",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g05d1aeac33c5ac0376817651259a584f547da17f99d1579df644d6abd3a6d5d3423caf0077cdf9b6bb621bbe25fa4057dc9fa6bebf6879520df5a6af2eff8830_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "manager's own signature on it",
@@ -80,32 +86,44 @@
     {
       "phrase": "went quiet for a while",
       "query": "phone screen no reply",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/33705554/pexels-photo-33705554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "refunded both charges",
       "query": "bank refund notification",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/7821762/pexels-photo-7821762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "closed the account for real this time",
       "query": "gym membership card",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g25ca7a54824273dc8cb25a2937126f5ad82cfcb461c91fd6b492eba02867618f82006622663a51ac10dd6290fb0f7aa63ea88c65b78b40396ea88284e845e509_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "apologizing for the 'system error",
       "query": "apology email screen",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g26c76a25825776e346984b0bf9c7cd5fde9e599c9b56b8bcd03ad574686b47446d2d67a752610697d99a4164dfc990f700aad369554dd1a79b4f8cbbbf79b0f9_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the system only errors in one direction",
       "query": "calculator receipt paper",
-      "mascot_pose": "think"
+      "mascot_pose": "think",
+      "image_url": "https://pixabay.com/get/g003fd99676d78234ac3bfd11896e7ec7f1ded29b85ff54f222b693a19d31f2f30ca8aec2739f1de8a90b8204dfe255a1b8c4db58345416636abab6a0a6d25594_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "never thought to take that photo",
       "query": "phone camera roll",
-      "mascot_pose": "dismiss"
+      "mascot_pose": "dismiss",
+      "image_url": "https://pixabay.com/get/g4e4f2f09a09b9e750129bf6344489b4dc5ccc92dd18e5390cb1a8176a4199a16da00d72bcb7f90ac5b33f6ec6962596fda3f9714f597e2059ac2ad5962725f8c_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

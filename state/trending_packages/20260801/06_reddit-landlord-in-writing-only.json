@@ -20,7 +20,7 @@
     "viral",
     "trending"
   ],
-  "script": "My landlord said all maintenance requests had to be 'in writing, no exceptions,' after he ignored three phone calls about my leaking water heater. Fine. I wrote him a letter. Then I wrote him a second letter the next day, in writing, about the mold starting to grow near the leak. Then a third, documenting the drywall now sagging. Then a fourth, a fifth, a sixth \u2014 one letter a day, every day, always 'in writing, no exceptions,' exactly like he asked, each one certified mail so he had to sign for it personally at the post office counter. Three weeks and eighteen signed letters later, he called me \u2014 actually called, on the phone, the thing he banned \u2014 screaming that the county had opened a habitability case off his own paper trail. Turns out eighteen dated, signed letters make a pretty airtight timeline of neglect. He fixed the heater within 48 hours.",
+  "script": "\u201cIn writing only?\u201d My landlord ignored three phone calls about my leaking water heater, then demanded every maintenance request be \u201cin writing, no exceptions.\u201d Fine. I wrote him a letter. The next day came a second letter about mold starting to grow; then a third about the drywall now sagging. A fourth, a fifth, a sixth\u2014one letter a day, every day. Each went certified mail, so he had to sign at the post office counter personally. Three weeks and eighteen signed letters later, he called me\u2014on the phone, the thing he banned\u2014screaming that the county opened a habitability case from his own paper trail. Eighteen dated, signed letters make a beautifully airtight timeline of neglect. He fixed the heater within 48 hours. So who really regretted \u201cin writing, no exceptions\u201d?",
   "shots": [
     {
       "phrase": "leaking water heater",
@@ -29,17 +29,23 @@
       "pin_query": "water heater",
       "pin_context": "home appliance plumbing",
       "news_query": "water heater",
-      "news_angle": "The tenant's water heater is leaking, prompting a series of written maintenance requests to the landlord."
+      "news_angle": "The tenant's water heater is leaking, prompting a series of written maintenance requests to the landlord.",
+      "image_url": "https://live.staticflickr.com/7518/15643625919_d0437dd34b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "in writing, no exceptions",
       "query": "handwritten letter",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/gd40391dbba3c466fc849cfc24c9827c2792d575d09411f30312b4c55ebcbbf66807fdf687f3f8cec00304c5dad705b690cdba897a54e583b855a04d5b9c0b70e_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "mold starting to grow",
       "query": "mold wall damage",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g4bef1c0985910e356a05a3ae9e7c05ebd644adac34ee8f42aaafc1626c3a02925eeb1b36dfde38376643ceae333db2e4a88b985fae2cdea5e3a5f66a8715aa90_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "drywall now sagging",
@@ -48,27 +54,37 @@
       "pin_query": "drywall",
       "pin_context": "construction building material",
       "news_query": "drywall",
-      "news_angle": "The drywall in the tenant's home begins to sag due to the water leak, further complicating the maintenance issue."
+      "news_angle": "The drywall in the tenant's home begins to sag due to the water leak, further complicating the maintenance issue.",
+      "image_url": "https://pixabay.com/get/gc9659d8a3b4152dcd2310ab0cae5eefe1a7f334dcb2341f5a0500e5f82a8dd42e75fea14ac91f507bbd4ce7ddb945eef9e78915749918c4c36ac35dcd94fcde4_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "certified mail",
       "query": "post office counter",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/6227/6247381020_60b4ba307b_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "eighteen signed letters",
       "query": "stack of letters",
-      "mascot_pose": "think"
+      "mascot_pose": "think",
+      "image_url": "https://pixabay.com/get/gb372236e7e1529832f82b212ea530c81769f82b118107c094ae2cc9d944ea5f5dc66cd5f4a0e7350ae28eb05351d9a2730464aa75177e8d8184602f6acd14e1b_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "habitability case",
       "query": "angry phone call",
-      "mascot_pose": "laugh"
+      "mascot_pose": "laugh",
+      "image_url": "https://pixabay.com/get/g2f0697093e8c34d0f1a720de1597880ad5c42c3badc484b62f2256073524c05a6f141d149639ab2b4b69a560418383cb18b49fc99f2e47151f00b7b7a52222bc_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "fixed the heater within 48 hours",
       "query": "repaired water heater",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/gaa9d7399c4f07bc86eb720bafbba1807ba81e3032d66655df13df0e55ab266b0d4844f0d03b7e3399b4f331c9c3b147c6202b613aec64e2f314aa0729ec1cf7b_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
@@ -93,5 +109,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "dark"
+  "music_vibe": "dark",
+  "punched_up": true
 }

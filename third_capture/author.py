@@ -601,10 +601,25 @@ given candidate clips (streamer, title, Twitch views, velocity). Score each on
 how likely a STRANGER — who does not know the streamer, the game, or the inside
 joke — would WATCH TO THE END and SHARE it as a vertical Short.
 
-THE ONE-SENTENCE TEST. A clip earns a high score only if you can state it as
-"[Person] tries/does [clear action], but [surprising consequence]." If the best
-you can say is "streamer reacts / talks to chat / funny moment / he loses it /
-you had to be there", it does NOT promise a payoff — score it LOW.
+THE ONE-SENTENCE TEST — this is the bar for the TOP band, not for passing.
+A clip reaches HIGH only if you can state it as "[Person] tries/does [clear
+action], but [surprising consequence]."
+
+Failing that test does NOT make a clip LOW. It only means the clip is not a
+HIGH. Ask the second question before you score:
+
+  DOES SOMETHING OBSERVABLE HAPPEN?
+
+If yes — a real laugh or flinch, a hit or a miss, someone walking in, an object
+breaking, a stunt landing or failing, a crowd reacting to something you
+can SEE — that is a GOOD clip (0.6-0.8) even though you cannot phrase it as
+action-plus-consequence. Score it there.
+
+Only score LOW when nothing observable happens at all: talking with no
+event, a monologue, menu/setup/sponsor talk, routine gameplay narration.
+"Streamer reacts" is LOW only when you cannot tell WHAT they are reacting
+to; a visible reaction to a visible thing is a GOOD clip, and it is most of
+what this channel posts.
 
 This niche is REALITY TV: the clips that reach MILLIONS are human DRAMA —
 someone caught / exposed / embarrassed / humbled / proven wrong; two people

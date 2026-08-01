@@ -67,7 +67,8 @@ REGISTRY: dict[str, dict] = {
         "est_runtime": "~1-3 s per clip (ffmpeg zoompan)",
         "deps": ["ffmpeg on PATH"],
         "fallback": "none needed — this IS the fallback other engines fall to",
-        "consumers": [],
+        "consumers": ["make_text_card.py:161 (maybe_kenburns)",
+                      "make_explainer_stacked.py:1603 (maybe_kenburns)"],
         "failure_modes": ["corrupt input image -> ffmpeg error (raised; "
                           "callers wanting best-effort use maybe_kenburns)"],
         "sample": "python -m engines demo kenburns --image assets/mascot/anchor/laugh.png --out /tmp/kb.mp4",
@@ -146,7 +147,14 @@ REGISTRY: dict[str, dict] = {
     },
     "svg_motion": {
         "kind": "module",
-        "status": "active",
+        # NOT active: it has no consumer. It was built for animated cards and
+        # `text_card` — the card format it would have served — was retired
+        # the following day. Calling it "active" was the lie rule zero is
+        # about; `experimental` is the registry's own state for "built, not
+        # yet earning its slot". Adopt it (a graph_race stat pop and the
+        # reddit_story post card are the live candidates) or delete it.
+        "status": "experimental",
+        "decision_date": "2026-09-01",
         "problem": "Animated vector graphics (title cards, stat pops, "
                    "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
                    "Born from the ChatGPT-integration finding that animated "
@@ -228,6 +236,10 @@ REGISTRY: dict[str, dict] = {
         "cpu_ok": True,
         "est_runtime": "~0.3 s probe per asset; re-encode only when out of band",
         "deps": ["ffmpeg + ffprobe on PATH"],
+        # Explicitly empty, not missing. `gated` engines are allowed to have
+        # no consumer — that is what gated MEANS — but the field has to say
+        # so out loud, because a missing key reads as "nobody checked".
+        "consumers": [],
     },
     "ffmpeg": {
         "kind": "external", "status": "active",

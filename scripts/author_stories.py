@@ -686,8 +686,10 @@ def _backfill(cfg: dict, dry_run: bool, batch: int = 8) -> int:
                   [("scene" if seg.get("scene") else seg.get("viz", "-"))
                    for seg in s.get("segments", [])])
         return 0
-    CONFIG.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
-    print(f"[backfill] wrote {CONFIG.relative_to(ROOT)}")
+    from shared.fsutil import write_json_if_changed
+    wrote = write_json_if_changed(CONFIG, cfg, ensure_ascii=False)
+    print(f"[backfill] {'wrote' if wrote else 'no change to'} "
+          f"{CONFIG.relative_to(ROOT)}")
     return 0
 
 
@@ -833,7 +835,8 @@ def main() -> int:
     for s in kept:
         for ds in s.pop("_datasets"):
             (DATA_DIR / f"{ds['key']}.json").write_text(json.dumps(ds, indent=2))
-    CONFIG.write_text(json.dumps(cfg, indent=2, ensure_ascii=False) + "\n")
+    from shared.fsutil import write_json_if_changed
+    write_json_if_changed(CONFIG, cfg, ensure_ascii=False)
     print(f"\nAdded {len(kept)} stories to {CONFIG.relative_to(ROOT)} "
           f"(+{sum(len(s['segments']) for s in kept)} datasets). "
           f"Un-posted now: {_unposted_count(cfg)}.")

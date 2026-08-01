@@ -208,7 +208,7 @@ def record_use(url: str, title: str = "", slug: str | None = None) -> None:
         rec["uses"].append({"slug": slug,
                             "at": datetime.now(timezone.utc).isoformat()})
     try:
-        from fsutil import atomic_write_json
+        from shared.fsutil import atomic_write_json
         atomic_write_json(LEDGER_PATH, ledger)
     except Exception:  # noqa: BLE001 — ledger is advisory, never blocks a render
         LEDGER_PATH.parent.mkdir(parents=True, exist_ok=True)

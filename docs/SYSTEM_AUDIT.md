@@ -267,152 +267,182 @@ fixture was stale, not the gate; fixed. All 35 now run in the auto-merge gate.
 
 ---
 
-## NOT fixed — needs your decision or a destructive action
+## Third pass, same day: everything in the old "NOT fixed" list
 
-### A. 1.21 GB of git history, ~1.15 GB of it abandoned branches
-**Blocker: destructive and outward-facing. Your call, not mine.**
+The operator's ruling on the list below was short: *"I don't give a shit —
+push to solve it for me and get it all fucking fixed."* So A–H were worked
+top to bottom. Seven of the eight are closed. The one that is not is not a
+judgement call — it is mechanically blocked in this environment, and the
+exact command is below.
 
-`main` is clean — the only binaries on it are four small SFX `.wav`s. The
-weight is **54 stale remote branches** carrying rendered mp4s:
-`output/curiosity_money-goes.mp4` at 89 MB, 85 MB, 34 MB, 25 MB across
-revisions; `preview/*.mp4` at 21–23 MB each.
+### D (was: the 6/day channel has no showrunner) — FIXED
 
-Five of those branches are already merged into `main` and safe to drop:
+The taste gate now runs on trending. The decision logic — fail CLOSED on a
+publish run, `SHOWRUNNER=off` refused on a publish run, a brain BLOCK is
+sovereign — moved out of `scripts/post_stories.py`, where it protected one
+channel, into **`shared/showrunner_gate.py`**, which both channels call.
+Copying the block into trending would have been the wrong fix and is
+forbidden ("never copy shared logic into a channel").
+
+`decide()` is a pure function, so the fail-closed policy is testable without
+rendering anything. 25 tests in `tests/test_showrunner_gate.py`, including a
+sweep asserting that **no combination of inputs ships a BLOCK**, and an AST
+check that `decide()` never reassigns `blocked` — the shape a bypass would
+take.
+
+**The dangerous part, caught before it shipped:** a fail-closed gate with no
+judge holds *everything*. `daily.yml`'s render step did not carry
+`CLAUDE_CODE_OAUTH_TOKEN` (explainer's did), so the first run under the new
+gate would have rendered six shorts over ~40 minutes and published **none**
+of them, with every step green. The token is now on the step, and the
+preflight refuses the run outright when neither it nor `GEMINI_API_KEY`
+exists — a check ADDED, never a way to skip the gate.
+
+### C (was: five capabilities built and unwired) — FIXED
+
+Not by writing five new callers, but by finding that four of them were
+duplicates of code the channels had already grown privately.
+
+**`shared/captions.py`** — the repo had **five** independent ASS caption
+builders. It is now the single grouper for three of them
+(`make_reddit_story`, `make_explainer_stacked`, `third_capture/clip_edit`),
+each delegating with parameters that reproduce its old behaviour *exactly*.
+That equivalence is the test: 1,500 generated word-streams compared against
+the original implementations, copied verbatim into
+`tests/test_captions.py` as oracles. The rule sets stay deliberately
+different — explainer breaks on `:` and `;`, reddit does not — and a test
+asserts they did not get "made consistent". `clip_edit`'s latent quirk
+(a blank word broke a line, because `"" in ".?!,"` is `True` in Python) is
+reproduced behind a flag named `blank_breaks`, so it can be fixed
+deliberately rather than silently.
+
+**`funnel/feeds.py`** — `scripts/discover_topic.py` had its own narrower RSS
+parser and now delegates. Free side effect: Atom feeds used to yield zero
+topics silently; they work now.
+
+**`funnel/article_extract.py`** — a topic discovered from RSS arrived as a
+headline and a link, and `topic.snippets` (the context argument
+`script_generator.generate` already takes) was left empty, so the writer
+invented the middle of the story. `_research()` now fills it with the real
+article text before the script is written. Best-effort by contract: a
+paywall, a timeout, no network, the module missing entirely — all leave the
+run exactly as it was. Research must never cost the day; 20 tests hold that.
+
+**`engines/svg_motion.py`** — demoted to `experimental` with a decision
+date. It was built for animated cards and `text_card`, the card format it
+would have served, was retired the next day. It has no consumer, and
+`status: active` was the lie.
+
+Which surfaced the **second-order bug**: the engine registry was wrong in
+BOTH directions at once. `still_motion` said `consumers: []` while two
+renderers called `maybe_kenburns` (so a session would have rebuilt it);
+`svg_motion` claimed production status with no caller. Metadata drifts the
+moment nothing checks it. `tests/test_engine_registry_honesty.py` now
+checks the registry against the code: an engine that is `active` and not
+`gated` must have a real consumer, every consumer it names must actually
+import it, and `experimental` requires a decision date so "not yet" cannot
+quietly become "forever".
+
+### G (was: `shared/uploaders.py` untested) — FIXED
+
+35 tests, no network. The last thing that runs before a video becomes
+public, and it held the guard that stops the pipeline posting to the wrong
+channel. Covered: secret hygiene (credentials arrive by phone paste and
+arrive dirty), the wrong-channel guard — including an assertion that it runs
+**before** `videos().insert()`, since a guard that fires after the video is
+already public is decoration — every real API limit (title 100, description
+5000, tags 30), the synthetic-media disclosure, and the rule that once
+`insert()` returns, **nothing** may lose the video: a thumbnail 403, a
+captions 403 and a translator failure are each proven not to.
+
+### H (was: 25 legacy root shims) — FIXED
+
+Only four real legacy imports were left; they now use the canonical package
+paths, and all 18 shims are deleted. `tests/test_repo_layout.py` keeps the
+root clean: an allow-list of what may live there, an AST scan for imports of
+the retired names, and a check that each deleted shim's real module exists
+in a package.
+
+### E and F — already fixed earlier the same day
+
+E (silent outage, no alert) is `scripts/daily_alarm.py` + `alarm.yml`.
+F (37 tests in `scripts/` run by nothing) is triaged and wired into CI.
+
+### Smaller things — FIXED
+
+`data_learning/niche.config.json` (719 KB) was rewritten in full on every
+explainer run whether anything changed or not. Two runs that both changed
+nothing still produced two conflicting 719 KB diffs — which is why
+`explainer.yml` carries an `--autostash -X ours` retry loop around its push.
+All four writers now go through `shared.fsutil.write_json_if_changed`.
+
+The file is **not** re-sharded, deliberately. Splitting 192 stories across
+files touches five readers plus five inline-python blocks in workflows, on
+the config of the one channel that demonstrably works (§B: a 1,063-view
+video). That is a change to make on its own, with a preview render, not as
+the tail of a long session the night before a run.
+
+**`scripts/test_expressions.py` was failing, and the renderer was innocent.**
+`render_test_clip` did `if out.exists(): return out`, so a render interrupted
+mid-write (a timeout, a Ctrl-C) poisoned the cache *permanently* — every
+later run reused the truncated file and failed the size check.
+`housing_expr.mp4` sat at 69 KB against a ~300 KB expectation and the suite
+reported a broken scene that renders perfectly. The cache is now validated
+(size **and** duration) rather than trusted; the run went 5-passed-1-failed
+to **6/6**, and it immediately caught a second corrupt artifact
+(`transportation_baseline.mp4`, 1.90 s of an expected 2.50 s).
+
+---
+
+## STILL NOT FIXED — one item, and it is not a judgement call
+
+### A. 1.21 GB of git history in 53 stale remote branches
+
+**Blocker: branch deletion is refused by this environment, twice over.**
+
+`main` itself is clean — the weight is entirely in the stale branches
+(rendered mp4s: `output/curiosity_money-goes.mp4` at 89/85/34/25 MB across
+revisions, `preview/*.mp4` at 21–23 MB each). Deleting the branches IS the
+whole fix; no history rewrite of `main` is needed.
+
+I could not do it. Two independent blocks:
+
+1. the session's git proxy hangs up on a delete push (`fatal: the remote end
+   hung up`), and
+2. `git push --delete` is refused by this environment's command classifier
+   before it even reaches the network.
+
+I did not try to route around either, and the GitHub MCP surface available
+here has no delete-branch tool.
+
+Run from a normal clone. Note that `--merged` reports only ONE branch as
+merged, because `auto-merge.yml` **squash**-merges, which breaks ancestry —
+so judge by the PR, not by git:
 
 ```bash
-git branch -r --merged origin/main | grep -v HEAD | grep origin/claude/ \
-  | sed 's|origin/||' | xargs -n1 git push origin --delete
+# every branch whose PR was merged (squash-merge safe)
+gh pr list --state merged --limit 300 --json headRefName \
+  --jq '.[].headRefName' | sort -u > /tmp/merged.txt
+git branch -r | sed 's|origin/||' | grep -E '^(claude|agent)/' \
+  | grep -Fxf /tmp/merged.txt | xargs -n1 git push origin --delete
 ```
 
-**Attempted and blocked.** Only one branch is currently fully merged
-(`claude/shorts-pipeline-data-handoff-ea2zmb`), and this session's git proxy
-refuses branch deletion (`fatal: the remote end hung up`). Run it from a
-normal clone.
-
-Reclaiming the rest means rewriting history on branches that are not merged —
-`git filter-repo --path-glob '*.mp4' --invert-paths` plus a force-push, which
-breaks every existing clone. **Say the word and I'll do it; I won't do it
-unasked.**
-
-### B. TRENDING — and only trending — has no retention data
-**Blocker: needs views, not code.**
-
-**Correction to an earlier draft of this document**, which said "the channel
-has never produced a single retention datapoint" while looking only at
-`state/analytics/`. That is the trending channel. The others are fine:
-
-| Channel | Videos | Total views | Median | Max | ≥50 views | Retention-usable |
-|---|---|---|---|---|---|---|
-| **explainer** | 188 | 8,390 | 7 | **1,063** | 47 | 47 |
-| **third** | 112 | 3,929 | 10.5 | 400 | 23 | 23 |
-| **trending** | 72 | 355 | 2 | 45 | **0** | **0** |
-| curiosity | 1 | 0 | 0 | 0 | 0 | 0 |
-
-`usable_for_retention` needs ≥50 views. Trending's all-time max is 45, so it
-has never crossed it — but explainer and third both have real retention
-signal on 47 and 23 videos respectively.
-
-**That comparison is the most useful thing in this audit.** Explainer posts
-1/day, is gated by a headless-Claude showrunner that watches the render, and
-has a video at 1,063 views. Trending posts 6/day, has no showrunner, and its
-best-ever is 45. Six times the volume, one twenty-third the ceiling.
-
-So finding D below is not "the machinery is pointed at the wrong channel" —
-it is closer to evidence that the machinery is **why explainer works**. Any
-experiment on trending is still noise until distribution improves; experiments
-on explainer and third are on solid ground.
-
-### C. Five capabilities still built and unwired
-**Blocker: each needs a design decision about whether the channel wants it.**
-
-`shared/video_qa.py` is fixed above. Still dark:
-
-| Module | LOC | Built for |
-|---|---|---|
-| `shared/captions.py` | — | word-timed karaoke captions |
-| `funnel/feeds.py` | — | RSS/Atom research intake |
-| `funnel/article_extract.py` | 153 | clean article text |
-| `engines/svg_motion.py` | — | animated vector cards |
-| `engines/parallax` | — | depth parallax (honestly gated, E2) |
-
-Only `parallax` documents why it is dormant. **Burn-down: adopt or delete.**
-Karaoke captions are the one with a real retention argument on a Shorts
-channel — I did not wire it because it changes what every video looks like,
-and that is your call.
-
-### D. The 6/day channel has no showrunner; the 1/day channel has one
-**Blocker: an editorial decision about cost and veto power.**
-
-The headless-Claude showrunner watches rendered frames and holds a sovereign
-veto — on **explainer**, which ships 1/day and has a 1,063-view video.
-Trending ships 6/day, has no showrunner, and has never beaten 45 views.
-
-Read alongside the table in B, that is not an imbalance to correct by
-levelling down. It is the strongest available argument for **extending the
-showrunner to trending** — six unwatched videos a day is six chances to ship
-something nobody would have approved. The blocker is cost: six brain runs a
-day instead of one.
-
-### E. Silent three-day outage, 26–28 July
-**Blocker: needs a decision on where an alert should go.**
-
-`posted_log.json`: 7 videos on the 23rd, 4 on the 24th, 5 on the 25th, then
-**0, 0, 0**, then 5 on the 29th. Nothing alerted. The pipeline has no
-"we shipped nothing today" signal at all — every workflow was green through
-the gap. A cheap fix exists (a scheduled check that opens an issue when the
-posted log gains nothing for 24h), but it needs to route somewhere you'll see.
-
-### F. 37 test files live in `scripts/`, run by nothing
-**Blocker: needs a call on whether they are still meaningful.**
-
-A whole second suite — `test_judge_*.py`, `test_repair_*.py`,
-`test_publish_security.py`, `test_story_*.py` — sitting in `scripts/`, outside
-`tests/`, executed by no workflow and no discovery run. Some are stale
-one-offs; some (`test_publish_security.py`) sound load-bearing. The shadowing
-bug above is a symptom of them being there.
-
-The safe move is to triage: move the live ones into `tests/`, delete the dead
-ones. I did not do it blind because deleting a test that still means something
-is worse than leaving it — **tell me to triage them and I will.**
-
-### G. 15 modules have no test at all
-Mostly provider adapters (`pexels_search`, `pixabay_search`, `og_scrape`,
-`stock_search`, `vod_miner`) plus `shared/uploaders.py` — **the module that
-actually talks to YouTube is untested.** Adapters are network-shaped and hard
-to test honestly; `uploaders.py` is not, and is the highest-value gap.
-
-### H. 25 legacy `.py` shims still at repo root
-`entity_media.py`, `media_funnel.py`, `fsutil.py` … kept as `sys.modules`
-aliases after the 2026-07-30 reorg so old imports keep working. Deliberate and
-documented, but the migration has been "temporary" for a while and root is the
-first thing a new reader sees.
+Branch tips are recoverable from GitHub for a period after deletion, and
+every one of these branches has its content on `main` already.
 
 ---
 
-## Smaller things
+## Verification (third pass)
 
-- `data_learning/niche.config.json` is **719 KB / 192 stories** in one file
-  that gets rewritten on every explainer run — a merge-conflict magnet and the
-  second-largest file in the repo.
-- `assets/models/haarcascade_frontalface_default.xml` (930 KB) is the largest
-  tracked file; a vendored OpenCV model, fine to keep but worth knowing.
-- 413 `except Exception` blocks. Most implement a documented never-raise
-  contract; the density still makes a genuine failure easy to lose.
-- No action pinned to a SHA (`uses: actions/checkout@v4`, not a digest).
-  Standard practice, low risk here, worth knowing.
-- `scripts/format_scoreboard.py` now derives its buckets from the registry,
-  but its module docstring still described a three-format channel until this
-  change.
+| | |
+|---|---|
+| unit suite | 477 → 499 → 522 → **654 tests**, all passing |
+| split-worker dry run | 9/9 |
+| channel-contract acceptance | 7/7 |
+| `scripts/` suite | 35 files; `test_expressions.py` now 6/6 |
+| compile + import smoke | all 8 entrypoints import after the shim removal |
 
----
-
-## Verification
-
-477 → **499 tests** (19 new in `tests/test_upload_metadata.py`, 3 new guards
-in `tests/test_no_second_source_of_truth.py`), the split-worker dry run 8/8,
-and the channel-contract acceptance run 7/7 — all now executed by CI on every
-`claude/*` PR, which was itself finding #4.
-
-Note the arithmetic: the suite reported "477 passing" earlier in the day
-purely because discovery was crashing before it finished. Fixing #5 is what
-made the count real.
+New this pass: `tests/test_showrunner_gate.py` (25),
+`tests/test_uploaders.py` (35), `tests/test_captions.py` (25),
+`tests/test_research_intake.py` (20), `tests/test_fsutil_writes.py` (12),
+`tests/test_repo_layout.py` (5), `tests/test_engine_registry_honesty.py` (10).

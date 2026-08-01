@@ -1415,6 +1415,51 @@ def main() -> int:  # noqa: C901
           "attempt is never mistaken for a clean pass",
           "aspirational=content_floor" in _rt_src)
 
+    # ====== the rubric must not contradict itself =======================
+    # 2026-08-01, second run: the graded floor worked (a 0.55 clip PASSED
+    # where 0.70 would have killed it) but scores still clustered at
+    # 0.15-0.35 and every reason read "no clear payoff". Cause: the
+    # ONE-SENTENCE TEST said 'if the best you can say is "streamer reacts
+    # / funny moment", score it LOW' while the new GOOD band said a
+    # genuine unscripted reaction belongs at 0.6-0.8. The judge obeyed the
+    # older, more emphatic instruction. A band nothing is allowed to land
+    # in is the same bug as a threshold nothing can reach.
+    check("the one-sentence test is the bar for the TOP band, not for "
+          "passing — failing it must not force a clip to LOW",
+          "bar for the TOP band, not for passing" in _rank
+          and "Failing that test does NOT make a clip LOW" in _rank)
+    check("the rubric asks the second question: does something OBSERVABLE "
+          "happen?", "DOES SOMETHING OBSERVABLE HAPPEN?" in _rank)
+    check("'streamer reacts' is LOW only when you can't tell what they are "
+          "reacting to — a visible reaction to a visible thing is GOOD",
+          "LOW only when you cannot tell WHAT they are reacting" in _rank)
+    check("LOW is still reserved for nothing-happens content (monologue, "
+          "menu/setup/sponsor talk, routine narration)",
+          all(t in _rank for t in ("monologue", "sponsor talk",
+                                   "routine gameplay narration")))
+
+    # ====== the vision critic must judge the render, not the house style =
+    # A 16:9 source in a 9:16 canvas is 31.6% sharp band and ~68% deliberate
+    # blurred padding. Asking "is the subject clearly visible in most
+    # frames" of THAT gets "mostly blurry, subject not visible" every time
+    # — which is a description of the layout, not a defect. It rejected a
+    # clip that had just passed the content gate at 0.55.
+    _qa_src = (REPO / "third_capture" / "clip_qa.py").read_text()
+    check("the vision critic is told the blur-fill layout is deliberate",
+          "THE HOUSE LAYOUT IS NOT A DEFECT" in _qa_src)
+    check("...and that it must judge the SHARP band, not the padding",
+          "Judge ONLY the sharp band" in _qa_src
+          and "Report blur only where the SHARP band" in _qa_src)
+    check("the house-style phrasings are named so they can't be reported "
+          "as problems",
+          all(p in _qa_src for p in ("mostly blurry", "letterboxed",
+                                     "subject small in frame")))
+    check("the critic KEEPS its power to block genuinely broken output",
+          all(p in _qa_src for p in ("cropped half out", "black, garbled",
+                                     "cover a face")))
+    check("...and still blocks on its own judgement, not a score",
+          '"publish": true|false' in _qa_src)
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")

@@ -2118,6 +2118,141 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.7 (just plans stream, no payoff)",
       "ts": "2026-08-01T13:14:53.088306+00:00"
+    },
+    "rejected-mildmuddygoldfishbrainslug-k-a8jrur4qgvqz_4": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MildMuddyGoldfishBrainSlug-k-A8JruR4qgvqz_4",
+      "streamer": "kaicenat",
+      "title": "security kai\ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (chaotic movement, no clear payoff)",
+      "ts": "2026-08-01T13:50:12.623673+00:00"
+    },
+    "rejected-apatheticprettiestchickensaltbae-vclptf7ntxbhltfc": {
+      "source_url": "https://www.twitch.tv/emiru/clip/ApatheticPrettiestChickenSaltBae-VClpTF7ntxBhltfC",
+      "streamer": "emiru",
+      "title": "SAN DIEGO COMICCON WITH @ALINITY AND @ARIASAKI !! HOSTING MARVEL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (casual hair chat, no payoff)",
+      "ts": "2026-08-01T13:52:57.801110+00:00"
+    },
+    "rejected-kindkindstaplebcwarrior-u4bcqe1snra52nz_": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/KindKindStapleBCWarrior-U4bCQE1snra52nZ_",
+      "streamer": "jasontheween",
+      "title": "Jasontheween Rizz Actually Landed On Her",
+      "qa_rejected": true,
+      "ts": "2026-08-01T13:59:28.897334+00:00"
+    },
+    "rejected-solidamusedtardigradekippa-a1fipc6gtypajyal": {
+      "source_url": "https://www.twitch.tv/lacy/clip/SolidAmusedTardigradeKippa-A1FIPc6GTyPAJYAL",
+      "streamer": "lacy",
+      "title": "lacy rips it",
+      "qa_rejected": true,
+      "ts": "2026-08-01T13:59:38.672709+00:00"
+    },
+    "rejected-thankfuldeadorangekappaross-f4nsltw_aioezu7p": {
+      "source_url": "https://www.twitch.tv/agent00/clip/ThankfulDeadOrangeKappaRoss-f4NsLtW_AIOeZu7p",
+      "streamer": "agent00",
+      "title": "Is that Emily?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just driving, chatting, no payoff)",
+      "ts": "2026-08-01T14:01:51.726861+00:00"
+    },
+    "rejected-headstrongwimpyzucchinidbstyle-bptyyahcmktz0j2s": {
+      "source_url": "https://www.twitch.tv/forsen/clip/HeadstrongWimpyZucchiniDBstyle-bPtYYahcMKtZ0J2s",
+      "streamer": "forsen",
+      "title": "simulatorsenLULE",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine gameplay, no visible event)",
+      "ts": "2026-08-01T14:31:31.106985+00:00"
+    },
+    "rejected-comfortableimportantsnakeonehand-r82naa9f5oykm7t-": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ComfortableImportantSnakeOneHand-R82naa9f5OYkM7T-",
+      "streamer": "stableronaldo",
+      "title": "Ron Gets A Call From Cinna! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just a call announcement, no event)",
+      "ts": "2026-08-01T14:33:05.687291+00:00"
+    },
+    "rejected-icygoodorcagrammarking-4mvfgros2vuertwu": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/IcyGoodOrcaGrammarKing-4mVFGRoS2VUErtwu",
+      "streamer": "pokimane",
+      "title": ":3",
+      "qa_rejected": true,
+      "ts": "2026-08-01T14:33:15.890379+00:00"
+    },
+    "rejected-importanteasymetalhassaanchop-7kuejbrpbum27ncz": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/ImportantEasyMetalHassaanChop-7KUeJBrPbUM27nCZ",
+      "streamer": "zackrawrr",
+      "title": "keeping an \ud83d\udc40on Asmongold",
+      "qa_rejected": true,
+      "ts": "2026-08-01T14:33:31.099586+00:00"
+    },
+    "clip-20260801-3": {
+      "url": "https://youtube.com/shorts/ortcEORnecc",
+      "title": "Deshaefrost Asks For A Hug And Ends Up On The Bed",
+      "kind": "twitch_clip",
+      "ts": "2026-08-01T14:36:21.679312+00:00",
+      "uploaded_at": "2026-08-01T14:36:21.679331+00:00",
+      "publish_at": "2026-08-01T21:30:00Z",
+      "source_url": "https://www.twitch.tv/deshaefrost/clip/JoyousAbstemiousGarageVoHiYo-0oL91E9YUAVClbuQ",
+      "streamer": "deshaefrost",
+      "series": "chaos",
+      "hook": "HE BEGGED FOR A HUG THEN THIS HAPPENED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2521,
+      "banger": 0.5,
+      "cut": {
+        "start": 7.0,
+        "end": 26.0
+      },
+      "director_cut": true
+    },
+    "rejected-agitatedcallouspandaamptroppunch-4wypuojx08ufeu6f": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AgitatedCallousPandaAMPTropPunch-4WyPUOjx08uFeU6F",
+      "streamer": "caseoh_",
+      "title": "lmao caseoh saw va jay jay",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine reaction game, title exaggerates)",
+      "ts": "2026-08-01T14:37:42.494782+00:00"
+    },
+    "rejected-artisticphilanthropicgiraffedbstyle-xprrzkweqxxhrmic": {
+      "source_url": "https://www.twitch.tv/silky/clip/ArtisticPhilanthropicGiraffeDBstyle-xPRRZKWEQXXhrMIc",
+      "streamer": "silky",
+      "title": "silk",
+      "qa_rejected": true,
+      "ts": "2026-08-01T14:38:02.566674+00:00"
+    },
+    "clip-20260801-4": {
+      "url": "https://youtube.com/shorts/nkz4DMPVekQ",
+      "title": "Lacy Admits She Purposely Threw Her Fortnite Qualifier",
+      "kind": "twitch_clip",
+      "ts": "2026-08-01T14:41:42.708299+00:00",
+      "uploaded_at": "2026-08-01T14:41:42.708321+00:00",
+      "publish_at": "2026-08-01T23:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/SpineyVivaciousMallardBlargNaut-ZuKs8eXazRKlOK5b",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "SHE ADMITS IT WAS ALL FAKE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1758,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 26.6
+      },
+      "director_cut": true
     }
   }
 }

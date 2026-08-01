@@ -71,11 +71,17 @@ CI plumbing stays in `scripts/`: `ci_commit_state.sh`, `merge_posted_log.py`, et
 1. **Channels import canonically**: `from funnel import media_funnel`,
    `from shared import uploaders`, `from engines import ...`. Never add new
    code that imports the old root names.
-2. **Legacy shims exist and are safe**: every pre-reorg root module
-   (`media_funnel.py`, `fsutil.py`, …) is a shim that aliases the canonical
-   module via `sys.modules` — old imports still work and share the same
-   module object (caches, quota state, singletons identical). Older docs and
-   branches that reference old paths therefore remain valid.
+2. **The legacy shims are GONE** (deleted 2026-08-01, audit finding H). The
+   18 pre-reorg root modules (`media_funnel.py`, `fsutil.py`, …) were
+   `sys.modules` aliases kept so old imports would survive the reorg. That
+   was right for the migration and wrong to keep: root is the first thing a
+   new reader sees, and compatibility nothing is retiring is just permanent
+   clutter. `import fsutil` is now an **ImportError**, not a deprecation.
+   `tests/test_repo_layout.py` enforces it — an allow-list of what may live
+   at the root, an AST scan for the retired names, and a check that each
+   deleted shim's real module exists in a package. Older docs and branches
+   that reference the old paths are stale; use `shared.fsutil`,
+   `funnel.media_funnel`, and so on.
 3. **New shared capability?** Media acquisition/generation → `funnel/`.
    Registered render engine with the `maybe_*` contract → `engines/`.
    Everything else cross-channel → `shared/`. Channel-specific → that
