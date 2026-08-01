@@ -22,7 +22,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 from funnel import media_judge                       # noqa: E402
 from shared import authoring_brief as brief          # noqa: E402
@@ -578,6 +578,43 @@ class TestOnlyDoneTriggersPhaseB(unittest.TestCase):
             self.assertTrue(at(ready_utc)["ready"], (date, ready_utc))
             if date == "2026-01-15":
                 self.assertFalse(at(early_utc)["ready"], (date, early_utc))
+
+    def test_the_done_push_resolves_the_date_from_a_real_diff(self):
+        """On 2026-08-01 the DONE for 20260801 fired Phase B and it ran
+        against **20260730**.
+
+        `git log -1 --name-only` on a `fetch-depth: 1` clone has no parent to
+        diff against, so git lists EVERY file in the tree as added. The grep
+        matched every bundle's DONE marker and `head -1` took the OLDEST. The
+        run consumed a two-day-old bundle, wrote that day's report, and exited
+        green — today's ChatGPT answer was never applied.
+
+        Two things have to hold: a real diff, and a checkout deep enough to
+        produce one."""
+        wf = (ROOT / ".github" / "workflows" /
+              "exchange_phase_b.yml").read_text()
+        # Non-comment lines only — the fix's own explanation names the
+        # broken command.
+        live = [ln for ln in wf.splitlines()
+                if not ln.strip().startswith("#")]
+        self.assertNotIn("git log -1 --name-only", "\n".join(live),
+                         "a shallow clone reports the whole tree as added — "
+                         "use `git diff-tree -r HEAD`")
+        self.assertIn("git diff-tree --no-commit-id --name-only -r HEAD", wf)
+        import yaml
+        steps = yaml.safe_load(wf)["jobs"]["phase-b"]["steps"]
+        checkout = next(s for s in steps
+                        if str(s.get("uses", "")).startswith("actions/checkout"))
+        self.assertGreaterEqual(int(checkout["with"]["fetch-depth"]), 2,
+                                "depth 1 gives a grafted commit with no parent, "
+                                "so no diff exists to resolve the date from")
+
+    def test_a_resolved_date_must_actually_have_a_DONE(self):
+        """The backstop against a wrong-but-plausible date, which is what
+        made the bug above invisible."""
+        wf = (ROOT / ".github" / "workflows" /
+              "exchange_phase_b.yml").read_text()
+        self.assertIn('exchange/bundles/$DATE/DONE', wf)
 
     def test_no_other_workflow_fires_on_a_checkpoint_push(self):
         for wf in (ROOT / ".github" / "workflows").glob("*.yml"):

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "graph-campi-flegrei-quakes",
+  "title": "Naples' Supervolcano: Quakes Per Week",
+  "hook": "Naples hasn't stopped shaking",
+  "y_label": "Earthquakes per week",
+  "duration": 13,
+  "source": "Sources: Istituto Nazionale di Geofisica e Vulcanologia (INGV), Campi Flegrei Observatory bulletins",
+  "hashtags": [
+    "naples",
+    "italy",
+    "campiflegrei",
+    "earthquake",
+    "volcano",
+    "supervolcano",
+    "science",
+    "geology",
+    "chart",
+    "data",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "years": [
+    2018,
+    2020,
+    2022,
+    2023,
+    2024,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Weekly earthquakes",
+      "color": "#ff3030",
+      "values": [
+        3,
+        8,
+        20,
+        35,
+        50,
+        70
+      ]
+    },
+    {
+      "name": "Ground uplift (cm)",
+      "color": "#ffaa30",
+      "values": [
+        35,
+        55,
+        85,
+        110,
+        130,
+        150
+      ]
+    }
+  ],
+  "music_vibe": "dark"
+}

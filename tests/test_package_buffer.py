@@ -277,6 +277,20 @@ class TestDraw(BankTestCase):
         self.assertEqual(len(got), 4)
         self.assertTrue(all(e["format"] == "reddit_story" for e in got))
 
+    def test_select_never_backfills_a_retired_format(self):
+        """A package banked while a format was active is still real stock —
+        `retirement_problems()` only blocks NEW deposits, it doesn't purge
+        old ones — but once that format retires, a draw must never resurrect
+        it as filler. It would just be rejected downstream and burn the slot
+        for nothing (2026-08-01: this is exactly how a retired text_card
+        reached a live day's slate)."""
+        for i in range(2):
+            buf.deposit(text_card_pkg(slug=f"tc-{i}"), source="test")
+        with registry({"reddit_story": 2, "graph_race": 2},
+                      retired=("text_card",)):
+            got = buf.select(4)
+            self.assertEqual(got, [])
+
     def test_select_is_read_only(self):
         self.bank_all()
         buf.select(6)

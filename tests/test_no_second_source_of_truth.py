@@ -163,6 +163,51 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
                       "from the registry, not restate it")
         self.assertIn("$SLATE_RULING", wf)
 
+    def test_the_test_suite_is_actually_discoverable(self):
+        """`python -m unittest discover -s tests` must WORK.
+
+        It did not, on main, until 2026-08-01. `scripts/` holds 37 test_*.py
+        files of its own and one of them — `scripts/test_exchange.py` —
+        shadows `tests/test_exchange.py`. Every test module that did
+        `sys.path.insert(0, ROOT/"scripts")` put the shadow ahead of the real
+        one, and discovery died with an ImportError as soon as anything had
+        imported or byte-compiled the scripts copy.
+
+        The failure was invisible because nothing ran the suite in CI. Both
+        halves are fixed; this pins the import-order half."""
+        import subprocess
+        out = subprocess.run(
+            [sys.executable, "-m", "unittest", "discover", "-s", "tests",
+             "-p", "test_exchange.py", "-q"],
+            cwd=ROOT, capture_output=True, text=True, timeout=180)
+        self.assertNotIn("incorrectly imported", out.stderr,
+                         "scripts/ is shadowing tests/ on sys.path again — "
+                         "test modules must APPEND scripts/, never insert it "
+                         "at position 0")
+        self.assertEqual(out.returncode, 0, out.stderr[-800:])
+
+    def test_no_test_module_puts_scripts_ahead_of_tests(self):
+        # Match a real statement at the start of a line, not this file's own
+        # description of the pattern it is banning.
+        rx = re.compile(r'^sys\.path\.insert\(\s*0\s*,[^)]*scripts', re.M)
+        offenders = [p.name for p in sorted(Path(ROOT / "tests").glob("*.py"))
+                     if rx.search(p.read_text())]
+        self.assertEqual(offenders, [],
+                         "use sys.path.append for scripts/ — inserting it at "
+                         "0 lets scripts/test_*.py shadow tests/test_*.py")
+
+    def test_ci_actually_runs_the_suite(self):
+        """The suite gated nothing until 2026-08-01: `automerge` needed only
+        the sanity job, so a PR breaking every test merged itself."""
+        wf = (ROOT / ".github" / "workflows" / "auto-merge.yml").read_text()
+        self.assertIn("unittest discover -s tests", wf,
+                      "no CI job runs the test suite")
+        import yaml
+        needs = yaml.safe_load(wf)["jobs"]["automerge"]["needs"]
+        needs = [needs] if isinstance(needs, str) else needs
+        self.assertIn("tests", needs,
+                      "automerge does not wait for the test suite")
+
     def test_every_watched_file_exists(self):
         """A drift scan over files that have been renamed away is a scan that
         silently passes."""

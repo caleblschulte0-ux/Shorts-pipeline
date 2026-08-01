@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260801",
+  "bundle": {
+    "identity": "cc8344d95d3c92923106261809d875e59f2def1644a2d334897f77a856a780ab",
+    "path": "exchange/bundles/20260801/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-01T11:15:00Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+  "safe_request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+  "prompt_sha256": "11b8786131effc48f2ba70430b06052deab5a288d29cb13ac88dccb984154af5",
+  "prompt_used": "An editorial illustration for a short-form video: calculator receipt paper. It accompanies the narration: \"the system only errors in one direction\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1IJraQUU_s61qOKSg66ZUtgcZ4sDEQh7E",
+    "filename": "20260801__reddit-gym-membership-photo-s11-d559cdf1b6f8.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1IJraQUU_s61qOKSg66ZUtgcZ4sDEQh7E",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "56f1ce7546a00c10e2789bbdb8be02a2665559a723786f72af920fab8c409cf4",
+    "bytes": 1751124,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}

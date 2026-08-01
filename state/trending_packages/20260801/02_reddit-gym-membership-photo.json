@@ -25,7 +25,12 @@
     {
       "phrase": "lost' my cancellation form",
       "query": "cancellation form paper",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "pin_query": "cancellation form",
+      "pin_context": "contract document signature",
+      "news_query": "cancellation form",
+      "news_angle": "The gym lost the customer's cancellation form, despite it being signed and photographed.",
+      "image_url": "https://live.staticflickr.com/65535/48911253517_a7e19c4560_b.jpg"
     },
     {
       "phrase": "canceled my gym membership in person",
@@ -50,7 +55,12 @@
     {
       "phrase": "no record I'd ever canceled",
       "query": "customer service phone call",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "I'd",
+      "pin_context": "The gym said there was no record I ever canceled",
+      "news_query": "I'd",
+      "news_angle": "The gym said there was no record I ever canceled",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
     },
     {
       "phrase": "emailed the photo, timestamp and all",
@@ -60,7 +70,12 @@
     {
       "phrase": "manager's own signature on it",
       "query": "signature on paper",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "manager",
+      "pin_context": "gym staff employee",
+      "news_query": "manager",
+      "news_angle": "The manager's signature was on the cancellation form, which was later used as proof of cancellation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png"
     },
     {
       "phrase": "went quiet for a while",

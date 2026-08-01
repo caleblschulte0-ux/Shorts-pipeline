@@ -23,7 +23,9 @@
     {
       "phrase": "An entire reservation, evacuated?",
       "query": "wildfire smoke evacuation",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "image_url": "https://live.staticflickr.com/2094/1718077055_b53781ef44_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "The Bench Fire ripped through",
@@ -46,18 +48,24 @@
     },
     {
       "phrase": "swallowed over 60,000 acres",
-      "query": "burned forest aerial"
+      "query": "burned forest aerial",
+      "image_url": "https://pixabay.com/get/g2637c2e10029bd9a01ee8ccbe3e2945504d3f3fb32d21372b19ba7e7ee22b2bcee6531aed427b89bd8d2a7bbcc86b9afe1c94486632887ed6fe8d7c334ce3e71_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Six homes are already gone",
       "query": "burned house rubble",
       "evidence_urls": [
         "https://www.kptv.com/2026/07/30/devastating-warm-springs-tribal-members-displaced-bench-fire-burns-6-homes/"
-      ]
+      ],
+      "image_url": "https://pixabay.com/get/g41b07aebf214da8f27c60d89223483b69e553305d734137202cf1b5b939786530ea3c14f2fdda0ea34afe395f987a4263a4d35239dbfc9ffcd4aa70ef74edb40_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Five other buildings too",
-      "query": "destroyed building fire"
+      "query": "destroyed building fire",
+      "image_url": "https://pixabay.com/get/g89ff8134779812977de823271ac740dd57209a78c587c4698a3d8f1c7a8d298e745e9f3aca82a4972759bb3a112a326675202f42da9e862e3d4b435b9344f4a4_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Level 3 'Go Now' orders",
@@ -79,23 +87,33 @@
     },
     {
       "phrase": "containment sits at just 3 percent",
-      "query": "wildfire smoke sky"
+      "query": "wildfire smoke sky",
+      "image_url": "https://pixabay.com/get/gb904c5c8dfa3f6505169b2e5a9190a348fec219e214088fe7aaaa38020e91d5e640e427c0a36d2107b418a6c5866d5ca5d879eef5ed4ac484eb0eec9c1df34d6_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "more than a million acres burning statewide",
-      "query": "wildfire smoke horizon"
+      "query": "wildfire smoke horizon",
+      "image_url": "https://pixabay.com/get/gf52b7b44af17e8fb92ffc94d063e2b5ec880b9748f55679aa3d44f1533162d49405291f007aece2ac5176a717354d06fcc0d7a01eee6cefb1e83f3f0ce2e6318_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "thousands more under the same evacuation order",
-      "query": "evacuation shelter cots"
+      "query": "evacuation shelter cots",
+      "image_url": "https://pixabay.com/get/g7271ae11ae2d1d5e67d9be547020e460ba59da69b53d3db0c862ab1c6c600bf6328a3cb4735d3516b6d0f75fa3ccd870_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "called Warm Springs home for generations",
-      "query": "native american community"
+      "query": "native american community",
+      "image_url": "https://images-assets.nasa.gov/image/KSC-04pd0126/KSC-04pd0126~medium.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the fire didn't ask permission",
-      "query": "wildfire flames night"
+      "query": "wildfire flames night",
+      "image_url": "https://pixabay.com/get/g5bf0d0b212067d4c8499377727f635834b6c1ab32467e036f60fa37d24128b62a369c00af32a0fcf9bdde089bb6a6c56cd0c4b121f2ccd3b5712e12fe6e0de17_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

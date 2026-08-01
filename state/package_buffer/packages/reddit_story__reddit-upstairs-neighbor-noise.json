@@ -1,0 +1,89 @@
+{
+  "banked_at": "2026-08-01T09:22:06Z",
+  "source": "routine",
+  "format": "reddit_story",
+  "package": {
+    "version": 1,
+    "subreddit": "pettyrevenge",
+    "slug": "reddit-upstairs-neighbor-noise",
+    "title": "He Wouldn't Stop The Music. So I Got Creative",
+    "hashtags": [
+      "neighbors",
+      "pettyrevenge",
+      "reddit",
+      "storytime",
+      "apartment",
+      "noisecomplaint",
+      "karma",
+      "landlord",
+      "propertymanagement",
+      "justice",
+      "revenge",
+      "fyp",
+      "shorts",
+      "viral",
+      "trending"
+    ],
+    "script": "My upstairs neighbor played bass-heavy music at full volume past midnight for months, and management's only advice was 'just knock on his door.' So I did something else instead. I found out he worked nights and slept during the day, then I filed a noise complaint every single afternoon between 9 a.m. and 5 p.m. for 'a barking dog,' 'a vacuum,' 'construction sounds' — anything vague enough that management had to send someone to check every time, which meant knocking on his door and waking him up, over and over, for weeks. He complained to management that people kept disturbing his sleep for no reason. Management told him, very politely, that they were simply responding to resident complaints and had no way to verify who filed them. Three weeks of interrupted sleep later, his music stopped at 9 p.m. sharp, every single night, like clockwork. Turns out nobody actually enjoys a taste of their own noise.",
+    "shots": [
+      {
+        "phrase": "played bass-heavy music",
+        "query": "speaker loud music",
+        "mascot_pose": "shock"
+      },
+      {
+        "phrase": "just knock on his door",
+        "query": "apartment door knock",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "filed a noise complaint",
+        "query": "complaint form paper",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "waking him up, over and over",
+        "query": "person startled awake",
+        "mascot_pose": "laugh"
+      },
+      {
+        "phrase": "no way to verify who filed them",
+        "query": "office shrug",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "music stopped at 9 p.m. sharp",
+        "query": "quiet apartment hallway",
+        "mascot_pose": "think"
+      },
+      {
+        "phrase": "a taste of their own noise",
+        "query": "headphones on desk",
+        "mascot_pose": "dismiss"
+      }
+    ],
+    "punches": [
+      {
+        "phrase": "just knock on his door",
+        "text": "\"JUST KNOCK\"",
+        "color": "#ffaa30"
+      },
+      {
+        "phrase": "filed a noise complaint",
+        "text": "DAILY COMPLAINTS",
+        "color": "#ffffff"
+      },
+      {
+        "phrase": "no way to verify who filed them",
+        "text": "UNTRACEABLE",
+        "color": "#50ff80"
+      },
+      {
+        "phrase": "music stopped at 9 p.m. sharp",
+        "text": "SILENCE AT LAST",
+        "color": "#50ff80"
+      }
+    ],
+    "music_vibe": "hiphop"
+  }
+}
