@@ -265,7 +265,8 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
         px = [list(Image.open(p).getdata()) for p in imgs]
         n = len(px)
         dup = run = maxrun = 0
-        for a, b in zip(px, px[1:]):
+        run_start = maxrun_start = 0
+        for _i, (a, b) in enumerate(zip(px, px[1:])):
             # Block-max, not a whole-frame mean: a frame is a DUPLICATE only if
             # NO block moved. A whole-frame mean diluted a chart that fills part
             # of the frame down below 0.8 and mislabelled smooth builds as held
@@ -273,14 +274,22 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
             # source dup still shows identical blocks -> still caught.
             if _max_block_diff(a, b, 192) < BLOCK_MOTION_THRESH:
                 dup += 1
+                if run == 0:
+                    run_start = _i
                 run += 1
-                maxrun = max(maxrun, run)
+                if run > maxrun:
+                    maxrun, maxrun_start = run, run_start
             else:
                 run = 0
         pairs = n - 1
         ev["duplicate_ratio"] = round(dup / pairs, 3)
         ev["effective_fps"] = round(sf * (1 - dup / pairs), 1)
         ev["max_dup_run"] = maxrun + 1        # frames
+        # WHERE it froze, not just that it did. Every frozen-stretch block so
+        # far has cost a full render to localise by guesswork; the timestamp
+        # turns the next one into a single look at the video.
+        ev["max_dup_at_s"] = round(maxrun_start / float(sf), 2)
+        ev["duration_s"] = round(n / float(sf), 2)
     except Exception as e:  # noqa: BLE001
         ev["error"] = str(e)[:120]
     return ev
@@ -329,9 +338,16 @@ def temporal_hard_fail(ev: dict) -> str | None:
         return (f"duplicate_ratio {dup} > {ph.max_duplicate_ratio} "
                 f"({ph.name} ceiling) — too many held frames")
     if run is not None and run > ph.max_dup_run_frames:
+        at = ev.get("max_dup_at_s")
+        dur = ev.get("duration_s")
+        where = ""
+        if at is not None:
+            where = (f" starting at t={at}s"
+                     + (f" of {dur}s" if dur else "")
+                     + f" (~{round(run / 24.0, 1)}s frozen)")
         return (f"max_dup_run {run} frames > {ph.max_dup_run_frames} "
                 f"({ph.name} ceiling) — a frozen stretch outside any "
-                f"intentional hold")
+                f"intentional hold{where}")
     return None
 
 

@@ -53,6 +53,21 @@ sys.path.insert(0, str(ROOT))
 POSTED_LOG = ROOT / "state" / "posted_log.json"
 ANALYTICS_DIR = ROOT / "state" / "analytics"
 
+# HOW MANY DATED SNAPSHOTS TO KEEP.
+#
+# Each channel writes a full snapshot per day — 226-281KB apiece by
+# 2026-07-31 — and every one was kept forever. That is ~800KB/day of
+# committed JSON across three channels, in a `state/` directory whose stated
+# rule (docs/STORAGE_AUDIT.md) is "small JSON only". 101 snapshots had
+# accumulated, 11MB of state/'s 14MB, and the number only goes up.
+#
+# 30 days is deliberately more than anything reads. `latest.json` is what the
+# routine and the retro consume; the dated files exist for the 7/30-day
+# windows in the retro brief and for hand-inspection. Beyond a month they are
+# neither read nor recoverable signal — and git keeps the history anyway, so
+# nothing is actually lost by pruning the working tree.
+DEFAULT_KEEP_DAYS = 30
+
 # YouTube watch IDs are always exactly 11 chars from this alphabet.
 _ID_PATTERNS = [
     re.compile(r"youtube\.com/shorts/([A-Za-z0-9_-]{11})"),
@@ -620,6 +635,30 @@ def build_snapshot(posted_log: Path, channel: str = "",
     return snap
 
 
+def prune_snapshots(out_dir: Path, keep: int = DEFAULT_KEEP_DAYS) -> list[str]:
+    """Drop dated snapshots older than the newest `keep`. Never touches
+    `latest.json`, and never raises — a failed prune must not cost a run its
+    analytics."""
+    if keep <= 0:
+        return []
+    removed = []
+    try:
+        dated = sorted((p for p in out_dir.glob("*.json")
+                        if p.stem.isdigit() and len(p.stem) == 8),
+                       key=lambda p: p.stem)
+        for p in dated[:-keep] if len(dated) > keep else []:
+            p.unlink()
+            removed.append(p.name)
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[analytics] snapshot prune skipped: {exc}", file=sys.stderr)
+        return removed
+    if removed:
+        print(f"[analytics] pruned {len(removed)} snapshot(s) older than the "
+              f"newest {keep} in {out_dir.name}/ "
+              f"({removed[0]}…{removed[-1]})", file=sys.stderr)
+    return removed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--max-age-days", type=int, default=30,
@@ -629,6 +668,9 @@ def main() -> int:
                          "the explainer posted-log + token")
     ap.add_argument("--dry-run", action="store_true",
                     help="Print to stdout, don't write to disk")
+    ap.add_argument("--keep-days", type=int, default=DEFAULT_KEEP_DAYS,
+                    help=f"dated snapshots to retain (default "
+                         f"{DEFAULT_KEEP_DAYS}); 0 keeps everything")
     args = ap.parse_args()
 
     if args.channel:
@@ -649,6 +691,7 @@ def main() -> int:
     from shared.fsutil import atomic_write_json
     atomic_write_json(out_dir / f"{today}.json", snap)
     atomic_write_json(out_dir / "latest.json", snap)
+    prune_snapshots(out_dir, keep=args.keep_days)
 
     summary = snap["summary"]
     print(f"[analytics] {summary['total_videos']} videos, "

@@ -213,20 +213,26 @@ def _illustration_quarantine(pkg: dict) -> str | None:
             f"off-topic keyword stock: {bad}")
 
 
-# Baseline reach hashtags appended to every short. Package-specific
-# topical hashtags come from the routine (pkg['hashtags']) and rank
-# higher in the final list — these are the always-on reach tags that
-# fill out the description.
-BASELINE_HASHTAGS = [
-    "shorts", "news", "explainer", "trending", "viral", "fyp",
-    "didyouknow", "breakingnews", "factsdaily", "shortsfeed",
-]
+# Baseline reach hashtags appended to every short, AFTER the package's own
+# topical ones. Deliberately short: see YT_HASHTAG_LIMIT.
+BASELINE_HASHTAGS = ["shorts", "shortsfeed", "news", "didyouknow"]
+
+# YOUTUBE IGNORES EVERY HASHTAG ON A VIDEO THAT CARRIES MORE THAN 15.
+# Not "ranks them lower" — ignores all of them, the whole set, silently.
+# This channel was shipping 21-22 on every upload (15 topical from the
+# package + 10 baseline, deduped), which means for its entire life NONE of
+# its hashtags counted. Nothing surfaced that: the upload succeeded, the
+# description looked full, and the analytics only showed HASHTAGS: 1 view
+# across 76 videos — which reads like "hashtags don't work" rather than
+# "we disabled our own hashtags".
+YT_HASHTAG_LIMIT = 15
 
 
-def _hashtag_list(pkg: dict, max_total: int = 25) -> list[str]:
-    """Merge package hashtags (topical, written by the routine) with
-    the baseline reach set. Dedupes case-insensitively and keeps the
-    topical ones in front — algos weight the first few hardest."""
+def _hashtag_list(pkg: dict, max_total: int = YT_HASHTAG_LIMIT) -> list[str]:
+    """Topical hashtags first, baseline reach tags filling the remainder.
+
+    Hard-capped at `YT_HASHTAG_LIMIT`. The cap is not a style preference —
+    one over and YouTube discards the lot."""
     out: list[str] = []
     seen: set[str] = set()
     pkg_tags = pkg.get("hashtags") or []
@@ -240,20 +246,59 @@ def _hashtag_list(pkg: dict, max_total: int = 25) -> list[str]:
             continue
         seen.add(k)
         out.append(clean)
-        if len(out) >= max_total:
+        if len(out) >= min(max_total, YT_HASHTAG_LIMIT):
             break
     return out
 
 
 def _description(pkg: dict, angle: str | None = None) -> str:
-    parts = [pkg.get("script", "").strip()]
+    """The description a human might actually read, then the hashtags.
+
+    This used to be `pkg["script"]` verbatim followed by 22 hashtags. Two
+    problems, both live for months:
+
+      * `text_card` and `graph_race` packages have NO `script` field, so the
+        description they uploaded with was literally "\\n\\n#tag #tag …" — a
+        bare wall of hashtags and nothing else. That was four of every six
+        videos.
+      * For `reddit_story` it duplicated the narration word for word, which
+        is the same text the TTS is already speaking. Not a hook, and not
+        the keywords a search result needs.
+
+    Now every format gets a real opening line: the title, then the best
+    prose the package actually has (`script`, `text`, or a plain-language
+    summary of a chart), then the source, then the hashtags."""
+    title = (pkg.get("title") or "").strip()
+    body = (pkg.get("script") or pkg.get("text") or "").strip()
+
+    if not body:
+        # graph_race and anything else with no prose: describe what the chart
+        # SHOWS. Series names and the span are real, checkable words, and
+        # they are what somebody would search for.
+        names = [str((s or {}).get("name") or "").strip()
+                 for s in (pkg.get("series") or [])]
+        names = [n for n in names if n]
+        years = [y for y in (pkg.get("years") or []) if y]
+        bits = []
+        if names:
+            bits.append(" vs ".join(names[:4]))
+        if len(years) >= 2:
+            bits.append(f"{years[0]} to {years[-1]}")
+        if pkg.get("y_label"):
+            bits.append(str(pkg["y_label"]))
+        if bits:
+            body = ", ".join(bits) + "."
+
+    parts = [p for p in (title, body) if p]
     if angle:
-        parts.append("")
-        parts.append(angle)
+        parts.append(angle.strip())
+    source = (pkg.get("source") or "").strip()
+    if source:
+        parts.append(source)
     tags = _hashtag_list(pkg)
-    parts.append("")
-    parts.append(" ".join(f"#{t}" for t in tags))
-    return "\n".join(parts)[:5000]
+    if tags:
+        parts.append(" ".join(f"#{t}" for t in tags))
+    return "\n\n".join(parts)[:5000]
 
 
 def _tags(pkg: dict) -> list[str]:
@@ -350,13 +395,47 @@ def _sample_frames(video: Path, n: int = 3) -> list[str]:
     return frames
 
 
+def _technical_qa(out_path: Path, result: dict) -> str | None:
+    """Black frames, frozen frames, silence, missing audio, loudness.
+
+    `shared/video_qa.py` was written for exactly this and then imported by
+    nothing for weeks — CLAUDE.md said "run it before uploads" and no caller
+    ever did. It is format-agnostic (a frozen graph_race is as broken as a
+    frozen reddit_story), so it runs on EVERY render, unlike the Gemini
+    vision QA below which is about imagery and skips two of the three
+    formats.
+
+    Fail-OPEN on analysis trouble: no ffmpeg, a timeout, an unreadable file
+    all return None and the upload proceeds. Blocking a day's video because
+    the QA tool itself broke would be the tool causing the outage it exists
+    to prevent. It only blocks on a defect it actually measured."""
+    try:
+        from shared import video_qa
+        report = video_qa.qa_report(str(out_path))
+        if report is None:
+            return None
+        result["technical_qa"] = report
+        ok, reasons = video_qa.passes(report)
+        if not ok:
+            return "technical QA: " + "; ".join(reasons[:3])
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[qa] technical QA unavailable ({type(exc).__name__}: "
+              f"{str(exc)[:70]}) — proceeding", flush=True)
+    return None
+
+
 def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | None, str | None]:
     """Features 1 + 3. Returns (thumbnail_path_or_None, qa_block_reason_or_None).
-    A non-None block reason means vision QA flagged the video as
-    broken/unsafe and the caller should skip the upload."""
+    A non-None block reason means QA flagged the video as broken/unsafe and
+    the caller should skip the upload."""
+    # TECHNICAL QA FIRST, AND FOR EVERY FORMAT. A black or silent render is
+    # broken whatever shape it is, and this needs no API key.
+    tech_block = _technical_qa(out_path, result)
+    if tech_block:
+        return None, tech_block
     # text_card videos are a clip + a text block by design — the relevance/
-    # imagery QA doesn't apply and would false-flag them. Skip QA entirely;
-    # YouTube auto-generates a thumbnail.
+    # imagery QA doesn't apply and would false-flag them. Skip the VISION
+    # pass only; YouTube auto-generates a thumbnail.
     if pkg.get("format") in ("text_card", "graph_race"):
         return None, None
     block: str | None = None

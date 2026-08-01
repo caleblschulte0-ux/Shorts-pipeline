@@ -369,7 +369,7 @@
   "done_marker": "exchange/bundles/20260801/DONE",
   "counts": {
     "packages": 3,
-    "requests": 12,
+    "requests": 10,
     "animations": 0,
     "to_author": 4,
     "channels_needing_a_brain": 1
@@ -398,8 +398,8 @@
           "shot_index": 0,
           "phrase": "lost' my cancellation form",
           "query": "cancellation form paper",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
@@ -440,8 +440,8 @@
           "shot_index": 6,
           "phrase": "manager's own signature on it",
           "query": "signature on paper",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
@@ -487,19 +487,17 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 3,
         "weak": 0,
-        "missing": 12,
+        "missing": 10,
         "unknown": 0
       },
-      "strong_fraction": 0.077,
+      "strong_fraction": 0.231,
       "requested": [
-        "reddit-gym-membership-photo-s0-1e9868d78710",
         "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
         "reddit-gym-membership-photo-s3-d9fa8daf992d",
         "reddit-gym-membership-photo-s4-09837736dfe5",
         "reddit-gym-membership-photo-s5-32d6da4d2178",
-        "reddit-gym-membership-photo-s6-f8f472ad1d30",
         "reddit-gym-membership-photo-s7-8f8dacb0b451",
         "reddit-gym-membership-photo-s8-9ae5b5e840b6",
         "reddit-gym-membership-photo-s9-670026909cae",
@@ -524,32 +522,6 @@
     }
   ],
   "requests": [
-    {
-      "request_id": "reddit-gym-membership-photo-s0-1e9868d78710",
-      "safe_request_id": "reddit-gym-membership-photo-s0-1e9868d78710",
-      "drive_filename": "20260801__reddit-gym-membership-photo-s0-1e9868d78710.png",
-      "prompt_sha256": "3faccd83b98451ababba2419daa37ddc35ec9497fba77809beda1f0248e6e070",
-      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s0-1e9868d78710.json",
-      "slug": "reddit-gym-membership-photo",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: cancellation form paper. It accompanies the narration: \"lost' my cancellation form\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
       "safe_request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
@@ -638,32 +610,6 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: email attachment screen. It accompanies the narration: \"emailed the photo, timestamp and all\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-membership-photo-s6-f8f472ad1d30",
-      "safe_request_id": "reddit-gym-membership-photo-s6-f8f472ad1d30",
-      "drive_filename": "20260801__reddit-gym-membership-photo-s6-f8f472ad1d30.png",
-      "prompt_sha256": "abdde277fee5f0cb90d011aea40f139a52df76a30bab4134d23ec684c5e767c8",
-      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s6-f8f472ad1d30.json",
-      "slug": "reddit-gym-membership-photo",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: signature on paper. It accompanies the narration: \"manager's own signature on it\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

@@ -86,8 +86,30 @@ jobs:
           [ "$fail" -eq 0 ] && echo "sanity gate: PASS"
           exit "$fail"
 
+  # THE TEST SUITE. Until 2026-08-01 this did not exist: 477 tests lived in
+  # tests/ and CI ran exactly two of the sixteen files, so `automerge` would
+  # squash-merge a PR that broke every other one. A suite that never runs is
+  # decoration — it costs the time to write and buys nothing.
+  tests:
+    if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test deps
+        run: pip install -q pillow pyyaml requests
+      - name: Full unit suite
+        run: python -m unittest discover -s tests -v 2>&1 | tail -40
+      - name: Split-worker dry run (offline, no Drive, no ChatGPT)
+        run: python scripts/exchange_dry_run.py
+      - name: Channel-contract acceptance (registry propagation)
+        run: python scripts/registry_acceptance.py
+
   automerge:
-    needs: sanity
+    needs: [sanity, tests]
     if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:

@@ -1,5 +1,30 @@
 # Shorts-pipeline — notes for Claude sessions
 
+## Rule zero: if you can fix it, fix it — do not just name it
+
+Operator ruling, 2026-08-01. An audit that lists a problem you were capable
+of fixing, and then does not fix it, is worse than no audit: it converts a
+bug into a bug PLUS a false sense that someone is handling it. The finding
+gets read as progress.
+
+So, in this repo:
+
+- **Found it, can fix it, fix is in scope → fix it in the same change.**
+  Not a ticket, not a "recommendation", not a follow-up.
+- **Genuinely cannot fix it** — it needs a credential you do not have, an
+  operator decision, a destructive action (history rewrite, deleting remote
+  branches, anything outward-facing) — then say so **plainly, with the exact
+  command or decision required**, and say WHY you stopped. "Needs your call"
+  is a fix handed over; "worth considering" is litter.
+- **Never build a capability and leave it unwired.** `shared/video_qa.py`
+  sat imported-by-nothing for weeks while `CLAUDE.md` told every session to
+  "run it before uploads". Five modules were in that state at the
+  2026-08-01 audit. A capability nothing calls is not a capability, and a
+  doc claiming otherwise is a lie the next session inherits.
+
+The standing audit record — what was found, what was fixed, what is
+deliberately left and why — is `docs/SYSTEM_AUDIT.md`.
+
 Multi-channel automated YouTube pipeline (trending/daily, explainer,
 curiosity, third "Proof Mode"). Channels are defined by orchestrator +
 config + posted-log + token env, not by folders — see

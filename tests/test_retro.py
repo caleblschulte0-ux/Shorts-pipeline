@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 import build_retro as br                             # noqa: E402
 import review_proposals as rp                        # noqa: E402
@@ -293,8 +293,12 @@ class TestContractAndCodeAgree(unittest.TestCase):
             r"pending_decisions|retro_reply|apply_proposal")
         for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
             body = wf.read_text()
-            # this half stays unconditional and global — no workflow,
-            # anywhere, may apply a proposal
+            # (The false positive sat undetected because `unittest
+            # discover` was crashing on an unrelated import collision
+            # before reaching this test at all — see docs/SYSTEM_AUDIT.md.)
+            #
+            # This half stays UNCONDITIONAL and global: no workflow,
+            # anywhere, retro-related or not, may apply a proposal.
             self.assertNotIn("apply_proposal", body)
             if not touches.search(body):
                 continue

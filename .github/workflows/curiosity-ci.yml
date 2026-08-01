@@ -40,6 +40,13 @@ concurrency:
   group: curiosity-ci-${{ github.ref }}
   cancel-in-progress: true
 
+
+# Least privilege. Without an explicit block a workflow inherits the
+# repository default, which on this repo is write — a CI job that only reads
+# and runs tests has no business holding a token that can push to main.
+permissions:
+  contents: read
+
 jobs:
   gates:
     runs-on: ubuntu-latest
