@@ -8,6 +8,7 @@ in scripts/smoke_third.py on CI.
 """
 from __future__ import annotations
 
+import os
 import sys
 import tempfile
 import types
@@ -870,6 +871,8 @@ def main() -> int:  # noqa: C901
     # a systematic bias against a fail, a reaction face, physical comedy:
     # all of which read as "rambling chat" from the transcript alone.
     _cs = _au._CONTENT_SYSTEM
+    _REAL_CALL_CLAUDE = _au._call_claude   # restored before the
+    _REAL_CALL_GROQ = _au._call_groq       # stderr test below
     check("content judge keeps the greenlight rubric",
           "ONE-SENTENCE TEST" in _cs and "AUTOMATIC-REJECT" in _cs
           and "Return ONLY JSON" in _cs)
@@ -904,6 +907,67 @@ def main() -> int:  # noqa: C901
           _au.judge_content("s", "t", "w", sheet="")[2] is False)
     check("run_third builds a contact sheet of the SOURCE for the gate",
           "contact_sheet(" in _rt_src and "author.judge_content(" in _rt_src)
+
+    # ---- the brain's own error must survive ---------------------------
+    # The CLI returned rc=1 with no JSON for ~90 min on 07-29 and again
+    # mid-run on 07-30, and "rc=1" was the ENTIRE diagnosis available:
+    # capture_output collected stderr and the raise reported only the
+    # return code. Same bug class as the rumble 403.
+    _au._call_claude = _REAL_CALL_CLAUDE   # stubbed above; the next
+    _au._call_groq = _REAL_CALL_GROQ       # test needs the REAL one
+    import subprocess as _sp
+    import shutil as _sh
+    _real_run, _real_which = _sp.run, _sh.which
+    try:
+        _sh.which = lambda n: "/usr/bin/claude"
+        os.environ["CLAUDE_CODE_OAUTH_TOKEN"] = "test"
+
+        class _R:
+            returncode, stdout, stderr = 1, "", "Usage limit reached."
+        _sp.run = lambda *A, **K: _R()
+        try:
+            _au._call_claude("hi")
+            check("claude failure raises", False)
+        except RuntimeError as _e:
+            _m = str(_e)
+            check("brain failure surfaces the CLI's own stderr",
+                  "Usage limit reached." in _m)
+            check("brain failure still reports the return code",
+                  "rc=1" in _m)
+            check("an empty stdout is stated, not silently omitted",
+                  "stdout=<empty>" in _m)
+    finally:
+        _sp.run, _sh.which = _real_run, _real_which
+
+    # ---- source health is judged across runs, not one sample ----------
+    _jmod = _j
+    _rep = []
+    _jmod.print = lambda *a, **k: _rep.append(" ".join(str(x) for x in a))
+    try:
+        # one run: nothing may be called dead (a streamer offline for a
+        # day is not a dead handle — that is how guesswork creeps back)
+        _jmod._sources_report([{"dead_sources": {"twitch:a": {"clips": 0}}}])
+        check("a single quiet run never marks a source dead",
+              not any("prunable" in x for x in _rep)
+              and any("need >=3" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report([{"dead_sources": {"twitch:a": {"clips": 0}}}
+                               for _ in range(4)])
+        check("quiet on every one of 4 runs -> prunable",
+              any("DEAD, prunable" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report(
+            [{"dead_sources": {"twitch:a": {"clips": 0}}} for _ in range(3)]
+            + [{"dead_sources": {}}])
+        check("a source that produced ONCE is never called dead",
+              not any("prunable" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report([{"dead_sources": {
+            "rumble:X": {"clips": 0, "fail": 1, "err": "CalledProcessError"}}}])
+        check("an ERRORED source is reported as a code bug, not a prune",
+              any("broken adapter" in x for x in _rep))
+    finally:
+        _jmod.print = print
 
     # ---- VOD mining (funnel/ — shared media capability) ----------------
     # Clip discovery only sees what a human chose to clip. On a thin day

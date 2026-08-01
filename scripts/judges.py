@@ -168,6 +168,50 @@ def _rejects_from_log(date: str) -> list[dict]:
     return sorted(out, key=lambda r: r["ts"])
 
 
+def _sources_report(runs: list[dict]) -> None:
+    """Aggregate source health ACROSS runs.
+
+    A source quiet on one run means nothing — the streamer may simply not
+    have gone live. A source quiet on every run it was tried is dead
+    weight: an API call and a log line each run, for nothing. Only the
+    second is prunable, and only this view can tell them apart."""
+    seen: dict = {}
+    tried = 0
+    for r in runs:
+        dead = r.get("dead_sources")
+        if dead is None:
+            continue          # run predates source-health tracking
+        tried += 1
+        for k, v in dead.items():
+            e = seen.setdefault(k, {"quiet": 0, "err": 0, "kind": ""})
+            if v.get("fail"):
+                e["err"] += 1
+                e["kind"] = v.get("err", "")
+            else:
+                e["quiet"] += 1
+    if not tried:
+        print("no runs carry source health yet — it lands with the next run")
+        return
+    print(f"\n=== source health across {tried} run(s) with tracking")
+    errored = sorted(((k, v) for k, v in seen.items() if v["err"]),
+                     key=lambda kv: -kv[1]["err"])
+    quiet = sorted(((k, v) for k, v in seen.items() if not v["err"]),
+                   key=lambda kv: -kv[1]["quiet"])
+    if errored:
+        print("  ERRORED (broken adapter — a code bug, not a prune):")
+        for k, v in errored:
+            print(f"    {k:28} {v['err']}/{tried} runs  {v['kind']}")
+    if quiet:
+        print("  QUIET (returned 0 clips):")
+        for k, v in quiet:
+            flag = "  <- DEAD, prunable" if v["quiet"] == tried and tried >= 3 \
+                else ""
+            print(f"    {k:28} {v['quiet']}/{tried} runs{flag}")
+    if tried < 3:
+        print("  (need >=3 tracked runs before calling anything dead — a "
+              "streamer offline for a day is not a dead handle)")
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", type=int, default=1,
@@ -178,6 +222,9 @@ def main() -> int:
                     help="only slots that did NOT post")
     ap.add_argument("--json", action="store_true",
                     help="dump the raw records instead of rendering")
+    ap.add_argument("--sources", action="store_true",
+                    help="aggregate source health across runs (the prune "
+                         "list: what is dead, not just quiet today)")
     a = ap.parse_args()
 
     if not STATS.exists():
@@ -197,6 +244,11 @@ def main() -> int:
 
     if a.json:
         print(json.dumps(runs, indent=2))
+        return 0
+
+    if a.sources:
+        # aggregate over EVERY retained run, not the --runs slice
+        _sources_report(json.loads(STATS.read_text()).get("runs", []))
         return 0
 
     print("JUDGES — what the brains thought "

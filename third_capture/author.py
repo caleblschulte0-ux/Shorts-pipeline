@@ -487,8 +487,20 @@ def _call_claude(user: str, system: str = SYSTEM,
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
     m = re.search(r"\{.*\}", r.stdout, re.DOTALL)
     if not m:
-        raise RuntimeError(f"no JSON in claude output "
-                           f"(rc={r.returncode})")
+        # SURFACE THE CLI'S OWN MESSAGE. capture_output=True collects
+        # stderr and this raised on rc alone, so "rc=1" was the entire
+        # diagnosis available while the brain was down for ~90 minutes on
+        # 2026-07-29 and again mid-run on 07-30 — every rank, author and
+        # scene call failing with no way to tell WHY (auth? usage limit?
+        # prompt too long? a permission prompt?). Exactly the bug class
+        # that hid the rumble 403 for days: the answer was captured, then
+        # thrown away. This is the single highest-value line in the file.
+        err = (r.stderr or "").strip().replace("\n", " ")[:300]
+        head = (r.stdout or "").strip().replace("\n", " ")[:120]
+        raise RuntimeError(
+            f"no JSON in claude output (rc={r.returncode})"
+            + (f" stderr={err!r}" if err else "")
+            + (f" stdout={head!r}" if head else " stdout=<empty>"))
     return json.loads(m.group(0))
 
 
