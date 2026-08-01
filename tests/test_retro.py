@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 import build_retro as br                             # noqa: E402
 import review_proposals as rp                        # noqa: E402
@@ -282,7 +282,15 @@ class TestContractAndCodeAgree(unittest.TestCase):
         }
         for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
             body = wf.read_text()
-            if "proposals" not in body:
+            # Match the retro PROPOSAL PATH, not the bare word. `proposals`
+            # alone also matches curiosity-ci.yml running
+            # `scripts/test_learning_proposals.py` — an unrelated unit test.
+            # That false positive sat undetected because `unittest discover`
+            # was crashing on an unrelated import collision before reaching
+            # this test at all (see docs/SYSTEM_AUDIT.md).
+            if not any(t in body for t in ("retro/", "retro_reply",
+                                           "review_proposals",
+                                           "pending_decisions")):
                 continue
             self.assertNotIn("apply_proposal", body)
             self.assertIn(wf.name, allowed,
