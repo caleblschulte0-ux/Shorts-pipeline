@@ -1,14 +1,40 @@
-# Daily Trending Shorts — 2026-07-31
+# Daily Trending Shorts — 2026-08-01
 
-Already posted 5 short(s) in the last 6 hours; skipped duplicate trigger.
+> **2 package(s) came from the reserve bank** — top it up when Claude is back: `python scripts/package_reserve.py status`.
 
-## Format scoreboard (A/B/C test)
+- queued: **6**
+- succeeded: **5**
+- quarantined (off-topic imagery): **1**
+- failed: **0**
 
-| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
-|---|---|---|---|---|---|---|---|---|
-| graph_race | 8 | 81 | 10.1 | 0.12 | 78.2 | 0 | 0 | 0 |
-| text_card | 10 | 51 | 5.1 | 0.03 | 227.9 | 0 | 0 | 0 |
-| explainer | 35 | 178 | 5.1 | 0.02 | 39.0 | 1 | 0 | 0 |
-| reddit | 10 | 7 | 0.7 | 0.0 | 16.8 | 0 | 0 | 0 |
+## Posted
+- **Internet Users Vs World Population By Year**
+  - topic: Internet Users Vs World Population By Year
+  - publishes: `2026-08-01T13:00:00Z`
+  - https://youtube.com/shorts/gzKfzqmrSUM
+  - took: 44.9s
+- **Canada's Wildfires: Area Burned By Year**
+  - topic: Canada's Wildfires: Area Burned By Year
+  - publishes: `2026-08-01T14:30:00Z`
+  - https://youtube.com/shorts/htGJtuxDlrs
+  - took: 44.3s
+- **China vs The World: Electric Car Sales**
+  - topic: China vs The World: Electric Car Sales
+  - publishes: `2026-08-01T16:00:00Z`
+  - https://youtube.com/shorts/jbJUDghUbSc
+  - took: 45.4s
+- **Naples' Supervolcano: Quakes Per Week**
+  - topic: Naples' Supervolcano: Quakes Per Week
+  - publishes: `2026-08-01T17:30:00Z`
+  - https://youtube.com/shorts/P68A1pdbw-k
+  - took: 45.8s
+- **He Said 'In Writing Only.' I Took Him Literally**
+  - topic: He Said 'In Writing Only.' I Took Him Literally
+  - publishes: `2026-08-01T19:00:00Z`
+  - https://youtube.com/shorts/HkNMwBl-Ipk
+  - took: 145.8s
 
-matched 63 videos to packages, 13 unmatched (pre-A/B/C uploads)
+## Quarantined (off-topic imagery — fix & re-author)
+- **The gym said there was no record I ever canceled**
+  - quarantined: vision QA: broken — The top half of the video consistently shows placeholders or blank screens instead of a news/stock photo. Frame 1 has 'PHOTO OF IT' text, Frame 2 is completely black, and Frame 3 displays game-like el
+

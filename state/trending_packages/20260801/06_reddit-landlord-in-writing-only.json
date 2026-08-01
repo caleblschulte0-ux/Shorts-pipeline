@@ -20,75 +20,22 @@
     "viral",
     "trending"
   ],
-  "script": "My landlord said all maintenance requests had to be 'in writing, no exceptions,' after he ignored three phone calls about my leaking water heater. Fine. I wrote him a letter. Then I wrote him a second letter the next day, in writing, about the mold starting to grow near the leak. Then a third, documenting the drywall now sagging. Then a fourth, a fifth, a sixth \u2014 one letter a day, every day, always 'in writing, no exceptions,' exactly like he asked, each one certified mail so he had to sign for it personally at the post office counter. Three weeks and eighteen signed letters later, he called me \u2014 actually called, on the phone, the thing he banned \u2014 screaming that the county had opened a habitability case off his own paper trail. Turns out eighteen dated, signed letters make a pretty airtight timeline of neglect. He fixed the heater within 48 hours.",
+  "script": "My landlord said all maintenance requests had to be 'in writing, no exceptions,' after he ignored three phone calls about my leaking water heater. Fine. I wrote him a letter. Then I wrote him a second letter the next day, in writing, about the mold starting to grow near the leak. Then a third, documenting the drywall now sagging. Then a fourth, a fifth, a sixth — one letter a day, every day, always 'in writing, no exceptions,' exactly like he asked, each one certified mail so he had to sign for it personally at the post office counter. Three weeks and eighteen signed letters later, he called me — actually called, on the phone, the thing he banned — screaming that the county had opened a habitability case off his own paper trail. Turns out eighteen dated, signed letters make a pretty airtight timeline of neglect. He fixed the heater within 48 hours.",
   "shots": [
-    {
-      "phrase": "leaking water heater",
-      "query": "water heater leak",
-      "mascot_pose": "shock",
-      "pin_query": "water heater",
-      "pin_context": "plumbing appliance home maintenance",
-      "news_query": "water heater",
-      "news_angle": "The leaking water heater was the source of the maintenance requests and subsequent habitability case.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Active_Indirect_Water_Heater_Diagram.svg"
-    },
-    {
-      "phrase": "in writing, no exceptions",
-      "query": "handwritten letter",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "mold starting to grow",
-      "query": "mold wall damage",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "drywall now sagging",
-      "query": "damaged drywall ceiling",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "certified mail",
-      "query": "post office counter",
-      "mascot_pose": "idle"
-    },
-    {
-      "phrase": "eighteen signed letters",
-      "query": "stack of letters",
-      "mascot_pose": "think"
-    },
-    {
-      "phrase": "habitability case",
-      "query": "angry phone call",
-      "mascot_pose": "laugh"
-    },
-    {
-      "phrase": "fixed the heater within 48 hours",
-      "query": "repaired water heater",
-      "mascot_pose": "idle"
-    }
+    {"phrase": "leaking water heater", "query": "water heater leak", "mascot_pose": "shock"},
+    {"phrase": "in writing, no exceptions", "query": "handwritten letter", "mascot_pose": "idle"},
+    {"phrase": "mold starting to grow", "query": "mold wall damage", "mascot_pose": "idle"},
+    {"phrase": "drywall now sagging", "query": "damaged drywall ceiling", "mascot_pose": "idle"},
+    {"phrase": "certified mail", "query": "post office counter", "mascot_pose": "idle"},
+    {"phrase": "eighteen signed letters", "query": "stack of letters", "mascot_pose": "think"},
+    {"phrase": "habitability case", "query": "angry phone call", "mascot_pose": "laugh"},
+    {"phrase": "fixed the heater within 48 hours", "query": "repaired water heater", "mascot_pose": "idle"}
   ],
   "punches": [
-    {
-      "phrase": "in writing, no exceptions",
-      "text": "IN WRITING ONLY",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "eighteen signed letters",
-      "text": "18 LETTERS",
-      "color": "#ffffff"
-    },
-    {
-      "phrase": "habitability case",
-      "text": "COUNTY CASE OPENED",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "fixed the heater within 48 hours",
-      "text": "FIXED IN 48 HOURS",
-      "color": "#50ff80"
-    }
+    {"phrase": "in writing, no exceptions", "text": "IN WRITING ONLY", "color": "#ffaa30"},
+    {"phrase": "eighteen signed letters", "text": "18 LETTERS", "color": "#ffffff"},
+    {"phrase": "habitability case", "text": "COUNTY CASE OPENED", "color": "#ff3030"},
+    {"phrase": "fixed the heater within 48 hours", "text": "FIXED IN 48 HOURS", "color": "#50ff80"}
   ],
   "music_vibe": "dark"
 }
