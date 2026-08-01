@@ -48,7 +48,10 @@ def _fmt_judge(name: str, v: dict) -> list[str]:
         score, floor = v.get("score"), v.get("floor")
         why = f" — {v['why']}" if v.get("why") else ""
         bar = f" ({score} vs floor {floor})" if score is not None else ""
-        out.append(f"    content     {verdict}{bar}{why}")
+        # provenance: a text-only verdict carries the known bias against
+        # visually-driven clips, so it must not read as authoritative
+        eyes = "" if v.get("saw_frames") else "  [TEXT-ONLY — did not see]"
+        out.append(f"    content     {verdict}{bar}{why}{eyes}")
     elif name == "vision":
         verdict = MARK.get(v.get("verdict"), v.get("verdict", "?"))
         conf = f" conf={v['confidence']}" if v.get("confidence") else ""

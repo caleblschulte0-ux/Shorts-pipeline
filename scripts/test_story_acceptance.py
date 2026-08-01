@@ -702,7 +702,7 @@ def main() -> int:  # noqa: C901
            "__file__": str(REPO / "scripts" / "run_third.py")}
     # slice to a STABLE marker, not a line count: adding a helper used to
     # cut this mid-function and break every test below it
-    _hdr = _rt_src[:_rt_src.index("ANALYTICS_LATEST = ")]
+    _hdr = _rt_src[:_rt_src.index("def _load_log")]
     exec(compile(_hdr, "run_third", "exec"), _ns)
 
     class _Boom:
@@ -840,6 +840,100 @@ def main() -> int:  # noqa: C901
           "def _source_health" in _rt_src
           and _rt_src.split("def _source_health")[1].split("def ")[0]
           .count("except Exception:") == 1)
+
+    # ---- dead adapters: diagnosable, and parked when unfixable ---------
+    # rumble 403s at the domain edge from CI egress (a real channel and a
+    # nonsense slug 403 identically), so neither url form can ever win.
+    # It was undiagnosable because both handlers printed only the
+    # exception TYPE while yt-dlp's own message sat unused in e.output.
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("discovery surfaces yt-dlp's own error, not just the type",
+          'getattr(e, "output", "")' in _ce_src2
+          and 'getattr(e, "output", "")' in _rt_src)
+    check("rumble no longer drops every row on unknown duration",
+          'platform == "rumble" and dur > 120' in _ce_src2
+          and 'dur == 0 or dur > 120' not in _ce_src2)
+    check("kick's silent zero-clip result now warns",
+          "yielded 0 " in _ce_src2)
+    check("curl_cffi pinned in requirements (stops env drift)",
+          "curl_cffi" in (REPO / "requirements.txt").read_text())
+    check("rumble parked out of active sources with a recorded reason",
+          "rumble" not in _cfg["sources"]
+          and "403" in _cfg["sources_parked"]["rumble"]["reason"])
+    check("parking preserves the handle for restoration",
+          _cfg["sources_parked"]["rumble"]["channels"] == ["AdinLive"])
+
+    # ---- the content gate can SEE -------------------------------------
+    # 2026-07-31: every rejection all day was about talk — "rambling chat
+    # talk", "vague ramble", "routine gameplay narration" — because the
+    # gate judged words[:40] and nothing else. On a clips channel that is
+    # a systematic bias against a fail, a reaction face, physical comedy:
+    # all of which read as "rambling chat" from the transcript alone.
+    _cs = _au._CONTENT_SYSTEM
+    check("content judge keeps the greenlight rubric",
+          "ONE-SENTENCE TEST" in _cs and "AUTOMATIC-REJECT" in _cs
+          and "Return ONLY JSON" in _cs)
+    check("content judge is told to read the frames first",
+          "READ THE IMAGE FIRST" in _cs)
+    check("content judge must not dismiss a visual moment as talk",
+          "describing the audio of" in _cs)
+    check("content judge still believes frames over a lying title",
+          "believe the frames" in _cs)
+    # provenance: a text-only verdict carries the very bias this removes
+    _seen = {}
+    _au._call_claude = lambda u, system=None, read_files=False: (
+        _seen.update(read=read_files, sys=system) or
+        {"scores": [{"i": 0, "banger": 0.86, "why": "visible fail"}]})
+    _sc, _wy, _saw = _au.judge_content("s", "vague title", "um so anyway",
+                                       sheet="/tmp/sheet.jpg")
+    check("a visual clip can now score high despite mundane words",
+          _sc == 0.86 and _saw is True and _wy == "visible fail")
+    check("vision judge is granted Read for the contact sheet",
+          _seen.get("read") is True)
+    _au._call_claude = lambda u, system=None, read_files=False: (
+        _ for _ in ()).throw(RuntimeError("vision down"))
+    _au._call_groq = lambda u, system=None: None
+    _sc2, _, _saw2 = _au.judge_content("s", "t", "words",
+                                       sheet="/tmp/sheet.jpg")
+    check("vision failure degrades to text-only, never loses the clip",
+          _saw2 is False)
+    check("a blind verdict is RECORDED as blind, not passed off as sighted",
+          "saw_frames" in _rt_src
+          and "TEXT-ONLY" in (REPO / "scripts" / "judges.py").read_text())
+    check("no sheet at all -> text-only path, still no crash",
+          _au.judge_content("s", "t", "w", sheet="")[2] is False)
+    check("run_third builds a contact sheet of the SOURCE for the gate",
+          "contact_sheet(" in _rt_src and "author.judge_content(" in _rt_src)
+
+    # ---- VOD mining (funnel/ — shared media capability) ----------------
+    # Clip discovery only sees what a human chose to clip. On a thin day
+    # the moment a clipper MISSED is often seconds away from one they got.
+    from funnel import vod_miner as _vm
+    check("vod_miner refuses without helix coordinates (invents nothing)",
+          _vm.maybe_mine({"url": "x"}, "/tmp") == [])
+    check("vod_miner never raises (supply is best-effort)",
+          _vm.maybe_mine(None, "/nonexistent") == [])
+    check("mined urls are identifiable as synthetic",
+          _vm.is_mined("vodmine://v/1")
+          and not _vm.is_mined("https://twitch.tv/a/clip/b"))
+    # A mined moment keys on video_id AND offset. Keying on the last url
+    # segment alone would collide two VODs sharing an offset — in the
+    # POSTED LOG, where a collision means a duplicate upload.
+    check("mined clip keys are distinct across VODs at the same offset",
+          _ns["_clip_key"]("vodmine://AAA/900")
+          != _ns["_clip_key"]("vodmine://BBB/900"))
+    check("twitch dedupe identity is unchanged by that",
+          _ns["_clip_key"]("https://clips.twitch.tv/Slug")
+          == _ns["_clip_key"]("https://twitch.tv/ch/clip/Slug"))
+    check("mining is gated on a thin pool, not run every time",
+          "if len(cands) < min_pool:" in _rt_src)
+    check("a mined candidate skips the download (already extracted)",
+          'if pick.get("mined"):' in _rt_src)
+    check("mined candidates still face the same content gate",
+          _rt_src.index('pick.get("mined")')
+          < _rt_src.index("content gate: transcript-aware score"))
+    check("vod_miner lives in funnel/ (shared media capability)",
+          (REPO / "funnel" / "vod_miner.py").exists())
 
     # ---- engines/render_qa: shared mechanical render-QA ----------------
     # First ANALYSIS engine in the shared layer. Logic tier only here (no

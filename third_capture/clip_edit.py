@@ -360,6 +360,14 @@ def _discover_kick(channel: str, top: int, range_: str) -> list[dict]:
         if age_h is not None:
             d["age_h"] = round(age_h, 2)
         out.append(d)
+    if not out:
+        # Kick's failure was SILENT: a 200 that parsed to zero clips
+        # returned [] with no log line at all, which is worse than
+        # Rumble's loud one — 0 of 168 posted videos have ever come from
+        # Kick and nothing in the logs said why. Say it.
+        print(f"::warning::[kick] {channel}: API responded but yielded 0 "
+              f"clips — adapter or response shape may have drifted",
+              flush=True)
     return out[:top]
 
 
@@ -399,10 +407,22 @@ def discover(platform: str, channel: str, *, top: int = 8,
             try:
                 return _discover_ytdlp(ru, channel, "rumble", top)
             except Exception as e:  # noqa: BLE001
+                # Surface yt-dlp's OWN message. _run merges stderr into
+                # e.output, and both this handler and run_third's used to
+                # print only the exception TYPE — so "CalledProcessError"
+                # was the entire diagnosis available for days. The string
+                # that explains the failure (e.g. "HTTP Error 403:
+                # Forbidden") was captured and then discarded.
+                detail = (getattr(e, "output", "") or "").strip()
+                detail = detail.splitlines()[-1][:200] if detail else ""
                 if i == len(rumble_urls) - 1:
+                    if detail:
+                        print(f"[rumble] {channel}: {ru} failed — {detail}",
+                              flush=True)
                     raise
-                print(f"[rumble] {channel}: /c/ failed ({type(e).__name__}) "
-                      "— trying /user/", flush=True)
+                print(f"[rumble] {channel}: {ru} failed "
+                      f"({type(e).__name__}) {detail} — trying next form",
+                      flush=True)
     else:
         raise ValueError(f"unknown platform {platform!r}")
     return _discover_ytdlp(url, channel, platform, top)
@@ -424,7 +444,14 @@ def _discover_ytdlp(url: str, channel: str, platform: str,
         except ValueError:
             continue
         dur = float(dur or 0)
-        if platform == "rumble" and (dur == 0 or dur > 120):
+        # Rumble's channel extractor yields bare url_result entries, so
+        # under --flat-playlist duration renders as 0 for EVERY row. The
+        # old `dur == 0` drop therefore discarded the entire page — a
+        # second bug stacked under the 403, which would have kept Rumble
+        # at zero results even if the bot-wall were solved. Unknown
+        # duration is now let through (the preflight + content gate judge
+        # the actual file); only a known-too-long video is dropped.
+        if platform == "rumble" and dur > 120:
             continue                      # VODs/streams, not clip-length
         clips.append({"url": u, "views": int(float(views or 0)),
                       "duration": dur, "title": title,

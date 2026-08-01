@@ -390,6 +390,13 @@ def _clip_key(url: str) -> str:
     if not url:
         return ""
     path = url.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    # A VOD-MINED moment is `vodmine://<video_id>/<offset>`. Taking the
+    # last segment would key it on the OFFSET alone, so two moments at the
+    # same second of two different VODs would collide — in the posted log,
+    # where a collision means a duplicate upload. Key on the whole
+    # identity instead.
+    if path.startswith("vodmine://"):
+        return path.lower()
     seg = path.rsplit("/", 1)[-1]
     return seg.lower() or path.lower()
 
@@ -1138,10 +1145,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                 _source_health(platform, ch, ok=True,
                                                clips=len(got))
                             except Exception as e:  # noqa: BLE001
+                                # keep yt-dlp's own message: the exception
+                                # TYPE alone made rumble undiagnosable for
+                                # days (see clip_edit's rumble handler)
+                                _d = (getattr(e, "output", "") or "").strip()
+                                _d = _d.splitlines()[-1][:160] if _d else ""
                                 _source_health(platform, ch, ok=False,
                                                err=f"{type(e).__name__}")
                                 print(f"::warning::discover {platform}:{ch} "
-                                      f"failed ({type(e).__name__}) — "
+                                      f"failed ({type(e).__name__}) {_d} — "
                                       "skipped", flush=True)
                     fresh = [c for c in pool
                              if _clip_key(c["url"]) not in posted_keys]
@@ -1171,6 +1183,34 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
+                # THIN-DAY VOD MINING (2026-07-31): clip discovery only
+                # ever sees what a human chose to clip. When even the
+                # widened window comes up short, mine the VOD NEIGHBOURHOOD
+                # of the anchors we do have — the moment a clipper missed
+                # is very often 90s after the one they caught. One bounded
+                # extra download per anchor; each mined moment is extracted
+                # as a short mp4 so whisper, the content gate, render and
+                # QA all treat it exactly like a normal clip. It earns its
+                # slot on the same transcript bar as anything else.
+                if len(cands) < min_pool:
+                    try:
+                        from funnel import vod_miner
+                        anchors = [c for c in cands[:3]
+                                   if c.get("video_id")
+                                   and c.get("vod_offset") is not None]
+                        mined = []
+                        for a in anchors:
+                            mined += vod_miner.maybe_mine(a, work)
+                            if len(cands) + len(mined) >= min_pool:
+                                break
+                        if mined:
+                            print(f"::warning::[vodmine] thin pool "
+                                  f"({len(cands)}<{min_pool}) — mined "
+                                  f"{len(mined)} unclipped moment(s) from "
+                                  f"{len(anchors)} anchor(s)", flush=True)
+                            cands += mined
+                    except ImportError:
+                        pass
                 # VELOCITY-FIRST SHORTLIST (diagnosis #4): the viral/feed
                 # signal is views/HOUR, not raw views. The old code shortlisted
                 # the top 8 by raw views and only THEN measured velocity within
@@ -1313,7 +1353,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                        why=pick.get("banger_why"),
                        blind=(not pick.get("banger_why")
                               and pick.get("banger") == 0.5))
-                info = clip_edit.download(pick["url"], work)
+                if pick.get("mined"):
+                    # already extracted by the miner — no download, and no
+                    # clipper title (the brain authors one from what's said)
+                    info = {"path": pick["path"], "url": pick["url"],
+                            "views": pick.get("views", 0),
+                            "title": pick.get("title", ""),
+                            "clipper": pick.get("clipper", "vod-mined")}
+                else:
+                    info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
 
             # PRE-FLIGHT (§16, cheap end): validate the source in ~2s before
@@ -1366,16 +1414,29 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # never blocks a post — this gate only acts on real evidence.
             if words:
                 snip = " ".join(w["w"] for w in words[:40])
+                # GIVE THE GATE EYES (2026-07-31). It judged `words[:40]`
+                # and nothing else, and every rejection all day was about
+                # TALK — "rambling chat talk", "vague ramble", "routine
+                # gameplay narration". None mentioned anything visual,
+                # because it could not see. On a clips channel that is a
+                # systematic bias against the content that travels: a fail,
+                # a reaction face, physical comedy all read as "rambling
+                # chat" from the transcript alone. A contact sheet of the
+                # SOURCE costs a couple of ffmpeg seconds and lets the same
+                # rubric judge what actually happens.
+                sheet = work / f"{slug}.content.jpg"
                 try:
-                    rescore = author.rank_clips([{
-                        "url": info["url"], "channel": streamer,
-                        "views": info.get("views", 0),
-                        "title": info["title"], "snip": snip}])
+                    have_sheet = clip_qa.contact_sheet(
+                        Path(info["path"]), sheet) is not None
                 except Exception:  # noqa: BLE001
-                    rescore = {}
-                cb, cwhy = rescore.get(info["url"], (None, ""))
+                    have_sheet = False
+                cb, cwhy, saw = author.judge_content(
+                    streamer, info["title"], snip,
+                    sheet=str(sheet) if have_sheet else "",
+                    views=info.get("views", 0))
                 content_floor = float(spec.get("min_banger_content", 0.70))
                 _judge("content", score=cb, why=cwhy, floor=content_floor,
+                       saw_frames=saw,
                        verdict=("unavailable" if cb is None else
                                 "reject" if cb < content_floor else "pass"))
                 if cb is not None and cb < content_floor:
