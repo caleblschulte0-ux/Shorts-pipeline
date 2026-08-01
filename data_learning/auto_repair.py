@@ -68,20 +68,7 @@ def _beat_index(target, n: int, beatmap: dict | None = None) -> int | None:
     return None
 
 
-_STOP = frozenset("""a an and are as at be been but by can do does for from had has have
-how in into is it its more most no not of on one or other our out over so some such than
-that the their them then there these they this to too up very was were what when where
-which while who will with would you your""".split())
-
-
-def _words(s) -> set[str]:
-    """Content words, crudely stemmed so 'breathe'/'breathing'/'breath' match."""
-    out = set()
-    for w in re.findall(r"[a-z]+", str(s).lower()):
-        if len(w) < 3 or w in _STOP:
-            continue
-        out.add(w[:5] if len(w) > 5 else w)
-    return out
+from data_learning.textmatch import words as _words
 
 
 def _anchored(beat: dict) -> bool:

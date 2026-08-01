@@ -31,19 +31,94 @@ explicit `seconds` and a `line` only on the phase that carries the narration.
 """
 from __future__ import annotations
 
+from data_learning import textmatch
+
 LEAD, TAIL, MIN_SHOT = 0.45, 0.9, 2.8
 MAX_UNCHANGED = 4.5        # default: a visual may not hold longer than this
 DEV_PHASE = 2.6           # silent development tail when a beat splits
 
 # The card-to-character repair (`_prefer_scene`, from a judge finding of
 # CARDS_OVER_BUDGET / NO_CHARACTER / INFOGRAPHIC_REEL) needs somewhere to put the
-# beat. These are the TOPIC-AGNOSTIC scenes — a figure doing an ordinary human
-# thing, carrying no subject presupposition. The money-world scenes (paycheck,
-# tax, rent, grocery, subs, savings) are deliberately excluded: they are correct
+# beat. These are a figure doing an ordinary human thing. The money-world scenes
+# (paycheck, tax, rent, grocery, subs, savings) are excluded: they are correct
 # only for a film about money, and an automated repair must not import a topic
 # the story never had.
 NEUTRAL_SCENES = ("scene_free", "scene_hold", "scene_walkout", "scene_queue",
                   "scene_work", "scene_screen", "scene_sleep")
+
+# This list used to be called TOPIC-AGNOSTIC, "carrying no subject
+# presupposition". That was never true, and believing it cost a whole render.
+# Read their own defaults: free="YEARS ARE YOURS", hold="DAYS ON HOLD",
+# queue="MONTHS IN LINE", work="YEARS AT WORK", screen="YEARS ON A SCREEN",
+# sleep="YEARS ASLEEP", walkout="STOP WAITING" — this is ONE film's scene
+# library (the where-your-life-goes piece), and `NEUTRAL_SCENES[(bi + k) % 7]`
+# rotated it onto whatever beat happened to land on each index.
+#
+# On the 2026-08-01 shared-air render that put walkout_scene — a payoff about
+# leaving a waiting room, staged as a dim room with a bright doorway — under the
+# line "the air arriving in your lungs did not come from your room, it came from
+# everywhere". The blind judge read the doorway as "a dashboard plate, a
+# template with the content not filled in" and labelled the film
+# EMPTY_COMPOSITION + UI_WIDGET. It was neither: it was a specific scene about
+# a subject this film never had.
+#
+# So a scene is chosen for what it DEPICTS: each entry lists the words whose
+# presence in the beat's own narration makes that staging honest, and a domain
+# word must SPECIFICALLY license its staging. Weak ones ("people",
+# "hours", "each") match almost any narration and put us back where we started,
+# and the 5-char stem makes near-misses collide — "everyone" in the queue domain
+# matched "everywhere" in the air line and nearly re-staged the same waiting
+# room this whole change exists to stop. When in doubt, leave the word out: a
+# miss falls back to the staging-neutral pool, which is the safe direction.
+SCENE_DOMAIN = {
+    "scene_hold": "wait waiting waited hold holding held delay delayed "
+                  "stuck stalled paused",
+    # NOT bare "line" or "turn": "a line of text", "a coastline", "it turns
+    # out" would all stage a queue. A domain word has to mean the thing.
+    "scene_queue": "queue queues queuing crowd crowds crowded lineup "
+                   "waiting",
+    "scene_walkout": "leave leaving escape exit exits door doorway "
+                     "outside walked release",
+    "scene_work": "work working worked job jobs labour labor office "
+                  "desk shift career",
+    "scene_screen": "screen screens phone scroll scrolling digital "
+                    "online feed device",
+    "scene_sleep": "sleep sleeping asleep bed bedroom dream dreaming "
+                   "awake night",
+    "scene_free": "open free air sky world everywhere anywhere breathe "
+                  "move moving alone stand",
+}
+
+# What a beat gets when its words license nothing. NOT a single scene: six
+# unmatched beats all staged identically is SAMENESS, which is its own reject
+# label — the fix for one defect must not manufacture another.
+#
+# These three are the staging-neutral ones: a figure in open space, a figure in
+# a room that dims, a row of figures. They read as "a person, somewhere" and
+# carry no claim. The four left out do: walkout is a bright doorway PAYOFF,
+# work is a desk, screen is a glowing monitor, sleep is a starry bedroom. Those
+# only appear when the beat actually asks for them.
+#
+# Even these three are compromises — scene_free still carries a sunrise mood.
+# A genuinely generic staging library does not exist yet; building one is the
+# real fix. Until then this picks among the least wrong, instead of dealing a
+# specific scene off the top of the deck.
+GENERIC_STAGINGS = ("scene_free", "scene_hold", "scene_queue")
+
+
+def _scene_for(bi: int, k: int, line: str) -> str:
+    """The designed scene whose subject the beat's own words support.
+
+    Rotation is kept — but only among scenes the line licenses, or among the
+    staging-neutral ones when it licenses none. Either way a long beat still
+    changes staging between phases, without importing a subject the story never
+    had.
+    """
+    fit = [s for s in NEUTRAL_SCENES
+           if textmatch.shares(line, SCENE_DOMAIN.get(s, ""))] \
+        if str(line).strip() else []
+    pool = fit or GENERIC_STAGINGS
+    return pool[(bi + k) % len(pool)]
 
 
 def _phase_lengths(secs: float, maxu: float) -> list[float]:
@@ -69,12 +144,13 @@ def _phase_lengths(secs: float, maxu: float) -> list[float]:
 def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
                   number: str = "", label: str = "", mood=None) -> list[dict]:
     """A designed/character beat as a SEQUENCE. Each phase moves the same figure
-    to a different situation (rotating the neutral scenes), so a long beat keeps
-    introducing something new instead of holding one drawing. The narration
-    rides only the first phase; the rest are silent visual development."""
+    to a different situation — rotating only among the scenes the beat's own
+    words license (`_scene_for`) — so a long beat keeps introducing something new
+    without importing a subject the story never had. The narration rides only the
+    first phase; the rest are silent visual development."""
     out = []
     for k, dur in enumerate(_phase_lengths(secs, maxu)):
-        sh = {"kind": NEUTRAL_SCENES[(bi + k) % len(NEUTRAL_SCENES)],
+        sh = {"kind": _scene_for(bi, k, line),
               "seconds": dur, "number": number, "label": label, "mood": mood}
         if k == 0 and line:
             sh["line"] = line

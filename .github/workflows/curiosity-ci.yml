@@ -141,6 +141,7 @@ jobs:
           python scripts/test_motion_window.py
           python scripts/test_healer_input.py
           python scripts/test_wallclock_budget.py
+          python scripts/test_scene_fits_the_line.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 
