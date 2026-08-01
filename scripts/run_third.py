@@ -1414,16 +1414,29 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # never blocks a post — this gate only acts on real evidence.
             if words:
                 snip = " ".join(w["w"] for w in words[:40])
+                # GIVE THE GATE EYES (2026-07-31). It judged `words[:40]`
+                # and nothing else, and every rejection all day was about
+                # TALK — "rambling chat talk", "vague ramble", "routine
+                # gameplay narration". None mentioned anything visual,
+                # because it could not see. On a clips channel that is a
+                # systematic bias against the content that travels: a fail,
+                # a reaction face, physical comedy all read as "rambling
+                # chat" from the transcript alone. A contact sheet of the
+                # SOURCE costs a couple of ffmpeg seconds and lets the same
+                # rubric judge what actually happens.
+                sheet = work / f"{slug}.content.jpg"
                 try:
-                    rescore = author.rank_clips([{
-                        "url": info["url"], "channel": streamer,
-                        "views": info.get("views", 0),
-                        "title": info["title"], "snip": snip}])
+                    have_sheet = clip_qa.contact_sheet(
+                        Path(info["path"]), sheet) is not None
                 except Exception:  # noqa: BLE001
-                    rescore = {}
-                cb, cwhy = rescore.get(info["url"], (None, ""))
+                    have_sheet = False
+                cb, cwhy, saw = author.judge_content(
+                    streamer, info["title"], snip,
+                    sheet=str(sheet) if have_sheet else "",
+                    views=info.get("views", 0))
                 content_floor = float(spec.get("min_banger_content", 0.70))
                 _judge("content", score=cb, why=cwhy, floor=content_floor,
+                       saw_frames=saw,
                        verdict=("unavailable" if cb is None else
                                 "reject" if cb < content_floor else "pass"))
                 if cb is not None and cb < content_floor:
