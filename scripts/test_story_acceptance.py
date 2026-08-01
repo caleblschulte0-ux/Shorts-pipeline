@@ -1229,6 +1229,107 @@ def main() -> int:  # noqa: C901
           "git cat-file -e" in _yml
           and "|| echo \"no committed dedupe state yet" not in _yml)
 
+    # ============ the run must FINISH, not be killed at the wall =======
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("discovery is swept ONCE per window and cached run-wide "
+          "(it was re-run per slot AND per retry: ~18 hits per handle)",
+          "_SWEEP_CACHE" in _rt_src and "def _sweep(" in _rt_src)
+    check("...and fanned out instead of 67 serial calls",
+          "ThreadPoolExecutor" in _rt_src)
+    check("a source failure records yt-dlp's MESSAGE, not just the class",
+          'err=f"{type(e).__name__}: {d}"' in _rt_src)
+    check("there is a wall-clock budget inside the job's 120min ceiling",
+          "_deadline_passed()" in _rt_src and "_BUDGET_MIN" in _rt_src)
+    check("the budget stops the slot loop, the retry loop AND the story arm",
+          _rt_src.count("_deadline_passed()") >= 4)
+    check("VOD expansions are capped (each is a 3-min whisper + a vision "
+          "call, and nothing bounded how many fired)",
+          "story_max_vod_expansions" in _rt_src)
+    check("whisper weights are memoized, not re-read per transcription",
+          "_WHISPER" in _ce_src2)
+    check("the cut is analyzed ONCE, not once for calm and again in "
+          "shot_plan.build on the same file",
+          "an=_cut_an" in _ce_src2
+          and "an: dict | None = None"
+          in (REPO / "third_capture" / "shot_plan.py").read_text())
+    check("localization fans out (58 serial HTTP calls per upload)",
+          "ThreadPoolExecutor" in (REPO / "shared" / "localize.py").read_text())
+    check("the gameplay scan has a hard timeout (it had NONE, and a hang "
+          "cannot be caught by an except)",
+          "SCAN_TIMEOUT" in (REPO / "funnel"
+                             / "gameplay_scanner.py").read_text())
+    _y2 = (REPO / ".github" / "workflows" / "third.yml").read_text()
+    check("the posted log is committed BEFORE analytics (a cancelled job's "
+          "grace window must not be spent on YouTube API calls)",
+          _y2.index("Commit posted log") < _y2.index("Fetch third analytics"))
+    check("pip and the whisper weights are cached across runs",
+          "cache: 'pip'" in _y2 and "~/.cache/whisper" in _y2)
+
+    # ============ render QA must not reject the house style ============
+    from engines import render_qa as _rq
+    import inspect as _insp
+    _rqsig = _insp.signature(_rq.check)
+    _floor = _rqsig.parameters["min_active_ratio"].default
+    # a 16:9 source fitted into 1080x1920 is 1080x607 = 31.6% BY
+    # CONSTRUCTION — a floor above that condemns every render we make
+    check("the letterbox floor cannot fire on a normal 16:9 fit (0.316)",
+          _floor < 0.316)
+    check("...but still catches a frame boxed twice (~0.10-0.18)",
+          _floor > 0.18)
+    check("a failing letterbox probe cannot erase confirmed defects",
+          "the {len(problems)} finding(s) above still stand"
+          in (REPO / "engines" / "render_qa.py").read_text())
+    check("freeze_min_s reaches the filter (it was hardcoded to 2.0, so "
+          "any value under 2.0 was silently ignored)",
+          "_detect_pass(video, freeze_min_s)" in
+          (REPO / "engines" / "render_qa.py").read_text())
+    check("the last-resort render rung blur-fills instead of black-padding "
+          "(its whole job is 'always ship' — it cannot emit output QA "
+          "mechanically rejects)",
+          "_raw_vf" in _ce_src2 and "LAST-RESORT RUNG" in _ce_src2)
+    check("...and carries the same -t cap as every other rung",
+          '_raw_cmd += ["-t"' in _ce_src2)
+    check("the closing guard probes its whole 2.5s budget, not 1.2s",
+          "win = min(MAX_TRIM + 0.5, room)" in _ce_src2)
+
+    # ============ the miner cannot manufacture a duplicate ==============
+    _vm_src = (REPO / "funnel" / "vod_miner.py").read_text()
+    check("mined files are named by ABSOLUTE vod offset — two anchors in "
+          "one VOD used to collide and ship the same bytes under two "
+          "different dedupe keys, invisible to every guard",
+          'f"mined_{vid}_{int(abs_off)}.mp4"' in _vm_src)
+    check("a partial extraction is deleted, not cached and reused",
+          "unlink(missing_ok=True)" in _vm_src and "def _usable(" in _vm_src)
+    check("...and a reused file is re-validated, not trusted for existing",
+          "if not _usable(dest)" in _vm_src)
+    check("peaks are mined by STRENGTH (energy_peaks returns them sorted "
+          "by time, discarding the rank we over-fetched to preserve)",
+          "_strength" in _vm_src)
+
+    # ============ judges must not rubber-stamp their own failures =======
+    check("a rescued clip needs a PASSING judgment, not merely a judgment "
+          "(the ranker's rejection is what triggered the rescue)",
+          "NEEDS A *PASSING* JUDGMENT" in _rt_src)
+    check("the rescue fail-closed blocklists before raising, so the retry "
+          "picks a different clip instead of the same one three times",
+          "rescue fail-closed" in _rt_src)
+    _bh = dict(_au._BRAIN)
+    try:
+        _au._BRAIN.update(ok=0, fail=0)
+        _rc2, _rg2 = _au._call_claude, _au._call_groq
+        try:
+            _au._call_claude = lambda *A, **K: (_ for _ in ()).throw(
+                RuntimeError("cli dead"))
+            _au._call_groq = lambda *A, **K: {"scores": [{"banger": 0.9}]}
+            _au.judge_content("s", "t", "words", sheet="/x.png")
+        finally:
+            _au._call_claude, _au._call_groq = _rc2, _rg2
+        check("a vision failure counts as a FAILED brain task (it counted "
+              "as nothing, so a CLI failing every eyes-on call while Groq "
+              "answered read as a healthy brain)", _au._BRAIN["fail"] >= 1)
+    finally:
+        _au._BRAIN.update(_bh)
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")

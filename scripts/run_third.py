@@ -93,6 +93,16 @@ def _any_judgment() -> bool:
     they prove the file isn't broken, never that the clip is worth posting.
     """
     j = _JUDGES
+    # A RESCUED CLIP NEEDS A *PASSING* JUDGMENT, NOT MERELY A JUDGMENT.
+    # The rescue exists precisely because the only opinion so far was
+    # NEGATIVE — the ranker scored it under the posting floor. Counting
+    # that negative score as "someone judged it" let a clip the ranker
+    # rated 0.30 ("vague emote reaction") ship unopposed whenever no
+    # second judge could be reached. That is the inverse of this gate's
+    # purpose: treating a rejection as evidence to publish.
+    if j.get("selection", {}).get("verdict") == "rescue":
+        return (j.get("content", {}).get("verdict") == "pass"
+                or j.get("vision", {}).get("verdict") == "pass")
     if not j.get("banger", {}).get("blind", True):
         return True
     if j.get("content", {}).get("verdict") in ("pass", "reject"):
@@ -451,6 +461,85 @@ def _blocklist(log: dict, key: str, entry: dict) -> None:
         _save_log(log)
     except Exception as e:  # noqa: BLE001
         print(f"[blocklist] could not persist {key}: {e}", flush=True)
+
+
+# Wall-clock budget for the whole run, well inside third.yml's
+# timeout-minutes: 120. See _deadline_passed().
+_BUDGET_MIN = float(os.environ.get("THIRD_BUDGET_MIN", "85"))
+_T_START = time.time()
+
+
+def elapsed_min() -> float:
+    return (time.time() - _T_START) / 60.0
+
+
+def _deadline_passed() -> bool:
+    return elapsed_min() >= _BUDGET_MIN
+
+
+_SWEEP_CACHE: dict = {}
+
+
+def _sweep(clip_edit, sources: dict, window: str, top: int) -> list:
+    """Discover across every allowlisted handle for one window — ONCE.
+
+    This was inline in process(), so it re-ran from scratch on every slot
+    and every retry: 67 handles x 2 windows x (4 slots x 3 attempts) is
+    ~1,600 discovery calls per run, and third_qa_stats.json recorded the
+    proof — every source's health entry read "ok": 18, i.e. eighteen hits
+    per handle in one run. At ~1s each (helix) that is 20 minutes; on the
+    yt-dlp path it is closer to an hour, and the job ceiling is 120
+    minutes with a run already killed on that wall. The top-clip board for
+    a channel does not change inside one 90-minute job, and every filter
+    that makes a retry pick a DIFFERENT clip (posted_keys, the blocklist,
+    the variety caps) runs downstream of this — so caching the pool costs
+    nothing in selection freshness.
+
+    Fanned out too: the calls are independent and each one's failure is
+    already caught per-handle, so a serial loop over 67 handles was pure
+    latency. The story arm already cached its own sweep (_STORY_POOL);
+    the clip arm was the one paying full price."""
+    key = (window, top, tuple(sorted(
+        (p, tuple(c)) for p, c in sources.items())))
+    if key in _SWEEP_CACHE:
+        pool = _SWEEP_CACHE[key]
+        print(f"[discover] window {window}: {len(pool)} clip(s) from cache "
+              f"(swept once this run)", flush=True)
+        return list(pool)
+
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(p, ch) for p, chans in sources.items() for ch in chans]
+
+    def _one(job):
+        platform, ch = job
+        try:
+            got = clip_edit.discover(platform, ch, top=top, range_=window)
+            _source_health(platform, ch, ok=True, clips=len(got))
+            return got
+        except Exception as e:  # noqa: BLE001
+            # keep yt-dlp's own message: the exception TYPE alone made
+            # rumble undiagnosable for days (see clip_edit's rumble
+            # handler). It was computed, printed to the CI log — which
+            # expires — and then NOT passed to _source_health, so the
+            # durable record stored the bare class name, which is exactly
+            # the thing that was undiagnosable.
+            d = (getattr(e, "output", "") or "").strip()
+            d = d.splitlines()[-1][:160] if d else ""
+            _source_health(platform, ch, ok=False,
+                           err=f"{type(e).__name__}: {d}" if d
+                           else f"{type(e).__name__}")
+            print(f"::warning::discover {platform}:{ch} failed "
+                  f"({type(e).__name__}) {d} — skipped", flush=True)
+            return []
+
+    pool: list = []
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        for got in ex.map(_one, jobs):
+            pool += got
+    _SWEEP_CACHE[key] = list(pool)
+    print(f"[discover] window {window}: {len(pool)} clip(s) across "
+          f"{len(jobs)} handle(s)", flush=True)
+    return pool
 
 
 def _clamp_publish_at(publish_at, lead_min: int = 15):
@@ -945,7 +1034,23 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         s_min = float(spec.get("story_dur_min", 25.0))
         s_max = float(spec.get("story_dur_max", 90.0))
 
+        vod_expansions = 0
+        max_vod = int(spec.get("story_max_vod_expansions", 2))
         for cluster in clusters[:int(spec.get("story_max_clusters", 3))]:
+            # THE STORY ARM IS THE RUN'S UNBOUNDED TAIL. Worst case it is
+            # 3 clusters x 6 sources x 2 scene analyses = 36 whisper passes
+            # and 36 Claude vision calls in ONE slot, each VOD expansion
+            # adding a ~3-minute whisper on top — and _story_attempt is
+            # called from inside process(), so all of it repeats on every
+            # slot retry. That is the shape of the 113-minute run and of
+            # the 2026-07-25 job that died on the wall. Stop between
+            # clusters when the budget is gone; a clean fallback to the
+            # clip arm is a video, a cancelled job is nothing.
+            if _deadline_passed():
+                print(f"::warning::[story] out of run budget after "
+                      f"{elapsed_min():.0f} min — falling back to the clip "
+                      f"arm", flush=True)
+                return None
             who = "+".join(cluster["who"])
             urls = [c["source_url"] for c in cluster["clips"]]
             if storyline.story_key(urls) in shipped:
@@ -981,10 +1086,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # payoff, or flagged missing context — and helix gave us
                 # the VOD coordinates
                 helix = pool_by_url.get(c["source_url"], {})
+                # Each expansion is a ~390s re-encoded download plus a
+                # whisper pass over three minutes plus another vision call
+                # — 4-7 minutes apiece, with nothing capping how many fire.
                 if (rep.get("opens_mid_sentence")
                         or not rep.get("payoff_shown")
                         or rep.get("missing_context")) and \
-                        helix.get("video_id"):
+                        helix.get("video_id") \
+                        and vod_expansions < max_vod \
+                        and not _deadline_passed():
+                    vod_expansions += 1
                     vod = clip_edit.maybe_vod_window(
                         {**helix, "duration": rep["duration_s"]},
                         snip_dir)
@@ -1264,27 +1375,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 cands = []
                 best = []
                 for window in windows:
-                    pool = []
-                    for platform, chans in sources.items():
-                        for ch in chans:
-                            try:
-                                got = clip_edit.discover(
-                                    platform, ch, top=spec.get("top", 8),
-                                    range_=window)
-                                pool += got
-                                _source_health(platform, ch, ok=True,
-                                               clips=len(got))
-                            except Exception as e:  # noqa: BLE001
-                                # keep yt-dlp's own message: the exception
-                                # TYPE alone made rumble undiagnosable for
-                                # days (see clip_edit's rumble handler)
-                                _d = (getattr(e, "output", "") or "").strip()
-                                _d = _d.splitlines()[-1][:160] if _d else ""
-                                _source_health(platform, ch, ok=False,
-                                               err=f"{type(e).__name__}")
-                                print(f"::warning::discover {platform}:{ch} "
-                                      f"failed ({type(e).__name__}) {_d} — "
-                                      "skipped", flush=True)
+                    pool = _sweep(clip_edit, sources, window,
+                                  int(spec.get("top", 8)))
                     fresh = [c for c in pool
                              if _clip_key(c["url"]) not in posted_keys]
                     varied = [c for c in fresh
@@ -1339,8 +1431,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                   f"{len(mined)} unclipped moment(s) from "
                                   f"{len(anchors)} anchor(s)", flush=True)
                             cands += mined
+                        else:
+                            print(f"[vodmine] thin pool ({len(cands)}<"
+                                  f"{min_pool}) but mining returned nothing "
+                                  f"from {len(anchors)} anchor(s)",
+                                  flush=True)
                     except ImportError:
                         pass
+                else:
+                    # say so explicitly: "did mining run?" was otherwise
+                    # unanswerable from the log, and a supply feature that
+                    # silently never fires looks identical to one that
+                    # fires and finds nothing.
+                    print(f"[vodmine] pool is healthy ({len(cands)}>="
+                          f"{min_pool}) — not mining", flush=True)
                 # VELOCITY-FIRST SHORTLIST (diagnosis #4): the viral/feed
                 # signal is views/HOUR, not raw views. The old code shortlisted
                 # the top 8 by raw views and only THEN measured velocity within
@@ -1617,6 +1721,30 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # the next candidate may score, or the brain may recover.
                 if cb is None and _JUDGES.get(
                         "selection", {}).get("verdict") == "rescue":
+                    # BLOCKLIST BEFORE RAISING. The escalation's own
+                    # promise is "the slot's existing retry blocklists the
+                    # clip and tries the next candidate" — the score-too-low
+                    # branch above does that; this one did not. So the
+                    # retry re-entered process(), found posted_keys and the
+                    # run-wide _BANGER_CACHE unchanged and the shortlist
+                    # sort deterministic, and picked THE SAME CLIP: same
+                    # download, same whisper pass, same two 240s CLI
+                    # timeouts, three times over, and the slot ended empty
+                    # anyway. Exactly when the brain is already unreachable
+                    # and time is scarcest.
+                    _blocklist(log,
+                               f"rejected-{_clip_key(info['url']) or slug}", {
+                                   "source_url": info["url"],
+                                   "streamer": streamer,
+                                   "title": info["title"],
+                                   "qa_rejected": True,
+                                   "rejected_by": "rescue fail-closed",
+                                   "rejected_why":
+                                       "weak title + no transcript judge "
+                                       "reachable — nothing vouched for it",
+                                   "ts": datetime.now(
+                                       timezone.utc).isoformat(),
+                               })
                     raise RuntimeError(
                         "rescue needs the transcript judge and it is "
                         "unavailable — a weak-title clip must EARN its slot, "
@@ -2086,6 +2214,22 @@ def main() -> int:
     # is 120 min (a run died on that wall on 2026-07-25).
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
+        # WALL-CLOCK DEADLINE. third.yml's ceiling is 120 minutes and a run
+        # was killed on it (2026-07-25) — with three videos already live on
+        # YouTube and the commit step never reached, so nothing in git knew
+        # they existed. A cancelled job is the worst outcome available: no
+        # stats, no verdicts, and a dedupe log that has to be reconstructed
+        # from the channel. Stopping cleanly with three slots filled beats
+        # being killed with three-and-a-bit. Skips, not errors, so the run
+        # still exits 0 and the workflow still commits.
+        if _deadline_passed():
+            print(f"::warning::[budget] {_BUDGET_MIN} min elapsed — stopping "
+                  f"before {pkg['slug']} so the run finishes cleanly instead "
+                  f"of being killed at the job's 120-minute wall. Remaining "
+                  f"slots go to the next run.", flush=True)
+            results.append({"slug": pkg["slug"], "ok": False,
+                            "skipped": "run budget reached"})
+            continue
         # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call
         # failed for ~90 min and the run still shipped 4 clips — picked by
         # raw view count (banger pinned at 0.5), no scene analysis, fallback
@@ -2115,6 +2259,11 @@ def main() -> int:
             if r.get("ok") or r.get("skipped"):
                 break
             r["attempts"] = attempt
+            if _deadline_passed():
+                print(f"::warning::[budget] out of time after attempt "
+                      f"{attempt} on {pkg['slug']} — not retrying",
+                      flush=True)
+                break
             if attempt < MAX_SLOT_ATTEMPTS:
                 print(f"::warning::[slot] {pkg['slug']} attempt {attempt} "
                       f"failed ({str(r.get('error',''))[:70]}) — retrying "

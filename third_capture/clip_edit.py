@@ -115,7 +115,16 @@ def _closing_guard(raw: Path, t0: float, t1: float) -> tuple[float, float]:
     room = (t1 - t0) - 3.0
     if room <= 0.1:
         return t1, 0.0
-    win = min(1.2, room)
+    # PROBE THE WHOLE BUDGET. `win` was 1.2s while MAX_TRIM was 2.5, and
+    # `trim` is derived entirely from offsets inside the probe window — so
+    # the 2.5s budget was unreachable and the docstring's stated contract
+    # was false. A clip whose source fades to black over 2.0s filled the
+    # whole 1.2s window, trimmed 1.2s, and left 0.8s of black tail: enough
+    # for render_qa's black-tail check to fire, which self-heals to the
+    # simple render, which makes the identical 1.2s trim, fails again, and
+    # blocklists a good clip. (_opening_guard already gets this right —
+    # its window, 0.6s, is WIDER than its 0.5s budget.)
+    win = min(MAX_TRIM + 0.5, room)
     try:
         p = subprocess.run(
             ["ffmpeg", "-v", "info", "-ss", f"{max(0.0, t1 - win)}",
@@ -506,6 +515,9 @@ def _transcript_cache_path(video: Path, model_name: str) -> Path | None:
         return None
 
 
+_WHISPER: dict = {}
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
     cpath = _transcript_cache_path(Path(video), model_name)
     if cpath is not None and cpath.exists():
@@ -514,7 +526,13 @@ def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
         except Exception:  # noqa: BLE001 — corrupt cache entry: re-transcribe
             pass
     import whisper
-    model = whisper.load_model(model_name)
+    # MEMOIZE THE WEIGHTS. load_model re-reads and re-initialises the
+    # 461MB `small` checkpoint on EVERY cache miss — 8-15s of pure
+    # overhead, ~15 times a run on the story arm, for a model that never
+    # changes within a process.
+    model = _WHISPER.get(model_name)
+    if model is None:
+        model = _WHISPER[model_name] = whisper.load_model(model_name)
     # condition_on_previous_text=False stops the music/crowd-noise
     # hallucination loops stream audio triggers.
     # language="en" is REQUIRED: without it whisper auto-detects language on
@@ -750,10 +768,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # on unanchored motion) and the whole-frame reframe. This is the fix
         # for the IRL QA-rejects. Best-effort: no cv2/analysis → normal path.
         calm = False
+        _cut_an = None      # reused by Stage 2 — see below
         if auto:
             try:
                 from third_capture import shot_plan as _spn
-                _an = _spn.analyze(cut)
+                _an = _cut_an = _spn.analyze(cut)
                 if _an is not None:
                     _layout, _, _ = _spn.classify(_an)
                     calm = (_layout == "wide")
@@ -796,7 +815,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             try:
                 from third_capture import shot_plan as spn
                 # analysis on the SOURCE cut (§3), plan executed on the program
-                reframed, sp_summary = spn.build(program, tmp, analyze_on=cut)
+                #
+                # PASS THE ANALYSIS WE ALREADY HAVE. The calm probe above
+                # runs spn.analyze(cut) and throws the result away; build()
+                # then ran analyze(analyze_on=cut) on the identical file —
+                # a full cv2 decode plus a Haar pass, 15-45s, twice per
+                # render, ~10 renders a run.
+                reframed, sp_summary = spn.build(program, tmp, analyze_on=cut,
+                                                 an=_cut_an)
                 ledger_ae["shot_plan"] = sp_summary
             except Exception:  # noqa: BLE001
                 reframed = None
@@ -986,13 +1012,33 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         elif _render(plain_vf):
             render_level = "plain"
         else:
-            _run(["ffmpeg", "-y", "-v", "error", "-i", str(src),
-                  "-vf", f"scale={CANVAS_W}:{CANVAS_H}:"
-                  "force_original_aspect_ratio=decrease,"
-                  f"pad={CANVAS_W}:{CANVAS_H}:(ow-iw)/2:(oh-ih)/2",
-                  "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-                  "-pix_fmt", "yuv420p", "-r", "30",
-                  "-c:a", "aac", "-b:a", "160k", str(out_path)])
+            # LAST-RESORT RUNG — its whole premise is "a clip must ALWAYS
+            # ship", so it must produce something QA can pass.
+            # `pad` defaults to BLACK, which on a 16:9 source is 68% of
+            # the frame — the letterbox check used to reject exactly this,
+            # making the guaranteed-ship rung guaranteed to fail. It now
+            # blur-fills like every other rung (same graph, no captions,
+            # no overlays), so the fallback is a plainer video rather than
+            # a mechanically-defective one. It also carries the same -t cap
+            # as every other rung; without it this branch could still emit
+            # the picture-less audio tail the cap was added to prevent,
+            # which then trips the a/v-drift check too.
+            _raw_vf = (f"[0:v]scale={CANVAS_W}:{CANVAS_H}:"
+                       "force_original_aspect_ratio=increase,"
+                       f"crop={CANVAS_W}:{CANVAS_H},gblur=sigma=28,"
+                       "eq=brightness=-0.03[bg];"
+                       f"[0:v]scale={CANVAS_W}:{CANVAS_H}:"
+                       "force_original_aspect_ratio=decrease[fg];"
+                       "[bg][fg]overlay=(W-w)/2:(H-h)/2[vout]")
+            _raw_cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src),
+                        "-filter_complex", _raw_vf, "-map", "[vout]",
+                        "-map", "0:a?",
+                        "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+                        "-pix_fmt", "yuv420p", "-r", "30",
+                        "-c:a", "aac", "-b:a", "160k"]
+            if dur and dur > 0:
+                _raw_cmd += ["-t", f"{dur:.3f}"]
+            _run(_raw_cmd + [str(out_path)])
             render_level = "raw"
         if render_level != "full":
             ledger_ae["render_fallback"] = render_level

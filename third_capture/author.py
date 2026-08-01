@@ -712,7 +712,22 @@ def judge_content(streamer: str, title: str, transcript: str,
                         return b, str(s.get("why", ""))[:40], True
                     except (TypeError, ValueError):
                         continue
+                # reached only if the reply parsed but carried no usable
+                # score — a model answering in the wrong shape is a failed
+                # brain task, not a silent no-op
+                _brain_note(False)
+            else:
+                _brain_note(False)
         except Exception as e:  # noqa: BLE001
+            # COUNT IT. A vision failure used to record nothing at all, so
+            # a CLI failing 100% of eyes-on calls while Groq answered the
+            # text fallback registered as a HEALTHY brain (brain_down()
+            # needs ok == 0) and the blind-slate gate never fired. The
+            # 2026-07-29 incident this tracker exists for would have been
+            # partly invisible again: ok climbing while every visual
+            # judgment silently degraded to the text-only rubric this
+            # function was written to replace.
+            _brain_note(False)
             print(f"::warning::[content] vision judge failed ({e}) — "
                   f"falling back to text-only", flush=True)
     # Text-only fallback: same rubric, no frames. Deliberately NOT a

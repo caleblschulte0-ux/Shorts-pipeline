@@ -333,18 +333,25 @@ def _ff_complex(video: Path, fc: str, out: Path) -> Path | None:
 
 
 def build(video: Path, work: Path,
-          analyze_on: Path | None = None) -> tuple[Path | None, dict]:
+          analyze_on: Path | None = None,
+          an: dict | None = None) -> tuple[Path | None, dict]:
     """Analyze → classify → plan → render. (path|None, summary). NEVER
     raises; None → caller's blur-fill whole-frame fallback.
 
     `analyze_on` (playbook §3): analysis belongs to the SOURCE — pass the
     unretimed cut here when `video` is the Stage-1 program, whose zooms and
     replays scatter a face across position clusters and dilute presence.
-    Both share the same frame geometry, so the plan's crops apply to both."""
+    Both share the same frame geometry, so the plan's crops apply to both.
+
+    `an` is an ALREADY-COMPUTED analysis of `analyze_on`. clip_edit runs
+    analyze(cut) up front to decide the calm treatment and then called this
+    with analyze_on=cut, so the identical full cv2 decode + Haar pass ran
+    twice per render for the same answer. Pass it through instead."""
     summary = {"layout": "wide", "reason": "analysis unavailable",
                "shots": []}
     try:
-        an = analyze(analyze_on or video)
+        if an is None:
+            an = analyze(analyze_on or video)
         if an is None:
             return None, summary
         if analyze_on is not None:

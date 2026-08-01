@@ -44,8 +44,18 @@ SCAN_FPS = 2.0
 SCAN_W, SCAN_H = 160, 90  # downscale for speed; signalstats doesn't need detail
 
 
+# Hard ceiling on one scan. This ffmpeg call had NO timeout at all, so a
+# hung or pathologically slow decode had nothing to stop it — and the
+# caller's `except Exception` can never fire on a hang. The third channel
+# runs this inside a 120-minute job that has already been killed on its
+# wall once (2026-07-25).
+SCAN_TIMEOUT = 420
+
+
 def _scan(video: Path, scan_mode: str = "full",
-          fps: float = SCAN_FPS) -> list[tuple[float, float, float, float]]:
+          fps: float = SCAN_FPS,
+          timeout: float = SCAN_TIMEOUT
+          ) -> list[tuple[float, float, float, float]]:
     """Return [(time_seconds, YAVG, YMAX, YRANGE), ...] for the whole
     video. `scan_mode="center"` center-crops before the diff filter so
     small bright moving objects (rockets against sky) aren't drowned
@@ -80,7 +90,7 @@ def _scan(video: Path, scan_mode: str = "full",
             "-i", str(video),
             "-vf", vf,
             "-f", "null", "-",
-        ], check=True)
+        ], check=True, timeout=timeout)
 
         samples: list[tuple[float, float, float, float]] = []
         current_time: float | None = None
