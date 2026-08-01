@@ -106,9 +106,71 @@ def test_the_director_finding_now_gets_repaired():
     print("ok  the STALE_SPAN that was dropped now halves the right beat's hold")
 
 
+def test_a_film_can_be_soulless_without_a_single_card():
+    """NO_SOUL/SAMENESS must repair something on a film with no card beats.
+
+    The third defect from the same run. Every soul/sameness label resolved to
+    one strategy — "convert card beats to scenes" — so on a stock-footage film
+    with zero cards the repair was a no-op BY CONSTRUCTION: the finding was
+    consumed, the journal said "convert 0 card beat(s)", and nothing changed.
+    That is the commonest failure mode of a stock-driven pipeline having no
+    repair at all. BORING and LOW_ENERGY were worse: in the judge's vocabulary,
+    in no strategy whatsoever.
+    """
+    from data_learning import auto_repair
+    story = {"beats": [
+        # anchored: the query depicts what the beat says
+        {"narration": "Breathe in. You are holding molecules of air.",
+         "image": {"query": "breath cold air winter"}},
+        # unanchored: generic wallpaper, shares nothing with its own line
+        {"narration": "Air does not stay put. It has no home.",
+         "image": {"query": "time lapse clouds sky"}},
+        {"narration": "Every person alive exhales into the same pool.",
+         "image": {"query": "ocean waves aerial"}},
+        {"narration": "The mixing takes about a year.",
+         "image": {"query": "green leaves sunlight close up"}},
+    ]}
+    assert auto_repair._least_anchored(story["beats"]) == [1, 2, 3]
+    for code in ("NO_SOUL", "SAMENESS", "EMPTY_COMPOSITION", "BORING",
+                 "LOW_ENERGY"):
+        plan = {"repair_class": "scene",
+                "tasks": [{"id": "x", "defect_code": code, "target": "film"}]}
+        revised, journal = auto_repair.apply(plan, story, escalation="scene")
+        assert journal[0]["applied"] is True, (code, journal)
+        touched = [b for b in revised["beats"]
+                   if b.get("_prefer_scene") or b.get("_media_reseed")]
+        assert len(touched) == 3, (code, touched)
+        assert not revised["beats"][0].get("_prefer_scene"), \
+            f"{code} touched the ANCHORED beat — anchoring is what protects it"
+    print("ok  a card-less film's soul/sameness/boring labels now repair beats")
+
+
+def test_anchoring_is_about_the_beats_own_words():
+    """The test is film-agnostic: query vs the narration that beat SPEAKS."""
+    from data_learning.auto_repair import _anchored
+    assert _anchored({"narration": "The glacier is melting fast.",
+                      "image": {"query": "glacier ice melting water"}})
+    assert not _anchored({"narration": "The glacier is melting fast.",
+                          "image": {"query": "two people talking outdoors"}})
+    # crude stemming: breathing/breath/breathe are the same subject
+    assert _anchored({"narration": "Breathing moves the whole atmosphere.",
+                      "image": {"query": "breath cold air"}})
+    # A query with no content words carries no evidence either way, so it is
+    # NOT flagged. Unanchored must mean "we read the query and it depicts
+    # something else", never "we could not read the query" — a healer that
+    # rewrites beats it cannot assess is guessing.
+    assert _anchored({"narration": "It is what it is.",
+                      "image": {"query": "the of and a"}})
+    # a designed beat has no query to anchor — never flagged
+    assert _anchored({"narration": "Anything at all.", "flat": {"kind": "scene_free"}})
+    print("ok  anchoring compares a query to its own beat's spoken words")
+
+
 if __name__ == "__main__":
     test_gate_stats_are_not_defects()
     test_unmarked_gates_still_report_everything()
     test_a_span_target_resolves_to_a_beat()
     test_the_director_finding_now_gets_repaired()
+    test_a_film_can_be_soulless_without_a_single_card()
+    test_anchoring_is_about_the_beats_own_words()
     print("all healer-input checks pass")

@@ -68,6 +68,44 @@ def _beat_index(target, n: int, beatmap: dict | None = None) -> int | None:
     return None
 
 
+_STOP = frozenset("""a an and are as at be been but by can do does for from had has have
+how in into is it its more most no not of on one or other our out over so some such than
+that the their them then there these they this to too up very was were what when where
+which while who will with would you your""".split())
+
+
+def _words(s) -> set[str]:
+    """Content words, crudely stemmed so 'breathe'/'breathing'/'breath' match."""
+    out = set()
+    for w in re.findall(r"[a-z]+", str(s).lower()):
+        if len(w) < 3 or w in _STOP:
+            continue
+        out.add(w[:5] if len(w) > 5 else w)
+    return out
+
+
+def _anchored(beat: dict) -> bool:
+    """Does this beat's media query depict what the beat actually SAYS?
+
+    A query sharing no content word with its own narration would serve any beat
+    in the film equally well — that is the definition of an interchangeable
+    shot. Beats with no media query at all (designed scenes) are not judged
+    here; they are anchored by construction.
+    """
+    img = beat.get("image") or {}
+    q = " ".join(str(img.get(k, "")) for k in ("query", "subject")) + " " + \
+        str(beat.get("motion_query", "") or beat.get("subject", "") or "")
+    qw = _words(q)
+    if not qw:
+        return True
+    return bool(qw & _words(beat.get("narration", "")))
+
+
+def _least_anchored(beats: list) -> list[int]:
+    """Indices of media beats whose query is not anchored to their narration."""
+    return [i for i, b in enumerate(beats) if not _is_card(b) and not _anchored(b)]
+
+
 def _kind(beat: dict) -> str:
     return str((beat.get("flat") or {}).get("kind") or beat.get("kind") or "")
 
@@ -141,18 +179,51 @@ def apply(plan: dict, story: dict, escalation: str | None = None,
 
         # --- the card look dominates. SCENE-class and up: convert cards to
         # scenes, worst offenders first, until the budget is plausibly met.
+        # BORING and LOW_ENERGY belong here too. They were in the taste judge's
+        # vocabulary and in NO strategy at all, so a film the judge called
+        # boring produced a task whose journal entry read "no automated repair
+        # for this code" — a label that can be raised but never answered.
         if code in ("CARDS_OVER_BUDGET", "INFOGRAPHIC_REEL", "NO_CHARACTER",
-                    "NO_SOUL", "EMPTY_COMPOSITION", "SAMENESS"):
+                    "NO_SOUL", "EMPTY_COMPOSITION", "SAMENESS",
+                    "BORING", "LOW_ENERGY"):
             if cls == "local":
                 note(t, "convert cards to scenes", False,
                      "needs the scene repair class — deferred by the ladder")
                 continue
             cards = [k for k, b in enumerate(beats) if _is_card(b)]
-            convert = cards[:max(1, len(cards) // 3)]
+            if cards:
+                convert = cards[:max(1, len(cards) // 3)]
+                for k in convert:
+                    beats[k][_SCENE_HINT] = True
+                note(t, f"convert {len(convert)} card beat(s) to scenes",
+                     True, f"card beats: {len(cards)}")
+                continue
+            # A FILM CAN BE SOULLESS WITHOUT A SINGLE CARD. This branch used to
+            # end here, so on a film with no cards the repair for "no soul /
+            # sameness / empty composition" was a no-op BY CONSTRUCTION — the
+            # finding was consumed and nothing changed. That is how shared-air
+            # (2026-08-01) judged 4/10 as "a montage of anonymous mood stock,
+            # ~9 of 24 beats shuffleable with zero consequence" and got zero
+            # repairs for it: the healer only knew how to fix card-reels.
+            #
+            # The other way to be soulless is footage that depicts nothing in
+            # particular. The generic, film-agnostic test is ANCHORING: does a
+            # beat's media query share any content word with the words that beat
+            # SPEAKS? A query that does not is interchangeable with every other
+            # beat's — exactly the "could be shuffled" complaint. Convert the
+            # least-anchored third to scenes and reseed the rest, so the next
+            # render is materially different where the judge said it was flat.
+            ranked = _least_anchored(beats)
+            convert = ranked[:max(1, len(ranked) // 3)]
             for k in convert:
                 beats[k][_SCENE_HINT] = True
-            note(t, f"convert {len(convert)} card beat(s) to scenes",
-                 bool(convert), f"card beats: {len(cards)}")
+            for k in ranked[len(convert):]:
+                beats[k]["_media_reseed"] = int(beats[k].get("_media_reseed", 0)) + 1
+            if not ranked:
+                story["_media_reseed"] = int(story.get("_media_reseed", 0)) + 1
+            note(t, f"no cards: {len(convert)} unanchored beat(s) -> scenes, "
+                 f"{len(ranked) - len(convert)} reseeded", True,
+                 f"unanchored beats: {len(ranked)}")
             continue
 
         # --- the opening. STRUCTURAL only: re-opening a film is not a polish.
