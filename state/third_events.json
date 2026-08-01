@@ -344,50 +344,6 @@
       ],
       "published_versions": [],
       "last_updated": "2026-07-31"
-    },
-    "stableronaldo-about-agent-2026w30": {
-      "event_id": "stableronaldo-about-agent-2026w30",
-      "people": [
-        "stableronaldo"
-      ],
-      "actions": [
-        "about",
-        "agent",
-        "award",
-        "phone"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-08-01",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/agent00/clip/BetterBlazingSaladGingerPower-EwmfDQNvArnO34PT",
-        "https://www.twitch.tv/agent00/clip/CrackyBoldCheesecakeDoritosChip-OQ9H17Sg9OaYnALc"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-08-01"
-    },
-    "stableronaldo-about-driv-2026w30": {
-      "event_id": "stableronaldo-about-driv-2026w30",
-      "people": [
-        "stableronaldo"
-      ],
-      "actions": [
-        "about",
-        "driv",
-        "freeze",
-        "phone"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-08-01",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf",
-        "https://www.twitch.tv/agent00/clip/CrackyBoldCheesecakeDoritosChip-OQ9H17Sg9OaYnALc"
-      ],
-      "published_versions": [
-        "story-beacc4e40840ad93"
-      ],
-      "last_updated": "2026-08-01"
     }
   }
 }
