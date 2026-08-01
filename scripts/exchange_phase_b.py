@@ -28,11 +28,92 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from shared import channel_registry as reg         # noqa: E402
 from shared import exchange_bundle as xb           # noqa: E402
+from shared import media_checkpoint as mc          # noqa: E402
 from shared import punchup_guard                   # noqa: E402
 from shared.fsutil import atomic_write_json        # noqa: E402
 
 MEDIA_CACHE = ROOT / "cache" / "exchange"
+
+# --------------------------------------------------------------------------
+# The backstop window
+# --------------------------------------------------------------------------
+# GitHub crons are UTC. The ChatGPT finalizer is a LOCAL-time task at 7:00 AM
+# America/Chicago, which is 12:00 UTC in summer (CDT) and 13:00 UTC in winter
+# (CST) — it moves an hour twice a year and a fixed UTC cron does not.
+#
+# The old backstop sat at 12:45 UTC. In summer that is 7:45 Central, 45 minutes
+# into the finalizer's run; in WINTER it is 6:45 Central, FIFTEEN MINUTES
+# BEFORE THE FINALIZER EVEN STARTS. For half the year the backstop would have
+# rendered an unfinished day — no punch-up, no authored packages, whatever
+# media happened to have landed — and every workflow would have been green.
+#
+# Fixed by not trusting UTC at all: the workflow fires BOTH candidate hours and
+# this gate decides in America/Chicago local time, which is correct in both
+# halves of the year by construction. The backstop may only start once the
+# finalizer has had its full window.
+FINALIZER_HOUR_CENTRAL = 7
+FINALIZER_WINDOW_MINUTES = 90        # 07:00 -> 08:30 Central, both seasons
+# If response.json was written this recently and DONE has not landed yet, the
+# finalizer is mid-commit (it commits the response, reads it back, THEN commits
+# DONE). Starting on top of that reads a half-finished day.
+FINALIZER_ACTIVE_MINUTES = 20
+CENTRAL_TZ = "America/Chicago"
+
+
+def backstop_status(date: str, now_utc=None) -> dict:
+    """May a backstop run right now? Decided in Central time, never in UTC.
+
+    Returns {ready, reason, local, earliest_local}. Fails OPEN on a broken
+    clock or a missing tzdata: a backstop that never runs is how a no-show day
+    ships nothing at all, which is the outcome the backstop exists to prevent.
+    """
+    from datetime import datetime, time, timedelta, timezone
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(CENTRAL_TZ)
+    except Exception as exc:                             # noqa: BLE001
+        return {"ready": True, "local": "?", "earliest_local": "?",
+                "reason": f"no tzdata ({exc}) — proceeding rather than "
+                          f"skipping the day"}
+
+    now = now_utc or datetime.now(timezone.utc)
+    if now.tzinfo is None:
+        now = now.replace(tzinfo=timezone.utc)
+    local = now.astimezone(tz)
+    start = datetime.combine(local.date(),
+                             time(FINALIZER_HOUR_CENTRAL, 0), tzinfo=tz)
+    earliest = start + timedelta(minutes=FINALIZER_WINDOW_MINUTES)
+    out = {"local": local.strftime("%Y-%m-%d %H:%M %Z"),
+           "earliest_local": earliest.strftime("%H:%M %Z")}
+
+    if local < earliest:
+        out.update(ready=False, reason=(
+            f"it is {out['local']} — the 07:00 Central finalizer has not had "
+            f"its {FINALIZER_WINDOW_MINUTES}-minute window yet (earliest "
+            f"{out['earliest_local']}). Rendering now would ship an "
+            f"unfinished day."))
+        return out
+
+    d = xb.bundle_dir(date)
+    resp, done = d / "response.json", d / "DONE"
+    if resp.exists() and not done.exists():
+        try:
+            age = (now - datetime.fromtimestamp(resp.stat().st_mtime,
+                                                tz=timezone.utc))
+            if age < timedelta(minutes=FINALIZER_ACTIVE_MINUTES):
+                out.update(ready=False, reason=(
+                    f"response.json landed {int(age.total_seconds() / 60)} "
+                    f"min ago and DONE has not — the finalizer is mid-commit. "
+                    f"Deferring rather than reading a half-written day."))
+                return out
+        except Exception:                                # noqa: BLE001
+            pass
+
+    out.update(ready=True, reason=f"{out['local']} — the finalizer's window "
+                                  f"closed at {out['earliest_local']}")
+    return out
 
 
 def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
@@ -188,8 +269,8 @@ def self_fill(pkg: dict, shot_index: int) -> str | None:
     return None
 
 
-def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False
-                   ) -> None:
+def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False,
+                   date: str = "", rejected: dict | None = None) -> None:
     """Find media for a package ChatGPT authored after Phase A had already
     run. Same two lanes Phase A and Phase B already use — entity resolution
     first, then the gloves-off self-fill for whatever is still bare — so a
@@ -224,7 +305,17 @@ def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False
         pointer = shot.pop("media", None)
         if not isinstance(pointer, dict):
             continue
-        local = fetch_media(xb.request_key(slug, i, "authored"), pointer)
+        # The id the media worker used at 06:00, recomputed here from the
+        # package on disk. Derived from slug + shot index ONLY, so it survives
+        # the punch-up rewording that a content-addressed key would not.
+        rid = mc.authored_shot_request_id(slug, i)
+        why = (rejected or {}).get(rid)
+        if why:
+            print(f"[phase-b] {slug} shot {i}: REFUSED ChatGPT media — "
+                  + "; ".join(why[:2]))
+            report["media"]["refused"] = report["media"].get("refused", 0) + 1
+            continue
+        local = fetch_media(rid, pointer)
         if local:
             shot["image_url"] = str(local)
             shot["media_origin"] = "chatgpt_authored"
@@ -264,8 +355,22 @@ def main() -> int:
     ap.add_argument("--no-ingest", action="store_true",
                     help="skip promoting ChatGPT-authored packages")
     ap.add_argument("--no-punchup", action="store_true")
+    ap.add_argument("--require-checkpoints", action="store_true",
+                    help="force checkpoint enforcement even on a no-DONE "
+                         "emergency backstop run")
+    ap.add_argument("--backstop", action="store_true",
+                    help="scheduled backstop: no-op unless the 07:00 Central "
+                         "finalizer has had its full window")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
+
+    if args.backstop:
+        st = backstop_status(args.date)
+        print(f"[phase-b] backstop check: {st['reason']}")
+        if not st["ready"]:
+            print("[phase-b] backstop deferring — the DONE push will fire "
+                  "this run properly, or the next backstop hour will.")
+            return 0
 
     bundle = xb.read_bundle(args.date)
     if not bundle:
@@ -294,9 +399,23 @@ def main() -> int:
             print("::warning::Phase A produced no bundle; Phase B is "
                   "rescuing the day. Media was never searched for, so every "
                   "shot goes through self-fill.")
+            # NO BUNDLE MEANS NO FROZEN CONTRACT, so resolve one live. This
+            # is the ONLY path allowed to read the registry directly, and it
+            # fails closed: guessing a historical mix here is how a retired
+            # format reaches a slate on the one day nobody is watching.
+            try:
+                rescue_contract = reg.plan(args.date,
+                                           {args.channel: already_there})
+            except reg.RegistryError as exc:
+                print(f"::error::no bundle AND the channel registry is "
+                      f"unusable ({exc}). Refusing to guess a slate.")
+                return 2
+            print(f"[phase-b] rescue contract from registry rev "
+                  f"{rescue_contract['registry_revision']}: "
+                  f"{reg.mix_sentence(args.channel)}")
             bundle = {"schema": "rescue", "date": str(args.date),
                       "mode": "author", "packages": [], "requests": [],
-                      "rescue": True}
+                      "rescue": True, "contract": rescue_contract}
         else:
             print(f"[phase-b] no bundle for {args.date}, nothing authored "
                   f"and no packages on disk — nothing to apply")
@@ -305,6 +424,27 @@ def main() -> int:
     done = xb.is_done(args.date)
     print(f"[phase-b] {args.date}: DONE marker "
           f"{'present' if done else 'ABSENT (proceeding — Policy A)'}")
+
+    # CHECKPOINTS ARE MANDATORY ONCE DONE SAYS THE WORKERS FINISHED.
+    #
+    # DONE is ChatGPT's assertion that both workers ran to completion. If they
+    # did, every image it points at has a checkpoint — writing one is the media
+    # worker's whole job. A pointer with no checkpoint on a DONE run therefore
+    # is not "a worker that skipped a step", it is an image nobody recorded
+    # verifying, and accepting it with a warning is exactly the shape of
+    # failure this contract was built to end: green everywhere, unverified
+    # media on screen.
+    #
+    # The exception is the no-DONE emergency backstop. On that path ChatGPT
+    # never finished — often never started — so there are no checkpoints to
+    # require, and demanding them would turn "ChatGPT was late" into "the
+    # channel posts nothing". Policy A still holds where it was meant to.
+    require_cp = (done or args.require_checkpoints
+                  or os.environ.get("EXCHANGE_REQUIRE_CHECKPOINTS") == "1")
+    print(f"[phase-b] checkpoints are "
+          f"{'REQUIRED' if require_cp else 'advisory'} on this run "
+          f"({'DONE present' if done else 'no-DONE emergency backstop'})")
+
     if args.require_done and not done:
         print("[phase-b] --require-done set and no marker — deferring")
         return 2
@@ -323,6 +463,49 @@ def main() -> int:
         print("[phase-b] no response.json — ChatGPT contributed nothing; "
               "self-fill + originals only")
 
+    # ---- checkpoint validation ------------------------------------------
+    # Every media pointer in the response is a CLAIM. The checkpoint under
+    # media-progress/ is the record of the moment those bytes were actually
+    # verified, written by whichever worker did the work. Where both exist
+    # they must agree exactly; where they disagree, something was edited
+    # after the fact or two different images are in play, and neither is
+    # something to put in a video.
+    #
+    # A MISSING checkpoint is a warning, not a rejection, unless
+    # --require-checkpoints is set. The byte-level verification in
+    # fetch_media (sha256 + full decode + placeholder check) is independent
+    # and strong on its own, and hard-failing here would mean a worker that
+    # skipped its checkpoints loses every image to stock self-fill — a
+    # regression dressed up as strictness.
+    bundle_id = mc.bundle_identity(args.date)
+    validation = mc.validate_response_media(
+        response, bundle, date=args.date, bundle_id=bundle_id,
+        require_checkpoint=require_cp)
+    refused = {r["request_id"]: r["problems"]
+               for r in validation.get("rejected") or []}
+    if validation.get("contract_problems"):
+        # The whole response answers a different plan. Every pointer in it is
+        # suspect, so none are used and the day self-fills.
+        for why in validation["contract_problems"]:
+            print(f"::error::[phase-b] CONTRACT MISMATCH — {why}")
+        print("[phase-b] refusing every media pointer in this response: it "
+              "was written against a different contract snapshot")
+        for r in bundle.get("requests") or []:
+            refused.setdefault(r["request_id"],
+                               list(validation["contract_problems"]))
+    for w in validation.get("warnings") or []:
+        print(f"[phase-b] checkpoint warning {w['request_id']}: "
+              f"{w['problem']}")
+    for r in validation.get("rejected") or []:
+        print(f"::warning::[phase-b] REFUSED media for "
+              f"{r['request_id']} ({r['where']}): {r['problems'][0]}")
+    c = validation.get("counts") or {}
+    if c.get("checked"):
+        print(f"[phase-b] checkpoints: {c.get('ok', 0)} usable, "
+              f"{c.get('rejected', 0)} refused, "
+              f"{c.get('warnings', 0)} unrecorded "
+              f"(bundle identity {str(bundle_id or 'none')[:12]}…)")
+
     sys.path.insert(0, str(ROOT / "scripts"))
 
     # AUTHORING TAKEOVER, step 2. If the bundle carried an authoring request,
@@ -333,9 +516,24 @@ def main() -> int:
     if not args.no_ingest:
         from ingest_authored import (ingest, ingest_curiosity,  # noqa: E402
                                      ingest_explainer)
-        authored = ingest(args.date, args.channel,
-                          target=int(bundle.get("authoring_request", {})
-                                     .get("target", 6)),
+        # THE TARGET COMES FROM THE DAY'S FROZEN CONTRACT. Not a literal,
+        # and not the live registry: promotion has to agree with the plan the
+        # workers were given, even if the registry moved since.
+        contract = bundle.get("contract") or {}
+        ch_plan = (contract.get("channels") or {}).get(args.channel) or {}
+        target = ch_plan.get("target_count")
+        if target is None:
+            target = (bundle.get("authoring_request") or {}).get("target")
+        if target is None:
+            try:
+                target = reg.target_count(args.channel)
+            except reg.RegistryError as exc:
+                print(f"::error::no contract in the bundle and the registry "
+                      f"is unusable ({exc}) — refusing to guess a slate size")
+                return 2
+        print(f"[phase-b] promotion target {target} "
+              f"(registry rev {contract.get('registry_revision', '?')})")
+        authored = ingest(args.date, args.channel, target=int(target),
                           dry_run=args.dry_run)
         # The other channels ChatGPT can stand in for. Explainer gets WORDS
         # for stories whose numbers are already real (punch-up-guarded);
@@ -372,7 +570,13 @@ def main() -> int:
               "done_marker": done, "had_response": response is not None,
               "authored": {"promoted": len(authored.get("promoted") or []),
                            "rejected": len(authored.get("rejected") or [])},
-              "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0},
+              "media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0,
+                        "refused": 0},
+              "checkpoints": {"bundle_identity": bundle_id,
+                              "required": require_cp,
+                              **(validation.get("counts") or {}),
+                              "rejected_detail": validation.get("rejected"),
+                              "warnings_detail": validation.get("warnings")},
               "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
               "details": []}
 
@@ -387,7 +591,17 @@ def main() -> int:
         if sidx >= len(shots):
             continue
 
-        local = fetch_media(rid, idx["media"].get(rid))
+        if rid in refused:
+            # Refused on the checkpoint contract, before a byte is fetched.
+            # Fall straight through to self-fill: a pointer we cannot trust
+            # is worth exactly as much as no pointer at all.
+            report["media"]["refused"] += 1
+            report["details"].append({"request_id": rid,
+                                      "outcome": "refused",
+                                      "problems": refused[rid]})
+            local = None
+        else:
+            local = fetch_media(rid, idx["media"].get(rid))
         if local:
             shots[sidx]["image_url"] = str(local)
             shots[sidx]["media_origin"] = "chatgpt"
@@ -415,7 +629,8 @@ def main() -> int:
         pkg = packages.get(slug)
         if not pkg:
             continue
-        cover_authored(pkg, report, no_self_fill=args.no_self_fill)
+        cover_authored(pkg, report, no_self_fill=args.no_self_fill,
+                       date=args.date, rejected=refused)
 
     # ---- punch-up (guarded) ---------------------------------------------
     if not args.no_punchup:
@@ -448,7 +663,8 @@ def main() -> int:
 
     m, p = report["media"], report["punchup"]
     print(f"[phase-b] media: {m['fulfilled']} from ChatGPT, "
-          f"{m['self_filled']} self-filled, {m['unfilled']} unfilled")
+          f"{m['self_filled']} self-filled, {m['unfilled']} unfilled, "
+          f"{m.get('refused', 0)} refused on the checkpoint contract")
     print(f"[phase-b] punch-up: {p['applied']} applied, "
           f"{p.get('kept', 0)} kept (editor's call), "
           f"{p['rejected']} rejected, {p['absent']} not offered")

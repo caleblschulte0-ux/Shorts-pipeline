@@ -38,23 +38,27 @@ from shared import package_buffer as buf              # noqa: E402
 
 def cmd_status(args) -> int:
     inv = buf.inventory()
-    counts = {f: len(inv.get(f) or []) for f in buf.FORMATS}
+    formats, low_water = buf.formats(), buf.low_water()
+    counts = {f: len(inv.get(f) or []) for f in formats}
     low = buf.low_formats()
     used = buf.drawn_count()
-    # Full slates the bank could serve right now, honouring the 2/2/2 mix.
-    slates = min(counts[f] // buf.TARGET_MIX[f] for f in buf.FORMATS)
+    # Full slates the bank could serve right now, honouring the registry mix.
+    mix = buf.target_mix()
+    slates = min((counts[f] // mix[f]) for f in formats if mix.get(f)) \
+        if any(mix.values()) else 0
     if args.json:
         print(json.dumps({"counts": counts, "low": low, "slates": slates,
                           "drawn_all_time": used,
-                          "low_water": buf.LOW_WATER}, indent=2))
+                          "low_water": low_water,
+                          "target_mix": mix}, indent=2))
         return 0
     print(f"reserve bank: {sum(counts.values())} package(s), "
           f"{slates} full slate(s) of cover")
-    for f in buf.FORMATS:
+    for f in formats:
         mark = "  LOW" if f in low else ""
-        print(f"  {f:<13} {counts[f]:>3}  (want >= {buf.LOW_WATER[f]}){mark}")
+        print(f"  {f:<13} {counts[f]:>3}  (want >= {low_water.get(f, 0)}){mark}")
     print(f"  drawn all time: {used}")
-    for f in buf.FORMATS:
+    for f in formats:
         for e in (inv.get(f) or [])[:3]:
             print(f"    {f}: {e['package'].get('slug')} "
                   f"(banked {e.get('banked_at')})")

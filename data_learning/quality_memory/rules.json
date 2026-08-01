@@ -1,0 +1,50 @@
+{
+  "generated_from_n_renders": 33,
+  "rules": [
+    {
+      "scope": "job",
+      "job": "CHAPTER",
+      "flag": "DULL",
+      "severity": "hard",
+      "rate": "6/6",
+      "guidance": "CHAPTER beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
+    },
+    {
+      "scope": "job",
+      "job": "PROOF",
+      "flag": "DULL",
+      "severity": "hard",
+      "rate": "2/2",
+      "guidance": "PROOF beats keep scoring low appeal \u2014 a designed card is getting scrolled; reach for footage or a 3D showpiece instead of a flat graphic."
+    }
+  ],
+  "access_needs": [
+    {
+      "subject": "hurricane storm surge flooded street",
+      "renders": 2
+    }
+  ],
+  "trend": {
+    "dead_fraction": {
+      "first": 0.18,
+      "latest": 0.56,
+      "want": "down",
+      "direction": "regressing"
+    },
+    "mean_appeal": {
+      "first": 0.682,
+      "latest": 0.508,
+      "want": "up",
+      "direction": "regressing"
+    },
+    "bland_fraction": {
+      "first": 0.0,
+      "latest": 0.0,
+      "want": "down",
+      "direction": "holding"
+    }
+  },
+  "motion_wins": [
+    "united states capitol government building"
+  ]
+}

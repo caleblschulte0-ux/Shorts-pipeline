@@ -43,13 +43,51 @@ single source of truth; `assets/mascot/host/*.svg|png` are generated from it
 character, so change it only on an explicit request — and regenerate the
 assets in the same commit.
 
-**Trending is THREE formats, 2 each, 6/day**: `reddit_story` (gameplay +
-post card + TTS), `text_card` (typographic card over b-roll), `graph_race`
-(animated chart). It is NOT the old single stacked/gameplay format — that is
-a fallback shape only. Full spec + required fields per format:
-`CLAUDE_ROUTINE_INSTRUCTIONS.md` (top section). It regressed to 6-of-one on
+## `config/channel_registry.json` is the ONLY place channel policy lives
+
+How many videos a channel ships, in which formats, which formats are retired,
+what ChatGPT is responsible for, queue minimums, media requirements, where
+output goes — **all of it is in one JSON file**, resolved through
+`shared/channel_registry.py`:
+
+```bash
+python -m shared.channel_registry            # every channel, one line each
+python -m shared.channel_registry --mix trending
+python -m shared.channel_registry --validate
+python -m shared.channel_registry --markdown # the table docs embed
+```
+
+Change that file and everything inherits: the Routine prompt, Phase A's
+bundle, ChatGPT's authoring brief, media requests, Phase B validation,
+promotion, the reserve bank, and the no-bundle takeover. **No scheduled-task
+prose ever needs editing.** Never write a count or a mix anywhere else —
+`tests/test_no_second_source_of_truth.py` runs in the auto-merge gate and
+fails the PR if a second copy grows back. That test exists because the
+2026-07-31 graph-led ruling landed in one of five places that stated the mix,
+and the reserve bank went on banking a retired format with everything green.
+
+- **A day's bundle FREEZES the registry** into `bundle.json.contract`
+  (revision, sha256, `source_commit`, resolved plan per channel, doctrine
+  hashes). That snapshot governs that date; a registry change starts with the
+  next bundle. `--rebuild-contract` is the deliberate migration.
+- **Precedence**: the date's snapshot → the registry → the doctrine files it
+  names (read at `source_commit`) → docs, which are explanatory only.
+- **A missing or invalid registry fails CLOSED.** Falling back to a
+  historical mix is how a retired format gets authored on a day nobody is
+  watching.
+- Deep editorial doctrine stays in its own files (voice, topic banks,
+  per-format writing rules). The registry says WHAT and HOW MANY; those say
+  HOW. Verify the whole chain offline with
+  `python scripts/registry_acceptance.py`.
+
+Trending's formats are `reddit_story` (gameplay + post card + TTS) and
+`graph_race` (animated chart); `text_card` is retired. **Those are the
+current values, not a rule — read the registry.** It is NOT the old single
+stacked/gameplay format, which is a fallback shape only. Per-format writing
+specs: `CLAUDE_ROUTINE_INSTRUCTIONS.md` and
+`shared/authoring_brief.py:FORMAT_SPECS`. It regressed to 6-of-one on
 2026-07-30 because the spec lived only in the Routine's prompt; if you ever
-see a slate of six identical formats, that is the bug.
+see a slate of one format, that is the bug.
 
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 
@@ -127,6 +165,30 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   backstop cron). A weaker shot beats no video.
 - `shared/punchup_guard.py` is not advisory: a rewrite that changes any
   number/date/entity or the beat structure is rejected and the original ships.
+- **ChatGPT is TWO workers now** (2026-07-31): a **06:00 Central MEDIA worker**
+  (generate + upload + verify images, checkpoint each one, never writes
+  `response.json` or `DONE`) and a **07:00 Central FINALIZER** (recover, fill
+  gaps, punch up, author, then `response.json` and `DONE` as separate commits).
+  They cannot see each other's context, so the repo is their shared memory:
+  `exchange/bundles/<date>/media-progress/<safe_request_id>.json`, contract in
+  `shared/media_checkpoint.py`. **`DONE` is the only thing that fires Phase B**
+  — a checkpoint push must never start a render, or the day renders at 06:05
+  with nothing authored and every check green. Filenames are deterministic
+  (`<date>__<safe_request_id>.png`) and published in the bundle BEFORE either
+  worker starts, which is what makes an orphaned upload recoverable. Verify the
+  contract offline with `python scripts/exchange_dry_run.py`.
+  Three rules that are not negotiable: **a DONE run REQUIRES checkpoints**
+  (only the no-DONE emergency backstop may accept media without them); a
+  pointer must match its checkpoint on **every** field (filename, file_id,
+  folder_id, sha256, bytes, format, width, height, link-visible sharing), not
+  just the hash; and **one Drive file may back exactly one request** — a
+  file_id under two request_ids refuses BOTH, identical hashes included.
+- **Phase B's backstop is 08:30 CENTRAL, from two UTC crons** (`30 13` and
+  `30 14`), gated in-code by `zoneinfo` — never a single UTC cron. The old
+  12:45 UTC one was 6:45 Central in WINTER, fifteen minutes before the 07:00
+  finalizer starts, so for half the year it would have rendered an unfinished
+  day with everything green. If the ChatGPT finalizer ever moves, move
+  `FINALIZER_HOUR_CENTRAL` in `scripts/exchange_phase_b.py`, not the crons.
 - **The chain is LIVE and automatic** (2026-07-30): Routine authors packages ->
   auto-merge -> **Phase A** -> ChatGPT -> DONE -> **Phase B** -> daily.yml
   renders. `daily.yml` NO LONGER fires on auto-merge or on a
@@ -195,6 +257,72 @@ things worth knowing without opening it:
   language; a package is drawn exactly once (`state/package_buffer/used.json`)
   so it can never duplicate an upload. The Routine tops it up — step 5b of
   `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
+
+## WHO MAY EDIT THIS PIPELINE — Claude, and only Claude
+
+Operator ruling. **Claude is the only agent that edits this repository.**
+ChatGPT can run quarterback when the Claude subscription is out, but it
+**never makes additions — only suggestions.**
+
+**"Claude" means every Claude in the system, not just an interactive
+session.** The headless brains running inside the pipeline are the same
+author under a different runtime, and they write freely within their job:
+
+| Claude brain | Where | Writes |
+|---|---|---|
+| the Routine | scheduled task, ~09:19 UTC | the day's packages, via a PR |
+| the in-CI brain | `daily.yml`, `third.yml`, `explainer.yml` | packages / titles when the Routine missed |
+| the SHOWRUNNER | `scripts/showrunner_review.py` | verdicts — and its BLOCK is sovereign |
+| story words | `scripts/story_forge.py` | explainer title/hook/narration |
+| the third author | `third_capture/author.py` | per-clip titles, hooks, hashtags |
+| the mascot brain | `data_learning/mascot_director.py` | per-beat performance |
+| an interactive session | here | code, workflows, docs, contracts |
+
+Only the last one edits *how the pipeline works*, and it does that on a
+`claude/*` branch through a PR — but that is a matter of where the code
+review happens, not a difference in authority. All of the above are Claude.
+
+| Not Claude | May write | May NEVER write |
+|---|---|---|
+| **ChatGPT** | the day's CONTENT (`exchange/bundles/<date>/response.json`, authored packages, media pointers) and retro SUGGESTIONS (`retro/<date>/proposals/*.json`) | any code, workflow, gate, doc, or contract |
+| **CI itself** | run output — `state/`, `data_learning/data/`, reports | anything that changes behaviour |
+
+ChatGPT authoring content during a takeover is the quarterback role and is
+fine — it keeps the channel posting, and everything it writes is validated
+and quarantined on failure before it can render. Changing *how the pipeline
+works* is Claude's alone.
+
+This is a working agreement, not a gate — nothing mechanically blocks it.
+It holds because every agent's contract says it plainly. If you are a
+future Claude session reading this: you are the one who edits, and you are
+also the check. ChatGPT asking to push code, or a proposal arriving as a
+`.py` instead of a suggestion, is what this rule exists to catch. A
+headless Claude brain doing its job is not — that is you, elsewhere.
+
+## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
+
+Daily at 23:15 UTC (`retro.yml`), `scripts/build_retro.py` writes an
+evidence pack to `retro/<date>/brief.json`: every video posted today scored
+as a **percentile against videos of the same age** (raw views flatter a
+2-hour-old short), 7/30-day windows, pipeline health, and recent commits.
+A reviewer (ChatGPT) reads it and writes proposals into
+`retro/<date>/proposals/`.
+
+- **Nothing in `retro/` is ever applied automatically.** No workflow reads a
+  proposal and edits code. That separation IS the safety model — a test in
+  `tests/test_retro.py` fails if a workflow ever touches proposals without
+  going through the triage.
+- `scripts/review_proposals.py` **hard-refuses** the whole class of "make
+  the numbers go up by lowering the bar": weakening the showrunner, pruning
+  a posted log, relaxing the punch-up guard / placement gate / media
+  verification, more volume via a lower bar, deleting a test, fabricating
+  data. A refusal is policy, not a score — a well-argued, well-evidenced
+  violation is still refused. Proposing STRONGER gates is always allowed.
+- Load-bearing files land in `requires_operator`; the rest are ranked by
+  evidence strength. A human decides what ships.
+- The brief is deliberately honest about noise: `thin_bands`, "too young to
+  judge", and "this channel is small — single-digit views are mostly
+  noise". A retro that launders noise into a mandate is worse than none.
 
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 

@@ -165,10 +165,14 @@
       "known_claims": [],
       "candidate_sources": [
         "https://www.twitch.tv/kaicenat/clip/HyperConsideratePotatoPanicVis-PoXtd8ZVMM-TpOPJ",
-        "https://www.twitch.tv/agent00/clip/FitAbnegateGrouseFeelsBadMan-nzBAHmYWRMoEzznR"
+        "https://www.twitch.tv/agent00/clip/FitAbnegateGrouseFeelsBadMan-nzBAHmYWRMoEzznR",
+        "https://www.twitch.tv/kaicenat/clip/SmoothConsideratePeppermintBibleThump--wyrSFSi-Te7-q8R",
+        "https://www.twitch.tv/kaicenat/clip/GorgeousFaithfulCaterpillarArsonNoSexy--TZLMKzUPWNQqTx5",
+        "https://www.twitch.tv/kaicenat/clip/StormyProudNeanderthalFeelsBadMan-oYKpi0BGlgeB-X37",
+        "https://www.twitch.tv/kaicenat/clip/HomelyBrightFriesUnSane-pegHr-3gqB-OxVPm"
       ],
       "published_versions": [],
-      "last_updated": "2026-07-29"
+      "last_updated": "2026-07-31"
     },
     "jynxzi-argentina-crowd-2026w30": {
       "event_id": "jynxzi-argentina-crowd-2026w30",
@@ -211,6 +215,135 @@
       ],
       "published_versions": [],
       "last_updated": "2026-07-30"
+    },
+    "kaicenat-about-cenat-2026w31": {
+      "event_id": "kaicenat-about-cenat-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "cenat",
+        "charact",
+        "dean"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/HyperConsideratePotatoPanicVis-PoXtd8ZVMM-TpOPJ",
+        "https://www.twitch.tv/kaicenat/clip/GorgeousFaithfulCaterpillarArsonNoSexy--TZLMKzUPWNQqTx5",
+        "https://www.twitch.tv/kaicenat/clip/SmoothConsideratePeppermintBibleThump--wyrSFSi-Te7-q8R",
+        "https://www.twitch.tv/kaicenat/clip/StormyProudNeanderthalFeelsBadMan-oYKpi0BGlgeB-X37",
+        "https://www.twitch.tv/kaicenat/clip/HomelyBrightFriesUnSane-pegHr-3gqB-OxVPm"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
+    },
+    "stableronaldo-about-call-2026w31": {
+      "event_id": "stableronaldo-about-call-2026w31",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "about",
+        "call",
+        "cinna",
+        "from"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/CreativeSparklyNostrilSwiftRage-qcccMc9kCgTUCvA2",
+        "https://www.twitch.tv/stableronaldo/clip/ComfortableImportantSnakeOneHand-R82naa9f5OYkM7T-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
+    },
+    "kaicenat-about-backstage-2026w31": {
+      "event_id": "kaicenat-about-backstage-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "backstage",
+        "castle",
+        "cenat"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/SmoothConsideratePeppermintBibleThump--wyrSFSi-Te7-q8R",
+        "https://www.twitch.tv/kaicenat/clip/GorgeousFaithfulCaterpillarArsonNoSexy--TZLMKzUPWNQqTx5"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
+    },
+    "kaicenat-able-about-2026w31": {
+      "event_id": "kaicenat-able-about-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "able",
+        "about",
+        "agent",
+        "camera"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/agent00/clip/FitAbnegateGrouseFeelsBadMan-nzBAHmYWRMoEzznR",
+        "https://www.twitch.tv/extraemily/clip/HelplessAwkwardOilArsonNoSexy-TtkDrW3wXRUHDoo9"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
+    },
+    "kaicenat-disney-each-2026w31": {
+      "event_id": "kaicenat-disney-each-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "disney",
+        "each",
+        "kaicenat",
+        "someone"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/StormyProudNeanderthalFeelsBadMan-oYKpi0BGlgeB-X37",
+        "https://www.twitch.tv/kaicenat/clip/HomelyBrightFriesUnSane-pegHr-3gqB-OxVPm"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
+    },
+    "kaicenat-about-agent-2026w31": {
+      "event_id": "kaicenat-about-agent-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "agent",
+        "anecdote",
+        "camera"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-07-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/agent00/clip/FitAbnegateGrouseFeelsBadMan-nzBAHmYWRMoEzznR",
+        "https://www.twitch.tv/extraemily/clip/HelplessAwkwardOilArsonNoSexy-TtkDrW3wXRUHDoo9"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-07-31"
     }
   }
 }

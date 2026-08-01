@@ -1,0 +1,25 @@
+{
+ "key": "curio_sky_reference",
+ "title": "A cruising jet vs the fastest human (km/h)",
+ "unit": "km/h",
+ "geography": "World",
+ "time_coverage": "constant",
+ "source": {
+  "name": "Typical airliner cruise speed vs Usain Bolt peak",
+  "publisher": "ICAO / IAAF Berlin 2009 split data",
+  "url": "https://en.wikipedia.org/wiki/Cruise_(aeronautics)",
+  "officiality": "reference",
+  "access_date": "2026-07-09"
+ },
+ "notes": "Real published figures, rounded. Typical jet airliner cruise ~Mach 0.78-0.85 ≈ 900 km/h; Usain Bolt's peak instantaneous speed ≈ 44.7 km/h (Berlin 2009 100m).",
+ "points": [
+  {
+   "label": "Usain Bolt",
+   "value": 45
+  },
+  {
+   "label": "Cruising jet",
+   "value": 900
+  }
+ ]
+}

@@ -1,0 +1,126 @@
+{
+ "slug": "sitting-still-speed",
+ "title": "You're Moving 828,000 km/h Right Now",
+ "voice": "en-US-GuyNeural",
+ "beats": [
+  {
+   "job": "HOOK",
+   "narration": "Right now, sitting perfectly still, you feel like nothing around you is moving. That stillness is the greatest illusion of your life.",
+   "understand": "the VISUAL contradicts the words: you feel still, but the screen proves you are hurtling through space",
+   "function": "experience",
+   "mode": "designed_2d",
+   "max_unchanged": 6.0,
+   "flat": {
+    "kind": "flat_hidden_motion",
+    "text": "66,000",
+    "sub": "MPH",
+    "label": "YOU'RE MOVING AT"
+   }
+  },
+  {
+   "job": "SETUP_COMPARISON",
+   "narration": "We think we know what fast is. A sprinter, twenty-seven. A jet, five hundred sixty. A rifle bullet, two thousand one hundred miles an hour.",
+   "understand": "anchor everyday 'fast' so the reveal later dwarfs it",
+   "function": "comparison",
+   "mode": "designed_2d",
+   "max_unchanged": 8.0,
+   "flat": {
+    "kind": "flat_compare",
+    "title": "how fast is fast",
+    "rows": [
+     {
+      "name": "Usain Bolt",
+      "value": 27,
+      "display": "27 mph"
+     },
+     {
+      "name": "Passenger jet",
+      "value": 560,
+      "display": "560 mph"
+     },
+     {
+      "name": "Rifle bullet",
+      "value": 2100,
+      "display": "2,100 mph"
+     }
+    ]
+   }
+  },
+  {
+   "job": "PROOF",
+   "narration": "But the ground beneath your feet is not still. The Earth spins at over a thousand miles an hour \u2014 about half the speed of that bullet, and you never feel it.",
+   "understand": "the ground you stand on is itself moving faster than a bullet",
+   "function": "evidence",
+   "mode": "designed_2d",
+   "max_unchanged": 8.0,
+   "flat": {
+    "kind": "flat_spin",
+    "text": "1,037",
+    "sub": "MPH",
+    "label": "THE EARTH'S SPIN"
+   }
+  },
+  {
+   "job": "DEVELOP",
+   "narration": "Now pull back, and watch what our whole planet is really doing.",
+   "understand": "zoom out from the spin to the orbit",
+   "function": "explanation",
+   "mode": "designed_2d",
+   "max_unchanged": 6.0,
+   "flat": {
+    "kind": "flat_orbit",
+    "center": "THE SUN",
+    "satellite": "EARTH"
+   }
+  },
+  {
+   "job": "ESCALATE",
+   "narration": "Earth is falling around the Sun at sixty-six thousand miles an hour. Eighteen miles every single second.",
+   "understand": "orbital speed dwarfs the spin",
+   "function": "evidence",
+   "mode": "designed_2d",
+   "max_unchanged": 8.0,
+   "flat": {
+    "kind": "flat_number",
+    "text": "66,600",
+    "sub": "MPH",
+    "label": "EARTH AROUND THE SUN"
+   }
+  },
+  {
+   "job": "REVEAL",
+   "narration": "And the Sun itself is not still. It drags us around the galaxy at half a million miles an hour \u2014 a tiny world, riding a star, around a galaxy that is itself racing through the universe.",
+   "understand": "the headline number \u2014 our galactic speed \u2014 rides the galaxy as it pulls back continuously into the full spiral (one climax, not two identical zooms). The galaxy cannot be filmed from inside it: designed 2D, tier C.",
+   "function": "evidence",
+   "mode": "designed_2d",
+   "max_unchanged": 12.0,
+   "flat": {
+    "kind": "flat_zoom",
+    "highlight": "THE SUN",
+    "stages": [
+     "THE MILKY WAY"
+    ]
+   },
+   "number": {
+    "text": "514,000",
+    "sub": "mph",
+    "label": "our speed through the galaxy"
+   }
+  },
+  {
+   "job": "PAYOFF",
+   "narration": "You have never been still. Not for one single second of your life.",
+   "understand": "THE thesis lands over the calm Earth from the opening, reinterpreted (intentional callback); the film ENDS here",
+   "function": "experience",
+   "mode": "designed_2d",
+   "callback": true,
+   "max_unchanged": 8.0,
+   "flat": {
+    "kind": "flat_hidden_motion",
+    "text": "66,000",
+    "sub": "MPH",
+    "label": "YOU HAVE NEVER BEEN STILL"
+   }
+  }
+ ]
+}

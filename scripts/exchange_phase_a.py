@@ -30,7 +30,9 @@ sys.path.insert(0, str(ROOT))
 
 from funnel import media_judge                     # noqa: E402
 from shared import authoring_brief as brief         # noqa: E402
+from shared import channel_registry as reg          # noqa: E402
 from shared import exchange_bundle as xb           # noqa: E402
+from shared import media_checkpoint as mc          # noqa: E402
 from shared.fsutil import atomic_write_json        # noqa: E402
 
 PACKAGE_DIRS = {
@@ -132,13 +134,58 @@ def main() -> int:
     ap.add_argument("--no-resolve", action="store_true",
                     help="skip media finding; judge only what is pinned "
                          "(offline testing)")
-    ap.add_argument("--target", type=int, default=6,
-                    help="packages the day should have; a shortfall becomes "
-                         "an authoring request to ChatGPT (default 6)")
+    ap.add_argument("--target", type=int, default=None,
+                    help="override the registry's package count for this run "
+                         "(normally omitted — config/channel_registry.json "
+                         "decides)")
+    ap.add_argument("--rebuild-contract", action="store_true",
+                    help="MIGRATION: re-resolve the registry for a date whose "
+                         "bundle already froze one. Moves the goalposts under "
+                         "a worker that may already be running.")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
     packages = load_packages(args.channel, args.date)
+
+    # ---- THE CONTRACT --------------------------------------------------
+    # Resolved from config/channel_registry.json ONCE per production date and
+    # frozen into the bundle. A re-run (backstop cron, manual dispatch) reuses
+    # the frozen copy: the 06:00 media worker may already be generating
+    # against those numbers, and re-resolving would leave half a slate built
+    # to one plan and half to another.
+    try:
+        frozen = xb.existing_contract(args.date)
+        if frozen and not args.rebuild_contract:
+            contract = frozen
+            print(f"[phase-a] reusing the FROZEN contract for {args.date} "
+                  f"(registry rev {contract.get('registry_revision')}, "
+                  f"sha {str(contract.get('registry_sha256'))[:12]}…) — a "
+                  f"registry change since then starts with the next date")
+            live = reg.sha256()
+            if live != contract.get("registry_sha256"):
+                print(f"::notice::the registry has changed since {args.date}'s "
+                      f"bundle was created (live sha {live[:12]}…). That is "
+                      f"fine and expected — the new rules apply from the next "
+                      f"bundle. Use --rebuild-contract only to deliberately "
+                      f"migrate this open day.")
+        else:
+            contract = reg.plan(args.date,
+                                {args.channel: packages})
+            if frozen:
+                print(f"::warning::--rebuild-contract: re-resolving {args.date} "
+                      f"from registry rev {contract['registry_revision']}. Any "
+                      f"worker already running is now on stale numbers.")
+    except reg.RegistryError as exc:
+        # FAIL HONESTLY. Falling back to a historical mix is how a retired
+        # format gets authored on a day nobody is watching.
+        print(f"::error::channel registry unusable — {exc}")
+        return 1
+
+    target = (args.target if args.target is not None
+              else (contract["channels"].get(args.channel) or {})
+              .get("target_count", 0))
+    print(f"[phase-a] contract: {args.channel} wants {target} — "
+          f"{reg.mix_sentence(args.channel)}")
 
     # AUTHORING TAKEOVER. A short day means the Claude Routine did not run
     # AND the reserve bank could not cover it (the workflow fills from the
@@ -146,14 +193,14 @@ def main() -> int:
     # for — which is exactly how a dead authoring night stayed invisible —
     # put an authoring brief in the bundle and let ChatGPT be the brain.
     authoring_request = None
-    if len(packages) < args.target:
+    if len(packages) < target:
         authoring_request = brief.build_request(
             args.date, args.channel, have_packages=packages,
             target=args.target,
-            reason=(f"only {len(packages)} of {args.target} packages exist "
+            reason=(f"only {len(packages)} of {target} packages exist "
                     f"for {args.date}: the Claude authoring Routine did not "
                     f"run and the reserve bank could not cover the day"))
-        print(f"[phase-a] TAKEOVER: {len(packages)}/{args.target} packages — "
+        print(f"[phase-a] TAKEOVER: {len(packages)}/{target} packages — "
               f"asking ChatGPT to author {authoring_request['write']} "
               f"({', '.join(f'{n}x{f}' for f, n in authoring_request['mix'].items() if n)})")
 
@@ -183,7 +230,7 @@ def main() -> int:
         reports.append(report)
 
     bundle = xb.build_bundle(args.date, packages, reports,
-                             authoring_request, channel_requests)
+                             authoring_request, channel_requests, contract)
 
     if args.json:
         print(json.dumps(bundle, indent=2)[:4000])
@@ -220,12 +267,22 @@ def main() -> int:
                   f"{pkg.get('slug')}: {exc}")
 
     path = xb.write_bundle(args.date, packages, reports,
-                           authoring_request, channel_requests)
+                           authoring_request, channel_requests, contract)
     if path is None:
         print("[phase-a] ERROR: could not write bundle")
         return 1
     ready = xb.mark_ready(args.date)
     print(f"[phase-a] wrote {path.relative_to(ROOT)}")
+    # The identity both workers must record in every checkpoint. Printed so a
+    # run log shows exactly which ask the day's checkpoints belong to — if
+    # Phase A is re-run with different prompts this string changes and every
+    # earlier checkpoint stops matching, which is the intended behaviour.
+    ident = mc.bundle_identity(args.date)
+    if ident:
+        print(f"[phase-a] bundle identity sha256={ident}")
+        print(f"[phase-a] checkpoints go in "
+              f"exchange/bundles/{args.date}/"
+              f"{mc.PROGRESS_DIRNAME}/<safe_request_id>.json")
     if ready:
         print(f"[phase-a] wrote {ready.relative_to(ROOT)} — "
               f"commit these; ChatGPT answers next")

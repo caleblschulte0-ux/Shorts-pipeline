@@ -1906,6 +1906,45 @@
       "self_healed": false,
       "source_views": 3218,
       "banger": 0.5
+    },
+    "rejected-kindpluckyplumberdendiface-fejqxyjnlksx3rp-": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/KindPluckyPlumberDendiFace-fEJQXYJnLksX3Rp-",
+      "streamer": "plaqueboymax",
+      "title": "long ass hug",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.7 (vague hug, no clear payoff)",
+      "ts": "2026-07-31T11:41:13.506147+00:00"
+    },
+    "rejected-freezinghotfoxdaesuppy-15sqnkvgye5as-my": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/FreezingHotFoxDAESuppy-15sqnkvgYe5as-mY",
+      "streamer": "jasontheween",
+      "title": "bro tryna rizz\ud83d\ude02and jason not tryna hear it",
+      "qa_rejected": true,
+      "ts": "2026-07-31T11:41:42.642962+00:00"
+    },
+    "clip-20260731-1": {
+      "url": "https://youtube.com/shorts/WoEcy3zaQaM",
+      "title": "Jasontheween: Jason Has To Throw The Towel In Kick Boxing And It Goes Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-07-31T11:47:20.280570+00:00",
+      "uploaded_at": "2026-07-31T11:47:20.280588+00:00",
+      "publish_at": "2026-07-31T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CrepuscularFancyCourgetteHassanChop-gszfPI8VGd2O0_Li",
+      "streamer": "jasontheween",
+      "series": "fail",
+      "hook": "HE'S THROWING IN THE TOWEL",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3141,
+      "banger": 0.85,
+      "cut": {
+        "start": 0.0,
+        "end": 24.9
+      },
+      "director_cut": true
     }
   }
 }

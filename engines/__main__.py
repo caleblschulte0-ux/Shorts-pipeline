@@ -107,6 +107,12 @@ def _cmd_demo(args) -> int:
         from engines.parallax import maybe_parallax
         result = maybe_parallax(args.image, args.out, args.duration,
                                 size=(args.width, args.height))
+    elif args.engine == "lookmatch":
+        from engines.lookmatch import maybe_harmonize, plan
+        pl = plan(args.image)
+        if pl:
+            print(f"plan: {pl}")
+        result = maybe_harmonize(args.image, args.out)
     elif args.engine == "svg-motion":
         from engines.svg_motion import maybe_svg_motion, title_card
         result = maybe_svg_motion(
@@ -126,7 +132,7 @@ def _cmd_demo(args) -> int:
                                   size=(args.width, args.height))
     else:
         print(f"no demo for {args.engine!r} (choices: kenburns, parallax, "
-              f"svg-motion, render_qa, chartrace)")
+              "lookmatch, svg-motion, render_qa, chartrace)")
         return 2
     if result is None:
         print("demo failed (see messages above)")
@@ -147,8 +153,8 @@ def main(argv=None) -> int:
     sp = sub.add_parser("install")
     sp.add_argument("engine")
     sp = sub.add_parser("demo")
-    sp.add_argument("engine", choices=["kenburns", "parallax", "svg-motion",
-                                       "render_qa", "chartrace"])
+    sp.add_argument("engine", choices=["kenburns", "parallax", "lookmatch",
+                                       "svg-motion", "render_qa", "chartrace"])
     # render engines need --image/--out (svg-motion only --out, chartrace
     # --spec/--out); the analysis engine takes --video. Validated
     # per-engine in _cmd_demo.

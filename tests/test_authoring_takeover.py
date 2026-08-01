@@ -29,6 +29,28 @@ from tests.test_package_buffer import (               # noqa: E402
 import ingest_authored as ing                        # noqa: E402
 
 
+# --------------------------------------------------------------------------
+# These tests are about MECHANISM, not about today's operator ruling. They run
+# against a fixture registry carrying the mix they were written for, so a
+# future mix change in config/channel_registry.json breaks only the tests that
+# are ABOUT the ruling (tests/test_channel_registry.py) instead of these.
+# --------------------------------------------------------------------------
+from tests.registry_fixture import LEGACY_MIX, registry   # noqa: E402
+
+_FIXTURE = None
+
+
+def setUpModule():
+    global _FIXTURE
+    _FIXTURE = registry(LEGACY_MIX)
+    _FIXTURE.__enter__()
+
+
+def tearDownModule():
+    if _FIXTURE is not None:
+        _FIXTURE.__exit__(None, None, None)
+
+
 class TestBrief(unittest.TestCase):
     def test_empty_day_asks_for_the_full_222_slate(self):
         req = brief.build_request("20260801", "trending", have_packages=[],
@@ -173,7 +195,7 @@ class TestIngest(IngestTestCase):
                               "script": "words " * 200, "shots": []}])
         report = ing.ingest("20260801", "trending", target=6)
         self.assertEqual(report["promoted"], [])
-        self.assertIn("not bankable",
+        self.assertIn("not registered",
                       " ".join(report["rejected"][0]["problems"]))
 
     def test_duplicate_slug_within_one_response_is_caught(self):

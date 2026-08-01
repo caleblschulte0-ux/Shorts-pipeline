@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -98,6 +99,117 @@ def _description(sc: dict, meta: dict) -> str:
     return "\n\n".join(p for p in parts if p)[:5000]
 
 
+def _render_story(slug: str, out: Path, config: Path) -> dict:
+    """Render through the CANONICAL pro pipeline (produce.py: pro_render + the full
+    director loop + gates + repair + publishing package + fallback/vision verdict).
+
+    Renderer selection is an EXPLICIT env switch, never a silent fallback:
+        CURIOSITY_RENDERER=pro     (default) — the canonical producer. A slug with
+                                   no pro beat story FAILS CLOSED (quarantined with
+                                   the reason); it does NOT quietly run legacy.
+        CURIOSITY_RENDERER=legacy  — emergency mode only: the operator explicitly
+                                   opts into data_learning/longform_render.
+
+    Returns {"engine": "pro"|"legacy", "produce": <produce result or None>}.
+    """
+    sys.path.insert(0, str(REPO / "scripts"))
+    renderer = os.environ.get("CURIOSITY_RENDERER", "pro").strip().lower() or "pro"
+    if renderer == "legacy":
+        print(f"[{slug}] CURIOSITY_RENDERER=legacy — EXPLICIT legacy longform "
+              "render (emergency mode; no director loop, no pro gates)", flush=True)
+        from data_learning import longform_render
+        longform_render.render(slug, out, config_path=config)
+        return {"engine": "legacy", "produce": None}
+    if renderer != "pro":
+        raise SystemExit(f"CURIOSITY_RENDERER={renderer!r} is not a renderer "
+                         "(expected 'pro' or 'legacy')")
+    import produce
+    try:
+        produce.resolve_story(slug)          # raises FileNotFoundError if no pro story
+    except FileNotFoundError as e:
+        # FAIL CLOSED (Phase 3): a missing pro story is an authoring gap, not a
+        # license to publish through the ungated legacy renderer.
+        reason = (f"no pro beat story for slug (fail-closed): {e}. Author "
+                  f"data_learning/pro_stories/{slug}.beats.json, or set "
+                  "CURIOSITY_RENDERER=legacy to explicitly use the emergency "
+                  "legacy renderer")
+        print(f"[{slug}] {reason}", file=sys.stderr)
+        return {"engine": "pro",
+                "produce": {"out": str(out), "slug": slug,
+                            "status": "quarantine", "reasons": [reason],
+                            "director_rc": None,
+                            "fallback_verdict": "no_story"}}
+    print(f"[{slug}] rendering through PRO producer (canonical path)", flush=True)
+    result = produce.produce(slug, out)
+    return {"engine": "pro", "produce": result}
+
+
+def _structured_result(slug: str, out: Path, render_report: dict,
+                       duration: float, blocking: list[str]) -> dict:
+    """The producer's machine-readable outcome (Phase 3 §8.4) — written beside
+    the video as ``output/curiosity_<slug>.produce.json`` so every claim about a
+    run is auditable from artifacts, not printed logs. Sidecar paths are included
+    only when the file actually exists on disk (a missing report is honest)."""
+    pkg = out.with_name(out.stem + "_pkg")
+
+    def _p(path: Path) -> str | None:
+        return str(path.relative_to(REPO)) if path.exists() else None
+
+    return {
+        "ok": not blocking,
+        "slug": slug,
+        "engine": render_report.get("engine"),
+        "video_path": _p(out),
+        "duration_seconds": round(duration, 1),
+        "render_report": _p(pkg / "produce_report.json"),
+        "performance_report": _p(pkg / "performance.json"),
+        "fallback_report": _p(pkg / "fallbacks.json"),
+        "facts_report": _p(out.with_suffix(".facts-report.json")),
+        "visual_verdict": _p(pkg / "verdict.json"),
+        "publish_eligible": not blocking,
+        "blocking_reasons": blocking,
+    }
+
+
+def _prepublish_gate(out: Path, sc: dict) -> tuple[bool, list[str]]:
+    """A flagged video MUST NOT ship (data_learning/DIRECTOR.md). The production
+    renderer (longform) can't run the full auto-fix loop, but the publish boundary
+    still enforces the law: run the renderer-agnostic judges — the HOOK director
+    (opening) and the INTEREST judge (dead time) — on the finished mp4 and BLOCK
+    the upload if either fails. Reported, never silently published."""
+    import subprocess
+    import tempfile
+    sys.path.insert(0, str(REPO / "scripts"))
+    reasons: list[str] = []
+    try:
+        import hook_director
+        with tempfile.TemporaryDirectory() as td:
+            # interest_judge writes <--out>/interest.json — pass the subdir
+            # explicitly (same convention as no_dull_beats._judge); the old
+            # call passed td and read td/interest/... which never existed, so
+            # the gate could only ever fail closed.
+            subprocess.run([sys.executable, str(REPO / "scripts" /
+                            "interest_judge.py"), str(out),
+                            "--out", str(Path(td) / "interest")],
+                           check=True, capture_output=True, timeout=900)
+            interest = json.loads(
+                (Path(td) / "interest" / "interest.json").read_text())
+        if interest.get("dead_fraction", 0) > 0.5:
+            reasons.append(f"dead-time {interest['dead_fraction']} > 0.5 "
+                           "(too many boring stretches)")
+        line = str(sc.get("hook") or sc.get("headline")
+                   or sc.get("title") or "").strip()
+        hv = hook_director.grade(line, out, hook_seconds=8.0)
+        if not hv["pass"]:
+            reasons.append(f"weak hook {hv['total']}/10 "
+                           f"visual={hv['visual'].get('gates')} "
+                           f"line={hv['line'].get('gates')}")
+    except Exception as e:  # noqa: BLE001 — a gate error must FAIL CLOSED, not
+        reasons.append(f"gate could not run ({str(e)[:60]}) — refusing to "
+                       "publish unjudged")            # publish something unjudged
+    return (not reasons, reasons)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
@@ -114,7 +226,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true",
                     help="render but do not upload")
     ap.add_argument("--force", action="store_true",
-                    help="re-post even if the slug is in the posted log")
+                    help="re-post even if the slug is in the posted log "
+                         "(dedup/scheduling only — NEVER bypasses a quality, "
+                         "factual, legal, or technical gate)")
     ap.add_argument("--publish-in-hours", type=float, default=0.0,
                     help="schedule the upload this many hours from now "
                          "(private until publishAt); 0 = public now")
@@ -155,22 +269,94 @@ def main() -> int:
             continue
         out = OUTPUT_DIR / f"curiosity_{slug}.mp4"
         print(f"[{slug}] rendering long-form -> {out}", flush=True)
-        from data_learning import longform_render   # lazy: needs Pillow etc.
-        longform_render.render(slug, out, config_path=args.config)
-        meta = json.loads(out.with_suffix(".meta.json").read_text())
-        dur = meta.get("duration", 0)
-        if dur < 120:
-            print(f"[{slug}] REJECTED: {dur:.0f}s is too short for the "
-                  "watch-page format (target 4-5 min) — expand the story",
+        render_report = _render_story(slug, out, args.config)
+
+        # QUALITY GATE — a flagged video must not ship (DIRECTOR.md). Layers:
+        # (1) the producer's own verdict — the full director loop + honest fallback
+        #     classifier + vision taste verdict. A QUARANTINE here is non-bypassable:
+        #     an unacceptable fallback / missing judge / failed package must NOT
+        #     publish, and --force must never override a quality/factual/legal gate
+        #     (audit #5). --force covers only dedup + scheduling.
+        # (2) technical floor: the video exists and clears the watch-page length.
+        # (3) the renderer-agnostic hook + dead-time judges on the finished mp4.
+        gate_reasons: list[str] = []
+        prod = render_report.get("produce")
+        if prod is not None and prod.get("status") != "pass":
+            gate_reasons.append("producer QUARANTINE: " + "; ".join(prod["reasons"]))
+        dur = 0.0
+        if not out.exists():
+            gate_reasons.append("no rendered video on disk (render failed closed)")
+        else:
+            meta_path = out.with_suffix(".meta.json")
+            meta = json.loads(meta_path.read_text()) if meta_path.exists() else {}
+            dur = meta.get("duration", 0)
+            if dur < 120:
+                gate_reasons.append(f"{dur:.0f}s is too short for the watch-page "
+                                    "format (target 4-5 min) — expand the story")
+            _, judge_reasons = _prepublish_gate(out, sc)
+            gate_reasons.extend(judge_reasons)
+            # (4) SECURITY: leak-scan the public payload as a GATE, not as a
+            # last-second upload check — a dry run (today's only mode, since
+            # publishing is frozen) must surface a leak and must never call
+            # itself publish-eligible with a secret in its description. The
+            # full payload is re-scanned WITH localizations right before the
+            # wire; this early pass covers everything that exists now.
+            import publish_security
+            sec_ok, sec_reasons = publish_security.scan_upload(
+                out, sc.get("title", slug), _description(sc, meta),
+                _tags(sc))
+            if not sec_ok:
+                gate_reasons.extend(sec_reasons)
+
+        # The machine-readable outcome is ALWAYS written — pass or fail — so the
+        # run is auditable from artifacts (Phase 3 §8.4), not from printed logs.
+        result_obj = _structured_result(slug, out, render_report, dur, gate_reasons)
+        produce_json = OUTPUT_DIR / f"curiosity_{slug}.produce.json"
+        produce_json.parent.mkdir(parents=True, exist_ok=True)
+        produce_json.write_text(json.dumps(result_obj, indent=2) + "\n")
+        print(f"[{slug}] structured result -> {produce_json}", flush=True)
+
+        if gate_reasons:
+            print(f"[{slug}] QUALITY GATE FAILED: {'; '.join(gate_reasons)}",
                   file=sys.stderr)
-            results.append({"slug": slug, "ok": False, "error": "too short"})
+            print(f"[{slug}] refusing to publish (--force cannot bypass quality "
+                  "gates; it only overrides dedup/scheduling)", file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "quality gate: " + "; ".join(gate_reasons)})
             continue
 
-        if args.dry_run:
-            print(f"[{slug}] dry-run: rendered {dur:.0f}s, not uploading")
-            results.append({"slug": slug, "ok": True, "url": "(dry-run)"})
+        # EXPLICIT PUBLISH GATE (Phase 0 freeze): uploading requires the operator
+        # to set CURIOSITY_PUBLISH_ENABLED=1. Default behavior is
+        # render -> review -> package -> HOLD, even without --dry-run.
+        publish_enabled = os.environ.get("CURIOSITY_PUBLISH_ENABLED") == "1"
+        if args.dry_run or not publish_enabled:
+            why = ("dry-run" if args.dry_run
+                   else "CURIOSITY_PUBLISH_ENABLED != 1 (publish frozen: "
+                        "render/review/package/HOLD)")
+            print(f"[{slug}] {why}: rendered {dur:.0f}s, publish-eligible, "
+                  "NOT uploading")
+            results.append({"slug": slug, "ok": True, "url": f"(held: {why})"})
             posted_this_run += 1
             continue
+
+        # HARD STOPS above every flag (PR#173 adoptions): the kill-switch file
+        # halts all uploads unconditionally, and a real upload additionally
+        # requires an owner approval BOUND to this exact package manifest — a
+        # re-render or artifact swap makes any old approval inert. Neither is
+        # bypassed by --force or CURIOSITY_PUBLISH_ENABLED.
+        import approve_publish
+        killed = approve_publish.kill_switch_engaged()
+        if killed:
+            print(f"[{slug}] {killed}", file=sys.stderr)
+            results.append({"slug": slug, "ok": False, "error": killed})
+            break                               # no slug uploads past the switch
+        approved, approval_why = approve_publish.check_approval(out)
+        if not approved:
+            print(f"[{slug}] HELD: {approval_why}", file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "approval: " + approval_why})
+            continue
+        print(f"[{slug}] owner approval verified ({approval_why})")
 
         publish_at = None
         if args.publish_in_hours > 0:
@@ -192,6 +378,24 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — never let i18n block a post
             print(f"[{slug}] localization skipped: {e}", flush=True)
             localizations = {}
+        # SECURITY RE-SCAN on the COMPLETE outbound payload — same scanner as
+        # the gate above, now including the localizations that only exist at
+        # upload time (a translation service is an outside input and can carry
+        # its own leak). A secret / credential field / internal-instruction
+        # field REFUSES the upload; a scanner error also refuses (nothing
+        # ships unscanned). Not bypassable by --force.
+        sec_ok, sec_reasons = publish_security.scan_upload(
+            out, sc.get("title", slug), desc,
+            _tags(sc), localizations)
+        if not sec_ok:
+            print(f"[{slug}] BLOCKED: {'; '.join(sec_reasons)}",
+                  file=sys.stderr)
+            results.append({"slug": slug, "ok": False,
+                            "error": "security: " + "; ".join(sec_reasons)})
+            continue
+        print(f"[{slug}] security scan clean "
+              f"(-> {out.with_suffix('.security.json').name})")
+
         print(f"[{slug}] uploading {dur:.0f}s video"
               + (f" (scheduled {publish_at})" if publish_at else ""),
               flush=True)
@@ -229,8 +433,8 @@ def main() -> int:
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at, "duration": dur,
         }
-        args.log.parent.mkdir(parents=True, exist_ok=True)
-        args.log.write_text(json.dumps(log, indent=2) + "\n")
+        from fsutil import atomic_write_json
+        atomic_write_json(args.log, log)
         results.append({"slug": slug, "ok": True, "url": url})
         posted_this_run += 1
 

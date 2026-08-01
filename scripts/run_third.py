@@ -58,6 +58,29 @@ _BANGER_CACHE: dict = {}
 _JUDGES: dict = {}
 
 
+# ------------------------------------------------- source health
+# A source that fails every run is silent lost supply: it costs an API
+# call and a log line each time and contributes nothing. rumble:AdinLive
+# has failed on BOTH url shapes every run for days and nobody could see it
+# without reading the log. Recording per-source outcomes turns "is this
+# allowlist any good?" into data — dead handles become prunable, and a
+# widened allowlist can be judged on what it actually returns.
+_SOURCE_HEALTH: dict = {}
+
+
+def _source_health(platform: str, ch: str, *, ok: bool,
+                   clips: int = 0, err: str = "") -> None:
+    try:
+        k = f"{platform}:{ch}"
+        e = _SOURCE_HEALTH.setdefault(k, {"ok": 0, "fail": 0, "clips": 0})
+        e["ok" if ok else "fail"] += 1
+        e["clips"] += int(clips)
+        if err:
+            e["err"] = err[:60]
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def _any_judgment() -> bool:
     """Did ANY content judge actually evaluate this slot's clip?
 
@@ -367,6 +390,13 @@ def _clip_key(url: str) -> str:
     if not url:
         return ""
     path = url.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    # A VOD-MINED moment is `vodmine://<video_id>/<offset>`. Taking the
+    # last segment would key it on the OFFSET alone, so two moments at the
+    # same second of two different VODs would collide — in the posted log,
+    # where a collision means a duplicate upload. Key on the whole
+    # identity instead.
+    if path.startswith("vodmine://"):
+        return path.lower()
     seg = path.rsplit("/", 1)[-1]
     return seg.lower() or path.lower()
 
@@ -1108,12 +1138,22 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     for platform, chans in sources.items():
                         for ch in chans:
                             try:
-                                pool += clip_edit.discover(
+                                got = clip_edit.discover(
                                     platform, ch, top=spec.get("top", 8),
                                     range_=window)
+                                pool += got
+                                _source_health(platform, ch, ok=True,
+                                               clips=len(got))
                             except Exception as e:  # noqa: BLE001
+                                # keep yt-dlp's own message: the exception
+                                # TYPE alone made rumble undiagnosable for
+                                # days (see clip_edit's rumble handler)
+                                _d = (getattr(e, "output", "") or "").strip()
+                                _d = _d.splitlines()[-1][:160] if _d else ""
+                                _source_health(platform, ch, ok=False,
+                                               err=f"{type(e).__name__}")
                                 print(f"::warning::discover {platform}:{ch} "
-                                      f"failed ({type(e).__name__}) — "
+                                      f"failed ({type(e).__name__}) {_d} — "
                                       "skipped", flush=True)
                     fresh = [c for c in pool
                              if _clip_key(c["url"]) not in posted_keys]
@@ -1143,6 +1183,34 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 cands.sort(key=lambda c: -c["views"])
                 if not cands:
                     raise RuntimeError("no fresh clip across the allowlist")
+                # THIN-DAY VOD MINING (2026-07-31): clip discovery only
+                # ever sees what a human chose to clip. When even the
+                # widened window comes up short, mine the VOD NEIGHBOURHOOD
+                # of the anchors we do have — the moment a clipper missed
+                # is very often 90s after the one they caught. One bounded
+                # extra download per anchor; each mined moment is extracted
+                # as a short mp4 so whisper, the content gate, render and
+                # QA all treat it exactly like a normal clip. It earns its
+                # slot on the same transcript bar as anything else.
+                if len(cands) < min_pool:
+                    try:
+                        from funnel import vod_miner
+                        anchors = [c for c in cands[:3]
+                                   if c.get("video_id")
+                                   and c.get("vod_offset") is not None]
+                        mined = []
+                        for a in anchors:
+                            mined += vod_miner.maybe_mine(a, work)
+                            if len(cands) + len(mined) >= min_pool:
+                                break
+                        if mined:
+                            print(f"::warning::[vodmine] thin pool "
+                                  f"({len(cands)}<{min_pool}) — mined "
+                                  f"{len(mined)} unclipped moment(s) from "
+                                  f"{len(anchors)} anchor(s)", flush=True)
+                            cands += mined
+                    except ImportError:
+                        pass
                 # VELOCITY-FIRST SHORTLIST (diagnosis #4): the viral/feed
                 # signal is views/HOUR, not raw views. The old code shortlisted
                 # the top 8 by raw views and only THEN measured velocity within
@@ -1226,10 +1294,48 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 postable = [c for c in shortlist if c["banger"] >= min_banger]
                 if not postable:
                     best_b = max((c["banger"] for c in shortlist), default=0.0)
-                    raise _SkipSlot(
-                        f"quality floor: best banger {best_b:.2f} < "
-                        f"{min_banger} across {len(shortlist)} candidates — "
-                        "posting fewer, not a dud")
+                    # ESCALATE, DON'T GIVE UP (2026-07-31). An empty slot is
+                    # a failure this used to report as success. Worse, the
+                    # banger score judges the clipper's TWITCH TITLE, not the
+                    # clip — the day's rejects read 'sadge' -> "vague emote
+                    # reaction" and 'foams' -> "vague title, no discernible
+                    # payoff". Those are verdicts on a one-word title, and we
+                    # were binning the clip without ever downloading or
+                    # transcribing it.
+                    #
+                    # A STRICTER judge already sits downstream: the content
+                    # gate re-scores on the real transcript at 0.70. So when
+                    # nothing clears the title floor, hand the best material
+                    # to that judge instead of skipping. If it rejects, the
+                    # slot's existing retry blocklists the clip and tries the
+                    # next candidate. The bar goes UP (0.70 transcript vs
+                    # 0.50 title) and the evidence gets better — this is more
+                    # work, not a weaker gate.
+                    rescue_floor = float(spec.get("rescue_floor", 0.25))
+                    rescue = [c for c in shortlist
+                              if c["banger"] >= rescue_floor]
+                    if not rescue:
+                        # everything is transparent spam (giveaway/subathon/
+                        # sponsor bait sits <0.25) — a transcript pass on
+                        # that is wasted runner time, not a missed video.
+                        _judge("selection", verdict="skip",
+                               why=f"best title score {best_b:.2f} < hard "
+                                   f"floor {rescue_floor} across "
+                                   f"{len(shortlist)} candidates")
+                        raise _SkipSlot(
+                            f"quality floor: best banger {best_b:.2f} < "
+                            f"{rescue_floor} (hard floor) across "
+                            f"{len(shortlist)} candidates — nothing worth "
+                            "transcribing")
+                    print(f"::warning::[rescue] nothing clears the title "
+                          f"floor ({best_b:.2f} < {min_banger}) — escalating "
+                          f"{len(rescue)} candidate(s) to the TRANSCRIPT "
+                          f"judge rather than skipping the slot", flush=True)
+                    _judge("selection", verdict="rescue",
+                           why=f"best title score {best_b:.2f} < "
+                               f"{min_banger}; escalated to the transcript "
+                               f"judge (bar 0.70) instead of skipping")
+                    postable = rescue
                 pick = postable[0]
                 # FINAL DEDUPE GUARD (never post the same clip twice): the
                 # shortlist was already filtered by posted_keys, so this only
@@ -1247,7 +1353,15 @@ def process(pkg: dict, pkg_path: Path | None, *,
                        why=pick.get("banger_why"),
                        blind=(not pick.get("banger_why")
                               and pick.get("banger") == 0.5))
-                info = clip_edit.download(pick["url"], work)
+                if pick.get("mined"):
+                    # already extracted by the miner — no download, and no
+                    # clipper title (the brain authors one from what's said)
+                    info = {"path": pick["path"], "url": pick["url"],
+                            "views": pick.get("views", 0),
+                            "title": pick.get("title", ""),
+                            "clipper": pick.get("clipper", "vod-mined")}
+                else:
+                    info = clip_edit.download(pick["url"], work)
                 platform, streamer = pick["platform"], pick["channel"]
 
             # PRE-FLIGHT (§16, cheap end): validate the source in ~2s before
@@ -1300,16 +1414,29 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # never blocks a post — this gate only acts on real evidence.
             if words:
                 snip = " ".join(w["w"] for w in words[:40])
+                # GIVE THE GATE EYES (2026-07-31). It judged `words[:40]`
+                # and nothing else, and every rejection all day was about
+                # TALK — "rambling chat talk", "vague ramble", "routine
+                # gameplay narration". None mentioned anything visual,
+                # because it could not see. On a clips channel that is a
+                # systematic bias against the content that travels: a fail,
+                # a reaction face, physical comedy all read as "rambling
+                # chat" from the transcript alone. A contact sheet of the
+                # SOURCE costs a couple of ffmpeg seconds and lets the same
+                # rubric judge what actually happens.
+                sheet = work / f"{slug}.content.jpg"
                 try:
-                    rescore = author.rank_clips([{
-                        "url": info["url"], "channel": streamer,
-                        "views": info.get("views", 0),
-                        "title": info["title"], "snip": snip}])
+                    have_sheet = clip_qa.contact_sheet(
+                        Path(info["path"]), sheet) is not None
                 except Exception:  # noqa: BLE001
-                    rescore = {}
-                cb, cwhy = rescore.get(info["url"], (None, ""))
+                    have_sheet = False
+                cb, cwhy, saw = author.judge_content(
+                    streamer, info["title"], snip,
+                    sheet=str(sheet) if have_sheet else "",
+                    views=info.get("views", 0))
                 content_floor = float(spec.get("min_banger_content", 0.70))
                 _judge("content", score=cb, why=cwhy, floor=content_floor,
+                       saw_frames=saw,
                        verdict=("unavailable" if cb is None else
                                 "reject" if cb < content_floor else "pass"))
                 if cb is not None and cb < content_floor:
@@ -1328,6 +1455,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     raise RuntimeError(
                         f"content gate: transcript-aware score {cb:.2f} < "
                         f"{content_floor} ({cwhy or 'no reason'})")
+                # A RESCUED clip (one that failed the title floor and was
+                # escalated here) fails CLOSED. Normally this gate fails
+                # open so a flaky brain never costs a good clip — but a
+                # rescue has ALREADY been judged weak once, so an
+                # unavailable transcript judge means nothing credible has
+                # vouched for it. Shipping then is exactly the "post shit"
+                # outcome the escalation exists to avoid. Retry the slot:
+                # the next candidate may score, or the brain may recover.
+                if cb is None and _JUDGES.get(
+                        "selection", {}).get("verdict") == "rescue":
+                    raise RuntimeError(
+                        "rescue needs the transcript judge and it is "
+                        "unavailable — a weak-title clip must EARN its slot, "
+                        "retrying with another candidate")
 
             # DIRECTOR COMPLETENESS GATE (§9): if the brain judges the clip
             # starts mid-action with no context OR its payoff is cut off,
@@ -1707,6 +1848,12 @@ def main() -> int:
     # until one ships or we run dry. A deliberate skip (quality floor / dedupe
     # guard) is not a failure and does not retry. Failures fail fast (the dark
     # gate + preflight reject bad sources in ~2s), so retries are cheap.
+    # 3 attempts now buy MORE than they used to: a slot whose shortlist
+    # fails the title floor no longer skips instantly — it escalates each
+    # candidate to the transcript judge, so these attempts get spent on
+    # real inspection instead of going unused. Held at 3 deliberately: each
+    # attempt costs a download + whisper pass (~90s) and the job's ceiling
+    # is 120 min (a run died on that wall on 2026-07-25).
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
         # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call
@@ -1763,6 +1910,12 @@ def main() -> int:
             # where they half-failed picked SOME blind. Neither was
             # legible before — `ok`/`fail` counts make it a one-line read.
             "brain": author.brain_health(),
+            # Only the sources that PRODUCED NOTHING are worth keeping —
+            # a healthy source is uninteresting and 60+ entries would bloat
+            # state/ (small-JSON rule, docs/STORAGE_AUDIT.md). This is the
+            # prune list: handles that cost an API call and returned zero.
+            "dead_sources": {k: v for k, v in _SOURCE_HEALTH.items()
+                             if v.get("clips", 0) == 0},
             "clips": [{k: r.get(k) for k in
                        ("slug", "ok", "skipped", "render_level", "layout",
                         "self_healed", "error", "judges")

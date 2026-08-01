@@ -1,0 +1,273 @@
+{
+  "schema_version": "channel-registry/v1",
+  "revision": 1,
+  "revision_note": "Initialised from the live production ruling on 2026-07-31. Trending is GRAPH-LED: 4 graph_race + 2 reddit_story, text_card RETIRED. That ruling previously existed only as prose inside .github/workflows/daily.yml while shared/package_buffer.py still said 2+2+2 — two sources of truth disagreeing, which is what this file exists to end.",
+  "_readme": [
+    "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
+    "which channels run, how many videos each ships, which formats are active",
+    "or retired, what ChatGPT is responsible for, queue thresholds, media",
+    "requirements, and where output goes.",
+    "",
+    "Change it and everything inherits: the Claude Routine prompt, Phase A's",
+    "bundle, ChatGPT's authoring brief, media requests, Phase B validation,",
+    "promotion, the reserve bank, and the no-bundle takeover. No scheduled-task",
+    "prose needs editing, ever.",
+    "",
+    "What does NOT belong here: deep editorial doctrine (voice, topic banks,",
+    "story selection, rubric). That lives in the files named under each",
+    "channel's `doctrine` list and is referenced by path — Phase A hashes them",
+    "into the day's bundle so an edit cannot silently change an open day.",
+    "",
+    "A day's exchange/bundles/<date>/bundle.json SNAPSHOTS this file. Once a",
+    "bundle exists, the snapshot governs that date; this file governs the next",
+    "one. See exchange/README.md 'Which contract wins'."
+  ],
+
+  "production_date": {
+    "timezone": "America/Chicago",
+    "policy": "utc_calendar_day",
+    "policy_note": "The bundle/package date is the UTC calendar day, because every workflow that resolves a date does `date -u +%Y%m%d` and the packages on disk are keyed that way. The timezone above is the OPERATIONAL clock — publish slots, the 06:00/07:00 ChatGPT workers, and the Phase B backstop window are all Central and DST-correct. Do not conflate them: the folder name is UTC, the wall clock is Central.",
+    "format": "YYYYMMDD"
+  },
+
+  "defaults": {
+    "failure_policy": {
+      "on_missing_registry": "fail_closed",
+      "on_short_slate": "chatgpt_takeover_authoring",
+      "on_unfulfilled_media": "self_fill_from_real_media",
+      "on_no_chatgpt": "proceed_with_what_exists",
+      "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed — falling back to a historical mix is how a retired format gets resurrected."
+    },
+    "response_schema": "chatgpt-exchange-response/v1",
+    "checkpoint_schema": "chatgpt-media-checkpoint/v1",
+    "bundle_schema": "chatgpt-exchange-bundle/v1",
+    "drive": {
+      "destination_ref": "operator's shared Drive folder, made link-visible manually; files inherit the folder permission",
+      "filename_rule": "<date>__<safe_request_id>.<ext>",
+      "required_sharing": "anyone_with_link"
+    }
+  },
+
+  "chatgpt_roles": {
+    "media_worker": "Generate, upload and verify images; checkpoint each one. The 06:00 Central task.",
+    "editorial_review": "Read every package and either punch it up or state a reason for keeping it. The 07:00 Central task.",
+    "takeover_authoring": "Write the packages this channel is short, when the Claude side left it nothing.",
+    "queue_stocking": "Write new queue entries when the channel's queue runs below its minimum.",
+    "none": "ChatGPT has no responsibility for this channel or format."
+  },
+
+  "channels": {
+    "trending": {
+      "id": "trending",
+      "enabled": true,
+      "display_name": "Trending / daily shorts",
+      "cadence": {
+        "per_day": 6,
+        "publish_slots_central": [[8, 0], [9, 30], [11, 0], [12, 30], [14, 0], [15, 30]],
+        "slots_owner": "scripts/run_trending_daily.py:DEFAULT_PUBLISH_SLOTS_CENTRAL"
+      },
+      "target_count": 6,
+      "formats": {
+        "graph_race": {
+          "state": "active",
+          "target": 4,
+          "renderer": "make_graph_race.py",
+          "detect": {"field": "format", "equals": "graph_race"},
+          "required_fields": ["format", "slug", "title", "y_label", "duration",
+                              "source", "years", "series", "hashtags",
+                              "music_vibe"],
+          "media": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
+          },
+          "chatgpt_roles": ["editorial_review", "takeover_authoring"]
+        },
+        "reddit_story": {
+          "state": "active",
+          "target": 2,
+          "renderer": "make_reddit_story.py",
+          "detect": {"absent": "format", "requires": "subreddit"},
+          "detect_note": "A reddit_story is signalled by OMITTING `format` and setting `subreddit`. That is the renderer's own convention, not a choice made here.",
+          "required_fields": ["subreddit", "slug", "title", "hashtags",
+                              "script", "shots", "punches", "music_vibe"],
+          "media": {
+            "shots": true,
+            "chatgpt_supplies_images": true,
+            "shots_min": 6,
+            "shots_max": 8,
+            "per_shot": ["phrase", "query", "mascot_pose"],
+            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
+          },
+          "chatgpt_roles": ["media_worker", "editorial_review",
+                            "takeover_authoring"]
+        },
+        "text_card": {
+          "state": "retired",
+          "target": 0,
+          "retired_on": "2026-07-31",
+          "retired_because": "Operator ruling v5 — the channel went graph-led. The renderer (make_text_card.py) is kept so already-posted packages stay reproducible, but nothing may author this format again.",
+          "renderer": "make_text_card.py",
+          "detect": {"field": "format", "equals": "text_card"},
+          "chatgpt_roles": ["none"]
+        }
+      },
+      "chatgpt_roles": ["media_worker", "editorial_review",
+                        "takeover_authoring"],
+      "queue": null,
+      "paths": {
+        "packages": "state/trending_packages/<date>",
+        "posted_log": "state/posted_log.json",
+        "reserve_bank": "state/package_buffer",
+        "promotion_target": "state/trending_packages/<date>",
+        "quarantine": "exchange/bundles/<date>/authored_report.json"
+      },
+      "package_schema": "shared/package_buffer.py:structural_problems",
+      "response_schema": "chatgpt-exchange-response/v1",
+      "doctrine": [
+        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
+        "data_learning/SCHULTE_MEDIA_BRAIN.md",
+        "shared/levity.py"
+      ],
+      "protected_fields": ["numbers", "percentages", "money_amounts", "dates",
+                           "years", "named_entities", "shot_count",
+                           "shot_query"],
+      "protected_fields_enforced_by": "shared/punchup_guard.py",
+      "allowed_editorial_mutations": ["title", "hook", "script_wording",
+                                      "sentence_order", "hashtags",
+                                      "shot_phrase"],
+      "no_repeat_days": 6,
+      "failure_policy": {"on_short_slate": "chatgpt_takeover_authoring"}
+    },
+
+    "explainer": {
+      "id": "explainer",
+      "enabled": true,
+      "display_name": "Explainer (data stories)",
+      "cadence": {"per_day": 1},
+      "target_count": 1,
+      "formats": {
+        "data_story": {
+          "state": "active",
+          "target": 1,
+          "renderer": "make_explainer_stacked.py",
+          "detect": {"field": "series", "present": true},
+          "required_fields": ["slug", "title", "hook", "closing", "segments"],
+          "media": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "Scenes are rendered from the dataset; the mascot director stages them. ChatGPT supplies WORDS only."
+          },
+          "chatgpt_roles": ["editorial_review"]
+        }
+      },
+      "chatgpt_roles": ["editorial_review"],
+      "chatgpt_job": "rewrite_words",
+      "chatgpt_job_note": "A REWRITE, not authoring. The numbers came from the World Bank and must survive untouched; only stories whose `words_by` is `deterministic` (no brain was reachable) are offered.",
+      "queue": {
+        "config": "data_learning/niche.config.json",
+        "collection": "stories",
+        "posted_log": "state/explainer_posted_log.json",
+        "minimum_unposted": 3,
+        "stocked_by": "scripts/story_forge.py",
+        "chatgpt_may_stock": false
+      },
+      "paths": {
+        "config": "data_learning/niche.config.json",
+        "posted_log": "state/explainer_posted_log.json",
+        "promotion_target": "data_learning/niche.config.json"
+      },
+      "package_schema": "data_learning/niche.config.json:stories[]",
+      "response_schema": "chatgpt-exchange-response/v1",
+      "response_key": "authored_explainer",
+      "doctrine": ["docs/DIRECTOR.md", "docs/EDITORIAL_RESET.md"],
+      "protected_fields": ["numbers", "percentages", "years", "countries",
+                           "named_entities", "segment_count", "segment_order"],
+      "protected_fields_enforced_by": "shared/punchup_guard.py",
+      "allowed_editorial_mutations": ["title", "hook", "closing", "question",
+                                      "segment_say_wording"],
+      "failure_policy": {
+        "on_no_chatgpt": "ship_the_deterministic_words",
+        "showrunner": "fails_closed_on_publish",
+        "note": "The showrunner veto is sovereign here and this channel publishes NOTHING without a verdict. That gate is not registry-configurable on purpose."
+      }
+    },
+
+    "curiosity": {
+      "id": "curiosity",
+      "enabled": true,
+      "display_name": "Curiosity (long-form)",
+      "cadence": {"per_day": 1},
+      "target_count": 1,
+      "formats": {
+        "long_form": {
+          "state": "active",
+          "target": 1,
+          "renderer": "data_learning/longform_render.py",
+          "detect": {"field": "segments", "present": true},
+          "required_fields": ["slug", "title", "hook", "closing", "segments"],
+          "media": {"shots": false, "chatgpt_supplies_images": false},
+          "chatgpt_roles": ["queue_stocking"]
+        }
+      },
+      "chatgpt_roles": ["queue_stocking"],
+      "chatgpt_job": "stock_queue",
+      "queue": {
+        "config": "data_learning/curiosity.config.json",
+        "collection": "stories",
+        "posted_log": "state/curiosity_posted_log.json",
+        "minimum_unposted": 3,
+        "maximum_unposted": 12,
+        "stocked_by": "the Claude Routine",
+        "chatgpt_may_stock": true
+      },
+      "paths": {
+        "config": "data_learning/curiosity.config.json",
+        "posted_log": "state/curiosity_posted_log.json",
+        "promotion_target": "data_learning/curiosity.config.json"
+      },
+      "package_schema": "data_learning/curiosity.config.json:stories[]",
+      "response_schema": "chatgpt-exchange-response/v1",
+      "response_key": "authored_curiosity",
+      "doctrine": ["data_learning/CURIOSITY_BRAIN.md"],
+      "protected_fields": ["numbers", "named_entities"],
+      "allowed_editorial_mutations": ["title", "hook", "closing", "question",
+                                      "segments"],
+      "failure_policy": {"on_empty_queue": "chatgpt_queue_stocking"}
+    },
+
+    "third": {
+      "id": "third",
+      "enabled": true,
+      "display_name": "Third channel (Proof Mode / clips)",
+      "cadence": {"per_day": 3},
+      "target_count": 3,
+      "formats": {
+        "clip": {
+          "state": "active",
+          "target": 3,
+          "renderer": "scripts/run_third.py",
+          "detect": {"field": "source_url", "present": true},
+          "required_fields": ["slug", "source_url"],
+          "media": {"shots": false, "chatgpt_supplies_images": false},
+          "chatgpt_roles": ["none"]
+        }
+      },
+      "chatgpt_roles": ["none"],
+      "chatgpt_roles_note": "Third can NEVER be pre-authored. Its package is a CAPTURE RECIPE (title: '{clip_title}') for a clip that does not exist until the run happens, so there is nothing to hand ChatGPT ahead of time. It self-heals to Groq and then to a safe raw clip title.",
+      "queue": null,
+      "paths": {
+        "packages": "state/third_packages/<date>",
+        "posted_log": "state/third_posted_log.json",
+        "promotion_target": "state/third_packages/<date>"
+      },
+      "package_schema": "third_capture/author.py",
+      "response_schema": null,
+      "doctrine": ["docs/THIRD_INTERNET_PLAYBOOK.md",
+                   "docs/STORY_ARC_SYSTEM.md"],
+      "protected_fields": ["source_url", "story_key"],
+      "allowed_editorial_mutations": [],
+      "failure_policy": {"on_no_brain": "safe_raw_clip_title"}
+    }
+  }
+}

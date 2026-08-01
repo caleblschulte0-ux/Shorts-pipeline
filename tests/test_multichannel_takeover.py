@@ -34,6 +34,28 @@ from shared import exchange_bundle as xb             # noqa: E402
 import ingest_authored as ing                        # noqa: E402
 
 
+# --------------------------------------------------------------------------
+# These tests are about MECHANISM, not about today's operator ruling. They run
+# against a fixture registry carrying the mix they were written for, so a
+# future mix change in config/channel_registry.json breaks only the tests that
+# are ABOUT the ruling (tests/test_channel_registry.py) instead of these.
+# --------------------------------------------------------------------------
+from tests.registry_fixture import LEGACY_MIX, registry   # noqa: E402
+
+_FIXTURE = None
+
+
+def setUpModule():
+    global _FIXTURE
+    _FIXTURE = registry(LEGACY_MIX)
+    _FIXTURE.__enter__()
+
+
+def tearDownModule():
+    if _FIXTURE is not None:
+        _FIXTURE.__exit__(None, None, None)
+
+
 def story(slug="debt-trap", words_by="deterministic", says=None) -> dict:
     return {
         "slug": slug, "words_by": words_by,
@@ -49,26 +71,28 @@ def story(slug="debt-trap", words_by="deterministic", says=None) -> dict:
 class ChannelTestCase(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="mc-"))
-        self._saved = (brief.NICHE_CONFIG, brief.CURIOSITY_CONFIG,
-                       brief.EXPLAINER_LOG, brief.CURIOSITY_LOG,
-                       xb.BUNDLE_ROOT)
-        brief.NICHE_CONFIG = self.tmp / "niche.config.json"
-        brief.CURIOSITY_CONFIG = self.tmp / "curiosity.config.json"
-        brief.EXPLAINER_LOG = self.tmp / "explainer_posted_log.json"
-        brief.CURIOSITY_LOG = self.tmp / "curiosity_posted_log.json"
+        # Redirect through the module's test seam rather than rebinding
+        # module constants — the paths themselves now come from the registry.
+        self._saved = xb.BUNDLE_ROOT
+        brief.PATH_OVERRIDES.update({
+            ("explainer", "config"): self.tmp / "niche.config.json",
+            ("curiosity", "config"): self.tmp / "curiosity.config.json",
+            ("explainer", "posted_log"): self.tmp / "explainer_posted_log.json",
+            ("curiosity", "posted_log"): self.tmp / "curiosity_posted_log.json",
+        })
         xb.BUNDLE_ROOT = self.tmp / "bundles"
         xb.bundle_dir("20260801").mkdir(parents=True)
 
     def tearDown(self):
-        (brief.NICHE_CONFIG, brief.CURIOSITY_CONFIG, brief.EXPLAINER_LOG,
-         brief.CURIOSITY_LOG, xb.BUNDLE_ROOT) = self._saved
+        brief.PATH_OVERRIDES.clear()
+        xb.BUNDLE_ROOT = self._saved
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     def write_niche(self, stories):
-        brief.NICHE_CONFIG.write_text(json.dumps({"stories": stories}))
+        brief._cfg_path("explainer").write_text(json.dumps({"stories": stories}))
 
     def write_curiosity(self, stories):
-        brief.CURIOSITY_CONFIG.write_text(json.dumps({"stories": stories}))
+        brief._cfg_path("curiosity").write_text(json.dumps({"stories": stories}))
 
     def respond(self, **body):
         (xb.bundle_dir("20260801") / "response.json").write_text(
@@ -96,7 +120,7 @@ class TestTheSignal(ChannelTestCase):
         reqs = brief.all_requests("20260801")
         self.assertEqual(set(reqs), {"curiosity"})
         self.assertEqual(reqs["curiosity"]["write"],
-                         brief.CURIOSITY_MIN_QUEUE - 1)
+                         brief._queue_min("curiosity") - 1)
 
     def test_already_posted_stories_do_not_count_as_queue(self):
         self.write_niche([story(words_by="brain")])

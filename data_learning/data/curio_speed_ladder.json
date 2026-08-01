@@ -1,0 +1,49 @@
+{
+ "key": "curio_speed_ladder",
+ "title": "Every speed in this video, on one dial (km/h)",
+ "unit": "km/h",
+ "geography": "World",
+ "time_coverage": "constant",
+ "source": {
+  "name": "The video's own ladder: IAAF / ICAO / NASA / COBE-WMAP CMB dipole",
+  "publisher": "NASA and standard references",
+  "url": "https://spaceplace.nasa.gov/how-fast-is-earth-moving/en/",
+  "officiality": "reference",
+  "access_date": "2026-07-09"
+ },
+ "notes": "Recap ladder of the figures used across the video, each sourced at its own beat: Bolt 45; jet cruise 900; equatorial spin 1,670; ISS 28,000; Earth orbit 107,000; Parker Solar Probe 692,000; galactic orbit 828,000; CMB-frame speed 1,330,000 (COBE/WMAP dipole).",
+ "points": [
+  {
+   "label": "Usain Bolt",
+   "value": 45
+  },
+  {
+   "label": "Jet airliner",
+   "value": 900
+  },
+  {
+   "label": "Earth's spin",
+   "value": 1670
+  },
+  {
+   "label": "Space station",
+   "value": 28000
+  },
+  {
+   "label": "Earth's orbit",
+   "value": 107000
+  },
+  {
+   "label": "Parker probe",
+   "value": 692000
+  },
+  {
+   "label": "Galactic orbit",
+   "value": 828000
+  },
+  {
+   "label": "Vs the CMB",
+   "value": 1330000
+  }
+ ]
+}

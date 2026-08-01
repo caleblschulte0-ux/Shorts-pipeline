@@ -558,6 +558,80 @@ Return ONLY JSON: {"scores": [{"i": <index int>, "banger": <0-1>,
 "why": "<=6 words"}]}. One entry per candidate, same indices given."""
 
 
+# The SAME greenlight rubric, but for a judge that can SEE the clip.
+# 2026-07-31: the content gate rejected every candidate all day with
+# reasons that were exclusively about talk — "rambling chat talk",
+# "confused chat talk", "vague ramble", "routine gameplay narration".
+# Not one mentioned anything visual, because the gate only ever received
+# `words[:40]`. On a CLIPS channel that is a systematic bias against
+# precisely the content that travels: a fail, a reaction face, physical
+# comedy and a gameplay moment all read as "rambling chat" when you only
+# read the words. This variant gets the frames.
+_CONTENT_SYSTEM = _RANK_SYSTEM.replace(
+    "Some candidates carry a transcript snippet",
+    """You are given BOTH a contact sheet image (frames across the clip,
+timestamp-labeled) and the transcript. READ THE IMAGE FIRST.
+
+The words are only half the clip, and on this channel usually the lesser
+half. A moment can be a complete story with mundane dialogue: someone's
+face at the instant they realize, a physical fail, a reaction from the
+people around them, something visibly going wrong on screen. Judge WHAT
+HAPPENS, from the frames, and use the transcript to confirm or deny it.
+
+- If the frames show a real visible event or a genuine emotional reaction,
+  score it on THAT, even when the transcript is unremarkable chatter.
+  Do NOT write it off as "rambling talk" — that is describing the audio of
+  a visual moment.
+- If the frames show a person sitting and talking with nothing changing,
+  the low score is correct and the transcript will agree.
+- If the frames contradict an exciting title, believe the frames.
+
+Some candidates carry a transcript snippet""")
+
+
+def judge_content(streamer: str, title: str, transcript: str,
+                  sheet: str = "", views: int = 0) -> tuple:
+    """Content greenlight for ONE clip, judged on what it SHOWS as well as
+    what it says. Returns (score|None, why, saw_frames).
+
+    `saw_frames` is provenance, not decoration: a text-only verdict here
+    carries the exact bias this function exists to remove, so callers must
+    be able to tell the two apart and say so in the record. score=None
+    means no judge was reachable at all."""
+    user = (f"Candidate clip:\n"
+            f"0. streamer={streamer} views={views} title={str(title)[:90]!r}\n"
+            + (f"Contact sheet image (12 timestamped frames): {sheet}\n"
+               if sheet else "No frames available — transcript only.\n")
+            + f"TRANSCRIPT: {str(transcript)[:1200]!r}")
+    if sheet:
+        try:
+            out = _call_claude(user, system=_CONTENT_SYSTEM, read_files=True)
+            if out:
+                for s in (out.get("scores") or []):
+                    try:
+                        b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
+                        _brain_note(True)
+                        return b, str(s.get("why", ""))[:40], True
+                    except (TypeError, ValueError):
+                        continue
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[content] vision judge failed ({e}) — "
+                  f"falling back to text-only", flush=True)
+    # Text-only fallback: same rubric, no frames. Deliberately NOT a
+    # failure — losing every clip when vision blinks would be worse than
+    # the bias — but it is recorded as blind so a day judged entirely
+    # without eyes is visible instead of looking authoritative.
+    b, why = None, ""
+    try:
+        res = rank_clips([{"url": "candidate", "channel": streamer,
+                           "views": views, "title": title,
+                           "snip": str(transcript)[:400]}])
+        b, why = res.get("candidate", (None, ""))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[content] text judge failed ({e})", flush=True)
+    return b, why, False
+
+
 def rank_clips(clips: list[dict]) -> dict:
     """Banger score per clip -> {clip_key_or_url: (banger, why)}. One brain
     call (Claude, Groq fallback). Empty dict when no brain/parse fails — the

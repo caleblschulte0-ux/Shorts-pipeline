@@ -29,3 +29,7 @@ numpy>=1.24
 # CascadeClassifier. Import-guarded: absent → blur-fill center crop.
 opencv-python-headless<5
 matplotlib
+# TLS impersonation for yt-dlp (Kick/Rumble bot-protection). Present in
+# third.yml since 2026-07-20; here too so any environment installing from
+# requirements alone does not resurrect the old ModuleNotFoundError.
+curl_cffi

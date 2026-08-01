@@ -20,6 +20,189 @@ exchange/responses/<id>.json    it writes  — verified Drive pointer + sha256
 scripts/fetch_exchange_media.py            — downloads, verifies, hands to render
 ```
 
+## Which contract wins — read this before anything else
+
+Channel policy has exactly one source, and it is never a document. In
+descending authority:
+
+1. **`exchange/bundles/<date>/bundle.json` → `contract`.** If a bundle
+   exists for a date, its frozen snapshot governs THAT date completely —
+   counts, formats, your responsibilities, media requirements, protected
+   fields, schema versions. It does not change once written.
+2. **`config/channel_registry.json`.** Governs any date that has no bundle
+   yet, and every no-bundle takeover. Read it directly when there is no
+   bundle.
+3. **The doctrine files the snapshot names** (with their hashes and a
+   `source_commit`). These govern STYLE inside the snapshot — voice, topic
+   selection, per-format writing rules. Read them at `source_commit`, not at
+   HEAD, so an edit made after your day opened cannot change your
+   instructions mid-run.
+4. **Examples in this README are EXPLANATORY ONLY.** Every JSON block, table
+   and format name below is an illustration. If one contradicts the snapshot
+   or the registry, it is out of date and the snapshot wins. Never author a
+   format because you saw it here.
+5. **Conversation memory and your scheduled-task wording NEVER define channel
+   policy.** Not the number of packages, not the format mix, not which
+   channels exist. If your prompt says "six packages, 2+2+2" and the contract
+   says something else, the contract is right and your prompt is stale — that
+   is exactly why the numbers were taken out of prompts.
+
+<!-- BEGIN GENERATED SLATE — regenerate with `python -m shared.channel_registry --markdown` -->
+| Channel | Per day | Active formats | Retired | ChatGPT does |
+|---|---|---|---|---|
+| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
+| `explainer` | 1 | 1x `data_story` | — | editorial_review |
+| `third` | 3 | 3x `clip` | — | nothing |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
+
+<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- END GENERATED SLATE -->
+
+That table is generated from the registry. It is a CONVENIENCE, not the
+authority — the snapshot in the day's bundle is.
+
+Everything under `contract.channels.<id>` is resolved for you: `target_count`,
+`target_mix`, `shortfall`, `active_formats`, `retired_formats`,
+`chatgpt_roles`, `media_requirements`, `queue`, `protected_fields`,
+`allowed_editorial_mutations`, `doctrine`. Do not recompute any of it.
+
+## Two workers, one day — read this first
+
+The day is worked by **two scheduled tasks an hour apart**, not one:
+
+| | When | Job | Writes | Never writes |
+|---|---|---|---|---|
+| **MEDIA worker** | 06:00 Central | generate + upload + verify every image | `media-progress/*.json`, `media-progress/claims/*.json` | `response.json`, `DONE`, `authored/` |
+| **FINALIZER** | 07:00 Central | recover, fill gaps, punch up, author, ship | everything above **plus** `response.json`, `authored/*.json`, then `DONE` | — |
+
+**`DONE` is the only thing that fires the render.** Not a `response.json`
+push, not a checkpoint push, not a package push. The media worker writing
+`DONE` at 06:00 would render an hour before anything was authored or punched
+up — with every check green.
+
+### The two of you cannot see each other. These files are how you talk.
+
+The 07:00 task does not inherit the 06:00 task's context; it inherits this
+repository. So every verified image gets a **checkpoint** written the moment
+it verifies:
+
+```
+exchange/bundles/<date>/media-progress/<safe_request_id>.json
+exchange/bundles/<date>/media-progress/claims/<safe_request_id>.json
+```
+
+Full field list, generated from the code that validates it, is in every
+bundle at `bundle.json` → `media_protocol`. The schema itself lives in
+`shared/media_checkpoint.py`.
+
+**Checkpoint after every single image, not once at the end.** A run that dies
+at image 19 of 24 must leave 18 recoverable results behind, not zero. That is
+the entire reason this exists.
+
+### Deterministic filenames
+
+Every asset uploads to Drive as:
+
+```
+<date>__<safe_request_id>.<ext>          e.g. 20260731__spacex-catch-s2-9f1c4a.png
+```
+
+Each bundle request already carries the exact string as `drive_filename` —
+**use it verbatim**, it is published before you start. `safe_request_id` is
+the request id with anything outside `[A-Za-z0-9._-]` replaced by `-`; if
+that changed the string (or it was longer than 72 chars) an 8-hex sha256 of
+the original is appended, so two different requests can never land on one
+file.
+
+For a shot inside a package **you** authored there is no bundle request, so
+build the id yourself:
+
+```
+authored-<slug>-s<shot_index>
+```
+
+`<slug>` lowercased, anything outside `[a-z0-9-]` replaced by `-`. Derive it
+from **slug + shot index only** — never from the prompt, a timestamp, or a
+counter. The 07:00 worker recomputes the identical string from the package on
+disk, and it cannot do that from a prompt it never saw (and which the
+punch-up may have since reworded).
+
+### Recovering an orphan — in this order
+
+An orphan is an image that reached Drive while its checkpoint did not.
+
+1. **Read the checkpoint.** Valid, `verified`, same bundle identity, same
+   prompt → **reuse it. Do not regenerate.** Regenerating burns budget *and*
+   produces a different picture than the one the checkpoint names.
+2. Otherwise search Drive for the **exact** deterministic filename.
+3. Exactly one match → **download it, hash the bytes, confirm it decodes**,
+   and write the checkpoint from what you actually found. A filename is a
+   lookup key; it is never evidence about content.
+4. More than one match → **conflicted**. Report it and move on. Drive allows
+   duplicate names, and guessing is a coin flip on what ends up in the video.
+5. Only when nothing is reusable, generate it.
+
+### Bundle identity
+
+Every checkpoint records `bundle.identity` — the **sha256 of that day's
+`bundle.json` file bytes**. Compute it; do not guess. A checkpoint whose
+identity does not match the current bundle is refused, which is how an image
+made for a prompt that has since changed stays out of the video.
+
+### Claims (so you two never make the same image twice)
+
+Before generating, create `media-progress/claims/<safe_request_id>.json`
+**create-only**. If it already exists and `expires_at` is in the future,
+someone is on it — skip that request. An **expired** claim is inert: take it
+over. A verified checkpoint beats any claim, including a live one. Default
+lease is 15 minutes.
+
+### Every field must match — not just the hash
+
+When Phase B reads your `response.json`, it compares each pointer against the
+checkpoint you wrote, field by field: **filename, file_id, folder_id, sha256,
+bytes, format, width, height, and sharing.** Any disagreement refuses that
+image and the shot falls back to stock.
+
+Hash and byte count alone only say the *content* matches. They say nothing
+about whether the pointer names the same asset you verified — an image can
+hash perfectly and still be under a name nobody can recover, in the wrong
+folder, or private. **Copy the values out of the checkpoint. Do not
+re-describe the file from memory.**
+
+`sharing` must be `"anyone_with_link"` on both. Anything else and Drive hands
+our downloader an HTML permission page instead of bytes, so "I uploaded it"
+and "you can fetch it" are different claims and only that one covers both.
+
+### One Drive file, one request
+
+A `file_id` may appear under exactly **one** `request_id`. Two requests are
+two different lines of script; an image answering both is one shot doing
+double duty, which is how a slate ends up visually repeating itself.
+
+Identical hashes are not an exemption. If the same file shows up under two
+request ids, **both** are refused — we cannot tell which one legitimately
+owns it, and guessing is the same coin flip we refuse to make on duplicate
+filenames. Generate the second image.
+
+### Checkpoints are MANDATORY on any day you write DONE
+
+`DONE` is your assertion that both workers ran to completion. If they did,
+every image you point at has a checkpoint — writing one is the media worker's
+whole job. So on a DONE run, **a pointer with no checkpoint is refused** and
+that shot self-fills from stock.
+
+The only exception is our own emergency backstop, which runs when you never
+wrote `DONE` at all. There are no checkpoints to require on a day you did not
+finish, and demanding them would turn "ChatGPT was late" into "the channel
+posts nothing".
+
+### Honesty applies to checkpoints too
+
+A checkpoint asserts *you downloaded these bytes and hashed them*. Writing
+one for an image you did not verify is worse than writing nothing, because
+the next worker will skip the work believing it is done.
+
 ## The bridge (why this works when /mnt/data did not)
 
 The Drive connector will not accept a sandbox path (`/mnt/data/foo.png`) or a
@@ -90,6 +273,32 @@ red flag, not caution; if you keep more than half a slate, every
 `editor_note` had better say something specific. Phase B logs a warning
 when every script comes back kept.
 
+## Who edits this pipeline — not you
+
+**Claude is the only agent that edits this repository** — meaning every
+Claude in the system: the interactive sessions AND the headless brains that
+author packages, judge renders, and write story words inside the pipeline.
+They are one author on different runtimes.
+
+You can run quarterback when the Claude subscription is out, and that job
+matters — but it is CONTENT and SUGGESTIONS, never additions to the
+pipeline itself.
+
+| You may write | You may never write |
+|---|---|
+| `exchange/bundles/<date>/response.json` + `DONE` | any `.py`, `.yml`, `.sh` — anywhere, including inside your own folders |
+| `exchange/bundles/<date>/media-progress/**` (checkpoints + claims) | any workflow, gate, validator or test |
+| authored packages, words, media pointers | `retro/README.md` or `exchange/README.md` — your own instructions |
+| `retro/<date>/proposals/*.json` | anything under `scripts/`, `shared/`, `funnel/`, `engines/`, `docs/` |
+| | `state/**` — promotion is our side's job, and it validates first |
+
+Nothing mechanically stops you from breaking this — it is a working
+agreement, and it holds because you keep it. If you believe something in
+the pipeline should change, that is a PROPOSAL: write it as one and Claude
+will decide, implement it properly, and tell you what it thought. A change
+you make yourself skips the review that makes the change safe, and skips
+the reply that would have taught you why.
+
 ## Mode `author` — the takeover (you are the brain today)
 
 `bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
@@ -115,7 +324,9 @@ already produce, just inline on the shot instead of in the `media` array:
   {"phrase": "the office fridge", "query": "office kitchen",
    "media": {
      "status": "fulfilled",
-     "drive": {"file_id": "1AbC…", "public": true,
+     "drive": {"file_id": "1AbC…", "folder_id": "1FolderXyz…",
+               "filename": "20260731__authored-my-slug-s0.png",
+               "sharing": "anyone_with_link",
                "download_url": "https://drive.google.com/uc?export=download&id=1AbC…"},
      "image": {"sha256": "…64 hex of the exact bytes…", "bytes": 1554380,
                "format": "png", "width": 1080, "height": 1080}
@@ -123,8 +334,19 @@ already produce, just inline on the shot instead of in the `media` array:
 ]
 ```
 
+Each of those images also needs a **checkpoint**, with
+`"request_kind": "authored_shot"`, the package slug in `package_id`, the
+shot index in `shot_index`, and the request id built as
+`authored-<slug>-s<shot_index>` (see *Two workers, one day* above). Upload
+the file as `<date>__authored-<slug>-s<shot_index>.png`.
+
 `text_card` and `graph_race` have no `shots` and need no media from you —
 the renderer sources their b-roll from `broll_query` and draws the chart.
+
+**Do not put authored-shot images in the top-level `media` array.** That
+array is keyed by bundle `request_id`, and there is no bundle request for a
+package you invented — Phase B rejects any entry there whose id looks like an
+authored shot.
 
 Every pointer is verified on arrival exactly like a normal-day one: SHA-256
 recomputed from the downloaded bytes, a full pixel decode, a placeholder
@@ -146,7 +368,7 @@ thing, and each has its own array in your `response.json`:
 
 | Channel in `authoring_requests` | `job` | You write | Return in |
 |---|---|---|---|
-| `trending` | author | 6 packages, 2+2+2 | `authored` |
+| `trending` | author | exactly `contract.channels.trending.shortfall` — see the snapshot | `authored` |
 | `explainer` | `rewrite_words` | title / hook / says / closing per story | `authored_explainer` |
 | `curiosity` | `stock_queue` | whole long-form stories | `authored_curiosity` |
 
@@ -183,17 +405,28 @@ A real package always carries at least one of `script`, `text`, `series`,
 `shots`, `subreddit`, or `broll_query`. Getting this wrong cancels the
 takeover: five real packages plus `_schedule.json` looks like a full six.
 
-**Write only the shortfall, and restore the 2 + 2 + 2 mix.**
+**Write only the shortfall the contract states.** Do not compute a mix
+from memory or from the examples below.
 
-| Real packages present | What you write |
+| Real packages present (per `shortfall`) | What you write |
 |---|---|
-| 0 | all six — 2 reddit_story, 2 text_card, 2 graph_race |
-| 1–5 | only the missing ones, choosing formats so the day ends at 2 + 2 + 2 |
-| 6 | nothing to author — do your normal jobs |
+| 0 | the whole `target_mix` |
+| some, but short | only the missing ones, in the formats `shortfall` names |
+| at target | no **trending** packages — but see below, you are probably not done |
 
-Count what exists by format first, then fill the gaps. If the day already
-has 2 reddit_story and 1 text_card, you write 1 text_card and 2 graph_race —
-not six of anything.
+Count what exists by format first, then fill the gaps. `shortfall` in the
+contract has already done exactly that — use it rather than recomputing, and
+never assume a format is in play because you have seen it before.
+
+**A full trending slate does not end your authoring job.** Explainer and
+curiosity are separate channels with separate asks, and six trending packages
+say nothing about either of them. Check `authoring_requests` for *every*
+channel listed, not just `trending`. The bundle spells this out in
+`instructions.two_jobs[0]` when trending is full and another channel is not.
+With no bundle at all, check both configs yourself: any
+`data_learning/niche.config.json` story with `"words_by": "deterministic"`
+that has not posted needs a rewrite, and fewer than 3 un-posted stories in
+`data_learning/curiosity.config.json` means that queue needs stock.
 
 **With no bundle you also have no spec, so go read it.** The per-format
 rules and the media pointer shape normally arrive inside
@@ -226,7 +459,7 @@ Everything you need is in `bundle.json` → `authoring_request`:
 | Field | What it is |
 |---|---|
 | `write` | how many packages to write |
-| `mix` | how many of each format — the slate is **2 + 2 + 2**, never 6 of one |
+| `mix` | how many of each ACTIVE format to write. Retired formats are absent, not zeroed |
 | `formats` | the complete spec per format: required fields, shape, rules |
 | `hard_rules` | the mechanical checks we run on your output |
 | `do_not_repeat` | titles the channel posted recently |

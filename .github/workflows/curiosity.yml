@@ -4,7 +4,9 @@ name: Curiosity Long-form
 # main watch feed — NOT Shorts) to the OpenRangeInteractive channel.
 # CURIOSITY_BRAIN.md is the doctrine. Fully separate from daily.yml /
 # explainer.yml / third.yml: own config (data_learning/curiosity.config.json),
-# own renderer (data_learning/longform_render.py), own posted-log
+# own renderer (canonical: the pro producer scripts/produce.py -> pro_render +
+# the full director loop; longform_render is the legacy except-branch fallback),
+# own posted-log
 # (state/curiosity_posted_log.json), own token secret, own concurrency group.
 #
 # Cadence: 1/week (Saturdays 15:00 UTC) — the cron posts at most ONE un-posted
@@ -15,11 +17,20 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'verify | canary | schedule | all | preview'
+        description: 'verify | canary | schedule | all | preview | pro | batch'
         required: true
         default: 'verify'
         type: choice
-        options: [verify, canary, schedule, all, preview]
+        options: [verify, canary, schedule, all, preview, pro, batch]
+      batch_max:
+        description: 'batch mode: how many stories to render (default 2)'
+        required: false
+        default: '1'
+      repair_attempts:
+        description: 'render->judge->REPAIR rounds per story (each is a full
+          re-render; 2 fits the 335-min cap at ~2h a cut, 1 disables repair)'
+        required: false
+        default: '2'
       canary_slug:
         description: 'slug to post in canary mode'
         required: false
@@ -36,6 +47,13 @@ on:
         description: 'schedule: post at most N stories this run'
         required: false
         default: '1'
+      enable_publish:
+        description: 'UPLOAD GATE: publishing is frozen unless this is checked
+          (sets CURIOSITY_PUBLISH_ENABLED=1). Cron/auto can never set it, so
+          scheduled runs render/review/package/HOLD.'
+        required: false
+        default: false
+        type: boolean
       publish_in_hours:
         description: 'schedule the upload N hours out (0 = public now)'
         required: false
@@ -46,6 +64,14 @@ on:
         default: 'false'
         type: choice
         options: ['false', 'true']
+      hero_res:
+        description: 'Blender hero resolution WxH (blank = CI default 960x540; full quality is 1440x810 but will NOT fit GitHub''s 6h cap — use a faster host)'
+        required: false
+        default: ''
+      hero_samples:
+        description: 'Blender hero Cycles samples (blank = CI default 24; full quality is 32)'
+        required: false
+        default: ''
   # Weekly cadence — long-form is a catalog play, not a firehose.
   # DISARMED (operator ruling 2026-07-08): nothing publishes while the
   # simulation-engine rebuild is in progress. Re-enable by uncommenting
@@ -94,7 +120,11 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'schedule' && needs.plan.outputs.new_count != '0')
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # preview renders the PREMIUM cut (all Cycles heroes) on GitHub's own
+    # infra — independent of any local session. 335 min sits safely under
+    # GitHub's 6-hour hard job cap; the director self-limits Cycles frames
+    # (CURIO_PREMIUM_FRAMES) so the whole render finishes with headroom.
+    timeout-minutes: 335
     concurrency:
       group: curiosity-longform
       cancel-in-progress: false
@@ -116,8 +146,8 @@ jobs:
         run: |
           [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
           MODE="${{ inputs.mode }}"; [ -z "$MODE" ] && MODE="auto"
-          # verify/preview never upload, so they may run without upload wiring
-          if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ]; then
+          # verify/preview/pro never upload, so they may run without upload wiring
+          if [ "$MODE" != "verify" ] && [ "$MODE" != "preview" ] && [ "$MODE" != "pro" ]; then
             missing=0
             [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
             [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON_CURIOSITY (or its alias YOUTUBE_TOKEN_JSON_ORI) — mint it with setup_youtube.py signed into the OpenRangeInteractive account"; missing=1; }
@@ -152,26 +182,12 @@ jobs:
           pip install --quiet manim || echo "::warning::manim install failed — beats degrade to stills"
           pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
 
-      # Translation cache (audit Ticket 3): moved out of git into cache/,
-      # persisted between runs via actions/cache (evolving-cache pattern).
-      - name: Cache translations
-        uses: actions/cache@v4
-        with:
-          path: |
-            cache/translation/
-            cache/funnel/
-          key: translation-cache-v1-${{ github.run_id }}
-          restore-keys: |
-            translation-cache-v1-
-
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
         uses: actions/cache@v4
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
-          restore-keys: |
-            rembg-u2net-
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
@@ -179,8 +195,6 @@ jobs:
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
-          restore-keys: |
-            kokoro-onnx-
 
       - name: Download Kokoro TTS models if cache miss
         if: steps.cache-kokoro.outputs.cache-hit != 'true'
@@ -199,12 +213,37 @@ jobs:
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
-          restore-keys: |
-            music-kmcl-
 
       - name: Fetch music if missing
         if: inputs.mode != 'verify' && steps.cache-music.outputs.cache-hit != 'true'
         run: python3 scripts/fetch_music.py
+
+      # MEDIA PROBE — seconds, not hours. Three renders credited zero Pexels
+      # and zero Pixabay while both secrets existed in the repo, and guessing
+      # cost a full render each time. This calls every video provider live with
+      # the same code the renderer uses and reports key presence (never the
+      # value), HTTP result and candidate counts, so the media supply can be
+      # diagnosed without burning 1h48m to find out.
+      - name: Media probe (which video providers actually answer)
+        if: always()
+        continue-on-error: true
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: python3 scripts/media_probe.py --decide
+
+      # Its own artifact, on EVERY mode — verify skips the status upload, and
+      # the job-log API truncates, so without this the probe's answer is only
+      # visible by opening the run by hand. Same law as the judging evidence:
+      # a result that cannot be read after the runner disappears is missing.
+      - name: Upload media probe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-media-probe
+          path: output/media_probe.json
+          retention-days: 90
+          if-no-files-found: warn
 
       - name: Run
         env:
@@ -214,6 +253,34 @@ jobs:
           YOUTUBE_TOKEN_JSON_CURIOSITY: ${{ secrets.YOUTUBE_TOKEN_JSON_CURIOSITY || secrets.YOUTUBE_TOKEN_JSON_ORI }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # STOCK VIDEO — top of the media pipeline. Without these the
+          # motion-first gate can never reach ground / human-scale footage
+          # (NASA is orbital-only) and depiction beats fall back to stills.
+          # The secrets already exist (daily.yml uses them); this channel
+          # simply was not forwarding them to the render.
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          # CI runs on a 4-core runner under a 6h cap: render the Cycles
+          # heroes at 960x540/24 (upscaled to 1080p by minterpolate; flat
+          # toon shading upscales cleanly) so the full premium cut finishes
+          # in ~2.5h with margin. A faster host leaves these unset for full
+          # 1440x810/32 quality.
+          CURIO_HERO_RES: ${{ inputs.hero_res || '960x540' }}
+          CURIO_HERO_SAMPLES: ${{ inputs.hero_samples || '24' }}
+          # THE CLOSED REPAIR LOOP (scripts/produce.py). How many
+          # render -> judge -> repair -> re-render rounds one story may spend.
+          # Each round is a FULL re-render, so this is bounded by the job's
+          # 335-minute cap rather than by the policy's attempt budget: at ~2h a
+          # cut, 2 rounds fit with margin and 3 would risk timing out, which
+          # would deliver nothing at all instead of a judged quarantine.
+          CURIOSITY_REPAIR_ATTEMPTS: ${{ inputs.repair_attempts || '2' }}
+          # PHASE-3 ROUTING (docs/CURIOSITY_RECOVERY_MANIFEST.md):
+          # - the canonical producer is the ONLY default renderer; legacy needs
+          #   an operator to export CURIOSITY_RENDERER=legacy by hand.
+          # - uploading needs the explicit enable_publish input. A cron firing
+          #   has no inputs, so scheduled runs always HOLD after packaging.
+          CURIOSITY_PUBLISH_ENABLED: ${{ inputs.enable_publish == true && '1' || '' }}
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
@@ -239,16 +306,30 @@ jobs:
             all)
               python scripts/post_curiosity.py $SLUGFLAG $FORCEFLAG ;;
             preview)
-              # Render to a file and commit it back to THIS branch so it can
-              # be eyeballed before anything posts. No upload.
+              # PREVIEW = THE SAME CANONICAL PRODUCER, different destination
+              # (Phase 3 §8.3: modes may differ in output/publishing, never in
+              # the creative path). Renders through scripts/produce.py — the
+              # full director loop + gates + package — into preview/, uploads
+              # everything as an artifact, uploads nothing to YouTube. A
+              # quarantine verdict is a valid preview outcome (|| true): the
+              # artifact carries the produce_report with the reasons.
               mkdir -p preview
               for s in $SLUGS; do
-                python -m data_learning.longform_render --slug "$s" \
-                  --out "preview/$s.mp4"
+                python scripts/produce.py "$s" "preview/$s.mp4" || \
+                  echo "::warning::$s quarantined — see produce_report in artifact"
+                # mobile-friendly viewing copy (small, streams on a phone)
+                ffmpeg -y -loglevel error -i "preview/$s.mp4" \
+                  -vf scale=1280:720 -c:v libx264 -preset slow -crf 26 \
+                  -c:a aac -b:a 128k "preview/${s}_720p.mp4" || true
               done
+              # Commit the LIGHT record (sheets/meta/report) to the branch;
+              # the heavy mp4s ride the artifact, not git history.
               git config user.name "github-actions[bot]"
               git config user.email "github-actions[bot]@users.noreply.github.com"
-              git add -f preview/*.mp4 preview/*.jpg preview/*.meta.json 2>/dev/null || git add -f preview/*.mp4
+              git add -f preview/*.jpg preview/*.meta.json \
+                preview/*_pkg/contact_sheet.png preview/*_pkg/beatmap.json \
+                preview/*_pkg/produce_report.json \
+                preview/*_pkg/fallbacks.json 2>/dev/null || true
               git commit -m "curiosity preview render: $SLUGS [skip ci]" || echo "nothing to commit"
               for i in 1 2 3 4 5; do
                 git push origin "HEAD:${GITHUB_REF_NAME}" && { echo "pushed on attempt $i"; break; }
@@ -257,10 +338,134 @@ jobs:
                   || git rebase --abort || true
                 sleep 2
               done ;;
+            pro)
+              # Single-slug preview through THE SAME canonical producer
+              # (kept as a mode name for muscle memory; it is preview for one
+              # slug). Never a bare pro_render call — the director loop and
+              # gates are not optional (Phase 3 §8.3).
+              mkdir -p preview
+              S="${SLUGS:-sitting-still-speed}"
+              python scripts/produce.py "$S" "preview/${S}.mp4" || \
+                echo "::warning::$S quarantined — see produce_report in artifact"
+              git config user.name "github-actions[bot]"
+              git config user.email "github-actions[bot]@users.noreply.github.com"
+              git add -f "preview/${S}_720p.mp4" \
+                "preview/${S}_pkg/contact_sheet.png" \
+                "preview/${S}_pkg/beatmap.json" \
+                "preview/${S}_pkg/continuity.json" 2>/dev/null || true
+              git commit -m "curiosity pro render: ${S} [skip ci]" \
+                || echo "nothing to commit"
+              for i in 1 2 3 4 5; do
+                git push origin "HEAD:${GITHUB_REF_NAME}" && break
+                git pull --rebase --autostash -X ours origin \
+                  "${GITHUB_REF_NAME}" || git rebase --abort || true
+                sleep 2
+              done ;;
+            batch)
+              # BOUNDED AUTONOMOUS BATCH (scripts/batch_produce.py): admit
+              # from the real catalog, then render+gate story by story under
+              # count and wall-clock budgets, deciding per story. This mode
+              # NEVER publishes — it ends at the gate, exactly like preview;
+              # uploading still requires post_curiosity with its own gates,
+              # approval, kill switch, and CURIOSITY_PUBLISH_ENABLED=1.
+              # --slugs (if given) targets specific stories; otherwise
+              # portfolio admission picks them.
+              python scripts/batch_produce.py --plan
+              python scripts/batch_produce.py --run $SLUGFLAG \
+                --max-stories "${{ inputs.batch_max || '1' }}" \
+                --budget-seconds "${BATCH_BUDGET:-18000}" \
+                || echo "::warning::batch ended early — see batch_run_report"
+              python scripts/pipeline_health.py || true ;;
             auto)
               # weekly cron: post exactly one un-posted story
               python scripts/post_curiosity.py --max 1 ;;
           esac
+
+      # THE GUARANTEE: the finished preview (full 1080p + 720p viewing copy
+      # + frame/evidence sheets + ledger + director report) is uploaded as
+      # a downloadable artifact, kept 90 days. always() so a partial render
+      # still hands back whatever it produced. This is what makes "a video
+      # in ~6 hours no matter what" true — it does not depend on any local
+      # session surviving.
+      - name: Upload preview artifact
+        if: always() && (inputs.mode == 'preview' || inputs.mode == 'pro')
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-preview
+          path: |
+            preview/*.mp4
+            preview/*.png
+            preview/*.jpg
+            preview/*.srt
+            preview/*.ledger.json
+            preview/*.director.json
+            preview/*.meta.json
+            preview/*_pkg/*.png
+          retention-days: 90
+          if-no-files-found: warn
+
+      # Run-health + capability readiness from the hash-chained ledger and
+      # the artifacts this run produced. Reporting only — never gates.
+      - name: Pipeline status
+        if: always() && inputs.mode != 'verify'
+        continue-on-error: true
+        run: python3 scripts/pipeline_health.py
+
+      # THE JUDGE EVIDENCE SURFACE. A judge response that cannot be viewed
+      # after the runner disappears is treated as MISSING judge evidence — so
+      # the concise scoreboard goes to the run summary and the COMPLETE
+      # per-attempt evidence (raw + normalized, every judge, every repair plan)
+      # is uploaded as its own artifact.
+      - name: Judge report + step summary
+        if: always() && inputs.mode != 'verify'
+        continue-on-error: true
+        run: |
+          shopt -s nullglob
+          for mp4 in output/curiosity_*.mp4; do
+            case "$mp4" in *_720p.mp4) continue;; esac
+            python3 scripts/judge_report.py "$mp4" || true
+          done
+
+      - name: Upload judging evidence (every judge, every attempt)
+        if: always() && inputs.mode != 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-judging
+          path: |
+            output/curiosity_*_pkg/judging/**
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Upload batch video + package
+        if: always() && inputs.mode == 'batch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-batch-video
+          path: |
+            output/curiosity_*.mp4
+            output/curiosity_*_720p.mp4
+            output/curiosity_*.jpg
+            output/curiosity_*.srt
+            output/curiosity_*.meta.json
+            output/curiosity_*_pkg/**
+          retention-days: 90
+          if-no-files-found: warn
+
+      - name: Upload status + batch reports
+        if: always() && inputs.mode != 'verify'
+        uses: actions/upload-artifact@v4
+        with:
+          name: curiosity-status
+          path: |
+            output/pipeline_status.json
+            output/media_probe.json
+            output/batch_*.json
+            output/idea_funnel_report.json
+            output/*.advisor.json
+            output/*.security.json
+            output/*.facts-report.json
+          retention-days: 90
+          if-no-files-found: ignore
 
       # Pull view/like counts so the daily routine learns which pillars and
       # hooks land (state/analytics_curiosity/latest.json).
@@ -276,13 +481,32 @@ jobs:
 
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
-        env:
-          # Push to the ref the workflow ran FROM (== main on cron; the
-          # feature branch on a branch dispatch) so a branch run can never
-          # implicitly merge the whole branch into main.
-          CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
-          # Shared hardened persist (audit Ticket 1): retry + union-merge.
-          bash scripts/ci_commit_state.sh \
-            "curiosity: update posted log + analytics [skip ci]" \
-            state/curiosity_posted_log.json state/analytics_curiosity
+          git add state/curiosity_posted_log.json state/analytics_curiosity state/translation_cache.json 2>/dev/null || true
+          # auto-filed exchange asks (generated-media loop) must survive the
+          # runner, or the ask the render just filed dies with the container
+          git add exchange/requests/*.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "curiosity: update posted log + analytics [skip ci]"
+          # Robust push (same hardening as explainer.yml): --autostash rides
+          # over render-dirtied files, -X ours keeps our fresh log on a race,
+          # retries ride out concurrent pushes from scout/daily. Push to the
+          # ref the workflow ran FROM (== main on cron; the feature branch on
+          # a branch dispatch) so a branch run can never implicitly merge the
+          # whole branch into main.
+          for i in 1 2 3 4 5; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "Pushed on attempt $i"
+              exit 0
+            fi
+            echo "Push failed on attempt $i, rebasing (autostash, ours)..."
+            git pull --rebase --autostash -X ours origin "${GITHUB_REF_NAME}" || git rebase --abort || true
+            sleep 2
+          done
+          echo "::error::Failed to persist posted log after 5 attempts"
+          exit 1

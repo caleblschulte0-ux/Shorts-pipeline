@@ -33,6 +33,7 @@ import json
 import os
 from pathlib import Path
 
+from shared import media_checkpoint as mc
 from shared.fsutil import atomic_write_json
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -77,7 +78,8 @@ def _max_requests() -> int:
 def build_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
                  authoring_request: dict | None = None,
-                 channel_requests: dict | None = None) -> dict:
+                 channel_requests: dict | None = None,
+                 contract: dict | None = None) -> dict:
     """Assemble the day's ask. Pure function — easy to test, no IO.
 
     `authoring_request` is the AUTHORING TAKEOVER brief (see
@@ -115,6 +117,16 @@ def build_bundle(date: str, packages: list[dict],
             rid = request_key(slug, idx, prompt)
             req = {
                 "request_id": rid,
+                # Published BEFORE either worker starts, which is the whole
+                # reason an orphaned upload is recoverable: a file can only be
+                # found by name if the name was agreed on in advance.
+                "safe_request_id": mc.safe_request_id(rid),
+                "drive_filename": mc.deterministic_filename(
+                    date, rid, "mp4" if kind == "animation" else "png"),
+                "prompt_sha256": mc.prompt_sha256(prompt),
+                "checkpoint_path": (
+                    f"exchange/bundles/{date}/{mc.PROGRESS_DIRNAME}/"
+                    f"{mc.safe_request_id(rid)}.json"),
                 "slug": slug,
                 "shot_index": idx,
                 "kind": kind,
@@ -160,6 +172,13 @@ def build_bundle(date: str, packages: list[dict],
         "schema": SCHEMA,
         "date": str(date),
         "status": "open",
+        # THE CONTRACT SNAPSHOT. Resolved once from
+        # config/channel_registry.json and frozen here. Everything downstream
+        # — both ChatGPT workers, Phase B validation, promotion — reads THIS,
+        # not the live registry, so a registry edit between 06:00 and 07:00
+        # cannot change the day mid-flight. New rules start with the next
+        # bundle. See exchange/README.md "Which contract wins".
+        "contract": contract,
         "mode": ("author" if (authoring_request or channel_requests)
                  else "punch_up"),
         "response_path": f"exchange/bundles/{date}/response.json",
@@ -170,13 +189,40 @@ def build_bundle(date: str, packages: list[dict],
                    "to_author": (authoring_request or {}).get("write", 0)},
         "packages": items,
         "requests": requests,
+        # The two-worker contract, as data. Two scheduled tasks an hour apart
+        # cannot see each other's context — only this repo — so the checkpoint
+        # files under media-progress/ are their entire shared memory.
+        "media_protocol": mc.protocol_block(date),
         "instructions": {
             "read_first": "exchange/README.md",
+            "who_runs_what": {
+                "media_worker_0600": (
+                    "MEDIA ONLY. Work `requests` (and, on a takeover, the "
+                    "shots of the packages you author). Upload under the "
+                    "`drive_filename` each request carries, verify the bytes, "
+                    "and write a checkpoint the moment each image verifies — "
+                    "one file per request, not one batch at the end. NEVER "
+                    "write response.json and NEVER write DONE."),
+                "finalizer_0700": (
+                    "RECOVER FIRST: read media-progress/ before generating "
+                    "anything — a verified checkpoint is an image that "
+                    "already exists, and re-making it both burns the budget "
+                    "and produces a different picture than the one recorded. "
+                    "Then fill the gaps, punch up the scripts, do the "
+                    "explainer/curiosity work (even if trending is full), "
+                    "write response.json, verify it reads back, and only then "
+                    "commit DONE as a SECOND commit."),
+                "only_done_renders": (
+                    "DONE is the single trigger for Phase B. Nothing else "
+                    "starts the render — not a response.json push, not a "
+                    "checkpoint push, not a package push."),
+            },
             "two_jobs": [
                 "1. MEDIA — for every entry in `requests`, generate the asset "
                 "from `prompt_verbatim` word for word, upload it to the shared "
-                "Drive folder, and report a verified pointer (drive.file_id, "
-                "download_url, image.sha256, image.bytes).",
+                "Drive folder under the request's `drive_filename`, verify the "
+                "bytes, write its checkpoint, and report a verified pointer "
+                "(drive.file_id, download_url, image.sha256, image.bytes).",
                 "2. PUNCH-UP — act as the script EDITOR for every entry in "
                 "`packages`. For each one make an editorial decision: punch "
                 "it up, or keep it as-is because it already lands. Keeping is "
@@ -207,6 +253,23 @@ def build_bundle(date: str, packages: list[dict],
                     "beat structure, and wording is yours to improve freely "
                     "within them. If you keep more than half a slate, say "
                     "why in each `editor_note`."),
+                "levity": (
+                    "LAND A JOKE when the subject allows one. The doctrine "
+                    "has said 'dry wit' for months and this channel has "
+                    "never once made anyone laugh, because an adjective is "
+                    "not an instruction. Concretely: ONE dry aside per "
+                    "script, placed after the fact it reacts to, never in "
+                    "the first two seconds. The shapes that work — state "
+                    "the absurd fact flat then react in 3-6 words ('Top "
+                    "speed: twelve.'); name the one mundane detail amid "
+                    "chaos ('still holding the salad'); understate the "
+                    "disaster ('This did not go well for the bees'). NEVER "
+                    "puns, setup-punchline, exclamation marks, 'wait for "
+                    "it', or telling the viewer it was funny. And NEVER on "
+                    "a script involving death, injury, crime victims, war "
+                    "or illness — those stay completely straight. If "
+                    "nothing genuinely occurs to you, ship it straight; a "
+                    "forced joke is worse than none. See shared/levity.py."),
                 "house_voice": (
                     "A deadpan, slightly incredulous friend telling you the "
                     "most ridiculous thing they read today. Dry wit, real "
@@ -305,14 +368,30 @@ def build_bundle(date: str, packages: list[dict],
         # so the authoring job cannot read as an optional extra bolted on
         # after the media/punch-up work.
         bundle["authoring_request"] = authoring_request
-        bundle["instructions"]["two_jobs"] = [
-            "0. AUTHOR THE DAY — READ `authoring_request` FIRST. The channel's "
-            "own writing brain did not run today and the reserve bank could "
-            "not cover it, so there is no slate. You are the brain: write the "
-            "missing packages per the spec in `authoring_request.formats` and "
-            "return them in this response's `authored` array. Without this "
-            "the channel posts NOTHING today.",
-        ] + [j for j in bundle["instructions"]["two_jobs"]]
+        if authoring_request:
+            job_zero = (
+                "0. AUTHOR THE DAY — READ `authoring_request` FIRST. The "
+                "channel's own writing brain did not run today and the reserve "
+                "bank could not cover it, so there is no slate. You are the "
+                "brain: write the missing packages per the spec in "
+                "`authoring_request.formats` and return them in this "
+                "response's `authored` array. Without this the channel posts "
+                "NOTHING today.")
+        else:
+            # TRENDING IS FULL, ANOTHER CHANNEL IS NOT. This branch exists
+            # because the obvious reading of "six packages exist" is "nothing
+            # to author", and that reading silently drops the explainer and
+            # curiosity work — separate channels, separate asks, and a full
+            # trending slate says nothing about either of them.
+            job_zero = (
+                "0. AUTHOR FOR THE OTHER CHANNELS — READ `authoring_requests` "
+                "FIRST. Trending has its full slate today, but "
+                + ", ".join(sorted(k for k in (channel_requests or {})
+                                   if k != "trending"))
+                + " do NOT: Claude left them nothing and you are their brain. "
+                "A full trending slate is not permission to skip them.")
+        bundle["instructions"]["two_jobs"] = (
+            [job_zero] + [j for j in bundle["instructions"]["two_jobs"]])
         bundle["instructions"]["takeover_note"] = (
             "`packages` and `requests` cover whatever WAS authored before you "
             "— on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: "
@@ -327,14 +406,28 @@ def build_bundle(date: str, packages: list[dict],
     return bundle
 
 
+def existing_contract(date: str) -> dict | None:
+    """The contract already frozen for this date, if a bundle exists.
+
+    Phase A re-runs (a backstop cron, a manual dispatch) must NOT re-resolve
+    the registry: the 06:00 media worker may already be working the old
+    numbers, and moving the goalposts under it is how half a slate gets
+    generated against one plan and half against another."""
+    b = read_bundle(date)
+    if isinstance(b, dict) and isinstance(b.get("contract"), dict):
+        return b["contract"]
+    return None
+
+
 def write_bundle(date: str, packages: list[dict],
                  judge_reports: list[dict],
                  authoring_request: dict | None = None,
-                 channel_requests: dict | None = None) -> Path | None:
+                 channel_requests: dict | None = None,
+                 contract: dict | None = None) -> Path | None:
     """Phase A: persist the day's bundle. Returns its path, or None."""
     try:
         bundle = build_bundle(date, packages, judge_reports,
-                              authoring_request, channel_requests)
+                              authoring_request, channel_requests, contract)
         d = bundle_dir(date)
         d.mkdir(parents=True, exist_ok=True)
         path = d / "bundle.json"

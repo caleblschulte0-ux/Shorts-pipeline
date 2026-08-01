@@ -55,7 +55,7 @@ result or `None`, never raising into a caller; engines never write outside
 | **themed_bottom** | procedural game engine (own physics/easing) | trending bottom-half | in-repo engine, self-contained |
 | **Higgsfield** | AI still→motion (paid API) | dormant (`HIGGSFIELD_ENABLE=1`) | the architectural template for `maybe_*` |
 | **chart_race** | animated multi-series chart race (eased timeline, y-camera zoom, spread tip labels, per-series icons, leaderboard, hook overlay) — silent mp4, caller muxes audio; `assess()` enforces the big-numbers data bar | trending `graph_race` format (`make_graph_race.py`) | registered module engine (`engines/chart_race.py`), `maybe_chart_race` contract, matplotlib+ffmpeg only |
-| **series_icons** (funnel) | resolve a country flag / brand mark for a named data series (keyless: flagcdn + Wikipedia/Commons via `entity_media`), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
+| **series_icons** (funnel) | resolve a country flag / brand LOGO for a named data series (keyless: flagcdn + Commons/Wikipedia logo search; news photos rejected), disk-cached | `engines.chart_race` | media capability, so it lives in `funnel/`, not in the engine |
 
 ### svg_motion (added 2026-07-30 — capability sprint)
 
@@ -267,3 +267,24 @@ voice cloning (rights/likeness minefield on monetized channels).
    `python -m engines install <name>`; entry in this doc with lifecycle state,
    failure modes, fallback, sample command, and — if `experimental` — a
    benchmark and a decision date.
+
+
+## lookmatch (added 2026-07-29 — ACTIVE, GATED)
+
+Per-asset look harmonization: measures each acquired photo/clip
+(ffmpeg signalstats) and nudges it toward the house band (YAVG≈66,
+SATAVG≈13, MEASURED from the graded taste-passing money-goes master —
+re-measure if the film grade changes). In-band assets pass through
+untouched; corrections are clamped (≤22% gamma, ≤25% saturation) so a
+deliberately dark or bright shot keeps its character; near-greyscale
+counts as in-band (b/w is a look, not a defect). Born from the blind
+taste judge's verdict that mixed-source media "never settles into one
+look" — a final grade cannot fix per-asset spread.
+
+ffmpeg-only, no models, headless, CPU-fine, commercial-safe.
+`engines.lookmatch.maybe_harmonize(src, out)` → path | None;
+`plan(src)` shows the correction it WOULD apply.
+Demo: `python -m engines demo lookmatch --image X --out Y`.
+
+**Gated:** no renderer calls it yet. First adoption in any channel
+requires a side-by-side preview render (the parallax rule).

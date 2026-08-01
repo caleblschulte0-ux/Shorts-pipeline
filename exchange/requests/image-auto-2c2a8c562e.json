@@ -1,0 +1,13 @@
+{
+  "id": "image-auto-2c2a8c562e",
+  "created_at": "2026-07-31T03:09:54+00:00",
+  "from": "pipeline-auto",
+  "to": "chatgpt",
+  "kind": "image",
+  "brief": "green leaves sunlight close up",
+  "purpose": "auto-filed: the media gateway found no usable photo for this beat and it degraded to a designed statement",
+  "constraints": {
+    "aspect": "16:9",
+    "style": "photographic, documentary, no text in frame, no watermarks, no recognisable faces"
+  }
+}

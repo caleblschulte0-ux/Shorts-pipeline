@@ -1,0 +1,168 @@
+{
+  "slug": "money-goes",
+  "note": "Machine-readable factual provenance (Phase 9). Every spoken number in the story maps to a claim here. Distinct from media credits: this registry sources the CLAIMS the narration makes, not the images shown. The inline beats facts[] remain the human-readable summaries the description builder reads; this registry is what the facts gate enforces.",
+  "claims": [
+    {
+      "id": "claim-lifetime-earnings-01",
+      "beat_index": 0,
+      "claim": "A typical U.S. worker earns about $2 million over a lifetime.",
+      "source_title": "Education and Lifetime Earnings / lifetime-earnings estimates",
+      "publisher": "U.S. Census Bureau; Social Security Administration",
+      "source_type": "official",
+      "publication_date": "2023-01-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "full-time workers over a ~40-year career",
+      "calculation": "Rounded from median lifetime earnings (~$1.7M nominal); higher with a bachelor's degree.",
+      "assumptions": [
+        "Nominal dollars, not inflation-adjusted",
+        "Continuous full-time employment across the career",
+        "Rounded up to a $2M illustrative baseline"
+      ],
+      "uncertainty": "Median vs mean and education level move this between ~$1.4M and ~$3M+.",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        2
+      ]
+    },
+    {
+      "id": "claim-lifetime-taxes-02",
+      "beat_index": 5,
+      "claim": "Lifetime taxes total roughly $500,000 — about a quarter of earnings.",
+      "source_title": "Effective tax burden estimates (combined federal income, payroll, state, sales)",
+      "publisher": "Bureau of Labor Statistics; Tax Foundation",
+      "source_type": "official",
+      "publication_date": "2023-01-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "average earners across brackets",
+      "calculation": "~25% average effective combined burden × the $2M lifetime baseline = $500k.",
+      "assumptions": [
+        "Average effective (not marginal) rate held flat across the career",
+        "Applied to the claim-lifetime-earnings-01 baseline"
+      ],
+      "uncertainty": "State residency and income path move the effective burden roughly 18-32%.",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "claim-housing-03",
+      "beat_index": 10,
+      "claim": "Housing takes about a third of spending — roughly $500,000 over a lifetime.",
+      "source_title": "Consumer Expenditure Survey — housing ≈33% of average annual expenditures",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "source_type": "official",
+      "publication_date": "2023-09-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "average consumer units (households)",
+      "calculation": "CES national-average housing share applied to lifetime income net of tax.",
+      "assumptions": [
+        "National-average share; metro-area variation is large",
+        "Includes rent/mortgage, repairs, insurance, property tax"
+      ],
+      "uncertainty": "High-cost metros exceed 40% of spending; low-cost regions run under 28%.",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        9,
+        11
+      ]
+    },
+    {
+      "id": "claim-transport-04",
+      "beat_index": 14,
+      "claim": "Getting around costs about a quarter of a million dollars over a lifetime.",
+      "source_title": "Consumer Expenditure Survey — transportation ≈16% of spending",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "source_type": "official",
+      "publication_date": "2023-09-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "average consumer units (households)",
+      "calculation": "CES transportation share × lifetime post-tax spending; car payments, insurance, fuel, repairs.",
+      "assumptions": [
+        "Car-dependent national average; transit-first households spend far less",
+        "Illustrative rounded total"
+      ],
+      "uncertainty": "Ranges from ~$120k (car-free urban) to $400k+ (multi-car suburban).",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        15
+      ]
+    },
+    {
+      "id": "claim-food-05",
+      "beat_index": 18,
+      "claim": "Feeding yourself runs about $300,000 over a lifetime.",
+      "source_title": "Consumer Expenditure Survey — food at home + away ≈12-13% of spending",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "source_type": "official",
+      "publication_date": "2023-09-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "single-person consumer units",
+      "calculation": "CES food share (groceries + restaurants) × lifetime post-tax spending.",
+      "assumptions": [
+        "Single-person share; family totals are higher per household but lower per person",
+        "Illustrative rounded total"
+      ],
+      "uncertainty": "Eating-out ratio swings this by ±30%.",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        19
+      ]
+    },
+    {
+      "id": "claim-subscriptions-06",
+      "beat_index": 22,
+      "claim": "Subscriptions and recurring fees siphon off about $150,000 over a lifetime.",
+      "source_title": "Consumer subscription-spending surveys",
+      "publisher": "C+R Research; West Monroe",
+      "source_type": "journalistic",
+      "publication_date": "2022-06-01",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "adults with recurring digital/membership subscriptions",
+      "calculation": "Survey-reported monthly subscription spend (~$200-270/mo incl. underestimation effect) × working-life months, rounded down conservatively.",
+      "assumptions": [
+        "Survey self-reports systematically underestimate actual auto-renew spend",
+        "Streaming, memberships, and auto-renewing fees only — not utilities"
+      ],
+      "uncertainty": "Survey-based; the point of the beat is order-of-magnitude, not precision.",
+      "confidence": "low",
+      "presentation": "illustrative_model"
+    },
+    {
+      "id": "claim-residual-07",
+      "beat_index": 27,
+      "claim": "About 15 cents of every dollar (~$300,000) remains as discretionary.",
+      "source_title": "Derived residual of the preceding claims",
+      "publisher": "This story's model (arithmetic on claims 01-06)",
+      "source_type": "derived",
+      "publication_date": "2026-07-23",
+      "accessed_date": "2026-07-23",
+      "geography": "United States",
+      "population": "the illustrative average worker of this story",
+      "calculation": "$2,000,000 − $500,000 (tax) − $500,000 (housing) − $250,000 (transport) − $300,000 (food) − $150,000 (recurring) = $300,000 ≈ 15%.",
+      "assumptions": [
+        "Pure arithmetic residual of the model's own figures",
+        "A teaching device, not a measured personal savings rate"
+      ],
+      "uncertainty": "Inherits every upstream range; the narration frames it as the model's residual.",
+      "confidence": "medium",
+      "presentation": "illustrative_model",
+      "echo_beats": [
+        1,
+        28
+      ]
+    }
+  ]
+}

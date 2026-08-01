@@ -177,8 +177,9 @@ REGISTRY: dict[str, dict] = {
         "problem": "Animated multi-series line-chart race (graphfather "
                    "style): eased timeline, dynamic y-camera zoom, tip dots "
                    "+ de-cluttered value labels, PER-SERIES ICONS (flags / "
-                   "brand marks via funnel.series_icons, initials-badge "
-                   "fallback), live leaderboard, climbing year counter, "
+                   "brand LOGOS via funnel.series_icons, initials-badge "
+                   "fallback), a compact key parked above the plot, "
+                   "measured/wrapped title, climbing year counter, "
                    "winner tag on the end-hold, optional hook overlay. "
                    "Renders a SILENT portrait mp4 — callers mux their own "
                    "audio. First consumer: trending channel's graph_race "
@@ -194,8 +195,10 @@ REGISTRY: dict[str, dict] = {
         "deps": ["matplotlib", "ffmpeg on PATH"],
         "gates": "assess(spec) scores DATA DRAMA (peak magnitude + growth "
                  "+ lead changes). Callers should refuse a spec it fails: "
-                 "small, slow, flat numbers make an unwatchable chart "
-                 "(MIN_PEAK=1000, MIN_GROWTH=3x, 1.6x with a crossover).",
+                 "small, slow, flat numbers make an unwatchable chart, "
+                 "and one line is not a race (MIN_SERIES=2, MIN_PEAK=50 "
+                 "post-unit-normalization, MIN_SWING=3x / 1.6x with a "
+                 "lead change).",
         "fallback": "none — a data video without the chart is nothing; "
                     "callers should fail the package, not degrade. Icons "
                     "DO degrade: a failed lookup draws an initials badge.",
@@ -206,6 +209,26 @@ REGISTRY: dict[str, dict] = {
                   "--out /tmp/race.mp4",
     },
     # ---- external engines (owned elsewhere; registered for doctor) --------
+    "lookmatch": {
+        "kind": "module",
+        # Born 2026-07-29 from the blind taste judge's money-goes verdict:
+        # mixed-source media "never settles into one look" — the final film
+        # grade cannot fix per-asset exposure/saturation spread. lookmatch
+        # nudges each asset toward the house band BEFORE assembly; in-band
+        # assets pass through untouched.
+        "status": "active",
+        "gated": True,
+        "problem": "Per-asset look harmonization so photos/clips from many "
+                   "sources read as one shoot, not a keyword search.",
+        "headless": True,
+        "control": "python (engines.lookmatch.maybe_harmonize) / CLI demo",
+        "reusable": True,
+        "license": "n/a (ffmpeg filters only, no models)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~0.3 s probe per asset; re-encode only when out of band",
+        "deps": ["ffmpeg + ffprobe on PATH"],
+    },
     "ffmpeg": {
         "kind": "external", "status": "active",
         "problem": "All video/audio encode, filter, mux.",

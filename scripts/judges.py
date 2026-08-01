@@ -48,7 +48,10 @@ def _fmt_judge(name: str, v: dict) -> list[str]:
         score, floor = v.get("score"), v.get("floor")
         why = f" — {v['why']}" if v.get("why") else ""
         bar = f" ({score} vs floor {floor})" if score is not None else ""
-        out.append(f"    content     {verdict}{bar}{why}")
+        # provenance: a text-only verdict carries the known bias against
+        # visually-driven clips, so it must not read as authoritative
+        eyes = "" if v.get("saw_frames") else "  [TEXT-ONLY — did not see]"
+        out.append(f"    content     {verdict}{bar}{why}{eyes}")
     elif name == "vision":
         verdict = MARK.get(v.get("verdict"), v.get("verdict", "?"))
         conf = f" conf={v['confidence']}" if v.get("confidence") else ""
@@ -69,6 +72,16 @@ def _fmt_judge(name: str, v: dict) -> list[str]:
         out.append(f"    title       {note}")
         if v.get("title"):
             out.append(f"                  \"{v['title']}\"")
+    elif name == "selection":
+        # a RESCUE means the title floor failed and the clip was escalated
+        # to the transcript judge rather than the slot being abandoned —
+        # the operator should be able to see that happened
+        v_ = v.get("verdict")
+        label = {"rescue": "RESCUED (escalated to the transcript judge)",
+                 "skip": "SKIPPED (below the hard floor)"}.get(v_, v_ or "?")
+        out.append(f"    selection   {label}")
+        if v.get("why"):
+            out.append(f"                  · {v['why']}")
     elif name == "story_director":
         for c in v.get("clusters") or []:
             mark = MARK.get(c.get("outcome"), c.get("outcome", "?"))
@@ -93,6 +106,22 @@ def _render_run(run: dict, rejects_only: bool) -> None:
           f"{'  [dry-run]' if run.get('dry_run') else ''}")
     print(brain_line)
 
+    dead = run.get("dead_sources") or {}
+    if dead:
+        # a source that returned nothing is lost supply — surface it so the
+        # allowlist can be pruned on evidence instead of guesswork
+        broke = {k: v for k, v in dead.items() if v.get("fail")}
+        empty = [k for k, v in dead.items() if not v.get("fail")]
+        if broke:
+            print(f"   dead sources: {len(broke)} ERRORED — "
+                  + ", ".join(f"{k} ({v.get('err', '?')})"
+                              for k, v in list(broke.items())[:6])
+                  + (" ..." if len(broke) > 6 else ""))
+        if empty:
+            print(f"   quiet sources: {len(empty)} returned 0 clips — "
+                  + ", ".join(empty[:8])
+                  + (" ..." if len(empty) > 8 else ""))
+
     clips = run.get("clips") or []
     shown = 0
     for c in clips:
@@ -108,7 +137,8 @@ def _render_run(run: dict, rejects_only: bool) -> None:
         if not judges:
             print("    (no judge verdicts recorded)")
             continue
-        for name in ("banger", "content", "story_director", "title",
+        for name in ("selection", "banger", "content",
+                     "story_director", "title",
                      "render_qa", "vision"):
             if name in judges:
                 for line in _fmt_judge(name, judges[name]):
