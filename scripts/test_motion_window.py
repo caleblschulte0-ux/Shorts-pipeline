@@ -100,6 +100,35 @@ def test_probe_budget_is_shared_across_providers():
     print("ok  the probe budget reaches every provider (pexels was rank 33)")
 
 
+def test_a_short_source_still_fills_the_whole_beat():
+    """A shot is exactly as long as its beat, or the rest of the video desyncs.
+
+    `full_frame_beat` cuts with `-t dur`. When the source runs out before then
+    ffmpeg writes a SHORT clip and exits 0 — no error anywhere — so the concat
+    comes up short and every clip after it slides off its narration. Stock clips
+    are 3-6s and beats reach 10s, so this is the ordinary case. It only became
+    reachable once `_footage_shot` learned to step its window down instead of
+    raising, which is exactly when a silent version of it would have been read
+    as "the video is just bad".
+    """
+    import shutil
+    import subprocess
+    if not shutil.which("ffmpeg"):
+        print("skip: no ffmpeg")
+        return
+    from data_learning import footage_hybrid as fh
+    work = Path(tempfile.mkdtemp())
+    src, out = work / "src.mp4", work / "out.mp4"
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi",
+                    "-i", "testsrc=size=640x360:rate=25:duration=3",
+                    str(src)], check=True)
+    fh.full_frame_beat(src, 1.0, 8.0, out)
+    got = fh._duration(out)
+    assert abs(got - 8.0) < 0.35, f"beat asked 8.0s, shot is {got:.2f}s"
+    print(f"ok  a 3s source fills an 8s beat ({got:.2f}s) instead of truncating")
+
+
 if __name__ == "__main__":
     test_probe_budget_is_shared_across_providers()
+    test_a_short_source_still_fills_the_whole_beat()
     main()
