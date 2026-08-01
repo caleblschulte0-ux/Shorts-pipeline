@@ -1,0 +1,337 @@
+{
+  "date": "20260801",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 17,
+    "unfilled": 0,
+    "refused": 15
+  },
+  "checkpoints": {
+    "bundle_identity": "ca264c6bda268c60e871e309fb701f54d8efbe45b614b060469f0bc864df486e",
+    "required": true,
+    "checked": 16,
+    "ok": 0,
+    "rejected": 16,
+    "warnings": 0,
+    "rejected_detail": [
+      {
+        "request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s4-09837736dfe5",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-gym-membership-photo-s9-670026909cae",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+        "where": "response.media",
+        "problems": [
+          "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+        ]
+      }
+    ],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 1,
+    "kept": 5,
+    "rejected": 0,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/6282081/pexels-photo-6282081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/6098/6361168427_416dc9a2c7_b.jpg"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g05d1aeac33c5ac0376817651259a584f547da17f99d1579df644d6abd3a6d5d3423caf0077cdf9b6bb621bbe25fa4057dc9fa6bebf6879520df5a6af2eff8830_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/33705554/pexels-photo-33705554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/7821762/pexels-photo-7821762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s9-670026909cae",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s9-670026909cae",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g25ca7a54824273dc8cb25a2937126f5ad82cfcb461c91fd6b492eba02867618f82006622663a51ac10dd6290fb0f7aa63ea88c65b78b40396ea88284e845e509_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g26c76a25825776e346984b0bf9c7cd5fde9e599c9b56b8bcd03ad574686b47446d2d67a752610697d99a4164dfc990f700aad369554dd1a79b4f8cbbbf79b0f9_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g003fd99676d78234ac3bfd11896e7ec7f1ded29b85ff54f222b693a19d31f2f30ca8aec2739f1de8a90b8204dfe255a1b8c4db58345416636abab6a0a6d25594_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g4e4f2f09a09b9e750129bf6344489b4dc5ccc92dd18e5390cb1a8176a4199a16da00d72bcb7f90ac5b33f6ec6962596fda3f9714f597e2059ac2ad5962725f8c_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s0-6ae341fbe1d5",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/7518/15643625919_d0437dd34b.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd40391dbba3c466fc849cfc24c9827c2792d575d09411f30312b4c55ebcbbf66807fdf687f3f8cec00304c5dad705b690cdba897a54e583b855a04d5b9c0b70e_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g4bef1c0985910e356a05a3ae9e7c05ebd644adac34ee8f42aaafc1626c3a02925eeb1b36dfde38376643ceae333db2e4a88b985fae2cdea5e3a5f66a8715aa90_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s3-c9b9822c049c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc9659d8a3b4152dcd2310ab0cae5eefe1a7f334dcb2341f5a0500e5f82a8dd42e75fea14ac91f507bbd4ce7ddb945eef9e78915749918c4c36ac35dcd94fcde4_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/6227/6247381020_60b4ba307b_b.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb372236e7e1529832f82b212ea530c81769f82b118107c094ae2cc9d944ea5f5dc66cd5f4a0e7350ae28eb05351d9a2730464aa75177e8d8184602f6acd14e1b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2f0697093e8c34d0f1a720de1597880ad5c42c3badc484b62f2256073524c05a6f141d149639ab2b4b69a560418383cb18b49fc99f2e47151f00b7b7a52222bc_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+      "outcome": "refused",
+      "problems": [
+        "checkpoint: made for a DIFFERENT bundle (cc8344d95d3c\u2026 vs ca264c6bda26\u2026) \u2014 the ask changed after this image was made"
+      ]
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gaa9d7399c4f07bc86eb720bafbba1807ba81e3032d66655df13df0e55ab266b0d4844f0d03b7e3399b4f331c9c3b147c6202b613aec64e2f314aa0729ec1cf7b_1280.jpg"
+    }
+  ]
+}
