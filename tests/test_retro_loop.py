@@ -20,7 +20,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 import build_retro as br            # noqa: E402
 import retro_mailbox as mb          # noqa: E402
