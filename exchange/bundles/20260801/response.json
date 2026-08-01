@@ -1,0 +1,421 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260801",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 1,
+    "registry_sha256": "5d4b7cd5e29e871de0e779fc8d02a665fe5233e21a510b182700cb4f494eeee9",
+    "bundle_sha256": "cc8344d95d3c92923106261809d875e59f2def1644a2d334897f77a856a780ab"
+  },
+  "media": [
+    {
+      "request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1LspqThFvczOodVKeBCk5nvwnFISKHbOz",
+        "filename": "20260801__reddit-gym-membership-photo-s10-1d75d4048d9a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1LspqThFvczOodVKeBCk5nvwnFISKHbOz",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "874293715b6baeff2a795c0e9b739255edcc942c4d6a95405891d97139701efa",
+        "bytes": 1980270,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s10-1d75d4048d9a.json",
+        "verified_at": "2026-08-01T11:15:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IJraQUU_s61qOKSg66ZUtgcZ4sDEQh7E",
+        "filename": "20260801__reddit-gym-membership-photo-s11-d559cdf1b6f8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IJraQUU_s61qOKSg66ZUtgcZ4sDEQh7E",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "56f1ce7546a00c10e2789bbdb8be02a2665559a723786f72af920fab8c409cf4",
+        "bytes": 1751124,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s11-d559cdf1b6f8.json",
+        "verified_at": "2026-08-01T11:15:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1lhdHVNxNrJ52b6vrHnocc-Xz4SrlYwo9",
+        "filename": "20260801__reddit-gym-membership-photo-s12-02279de0e1ac.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1lhdHVNxNrJ52b6vrHnocc-Xz4SrlYwo9",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "76d7a52d85d4b7a9755ea1ef906333279bb8f3f7f6d9504a34f89c2942f4faf3",
+        "bytes": 2448169,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s12-02279de0e1ac.json",
+        "verified_at": "2026-08-01T11:19:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1cvxsMhLM6DRWFx4aejnMCE6R9fVk48Eb",
+        "filename": "20260801__reddit-gym-membership-photo-s2-ab0c5dfea9f1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1cvxsMhLM6DRWFx4aejnMCE6R9fVk48Eb",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7f5e40f90b1829e011743069df99baac39840039cb6a04c9ba4997a742238b24",
+        "bytes": 2108483,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s2-ab0c5dfea9f1.json",
+        "verified_at": "2026-08-01T11:05:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1erwDzeXddxx1SIUi3oNnj4BCZ96eIwKO",
+        "filename": "20260801__reddit-gym-membership-photo-s3-d9fa8daf992d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1erwDzeXddxx1SIUi3oNnj4BCZ96eIwKO",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "207d100e222e4aca578c55c8fdb94cf6d2f4f0e0947a55666d50dbb720dd1257",
+        "bytes": 2193808,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s3-d9fa8daf992d.json",
+        "verified_at": "2026-08-01T11:10:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s4-09837736dfe5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "12EpoaMESZ-0fhE3V5qtrhvDkvdzZhzwk",
+        "filename": "20260801__reddit-gym-membership-photo-s4-09837736dfe5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=12EpoaMESZ-0fhE3V5qtrhvDkvdzZhzwk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a65b61d5e0f6f3c4745cddc515f82d99ea202b9fa93dbf4eb465ea5e2ad0cf74",
+        "bytes": 2054907,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s4-09837736dfe5.json",
+        "verified_at": "2026-08-01T11:10:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1c5qAoaCUpDBdQj1GrNbdAcz7QdY9sUZk",
+        "filename": "20260801__reddit-gym-membership-photo-s5-32d6da4d2178.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1c5qAoaCUpDBdQj1GrNbdAcz7QdY9sUZk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ebafa7fd99d03b4f42fc33a9945227140a3d20003682e04a3cb3e702561586e9",
+        "bytes": 2288011,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s5-32d6da4d2178.json",
+        "verified_at": "2026-08-01T11:10:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1q7jOBojVHgYx3LOgo2qU_sui_6H3iU_U",
+        "filename": "20260801__reddit-gym-membership-photo-s7-8f8dacb0b451.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1q7jOBojVHgYx3LOgo2qU_sui_6H3iU_U",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e437c7dbdb879b25d0b09c9eacd50999214468049dc706b3ea5575118aa380f8",
+        "bytes": 1766759,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s7-8f8dacb0b451.json",
+        "verified_at": "2026-08-01T11:10:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QNhgWAGhxJ6Soc8bGUDy7VVZXs10Pqch",
+        "filename": "20260801__reddit-gym-membership-photo-s8-9ae5b5e840b6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QNhgWAGhxJ6Soc8bGUDy7VVZXs10Pqch",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "31708a7e16b17cbe1a6892a26f8da194d69eaa597bad3b2b411bf04b7e223ea9",
+        "bytes": 1807281,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s8-9ae5b5e840b6.json",
+        "verified_at": "2026-08-01T11:15:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s9-670026909cae",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1nWa8u0Nh1B6xOjJ8LlHx-zs45LLEE5ki",
+        "filename": "20260801__reddit-gym-membership-photo-s9-670026909cae.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1nWa8u0Nh1B6xOjJ8LlHx-zs45LLEE5ki",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "32d5f8dd956d79d54c4162128ab7afe7eb87f20abfd69f6a00a740cd099855cb",
+        "bytes": 1839676,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s9-670026909cae.json",
+        "verified_at": "2026-08-01T11:15:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1eKVpsKHuyTJuxx0HtNrS8JQ-YMWvtBK-",
+        "filename": "20260801__reddit-landlord-in-writing-only-s1-9c1d6332383d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1eKVpsKHuyTJuxx0HtNrS8JQ-YMWvtBK-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2f07724eed08043a813d80451f55fcfb889c85f5a0f7f1a05c8d873e476ab54a",
+        "bytes": 1528842,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s1-9c1d6332383d.json",
+        "verified_at": "2026-08-01T11:19:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1n8ePAsOZlSPRnnUvYBf4TxPRSUu7e4FD",
+        "filename": "20260801__reddit-landlord-in-writing-only-s2-acb2b0a0d943.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1n8ePAsOZlSPRnnUvYBf4TxPRSUu7e4FD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fe51add0eba2d48080957ab1eb5ada8793fe179bdfda06738df36e480a740e77",
+        "bytes": 2874376,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s2-acb2b0a0d943.json",
+        "verified_at": "2026-08-01T11:19:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "105sA7vkzEbkzeKRbLK-HM1vUwTTep2vU",
+        "filename": "20260801__reddit-landlord-in-writing-only-s4-60d2991fd567.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=105sA7vkzEbkzeKRbLK-HM1vUwTTep2vU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b21ad11ee4e0d57924ff960950eace3f7c1a3b3e23517df740cebd0987f9ab84",
+        "bytes": 1834590,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s4-60d2991fd567.json",
+        "verified_at": "2026-08-01T11:23:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1INina3nKlmlj4mqFc0-21py8UAnzb_vq",
+        "filename": "20260801__reddit-landlord-in-writing-only-s5-1a1d65b7d010.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1INina3nKlmlj4mqFc0-21py8UAnzb_vq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6f20b7e7ddbad938c3ade79044e63d7e2f7c81f8e3ac254721c2940fb2595adc",
+        "bytes": 2011050,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s5-1a1d65b7d010.json",
+        "verified_at": "2026-08-01T11:23:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1P-7uXiSPXLz6PEUQKdM1a00X22cnGjcm",
+        "filename": "20260801__reddit-landlord-in-writing-only-s6-e089e14a5324.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1P-7uXiSPXLz6PEUQKdM1a00X22cnGjcm",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c0cb1d22b73c665904b949647ba73de964fd198833fd15c2332e0437da563362",
+        "bytes": 2061535,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s6-e089e14a5324.json",
+        "verified_at": "2026-08-01T11:23:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1yyJ1gok3wgOQHaKgmCJ0saXSRsCEXf2A",
+        "filename": "20260801__reddit-landlord-in-writing-only-s7-bba48f61287b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1yyJ1gok3wgOQHaKgmCJ0saXSRsCEXf2A",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c2a2a3bcd5d93a8a84915d4d2b14973f9ab17c4d00c0885bf7aed7d001a5bd8c",
+        "bytes": 1861972,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s7-bba48f61287b.json",
+        "verified_at": "2026-08-01T11:23:30Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-internet-users-worldwide",
+      "kept": true,
+      "editor_note": "Renderer-native graph package has no spoken script; the title clearly states the comparison and all data/source fields are protected."
+    },
+    {
+      "slug": "reddit-gym-membership-photo",
+      "kept": true,
+      "editor_note": "Already lands: 5-word question hook, dry system-error aside, 113-word pacing, and a specific photo kicker ending in ?."
+    },
+    {
+      "slug": "graph-canada-wildfire-record",
+      "kept": true,
+      "editor_note": "Renderer-native graph package has no spoken script; the concise hook front-loads the 18 million-hectare record."
+    },
+    {
+      "slug": "graph-ev-china-vs-world",
+      "kept": true,
+      "editor_note": "Renderer-native graph package has no spoken script; the hook gives a clear visual promise and the title identifies both sides."
+    },
+    {
+      "slug": "graph-campi-flegrei-quakes",
+      "kept": true,
+      "editor_note": "Renderer-native graph package has no spoken script; the hook supplies urgency while the title names Naples and the weekly metric."
+    },
+    {
+      "slug": "reddit-landlord-in-writing-only",
+      "script": "“In writing only?” My landlord ignored three phone calls about my leaking water heater, then demanded every maintenance request be “in writing, no exceptions.” Fine. I wrote him a letter. The next day came a second letter about mold starting to grow; then a third about the drywall now sagging. A fourth, a fifth, a sixth—one letter a day, every day. Each went certified mail, so he had to sign at the post office counter personally. Three weeks and eighteen signed letters later, he called me—on the phone, the thing he banned—screaming that the county opened a habitability case from his own paper trail. Eighteen dated, signed letters make a beautifully airtight timeline of neglect. He fixed the heater within 48 hours. So who really regretted “in writing, no exceptions”?",
+      "editor_note": "Punched up to a 3-word question hook and specific kicker; preserved every number, named term, shot phrase, and query pairing."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [],
+  "authored_curiosity": [],
+  "notes": [
+    "Used exactly the 16 canonical bundle requests and ignored the noncanonical landlord shot-3 checkpoint.",
+    "No authoring_requests were present. Curiosity has 5 unposted stories (minimum 3), and no unposted explainer story has deterministic words.",
+    "All generated media checkpoints record the generator’s real dimensions rather than the requested 1080x1080 dimensions."
+  ]
+}
+
