@@ -1,0 +1,77 @@
+name: Daily alarm (did today actually work?)
+
+# THE ONLY WORKFLOW ALLOWED TO BE LOUD.
+#
+# Every failure this pipeline has had was silent — three days with zero videos
+# (2026-07-26..28), Phase B applying a two-day-old bundle and exiting green
+# (2026-08-01), 21 hashtags per upload that YouTube discarded wholesale for the
+# channel's entire life. Not one turned a check red, because every workflow
+# reports on the STEPS it ran and none report on the OUTCOME they produced.
+#
+# This runs last, checks outcomes against config/channel_registry.json, and
+# comments on the tracking issue ONLY when something is wrong. A daily
+# "all good" comment is how people stop reading the alarm.
+
+on:
+  schedule:
+    # 01:15 UTC — 20:15 Central in summer, 19:15 in winter. After the last
+    # publish slot (15:30 Central) plus render time in both DST halves, and
+    # after retro.yml at 23:15 UTC so the day is fully settled.
+    - cron: '15 1 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Production date to judge (YYYYMMDD, default yesterday)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+  issues: write     # the alarm comment, and only that
+
+env:
+  PYTHON_VERSION: '3.11'
+  REPORT_ISSUE_NUMBER: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+
+jobs:
+  alarm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Judge the day
+        id: judge
+        run: |
+          set +e
+          D="${{ inputs.date }}"
+          ARGS="--markdown"
+          if [ -n "$D" ]; then ARGS="$ARGS --date $D"; else ARGS="$ARGS --yesterday"; fi
+          python scripts/daily_alarm.py $ARGS > "$RUNNER_TEMP/alarm.md"
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          cat "$RUNNER_TEMP/alarm.md"
+
+      - name: Raise the alarm
+        if: steps.judge.outputs.status != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          gh issue comment "$REPORT_ISSUE_NUMBER" \
+            --repo "${{ github.repository }}" \
+            --body-file "$RUNNER_TEMP/alarm.md" \
+            || echo "::warning::could not comment on issue $REPORT_ISSUE_NUMBER"
+
+      - name: Fail the run so it is red in the Actions tab
+        if: steps.judge.outputs.status != '0'
+        run: |
+          echo "::error::the day did not do what it was supposed to — see the"
+          echo "::error::comment on issue #$REPORT_ISSUE_NUMBER"
+          exit 1
+
+      - name: Quiet day
+        if: steps.judge.outputs.status == '0'
+        run: echo "::notice::the day did what it was supposed to — staying quiet"
