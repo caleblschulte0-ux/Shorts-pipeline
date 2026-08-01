@@ -161,6 +161,48 @@ keeps everything, and nothing reads past 30 days.
 
 ---
 
+## Addendum, same day: Phase B was consuming the WRONG DAY'S BUNDLE
+
+Found while checking whether the 2026-08-01 ChatGPT run behaved. Both workers
+did their jobs perfectly — 17 verified checkpoints, `response.json` and `DONE`
+as separate commits in the right order, 16/16 media pointers passing strict
+validation with zero rejects. **And none of it was applied.**
+
+Phase B fired on the `DONE` push at 12:04 UTC, ran for nine minutes, and
+exited green — against **`D="20260730"`**.
+
+The date came from:
+
+```bash
+git log -1 --name-only --pretty=format: | grep -oE '...DONE' | head -1
+```
+
+on a `fetch-depth: 1` checkout. A shallow clone's single commit is **grafted**
+— it has no parent — so git reports *every file in the tree* as added. The
+grep matched all three bundles' `DONE` markers and `head -1` took the
+**oldest**. Reproduced locally: a depth-1 clone lists `20260730`, `20260731`,
+`20260801` and picks `20260730`.
+
+It looked correct on 2026-07-30 only because the oldest bundle and the current
+date were the same day. **The error grows by one day for every day the repo
+keeps another DONE marker**, and it is completely silent — the run succeeds,
+writes a report for the wrong date, and reports "ready to render".
+
+Cost so far: today's 16 generated, uploaded, SHA-verified ChatGPT images were
+never pinned. The five videos that posted on 2026-08-01 shipped without them.
+
+**Fixed:** `fetch-depth: 2` (so a parent exists to diff against) plus
+`git diff-tree --no-commit-id --name-only -r HEAD`, `sort -r` instead of
+`head -1` on an unsorted list, and a hard check that the resolved date
+actually has a `DONE` — a wrong-but-plausible date is exactly what made this
+invisible. Two tests pin it.
+
+Not back-applied: today's videos already posted, and re-running Phase B now
+would only pin local cache paths that do not exist in CI. The fix takes effect
+on the next `DONE`.
+
+---
+
 ## NOT fixed — needs your decision or a destructive action
 
 ### A. 1.21 GB of git history, ~1.15 GB of it abandoned branches
@@ -183,20 +225,33 @@ Reclaiming the rest means rewriting history on branches that are not merged —
 breaks every existing clone. **Say the word and I'll do it; I won't do it
 unasked.**
 
-### B. The channel has never produced a single retention datapoint
+### B. TRENDING — and only trending — has no retention data
 **Blocker: needs views, not code.**
 
-`usable_for_retention` requires ≥50 views. The channel's all-time maximum is
-**45**. So `average_view_percentage` has never been populated for any trending
-video, and the learning loop, the retro percentiles and the multi-day
-experiments are all running on view counts with a median of 2 — noise being
-laundered into conclusions.
+**Correction to an earlier draft of this document**, which said "the channel
+has never produced a single retention datapoint" while looking only at
+`state/analytics/`. That is the trending channel. The others are fine:
 
-`scripts/build_retro.py` is honest about thin bands, which is why this has not
-produced a garbage ruling yet. But **no experiment on this channel can
-conclude anything until distribution improves.** Fixes 1–3 above are the
-plausible unblock; the honest read is that we should not trust any A/B result
-here for weeks.
+| Channel | Videos | Total views | Median | Max | ≥50 views | Retention-usable |
+|---|---|---|---|---|---|---|
+| **explainer** | 188 | 8,390 | 7 | **1,063** | 47 | 47 |
+| **third** | 112 | 3,929 | 10.5 | 400 | 23 | 23 |
+| **trending** | 72 | 355 | 2 | 45 | **0** | **0** |
+| curiosity | 1 | 0 | 0 | 0 | 0 | 0 |
+
+`usable_for_retention` needs ≥50 views. Trending's all-time max is 45, so it
+has never crossed it — but explainer and third both have real retention
+signal on 47 and 23 videos respectively.
+
+**That comparison is the most useful thing in this audit.** Explainer posts
+1/day, is gated by a headless-Claude showrunner that watches the render, and
+has a video at 1,063 views. Trending posts 6/day, has no showrunner, and its
+best-ever is 45. Six times the volume, one twenty-third the ceiling.
+
+So finding D below is not "the machinery is pointed at the wrong channel" —
+it is closer to evidence that the machinery is **why explainer works**. Any
+experiment on trending is still noise until distribution improves; experiments
+on explainer and third are on solid ground.
 
 ### C. Five capabilities still built and unwired
 **Blocker: each needs a design decision about whether the channel wants it.**
@@ -220,9 +275,14 @@ and that is your call.
 **Blocker: an editorial decision about cost and veto power.**
 
 The headless-Claude showrunner watches rendered frames and holds a sovereign
-veto — on **explainer**, which ships 1/day. Trending ships 6/day with only
-technical QA (now) and a key-gated vision check on one of three formats.
-The most quality machinery points at the lowest-volume channel.
+veto — on **explainer**, which ships 1/day and has a 1,063-view video.
+Trending ships 6/day, has no showrunner, and has never beaten 45 views.
+
+Read alongside the table in B, that is not an imbalance to correct by
+levelling down. It is the strongest available argument for **extending the
+showrunner to trending** — six unwatched videos a day is six chances to ship
+something nobody would have approved. The blocker is cost: six brain runs a
+day instead of one.
 
 ### E. Silent three-day outage, 26–28 July
 **Blocker: needs a decision on where an alert should go.**
