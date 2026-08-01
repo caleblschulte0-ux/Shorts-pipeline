@@ -54,18 +54,33 @@ def main():
     assert not [k for k in kinds(base) if str(k).startswith("scene_")], kinds(base)
     assert kinds(base).count("composite") >= 2, kinds(base)
 
-    # 1. CARDS_OVER_BUDGET at the scene class must put a PERSON on screen
+    # 1. CARDS_OVER_BUDGET at the scene class must get the CARDS OFF SCREEN.
+    #    It used to assert specifically that a scene_* shot appeared. That is
+    #    no longer the only right answer: as of 2026-08-01 the planner refuses
+    #    a scene the beat's own words do not license, because the scene library
+    #    belongs to one film (walkout = "STOP WAITING", queue draws a literal
+    #    NOW SERVING ticket) and staging it on an unrelated beat is what got a
+    #    render labelled UI_WIDGET. An unlicensed beat falls back to real media
+    #    of its own subject instead — which removes the card AND puts real
+    #    material on screen, so the repair is at least as strong.
+    #
+    #    What must still hold, and is what this check is really for: the flag
+    #    materially changes the rendered plan away from cards.
     plan = {"tasks": [{"id": "t1", "defect_code": "CARDS_OVER_BUDGET",
                        "target": "film"}]}
     revised, journal = auto_repair.apply(plan, STORY, escalation="scene")
     after = shots(revised)
-    scene_shots = [k for k in kinds(after) if str(k).startswith("scene_")]
     assert journal[0]["applied"], journal
-    assert scene_shots, (
+    replaced = [k for k in kinds(after)
+                if str(k).startswith("scene_") or k in ("depict", "depict_text")]
+    assert replaced, (
         "the card-budget repair applied cleanly and the planner emitted NO "
-        f"scene — the flag is dead: {kinds(after)}")
-    print(f"ok  1. a card-budget repair reaches the render: {len(scene_shots)} "
-          f"scene shot(s) now exist ({scene_shots})")
+        f"scene and NO real media — the flag is dead: {kinds(after)}")
+    assert kinds(after).count("composite") < kinds(base).count("composite"), (
+        f"cards did not go down: {kinds(base)} -> {kinds(after)}")
+    print(f"ok  1. a card-budget repair reaches the render: cards "
+          f"{kinds(base).count('composite')} -> {kinds(after).count('composite')} "
+          f"({replaced})")
 
     # 2. it converts CARDS — the real footage beat keeps its footage
     assert any(k in ("depict", "depict_text") for k in kinds(after)), (
@@ -76,6 +91,7 @@ def main():
     #    subject the story never had, e.g. a money scene into a physics film)
     money = {"scene_money", "scene_paycheck", "scene_tax", "scene_rent",
              "scene_gas", "scene_grocery", "scene_subs", "scene_savings"}
+    scene_shots = [k for k in kinds(after) if str(k).startswith("scene_")]
     assert not (set(scene_shots) & money), scene_shots
     print("ok  3. conversions use only topic-agnostic scenes, never money-world")
 
@@ -164,7 +180,10 @@ def main():
     assert p_scene.get("tasks"), p_scene
     rev, j_scene = auto_repair.apply(p_scene, STORY, escalation="scene")
     assert [j for j in j_scene if j["applied"]], j_scene
-    assert [k for k in kinds(shots(rev)) if str(k).startswith("scene_")], (
+    # same as check 1: a licensed scene OR real media both count as "the plan
+    # changed". What must not happen is the repair applying and the render
+    # coming out identical.
+    assert kinds(shots(rev)) != kinds(shots(STORY)), (
         "widening produced an applied repair that still changed no shot")
     print("ok  9. a card-budget finding is HELD at local (deferred, not a task) "
           "and both plans and renders one step wider — the loop widens rather "

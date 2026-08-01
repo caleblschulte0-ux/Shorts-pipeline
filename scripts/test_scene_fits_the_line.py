@@ -58,30 +58,61 @@ def test_a_line_that_licenses_a_scene_still_gets_it():
     print("ok  a line that really is about work/sleep/screens still stages it")
 
 
-def test_no_match_stays_inside_the_staging_neutral_set():
-    """Unmatched beats never reach a loaded scene — but still vary.
+def test_no_match_reaches_no_scene_at_all():
+    """There is NO staging-neutral scene in this library — so use none of it.
 
-    A single fallback scene would swap this defect for SAMENESS, which is its
-    own reject label, so the pool is the three staging-neutral scenes rather
-    than one. The four LOADED ones (a doorway payoff, a desk, a screen, a
-    bedroom) must be unreachable without the words to license them.
+    An earlier pass today picked (free, hold, queue) as a "staging-neutral"
+    pool. That was wrong, and the next render proved it in one frame:
+    queue_scene draws a literal "N O W  S E R V I N G" ticket and hold_scene a
+    hold-time counter, both hardcoded. The judge saw "ON HOLD / NOW SERVING
+    dashboard readouts" and labelled the film UI_WIDGET — the same waiting room
+    re-imported through the pool meant to keep it out.
     """
-    loaded = {"scene_walkout", "scene_work", "scene_screen", "scene_sleep"}
     for line in ("Nothing here resembles any staging.",
                  "Volcanic basalt cools into hexagonal columns.",
                  "", "   "):
-        got = {planner._scene_for(bi, 0, line) for bi in range(7)}
-        assert not (got & loaded), (line, got)
-        assert got <= set(planner.GENERIC_STAGINGS), (line, got)
-    # and across beats it really does vary, or six cards become one picture
-    spread = {planner._scene_for(bi, 0, "volcanic basalt cools slowly") for bi in range(6)}
-    assert len(spread) == len(planner.GENERIC_STAGINGS), spread
-    print(f"ok  unmatched lines stay staging-neutral and still rotate ({len(spread)})")
+        for bi in range(7):
+            assert planner._scene_for(bi, 0, line) is None, (line, bi)
+    print("ok  an unlicensed beat reaches no scene at all, not a 'neutral' one")
+
+
+def test_an_unlicensed_beat_gets_real_media():
+    """Refusing a scene is only half a fix — the beat still needs a picture."""
+    shots = planner._scene_phases(
+        3, 9.0, 4.5, line="Volcanic basalt cools into hexagonal columns.",
+        subject="a wall of dark hexagonal stone columns")
+    assert shots and all(s["kind"] == "depict" for s in shots), shots
+    q = shots[0]["motion_query"]
+    assert "hexagonal" in q or "columns" in q or "stone" in q, q
+    # phases must not fetch the SAME clip twice — that is sameness in one beat
+    assert len({s["reseed"] for s in shots}) == len(shots), shots
+    print(f"ok  an unlicensed beat falls back to real media ({q!r})")
+
+
+def test_an_authored_scene_is_checked_too():
+    """The doorway was AUTHORED in the beats file, not rotated onto it.
+
+    shared-air names scene_walkout/queue/hold/sleep/free — the whole life-time
+    library — for a film about the atmosphere. Trusting authored kinds
+    absolutely is what put a waiting-room doorway under a line about lungs.
+    """
+    beats = [{"job": "DEVELOP", "mode": "designed_2d",
+              "narration": "The air arriving in your lungs came from everywhere.",
+              "understand": "a figure breathing in open air",
+              "flat": {"kind": "scene_walkout"}}]
+    kinds = {s.get("kind") for s in planner.plan_story(beats, [6.0])}
+    assert "scene_walkout" not in kinds, kinds
+    assert "depict" in kinds, kinds
+    # ...but an author whose words DO license the staging still gets it
+    beats[0]["narration"] = "You finally leave, walking out through the door."
+    kinds = {s.get("kind") for s in planner.plan_story(beats, [6.0])}
+    assert "scene_walkout" in kinds, kinds
+    print("ok  an authored scene is licensed by the beat's words, or refused")
 
 
 def test_variety_survives_within_a_matching_beat():
     """A long beat still changes staging between phases when it can."""
-    line = "You wait in line for hours, then you leave and walk outside."
+    line = "You wait on hold for hours, then you leave and walk outside."
     seen = {planner._scene_for(0, k, line) for k in range(4)}
     assert len(seen) > 1, seen
     assert seen <= set(planner.NEUTRAL_SCENES), seen
@@ -102,7 +133,9 @@ def test_the_planner_actually_uses_it():
 if __name__ == "__main__":
     test_the_shared_air_beat_no_longer_gets_a_waiting_room()
     test_a_line_that_licenses_a_scene_still_gets_it()
-    test_no_match_stays_inside_the_staging_neutral_set()
+    test_no_match_reaches_no_scene_at_all()
+    test_an_unlicensed_beat_gets_real_media()
+    test_an_authored_scene_is_checked_too()
     test_variety_survives_within_a_matching_beat()
     test_the_planner_actually_uses_it()
     print("all scene-fit checks pass")

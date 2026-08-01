@@ -69,7 +69,7 @@ NEUTRAL_SCENES = ("scene_free", "scene_hold", "scene_walkout", "scene_queue",
 # and the 5-char stem makes near-misses collide — "everyone" in the queue domain
 # matched "everywhere" in the air line and nearly re-staged the same waiting
 # room this whole change exists to stop. When in doubt, leave the word out: a
-# miss falls back to the staging-neutral pool, which is the safe direction.
+# miss falls back to real media, which is the safe direction.
 SCENE_DOMAIN = {
     "scene_hold": "wait waiting waited hold holding held delay delayed "
                   "stuck stalled paused",
@@ -85,40 +85,44 @@ SCENE_DOMAIN = {
                     "online feed device",
     "scene_sleep": "sleep sleeping asleep bed bedroom dream dreaming "
                    "awake night",
-    "scene_free": "open free air sky world everywhere anywhere breathe "
-                  "move moving alone stand",
+    # free_scene is a RELEASE payoff — a figure in open space as the sky warms
+    # to sunrise, default label "YEARS ARE YOURS". Its domain was briefly
+    # "open free air sky world everywhere move stand", which matches almost any
+    # narration ever written and made it a near-universal match — the lottery
+    # coming back through the door marked exit. It gets release words only.
+    "scene_free": "freedom freed liberated release released unburdened "
+                  "reclaim reclaimed yours",
 }
 
-# What a beat gets when its words license nothing. NOT a single scene: six
-# unmatched beats all staged identically is SAMENESS, which is its own reject
-# label — the fix for one defect must not manufacture another.
+# THERE IS NO STAGING-NEUTRAL SCENE IN THIS LIBRARY. An earlier pass this same
+# day picked (scene_free, scene_hold, scene_queue) as a "staging-neutral" pool
+# for beats whose words licensed nothing. That was wrong and the next render
+# proved it in one frame: `queue_scene` draws a literal "N O W  S E R V I N G"
+# ticket display and `hold_scene` a hold-time counter, both hardcoded, neither a
+# parameter. The blind judge saw "dark navy pictogram plates with an ON HOLD /
+# NOW SERVING dashboard readout" and labelled the film UI_WIDGET — the same
+# waiting room, re-imported through the pool meant to keep it out.
 #
-# These three are the staging-neutral ones: a figure in open space, a figure in
-# a room that dims, a row of figures. They read as "a person, somewhere" and
-# carry no claim. The four left out do: walkout is a bright doorway PAYOFF,
-# work is a desk, screen is a glowing monitor, sleep is a starry bedroom. Those
-# only appear when the beat actually asks for them.
-#
-# Even these three are compromises — scene_free still carries a sunrise mood.
-# A genuinely generic staging library does not exist yet; building one is the
-# real fix. Until then this picks among the least wrong, instead of dealing a
-# specific scene off the top of the deck.
-GENERIC_STAGINGS = ("scene_free", "scene_hold", "scene_queue")
+# So the rule is not "pick the least loaded scene". It is: if the beat's own
+# words do not license a scene, DO NOT REACH INTO THIS LIBRARY AT ALL. Fall
+# back to real media of the beat's actual subject, which is both honest and the
+# thing the rubric keeps asking for. If no media resolves, `_depict_shot`
+# already degrades to a labelled statement card — a known, recorded fallback,
+# not a fictional room the story never mentioned.
 
 
-def _scene_for(bi: int, k: int, line: str) -> str:
-    """The designed scene whose subject the beat's own words support.
+def _scene_for(bi: int, k: int, line: str) -> str | None:
+    """The designed scene whose subject the beat's own words support, or None.
 
-    Rotation is kept — but only among scenes the line licenses, or among the
-    staging-neutral ones when it licenses none. Either way a long beat still
-    changes staging between phases, without importing a subject the story never
-    had.
+    None means "this library has nothing honest for this beat" — the caller
+    must find real material instead. Rotation survives among the scenes a line
+    does license, so a long beat still changes staging between phases.
     """
+    if not str(line).strip():
+        return None
     fit = [s for s in NEUTRAL_SCENES
-           if textmatch.shares(line, SCENE_DOMAIN.get(s, ""))] \
-        if str(line).strip() else []
-    pool = fit or GENERIC_STAGINGS
-    return pool[(bi + k) % len(pool)]
+           if textmatch.shares(line, SCENE_DOMAIN.get(s, ""))]
+    return fit[(bi + k) % len(fit)] if fit else None
 
 
 def _phase_lengths(secs: float, maxu: float) -> list[float]:
@@ -141,8 +145,28 @@ def _phase_lengths(secs: float, maxu: float) -> list[float]:
     return [secs / n] * n
 
 
+def _subject_query(text: str) -> str:
+    """A stock-search subject built from the beat's OWN words.
+
+    Not a keyword salad: the first few content words in order, which is how a
+    human would describe the shot they want. Deliberately short — provider
+    search degrades badly past three or four terms.
+    """
+    seen, out = set(), []
+    import re as _re
+    for w in _re.findall(r"[A-Za-z]+", str(text)):
+        lw = w.lower()
+        if len(lw) < 4 or lw in textmatch.STOP or lw[:5] in seen:
+            continue
+        seen.add(lw[:5]); out.append(lw)
+        if len(out) == 4:
+            break
+    return " ".join(out)
+
+
 def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
-                  number: str = "", label: str = "", mood=None) -> list[dict]:
+                  number: str = "", label: str = "", mood=None,
+                  subject: str = "") -> list[dict]:
     """A designed/character beat as a SEQUENCE. Each phase moves the same figure
     to a different situation — rotating only among the scenes the beat's own
     words license (`_scene_for`) — so a long beat keeps introducing something new
@@ -150,8 +174,23 @@ def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
     first phase; the rest are silent visual development."""
     out = []
     for k, dur in enumerate(_phase_lengths(secs, maxu)):
-        sh = {"kind": _scene_for(bi, k, line),
-              "seconds": dur, "number": number, "label": label, "mood": mood}
+        kind = _scene_for(bi, k, line)
+        if kind:
+            sh = {"kind": kind, "seconds": dur, "number": number,
+                  "label": label, "mood": mood}
+        else:
+            # No honest scene for these words -> REAL MATERIAL, not a borrowed
+            # room. The beat's own line is the search subject, which is exactly
+            # the anchoring the media repair enforces elsewhere.
+            # `understand` is the beat's AUTHORED intent ("a figure standing
+            # still while the world moves around them") and describes a shot;
+            # narration describes an idea. Prefer the former. `reseed` differs
+            # per phase so two phases of one beat do not fetch the same clip —
+            # that would be SAMENESS inside a single beat.
+            sh = {"kind": "depict", "seconds": dur,
+                  "motion_query": _subject_query(subject or line),
+                  "reseed": k, "line_hint": line,
+                  "number": number, "label": label}
         if k == 0 and line:
             sh["line"] = line
         out.append(sh)
@@ -213,7 +252,9 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
             for sh in _scene_phases(bi, secs, maxu, line=line,
                                     number=num.get("text", ""),
                                     label=num.get("label", "") or b.get("text", ""),
-                                    mood=(b.get("flat") or {}).get("mood")):
+                                    mood=(b.get("flat") or {}).get("mood"),
+                                    subject=str(b.get("understand", "")
+                                                or b.get("subject", ""))):
                 emit(sh)
             continue
 
@@ -221,6 +262,27 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         # only when NO number/text rides it (those route to composite below).
         if b.get("flat") and not b.get("number") and not b.get("text"):
             sh = dict(b["flat"])
+            # AN AUTHORED SCENE IS STILL A CLAIM ABOUT THE SUBJECT, and the
+            # author can be wrong. shared-air's beats file names scene_walkout,
+            # scene_queue, scene_hold, scene_sleep and scene_free — the entire
+            # where-your-life-goes library — for a film about the atmosphere.
+            # So beat 6 played a dim room with a bright doorway ("leaving the
+            # waiting behind") under "the air arriving in your lungs did not
+            # come from your room", and the blind judge called the doorway a
+            # dashboard plate and the film UI_WIDGET. Nothing checked it,
+            # because authored kinds were trusted absolutely.
+            #
+            # A scene the beat's own words do not license is refused here the
+            # same way the rotation path refuses one: fall back to real media
+            # of the beat's actual subject. An author who really wants the
+            # staging can say so in the words.
+            if str(sh.get("kind", "")) in NEUTRAL_SCENES and \
+                    not _scene_for(bi, 0, line):
+                for ph in _scene_phases(bi, secs, maxu, line=line,
+                                        subject=str(b.get("understand", "")
+                                                    or b.get("subject", ""))):
+                    emit(ph)
+                continue
             # a long comparison must not carry the whole beat: cap it, then let
             # a footage development phase (if provided) finish the idea.
             if sh["kind"] == "flat_compare" and secs > maxu and foot:
@@ -238,7 +300,9 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
                 if foot:
                     emit(_footage(foot, rest, b, phase="development"))
                 else:
-                    for ph in _scene_phases(bi + 1, rest, maxu):
+                    for ph in _scene_phases(bi + 1, rest, maxu, line=line,
+                                            subject=str(b.get("understand", "")
+                                                        or b.get("subject", ""))):
                         emit(ph)
             else:
                 emit({**sh, "seconds": secs, "line": line})
