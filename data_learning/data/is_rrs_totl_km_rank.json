@@ -1,0 +1,38 @@
+{
+  "key": "is_rrs_totl_km_rank",
+  "title": "Rail lines",
+  "unit": "total route-km",
+  "geography": "Top 5 countries",
+  "time_coverage": "2021",
+  "insight_type": "rank",
+  "source": {
+    "name": "Rail lines",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IS.RRS.TOTL.KM",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "United States",
+      "value": 148553
+    },
+    {
+      "label": "China",
+      "value": 109767
+    },
+    {
+      "label": "Russian Federation",
+      "value": 85544
+    },
+    {
+      "label": "India",
+      "value": 68103
+    },
+    {
+      "label": "Canada",
+      "value": 48150
+    }
+  ]
+}

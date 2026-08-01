@@ -1,0 +1,48 @@
+{
+  "key": "ag_prd_crop_xd_trend",
+  "title": "Crop production index",
+  "unit": "2014-2016 = 100",
+  "geography": "World",
+  "time_coverage": "1972-2020",
+  "insight_type": "trend",
+  "source": {
+    "name": "Crop production index",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.PRD.CROP.XD",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 20.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 21.6,
+      "period": "1982"
+    },
+    {
+      "label": "1991",
+      "value": 25.6,
+      "period": "1991"
+    },
+    {
+      "label": "2001",
+      "value": 89.3,
+      "period": "2001"
+    },
+    {
+      "label": "2010",
+      "value": 93.9,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 100.0,
+      "period": "2020"
+    }
+  ]
+}

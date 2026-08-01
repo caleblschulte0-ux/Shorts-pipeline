@@ -1,0 +1,38 @@
+{
+  "key": "sh_xpd_ghed_gd_zs_rank",
+  "title": "Domestic general government health expenditure",
+  "unit": "% of GDP",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Domestic general government health expenditure",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.XPD.GHED.GD.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Tuvalu",
+      "value": 19.7
+    },
+    {
+      "label": "Naoero",
+      "value": 15.2
+    },
+    {
+      "label": "Marshall Islands",
+      "value": 10.1
+    },
+    {
+      "label": "Sweden",
+      "value": 9.6
+    },
+    {
+      "label": "Germany",
+      "value": 9.29
+    }
+  ]
+}

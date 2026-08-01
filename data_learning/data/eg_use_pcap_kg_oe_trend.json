@@ -1,0 +1,48 @@
+{
+  "key": "eg_use_pcap_kg_oe_trend",
+  "title": "Energy use",
+  "unit": "kg of oil equivalent per capita",
+  "geography": "World",
+  "time_coverage": "1990-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Energy use",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.USE.PCAP.KG.OE",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 1626,
+      "period": "1990"
+    },
+    {
+      "label": "1997",
+      "value": 1585,
+      "period": "1997"
+    },
+    {
+      "label": "2003",
+      "value": 1636,
+      "period": "2003"
+    },
+    {
+      "label": "2010",
+      "value": 1798,
+      "period": "2010"
+    },
+    {
+      "label": "2016",
+      "value": 1786,
+      "period": "2016"
+    },
+    {
+      "label": "2023",
+      "value": 1866,
+      "period": "2023"
+    }
+  ]
+}

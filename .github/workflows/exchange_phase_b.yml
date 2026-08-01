@@ -1,0 +1,154 @@
+name: Exchange Phase B (consume ChatGPT, self-fill, ready to render)
+
+# Fires the moment ChatGPT commits exchange/bundles/<date>/DONE — no clock
+# guessing, so nothing starts too soon or too late. Pulls the verified Drive
+# media, self-fills anything ChatGPT missed, and applies script punch-ups that
+# survive the claim guard.
+#
+# POLICY A (operator decision 2026-07-30): a ChatGPT no-show never costs us the
+# day. The backstop schedule below runs Phase B anyway with whatever real media
+# Phase A found — a weaker shot beats no video.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'exchange/bundles/*/DONE'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Bundle date (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      channel:
+        required: false
+        default: 'trending'
+      require_done:
+        description: 'Defer unless ChatGPT wrote DONE'
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        required: false
+        type: boolean
+        default: false
+  # BACKSTOP: if ChatGPT never writes DONE, the push trigger never fires and
+  # the day would never render at all.
+  #
+  # 12:45 UTC is chosen to be SAFE IN BOTH DST HALVES. The operator's ChatGPT
+  # task runs 6:00 AM Central, and ChatGPT Tasks are LOCAL time while these
+  # crons are UTC — so ChatGPT fires 11:00 UTC in summer (CDT) and 12:00 UTC
+  # in winter (CST). A backstop before that would render pre-ChatGPT media
+  # every day for half the year, silently, with everything green. 12:45 gives
+  # ChatGPT 105 min of room in summer and 45 min in winter.
+  #
+  # Normal path is unaffected: Phase B fires on the DONE push the moment
+  # ChatGPT finishes (~11:20 summer), render 11:25-12:35, first publish slot
+  # 13:00 UTC / 08:00 Central — comfortable. The backstop only runs on a
+  # genuine no-show, and on those days the 08:00 slot may be missed;
+  # schedule_times() simply takes the next free slot (09:30 Central). Shipping
+  # one slot later beats shipping pre-ChatGPT media.
+  schedule:
+    - cron: '45 12 * * *'
+
+permissions:
+  contents: write
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  phase-b:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: exchange-${{ inputs.channel || 'trending' }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch
+        run: |
+          set -e
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install python deps
+        run: pip install -q pillow requests
+
+      - name: Resolve the date being answered
+        id: which
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          if [ -z "$DATE" ] && [ "${{ github.event_name }}" = "push" ]; then
+            # Take the date from the DONE path that triggered this run.
+            DATE=$(git log -1 --name-only --pretty=format: \
+                   | grep -oE 'exchange/bundles/[0-9-]+/DONE' \
+                   | head -1 | cut -d/ -f3 || true)
+          fi
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+          echo "answering bundle date: $DATE"
+
+      - name: Skip backstop when Phase B already ran
+        id: guard
+        run: |
+          set -e
+          D="${{ steps.which.outputs.date }}"
+          if [ "${{ github.event_name }}" = "schedule" ] \
+             && [ -f "exchange/bundles/$D/phase_b_report.json" ]; then
+            echo "already applied for $D — backstop no-ops"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Consume ChatGPT + self-fill
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          set -e
+          FLAGS=""
+          [ "${{ inputs.require_done }}" = "true" ] && FLAGS="$FLAGS --require-done"
+          [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="$FLAGS --dry-run"
+          python scripts/exchange_phase_b.py \
+            --date "${{ steps.which.outputs.date }}" \
+            --channel "${{ inputs.channel || 'trending' }}" $FLAGS
+
+      - name: Commit applied media + punch-ups
+        if: ${{ steps.guard.outputs.skip != 'true' && inputs.dry_run != true }}
+        run: |
+          set -e
+          D="${{ steps.which.outputs.date }}"
+          bash scripts/ci_commit_state.sh \
+            "exchange: phase B applied for $D [skip ci]" \
+            "exchange/bundles/$D" \
+            state/trending_packages state/third_packages
+
+      - name: Hand off to render
+        if: ${{ steps.guard.outputs.skip != 'true' && inputs.dry_run != true }}
+        run: |
+          D="${{ steps.which.outputs.date }}"
+          echo "::notice::Packages for $D now carry final scripts + media."
+          echo "::notice::daily.yml renders automatically on this workflow"
+          echo "::notice::completing (workflow_run) — nothing to dispatch."
+          # The ingest step above already logs ::notice/::warning per package;
+          # this just surfaces the takeover in the job summary.
+          if [ -f "exchange/bundles/$D/authored_report.json" ]; then
+            echo "::notice::AUTHORING TAKEOVER ran for $D — see"
+            echo "::notice::exchange/bundles/$D/authored_report.json"
+          fi

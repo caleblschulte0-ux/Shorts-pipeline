@@ -1,0 +1,48 @@
+{
+  "key": "ag_con_fert_zs_trend",
+  "title": "Fertilizer consumption",
+  "unit": "kilograms per hectare of arable land",
+  "geography": "World",
+  "time_coverage": "1972-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Fertilizer consumption",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.CON.FERT.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-29"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-29. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 61.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 87.0,
+      "period": "1982"
+    },
+    {
+      "label": "1992",
+      "value": 94.0,
+      "period": "1992"
+    },
+    {
+      "label": "2003",
+      "value": 109.8,
+      "period": "2003"
+    },
+    {
+      "label": "2013",
+      "value": 133.4,
+      "period": "2013"
+    },
+    {
+      "label": "2023",
+      "value": 137.6,
+      "period": "2023"
+    }
+  ]
+}

@@ -98,6 +98,95 @@ def _opening_guard(raw: Path, t0: float, t1: float) -> tuple[float, float]:
     return round(t0 + adv, 2), round(adv, 2)
 
 
+def _closing_guard(raw: Path, t0: float, t1: float) -> tuple[float, float]:
+    """Never let the LAST frame be a dead frame — the closing twin of
+    _opening_guard, which existed alone for months while nothing ever
+    checked t1. Production proof (2026-07-29, run 30459022509): the +2.2s
+    reaction tail ran a cut into the source's fade-to-black, the black tail
+    was under QA's 0.7s blackdetect floor, and — because the contact sheet
+    stamps its last tile at 0.958*dur — it was GUARANTEED to be the frame
+    the vision critic saw: 'last frame (~14.7s) is solid black'.
+
+    Probes the final ~1.2s before t1; if black or a frozen frame runs to
+    the very end, pulls t1 back to where the dead tail starts. Bounded to
+    <=2.5s (the reaction-tail scale) and never below t0+3.0s. Returns
+    (t1, trimmed_by). Fail-open: errors or a healthy ending return t1."""
+    MAX_TRIM = 2.5
+    room = (t1 - t0) - 3.0
+    if room <= 0.1:
+        return t1, 0.0
+    win = min(1.2, room)
+    try:
+        p = subprocess.run(
+            ["ffmpeg", "-v", "info", "-ss", f"{max(0.0, t1 - win)}",
+             "-t", f"{win}", "-i", str(raw), "-an", "-vf",
+             "blackdetect=d=0.2:pic_th=0.90,freezedetect=n=-55dB:d=0.4",
+             "-f", "null", "-"],
+            capture_output=True, text=True, timeout=30)
+        err = (p.stderr or "") + (p.stdout or "")
+    except Exception:  # noqa: BLE001 — a probe must never break a render
+        return t1, 0.0
+    trim = 0.0
+    # black that runs to (or within ~0.15s of) the end of the window
+    for m in re.finditer(r"black_start:([\d.]+).*?black_end:([\d.]+)", err):
+        if float(m.group(2)) >= win - 0.15:
+            trim = max(trim, win - float(m.group(1)))
+    # frozen final frames (stream-end stall) — keep a 0.3s beat of the hold
+    fz = re.search(r"freeze_start:\s*([\d.]+)", err)
+    if fz and not re.search(r"freeze_end", err):
+        trim = max(trim, win - float(fz.group(1)) - 0.3)
+    if trim <= 0.05:
+        return t1, 0.0
+    trim = min(trim, MAX_TRIM, room)
+    return round(t1 - trim, 2), round(trim, 2)
+
+
+def _content_crop(src: Path, dur: float) -> str:
+    """Detect near-black letterbox/pillarbox bars baked into the SOURCE and
+    return a crop filter prefix ('crop=W:H:X:Y,') that strips them — or ''
+    when the frame is genuinely full. Without this, an already-boxed source
+    (vertical stream inside 1920x1080, small game window with bars) goes
+    through the blur-fill graph bars and all: shrunk a second time into a
+    'tiny letterboxed rectangle surrounded by blurred/dead padding' (the
+    2026-07-29 vision reject, and the recurring letterbox-class reject in
+    third_qa_stats). Conservative on purpose: only crops when the detected
+    picture is 25-92% of the frame — under 25% is a detection failure, over
+    92% is normal edge noise. Fail-open: any error returns ''."""
+    try:
+        probe = subprocess.check_output(
+            ["ffprobe", "-v", "quiet", "-select_streams", "v:0",
+             "-show_entries", "stream=width,height", "-of", "csv=p=0",
+             str(src)], text=True, timeout=30).strip().split(",")
+        full_w, full_h = int(probe[0]), int(probe[1])
+        rects = []
+        for frac in (0.25, 0.5, 0.75):
+            p = subprocess.run(
+                ["ffmpeg", "-v", "info", "-ss", f"{max(0.0, dur * frac)}",
+                 "-t", "0.5", "-i", str(src), "-an",
+                 "-vf", "cropdetect=limit=24:round=2", "-f", "null", "-"],
+                capture_output=True, text=True, timeout=30)
+            for m in re.finditer(r"crop=(\d+):(\d+):(\d+):(\d+)",
+                                 p.stderr or ""):
+                rects.append(tuple(int(g) for g in m.groups()))
+        if not rects:
+            return ""
+        # take the LARGEST detected rect across samples — content moves,
+        # bars don't, so the union over time is the safe crop
+        w = max(r[0] for r in rects)
+        h = max(r[1] for r in rects)
+        x = min(r[2] for r in rects)
+        y = min(r[3] for r in rects)
+        ratio = (w * h) / float(full_w * full_h)
+        if not (0.25 <= ratio <= 0.92):
+            return ""
+        print(f"[reframe] source carries baked-in bars — cropping to "
+              f"{w}x{h}+{x}+{y} ({ratio:.0%} of frame) before compose",
+              flush=True)
+        return f"crop={w}:{h}:{x}:{y},"
+    except Exception:  # noqa: BLE001 — a probe must never break a render
+        return ""
+
+
 # ---------- 1. discover ----------
 
 # Twitch Helix path — used automatically when TWITCH_CLIENT_ID/SECRET are
@@ -599,6 +688,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     if opening_adv:
         print(f"[opening] trimmed {opening_adv:.2f}s of dead lead-in "
               f"(t0 -> {t0:.2f}s)", flush=True)
+    # CLOSING GUARD: the symmetric check on t1 — never END on black or a
+    # stream-end freeze (the reaction tail and whole-clip fallbacks read
+    # timestamps, not pixels). Runs before the caption rebase so word
+    # filtering sees the final cut.
+    t1, closing_trim = _closing_guard(raw, t0, t1)
+    if closing_trim:
+        print(f"[closing] trimmed {closing_trim:.2f}s of dead tail "
+              f"(t1 -> {t1:.2f}s)", flush=True)
     if not start and not end and words:
         # captions: only words that fit ENTIRELY inside the cut — a caption
         # for a half-sliced word reads as a broken edit
@@ -693,8 +790,12 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # blur-fill center reframe — the guaranteed, battle-tested look
             # (auto=False renders exactly this path).
             src = program
+            # strip baked-in letterbox/pillarbox bars FIRST, so a source
+            # that is already boxed doesn't get boxed again inside the blur
+            # fill (the 'tiny rectangle in dead padding' reject class)
+            bar_crop = _content_crop(src, dur)
             _blur = (
-                "[0:v]split=2[bg][fg];"
+                f"[0:v]{bar_crop}split=2[bg][fg];"
                 f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
                 "increase,crop=1080:1920,gblur=sigma=24,"
                 # was brightness=-0.12 — darkening an already-dark IRL clip
@@ -702,7 +803,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 # Streamer University footage). A hair of darken keeps the
                 # centered clip popping without swallowing dim sources.
                 "eq=brightness=-0.03:saturation=1.15[bgd];"
-                "[fg]scale=1080:-2[fgs];"
+                # fit INSIDE the canvas (identical 1080-wide result for 16:9,
+                # but a taller-than-9:16 source now scales to fit instead of
+                # overflowing and being silently edge-cropped by the overlay)
+                f"[fg]scale={CANVAS_W}:{CANVAS_H}:"
+                "force_original_aspect_ratio=decrease[fgs];"
                 "[bgd][fgs]overlay=(W-w)/2:(H-h)/2[base]"
             )
             base_vf = _blur + f";[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
@@ -823,6 +928,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             for p in (extra_inputs or []):
                 cmd += ["-i", str(p)]
             cmd += ["-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
+                    # cap the container at the cut length: without -t, an
+                    # audio stream that outlasts the video (yt-dlp recode)
+                    # extends the file with picture-less tail — the afade
+                    # timing and QA's AV_DRIFT allowance both assume `dur`
+                    "-t", f"{dur:.3f}",
                     "-af", afade,
                     "-c:v", "libx264", "-preset", "medium", "-crf", "19",
                     "-pix_fmt", "yuv420p", "-r", "30",
@@ -863,7 +973,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     return {"kind": "twitch_clip", "credit": credit,
             "render_level": render_level,
             "cut": [t0, t1], "duration_s": round(dur, 2),
-            "opening_trim_s": opening_adv,
+            "opening_trim_s": opening_adv, "closing_trim_s": closing_trim,
             "caption_words": len(words), "hook": hook,
             "reframe": "face" if reframed is not None else "blur",
             **ledger_ae}

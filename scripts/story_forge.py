@@ -459,7 +459,16 @@ def _brain_words(dss: list[dict]) -> dict | None:
 
 
 def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
-    words = _brain_words(dss) or _fallback_words(dss)
+    # WHO wrote the words. The numbers always come from the source, but the
+    # title/hook/narration come from a brain — and when no brain is reachable
+    # (Claude out AND no Groq/Gemini key) the deterministic path produces
+    # lines like "Congo, Dem. Rep. Beats Everyone On Male primary school age
+    # children out-of-school". Recording it here is what lets the exchange
+    # SEE that Claude contributed nothing and hand the words to ChatGPT
+    # instead of shipping that. See shared/authoring_brief.py.
+    words = _brain_words(dss)
+    words_by = "brain" if words else "deterministic"
+    words = words or _fallback_words(dss)
     title = str(words.get("title", "")).strip()
     slug = _slugify(title)
     if not slug or slug in used_slugs:
@@ -497,7 +506,8 @@ def compose(dss: list[dict], used_slugs: set[str]) -> dict | None:
             "hashtags": [t for t in tags if t][:12] or ["data", "facts", "shorts"],
             "question": str(words.get("question") or
                             "Which number surprised you most?").strip(),
-            "segments": segs, "_datasets": dss}
+            "segments": segs, "_datasets": dss,
+            "words_by": words_by}
 
 
 # --------------------------------------------------------------------------- #

@@ -5,7 +5,6 @@ curiosity, third "Proof Mode"). Channels are defined by orchestrator +
 config + posted-log + token env, not by folders — see
 `docs/STORAGE_AUDIT.md` §2 for the full map.
 
-<<<<<<< HEAD
 ## The showrunner is the permanent, autonomous quality authority — DO NOT WEAKEN IT
 
 The explainer channel fails CLOSED (see `docs/EDITORIAL_RESET.md`). The
@@ -31,14 +30,27 @@ is better videos, never a weaker gate.
 ## Data (the mascot) performs a bespoke pose PER SCENE
 
 `data_learning/mascot_director.py` renders **any** pose from parameters
-(`_a_pose`: hand targets + lower body + props + expression + motion). The rig
-(how he's drawn) never changes; WHAT he does is regenerated per beat via
-`author_performance(...)` — brain-authored when `MASCOT_BRAIN=1`, else a
-distinct preset rotated by scene index so no two beats reuse the same act
-(two "sitting" beats can be totally different: spooning soup off a can vs.
-gripping a bird mid-flight). Add new acts as `POSE_PRESETS` entries; never
-regress him to one static reused pose.
-=======
+(`_a_pose`: hand targets + lower body + props + expression + motion). WHAT he
+does is regenerated per beat via `author_performance(...)` — brain-authored
+when `MASCOT_BRAIN=1`, else a distinct preset rotated by scene index so no two
+beats reuse the same act (two "sitting" beats can be totally different:
+spooning soup off a can vs. gripping a bird mid-flight). Add new acts as
+`POSE_PRESETS` entries; never regress him to one static reused pose.
+
+The RIG (how he is drawn) lives in `scripts/build_mascot_svg.py` and is the
+single source of truth; `assets/mascot/host/*.svg|png` are generated from it
+(`python scripts/build_mascot_svg.py --png`). Changing it changes the
+character, so change it only on an explicit request — and regenerate the
+assets in the same commit.
+
+**Trending is THREE formats, 2 each, 6/day**: `reddit_story` (gameplay +
+post card + TTS), `text_card` (typographic card over b-roll), `graph_race`
+(animated chart). It is NOT the old single stacked/gameplay format — that is
+a fallback shape only. Full spec + required fields per format:
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` (top section). It regressed to 6-of-one on
+2026-07-30 because the spec lived only in the Routine's prompt; if you ever
+see a slate of six identical formats, that is the bug.
+
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 
 Top-of-funnel media in **`funnel/`** (media_funnel, topic/entity image
@@ -56,7 +68,21 @@ in **`engines/`**. Channels are thin consumers: daily renderers at root
   the packages.
 - New shared capability → `funnel/` (media), `engines/` (render engine),
   `shared/` (everything else). Never copy shared logic into a channel.
->>>>>>> origin/main
+- Capability sprint 2026-07-30 added: `shared/video_qa.py` (finished-render
+  QA — run it before uploads), `shared/captions.py` (karaoke ASS captions),
+  `funnel/feeds.py` + `funnel/article_extract.py` (research intake), and
+  the `svg_motion` engine (animated vector cards). All opt-in, all tested
+  via `python -m unittest tests.test_capabilities`.
+
+## The story forge keeps the queue full of REAL data
+
+`scripts/story_forge.py` discovers indicators from the live World Bank WDI
+catalogue, fetches world trends / country rankings, and writes datasets with
+honest provenance (publisher, url, access_date, officiality=official). The
+brain writes only the WORDS and the SCENE; every number comes from the
+source. Run by `story_forge.yml` (twice daily) and by every posting run.
+Never refill the queue with LLM-invented numbers — the editorial gate
+refuses them, so a queue full of them still ships nothing.
 
 ## Engines: the shared capability layer — USE IT
 
@@ -87,6 +113,38 @@ Rules:
   contract). One at a time, each earning its slot with a better video.
 - Models/caches live in `cache/` (gitignored) — never commit binaries.
 
+## ChatGPT exchange (docs/EXCHANGE_PIPELINE.md)
+
+The daily run splits so ChatGPT contributes BEFORE any render: Phase A finds
+media and judges every shot against its script line, writes one bundle of gap
+requests + scripts, and stops. ChatGPT answers (images to Drive, punch-ups to
+git) and writes a DONE marker, which fires Phase B: verified media pull,
+self-fill for anything unfulfilled, guarded punch-up, then render.
+
+- **Pollinations is retired as the AI-image path** — all AI images come from
+  ChatGPT; gaps it misses get filled with real media by the self-fill pass.
+- **Policy A**: a ChatGPT no-show never costs the day (self-fill + a 06:15
+  backstop cron). A weaker shot beats no video.
+- `shared/punchup_guard.py` is not advisory: a rewrite that changes any
+  number/date/entity or the beat structure is rejected and the original ships.
+- **The chain is LIVE and automatic** (2026-07-30): Routine authors packages ->
+  auto-merge -> **Phase A** -> ChatGPT -> DONE -> **Phase B** -> daily.yml
+  renders. `daily.yml` NO LONGER fires on auto-merge or on a
+  `state/trending_packages/**` push — those would render with pre-ChatGPT media
+  and defeat the exchange. Phase A took that slot; daily.yml now fires only on
+  Phase B completing (or a manual `.github/triggers/daily` touch).
+- Never dispatch `daily.yml` as the step after authoring — it is the LAST step.
+- Clock: Routine ~09:19 UTC -> Phase A (auto, 09:45 cron backstop) -> ChatGPT
+  6:00 AM Central -> Phase B (auto on DONE, 12:45 UTC backstop) -> render.
+  Posts land 8:00/9:30/11:00/12:30/2:00/3:30 Central. Phase B's backstop is
+  DELIBERATELY late (12:45 UTC): ChatGPT's task is local-time and shifts an
+  hour at DST while these crons do not, so an earlier backstop would render
+  pre-ChatGPT media for half the year with everything green.
+- A Phase A that finds no packages exits 0 — so this bug class is INVISIBLE in
+  the Actions tab. To confirm the exchange ran, check for
+  `exchange/bundles/<date>/bundle.json`, not a green checkmark.
+- Third/explainer chain off "Daily Shorts", so they now run ~1.5h later too.
+
 ## Third channel: story arc system (docs/STORY_ARC_SYSTEM.md)
 
 The third channel's `story_count` daily slots auto-detect narrative arcs
@@ -104,6 +162,39 @@ transformative-evidence lane when the script directly engages with it,
 the amount is proportionate, and the use is documented. Never bypass
 DRM/paywalls/rate limits. The funnel pulls from 18 providers; new source
 adapters are tickets M1–M9 in the doctrine doc.
+
+## Fallbacks + the reserve bank (docs/FALLBACKS.md)
+
+Every fallback path is traced top-to-bottom in `docs/FALLBACKS.md`. The two
+things worth knowing without opening it:
+
+- **Authoring is the only Claude-dependent stage.** Media, render, and
+  upload have no Claude dependency; `_call_llm` has always preferred
+  Groq → Gemini → Anthropic. The showrunner is the exception and it fails
+  CLOSED — no Claude *and* no `GEMINI_API_KEY` means the explainer channel
+  publishes nothing (`post_stories.py` refuses `SHOWRUNNER=off` on a
+  publish run).
+- **Two lines cover a dead brain, in order.** The **reserve bank** first,
+  then the **ChatGPT authoring takeover** (`shared/authoring_brief.py` +
+  `scripts/ingest_authored.py`): Phase A puts an `authoring_request` in the
+  bundle, ChatGPT writes the day's packages, Phase B validates and promotes
+  them. Nothing ChatGPT writes is trusted — promotion runs the same
+  structural gate the bank and the renderers use, and a failure is
+  quarantined into `authored_report.json`, never rendered. It runs the SAME
+  DAY (Phase A 4:45am Central → ChatGPT 6:00am → render → the normal
+  publish slots), so a Claude-out morning costs zero posts.
+  The takeover covers TRENDING because that was the only channel whose
+  floor was "nothing" or "a duplicate upload". Explainer, curiosity and
+  third all self-heal to Groq/deterministic authoring — they keep posting,
+  just worse. Extending the takeover to them is a quality project needing
+  a Phase A/B split per channel; see `docs/FALLBACKS.md` §6.
+- **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
+  banked EVERGREEN packages drawn automatically when a day comes up short.
+  `fill` is a no-op on a normal day, so it runs unconditionally in both
+  `exchange_phase_a.yml` and `daily.yml`. Deposit refuses date-anchored
+  language; a package is drawn exactly once (`state/package_buffer/used.json`)
+  so it can never duplicate an upload. The Routine tops it up — step 5b of
+  `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
 
 ## Storage rules (from the audit — docs/STORAGE_AUDIT.md)
 

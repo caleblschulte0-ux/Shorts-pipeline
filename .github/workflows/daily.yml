@@ -28,8 +28,17 @@ on:
   # fired after auto-merge. workflow_run on the merge workflow side-
   # steps that — daily.yml runs when auto-merge.yml completes
   # successfully, regardless of who attributed the resulting push.
+  # RENDER HAND-OFF (exchange chain, 2026-07-30). This used to fire on
+  # "Auto-merge claude PRs" — i.e. the moment the Routine's packages landed —
+  # which now RACES the exchange: it would render with pre-ChatGPT media every
+  # single day and silently defeat the whole point. Auto-merge now kicks
+  # EXCHANGE PHASE A instead; this renders only once Phase B has finalized the
+  # scripts and media. workflow_run (not push) because Phase B commits with
+  # GITHUB_TOKEN and GitHub blocks those pushes from firing other workflows.
+  # run_trending_daily's 6-hour dedupe guard makes a double-fire a safe no-op.
   workflow_run:
-    workflows: ["Auto-merge claude PRs"]
+    workflows:
+      - "Exchange Phase B (consume ChatGPT, self-fill, ready to render)"
     types: [completed]
     branches: [main]
   # Belt-and-suspenders. If someone pushes packages directly to main
@@ -38,7 +47,8 @@ on:
   push:
     branches: [main]
     paths:
-      - 'state/trending_packages/**'
+      # 'state/trending_packages/**' REMOVED 2026-07-30: a package push must
+      # start EXCHANGE PHASE A (find media, ask ChatGPT), not a render.
       - '.github/triggers/daily'
 
 permissions:
@@ -244,11 +254,12 @@ jobs:
 
           FORMAT B — TEXT CARD (2 files): "format":"text_card". Looping topic clip on top + gold-highlighted text below, NO voice. ~60-100 words in 2-3 short paragraphs, scroll-stopping first-line claim, punchy kicker. 8-12 "highlights" (each an EXACT substring of "text"). "broll_query" = 1-3 word concrete filmable thing matching the topic. Schema: {"version":1,"format":"text_card","slug":"..","title":"..","duration":6,"broll_query":"..","hashtags":[12],"text":"p1\\n\\np2\\n\\np3","highlights":[..],"music_vibe":"dark"}. No shots/punches/subreddit.
 
-          FORMAT C — GRAPH RACE (2 files): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","values":[same length as years]},.. 2-4 series],"music_vibe":"dark"}. Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
+          FORMAT C — GRAPH RACE (2 files): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","icon":"..","values":[same length as years]},.. 2-4 series],"music_vibe":"dark","hook":"<=32 chars tease of the payoff, e.g. Wait for 2008..."}. "hook" is optional but strongly preferred — it flashes over the chart for the first ~1.5s and buys the crucial first-seconds hold. "icon" gives each line a badge at its tip + in the leaderboard so viewers know who is who: a 2-letter COUNTRY CODE ("US","CN","JP") for countries, otherwise the brand/company/org name to look up ("Netflix","SpaceX"); omit it only when the series is an abstract category. BIG NUMBERS RULE — this is a HARD gate, not a preference: the renderer REFUSES data whose leader peaks under 1,000 or grows less than 3x (1.6x if there is a lead change). Pick metrics that are naturally huge and violent — millions of subscribers/users/tons/dollars/launches, not two-digit counts. A line creeping from 12 to 40 is an instant reject; 40,000 collapsing to 4,000, or 0 exploding to 220 million, is the target. Prefer a DRAMATIC crossover or collapse (one line overtaking another mid-video). Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
 
           HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
           1. Exactly 6 files, valid JSON. 2 with "subreddit", 2 with "format":"text_card", 2 with "format":"graph_race".
           2. REDDIT: every shot.phrase and punch.phrase is an exact substring of that file's script. TEXT_CARD: every highlight is an exact substring of "text". GRAPH: each series.values length == years length.
+          2b. GRAPH DRAMA GATE — run it, do not eyeball it: `python3 -c "import json,glob;from engines import chart_race;[print(f, chart_race.assess(json.load(open(f)))) for f in glob.glob('$DIR/*graph*.json')]"`. Every graph file must print ok=True. If one is False, REPLACE ITS DATASET with a bigger/faster-moving metric and re-run until it passes — do not ship a rejected chart.
           3. 6 different topics; none in the last 6 posted_log entries. No fabricated stats. TOS-safe.
 
           Finish by printing all 6 titles + their formats and confirming the substring / length / format / accuracy checks passed.
@@ -263,6 +274,27 @@ jobs:
           echo "brain: authored $N package(s)"
           [ "$N" -eq 0 ] && echo "::warning::BRAIN produced 0 packages; run will fall to Groq."
           exit 0
+
+      # LAST-RESORT COVER. The brain above is the only Claude-authored path
+      # in this workflow, and it is `continue-on-error` by design — a lapsed
+      # subscription, a revoked token, or a failed npm install all land here
+      # with an empty package directory. Before that becomes "Groq writes six
+      # scripts" (rate-limited, weak) or "re-serve yesterday's already-posted
+      # slate", draw banked evergreen packages instead. A no-op on any day
+      # the brain worked.
+      - name: Reserve bank — cover a dead brain
+        if: steps.preflight.outputs.skip == ''
+        continue-on-error: true
+        run: |
+          set -e
+          TODAY=$(date -u +%Y%m%d)
+          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
+            python scripts/package_reserve.py deposit \
+              --dir state/package_buffer/inbox --source routine --delete
+          fi
+          python scripts/package_reserve.py status
+          python scripts/package_reserve.py fill --date "$TODAY" \
+            --reason "daily.yml brain authored nothing"
 
       - name: Run daily orchestrator
         id: run
@@ -416,6 +448,18 @@ jobs:
           YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
         run: |
           python3 scripts/fetch_analytics.py --max-age-days 30
+
+      - name: Format scoreboard (A/B/C rollup)
+        # Joins packages (title->format) with the fresh analytics snapshot
+        # and appends the per-format table to today's report, so the
+        # tracking issue shows which format is winning. Best-effort.
+        if: steps.preflight.outputs.skip == '' && steps.run.outcome == 'success'
+        continue-on-error: true
+        run: |
+          python3 scripts/format_scoreboard.py || exit 0
+          if [ -f daily_report.md ] && [ -f state/format_scoreboard.md ]; then
+            { echo ""; cat state/format_scoreboard.md; } >> daily_report.md
+          fi
 
       - name: Roll up aged state (audit Ticket 6)
         if: always() && steps.preflight.outputs.skip == ''

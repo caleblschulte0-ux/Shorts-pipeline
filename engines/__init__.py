@@ -72,6 +72,35 @@ REGISTRY: dict[str, dict] = {
                           "callers wanting best-effort use maybe_kenburns)"],
         "sample": "python -m engines demo kenburns --image assets/mascot/anchor/laugh.png --out /tmp/kb.mp4",
     },
+    "render_qa": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Catch BROKEN renders (black tail/open, freezes, A/V "
+                   "drift, double-letterboxing) offline and for free, "
+                   "before a channel burns a vision call or ships the "
+                   "defect. Born from third-channel run 30459022509: a "
+                   "solid-black final frame reached the PAID vision critic "
+                   "when a $0 ffmpeg pass would have caught it.",
+        "headless": True,
+        "control": "python (engines.render_qa.maybe_check) / CLI demo",
+        "reusable": True,
+        "license": "n/a (ffmpeg subprocess, stdlib only)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~3-8 s per clip (one full decode + 3 sampled "
+                       "cropdetect windows)",
+        "deps": ["ffmpeg on PATH", "ffprobe on PATH"],
+        "returns": "dict {ok, problems, metrics} — the first ANALYSIS "
+                   "engine; None from maybe_check means the analyzer "
+                   "failed (fail-open), ok=False is a real defect verdict",
+        "fallback": "none needed — callers proceed unchecked on None, "
+                    "exactly as if the engine did not exist",
+        "consumers": ["third_capture.clip_qa (pre-vision mechanical gate)"],
+        "failure_modes": ["blurred/stylistic padding is INVISIBLE to "
+                          "cropdetect (near-black bars only) — aesthetic "
+                          "judgment stays with the vision critic"],
+        "sample": "python -m engines demo render_qa --video output/third/clip.mp4",
+    },
     "parallax": {
         "kind": "module",
         # Promoted 2026-07-10 after the 8-category benchmark (Ticket E2):
@@ -114,6 +143,67 @@ REGISTRY: dict[str, dict] = {
         "benchmark": "python -m engines.benchmarks.parallax_bench "
                      "(promotion to active requires passing verdict — Ticket E2)",
         "sample": "python -m engines demo parallax --image photo.jpg --out /tmp/px.mp4",
+    },
+    "svg_motion": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Animated vector graphics (title cards, stat pops, "
+                   "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
+                   "Born from the ChatGPT-integration finding that animated "
+                   "SVG is a strong vertical format and LLM brains author "
+                   "SVG text well — this owns the capability in-repo with "
+                   "no external service. NOTE: SMIL/CSS animation is NOT "
+                   "evaluated; motion comes from the frame_fn(t) "
+                   "interpolation contract.",
+        "headless": True,
+        "control": "python (engines.svg_motion.maybe_svg_motion; built-ins "
+                   "title_card, stat_pop; ease/interp/seg helpers) / CLI demo",
+        "reusable": True,
+        "license": "cairosvg LGPL-3 (unmodified library use, dynamic import "
+                   "— commercial OK), ffmpeg subprocess",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~5-15 s for a 3 s 1080x1920@30fps card",
+        "deps": ["cairosvg (pip)", "ffmpeg on PATH"],
+        "fallback": "None -> caller keeps its static card / skips the beat",
+        "consumers": [],
+        "failure_modes": ["cairosvg missing -> available() False",
+                          "frame_fn returns invalid SVG -> None"],
+        "sample": "python -m engines demo svg-motion --out /tmp/card.mp4",
+    },
+    "chart_race": {
+        "kind": "module",
+        "status": "active",
+        "problem": "Animated multi-series line-chart race (graphfather "
+                   "style): eased timeline, dynamic y-camera zoom, tip dots "
+                   "+ de-cluttered value labels, PER-SERIES ICONS (flags / "
+                   "brand marks via funnel.series_icons, initials-badge "
+                   "fallback), live leaderboard, climbing year counter, "
+                   "winner tag on the end-hold, optional hook overlay. "
+                   "Renders a SILENT portrait mp4 — callers mux their own "
+                   "audio. First consumer: trending channel's graph_race "
+                   "format (make_graph_race.py).",
+        "headless": True,
+        "control": "python (engines.chart_race.render / maybe_chart_race) "
+                   "/ CLI demo",
+        "reusable": True,
+        "license": "n/a (matplotlib + ffmpeg, stdlib otherwise)",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "~30-60 s per 12 s clip (matplotlib Agg frames)",
+        "deps": ["matplotlib", "ffmpeg on PATH"],
+        "gates": "assess(spec) scores DATA DRAMA (peak magnitude + growth "
+                 "+ lead changes). Callers should refuse a spec it fails: "
+                 "small, slow, flat numbers make an unwatchable chart "
+                 "(MIN_PEAK=1000, MIN_GROWTH=3x, 1.6x with a crossover).",
+        "fallback": "none — a data video without the chart is nothing; "
+                    "callers should fail the package, not degrade. Icons "
+                    "DO degrade: a failed lookup draws an initials badge.",
+        "consumers": ["make_graph_race.py (trending daily)"],
+        "failure_modes": ["malformed spec (missing years/series) raises in "
+                          "render; maybe_chart_race returns None"],
+        "sample": "python -m engines demo chartrace --spec pkg.json "
+                  "--out /tmp/race.mp4",
     },
     # ---- external engines (owned elsewhere; registered for doctor) --------
     "ffmpeg": {

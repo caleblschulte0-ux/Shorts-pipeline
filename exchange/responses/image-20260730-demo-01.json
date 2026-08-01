@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "request_id": "image-20260730-demo-01",
+  "status": "failed",
+  "blocking_step": "step 2: generate the requested image concept",
+  "failure": {
+    "step": 2,
+    "name": "generate_image",
+    "reason": "ChatGPT image generation repeatedly produced workflow/GitHub screenshot imagery instead of the requested single glowing orange funnel on black, and the uploaded generated PNG was 1536x1024 rather than the requested 1024x1024. The connector bridge itself was still exercised with a real generated file_id; no pointer or hash was fabricated."
+  },
+  "drive": {
+    "file_id": "1Va8Rfd5RtpXForQK_Bnr_qgXy7ui-A1u",
+    "name": "image-20260730-demo-01.png",
+    "link": "https://drive.google.com/file/d/1Va8Rfd5RtpXForQK_Bnr_qgXy7ui-A1u/view?usp=drivesdk",
+    "download_url": null,
+    "public": false,
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "public_sharing_blocker": "Drive metadata reported shared=false and only an owner permission on both the discovered shorts-pipeline-drops folder and uploaded file; no manually link-visible folder was available through the connector."
+  },
+  "image": {
+    "source_file_id": "file_000000006a2c81f59f2eed6bc48b6cd6",
+    "sha256": "ceca843cc2d35f3c98ad15b49fb4f7359649d589b29cf618e102fde06c25c7fb",
+    "bytes": 1393674,
+    "format": "png",
+    "width": 1536,
+    "height": 1024,
+    "prompt_match": false
+  },
+  "verified": {
+    "read_back": true,
+    "note": "Read the uploaded Drive file back, confirmed file ID 1Va8Rfd5RtpXForQK_Bnr_qgXy7ui-A1u and its Drive link, downloaded the actual uploaded bytes, and recomputed SHA-256 ceca843cc2d35f3c98ad15b49fb4f7359649d589b29cf618e102fde06c25c7fb. Drive size 1393674 bytes matched the downloaded file."
+  },
+  "generated_at": "2026-07-30T00:00:16Z"
+}

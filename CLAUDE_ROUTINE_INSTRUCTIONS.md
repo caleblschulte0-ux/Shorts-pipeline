@@ -2,7 +2,91 @@
 
 You're running the daily script-writing routine for the Shorts-pipeline channel
 (faceless YouTube Shorts, 45-second doomscroll explainers). Your job: write the
-day's 6 script packages and push them. The daily GitHub Action renders + uploads.
+day's 6 script packages and push them. **Your job ends there** — an automatic
+chain takes over and renders later.
+
+> ## ⚠️ WHAT CHANGED 2026-07-30 — read this before you finish
+>
+> Pushing your packages **no longer renders them immediately.** It now starts
+> the ChatGPT exchange, and the render happens ~1.5–2 hours later with better
+> media and possibly punched-up scripts:
+>
+> ```
+> you author + push  ->  auto-merge  ->  EXCHANGE PHASE A (04:30-ish)
+>                                        finds media, judges every shot,
+>                                        writes the ask for ChatGPT
+>                        ChatGPT (05:00) generates the missing images,
+>                                        punches up the scripts, writes DONE
+>                        EXCHANGE PHASE B pulls that media in, self-fills
+>                                        anything ChatGPT missed
+>                        daily.yml       renders + uploads
+> ```
+>
+> **The daily clock (all automatic except ChatGPT's task):**
+>
+> | Step | Time |
+> |---|---|
+> | you author + push | ~4:20 AM Central (09:19 UTC observed) |
+> | Exchange Phase A | immediately after auto-merge; 09:45 UTC cron backstop |
+> | ChatGPT task | **6:00 AM Central** |
+> | Exchange Phase B | the moment ChatGPT writes DONE; 12:45 UTC backstop |
+> | render + upload | right after Phase B |
+> | videos go live | 8:00, 9:30, 11:00, 12:30, 2:00, 3:30 Central |
+>
+> **What this means for you, concretely:**
+> - **Nothing about how you author changes.** Same 6 packages, same rules.
+> - **Don't panic if no video exists an hour after you push.** That is now
+>   normal and correct. The backstop cron at 06:15 UTC guarantees the day
+>   ships even if ChatGPT never answers.
+> - **A `query` you write may get AI-generated art instead of stock.** The
+>   judge flags a shot as weak when the media is a generic stand-in for a
+>   named subject, so keep writing SPECIFIC queries — they still win, and a
+>   specific query that finds real media beats a generated image.
+> - **Your script may get reworded** by ChatGPT. It cannot change any number,
+>   date, or named entity, and it cannot change your shot count or any shot's
+>   `query` — `shared/punchup_guard.py` rejects the rewrite mechanically and
+>   ships YOUR original if it tries. So write facts you're happy to keep.
+> - Full detail: `docs/EXCHANGE_PIPELINE.md`.
+
+## ⚠️ THE SLATE IS THREE FORMATS — 2 + 2 + 2, NOT 6 OF ONE
+
+**Read this before you write a single package.** This channel is no longer the
+old "photo on top, gameplay on bottom" single format. It runs an A/B/C format
+test and posts **six videos a day: two of each format.**
+
+On 2026-07-29 the slate was correct — 2 `reddit_story`, 2 `text_card`,
+2 `graph_race`. On 2026-07-30 it regressed to **six stacked/explainer packages**
+because this instruction lived only in the Routine's own prompt and never in
+this file, so a session reading this doc fresh authored six of the format the
+doc describes in detail. That is what this section exists to prevent.
+
+| Format | `format` field | Shape | Renderer |
+|---|---|---|---|
+| Reddit story | *(omit `format`, set `subreddit`)* | full-screen gameplay + post card + TTS | `make_reddit_story.py` |
+| Text card | `"text_card"` | big typographic card over topical b-roll | `make_text_card.py` |
+| Graph race | `"graph_race"` | animated multi-series chart race | `make_graph_race.py` |
+
+**Two of each, every day.** Name them so the slate is obvious at a glance:
+`01_reddit-…`, `02_reddit-…`, `03_textcard-…`, `04_textcard-…`,
+`05_graph-…`, `06_graph-…`.
+
+### Required fields per format
+
+**`text_card`** — `format`, `slug`, `title`, `duration`, `broll_query`,
+`text` (the on-screen copy; `\n\n` separates cards), `highlights` (words to
+emphasize), `hashtags`, `music_vibe`. No `shots`, no `script`.
+
+**`graph_race`** — `format`, `slug`, `title`, `y_label`, `duration`, `source`
+(cite it — real numbers only), `years`, `series` (each `{name, color, values}`),
+`hashtags`, `music_vibe`. No `shots`, no `script`. Numbers must be REAL and
+sourced; this format is a data claim on screen.
+
+**Reddit story** — the `shots` + `script` shape documented below, plus
+`subreddit`.
+
+The stacked/explainer format documented in the rest of Part 1 is the FALLBACK
+shape, not the default slate. Do not ship six of it.
+
 
 ## Steps
 
@@ -109,11 +193,47 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    one**, so a single un-illustratable package no longer poisons a day,
    but it does mean you lose that slot. Fix it here instead.
 
+5b. **Top up the reserve bank — the day you can't run is the day it pays.**
+
+   Everything above depends on a live Claude subscription. If the token is
+   revoked or the subscription lapses, this Routine never fires, the in-CI
+   brain in `daily.yml` also fails, and the day falls to Groq or to
+   re-serving an already-posted slate. The reserve bank is the cover:
+   banked **evergreen** packages that any dead day draws from automatically.
+
+   ```bash
+   python3 scripts/package_reserve.py status
+   ```
+
+   If it prints `LOW` for a format, write **one extra package of that
+   format** — same quality bar, same schema — into
+   `state/package_buffer/inbox/` instead of today's dated folder. One extra
+   per day is enough; it is banked and drawn automatically.
+
+   **Reserve packages must be EVERGREEN.** They may sit for weeks, so they
+   are refused at deposit time if they contain date-anchored language:
+   weekday names, "yesterday", "today", "this morning", "breaking",
+   "just announced", "3 hours ago", or a "March 14"-style date. Write the
+   timeless version of the story — a Reddit revenge story, a "how this
+   actually works" text card, a long-arc chart. Verify before you push:
+
+   ```bash
+   python3 scripts/package_reserve.py deposit \
+     --dir state/package_buffer/inbox --dry-run
+   ```
+
+   Every file must print `OK`. Fix anything it refuses before you push —
+   a refused file sits in the inbox forever and banks nothing.
+
+   Do NOT bank a package you also put in today's slate — the bank refuses
+   any slug that has already been authored for a day, and a package is
+   drawn from the bank exactly once so it can never duplicate an upload.
+
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
-   git add state/trending_packages/$(date -u +%Y%m%d)/
+   git add state/trending_packages/$(date -u +%Y%m%d)/ state/package_buffer/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --base main \
@@ -431,8 +551,14 @@ because the renderer fills the rest with distinct stock automatically.
 
 ## Don't
 
-- Don't render or upload — daily.yml handles both.
+- Don't render or upload — the exchange chain + daily.yml handle both.
 - Don't run `run_trending_daily.py`. You only write packages.
+- **Don't dispatch daily.yml yourself.** It is no longer the next step; it now
+  runs at the END of the chain (after Exchange Phase B). Dispatching it early
+  renders with pre-ChatGPT media and wastes the day's better assets.
+- Don't touch `.github/triggers/daily` unless you deliberately want to bypass
+  the exchange and render immediately.
+- Don't write anything into `exchange/` — Phase A and ChatGPT own that.
 
 ---
 

@@ -1,44 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260712",
-      "dry_run": false,
-      "ts": "2026-07-12T12:16:25+00:00",
-      "clips": [
-        {
-          "slug": "clip-20260712-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260712-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Frames around 13-15s and 19-23s are heavily glitched/garbled (pixelated, corrupted-looking motion blur, not a clean pan); vision: Several frames have the subject cropped to just ceiling/empty "
-        },
-        {
-          "slug": "clip-20260712-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260712-4",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260712-5",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        }
-      ]
-    },
-    {
       "date": "20260713",
       "dry_run": false,
       "ts": "2026-07-13T11:49:14+00:00",
@@ -1532,6 +1494,49 @@
           "slug": "clip-20260729b-4",
           "ok": false,
           "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.7 (vague fan hype, no clear payoff)"
+        }
+      ]
+    },
+    {
+      "date": "20260730",
+      "dry_run": false,
+      "ts": "2026-07-30T15:31:19+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 108,
+        "with_retention": 98,
+        "with_curve": 14,
+        "fetched_at": "2026-07-30T10:38:17.779630+00:00"
+      },
+      "clips": [
+        {
+          "slug": "clip-20260730-1",
+          "ok": false,
+          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit; source too dark (avg luma 17/255) \u2014 unwatchable IRL/night footage; source has 5.0s of black frames \u2014 dropped feed / hard fade"
+        },
+        {
+          "slug": "clip-20260730-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260730-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
+        },
+        {
+          "slug": "clip-20260730-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false
         }
       ]
     }
