@@ -282,9 +282,14 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         # reveal, and a small oscillation on the global build phase means no two
         # frames of the beat are the same.
         import math as _mo
-        _grow = 0.42 + 0.58 * max(0.0, min(1.0, reveal))
-        _breathe = 1.0 + 0.022 * _mo.sin(2 * _mo.pi * (phase * 2.0 + _vr))
-        ih = int(_full * _grow * _breathe)
+        # Growth rides the GLOBAL build phase, not the per-element reveal.
+        # A per-element reveal saturates early (element 0 is done ~40% in) and
+        # every frame after that is byte-identical, which is what put a 76-frame
+        # frozen run in the master. Tying it to the phase means every row is
+        # still changing size on the last frame of the beat.
+        _grow = 0.34 + 0.66 * max(0.0, min(1.0, phase)) * max(0.35, min(1.0, reveal * 1.4))
+        _breathe = 1.0 + 0.035 * _mo.sin(2 * _mo.pi * (phase * 2.0 + _vr))
+        ih = max(8, int(_full * _grow * _breathe))
         if photo is not None:
             # A REAL photo of the thing, framed as a rounded card filling the left.
             iw = int(bw * 0.48)
