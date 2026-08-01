@@ -360,7 +360,11 @@ def low_formats() -> list[str]:
 def select(count: int, *, mix: dict | None = None) -> list[dict]:
     """Choose up to `count` banked entries, honouring the format mix where
     the bank allows and back-filling from whatever is left otherwise.
-    Read-only — nothing is consumed until `draw()`."""
+    Back-fill is restricted to still-ACTIVE formats: a package banked before
+    a retirement (`retirement_problems()` only blocks new deposits, it
+    doesn't purge old stock) must never be drawn, even as filler — it would
+    just get rejected downstream and burn the slot. Read-only — nothing is
+    consumed until `draw()`."""
     mix = dict(mix or target_mix())
     inv = inventory()
     picked: list[dict] = []
@@ -369,7 +373,9 @@ def select(count: int, *, mix: dict | None = None) -> list[dict]:
         picked += (inv.get(fmt) or [])[:max(0, want)]
     if len(picked) < count:                      # back-fill, oldest first
         chosen = {e["_file"] for e in picked}
-        rest = sorted((e for e in _entries() if e["_file"] not in chosen),
+        active = set(formats())
+        rest = sorted((e for e in _entries() if e["_file"] not in chosen
+                       and e.get("format") in active),
                       key=lambda e: e.get("banked_at") or "")
         picked += rest[:count - len(picked)]
     return picked[:count]
