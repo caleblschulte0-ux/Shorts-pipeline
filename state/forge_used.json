@@ -1,26 +1,15 @@
 {
  "indicators": [
-  "AG.CON.FERT.PT.ZS",
   "AG.CON.FERT.ZS",
-  "AG.LND.ARBL.HA.PC",
-  "AG.LND.CREL.HA",
-  "AG.PRD.CREL.MT",
-  "EG.ELC.ACCS.ZS",
+  "AG.LND.CROP.ZS",
+  "EG.ELC.HYRO.ZS",
   "EG.FEC.RNEW.ZS",
   "EG.USE.COMM.CL.ZS",
-  "EN.GHG.CH4.AG.MT.CE.AR5",
   "EN.POP.DNST",
-  "EN.URB.LCTY.UR.ZS",
-  "IT.CEL.SETS.P2",
-  "IT.MLT.MAIN",
-  "IT.NET.BBND",
-  "MS.MIL.TOTL.TF.ZS",
-  "SE.SEC.PROG.ZS",
-  "SH.MED.BEDS.ZS",
-  "SH.STA.SUIC.P5",
   "SH.XPD.CHEX.GD.ZS",
-  "SN.ITK.DEFC.ZS",
-  "SP.POP.0014.TO.ZS"
+  "SP.POP.65UP.TO.ZS",
+  "SP.RUR.TOTL",
+  "SP.URB.GROW"
  ],
  "updated": "2026-08-01"
 }
