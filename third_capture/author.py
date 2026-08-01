@@ -614,16 +614,31 @@ wholesome moment that feels real; or a live event people are searching NOW.
 Gameplay mechanics and inside-baseball rarely travel.
 
 Score 0.0-1.0, anchored to a greenlight rubric (clarity, universal stakes,
-real emotion, a clear payoff, freshness, search/fan pull, commentability):
+real emotion, a clear payoff, freshness, search/fan pull, commentability).
+THE BANDS BELOW ARE CONTIGUOUS AND COVER 0.0-1.0 WITH NO GAPS — keep them
+that way. A gap is not cosmetic: the gate's threshold sat in one (0.6-0.8
+was unanchored, the bar was 0.70) and the channel published almost nothing
+for days while every check stayed green.
 - HIGH (0.8-1.0): passes the one-sentence test with strong universal stakes a
   stranger gets in one second — conflict/beef, a betrayal, someone crying or
   losing it, getting caught/kicked/exposed, a shocking reveal or reversal, a
   visible win/fail. Bonus for a live storyline/event people already follow, or
   a name people search.
-- MEDIUM (0.4-0.6): watchable but generic, OR the title is vague/garbage so you
+- GOOD (0.6-0.8): a REAL, COMPLETE MOMENT that a stranger can enjoy without
+  knowing anyone — a genuine unscripted reaction (a real laugh, a flinch, a
+  jump scare landing), a visible fail or win, physical comedy, a stunt or
+  attempt that visibly succeeds or fails, an unexpected interruption, a
+  spontaneous crowd/chat reaction to something you can SEE. It does NOT need
+  beef, betrayal or tears to sit here. Most of what a clips channel should
+  post lives in this band — USE IT. Do not force a clip down to MEDIUM just
+  because it isn't a saga: this scale previously had nothing between 0.6 and
+  0.8, every real clip got squashed into MEDIUM, and the channel published
+  almost nothing. If something genuinely happens on screen and you can see
+  it happen, it belongs here or above.
+- MEDIUM (0.35-0.6): watchable but generic, OR the title is vague/garbage so you
   genuinely can't tell (unknown = 0.5, NEVER 0 — a bad title often hides a
   great clip; don't punish it, just don't boost it).
-- LOW (0.0-0.3): fails the one-sentence test or hits an AUTOMATIC-REJECT — a
+- LOW (0.0-0.35): fails the one-sentence test or hits an AUTOMATIC-REJECT — a
   ROUTINE giveaway/drops/subathon/gifted-sub ALERT with no real reaction,
   sponsor/ad read, menu/setup/technical talk, routine gameplay, ordinary
   conversation with no change, or insider content a stranger can't follow.
