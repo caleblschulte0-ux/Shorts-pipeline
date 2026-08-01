@@ -25,7 +25,12 @@
     {
       "phrase": "lost' my cancellation form",
       "query": "cancellation form paper",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "pin_query": "cancellation form",
+      "pin_context": "gym membership termination document",
+      "news_query": "cancellation form",
+      "news_angle": "The cancellation form was signed and photographed as proof of cancellation.",
+      "image_url": "https://live.staticflickr.com/65535/48911253517_a7e19c4560_b.jpg"
     },
     {
       "phrase": "canceled my gym membership in person",
@@ -40,7 +45,12 @@
     {
       "phrase": "snapped a photo of it before I left",
       "query": "phone camera photo document",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "photo",
+      "pin_context": "cancellation proof image",
+      "news_query": "photo",
+      "news_angle": "The photo of the cancellation form was emailed to the gym as evidence of cancellation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Picture_of_Polaroid_image.jpg"
     },
     {
       "phrase": "2 months later they charged my card anyway",
