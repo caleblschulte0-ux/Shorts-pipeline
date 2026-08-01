@@ -29,7 +29,7 @@ Everything else is smaller-bore: caches that don't persist across CI runs (so st
 | trending/daily | `scripts/run_trending_daily.py` | `state/trending_packages/YYYYMMDD/*.json` | `state/posted_log.json` | `state/analytics/` | `daily.yml` | ✅ 5-attempt loop + cherry-pick fallback |
 | explainer | `scripts/post_stories.py` | `data_learning/niche.config.json` | `state/explainer_posted_log.json` | `state/analytics_explainer/` | `explainer.yml` | ✅ 5-attempt loop + **union-merge of posted log** (gold standard) |
 | curiosity | `scripts/post_curiosity.py` | `data_learning/curiosity.config.json` | `state/curiosity_posted_log.json` | `state/analytics_curiosity/` | `curiosity.yml` (cron disarmed) | ⚠️ retry loop, `-X ours` |
-| third (Proof Mode) | `scripts/run_third.py` | `state/third_packages/YYYYMMDD/*.json` | `state/third_posted_log.json` | — | `third.yml` | ❌ single naive retry |
+| third (Proof Mode) | `scripts/run_third.py` | `state/third_packages/YYYYMMDD/*.json` | `state/third_posted_log.json` | `state/analytics_third/` | `third.yml` | ✅ `ci_commit_state.sh` (5-attempt + union-merge) **+ mid-run checkpoints** — see §7b |
 | longform | `scripts/build_longform.py` | (explainer config) | `state/longform_log.json` | — | `longform.yml` (Sunday cron) | ❌ single naive retry |
 | scout (shared funnel) | `scripts/scout_sources.py` | — | — | `state/scouted_sources.json` | `scout.yml` | ❌ zero retry |
 
@@ -152,6 +152,53 @@ The `state/<channel>/` reorg is long-term (Ticket 11) — renaming live state fi
 | Logs (`scout_errors.log`) | Commit is acceptable while small; cap size, truncate oldest | — |
 
 Nothing here needs paid storage. actions/cache gives 10GB/repo free (LRU-evicted, 7-day idle expiry — always code the "cache miss = re-download" path, which you already have).
+
+### 7b. The posted log's invariants (third channel, hardened 2026-08-01)
+
+"Commit, union-merge, never prune" was necessary and not sufficient — the
+ledger could still lose entries or gain duplicates without any push race.
+Four invariants now hold, each with a check in
+`scripts/test_story_acceptance.py`:
+
+1. **A missing log is a first run; a corrupt log is an emergency.**
+   `_load_log` used to swallow a `JSONDecodeError` and return
+   `{"posted": {}}`, so an unparseable file meant zero dedupe state: the
+   audit printed "clean", every slot re-posted an already-published clip,
+   and the resulting 4-entry dict was written over 168 real entries.
+   `merge_posted_log` only runs on a push *race*, so a clean push made
+   that permanent. It now aborts.
+
+2. **A slot is CLAIMED before any bytes are sent.** A resumable upload can
+   commit on YouTube's side and then fail on the final chunk; the
+   exception unwound past the log write, so the video existed and nothing
+   recorded it — and the slot retry re-ranked the same deterministic board
+   and uploaded it again. A `pending: true` entry is written and persisted
+   first, so a mid-flight death costs at most one clip instead of putting
+   two videos on the channel. Consumers must skip `pending` entries
+   (`fetch_analytics`) and surface them for a human (`scripts/judges.py`)
+   — only a person can tell whether the video actually landed.
+
+3. **Rejections persist immediately.** Four paths write `rejected-*`
+   entries; the only `_save_log` call site used to be inside the
+   successful-upload branch, so a run that shipped nothing discarded every
+   rejection it had paid a download + whisper pass for. 2026-07-31 ran
+   four times and runs 2-4 each re-judged the exact clips run 1 had
+   already turned down.
+
+4. **The log is checkpointed to `main` mid-run.** A run killed at the
+   job's 120-minute wall (2026-07-25) never reaches the commit step, so
+   videos already live on YouTube have no entry in git and the next run
+   re-posts them. `_checkpoint_log` shells out to `ci_commit_state.sh`
+   after each claim; the union merge means a checkpoint can only ever add
+   entries. It must be handed **every** state file the run mutates — on a
+   push race that script hard-resets to origin and restores only the paths
+   it was given.
+
+Also: the workflow's dedupe-freshness sync now hard-fails on a real sync
+error instead of printing "first run"; `publish_at` starts past whatever
+an earlier same-day run already claimed and is clamped forward at send
+time; and `storyline.clip_key` delegates to `run_third._clip_key` rather
+than hand-copying it (the copy had drifted and collided mined URLs).
 
 ## 8. Migration plan
 
