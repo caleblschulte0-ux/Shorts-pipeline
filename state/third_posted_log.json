@@ -2193,13 +2193,52 @@
       "ts": "2026-08-01T14:33:31.099586+00:00"
     },
     "clip-20260801-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/deshaefrost/clip/JoyousAbstemiousGarageVoHiYo-0oL91E9YUAVClbuQ",
-      "story_key": null,
-      "streamer": "deshaefrost",
+      "url": "https://youtube.com/shorts/ortcEORnecc",
       "title": "Deshaefrost Asks For A Hug And Ends Up On The Bed",
       "kind": "twitch_clip",
-      "ts": "2026-08-01T14:36:17.549500+00:00",
+      "ts": "2026-08-01T14:36:21.679312+00:00",
+      "uploaded_at": "2026-08-01T14:36:21.679331+00:00",
+      "publish_at": "2026-08-01T21:30:00Z",
+      "source_url": "https://www.twitch.tv/deshaefrost/clip/JoyousAbstemiousGarageVoHiYo-0oL91E9YUAVClbuQ",
+      "streamer": "deshaefrost",
+      "series": "chaos",
+      "hook": "HE BEGGED FOR A HUG THEN THIS HAPPENED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2521,
+      "banger": 0.5,
+      "cut": {
+        "start": 7.0,
+        "end": 26.0
+      },
+      "director_cut": true
+    },
+    "rejected-agitatedcallouspandaamptroppunch-4wypuojx08ufeu6f": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AgitatedCallousPandaAMPTropPunch-4WyPUOjx08uFeU6F",
+      "streamer": "caseoh_",
+      "title": "lmao caseoh saw va jay jay",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine reaction game, title exaggerates)",
+      "ts": "2026-08-01T14:37:42.494782+00:00"
+    },
+    "rejected-artisticphilanthropicgiraffedbstyle-xprrzkweqxxhrmic": {
+      "source_url": "https://www.twitch.tv/silky/clip/ArtisticPhilanthropicGiraffeDBstyle-xPRRZKWEQXXhrMIc",
+      "streamer": "silky",
+      "title": "silk",
+      "qa_rejected": true,
+      "ts": "2026-08-01T14:38:02.566674+00:00"
+    },
+    "clip-20260801-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/SpineyVivaciousMallardBlargNaut-ZuKs8eXazRKlOK5b",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Admits She Purposely Threw Her Fortnite Qualifier",
+      "kind": "twitch_clip",
+      "ts": "2026-08-01T14:41:38.570620+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
