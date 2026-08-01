@@ -1,0 +1,221 @@
+name: Pipeline doctor (daily autonomous maintainer)
+
+# THE DOCTOR. Once a day it reads the alarm's verdict on yesterday, the
+# showrunner's ledger, the exchange reports and its own journal; diagnoses;
+# executes the safe mechanical remedies; and hands ONE bounded authored fix
+# to the headless Claude brain — which lands on a claude/doctor-<date>
+# branch, passes the CONSTITUTION review (scripts/pipeline_doctor.py
+# review-diff), and goes through the same PR + full-test auto-merge gate as
+# any other Claude session's work. See docs/DOCTOR.md.
+#
+# Authority: the brain is a Claude, the only agent that edits this repo.
+# Its reviewer is the gate: 650+ tests, the drift guards, the dry-runs.
+# What it structurally cannot do (weaken a gate, delete a test, touch a
+# posted log, edit a workflow, rewrite its own rules) is enforced in code
+# and tested in tests/test_doctor.py.
+#
+# This workflow writes RUN OUTPUT (state/doctor/) to the branch it ran on,
+# and CODE only via a claude/doctor-* PR. It never pushes code to main.
+
+on:
+  schedule:
+    # 02:30 UTC — after retro (23:15) and the alarm (01:15) have judged the
+    # finished day, and hours before the Routine (~09:19) starts the new
+    # one, so a doctor PR merging fires Phase A harmlessly early (it finds
+    # no packages yet and exits 0).
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Date to judge (YYYYMMDD, default yesterday)'
+        required: false
+        default: ''
+      skip_brain:
+        description: 'Diagnose + mechanical only, no authored fix'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  issues: write
+  actions: write        # mechanical remedies re-dispatch workflows
+  pull-requests: write  # the authored fix arrives as a PR
+
+env:
+  PYTHON_VERSION: '3.11'
+  REPORT_ISSUE_NUMBER: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+
+concurrency:
+  group: pipeline-doctor
+  cancel-in-progress: false
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0            # the authored fix needs a real branch
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install deps
+        run: pip install -q pillow pyyaml requests numpy
+
+      # ---- 1. DIAGNOSE ------------------------------------------------
+      - name: Diagnose the finished day
+        id: diagnose
+        run: |
+          D="${{ inputs.date }}"
+          ARGS="run --json"
+          if [ -n "$D" ]; then ARGS="$ARGS --date $D"; fi
+          python scripts/pipeline_doctor.py $ARGS > "$RUNNER_TEMP/doctor.json"
+          python - "$RUNNER_TEMP/doctor.json" <<'PY' >> "$GITHUB_OUTPUT"
+          import json, sys
+          d = json.load(open(sys.argv[1]))
+          p = d["plan"]
+          print(f"date={p['date']}")
+          print(f"mechanical={len(p['mechanical'])}")
+          print(f"authored={len(p['authored'])}")
+          print(f"report={len(p['report'])}")
+          acts = [f.get("playbook") for f in p["mechanical"] if f.get("playbook")]
+          print(f"playbooks={','.join(acts)}")
+          PY
+          python scripts/pipeline_doctor.py run > "$RUNNER_TEMP/doctor.md" || true
+          cat "$RUNNER_TEMP/doctor.md"
+
+      # ---- 2. MECHANICAL REMEDIES ------------------------------------
+      # Deterministic playbooks only. Each one journals what it expects,
+      # so tomorrow's run judges whether it worked.
+      - name: 'Playbook: re-dispatch Phase B for an unconsumed DONE'
+        if: contains(steps.diagnose.outputs.playbooks, 'redispatch_phase_b')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          D="${{ steps.diagnose.outputs.date }}"
+          # THE 2026-08-01 BUG'S REMEDY: ChatGPT finished, Phase B consumed
+          # the wrong date, the day's media sat unapplied. Re-dispatching is
+          # safe: Phase B validates checkpoints and the posted logs dedupe
+          # any already-published slot.
+          gh workflow run exchange_phase_b.yml --repo "${{ github.repository }}" \
+            -f date="$D"
+          python scripts/pipeline_doctor.py record \
+            --signature "alarm:done_but_no_report" --kind mechanical \
+            --date "$D" --action "re-dispatched exchange_phase_b.yml for $D" \
+            --expect-absent done_but_no_report
+
+      # ---- 3. THE AUTHORED FIX ---------------------------------------
+      # One a day. The brain edits on a branch; the constitution reviews
+      # the diff; the full suite runs; only then does a PR exist — and the
+      # auto-merge gate re-runs everything again before merge.
+      - name: Authored fix — headless brain
+        id: brain
+        if: steps.diagnose.outputs.authored != '0' && inputs.skip_brain == ''
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          set -e
+          D="${{ steps.diagnose.outputs.date }}"
+          BRIEF="state/doctor/brief-$D.md"
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::warning::no CLAUDE_CODE_OAUTH_TOKEN — authored fix skipped, journaling"
+            python scripts/pipeline_doctor.py record \
+              --signature "doctor:no_brain" --kind report --date "$D" \
+              --action "authored fix skipped: no token" --outcome failed
+            echo "changed=" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          [ -f "$BRIEF" ] || { echo "no brief written"; echo "changed=" >> "$GITHUB_OUTPUT"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            || { echo "::warning::claude CLI install failed"; echo "changed=" >> "$GITHUB_OUTPUT"; exit 0; }
+          git checkout -b "claude/doctor-$D"
+          # The brain edits; it does not run arbitrary commands. Tests and
+          # the constitution run below, in OUR steps, on whatever it wrote.
+          timeout 1500 claude -p "$(cat "$BRIEF")" \
+            --allowedTools "Read,Glob,Grep,Edit,Write" \
+            --output-format text > "$RUNNER_TEMP/brain_summary.txt" \
+            || echo "::warning::brain exited non-zero — reviewing whatever it wrote"
+          tail -20 "$RUNNER_TEMP/brain_summary.txt" || true
+          echo "changed=$(git status --porcelain | wc -l)" >> "$GITHUB_OUTPUT"
+
+      - name: Constitution review + full suite
+        id: verify
+        if: steps.brain.outputs.changed != '' && steps.brain.outputs.changed != '0'
+        run: |
+          set -e
+          D="${{ steps.diagnose.outputs.date }}"
+          git add -A
+          git diff --cached > "$RUNNER_TEMP/doctor.diff"
+          # THE CONSTITUTION. A violation discards the whole day's fix.
+          if ! python scripts/pipeline_doctor.py review-diff "$RUNNER_TEMP/doctor.diff"; then
+            echo "::error::constitution refused the diff — discarding"
+            git reset -q && git checkout -- . && git clean -fdq
+            python scripts/pipeline_doctor.py record \
+              --signature "$(python -c "
+          import json; p=json.load(open('state/doctor/plan-$D.json'))
+          print(p['authored'][0]['signature'])")" \
+              --kind authored --date "$D" \
+              --action "constitution refused the diff" --outcome failed
+            echo "ok=" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          # The full gate, locally, before a PR exists at all.
+          if ! python -m unittest discover -s tests -q; then
+            echo "::error::suite failed on the authored fix — discarding"
+            git reset -q && git checkout -- . && git clean -fdq
+            python scripts/pipeline_doctor.py record \
+              --signature "doctor:authored-$D" --kind authored --date "$D" \
+              --action "authored fix failed the suite" --outcome failed
+            echo "ok=" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          echo "ok=1" >> "$GITHUB_OUTPUT"
+
+      - name: Open the PR (the auto-merge gate is the reviewer)
+        if: steps.verify.outputs.ok == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+          D="${{ steps.diagnose.outputs.date }}"
+          SIG=$(python -c "
+          import json; p=json.load(open('state/doctor/plan-$D.json'))
+          print(p['authored'][0]['signature'])")
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "doctor: $SIG ($D)"
+          git push -u origin "claude/doctor-$D"
+          BODY="$RUNNER_TEMP/pr_body.md"
+          { echo "Autonomous daily fix by the pipeline doctor for finding \`$SIG\`."
+            echo; tail -30 "$RUNNER_TEMP/brain_summary.txt" 2>/dev/null || true
+            echo; echo "Constitution-reviewed; full suite passed locally; the auto-merge gate re-runs everything before merge. See docs/DOCTOR.md."; } > "$BODY"
+          gh pr create --repo "${{ github.repository }}" \
+            --head "claude/doctor-$D" --base main \
+            --title "doctor: $SIG" --body-file "$BODY"
+          python scripts/pipeline_doctor.py record \
+            --signature "$SIG" --kind authored --date "$D" \
+            --action "opened PR from claude/doctor-$D" \
+            --expect-absent "${SIG#alarm:}"
+
+      # ---- 4. JOURNAL + REPORT ---------------------------------------
+      - name: Persist the journal (run output, hardened commit)
+        if: always()
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
+        run: |
+          git checkout -q "${{ github.ref_name }}" 2>/dev/null || true
+          bash scripts/ci_commit_state.sh \
+            "doctor: ${{ steps.diagnose.outputs.date }} journal + plan" \
+            state/doctor/ || echo "::warning::journal commit failed"
+
+      - name: Report to the tracking issue (only when there is something)
+        if: steps.diagnose.outputs.mechanical != '0' || steps.diagnose.outputs.authored != '0' || steps.diagnose.outputs.report != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment "$REPORT_ISSUE_NUMBER" \
+            --repo "${{ github.repository }}" \
+            --body-file "$RUNNER_TEMP/doctor.md" \
+            || echo "::warning::could not comment on issue $REPORT_ISSUE_NUMBER"
+
+      - name: Quiet day
+        if: steps.diagnose.outputs.mechanical == '0' && steps.diagnose.outputs.authored == '0' && steps.diagnose.outputs.report == '0'
+        run: echo "::notice::nothing needed doing — staying quiet"

@@ -331,9 +331,14 @@ author under a different runtime, and they write freely within their job:
 | story words | `scripts/story_forge.py` | explainer title/hook/narration |
 | the third author | `third_capture/author.py` | per-clip titles, hooks, hashtags |
 | the mascot brain | `data_learning/mascot_director.py` | per-beat performance |
+| **the DOCTOR** | `scripts/pipeline_doctor.py` + `doctor.yml`, daily 02:30 UTC | ONE bounded code/content fix a day, on a `claude/doctor-<date>` branch through a PR — inside a CONSTITUTION it cannot edit (`docs/DOCTOR.md`) |
 | an interactive session | here | code, workflows, docs, contracts |
 
-Only the last one edits *how the pipeline works*, and it does that on a
+Only the last two edit *how the pipeline works*. The doctor does it inside
+a hard constitution — it can never weaken a gate, delete a test, touch a
+posted log, edit a workflow or doctrine, or rewrite its own rules
+(`tests/test_doctor.py` holds each refusal) — and every fix rides a PR
+through the full auto-merge gate. An interactive session does it on a
 `claude/*` branch through a PR — but that is a matter of where the code
 review happens, not a difference in authority. All of the above are Claude.
 
@@ -374,7 +379,11 @@ A reviewer (ChatGPT) reads it and writes proposals into
   data. A refusal is policy, not a score — a well-argued, well-evidenced
   violation is still refused. Proposing STRONGER gates is always allowed.
 - Load-bearing files land in `requires_operator`; the rest are ranked by
-  evidence strength. A human decides what ships.
+  evidence strength. A human decides what ships — or, since 2026-08-01, the
+  DOCTOR implements an ACCEPTED item on its own Claude authority: it reads
+  the triage OUTPUT (`retro/<date>/triage.json`, never raw proposals), and
+  its fix still rides a PR through the full gate. The refused classes stay
+  refused; the two-workflow proposals contract is untouched.
 - The brief is deliberately honest about noise: `thin_bands`, "too young to
   judge", and "this channel is small — single-digit views are mostly
   noise". A retro that launders noise into a mandate is worse than none.
