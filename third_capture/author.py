@@ -685,7 +685,12 @@ def judge_content(streamer: str, title: str, transcript: str,
             f"0. streamer={streamer} views={views} title={str(title)[:90]!r}\n"
             + (f"Contact sheet image (12 timestamped frames): {sheet}\n"
                if sheet else "No frames available — transcript only.\n")
-            + f"TRANSCRIPT: {str(transcript)[:1200]!r}")
+            + (f"TRANSCRIPT: {str(transcript)[:1200]!r}" if
+               str(transcript).strip() else
+               "TRANSCRIPT: (none — no intelligible speech in this clip). "
+               "Judge it on the FRAMES. Silence is not a defect: a fail, a "
+               "reaction, physical comedy and a clean gameplay moment all "
+               "read as no-transcript. Do NOT penalise the missing words."))
     tried_claude = False
     if sheet:
         try:
@@ -693,8 +698,16 @@ def judge_content(streamer: str, title: str, transcript: str,
             out = _call_claude(user, system=_CONTENT_SYSTEM, read_files=True)
             if out:
                 for s in (out.get("scores") or []):
+                    # A MISSING `banger` KEY IS "NO SCORE", NOT 0.5.
+                    # The default used to be 0.5, which is under the 0.70
+                    # content floor — so a malformed reply REJECTED the
+                    # clip and wrote it to the PERMANENT blocklist with
+                    # `rejected_why: "0.50 < 0.7"`. A parse quirk became an
+                    # irreversible verdict on a clip nothing had evaluated.
+                    if not isinstance(s, dict) or s.get("banger") is None:
+                        continue
                     try:
-                        b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
+                        b = max(0.0, min(1.0, float(s["banger"])))
                         _brain_note(True)
                         return b, str(s.get("why", ""))[:40], True
                     except (TypeError, ValueError):
@@ -715,6 +728,13 @@ def judge_content(streamer: str, title: str, transcript: str,
     # behind it. When Claude has already been tried and refused for this
     # clip, go straight to the text fallback provider.
     b, why = None, ""
+    if not str(transcript).strip():
+        # NO TRANSCRIPT AND NO EYES. A text judge handed a silent clip
+        # scores the title, which is the bias this function exists to
+        # remove — and a manufactured mid-band score would blocklist the
+        # clip permanently. score=None means "no judge was reachable",
+        # the gate fails open, and the record says why.
+        return None, "no transcript and no frames — nothing to judge", False
     text_user = ("Candidates:\n0. streamer=" + str(streamer)
                  + f" views={views} vph=0 title={str(title)[:90]!r}"
                  + f" snip={str(transcript)[:400]!r}")

@@ -74,10 +74,22 @@ jobs:
       # run_third selects, so posted_keys always reflects every prior post.
       - name: Sync dedupe state from main
         run: |
-          git fetch origin main --depth=1 || true
-          git checkout origin/main -- \
-            state/third_posted_log.json state/third_qa_stats.json 2>/dev/null \
-            || echo "no committed dedupe state yet — first run"
+          # This step is the ONLY thing standing between a late-executing
+          # queued run and a duplicate upload. It used to be
+          #   git fetch ... || true ; git checkout ... 2>/dev/null || echo "first run"
+          # which swallowed EVERY failure — network error, missing ref,
+          # permissions — behind a message asserting success. Distinguish
+          # "not on main yet" (fine) from "could not sync" (hard fail).
+          set -e
+          git fetch origin main --depth=1
+          for f in state/third_posted_log.json state/third_qa_stats.json; do
+            if git cat-file -e "origin/main:$f" 2>/dev/null; then
+              git checkout origin/main -- "$f"
+              echo "synced $f from origin/main"
+            else
+              echo "$f not on origin/main yet — first run for this file"
+            fi
+          done
 
       - name: Pre-flight — secrets + kill switch
         run: |

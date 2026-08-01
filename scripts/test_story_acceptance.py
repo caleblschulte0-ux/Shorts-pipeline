@@ -671,8 +671,11 @@ def main() -> int:  # noqa: C901
           _rt_src.index('result["judges"]')
           > _rt_src.index('result["error"] = f"{type(e).__name__}'))
     check("verdicts persist into the run stats",
-          '"judges")' in _rt_src and '"brain": author.brain_health()'
-          in _rt_src)
+          '"judges", "took_s")' in _rt_src
+          and '"brain": author.brain_health()' in _rt_src)
+    check("per-slot timing persists too (it was computed and dropped, so "
+          "there was ZERO timing data to diagnose the 113-min runs with)",
+          '"took_s"' in _rt_src)
     check("blocklisted clips record WHY, not just that they were blocked",
           '"rejected_by"' in _rt_src and '"rejected_why"' in _rt_src)
     # the renderer must distinguish the two failure shapes that look
@@ -1108,6 +1111,123 @@ def main() -> int:  # noqa: C901
           "force_original_aspect_ratio=decrease[fgs]" in _ce_src)
     check("render output is capped at the cut length (-t)",
           '"-t", f"{dur:.3f}"' in _ce_src)
+
+    # ================= the posted log is SACRED =======================
+    # Every check below guards a path that, when it broke, put a duplicate
+    # on the channel or erased dedupe history. docs/STORAGE_AUDIT.md:
+    # "losing an entry means a duplicate upload".
+
+    # a corrupt ledger must ABORT, never silently become an empty one
+    import tempfile as _tf
+    # the real module (storyline already imports it, so this is not new
+    # surface — main() is __main__-guarded and import has no side effects)
+    from scripts import run_third as _rtm
+    _lp = _rtm.LOG_PATH
+    try:
+        _d = Path(_tf.mkdtemp())
+        _rtm.LOG_PATH = _d / "log.json"
+        (_d / "log.json").write_text("{not json")
+        try:
+            _rtm._load_log()
+            check("a corrupt posted log aborts the run", False)
+        except SystemExit:
+            check("a corrupt posted log aborts the run", True)
+        (_d / "log.json").write_text('["a", "b"]')
+        try:
+            _rtm._load_log()
+            check("a valid-JSON-but-wrong-shape log also aborts", False)
+        except SystemExit:
+            check("a valid-JSON-but-wrong-shape log also aborts", True)
+        (_d / "log.json").unlink()
+        check("a MISSING log is a first run, not an emergency",
+              _rtm._load_log() == {"posted": {}})
+
+        # a blocklist write must hit disk immediately — the only _save_log
+        # call site used to be inside the successful-upload branch, so a
+        # run that shipped nothing threw away every rejection it paid for
+        _log = {"posted": {}}
+        _rtm._blocklist(_log, "rejected-x", {"qa_rejected": True})
+        check("a blocklist entry is persisted the moment it is written",
+              _json.loads((_d / "log.json").read_text())["posted"]
+              .get("rejected-x", {}).get("qa_rejected") is True)
+    finally:
+        _rtm.LOG_PATH = _lp
+
+    check("the upload CLAIMS its slot before sending bytes (a mid-flight "
+          "failure must not let the retry upload the same clip twice)",
+          _rt_src.index('log["posted"][slug] = _claim')
+          < _rt_src.index("YouTubeUploader(channel=\"third\").upload("))
+    check("the claim is persisted, not just held in memory",
+          '_claim\n            _save_log(log)' in _rt_src)
+    check("the posted log is checkpointed to main mid-run (a run killed "
+          "at the 120min wall must not desync dedupe state)",
+          "_checkpoint_log(" in _rt_src
+          and "ci_commit_state.sh" in _rt_src)
+    check("the log is saved on EVERY exit path, not only after an upload",
+          _rt_src.rindex("_save_log(log)")
+          > _rt_src.rindex('return 0 if any(r["ok"]') - 2000)
+
+    # publish_at collisions — two Shorts live in the same minute
+    _now = _rtm.datetime.now(_rtm.timezone.utc)
+    check("publish_at is clamped forward when it has already passed",
+          _rtm._clamp_publish_at(
+              (_now - _rtm.timedelta(hours=2))
+              .strftime("%Y-%m-%dT%H:%M:%SZ")) >
+          _now.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    check("a still-future publish_at is left exactly alone",
+          _rtm._clamp_publish_at("2099-01-01T00:00:00Z")
+          == "2099-01-01T00:00:00Z")
+    check("no schedule stays no schedule",
+          _rtm._clamp_publish_at(None) is None)
+    check("a second run today starts PAST what an earlier run claimed",
+          "already claimed up to" in _rt_src)
+
+    # variety caps must count what SHIPPED, not what was rejected
+    check("rejected clips do not consume a streamer's daily variety cap",
+          'not k.startswith("rejected-")' in _rt_src
+          and 'not v.get("qa_rejected")' in _rt_src)
+
+    # the content gate must run on speechless clips — the exact material
+    # the vision judge was built for
+    check("the content gate runs when there is NO transcript",
+          "if words is not None:" in _rt_src)
+    _s, _w, _saw = _au.judge_content("s", "t", "", sheet="")
+    check("a silent clip with no frames scores None (fail open), never a "
+          "mid-band number that would blocklist it forever", _s is None)
+
+    # mined moments must never leak the internal scheme to viewers
+    check("a mined URL renders as an openable Twitch VOD deep-link",
+          _rtm._public_source("vodmine://2412345678/4180")
+          == "https://www.twitch.tv/videos/2412345678?t=01h09m40s")
+    check("a real clip URL passes through untouched",
+          _rtm._public_source("https://clips.twitch.tv/Abc")
+          == "https://clips.twitch.tv/Abc")
+    check("'Clipped by vod-mined' is suppressed (nobody clipped it)",
+          "not vod_miner.is_mined(" in _rt_src)
+    check("a mined moment is not judged on its (nonexistent) title",
+          'c.get("mined")' in _rt_src
+          and "no title to judge" in _rt_src)
+
+    # the two definitions of clip identity must not drift again
+    from third_capture import storyline as _sl
+    check("storyline.clip_key delegates to the ONE canonical _clip_key",
+          _sl.clip_key("vodmine://AAA/900")
+          != _sl.clip_key("vodmine://BBB/900")
+          and _sl.clip_key("vodmine://AAA/900")
+          == _rtm._clip_key("vodmine://AAA/900"))
+    check("...and still folds the two Twitch clip URL forms together",
+          _sl.clip_key("https://clips.twitch.tv/Slug")
+          == _sl.clip_key("https://twitch.tv/ch/clip/Slug?t=1"))
+
+    # a run that ships nothing must SAY so
+    check("a run that shipped no new video says NO NEW VIDEOS",
+          "NO NEW VIDEOS" in _rt_src)
+
+    # the workflow's dedupe sync must not fail open
+    _yml = (REPO / ".github" / "workflows" / "third.yml").read_text()
+    check("the dedupe sync distinguishes 'not on main' from 'sync failed'",
+          "git cat-file -e" in _yml
+          and "|| echo \"no committed dedupe state yet" not in _yml)
 
     print()
     if FAILS:
