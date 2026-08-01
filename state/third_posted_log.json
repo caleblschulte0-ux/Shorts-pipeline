@@ -1945,6 +1945,52 @@
         "end": 24.9
       },
       "director_cut": true
+    },
+    "rejected-deliciousantediluviangaurmrdestructoid-j3slncrvflppsesh": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DeliciousAntediluvianGaurMrDestructoid-j3SLnCrVflpPSesh",
+      "streamer": "kaicenat",
+      "title": "oh noooo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.7 (just talking, no clear payoff)",
+      "ts": "2026-08-01T12:12:29.711597+00:00"
+    },
+    "rejected-mildmuddygoldfishbrainslug-k-a8jrur4qgvqz_4": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MildMuddyGoldfishBrainSlug-k-A8JruR4qgvqz_4",
+      "streamer": "kaicenat",
+      "title": "security kai\ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.35 < 0.7 (crowd swarm, no clear payoff)",
+      "ts": "2026-08-01T12:13:50.857637+00:00"
+    },
+    "rejected-suavevibrantorangenotatk-ysaj-pa7kul99fwp": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SuaveVibrantOrangeNotATK-YSAj-Pa7KUL99Fwp",
+      "streamer": "kaicenat",
+      "title": "kai getting jump scared\ud83d\ude02\ud83d\ude02\ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.7 (no scare shown, just towel banter)",
+      "ts": "2026-08-01T12:14:59.188229+00:00"
+    },
+    "rejected-expensivebombasticpancakesquadgoals-0gitrlfrgcfaj28g": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/ExpensiveBombasticPancakeSquadGoals-0gitrlFRgcfAj28G",
+      "streamer": "ludwig",
+      "title": "Ludwig reviews his Envoy of Fuling debut in Road to Empress II \ud83d\ude04",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.7 (streamer commentary, no real event)",
+      "ts": "2026-08-01T12:45:05.978318+00:00"
+    },
+    "clip-20260801-2": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-beacc4e40840ad93",
+      "streamer": "stableronaldo",
+      "title": "His 'Viral' Drive-Thru Bit Almost Got His Friend In Trouble",
+      "kind": "story",
+      "ts": "2026-08-01T12:56:33.012089+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
