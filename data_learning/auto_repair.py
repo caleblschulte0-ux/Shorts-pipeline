@@ -30,16 +30,41 @@ _CARD_PREFIX = ("flat_", "chapter")
 _SCENE_HINT = "_prefer_scene"
 
 
-def _beat_index(target, n: int) -> int | None:
-    """Resolve a finding's target to a beat index. Accepts 'beat 7', 7, '7',
-    or a time range (which the caller maps via the beatmap)."""
+def _beat_index(target, n: int, beatmap: dict | None = None) -> int | None:
+    """Resolve a finding's target to a beat index.
+
+    Accepts 'beat 7', 7, '7', or a TIME RANGE ('112.0-119.5s') resolved through
+    the beatmap. The time-range case is not decorative: the director reports
+    every span defect that way — STALE_SPAN, PACING — because it watches the
+    rendered film and has no beat numbers, only a clock. This function's own
+    docstring used to promise the caller mapped those "via the beatmap", and no
+    caller ever did, so on the 2026-08-01 shared-air render the one genuinely
+    repairable finding of six died on "target is a time range, not a beat" and
+    the loop applied zero repairs. A span belongs to the beat that covers its
+    midpoint, which is the beat you would actually re-cut.
+    """
     if isinstance(target, int):
         return target if 0 <= target < n else None
-    m = re.search(r"beat\s*(\d+)", str(target), re.I) or \
-        re.fullmatch(r"\s*(\d+)\s*", str(target))
+    s = str(target)
+    m = re.search(r"beat\s*(\d+)", s, re.I) or re.fullmatch(r"\s*(\d+)\s*", s)
     if m:
         i = int(m.group(1))
         return i if 0 <= i < n else None
+    span = re.fullmatch(r"\s*([\d.]+)\s*-\s*([\d.]+)\s*s?\s*", s)
+    if span and beatmap:
+        try:
+            mid = (float(span.group(1)) + float(span.group(2))) / 2.0
+        except ValueError:
+            return None
+        for i, b in enumerate(beatmap.get("beats") or []):
+            if i >= n:
+                break
+            try:
+                a, z = str(b.get("t", "")).split("-")
+                if float(a) <= mid < float(z):
+                    return i
+            except (ValueError, AttributeError):
+                continue
     return None
 
 
@@ -51,7 +76,8 @@ def _is_card(beat: dict) -> bool:
     return _kind(beat).startswith(_CARD_PREFIX)
 
 
-def apply(plan: dict, story: dict, escalation: str | None = None) -> dict:
+def apply(plan: dict, story: dict, escalation: str | None = None,
+          beatmap: dict | None = None) -> dict:
     """Return (new_story, journal). `story` is not mutated.
 
     journal: [{task, defect_code, target, action, applied: bool, why}]
@@ -69,7 +95,7 @@ def apply(plan: dict, story: dict, escalation: str | None = None) -> dict:
 
     for t in plan.get("tasks", []):
         code = str(t.get("defect_code", "")).upper()
-        i = _beat_index(t.get("target"), n)
+        i = _beat_index(t.get("target"), n, beatmap)
 
         # --- media: the asset was unsuitable or off-subject. Re-query with a
         # different subject phrasing; the suitability gate keeps the branded

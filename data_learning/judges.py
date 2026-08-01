@@ -89,6 +89,36 @@ def taste(out: Path, ctx: dict | None = None) -> dict | None:
 
 
 # ----------------------------------------------------------------- technical
+_PASS_MARK = ("✓",)
+_FAIL_MARK = ("FAIL:", "✗", "ERROR:")
+
+
+def _complaints(notes) -> list[str]:
+    """The lines of a FAILING gate that are actually DEFECTS.
+
+    A render_gates check returns (ok, notes), and `notes` mixes three things:
+    pass markers ("✓ meta.json"), diagnostic context ("total 2684s for 167s of
+    video, 41 shots", "media resolution 839s vs local render 650s"), and the
+    line that says what broke ("FAIL: unexplained per-shot outliers: ...").
+
+    Handing the whole list to the repair planner turns a stopwatch reading into
+    a `severity: blocker` film defect. On the 2026-08-01 shared-air render that
+    is exactly what happened: ONE real failure became FIVE blockers, four of
+    them performance stats, and the healer spent five of its six repair tasks
+    on tasks whose only possible outcome is "no automated repair for this code".
+    The loop applied ZERO repairs and stopped after one attempt of three.
+
+    So: drop the pass markers; if the gate explicitly marked any line as a
+    failure, ONLY those are complaints. Gates that do not use the marker
+    (gate_package's "meta.json missing") keep reporting every line, so nothing
+    that really is a defect goes quiet.
+    """
+    lines = [str(w) for w in (notes or [])]
+    kept = [w for w in lines if not w.lstrip().startswith(_PASS_MARK)]
+    marked = [w for w in kept if w.lstrip().startswith(_FAIL_MARK)]
+    return marked or kept or ["failed"]
+
+
 def technical(out: Path, ctx: dict | None = None) -> dict:
     """Encode, duration, package completeness, fallback honesty, performance."""
     import render_gates
@@ -115,11 +145,7 @@ def technical(out: Path, ctx: dict | None = None) -> dict:
     for code, (ok, why) in checks:
         if ok:
             continue
-        # render_gates reports EVERY check it ran, passes included ("✓ meta.json").
-        # Only the failures are complaints — treating the whole list as defects
-        # manufactures blockers out of things that are fine.
-        bad = [w for w in (why or []) if not str(w).lstrip().startswith("✓")]
-        for w in bad or ["failed"]:
+        for w in _complaints(why):
             findings.append({
                 "defect_code": code, "severity": "blocker",
                 "complaint": str(w)[:300],

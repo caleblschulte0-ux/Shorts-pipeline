@@ -356,6 +356,15 @@ def _reconcile_verdict(slug: str, result: dict) -> None:
               f"still blocks: {'; '.join(result.get('reasons', [])[:2])}")
 
 
+def _beatmap(out: Path) -> dict | None:
+    """The rendered film's beat -> time map, for resolving span targets."""
+    f = Path(out).with_name(Path(out).stem + "_pkg") / "beatmap.json"
+    try:
+        return json.loads(f.read_text())
+    except Exception:  # noqa: BLE001 — no beatmap just means span targets miss
+        return None
+
+
 def _round_signature(result: dict) -> tuple:
     """What this round COMPLAINED and what it SCORED — the pair the circuit
     breaker compares across renders."""
@@ -508,8 +517,13 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
             escalation = ladder[step]
             plan = repair_planner.plan(findings, attempt=attempt_i,
                                        escalation=escalation)
+            # The beatmap is how a span defect ("112.0-119.5s") becomes a beat
+            # the healer can edit. Without it every director finding — which is
+            # ALWAYS a time range, because the director watches a clock, not a
+            # beat list — is dropped as unaddressable.
             revised, journal = auto_repair.apply(plan, story,
-                                                 escalation=escalation)
+                                                 escalation=escalation,
+                                                 beatmap=_beatmap(out))
             applied = [j for j in journal if j.get("applied")]
             if applied:
                 break
