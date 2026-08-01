@@ -99,6 +99,14 @@ def _render_run(run: dict, rejects_only: bool) -> None:
                   "healthy" if fail == 0 else
                   f"DEGRADED — {fail}/{total} brain tasks failed")
         brain_line = f"   brain: {health}  ({ok} ok / {fail} failed)"
+        if brain.get("limited_at"):
+            # a spent subscription window is not an outage and not a bug —
+            # it needs a different response than "the brain is broken"
+            brain_line += (f"\n   brain: USAGE LIMIT hit at "
+                           f"{brain['limited_at']} — further calls were "
+                           f"skipped, not retried into the wall"
+                           + (f"  ({brain.get('limit_detail', '')[:90]})"
+                              if brain.get("limit_detail") else ""))
     else:
         brain_line = "   brain: not recorded (run predates brain tracking)"
 

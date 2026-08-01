@@ -923,7 +923,7 @@ def main() -> int:  # noqa: C901
         os.environ["CLAUDE_CODE_OAUTH_TOKEN"] = "test"
 
         class _R:
-            returncode, stdout, stderr = 1, "", "Usage limit reached."
+            returncode, stdout, stderr = 1, "", "EPIPE writing to stream."
         _sp.run = lambda *A, **K: _R()
         try:
             _au._call_claude("hi")
@@ -931,13 +931,81 @@ def main() -> int:  # noqa: C901
         except RuntimeError as _e:
             _m = str(_e)
             check("brain failure surfaces the CLI's own stderr",
-                  "Usage limit reached." in _m)
+                  "EPIPE writing to stream." in _m)
             check("brain failure still reports the return code",
                   "rc=1" in _m)
             check("an empty stdout is stated, not silently omitted",
                   "stdout=<empty>" in _m)
+
+        # ---- the usage-limit breaker ----------------------------------
+        # The 07-29 "90-minute outage" was one run inside one exhausted
+        # subscription window. Once the account is out of budget every
+        # remaining call is GUARANTEED to fail; making ~40 of them anyway
+        # costs wall-clock and stampedes free-tier Groq behind it.
+        _calls = []
+
+        class _RL:
+            returncode, stdout, stderr = 1, "", "Claude usage limit reached"
+
+        def _count(*A, **K):
+            _calls.append(A[0] if A else K.get("args"))
+            return _RL()
+        _sp.run = _count
+        _au._LIMIT_HIT.update(at="", detail="")
+        check("a usage limit returns None instead of raising",
+              _au._call_claude("hi") is None)
+        check("the limit is recorded so the run can report it",
+              bool(_au.brain_limited().get("at")))
+        _n = len(_calls)
+        check("no CLI call at all once limited (the breaker is open)",
+              _au._call_claude("hi") is None and len(_calls) == _n)
+
+        # the model must be PINNED — an unpinned call inherits the account
+        # default, which is how a window gets spent without anyone choosing
+        _au._LIMIT_HIT.update(at="", detail="")
+        _calls.clear()
+        _sp.run = _count
+        try:
+            _au._call_claude("hi")
+        except RuntimeError:
+            pass
+        check("the CLI call pins a model",
+              bool(_calls) and "--model" in (_calls[0] or []))
+
+        # a limit can also arrive rc=0 with prose and no JSON
+        _au._LIMIT_HIT.update(at="", detail="")
+
+        class _R0:
+            returncode = 0
+            stdout = "I'm out of usage limit for now, resets at 3pm."
+            stderr = ""
+        _sp.run = lambda *A, **K: _R0()
+        check("a prose usage limit on rc=0 arms the breaker too",
+              _au._call_claude("hi") is None
+              and bool(_au.brain_limited().get("at")))
     finally:
         _sp.run, _sh.which = _real_run, _real_which
+        _au._LIMIT_HIT.update(at="", detail="")
+
+    # judge_content must not amplify: a vision call that just failed must
+    # NOT trigger a second Claude call for the same clip via rank_clips
+    _seen = []
+    _rc, _rg = _au._call_claude, _au._call_groq
+    try:
+        def _boom(*A, **K):
+            _seen.append("claude")
+            raise RuntimeError("brain down")
+        _au._call_claude = _boom
+        _au._call_groq = lambda *A, **K: (_seen.append("groq") or
+                                          {"scores": [{"banger": 0.6,
+                                                       "why": "ok"}]})
+        _s, _w, _saw = _au.judge_content("s", "t", "words", sheet="/x.png")
+        check("a failed vision call does not fire a SECOND claude call",
+              _seen.count("claude") == 1)
+        check("the text fallback still produces a score", _s == 0.6)
+        check("and it is recorded as blind", _saw is False)
+    finally:
+        _au._call_claude, _au._call_groq = _rc, _rg
 
     # ---- source health is judged across runs, not one sample ----------
     _jmod = _j

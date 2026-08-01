@@ -454,7 +454,47 @@ def brain_down(min_calls: int = 3) -> bool:
 
 
 def brain_health() -> dict:
-    return dict(_BRAIN)
+    h = dict(_BRAIN)
+    # "0 ok / 25 failed" and "0 ok / 25 failed because the subscription
+    # window was already spent" call for completely different responses.
+    # The judges digest reads this, so the distinction has to be IN it.
+    if _LIMIT_HIT["at"]:
+        h["limited_at"] = _LIMIT_HIT["at"]
+        h["limit_detail"] = _LIMIT_HIT["detail"]
+    return h
+
+
+# ------------------------------------------------ usage-limit breaker
+# 2026-07-29 read as a 90-minute outage; it was not. The cron fires at
+# 11:10 UTC and the "outage" ran 11:10-12:41 — that WAS the run, first
+# call to last, inside one exhausted subscription window. A run makes
+# ~40 `claude -p` calls, immediately after daily.yml has already spent
+# that window on a full agentic session.
+#
+# Once the account is out of budget, every remaining call is guaranteed
+# to fail. Making them anyway costs real time and stampedes ~40 requests
+# onto free-tier Groq in a few minutes — which is why "Groq 429s at the
+# same time" always looked like a coincidence and never was. Groq was
+# being killed BY the Claude failure, not alongside it.
+_LIMIT_HIT: dict = {"at": "", "detail": ""}
+_LIMIT_PAT = re.compile(
+    r"usage limit|rate.?limit|quota|too many requests|resets? (at|in)|"
+    r"429|overloaded", re.I)
+
+
+def brain_limited() -> dict:
+    """Non-empty once the CLI has reported a usage/rate limit this run."""
+    return dict(_LIMIT_HIT)
+
+
+def _note_limit(detail: str) -> None:
+    if not _LIMIT_HIT["at"]:
+        from datetime import datetime, timezone
+        _LIMIT_HIT.update(at=datetime.now(timezone.utc).isoformat(
+            timespec="seconds"), detail=detail[:200])
+        print(f"::warning::[brain] USAGE LIMIT reached — {detail[:160]}. "
+              f"Skipping further Claude calls this run instead of retrying "
+              f"into the wall (and stampeding Groq).", flush=True)
 
 
 def _call_claude(user: str, system: str = SYSTEM,
@@ -471,6 +511,11 @@ def _call_claude(user: str, system: str = SYSTEM,
     model that didn't actually look)."""
     import shutil
     import subprocess
+    if _LIMIT_HIT["at"]:
+        # already out of budget this run — a further call cannot succeed,
+        # and each one costs wall-clock and pushes another request onto
+        # the Groq fallback that is about to 429 because of us
+        return None
     if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN", "").strip():
         print("::warning::[author] CLAUDE_CODE_OAUTH_TOKEN unset — the brain "
               "is unavailable, falling to Groq", flush=True)
@@ -481,10 +526,31 @@ def _call_claude(user: str, system: str = SYSTEM,
         return None
     prompt = (system + "\n\n" + user
               + "\n\nReturn ONLY the JSON object, nothing else.")
-    cmd = ["claude", "-p", prompt]
+    # PIN THE MODEL. Every other brain path in the repo pins one
+    # (story_forge, mascot_director and daily.yml all pin sonnet;
+    # showrunner pins opus) — this call site pinned NOTHING and inherited
+    # the account default. ~40 unpinned calls per run is how a window gets
+    # spent without anyone choosing to spend it.
+    cmd = ["claude", "-p", prompt,
+           "--model", os.environ.get("THIRD_BRAIN_MODEL", "sonnet")]
     if read_files:
         cmd += ["--allowedTools", "Read"]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+    if r.returncode != 0 and _LIMIT_PAT.search((r.stderr or "")
+                                               + (r.stdout or "")):
+        _note_limit((r.stderr or r.stdout or "").strip().replace("\n", " "))
+        return None
+    # Prefer a clean parse of the whole reply; the greedy r"\{.*\}" spans
+    # from the FIRST brace to the LAST, so any prose containing braces (or
+    # a fenced block plus trailing commentary) mis-spans and raises a
+    # JSONDecodeError that the callers' bare excepts swallow as "brain
+    # down". Try the honest parse first, keep the regex as the fallback.
+    _txt = (r.stdout or "").strip()
+    if _txt.startswith("{") and _txt.endswith("}"):
+        try:
+            return json.loads(_txt)
+        except ValueError:
+            pass
     m = re.search(r"\{.*\}", r.stdout, re.DOTALL)
     if not m:
         # SURFACE THE CLI'S OWN MESSAGE. capture_output=True collects
@@ -497,6 +563,11 @@ def _call_claude(user: str, system: str = SYSTEM,
         # thrown away. This is the single highest-value line in the file.
         err = (r.stderr or "").strip().replace("\n", " ")[:300]
         head = (r.stdout or "").strip().replace("\n", " ")[:120]
+        # A limit can also arrive as rc=0 with a prose apology and no JSON,
+        # so the breaker has to be armed here too — not only on rc!=0.
+        if _LIMIT_PAT.search(err + " " + head):
+            _note_limit(err or head)
+            return None
         raise RuntimeError(
             f"no JSON in claude output (rc={r.returncode})"
             + (f" stderr={err!r}" if err else "")
@@ -615,8 +686,10 @@ def judge_content(streamer: str, title: str, transcript: str,
             + (f"Contact sheet image (12 timestamped frames): {sheet}\n"
                if sheet else "No frames available — transcript only.\n")
             + f"TRANSCRIPT: {str(transcript)[:1200]!r}")
+    tried_claude = False
     if sheet:
         try:
+            tried_claude = True
             out = _call_claude(user, system=_CONTENT_SYSTEM, read_files=True)
             if out:
                 for s in (out.get("scores") or []):
@@ -633,14 +706,39 @@ def judge_content(streamer: str, title: str, transcript: str,
     # failure — losing every clip when vision blinks would be worse than
     # the bias — but it is recorded as blind so a day judged entirely
     # without eyes is visible instead of looking authoritative.
+    #
+    # AMPLIFICATION: this used to call rank_clips(), which calls
+    # _call_claude() again — so a vision call that failed because the
+    # account was out of budget immediately fired a SECOND CLI call for
+    # the same clip. Across a slate that doubles the request rate exactly
+    # when the brain is already failing, and doubles the Groq stampede
+    # behind it. When Claude has already been tried and refused for this
+    # clip, go straight to the text fallback provider.
     b, why = None, ""
-    try:
-        res = rank_clips([{"url": "candidate", "channel": streamer,
-                           "views": views, "title": title,
-                           "snip": str(transcript)[:400]}])
-        b, why = res.get("candidate", (None, ""))
-    except Exception as e:  # noqa: BLE001
-        print(f"::warning::[content] text judge failed ({e})", flush=True)
+    text_user = ("Candidates:\n0. streamer=" + str(streamer)
+                 + f" views={views} vph=0 title={str(title)[:90]!r}"
+                 + f" snip={str(transcript)[:400]!r}")
+    out = None
+    if not tried_claude:
+        try:
+            out = _call_claude(text_user, system=_RANK_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[content] claude text judge failed ({e})",
+                  flush=True)
+    if out is None:
+        try:
+            out = _call_groq(text_user, system=_RANK_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[content] groq text judge failed ({e})",
+                  flush=True)
+    _brain_note(bool(out))
+    for s in (out or {}).get("scores") or []:
+        try:
+            b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
+            why = str(s.get("why", ""))[:40]
+            break
+        except (TypeError, ValueError):
+            continue
     return b, why, False
 
 
