@@ -1,0 +1,38 @@
+{
+  "key": "en_pop_dnst_rank",
+  "title": "Population density",
+  "unit": "people per sq. km of land area",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Population density",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.POP.DNST",
+    "officiality": "official",
+    "access_date": "2026-08-01"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-01. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Macao SAR, China",
+      "value": 20570
+    },
+    {
+      "label": "Monaco",
+      "value": 18693
+    },
+    {
+      "label": "Singapore",
+      "value": 8242
+    },
+    {
+      "label": "Hong Kong SAR, China",
+      "value": 7177
+    },
+    {
+      "label": "Gibraltar",
+      "value": 3847
+    }
+  ]
+}

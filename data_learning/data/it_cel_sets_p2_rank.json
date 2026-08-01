@@ -1,0 +1,38 @@
+{
+  "key": "it_cel_sets_p2_rank",
+  "title": "Mobile cellular subscriptions",
+  "unit": "per 100 people",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Mobile cellular subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.CEL.SETS.P2",
+    "officiality": "official",
+    "access_date": "2026-08-01"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-01. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Fiji",
+      "value": 574.2
+    },
+    {
+      "label": "Hong Kong SAR, China",
+      "value": 364.8
+    },
+    {
+      "label": "Montenegro",
+      "value": 221.7
+    },
+    {
+      "label": "Sint Maarten (Dutch part)",
+      "value": 205.4
+    },
+    {
+      "label": "United Arab Emirates",
+      "value": 203.2
+    }
+  ]
+}
