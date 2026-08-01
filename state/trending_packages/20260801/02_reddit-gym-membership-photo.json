@@ -55,7 +55,12 @@
     {
       "phrase": "no record I'd ever canceled",
       "query": "customer service phone call",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "I'd",
+      "pin_context": "The gym said there was no record I ever canceled",
+      "news_query": "I'd",
+      "news_angle": "The gym said there was no record I ever canceled",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
     },
     {
       "phrase": "emailed the photo, timestamp and all",

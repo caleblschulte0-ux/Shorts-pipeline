@@ -369,7 +369,7 @@
   "done_marker": "exchange/bundles/20260801/DONE",
   "counts": {
     "packages": 6,
-    "requests": 16,
+    "requests": 15,
     "animations": 0,
     "to_author": 0
   },
@@ -425,8 +425,8 @@
           "shot_index": 4,
           "phrase": "no record I'd ever canceled",
           "query": "customer service phone call",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
@@ -486,16 +486,15 @@
         }
       ],
       "media_health": {
-        "strong": 3,
+        "strong": 4,
         "weak": 0,
-        "missing": 10,
+        "missing": 9,
         "unknown": 0
       },
-      "strong_fraction": 0.231,
+      "strong_fraction": 0.308,
       "requested": [
         "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
         "reddit-gym-membership-photo-s3-d9fa8daf992d",
-        "reddit-gym-membership-photo-s4-09837736dfe5",
         "reddit-gym-membership-photo-s5-32d6da4d2178",
         "reddit-gym-membership-photo-s7-8f8dacb0b451",
         "reddit-gym-membership-photo-s8-9ae5b5e840b6",
@@ -663,32 +662,6 @@
       "shot_index": 3,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: credit card charge statement. It accompanies the narration: \"2 months later they charged my card anyway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-membership-photo-s4-09837736dfe5",
-      "safe_request_id": "reddit-gym-membership-photo-s4-09837736dfe5",
-      "drive_filename": "20260801__reddit-gym-membership-photo-s4-09837736dfe5.png",
-      "prompt_sha256": "3ef5a34d54fbc09c46d21006da1df6360db205e0a915094ed5dc8d247931d860",
-      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s4-09837736dfe5.json",
-      "slug": "reddit-gym-membership-photo",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: customer service phone call. It accompanies the narration: \"no record I'd ever canceled\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
