@@ -1,74 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260718",
-      "dry_run": false,
-      "ts": "2026-07-18T12:36:58+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 56,
-        "with_retention": 45,
-        "with_curve": 10,
-        "fetched_at": "2026-07-18T09:57:00.564292+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260718-1",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260718-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260718-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260718-4",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260718-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Frames from 4.3s-7.6s are heavily dark/near-black or blurred with the subject barely or not visible; vision: Opening frames (0.3-1.6s) are an extreme close-up on shirt fabric, no face/subject "
-        },
-        {
-          "slug": "clip-20260718-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260718-7",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: frames from ~4.0s-14.8s (roughly a third of the clip) are near-black/out-of-focus blur on a door with no visible subject; vision: extended dead footage makes it look like the person disappeare"
-        },
-        {
-          "slug": "clip-20260718-8",
-          "ok": false,
-          "error": "RuntimeError: preflight: source only 5.5s \u2014 too short to edit"
-        }
-      ]
-    },
-    {
       "date": "20260719",
       "dry_run": false,
       "ts": "2026-07-19T12:23:20+00:00",
@@ -2048,6 +1980,190 @@
             }
           },
           "took_s": 56.3
+        }
+      ]
+    },
+    {
+      "date": "20260801",
+      "dry_run": false,
+      "ts": "2026-08-01T14:41:42+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 112,
+        "with_retention": 102,
+        "with_curve": 15,
+        "fetched_at": "2026-08-01T14:02:04.416187+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260801-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (just a call announcement, no event)",
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "clear call, visible funny reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "just a call announcement, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 44.9
+        },
+        {
+          "slug": "clip-20260801-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20260801-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "emotional apology/rejection moment, visi",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Deshaefrost Asks For A Hug And Ends Up On The Bed"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 170.6
+        },
+        {
+          "slug": "clip-20260801-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "reveals staged prank, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Admits She Purposely Threw Her Fortnite Qualifier"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.93,
+              "problems": []
+            }
+          },
+          "took_s": 220.1
         }
       ]
     }

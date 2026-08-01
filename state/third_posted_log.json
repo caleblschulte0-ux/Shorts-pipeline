@@ -2232,14 +2232,27 @@
       "ts": "2026-08-01T14:38:02.566674+00:00"
     },
     "clip-20260801-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/SpineyVivaciousMallardBlargNaut-ZuKs8eXazRKlOK5b",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/nkz4DMPVekQ",
       "title": "Lacy Admits She Purposely Threw Her Fortnite Qualifier",
       "kind": "twitch_clip",
-      "ts": "2026-08-01T14:41:38.570620+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-01T14:41:42.708299+00:00",
+      "uploaded_at": "2026-08-01T14:41:42.708321+00:00",
+      "publish_at": "2026-08-01T23:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/SpineyVivaciousMallardBlargNaut-ZuKs8eXazRKlOK5b",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "SHE ADMITS IT WAS ALL FAKE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1758,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 26.6
+      },
+      "director_cut": true
     }
   }
 }
