@@ -229,10 +229,20 @@ its timestamp. Read that image file now.
 Clip context: title {title!r}, hook card {hook!r}, series {series!r},
 duration {dur:.1f}s, effects applied: {effects}.
 
+THE HOUSE LAYOUT IS NOT A DEFECT. Most clips are 16:9 source fitted into a
+9:16 canvas: a SHARP band across the middle with a BLURRED, dimmed copy of
+the same frame filling the space above and below it. That padding is
+deliberate, it is supposed to be soft, and it occupies roughly two thirds of
+the frame BY CONSTRUCTION. Judge ONLY the sharp band — "mostly blurry",
+"subject small in frame", "letterboxed" and "only a strip is in focus" are
+descriptions of the house style, NOT problems, and must never be reported as
+such. Report blur only where the SHARP band is itself out of focus.
+
 Judge it like a human editor (a viewer should think "well-edited clip", never
 "where did the person go / why is that emoji on his face / why did it cut"):
-1. Is a person or the clear subject of the action properly visible in most
-   frames (not cropped half out, not empty space between two people)?
+1. Within the sharp band, is a person or the clear subject of the action
+   visible in most frames (not cropped half out, not empty space between two
+   people)? A subject that is small but clear is fine.
 2. Do overlays (emoji, big word, REPLAY stamp, captions) cover a face or the
    main action?
 3. Any obviously broken frame: black, garbled, stretched, duplicated?
