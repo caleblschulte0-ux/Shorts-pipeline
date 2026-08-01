@@ -1,0 +1,48 @@
+{
+  "key": "eg_use_elec_kh_pc_trend",
+  "title": "Electric power consumption",
+  "unit": "kWh per capita",
+  "geography": "World",
+  "time_coverage": "1990-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Electric power consumption",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 2093,
+      "period": "1990"
+    },
+    {
+      "label": "1997",
+      "value": 2218,
+      "period": "1997"
+    },
+    {
+      "label": "2003",
+      "value": 2438,
+      "period": "2003"
+    },
+    {
+      "label": "2010",
+      "value": 2888,
+      "period": "2010"
+    },
+    {
+      "label": "2016",
+      "value": 3138,
+      "period": "2016"
+    },
+    {
+      "label": "2023",
+      "value": 3558,
+      "period": "2023"
+    }
+  ]
+}

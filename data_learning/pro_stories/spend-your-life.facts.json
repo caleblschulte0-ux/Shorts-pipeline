@@ -1,0 +1,172 @@
+{
+ "slug": "spend-your-life",
+ "note": "Every figure is an illustrative model built on public time-use data; see each claim's calculation and assumptions. NOT verified against live sources.",
+ "claims": [
+  {
+   "id": "claim-life-expectancy",
+   "beat_index": 0,
+   "echo_beats": [
+    1,
+    26
+   ],
+   "claim": "A U.S. life expectancy of about 77 years is roughly 4,000 weeks.",
+   "source_title": "Mortality in the United States (life expectancy at birth)",
+   "publisher": "CDC / National Center for Health Statistics",
+   "source_type": "official",
+   "publication_date": "2024-01-15",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Uses period life expectancy at birth, not a cohort projection."
+   ],
+   "calculation": "77.5 years x 52.18 weeks/year = 4,044 weeks, rounded to 'about 4,000'.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-sleep-years",
+   "beat_index": 3,
+   "echo_beats": [
+    5
+   ],
+   "claim": "About 26 years of a full life is spent asleep \u2014 roughly a third of it.",
+   "source_title": "American Time Use Survey (sleeping) and CDC sleep-duration guidance",
+   "publisher": "U.S. Bureau of Labor Statistics; CDC",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Averages a single daily figure across all ages, which smooths over large childhood/adult differences \u2014 illustrative, not a measurement."
+   ],
+   "calculation": "~8.0 h/day averaged across a 77.5-year life (childhood sleep need is far higher than adult) = 226,300 h = 25.8 years ~ 26 years; 26/77.5 = 33% ~ 'a third'.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-work-years",
+   "beat_index": 7,
+   "echo_beats": [
+    9
+   ],
+   "claim": "A normal working life is roughly 80,000 hours, about 9 years of round-the-clock time.",
+   "source_title": "American Time Use Survey (work and work-related activities)",
+   "publisher": "U.S. Bureau of Labor Statistics",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Assumes full-time continuous employment; part-time, caregiving gaps, and unemployment all change it materially."
+   ],
+   "calculation": "40-year career x 250 workdays x 8 h = 80,000 h = 3,333 days = 9.1 years of 24-hour days.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-screen-years",
+   "beat_index": 11,
+   "echo_beats": [
+    13
+   ],
+   "claim": "Around 11 years of an adult life goes to screens; television alone averages about 3 hours a day.",
+   "source_title": "American Time Use Survey (leisure and sports: watching TV)",
+   "publisher": "U.S. Bureau of Labor Statistics",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "The TV component is measured; the non-TV screen component is an estimate and is the weakest number in this story."
+   ],
+   "calculation": "~2.8 h/day television across 60 adult years = 61,300 h = 7.0 years; adding non-TV leisure screen use brings the total to ~11 years.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-commute-year",
+   "beat_index": 15,
+   "echo_beats": [
+    17
+   ],
+   "claim": "A mean one-way commute of about 27 minutes adds up to roughly one full year of a working life.",
+   "source_title": "American Community Survey (travel time to work)",
+   "publisher": "U.S. Census Bureau",
+   "source_type": "derived",
+   "publication_date": "2024-09-12",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Covers commuters only; remote and non-working years are excluded."
+   ],
+   "calculation": "26.8 min each way x 2 = 53.6 min/day x 250 days x 40 years = 8,933 h = 372 days ~ 1 year.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-chores-years",
+   "beat_index": 20,
+   "echo_beats": [],
+   "claim": "About 4.5 years of an adult life goes to household upkeep.",
+   "source_title": "American Time Use Survey (household activities)",
+   "publisher": "U.S. Bureau of Labor Statistics",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Household-activity time differs sharply by household composition."
+   ],
+   "calculation": "~1.8 h/day x 365 x 60 adult years = 39,400 h = 4.5 years.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-eating-years",
+   "beat_index": 21,
+   "echo_beats": [],
+   "claim": "About 2.5 years of an adult life is spent eating and drinking.",
+   "source_title": "American Time Use Survey (eating and drinking)",
+   "publisher": "U.S. Bureau of Labor Statistics",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "Excludes time spent preparing food, which sits in household activities above."
+   ],
+   "calculation": "~1.0 h/day x 365 x 60 adult years = 21,900 h = 2.5 years.",
+   "presentation": "illustrative_model"
+  },
+  {
+   "id": "claim-remainder",
+   "beat_index": 23,
+   "echo_beats": [
+    22,
+    24
+   ],
+   "claim": "After sleep, work, screens, travel, upkeep and eating, roughly 9 years of genuinely discretionary waking time remain.",
+   "source_title": "Derived from the American Time Use Survey categories above",
+   "publisher": "U.S. Bureau of Labor Statistics (derived)",
+   "source_type": "derived",
+   "publication_date": "2024-06-27",
+   "accessed_date": "2026-07-29",
+   "geography": "United States",
+   "population": "U.S. adults / a full U.S. life expectancy",
+   "assumptions": [
+    "Figure was authored from the agent's recollection of the cited dataset, NOT from a live lookup \u2014 verify against the source before this story is ever published.",
+    "The childhood/late-life deduction is the softest assumption in the film and is deliberately generous, so the 9-year figure is a ceiling rather than a floor."
+   ],
+   "calculation": "77.5 - 26 sleep - 9 work - 11 screens - 1 commute - 4.5 upkeep - 2.5 eating = 23.5 years, of which childhood and late-life dependency absorb roughly 14, leaving ~9 years of discretionary adult time.",
+   "presentation": "illustrative_model"
+  }
+ ]
+}

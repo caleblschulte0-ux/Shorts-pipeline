@@ -1,0 +1,507 @@
+{
+  "date": "20260731",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 24,
+    "unfilled": 0,
+    "refused": 24
+  },
+  "checkpoints": {
+    "bundle_identity": "e7d3e1af83607cd0ba8b80159daf4ab06cdce224c79c54a9c5f550bc5819932c",
+    "required": true,
+    "checked": 24,
+    "ok": 0,
+    "rejected": 24,
+    "warnings": 0,
+    "rejected_detail": [
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s0-09daaf0defb4.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s3-16a3f5fba808.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s4-442499836d66.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s5-a1c266204818.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s6-c28e3181c00b.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s7-9b02212e1f56.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s8-4f6018ab5e5f.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s9-27e530d2231a.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s10-c1d1f1bdde32.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s11-0d3cb050317f.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s12-a58c501e7cad.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s13-3665066959bc.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s0-3a730fba60f1.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s3-cda46ccffdeb.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s4-b4a5d2c55431.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s5-0a2f31899938.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s6-45eaafc32795.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s7-c31b14028ca5.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s8-b1321636a503.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s9-4f2fdfe65969.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s10-544a12d8626a.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s11-cbe5037f535c.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s12-beef450763a5.json \u2014 the media worker never recorded this image as verified"
+        ]
+      },
+      {
+        "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+        "where": "response.media",
+        "problems": [
+          "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s13-1c7e604d1af9.json \u2014 the media worker never recorded this image as verified"
+        ]
+      }
+    ],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s0-09daaf0defb4.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s0-09daaf0defb4",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gcf5f769abb3638b05e24cba82749e03a73a76b87aa877b467c01fb06f84428e07e50f0aca04bc1080b46c52d677c7d39ca9d29e45cecadf60c7b9bef01c09c5c_1280.png"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s3-16a3f5fba808.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s3-16a3f5fba808",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g3cd96b4928cb0dc41a0f6115032d014af6c3b7a8cc6f134af8a7bd05463081561305080726c0a4677cc6e335e7ad64a3464146a8799f116d596f688f00a5f5ce_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s4-442499836d66.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s4-442499836d66",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/5512/14510767525_ecd0577b4b_b.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s5-a1c266204818.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s5-a1c266204818",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8bda36213a0de8c05438e86722f2a7aa4057f01a96763929e13b7b0f4189e2bb571b3f4365e85adad0c2b3d10fb09205c9408dd19766664df4293bd05ce19750_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s6-c28e3181c00b.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s6-c28e3181c00b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g3d85e3b9515d08a56660be4e1eab273b6615ed60da8173e87ee9ecc97072abfe3d7ac25eb40e408730024527c380f6eb26aa2c0e14488bd03b5216b449daa178_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s7-9b02212e1f56.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s7-9b02212e1f56",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8845bc86370233e037e93a53dbab700aaea8fd38c7fe4a08ba5d8713483c16cd96f4b973c3591190fec20eb07f9f245edcaf530b5b1109888324e52b5a818e2f_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s8-4f6018ab5e5f.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s8-4f6018ab5e5f",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/8042344/pexels-photo-8042344.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s9-27e530d2231a.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s9-27e530d2231a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd17c6808916b7014271b828047e025737ea3026a05f63493d43d7e0924641770d448a05c93dbf9eb050e139254a294865a05d7f763ab546d6ce94b5a14055d0c_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s10-c1d1f1bdde32.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s10-c1d1f1bdde32",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7e185548443018d6366feded4dd7361c9d957a0e2a784927d80eebbb07e0d5114765f6ff43ec1a03badc7f0b1c6c3e2e299e93605446c3bce620785a03917f1e_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s11-0d3cb050317f.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s11-0d3cb050317f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5cc1e0fceddba1e7103e35502b4adacfe1ca6666bad683a4ef2efdbd51414231a57fb4c7273a3973fedcd862340f165a0933a9c5b97c0d7beb82c0557ea1e4c1_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s12-a58c501e7cad.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s12-a58c501e7cad",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g058ff1c58cdbc4e07d49b307fa388de2e9ccb691fc1fad1f20a93e8bfeb0e856dc90016241aa3c6ea1cd27571294cada221e39aa9e4df584ce519ca47b260dcb_1280.jpg"
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/01_reddit-hoa-shed-approval-s13-3665066959bc.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "01_reddit-hoa-shed-approval-s13-3665066959bc",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g9464a5384e65f321c3c32b787f8168bf502b48acf47ce0528c524814becbecd0c174daebd8ecdc7b2302dac57f4e90fa506197bbd5a1154493afedd61769855a_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s0-3a730fba60f1.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s0-3a730fba60f1",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g57c398acd8a78a02a0985a7e2e560829cb54448f0fe0acdde22e50146b21e26d8ab39db171a3b7f07425bd8a63f4030f3b6ae88e19c181c90e2cf2f332e9418d_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s3-cda46ccffdeb.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s3-cda46ccffdeb",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2086/1943283082_bb48d4801c_b.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s4-b4a5d2c55431.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s4-b4a5d2c55431",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g44279cc3e3158725be1a8b4388237e017bce379882e7e39f46a3b89a43086fbf6323192caa81b61c362470dd5fb907b0cd2508216b29dd3e2be8de4469d67541_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s5-0a2f31899938.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s5-0a2f31899938",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g6c167bc7ebb31ba717c4c2b856122563752bb37173e4fc1d1bbee402d65e61309a8d2f8693d9756e8048506a91cc8ef4c55c07cbcdfa7a00110cda699a5c6101_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s6-45eaafc32795.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s6-45eaafc32795",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g9100261451d269fd011d7deec71c59c238541e2d2f89e656707c061d327ae8c4ab09e5edd6ba4bdcbd469fa7c743fba685aeb44e9dd597cfb8625b4aaf0de42c_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s7-c31b14028ca5.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s7-c31b14028ca5",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc259704936506917716b66dd068cc9c5e11fcf6da15bfc657c2b79ca0ed0fbae5819762d3e2ad62fb680ca93ff359148a800ce5408c7b982ae59e9baaa80a426_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s8-b1321636a503.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s8-b1321636a503",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g3c59c26bd411f8c21510aaea8436e48ad2c189ce3d3d11fc8c7631658012770a7ce92bdb77716ade8a39ba8e2f34889bb2ebaac1b28bbb5134721dd147ce3a4a_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s9-4f2fdfe65969.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s9-4f2fdfe65969",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g84d0c3c3452718a35f77fbcf779c15942829429b99dddee3be54260e047104db9a1aaca7e6273d5eb19db1d401efd3f445a2f126792cf672efd804593727de29_1280.jpg"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s10-544a12d8626a.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s10-544a12d8626a",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/8171198/pexels-photo-8171198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s11-cbe5037f535c.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s11-cbe5037f535c",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/7821762/pexels-photo-7821762.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s12-beef450763a5.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s12-beef450763a5",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/3132388/pexels-photo-3132388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "outcome": "refused",
+      "problems": [
+        "no checkpoint at exchange/bundles/20260731/media-progress/02_reddit-parking-spot-tow-s13-1c7e604d1af9.json \u2014 the media worker never recorded this image as verified"
+      ]
+    },
+    {
+      "request_id": "02_reddit-parking-spot-tow-s13-1c7e604d1af9",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/28764002/pexels-photo-28764002.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "slug": "01_reddit-hoa-shed-approval",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): funny",
+        "INVENTED named entity(ies): very"
+      ]
+    },
+    {
+      "slug": "02_reddit-parking-spot-tow",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): turned",
+        "INVENTED named entity(ies): subtle"
+      ]
+    }
+  ]
+}

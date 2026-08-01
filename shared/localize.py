@@ -137,10 +137,23 @@ def localize_meta(title: str, body: str, suffix: str = "",
     langs = langs or LANGS
     cache = _load_cache()
     out: dict[str, dict] = {}
+    # FAN OUT. Two independent HTTP calls per language, run strictly
+    # serially — with the extended 29-language set that is 58 round trips
+    # blocking every upload, and the cache keys on the FULL unique
+    # title/description so the hit rate on per-clip metadata is ~0 and
+    # always will be. The calls share nothing, and _translate already
+    # swallows per-language failures, so a thread pool changes only the
+    # wall-clock.
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=8) as _ex:
+        _fut = {code: (_ex.submit(_translate, title, name, cache),
+                       _ex.submit(_translate, body, name, cache))
+                for code, name in langs.items()}
+    done = {code: (ft.result(), fb.result())
+            for code, (ft, fb) in _fut.items()}
     # YouTube hard-limits localizations to title<=100 / description<=5000.
     for code, name in langs.items():
-        t = _translate(title, name, cache)
-        b = _translate(body, name, cache)
+        t, b = done[code]
         if not t and not b:
             continue
         desc = (b or body).strip() + suffix

@@ -8,6 +8,7 @@ in scripts/smoke_third.py on CI.
 """
 from __future__ import annotations
 
+import os
 import sys
 import tempfile
 import types
@@ -610,9 +611,734 @@ def main() -> int:  # noqa: C901
     import inspect as _i
     check("total authoring failure logs a warning",
           "AUTHORING FAILED" in _i.getsource(_au.author_package))
+    _rt_src = (REPO / "scripts" / "run_third.py").read_text()
     check("run_third routes the raw title through the quality floor",
-          "author.fallback_title" in (REPO / "scripts"
-                                      / "run_third.py").read_text())
+          "author.fallback_title" in _rt_src)
+
+    # ---- brain-health gate (blind-slate incident, 07-29 morning) --------
+    # Every rank/author/scene call failed for ~90 min and the run still
+    # published 4 view-count-picked clips. The gate must trip on proven
+    # total failure, never on flakiness, and the run must consult it.
+    _saved = dict(_au._BRAIN)
+    try:
+        _au._BRAIN.update(ok=0, fail=0)
+        check("fresh state: brain not down", not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=2)
+        check("2 failures alone do not trip the gate (min 3 calls)",
+              not _au.brain_down())
+        _au._BRAIN.update(ok=0, fail=3)
+        check("3 failures, 0 ok -> brain down", _au.brain_down())
+        _au._BRAIN.update(ok=1, fail=9)
+        check("a single success proves the path — gate never trips",
+              not _au.brain_down())
+    finally:
+        _au._BRAIN.update(_saved)
+    check("rank_clips records brain outcomes",
+          "_brain_note" in _i.getsource(_au.rank_clips))
+    check("author_package records brain outcomes",
+          "_brain_note" in _i.getsource(_au.author_package))
+    check("run_third consults the gate before filling a slot",
+          "author.brain_down()" in _rt_src)
+    check("gate has an explicit operator override",
+          "THIRD_ALLOW_BLIND" in _rt_src)
+    check("gated slots are skipped, not errored (no retry churn)",
+          "brain down — blind-slate gate" in _rt_src)
+
+    # ---- judge verdicts are SEEABLE ------------------------------------
+    # Every brain judges each slot, but the reasoning lived only in the CI
+    # log — expiring, and ~1200 lines to read. These lock the capture path
+    # (verdicts recorded on BOTH the posted and rejected branches) and the
+    # renderer that makes them legible without log archaeology.
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("_judges", REPO / "scripts"
+                                         / "judges.py")
+    _j = _ilu.module_from_spec(_spec)
+    _spec.loader.exec_module(_j)
+
+    _rt = _ilu.spec_from_file_location("_rt", REPO / "scripts"
+                                       / "run_third.py")
+    # don't execute run_third (it has side effects) — assert on source
+    check("run_third records banger verdicts", '_judge("banger"' in _rt_src)
+    check("run_third records content-gate verdicts",
+          '_judge("content"' in _rt_src)
+    check("run_third records vision verdicts", '_judge("vision"' in _rt_src)
+    check("run_third records render_qa verdicts",
+          '_judge("render_qa"' in _rt_src)
+    check("run_third records title provenance", '_judge("title"' in _rt_src)
+    check("run_third records story-director cluster verdicts",
+          "_story_verdict(" in _rt_src)
+    check("verdicts attach on the ERROR path too (rejects matter most)",
+          _rt_src.index('result["judges"]')
+          > _rt_src.index('result["error"] = f"{type(e).__name__}'))
+    check("verdicts persist into the run stats",
+          '"judges", "took_s")' in _rt_src
+          and '"brain": author.brain_health()' in _rt_src)
+    check("per-slot timing persists too (it was computed and dropped, so "
+          "there was ZERO timing data to diagnose the 113-min runs with)",
+          '"took_s"' in _rt_src)
+    check("blocklisted clips record WHY, not just that they were blocked",
+          '"rejected_by"' in _rt_src and '"rejected_why"' in _rt_src)
+    # the renderer must distinguish the two failure shapes that look
+    # identical in the posted log but mean opposite things
+    check("viewer flags a BLIND pick (can't-score default)",
+          "BLIND" in "".join(_j._fmt_judge(
+              "banger", {"score": 0.5, "blind": True})))
+    check("viewer does not flag a real score as blind",
+          "BLIND" not in "".join(_j._fmt_judge(
+              "banger", {"score": 0.6, "why": "real reason"})))
+    _sd = "".join(_j._fmt_judge("story_director", {"clusters": [
+        {"cluster": "a", "outcome": "starved", "why": "no analyzable"},
+        {"cluster": "b", "outcome": "not_a_story", "why": "no arc"}]}))
+    check("viewer separates a STARVED story from a genuine no-arc",
+          "STARVED" in _sd and "no arc" in _sd)
+    check("viewer marks an unavailable judge as DOWN, not as a pass",
+          "DOWN" in "".join(_j._fmt_judge(
+              "vision", {"verdict": "unavailable"})))
+    check("viewer names the title floor when authoring produced nothing",
+          "FLOOR" in "".join(_j._fmt_judge(
+              "title", {"source": "floor", "kept_raw": False})))
+    # _judge must coerce to JSON-SAFE primitives AT THE DOOR. Storing a raw
+    # object survives _judge but detonates at the json.dumps on attach —
+    # which runs OUTSIDE the render's try block, so it would kill the slot.
+    # Found by probing before ship; this locks it.
+    import json as _js
+    _ns = {"__name__": "_probe", "json": _js,
+           "__file__": str(REPO / "scripts" / "run_third.py")}
+    # slice to a STABLE marker, not a line count: adding a helper used to
+    # cut this mid-function and break every test below it
+    _hdr = _rt_src[:_rt_src.index("def _load_log")]
+    exec(compile(_hdr, "run_third", "exec"), _ns)
+
+    class _Boom:
+        def __repr__(self): raise ValueError("unserialisable")
+        def __str__(self): return "<obj>"
+    _ns["_judge"]("probe", bad=_Boom(), s="x" * 400, f=1.23456789,
+                  lst=["y" * 400] * 20, b=True, n=3, empty=None)
+    _pj = _ns["_JUDGES"]["probe"]
+    check("_judge survives an unserialisable value", "bad" in _pj)
+    check("_judge output is JSON-serialisable (the real failure mode)",
+          _js.loads(_js.dumps(_ns["_JUDGES"]))["probe"]["bad"] == "<obj>")
+    check("_judge truncates long strings", len(_pj["s"]) == 160)
+    check("_judge caps and truncates lists",
+          len(_pj["lst"]) == 5 and len(_pj["lst"][0]) == 160)
+    check("_judge keeps bools/ints intact, drops empties",
+          _pj["b"] is True and _pj["n"] == 3 and "empty" not in _pj)
+    check("the attach path cannot raise either",
+          "default=str" in _rt_src and "[judges] not recorded" in _rt_src)
+
+    # ---- UNJUDGED GATE -------------------------------------------------
+    # 2026-07-30: three clips shipped that NOTHING had judged. All three
+    # content gates fail open independently — and the selection floor
+    # fails open by exactly zero margin, because the can't-score default
+    # (0.5) equals min_banger (0.5), so `banger >= min_banger` is True on
+    # a fully blind run. The gate refuses to publish when not one content
+    # judge could evaluate the clip.
+    _aj, _J = _ns["_any_judgment"], _ns["_JUDGES"]
+    _jd = _ns["_judge"]
+
+    def _scen(*calls):
+        _J.clear()
+        for c in calls:
+            c()
+        return _aj()
+
+    check("blind ranker + content and vision down -> UNJUDGED (07-30 case)",
+          not _scen(lambda: _jd("banger", score=0.5, blind=True),
+                    lambda: _jd("content", verdict="unavailable"),
+                    lambda: _jd("vision", verdict="unavailable")))
+    check("a real banger score is enough to ship",
+          _scen(lambda: _jd("banger", score=0.62, why="r", blind=False)))
+    check("content gate alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("content", score=0.81, verdict="pass")))
+    check("vision alone is enough to ship",
+          _scen(lambda: _jd("banger", score=0.5, blind=True),
+                lambda: _jd("vision", verdict="pass", confidence=0.9)))
+    check("a content-gate REJECT still counts as a judgment",
+          _scen(lambda: _jd("content", score=0.2, verdict="reject")))
+    check("mechanical checks alone do NOT count as judgment",
+          not _scen(lambda: _jd("render_qa", verdict="pass")))
+    check("no verdicts at all -> unjudged", not _scen())
+    check("operator-specified clips are never treated as unjudged",
+          _scen(lambda: _jd("banger", source="operator-specified",
+                            blind=False))
+          and "operator-specified" in _rt_src)
+    check("the gate is wired into the publish path",
+          "_any_judgment()" in _rt_src and "unjudged: no content judge"
+          in _rt_src)
+    # the CALL SITE (not the def) must raise _SkipSlot: a deliberate skip
+    # doesn't retry, and retrying would just fetch another unjudged clip
+    _call = _rt_src.index("not _any_judgment()")
+    check("unjudged is a SKIP, not an error (retry gets another blind clip)",
+          "_SkipSlot" in _rt_src[_call:_call + 200]
+          and "RuntimeError" not in _rt_src[_call:_call + 200])
+    check("stories are exempt (the director is their judge)",
+          'led.get("kind") == "twitch_clip" and not _any_judgment()'
+          in _rt_src)
+
+    # ---- ESCALATION over giving up -------------------------------------
+    # 2026-07-31: two slots posted nothing on "quality floor: best banger
+    # 0.45 < 0.5". That score judges the clipper's TWITCH TITLE ('sadge',
+    # 'foams') — the clip was binned without ever being downloaded or
+    # transcribed, while a STRICTER transcript judge (0.70) sat unused
+    # downstream. An empty slot is a failure, not a success.
+    check("a failed title floor escalates instead of skipping",
+          "[rescue]" in _rt_src and "postable = rescue" in _rt_src)
+    check("escalation goes to the transcript judge, a HIGHER bar",
+          "min_banger_content" in _rt_src
+          and float(_rt_src.split('spec.get("min_banger_content", ')[1]
+                    .split(")")[0])
+          > float(_rt_src.split('spec.get("min_banger", ')[1].split(")")[0]))
+    check("a hard floor still exists (spam is not worth transcribing)",
+          'spec.get("rescue_floor", 0.25)' in _rt_src
+          and "nothing worth " in _rt_src)
+    check("the hard floor is below the title floor it rescues from",
+          0.25 < 0.50)
+    # a rescued clip has already been judged weak once — it must EARN the
+    # slot, so an unavailable transcript judge is a retry, never a ship
+    check("rescue fails CLOSED when the transcript judge is unavailable",
+          'cb is None and _JUDGES.get(' in _rt_src
+          and "must EARN its slot" in _rt_src)
+    check("a normal (non-rescued) clip still fails OPEN on that judge",
+          "cb is not None and cb < content_floor" in _rt_src)
+    check("the escalation is recorded as a verdict, not silent",
+          '_judge("selection", verdict="rescue"' in _rt_src
+          and '_judge("selection", verdict="skip"' in _rt_src)
+    # the viewer must show it, or the operator can't tell a rescue from a
+    # normal post when reading back
+    check("judges viewer renders the selection verdict",
+          "selection" in (REPO / "scripts" / "judges.py").read_text())
+
+    # ---- SUPPLY: allowlist width + source health -----------------------
+    # 2026-07-31: four candidates inspected, all weak on transcript. Not a
+    # gate problem — a supply one. A wider allowlist only helps if dead
+    # handles are visible, so they can be pruned on evidence not guesswork.
+    _cfg = _js.loads((REPO / "state" / "third_packages"
+                       / "default_clip.json").read_text())["capture"]
+    _tw = _cfg["sources"]["twitch"]
+    check("twitch allowlist widened past the starved 30",
+          len(_tw) >= 60, f"{len(_tw)} channels")
+    check("no duplicate handles in the allowlist",
+          len(_tw) == len(set(_tw)))
+    check("core stays small so new names deprioritize, not dominate",
+          len(_cfg["core"]) <= 15 and set(_cfg["core"]) <= set(_tw))
+    _sh = _ns["_source_health"]
+    _SH = _ns["_SOURCE_HEALTH"]
+    _SH.clear()
+    _sh("twitch", "alive", ok=True, clips=6)
+    _sh("twitch", "quiet", ok=True, clips=0)
+    _sh("rumble", "AdinLive", ok=False, err="CalledProcessError")
+    _sh("rumble", "AdinLive", ok=False, err="CalledProcessError")
+    check("source health counts clips returned",
+          _SH["twitch:alive"]["clips"] == 6)
+    check("a failing source accumulates failures with the error kind",
+          _SH["rumble:AdinLive"]["fail"] == 2
+          and _SH["rumble:AdinLive"]["err"] == "CalledProcessError")
+    check("only zero-yield sources are persisted (state stays small)",
+          '"dead_sources"' in _rt_src
+          and 'v.get("clips", 0) == 0' in _rt_src)
+    _jsrc = (REPO / "scripts" / "judges.py").read_text()
+    check("viewer separates ERRORED sources from merely quiet ones",
+          "ERRORED" in _jsrc and "returned 0 clips" in _jsrc)
+    check("source health never raises (it runs inside discovery)",
+          "def _source_health" in _rt_src
+          and _rt_src.split("def _source_health")[1].split("def ")[0]
+          .count("except Exception:") == 1)
+
+    # ---- dead adapters: diagnosable, and parked when unfixable ---------
+    # rumble 403s at the domain edge from CI egress (a real channel and a
+    # nonsense slug 403 identically), so neither url form can ever win.
+    # It was undiagnosable because both handlers printed only the
+    # exception TYPE while yt-dlp's own message sat unused in e.output.
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("discovery surfaces yt-dlp's own error, not just the type",
+          'getattr(e, "output", "")' in _ce_src2
+          and 'getattr(e, "output", "")' in _rt_src)
+    check("rumble no longer drops every row on unknown duration",
+          'platform == "rumble" and dur > 120' in _ce_src2
+          and 'dur == 0 or dur > 120' not in _ce_src2)
+    check("kick's silent zero-clip result now warns",
+          "yielded 0 " in _ce_src2)
+    check("curl_cffi pinned in requirements (stops env drift)",
+          "curl_cffi" in (REPO / "requirements.txt").read_text())
+    check("rumble parked out of active sources with a recorded reason",
+          "rumble" not in _cfg["sources"]
+          and "403" in _cfg["sources_parked"]["rumble"]["reason"])
+    check("parking preserves the handle for restoration",
+          _cfg["sources_parked"]["rumble"]["channels"] == ["AdinLive"])
+
+    # ---- the content gate can SEE -------------------------------------
+    # 2026-07-31: every rejection all day was about talk — "rambling chat
+    # talk", "vague ramble", "routine gameplay narration" — because the
+    # gate judged words[:40] and nothing else. On a clips channel that is
+    # a systematic bias against a fail, a reaction face, physical comedy:
+    # all of which read as "rambling chat" from the transcript alone.
+    _cs = _au._CONTENT_SYSTEM
+    _REAL_CALL_CLAUDE = _au._call_claude   # restored before the
+    _REAL_CALL_GROQ = _au._call_groq       # stderr test below
+    check("content judge keeps the greenlight rubric",
+          "ONE-SENTENCE TEST" in _cs and "AUTOMATIC-REJECT" in _cs
+          and "Return ONLY JSON" in _cs)
+    check("content judge is told to read the frames first",
+          "READ THE IMAGE FIRST" in _cs)
+    check("content judge must not dismiss a visual moment as talk",
+          "describing the audio of" in _cs)
+    check("content judge still believes frames over a lying title",
+          "believe the frames" in _cs)
+    # provenance: a text-only verdict carries the very bias this removes
+    _seen = {}
+    _au._call_claude = lambda u, system=None, read_files=False: (
+        _seen.update(read=read_files, sys=system) or
+        {"scores": [{"i": 0, "banger": 0.86, "why": "visible fail"}]})
+    _sc, _wy, _saw = _au.judge_content("s", "vague title", "um so anyway",
+                                       sheet="/tmp/sheet.jpg")
+    check("a visual clip can now score high despite mundane words",
+          _sc == 0.86 and _saw is True and _wy == "visible fail")
+    check("vision judge is granted Read for the contact sheet",
+          _seen.get("read") is True)
+    _au._call_claude = lambda u, system=None, read_files=False: (
+        _ for _ in ()).throw(RuntimeError("vision down"))
+    _au._call_groq = lambda u, system=None: None
+    _sc2, _, _saw2 = _au.judge_content("s", "t", "words",
+                                       sheet="/tmp/sheet.jpg")
+    check("vision failure degrades to text-only, never loses the clip",
+          _saw2 is False)
+    check("a blind verdict is RECORDED as blind, not passed off as sighted",
+          "saw_frames" in _rt_src
+          and "TEXT-ONLY" in (REPO / "scripts" / "judges.py").read_text())
+    check("no sheet at all -> text-only path, still no crash",
+          _au.judge_content("s", "t", "w", sheet="")[2] is False)
+    check("run_third builds a contact sheet of the SOURCE for the gate",
+          "contact_sheet(" in _rt_src and "author.judge_content(" in _rt_src)
+
+    # ---- the brain's own error must survive ---------------------------
+    # The CLI returned rc=1 with no JSON for ~90 min on 07-29 and again
+    # mid-run on 07-30, and "rc=1" was the ENTIRE diagnosis available:
+    # capture_output collected stderr and the raise reported only the
+    # return code. Same bug class as the rumble 403.
+    _au._call_claude = _REAL_CALL_CLAUDE   # stubbed above; the next
+    _au._call_groq = _REAL_CALL_GROQ       # test needs the REAL one
+    import subprocess as _sp
+    import shutil as _sh
+    _real_run, _real_which = _sp.run, _sh.which
+    try:
+        _sh.which = lambda n: "/usr/bin/claude"
+        os.environ["CLAUDE_CODE_OAUTH_TOKEN"] = "test"
+
+        class _R:
+            returncode, stdout, stderr = 1, "", "EPIPE writing to stream."
+        _sp.run = lambda *A, **K: _R()
+        try:
+            _au._call_claude("hi")
+            check("claude failure raises", False)
+        except RuntimeError as _e:
+            _m = str(_e)
+            check("brain failure surfaces the CLI's own stderr",
+                  "EPIPE writing to stream." in _m)
+            check("brain failure still reports the return code",
+                  "rc=1" in _m)
+            check("an empty stdout is stated, not silently omitted",
+                  "stdout=<empty>" in _m)
+
+        # ---- the usage-limit breaker ----------------------------------
+        # The 07-29 "90-minute outage" was one run inside one exhausted
+        # subscription window. Once the account is out of budget every
+        # remaining call is GUARANTEED to fail; making ~40 of them anyway
+        # costs wall-clock and stampedes free-tier Groq behind it.
+        _calls = []
+
+        class _RL:
+            returncode, stdout, stderr = 1, "", "Claude usage limit reached"
+
+        def _count(*A, **K):
+            _calls.append(A[0] if A else K.get("args"))
+            return _RL()
+        _sp.run = _count
+        _au._LIMIT_HIT.update(at="", detail="")
+        check("a usage limit returns None instead of raising",
+              _au._call_claude("hi") is None)
+        check("the limit is recorded so the run can report it",
+              bool(_au.brain_limited().get("at")))
+        _n = len(_calls)
+        check("no CLI call at all once limited (the breaker is open)",
+              _au._call_claude("hi") is None and len(_calls) == _n)
+
+        # the model must be PINNED — an unpinned call inherits the account
+        # default, which is how a window gets spent without anyone choosing
+        _au._LIMIT_HIT.update(at="", detail="")
+        _calls.clear()
+        _sp.run = _count
+        try:
+            _au._call_claude("hi")
+        except RuntimeError:
+            pass
+        check("the CLI call pins a model",
+              bool(_calls) and "--model" in (_calls[0] or []))
+
+        # a limit can also arrive rc=0 with prose and no JSON
+        _au._LIMIT_HIT.update(at="", detail="")
+
+        class _R0:
+            returncode = 0
+            stdout = "I'm out of usage limit for now, resets at 3pm."
+            stderr = ""
+        _sp.run = lambda *A, **K: _R0()
+        check("a prose usage limit on rc=0 arms the breaker too",
+              _au._call_claude("hi") is None
+              and bool(_au.brain_limited().get("at")))
+    finally:
+        _sp.run, _sh.which = _real_run, _real_which
+        _au._LIMIT_HIT.update(at="", detail="")
+
+    # judge_content must not amplify: a vision call that just failed must
+    # NOT trigger a second Claude call for the same clip via rank_clips
+    _seen = []
+    _rc, _rg = _au._call_claude, _au._call_groq
+    try:
+        def _boom(*A, **K):
+            _seen.append("claude")
+            raise RuntimeError("brain down")
+        _au._call_claude = _boom
+        _au._call_groq = lambda *A, **K: (_seen.append("groq") or
+                                          {"scores": [{"banger": 0.6,
+                                                       "why": "ok"}]})
+        _s, _w, _saw = _au.judge_content("s", "t", "words", sheet="/x.png")
+        check("a failed vision call does not fire a SECOND claude call",
+              _seen.count("claude") == 1)
+        check("the text fallback still produces a score", _s == 0.6)
+        check("and it is recorded as blind", _saw is False)
+    finally:
+        _au._call_claude, _au._call_groq = _rc, _rg
+
+    # ---- source health is judged across runs, not one sample ----------
+    _jmod = _j
+    _rep = []
+    _jmod.print = lambda *a, **k: _rep.append(" ".join(str(x) for x in a))
+    try:
+        # one run: nothing may be called dead (a streamer offline for a
+        # day is not a dead handle — that is how guesswork creeps back)
+        _jmod._sources_report([{"dead_sources": {"twitch:a": {"clips": 0}}}])
+        check("a single quiet run never marks a source dead",
+              not any("prunable" in x for x in _rep)
+              and any("need >=3" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report([{"dead_sources": {"twitch:a": {"clips": 0}}}
+                               for _ in range(4)])
+        check("quiet on every one of 4 runs -> prunable",
+              any("DEAD, prunable" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report(
+            [{"dead_sources": {"twitch:a": {"clips": 0}}} for _ in range(3)]
+            + [{"dead_sources": {}}])
+        check("a source that produced ONCE is never called dead",
+              not any("prunable" in x for x in _rep))
+        _rep.clear()
+        _jmod._sources_report([{"dead_sources": {
+            "rumble:X": {"clips": 0, "fail": 1, "err": "CalledProcessError"}}}])
+        check("an ERRORED source is reported as a code bug, not a prune",
+              any("broken adapter" in x for x in _rep))
+    finally:
+        _jmod.print = print
+
+    # ---- VOD mining (funnel/ — shared media capability) ----------------
+    # Clip discovery only sees what a human chose to clip. On a thin day
+    # the moment a clipper MISSED is often seconds away from one they got.
+    from funnel import vod_miner as _vm
+    check("vod_miner refuses without helix coordinates (invents nothing)",
+          _vm.maybe_mine({"url": "x"}, "/tmp") == [])
+    check("vod_miner never raises (supply is best-effort)",
+          _vm.maybe_mine(None, "/nonexistent") == [])
+    check("mined urls are identifiable as synthetic",
+          _vm.is_mined("vodmine://v/1")
+          and not _vm.is_mined("https://twitch.tv/a/clip/b"))
+    # A mined moment keys on video_id AND offset. Keying on the last url
+    # segment alone would collide two VODs sharing an offset — in the
+    # POSTED LOG, where a collision means a duplicate upload.
+    check("mined clip keys are distinct across VODs at the same offset",
+          _ns["_clip_key"]("vodmine://AAA/900")
+          != _ns["_clip_key"]("vodmine://BBB/900"))
+    check("twitch dedupe identity is unchanged by that",
+          _ns["_clip_key"]("https://clips.twitch.tv/Slug")
+          == _ns["_clip_key"]("https://twitch.tv/ch/clip/Slug"))
+    check("mining is gated on a thin pool, not run every time",
+          "if len(cands) < min_pool:" in _rt_src)
+    check("a mined candidate skips the download (already extracted)",
+          'if pick.get("mined"):' in _rt_src)
+    check("mined candidates still face the same content gate",
+          _rt_src.index('pick.get("mined")')
+          < _rt_src.index("content gate: transcript-aware score"))
+    check("vod_miner lives in funnel/ (shared media capability)",
+          (REPO / "funnel" / "vod_miner.py").exists())
+
+    # ---- engines/render_qa: shared mechanical render-QA ----------------
+    # First ANALYSIS engine in the shared layer. Logic tier only here (no
+    # ffmpeg): parsers, registry wiring, verdict semantics, consumers.
+    from engines import render_qa as _rq
+    import engines as _eng
+    check("render_qa registered in the shared engine registry",
+          _eng.REGISTRY.get("render_qa", {}).get("kind") == "module")
+    check("render_qa provisioning entry exists (pure-ffmpeg, empty deps)",
+          __import__("engines.provision", fromlist=["_PIP_DEPS"])
+          ._PIP_DEPS.get("render_qa") == [])
+    _bd = _rq._black_intervals(
+        "[blackdetect] black_start:14.1 black_end:14.72 black_duration:0.62")
+    check("blackdetect stderr parses to intervals", _bd == [(14.1, 14.72)])
+    check("freezedetect stderr parses to spans",
+          _rq._freeze_spans("lavfi.freezedetect.freeze_duration: 3.4\n"
+                            "freeze_duration: 2.1") == [3.4, 2.1])
+    check("maybe_check is fail-open when the analyzer is absent",
+          _rq.maybe_check("/nonexistent/x.mp4") is None)
+    check("verdict semantics documented: None=analyzer, ok=False=defect",
+          "None = the ANALYZER failed" in (_rq.maybe_check.__doc__ or ""))
+    check("clip_qa runs the free engine pass before the paid vision call",
+          "render_qa" in _i.getsource(__import__(
+              "third_capture.clip_qa", fromlist=["review"]).review))
+    check("story renderer fails closed on a broken stitch",
+          "render_qa rejected the stitch" in (REPO / "third_capture"
+                                              / "story.py").read_text())
+
+    # ---- closing guard + source bar-strip (simple_fallback fixes) ------
+    _ce_src = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("closing guard exists (symmetric to the opening guard)",
+          "def _closing_guard" in _ce_src)
+    check("closing guard runs in the cut flow before caption rebase",
+          _ce_src.index("_closing_guard(raw, t0, t1)")
+          < _ce_src.index('"w": w["w"], "s": w["s"] - t0'))
+    check("ledger records the closing trim", "closing_trim_s" in _ce_src)
+    check("source bar-strip exists for the blur-fill graph",
+          "def _content_crop" in _ce_src and "{bar_crop}split" in _ce_src)
+    check("blur foreground is clamped inside the canvas",
+          "force_original_aspect_ratio=decrease[fgs]" in _ce_src)
+    check("render output is capped at the cut length (-t)",
+          '"-t", f"{dur:.3f}"' in _ce_src)
+
+    # ================= the posted log is SACRED =======================
+    # Every check below guards a path that, when it broke, put a duplicate
+    # on the channel or erased dedupe history. docs/STORAGE_AUDIT.md:
+    # "losing an entry means a duplicate upload".
+
+    # a corrupt ledger must ABORT, never silently become an empty one
+    import tempfile as _tf
+    # the real module (storyline already imports it, so this is not new
+    # surface — main() is __main__-guarded and import has no side effects)
+    from scripts import run_third as _rtm
+    _lp = _rtm.LOG_PATH
+    try:
+        _d = Path(_tf.mkdtemp())
+        _rtm.LOG_PATH = _d / "log.json"
+        (_d / "log.json").write_text("{not json")
+        try:
+            _rtm._load_log()
+            check("a corrupt posted log aborts the run", False)
+        except SystemExit:
+            check("a corrupt posted log aborts the run", True)
+        (_d / "log.json").write_text('["a", "b"]')
+        try:
+            _rtm._load_log()
+            check("a valid-JSON-but-wrong-shape log also aborts", False)
+        except SystemExit:
+            check("a valid-JSON-but-wrong-shape log also aborts", True)
+        (_d / "log.json").unlink()
+        check("a MISSING log is a first run, not an emergency",
+              _rtm._load_log() == {"posted": {}})
+
+        # a blocklist write must hit disk immediately — the only _save_log
+        # call site used to be inside the successful-upload branch, so a
+        # run that shipped nothing threw away every rejection it paid for
+        _log = {"posted": {}}
+        _rtm._blocklist(_log, "rejected-x", {"qa_rejected": True})
+        check("a blocklist entry is persisted the moment it is written",
+              _json.loads((_d / "log.json").read_text())["posted"]
+              .get("rejected-x", {}).get("qa_rejected") is True)
+    finally:
+        _rtm.LOG_PATH = _lp
+
+    check("the upload CLAIMS its slot before sending bytes (a mid-flight "
+          "failure must not let the retry upload the same clip twice)",
+          _rt_src.index('log["posted"][slug] = _claim')
+          < _rt_src.index("YouTubeUploader(channel=\"third\").upload("))
+    check("the claim is persisted, not just held in memory",
+          '_claim\n            _save_log(log)' in _rt_src)
+    check("a pending claim never enters analytics (it has no video URL)",
+          'e.get("pending")' in
+          (REPO / "scripts" / "fetch_analytics.py").read_text())
+    check("pending claims are surfaced for a human — the video may or may "
+          "not be live and only a person can tell",
+          "PENDING UPLOAD CLAIMS" in (REPO / "scripts" / "judges.py").read_text())
+    check("a checkpoint carries every state file the run mutates, since a "
+          "push race hard-resets and restores only what it was given",
+          '"state/third_posted_log.json", "state/third_events.json"'
+          in _rt_src)
+    check("the posted log is checkpointed to main mid-run (a run killed "
+          "at the 120min wall must not desync dedupe state)",
+          "_checkpoint_log(" in _rt_src
+          and "ci_commit_state.sh" in _rt_src)
+    check("the log is saved on EVERY exit path, not only after an upload",
+          _rt_src.rindex("_save_log(log)")
+          > _rt_src.rindex('return 0 if any(r["ok"]') - 2000)
+
+    # publish_at collisions — two Shorts live in the same minute
+    _now = _rtm.datetime.now(_rtm.timezone.utc)
+    check("publish_at is clamped forward when it has already passed",
+          _rtm._clamp_publish_at(
+              (_now - _rtm.timedelta(hours=2))
+              .strftime("%Y-%m-%dT%H:%M:%SZ")) >
+          _now.strftime("%Y-%m-%dT%H:%M:%SZ"))
+    check("a still-future publish_at is left exactly alone",
+          _rtm._clamp_publish_at("2099-01-01T00:00:00Z")
+          == "2099-01-01T00:00:00Z")
+    check("no schedule stays no schedule",
+          _rtm._clamp_publish_at(None) is None)
+    check("a second run today starts PAST what an earlier run claimed",
+          "already claimed up to" in _rt_src)
+
+    # variety caps must count what SHIPPED, not what was rejected
+    check("rejected clips do not consume a streamer's daily variety cap",
+          'not k.startswith("rejected-")' in _rt_src
+          and 'not v.get("qa_rejected")' in _rt_src)
+
+    # the content gate must run on speechless clips — the exact material
+    # the vision judge was built for
+    check("the content gate runs when there is NO transcript",
+          "if words is not None:" in _rt_src)
+    _s, _w, _saw = _au.judge_content("s", "t", "", sheet="")
+    check("a silent clip with no frames scores None (fail open), never a "
+          "mid-band number that would blocklist it forever", _s is None)
+
+    # mined moments must never leak the internal scheme to viewers
+    check("a mined URL renders as an openable Twitch VOD deep-link",
+          _rtm._public_source("vodmine://2412345678/4180")
+          == "https://www.twitch.tv/videos/2412345678?t=01h09m40s")
+    check("a real clip URL passes through untouched",
+          _rtm._public_source("https://clips.twitch.tv/Abc")
+          == "https://clips.twitch.tv/Abc")
+    check("'Clipped by vod-mined' is suppressed (nobody clipped it)",
+          "not vod_miner.is_mined(" in _rt_src)
+    check("a mined moment is not judged on its (nonexistent) title",
+          'c.get("mined")' in _rt_src
+          and "no title to judge" in _rt_src)
+
+    # the two definitions of clip identity must not drift again
+    from third_capture import storyline as _sl
+    check("storyline.clip_key delegates to the ONE canonical _clip_key",
+          _sl.clip_key("vodmine://AAA/900")
+          != _sl.clip_key("vodmine://BBB/900")
+          and _sl.clip_key("vodmine://AAA/900")
+          == _rtm._clip_key("vodmine://AAA/900"))
+    check("...and still folds the two Twitch clip URL forms together",
+          _sl.clip_key("https://clips.twitch.tv/Slug")
+          == _sl.clip_key("https://twitch.tv/ch/clip/Slug?t=1"))
+
+    # a run that ships nothing must SAY so
+    check("a run that shipped no new video says NO NEW VIDEOS",
+          "NO NEW VIDEOS" in _rt_src)
+
+    # the workflow's dedupe sync must not fail open
+    _yml = (REPO / ".github" / "workflows" / "third.yml").read_text()
+    check("the dedupe sync distinguishes 'not on main' from 'sync failed'",
+          "git cat-file -e" in _yml
+          and "|| echo \"no committed dedupe state yet" not in _yml)
+
+    # ============ the run must FINISH, not be killed at the wall =======
+    _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
+    check("discovery is swept ONCE per window and cached run-wide "
+          "(it was re-run per slot AND per retry: ~18 hits per handle)",
+          "_SWEEP_CACHE" in _rt_src and "def _sweep(" in _rt_src)
+    check("...and fanned out instead of 67 serial calls",
+          "ThreadPoolExecutor" in _rt_src)
+    check("a source failure records yt-dlp's MESSAGE, not just the class",
+          'err=f"{type(e).__name__}: {d}"' in _rt_src)
+    check("there is a wall-clock budget inside the job's 120min ceiling",
+          "_deadline_passed()" in _rt_src and "_BUDGET_MIN" in _rt_src)
+    check("the budget stops the slot loop, the retry loop AND the story arm",
+          _rt_src.count("_deadline_passed()") >= 4)
+    check("VOD expansions are capped (each is a 3-min whisper + a vision "
+          "call, and nothing bounded how many fired)",
+          "story_max_vod_expansions" in _rt_src)
+    check("whisper weights are memoized, not re-read per transcription",
+          "_WHISPER" in _ce_src2)
+    check("the cut is analyzed ONCE, not once for calm and again in "
+          "shot_plan.build on the same file",
+          "an=_cut_an" in _ce_src2
+          and "an: dict | None = None"
+          in (REPO / "third_capture" / "shot_plan.py").read_text())
+    check("localization fans out (58 serial HTTP calls per upload)",
+          "ThreadPoolExecutor" in (REPO / "shared" / "localize.py").read_text())
+    check("the gameplay scan has a hard timeout (it had NONE, and a hang "
+          "cannot be caught by an except)",
+          "SCAN_TIMEOUT" in (REPO / "funnel"
+                             / "gameplay_scanner.py").read_text())
+    _y2 = (REPO / ".github" / "workflows" / "third.yml").read_text()
+    check("the posted log is committed BEFORE analytics (a cancelled job's "
+          "grace window must not be spent on YouTube API calls)",
+          _y2.index("Commit posted log") < _y2.index("Fetch third analytics"))
+    check("pip and the whisper weights are cached across runs",
+          "cache: 'pip'" in _y2 and "~/.cache/whisper" in _y2)
+
+    # ============ render QA must not reject the house style ============
+    from engines import render_qa as _rq
+    import inspect as _insp
+    _rqsig = _insp.signature(_rq.check)
+    _floor = _rqsig.parameters["min_active_ratio"].default
+    # a 16:9 source fitted into 1080x1920 is 1080x607 = 31.6% BY
+    # CONSTRUCTION — a floor above that condemns every render we make
+    check("the letterbox floor cannot fire on a normal 16:9 fit (0.316)",
+          _floor < 0.316)
+    check("...but still catches a frame boxed twice (~0.10-0.18)",
+          _floor > 0.18)
+    check("a failing letterbox probe cannot erase confirmed defects",
+          "the {len(problems)} finding(s) above still stand"
+          in (REPO / "engines" / "render_qa.py").read_text())
+    check("freeze_min_s reaches the filter (it was hardcoded to 2.0, so "
+          "any value under 2.0 was silently ignored)",
+          "_detect_pass(video, freeze_min_s)" in
+          (REPO / "engines" / "render_qa.py").read_text())
+    check("the last-resort render rung blur-fills instead of black-padding "
+          "(its whole job is 'always ship' — it cannot emit output QA "
+          "mechanically rejects)",
+          "_raw_vf" in _ce_src2 and "LAST-RESORT RUNG" in _ce_src2)
+    check("...and carries the same -t cap as every other rung",
+          '_raw_cmd += ["-t"' in _ce_src2)
+    check("the closing guard probes its whole 2.5s budget, not 1.2s",
+          "win = min(MAX_TRIM + 0.5, room)" in _ce_src2)
+
+    # ============ the miner cannot manufacture a duplicate ==============
+    _vm_src = (REPO / "funnel" / "vod_miner.py").read_text()
+    check("mined files are named by ABSOLUTE vod offset — two anchors in "
+          "one VOD used to collide and ship the same bytes under two "
+          "different dedupe keys, invisible to every guard",
+          'f"mined_{vid}_{int(abs_off)}.mp4"' in _vm_src)
+    check("a partial extraction is deleted, not cached and reused",
+          "unlink(missing_ok=True)" in _vm_src and "def _usable(" in _vm_src)
+    check("...and a reused file is re-validated, not trusted for existing",
+          "if not _usable(dest)" in _vm_src)
+    check("peaks are mined by STRENGTH (energy_peaks returns them sorted "
+          "by time, discarding the rank we over-fetched to preserve)",
+          "_strength" in _vm_src)
+
+    # ============ judges must not rubber-stamp their own failures =======
+    check("a rescued clip needs a PASSING judgment, not merely a judgment "
+          "(the ranker's rejection is what triggered the rescue)",
+          "NEEDS A *PASSING* JUDGMENT" in _rt_src)
+    check("the rescue fail-closed blocklists before raising, so the retry "
+          "picks a different clip instead of the same one three times",
+          "rescue fail-closed" in _rt_src)
+    _bh = dict(_au._BRAIN)
+    try:
+        _au._BRAIN.update(ok=0, fail=0)
+        _rc2, _rg2 = _au._call_claude, _au._call_groq
+        try:
+            _au._call_claude = lambda *A, **K: (_ for _ in ()).throw(
+                RuntimeError("cli dead"))
+            _au._call_groq = lambda *A, **K: {"scores": [{"banger": 0.9}]}
+            _au.judge_content("s", "t", "words", sheet="/x.png")
+        finally:
+            _au._call_claude, _au._call_groq = _rc2, _rg2
+        check("a vision failure counts as a FAILED brain task (it counted "
+              "as nothing, so a CLI failing every eyes-on call while Groq "
+              "answered read as a healthy brain)", _au._BRAIN["fail"] >= 1)
+    finally:
+        _au._BRAIN.update(_bh)
 
     print()
     if FAILS:

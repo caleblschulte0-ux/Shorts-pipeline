@@ -77,3 +77,22 @@ state/subject_photos/
 
 # Proof Mode (third channel) generated fixtures — deterministic, rebuilt each run
 third_capture/fixtures/
+
+# manim render/text cache (in-process sanity builds spill this)
+media/
+
+# Expression test artifacts (rendered clips, extracted frames, results)
+tests/expression_tests/
+
+# producer_smoke.py runtime fixture copy (created + deleted per run)
+data_learning/pro_stories/zz-ci-smoke.beats.json
+
+# Runtime run/media ledgers — durable operational state, not source
+state/curiosity_run_ledger.jsonl
+state/curiosity_media_ledger.json
+
+# Provider candidate cache (data_learning/stock_cache.py). Ignored by default
+# so an ad-hoc query cannot ship a PARTIAL cache that silently shadows a live
+# search. To deliberately ship one for an outage, populate it with
+# scripts/prefetch_media.py and `git add -f`.
+data_learning/stock_cache/

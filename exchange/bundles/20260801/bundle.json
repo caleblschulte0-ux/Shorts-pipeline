@@ -1,0 +1,1185 @@
+{
+  "schema": "chatgpt-exchange-bundle/v1",
+  "date": "20260801",
+  "status": "open",
+  "contract": {
+    "schema_version": "channel-registry/v1",
+    "registry_revision": 1,
+    "registry_sha256": "5d4b7cd5e29e871de0e779fc8d02a665fe5233e21a510b182700cb4f494eeee9",
+    "registry_path": "config/channel_registry.json",
+    "source_commit": "deb2ea56a2b2e9590b7c10371eadafc387ea1bf2",
+    "production_date": "20260801",
+    "production_date_policy": {
+      "timezone": "America/Chicago",
+      "policy": "utc_calendar_day",
+      "policy_note": "The bundle/package date is the UTC calendar day, because every workflow that resolves a date does `date -u +%Y%m%d` and the packages on disk are keyed that way. The timezone above is the OPERATIONAL clock \u2014 publish slots, the 06:00/07:00 ChatGPT workers, and the Phase B backstop window are all Central and DST-correct. Do not conflate them: the folder name is UTC, the wall clock is Central.",
+      "format": "YYYYMMDD"
+    },
+    "response_schema": "chatgpt-exchange-response/v1",
+    "checkpoint_schema": "chatgpt-media-checkpoint/v1",
+    "drive": {
+      "destination_ref": "operator's shared Drive folder, made link-visible manually; files inherit the folder permission",
+      "filename_rule": "<date>__<safe_request_id>.<ext>",
+      "required_sharing": "anyone_with_link"
+    },
+    "role_glossary": {
+      "media_worker": "Generate, upload and verify images; checkpoint each one. The 06:00 Central task.",
+      "editorial_review": "Read every package and either punch it up or state a reason for keeping it. The 07:00 Central task.",
+      "takeover_authoring": "Write the packages this channel is short, when the Claude side left it nothing.",
+      "queue_stocking": "Write new queue entries when the channel's queue runs below its minimum.",
+      "none": "ChatGPT has no responsibility for this channel or format."
+    },
+    "channels": {
+      "curiosity": {
+        "channel": "curiosity",
+        "display_name": "Curiosity (long-form)",
+        "enabled": true,
+        "target_count": 1,
+        "target_mix": {
+          "long_form": 1
+        },
+        "have": {
+          "long_form": 0
+        },
+        "shortfall": {
+          "long_form": 1
+        },
+        "to_author": 1,
+        "active_formats": [
+          "long_form"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [
+          "queue_stocking"
+        ],
+        "chatgpt_job": "stock_queue",
+        "response_key": "authored_curiosity",
+        "media_requirements": {
+          "long_form": {
+            "shots": false,
+            "chatgpt_supplies_images": false
+          }
+        },
+        "queue": {
+          "config": "data_learning/curiosity.config.json",
+          "collection": "stories",
+          "posted_log": "state/curiosity_posted_log.json",
+          "minimum_unposted": 3,
+          "maximum_unposted": 12,
+          "stocked_by": "the Claude Routine",
+          "chatgpt_may_stock": true
+        },
+        "paths": {
+          "config": "data_learning/curiosity.config.json",
+          "posted_log": "state/curiosity_posted_log.json",
+          "promotion_target": "data_learning/curiosity.config.json"
+        },
+        "package_schema": "data_learning/curiosity.config.json:stories[]",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "named_entities"
+        ],
+        "protected_fields_enforced_by": null,
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "closing",
+          "question",
+          "segments"
+        ],
+        "doctrine": [
+          {
+            "path": "data_learning/CURIOSITY_BRAIN.md",
+            "sha256": "d89d974dd3475ed7ffdb8bb4ca9e6ffc3d151a3ea0db3eef08575184aedb71e9",
+            "bytes": 45182
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected.",
+          "on_empty_queue": "chatgpt_queue_stocking"
+        }
+      },
+      "explainer": {
+        "channel": "explainer",
+        "display_name": "Explainer (data stories)",
+        "enabled": true,
+        "target_count": 1,
+        "target_mix": {
+          "data_story": 1
+        },
+        "have": {
+          "data_story": 0
+        },
+        "shortfall": {
+          "data_story": 1
+        },
+        "to_author": 1,
+        "active_formats": [
+          "data_story"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [
+          "editorial_review"
+        ],
+        "chatgpt_job": "rewrite_words",
+        "response_key": "authored_explainer",
+        "media_requirements": {
+          "data_story": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "Scenes are rendered from the dataset; the mascot director stages them. ChatGPT supplies WORDS only."
+          }
+        },
+        "queue": {
+          "config": "data_learning/niche.config.json",
+          "collection": "stories",
+          "posted_log": "state/explainer_posted_log.json",
+          "minimum_unposted": 3,
+          "stocked_by": "scripts/story_forge.py",
+          "chatgpt_may_stock": false
+        },
+        "paths": {
+          "config": "data_learning/niche.config.json",
+          "posted_log": "state/explainer_posted_log.json",
+          "promotion_target": "data_learning/niche.config.json"
+        },
+        "package_schema": "data_learning/niche.config.json:stories[]",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "percentages",
+          "years",
+          "countries",
+          "named_entities",
+          "segment_count",
+          "segment_order"
+        ],
+        "protected_fields_enforced_by": "shared/punchup_guard.py",
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "closing",
+          "question",
+          "segment_say_wording"
+        ],
+        "doctrine": [
+          {
+            "path": "docs/DIRECTOR.md",
+            "sha256": "d61a469b79d31b021097f95ea8dd7b93fbb9bbf736374e2fe7eda265621873f2",
+            "bytes": 5203
+          },
+          {
+            "path": "docs/EDITORIAL_RESET.md",
+            "sha256": "1a3bec48c4a717ead2d82403540fd17e36e2ba2054e6cd04f832d677e13e1c0f",
+            "bytes": 7445
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "ship_the_deterministic_words",
+          "note": "The showrunner veto is sovereign here and this channel publishes NOTHING without a verdict. That gate is not registry-configurable on purpose.",
+          "showrunner": "fails_closed_on_publish"
+        }
+      },
+      "third": {
+        "channel": "third",
+        "display_name": "Third channel (Proof Mode / clips)",
+        "enabled": true,
+        "target_count": 3,
+        "target_mix": {
+          "clip": 3
+        },
+        "have": {
+          "clip": 0
+        },
+        "shortfall": {
+          "clip": 3
+        },
+        "to_author": 3,
+        "active_formats": [
+          "clip"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [],
+        "chatgpt_job": null,
+        "response_key": null,
+        "media_requirements": {
+          "clip": {
+            "shots": false,
+            "chatgpt_supplies_images": false
+          }
+        },
+        "queue": null,
+        "paths": {
+          "packages": "state/third_packages/<date>",
+          "posted_log": "state/third_posted_log.json",
+          "promotion_target": "state/third_packages/<date>"
+        },
+        "package_schema": "third_capture/author.py",
+        "response_schema": null,
+        "protected_fields": [
+          "source_url",
+          "story_key"
+        ],
+        "protected_fields_enforced_by": null,
+        "allowed_editorial_mutations": [],
+        "doctrine": [
+          {
+            "path": "docs/THIRD_INTERNET_PLAYBOOK.md",
+            "sha256": "75fd73160138f7a229eaaf2799bf319966dc6f48678cbd7f8a5fa55e9b8e9d1b",
+            "bytes": 9970
+          },
+          {
+            "path": "docs/STORY_ARC_SYSTEM.md",
+            "sha256": "e129038cca0fde8c127edb7f96f9ef5f9426fcef670f9baa2e1622e5f602d2bb",
+            "bytes": 10735
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected.",
+          "on_no_brain": "safe_raw_clip_title"
+        }
+      },
+      "trending": {
+        "channel": "trending",
+        "display_name": "Trending / daily shorts",
+        "enabled": true,
+        "target_count": 6,
+        "target_mix": {
+          "graph_race": 4,
+          "reddit_story": 2
+        },
+        "have": {
+          "graph_race": 1,
+          "reddit_story": 1
+        },
+        "shortfall": {
+          "graph_race": 3,
+          "reddit_story": 1
+        },
+        "to_author": 4,
+        "active_formats": [
+          "graph_race",
+          "reddit_story"
+        ],
+        "retired_formats": [
+          "text_card"
+        ],
+        "chatgpt_roles": [
+          "media_worker",
+          "editorial_review",
+          "takeover_authoring"
+        ],
+        "chatgpt_job": null,
+        "response_key": null,
+        "media_requirements": {
+          "graph_race": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
+          },
+          "reddit_story": {
+            "shots": true,
+            "chatgpt_supplies_images": true,
+            "shots_min": 6,
+            "shots_max": 8,
+            "per_shot": [
+              "phrase",
+              "query",
+              "mascot_pose"
+            ],
+            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
+          }
+        },
+        "queue": null,
+        "paths": {
+          "packages": "state/trending_packages/<date>",
+          "posted_log": "state/posted_log.json",
+          "reserve_bank": "state/package_buffer",
+          "promotion_target": "state/trending_packages/<date>",
+          "quarantine": "exchange/bundles/<date>/authored_report.json"
+        },
+        "package_schema": "shared/package_buffer.py:structural_problems",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "percentages",
+          "money_amounts",
+          "dates",
+          "years",
+          "named_entities",
+          "shot_count",
+          "shot_query"
+        ],
+        "protected_fields_enforced_by": "shared/punchup_guard.py",
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "script_wording",
+          "sentence_order",
+          "hashtags",
+          "shot_phrase"
+        ],
+        "doctrine": [
+          {
+            "path": "CLAUDE_ROUTINE_INSTRUCTIONS.md",
+            "sha256": "acf2b643c64927509eda018972216657cf6ee452e7356763ac1793b38c1a89ca",
+            "bytes": 54484
+          },
+          {
+            "path": "data_learning/SCHULTE_MEDIA_BRAIN.md",
+            "sha256": "af2bc36ef724eeb2c3ee24f1189be9935c1e3706329637fb6f338352b96b862a",
+            "bytes": 11158
+          },
+          {
+            "path": "shared/levity.py",
+            "sha256": "3f8732c00bf1e87985fbf3242c874ec1e3e01c0f54187a2ffee4111b5164fa43",
+            "bytes": 11157
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected."
+        }
+      }
+    },
+    "totals": {
+      "channels_active": 4,
+      "packages_expected": 11,
+      "packages_to_author": 9
+    },
+    "immutability": "This block is the CONTRACT for this production date. It is frozen at bundle creation: if config/channel_registry.json changes afterwards, the 07:00 finalizer still works these numbers, and the new rules begin with the next date's bundle. Read doctrine at `source_commit`, not at HEAD."
+  },
+  "mode": "punch_up",
+  "response_path": "exchange/bundles/20260801/response.json",
+  "done_marker": "exchange/bundles/20260801/DONE",
+  "counts": {
+    "packages": 6,
+    "requests": 15,
+    "animations": 0,
+    "to_author": 0
+  },
+  "packages": [
+    {
+      "slug": "graph-internet-users-worldwide",
+      "title": "Internet Users Vs World Population By Year",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-gym-membership-photo",
+      "title": "The gym said there was no record I ever canceled",
+      "script": "They 'lost' my cancellation form? I canceled my gym membership in person, signed their form, and snapped a photo of it before I left, because a friend warned me this gym does this constantly. 2 months later they charged my card anyway and told me there was no record I'd ever canceled. I emailed the photo, timestamp and all, along with the manager's own signature on it. Support went quiet for a while, then refunded both charges, closed the account for real this time, and added a note apologizing for the 'system error.' Funny how the system only errors in one direction. So how many other members never thought to take that photo?",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "lost' my cancellation form",
+          "query": "cancellation form paper",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "canceled my gym membership in person",
+          "query": "gym front desk counter",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "snapped a photo of it before I left",
+          "query": "phone camera photo document",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "2 months later they charged my card anyway",
+          "query": "credit card charge statement",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "no record I'd ever canceled",
+          "query": "customer service phone call",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "emailed the photo, timestamp and all",
+          "query": "email attachment screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "manager's own signature on it",
+          "query": "signature on paper",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "went quiet for a while",
+          "query": "phone screen no reply",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 8,
+          "phrase": "refunded both charges",
+          "query": "bank refund notification",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 9,
+          "phrase": "closed the account for real this time",
+          "query": "gym membership card",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 10,
+          "phrase": "apologizing for the 'system error",
+          "query": "apology email screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 11,
+          "phrase": "the system only errors in one direction",
+          "query": "calculator receipt paper",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 12,
+          "phrase": "never thought to take that photo",
+          "query": "phone camera roll",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 9,
+        "unknown": 0
+      },
+      "strong_fraction": 0.308,
+      "requested": [
+        "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+        "reddit-gym-membership-photo-s3-d9fa8daf992d",
+        "reddit-gym-membership-photo-s5-32d6da4d2178",
+        "reddit-gym-membership-photo-s7-8f8dacb0b451",
+        "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+        "reddit-gym-membership-photo-s9-670026909cae",
+        "reddit-gym-membership-photo-s10-1d75d4048d9a",
+        "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+        "reddit-gym-membership-photo-s12-02279de0e1ac"
+      ]
+    },
+    {
+      "slug": "graph-canada-wildfire-record",
+      "title": "Canada's Wildfires: Area Burned By Year",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-ev-china-vs-world",
+      "title": "China vs The World: Electric Car Sales",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-campi-flegrei-quakes",
+      "title": "Naples' Supervolcano: Quakes Per Week",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-landlord-in-writing-only",
+      "title": "He Said 'In Writing Only.' I Took Him Literally",
+      "script": "My landlord said all maintenance requests had to be 'in writing, no exceptions,' after he ignored three phone calls about my leaking water heater. Fine. I wrote him a letter. Then I wrote him a second letter the next day, in writing, about the mold starting to grow near the leak. Then a third, documenting the drywall now sagging. Then a fourth, a fifth, a sixth \u2014 one letter a day, every day, always 'in writing, no exceptions,' exactly like he asked, each one certified mail so he had to sign for it personally at the post office counter. Three weeks and eighteen signed letters later, he called me \u2014 actually called, on the phone, the thing he banned \u2014 screaming that the county had opened a habitability case off his own paper trail. Turns out eighteen dated, signed letters make a pretty airtight timeline of neglect. He fixed the heater within 48 hours.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "leaking water heater",
+          "query": "water heater leak",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "in writing, no exceptions",
+          "query": "handwritten letter",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "mold starting to grow",
+          "query": "mold wall damage",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "drywall now sagging",
+          "query": "damaged drywall ceiling",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "certified mail",
+          "query": "post office counter",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "eighteen signed letters",
+          "query": "stack of letters",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "habitability case",
+          "query": "angry phone call",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "fixed the heater within 48 hours",
+          "query": "repaired water heater",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 2,
+        "weak": 0,
+        "missing": 6,
+        "unknown": 0
+      },
+      "strong_fraction": 0.25,
+      "requested": [
+        "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+        "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+        "reddit-landlord-in-writing-only-s4-60d2991fd567",
+        "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+        "reddit-landlord-in-writing-only-s6-e089e14a5324",
+        "reddit-landlord-in-writing-only-s7-bba48f61287b"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+      "safe_request_id": "reddit-gym-membership-photo-s2-ab0c5dfea9f1",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s2-ab0c5dfea9f1.png",
+      "prompt_sha256": "4005913a007cb14a5163c8c294cc0e7a3361ecd8c5002e0068041cca4bc34a48",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s2-ab0c5dfea9f1.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone camera photo document. It accompanies the narration: \"snapped a photo of it before I left\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+      "safe_request_id": "reddit-gym-membership-photo-s3-d9fa8daf992d",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s3-d9fa8daf992d.png",
+      "prompt_sha256": "aa88336d023aa85b5429bd548d24f4cb2874b7b200afe3a674f85001332772d6",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s3-d9fa8daf992d.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: credit card charge statement. It accompanies the narration: \"2 months later they charged my card anyway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+      "safe_request_id": "reddit-gym-membership-photo-s5-32d6da4d2178",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s5-32d6da4d2178.png",
+      "prompt_sha256": "5ecc707fa37e9d8ffc37852dc70a27216ed727faaf31a4235dfe2b708455cdf8",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s5-32d6da4d2178.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: email attachment screen. It accompanies the narration: \"emailed the photo, timestamp and all\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+      "safe_request_id": "reddit-gym-membership-photo-s7-8f8dacb0b451",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s7-8f8dacb0b451.png",
+      "prompt_sha256": "593dd4dcba05a4eb595a459015e8c4caf392874657ffebce156e60921e42c71f",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s7-8f8dacb0b451.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen no reply. It accompanies the narration: \"went quiet for a while\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+      "safe_request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s8-9ae5b5e840b6.png",
+      "prompt_sha256": "ee79eeb8d8b8d2eaa11f3250bbebf03a7a644674a367c7be1360c1d4210dfa2a",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s8-9ae5b5e840b6.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 8,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: bank refund notification. It accompanies the narration: \"refunded both charges\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s9-670026909cae",
+      "safe_request_id": "reddit-gym-membership-photo-s9-670026909cae",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s9-670026909cae.png",
+      "prompt_sha256": "ab027cd5c819e41d60b741d85e54a6822c20a8561ad8663faa8c433718efe897",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s9-670026909cae.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 9,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: gym membership card. It accompanies the narration: \"closed the account for real this time\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+      "safe_request_id": "reddit-gym-membership-photo-s10-1d75d4048d9a",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s10-1d75d4048d9a.png",
+      "prompt_sha256": "14a3058ca99cf88a8c9bb2866a767f3d95fff0c8dab819f1617c6e022d6a7cc6",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s10-1d75d4048d9a.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 10,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: apology email screen. It accompanies the narration: \"apologizing for the 'system error\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+      "safe_request_id": "reddit-gym-membership-photo-s11-d559cdf1b6f8",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s11-d559cdf1b6f8.png",
+      "prompt_sha256": "11b8786131effc48f2ba70430b06052deab5a288d29cb13ac88dccb984154af5",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s11-d559cdf1b6f8.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 11,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: calculator receipt paper. It accompanies the narration: \"the system only errors in one direction\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+      "safe_request_id": "reddit-gym-membership-photo-s12-02279de0e1ac",
+      "drive_filename": "20260801__reddit-gym-membership-photo-s12-02279de0e1ac.png",
+      "prompt_sha256": "4de43eea3bfce902b55c11acece7bb773229b7c11a4d3c06fa775136b3dfa14b",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-gym-membership-photo-s12-02279de0e1ac.json",
+      "slug": "reddit-gym-membership-photo",
+      "shot_index": 12,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone camera roll. It accompanies the narration: \"never thought to take that photo\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+      "safe_request_id": "reddit-landlord-in-writing-only-s1-9c1d6332383d",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s1-9c1d6332383d.png",
+      "prompt_sha256": "9b68c0300634ffbd56999e9a8481fa424b679994bee7643b44b55b8621b7d57b",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s1-9c1d6332383d.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: handwritten letter. It accompanies the narration: \"in writing, no exceptions\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+      "safe_request_id": "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s2-acb2b0a0d943.png",
+      "prompt_sha256": "13ab3d1a5ad070871244c2fa43e3a05011b4e814d4f54051f0731c04abb24b81",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s2-acb2b0a0d943.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: mold wall damage. It accompanies the narration: \"mold starting to grow\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+      "safe_request_id": "reddit-landlord-in-writing-only-s4-60d2991fd567",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s4-60d2991fd567.png",
+      "prompt_sha256": "cfd66de570b49a059a7b6440d615cea52ff91361244ffee8c89ba165c32f0d1c",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s4-60d2991fd567.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: post office counter. It accompanies the narration: \"certified mail\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+      "safe_request_id": "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s5-1a1d65b7d010.png",
+      "prompt_sha256": "7c0231937ee78f3f949cbcd21a7c6b956be94423fb417be850241c893fb2fbb6",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s5-1a1d65b7d010.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stack of letters. It accompanies the narration: \"eighteen signed letters\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+      "safe_request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s6-e089e14a5324.png",
+      "prompt_sha256": "0564b94e7d810fb01e0ca18b42c96c0c651107c0f5860a90e9bebd6a07e716c1",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s6-e089e14a5324.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: angry phone call. It accompanies the narration: \"habitability case\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+      "safe_request_id": "reddit-landlord-in-writing-only-s7-bba48f61287b",
+      "drive_filename": "20260801__reddit-landlord-in-writing-only-s7-bba48f61287b.png",
+      "prompt_sha256": "fdb9cf6ae5aaa7ee07d94f9433921f6a59fe58ead2f12a5f1dac5011a5bc077f",
+      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s7-bba48f61287b.json",
+      "slug": "reddit-landlord-in-writing-only",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: repaired water heater. It accompanies the narration: \"fixed the heater within 48 hours\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
+  "media_protocol": {
+    "schema": "chatgpt-media-checkpoint/v1",
+    "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
+    "checkpoint_dir": "exchange/bundles/20260801/media-progress/",
+    "claims_dir": "exchange/bundles/20260801/media-progress/claims/",
+    "checkpoint_path": "exchange/bundles/20260801/media-progress/<safe_request_id>.json",
+    "filename_rule": "Upload every asset to Drive as `20260801__<safe_request_id>.<ext>`. Each bundle request already carries its exact `drive_filename` \u2014 use that string verbatim.",
+    "safe_request_id": "The request_id with anything outside [A-Za-z0-9._-] replaced by `-`; if that changed the string (or it exceeded 72 chars), an 8-hex sha256 of the ORIGINAL is appended so two different requests can never share one file. Bundle requests publish theirs as `safe_request_id`.",
+    "authored_shot_request_id": "For a shot inside a package YOU authored there is no bundle request, so build the id yourself: `authored-<slug>-s<shot_index>`, where <slug> is the package's slug lowercased with anything outside [a-z0-9-] replaced by `-`. It must be derived from slug + shot index ONLY \u2014 never from the prompt, a timestamp, or a counter \u2014 so the 07:00 worker recomputes the identical string from the package on disk.",
+    "bundle_identity": "sha256 of this bundle.json file's exact bytes. Compute it; do not guess. Every checkpoint records it, and a checkpoint whose identity does not match the current bundle is REFUSED \u2014 that is how an image made for a prompt that has since changed gets kept out of the video.",
+    "checkpoint_fields": {
+      "schema": "chatgpt-media-checkpoint/v1",
+      "schema_version": 1,
+      "date": "20260801",
+      "bundle": {
+        "identity": "<sha256 of bundle.json>",
+        "path": "exchange/bundles/20260801/bundle.json"
+      },
+      "request_id": "<the id from the bundle, or the authored-shot id>",
+      "safe_request_id": "<as above>",
+      "request_kind": "bundle_request | authored_shot",
+      "package_id": "<authored_shot only: the package slug>",
+      "shot_index": "<authored_shot only: integer>",
+      "prompt_sha256": "<sha256 of the prompt text you actually used>",
+      "prompt_used": "<that prompt, verbatim>",
+      "status": "verified | failed | in_progress | skipped",
+      "attempt": 1,
+      "worker": "media | finalizer",
+      "drive": {
+        "folder_id": "\u2026",
+        "file_id": "\u2026",
+        "filename": "20260801__<safe_request_id>.png",
+        "download_url": "\u2026",
+        "sharing": "anyone_with_link | domain | private | unknown"
+      },
+      "image": {
+        "sha256": "<64 hex of the exact bytes>",
+        "bytes": 0,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified_at": "<ISO8601 Z>",
+      "error": {
+        "code": "\u2026",
+        "step": "\u2026",
+        "message": "\u2026"
+      },
+      "retryable": false
+    },
+    "recovery_order": [
+      "1. Read the checkpoint. Valid + verified + same bundle identity + same prompt -> REUSE it. Do not re-generate.",
+      "2. Otherwise search Drive for the EXACT deterministic filename.",
+      "3. Exactly one match -> download it, hash the bytes, confirm it decodes, and write the checkpoint from what you actually found. A filename is a lookup key, never evidence about content.",
+      "4. More than one match -> CONFLICTED. Report it and move on; do not guess which file belongs to the request.",
+      "5. Only when nothing is reusable, generate it."
+    ],
+    "claims": {
+      "path": "exchange/bundles/20260801/media-progress/claims/<safe_request_id>.json",
+      "semantics": "Create-only. If the file already exists and its `expires_at` is in the future, someone else is on it \u2014 skip that request. An EXPIRED claim is inert: take it over and say so. A verified checkpoint supersedes any claim, including a live one.",
+      "lease_seconds": 900,
+      "fields": [
+        "schema",
+        "date",
+        "bundle.identity",
+        "request_id",
+        "safe_request_id",
+        "worker",
+        "worker_run_id",
+        "created_at",
+        "expires_at",
+        "lease_seconds"
+      ]
+    },
+    "workers": {
+      "media": {
+        "role": "MEDIA worker",
+        "runs_at": "06:00 America/Chicago",
+        "job": "Generate, upload and VERIFY every image the day needs, and record each one as a checkpoint the moment it verifies.",
+        "may_write": [
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json"
+        ],
+        "must_never_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json"
+        ],
+        "rules": [
+          "Checkpoint after EVERY verified image, one file per request \u2014 not one batch at the end. A run that dies at image 19 of 24 must leave 18 recoverable results behind, not zero.",
+          "Never write response.json. Never write DONE. DONE fires the render, and at 06:00 nothing has been authored or punched up yet \u2014 writing it would ship half a day with everything green.",
+          "Work the deterministic filename from the bundle. Uploading under any other name makes the image unrecoverable if your checkpoint is lost."
+        ]
+      },
+      "finalizer": {
+        "role": "FINALIZER worker",
+        "runs_at": "07:00 America/Chicago",
+        "job": "Recover what the media worker did, fill whatever it missed, punch up the scripts, author anything the Claude side left undone, then write response.json and \u2014 separately \u2014 DONE.",
+        "may_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json",
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json",
+          "retro/*/proposals/*.json"
+        ],
+        "must_never_write": [],
+        "rules": [
+          "START by reading media-progress/. Every verified checkpoint is an image that already exists on Drive \u2014 re-generating it burns the budget AND produces a different picture than the one the checkpoint names.",
+          "Fill the gaps the media worker left, checkpointing each one the same way. You are the second attempt, not a separate pipeline.",
+          "Do the explainer and curiosity work even when trending already has six packages. Those are separate channels with separate asks; a full trending slate says nothing about either of them.",
+          "Commit response.json, READ IT BACK from main and confirm it parses, and only THEN commit DONE as a second commit. DONE is the only thing that fires the render."
+        ]
+      }
+    },
+    "honesty": "A checkpoint is a claim that you verified bytes. Writing one for an image you did not download and hash is worse than writing nothing, because the next worker will skip the work believing it is done."
+  },
+  "instructions": {
+    "read_first": "exchange/README.md",
+    "who_runs_what": {
+      "media_worker_0600": "MEDIA ONLY. Work `requests` (and, on a takeover, the shots of the packages you author). Upload under the `drive_filename` each request carries, verify the bytes, and write a checkpoint the moment each image verifies \u2014 one file per request, not one batch at the end. NEVER write response.json and NEVER write DONE.",
+      "finalizer_0700": "RECOVER FIRST: read media-progress/ before generating anything \u2014 a verified checkpoint is an image that already exists, and re-making it both burns the budget and produces a different picture than the one recorded. Then fill the gaps, punch up the scripts, do the explainer/curiosity work (even if trending is full), write response.json, verify it reads back, and only then commit DONE as a SECOND commit.",
+      "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
+    },
+    "two_jobs": [
+      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
+      "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
+    ],
+    "punchup_mission": {
+      "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS. If a script already lands \u2014 hook under 5 words ending ?/!, real voice, kicker naming the story \u2014 say so and keep it. Do not change for the sake of changing.",
+      "per_package_verdict": "Every entry in your response's `packages` array carries either the rewritten fields, or `\"kept\": true` plus a one-line `editor_note` saying why it already works (e.g. 'hook already 4 words + ?, voice present, kicker names Gary'). An entry with neither is a skipped job. MAKE A REAL DECISION PER PACKAGE: `kept` means you read it and it already lands, not that the guard looked strict. Keeping the whole slate is a red flag, not caution \u2014 the guard only protects numbers, entities and beat structure, and wording is yours to improve freely within them. If you keep more than half a slate, say why in each `editor_note`.",
+      "levity": "LAND A JOKE when the subject allows one. The doctrine has said 'dry wit' for months and this channel has never once made anyone laugh, because an adjective is not an instruction. Concretely: ONE dry aside per script, placed after the fact it reacts to, never in the first two seconds. The shapes that work \u2014 state the absurd fact flat then react in 3-6 words ('Top speed: twelve.'); name the one mundane detail amid chaos ('still holding the salad'); understate the disaster ('This did not go well for the bees'). NEVER puns, setup-punchline, exclamation marks, 'wait for it', or telling the viewer it was funny. And NEVER on a script involving death, injury, crime victims, war or illness \u2014 those stay completely straight. If nothing genuinely occurs to you, ship it straight; a forced joke is worse than none. See shared/levity.py.",
+      "house_voice": "A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today. Dry wit, real reactions, second person, contractions. It is allowed to be amused, skeptical or appalled. Accuracy is non-negotiable; attitude is MANDATORY.",
+      "do_this": [
+        "HOOK: first sentence must be <=5 words and end with ? or ! \u2014 'A kangaroo did WHAT?', 'Why fire 30,000?'. This earns the 3-second hold; it is the highest-leverage line in the video.",
+        "KICKER: last sentence must end with ? and name something specific from the story \u2014 never a generic 'what do you think?'.",
+        "REACT to the absurd instead of reporting it ('Cool, weird, whatever \u2014 until a SECOND call comes in.').",
+        "Short punchy sentences, varied rhythm. Fragments are fine. Em-dashes and hard stops make the TTS breathe instead of drone.",
+        "Cut corporate hedging ('officials confirmed', 'authorities stated') and filler procedure. Use the strongest concrete verb available.",
+        "Front-load the most surprising fact. If the best number is in sentence four, move it up \u2014 reordering facts is encouraged, changing them is not.",
+        "Keep 110-140 spoken words."
+      ],
+      "the_numbers_are_yours_to_use": "Every number, date and name in the script was verified by the writer \u2014 treat them as AMMUNITION, not as landmines. Land them harder, put them earlier, give them a beat before the payoff. The only rule is that the value itself must survive unchanged.",
+      "why_the_rules_below_exist": "The constraints in `punchup_rules` exist ONLY to stop invented facts, because an earlier audit found 519 of 546 datasets on a sibling channel were LLM-fabricated. They are not a hint that you should play it safe with the WRITING. Rewrite boldly; just do not manufacture.",
+      "worked_example": {
+        "before": "A sinkhole opened in Marshall, North Carolina on Tuesday. Officials confirmed severe storms caused the collapse.",
+        "after": "A sinkhole opened WHERE? Tuesday's storms tore through Marshall, North Carolina \u2014 and the road outside a funeral home just gave up.",
+        "note": "Same place, same day, same cause. Nothing was invented. Only the delivery changed."
+      }
+    },
+    "punchup_rules": [
+      "These are GUARDRAILS on the facts, not a reason to leave the writing alone. Read `punchup_mission` first \u2014 the rewrite is expected.",
+      "NEVER change or invent a number, percentage, money amount, date or year. Every figure in the original must appear unchanged in your rewrite.",
+      "NEVER add or remove a named entity (person, company, place).",
+      "NEVER change the shot count or any shot's `query` \u2014 the media is already chosen against those.",
+      "Stay within roughly 0.5x-1.8x the original word count.",
+      "A rewrite that breaks any of these is rejected mechanically and the original ships, so the work is wasted."
+    ],
+    "prompt_rules": [
+      "You are reading a code repository. Do NOT let that leak into the imagery \u2014 never draw screenshots, terminals, editors, UI or code. The repo is where the instruction lives, never the subject.",
+      "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
+    ],
+    "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches."
+  }
+}

@@ -61,15 +61,55 @@ jobs:
                 echo "::error file=$f::committed media/model binary — use cache/ or artifacts"; fail=1;;
             esac
           done
-          # 4. No credential-shaped additions (private keys, OAuth blobs).
+          # 4. Placement gate (operator ruling 2026-07-30, hard-enforced):
+          #    new capability goes UP the funnel — funnel//shared//engines/ —
+          #    never into a channel folder, channels never import each other,
+          #    and shared modules are never shadowed or copied into a channel.
+          python3 scripts/placement_gate.py --base "$BASE_SHA" --head "$HEAD_SHA" || fail=1
+          # 4b. CHANNEL POLICY DRIFT. config/channel_registry.json is the only
+          #     authority for the slate, the format mix, retired formats and
+          #     queue thresholds. This fails if a second copy of any of that
+          #     grows back — a constant, a prompt, a doc table. The 2026-07-31
+          #     graph-led ruling landed in ONE of five places that stated the
+          #     mix, and for weeks the reserve bank banked a retired format
+          #     while every check stayed green.
+          python3 -m shared.channel_registry --validate || {
+            echo "::error::config/channel_registry.json is invalid"; fail=1; }
+          python3 -m unittest tests.test_no_second_source_of_truth -q || {
+            echo "::error::a second source of channel policy was introduced"; fail=1; }
+          python3 -m unittest tests.test_channel_registry -q || {
+            echo "::error::registry contract tests failed"; fail=1; }
+          # 5. No credential-shaped additions (private keys, OAuth blobs).
           if git diff "$BASE_SHA" "$HEAD_SHA" -- . ':!*.md' | grep -E '^\+.*(BEGIN (RSA|EC|OPENSSH) PRIVATE KEY|"refresh_token"\s*:|AIza[0-9A-Za-z_-]{35})' >/dev/null; then
             echo "::error::diff adds credential-shaped content — refusing to auto-merge"; fail=1
           fi
           [ "$fail" -eq 0 ] && echo "sanity gate: PASS"
           exit "$fail"
 
+  # THE TEST SUITE. Until 2026-08-01 this did not exist: 477 tests lived in
+  # tests/ and CI ran exactly two of the sixteen files, so `automerge` would
+  # squash-merge a PR that broke every other one. A suite that never runs is
+  # decoration — it costs the time to write and buys nothing.
+  tests:
+    if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test deps
+        run: pip install -q pillow pyyaml requests
+      - name: Full unit suite
+        run: python -m unittest discover -s tests -v 2>&1 | tail -40
+      - name: Split-worker dry run (offline, no Drive, no ChatGPT)
+        run: python scripts/exchange_dry_run.py
+      - name: Channel-contract acceptance (registry propagation)
+        run: python scripts/registry_acceptance.py
+
   automerge:
-    needs: sanity
+    needs: [sanity, tests]
     if: startsWith(github.head_ref, 'claude/') && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:

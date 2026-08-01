@@ -1,0 +1,313 @@
+{
+  "date": "20260730",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 22,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "806441e88ccf99cd2f3299741325b3729b2ab14d3e9d41f3dae8f6cb2edbd364",
+    "required": true,
+    "checked": 24,
+    "ok": 0,
+    "rejected": 24,
+    "warnings": 0,
+    "rejected_detail": [
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s0-28a1cc597ea1",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s3-495854cc74ef",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s4-6a5e620f37c3",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s6-e983f7a7e00a",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s7-4386e5ef8fd5",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s9-d5ca6e9f2d42",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s10-e12100d7a2a2",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "sinkhole-marshall-nc-funeral-home-s11-212e5c68482e",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s0-38814efa5f9f",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s2-91f1f4d386f2",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s4-51ccd1cc7618",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s5-d7fab7bd1c52",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s6-5d88c428d9b4",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s7-c447cb9714d2",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s8-d89848034080",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s10-bc6d08e72117",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s12-32c5e2058fca",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "gary-the-goat-louisiana-s13-d180a51deb2a",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s2-299b6b3308f7",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s3-9cc0c9e84076",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s5-51eb05f755da",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s7-4a8070d4ddd4",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s8-8381ae493041",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      },
+      {
+        "request_id": "man-of-steal-superman-burglary-s9-8a123a89e6fd",
+        "where": "response.media",
+        "problems": [
+          "no such request_id in this bundle"
+        ]
+      }
+    ],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 6,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "man-of-steal-superman-burglary-s11-dc8c34909c0b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gad5d3cf6212524823d76ab031cf1be747a10142383a254d42d34ff6e174a91a0b34cdc21518f936499895a6e2a9d442ebf6c5dcf44f5bd5dcc44ef3ba4d39127_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s0-2683d8eb6262",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2094/1718077055_b53781ef44_b.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s3-05b4041abd7a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2637c2e10029bd9a01ee8ccbe3e2945504d3f3fb32d21372b19ba7e7ee22b2bcee6531aed427b89bd8d2a7bbcc86b9afe1c94486632887ed6fe8d7c334ce3e71_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s4-ceff1069b515",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g41b07aebf214da8f27c60d89223483b69e553305d734137202cf1b5b939786530ea3c14f2fdda0ea34afe395f987a4263a4d35239dbfc9ffcd4aa70ef74edb40_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s5-676c525bcb1b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g89ff8134779812977de823271ac740dd57209a78c587c4698a3d8f1c7a8d298e745e9f3aca82a4972759bb3a112a326675202f42da9e862e3d4b435b9344f4a4_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s8-06c49d78c78a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb904c5c8dfa3f6505169b2e5a9190a348fec219e214088fe7aaaa38020e91d5e640e427c0a36d2107b418a6c5866d5ca5d879eef5ed4ac484eb0eec9c1df34d6_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s9-c3ff674b0fbf",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf52b7b44af17e8fb92ffc94d063e2b5ec880b9748f55679aa3d44f1533162d49405291f007aece2ac5176a717354d06fcc0d7a01eee6cefb1e83f3f0ce2e6318_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s10-8a7811614707",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7271ae11ae2d1d5e67d9be547020e460ba59da69b53d3db0c862ab1c6c600bf6328a3cb4735d3516b6d0f75fa3ccd870_1280.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s11-d96db9ec918f",
+      "outcome": "self_fill",
+      "url": "https://images-assets.nasa.gov/image/KSC-04pd0126/KSC-04pd0126~medium.jpg"
+    },
+    {
+      "request_id": "bench-fire-warm-springs-oregon-s12-9dbf5ced6c93",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5bf0d0b212067d4c8499377727f635834b6c1ab32467e036f60fa37d24128b62a369c00af32a0fcf9bdde089bb6a6c56cd0c4b121f2ccd3b5712e12fe6e0de17_1280.jpg"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s1-bd701e474efc",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfaf778cbad1962ee5e7077484af8bdf2577decd9dde1e24bd3b1232e79e39dc105d5d5f874a24537d1bb43b463a76e47aa3540ba26e42a53773d7a02a230fe3c_1280.jpg"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s4-0b34df95921e",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3819/11361110253_0cf6d125e8_b.jpg"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s10-5cb424f9bb26",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g9ff24012087f313f7d2f394df1c9c35e04e64bec1ee7226fbc407bc2eb4deff04e884c493c247a57eff8d5a3b499db284577e28c825a3551385f162715fbe6a0_1280.jpg"
+    },
+    {
+      "request_id": "iran-missile-attack-jordan-s11-148eab9a06ed",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8eaa2e70c551a5cce07d9ff964c99cd9823b0dd891517cac56457c5013fd7b832e2f4009fc857388dee166e61be44c13_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s1-0bc5fa947b80",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g170dbc44b0e2ef21874ca07f4cd87afe3d37812e632777569731bed1b5b6dbeec6c520c2b10bee0c197c6be75174911073c7aea970e740a9b50db9224fd49772_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s2-05003b92d07c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g15ba211b4228e0704ac36c8cbe0928cdce2372618d7f6460fb519230b66d29b1a22e189c3a41862be99b6e344fd365614e465a20916ecd86d314b035dee7a4ec_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s3-dad030063894",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2eef5577a15170fcbf5db9aaceee7996a7c480e804cda9e51de48dbd67303a558d91957d3b39f7f99d707104437b3b8c71035f0911c2dfdf1ddc6289b2a40905_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s4-6e93f3b7ed51",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g53d8b8fea213b5dddc305c58222b5650971f05070a36704af5c913a4696792f9c9c6981c32a3b646edb530154cbed9bac1907cee9470c0cf6afc7d2fed62a5d9_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s5-c3e9375dc91d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g21cf892b77615593e285d41b34331c288b555a96e058a713f08db3ad2eaeaf8576dc13003f131233bdc533b1328b00cf7fba4fbe0fa850d7c6ceb3fc930008d0_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s6-a5faaf02b94f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc7d8f20d84f80e5e2970bb1cf428179a4600e21d843d78c7ef781e040b50f25afa991ba523b23cd0a115b13c80583e141d2527f5273b8ecba06890bebe2df69d_1280.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s7-ebade2f76c7a",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/8116/29723649810_8cb4a06489_b.jpg"
+    },
+    {
+      "request_id": "fcc-bans-chinese-humanoid-robots-s12-da645bfe934d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc1a3e6503308b8970f8f87c1ff42a6db41a1f77e2141aaf11a6985ff654cf7834dce58873ea6eae071baf8b1386298d7ca078fbea7799462fa766cef0c3e104d_1280.jpg"
+    }
+  ]
+}

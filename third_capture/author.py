@@ -429,6 +429,74 @@ def _postprocess(out: dict, streamer: str, context: str,
             "edit": edit}
 
 
+# ------------------------------------------------------- brain health
+# 2026-07-29: every rank/author/scene call failed for ~90 minutes (Claude
+# CLI rc=1, Groq 429) and the run STILL published — four clips picked by
+# raw view count (every banger pinned at the 0.5 default, empty reasons),
+# no scene analysis, fallback titles. The per-call fallbacks each degraded
+# "gracefully", so nothing stopped the slate. This tracker gives the run a
+# way to notice the pattern: record each brain-task outcome, and let the
+# caller refuse to keep publishing once the brain is provably down.
+_BRAIN = {"ok": 0, "fail": 0}
+
+
+def _brain_note(ok: bool) -> None:
+    _BRAIN["ok" if ok else "fail"] += 1
+
+
+def brain_down(min_calls: int = 3) -> bool:
+    """True once we have real evidence the brain is DOWN, not flaky: at
+    least `min_calls` brain tasks attempted and every single one failed.
+    One success anywhere resets nothing but proves the path works, so the
+    all-failed condition can never trip after it."""
+    total = _BRAIN["ok"] + _BRAIN["fail"]
+    return total >= min_calls and _BRAIN["ok"] == 0
+
+
+def brain_health() -> dict:
+    h = dict(_BRAIN)
+    # "0 ok / 25 failed" and "0 ok / 25 failed because the subscription
+    # window was already spent" call for completely different responses.
+    # The judges digest reads this, so the distinction has to be IN it.
+    if _LIMIT_HIT["at"]:
+        h["limited_at"] = _LIMIT_HIT["at"]
+        h["limit_detail"] = _LIMIT_HIT["detail"]
+    return h
+
+
+# ------------------------------------------------ usage-limit breaker
+# 2026-07-29 read as a 90-minute outage; it was not. The cron fires at
+# 11:10 UTC and the "outage" ran 11:10-12:41 — that WAS the run, first
+# call to last, inside one exhausted subscription window. A run makes
+# ~40 `claude -p` calls, immediately after daily.yml has already spent
+# that window on a full agentic session.
+#
+# Once the account is out of budget, every remaining call is guaranteed
+# to fail. Making them anyway costs real time and stampedes ~40 requests
+# onto free-tier Groq in a few minutes — which is why "Groq 429s at the
+# same time" always looked like a coincidence and never was. Groq was
+# being killed BY the Claude failure, not alongside it.
+_LIMIT_HIT: dict = {"at": "", "detail": ""}
+_LIMIT_PAT = re.compile(
+    r"usage limit|rate.?limit|quota|too many requests|resets? (at|in)|"
+    r"429|overloaded", re.I)
+
+
+def brain_limited() -> dict:
+    """Non-empty once the CLI has reported a usage/rate limit this run."""
+    return dict(_LIMIT_HIT)
+
+
+def _note_limit(detail: str) -> None:
+    if not _LIMIT_HIT["at"]:
+        from datetime import datetime, timezone
+        _LIMIT_HIT.update(at=datetime.now(timezone.utc).isoformat(
+            timespec="seconds"), detail=detail[:200])
+        print(f"::warning::[brain] USAGE LIMIT reached — {detail[:160]}. "
+              f"Skipping further Claude calls this run instead of retrying "
+              f"into the wall (and stampeding Groq).", flush=True)
+
+
 def _call_claude(user: str, system: str = SYSTEM,
                  read_files: bool = False) -> dict | None:
     """Headless Claude via the claude-code CLI (CLAUDE_CODE_OAUTH_TOKEN —
@@ -443,6 +511,11 @@ def _call_claude(user: str, system: str = SYSTEM,
     model that didn't actually look)."""
     import shutil
     import subprocess
+    if _LIMIT_HIT["at"]:
+        # already out of budget this run — a further call cannot succeed,
+        # and each one costs wall-clock and pushes another request onto
+        # the Groq fallback that is about to 429 because of us
+        return None
     if not os.environ.get("CLAUDE_CODE_OAUTH_TOKEN", "").strip():
         print("::warning::[author] CLAUDE_CODE_OAUTH_TOKEN unset — the brain "
               "is unavailable, falling to Groq", flush=True)
@@ -453,14 +526,52 @@ def _call_claude(user: str, system: str = SYSTEM,
         return None
     prompt = (system + "\n\n" + user
               + "\n\nReturn ONLY the JSON object, nothing else.")
-    cmd = ["claude", "-p", prompt]
+    # PIN THE MODEL. Every other brain path in the repo pins one
+    # (story_forge, mascot_director and daily.yml all pin sonnet;
+    # showrunner pins opus) — this call site pinned NOTHING and inherited
+    # the account default. ~40 unpinned calls per run is how a window gets
+    # spent without anyone choosing to spend it.
+    cmd = ["claude", "-p", prompt,
+           "--model", os.environ.get("THIRD_BRAIN_MODEL", "sonnet")]
     if read_files:
         cmd += ["--allowedTools", "Read"]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=240)
+    if r.returncode != 0 and _LIMIT_PAT.search((r.stderr or "")
+                                               + (r.stdout or "")):
+        _note_limit((r.stderr or r.stdout or "").strip().replace("\n", " "))
+        return None
+    # Prefer a clean parse of the whole reply; the greedy r"\{.*\}" spans
+    # from the FIRST brace to the LAST, so any prose containing braces (or
+    # a fenced block plus trailing commentary) mis-spans and raises a
+    # JSONDecodeError that the callers' bare excepts swallow as "brain
+    # down". Try the honest parse first, keep the regex as the fallback.
+    _txt = (r.stdout or "").strip()
+    if _txt.startswith("{") and _txt.endswith("}"):
+        try:
+            return json.loads(_txt)
+        except ValueError:
+            pass
     m = re.search(r"\{.*\}", r.stdout, re.DOTALL)
     if not m:
-        raise RuntimeError(f"no JSON in claude output "
-                           f"(rc={r.returncode})")
+        # SURFACE THE CLI'S OWN MESSAGE. capture_output=True collects
+        # stderr and this raised on rc alone, so "rc=1" was the entire
+        # diagnosis available while the brain was down for ~90 minutes on
+        # 2026-07-29 and again mid-run on 07-30 — every rank, author and
+        # scene call failing with no way to tell WHY (auth? usage limit?
+        # prompt too long? a permission prompt?). Exactly the bug class
+        # that hid the rumble 403 for days: the answer was captured, then
+        # thrown away. This is the single highest-value line in the file.
+        err = (r.stderr or "").strip().replace("\n", " ")[:300]
+        head = (r.stdout or "").strip().replace("\n", " ")[:120]
+        # A limit can also arrive as rc=0 with a prose apology and no JSON,
+        # so the breaker has to be armed here too — not only on rc!=0.
+        if _LIMIT_PAT.search(err + " " + head):
+            _note_limit(err or head)
+            return None
+        raise RuntimeError(
+            f"no JSON in claude output (rc={r.returncode})"
+            + (f" stderr={err!r}" if err else "")
+            + (f" stdout={head!r}" if head else " stdout=<empty>"))
     return json.loads(m.group(0))
 
 
@@ -530,6 +641,142 @@ Return ONLY JSON: {"scores": [{"i": <index int>, "banger": <0-1>,
 "why": "<=6 words"}]}. One entry per candidate, same indices given."""
 
 
+# The SAME greenlight rubric, but for a judge that can SEE the clip.
+# 2026-07-31: the content gate rejected every candidate all day with
+# reasons that were exclusively about talk — "rambling chat talk",
+# "confused chat talk", "vague ramble", "routine gameplay narration".
+# Not one mentioned anything visual, because the gate only ever received
+# `words[:40]`. On a CLIPS channel that is a systematic bias against
+# precisely the content that travels: a fail, a reaction face, physical
+# comedy and a gameplay moment all read as "rambling chat" when you only
+# read the words. This variant gets the frames.
+_CONTENT_SYSTEM = _RANK_SYSTEM.replace(
+    "Some candidates carry a transcript snippet",
+    """You are given BOTH a contact sheet image (frames across the clip,
+timestamp-labeled) and the transcript. READ THE IMAGE FIRST.
+
+The words are only half the clip, and on this channel usually the lesser
+half. A moment can be a complete story with mundane dialogue: someone's
+face at the instant they realize, a physical fail, a reaction from the
+people around them, something visibly going wrong on screen. Judge WHAT
+HAPPENS, from the frames, and use the transcript to confirm or deny it.
+
+- If the frames show a real visible event or a genuine emotional reaction,
+  score it on THAT, even when the transcript is unremarkable chatter.
+  Do NOT write it off as "rambling talk" — that is describing the audio of
+  a visual moment.
+- If the frames show a person sitting and talking with nothing changing,
+  the low score is correct and the transcript will agree.
+- If the frames contradict an exciting title, believe the frames.
+
+Some candidates carry a transcript snippet""")
+
+
+def judge_content(streamer: str, title: str, transcript: str,
+                  sheet: str = "", views: int = 0) -> tuple:
+    """Content greenlight for ONE clip, judged on what it SHOWS as well as
+    what it says. Returns (score|None, why, saw_frames).
+
+    `saw_frames` is provenance, not decoration: a text-only verdict here
+    carries the exact bias this function exists to remove, so callers must
+    be able to tell the two apart and say so in the record. score=None
+    means no judge was reachable at all."""
+    user = (f"Candidate clip:\n"
+            f"0. streamer={streamer} views={views} title={str(title)[:90]!r}\n"
+            + (f"Contact sheet image (12 timestamped frames): {sheet}\n"
+               if sheet else "No frames available — transcript only.\n")
+            + (f"TRANSCRIPT: {str(transcript)[:1200]!r}" if
+               str(transcript).strip() else
+               "TRANSCRIPT: (none — no intelligible speech in this clip). "
+               "Judge it on the FRAMES. Silence is not a defect: a fail, a "
+               "reaction, physical comedy and a clean gameplay moment all "
+               "read as no-transcript. Do NOT penalise the missing words."))
+    tried_claude = False
+    if sheet:
+        try:
+            tried_claude = True
+            out = _call_claude(user, system=_CONTENT_SYSTEM, read_files=True)
+            if out:
+                for s in (out.get("scores") or []):
+                    # A MISSING `banger` KEY IS "NO SCORE", NOT 0.5.
+                    # The default used to be 0.5, which is under the 0.70
+                    # content floor — so a malformed reply REJECTED the
+                    # clip and wrote it to the PERMANENT blocklist with
+                    # `rejected_why: "0.50 < 0.7"`. A parse quirk became an
+                    # irreversible verdict on a clip nothing had evaluated.
+                    if not isinstance(s, dict) or s.get("banger") is None:
+                        continue
+                    try:
+                        b = max(0.0, min(1.0, float(s["banger"])))
+                        _brain_note(True)
+                        return b, str(s.get("why", ""))[:40], True
+                    except (TypeError, ValueError):
+                        continue
+                # reached only if the reply parsed but carried no usable
+                # score — a model answering in the wrong shape is a failed
+                # brain task, not a silent no-op
+                _brain_note(False)
+            else:
+                _brain_note(False)
+        except Exception as e:  # noqa: BLE001
+            # COUNT IT. A vision failure used to record nothing at all, so
+            # a CLI failing 100% of eyes-on calls while Groq answered the
+            # text fallback registered as a HEALTHY brain (brain_down()
+            # needs ok == 0) and the blind-slate gate never fired. The
+            # 2026-07-29 incident this tracker exists for would have been
+            # partly invisible again: ok climbing while every visual
+            # judgment silently degraded to the text-only rubric this
+            # function was written to replace.
+            _brain_note(False)
+            print(f"::warning::[content] vision judge failed ({e}) — "
+                  f"falling back to text-only", flush=True)
+    # Text-only fallback: same rubric, no frames. Deliberately NOT a
+    # failure — losing every clip when vision blinks would be worse than
+    # the bias — but it is recorded as blind so a day judged entirely
+    # without eyes is visible instead of looking authoritative.
+    #
+    # AMPLIFICATION: this used to call rank_clips(), which calls
+    # _call_claude() again — so a vision call that failed because the
+    # account was out of budget immediately fired a SECOND CLI call for
+    # the same clip. Across a slate that doubles the request rate exactly
+    # when the brain is already failing, and doubles the Groq stampede
+    # behind it. When Claude has already been tried and refused for this
+    # clip, go straight to the text fallback provider.
+    b, why = None, ""
+    if not str(transcript).strip():
+        # NO TRANSCRIPT AND NO EYES. A text judge handed a silent clip
+        # scores the title, which is the bias this function exists to
+        # remove — and a manufactured mid-band score would blocklist the
+        # clip permanently. score=None means "no judge was reachable",
+        # the gate fails open, and the record says why.
+        return None, "no transcript and no frames — nothing to judge", False
+    text_user = ("Candidates:\n0. streamer=" + str(streamer)
+                 + f" views={views} vph=0 title={str(title)[:90]!r}"
+                 + f" snip={str(transcript)[:400]!r}")
+    out = None
+    if not tried_claude:
+        try:
+            out = _call_claude(text_user, system=_RANK_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[content] claude text judge failed ({e})",
+                  flush=True)
+    if out is None:
+        try:
+            out = _call_groq(text_user, system=_RANK_SYSTEM)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[content] groq text judge failed ({e})",
+                  flush=True)
+    _brain_note(bool(out))
+    for s in (out or {}).get("scores") or []:
+        try:
+            b = max(0.0, min(1.0, float(s.get("banger", 0.5))))
+            why = str(s.get("why", ""))[:40]
+            break
+        except (TypeError, ValueError):
+            continue
+    return b, why, False
+
+
 def rank_clips(clips: list[dict]) -> dict:
     """Banger score per clip -> {clip_key_or_url: (banger, why)}. One brain
     call (Claude, Groq fallback). Empty dict when no brain/parse fails — the
@@ -555,6 +802,7 @@ def rank_clips(clips: list[dict]) -> dict:
             out = _call_groq(user, system=_RANK_SYSTEM)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[rank] groq failed ({e})", flush=True)
+    _brain_note(bool(out))
     if not out:
         return {}
     result = {}
@@ -689,6 +937,7 @@ def author_package(streamer: str, clip_title: str, transcript: str,
             if meta:
                 print(f"[author] Claude authored: {meta['title']!r}",
                       flush=True)
+                _brain_note(True)
                 return meta
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] Claude failed ({e}) — falling to Groq",
@@ -700,6 +949,7 @@ def author_package(streamer: str, clip_title: str, transcript: str,
             if meta:
                 print(f"::warning::[author] GROQ FALLBACK authored: "
                       f"{meta['title']!r}", flush=True)
+                _brain_note(True)
                 return meta
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[author] groq authoring failed: {e}", flush=True)
@@ -708,4 +958,5 @@ def author_package(streamer: str, clip_title: str, transcript: str,
     # because the public title is now a fallback, not an authored one.
     print("::warning::[author] AUTHORING FAILED (claude + groq) — the clip "
           "ships on a fallback title, not an authored one", flush=True)
+    _brain_note(False)
     return None

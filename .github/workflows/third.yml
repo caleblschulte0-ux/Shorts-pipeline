@@ -74,10 +74,22 @@ jobs:
       # run_third selects, so posted_keys always reflects every prior post.
       - name: Sync dedupe state from main
         run: |
-          git fetch origin main --depth=1 || true
-          git checkout origin/main -- \
-            state/third_posted_log.json state/third_qa_stats.json 2>/dev/null \
-            || echo "no committed dedupe state yet — first run"
+          # This step is the ONLY thing standing between a late-executing
+          # queued run and a duplicate upload. It used to be
+          #   git fetch ... || true ; git checkout ... 2>/dev/null || echo "first run"
+          # which swallowed EVERY failure — network error, missing ref,
+          # permissions — behind a message asserting success. Distinguish
+          # "not on main yet" (fine) from "could not sync" (hard fail).
+          set -e
+          git fetch origin main --depth=1
+          for f in state/third_posted_log.json state/third_qa_stats.json; do
+            if git cat-file -e "origin/main:$f" 2>/dev/null; then
+              git checkout origin/main -- "$f"
+              echo "synced $f from origin/main"
+            else
+              echo "$f not on origin/main yet — first run for this file"
+            fi
+          done
 
       - name: Pre-flight — secrets + kill switch
         run: |
@@ -95,6 +107,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
+          # openai-whisper pulls torch — several hundred MB and 3-6 min of
+          # every run's 120-minute budget, re-downloaded each time.
+          cache: 'pip'
 
       - name: Install system deps
         run: |
@@ -116,13 +131,14 @@ jobs:
 
       # Translation cache (audit Ticket 3): moved out of git into cache/,
       # persisted between runs via actions/cache (evolving-cache pattern).
-      - name: Cache translations
+      - name: Cache translations + transcripts + whisper weights
         uses: actions/cache@v4
         with:
           path: |
             cache/translation/
             cache/funnel/
             cache/transcripts/
+            ~/.cache/whisper
           key: translation-cache-v1-${{ github.run_id }}
           restore-keys: |
             translation-cache-v1-
@@ -162,6 +178,26 @@ jobs:
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
           python scripts/run_third.py --date "$DATE" $FLAGS
 
+      # COMMIT BEFORE ANALYTICS. Both steps are always(), and on a
+      # timeout GitHub CANCELS the job — always() steps get only the
+      # runner's short cancellation grace. Fetching analytics first burned
+      # that grace on YouTube Data + Analytics API calls while the posted
+      # log, the one piece of state whose loss causes a duplicate upload,
+      # waited behind it. The log goes first now; analytics is the thing
+      # that can afford to be dropped.
+      - name: Commit posted log + analytics
+        # always() so the log lands even when the render step fails —
+        # losing dedupe state causes re-uploads (batch-3 incident). Uses the
+        # shared hardened persist (audit Ticket 1): retry + union-merge on a
+        # race, so the naive single-retry path that caused batch-3 is gone.
+        if: ${{ always() && inputs.dry_run != true }}
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "third: update posted log + analytics [skip ci]" \
+            state/third_posted_log.json state/third_qa_stats.json \
+            state/third_events.json \
+            state/analytics_third
+
       # Feedback loop: pull each posted Short's views-per-hour + (when the
       # token carries the yt-analytics scope) retention, so run_third's
       # learned prior can favour the streamers that actually retain on OUR
@@ -177,15 +213,12 @@ jobs:
           python3 scripts/fetch_analytics.py --channel third --max-age-days 30 \
             || { echo "analytics fetch skipped"; exit 0; }
 
-      - name: Commit posted log + analytics
-        # always() so the log lands even when the render step fails —
-        # losing dedupe state causes re-uploads (batch-3 incident). Uses the
-        # shared hardened persist (audit Ticket 1): retry + union-merge on a
-        # race, so the naive single-retry path that caused batch-3 is gone.
+      - name: Commit analytics
+        # analytics lands AFTER the log commit now, so it needs its own
+        # persist. Same hardened path; nothing here is dedupe state, so a
+        # failure is cosmetic.
         if: ${{ always() && inputs.dry_run != true }}
+        continue-on-error: true
         run: |
           bash scripts/ci_commit_state.sh \
-            "third: update posted log + analytics [skip ci]" \
-            state/third_posted_log.json state/third_qa_stats.json \
-            state/third_events.json \
-            state/analytics_third
+            "third: analytics [skip ci]" state/analytics_third

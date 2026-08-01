@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260801",
+  "bundle": {
+    "identity": "cc8344d95d3c92923106261809d875e59f2def1644a2d334897f77a856a780ab",
+    "path": "exchange/bundles/20260801/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-01T11:15:00Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+  "safe_request_id": "reddit-gym-membership-photo-s8-9ae5b5e840b6",
+  "prompt_sha256": "ee79eeb8d8b8d2eaa11f3250bbebf03a7a644674a367c7be1360c1d4210dfa2a",
+  "prompt_used": "An editorial illustration for a short-form video: bank refund notification. It accompanies the narration: \"refunded both charges\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QNhgWAGhxJ6Soc8bGUDy7VVZXs10Pqch",
+    "filename": "20260801__reddit-gym-membership-photo-s8-9ae5b5e840b6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QNhgWAGhxJ6Soc8bGUDy7VVZXs10Pqch",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "31708a7e16b17cbe1a6892a26f8da194d69eaa597bad3b2b411bf04b7e223ea9",
+    "bytes": 1807281,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}

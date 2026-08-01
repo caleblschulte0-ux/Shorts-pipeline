@@ -1,0 +1,168 @@
+name: Exchange Phase A (find media, judge, ask ChatGPT)
+
+# 4:30 — obtain the media the day's videos will need and judge it against the
+# script, then STOP. Nothing renders here: ChatGPT is about to change both the
+# scripts and the visuals, so rendering now would be thrown-away work.
+#
+# Chain: this -> ChatGPT scheduled task (reads the bundle, writes response.json
+# + DONE) -> exchange_phase_b.yml (fires on the DONE push) -> render.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Package date (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      channel:
+        description: 'Channel to prepare'
+        required: false
+        default: 'trending'
+      dry_run:
+        description: 'Print the bundle, commit nothing'
+        required: false
+        type: boolean
+        default: false
+  # PRIMARY TRIGGER: the Claude Routine authors the day's packages and opens a
+  # PR; auto-merge lands it; this runs the moment that completes.
+  #
+  # NO `branches:` FILTER — and that is deliberate. On 2026-07-30 this had
+  # `branches: [main]` and NEVER FIRED: for workflow_run, `branches` matches
+  # the TRIGGERING run's head branch, and auto-merge.yml runs in the pull
+  # request's context, so its head_branch is the PR branch
+  # (claude/determined-galileo-bj5ifl that day) — never `main`. The filter
+  # excluded the only event it was supposed to catch. Do not add it back.
+  workflow_run:
+    workflows: ["Auto-merge claude PRs"]
+    types: [completed]
+  # SECOND PATH: packages pushed straight to main (no PR). GITHUB_TOKEN-
+  # authored pushes cannot fire this, so it only covers a human/PAT push —
+  # still worth having, it costs nothing.
+  push:
+    branches: [main]
+    paths:
+      - 'state/trending_packages/**'
+      - 'state/third_packages/**'
+  # BACKSTOP: 09:45 UTC — AFTER the Routine authors (observed 09:19 UTC on
+  # 2026-07-30), not before it.
+  #
+  # This was 04:30, which was a guess at the Routine's time and was wrong by
+  # ~5 hours: Phase A ran at 07:12 (GitHub fired the 04:30 cron 2h42m late),
+  # found no packages because they landed at 09:19, exited clean in 10s, and
+  # never ran again. No bundle was written, so ChatGPT correctly reported
+  # nothing to do and the day rendered without the exchange.
+  #
+  # Two lessons encoded here: schedule AFTER the thing you depend on, and
+  # never rely on cron timing alone — GitHub's drift is measured in hours.
+  schedule:
+    - cron: '45 9 * * *'
+
+permissions:
+  contents: write   # commit the bundle + resolved media pins
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  phase-a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: exchange-${{ inputs.channel || 'trending' }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch
+        run: |
+          set -e
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install python deps
+        run: pip install -q pillow requests
+
+      - name: Cache media lookups
+        uses: actions/cache@v4
+        with:
+          path: cache/funnel/
+          key: funnel-cache-v1-${{ github.run_id }}
+          restore-keys: |
+            funnel-cache-v1-
+
+      # RESERVE BANK — cover for "the brain went dark" (no Routine run, a
+      # revoked CLAUDE_CODE_OAUTH_TOKEN, a lapsed subscription). Two halves,
+      # both cheap and both offline:
+      #
+      #   deposit  banks whatever evergreen packages the Routine dropped in
+      #            state/package_buffer/inbox/ while it was healthy.
+      #   fill     tops today's slate up from the bank IF it is short. A day
+      #            the brain authored normally is already at target, so this
+      #            is a no-op and NEVER displaces real work.
+      #
+      # Without this, a dead brain means Phase A finds no packages, exits 0,
+      # and the whole exchange chain silently does nothing for the day.
+      - name: Reserve bank — deposit inbox, fill any shortfall
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
+            python scripts/package_reserve.py deposit \
+              --dir state/package_buffer/inbox --source routine --delete
+          fi
+          python scripts/package_reserve.py status
+          python scripts/package_reserve.py fill --date "$DATE" \
+            --reason "phase A found a short slate"
+
+      - name: Find media, judge, write bundle
+        env:
+          # Media funnel providers (all optional — absent keys just narrow
+          # the search, and a narrower search means more gaps for ChatGPT).
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # How many of the day's gaps may be requested as ANIMATION rather
+          # than a still. 0 = stills only. Raise once animation is proven.
+          CHATGPT_ANIM_BUDGET: ${{ vars.CHATGPT_ANIM_BUDGET || '0' }}
+          # Hard cap on daily requests so one bad authoring night can't ask
+          # for 200 assets.
+          CHATGPT_MAX_REQUESTS: ${{ vars.CHATGPT_MAX_REQUESTS || '24' }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          FLAGS=""
+          [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
+          python scripts/exchange_phase_a.py \
+            --date "$DATE" --channel "${{ inputs.channel || 'trending' }}" $FLAGS
+
+      - name: Commit the ask
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          bash scripts/ci_commit_state.sh \
+            "exchange: phase A bundle for $DATE [skip ci]" \
+            "exchange/bundles/$DATE" \
+            state/trending_packages state/third_packages state/package_buffer
+
+      - name: What happens next
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          echo "::notice::Bundle committed at exchange/bundles/$DATE/bundle.json."
+          echo "::notice::ChatGPT's scheduled task should now answer it and write"
+          echo "::notice::exchange/bundles/$DATE/DONE, which triggers Phase B."

@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "subreddit": "ProRevenge",
+  "slug": "reddit-gym-membership-photo",
+  "title": "The gym said there was no record I ever canceled",
+  "hashtags": [
+    "reddit",
+    "storytime",
+    "prorevenge",
+    "revenge",
+    "gym",
+    "membership",
+    "receipts",
+    "karma",
+    "customerservice",
+    "consumer",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "justice"
+  ],
+  "script": "They 'lost' my cancellation form? I canceled my gym membership in person, signed their form, and snapped a photo of it before I left, because a friend warned me this gym does this constantly. 2 months later they charged my card anyway and told me there was no record I'd ever canceled. I emailed the photo, timestamp and all, along with the manager's own signature on it. Support went quiet for a while, then refunded both charges, closed the account for real this time, and added a note apologizing for the 'system error.' Funny how the system only errors in one direction. So how many other members never thought to take that photo?",
+  "shots": [
+    {
+      "phrase": "lost' my cancellation form",
+      "query": "cancellation form paper",
+      "mascot_pose": "shock",
+      "pin_query": "cancellation form",
+      "pin_context": "contract document signature",
+      "news_query": "cancellation form",
+      "news_angle": "The gym lost the customer's cancellation form, despite it being signed and photographed.",
+      "image_url": "https://live.staticflickr.com/65535/48911253517_a7e19c4560_b.jpg"
+    },
+    {
+      "phrase": "canceled my gym membership in person",
+      "query": "gym front desk counter",
+      "mascot_pose": "idle",
+      "pin_query": "gym",
+      "pin_context": "fitness center membership",
+      "news_query": "gym",
+      "news_angle": "The gym failed to process a membership cancellation, resulting in unauthorized charges.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Amsterdam_-_Gymnasium_-_0591.jpg"
+    },
+    {
+      "phrase": "snapped a photo of it before I left",
+      "query": "phone camera photo document",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "2 months later they charged my card anyway",
+      "query": "credit card charge statement",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "no record I'd ever canceled",
+      "query": "customer service phone call",
+      "mascot_pose": "idle",
+      "pin_query": "I'd",
+      "pin_context": "The gym said there was no record I ever canceled",
+      "news_query": "I'd",
+      "news_angle": "The gym said there was no record I ever canceled",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+    },
+    {
+      "phrase": "emailed the photo, timestamp and all",
+      "query": "email attachment screen",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "manager's own signature on it",
+      "query": "signature on paper",
+      "mascot_pose": "idle",
+      "pin_query": "manager",
+      "pin_context": "gym staff employee",
+      "news_query": "manager",
+      "news_angle": "The manager's signature was on the cancellation form, which was later used as proof of cancellation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png"
+    },
+    {
+      "phrase": "went quiet for a while",
+      "query": "phone screen no reply",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "refunded both charges",
+      "query": "bank refund notification",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "closed the account for real this time",
+      "query": "gym membership card",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "apologizing for the 'system error",
+      "query": "apology email screen",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the system only errors in one direction",
+      "query": "calculator receipt paper",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "never thought to take that photo",
+      "query": "phone camera roll",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "2 months later they charged my card anyway",
+      "text": "CHARGED AGAIN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "no record I'd ever canceled",
+      "text": "\"NO RECORD\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "emailed the photo, timestamp and all",
+      "text": "RECEIPTS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "refunded both charges",
+      "text": "FULL REFUND",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "closed the account for real this time",
+      "text": "ACCOUNT: CLOSED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "the system only errors in one direction",
+      "text": "FUNNY, THAT",
+      "color": "#ffaa30"
+    }
+  ],
+  "music_vibe": "dark",
+  "_reserve": {
+    "banked_at": "2026-07-31T09:17:33Z",
+    "drawn_on": "20260801",
+    "reason": "phase A found a short slate"
+  }
+}

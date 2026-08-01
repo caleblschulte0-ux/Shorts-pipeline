@@ -314,7 +314,36 @@ jobs:
           )"
           fi
           BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
-          if [ -z "$BRAIN_SLUGS" ]; then echo "no target stories; skipping brain"; exit 0; fi
+          # HANDS OFF what the forge already authored. The forge writes a
+          # VALIDATED element-kit scene per segment; this step then rewrote the
+          # same field with its own free-form {mechanic, concept} shape, which
+          # the scene renderer can't draw — so the segment fell back to a plain
+          # chart. That is precisely the "two chart builds and one frozen number
+          # card, the data is stated not demonstrated" the gate has been
+          # blocking. Only stories with NO kit scene need directing.
+          BRAIN_SLUGS="$(python3 - "$BRAIN_SLUGS" <<'PY'
+          import json, sys
+          want = sys.argv[1].split()
+          cfg = json.load(open('data_learning/niche.config.json'))
+          by = {s['slug']: s for s in cfg.get('stories', [])}
+          keep = []
+          for sl in want:
+              st = by.get(sl)
+              if not st:
+                  continue
+              kit = sum(1 for sg in st.get('segments', [])
+                        if isinstance(sg.get('scene'), dict)
+                        and sg['scene'].get('elements'))
+              if kit < len(st.get('segments', [])):
+                  keep.append(sl)
+              else:
+                  print(f"[brain] {sl}: forge scenes intact — skipping",
+                        file=sys.stderr)
+          print(' '.join(keep))
+          PY
+          )"
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
+          if [ -z "$BRAIN_SLUGS" ]; then echo "every target already has authored scenes; skipping brain"; exit 0; fi
           echo "brain targets: $BRAIN_SLUGS"
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || \
             { echo "::warning::claude CLI install failed — skipping brain"; exit 0; }
@@ -445,12 +474,30 @@ jobs:
             FRESH=$(python3 -c "import json;print(' '.join(json.load(open('state/forge_last.json')).get('slugs',[])))" 2>/dev/null || true)
             [ -n "$FRESH" ] && SLUGS="$FRESH" && echo "targeting freshly forged: $SLUGS"
           fi
-          # The benchmark fixtures are suite INPUTS, not publishable stories.
-          # They are permanently un-posted by design, so a blank-slug run kept
-          # picking them up and burning the budget on a guaranteed block.
+          # If the forge added nothing (every fresh indicator used, or a bad
+          # network day), fall back to the REAL queue: un-posted stories minus
+          # the benchmark fixtures, which are suite inputs and not publishable.
+          # Exiting here instead — as this step used to — meant a run could
+          # finish green having posted nothing while a dozen sourced, titled
+          # stories sat waiting.
           if [ -z "$SLUGS" ]; then
-            echo "::warning::forge produced nothing this run — no fresh "
-            echo "stories to post. Skipping rather than re-rendering fixtures."
+            SLUGS="$(python3 - <<'PY'
+          import json, os
+          FIXTURES = {"carbon-climb", "population-giants", "world-power-mix"}
+          cfg = json.load(open('data_learning/niche.config.json'))
+          posted = set()
+          p = 'state/explainer_posted_log.json'
+          if os.path.exists(p):
+              posted = set(json.load(open(p)).get('posted', {}))
+          out = [s['slug'] for s in cfg.get('stories', [])
+                 if s['slug'] not in posted and s['slug'] not in FIXTURES]
+          print(' '.join(out))
+          PY
+          )"
+            [ -n "$SLUGS" ] && echo "forge added nothing — posting the existing queue: $SLUGS"
+          fi
+          if [ -z "$SLUGS" ]; then
+            echo "::warning::nothing to post: forge added nothing and the queue is empty"
             exit 0
           fi
           SLUGFLAG=""; [ -n "$SLUGS" ] && SLUGFLAG="--slugs $SLUGS"

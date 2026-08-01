@@ -1,0 +1,48 @@
+{
+  "key": "en_ghg_fgas_ip_mt_ce_ar5_trend",
+  "title": "F-gases emissions from Industrial Processes",
+  "unit": "Mt CO2e",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "F-gases emissions from Industrial Processes",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.GHG.FGAS.IP.MT.CE.AR5",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 169.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 242.1,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 397.9,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 688.2,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 1040,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 1510,
+      "period": "2024"
+    }
+  ]
+}

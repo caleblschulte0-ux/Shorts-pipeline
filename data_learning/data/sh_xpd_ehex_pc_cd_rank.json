@@ -1,0 +1,38 @@
+{
+  "key": "sh_xpd_ehex_pc_cd_rank",
+  "title": "External health expenditure per capita",
+  "unit": "current US$",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "External health expenditure per capita",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.XPD.EHEX.PC.CD",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Tuvalu",
+      "value": 467.7
+    },
+    {
+      "label": "Micronesia, Fed. Sts.",
+      "value": 362.9
+    },
+    {
+      "label": "Palau",
+      "value": 311.9
+    },
+    {
+      "label": "Naoero",
+      "value": 307.8
+    },
+    {
+      "label": "Marshall Islands",
+      "value": 205.1
+    }
+  ]
+}

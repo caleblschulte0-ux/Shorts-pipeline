@@ -1348,7 +1348,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # (played at cfps=30 below) — no low-fps source resampled into the
             # 30fps master. Cap 600 (=20s) is a safety bound, not a rate limiter.
             import math as _mfr
-            nfr = int(max(30, min(600, _mfr.ceil((end - start) * 30))))
+            # Cap 1200 (=40s), raised from 600. The opening segment carries the
+            # hook lead, so its display window is the longest in the video — at
+            # 600 it ran out of frames partway and froze for the remainder,
+            # which is why segment_0 kept measuring under 1 fps while the other
+            # two now sit at 14-16. The cap is a safety bound, and the scene
+            # renderer is ~8x cheaper per frame since the compress_level/resize
+            # fixes, so covering a long window is affordable.
+            nfr = int(max(30, min(1200, _mfr.ceil((end - start) * 30))))
             # Build LINEARLY across the WHOLE window (no early completion): the
             # chart + Data keep moving the entire beat, so there is never a
             # finished-and-held stretch (that was the dead_air / 5fps). Data

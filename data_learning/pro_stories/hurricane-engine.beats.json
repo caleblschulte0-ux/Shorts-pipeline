@@ -1,0 +1,74 @@
+{
+  "slug": "hurricane-engine",
+  "title": "The Most Powerful Engine on Earth",
+  "voice": "en-US-GuyNeural",
+  "beats": [
+    {
+      "job": "HOOK",
+      "narration": "Ten thousand nuclear bombs — every single day.",
+      "understand": "HOOK DIRECTOR + COOL JUDGE: slam the shock number, then GET OFF IT — a held card after ~2s reads as 'okay, fine' and gets scrolled. Keep the line short so the slam cuts fast to the spinning storm. NOT a calm cloud; the shock stat is the scroll-stopper.",
+      "function": "evidence",
+      "mode": "designed_2d",
+      "max_unchanged": 3.0,
+      "flat": {"kind": "flat_hook", "text": "10,000", "sub": "nuclear bombs", "label": "unleashed every single day"}
+    },
+    {
+      "job": "INGREDIENT",
+      "narration": "And it builds itself — from nothing but warm ocean, water above twenty-six degrees.",
+      "understand": "the storm from orbit + the one ingredient, warm sea, landed fast",
+      "function": "evidence",
+      "mode": "footage+annotation",
+      "max_unchanged": 4.0,
+      "footage": {"nasa_id": "jsc2024m000168-Additional_Views_of_Hurricane_Helene_from_the_International_Space_Station", "ss": 40.0, "push": 1.16, "direction": "in", "intent": "warm tropical ocean under broken cloud"},
+      "number": {"text": "26", "sub": "°C", "label": "the ocean it needs"}
+    },
+    {
+      "job": "MECHANISM",
+      "narration": "That warm, wet air rushes up. It cools, it rains, and every drop releases heat that pulls up even more — the storm becomes its own engine, feeding on the sea.",
+      "understand": "the self-feeding heat-engine loop as a LIVING animated diagram — constant motion, non-cloud variety",
+      "function": "explanation",
+      "mode": "designed_2d",
+      "max_unchanged": 12.0,
+      "flat": {"kind": "flat_engine", "stages": ["WARM OCEAN", "RISING, COOLING AIR", "HEAT RELEASED", "IT FEEDS ITSELF"]}
+    },
+    {
+      "job": "SETUP_COMPARISON",
+      "narration": "Ranked by wind, a category five runs past two hundred and fifty.",
+      "understand": "a FAST, bold wind-scale check — kept short so the bars grow and cut before they can hold",
+      "function": "comparison",
+      "mode": "designed_2d",
+      "max_unchanged": 8.0,
+      "flat": {"kind": "flat_compare", "title": "measured by the wind",
+        "rows": [{"name": "Category 1", "value": 119, "display": "119 km/h"},
+                 {"name": "Category 3", "value": 178, "display": "178 km/h"},
+                 {"name": "Category 5", "value": 252, "display": "252+ km/h"}]}
+    },
+    {
+      "job": "REVEAL",
+      "narration": "At its heart, the eye — dead calm, ringed by the fastest winds on Earth.",
+      "understand": "COOL JUDGE: show the WHOLE spinning storm, not a zoomed-in cloud. The sickest way to show a hurricane is the entire spiral turning from the ISS — a thousand-mile pinwheel with the eye at its center. A slow push toward that central eye reveals the whole storm AND lands the 'eye' line. One shot, no cropping to a fragment.",
+      "function": "experience",
+      "mode": "footage+annotation",
+      "text_role": "annotation",
+      "max_unchanged": 6.6,
+      "text": "the eye",
+      "footage": {"nasa_id": "jsc2019m000806_Hurricane_Dorian_190902", "ss": 42.0, "push": 1.16, "direction": "in", "intent": "the WHOLE hurricane spinning from the ISS — full spiral, eye at center; a slow push toward the calm eye, the whole storm in frame"}
+    },
+    {
+      "job": "PAYOFF",
+      "narration": "Warm water and air — and nothing on Earth can stop it.",
+      "understand": "PERSPECTIVE DIRECTOR: leave orbit for the payoff. The whole film has watched from space; the thesis lands hardest at HUMAN SCALE — a real street drowned by the surge, the way people actually live it. End on a hard Ken Burns push into the floodwater (motion, not a held card).",
+      "function": "experience",
+      "mode": "image",
+      "text_role": "thesis",
+      "max_unchanged": 3.4,
+      "text": "Nothing on Earth can stop it.",
+      "image": {"url": "https://live.staticflickr.com/44/110282454_170ad44c29_b.jpg",
+        "query": "hurricane storm surge flooded street", "must_match": ["hurricane", "katrina", "sandy", "harvey", "ike", "surge"],
+        "perspective": "ground consequence", "source": "openverse / Flickr",
+        "license": "CC BY 2.0", "attribution": "\"HURRICANE KATRINA\" by au_tiger01, CC BY 2.0 (creativecommons.org/licenses/by/2.0/)",
+        "title": "Hurricane Katrina — a street drowned by storm surge",
+        "push": 1.2, "direction": "in", "pan": "auto"}
+    }
+  ]
+}

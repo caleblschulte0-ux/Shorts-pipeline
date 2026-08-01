@@ -1,0 +1,175 @@
+{
+  "version": 8,
+  "slug": "iran-missile-attack-jordan",
+  "title": "Iran Just Attacked a US Base in Jordan",
+  "hashtags": [
+    "iran",
+    "jordan",
+    "centcom",
+    "trump",
+    "netanyahu",
+    "middleeast",
+    "breakingnews",
+    "worldnews",
+    "military",
+    "missileattack",
+    "geopolitics",
+    "israel",
+    "irgc",
+    "worldaffairs"
+  ],
+  "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story \u2014 this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+  "shots": [
+    {
+      "phrase": "Iran just attacked Jordan?",
+      "query": "missile launch night sky",
+      "mascot_pose": "shock",
+      "pin_query": "Iran",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Iran",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Flag_of_Iran_%28official%29.svg"
+    },
+    {
+      "phrase": "Revolutionary Guard launched ballistic missiles",
+      "query": "ballistic missile launch",
+      "image_url": "https://pixabay.com/get/gfaf778cbad1962ee5e7077484af8bdf2577decd9dde1e24bd3b1232e79e39dc105d5d5f874a24537d1bb43b463a76e47aa3540ba26e42a53773d7a02a230fe3c_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Muwaffaq Salti Air Base",
+      "query": "military air base",
+      "pin_query": "Muwaffaq Salti Air Base",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Muwaffaq Salti Air Base",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Jordanian_F-16_landing.jpg"
+    },
+    {
+      "phrase": "a CENTCOM command center",
+      "query": "military command center",
+      "pin_query": "CENTCOM",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "CENTCOM",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Seal_of_United_States_Central_Command.svg"
+    },
+    {
+      "phrase": "Jordan's air defenses intercepted",
+      "query": "air defense missile intercept",
+      "image_url": "https://live.staticflickr.com/3819/11361110253_0cf6d125e8_b.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Nobody died",
+      "query": "military base exterior",
+      "pin_query": "Nobody",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Nobody",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/8244/8517258392_bdbd1c2d08_b.jpg"
+    },
+    {
+      "phrase": "President Trump sat down with",
+      "query": "donald trump white house",
+      "mascot_pose": "point",
+      "evidence_urls": [
+        "https://www.aljazeera.com/news/2026/7/29/iran-attacks-us-bases-in-middle-east-as-trump-meets-netanyahu"
+      ],
+      "pin_query": "President Trump",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "President Trump",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg"
+    },
+    {
+      "phrase": "Israeli Prime Minister Netanyahu",
+      "query": "benjamin netanyahu portrait",
+      "pin_query": "Israeli Prime Minister Netanyahu",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Israeli Prime Minister Netanyahu",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Ambassador_Dave_Sharma_and_Israeli_Prime_Minister_Netanyahu.jpg"
+    },
+    {
+      "phrase": "at the White House",
+      "query": "white house exterior",
+      "pin_query": "White House",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "White House",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/8600/15870725062_120c91470a_b.jpg"
+    },
+    {
+      "phrase": "We'll be hitting them hard",
+      "query": "press conference podium",
+      "pin_query": "We'll",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "We'll",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Faryab-_village_dug_well.JPG"
+    },
+    {
+      "phrase": "high state of readiness",
+      "query": "soldiers military base",
+      "image_url": "https://pixabay.com/get/g9ff24012087f313f7d2f394df1c9c35e04e64bec1ee7226fbc407bc2eb4deff04e884c493c247a57eff8d5a3b499db284577e28c825a3551385f162715fbe6a0_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "attempted surprise attack that failed",
+      "query": "military radar screen",
+      "mascot_pose": "think",
+      "image_url": "https://pixabay.com/get/g8eaa2e70c551a5cce07d9ff964c99cd9823b0dd891517cac56457c5013fd7b832e2f4009fc857388dee166e61be44c13_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Washington's answer",
+      "query": "capitol building washington",
+      "pin_query": "Washington",
+      "pin_context": "Iran Just Attacked a US Base in Jordan",
+      "news_query": "Washington",
+      "news_angle": "Iran Just Attacked a US Base in Jordan",
+      "image_url": "https://live.staticflickr.com/3420/3213900514_03cd645c4c_b.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Iran just attacked Jordan",
+      "text": "IRAN ATTACKS JORDAN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ballistic missiles",
+      "text": "BALLISTIC MISSILES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "intercepted every one of them",
+      "text": "ALL INTERCEPTED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "Nobody died",
+      "text": "NO CASUALTIES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "high state of readiness",
+      "text": "HIGH READINESS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "attempted surprise attack",
+      "text": "SURPRISE ATTACK",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Washington's answer",
+      "text": "WHAT'S NEXT?",
+      "color": "#ffffff"
+    }
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "punched_up": true
+}

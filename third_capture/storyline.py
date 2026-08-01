@@ -85,11 +85,30 @@ ALIASES = {
 
 
 def clip_key(url: str) -> str:
-    """Canonical clip identity — the trailing URL slug, lowercased (same
-    normalization as run_third._clip_key, duplicated here to keep this
-    module import-light)."""
-    tail = str(url or "").rstrip("/").rsplit("/", 1)[-1]
-    return tail.split("?")[0].lower()
+    """Canonical clip identity — the trailing URL slug, lowercased.
+
+    DELEGATES to run_third._clip_key. This used to be a hand-copy "to keep
+    this module import-light", and the copy drifted: run_third grew an
+    explicit `vodmine://` case (the trailing segment is a SECOND-OFFSET, so
+    vodmine://AAA/900 and vodmine://BBB/900 both key as "900" and one
+    silently vanishes from the story corpus) and this twin never did.
+    corpus_from_log reads source_url straight out of the posted log, which
+    now contains mined URLs, so the drift was live. Two definitions of the
+    channel's dedupe identity is one too many — import the real one, and
+    keep the local rule only as the fallback if the import ever fails."""
+    try:
+        import sys
+        from pathlib import Path as _P
+        _r = str(_P(__file__).resolve().parent.parent)
+        if _r not in sys.path:
+            sys.path.insert(0, _r)
+        from scripts.run_third import _clip_key
+        return _clip_key(url)
+    except Exception:  # noqa: BLE001
+        path = str(url or "").split("?")[0].rstrip("/")
+        if path.lower().startswith("vodmine://"):
+            return path.lower()
+        return path.rsplit("/", 1)[-1].lower()
 
 
 def story_key(member_urls: list[str]) -> str:

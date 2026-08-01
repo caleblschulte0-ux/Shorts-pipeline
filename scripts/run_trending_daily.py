@@ -85,7 +85,34 @@ REPORT_JSON = REPO / "daily_report.json"
 # 6 publish slots in UTC. Maps to 9am, 11am, 1pm, 3pm, 5pm, 7pm EDT
 # (UTC-4). The action fires at 12 UTC = 8am EDT so the first slot is
 # +1hr and the rest spread through the workday.
-DEFAULT_PUBLISH_HOURS_UTC = [13, 15, 17, 19, 21, 23]
+# Publish slots as CENTRAL wall-clock times (operator ruling 2026-07-30:
+# 8:00am, 9:30am, 11:00am, ... — 90-minute spacing across the morning/early
+# afternoon). Defined in local Central and converted to UTC at runtime so the
+# real posting time does NOT drift an hour every DST changeover, which a
+# hardcoded UTC list would. Override per-run with PUBLISH_SLOTS_CENTRAL
+# ("8:00,9:30,11:00" style) without a code change.
+PUBLISH_TZ = "America/Chicago"
+DEFAULT_PUBLISH_SLOTS_CENTRAL = [
+    (8, 0), (9, 30), (11, 0), (12, 30), (14, 0), (15, 30),
+]
+
+
+def _publish_slots() -> list[tuple[int, int]]:
+    """Slots as (hour, minute) in Central. Env override, else the default."""
+    raw = os.environ.get("PUBLISH_SLOTS_CENTRAL", "").strip()
+    if not raw:
+        return list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
+    out: list[tuple[int, int]] = []
+    for part in raw.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        try:
+            h, _, m = part.partition(":")
+            out.append((int(h), int(m or 0)))
+        except ValueError:
+            print(f"[schedule] bad PUBLISH_SLOTS_CENTRAL entry {part!r} ignored")
+    return out or list(DEFAULT_PUBLISH_SLOTS_CENTRAL)
 
 
 def load_log() -> dict:
@@ -102,22 +129,47 @@ def save_log(log: dict) -> None:
     atomic_write_json(LOG_PATH, log, sort_keys=True)
 
 
-def schedule_times(now: datetime, n: int, hours: list[int]) -> list[str]:
-    """Pick the next n hour-slots ≥5 min in the future, walking into
-    tomorrow if needed. Returns ISO-8601 strings in UTC."""
-    base = now.replace(hour=0, minute=0, second=0, microsecond=0)
+def schedule_times(now: datetime, n: int,
+                   slots: "list[tuple[int, int]] | None" = None) -> list[str]:
+    """Pick the next n publish slots ≥5 min out, walking into tomorrow if
+    needed. Slots are (hour, minute) in Central wall-clock; the return value is
+    ISO-8601 UTC, which is what the YouTube API wants.
+
+    Central-local rather than fixed UTC so 8:00am stays 8:00am across DST.
+    Falls back to a fixed UTC offset if the tz database is unavailable.
+    """
+    slots = list(slots or _publish_slots())
     cutoff = now + timedelta(minutes=5)
+
+    tz = None
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo(PUBLISH_TZ)
+    except Exception as exc:  # noqa: BLE001 - no tzdata: degrade, don't crash
+        print(f"[schedule] {PUBLISH_TZ} unavailable ({type(exc).__name__}); "
+              f"falling back to a fixed UTC-5 offset", flush=True)
+
     picks: list[datetime] = []
     for day_offset in range(3):
-        for hour in hours:
-            t = base + timedelta(days=day_offset, hours=hour)
+        local_day = (now.astimezone(tz) if tz else now - timedelta(hours=5))
+        local_day = (local_day + timedelta(days=day_offset)).replace(
+            hour=0, minute=0, second=0, microsecond=0)
+        for hour, minute in slots:
+            if tz is not None:
+                t = local_day.replace(hour=hour, minute=minute,
+                                      tzinfo=tz).astimezone(timezone.utc)
+            else:
+                t = (local_day.replace(hour=hour, minute=minute,
+                                       tzinfo=timezone.utc)
+                     + timedelta(hours=5))
             if t > cutoff:
                 picks.append(t)
             if len(picks) >= n:
                 break
         if len(picks) >= n:
             break
-    return [t.strftime("%Y-%m-%dT%H:%M:%SZ") for t in picks[:n]]
+    return [t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            for t in picks[:n]]
 
 
 def _slug(s: str, n: int = 40) -> str:
@@ -161,20 +213,26 @@ def _illustration_quarantine(pkg: dict) -> str | None:
             f"off-topic keyword stock: {bad}")
 
 
-# Baseline reach hashtags appended to every short. Package-specific
-# topical hashtags come from the routine (pkg['hashtags']) and rank
-# higher in the final list — these are the always-on reach tags that
-# fill out the description.
-BASELINE_HASHTAGS = [
-    "shorts", "news", "explainer", "trending", "viral", "fyp",
-    "didyouknow", "breakingnews", "factsdaily", "shortsfeed",
-]
+# Baseline reach hashtags appended to every short, AFTER the package's own
+# topical ones. Deliberately short: see YT_HASHTAG_LIMIT.
+BASELINE_HASHTAGS = ["shorts", "shortsfeed", "news", "didyouknow"]
+
+# YOUTUBE IGNORES EVERY HASHTAG ON A VIDEO THAT CARRIES MORE THAN 15.
+# Not "ranks them lower" — ignores all of them, the whole set, silently.
+# This channel was shipping 21-22 on every upload (15 topical from the
+# package + 10 baseline, deduped), which means for its entire life NONE of
+# its hashtags counted. Nothing surfaced that: the upload succeeded, the
+# description looked full, and the analytics only showed HASHTAGS: 1 view
+# across 76 videos — which reads like "hashtags don't work" rather than
+# "we disabled our own hashtags".
+YT_HASHTAG_LIMIT = 15
 
 
-def _hashtag_list(pkg: dict, max_total: int = 25) -> list[str]:
-    """Merge package hashtags (topical, written by the routine) with
-    the baseline reach set. Dedupes case-insensitively and keeps the
-    topical ones in front — algos weight the first few hardest."""
+def _hashtag_list(pkg: dict, max_total: int = YT_HASHTAG_LIMIT) -> list[str]:
+    """Topical hashtags first, baseline reach tags filling the remainder.
+
+    Hard-capped at `YT_HASHTAG_LIMIT`. The cap is not a style preference —
+    one over and YouTube discards the lot."""
     out: list[str] = []
     seen: set[str] = set()
     pkg_tags = pkg.get("hashtags") or []
@@ -188,20 +246,59 @@ def _hashtag_list(pkg: dict, max_total: int = 25) -> list[str]:
             continue
         seen.add(k)
         out.append(clean)
-        if len(out) >= max_total:
+        if len(out) >= min(max_total, YT_HASHTAG_LIMIT):
             break
     return out
 
 
 def _description(pkg: dict, angle: str | None = None) -> str:
-    parts = [pkg.get("script", "").strip()]
+    """The description a human might actually read, then the hashtags.
+
+    This used to be `pkg["script"]` verbatim followed by 22 hashtags. Two
+    problems, both live for months:
+
+      * `text_card` and `graph_race` packages have NO `script` field, so the
+        description they uploaded with was literally "\\n\\n#tag #tag …" — a
+        bare wall of hashtags and nothing else. That was four of every six
+        videos.
+      * For `reddit_story` it duplicated the narration word for word, which
+        is the same text the TTS is already speaking. Not a hook, and not
+        the keywords a search result needs.
+
+    Now every format gets a real opening line: the title, then the best
+    prose the package actually has (`script`, `text`, or a plain-language
+    summary of a chart), then the source, then the hashtags."""
+    title = (pkg.get("title") or "").strip()
+    body = (pkg.get("script") or pkg.get("text") or "").strip()
+
+    if not body:
+        # graph_race and anything else with no prose: describe what the chart
+        # SHOWS. Series names and the span are real, checkable words, and
+        # they are what somebody would search for.
+        names = [str((s or {}).get("name") or "").strip()
+                 for s in (pkg.get("series") or [])]
+        names = [n for n in names if n]
+        years = [y for y in (pkg.get("years") or []) if y]
+        bits = []
+        if names:
+            bits.append(" vs ".join(names[:4]))
+        if len(years) >= 2:
+            bits.append(f"{years[0]} to {years[-1]}")
+        if pkg.get("y_label"):
+            bits.append(str(pkg["y_label"]))
+        if bits:
+            body = ", ".join(bits) + "."
+
+    parts = [p for p in (title, body) if p]
     if angle:
-        parts.append("")
-        parts.append(angle)
+        parts.append(angle.strip())
+    source = (pkg.get("source") or "").strip()
+    if source:
+        parts.append(source)
     tags = _hashtag_list(pkg)
-    parts.append("")
-    parts.append(" ".join(f"#{t}" for t in tags))
-    return "\n".join(parts)[:5000]
+    if tags:
+        parts.append(" ".join(f"#{t}" for t in tags))
+    return "\n\n".join(parts)[:5000]
 
 
 def _tags(pkg: dict) -> list[str]:
@@ -298,13 +395,47 @@ def _sample_frames(video: Path, n: int = 3) -> list[str]:
     return frames
 
 
+def _technical_qa(out_path: Path, result: dict) -> str | None:
+    """Black frames, frozen frames, silence, missing audio, loudness.
+
+    `shared/video_qa.py` was written for exactly this and then imported by
+    nothing for weeks — CLAUDE.md said "run it before uploads" and no caller
+    ever did. It is format-agnostic (a frozen graph_race is as broken as a
+    frozen reddit_story), so it runs on EVERY render, unlike the Gemini
+    vision QA below which is about imagery and skips two of the three
+    formats.
+
+    Fail-OPEN on analysis trouble: no ffmpeg, a timeout, an unreadable file
+    all return None and the upload proceeds. Blocking a day's video because
+    the QA tool itself broke would be the tool causing the outage it exists
+    to prevent. It only blocks on a defect it actually measured."""
+    try:
+        from shared import video_qa
+        report = video_qa.qa_report(str(out_path))
+        if report is None:
+            return None
+        result["technical_qa"] = report
+        ok, reasons = video_qa.passes(report)
+        if not ok:
+            return "technical QA: " + "; ".join(reasons[:3])
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[qa] technical QA unavailable ({type(exc).__name__}: "
+              f"{str(exc)[:70]}) — proceeding", flush=True)
+    return None
+
+
 def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | None, str | None]:
     """Features 1 + 3. Returns (thumbnail_path_or_None, qa_block_reason_or_None).
-    A non-None block reason means vision QA flagged the video as
-    broken/unsafe and the caller should skip the upload."""
+    A non-None block reason means QA flagged the video as broken/unsafe and
+    the caller should skip the upload."""
+    # TECHNICAL QA FIRST, AND FOR EVERY FORMAT. A black or silent render is
+    # broken whatever shape it is, and this needs no API key.
+    tech_block = _technical_qa(out_path, result)
+    if tech_block:
+        return None, tech_block
     # text_card videos are a clip + a text block by design — the relevance/
-    # imagery QA doesn't apply and would false-flag them. Skip QA entirely;
-    # YouTube auto-generates a thumbnail.
+    # imagery QA doesn't apply and would false-flag them. Skip the VISION
+    # pass only; YouTube auto-generates a thumbnail.
     if pkg.get("format") in ("text_card", "graph_race"):
         return None, None
     block: str | None = None
@@ -363,10 +494,38 @@ def most_recent_package_dir() -> Path | None:
     return max(candidates, key=lambda p: p.name)
 
 
+def posted_titles() -> set[str]:
+    """Every title this channel has already uploaded.
+
+    The only upload guard used to be a 6-hour rolling window, which stops a
+    double-fire on the SAME day and nothing else. That was survivable while
+    `most_recent_package_dir()` was a rare last resort — but a Claude weekly
+    limit produces a 1-3 day gap several times a month, and on day two of a
+    gap that fallback serves day one's slate 24h later, straight past the
+    6-hour window, and re-uploads every video. This is the title-level guard
+    that makes the stale-slate path safe."""
+    try:
+        log = load_log()
+    except Exception:                                # noqa: BLE001
+        return set()
+    out = set()
+    for e in log.get("posted", []) or []:
+        for key in ("title", "topic"):
+            v = (e.get(key) or "").strip()
+            if v:
+                out.add(v.casefold())
+    return out
+
+
 def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
     """Return (source_dir, packages). Prefers today's dir; falls back
     to the most-recent YYYYMMDD/ on disk so a missing routine run
-    doesn't force the expensive Groq fallback path."""
+    doesn't force the expensive Groq fallback path.
+
+    Anything already in the posted log is dropped, whichever dir it came
+    from. If that empties a stale dir we return nothing and let the caller
+    fall through to Groq — a weaker NEW script beats a duplicate upload,
+    and a duplicate is the one failure the posted logs exist to prevent."""
     candidates = [todays_package_dir(), most_recent_package_dir()]
     seen: set[Path] = set()
     for d in candidates:
@@ -379,13 +538,47 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
                 continue  # _schedule.json etc. are config, not packages
             try:
                 pkg = json.loads(p.read_text())
-                pkg.setdefault("_path", str(p.relative_to(REPO)))
+                try:
+                    pkg.setdefault("_path", str(p.relative_to(REPO)))
+                except ValueError:       # package dir redirected (tests)
+                    pkg.setdefault("_path", str(p))
                 pkgs.append(pkg)
             except json.JSONDecodeError as e:
                 print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
                       file=sys.stderr)
-        if pkgs:
-            return d, pkgs
+        already = posted_titles()
+        fresh = [p for p in pkgs
+                 if (p.get("title") or "").strip().casefold() not in already]
+        dropped = len(pkgs) - len(fresh)
+        if dropped:
+            print(f"[run_trending_daily] {d.name}: dropped {dropped} "
+                  f"package(s) already in the posted log — refusing to "
+                  f"re-upload", flush=True)
+        # RENDERING ELIGIBILITY. A retired format still RENDERS — its
+        # renderer is kept so already-posted videos stay reproducible, and
+        # refusing here would throw away a whole day over a policy change
+        # made after the packages were authored. But it is never silent: a
+        # retired format reaching the renderer means promotion let it
+        # through, and that is a bug worth seeing in the run log.
+        try:
+            from shared import channel_registry as _reg
+            for pkg in fresh:
+                fid = _reg.classify(pkg, "trending")
+                if fid and not _reg.is_authorable("trending", fid):
+                    print(f"::warning::{pkg.get('slug')} uses the RETIRED "
+                          f"format {fid!r} — rendering it, but nothing "
+                          f"should be authoring it "
+                          f"(config/channel_registry.json)", flush=True)
+        except Exception as exc:                     # noqa: BLE001
+            print(f"[run_trending_daily] registry check unavailable: {exc}",
+                  flush=True)
+        if fresh:
+            if d != todays_package_dir():
+                print(f"[run_trending_daily] WARNING using STALE packages "
+                      f"from {d.name} — today's dir is empty. The reserve "
+                      f"bank and the ChatGPT takeover both came up short.",
+                      flush=True)
+            return d, fresh
     return None, []
 
 
@@ -395,12 +588,20 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     result: dict = {
         "topic": pkg.get("topic", pkg.get("title", "untitled")),
         "title": pkg.get("title"),
+        "format": pkg.get("format") or (
+            "reddit" if pkg.get("subreddit") else "explainer"),
         "publish_at": publish_at,
         "ok": False,
         "video_url": None,
         "error": None,
         "elapsed_seconds": 0.0,
         "package_path": pkg.get("_path"),
+        # WHO wrote this package. A Claude weekly limit puts the channel on
+        # a fallback brain for a day or three at a time, several times a
+        # month — often enough that it must be visible in the daily report
+        # and the phone push, not buried in an Actions log nobody opens.
+        "source": ("chatgpt" if pkg.get("_authored_by") == "chatgpt-takeover"
+                   else "reserve" if pkg.get("_reserve") else "brain"),
     }
     t_start = time.time()
     # text_card packages carry no shots — the payload is the text block, not
@@ -414,6 +615,19 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
     # Pre-render illustration gate. Quarantine (don't render) a package
     # that would ship off-topic stock; the batch continues without it.
     reason = None if _is_text_card else _illustration_quarantine(pkg)
+    # DATA DRAMA gate (graph_race only): bigger is better. Small, slow,
+    # flat numbers make a chart nobody watches, so a weak dataset never
+    # gets rendered — the batch continues without it and the report says
+    # exactly why, so the next authoring pass can pick better data.
+    if reason is None and pkg.get("format") == "graph_race":
+        try:
+            from engines import chart_race
+            verdict = chart_race.assess(pkg)
+            if not verdict["ok"]:
+                reason = "weak data: " + "; ".join(verdict["reasons"])
+        except Exception as e:  # noqa: BLE001 — never fail a run on the gate
+            print(f"  [drama gate skipped] {type(e).__name__}: {e}",
+                  flush=True)
     if reason is not None:
         result["error"] = f"quarantined: {reason}"
         result["quarantined"] = True
@@ -568,9 +782,28 @@ def format_report(date_str: str, results: list[dict]) -> str:
     success = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    # Fallback-brain banner. Goes ABOVE the counts because ntfy only sends
+    # the first ~20 lines of this file to the phone.
+    by_source: dict[str, int] = {}
+    for r in results:
+        by_source[r.get("source") or "brain"] = (
+            by_source.get(r.get("source") or "brain", 0) + 1)
+    banner = []
+    if by_source.get("chatgpt"):
+        banner.append(f"> **ChatGPT wrote {by_source['chatgpt']} of today's "
+                      f"{len(results)} packages** — the Claude Routine did "
+                      f"not run (weekly limit?).")
+    if by_source.get("reserve"):
+        banner.append(f"> **{by_source['reserve']} package(s) came from the "
+                      f"reserve bank** — top it up when Claude is back: "
+                      f"`python scripts/package_reserve.py status`.")
+    if banner:
+        banner.append("")
+
     lines = [
         f"# Daily Trending Shorts — {date_str}",
         "",
+        *banner,
         f"- queued: **{len(results)}**",
         f"- succeeded: **{len(success)}**",
         f"- quarantined (off-topic imagery): **{len(quarantined)}**",
@@ -730,7 +963,7 @@ def main() -> int:
         print(f"[preflight] today's packages: {pkg_files}", flush=True)
 
     now = datetime.now(timezone.utc)
-    sched = schedule_times(now, args.count, DEFAULT_PUBLISH_HOURS_UTC)
+    sched = schedule_times(now, args.count)
 
     # Path A: pre-written packages dropped by a scheduled Claude Code
     # session. Render + upload directly, no LLM script generation. If
@@ -768,8 +1001,7 @@ def main() -> int:
                 print(f"[schedule] bad _schedule.json ignored: {e}", flush=True)
         import math
         eff = min(args.count, len(prewritten))
-        sched = schedule_times(
-            now, max(1, math.ceil(eff / per_slot)), DEFAULT_PUBLISH_HOURS_UTC)
+        sched = schedule_times(now, max(1, math.ceil(eff / per_slot)))
         results: list[dict] = []
         sched_idx = 0
         for pkg in prewritten[:args.count]:
@@ -844,6 +1076,7 @@ def main() -> int:
             log["posted"].append({
                 "topic": r["topic"],
                 "title": r.get("title"),
+                "format": r.get("format"),
                 "video_url": r["video_url"],
                 "publish_at": r.get("publish_at"),
                 "posted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

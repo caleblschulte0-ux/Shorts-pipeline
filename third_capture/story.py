@@ -541,6 +541,20 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
         raise RuntimeError(
             f"story: only {len(used)} beat(s) rendered — not a story")
     _assemble(parts, out_mp4, joins, bridges)
+    # SHARED ENGINE PASS (engines/render_qa): a stitched story has more
+    # seams than a single clip — every join is a chance for a black gap,
+    # a frozen bridge, or A/V drift. The free mechanical pass FAILS the
+    # render here (raise → the slot falls back to a normal clip) instead
+    # of letting a broken stitch reach the critic or the channel.
+    # maybe_* contract: None (engine absent/failed) changes nothing.
+    try:
+        from engines.render_qa import maybe_check as _rqa_check
+        _rqa = _rqa_check(out_mp4)
+        if _rqa and not _rqa["ok"]:
+            raise RuntimeError("story: render_qa rejected the stitch — "
+                               + "; ".join(_rqa["problems"]))
+    except ImportError:
+        pass
     dur = 0.0
     try:
         dur = float(subprocess.check_output(

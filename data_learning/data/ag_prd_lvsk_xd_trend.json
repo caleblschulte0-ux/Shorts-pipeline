@@ -1,0 +1,48 @@
+{
+  "key": "ag_prd_lvsk_xd_trend",
+  "title": "Livestock production index",
+  "unit": "2014-2016 = 100",
+  "geography": "World",
+  "time_coverage": "1972-2020",
+  "insight_type": "trend",
+  "source": {
+    "name": "Livestock production index",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.PRD.LVSK.XD",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 14.3,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 22.1,
+      "period": "1982"
+    },
+    {
+      "label": "1991",
+      "value": 25.1,
+      "period": "1991"
+    },
+    {
+      "label": "2001",
+      "value": 89.8,
+      "period": "2001"
+    },
+    {
+      "label": "2010",
+      "value": 102.8,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 100.0,
+      "period": "2020"
+    }
+  ]
+}

@@ -260,11 +260,32 @@ def _vision(sheet: Path, led: dict, dur: float) -> dict | None:
             series=str(led.get("series", led.get("edl", {}) and
                        (led.get("edl") or {}).get("style", "chaos"))),
             dur=dur, effects=led.get("effects") or [])
+        try:                      # honour the author's usage-limit breaker
+            from third_capture import author as _a
+            if _a.brain_limited().get("at"):
+                return None
+        except Exception:  # noqa: BLE001
+            pass
         r = subprocess.run(
-            ["claude", "-p", prompt, "--allowedTools", "Read"],
+            ["claude", "-p", prompt, "--allowedTools", "Read",
+             # pin the model — an unpinned call inherits the account
+             # default and spends the subscription window unpredictably
+             "--model", os.environ.get("THIRD_BRAIN_MODEL", "sonnet")],
             capture_output=True, text=True, timeout=240)
         m = re.search(r"\{.*\}", r.stdout, re.DOTALL)
         if not m:
+            # never silently return "unreviewed" — that reads identically
+            # to "the reviewer looked and had no objection". Say why.
+            err = (r.stderr or "").strip().replace("\n", " ")[:200]
+            print(f"::warning::[vision] no verdict (rc={r.returncode})"
+                  + (f" stderr={err!r}" if err else " stdout=<no JSON>"),
+                  flush=True)
+            try:
+                from third_capture import author as _a
+                if _a._LIMIT_PAT.search(err + " " + (r.stdout or "")[:200]):
+                    _a._note_limit(err or "vision call refused")
+            except Exception:  # noqa: BLE001
+                pass
             return None
         out = json.loads(m.group(0))
         return {"publish": bool(out.get("publish", True)),
@@ -385,6 +406,20 @@ def review(video: Path, led: dict, work: Path) -> dict:
     sheet_rel = None
     try:
         _mechanical(video, led, problems)
+        # SHARED ENGINE PASS (engines/render_qa): mechanical defect classes
+        # the local checks miss — a black TAIL under the 0.7s blackdetect
+        # floor, stream-end freezes, double-letterboxing. Free and offline,
+        # so it runs BEFORE the paid vision call; on 2026-07-29 a solid-
+        # black final frame burned a full render + vision round-trip that
+        # this pass rejects in seconds. maybe_* contract: None (engine
+        # absent/failed) leaves behavior exactly as before.
+        try:
+            from engines.render_qa import maybe_check
+            rqa = maybe_check(video)
+            if rqa and not rqa["ok"]:
+                problems.extend(f"render_qa: {p}" for p in rqa["problems"])
+        except ImportError:
+            pass
         dur = float(_probe(video)["format"].get("duration") or 0)
         sheet = work / f"{video.stem}.qa.jpg"
         if contact_sheet(video, sheet) is not None:

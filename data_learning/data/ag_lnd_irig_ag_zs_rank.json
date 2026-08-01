@@ -1,0 +1,38 @@
+{
+  "key": "ag_lnd_irig_ag_zs_rank",
+  "title": "Agricultural irrigated land",
+  "unit": "% of total agricultural land",
+  "geography": "Top 5 countries",
+  "time_coverage": "2023",
+  "insight_type": "rank",
+  "source": {
+    "name": "Agricultural irrigated land",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.IRIG.AG.ZS",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Bangladesh",
+      "value": 89.0
+    },
+    {
+      "label": "Suriname",
+      "value": 74.4
+    },
+    {
+      "label": "Pakistan",
+      "value": 54.2
+    },
+    {
+      "label": "India",
+      "value": 44.4
+    },
+    {
+      "label": "Bahrain",
+      "value": 40.9
+    }
+  ]
+}

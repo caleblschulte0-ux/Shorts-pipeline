@@ -1,6 +1,9 @@
 # VISUALIZED (curiosity channel) — brain playbook
 
-> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X` — see `docs/PIPELINE_LAYOUT.md`.
+> **Heads-up (2026-07-30): the TRENDING/DAILY channel's chain changed — THIS channel's flow did NOT.** For trending only: packages -> auto-merge -> Exchange Phase A -> ChatGPT -> Phase B -> render, so never dispatch `daily.yml` after authoring (it is the LAST step of that chain). THIS channel's authoring, triggers, and workflow are unchanged — follow this playbook exactly as written. Details: `docs/EXCHANGE_PIPELINE.md`.
+
+
+> **Repo layout (reorg 2026-07-30):** shared capabilities moved into `funnel/` (media finding/generation) and `shared/` (cross-channel utils); `engines/` unchanged. Old root imports still work via shims, but canonical paths are `funnel.X` / `shared.X`. **Building something new? It does NOT go in this channel's folder**: media finding/generation → `funnel/`, render capability → `engines/`, anything else reusable → `shared/`. If a second channel could ever use it, it lives up the funnel — never copied into a channel. Channel folders hold only what is truly channel-specific. See `docs/PIPELINE_LAYOUT.md`.
 
 Faceless, **evergreen**, AI-assisted visual-curiosity channel publishing
 **4–5 minute LONG-FORM 16:9 videos on the main YouTube watch feed — NOT
@@ -92,9 +95,11 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 - First seconds = **proof, not setup**. No branding/throat-clearing; the
   hook states the premise, the tension, and the promised payoff inside
   the first 15–20 seconds.
-- New information OR a new visual state every **1–3 seconds** (camera,
-  object, label, scale, crop, or motion — the 50% frame must not equal the
-  100% frame).
+- **Something genuinely NEW every ≤5 seconds** (a cut, a new element landing,
+  a reveal, a reframe — not the same idea still animating). This is the ONE
+  cadence authority, enforced by `novelty_check` (see `DIRECTOR.md` "MOTION IS
+  NOT NOVELTY") plus each beat's own `max_unchanged`. Motion for its own sake
+  is not novelty.
 - **Context never before intrigue** — context sentences come after the
   hook earns the stay.
 - The final line must **escalate, invert, or resolve** — never restate a
@@ -110,17 +115,30 @@ exist (LEARNING_LOOP.md) — pillars earn their slate share, taste doesn't.
 
 ## 7. Production rules — the house style
 
+> **The authorities for visual grammar are `DIRECTOR.md`, `TASTE_JUDGE.md`,
+> `VISUAL_STANDARD.md`, and `PRO_DOCTRINE.md`.** Where this playbook and those
+> documents ever disagree, THEY win — this §7 sets format and story shape, not
+> visual grammar.
+
 **Format: 1920×1080 16:9, 30fps, MP4/H.264, AAC-LC 48kHz, −14 LUFS,
-4–5 minutes, ~550–800 spoken words** — the source playbook's spec, rendered
-by the channel's own long-form renderer
-(`python -m data_learning.longform_render --slug <slug>`). Documentary
-pacing: calm narration (no Shorts-speed voice), one "exhibit" frame per
-beat with a slow Ken Burns push, a ducked music bed, a title card open and
-a takeaway card close.
+4–5 minutes, ~550–800 spoken words** — produced ONLY through the **canonical
+producer** (`python scripts/produce.py <slug> <out>`: pro_render + the full
+director loop + facts gate + fallback ledger + blind vision verdict). THE
+ROUTING LAW (Phase 3, docs/CURIOSITY_RECOVERY_MANIFEST.md): the publisher
+defaults to `CURIOSITY_RENDERER=pro`; a slug with no pro beat story FAILS
+CLOSED — it is never silently rendered by `data_learning/longform_render.py`,
+which is reachable only via an operator explicitly exporting
+`CURIOSITY_RENDERER=legacy`. Uploading additionally requires
+`CURIOSITY_PUBLISH_ENABLED=1`; the default for every mode is
+render → review → package → HOLD. Documentary pacing = calm narration (no Shorts-speed voice)
+and a ducked music bed. **A beat is a mini-sequence** (setup → development →
+proof → payoff → bridge), never one "exhibit" frame held with a slow Ken
+Burns push. There is **no universal title-card open or takeaway-card close** —
+open on the hook (a static title open is a hook failure, see `HOOK_DIRECTOR`),
+and end on the payoff image, not a restated-fact card.
 
 **Chapters are mandatory** (auto-emitted to `<out>.meta.json` and written
-into the description): first at 00:00, at least 3, each ≥10 seconds —
-beats run 20–40s so this holds by construction. **Thumbnail** is
+into the description): first at 00:00, at least 3, each ≥10 seconds. **Thumbnail** is
 auto-emitted at 1920×1080 (claim + biggest on-chart number in the video's
 theme palette); once the channel earns advanced features, A/B test
 titles/thumbnails on the back catalog.
@@ -165,59 +183,356 @@ view); build reusable scene templates before reaching for it.
 - **Numbers must SPEAK cleanly** — digits + unit in every `say` line, the way
   they should be heard ("12,262 meters", "180 degrees Celsius", "828,000
   km/h"). [same tenant as the explainer channel]
-- **Vary chart types** within a story (≥2 of rank/comparison/trend/share) and
-  prefer VIZ-scene depictions (fill_object / stack / timeline / orbit over
-  real photos) once the viz director runs on this config — a bare chart is a
-  fallback, not the goal.
-- **B-roll between the payoffs (documentary grammar).** Real stock footage
-  plays while the narration sets each beat up, then the cut lands on the
-  chart/hero exactly when the number does. Every segment carries a
-  `"broll": ["query one", "query two"]` list — 1–2 queries of 2–4 concrete
-  nouns naming ONE recognizable thing (same Rule-E discipline as the news
-  channel: `"mount everest aerial"`, never keyword soup). Footage is
-  capped at 45% of the beat so the data payoff always dominates; providers
-  are Pexels/Pixabay (keys) with keyless Mixkit as the always-on net, and
-  a failed fetch silently yields the beat back to the payoff — b-roll is
-  a bonus, never a blocker.
-- **The muted test [the final operating rule]:** if the narration were muted,
-  would the visual story still feel worth watching? If no, it's drifting
-  back toward a generic faceless explainer — rebuild the visuals.
+- **Organize visuals by explanatory FUNCTION, not chart type** (see
+  `PRO_DOCTRINE.md`): relative_motion · scale · accumulation · cause_and_effect ·
+  mechanism · transformation · spatial_relationship · hierarchy · uncertainty ·
+  chronology · annotation. A beat first asks *"what must the viewer understand?"*
+  and only then picks a form. **Bars/lines/gauges are supporting tools** — a
+  chart may not carry a major beat without transforming into another mode
+  (`VISUAL_STANDARD.md` makes a beat-carrying chart a CRITICAL failure).
+- **The five co-equal storytelling engines** (no garnish tier):
+  - **REAL FOOTAGE** — reality, evidence, place, people, texture. Full-frame with
+    a matched move IS the beat (`VISUAL_STANDARD.md` certifies footage-primary);
+    never a pasted rectangle hard-cut into motion.
+  - **DESIGNED 2D** (`flat2d`) — invisible systems, numbers, relationships,
+    mechanisms, transformations.
+  - **CHARACTER SCENES** (`scenes`, the pictogram) — human POV and soul
+    (TASTE_JUDGE palette #1).
+  - **COMPOSITING** — combine reality + explanation into one shot (a number
+    attached to a moving world, not a dashboard card).
+  - **3D** (`blender_hero`) — only for a viewpoint or transformation footage and
+    2D cannot give; it must earn its place.
+  The only **minority cap is on clean data-cards** (`composition_budget`,
+  ≤~40% of runtime) — never on footage. Media providers: NASA/Pexels/Pixabay/
+  Openverse/Commons via the `media.py` gateway with license discipline; a failed
+  fetch degrades gracefully (motion-first → still → designed fallback), never
+  crashes a render.
+- **THE MUTE TEST [permanent law, operator-set]:** with narration off, a
+  viewer must follow **~70% of the story from visuals alone** — the
+  defining trait of elite visual explainers. Visuals do the explanatory
+  work; narration is commentary on what the viewer is already seeing.
+  Checked in eye-QA on every video; below the bar → rebuild the visuals,
+  not the words.
 
-## 7.5 The visual storytelling engine (operator doctrine, 2026-07-08)
+## 7.5 THE SIMULATION ENGINE (operator doctrine, 2026-07-11, v8/v9)
 
-The channel is built on a **visual storytelling engine, not an animation
-tool**: a growing vocabulary of reusable, parameterized primitives that
-the authoring brain COMPOSES. The brain's intelligence goes into "what
-should the viewer see, where does the camera go?" — never into inventing
-frames. Quality compounds as the library grows. Five tiers:
+**THE FOOTAGE HYBRID (v9, proven on pixels, 2026-07-12) — the round-10 verdict.**
+Ten rounds of pure procedural + 4-core CPU Cycles never cleared the ledger-blind
+judge panel (§ below). The substrate has a real ceiling below photoreal cosmic
+objects and each judge cycle is ~30 min, so we stopped out-rendering the ceiling
+and changed the material: **real NASA footage carries photoreal beats; 3D is
+reserved for impossible-camera moments footage can't give.** The *same* panel
+that failed Preview #7 (2/3/2) returned a **UNANIMOUS PASS** (viewer 90 / editor
+79 / adversarial 84, zero critical failures) on footage assembled with three
+rules — real footage only (animations rejected), full-frame with a matched
+push (never a pasted rectangle), and a motion-matched dissolve at every seam
+(never a hard cut to a static image / never fade-to-black). Code:
+`data_learning/footage_hybrid.py` (`is_real_footage` / `full_frame_beat` /
+`dissolve_join` / `clean_windows`) + `_dissolve_splice` / `_footage_ss` in
+`longform_render.py`. Full grammar + retired-grammar list:
+`data_learning/VISUAL_STANDARD.md`. **The blind panel remains the gate — nothing
+is "cinematic" because a ledger says so; it is cinematic only when three
+role-blind judges seeing pixels-only agree.**
 
-| Tier | What | Engine |
-|---|---|---|
-| 1–2 (~80%) | Procedural + vector motion: journeys, ladders, cutaways, counters, labels, orbits, fills, stacks | Manim scenes in `curiosity_scenes.py` (vector, deterministic, TeX-free) |
-| 3 | 3D asset/template library — build Earth/shaft/lineup ONCE, then only camera + parameters change per video (brand consistency) | `blender_hero.py` templates, headless Cycles |
-| 4 | AI **stills** for the un-photographable (`gemini_images.py`), then animate them OURSELVES — Ken Burns, parallax, zoom. Never ask AI to animate | Pillow + ffmpeg |
-| 5 | AI **video**, 5–10s max, only for scenes nothing else can make (eruptions, ancient scenes). The one slot worth a paid service later | not wired yet |
+**THE DIRECTOR'S CUT (v8) — the round-8 verdict:** the engine can make
+premium shots; it doesn't yet know *which moments deserve them, how long
+they should last, or how they permanently alter everything after them.*
+Preview 6 exposed **semantic plateaus**: the screen changes while the
+viewer's understanding doesn't. *"The pipeline confuses movement with
+meaningful visual progression."*
 
-**Named primitives so far** (a story requests one per beat with
-`"scene": "<name>"`; the data shape's chart scene is the default):
-`descent` (camera falls past depth waypoints), `zoomout` (powers-of-ten
-ladder — each tableau shrinks into a dot of the next), `cutaway`
-(planet layers draw themselves, the probe shows the fraction touched),
-plus the chart beats `rank` / `comparison` / `trend`. Real footage
-(b-roll) is garnish between payoffs, never the spine.
+- **THE SEMANTIC-PROGRESSION LAW:** *"No visual grammar may remain
+  conceptually unchanged for more than 12–15 seconds. If narration
+  needs longer, the beat must develop through multiple visual phases."*
+  These COUNT as progression: a new spatial scale, causal relationship,
+  object role, environment, physical metaphor, camera dimension,
+  comparison method, revealed piece of the system, irreversible
+  world-state change. These do NOT: counters climbing, continuous
+  travel, ambient drift, trail growth, camera breathing, bars
+  extending, the same composition with new numbers. The engine logs
+  `semantic` rows only for the former; `scripts/qa_semantics.py` fails
+  any >15 s span without one, any long beat without MID-beat
+  development, and any two consecutive beats with identical grammar.
+- **THE RENDER-BUDGET DIRECTOR:** *"Premium time is allocated by
+  narrative value, not by beat count."* Candidates are scored (mental-
+  model change, emotional payoff, impossible-camera value, could-2D-do-
+  it penalty); low values get ZERO Blender; the flagship reveal gets
+  12–15 s. The budget is denominated in Cycles FRAMES (fps classes make
+  seconds lie about cost); the decision record ships as
+  `<out>.director.json`. Authors write `hero_candidate` (template,
+  max_seconds, optional scores) — never fixed seconds.
+- **THE HERO-INTEGRATION CONTRACT** (every premium shot, 5 stages):
+  **Setup** (the 2D world builds the question/object) → **Breach** (the
+  camera accelerates INTO an existing object — the engine logs the
+  `breach` row and the assembler cuts exactly there; never an unrelated
+  cut) → **Impossible transformation** (something 2D can't do) →
+  **Persistent consequence** (performed UNDER the splice: intensity up,
+  capability granted, a consequence object left in the world, camera
+  wider — the return frame is already the changed world) → **Echo**
+  (the ending pulses what the heroes left behind). *"If a premium shot
+  can be deleted without requiring any later scene to change, it is
+  decorative and fails."* — enforced: the beat's payoff must land AFTER
+  the splice, and qa_escalation `--director` fails any missing stage.
+- **THE NO-DOWNGRADE LAW:** *"Every later beat must inherit at least
+  one visual capability introduced by the previous hero beat."* Grants
+  are engine state (`CAPS`) with real pixels behind them: the granted
+  parallax star layer persists for every later beat, consequence
+  objects stay in the world, intensity never calms. Chart beats after
+  an environment grant PHYSICALIZE (`mode: in_world` — bars become lit
+  monolith slabs on a floor with a ratio-stamp second phase). *"Do not
+  follow a cinematic galaxy reveal with a disconnected standalone bar
+  chart."*
+- **THE DOMINANT-SUBJECT CONTRACT:** at every moment ONE element owns
+  the frame (builders tag `focus=`; payoffs own it by definition;
+  logged, gated). **LEGIBILITY QA:** the engine measures every text at
+  its beat's planned frame — px height ≥18, inside the safe frame —
+  and logs violations that fail the build. Big numbers carry ROLE
+  captions (`you, right now` vs `all your motion, combined`) so the
+  ending's values never read as competing answers.
+- **INTERPOLATION TRIAGE:** per-template fps class (10 fps for slow
+  pullbacks/gradual depth; 15 for crossing objects/fast edges), priced
+  by the director; the frame sheet samples INSIDE every hero splice so
+  optical-flow warping is caught like wrong evidence was. *"Fifteen
+  artifact-free seconds are more valuable than 25 seconds of warped
+  edges."*
+- **THE DIRECTOR HANDOFF SHAPE:** a beat is authored as *starting
+  belief → new discovery → required transformation → dominant visual →
+  premium allowance → persistent consequence → ending state* — never
+  "make a race / make a chart".
 
-**Rules that make it feel premium:**
-- **Camera language** — animate the camera, not the object. Not "Earth
-  appears" but "we pull away from Earth"; not "a list of depths" but
-  "we fall past them."
-- **One world** — every video feels like one connected universe (same
-  chrome, same palette, transitions that travel), not
-  picture-picture-picture.
-- **Text is an object** — counters, measurements, callouts, scale bars
-  that move with the world; subtitles are not animation.
-- **Grow the library, not one-offs** — a new visual need becomes a new
-  parameterized primitive (or Blender template or effect), added here
-  by name, so the next 100 videos get it for free.
+**THE DOCUMENTARY CUT (v7):**
+- **THE EVIDENCE LAW:** animation EXPLAINS; evidence GROUNDS. A hero
+  moment is cut against something REAL (the actual probe, the real
+  Earth) — that's what makes the animation exist for a reason, not to
+  fill time. NASA Image Library first (public domain, the actual
+  thing); the on-topic gate rejects anything whose own metadata doesn't
+  match the query; **"a wrong picture is worse than no picture"** — a
+  beat whose evidence can't pass keeps its animation. Every accepted
+  image lands on `<out>.evidence.png` for eye-QA. Ken Burns on stills
+  is legal (footage rule).
+- **BREATHING GAPS:** segments may `"hold": N` — narration stops, the
+  sidechain-ducked bed swells, the scheduler fills the stretched window
+  with events and dwell. The video breathes; wall-to-wall narration is
+  shorts DNA.
+- **LEDGER-DRIVEN SOUND DESIGN:** whoosh on travels, impact landing
+  WITH each payoff, shimmer on discoveries, risers under the cold open
+  and ending — placed automatically from the engine's own timestamps,
+  volumes scaled by intensity. Music bed ducks under the voice and
+  swells in the gaps. Synth kit is license-free; real tracks dropped
+  into `data_learning/music/<vibe>/` upgrade the bed.
+- **ONE VISUAL LANGUAGE:** hero materials are flat emission + soft
+  diffuse (no speculars) — the 3D windows are the 2D world gaining
+  depth, never a different film. Hero windows carry their beat's number
+  (stamp overlay); the cold-open hero carries the title.
+
+**FACT PROPAGATION (v6, verbatim):** *"Every major fact must create a
+chain reaction. A fact is not complete until it changes the world, the
+camera, the atmosphere, and the viewer's expectations."* Facts don't
+just change the world (v5) — they PROPAGATE through the engine: every
+payoff automatically fires an echo (stars jolt, dust surges, the camera
+recoils) with zero authoring. Think in simulations, not scenes.
+
+**THE QUESTIONS ENGINE (v6):** the engine thinks in QUESTIONS, not
+scenes. Every beat ANSWERS one question while PLANTING the next
+("Wait — the ground is moving?" → "Faster than a bullet?" → "Then what
+ISN'T moving?"). Segments carry `"question"`; the beat's chrome shows
+the question it answers. A beat that answers nothing and raises nothing
+is a slide, not a discovery.
+
+**PREMIUM BUDGET LAW (v6):** *"Use Blender only when 2D cannot produce
+the same emotional effect."* Hero seconds are spent UNEVENLY — hook,
+two reveals, the main payoff, and the ending get the budget; expensive
+fly-arounds of things 2D already shows are cut. Premium rendering is
+justified by: entering/exiting something, impossible scale transitions,
+travelling through layers.
+
+> **"The viewer should feel like they are riding the camera, not
+> watching a presentation."** — operator, verbatim, round-3 review.
+> **"It isn't lacking motion. It's lacking cinematic escalation."**
+> — operator, verbatim, round-4 review.
+> **"The viewer should feel the facts happening to the world, not
+> watch the facts get displayed."** — operator, verbatim, round-5
+> review. Every cinematography decision is judged against these three
+> sentences.
+
+**WORLD CONSEQUENCE (v5 — enforced, not remembered):**
+- **"Every major fact must change the state of the world."** (operator,
+  verbatim.) Not appear. Not animate. CHANGE the world.
+- **INTENSITY**: the world runs a monotonic state machine — calm →
+  fast → extreme → cosmic — set per beat (explicit `"intensity"`, else
+  the emotion map capped by story position so the ladder always rises).
+  It automatically drives the standing star-streaks (they STAY
+  stretched), the dust layer's drift velocity, dwell energy, punch
+  magnitude, and the auto reaction cadence. The world never calms back
+  down.
+- **Consequence bundles**: a builder event may carry `cam=` (it steers
+  the camera: follow the winner, get pulled along the orbit) and
+  `state=True` (it permanently changed the world — logged, graded).
+- **"A chart can support a beat, but it cannot be the beat."**
+  (operator, verbatim.) Physical library so far: `comparison_race` v2
+  (trails + camera rides the winner), orbit ride (the path lights up
+  behind the dragged planet), galaxy carry (the solar system visibly
+  carried along an arm), `speedometer`. Build-out queue (one per video,
+  §11): scale tunnel, cross-section dive, comparison arena, object
+  swarm, force field, timeline journey.
+- **PAYOFF GRADE** (qa_escalation, per beat, build-failing): the world
+  state changed; the camera revealed new space; the beat ends stronger
+  than it starts (last payoff in the second half). Thumbnail-worthiness
+  stays human (frame sheet).
+- **ENDING MENU** (every video ends structurally huge): giant pullback ·
+  full-system reveal · collapse into the final answer · before/after
+  transformation · **return to the opening with new meaning** (the
+  scale-world default: the cold-open counter RETURNS during the cosmic
+  ride-out and surges to the story's true final number — the answer
+  persists, huge, over the streaking world).
+
+**The game-engine frame (v4).** Steal from GAMES, not movies. The
+engine is: **World** (one place) → **Entities** (persistent objects
+with **State** — the world remembers; mutations are never undone) →
+**Beats** (narration windows, each an **event timeline**) →
+**Reactions** (narration-causal world effects) → **Discoveries**
+(unexpected encounters) → **Camera** (the shot vocabulary) →
+**Ledger** (the engine logs everything it played; QA validates rules
+against the ledger, never pixel inference).
+
+**THE ESCALATION LAWS (v4 — enforced, not remembered):**
+1. A new visual event at least every ~6 seconds; nothing holds >8 s
+   unchanged. The scheduler spreads every builder bundle across the
+   whole window (`shots.py` `_visit`) — a beat mechanically cannot sit
+   still — and `scripts/qa_escalation.py` fails the build on any >9 s
+   hole in the ledger.
+2. Every beat escalates **arrival → development → payoff**; the payoff
+   (a `punch` bundle) lands with a camera pop and is guaranteed by the
+   scheduler. No payoff in the ledger = failed build.
+3. **"Every fact should change the world."** (operator, verbatim.) A
+   narrated force/speed/heat has a REACTION: `star_streak`, `shake`,
+   `glow_pulse`, `slow_drift_stop` — authored per waypoint
+   (`"react": [{"fx": ..., "at": 0.55}]`) or picked by the emotion tag.
+4. **"Every 20–30 seconds the audience must discover something
+   completely unexpected."** (operator, verbatim.) Discoveries are
+   FOUND, not narrated first — `"discovery": {"asset": "comet"}` sends
+   it across the frame during the approach. ≥2 per video; the gate
+   fails any 60 s span without a discovery-class moment.
+5. Charts are ingredients, never beats. Physical builders replace them:
+   `comparison_race` (2–4 staggered lanes) for any speed/size compare,
+   `speedometer` (the whole ladder on one dial) for any
+   final-number-in-context finale.
+6. Openings explode, endings are the biggest pullback — engine laws,
+   not authoring: the cold-open rush and the rewind-then-ride-out exit
+   (back to level 0, then out THROUGH every zoom band past the
+   accumulated world).
+7. Emotion seed: tag beats `"emotion": "wonder|speed|danger|awe|scale|
+   mystery"` — it selects default reactions today and grows into the
+   full check ("does the visual language match the intended emotion?")
+   later. The rhythm to author for: Emotion. Information. Emotion.
+   Information.
+8. Builder contract: every registry entry returns an escalating
+   timeline (≥3 bundles incl. a payoff) — `scripts/check_builders.py`
+   enforces it registry-wide.
+
+The channel does not run a video generator; it runs a **simulation
+engine**: `World → Camera → Objects → Narration`, never
+`script → scene → scene → scene`. Each video instantiates **ONE
+connected place**; a single camera makes **one continuous journey**
+through it (the body is ONE take — `world_engine.py`); beats are
+**waypoints** in that one geography; transitions do not exist, camera
+moves do. The brain's intelligence goes into the operator's prime
+directive, verbatim: *"Stop asking 'How do I display this information?'
+Ask: if Pixar had to explain this, what would the audience SEE?"*
+
+**The visual script (IR)** — every story carries a `"world"` block
+(renderer-agnostic; see `world_engine.py` docstring): a world template,
+waypoints (one per narration beat, each naming an object BUILDER and
+optionally a Blender `hero` template), and a story template. Authored
+BEFORE any data work.
+
+**World templates** (`depth` | `scale` | `system`) make "one place"
+real: DepthWorld (surface → strata → the deep), ScaleWorld (one
+continuous powers-of-ten zoom axis with zoom-gated level visibility),
+SystemWorld (a map/flow surface the camera tracks across). New world =
+new template, added once, reused forever.
+
+**Persistent objects** (`world_builders.py ASSETS`): ONE Earth, ONE
+mountain, ONE drill, ONE thermometer, ONE human, ONE jet — defined once,
+referenced by every video. A new visual need becomes a new persistent
+asset or builder, NEVER a one-off. This is the compounding mechanism.
+
+**Object builders** (`world_builders.py BUILDERS`): `rank`, `compare`,
+`gauge` (THE thermometer blows past its expected marker), `flipcompare`
+(THE mountain flips into the shaft), `drilljourney` (THE drill descends
+past year stamps), `scalelevel` (earth/orbit/galaxy/human tableaus),
+`marker`. One-take rule: builders position at their anchor BEFORE
+creating animations; live numbers anchor to sibling objects.
+
+**Backends behind the IR** — Manim's moving camera is the 2.5D
+compositor (an implementation detail, not the identity); Blender
+renders hero waypoints (`earth_dive`; the `monoliths` bar template is
+retired — see `VISUAL_STANDARD.md` CHART_GRAMMAR) spliced over their
+windows behind a luminance dip (the SIMPLE splice — no motion-matched
+portals, by operator ruling). *(This §7.5 describes the legacy
+world_engine/simulation path, now the fallback; the production path is the
+Visual Sequence Director / shot-list — see §7.)* In the production path
+**real footage is a co-equal primary engine, not a capped insert**, and
+Ken Burns is a per-shot camera choice, never a beat's only source of motion.
+
+**Story templates** (pick per story, don't force one shape):
+`mystery-reveal` (question → clues → reveal → twist),
+`question-journey-discovery`, `scale-comparison-perspective`,
+`countdown-winner-surprise`. Shared invariants: 2–3 hero moments; ≥2
+metaphor waypoints; ≤2 chart waypoints; the reveal/summit waypoint gets
+the biggest camera event.
+
+**Hero-moment budget**: the most important fact gets the most expensive
+visual. Rank the script's facts, spend unequally.
+
+**THE SHOT SYSTEM (v3 — cinematography is chosen, not invented).**
+Don't solve cinematography in the renderer. `data_learning/shots.py` is
+a growing library of named, parameterized shots (target 30–50); the
+engine's waypoint loop is a thin dispatcher over it. *"Claude's job
+isn't to invent cinematography every week — it's to choose and combine
+proven shots."* A shot owns everything cinematic about one waypoint
+visit: approach, arrival choreography, chrome in/out, dwell — for
+exactly its narration window. The rhythm is **Travel. Discover. Travel.
+Discover. Travel. Reveal.** — never look-here → look-here.
+- *Travel:* `fly_to` · `dive` · `pull_back` · `track` · `follow_path`
+- *Dwell (never static):* `orbit` · `push_in` · `drift_hold` ·
+  `parallax_sweep`
+- *Specials:* `counter_surge` · `cross_section` · `scale_up`; story
+  aliases `comparison_race` · `stack_build` · `timeline_travel`
+- *Cold open:* `cold_open_rush` — the world block sets
+  `"cold_open": true|{value, unit}` and the video opens by sprinting
+  through the ENTIRE world in ~6–8 s (title riding the frame, counter
+  surging), then resets and begins the narrated journey. Show the whole
+  ride first; explain it second. No static title card exists.
+- Waypoints name their shot (`"shot"`, optional `"dwell"`); un-annotated
+  waypoints draw from per-template default cycles and never repeat a
+  shot back-to-back.
+- A cinematic need no shot covers = add a NEW named shot (it upgrades
+  every future video), never a one-off camera move in a builder.
+
+**The screenshot-worthy-frame law.** Every minute must contain one
+screenshot-worthy frame. The test, verbatim: *"if this frame became the
+thumbnail, would someone click?"* If no — redo that minute.
+`scripts/qa_frames.py` renders the one-frame-per-minute contact sheet
+that makes this judgment unskippable (§9).
+
+**The physical-metaphor law.** Every explanation names its physical
+metaphor from the human-scale world (a race, a spinning basketball, a
+moving walkway) BEFORE the beat is written — restated data is not an
+explanation. `comparison_race` is the canonical example: two persistent
+assets race one track and the gap on screen IS the ratio. A metaphor
+with no builder/asset yet becomes the next library addition.
+
+**Objects exist, they don't float.** Every tableau carries cheap idle
+motion (Earth's continents rotate, the orbit planet rides its ring, the
+galaxy turns, the jet drifts) and subjects are BORN as the camera
+arrives (pre-shrunk seeds Restored on arrival) — never pre-placed
+geometry waiting in a display case.
+
+**Text diet.** Chrome fades out ~3.5 s after arrival — travel frames
+are clean. Stamps are a number + ≤2 words (`_diet()` enforces); ≤6
+on-screen words per waypoint excluding the number. The visual carries
+the noun.
 
 ## 8. Package output schema
 
@@ -243,6 +558,33 @@ legible in the safe area; reads muted; survives platform UI. Then:
 - No two segments share a layout.
 - Title + thumbnail pair honestly with the reveal (the thumbnail is
   auto-emitted by the renderer; check it reads at small size).
+- **Motion gate:** `python3 scripts/qa_motion.py <mp4>` — consecutive-frame
+  diffs at 8 sample points; ANY static point fails the video (the camera
+  locked somewhere, which the one-take engine should make impossible).
+- **The mute test (§7):** watch a muted pass; if you can't follow ~70%,
+  the visuals aren't doing the explanatory work yet.
+- **Frame sheet (§7.5):** `python3 scripts/qa_frames.py <mp4> --ledger
+  <mp4's .ledger.json>` — one frame per minute tiled into a contact
+  sheet, PLUS three samples inside every hero splice (interpolation
+  eye-QA: warped edges, trails, occlusions). Judge each frame against
+  the thumbnail-click test; any minute without a click-worthy frame
+  gets redone.
+- **Escalation + hero contract (§7.5 v4/v5/v8):**
+  `python3 scripts/qa_escalation.py <mp4's .ledger.json> --director
+  <mp4's .director.json>` — the escalation laws (no >9 s hole per beat,
+  a payoff per beat, discovery cadence, no skipped reactions), the
+  payoff grade (world-state change, new space revealed, ends-stronger),
+  the HERO CONTRACT (breach/consequence/grant/post-splice-payoff/echo/
+  no-downgrade; a planned-but-skipped hero is fatal), and every
+  engine-measured legibility violation. Design QA runs on rules the
+  engine logged, never on pixel inference.
+- **Semantic progression (§7.5 v8):** `python3 scripts/qa_semantics.py
+  <mp4's .ledger.json>` — no >15 s span without a new visual idea, long
+  beats develop mid-beat, no grammar plateau across consecutive beats,
+  every beat declares a dominant subject.
+- **Builder contract:** `python3 scripts/check_builders.py` — every
+  registered builder (and in-world variant) returns an escalating
+  timeline (run when builders change).
 
 ## 10. Invariants no brain may break [SHARED]
 - Trend is raw material — never publish the raw item form.
@@ -261,6 +603,11 @@ formula, title pattern, first-30s retention, avg % viewed, CTR (when
 exposed), subs/1k, traffic mix. Bias future slates toward what retains;
 **no auto-adaptation below ~100 views/video.** Operator feedback gets
 written back INTO this playbook.
+
+**The library compounds (§7.5 v4):** every video's WEAKEST beat — by
+the gates or the operator's verdict — must produce a new reusable
+library piece (a shot, a reaction, a builder, an asset) before the next
+video is authored. Fix the system, never just the video.
 
 Growth roadmap (targets, not guarantees): first 90 days = prove one
 repeatable pillar + aesthetic consistency; months 4–6 = back-catalog

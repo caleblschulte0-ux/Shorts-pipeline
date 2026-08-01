@@ -1,0 +1,38 @@
+{
+  "key": "it_mlt_main_rank",
+  "title": "Fixed telephone subscriptions",
+  "unit": "",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Fixed telephone subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.MLT.MAIN",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 166506532
+    },
+    {
+      "label": "United States",
+      "value": 81549000
+    },
+    {
+      "label": "Japan",
+      "value": 59326689
+    },
+    {
+      "label": "India",
+      "value": 39235898
+    },
+    {
+      "label": "Germany",
+      "value": 38400000
+    }
+  ]
+}

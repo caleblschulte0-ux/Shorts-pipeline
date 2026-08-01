@@ -1,0 +1,13 @@
+{
+  "id": "image-auto-de00dbadb4",
+  "created_at": "2026-07-31T03:06:51+00:00",
+  "from": "pipeline-auto",
+  "to": "chatgpt",
+  "kind": "image",
+  "brief": "two people talking outdoors",
+  "purpose": "auto-filed: the media gateway found no usable photo for this beat and it degraded to a designed statement",
+  "constraints": {
+    "aspect": "16:9",
+    "style": "photographic, documentary, no text in frame, no watermarks, no recognisable faces"
+  }
+}

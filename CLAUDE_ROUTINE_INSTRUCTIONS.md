@@ -1,8 +1,118 @@
 # Daily Routine Instructions
 
+> ## Your job did NOT end after authoring
+>
+> Two things now follow the packages. Both are quick, and skipping them is
+> how the improvement loop quietly dies:
+>
+> **1. Top up the reserve bank** — step 5b below.
+>
+> **2. Answer any pending retro proposals.** The reviewer writes proposals
+> each evening; `retro_decide.yml` normally answers them at 8am Central, but
+> if it did not run, they are still waiting:
+>
+> ```bash
+> python3 scripts/pending_decisions.py
+> ```
+>
+> If anything is listed, decide each one and record a verdict — including
+> the ones you decline. A proposal that is never answered is worse than one
+> declined: the reviewer cannot tell "we disagreed" from "nobody looked", so
+> it re-files the same idea forever and never learns.
+>
+> ```bash
+> python3 scripts/retro_reply.py --date <date> --file <file> \
+>   --verdict adopt|revise|decline|needs_evidence|deferred \
+>   --because "the real reason — the reviewer reads this tomorrow"
+> ```
+>
+> Full contract: `retro/README.md`.
+
 You're running the daily script-writing routine for the Shorts-pipeline channel
 (faceless YouTube Shorts, 45-second doomscroll explainers). Your job: write the
-day's 6 script packages and push them. The daily GitHub Action renders + uploads.
+day's 6 script packages and push them. **Your job ends there** — an automatic
+chain takes over and renders later.
+
+> ## ⚠️ WHAT CHANGED 2026-07-30 — read this before you finish
+>
+> Pushing your packages **no longer renders them immediately.** It now starts
+> the ChatGPT exchange, and the render happens ~1.5–2 hours later with better
+> media and possibly punched-up scripts:
+>
+> ```
+> you author + push  ->  auto-merge  ->  EXCHANGE PHASE A (04:30-ish)
+>                                        finds media, judges every shot,
+>                                        writes the ask for ChatGPT
+>                        ChatGPT (05:00) generates the missing images,
+>                                        punches up the scripts, writes DONE
+>                        EXCHANGE PHASE B pulls that media in, self-fills
+>                                        anything ChatGPT missed
+>                        daily.yml       renders + uploads
+> ```
+>
+> **The daily clock (all automatic except ChatGPT's task):**
+>
+> | Step | Time |
+> |---|---|
+> | you author + push | ~4:20 AM Central (09:19 UTC observed) |
+> | Exchange Phase A | immediately after auto-merge; 09:45 UTC cron backstop |
+> | ChatGPT task | **6:00 AM Central** |
+> | Exchange Phase B | the moment ChatGPT writes DONE; 12:45 UTC backstop |
+> | render + upload | right after Phase B |
+> | videos go live | 8:00, 9:30, 11:00, 12:30, 2:00, 3:30 Central |
+>
+> **What this means for you, concretely:**
+> - **Nothing about how you author changes.** Same 6 packages, same rules.
+> - **Don't panic if no video exists an hour after you push.** That is now
+>   normal and correct. The backstop cron at 06:15 UTC guarantees the day
+>   ships even if ChatGPT never answers.
+> - **A `query` you write may get AI-generated art instead of stock.** The
+>   judge flags a shot as weak when the media is a generic stand-in for a
+>   named subject, so keep writing SPECIFIC queries — they still win, and a
+>   specific query that finds real media beats a generated image.
+> - **Your script may get reworded** by ChatGPT. It cannot change any number,
+>   date, or named entity, and it cannot change your shot count or any shot's
+>   `query` — `shared/punchup_guard.py` rejects the rewrite mechanically and
+>   ships YOUR original if it tries. So write facts you're happy to keep.
+> - Full detail: `docs/EXCHANGE_PIPELINE.md`.
+
+## ⚠️ THE SLATE COMES FROM THE REGISTRY — NEVER FROM THIS FILE
+
+**`config/channel_registry.json` is the only authority for how many videos
+this channel ships and in which formats.** Read it, or run:
+
+```bash
+python -m shared.channel_registry --mix trending   # one line, the whole ruling
+python -m shared.channel_registry                  # every channel
+```
+
+This heading used to state the mix itself. On 2026-07-31 the operator moved
+trending to a graph-led slate and retired `text_card`; the ruling landed in
+`daily.yml`'s prompt and nowhere else, so this file, `package_buffer.py`,
+`authoring_brief.py` and three tables in `exchange/README.md` all went on
+saying something that was no longer true — and the reserve bank kept banking
+a retired format. **Any number written down twice is a number that will
+disagree with itself.**
+
+<!-- BEGIN GENERATED SLATE — python -m shared.channel_registry --markdown -->
+| Channel | Per day | Active formats | Retired | ChatGPT does |
+|---|---|---|---|---|
+| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
+| `explainer` | 1 | 1x `data_story` | — | editorial_review |
+| `third` | 3 | 3x `clip` | — | nothing |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
+
+<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- END GENERATED SLATE -->
+
+The registry also decides which formats are RETIRED. A retired format is
+absent from the authoring brief entirely and is rejected at promotion, so
+authoring one wastes the whole package — check before you write, not after.
+
+Per-format writing rules (what a good `graph_race` looks like, the substring
+requirements, the drama gate) are doctrine and still live below in this file
+and in `shared/authoring_brief.py:FORMAT_SPECS`. The registry says WHAT to
+write and HOW MANY; those say HOW.
 
 ## Steps
 
@@ -109,11 +219,47 @@ day's 6 script packages and push them. The daily GitHub Action renders + uploads
    one**, so a single un-illustratable package no longer poisons a day,
    but it does mean you lose that slot. Fix it here instead.
 
+5b. **Top up the reserve bank — the day you can't run is the day it pays.**
+
+   Everything above depends on a live Claude subscription. If the token is
+   revoked or the subscription lapses, this Routine never fires, the in-CI
+   brain in `daily.yml` also fails, and the day falls to Groq or to
+   re-serving an already-posted slate. The reserve bank is the cover:
+   banked **evergreen** packages that any dead day draws from automatically.
+
+   ```bash
+   python3 scripts/package_reserve.py status
+   ```
+
+   If it prints `LOW` for a format, write **one extra package of that
+   format** — same quality bar, same schema — into
+   `state/package_buffer/inbox/` instead of today's dated folder. One extra
+   per day is enough; it is banked and drawn automatically.
+
+   **Reserve packages must be EVERGREEN.** They may sit for weeks, so they
+   are refused at deposit time if they contain date-anchored language:
+   weekday names, "yesterday", "today", "this morning", "breaking",
+   "just announced", "3 hours ago", or a "March 14"-style date. Write the
+   timeless version of the story — a Reddit revenge story, a "how this
+   actually works" text card, a long-arc chart. Verify before you push:
+
+   ```bash
+   python3 scripts/package_reserve.py deposit \
+     --dir state/package_buffer/inbox --dry-run
+   ```
+
+   Every file must print `OK`. Fix anything it refuses before you push —
+   a refused file sits in the inbox forever and banks nothing.
+
+   Do NOT bank a package you also put in today's slate — the bank refuses
+   any slug that has already been authored for a day, and a package is
+   drawn from the bank exactly once so it can never duplicate an upload.
+
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
-   git add state/trending_packages/$(date -u +%Y%m%d)/
+   git add state/trending_packages/$(date -u +%Y%m%d)/ state/package_buffer/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --base main \
@@ -217,6 +363,43 @@ exactly what we are killing. Same energy as the Part-2 "EXPLAIN one thing"
 philosophy below, applied to quirky news.
 
 ### Voice — write like a person, not a press release
+### Land a joke. Actually land one.
+
+"Dry wit" has been in this doc for months and **not one video has ever made
+anyone laugh** — because an adjective is not an instruction. So, concretely:
+
+**One dry aside per script**, on any subject that allows it. One. A second
+reads as trying. Put it AFTER the fact it reacts to, never in the first two
+seconds — the hook earns attention, the aside spends it.
+
+The shapes that work in this narrator's mouth:
+
+| Move | Example |
+|---|---|
+| **flat undercut** — state the absurd fact, react in 3-6 words | "The chase lasted two hours. Top speed: twelve." |
+| **mundane detail** — name the one boring specific amid chaos | "He fled on foot, still holding the salad." |
+| **understatement** — a disaster as a mild inconvenience | "This did not go well for the bees." |
+| **callback kicker** — return to the hook with one word changed | hook "nobody checked the roof" → "somebody should have checked the roof" |
+| **deadpan attribution** — quote officialese straight, let it sit | "The report calls this 'an unplanned pond entry'." |
+
+**Never**: puns, setup-then-punchline, exclamation marks, "wait for it",
+"you won't believe", emoji, or telling the viewer it was funny
+("hilariously", "comedy gold"). Those read as a bot performing humour,
+which is the one thing this voice cannot survive.
+
+**HARD GATE — some stories stay completely straight.** Anything involving
+death, injury, crime victims, war, illness, or a missing person. A quip
+there is not a tone miss; it is unrecoverable. Check before you write:
+
+```bash
+python3 -c "import sys,json; sys.path.insert(0,'.')
+from shared import levity
+print(levity.brief_for(json.load(open('<your package>.json'))))"
+```
+
+If nothing genuinely occurs to you, ship it straight. A forced joke is
+worse than none.
+
 The narrator is a deadpan, slightly incredulous friend telling you the most
 ridiculous thing they read today. Dry wit, real reactions, second person,
 contractions. It has a TAKE. It's allowed to be amused, skeptical, or
@@ -431,8 +614,14 @@ because the renderer fills the rest with distinct stock automatically.
 
 ## Don't
 
-- Don't render or upload — daily.yml handles both.
+- Don't render or upload — the exchange chain + daily.yml handle both.
 - Don't run `run_trending_daily.py`. You only write packages.
+- **Don't dispatch daily.yml yourself.** It is no longer the next step; it now
+  runs at the END of the chain (after Exchange Phase B). Dispatching it early
+  renders with pre-ChatGPT media and wastes the day's better assets.
+- Don't touch `.github/triggers/daily` unless you deliberately want to bypass
+  the exchange and render immediately.
+- Don't write anything into `exchange/` — Phase A and ChatGPT own that.
 
 ---
 

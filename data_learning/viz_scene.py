@@ -135,6 +135,33 @@ def validate(spec, insight) -> bool:
     return True
 
 
+def prune(spec, insight):
+    """Drop elements that can't bind to this insight, instead of discarding the
+    whole scene.
+
+    A scene authored with six rows against five data items used to fail
+    `validate` outright and the segment degraded to a bare chart — the exact
+    "data stated, not demonstrated" the review gate blocks. One unbindable row
+    is not a reason to throw away a good scene; it is a reason to drop the row.
+    Returns a new spec, or None if nothing renderable survives.
+    """
+    if not isinstance(spec, dict) or not isinstance(spec.get("elements"), list):
+        return None
+    keep = []
+    for el in spec["elements"]:
+        if not isinstance(el, dict):
+            continue
+        if el.get("type") in _DATA_TYPES and _resolve(
+                (el.get("data") or {}).get("value_from"), insight) is None:
+            continue
+        keep.append(el)
+    if not keep:
+        return None
+    out = dict(spec)
+    out["elements"] = keep[:6]
+    return out if validate(out, insight) else None
+
+
 def image_cost(spec) -> int:
     if not isinstance(spec, dict):
         return 0
@@ -308,7 +335,7 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
             iw_cap = int(bw * 0.46)
             if iw > iw_cap:
                 iw, ih = iw_cap, int(iw_cap / asp)
-            im = cutout.resize((max(1, iw), max(1, ih)))
+            im = _fit(cutout, iw, ih)
             if reveal < 1.0:
                 im.putalpha(im.split()[3].point(lambda v: int(v * reveal)))
             canvas.alpha_composite(im, (int(img_cx - iw / 2), int(cy - ih / 2)))
@@ -841,6 +868,37 @@ def object_scene(insight) -> dict:
     return {"title": True, "elements": els}
 
 
+_RESIZE_CACHE: dict = {}
+
+
+def _fit(img, w: int, h: int):
+    """Resize memoised on (image identity, w, h). Every frame re-resized the
+    same cut-out from source before this — with hundreds of frames per beat
+    that dominated the render."""
+    w, h = max(1, int(w)), max(1, int(h))
+    key = (id(img), w, h)
+    hit = _RESIZE_CACHE.get(key)
+    if hit is None:
+        if len(_RESIZE_CACHE) > 512:
+            _RESIZE_CACHE.clear()
+        hit = img.resize((w, h))
+        _RESIZE_CACHE[key] = hit
+    return hit
+
+
+def _push(canvas, r: float):
+    """A slow camera push-in over the build (1.00 -> 1.04), cropped back to
+    frame. Cheap, subtle, and it means a fully-revealed scene still moves."""
+    z = 1.0 + 0.04 * max(0.0, min(1.0, r))
+    if z <= 1.0005:
+        return canvas
+    w, h = canvas.size
+    zw, zh = int(w * z), int(h * z)
+    big = canvas.resize((zw, zh))
+    x, y = (zw - w) // 2, (zh - h) // 2
+    return big.crop((x, y, x + w, y + h))
+
+
 def _load_cutout(subject, slug, tag):
     """A transparent graphic for `subject`: the AI cutout when it answers, else
     a deterministic Twemoji icon.
@@ -888,8 +946,8 @@ def _load_photo(subject, slug, tag):
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
-    spec = getattr(insight, "scene", None)
-    if not validate(spec, insight):
+    spec = prune(getattr(insight, "scene", None), insight)
+    if spec is None:
         return None
     els = spec["elements"]
     # Mechanics that composite Data straight into the beat (he rides the element)
@@ -997,7 +1055,20 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                                      photo=photos.get(i))
                 if f == frames and an:
                     anchors.append(an)
-        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+        # CAMERA PUSH. Element reveals finish partway through a beat and every
+        # frame after that was identical — per-element "breathing" only covered
+        # ranking rows, so a scene built from fill_object/stack/timeline still
+        # froze (segment_0 measured 0.5 fps while the other two hit 24.0). A
+        # slow 4% push across the build is what a real edit does anyway, and it
+        # guarantees no two frames of the beat are the same whatever the scene
+        # is made of.
+        canvas = _push(canvas, r)
+        # compress_level=1: these are intermediate build frames that ffmpeg
+        # reads once and throws away, so the default level-6 deflate is pure
+        # cost. This is most of what made a full-length scene beat
+        # unaffordable — and an unaffordable beat is why scene segments came
+        # out at ~1 effective fps against an 11.0 floor.
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png", compress_level=1)
     return pattern, anchors
 
 
@@ -1222,7 +1293,20 @@ def render_procedural(insight, out_dir: Path, slug: str, frames: int = 16):
             from PIL import ImageDraw
             draw_caption(ImageDraw.Draw(canvas), (RX0, 40, RX1, 40),
                          insight.topic, 1.0, size=50)
-        canvas.save(out_dir / f"{slug}_build{f:02d}.png")
+        # CAMERA PUSH. Element reveals finish partway through a beat and every
+        # frame after that was identical — per-element "breathing" only covered
+        # ranking rows, so a scene built from fill_object/stack/timeline still
+        # froze (segment_0 measured 0.5 fps while the other two hit 24.0). A
+        # slow 4% push across the build is what a real edit does anyway, and it
+        # guarantees no two frames of the beat are the same whatever the scene
+        # is made of.
+        canvas = _push(canvas, r)
+        # compress_level=1: these are intermediate build frames that ffmpeg
+        # reads once and throws away, so the default level-6 deflate is pure
+        # cost. This is most of what made a full-length scene beat
+        # unaffordable — and an unaffordable beat is why scene segments came
+        # out at ~1 effective fps against an 11.0 floor.
+        canvas.save(out_dir / f"{slug}_build{f:02d}.png", compress_level=1)
     return pattern, []
 
 

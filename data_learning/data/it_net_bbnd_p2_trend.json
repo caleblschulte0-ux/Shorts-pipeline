@@ -1,0 +1,48 @@
+{
+  "key": "it_net_bbnd_p2_trend",
+  "title": "Fixed broadband subscriptions",
+  "unit": "per 100 people",
+  "geography": "World",
+  "time_coverage": "2005-2025",
+  "insight_type": "trend",
+  "source": {
+    "name": "Fixed broadband subscriptions",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.BBND.P2",
+    "officiality": "official",
+    "access_date": "2026-07-30"
+  },
+  "notes": "Fetched live from World Bank on 2026-07-30. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2005",
+      "value": 3.4,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 6.9,
+      "period": "2009"
+    },
+    {
+      "label": "2013",
+      "value": 9.7,
+      "period": "2013"
+    },
+    {
+      "label": "2017",
+      "value": 13.5,
+      "period": "2017"
+    },
+    {
+      "label": "2021",
+      "value": 16.7,
+      "period": "2021"
+    },
+    {
+      "label": "2025",
+      "value": 20.1,
+      "period": "2025"
+    }
+  ]
+}
