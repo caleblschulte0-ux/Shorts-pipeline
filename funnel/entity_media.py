@@ -34,6 +34,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from shared import channel_registry as _reg
+
 
 # Words that get auto-capitalized at sentence start but are NEVER
 # part of a real entity name. The proper-noun regex grabs them when
@@ -600,7 +602,26 @@ def validate_package(pkg: dict) -> dict:
     check is the cheap, deterministic half of enrichment; actual
     image lookup is deferred to render time so the validator is fast
     enough to run on every package in the daily batch.
+
+    Formats with no `shots` by design (graph_race, text_card — the
+    registry's `media.shots` flag, not a hardcoded name list) report 100%
+    on both metrics rather than 0%. Dividing 0 covered by 0 possible is
+    "nothing to cover", not "covered nothing" — scoring it 0% made every
+    graph_race and text_card package permanently fail
+    `--min-illustration` regardless of quality, since they have no shots
+    to illustrate at all.
     """
+    try:
+        fmt = _reg.classify(pkg, "trending")
+        needs_shots = _reg.media_requirements("trending", fmt)["shots"] \
+            if fmt else True
+    except _reg.RegistryError:
+        needs_shots = True
+    if not needs_shots:
+        return {"source": "n/a", "total_visuals": 0, "matched": [],
+                "uncovered": [], "coverage_pct": 100.0, "total_shots": 0,
+                "keyword_only_shots": [], "illustration_pct": 100.0}
+
     script = pkg.get("script") or ""
     shots = pkg.get("shots") or []
     visuals = extract_visuals_llm(script, title=pkg.get("title", ""))
