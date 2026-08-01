@@ -86,7 +86,12 @@ def main():
         out, story = build_green_package(td)
         produce.resolve_story = lambda slug: story   # test story resolution
         ai.build_manifest(out, story_path=story, director_rc=0)
-        jv.write(out, {"personality": 4, "reject_labels": []})
+        # `overall_10` became REQUIRED when the quality policy started binding
+        # on the professional-quality score rather than on personality alone
+        # (judge_verdict.validate). This fixture was never updated, and the
+        # failure was invisible because nothing ran scripts/test_*.py.
+        jv.write(out, {"personality": 4, "reject_labels": [],
+                       "overall_10": 8})
         # manifest hashed the package BEFORE verdict.json existed inside pkg?
         # verdict lives in pkg but is not a manifest artifact — identity is the
         # film + sidecars, judgment binds separately. Rebuild manifest AFTER the

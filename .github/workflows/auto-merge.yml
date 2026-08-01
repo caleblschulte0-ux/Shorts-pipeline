@@ -100,13 +100,42 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install test deps
-        run: pip install -q pillow pyyaml requests
+        run: |
+          # numpy: data_learning/scenes.py (scripts/test_scene_dispatch.py)
+          # ffmpeg: the lookmatch engine self-test refuses to run without it,
+          #         which is correct — it measures real video.
+          pip install -q pillow pyyaml requests numpy
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       - name: Full unit suite
         run: python -m unittest discover -s tests -v 2>&1 | tail -40
       - name: Split-worker dry run (offline, no Drive, no ChatGPT)
         run: python scripts/exchange_dry_run.py
       - name: Channel-contract acceptance (registry propagation)
         run: python scripts/registry_acceptance.py
+
+      # THE OTHER SUITE. 37 test_*.py files live in scripts/ — an entire
+      # second suite outside tests/ that nothing has ever run. 34 of them
+      # pass; one had been failing since `overall_10` became a required
+      # verdict field, and nobody knew. Two need a full render environment
+      # and are skipped by name, honestly, rather than quietly.
+      - name: scripts/ suite
+        run: |
+          set -u
+          fail=0
+          for f in scripts/test_*.py; do
+            case "$(basename "$f")" in
+              # Need ffmpeg + a real render; covered by expression-tests.yml.
+              test_expressions.py|test_expressions_render.py) continue ;;
+            esac
+            # PRINT THE FAILURE. A gate that says "something broke" without
+            # saying what is a gate people route around.
+            if ! out=$(timeout 120 python "$f" 2>&1); then
+              echo "::error file=$f::scripts/ test failed"
+              echo "$out" | tail -15
+              fail=1
+            fi
+          done
+          exit "$fail"
 
   automerge:
     needs: [sanity, tests]
