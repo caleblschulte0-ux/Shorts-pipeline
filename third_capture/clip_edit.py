@@ -644,13 +644,19 @@ def build_ass(words: list[dict], credit: str, dur: float, out: Path,
                      f"{_POP_FX}{' '.join(toks)}\n")
         group.clear()
 
-    for w in words:
-        if group and (w["s"] - group[-1]["e"] > 0.6
-                      or len(group) >= max_group
-                      or group[-1]["w"][-1:] in ".?!,"):
-            flush()
-        group.append(w)
-    flush()
+    # Grouping math is shared/captions.py — one grouper for every renderer
+    # (audit finding C; five near-identical private copies existed). These
+    # arguments reproduce this function's previous behaviour exactly,
+    # including that a BLANK word broke a line here (the old test was
+    # `w[-1:] in ".?!,"`, and `"" in ".?!,"` is True in Python).
+    # tests/test_captions.py holds that equivalence.
+    from shared import captions
+    for grp in captions.group_words(
+            words, max_words=max_group, max_gap=0.6, max_span=float("inf"),
+            break_on_punct=True, break_chars=".?!,", drop_empty=False,
+            blank_breaks=True):
+        group.extend(grp)
+        flush()
     if burn_credit and credit:
         lines.append(
             f"Dialogue: 0,{_ts(0)},{_ts(dur)},Credit,{credit}\n")

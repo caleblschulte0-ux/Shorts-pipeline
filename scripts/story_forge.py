@@ -439,7 +439,7 @@ def _brain_words(dss: list[dict]) -> dict | None:
     if out and out.get("title") and out.get("hook"):
         return out
     try:
-        from script_generator import _call_llm, _strip_fence
+        from shared.script_generator import _call_llm, _strip_fence
         raw = _strip_fence(_call_llm(sysmsg, user))
         m = re.search(r"\{.*\}", raw, re.S)
         out = json.loads(m.group(0))
@@ -615,7 +615,8 @@ def forge(count: int, dry_run: bool = False) -> int:
                     json.dumps(out, indent=2))
             entry = {k: v for k, v in story.items() if not k.startswith("_")}
             cfg.setdefault("stories", []).append(entry)
-            CONFIG.write_text(json.dumps(cfg, indent=2))
+            from shared.fsutil import write_json_if_changed
+            write_json_if_changed(CONFIG, cfg)
             USED.parent.mkdir(parents=True, exist_ok=True)
             USED.write_text(json.dumps(
                 {"indicators": sorted(used_inds), "updated": TODAY}, indent=1))

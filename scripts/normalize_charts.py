@@ -81,7 +81,8 @@ def main() -> int:
         return 0
 
     if fixed:
-        CONFIG.write_text(json.dumps(cfg, indent=2) + "\n")
+        from shared.fsutil import write_json_if_changed
+        write_json_if_changed(CONFIG, cfg)
         print(f"normalised {len(fixed)} segment(s) to 2-point rank:\n  "
               + "\n  ".join(fixed))
     else:

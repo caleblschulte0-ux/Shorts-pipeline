@@ -41,22 +41,108 @@ DEFAULT_STYLE = {
 }
 
 
+#: Sentence-ish characters a caption chunk may end on.
+BREAK_CHARS = ".!?,"
+
+
+def word_text(w) -> str:
+    """The text of a word, whichever shape the caller's whisper wrapper uses.
+
+    The repo has two: plain dicts (`{"word": ..., "start": ..., "end": ...}`)
+    and the `Word` objects in `make_explainer_stacked` (`.text/.start/.end`).
+    Supporting both is what lets every renderer share ONE grouper instead of
+    keeping five.
+    """
+    if isinstance(w, dict):
+        for k in ("word", "text", "w"):
+            if k in w:
+                return str(w[k])
+        return ""
+    return str(getattr(w, "text", getattr(w, "word", "")))
+
+
+def word_start(w) -> float:
+    if isinstance(w, dict):
+        return float(w["start"] if "start" in w else w["s"])
+    return float(w.start)
+
+
+def word_end(w) -> float:
+    if isinstance(w, dict):
+        return float(w["end"] if "end" in w else w["e"])
+    return float(w.end)
+
+
 def group_words(words, *, max_words: int = 4, max_gap: float = 0.6,
-                max_span: float = 3.5) -> list[list[dict]]:
-    """Split a flat word stream into caption lines: break on long pauses,
-    line length, or total on-screen span. Pure function, easy to test."""
-    lines: list[list[dict]] = []
-    cur: list[dict] = []
+                max_span: float = 3.5, max_chars: int | None = None,
+                break_on_punct: bool = False,
+                break_chars: str = BREAK_CHARS,
+                drop_empty: bool = True,
+                strip_join: bool = True,
+                blank_breaks: bool = False) -> list[list]:
+    """Split a flat word stream into caption lines. Pure function.
+
+    This is THE caption grouper for the whole pipeline. Five renderers had
+    grown their own near-identical copy (`_chunk_words`, `_chunks`, …) with
+    slightly different break rules, which is why the rule set here is a
+    superset rather than an opinion — a caller reproduces its old behaviour
+    exactly by setting the limits it used and disabling the rest:
+
+        reddit_story  max_words=3, max_chars=22, break_on_punct=True,
+                      max_gap=inf, max_span=inf
+
+    Break rules, all optional:
+      * `max_words`      — words per line
+      * `max_chars`      — rendered length of the joined line
+      * `max_gap`        — silence between two words (a pause is a line break)
+      * `max_span`       — total time a line may stay on screen
+      * `break_on_punct` — end a line after a char in `break_chars`
+      * `break_chars`    — which trailing chars count (explainer also breaks
+                           on `:` and `;`, reddit_story does not)
+      * `drop_empty`     — skip blank words. `make_explainer_stacked` keeps
+                           them, because they land in its joined line text.
+      * `strip_join`     — whether `max_chars` measures stripped word text
+
+    Accepts dicts or objects (see `word_text`).
+    """
+    lines: list[list] = []
+    cur: list = []
     for w in words:
-        if not str(w.get("word", "")).strip():
+        raw = word_text(w)
+        text = raw.strip()
+        if not text and drop_empty:
             continue
         if cur:
-            gap = w["start"] - cur[-1]["end"]
-            span = w["end"] - cur[0]["start"]
+            gap = word_start(w) - word_end(cur[-1])
+            span = word_end(w) - word_start(cur[0])
             if len(cur) >= max_words or gap > max_gap or span > max_span:
                 lines.append(cur)
                 cur = []
         cur.append(w)
+        # Post-append rules (length of the line INCLUDING this word, and
+        # punctuation on this word) — these close the current line rather
+        # than pushing the word to the next one.
+        if max_chars is not None:
+            joined = " ".join((word_text(x).strip() if strip_join
+                               else word_text(x)) for x in cur)
+            if len(joined) >= max_chars:
+                lines.append(cur)
+                cur = []
+                continue
+        # `text` is empty only when drop_empty=False let a blank word
+        # through. A blank word is not a sentence boundary — except in
+        # `third_capture/clip_edit.py`, whose test was `w[-1:] in ".?!,"`,
+        # and in Python `"" in ".?!,"` is True, so a blank word DID break a
+        # line there. That is a latent bug, not a design choice, but this
+        # consolidation is a refactor: it reproduces the behaviour exactly
+        # and `blank_breaks` names it so it can be fixed deliberately later.
+        if break_on_punct and not text and blank_breaks:
+            lines.append(cur)
+            cur = []
+            continue
+        if break_on_punct and text and text[-1] in break_chars:
+            lines.append(cur)
+            cur = []
     if cur:
         lines.append(cur)
     return lines
@@ -101,15 +187,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     events = []
     for line in group_words(words, max_words=max_words, max_gap=max_gap):
-        start, end = line[0]["start"], line[-1]["end"]
+        start, end = word_start(line[0]), word_end(line[-1])
         parts = []
         for i, wd in enumerate(line):
             # \k units are centiseconds; measure from word start to the
             # NEXT word's start so pauses inside a line stay highlighted
             # on the word being finished rather than flickering.
-            until = line[i + 1]["start"] if i + 1 < len(line) else wd["end"]
-            k = max(1, int(round((until - wd["start"]) * 100)))
-            token = _esc(str(wd["word"]))
+            until = (word_start(line[i + 1]) if i + 1 < len(line)
+                     else word_end(wd))
+            k = max(1, int(round((until - word_start(wd)) * 100)))
+            token = _esc(word_text(wd))
             if uppercase:
                 token = token.upper()
             parts.append(f"{{\\k{k}}}{token}")
