@@ -528,14 +528,20 @@ def _sweep(clip_edit, sources: dict, window: str, top: int) -> list:
             _source_health(platform, ch, ok=False,
                            err=f"{type(e).__name__}: {d}" if d
                            else f"{type(e).__name__}")
-            print(f"::warning::discover {platform}:{ch} failed "
-                  f"({type(e).__name__}) {d} — skipped", flush=True)
+            # collected, not printed: concurrent prints interleave
+            # mid-line and the result is unreadable exactly when it
+            # matters most
+            errs.append(f"::warning::discover {platform}:{ch} failed "
+                        f"({type(e).__name__}) {d} — skipped")
             return []
 
+    errs: list[str] = []
     pool: list = []
     with ThreadPoolExecutor(max_workers=10) as ex:
         for got in ex.map(_one, jobs):
             pool += got
+    for line in errs:
+        print(line, flush=True)
     _SWEEP_CACHE[key] = list(pool)
     print(f"[discover] window {window}: {len(pool)} clip(s) across "
           f"{len(jobs)} handle(s)", flush=True)
