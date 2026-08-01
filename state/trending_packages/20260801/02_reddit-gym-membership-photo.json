@@ -27,9 +27,9 @@
       "query": "cancellation form paper",
       "mascot_pose": "shock",
       "pin_query": "cancellation form",
-      "pin_context": "gym membership termination document",
+      "pin_context": "contract document signature",
       "news_query": "cancellation form",
-      "news_angle": "The cancellation form was signed and photographed as proof of cancellation.",
+      "news_angle": "The gym lost the customer's cancellation form, despite it being signed and photographed.",
       "image_url": "https://live.staticflickr.com/65535/48911253517_a7e19c4560_b.jpg"
     },
     {
@@ -45,12 +45,7 @@
     {
       "phrase": "snapped a photo of it before I left",
       "query": "phone camera photo document",
-      "mascot_pose": "idle",
-      "pin_query": "photo",
-      "pin_context": "cancellation proof image",
-      "news_query": "photo",
-      "news_angle": "The photo of the cancellation form was emailed to the gym as evidence of cancellation.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Picture_of_Polaroid_image.jpg"
+      "mascot_pose": "idle"
     },
     {
       "phrase": "2 months later they charged my card anyway",
@@ -70,7 +65,12 @@
     {
       "phrase": "manager's own signature on it",
       "query": "signature on paper",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "manager",
+      "pin_context": "gym staff employee",
+      "news_query": "manager",
+      "news_angle": "The manager's signature was on the cancellation form, which was later used as proof of cancellation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png"
     },
     {
       "phrase": "went quiet for a while",
