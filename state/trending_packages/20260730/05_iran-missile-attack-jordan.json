@@ -32,7 +32,9 @@
     },
     {
       "phrase": "Revolutionary Guard launched ballistic missiles",
-      "query": "ballistic missile launch"
+      "query": "ballistic missile launch",
+      "image_url": "https://pixabay.com/get/gfaf778cbad1962ee5e7077484af8bdf2577decd9dde1e24bd3b1232e79e39dc105d5d5f874a24537d1bb43b463a76e47aa3540ba26e42a53773d7a02a230fe3c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Muwaffaq Salti Air Base",
@@ -54,7 +56,9 @@
     },
     {
       "phrase": "Jordan's air defenses intercepted",
-      "query": "air defense missile intercept"
+      "query": "air defense missile intercept",
+      "image_url": "https://live.staticflickr.com/3819/11361110253_0cf6d125e8_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Nobody died",
@@ -107,12 +111,16 @@
     },
     {
       "phrase": "high state of readiness",
-      "query": "soldiers military base"
+      "query": "soldiers military base",
+      "image_url": "https://pixabay.com/get/g9ff24012087f313f7d2f394df1c9c35e04e64bec1ee7226fbc407bc2eb4deff04e884c493c247a57eff8d5a3b499db284577e28c825a3551385f162715fbe6a0_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "attempted surprise attack that failed",
       "query": "military radar screen",
-      "mascot_pose": "think"
+      "mascot_pose": "think",
+      "image_url": "https://pixabay.com/get/g8eaa2e70c551a5cce07d9ff964c99cd9823b0dd891517cac56457c5013fd7b832e2f4009fc857388dee166e61be44c13_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Washington's answer",
