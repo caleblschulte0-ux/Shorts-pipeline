@@ -122,8 +122,13 @@ jobs:
               # Need ffmpeg + a real render; covered by expression-tests.yml.
               test_expressions.py|test_expressions_render.py) continue ;;
             esac
-            timeout 120 python "$f" >/dev/null 2>&1 \
-              || { echo "::error file=$f::scripts/ test failed"; fail=1; }
+            # PRINT THE FAILURE. A gate that says "something broke" without
+            # saying what is a gate people route around.
+            if ! out=$(timeout 120 python "$f" 2>&1); then
+              echo "::error file=$f::scripts/ test failed"
+              echo "$out" | tail -15
+              fail=1
+            fi
           done
           exit "$fail"
 
