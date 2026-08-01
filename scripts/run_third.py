@@ -93,6 +93,16 @@ def _any_judgment() -> bool:
     they prove the file isn't broken, never that the clip is worth posting.
     """
     j = _JUDGES
+    # A RESCUED CLIP NEEDS A *PASSING* JUDGMENT, NOT MERELY A JUDGMENT.
+    # The rescue exists precisely because the only opinion so far was
+    # NEGATIVE — the ranker scored it under the posting floor. Counting
+    # that negative score as "someone judged it" let a clip the ranker
+    # rated 0.30 ("vague emote reaction") ship unopposed whenever no
+    # second judge could be reached. That is the inverse of this gate's
+    # purpose: treating a rejection as evidence to publish.
+    if j.get("selection", {}).get("verdict") == "rescue":
+        return (j.get("content", {}).get("verdict") == "pass"
+                or j.get("vision", {}).get("verdict") == "pass")
     if not j.get("banger", {}).get("blind", True):
         return True
     if j.get("content", {}).get("verdict") in ("pass", "reject"):
@@ -404,15 +414,187 @@ def _clip_key(url: str) -> str:
 def _load_log() -> dict:
     if LOG_PATH.exists():
         try:
-            return json.loads(LOG_PATH.read_text())
-        except json.JSONDecodeError:
-            pass
+            log = json.loads(LOG_PATH.read_text())
+        except json.JSONDecodeError as e:
+            # FAIL CLOSED. This used to `pass` and return {"posted": {}} —
+            # so an unparseable ledger (a truncated write, a mis-resolved
+            # merge, a hand-edit) meant the run proceeded with ZERO dedupe
+            # state: _audit_dupes prints "clean", posted_keys is empty,
+            # every slot re-posts an already-published clip, and then
+            # _save_log writes the 4-entry dict OVER 168 real entries and
+            # ci_commit_state pushes it. merge_posted_log only runs on a
+            # push race, so on a clean push the ledger is gone for good.
+            # A missing file is a first run; a corrupt file is an
+            # emergency, and the two must never be confused.
+            raise SystemExit(
+                f"FATAL: {LOG_PATH} is not valid JSON ({e}). Refusing to "
+                f"run with no dedupe state — that re-posts the whole "
+                f"catalogue and then overwrites the ledger. Restore it "
+                f"from git history before running again.")
+        if not isinstance(log, dict) or not isinstance(
+                log.get("posted"), dict):
+            raise SystemExit(
+                f"FATAL: {LOG_PATH} parsed but is not a posted log "
+                f"(expected {{'posted': {{...}}}}). Refusing to run.")
+        return log
     return {"posted": {}}
 
 
 def _save_log(log: dict) -> None:
     from shared.fsutil import atomic_write_json
     atomic_write_json(LOG_PATH, log)
+
+
+def _blocklist(log: dict, key: str, entry: dict) -> None:
+    """Record a rejected clip AND PERSIST IT IMMEDIATELY.
+
+    Four paths write `rejected-*` entries (preflight, the content gate,
+    director incompleteness, QA) and none of them used to hit disk: the
+    only _save_log call site was inside the successful-upload branch, so a
+    run that shipped nothing discarded every rejection it had paid for.
+    2026-07-31 ran four times; runs 2-4 each re-downloaded, re-transcribed
+    and re-judged the exact clips run 1 had already turned down hours
+    earlier — ~9 wasted whisper passes per run, and the direct reason the
+    reject reasons repeat verbatim across those runs."""
+    log["posted"][key] = entry
+    try:
+        _save_log(log)
+    except Exception as e:  # noqa: BLE001
+        print(f"[blocklist] could not persist {key}: {e}", flush=True)
+
+
+# Wall-clock budget for the whole run, well inside third.yml's
+# timeout-minutes: 120. See _deadline_passed().
+_BUDGET_MIN = float(os.environ.get("THIRD_BUDGET_MIN", "85"))
+_T_START = time.time()
+
+
+def elapsed_min() -> float:
+    return (time.time() - _T_START) / 60.0
+
+
+def _deadline_passed() -> bool:
+    return elapsed_min() >= _BUDGET_MIN
+
+
+_SWEEP_CACHE: dict = {}
+
+
+def _sweep(clip_edit, sources: dict, window: str, top: int) -> list:
+    """Discover across every allowlisted handle for one window — ONCE.
+
+    This was inline in process(), so it re-ran from scratch on every slot
+    and every retry: 67 handles x 2 windows x (4 slots x 3 attempts) is
+    ~1,600 discovery calls per run, and third_qa_stats.json recorded the
+    proof — every source's health entry read "ok": 18, i.e. eighteen hits
+    per handle in one run. At ~1s each (helix) that is 20 minutes; on the
+    yt-dlp path it is closer to an hour, and the job ceiling is 120
+    minutes with a run already killed on that wall. The top-clip board for
+    a channel does not change inside one 90-minute job, and every filter
+    that makes a retry pick a DIFFERENT clip (posted_keys, the blocklist,
+    the variety caps) runs downstream of this — so caching the pool costs
+    nothing in selection freshness.
+
+    Fanned out too: the calls are independent and each one's failure is
+    already caught per-handle, so a serial loop over 67 handles was pure
+    latency. The story arm already cached its own sweep (_STORY_POOL);
+    the clip arm was the one paying full price."""
+    key = (window, top, tuple(sorted(
+        (p, tuple(c)) for p, c in sources.items())))
+    if key in _SWEEP_CACHE:
+        pool = _SWEEP_CACHE[key]
+        print(f"[discover] window {window}: {len(pool)} clip(s) from cache "
+              f"(swept once this run)", flush=True)
+        return list(pool)
+
+    from concurrent.futures import ThreadPoolExecutor
+    jobs = [(p, ch) for p, chans in sources.items() for ch in chans]
+
+    def _one(job):
+        platform, ch = job
+        try:
+            got = clip_edit.discover(platform, ch, top=top, range_=window)
+            _source_health(platform, ch, ok=True, clips=len(got))
+            return got
+        except Exception as e:  # noqa: BLE001
+            # keep yt-dlp's own message: the exception TYPE alone made
+            # rumble undiagnosable for days (see clip_edit's rumble
+            # handler). It was computed, printed to the CI log — which
+            # expires — and then NOT passed to _source_health, so the
+            # durable record stored the bare class name, which is exactly
+            # the thing that was undiagnosable.
+            d = (getattr(e, "output", "") or "").strip()
+            d = d.splitlines()[-1][:160] if d else ""
+            _source_health(platform, ch, ok=False,
+                           err=f"{type(e).__name__}: {d}" if d
+                           else f"{type(e).__name__}")
+            # collected, not printed: concurrent prints interleave
+            # mid-line and the result is unreadable exactly when it
+            # matters most
+            errs.append(f"::warning::discover {platform}:{ch} failed "
+                        f"({type(e).__name__}) {d} — skipped")
+            return []
+
+    errs: list[str] = []
+    pool: list = []
+    with ThreadPoolExecutor(max_workers=10) as ex:
+        for got in ex.map(_one, jobs):
+            pool += got
+    for line in errs:
+        print(line, flush=True)
+    _SWEEP_CACHE[key] = list(pool)
+    print(f"[discover] window {window}: {len(pool)} clip(s) across "
+          f"{len(jobs)} handle(s)", flush=True)
+    return pool
+
+
+def _clamp_publish_at(publish_at, lead_min: int = 15):
+    """Never hand YouTube a publishAt that has already passed.
+
+    Returns the original string when it is still comfortably in the
+    future, otherwise now+lead_min. None passes through (no schedule)."""
+    if not publish_at:
+        return publish_at
+    try:
+        dt = datetime.fromisoformat(str(publish_at).replace("Z", "+00:00"))
+    except ValueError:
+        return publish_at
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    floor = datetime.now(timezone.utc) + timedelta(minutes=lead_min)
+    if dt >= floor:
+        return publish_at
+    fixed = floor.strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(f"::warning::[schedule] publish_at {publish_at} is in the past by "
+          f"the time this slot reached upload — clamped to {fixed}. The run "
+          f"took longer than the 30-minute scheduling lead.", flush=True)
+    return fixed
+
+
+def _checkpoint_log(why: str) -> None:
+    """Push the posted log to main MID-RUN, from CI only.
+
+    The workflow commits state in its final step. A run killed at the
+    120-minute wall (or by a hard runner death, as on 2026-07-25) never
+    reaches it — so videos already live on YouTube have no entry anywhere
+    in git, the next run's dedupe sync pulls a log that does not contain
+    them, and it re-posts them. ci_commit_state.sh union-merges on a push
+    race, so a checkpoint can only ever ADD entries, never lose one."""
+    if not os.environ.get("GITHUB_ACTIONS"):
+        return
+    import subprocess
+    try:
+        subprocess.run(
+            ["bash", str(REPO / "scripts" / "ci_commit_state.sh"),
+             f"third: checkpoint posted log ({why}) [skip ci]",
+             # ALL the state this run mutates, not just the log. On a push
+             # race ci_commit_state hard-resets to origin and restores only
+             # the paths it was GIVEN — anything else this run had already
+             # written would be silently reverted mid-flight.
+             "state/third_posted_log.json", "state/third_events.json"],
+            cwd=str(REPO), timeout=120, check=False)
+    except Exception as e:  # noqa: BLE001
+        print(f"[checkpoint] {why}: {e}", flush=True)
 
 
 def run_capture(pkg: dict, work: Path) -> Path:
@@ -541,6 +723,28 @@ def _crosspost(mp4: Path, title: str, description: str,
     return out
 
 
+def _public_source(url: str) -> str:
+    """A source URL a VIEWER CAN OPEN.
+
+    VOD mining invents `vodmine://<video_id>/<offset>` so the pipeline can
+    key and dedupe a moment no clipper cut. That scheme is internal — it
+    was reaching the public YouTube description as
+    `Source: vodmine://2412345678/4180` on a channel whose entire
+    legitimacy rests on attribution. Render it as the real Twitch VOD
+    deep-link with the timestamp, which is exactly where the moment is."""
+    from funnel import vod_miner
+    if not vod_miner.is_mined(url):
+        return str(url or "")
+    try:
+        vid, off = str(url).split("://", 1)[1].rsplit("/", 1)
+        s = int(float(off))
+        h, m, sec = s // 3600, (s % 3600) // 60, s % 60
+        return (f"https://www.twitch.tv/videos/{vid}"
+                f"?t={h:02d}h{m:02d}m{sec:02d}s")
+    except (ValueError, IndexError):
+        return ""
+
+
 def _description(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
@@ -552,8 +756,10 @@ def _description(pkg: dict, led: dict) -> str:
             or led.get("authored_title") or led.get("clip_title", "")
         cta = led.get("authored_cta", "")
         head = f"{cta}\n\n{lead}" if cta else lead
-        srcs = "\n".join(f"Source: {b['source_url']}"
-                         for b in led.get("beats", []) if b.get("source_url"))
+        srcs = "\n".join(
+            f"Source: {u}" for u in
+            (_public_source(b.get("source_url", ""))
+             for b in led.get("beats", [])) if u)
         credit = ("Every moment belongs to the streamers — full credit.\n"
                   + srcs)
         return f"{head}\n\n{credit}\n\n{tags}"
@@ -568,9 +774,19 @@ def _description(pkg: dict, led: dict) -> str:
         # earn that signal. Falls away cleanly when the author omits it.
         cta = led.get("authored_cta", "")
         head = f"{cta}\n\n{lead}" if cta else lead
-        credit = (f"Clip from {led['credit']} — full credit to the "
-                  f"streamer.\nSource: {led['source_url']}\n"
-                  f"Clipped by {led['clipper']}.")
+        src = _public_source(led.get("source_url", ""))
+        credit = f"Clip from {led['credit']} — full credit to the streamer."
+        if src:
+            credit += f"\nSource: {src}"
+        # "Clipped by vod-mined" is not a person to credit — this moment
+        # was pulled straight from the streamer's own VOD, so the streamer
+        # credit above is the whole of it.
+        from funnel import vod_miner
+        if led.get("clipper") and not vod_miner.is_mined(
+                led.get("source_url", "")):
+            credit += f"\nClipped by {led['clipper']}."
+        if note:
+            credit += f"\n{note}"
         return f"{head}\n\n{credit}\n\n{tags}"
     if led.get("kind") == "sim":
         detail = (f"Simulation: {led['theme']}, one continuous speed ramp "
@@ -828,7 +1044,23 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         s_min = float(spec.get("story_dur_min", 25.0))
         s_max = float(spec.get("story_dur_max", 90.0))
 
+        vod_expansions = 0
+        max_vod = int(spec.get("story_max_vod_expansions", 2))
         for cluster in clusters[:int(spec.get("story_max_clusters", 3))]:
+            # THE STORY ARM IS THE RUN'S UNBOUNDED TAIL. Worst case it is
+            # 3 clusters x 6 sources x 2 scene analyses = 36 whisper passes
+            # and 36 Claude vision calls in ONE slot, each VOD expansion
+            # adding a ~3-minute whisper on top — and _story_attempt is
+            # called from inside process(), so all of it repeats on every
+            # slot retry. That is the shape of the 113-minute run and of
+            # the 2026-07-25 job that died on the wall. Stop between
+            # clusters when the budget is gone; a clean fallback to the
+            # clip arm is a video, a cancelled job is nothing.
+            if _deadline_passed():
+                print(f"::warning::[story] out of run budget after "
+                      f"{elapsed_min():.0f} min — falling back to the clip "
+                      f"arm", flush=True)
+                return None
             who = "+".join(cluster["who"])
             urls = [c["source_url"] for c in cluster["clips"]]
             if storyline.story_key(urls) in shipped:
@@ -864,10 +1096,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # payoff, or flagged missing context — and helix gave us
                 # the VOD coordinates
                 helix = pool_by_url.get(c["source_url"], {})
+                # Each expansion is a ~390s re-encoded download plus a
+                # whisper pass over three minutes plus another vision call
+                # — 4-7 minutes apiece, with nothing capping how many fire.
                 if (rep.get("opens_mid_sentence")
                         or not rep.get("payoff_shown")
                         or rep.get("missing_context")) and \
-                        helix.get("video_id"):
+                        helix.get("video_id") \
+                        and vod_expansions < max_vod \
+                        and not _deadline_passed():
+                    vod_expansions += 1
                     vod = clip_edit.maybe_vod_window(
                         {**helix, "duration": rep["duration_s"]},
                         snip_dir)
@@ -1104,8 +1342,21 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # day, so one hot moment can't flood the channel.
                 per_streamer = spec.get("max_per_streamer", 2)
                 today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-                posted_today = [v for v in log["posted"].values()
-                                if str(v.get("ts", "")).startswith(today)]
+                # ONLY THINGS THAT ACTUALLY SHIPPED count against the
+                # variety caps. This used to include blocklist entries,
+                # which carry both `ts` and `streamer` — so with
+                # max_per_streamer=2, two REJECTIONS of one streamer today
+                # banned that streamer from the whole candidate pool even
+                # though nothing shipped. The streamer producing the day's
+                # best material is exactly the one the gate rejects from
+                # most, so this starved supply hardest on the days it
+                # mattered most. _same_event had the same bug: a rejected
+                # clip's title blocked every clip that shared two tokens
+                # with it.
+                posted_today = [v for k, v in log["posted"].items()
+                                if str(v.get("ts", "")).startswith(today)
+                                and not k.startswith("rejected-")
+                                and not v.get("qa_rejected")]
                 from collections import Counter
                 streamer_counts = Counter(v.get("streamer")
                                           for v in posted_today)
@@ -1134,27 +1385,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 cands = []
                 best = []
                 for window in windows:
-                    pool = []
-                    for platform, chans in sources.items():
-                        for ch in chans:
-                            try:
-                                got = clip_edit.discover(
-                                    platform, ch, top=spec.get("top", 8),
-                                    range_=window)
-                                pool += got
-                                _source_health(platform, ch, ok=True,
-                                               clips=len(got))
-                            except Exception as e:  # noqa: BLE001
-                                # keep yt-dlp's own message: the exception
-                                # TYPE alone made rumble undiagnosable for
-                                # days (see clip_edit's rumble handler)
-                                _d = (getattr(e, "output", "") or "").strip()
-                                _d = _d.splitlines()[-1][:160] if _d else ""
-                                _source_health(platform, ch, ok=False,
-                                               err=f"{type(e).__name__}")
-                                print(f"::warning::discover {platform}:{ch} "
-                                      f"failed ({type(e).__name__}) {_d} — "
-                                      "skipped", flush=True)
+                    pool = _sweep(clip_edit, sources, window,
+                                  int(spec.get("top", 8)))
                     fresh = [c for c in pool
                              if _clip_key(c["url"]) not in posted_keys]
                     varied = [c for c in fresh
@@ -1209,8 +1441,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                   f"{len(mined)} unclipped moment(s) from "
                                   f"{len(anchors)} anchor(s)", flush=True)
                             cands += mined
+                        else:
+                            print(f"[vodmine] thin pool ({len(cands)}<"
+                                  f"{min_pool}) but mining returned nothing "
+                                  f"from {len(anchors)} anchor(s)",
+                                  flush=True)
                     except ImportError:
                         pass
+                else:
+                    # say so explicitly: "did mining run?" was otherwise
+                    # unanswerable from the log, and a supply feature that
+                    # silently never fires looks identical to one that
+                    # fires and finds nothing.
+                    print(f"[vodmine] pool is healthy ({len(cands)}>="
+                          f"{min_pool}) — not mining", flush=True)
                 # VELOCITY-FIRST SHORTLIST (diagnosis #4): the viral/feed
                 # signal is views/HOUR, not raw views. The old code shortlisted
                 # the top 8 by raw views and only THEN measured velocity within
@@ -1269,6 +1513,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 for c in shortlist:
                     c["banger"], c["banger_why"] = \
                         _BANGER_CACHE.get(c["url"], (0.5, ""))
+                    if c.get("mined"):
+                        # A MINED MOMENT HAS NO TITLE — nobody wrote one,
+                        # that is the whole point. Handing `title=''` to a
+                        # title judge puts it in the low band by
+                        # construction, so the candidates we mine precisely
+                        # BECAUSE the day is thin were structurally
+                        # disadvantaged by a judge with nothing to read.
+                        # Park them at neutral and let the transcript +
+                        # vision gate downstream — which CAN see them — be
+                        # the one that decides.
+                        c["banger"] = max(c["banger"], 0.5)
+                        c["banger_why"] = "mined moment — no title to judge"
                     # 0.25 floor: even a low-banger clip keeps a quarter of its
                     # velocity weight, so the brain deprioritizes but never
                     # single-handedly vetoes a hugely viral clip.
@@ -1375,11 +1631,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
             if pf:
                 # blocklist by CLIP KEY (not slug) so a slot's retries each
                 # exclude a distinct failed clip instead of overwriting.
-                log["posted"][f"rejected-{_clip_key(info['url']) or slug}"] = {
+                _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
                     "ts": datetime.now(timezone.utc).isoformat(),
-                }
+                })
                 raise RuntimeError("preflight: " + "; ".join(pf)[:180])
 
             # transcribe once, then let the Groq author write the
@@ -1412,7 +1668,18 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # confirmed. Playbook-aligned floor (post at ~0.70+). Fails
             # OPEN: no transcript, no brain, or no score for this clip
             # never blocks a post — this gate only acts on real evidence.
-            if words:
+            # `words is not None` — NOT `if words`. transcribe_words drops
+            # segments over no_speech_prob 0.66 and words under 0.35
+            # confidence, so a clip that is music, crowd noise, screaming
+            # or pure physical comedy returns [] — falsy — and the ENTIRE
+            # gate, contact sheet included, was skipped. The vision judge
+            # built specifically to stop the transcript-only bias against
+            # visual clips was itself gated behind having a transcript.
+            # Worse, the clip then shipped with no content judgment at all
+            # and _any_judgment() was satisfied by the title-based banger
+            # score, so the unjudged backstop did not fire either. A
+            # speechless clip is precisely the one that needs eyes.
+            if words is not None:
                 snip = " ".join(w["w"] for w in words[:40])
                 # GIVE THE GATE EYES (2026-07-31). It judged `words[:40]`
                 # and nothing else, and every rejection all day was about
@@ -1440,8 +1707,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                        verdict=("unavailable" if cb is None else
                                 "reject" if cb < content_floor else "pass"))
                 if cb is not None and cb < content_floor:
-                    log["posted"][
-                        f"rejected-{_clip_key(info['url']) or slug}"] = {
+                    _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                         "source_url": info["url"], "streamer": streamer,
                         "title": info["title"], "qa_rejected": True,
                         # WHY it was rejected, not just THAT it was — the
@@ -1451,7 +1717,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                         "rejected_why": f"{cb:.2f} < {content_floor} "
                                         f"({cwhy or 'no reason given'})"[:180],
                         "ts": datetime.now(timezone.utc).isoformat(),
-                    }
+                    })
                     raise RuntimeError(
                         f"content gate: transcript-aware score {cb:.2f} < "
                         f"{content_floor} ({cwhy or 'no reason'})")
@@ -1465,6 +1731,30 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # the next candidate may score, or the brain may recover.
                 if cb is None and _JUDGES.get(
                         "selection", {}).get("verdict") == "rescue":
+                    # BLOCKLIST BEFORE RAISING. The escalation's own
+                    # promise is "the slot's existing retry blocklists the
+                    # clip and tries the next candidate" — the score-too-low
+                    # branch above does that; this one did not. So the
+                    # retry re-entered process(), found posted_keys and the
+                    # run-wide _BANGER_CACHE unchanged and the shortlist
+                    # sort deterministic, and picked THE SAME CLIP: same
+                    # download, same whisper pass, same two 240s CLI
+                    # timeouts, three times over, and the slot ended empty
+                    # anyway. Exactly when the brain is already unreachable
+                    # and time is scarcest.
+                    _blocklist(log,
+                               f"rejected-{_clip_key(info['url']) or slug}", {
+                                   "source_url": info["url"],
+                                   "streamer": streamer,
+                                   "title": info["title"],
+                                   "qa_rejected": True,
+                                   "rejected_by": "rescue fail-closed",
+                                   "rejected_why":
+                                       "weak title + no transcript judge "
+                                       "reachable — nothing vouched for it",
+                                   "ts": datetime.now(
+                                       timezone.utc).isoformat(),
+                               })
                     raise RuntimeError(
                         "rescue needs the transcript judge and it is "
                         "unavailable — a weak-title clip must EARN its slot, "
@@ -1475,11 +1765,11 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # skip it — a confusing clip is worse than a lost slot. Blocklist
             # so it can't be re-picked (same as a QA rejection).
             if meta and meta.get("edit", {}).get("complete") is False:
-                log["posted"][f"rejected-{_clip_key(info['url']) or slug}"] = {
+                _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
                     "ts": datetime.now(timezone.utc).isoformat(),
-                }
+                })
                 raise RuntimeError(
                     "director: clip incomplete (no setup / payoff cut off)")
 
@@ -1589,14 +1879,14 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 # Rides log["posted"] so posted_keys excludes it for the
                 # rest of this run and — once any later slot saves the log
                 # — for every future run too.
-                log["posted"][f"rejected-{_clip_key(led['source_url']) or slug}"] = {
+                _blocklist(log, f"rejected-{_clip_key(led['source_url']) or slug}", {
                     "source_url": led["source_url"],
                     "streamer": led["streamer"],
                     "title": (led.get("authored_title")
                               or led["clip_title"]),
                     "qa_rejected": True,
                     "ts": datetime.now(timezone.utc).isoformat(),
-                }
+                })
                 raise RuntimeError(
                     "qa_rejected: " + "; ".join(qa["problems"])[:200])
         elif pkg["capture"]["kind"] == "sim":
@@ -1674,13 +1964,61 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                                    langs=ALL_LANGS)
             except Exception as e:  # noqa: BLE001
                 print(f"[localize] extended set skipped: {e}", flush=True)
-            up = YouTubeUploader(channel="third").upload(
-                file_path=out_mp4, title=title,
-                description=description,
-                tags=_yt_tags(pkg, led),
-                publish_at=publish_at,
-                localizations=localizations,
-            )
+            # ---- CLAIM THE SLOT BEFORE SENDING BYTES ------------------
+            # The resumable upload can commit on YouTube's side and THEN
+            # fail (dropped connection, transient 5xx on the last chunk).
+            # The exception used to unwind past log["posted"][slug] and
+            # _save_log, so the video existed and NOTHING recorded it —
+            # and main() then retried the slot, re-ranked the identical
+            # candidate board, and uploaded the same clip a second time to
+            # the same publish_at. The FINAL DEDUPE GUARD could not help:
+            # it reads posted_keys, which never learned about upload #1.
+            #
+            # So persist an in-flight claim FIRST. If the upload dies for
+            # any reason the claim survives, posted_keys excludes the clip
+            # key, and the retry picks something else. Worst case we lose
+            # one clip; the alternative is two videos on the channel from
+            # one slot, which is the one failure this log exists to stop.
+            _claim = {
+                "pending": True,
+                "source_url": led.get("source_url", ""),
+                "story_key": led.get("story_key"),
+                "streamer": led.get("streamer", ""),
+                "title": title,
+                "kind": led.get("kind", "cli"),
+                "ts": datetime.now(timezone.utc).isoformat(),
+                "note": "upload started; entry is upgraded on success and "
+                        "left pending if the upload died mid-flight",
+            }
+            log["posted"][slug] = _claim
+            _save_log(log)
+            _checkpoint_log("claim upload slot")
+            # publish_at was computed at run START with only a 30-minute
+            # lead on slot 0, then frozen. Everything between then and here
+            # — discovery over 66 handles, VOD mining, download, whisper,
+            # authoring, the vision gate, the render, QA, up to 3 retries,
+            # and on a story slot six more downloads and whisper passes —
+            # can easily eat 30 minutes. A past publishAt with
+            # privacyStatus=private is either a hard API rejection after
+            # the full render is paid for, or a video that sits private
+            # and NEVER GOES LIVE while the posted log records a URL that
+            # says it shipped. Both are invisible. Clamp at send time.
+            publish_at = _clamp_publish_at(publish_at)
+            try:
+                up = YouTubeUploader(channel="third").upload(
+                    file_path=out_mp4, title=title,
+                    description=description,
+                    tags=_yt_tags(pkg, led),
+                    publish_at=publish_at,
+                    localizations=localizations,
+                )
+            except Exception:
+                print(f"::warning::[upload] {slug} failed mid-flight — the "
+                      f"pending claim STAYS in the posted log. If the video "
+                      f"did land on YouTube it is now deduped; if it did "
+                      f"not, this clip is retired rather than risked twice.",
+                      flush=True)
+                raise
             result.update(ok=True, video_url=getattr(up, "url", str(up)))
             # ADDITIVE REACH: same clip → TikTok FYP (+ Reels if configured),
             # where a small channel can actually get distributed. Never breaks
@@ -1827,6 +2165,7 @@ def main() -> int:
     # volume concentrates in US prime time (17:00 UTC = 1pm ET) instead of
     # spilling into dead overnight hours. 90 min × 8 slots ≈ 17:00→03:30 UTC.
     slot_gap = timedelta(minutes=90)
+    log = _load_log()
     publish_base = None
     if not args.no_schedule and not args.dry_run:
         now = datetime.now(timezone.utc)
@@ -1835,8 +2174,37 @@ def main() -> int:
         # start at least 30 min out (roll forward a slot at a time if late)
         while publish_base < now + timedelta(minutes=30):
             publish_base += slot_gap
+        # ...AND PAST EVERYTHING TODAY ALREADY CLAIMS.
+        # `slot` restarts at 0 every run while publish_base is recomputed
+        # from THIS run's clock, and an already-posted slug does not
+        # advance `slot` — so the first UNPOSTED slot always got
+        # publish_base + 0. Live example: the 13:01 run posts slot 1 at
+        # 17:00Z; the 14:19 run recomputes publish_base = 17:00 (still
+        # >= 14:49, no roll), skips the posted slot 1 without advancing,
+        # and hands slot 2 publish_at = 17:00Z — an exact collision, two
+        # Shorts live in the same minute. The workflow fires up to 4x a
+        # day, so this is the normal configuration, not an edge case.
+        _claimed = []
+        for _v in log.get("posted", {}).values():
+            _p = str(_v.get("publish_at") or "")
+            if not _p:
+                continue
+            try:
+                _dt = datetime.fromisoformat(_p.replace("Z", "+00:00"))
+            except ValueError:
+                continue
+            if _dt.tzinfo is None:
+                _dt = _dt.replace(tzinfo=timezone.utc)
+            if _dt > now - timedelta(hours=6):
+                _claimed.append(_dt)
+        if _claimed:
+            _hi = max(_claimed)
+            while publish_base <= _hi:
+                publish_base += slot_gap
+            print(f"[schedule] a prior run already claimed up to "
+                  f"{_hi.isoformat()} — this run starts at "
+                  f"{publish_base.isoformat()}", flush=True)
 
-    log = _load_log()
     _audit_dupes(log)   # loud tripwire — surfaces any dup every run
     # uploaders.upload wants publish_at as an RFC3339 string, not datetime.
     # Slot index only advances for packages that will actually post, so
@@ -1856,6 +2224,22 @@ def main() -> int:
     # is 120 min (a run died on that wall on 2026-07-25).
     MAX_SLOT_ATTEMPTS = 3
     for pkg, path in packages:
+        # WALL-CLOCK DEADLINE. third.yml's ceiling is 120 minutes and a run
+        # was killed on it (2026-07-25) — with three videos already live on
+        # YouTube and the commit step never reached, so nothing in git knew
+        # they existed. A cancelled job is the worst outcome available: no
+        # stats, no verdicts, and a dedupe log that has to be reconstructed
+        # from the channel. Stopping cleanly with three slots filled beats
+        # being killed with three-and-a-bit. Skips, not errors, so the run
+        # still exits 0 and the workflow still commits.
+        if _deadline_passed():
+            print(f"::warning::[budget] {_BUDGET_MIN} min elapsed — stopping "
+                  f"before {pkg['slug']} so the run finishes cleanly instead "
+                  f"of being killed at the job's 120-minute wall. Remaining "
+                  f"slots go to the next run.", flush=True)
+            results.append({"slug": pkg["slug"], "ok": False,
+                            "skipped": "run budget reached"})
+            continue
         # BRAIN-HEALTH GATE: on 2026-07-29 every rank/author/scene call
         # failed for ~90 min and the run still shipped 4 clips — picked by
         # raw view count (banger pinned at 0.5), no scene analysis, fallback
@@ -1885,6 +2269,11 @@ def main() -> int:
             if r.get("ok") or r.get("skipped"):
                 break
             r["attempts"] = attempt
+            if _deadline_passed():
+                print(f"::warning::[budget] out of time after attempt "
+                      f"{attempt} on {pkg['slug']} — not retrying",
+                      flush=True)
+                break
             if attempt < MAX_SLOT_ATTEMPTS:
                 print(f"::warning::[slot] {pkg['slug']} attempt {attempt} "
                       f"failed ({str(r.get('error',''))[:70]}) — retrying "
@@ -1918,7 +2307,7 @@ def main() -> int:
                              if v.get("clips", 0) == 0},
             "clips": [{k: r.get(k) for k in
                        ("slug", "ok", "skipped", "render_level", "layout",
-                        "self_healed", "error", "judges")
+                        "self_healed", "error", "judges", "took_s")
                        if r.get(k) is not None}
                       for r in results],
         })
@@ -1926,6 +2315,33 @@ def main() -> int:
         atomic_write_json(stats_path, {"runs": hist[-30:]})
     except Exception as e:  # noqa: BLE001 — stats never fail the run
         print(f"[stats] skipped: {e}", flush=True)
+    # Whatever else happened, the blocklist and any pending upload claims
+    # must reach disk — those are what stop the next run re-judging clips
+    # this one already rejected, and re-uploading a video this one may
+    # already have published. The workflow's commit step reads the file.
+    try:
+        _save_log(log)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[log] final save failed: {e}", flush=True)
+
+    # SAY WHETHER THE CHANNEL ACTUALLY PRODUCED ANYTHING.
+    # An already-posted slug counts as ok=True (the slot is legitimately
+    # satisfied), so a run that shipped ZERO new videos exited 0 with a
+    # green checkmark. On 2026-07-31 the 14:19, 16:18 and 22:27 runs each
+    # produced nothing and each looked fine in the Actions tab, because
+    # slot 1 was already posted from the morning. Partial success is still
+    # success — but "shipped nothing new" has to be legible.
+    shipped = [r for r in results
+               if r.get("ok") and not r.get("skipped")]
+    if not shipped:
+        print(f"::warning::[run] NO NEW VIDEOS. {len(results)} slot(s): "
+              + "; ".join(f"{r.get('slug')}="
+                          + str(r.get('skipped') or r.get('error')
+                                or 'ok')[:60] for r in results),
+              flush=True)
+    else:
+        print(f"[run] shipped {len(shipped)} new video(s): "
+              + ", ".join(str(r.get("slug")) for r in shipped), flush=True)
     # partial success is success: a late-day slot finding no fresh clip
     # must not fail the run (that skips the posted-log commit and desyncs
     # dedupe state). Fail only when NOTHING succeeded.

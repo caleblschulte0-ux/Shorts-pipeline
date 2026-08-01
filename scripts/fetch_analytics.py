@@ -256,6 +256,12 @@ def _entries(log: dict) -> list[dict]:
             # them — they have no video URL and must not enter analytics.
             if slug.startswith("rejected-") or e.get("qa_rejected"):
                 continue
+            # A PENDING claim is a slot reserved just before the upload
+            # started, so a mid-flight failure can't let a retry post the
+            # same clip twice. It has no video URL — and if the upload did
+            # in fact land, it is not something this run can report on.
+            if e.get("pending"):
+                continue
             out.append({"url": e.get("url"), "ident": slug,
                         # third stamps `ts`; explainer uses publish_at/at.
                         "posted_at": e.get("publish_at") or e.get("at")

@@ -44,6 +44,24 @@ def _dur(path: Path) -> float:
         return 0.0
 
 
+MIN_BYTES = 10_000
+
+
+def _usable(p: Path) -> bool:
+    """A previously-extracted moment is only reusable if it is WHOLE.
+
+    `ffmpeg -y` creates the destination immediately, so a timeout or a
+    non-zero exit leaves a truncated file with no moov atom behind. The
+    caller short-circuits on `dest.exists()`, so without this that corpse
+    is handed downstream as a valid candidate: preflight rejects it, it
+    gets a permanent `rejected-vodmine://...` blocklist entry, and a slot
+    attempt is burned — every time, because the bad file is still there."""
+    try:
+        return p.exists() and p.stat().st_size > MIN_BYTES and _dur(p) > 1.0
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def _extract(src: Path, out: Path, start: float, length: float) -> bool:
     try:
         subprocess.run(
@@ -51,9 +69,16 @@ def _extract(src: Path, out: Path, start: float, length: float) -> bool:
              "-t", f"{length:.2f}", "-i", str(src),
              "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
              "-c:a", "aac", str(out)], check=True, timeout=180)
-        return out.exists() and out.stat().st_size > 10_000
+        if _usable(out):
+            return True
     except Exception:  # noqa: BLE001
-        return False
+        pass
+    # never leave a partial file behind for the exists() short-circuit
+    try:
+        out.unlink(missing_ok=True)
+    except Exception:  # noqa: BLE001
+        pass
+    return False
 
 
 def maybe_mine(clip: dict, work, *, span: float = 180.0, n: int = 3,
@@ -99,6 +124,20 @@ def maybe_mine(clip: dict, work, *, span: float = 180.0, n: int = 3,
                                        n=n + 2, min_gap=min_gap)
         if not peaks:
             return []
+        # RANK BY STRENGTH, NOT BY CLOCK. energy_peaks selects the top
+        # n+2 by energy and then returns them `sorted(key=t)` — the rank
+        # is discarded. We over-fetch precisely so the anchor-overlap
+        # filter has slack, but iterating in TIME order and breaking at n
+        # keeps whichever survivors happen to come first in the window and
+        # throws away the strongest moment the motion pass actually found.
+        # Re-attach the energy we already have and mine the best ones.
+        _e = {round(t, 2): v for t, v in motion}
+
+        def _strength(p) -> float:
+            t = p[0]
+            return max((v for k, v in _e.items() if abs(k - t) <= 0.5),
+                       default=0.0)
+        peaks = sorted(peaks, key=_strength, reverse=True)
 
         # Never re-surface the anchor's own window — we already have that
         # clip, and a near-duplicate upload is the one unforgivable bug.
@@ -111,13 +150,25 @@ def maybe_mine(clip: dict, work, *, span: float = 180.0, n: int = 3,
             start = max(0.0, t_peak - moment_s * 0.4)
             if start + moment_s > dur:
                 start = max(0.0, dur - moment_s)
-            dest = work / f"mined_{vid}_{int(start)}.mp4"
-            if not dest.exists() and not _extract(nb_path, dest, start,
-                                                  moment_s):
-                continue
             # absolute offset within the VOD, so the record is honest
             # about where this came from and dedupe can key on it
             abs_off = float(nb.get("vod_start_s") or 0.0) + start
+            # NAME THE FILE BY THE ABSOLUTE OFFSET, NOT THE RELATIVE ONE.
+            # `start` is relative to the neighbourhood window and is
+            # clamped to canonical values (0.0, dur - moment_s), so two
+            # anchors from the SAME VOD at different vod_offsets collide
+            # on int(start) very readily. `work` is shared across every
+            # slot and retry in the run, so the second anchor's
+            # dest.exists() was true and it silently reused the FIRST
+            # anchor's bytes while stamping its own abs_off — two distinct
+            # vodmine:// dedupe keys pointing at one video. posted_keys,
+            # the final dedupe guard and _audit_dupes all key on the URL,
+            # so none of them could see it: a duplicate upload invisible
+            # to every guard in the channel.
+            dest = work / f"mined_{vid}_{int(abs_off)}.mp4"
+            if not _usable(dest) and not _extract(nb_path, dest, start,
+                                                  moment_s):
+                continue
             out.append({
                 "url": f"{SCHEME}://{vid}/{int(abs_off)}",
                 "channel": clip.get("channel", ""),

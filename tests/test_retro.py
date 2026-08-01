@@ -280,19 +280,28 @@ class TestContractAndCodeAgree(unittest.TestCase):
             "retro.yml": ["review_proposals.py"],
             "retro_decide.yml": ["pending_decisions.py", "retro_reply.py"],
         }
+        # MATCH THE RETRO PROPOSALS, NOT THE WORD.
+        # The trigger was a bare `"proposals" in body`, which fired on
+        # curiosity-ci.yml because it runs scripts/test_learning_proposals.py
+        # — an unrelated curiosity-channel feature that never reads
+        # retro/. A guard that cries wolf on a substring gets muted, and a
+        # muted guard protects nothing. Anchor on the real artifact: the
+        # retro/ proposals tree and the scripts that read it.
+        import re as _re
+        touches = _re.compile(
+            r"retro[/\w.-]*proposals|proposals/|review_proposals|"
+            r"pending_decisions|retro_reply|apply_proposal")
         for wf in (ROOT / ".github" / "workflows").glob("*.yml"):
             body = wf.read_text()
-            # Match the retro PROPOSAL PATH, not the bare word. `proposals`
-            # alone also matches curiosity-ci.yml running
-            # `scripts/test_learning_proposals.py` — an unrelated unit test.
-            # That false positive sat undetected because `unittest discover`
-            # was crashing on an unrelated import collision before reaching
-            # this test at all (see docs/SYSTEM_AUDIT.md).
-            if not any(t in body for t in ("retro/", "retro_reply",
-                                           "review_proposals",
-                                           "pending_decisions")):
-                continue
+            # (The false positive sat undetected because `unittest
+            # discover` was crashing on an unrelated import collision
+            # before reaching this test at all — see docs/SYSTEM_AUDIT.md.)
+            #
+            # This half stays UNCONDITIONAL and global: no workflow,
+            # anywhere, retro-related or not, may apply a proposal.
             self.assertNotIn("apply_proposal", body)
+            if not touches.search(body):
+                continue
             self.assertIn(wf.name, allowed,
                           f"{wf.name} touches proposals but is not one of the "
                           f"two workflows allowed to")
