@@ -1983,14 +1983,87 @@
       "ts": "2026-08-01T12:45:05.978318+00:00"
     },
     "clip-20260801-2": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-beacc4e40840ad93",
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/Fgzykp-SuEI",
       "title": "His 'Viral' Drive-Thru Bit Almost Got His Friend In Trouble",
       "kind": "story",
-      "ts": "2026-08-01T12:56:33.012089+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-01T12:56:43.142075+00:00",
+      "uploaded_at": "2026-08-01T12:56:43.142095+00:00",
+      "publish_at": "2026-08-01T18:30:00Z",
+      "story_key": "story-beacc4e40840ad93",
+      "member_keys": [
+        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf",
+        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf",
+        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf",
+        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf",
+        "https://www.twitch.tv/stableronaldo/clip/WiseBeautifulChickenLitty-ofupLVdgQO3MeVqf"
+      ],
+      "streamer": "stableronaldo",
+      "who": [
+        "stableronaldo"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 5,
+      "story_structure": "chronological",
+      "duration_s": 70.8,
+      "narrative_score": 66,
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-oddbusyflamingoritzmitz-2sxsmk8e44cr9-tk": {
+      "source_url": "https://www.twitch.tv/silky/clip/OddBusyFlamingoRitzMitz-2SxsMK8E44cr9-tK",
+      "streamer": "silky",
+      "title": "gg",
+      "qa_rejected": true,
+      "ts": "2026-08-01T12:56:53.414586+00:00"
+    },
+    "rejected-stormyspikysmoothiekappapride-oprgjbd4hfrpfvwy": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/StormySpikySmoothieKappaPride-oPRGJBD4hfrpFvwy",
+      "streamer": "sodapoppin",
+      "title": "sadge",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.7 (vague chatter, no clear payoff)",
+      "ts": "2026-08-01T12:57:45.126995+00:00"
+    },
+    "rejected-biggoldenspaghettibatchest-pe5vnwf3vgisde9y": {
+      "source_url": "https://www.twitch.tv/fanum/clip/BigGoldenSpaghettiBatChest-pE5vnwf3vGIsde9Y",
+      "streamer": "fanum",
+      "title": "tufffff",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.7 (streamer freestyles to camera, no stakes)",
+      "ts": "2026-08-01T12:58:33.492401+00:00"
+    },
+    "rejected-mildneighborlydaikonbcouch-4xotbqj_fxfn7bvw": {
+      "source_url": "https://www.twitch.tv/forsen/clip/MildNeighborlyDaikonBCouch-4XOTBQj_fXFN7Bvw",
+      "streamer": "forsen",
+      "title": "2026 Gaming",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.7 (menu talk, sponsor mouse mention, no eve)",
+      "ts": "2026-08-01T12:59:34.575690+00:00"
+    },
+    "rejected-toughrelentlesspeanutomgscoots-pds5jjjorvbn3ry_": {
+      "source_url": "https://www.twitch.tv/lacy/clip/ToughRelentlessPeanutOMGScoots-pdS5jJjORvBN3Ry_",
+      "streamer": "lacy",
+      "title": "RIPPED IT",
+      "qa_rejected": true,
+      "ts": "2026-08-01T12:59:43.884384+00:00"
+    },
+    "rejected-geniussuspicioussardinechocolaterain-5cho1jygal3310xl": {
+      "source_url": "https://www.twitch.tv/knut/clip/GeniusSuspiciousSardineChocolateRain-5cHo1JyGAl3310xL",
+      "streamer": "knut",
+      "title": "Ayo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.7 (routine gym pull-up attempt, no payoff)",
+      "ts": "2026-08-01T13:01:21.058271+00:00"
     }
   }
 }

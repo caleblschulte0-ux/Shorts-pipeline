@@ -3,56 +3,6 @@
     {
       "date": "20260716",
       "dry_run": false,
-      "ts": "2026-07-16T12:04:08+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 7,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 46,
-        "with_retention": 40,
-        "with_curve": 11,
-        "fetched_at": "2026-07-16T10:27:36.398534+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260716-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260716-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Multiple consecutive frames (8.8s, 11.3s, 13.8s, 16.3s, 18.8s, 23.8s, 26.3s) show empty walls/ceiling/floor with no subj; vision: Roughly half the contact sheet has no person in frame despite "
-        },
-        {
-          "slug": "clip-20260716-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Multiple frames (e.g. 'YOU'RE NOT ON', 'YOU SMELL LIKE', 'NO!', 'YOU HAVE LIKE', 'YOU HAVE SOMETHING', 'THAT'S WE SHIT!'; vision: Subject is absent or unrecognizable in roughly half the sample"
-        },
-        {
-          "slug": "clip-20260716-4",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260716-5",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        }
-      ]
-    },
-    {
-      "date": "20260716",
-      "dry_run": false,
       "ts": "2026-07-16T14:54:38+00:00",
       "feedback": {
         "snapshot": true,
@@ -1760,6 +1710,158 @@
               "verdict": "reject"
             }
           }
+        }
+      ]
+    },
+    {
+      "date": "20260801",
+      "dry_run": false,
+      "ts": "2026-08-01T13:01:21+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 112,
+        "with_retention": 102,
+        "with_curve": 15,
+        "fetched_at": "2026-08-01T10:16:28.138557+00:00"
+      },
+      "brain": {
+        "ok": 26,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260801-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.7 (no scare shown, just towel banter)",
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "jump scare, visible funny reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "no scare shown, just towel banter",
+              "floor": 0.7,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 68.3
+        },
+        {
+          "slug": "clip-20260801-2",
+          "ok": true,
+          "took_s": 697.3
+        },
+        {
+          "slug": "clip-20260801-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.7 (streamer freestyles to camera, no stakes)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague slang reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "streamer freestyles to camera, no stakes",
+              "floor": 0.7,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 48.2
+        },
+        {
+          "slug": "clip-20260801-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (routine gym pull-up attempt, no payoff)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "routine gym pull-up attempt, no payoff",
+              "floor": 0.7,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 97.2
         }
       ]
     }
