@@ -369,7 +369,7 @@
   "done_marker": "exchange/bundles/20260801/DONE",
   "counts": {
     "packages": 6,
-    "requests": 17,
+    "requests": 16,
     "animations": 0,
     "to_author": 0
   },
@@ -577,8 +577,8 @@
           "shot_index": 3,
           "phrase": "drywall now sagging",
           "query": "damaged drywall ceiling",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
@@ -610,16 +610,15 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 2,
         "weak": 0,
-        "missing": 7,
+        "missing": 6,
         "unknown": 0
       },
-      "strong_fraction": 0.125,
+      "strong_fraction": 0.25,
       "requested": [
         "reddit-landlord-in-writing-only-s1-9c1d6332383d",
         "reddit-landlord-in-writing-only-s2-acb2b0a0d943",
-        "reddit-landlord-in-writing-only-s3-c9b9822c049c",
         "reddit-landlord-in-writing-only-s4-60d2991fd567",
         "reddit-landlord-in-writing-only-s5-1a1d65b7d010",
         "reddit-landlord-in-writing-only-s6-e089e14a5324",
@@ -924,32 +923,6 @@
       "shot_index": 2,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: mold wall damage. It accompanies the narration: \"mold starting to grow\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-in-writing-only-s3-c9b9822c049c",
-      "safe_request_id": "reddit-landlord-in-writing-only-s3-c9b9822c049c",
-      "drive_filename": "20260801__reddit-landlord-in-writing-only-s3-c9b9822c049c.png",
-      "prompt_sha256": "22c8ec7cc9bc9445beacd3405ea025768ee44f49aae39d93977976c41ef38ae1",
-      "checkpoint_path": "exchange/bundles/20260801/media-progress/reddit-landlord-in-writing-only-s3-c9b9822c049c.json",
-      "slug": "reddit-landlord-in-writing-only",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: damaged drywall ceiling. It accompanies the narration: \"drywall now sagging\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
