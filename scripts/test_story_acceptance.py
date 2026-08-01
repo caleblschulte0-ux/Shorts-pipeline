@@ -800,7 +800,7 @@ def main() -> int:  # noqa: C901
           'cb is None and _JUDGES.get(' in _rt_src
           and "must EARN its slot" in _rt_src)
     check("a normal (non-rescued) clip still fails OPEN on that judge",
-          "cb is not None and cb < content_floor" in _rt_src)
+          "cb is not None and cb < eff_floor" in _rt_src)
     check("the escalation is recorded as a verdict, not silent",
           '_judge("selection", verdict="rescue"' in _rt_src
           and '_judge("selection", verdict="skip"' in _rt_src)
@@ -1339,6 +1339,81 @@ def main() -> int:  # noqa: C901
               "answered read as a healthy brain)", _au._BRAIN["fail"] >= 1)
     finally:
         _au._BRAIN.update(_bh)
+
+    # ====== the content gate must be able to say YES ===================
+    # 2026-08-01: the gate rejected 17 of 17 clips and the channel shipped
+    # one video, two days running. min_banger_content was 0.70 while the
+    # rubric anchors HIGH at 0.8-1.0 and MEDIUM at 0.4-0.6 — nothing
+    # between 0.6 and 0.8, so the scale never emitted a passing score.
+    # Observed max across every score ever recorded (n=18): 0.55.
+    _rank = _au._RANK_SYSTEM
+    import re as _re2
+    _bands = [(float(a), float(b)) for a, b in
+              _re2.findall(r"\((\d\.\d+)-(\d\.\d+)\)", _rank)]
+    _covered = lambda x: any(lo <= x <= hi for lo, hi in _bands)  # noqa: E731
+    check("the rubric's score bands leave NO dead zone — a threshold in a "
+          "gap is an off switch, not a quality bar",
+          all(_covered(x / 100) for x in range(0, 101, 5)))
+    check("...specifically, the 0.6-0.8 band a real clip lands in exists",
+          _covered(0.65) and _covered(0.75))
+    check("the GOOD band names what a CLIPS channel actually posts, not "
+          "only beef and tears",
+          "GOOD (0.6-0.8)" in _rank
+          and "does NOT need" in _rank)
+
+    _spec = _json.loads((REPO / "state" / "third_packages"
+                         / "default_clip.json").read_text())["capture"]
+    _bar = float(_spec["min_banger_content"])
+    _hard = float(_spec["content_hard_floor"])
+    check("the aspirational bar is inside the rubric's scale",
+          _covered(_bar))
+    check("the hard floor is inside the rubric's scale", _covered(_hard))
+    check("the hard floor sits exactly on the LOW/MEDIUM boundary, so "
+          "(LOW tops out at 0.3), so sponsor reads and menu talk are "
+          "refused on every attempt", 0.30 <= _hard <= 0.45)
+    check("the hard floor never exceeds the aspirational bar",
+          _hard <= _bar)
+
+    # the ladder itself: reach for a great clip, never post garbage, and
+    # never let the slot die empty when a decent clip was right there
+    _ladder = [_bar, (_bar + _hard) / 2.0, _hard]
+    check("the floor RELAXES across attempts instead of being one cliff",
+          _ladder[0] > _ladder[1] > _ladder[2])
+    check("...and bottoms out at the hard floor, never below",
+          min(_ladder) == _hard)
+    check("run_third computes the ladder off the attempt number",
+          "eff_floor = ladder[min(attempt, len(ladder)) - 1]" in _rt_src
+          and "attempt: int = 1" in _rt_src)
+    check("the attempt number actually reaches process()",
+          "log=log, attempt=attempt)" in _rt_src)
+
+    # a merely-decent clip must not be banned forever
+    check("only a clip under the HARD floor is permanently blocklisted",
+          "if cb < hard:" in _rt_src)
+    check("one that merely missed a higher attempt's bar is passed over "
+          "for the run, not blocklisted",
+          "_RUN_EXCLUDE[_clip_key(info[\"url\"])] = cb" in _rt_src)
+    check("...and comes back on the final attempt rather than the slot "
+          "ending empty",
+          "if attempt < MAX_SLOT_ATTEMPTS:" in _rt_src
+          and "posted_keys |= set(_RUN_EXCLUDE)" in _rt_src)
+    check("MAX_SLOT_ATTEMPTS is module-level (the gate reads it too)",
+          _rtm.MAX_SLOT_ATTEMPTS >= 2)
+
+    # REGRESSION GUARD, stated as the live incident: replay 2026-08-01's
+    # real 17 scores through the ladder. A configuration where the whole
+    # slate is refused must fail this test, loudly, forever.
+    _live = [0.55, 0.35, 0.35, 0.30, 0.25, 0.25, 0.20, 0.20, 0.20,
+             0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]
+    _passable = sum(1 for s in _live if s >= min(_ladder))
+    check("2026-08-01's REAL slate would now yield postable clips "
+          f"(it yielded 0 of 17) — got {_passable}", _passable >= 3)
+    check("...and the genuinely weak ones are still refused "
+          "(sponsor reads, menu talk, rambling)",
+          sum(1 for s in _live if s < min(_ladder)) >= 10)
+    check("the judges digest records which bar was applied, so a relaxed "
+          "attempt is never mistaken for a clean pass",
+          "aspirational=content_floor" in _rt_src)
 
     print()
     if FAILS:
