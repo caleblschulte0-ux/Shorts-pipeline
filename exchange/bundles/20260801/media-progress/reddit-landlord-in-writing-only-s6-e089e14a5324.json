@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260801",
+  "bundle": {
+    "identity": "cc8344d95d3c92923106261809d875e59f2def1644a2d334897f77a856a780ab",
+    "path": "exchange/bundles/20260801/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-01T11:23:30Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+  "safe_request_id": "reddit-landlord-in-writing-only-s6-e089e14a5324",
+  "prompt_sha256": "0564b94e7d810fb01e0ca18b42c96c0c651107c0f5860a90e9bebd6a07e716c1",
+  "prompt_used": "An editorial illustration for a short-form video: angry phone call. It accompanies the narration: \"habitability case\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1P-7uXiSPXLz6PEUQKdM1a00X22cnGjcm",
+    "filename": "20260801__reddit-landlord-in-writing-only-s6-e089e14a5324.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1P-7uXiSPXLz6PEUQKdM1a00X22cnGjcm",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c0cb1d22b73c665904b949647ba73de964fd198833fd15c2332e0437da563362",
+    "bytes": 2061535,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}
