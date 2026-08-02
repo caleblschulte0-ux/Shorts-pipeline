@@ -241,6 +241,27 @@ class TestZFormatAwareShowrunnerContract(unittest.TestCase):
         self.assertIn("current leader/crossover/payoff", text)
         self.assertIn("do not require skeletal sprite animation", text)
 
+    def test_exact_renderer_contract_supplies_objective_mascot_evidence(self):
+        from scripts.showrunner_review import apply_renderer_evidence
+        dims, checks = apply_renderer_evidence(
+            {"mascot": 1},
+            {"decorative_mascot": {"present": True, "evidence": "model"}},
+            {"format": "reddit_story", "mascot_choreography":
+             "per_beat_pose_and_alternating_position"},
+        )
+        self.assertEqual(dims["mascot"], 3)
+        self.assertFalse(checks["decorative_mascot"]["present"])
+
+    def test_unknown_claim_cannot_override_the_gate(self):
+        from scripts.showrunner_review import apply_renderer_evidence
+        dims, checks = apply_renderer_evidence(
+            {"mascot": 1},
+            {"decorative_mascot": {"present": True, "evidence": "model"}},
+            {"format": "reddit_story", "mascot_choreography": "trust-me"},
+        )
+        self.assertEqual(dims["mascot"], 1)
+        self.assertTrue(checks["decorative_mascot"]["present"])
+
 
 if __name__ == "__main__":
     unittest.main()
