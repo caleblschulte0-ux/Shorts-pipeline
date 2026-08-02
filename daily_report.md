@@ -1,33 +1,20 @@
 # Daily Trending Shorts — 2026-08-02
 
-> **ChatGPT wrote 3 of today's 5 packages** — the Claude Routine did not run (weekly limit?).
 > **2 package(s) came from the reserve bank** — top it up when Claude is back: `python scripts/package_reserve.py status`.
 
-- queued: **5**
-- succeeded: **3**
+- queued: **2**
+- succeeded: **1**
 - quarantined (off-topic imagery): **0**
-- failed: **2**
+- failed: **1**
 
 ## Posted
-- **China vs U.S.: The Urban Population Crossover**
-  - topic: China vs U.S.: The Urban Population Crossover
+- **Smartphones Reached Half the Planet**
+  - topic: Smartphones Reached Half the Planet
   - publishes: `2026-08-02T20:30:00Z`
-  - https://youtube.com/shorts/8bLQMgdgoKM
-  - took: 112.4s
-- **Mobile Subscriptions: China, India, U.S.**
-  - topic: Mobile Subscriptions: China, India, U.S.
-  - publishes: `2026-08-03T13:00:00Z`
-  - https://youtube.com/shorts/KaGbGkoxVwI
-  - took: 113.3s
-- **My Boss Wanted Every Email. He Got Every Email.**
-  - topic: My Boss Wanted Every Email. He Got Every Email.
-  - publishes: `2026-08-03T14:30:00Z`
-  - https://youtube.com/shorts/uUcGuDtGOkw
-  - took: 231.0s
+  - https://youtube.com/shorts/MMOE_TgX_mU
+  - took: 111.6s
 
 ## Failed
-- **Smartphone Users Worldwide: The Climb**
-  - error: `showrunner_block: showrunner BLOCK: The video effectively demonstrates smartphone user growth on a graph, but the mascot's role is decorative, and the payoff is confusing and misaligned with the video's core topic.`
 - **He Wouldn't Stop The Music. So I Got Creative**
-  - error: `showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals and good pacing, but the mascot remains largely decorative.`
+  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets Aug 5, 12am (UTC)\n", "headless-claude[1]: claude CLI rc`
 
