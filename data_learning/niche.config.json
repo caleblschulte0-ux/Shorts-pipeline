@@ -17754,6 +17754,56 @@
         }
       ],
       "words_by": "deterministic"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_rur_totl_zs_trend",
+          "params": {
+            "file": "sp_rur_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 RURAL POPULATION",
+          "topic": "Rural population",
+          "say": "In 1972, rural population was 63.1 % of total population. By 2025: 42.2 % of total population \u2014 down to 67 percent of that."
+        },
+        {
+          "source": "offline",
+          "key": "en_urb_lcty_ur_zs_trend",
+          "params": {
+            "file": "en_urb_lcty_ur_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 POPULATION IN THE ",
+          "topic": "Population in the largest city",
+          "say": "In 1972, population in the largest city was 18.2 % of urban population. By 2025: 16.2 % of urban population \u2014 barely moved."
+        },
+        {
+          "source": "offline",
+          "key": "sp_pop_grow_trend",
+          "params": {
+            "file": "sp_pop_grow_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 POPULATION GROWTH",
+          "topic": "Population growth",
+          "say": "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+        }
+      ],
+      "words_by": "deterministic"
     }
   ],
   "videos": [
