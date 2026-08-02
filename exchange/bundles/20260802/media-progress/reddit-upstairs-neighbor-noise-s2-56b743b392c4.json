@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260802",
+  "bundle": {
+    "identity": "c0ca71d3d3ede556319b1cb19ba0c3327a4a0a0a8532f18b6c45eb71576b4291",
+    "path": "exchange/bundles/20260802/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-02T12:16:12.247Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-upstairs-neighbor-noise-s2-56b743b392c4",
+  "safe_request_id": "reddit-upstairs-neighbor-noise-s2-56b743b392c4",
+  "prompt_sha256": "61cafb40f74bb24ca796199a3e1e133aac1262e860f88a91811c0c9fa3baf443",
+  "prompt_used": "An editorial illustration for a short-form video: complaint form paper. It accompanies the narration: \"filed a noise complaint\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+    "filename": "20260802__reddit-upstairs-neighbor-noise-s2-56b743b392c4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b4615a48ade9b220ad52ad5cf2a190f0f3af655fca18346d8b4b11c41c74f92c",
+    "bytes": 2774153,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}
