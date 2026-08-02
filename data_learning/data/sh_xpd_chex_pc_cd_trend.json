@@ -1,0 +1,48 @@
+{
+  "key": "sh_xpd_chex_pc_cd_trend",
+  "title": "Current health expenditure per capita",
+  "unit": "current US$",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "Current health expenditure per capita",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 475.6,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 679.5,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 863.3,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 1016,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 1067,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 1317,
+      "period": "2023"
+    }
+  ]
+}

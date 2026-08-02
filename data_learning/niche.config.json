@@ -17558,6 +17558,202 @@
         }
       ],
       "words_by": "brain(attempt 3, judge llm-pass)"
+    },
+    {
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "title": "Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons",
+      "hook": "You might think the world's fish catch has skyrocketed, but the truth is surprising",
+      "closing": "The numbers tell a different story about our oceans' productivity",
+      "hashtags": [
+        "sustainability",
+        "fisheries",
+        "oceanhealth"
+      ],
+      "question": "What's really happening with the world's fish catch?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "er_fsh_capt_mt_trend",
+          "params": {
+            "file": "er_fsh_capt_mt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 CAPTURE FISHERIES ",
+          "topic": "Capture fisheries production",
+          "say": "Capture fisheries production has been relatively stable since 1993, with 94403126 metric tons in 2024"
+        },
+        {
+          "source": "offline",
+          "key": "er_mrn_ptmr_zs_trend",
+          "params": {
+            "file": "er_mrn_ptmr_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 MARINE PROTECTED A",
+          "topic": "Marine protected areas",
+          "say": "Marine protected areas now cover 17.5 percent of the world's territorial waters as of 2025"
+        },
+        {
+          "source": "offline",
+          "key": "er_ptd_totl_zs_trend",
+          "params": {
+            "file": "er_ptd_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 TERRESTRIAL AND MA",
+          "topic": "Terrestrial and marine protected areas",
+          "say": "Terrestrial and marine protected areas make up 17.0 percent of the total territorial area by 2025"
+        }
+      ],
+      "words_by": "brain(attempt 2, judge llm-pass)"
+    },
+    {
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "title": "Global Health Spending Exceeds $1300 Per Person",
+      "hook": "You think healthcare spending is stagnant?",
+      "closing": "Healthcare is changing, and so are the numbers.",
+      "hashtags": [
+        "globalhealth",
+        "healthcarespending",
+        "healthexpenditure"
+      ],
+      "question": "What's driving the increase in global health expenditure?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_ado_tfrt_trend",
+          "params": {
+            "file": "sp_ado_tfrt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 ADOLESCENT FERTILI",
+          "topic": "Adolescent fertility rate",
+          "say": "Adolescent fertility rates have dropped to 38.3 births per 1,000 women."
+        },
+        {
+          "source": "offline",
+          "key": "sh_sta_suic_p5_trend",
+          "params": {
+            "file": "sh_sta_suic_p5_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 SUICIDE MORTALITY ",
+          "topic": "Suicide mortality rate",
+          "say": "Suicide mortality rates have fallen to 9.13 per 100,000 population."
+        },
+        {
+          "source": "offline",
+          "key": "sh_xpd_chex_pc_cd_trend",
+          "params": {
+            "file": "sh_xpd_chex_pc_cd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 CURRENT HEALTH EXP",
+          "topic": "Current health expenditure per capita",
+          "say": "Current health expenditure per capita has risen to 1317 dollars."
+        }
+      ],
+      "words_by": "brain(attempt 1, judge llm-pass)"
+    },
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "In 1972 it was 1083.7 million. Now it's 1644.1 million, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "se_sec_prog_zs_trend",
+          "params": {
+            "file": "se_sec_prog_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PROGRESSION TO SEC",
+          "topic": "Progression to secondary school (%)",
+          "say": "In 1985, progression to secondary school (%) was 77.8. By 2017: 91.3 \u2014 1.2 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "ag_prd_crel_mt_trend",
+          "params": {
+            "file": "ag_prd_crel_mt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 CEREAL PRODUCTION",
+          "topic": "Cereal production",
+          "say": "In 1972, cereal production was 1083.7 million metric tons. By 2024: 1644.1 million metric tons \u2014 1.5 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "ag_lnd_agri_k2_rank",
+          "params": {
+            "file": "ag_lnd_agri_k2_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 AGRICULTURAL LAND",
+          "topic": "Agricultural land",
+          "say": "China leads at 5.2 million sq. km. United States is 4.2 million sq. km. Russian Federation \u2014 2.2 million sq. km."
+        }
+      ],
+      "words_by": "deterministic"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "In 1990 it was 10.2. Now it's 30.1, and almost nobody noticed.",
+      "closing": "The numbers were public the whole time.",
+      "hashtags": [
+        "data",
+        "facts",
+        "statistics",
+        "shorts",
+        "worldbank"
+      ],
+      "question": "Which number surprised you most?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_use_crnw_zs_trend",
+          "params": {
+            "file": "eg_use_crnw_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 COMBUSTIBLE RENEWA",
+          "topic": "Combustible renewables and waste",
+          "say": "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024: 30.1 % of total energy \u2014 3.0 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_accs_zs_trend",
+          "params": {
+            "file": "eg_elc_accs_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ACCESS TO ELECTRIC",
+          "topic": "Access to electricity",
+          "say": "In 1998, access to electricity was 73.2 % of population. By 2024: 91.9 % of population \u2014 1.3 times higher."
+        },
+        {
+          "source": "offline",
+          "key": "en_ghg_ch4_wa_mt_ce_ar5_trend",
+          "params": {
+            "file": "en_ghg_ch4_wa_mt_ce_ar5_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 METHANE (CH4) EMIS",
+          "topic": "Methane (CH4) emissions from Waste",
+          "say": "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024: 1,652 Mt CO2e \u2014 1.8 times higher."
+        }
+      ],
+      "words_by": "deterministic"
     }
   ],
   "videos": [
