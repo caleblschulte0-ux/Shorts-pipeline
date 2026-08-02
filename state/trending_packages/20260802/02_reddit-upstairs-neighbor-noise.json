@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "subreddit": "pettyrevenge",
+  "slug": "reddit-upstairs-neighbor-noise",
+  "title": "He Wouldn't Stop The Music. So I Got Creative",
+  "hashtags": [
+    "neighbors",
+    "pettyrevenge",
+    "reddit",
+    "storytime",
+    "apartment",
+    "noisecomplaint",
+    "karma",
+    "landlord",
+    "propertymanagement",
+    "justice",
+    "revenge",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "script": "My upstairs neighbor played bass-heavy music at full volume past midnight for months, and management's only advice was 'just knock on his door.' So I did something else instead. I found out he worked nights and slept during the day, then I filed a noise complaint every single afternoon between 9 a.m. and 5 p.m. for 'a barking dog,' 'a vacuum,' 'construction sounds' \u2014 anything vague enough that management had to send someone to check every time, which meant knocking on his door and waking him up, over and over, for weeks. He complained to management that people kept disturbing his sleep for no reason. Management told him, very politely, that they were simply responding to resident complaints and had no way to verify who filed them. Three weeks of interrupted sleep later, his music stopped at 9 p.m. sharp, every single night, like clockwork. Turns out nobody actually enjoys a taste of their own noise.",
+  "shots": [
+    {
+      "phrase": "played bass-heavy music",
+      "query": "speaker loud music",
+      "mascot_pose": "shock",
+      "pin_query": "bass",
+      "pin_context": "music instrument heavy sound",
+      "news_query": "bass",
+      "news_angle": "The upstairs neighbor played bass-heavy music at full volume past midnight for months.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Jimmy_Page%27s_Rig_-_1961_Danelectro_Model_3021%2C_ca.1962_Harmony_Sovereign_H1260_%28serial_no._9631111260%29%2C_2%C3%97_Marshall_1959_Super_Lead%2C_Super_Bass%2C_3%C3%97_4%C3%9712in._cab.%2C_etc._-_Play_It_Loud._MET_%282019-05-13_19.09.34_by_Eden%2C_Janine_and_Jim%29.jpg/1280px-thumbnail.jpg"
+    },
+    {
+      "phrase": "just knock on his door",
+      "query": "apartment door knock",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "filed a noise complaint",
+      "query": "complaint form paper",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "waking him up, over and over",
+      "query": "person startled awake",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "no way to verify who filed them",
+      "query": "office shrug",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "music stopped at 9 p.m. sharp",
+      "query": "quiet apartment hallway",
+      "mascot_pose": "think"
+    },
+    {
+      "phrase": "a taste of their own noise",
+      "query": "headphones on desk",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "just knock on his door",
+      "text": "\"JUST KNOCK\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "filed a noise complaint",
+      "text": "DAILY COMPLAINTS",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "no way to verify who filed them",
+      "text": "UNTRACEABLE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "music stopped at 9 p.m. sharp",
+      "text": "SILENCE AT LAST",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "_reserve": {
+    "banked_at": "2026-08-01T09:22:06Z",
+    "drawn_on": "20260802",
+    "reason": "phase A found a short slate"
+  }
+}

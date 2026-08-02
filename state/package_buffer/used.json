@@ -20,6 +20,20 @@
       "banked_at": "2026-07-31T09:17:33Z",
       "used_on": "20260801",
       "reason": "phase A found a short slate"
+    },
+    {
+      "slug": "graph-smartphone-users-worldwide",
+      "format": "graph_race",
+      "banked_at": "2026-08-01T09:22:06Z",
+      "used_on": "20260802",
+      "reason": "phase A found a short slate"
+    },
+    {
+      "slug": "reddit-upstairs-neighbor-noise",
+      "format": "reddit_story",
+      "banked_at": "2026-08-01T09:22:06Z",
+      "used_on": "20260802",
+      "reason": "phase A found a short slate"
     }
   ]
 }
