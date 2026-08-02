@@ -17194,6 +17194,411 @@
         }
       ],
       "words_by": "brain(attempt 1, judge deterministic (llm unavailable: HTTP Error 429: Too Many Requests))"
+    },
+    {
+      "slug": "hunger-isn-t-rising-as-fast-as-you-think-with-8-5-undernouri",
+      "title": "Hunger Isn't Rising As Fast As You Think, With 8.5% Undernourished",
+      "hook": "What if hunger isn't getting worse as quickly as we thought?",
+      "closing": "The trend isn't as dire as expected, but there's still work to be done.",
+      "hashtags": [
+        "hungerreduction",
+        "globalhealth",
+        "sustainabledevelopment"
+      ],
+      "question": "Are we making progress in reducing hunger?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sn_itk_defc_zs_trend",
+          "params": {
+            "file": "sn_itk_defc_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PREVALENCE OF UNDE",
+          "topic": "Prevalence of undernourishment",
+          "say": "The prevalence of undernourishment has been trending downward, from twelve point eight percent in two thousand one to eight point five percent in two thousand twenty three.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bread loaf",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_pop_0014_to_zs_trend",
+          "params": {
+            "file": "sp_pop_0014_to_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 POPULATION AGES 0-",
+          "topic": "Population ages 0-14",
+          "say": "The proportion of the population ages zero to fourteen has decreased over time, from thirty seven point five percent in nineteen seventy two to twenty four point four percent projected for two thousand twenty five.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "toy block",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 5.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sp_rur_totl_zg_trend",
+          "params": {
+            "file": "sp_rur_totl_zg_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 RURAL POPULATION G",
+          "topic": "Rural population growth",
+          "say": "Rural population growth has slowed significantly, from one point six four percent annually in nineteen seventy two to zero point three percent in two thousand twenty five.",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "water bottle",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "words_by": "brain(attempt 2, judge llm-pass)"
+    },
+    {
+      "slug": "marine-protection-surges-past-17-by-2025",
+      "title": "Marine Protection Surges Past 17% By 2025",
+      "hook": "You think ocean protection is stalled, but it's actually accelerating",
+      "closing": "The trend is clear: conservation is on the rise",
+      "hashtags": [
+        "oceanconservation",
+        "sustainability",
+        "environmentalprotection"
+      ],
+      "question": "What's driving this growth in protected areas?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "er_mrn_ptmr_zs_trend",
+          "params": {
+            "file": "er_mrn_ptmr_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 MARINE PROTECTED A",
+          "topic": "Marine protected areas",
+          "say": "Marine protected areas have grown from 6.83 percent in 2013 to 17.5 percent by 2025",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "ground-row",
+                "subject": "globe",
+                "data": {
+                  "value_from": "item:4"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "er_ptd_totl_zs_trend",
+          "params": {
+            "file": "er_ptd_totl_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 TERRESTRIAL AND MA",
+          "topic": "Terrestrial and marine protected areas",
+          "say": "Terrestrial and marine protected areas now cover 17 percent of our total territorial area by 2025",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "tree",
+                "data": {
+                  "value_from": "item:5",
+                  "per_value": 0.01
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_lnd_arbl_ha_pc_trend",
+          "params": {
+            "file": "ag_lnd_arbl_ha_pc_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 ARABLE LAND",
+          "topic": "Arable land",
+          "say": "Arable land per person has dropped from 0.29 hectares in 1972 to just 0.17 hectares in 2023",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "full",
+                "subject": "farmland",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "words_by": "brain(attempt 1, judge llm-pass)"
+    },
+    {
+      "slug": "teen-births-plummeted-below-40-per-1-000-by-2024",
+      "title": "Teen Births Plummeted Below 40 per 1,000 by 2024",
+      "hook": "What if I told you the world's teen birth rate has been cut almost in half since the 70s?",
+      "closing": "The world is changing, but are we prepared for the consequences?",
+      "hashtags": [
+        "teenbirthrate",
+        "globalhealth",
+        "demographicshift"
+      ],
+      "question": "What's behind the drastic decline in adolescent fertility rates?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp_ado_tfrt_trend",
+          "params": {
+            "file": "sp_ado_tfrt_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 ADOLESCENT FERTILI",
+          "topic": "Adolescent fertility rate",
+          "say": "The adolescent fertility rate has dropped from 85 point 0 births per 1,000 women in 1972 to 38 point 3 by 2024",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "baby",
+                "data": {
+                  "value_from": "item:4",
+                  "per_value": 1000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1972 vs 2024"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_med_beds_zs_trend",
+          "params": {
+            "file": "sh_med_beds_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 HOSPITAL BEDS",
+          "topic": "Hospital beds",
+          "say": "Hospital beds per 1,000 people have increased from 2 point 4 in 1975 to 3 point 2 9 by 2021",
+          "scene": {
+            "title": false,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "hospital_bed",
+                "data": {
+                  "value_from": "item:5"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "Hospital beds per 1,000 people"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "sh_sta_suic_p5_trend",
+          "params": {
+            "file": "sh_sta_suic_p5_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SUICIDE MORTALITY ",
+          "topic": "Suicide mortality rate",
+          "say": "The suicide mortality rate has decreased from 12 point 5 per 100,000 population in 2000 to 9 point 1 3 by 2021"
+        }
+      ],
+      "words_by": "brain(attempt 2, judge llm-pass)"
+    },
+    {
+      "slug": "china-doesn-t-lead-in-land-under-cereal-production-by-107673",
+      "title": "China Doesn't Lead In Land Under Cereal Production By 107673781 Hectares",
+      "hook": "You might think China is the undisputed leader in cereal production, but the numbers tell a different story",
+      "closing": "The data reveals a more nuanced picture of global cereal production",
+      "hashtags": [
+        "cerealproduction",
+        "agriculture",
+        "globalfood"
+      ],
+      "question": "What do the numbers say about the top cereal-producing countries?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ag_lnd_crel_ha_rank",
+          "params": {
+            "file": "ag_lnd_crel_ha_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "1 \u00b7 LAND UNDER CEREAL ",
+          "topic": "Land under cereal production",
+          "say": "India has 107673781 hectares of land under cereal production"
+        },
+        {
+          "source": "offline",
+          "key": "ag_prd_crel_mt_rank",
+          "params": {
+            "file": "ag_prd_crel_mt_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "2 \u00b7 CEREAL PRODUCTION",
+          "topic": "Cereal production",
+          "say": "China leads in cereal production with 641731706 metric tons"
+        },
+        {
+          "source": "offline",
+          "key": "ag_yld_crel_kg_rank",
+          "params": {
+            "file": "ag_yld_crel_kg_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 CEREAL YIELD",
+          "topic": "Cereal yield",
+          "say": "Oman has the highest cereal yield at 29147 kilograms per hectare"
+        }
+      ],
+      "words_by": "brain(attempt 3, judge llm-pass)"
+    },
+    {
+      "slug": "landline-phones-still-exceed-815-million-subscriptions",
+      "title": "Landline Phones Still Exceed 815 Million Subscriptions",
+      "hook": "You think landlines are extinct, but they still have a massive presence",
+      "closing": "The shift to mobile hasn't eliminated landlines just yet",
+      "hashtags": [
+        "landlinephones",
+        "telecommunication",
+        "mobilevslandline"
+      ],
+      "question": "How many landlines do you think are still in use today?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "it_mlt_main_trend",
+          "params": {
+            "file": "it_mlt_main_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 FIXED TELEPHONE SU",
+          "topic": "Fixed telephone subscriptions",
+          "say": "Fixed telephone subscriptions have fallen to 815 million by 2025"
+        },
+        {
+          "source": "offline",
+          "key": "it_net_bbnd_trend",
+          "params": {
+            "file": "it_net_bbnd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 FIXED BROADBAND SU",
+          "topic": "Fixed broadband subscriptions",
+          "say": "Fixed broadband subscriptions reached 1.654 billion by 2025"
+        },
+        {
+          "source": "offline",
+          "key": "it_cel_sets_p2_rank",
+          "params": {
+            "file": "it_cel_sets_p2_rank.json"
+          },
+          "insight_type": "rank",
+          "role": "3 \u00b7 MOBILE CELLULAR SU",
+          "topic": "Mobile cellular subscriptions",
+          "say": "Fiji has the highest mobile cellular subscriptions per 100 people at 574.2"
+        }
+      ],
+      "words_by": "brain(attempt 2, judge llm-pass)"
+    },
+    {
+      "slug": "coal-electricity-production-fell-below-1990-levels-by-38-5",
+      "title": "Coal Electricity Production Fell Below 1990 Levels By 38.5%",
+      "hook": "You think coal is still king, but it's not",
+      "closing": "The world is changing, and so are our energy sources",
+      "hashtags": [
+        "renewableenergy",
+        "sustainability",
+        "energytransition"
+      ],
+      "question": "What's driving the shift away from coal?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "se_sec_prog_zs_trend",
+          "params": {
+            "file": "se_sec_prog_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 PROGRESSION TO SEC",
+          "topic": "Progression to secondary school (%)",
+          "say": "Progression to secondary school has been steady, reaching 91.3 percent by 2017"
+        },
+        {
+          "source": "offline",
+          "key": "eg_elc_coal_zs_trend",
+          "params": {
+            "file": "eg_elc_coal_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 ELECTRICITY PRODUC",
+          "topic": "Electricity production from coal sources",
+          "say": "Electricity production from coal sources has dropped to 38.5 percent by 2017"
+        },
+        {
+          "source": "offline",
+          "key": "eg_use_crnw_zs_trend",
+          "params": {
+            "file": "eg_use_crnw_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 COMBUSTIBLE RENEWA",
+          "topic": "Combustible renewables and waste",
+          "say": "Combustible renewables and waste now make up 30.1 percent of total energy by 2024"
+        }
+      ],
+      "words_by": "brain(attempt 1, judge llm-pass)"
     }
   ],
   "videos": [

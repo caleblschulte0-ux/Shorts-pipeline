@@ -1,0 +1,38 @@
+{
+  "key": "ag_prd_crel_mt_rank",
+  "title": "Cereal production",
+  "unit": "metric tons",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Cereal production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.PRD.CREL.MT",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "China",
+      "value": 641731706
+    },
+    {
+      "label": "United States",
+      "value": 454987916
+    },
+    {
+      "label": "India",
+      "value": 391123858
+    },
+    {
+      "label": "Brazil",
+      "value": 138980899
+    },
+    {
+      "label": "Russian Federation",
+      "value": 136708407
+    }
+  ]
+}
