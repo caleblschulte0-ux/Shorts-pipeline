@@ -2309,14 +2309,22 @@
       "banger": 0.6
     },
     "clip-20260802-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/ArtisticEasyFloofTBTacoLeft-rZKT6kUJb9y3gQZX",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/fqFXZ2tNRrQ",
       "title": "Jynxzi is very good at volleyball....",
       "kind": "twitch_clip",
-      "ts": "2026-08-02T19:46:05.231761+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-02T19:46:08.972127+00:00",
+      "uploaded_at": "2026-08-02T19:46:08.972143+00:00",
+      "publish_at": "2026-08-02T21:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ArtisticEasyFloofTBTacoLeft-rZKT6kUJb9y3gQZX",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3674,
+      "banger": 0.7
     }
   }
 }
