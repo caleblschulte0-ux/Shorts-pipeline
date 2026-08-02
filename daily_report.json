@@ -1,4 +1,206 @@
-{
-  "skipped": true,
-  "recent_posts": 5
-}
+[
+  {
+    "topic": "Smartphone Users Worldwide: The Climb",
+    "title": "Smartphone Users Worldwide: The Climb",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 60.5,
+    "package_path": "state/trending_packages/20260802/01_graph-smartphone-users-worldwide.json",
+    "source": "reserve",
+    "video_path": "output/daily_20260802-124224_smartphone_users_worldwide__the_climb.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Wouldn't Stop The Music. So I Got Creative",
+    "title": "He Wouldn't Stop The Music. So I Got Creative",
+    "format": "reddit",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The top half of the composite, which should be a news/stock photo, is consistently a solid blue bar/progress bar across all frames, functioning as a blank placeholder where an image should be.",
+    "elapsed_seconds": 155.5,
+    "package_path": "state/trending_packages/20260802/02_reddit-upstairs-neighbor-noise.json",
+    "source": "reserve",
+    "video_path": "output/daily_20260802-124412_he_wouldn_t_stop_the_music__so_i_got_cre.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.9,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The top half of the composite, which should be a news/stock photo, is consistently a solid blue bar/progress bar across all frames, functioning as a blank placeholder where an image should be."
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "China vs U.S.: The Urban Population Crossover",
+    "title": "China vs U.S.: The Urban Population Crossover",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clear and well-paced graph race showing urban population trends, but completely lacks the mascot character.",
+    "elapsed_seconds": 96.0,
+    "package_path": "state/trending_packages/20260802/03_urban-china-vs-united-states.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-124600_china_vs_u_s___the_urban_population_cros.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clear and well-paced graph race showing urban population trends, but completely lacks the mascot character.",
+      "score": 64
+    },
+    "blocked": true
+  },
+  {
+    "topic": "India vs U.S.: Internet Users by Year",
+    "title": "India vs U.S.: Internet Users by Year",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively shows data progression and a clear payoff but lacks a mascot, uses a generic data demonstration, and has a slow, empty hook.",
+    "elapsed_seconds": 96.0,
+    "package_path": "state/trending_packages/20260802/04_india-vs-us-internet-users.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-124735_india_vs_u_s___internet_users_by_year.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively shows data progression and a clear payoff but lacks a mascot, uses a generic data demonstration, and has a slow, empty hook.",
+      "score": 42
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Mobile Subscriptions: China, India, U.S.",
+    "title": "Mobile Subscriptions: China, India, U.S.",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates mobile subscription trends with a clear line race chart but completely lacks a mascot.",
+    "elapsed_seconds": 98.8,
+    "package_path": "state/trending_packages/20260802/05_mobile-subscriptions-china-india-us.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-124911_mobile_subscriptions__china__india__u_s_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively demonstrates mobile subscription trends with a clear line race chart but completely lacks a mascot.",
+      "score": 56
+    },
+    "blocked": true
+  },
+  {
+    "topic": "My Boss Wanted Every Email. He Got Every Email.",
+    "title": "My Boss Wanted Every Email. He Got Every Email.",
+    "format": "reddit",
+    "publish_at": "2026-08-02T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 short",
+    "elapsed_seconds": 201.3,
+    "package_path": "state/trending_packages/20260802/06_boss-wanted-every-email.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-125202_my_boss_wanted_every_email__he_got_every.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.5
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "short"
+    },
+    "quarantined": true
+  }
+]
