@@ -183,7 +183,27 @@ def _gemini_image(prompt: str, out_path: Path) -> "Path | None":
 # --------------------------------------------------------------------------- #
 # vision QA
 # --------------------------------------------------------------------------- #
-def vision_judge(frame_paths, *, topic: str = "", title: str = "") -> dict:
+def _vision_layout(layout: str) -> str:
+    """Describe the renderer's *intended* frame shape to the QA model."""
+    if layout == "reddit_illustrated":
+        return (
+            "The opening may show a Reddit post card. After it clears, the "
+            "TOP half is a story illustration (often with the Data mascot) "
+            "and the BOTTOM half is gameplay with captions. The card, mascot, "
+            "and gameplay are intentional, not placeholders. ")
+    if layout == "reddit_gameplay_card":
+        return (
+            "This Reddit-story format intentionally uses full-screen gameplay, "
+            "an opening Reddit post card, and karaoke captions. It does NOT "
+            "require a news photo in the top half. ")
+    return (
+        "Each frame is a stacked composite: the TOP half is a news/stock "
+        "photo and the BOTTOM half is an abstract game animation (expected, "
+        "not an error). ")
+
+
+def vision_judge(frame_paths, *, topic: str = "", title: str = "",
+                 layout: str = "stacked") -> dict:
     """Judge whether sampled video frames are broken/unsafe.
 
     Returns {"ok": bool, "verdict": str, "reason": str}. Fail-open: any
@@ -204,12 +224,12 @@ def vision_judge(frame_paths, *, topic: str = "", title: str = "") -> dict:
         parts.append(types.Part.from_text(text=(
             "You QA frames from an automated vertical short-video pipeline. "
             f"The video is about: {(title or topic)!r}. Each frame is a "
-            "stacked composite: the TOP half is a news/stock photo, the "
-            "BOTTOM half is an abstract game animation (this is expected, "
-            "NOT an error). Reply with STRICT JSON and nothing else: "
+            + _vision_layout(layout)
+            + "Reply with STRICT JSON and nothing else: "
             '{"broken": bool, "unsafe": bool, "reason": "short"}. '
-            "Set broken=true ONLY if the TOP image is corrupt, garbled, "
-            "smeared, a gray/blank placeholder, or an obvious render error. "
+            "Set broken=true ONLY if required visual content is corrupt, "
+            "garbled, smeared, a gray/blank placeholder, or an obvious "
+            "render error. "
             "Set unsafe=true ONLY for graphic gore, nudity, or hateful "
             "imagery. Mildly off-topic imagery is NOT broken."
         )))

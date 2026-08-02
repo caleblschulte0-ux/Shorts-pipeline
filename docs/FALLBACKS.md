@@ -161,7 +161,7 @@ roughly a week of Routine runs before it holds a full slate of cover; the
 `CLAUDE_ROUTINE_INSTRUCTIONS.md` tells the Routine to write one extra
 evergreen package whenever it sees that.
 
-## 6. The ChatGPT authoring takeover — the brain of last resort
+## 6. The ChatGPT whole-pipeline takeover — the brain of last resort
 
 `shared/authoring_brief.py` + `scripts/ingest_authored.py`. When Phase A
 finds the day still short *after* the reserve fill, it puts an
@@ -179,8 +179,11 @@ them; the renderer cannot tell the difference.
                      -> daily.yml renders + uploads on the normal slots
 ```
 
-Why the timing works: Phase A's backstop cron is 09:45 UTC = 4:45 AM
-Central, so the brief is always on disk before ChatGPT's 6:00 AM task looks.
+Phase A normally lands the brief before ChatGPT's 6:00 AM task. GitHub cron
+may drift, however, and Phase A itself is allowed to fail. Therefore a
+missing bundle is an explicit takeover signal: the worker reads the live
+registry, inventories every enabled channel, and starts the same work without
+waiting for a Claude-authored package or a Python-generated bundle.
 
 **Nothing ChatGPT writes is trusted.** Promotion runs the same structural
 gate the reserve bank and the renderers use
@@ -208,13 +211,13 @@ too. Every link that still has to fire, and what it actually runs on:
 | the bundle / brief | `shared/authoring_brief.py`, pure data | no |
 | ChatGPT authors | ChatGPT's own scheduled task, a **separate subscription** | no |
 | ChatGPT's push fires Phase B | a user token, not `GITHUB_TOKEN`, so it CAN trigger workflows | no |
-| Phase B (if no DONE) | `schedule: 45 12 * * *` backstop | no |
+| Phase B (if no DONE) | DST-aware 08:30 Central backstop gate | no |
 | ingest + validate | `package_buffer.structural_problems` | no |
 | media for the new packages | entity resolver + funnel (Groq/Gemini/keyless lanes) | no |
 | `daily.yml` renders | `workflow_run` on Phase B completing | no |
 | `daily.yml`'s Brain step | — | yes, but it is `continue-on-error` and `exit 0`s on a missing token or a failed npm install, and skips entirely when the day already has packages |
 | render + TTS + upload | ffmpeg / Kokoro / YouTube OAuth | no |
-| **trending's publish gate** | there is none — **the showrunner veto is explainer-only** | no |
+| publish gates | the shared showrunner/technical/vision gates | no (Gemini is the judge fallback) |
 
 So the trending channel ships end to end on a fully dead Claude
 subscription. Two things had to be fixed for that to be true rather than
@@ -237,37 +240,25 @@ scheduled workflows in a repo with **no commit activity for 60 days**. The
 pipeline commits state daily from several channels, so a normal weekly-limit
 gap never approaches it.)
 
-### Why only trending needs it
+### Whole-pipeline ownership (registry revision 2)
 
-Checked channel by channel, 2026-07-30. **Trending was the only channel
-with a hard same-day hole** — the others already self-heal, they just get
-worse:
+The old design stopped at Trending because the other channels had local
+fallbacks. That confused "a workflow returned something" with "the production
+day is covered." The current registry assigns `production_supervisor` to
+**every enabled channel**:
 
-| Channel | Authoring on a Claude-out day | Still posts? |
-|---|---|---|
-| **Trending** | Routine dead, `daily.yml` brain dead → **was** Groq or a stale slate | only because of the reserve + takeover |
-| **Explainer** | `story_forge._claude_words()` returns None → `_call_llm` (Groq→Gemini) → deterministic words | yes, if `GEMINI_API_KEY` is set for the showrunner |
-| **Curiosity** | same `data_learning` stack | yes |
-| **Third** | `author._call_claude()` → Groq → `fallback_title()` (safe raw clip title) | yes |
+| Channel | ChatGPT takeover responsibility |
+|---|---|
+| **Trending** | Author the exact registry shortfall, supply/reverify media, and supervise render/QA/upload. |
+| **Explainer** | Preserve sourced dataset values, replace deterministic words where requested, and supervise its specialized renderer/upload. |
+| **Curiosity** | Stock the queue when required and supervise the registered long-form worker. |
+| **Third** | Do not fabricate a clip recipe; invoke/monitor the capture workflow and verify required uploads. |
 
-So the takeover covers trending because trending is where the floor was
-"nothing" or "a duplicate". Everywhere else the floor is "a worse video".
-
-That floor is genuinely worse, and the code says so in its own comments:
-the third channel's Groq fallback once produced the title *"Silky Calls Him
-Gay"* (`third_capture/author.py:133`), and story_forge's deterministic path
-once shipped *"Congo, Dem. Rep. Beats Everyone On Male primary school age
-children out-of-school"* (`scripts/story_forge.py:378`). Both have guards
-now. Extending the ChatGPT takeover to those channels is therefore a
-QUALITY project, not an availability one — and it is not a small one:
-their workflows author inline (third authors titles for clips it captures
-during the same run), so there is no bundle for ChatGPT to answer ahead of
-time. Covering them means splitting each into a Phase A / Phase B exchange
-the way trending is split. Not done; recorded here as the next honest step.
-
-**Explainer's one-line fix is not the takeover — it is `GEMINI_API_KEY`.**
-Its authoring already degrades on its own; only the showrunner (§4) can
-stop it publishing.
+`response.json` and `DONE` close the exchange handoff only. The supervisor's
+job continues through actual workflow outcomes. A day is not reported as
+successful because packages were promoted or a renderer was triggered; the
+required videos must clear QA and have verified upload results, or the day
+must carry an explicit terminal failure.
 
 ## 7. Telling a fallback day from a normal one
 

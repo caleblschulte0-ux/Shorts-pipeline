@@ -156,12 +156,14 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
                           f"{rel} decides slate policy without reading the "
                           f"registry")
 
-    def test_the_brain_prompt_interpolates_the_ruling(self):
+    def test_the_render_workflow_is_not_a_second_brain(self):
         wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
-        self.assertIn("shared.channel_registry --mix", wf,
-                      "daily.yml's brain prompt must generate the mix line "
-                      "from the registry, not restate it")
-        self.assertIn("$SLATE_RULING", wf)
+        self.assertNotIn("Brain — author today's packages", wf)
+        self.assertNotIn("claude -p", wf)
+        self.assertIn("--require-manifest", wf)
+        self.assertIn("shared import channel_registry", wf,
+                      "daily.yml must still resolve its render count from "
+                      "the registry")
 
     def test_the_test_suite_is_actually_discoverable(self):
         """`python -m unittest discover -s tests` must WORK.

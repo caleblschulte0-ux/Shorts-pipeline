@@ -37,6 +37,7 @@ returns a Path or None, never raises; nothing here mutates repo state.
 """
 from __future__ import annotations
 
+import math
 import re
 import shutil
 import subprocess
@@ -331,6 +332,7 @@ def render(spec: dict, out: str | Path, *,
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import matplotlib.font_manager as fm
+    import matplotlib.image as mpimg
     from matplotlib.offsetbox import AnnotationBbox, OffsetImage
     from matplotlib.ticker import FuncFormatter, MaxNLocator
 
@@ -354,7 +356,6 @@ def render(spec: dict, out: str | Path, *,
     if spec.get("icons", True):
         try:
             from funnel import series_icons
-            import matplotlib.image as mpimg
             for name, path in series_icons.resolve_many(
                     series, context=title).items():
                 try:
@@ -364,6 +365,22 @@ def render(spec: dict, out: str | Path, *,
         except Exception as e:  # noqa: BLE001
             print(f"[chart_race] icons unavailable ({type(e).__name__}: {e}) "
                   f"— using initials badges")
+
+    # DATA, the channel mascot, performs a small data-reactive bit instead of
+    # being pasted on as a watermark.  The active pose and callout follow the
+    # race state (opening question -> tracking -> lead change -> winner), and
+    # the continuous bob gives the exported chart honest per-frame motion.
+    # Added by ChatGPT on 2026-08-02 after production's showrunner correctly
+    # blocked graph races whose renderer could not satisfy its mascot rubric.
+    mascot_dir = Path(__file__).resolve().parent.parent / "assets/mascot/host"
+    mascots: dict[str, object] = {}
+    for pose in ("think", "point", "shock", "cheer"):
+        path = mascot_dir / f"{pose}.png"
+        if path.exists():
+            try:
+                mascots[pose] = mpimg.imread(str(path))
+            except Exception:  # noqa: BLE001
+                pass
 
     have_font = os.path.exists(_FONT)
     year_font = fm.FontProperties(fname=_FONT, size=96) if have_font \
@@ -409,6 +426,7 @@ def render(spec: dict, out: str | Path, *,
         ax.set_position([0.13, 0.30, 0.82, ax_top - 0.30])
         cam_top = 0.0            # dynamic y "camera": only ever zooms out
         extra: list = []         # per-frame figure-level artists to recycle
+        initial_leader = max(series, key=lambda s: s["values"][0])["name"]
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
         for f in range(n_frames + hold):
             p = _smoothstep(min(1.0, f / max(1, n_frames - 1)))
@@ -437,6 +455,7 @@ def render(spec: dict, out: str | Path, *,
                 ys = ys + [cv]
                 tips.append((cv, s, xs, ys))
             tips.sort(key=lambda t: -t[0])
+            current_leader = tips[0][1]["name"]
 
             # Past ~82% of the timeline the tip sits at the right edge, so
             # icons AND labels flip to the inside of the dot — otherwise
@@ -555,6 +574,32 @@ def render(spec: dict, out: str | Path, *,
                 alpha = max(0.0, 1.0 - f / (HOOK_S * fps))
                 fig.text(0.5, 0.79, hook, color="#f5c518", ha="center",
                          va="center", fontproperties=hook_font, alpha=alpha)
+
+            # Data-reactive mascot performance.  Keep it in the lower-left
+            # dead band so it cannot cover the chart, year, source, or winner.
+            if mascots:
+                if in_hold:
+                    pose, callout = "cheer", f"{current_leader} WINS"
+                elif current_leader != initial_leader:
+                    pose, callout = "shock", "LEAD CHANGED"
+                elif p < 0.18:
+                    pose, callout = "think", "WHO TAKES IT?"
+                else:
+                    pose, callout = "point", "WATCH THE RACE"
+                art = mascots.get(pose)
+                if art is None:
+                    art = next(iter(mascots.values()))
+                bob_x = 0.105 + 0.006 * math.sin(f * 0.38)
+                bob_y = 0.175 + 0.007 * math.cos(f * 0.31)
+                mascot = AnnotationBbox(
+                    OffsetImage(art, zoom=0.34), (bob_x, bob_y),
+                    xycoords="figure fraction", frameon=False, zorder=9,
+                    annotation_clip=False)
+                fig.add_artist(mascot)
+                extra.append(mascot)
+                fig.text(0.205, 0.17, callout, color="#f5c518",
+                         ha="left", va="center", fontsize=17,
+                         fontweight="bold")
 
             fig.savefig(frames_dir / f"f{f:05d}.png", facecolor="#000000")
         plt.close(fig)

@@ -446,9 +446,16 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
         return None, None
     # Feature 3 — vision QA (blocks only broken/unsafe; fail-open).
     try:
+        is_reddit = bool(pkg.get("subreddit"))
+        has_story_images = any(
+            (s.get("image_url") or s.get("image"))
+            for s in (pkg.get("shots") or []))
+        layout = ("reddit_illustrated" if is_reddit and has_story_images
+                  else "reddit_gameplay_card" if is_reddit
+                  else "stacked")
         verdict = gemini_images.vision_judge(
             _sample_frames(out_path), topic=result.get("topic", ""),
-            title=result.get("title") or "")
+            title=result.get("title") or "", layout=layout)
         result["qa"] = verdict
         if not verdict.get("ok"):
             block = f"vision QA: {verdict.get('verdict')} — {verdict.get('reason')}"
@@ -590,6 +597,25 @@ def posted_titles() -> set[str]:
     return out
 
 
+def _load_package_dir(directory: Path) -> list[dict]:
+    """Load package JSON from one exact date directory, without fallback."""
+    pkgs: list[dict] = []
+    for path in sorted(directory.glob("*.json")):
+        if path.name.startswith("_"):
+            continue
+        try:
+            pkg = json.loads(path.read_text())
+            try:
+                pkg.setdefault("_path", str(path.relative_to(REPO)))
+            except ValueError:                       # redirected in tests
+                pkg.setdefault("_path", str(path))
+            pkgs.append(pkg)
+        except json.JSONDecodeError as exc:
+            print(f"[run_trending_daily] skipping malformed {path.name}: "
+                  f"{exc}", file=sys.stderr)
+    return pkgs
+
+
 def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
     """Return (source_dir, packages). Prefers today's dir; falls back
     to the most-recent YYYYMMDD/ on disk so a missing routine run
@@ -605,20 +631,7 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
         if d is None or d in seen or not d.exists():
             continue
         seen.add(d)
-        pkgs: list[dict] = []
-        for p in sorted(d.glob("*.json")):
-            if p.name.startswith("_"):
-                continue  # _schedule.json etc. are config, not packages
-            try:
-                pkg = json.loads(p.read_text())
-                try:
-                    pkg.setdefault("_path", str(p.relative_to(REPO)))
-                except ValueError:       # package dir redirected (tests)
-                    pkg.setdefault("_path", str(p))
-                pkgs.append(pkg)
-            except json.JSONDecodeError as e:
-                print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
-                      file=sys.stderr)
+        pkgs = _load_package_dir(d)
         already = posted_titles()
         fresh = [p for p in pkgs
                  if (p.get("title") or "").strip().casefold() not in already]
@@ -998,6 +1011,10 @@ def main() -> int:
                          "don't drop us below count (LLM fallback only)")
     ap.add_argument("--force-llm", action="store_true",
                     help="ignore pre-written packages, force Groq fallback")
+    ap.add_argument(
+        "--require-manifest", action="store_true",
+        help=("production mode: require today's complete validated package "
+              "slate; never use stale packages or the Groq authoring fallback"))
     ap.add_argument("--force-rerun", action="store_true",
                     help="bypass the 6-hour duplicate-trigger guard. Use when "
                          "you want to re-publish a fresh package slate the "
@@ -1068,7 +1085,32 @@ def main() -> int:
     # today's dir is missing (routine hasn't fired yet) we fall back
     # to the most recent day's packages — far better than burning
     # through Groq's free tier on emergency script generation.
-    src_dir, prewritten = (None, []) if args.force_llm else load_prewritten_packages()
+    prior_uploaded = 0
+    if args.require_manifest:
+        today_dir = todays_package_dir()
+        all_today = _load_package_dir(today_dir) if today_dir.exists() else []
+        if len(all_today) < args.count:
+            print(
+                f"[run_trending_daily] validated production manifest is "
+                f"incomplete: found {len(all_today)}/{args.count} packages "
+                f"in {today_dir.relative_to(REPO)}; refusing stale/Groq "
+                "authoring inside the renderer",
+                file=sys.stderr,
+            )
+            return 2
+        src_dir = today_dir
+        already = posted_titles()
+        prior_uploaded = sum(
+            1 for pkg in all_today
+            if (pkg.get("title") or "").strip().casefold() in already
+        )
+        prewritten = [
+            pkg for pkg in all_today
+            if (pkg.get("title") or "").strip().casefold() not in already
+        ]
+    else:
+        src_dir, prewritten = ((None, []) if args.force_llm
+                               else load_prewritten_packages())
     if prewritten and args.only:
         needle = args.only.lower()
         prewritten = [
@@ -1187,14 +1229,40 @@ def main() -> int:
     REPORT_JSON.write_text(json.dumps(results, indent=2) + "\n")
     print(f"\n=== wrote {REPORT_PATH.name} + {REPORT_JSON.name} ===")
 
-    # Exit non-zero if anything genuinely FAILED so the workflow's
-    # failure counter bumps and we get a real notification. A
-    # quarantine is an intentional skip (off-topic imagery), not a
-    # crash — it must NOT bump the auto-pause counter, or a few
-    # un-illustratable packages would silence the whole pipeline.
+    # ChatGPT 2026-08-02: renderer completion is not production completion.
+    # A quarantined expected video is still a missing upload, so leave a
+    # machine-readable channel outcome and return RED until every requested
+    # slot has a verified uploader result.  The production supervisor can
+    # then repair/retry the exact failures instead of accepting a partial day.
     posted = [r for r in results if r["ok"]]
     quarantined = [r for r in results if r.get("quarantined")]
     failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    expected = int(args.count)
+    uploaded_total = prior_uploaded + len(posted)
+    complete = (args.dry_run or uploaded_total == expected)
+    try:
+        from shared.fsutil import atomic_write_json
+        outcome_path = (STATE_DIR / "production_runs" /
+                        now.strftime("%Y%m%d") / "trending.json")
+        outcome_path.parent.mkdir(parents=True, exist_ok=True)
+        atomic_write_json(outcome_path, {
+            "schema": "production-channel-outcome/v1",
+            "date": now.strftime("%Y%m%d"),
+            "channel": "trending",
+            "expected": expected,
+            "previously_uploaded": prior_uploaded,
+            "rendered_or_attempted": len(results),
+            "uploaded": uploaded_total if not args.dry_run else 0,
+            "quarantined": len(quarantined),
+            "failed": len(failed),
+            "status": "dry_run" if args.dry_run else
+                      "production_complete" if complete else "repair_required",
+            "video_urls": [r.get("video_url") for r in posted
+                           if r.get("video_url")],
+        })
+    except Exception as exc:  # noqa: BLE001
+        print(f"::warning::could not write production outcome: {exc}",
+              file=sys.stderr)
     if quarantined:
         print(f"[run_trending_daily] {len(quarantined)} package(s) "
               f"quarantined for off-topic imagery (slate shipped without "
@@ -1202,18 +1270,10 @@ def main() -> int:
     if failed:
         print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
               file=sys.stderr)
-    # ZERO-POST SAFEGUARD: a non-empty slate that shipped NOTHING is a real
-    # outage (every package quarantined and/or failed). Fail loudly so the
-    # run goes RED, the failure counter bumps, and the ntfy alert fires —
-    # instead of a silent green "0 posted" that goes unnoticed for days
-    # (exactly what happened 07-03..07-05). A partial run (>=1 posted) with
-    # some quarantines stays green, per the original intent.
-    if results and not args.dry_run and not posted:
-        print(f"[run_trending_daily] ZERO of {len(results)} posted — total "
-              f"outage; exiting non-zero so the run goes RED and alerts.",
+    if not complete:
+        print(f"[run_trending_daily] production incomplete: uploaded "
+              f"{uploaded_total}/{expected}; repair/retry required",
               file=sys.stderr)
-        return 1
-    if failed:
         return 1
     return 0
 

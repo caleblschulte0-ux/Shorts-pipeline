@@ -204,6 +204,35 @@ def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
     return None
 
 
+def pin_verified_media(shot: dict, entry: dict, *, origin: str) -> None:
+    """Persist a verified pointer in a form a *different runner* can use.
+
+    Phase B and the renderer are separate GitHub Actions jobs.  The old code
+    committed ``/home/runner/.../cache/exchange/foo.png`` into the package;
+    that path only existed on Phase B's disposable VM, so the render job
+    silently lost every ChatGPT image.  ``fetch_media`` still verifies the
+    exact Drive object locally first, but the package now retains the public
+    download URL plus its identity/hash instead of the temporary filename.
+
+    Added by ChatGPT on 2026-08-02 after the first takeover production run
+    exposed the cross-runner handoff bug.  Reverting this function and its two
+    call sites restores the previous behaviour in one commit.
+    """
+    drive = entry.get("drive") or {}
+    image = entry.get("image") or {}
+    fid = str(drive.get("file_id") or "").strip()
+    url = str(drive.get("download_url") or "").strip()
+    if not url and fid:
+        url = f"https://drive.google.com/uc?export=download&id={fid}"
+    if not url:
+        raise ValueError("verified media has no durable Drive URL")
+    shot["image_url"] = url
+    shot["media_origin"] = origin
+    shot["media_file_id"] = fid
+    shot["media_sha256"] = str(image.get("sha256") or "").strip().lower()
+    shot["media_bytes"] = image.get("bytes")
+
+
 # Renderers keep funnel candidates at score >= 0.4. Self-fill is the
 # gloves-off pass: accept weaker-but-real media rather than ship nothing.
 SELF_FILL_FLOOR = 0.15
@@ -317,8 +346,7 @@ def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False,
             continue
         local = fetch_media(rid, pointer)
         if local:
-            shot["image_url"] = str(local)
-            shot["media_origin"] = "chatgpt_authored"
+            pin_verified_media(shot, pointer, origin="chatgpt_authored")
             report["media"]["fulfilled"] += 1
         else:
             print(f"[phase-b] {slug} shot {i}: ChatGPT media pointer did not "
@@ -554,11 +582,36 @@ def main() -> int:
     from exchange_phase_a import load_packages      # noqa: E402
     packages = {p.get("slug"): p for p in
                 load_packages(args.channel, args.date)}
+
+    # IDEMPOTENT TAKEOVER REPAIR.  A second Phase B run used to see the
+    # ChatGPT package already promoted, reject the duplicate candidate, and
+    # therefore never revisit its media.  Reattach the response's media
+    # pointers to the already-promoted package so a corrected checkpoint or
+    # response can repair the day without deleting state first.
+    response_authored = {
+        str(p.get("slug") or ""): p
+        for p in ((response or {}).get("authored") or [])
+        if isinstance(p, dict) and p.get("slug")
+    }
+    for slug, pkg in packages.items():
+        src = response_authored.get(str(slug))
+        if not src or pkg.get("_authored_by") != "chatgpt-takeover":
+            continue
+        for dst_shot, src_shot in zip(pkg.get("shots") or [],
+                                      src.get("shots") or []):
+            if (isinstance(src_shot, dict)
+                    and isinstance(src_shot.get("media"), dict)):
+                dst_shot["media"] = dict(src_shot["media"])
     # Packages ChatGPT just wrote were not around when Phase A found media,
     # so they carry no `requests` and no `image_url` anywhere. Cover them
     # here or they render as bare keyword stock.
     new_slugs = {Path(p).stem.split("_", 1)[-1]
                  for p in authored.get("promoted") or []}
+    new_slugs |= {
+        str(slug) for slug, pkg in packages.items()
+        if pkg.get("_authored_by") == "chatgpt-takeover"
+        and str(slug) in response_authored
+    }
     if bundle.get("rescue"):
         # No bundle means no `requests`, so the normal media loop below has
         # nothing to iterate. Everything on disk is uncovered — treat the
@@ -603,8 +656,8 @@ def main() -> int:
         else:
             local = fetch_media(rid, idx["media"].get(rid))
         if local:
-            shots[sidx]["image_url"] = str(local)
-            shots[sidx]["media_origin"] = "chatgpt"
+            pin_verified_media(shots[sidx], idx["media"][rid],
+                               origin="chatgpt")
             report["media"]["fulfilled"] += 1
             report["details"].append(
                 {"request_id": rid, "outcome": "chatgpt", "path": str(local)})

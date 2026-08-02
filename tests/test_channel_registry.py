@@ -59,10 +59,16 @@ class TestTheLiveRuling(unittest.TestCase):
         self.assertEqual(reg.channel_ids(),
                          ["curiosity", "explainer", "third", "trending"])
 
-    def test_third_asks_nothing_of_chatgpt(self):
-        """Its package is a capture recipe for a clip that does not exist
-        until the run happens — there is nothing to hand over in advance."""
-        self.assertEqual(reg.roles("third"), [])
+    def test_every_channel_has_a_chatgpt_production_supervisor(self):
+        """A Claude-out takeover owns outcomes, including specialized jobs."""
+        for channel in reg.channel_ids():
+            self.assertIn("production_supervisor", reg.roles(channel),
+                          channel)
+
+    def test_third_is_supervised_but_not_preauthored(self):
+        """Its real clip is captured at run time; ChatGPT monitors that job."""
+        self.assertEqual(reg.roles("third"), ["production_supervisor"])
+        self.assertNotIn("takeover_authoring", reg.roles("third"))
 
     def test_only_reddit_stories_want_chatgpt_images(self):
         self.assertTrue(reg.media_requirements("trending", "reddit_story")

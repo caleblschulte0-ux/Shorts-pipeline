@@ -43,6 +43,92 @@ CAP_WHITE = "&HFFFFFF&"
 CAP_HILITE = "&H00E8FF&"    # bright gold-yellow
 
 
+def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
+    """Materialise the verified per-shot images as 1080x960 panels.
+
+    The media contract has always required an image for every Reddit beat,
+    but this genre renderer never consumed them; it rendered only gameplay
+    while downstream QA was explicitly judging a top-image/bottom-gameplay
+    composite.  That made image generation expensive theatre and turned the
+    Reddit card into a false "blank top image" failure.  Each panel also uses
+    the shot's requested mascot reaction, so Data performs with the story
+    instead of appearing as a decorative watermark.
+
+    Added by ChatGPT on 2026-08-02.  Returning an empty list is deliberately
+    safe: the caller keeps the prior full-screen-gameplay composition.
+    """
+    try:
+        from PIL import Image, ImageOps
+    except Exception:  # noqa: BLE001
+        return []
+
+    out: list[Path] = []
+    cache = workdir / "shot_cache"
+    mascot_dir = Path(__file__).resolve().parent / "assets/mascot/host"
+    for i, shot in enumerate(pkg.get("shots") or []):
+        src = shot.get("image_url") or shot.get("image")
+        if not src:
+            continue
+        try:
+            local = base._fetch_image(str(src), cache)  # verified upstream
+            with Image.open(local) as im:
+                panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
+                                     method=Image.Resampling.LANCZOS)
+
+            pose = str(shot.get("mascot_pose") or "idle").strip().lower()
+            mascot_path = mascot_dir / f"{pose}.png"
+            if not mascot_path.exists():
+                mascot_path = mascot_dir / "idle.png"
+            if mascot_path.exists():
+                with Image.open(mascot_path) as m:
+                    mascot = m.convert("RGBA")
+                    mascot.thumbnail((250, 250), Image.Resampling.LANCZOS)
+                    panel = panel.convert("RGBA")
+                    panel.alpha_composite(
+                        mascot, (W - mascot.width - 24,
+                                 H // 2 - mascot.height - 18))
+                    panel = panel.convert("RGB")
+
+            dest = workdir / f"shot_panel_{i:02d}.jpg"
+            panel.save(dest, "JPEG", quality=92)
+            out.append(dest)
+        except Exception as exc:  # noqa: BLE001
+            print(f"      shot panel {i} skipped: {type(exc).__name__}: "
+                  f"{str(exc)[:90]}", flush=True)
+    return out
+
+
+def _visual_track(pkg: dict, duration: float, workdir: Path) -> Path | None:
+    """Build the top-half illustrated beat track; None preserves old layout."""
+    panels = _shot_panels(pkg, workdir)
+    if not panels or duration <= 0.1:
+        return None
+    per = max(0.35, duration / len(panels))
+    clips: list[Path] = []
+    for i, panel in enumerate(panels):
+        clip = workdir / f"shot_clip_{i:02d}.mp4"
+        # A restrained Ken Burns push keeps a still photographic panel alive
+        # without competing with the gameplay or captions below it.
+        _run([
+            "ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
+            "-t", f"{per:.3f}", "-i", str(panel),
+            "-vf", (f"zoompan=z='min(zoom+0.0007,1.07)':"
+                    f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+                    f"d=1:s={W}x{H // 2}:fps={FPS},format=yuv420p"),
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+            str(clip),
+        ])
+        clips.append(clip)
+    manifest = workdir / "shot_concat.txt"
+    manifest.write_text("".join(
+        f"file '{str(p.resolve()).replace(chr(39), chr(39) + chr(92) + chr(39) + chr(39))}'\n"
+        for p in clips))
+    out = workdir / "shot_track.mp4"
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+          "-i", str(manifest), "-c", "copy", str(out)])
+    return out
+
+
 def _run(cmd: list[str]) -> None:
     subprocess.run(cmd, check=True)
 
@@ -130,7 +216,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,{CAP_FONT},{CAP_FONT_SIZE},{CAP_WHITE},&H000000FF,&H00101010,&H90000000,0,0,0,0,100,100,1,0,1,9,4,5,90,90,0,1
+Style: Cap,{CAP_FONT},{CAP_FONT_SIZE},{CAP_WHITE},&H000000FF,&H00101010,&H90000000,0,0,0,0,100,100,1,0,1,9,4,2,90,90,300,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -212,6 +298,7 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
             comments=str(cf["comments"]), avatar_seed=cf["avatar_seed"])
         caps = workdir / "caps.ass"
         _karaoke_ass(words, caps, title_end, total)
+        visual = _visual_track(pkg, max(0.0, total - title_end), workdir)
 
         print("[5/6] audio bed + SFX")
         music = workdir / "music.wav"
@@ -226,8 +313,16 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
         # Card slides up the screen a touch and fades as it hands off.
         fade_st = max(0.3, title_end - 0.4)
         card_w = 980
-        graph = (
-            f"[0:v]format=yuv420p[bg];"
+        bg_chain = "[0:v]format=yuv420p[bg0];"
+        if visual is not None:
+            bg_chain += (
+                f"[5:v]setpts=PTS+{title_end:.3f}/TB[top];"
+                f"[bg0][top]overlay=0:0:enable='gte(t,{title_end:.3f})',"
+                f"drawbox=x=0:y={H // 2 - 2}:w={W}:h=4:"
+                f"color=white@0.28:t=fill[bg];")
+        else:
+            bg_chain += "[bg0]null[bg];"
+        graph = bg_chain + (
             f"[3:v]scale={card_w}:-1,format=rgba,"
             f"fade=t=out:st={fade_st:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS[card];"
             f"[bg][card]overlay=(W-w)/2:220:enable='lt(t,{title_end:.2f})'[bv];"
@@ -246,6 +341,8 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
                     "-i", "anullsrc=r=44100:cl=stereo"]  # 2 (silent)
         cmd += ["-loop", "1", "-t", f"{title_end:.2f}", "-i", str(card)]  # 3
         cmd += ["-i", str(ding)]        # 4
+        if visual is not None:
+            cmd += ["-i", str(visual)]  # 5
 
         a_graph = (
             "[1:a]volume=1.0,adelay=0|0[vo];"

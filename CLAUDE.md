@@ -292,19 +292,22 @@ things worth knowing without opening it:
   publishes nothing (`post_stories.py` refuses `SHOWRUNNER=off` on a
   publish run).
 - **Two lines cover a dead brain, in order.** The **reserve bank** first,
-  then the **ChatGPT authoring takeover** (`shared/authoring_brief.py` +
-  `scripts/ingest_authored.py`): Phase A puts an `authoring_request` in the
-  bundle, ChatGPT writes the day's packages, Phase B validates and promotes
-  them. Nothing ChatGPT writes is trusted — promotion runs the same
-  structural gate the bank and the renderers use, and a failure is
-  quarantined into `authored_report.json`, never rendered. It runs the SAME
-  DAY (Phase A 4:45am Central → ChatGPT 6:00am → render → the normal
-  publish slots), so a Claude-out morning costs zero posts.
-  The takeover covers TRENDING because that was the only channel whose
-  floor was "nothing" or "a duplicate upload". Explainer, curiosity and
-  third all self-heal to Groq/deterministic authoring — they keep posting,
-  just worse. Extending the takeover to them is a quality project needing
-  a Phase A/B split per channel; see `docs/FALLBACKS.md` §6.
+  then the **ChatGPT whole-pipeline takeover** (`shared/authoring_brief.py` +
+  `scripts/ingest_authored.py`): Phase A normally puts the live registry plan
+  and any `authoring_request` into the bundle. If Phase A itself is missing,
+  the 06:00/07:00 workers read the registry directly; no bundle is the
+  takeover signal, not permission to stop. ChatGPT writes the missing
+  content, supplies/verifies media, and supervises every enabled channel's
+  registered worker through QA and verified upload outcomes. Nothing it
+  authors is trusted — promotion runs the same structural gates as normal
+  production and quarantines failures. `response.json`/`DONE` mean the
+  handoff is ready to render; they do **not** mean production completed.
+  Registry role `production_supervisor` is the durable statement of this
+  whole-pipeline ownership. Trending is authored as packages; Explainer's
+  sourced datasets retain their numbers while ChatGPT repairs words;
+  Curiosity receives queue stock; Third still captures its own real clips,
+  while ChatGPT invokes/monitors that specialized workflow rather than
+  fabricating a clip recipe.
 - **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
   banked EVERGREEN packages drawn automatically when a day comes up short.
   `fill` is a no-op on a normal day, so it runs unconditionally in both

@@ -51,7 +51,7 @@ PATH_ENV = "CHANNEL_REGISTRY_PATH"
 
 FORMAT_STATES = ("active", "retired", "disabled")
 KNOWN_ROLES = ("media_worker", "editorial_review", "takeover_authoring",
-               "queue_stocking", "none")
+               "queue_stocking", "production_supervisor", "none")
 
 
 class RegistryError(RuntimeError):

@@ -97,12 +97,12 @@ disagree with itself.**
 <!-- BEGIN GENERATED SLATE — python -m shared.channel_registry --markdown -->
 | Channel | Per day | Active formats | Retired | ChatGPT does |
 |---|---|---|---|---|
-| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
-| `explainer` | 1 | 1x `data_story` | — | editorial_review |
-| `third` | 3 | 3x `clip` | — | nothing |
-| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
+| `curiosity` | 1 | 1x `long_form` | — | queue_stocking, takeover_authoring, production_supervisor |
+| `explainer` | 1 | 1x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
+| `third` | 3 | 3x `clip` | — | production_supervisor |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring, production_supervisor |
 
-<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- generated from config/channel_registry.json rev 2 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
 <!-- END GENERATED SLATE -->
 
 The registry also decides which formats are RETIRED. A retired format is

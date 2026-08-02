@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 1,
-  "revision_note": "Initialised from the live production ruling on 2026-07-31. Trending is GRAPH-LED: 4 graph_race + 2 reddit_story, text_card RETIRED. That ruling previously existed only as prose inside .github/workflows/daily.yml while shared/package_buffer.py still said 2+2+2 — two sources of truth disagreeing, which is what this file exists to end.",
+  "revision": 2,
+  "revision_note": "ChatGPT production ownership added 2026-08-02. The format ruling remains 4 graph_race + 2 reddit_story with text_card retired. Every enabled channel now assigns ChatGPT production_supervisor responsibility, so a Claude-out takeover means quarterbacking the entire registered pipeline through verified render/upload outcomes—not only authoring Trending packages.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -53,6 +53,7 @@
     "editorial_review": "Read every package and either punch it up or state a reason for keeping it. The 07:00 Central task.",
     "takeover_authoring": "Write the packages this channel is short, when the Claude side left it nothing.",
     "queue_stocking": "Write new queue entries when the channel's queue runs below its minimum.",
+    "production_supervisor": "On a Claude-out day, quarterback this channel's registered worker through render, QA, retry/repair and verified upload; do not treat response.json or DONE as production completion.",
     "none": "ChatGPT has no responsibility for this channel or format."
   },
 
@@ -81,7 +82,8 @@
             "chatgpt_supplies_images": false,
             "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
           },
-          "chatgpt_roles": ["editorial_review", "takeover_authoring"]
+          "chatgpt_roles": ["editorial_review", "takeover_authoring",
+                            "production_supervisor"]
         },
         "reddit_story": {
           "state": "active",
@@ -100,7 +102,7 @@
             "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
           },
           "chatgpt_roles": ["media_worker", "editorial_review",
-                            "takeover_authoring"]
+                            "takeover_authoring", "production_supervisor"]
         },
         "text_card": {
           "state": "retired",
@@ -113,7 +115,7 @@
         }
       },
       "chatgpt_roles": ["media_worker", "editorial_review",
-                        "takeover_authoring"],
+                        "takeover_authoring", "production_supervisor"],
       "queue": null,
       "paths": {
         "packages": "state/trending_packages/<date>",
@@ -158,10 +160,12 @@
             "chatgpt_supplies_images": false,
             "note": "Scenes are rendered from the dataset; the mascot director stages them. ChatGPT supplies WORDS only."
           },
-          "chatgpt_roles": ["editorial_review"]
+          "chatgpt_roles": ["editorial_review", "takeover_authoring",
+                            "production_supervisor"]
         }
       },
-      "chatgpt_roles": ["editorial_review"],
+      "chatgpt_roles": ["editorial_review", "takeover_authoring",
+                        "production_supervisor"],
       "chatgpt_job": "rewrite_words",
       "chatgpt_job_note": "A REWRITE, not authoring. The numbers came from the World Bank and must survive untouched; only stories whose `words_by` is `deterministic` (no brain was reachable) are offered.",
       "queue": {
@@ -207,10 +211,12 @@
           "detect": {"field": "segments", "present": true},
           "required_fields": ["slug", "title", "hook", "closing", "segments"],
           "media": {"shots": false, "chatgpt_supplies_images": false},
-          "chatgpt_roles": ["queue_stocking"]
+          "chatgpt_roles": ["queue_stocking", "takeover_authoring",
+                            "production_supervisor"]
         }
       },
-      "chatgpt_roles": ["queue_stocking"],
+      "chatgpt_roles": ["queue_stocking", "takeover_authoring",
+                        "production_supervisor"],
       "chatgpt_job": "stock_queue",
       "queue": {
         "config": "data_learning/curiosity.config.json",
@@ -250,11 +256,11 @@
           "detect": {"field": "source_url", "present": true},
           "required_fields": ["slug", "source_url"],
           "media": {"shots": false, "chatgpt_supplies_images": false},
-          "chatgpt_roles": ["none"]
+          "chatgpt_roles": ["production_supervisor"]
         }
       },
-      "chatgpt_roles": ["none"],
-      "chatgpt_roles_note": "Third can NEVER be pre-authored. Its package is a CAPTURE RECIPE (title: '{clip_title}') for a clip that does not exist until the run happens, so there is nothing to hand ChatGPT ahead of time. It self-heals to Groq and then to a safe raw clip title.",
+      "chatgpt_roles": ["production_supervisor"],
+      "chatgpt_roles_note": "Third cannot be pre-authored because its package is a capture recipe for a clip that does not exist until the run happens. ChatGPT does not fabricate the clip or package; as production supervisor it must invoke/monitor the registered Third workflow and verify its required upload outcomes during a Claude-out takeover.",
       "queue": null,
       "paths": {
         "packages": "state/third_packages/<date>",

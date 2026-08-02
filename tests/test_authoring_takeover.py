@@ -454,7 +454,11 @@ class TestAuthoredMediaVerification(unittest.TestCase):
         report = self._cover(pkg)
         self.assertEqual(report["media"]["fulfilled"], 1)
         self.assertEqual(pkg["shots"][0]["media_origin"], "chatgpt_authored")
-        self.assertTrue(Path(pkg["shots"][0]["image_url"]).exists())
+        self.assertEqual(pkg["shots"][0]["image_url"], url)
+        self.assertEqual(pkg["shots"][0]["media_sha256"], sha)
+        self.assertNotIn("/home/runner/", pkg["shots"][0]["image_url"],
+                         "a disposable Phase B runner path reached the "
+                         "renderer package")
 
     def test_a_wrong_hash_is_refused(self):
         url, _ = self._png("tampered.png")

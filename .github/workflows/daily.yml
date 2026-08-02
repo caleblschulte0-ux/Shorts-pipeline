@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: 'How many shorts to publish (6 = 4 graph-race + 2 reddit)'
+        description: 'How many shorts to publish (blank = live channel registry)'
         required: false
-        default: '6'
+        default: ''
       force:
         description: 'Bypass 6-hour duplicate-trigger guard (--force-rerun, keeps pre-written packages)'
         required: false
@@ -63,6 +63,10 @@ env:
 
 jobs:
   daily:
+    # Added by ChatGPT 2026-08-02: a failed Phase B is not a render manifest.
+    # Manual/trigger-file rescues still run, but workflow_run only advances on
+    # a successful deterministic handoff.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     concurrency:
@@ -146,6 +150,23 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Prepare showrunner judge
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # ChatGPT 2026-08-02: authoring was removed from this render job,
+          # but the showrunner may still use the subscription-backed Claude
+          # CLI as its vision judge. Install it only for that gate; Gemini is
+          # the independent fallback.
+          if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
+          fi
+          if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (Claude CLI install failed and GEMINI_API_KEY is empty)"
+            exit 1
+          fi
+
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
         uses: actions/cache@v4
@@ -203,7 +224,6 @@ jobs:
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON }}
-          GROQ: ${{ secrets.GROQ_API_KEY }}
           PEXELS: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY: ${{ secrets.PIXABAY_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -212,7 +232,6 @@ jobs:
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
           [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON"; missing=1; }
-          [ -z "$GROQ" ] && { echo "::error::missing secret GROQ_API_KEY (free key at https://console.groq.com/keys)"; missing=1; }
           [ -z "$PEXELS" ] && { echo "::error::missing secret PEXELS_API_KEY"; missing=1; }
           [ -z "$PIXABAY" ] && { echo "::error::missing secret PIXABAY_API_KEY"; missing=1; }
           # THE SHOWRUNNER NOW GATES THIS CHANNEL, AND IT FAILS CLOSED.
@@ -222,103 +241,19 @@ jobs:
           # instead of a silent zero-post day. This is a check being ADDED,
           # never a way to skip the gate — there is no bypass, only a
           # clearer reason.
-          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::no vision judge available (need CLAUDE_CODE_OAUTH_TOKEN, or GEMINI_API_KEY as fallback)."
+          if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no vision judge available (need an installed authenticated Claude CLI, or GEMINI_API_KEY as fallback)."
             echo "::error::The showrunner gates this channel and fails closed, so every video would be held."
             missing=1
           fi
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
-      # THE BRAIN. Headless Claude authors the day's packages per the
-      # Schulte Media playbook BEFORE render, so we never silently fall to
-      # the weak Groq writer. Non-fatal + time-boxed: if the token is
-      # missing or it errors, we log LOUDLY and the orchestrator proceeds
-      # (prewritten if present, else Groq — which now warns).
-      - name: Brain — author today's packages (Claude)
-        if: steps.preflight.outputs.skip == ''
-        continue-on-error: true
-        timeout-minutes: 20
-        env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-        run: |
-          set +e
-          TODAY=$(date -u +%Y%m%d)
-          DIR="state/trending_packages/$TODAY"
-          if ls "$DIR"/*.json >/dev/null 2>&1; then
-            echo "brain: $DIR already has hand-authored packages — leaving them."; exit 0
-          fi
-          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
-            echo "::warning::BRAIN SKIPPED — CLAUDE_CODE_OAUTH_TOKEN not set; run will fall to Groq."; exit 0
-          fi
-          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || { echo "::warning::BRAIN — claude-code install failed; falling to Groq."; exit 0; }
-          mkdir -p "$DIR"
-          # THE SLATE COMES FROM THE REGISTRY, not from this prompt. Editing
-          # the mix used to mean editing prose here AND four constants
-          # elsewhere; the 2026-07-31 graph-led ruling landed only here, and
-          # the reserve bank kept banking a retired format for weeks.
-          SLATE_RULING=$(python3 -m shared.channel_registry --mix trending) || {
-            echo "::error::channel registry unusable — refusing to author a guessed slate"; exit 1; }
-          SLATE_COUNT=$(python3 -c "from shared import channel_registry as r; print(r.target_count('trending'))")
-          echo "brain: slate ruling -> $SLATE_RULING"
-          cat > "$RUNNER_TEMP/brain_prompt.txt" <<EOF
-          You are the Schulte Media BRAIN, running headless in CI before render. Author today's $SLATE_COUNT video packages into the directory: $DIR
-
-          READ FIRST and treat as law:
-          - data_learning/SCHULTE_MEDIA_BRAIN.md  (playbook: identity, iron gate, hooks, retention doctrine)
-          - data_learning/LEARNING_LOOP.md         (how to read analytics)
-          - state/analytics/latest.json            (what is winning — study retention)
-          - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
-
-          FORMAT MIX — THE REGISTRY DECIDES, NOT THIS PROMPT. The line below is generated at run time from config/channel_registry.json (see the "Resolve the slate from the registry" step). If it ever disagrees with anything else you read — this file, a README, a remembered instruction — the registry wins.
-
-          ${SLATE_RULING}
-
-          Topics = whatever is hot/selling now (read state/scouted_sources.json); each of the 6 a DIFFERENT topic, none reused from the last 6 entries in state/posted_log.json. All TOS-safe (no slurs/explicit). Filenames 01_.. through 06_..; group by format.
-
-          FORMAT A — REDDIT (see the mix line above for how many): first-person Reddit story, narrated. Set "subreddit" (pettyrevenge|MaliciousCompliance|ProRevenge|entitledparents|TalesFromTheCustomer|IDontWorkHereLady). UNIVERSAL, all-gender premises with broad appeal: workplace justice, petty/pro revenge, entitled customers or neighbors, scams turned around, karma, malicious compliance, standing up to a bully. NO weddings, NO bridal/relationship/breakup/cheating drama, NO female-skewed niche stories — anyone of any gender should enjoy it. ORIGINAL story, ~130-170 words one paragraph, open-loop hook, ends on a satisfying twist/payoff (NOT a question). 6-8 "shots" (each phrase an EXACT substring of the script; query = mood b-roll) and 3-5 "punches" (phrase = exact substring; SHORT CAPS text; color #ff3030/#ffaa30/#50ff80). Schema: {"version":1,"subreddit":"..","slug":"..","title":"..","hashtags":[12],"script":"..","shots":[{"phrase":"..","query":"..","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"..","text":"..","color":"#ff3030"}],"music_vibe":"dark"}. Max 3 non-idle poses.
-
-          FORMAT B — GRAPH RACE (see the mix line above for how many): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","icon":"..","values":[same length as years]},.. 2-4 series],"music_vibe":"dark","hook":"<=32 chars tease of the payoff, e.g. Wait for 2008..."}. "hook" is optional but strongly preferred — it flashes over the chart for the first ~1.5s and buys the crucial first-seconds hold. "icon" gives each line a badge at its tip + in the leaderboard so viewers know who is who: a 2-letter COUNTRY CODE ("US","CN","JP") for countries, otherwise the brand/company/org name to look up ("Netflix","SpaceX"); omit it only when the series is an abstract category. BIG NUMBERS RULE — this is a HARD gate, not a preference: the renderer REFUSES data whose leader peaks under 1,000 or grows less than 3x (1.6x if there is a lead change). Pick metrics that are naturally huge and violent — millions of subscribers/users/tons/dollars/launches, not two-digit counts. A line creeping from 12 to 40 is an instant reject; 40,000 collapsing to 4,000, or 0 exploding to 220 million, is the target. Prefer a DRAMATIC crossover or collapse (one line overtaking another mid-video). Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
-
-          HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
-          1. The file count and per-format counts EXACTLY as the mix line above states, valid JSON. Author nothing in a format that line marks RETIRED.
-          2. REDDIT: every shot.phrase and punch.phrase is an exact substring of that file's script. GRAPH: each series.values length == years length, and every graph has AT LEAST 2 series (a one-line chart is not a race — it is rejected).
-          2b. GRAPH DRAMA GATE — run it, do not eyeball it: `python3 -c "import json,glob;from engines import chart_race;[print(f, chart_race.assess(json.load(open(f)))) for f in glob.glob('$DIR/*graph*.json')]"`. Every graph file must print ok=True. If one is False, REPLACE ITS DATASET with a bigger/faster-moving metric and re-run until it passes — do not ship a rejected chart.
-          3. $SLATE_COUNT different topics; none in the last 6 posted_log entries. No fabricated stats. TOS-safe.
-
-          Finish by printing all $SLATE_COUNT titles + their formats and confirming the substring / length / format / accuracy checks passed.
-          EOF
-          echo "brain: authoring into $DIR ..."
-          claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
-            --allowedTools "Read,Write,Edit,Bash" \
-            --permission-mode acceptEdits \
-            --model "${BRAIN_MODEL:-sonnet}" \
-            --output-format text 2>&1 | tail -40 || echo "::warning::BRAIN run errored (non-fatal)."
-          N=$(ls "$DIR"/*.json 2>/dev/null | wc -l)
-          echo "brain: authored $N package(s)"
-          [ "$N" -eq 0 ] && echo "::warning::BRAIN produced 0 packages; run will fall to Groq."
-          exit 0
-
-      # LAST-RESORT COVER. The brain above is the only Claude-authored path
-      # in this workflow, and it is `continue-on-error` by design — a lapsed
-      # subscription, a revoked token, or a failed npm install all land here
-      # with an empty package directory. Before that becomes "Groq writes six
-      # scripts" (rate-limited, weak) or "re-serve yesterday's already-posted
-      # slate", draw banked evergreen packages instead. A no-op on any day
-      # the brain worked.
-      - name: Reserve bank — cover a dead brain
-        if: steps.preflight.outputs.skip == ''
-        continue-on-error: true
-        run: |
-          set -e
-          TODAY=$(date -u +%Y%m%d)
-          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
-            python scripts/package_reserve.py deposit \
-              --dir state/package_buffer/inbox --source routine --delete
-          fi
-          python scripts/package_reserve.py status
-          python scripts/package_reserve.py fill --date "$TODAY" \
-            --reason "daily.yml brain authored nothing"
+      # ChatGPT 2026-08-02: this workflow is a renderer/uploader, never a
+      # fallback brain. Claude's normal authoring happens before Phase A;
+      # ChatGPT owns a Claude-out day before Phase B. Re-authoring here hid
+      # broken handoffs and made "render" a second, conflicting source of
+      # content policy.
 
       - name: Run daily orchestrator
         id: run
@@ -342,8 +277,8 @@ jobs:
           # THE SHOWRUNNER. This channel ships 6 videos a day and, until now,
           # nothing watched any of them (docs/SYSTEM_AUDIT.md §D). The gate
           # judges on the headless-Claude SUBSCRIPTION via this token — the
-          # `claude` CLI installed by the brain step above, in this same job —
-          # never the paid API. Without it the gate falls back to Gemini
+          # Claude subscription credential when available — never the paid
+          # API. Without it the gate falls back to Gemini
           # below; with neither, the preflight has already failed the run.
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Gemini: the showrunner's only fallback judge, plus the optional
@@ -417,7 +352,7 @@ jobs:
           # fair-use defense.
           TOPIC_VIDEO_ALLOW_STRIKES: ${{ vars.TOPIC_VIDEO_ALLOW_STRIKES }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
-          COUNT: ${{ github.event.inputs.count || '6' }}
+          COUNT: ${{ github.event.inputs.count }}
           FORCE: ${{ github.event.inputs.force }}
           # Default to immediate publish for EVERY trigger (dispatch, push,
           # workflow_run). On non-dispatch triggers inputs.* is empty, so the
@@ -433,7 +368,10 @@ jobs:
               echo "::error::channel registry unusable — refusing to guess a slate size"; exit 1; }
             echo "count from the registry: $COUNT"
           fi
-          ARGS="--count $COUNT"
+          # ChatGPT 2026-08-02: Phase B is the only production admission
+          # gate. The renderer must refuse an incomplete manifest instead of
+          # reaching backward for stale packages or becoming a Groq brain.
+          ARGS="--count $COUNT --require-manifest"
           if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
           # Publish IMMEDIATELY by default (operator ruling): the daily video
           # goes public the moment it renders. Only schedule if explicitly
