@@ -161,6 +161,8 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
         self.assertNotIn("Brain — author today's packages", wf)
         self.assertNotIn("claude -p", wf)
         self.assertIn("--require-manifest", wf)
+        self.assertIn('GITHUB_EVENT_NAME" = "push', wf,
+                      "the repair trigger must resume a partial batch")
         self.assertIn("shared import channel_registry", wf,
                       "daily.yml must still resolve its render count from "
                       "the registry")

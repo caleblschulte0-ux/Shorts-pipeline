@@ -372,7 +372,13 @@ jobs:
           # gate. The renderer must refuse an incomplete manifest instead of
           # reaching backward for stale packages or becoming a Groq brain.
           ARGS="--count $COUNT --require-manifest"
-          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
+          # The trigger file is the operator/supervisor's explicit repair
+          # mechanism. It must resume the unposted remainder even when one
+          # package succeeded in the last six hours; posted-title dedupe still
+          # prevents that successful package from being uploaded twice.
+          if [ "$FORCE" = "true" ] || [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            ARGS="$ARGS --force-rerun"
+          fi
           # Publish IMMEDIATELY by default (operator ruling): the daily video
           # goes public the moment it renders. Only schedule if explicitly
           # asked via a manual dispatch with the box unchecked (NO_SCHEDULE
