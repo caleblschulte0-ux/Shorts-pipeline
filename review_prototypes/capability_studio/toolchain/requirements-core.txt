@@ -1,0 +1,9 @@
+# Review-only free toolchain. Pin exact versions during production adoption.
+moviepy>=2.0
+cairosvg>=2.7
+graphviz>=0.20
+opentimelineio>=0.17
+scenedetect[opencv]>=0.6.4
+ocrmypdf>=16
+pillow>=10
+ffmpeg-python>=0.2

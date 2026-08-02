@@ -1,0 +1,13 @@
+{
+  "missing_source": "held",
+  "stale_source": "held",
+  "render_crash": "held",
+  "missing_video": "held",
+  "malformed_verdict": "held",
+  "judge_unwatched": "held",
+  "low_score": "held",
+  "version_drift": "held",
+  "proof_tamper": "held",
+  "release_tamper": "held",
+  "audit_tamper": "held"
+}

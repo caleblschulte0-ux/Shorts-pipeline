@@ -1,0 +1,63 @@
+{
+  "archetypes_proven": 5,
+  "average_polish_score": 90.3,
+  "dimensions": {
+    "comparison": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 75.9
+    },
+    "money": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 94.0,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 76.7
+    },
+    "ranking": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 80.0
+    },
+    "share": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 74.4
+    },
+    "single": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 74.4
+    }
+  },
+  "minimum_polish_score": 89.5,
+  "production_pipeline_modified": false,
+  "scores": {
+    "comparison": 89.7,
+    "money": 92.4,
+    "ranking": 90.2,
+    "share": 89.5,
+    "single": 89.5
+  },
+  "sprint": "Sprint 7 perceptual polish",
+  "tests_failed": 0,
+  "tests_passed": 30
+}

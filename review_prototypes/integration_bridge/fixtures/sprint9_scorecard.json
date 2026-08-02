@@ -1,0 +1,30 @@
+{
+  "dimensions": {
+    "creative_planning": 100.0,
+    "archetype_coverage": 100.0,
+    "deterministic_preview_rendering": 98.0,
+    "perceptual_polish": 97.0,
+    "global_continuity": 98.0,
+    "production_contract_mapping": 100.0,
+    "shadow_story_adaptation": 100.0,
+    "claude_patch_blueprints": 100.0,
+    "isolated_testing": 100.0,
+    "migration_gate_readiness": 54.5,
+    "production_wiring": 0.0,
+    "finished_production_mp4_proof": 0.0,
+    "real_channel_performance_proof": 0.0
+  },
+  "review_scope_percent": 99.2,
+  "overall_percent": 73.8,
+  "production_pipeline_modified": false,
+  "evidence": {
+    "tests_passed": 39,
+    "tests_total": 39,
+    "contracts_passed": 8,
+    "contracts_total": 8,
+    "archetypes_proven": 5,
+    "shadow_stories": 5,
+    "migration_blocking_gates_passed": 6,
+    "migration_blocking_gates_total": 11
+  }
+}

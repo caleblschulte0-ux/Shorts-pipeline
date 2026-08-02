@@ -1,0 +1,27 @@
+{
+  "scope": "review_only_video_quality",
+  "dimensions": {
+    "creative_planning": 100.0,
+    "archetype_coverage": 100.0,
+    "caption_and_typography_polish": 96.0,
+    "deterministic_preview_rendering": 98.0,
+    "sound_design_and_sync": 97.0,
+    "transition_continuity": 96.0,
+    "motion_flow": 96.0,
+    "useful_screen_occupancy": 95.0,
+    "narrative_tension_and_rhythm": 96.0,
+    "isolated_unit_testing": 100.0,
+    "production_wiring": 0.0,
+    "finished_mp4_proof": 0.0,
+    "real_channel_performance_proof": 0.0
+  },
+  "review_scope_percent": 97.4,
+  "overall_percent": 68.2,
+  "production_pipeline_modified": false,
+  "evidence": {
+    "tests_passed": 29,
+    "archetypes_proven": 5,
+    "average_isolated_quality_score": 98.2,
+    "minimum_isolated_quality_score": 98.0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "dimensions": {
+    "archetype_coverage": 100.0,
+    "caption_and_typography_polish": 94.0,
+    "creative_planning": 100.0,
+    "deterministic_preview_rendering": 96.0,
+    "finished_mp4_proof": 0.0,
+    "isolated_unit_testing": 100.0,
+    "narrative_tension": 93.0,
+    "production_wiring": 0.0,
+    "real_channel_performance_proof": 0.0,
+    "sound_design_planning": 92.0,
+    "transition_continuity": 91.0
+  },
+  "evidence": {
+    "archetypes": 5,
+    "review_scope_percent": 95.8,
+    "tests": 30
+  },
+  "overall_percent": 65.1,
+  "production_pipeline_modified": false,
+  "scope": "review_only_video_quality"
+}

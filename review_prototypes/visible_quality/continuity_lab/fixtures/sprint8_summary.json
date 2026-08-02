@@ -1,0 +1,55 @@
+{
+  "sprint": "Sprint 8 global continuity",
+  "tests_passed": 29,
+  "tests_failed": 0,
+  "production_pipeline_modified": false,
+  "average_quality_score": 98.2,
+  "minimum_quality_score": 98.0,
+  "archetypes": {
+    "money": {
+      "quality_score": 98.4,
+      "audio_synchronization": 100.0,
+      "transition_continuity": 97.3,
+      "useful_occupancy": 100.0,
+      "motion_flow": 96.0,
+      "story_rhythm": 96.7,
+      "transitions": ["momentum_match", "number_match", "data_morph", "callback_return"]
+    },
+    "share": {
+      "quality_score": 98.2,
+      "audio_synchronization": 100.0,
+      "transition_continuity": 96.1,
+      "useful_occupancy": 100.0,
+      "motion_flow": 96.0,
+      "story_rhythm": 96.7,
+      "transitions": ["impact_cut", "momentum_match", "number_match", "callback_return"]
+    },
+    "ranking": {
+      "quality_score": 98.0,
+      "audio_synchronization": 100.0,
+      "transition_continuity": 94.9,
+      "useful_occupancy": 100.0,
+      "motion_flow": 96.0,
+      "story_rhythm": 96.7,
+      "transitions": ["impact_cut", "focus_pull", "momentum_match", "callback_return"]
+    },
+    "comparison": {
+      "quality_score": 98.2,
+      "audio_synchronization": 100.0,
+      "transition_continuity": 96.1,
+      "useful_occupancy": 100.0,
+      "motion_flow": 96.0,
+      "story_rhythm": 96.7,
+      "transitions": ["impact_cut", "momentum_match", "number_match", "callback_return"]
+    },
+    "single": {
+      "quality_score": 98.2,
+      "audio_synchronization": 100.0,
+      "transition_continuity": 96.1,
+      "useful_occupancy": 100.0,
+      "motion_flow": 96.0,
+      "story_rhythm": 96.7,
+      "transitions": ["impact_cut", "momentum_match", "number_match", "callback_return"]
+    }
+  }
+}

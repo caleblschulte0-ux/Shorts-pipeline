@@ -1,0 +1,17 @@
+{
+  "sprint": "Sprint 9 shadow integration bridge",
+  "tests_passed": 39,
+  "tests_failed": 0,
+  "production_contract_files_mapped": 8,
+  "production_contract_percent": 100.0,
+  "archetypes_shadow_adapted": 5,
+  "scenes_shadow_adapted": 25,
+  "patch_targets": 7,
+  "migration_phases": 5,
+  "migration_gate_readiness": 54.5,
+  "review_scope_percent": 99.2,
+  "overall_percent": 73.8,
+  "production_pipeline_modified": false,
+  "publishing_enabled": false,
+  "showrunner_authority_changed": false
+}

@@ -1,0 +1,13 @@
+{
+  "components": 21,
+  "decision_routes": 6,
+  "errors": [],
+  "evidence_declared_unverified": 1,
+  "evidence_not_claimed": 2,
+  "evidence_verified": 7,
+  "ok": true,
+  "phases": 11,
+  "risks": 8,
+  "sacred_guards": 8,
+  "schema_version": "claude-master-handoff/v1"
+}

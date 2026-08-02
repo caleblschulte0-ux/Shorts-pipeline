@@ -1,0 +1,9 @@
+Sprint 10 launch closure test run
+
+Command:
+python -m unittest -v review_prototypes.launch_closure.test_launch_closure
+
+Result:
+Ran 54 tests in 23.106s
+
+OK

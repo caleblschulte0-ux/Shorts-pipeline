@@ -1,0 +1,19 @@
+{
+  "archetypes_rehearsed": 5,
+  "launch_gates_passed": 14,
+  "launch_gates_total": 14,
+  "migration_gate_readiness": 100.0,
+  "migration_phases": 5,
+  "mp4_artifacts_created_temporarily": 15,
+  "overall_percent": 79.5,
+  "patch_targets": 7,
+  "production_contracts": 8,
+  "production_pipeline_modified": false,
+  "publishing_enabled": false,
+  "review_scope_percent": 100.0,
+  "rollback_drills": 5,
+  "showrunner_authority_changed": false,
+  "sprint": "Sprint 10 launch closure",
+  "tests_expected": 54,
+  "two_pass_reviews": 10
+}

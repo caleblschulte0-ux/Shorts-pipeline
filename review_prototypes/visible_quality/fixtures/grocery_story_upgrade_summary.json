@@ -1,0 +1,75 @@
+{
+  "slug": "grocery_bill_jump",
+  "baseline_visible_quality_score": 47.4,
+  "upgraded_visible_quality_score": 93.3,
+  "hook": {
+    "structure": "before_after_snap",
+    "text": "2019: $680. 2026: $1,030."
+  },
+  "ending_callback": "2019_vs_2026",
+  "scenes": [
+    {
+      "scene_id": "grocery_bill_jump_seg00",
+      "role": "hook",
+      "viz_kind": "timeline",
+      "visual_event": "split_screen_values_slam_then_gap_opens",
+      "camera_move": "snap_push_in",
+      "mascot_effort": "drag_line",
+      "caption_chunks": ["2019 $680. 2026 $1,030."],
+      "callback_token": "2019_vs_2026"
+    },
+    {
+      "scene_id": "grocery_bill_jump_seg01",
+      "role": "setup",
+      "viz_kind": "trend",
+      "visual_event": "line_enters_flat_then_yanks_mascot_upward",
+      "camera_move": "counter_pan",
+      "mascot_effort": "pull_down_win",
+      "caption_chunks": [
+        "In 2019 the basket cost",
+        "about six hundred eighty dollars."
+      ],
+      "callback_token": ""
+    },
+    {
+      "scene_id": "grocery_bill_jump_seg02",
+      "role": "explanation",
+      "viz_kind": "trend",
+      "visual_event": "line_draws_under_tension_and_labels_land_on_impacts",
+      "camera_move": "slow_push",
+      "mascot_effort": "ride",
+      "caption_chunks": [
+        "By 2022 the same basket",
+        "had climbed to eight hundred",
+        "sixty dollars."
+      ],
+      "callback_token": ""
+    },
+    {
+      "scene_id": "grocery_bill_jump_seg03",
+      "role": "consequence",
+      "viz_kind": "stack",
+      "visual_event": "the_total_increase_builds_into_a_physical_stack_the_mascot_must_hold",
+      "camera_move": "slow_push",
+      "mascot_effort": "hoist_stack",
+      "caption_chunks": [
+        "That means the household has",
+        "to find hundreds more every year."
+      ],
+      "callback_token": ""
+    },
+    {
+      "scene_id": "grocery_bill_jump_seg04",
+      "role": "payoff",
+      "viz_kind": "timeline",
+      "visual_event": "opening_split_screen_returns_then_the_full_trend_draws_between_both_sides",
+      "camera_move": "callback_pull_back",
+      "mascot_effort": "drag_line",
+      "caption_chunks": [
+        "The path between 2019 and",
+        "2026 is the story."
+      ],
+      "callback_token": "2019_vs_2026"
+    }
+  ]
+}

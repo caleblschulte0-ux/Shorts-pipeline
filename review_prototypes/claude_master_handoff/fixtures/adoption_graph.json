@@ -1,0 +1,24 @@
+{
+  "schema_version":"claude-master-adoption-graph/v1",
+  "decision_routes":{
+    "improve_current_video_quality":"phase_01_preflight -> phase_03_shadow_bridge -> phase_04_preview_renderer -> phase_05_sovereign_review",
+    "make_posting_independent_of_live_ai":"phase_01_preflight -> phase_08_independence",
+    "add_free_media_or_tool_capability":"phase_01_preflight -> phase_08_independence using capability_studio",
+    "build_institutional_learning":"phase_02_record_contracts -> phase_09_media_os_records -> phase_10_media_os_shadow_lab",
+    "improve_sources_and_story_premises":"content_system only; remain review-only until a separate contract mapping is approved",
+    "inspect_or_repair_quality_failures":"full_video_proof + observability + release_safety + bounded repair path"
+  },
+  "phases":[
+    {"phase_id":"phase_00_orientation","title":"Read-only orientation","depends_on":[],"authority_ceiling":"none","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_01_preflight","title":"Critical isolated preflight","depends_on":["phase_00_orientation"],"authority_ceiling":"none","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_02_record_contracts","title":"Record-only contracts","depends_on":["phase_01_preflight"],"authority_ceiling":"record_only","production_files":[],"acceptance_count":4,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_03_shadow_bridge","title":"Shadow creative bridge","depends_on":["phase_02_record_contracts"],"authority_ceiling":"shadow_only","production_files":["data_learning/story.py","data_learning/viz_director.py","data_learning/charts.py"],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_04_preview_renderer","title":"Preview-only renderer consumption","depends_on":["phase_03_shadow_bridge"],"authority_ceiling":"preview_only","production_files":["data_learning/studio_render.py"],"acceptance_count":4,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_05_sovereign_review","title":"Complete-video sovereign review","depends_on":["phase_04_preview_renderer"],"authority_ceiling":"preview_only","production_files":["scripts/showrunner_review.py"],"acceptance_count":3,"rollback_count":1,"stop_condition_count":4},
+    {"phase_id":"phase_06_bounded_repair","title":"Bounded keep-best repair","depends_on":["phase_05_sovereign_review"],"authority_ceiling":"preview_only","production_files":["scripts/scene_repair.py","scripts/repair_loop.py"],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_07_private_holdout","title":"Frozen/private holdout","depends_on":["phase_06_bounded_repair"],"authority_ceiling":"bounded_canary","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_08_independence","title":"Operational independence","depends_on":["phase_07_private_holdout"],"authority_ceiling":"bounded_canary","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_09_media_os_records","title":"Professional Media OS record layer","depends_on":["phase_02_record_contracts"],"authority_ceiling":"record_only","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3},
+    {"phase_id":"phase_10_media_os_shadow_lab","title":"Professional Media OS shadow laboratory","depends_on":["phase_09_media_os_records"],"authority_ceiling":"shadow_only","production_files":[],"acceptance_count":3,"rollback_count":1,"stop_condition_count":3}
+  ]
+}

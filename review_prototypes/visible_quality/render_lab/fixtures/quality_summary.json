@@ -1,0 +1,41 @@
+{
+  "slug": "grocery_bill_jump",
+  "quality_score": 95.9,
+  "scene_count": 5,
+  "total_duration": 20.5,
+  "hard_failures": [],
+  "quality_dimensions": {
+    "hook_motion": 100.0,
+    "caption_rhythm": 92.1,
+    "useful_occupancy": 77.2,
+    "camera_variety": 100.0,
+    "mascot_action_variety": 100.0,
+    "demonstration_variety": 100.0,
+    "ending_callback": 100.0,
+    "sound_sync": 100.0
+  },
+  "camera_moves": [
+    "snap_push_in",
+    "counter_pan",
+    "follow_tip",
+    "pressure_pull_back",
+    "callback_pull_back"
+  ],
+  "mascot_actions": [
+    "drag_line",
+    "pull_down_win",
+    "ride",
+    "hoist_stack",
+    "drag_line"
+  ],
+  "visual_events": [
+    "split_screen_values_slam_then_gap_opens",
+    "line_enters_flat_then_yanks_mascot_upward",
+    "line_draws_under_tension_and_labels_land_on_impacts",
+    "the_total_increase_builds_into_a_physical_stack_the_mascot_must_hold",
+    "opening_split_screen_returns_then_the_full_trend_draws_between_both_sides"
+  ],
+  "tests_passed": 18,
+  "tests_failed": 0,
+  "production_pipeline_modified": false
+}

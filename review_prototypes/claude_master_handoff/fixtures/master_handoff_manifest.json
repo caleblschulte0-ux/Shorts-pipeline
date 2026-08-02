@@ -1,0 +1,88 @@
+{
+  "schema_version":"claude-master-handoff/v1",
+  "name":"Claude master handoff for Shorts Pipeline review lab",
+  "status":"review_only_unwired",
+  "repository":"caleblschulte0-ux/Shorts-pipeline",
+  "pull_request":174,
+  "branch":"agent/claude-roadmap-review",
+  "canonical_files":{
+    "playbook":"review_prototypes/claude_master_handoff/PLAYBOOK.md",
+    "first_session_prompt":"review_prototypes/claude_master_handoff/FIRST_SESSION_PROMPT.md",
+    "capability_expansion_handoff":"review_prototypes/claude_master_handoff/CAPABILITY_EXPANSION_HANDOFF.md",
+    "capability_expansion_manifest":"review_prototypes/claude_master_handoff/fixtures/capability_expansion_handoff.json",
+    "system_catalog":"review_prototypes/claude_master_handoff/fixtures/system_catalog.json",
+    "adoption_graph":"review_prototypes/claude_master_handoff/fixtures/adoption_graph.json",
+    "risk_register":"review_prototypes/claude_master_handoff/fixtures/risk_register.json",
+    "scorecard":"review_prototypes/claude_master_handoff/fixtures/final_scorecard.json",
+    "validation_report":"review_prototypes/claude_master_handoff/fixtures/validation_report.json",
+    "launch_manifest":"review_prototypes/launch_closure/fixtures/claude_launch_manifest.json",
+    "professional_media_os_manifest":"review_prototypes/professional_media_os/ADOPTION_MANIFEST.json"
+  },
+  "counts":{
+    "components":21,
+    "adoption_phases":11,
+    "decision_routes":6,
+    "sacred_guards":8,
+    "named_risks":8,
+    "verified_evidence_claims":7,
+    "declared_unverified_claims":1,
+    "not_claimed_dimensions":2,
+    "master_handoff_tests":"29/29",
+    "recorded_passing_tests_across_handoff_critical_suites":237
+  },
+  "first_session_commands":[
+    "git status --short --branch",
+    "cat review_prototypes/claude_master_handoff/PLAYBOOK.md",
+    "cat review_prototypes/claude_master_handoff/CAPABILITY_EXPANSION_HANDOFF.md",
+    "python -m review_prototypes.claude_master_handoff.cli summary",
+    "python -m review_prototypes.claude_master_handoff.cli validate --repo .",
+    "python -m unittest -v review_prototypes.claude_master_handoff.test_master_handoff",
+    "python -m unittest -v review_prototypes.integration_bridge.test_integration_bridge",
+    "python -m unittest -v review_prototypes.launch_closure.test_launch_closure",
+    "python -m review_prototypes.launch_closure.cli --out /tmp/shorts-launch-rehearsal"
+  ],
+  "decision_routes":{
+    "improve_current_video_quality":"critical preflight -> shadow creative bridge -> preview renderer -> sovereign review -> bounded repair -> private holdout",
+    "improve_sources_and_story_premises":"content system and retention diagnostics; map production authoring contract before adoption",
+    "make_posting_independent_of_live_ai":"subscription fallback; approved queue and idempotency first",
+    "add_free_media_or_tool_capability":"start at CAPABILITY_EXPANSION_HANDOFF.md; use Capability Studio for the original free toolchain and Advanced Capability Expansion Wave 2 for local models, memory, extraction, data, maps, captions, visual intelligence, localization, and audio; one family at a time",
+    "build_institutional_learning":"Professional Media OS; records and lineage first, calibrated shadow lab later",
+    "inspect_or_repair_quality_failures":"complete-video proof -> observability -> release safety -> bounded keep-best repair"
+  },
+  "current_video_quality_patch_targets":[
+    {"order":1,"path":"data_learning/story.py","authority":"record_only"},
+    {"order":2,"path":"data_learning/viz_director.py","authority":"shadow_only"},
+    {"order":3,"path":"data_learning/charts.py","authority":"shadow_only"},
+    {"order":4,"path":"data_learning/studio_render.py","authority":"preview_only"},
+    {"order":5,"path":"scripts/showrunner_review.py","authority":"diagnostics_only"},
+    {"order":6,"path":"scripts/scene_repair.py","authority":"preview_only_keep_best"},
+    {"order":7,"path":"scripts/repair_loop.py","authority":"preview_only_bounded"}
+  ],
+  "sacred_guards":[
+    "Publishing remains frozen until explicitly authorized.",
+    "A sovereign showrunner BLOCK remains BLOCK.",
+    "Do not alter WEIGHTS, AUTOFAIL_CHECKS, MIN_SCORE, decide_verdict, or fail-closed publishing to gain a pass.",
+    "Posted logs, uploader idempotency, OAuth/token routing, expected-channel guards, workflows, secrets, and production state are sacred.",
+    "Every phase is a separate commit with acceptance, stop, and rollback rules.",
+    "Baseline and shadow use identical slug, evidence, source data, narration, and metric definitions.",
+    "Unknown evidence remains unknown and synthetic evidence is not audience proof.",
+    "Channel identity and doctrine remain channel-owned."
+  ],
+  "evidence_status":{
+    "verified":["completion closure 25/25","viewer-facing render lab 31/31","perceptual polish 30/30","global continuity 29/29","integration bridge 39/39","launch closure 54/54","master handoff 29/29"],
+    "declared_unverified":["Professional Media OS declares 25 tests; Claude must execute them before adoption. Capability Studio, Advanced Capability Expansion, and subscription fallback suites must also be run in the current checkout."],
+    "not_claimed":["production wiring","complete integrated production MP4 proof","real channel performance proof"]
+  },
+  "completion":{
+    "review_handoff_percent":100.0,
+    "honest_overall_percent":79.5,
+    "production_wiring_percent":0.0,
+    "integrated_production_mp4_proof_percent":0.0,
+    "real_channel_performance_proof_percent":0.0
+  },
+  "production_pipeline_modified":false,
+  "publishing_enabled":false,
+  "showrunner_authority_changed":false,
+  "public_release_authorized":false,
+  "merge_authorized":false
+}

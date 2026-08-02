@@ -1,0 +1,77 @@
+{
+  "comparison": {
+    "archetype": "comparison",
+    "dimensions": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 75.9
+    },
+    "mechanics": ["scale_collision", "gap_expansion", "brace_between_values", "gap_expansion", "side_by_side_resolution"],
+    "score": 89.7,
+    "transitions": ["impact_cut", "whip_pan", "whip_pan", "callback_return"]
+  },
+  "money": {
+    "archetype": "money_over_time",
+    "dimensions": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 94.0,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 76.7
+    },
+    "mechanics": ["receipt_roll", "trend_yank", "burden_stack", "number_match", "callback_bridge"],
+    "score": 92.4,
+    "transitions": ["impact_cut", "data_morph", "whip_pan", "callback_return"]
+  },
+  "ranking": {
+    "archetype": "ranking",
+    "dimensions": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 80.0
+    },
+    "mechanics": ["rank_race", "finish_gap", "podium_reframe", "finish_gap", "winner_gap_callback"],
+    "score": 90.2,
+    "transitions": ["impact_cut", "whip_pan", "whip_pan", "callback_return"]
+  },
+  "share": {
+    "archetype": "share_of_whole",
+    "dimensions": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 74.4
+    },
+    "mechanics": ["share_squeeze", "cell_pressure", "remainder_escape", "cell_pressure", "opening_grid_resolves"],
+    "score": 89.5,
+    "transitions": ["impact_cut", "whip_pan", "whip_pan", "callback_return"]
+  },
+  "single": {
+    "archetype": "single_stat",
+    "dimensions": {
+      "archetype_fit": 100.0,
+      "audio_sync": 72.0,
+      "callback_payoff": 100.0,
+      "tension_arc": 100.0,
+      "transition_continuity": 75.3,
+      "typography_legibility": 100.0,
+      "useful_occupancy": 74.4
+    },
+    "mechanics": ["gauge_launch", "needle_ride", "remaining_space", "needle_ride", "gauge_freeze_takeaway"],
+    "score": 89.5,
+    "transitions": ["impact_cut", "whip_pan", "whip_pan", "callback_return"]
+  }
+}

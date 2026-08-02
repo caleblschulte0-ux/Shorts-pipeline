@@ -1,0 +1,45 @@
+{
+  "name": "capability_studio",
+  "status": "review_only",
+  "maturity": "prototype",
+  "production_imports": 0,
+  "network_execution_enabled": false,
+  "workflow_changes": 0,
+  "uploader_changes": 0,
+  "secret_access": false,
+  "production_state_access": false,
+  "publishing_enabled": false,
+  "paid_providers_in_free_default_path": false,
+  "free_stack_required_secrets": [],
+  "free_stack_optional_secrets": [
+    "FRED_API_KEY",
+    "NOAA_TOKEN",
+    "CENSUS_API_KEY"
+  ],
+  "declared_test_modules": [
+    "review_prototypes.capability_studio.test_capability_studio",
+    "review_prototypes.capability_studio.test_free_capabilities"
+  ],
+  "test_execution_in_connector": "not_claimed",
+  "pipeline_slots": [
+    "topic_discovery",
+    "research_packet",
+    "media_manifest",
+    "scene_plan",
+    "narration",
+    "timeline",
+    "rough_cut",
+    "quality_gate",
+    "run_lineage"
+  ],
+  "adoption_sequence": [
+    "run isolated tests",
+    "install only the local tools needed by one capability",
+    "map one live production contract",
+    "port one adapter behind a disabled feature flag",
+    "record-only shadow execution",
+    "benchmark false approvals and false rejections",
+    "bounded canary with rollback",
+    "grant only the minimum validated authority"
+  ]
+}

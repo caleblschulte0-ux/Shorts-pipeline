@@ -1,0 +1,132 @@
+{
+  "schema_version": "professional-media-os-adoption/v1",
+  "status": "review_only_unwired",
+  "scope": {
+    "root": "review_prototypes/professional_media_os",
+    "production_files_modified": 0,
+    "existing_files_deleted": 0,
+    "workflow_files_modified": 0,
+    "publishing_enabled": false,
+    "network_calls": false,
+    "secret_access": false,
+    "production_state_access": false,
+    "production_imports": false
+  },
+  "capabilities": [
+    {
+      "name": "immutable_contracts",
+      "module": "contracts.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
+      "name": "hash_chained_institutional_memory",
+      "module": "ledger.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
+      "name": "temporal_knowledge_graph",
+      "module": "knowledge.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
+      "name": "artifact_metric_decision_lineage",
+      "module": "lineage.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
+      "name": "creative_candidate_tournament",
+      "module": "lab.py",
+      "maturity": "uncalibrated_shadow_reference",
+      "production_authority": "none"
+    },
+    {
+      "name": "bounded_portfolio_planning",
+      "module": "portfolio.py",
+      "maturity": "deterministic_reference",
+      "production_authority": "none"
+    },
+    {
+      "name": "stage_aware_operator_diagnostics",
+      "module": "operator.py",
+      "maturity": "deterministic_reference",
+      "production_authority": "none"
+    },
+    {
+      "name": "learning_and_authority_governance",
+      "module": "governance.py",
+      "maturity": "policy_reference",
+      "production_authority": "none"
+    },
+    {
+      "name": "evidence_first_research_packets",
+      "module": "research.py",
+      "maturity": "fail_closed_reference",
+      "production_authority": "none"
+    },
+    {
+      "name": "versioned_creative_pattern_library",
+      "module": "patterns.py",
+      "maturity": "reference_implementation",
+      "production_authority": "none"
+    },
+    {
+      "name": "transparent_counterfactual_previews",
+      "module": "counterfactual.py",
+      "maturity": "uncalibrated_reference_only",
+      "production_authority": "none"
+    }
+  ],
+  "verification": {
+    "test_command": "python -m unittest review_prototypes.professional_media_os.test_professional_media_os review_prototypes.professional_media_os.test_lineage review_prototypes.professional_media_os.test_patterns_version",
+    "demo_command": "python -m review_prototypes.professional_media_os.cli demo",
+    "verified_in_this_change": false,
+    "reason": "Connector write environment does not execute repository tests; Claude must run the isolated suite before adoption.",
+    "test_count_declared": 25,
+    "synthetic_fixtures_only": true
+  },
+  "adoption_order": [
+    "stable identifiers and immutable record contracts",
+    "record-only content genomes and evidence references",
+    "append-only observation and decision ledgers",
+    "artifact and metric lineage capture",
+    "historical benchmark fixtures",
+    "shadow-only evaluator outputs",
+    "evaluator calibration and false-rejection measurement",
+    "rough-cut selection behind an explicit feature flag",
+    "bounded canary recommendation",
+    "versioned pattern adoption with rollback",
+    "portfolio planning after individual ranking proves trustworthy"
+  ],
+  "hard_gates": [
+    "map and freeze the target production contract",
+    "run the isolated tests successfully",
+    "keep prototype and production state paths physically separate",
+    "freeze publishing during integration tests",
+    "produce baseline and shadow artifacts for the same slug",
+    "review complete output rather than still frames only",
+    "preserve existing fail-closed QA authority",
+    "provide a one-flag kill switch",
+    "prove channel identity values remain sovereign",
+    "begin with a bounded canary and explicit rollback"
+  ],
+  "known_limitations": [
+    "candidate utility is a transparent heuristic and is not audience-calibrated",
+    "the portfolio algorithm is deterministic greedy selection, not a global optimizer",
+    "the knowledge graph is in-memory and not a production database",
+    "the file ledger is single-writer by contract",
+    "counterfactual intervals are illustrative and intentionally wide",
+    "no live platform analytics, provider behavior, rights service, or channel performance is exercised"
+  ],
+  "claude_first_actions": [
+    "read docs/future/PROFESSIONAL_MEDIA_OS.md",
+    "run the isolated unit test command",
+    "run the synthetic demo without --state-dir",
+    "inspect every BLOCK reason and counterfactual warning",
+    "adopt only record schemas first",
+    "do not connect publishing, workflows, secrets, or production state"
+  ]
+}
