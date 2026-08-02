@@ -538,7 +538,8 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
     ctx = {"slug": _slug(result.get("topic") or ""),
            "title": result.get("title") or pkg.get("title"),
            "hook": (pkg.get("hook") or "") or None,
-           "format": pkg.get("format"),
+           "format": (pkg.get("format") or
+                      ("reddit_story" if pkg.get("subreddit") else None)),
            "segments": [s.get("say") or s.get("text") or s.get("caption")
                         for s in (pkg.get("shots") or [])][:8]}
     gate = showrunner_gate.run(out_path, slug=ctx["slug"], context=ctx,

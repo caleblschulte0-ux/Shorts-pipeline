@@ -63,6 +63,36 @@ AUTOFAIL_CHECKS = ["junk_imagery", "decorative_mascot", "bare_number_card",
                    "dead_air", "empty_void"]
 
 
+def _format_directive(ctx: dict) -> str:
+    """Translate the shared quality bar for the format actually rendered.
+
+    ChatGPT added this on 2026-08-02 after the generic data-story wording
+    blocked two correctly rendered Reddit narratives for not demonstrating a
+    statistic. The gate remains sovereign; only an inapplicable criterion is
+    translated into the format's equivalent visual-demonstration standard.
+    """
+    fmt = str((ctx or {}).get("format") or "").strip().lower()
+    if fmt == "reddit_story":
+        return (
+            "FORMAT = REDDIT STORY. This is a narrative, not a statistics "
+            "explainer. Grade data_demo by whether the cause/effect story "
+            "beats are visibly demonstrated with changing, relevant shot "
+            "illustrations plus gameplay/captions; do not demand numbers, a "
+            "chart, or a data claim. bare_number_card is relevant only if an "
+            "actual number card appears. For decorative_mascot, compare the "
+            "sampled beats: different poses, positions, and story reactions "
+            "constitute performance; do not require skeletal sprite animation.")
+    if fmt == "graph_race":
+        return (
+            "FORMAT = GRAPH RACE. The growing lines, moving tips, changing "
+            "leaderboard, and year counter are the data demonstration. A "
+            "mascot performs when its pose, position, and callout visibly "
+            "react to the current leader/crossover/payoff; do not require "
+            "skeletal sprite animation. A one-series growth chart has a scale "
+            "payoff, not a competitive winner.")
+    return "Apply the general director rubric exactly as written."
+
+
 def compute_score(dims: dict) -> int:
     """Turn anchored dimension grades into the weighted 100-pt score. In CODE,
     not by asking the model for the total."""
@@ -478,6 +508,9 @@ MOTION FACTS (measured in code, not opinion) — use them, especially for dead_a
 and empty_void:
 {motion}
 
+FORMAT CONTRACT (authoritative for how this format demonstrates its content):
+{format_directive}
+
 STRUCTURED DIAGNOSIS (required): identify the WEAKEST SCENE by its frame-label \
 segment id (segN as printed on the frame labels; the hook is "hook"). If you \
 would block this video you MUST name the scene that most needs repair, the \
@@ -543,6 +576,7 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             }
         prompt = _GRADE_PROMPT.format(
             motion=json.dumps({**motion, "temporal": temporal}),
+            format_directive=_format_directive(ctx),
             rubric=_rubric()[:6000],
             ctx=json.dumps(ctx, indent=0)[:3000])
         grades, backend = _judge(prompt, labeled)

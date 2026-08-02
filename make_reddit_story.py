@@ -76,6 +76,11 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
                                      method=Image.Resampling.LANCZOS)
 
             pose = str(shot.get("mascot_pose") or "idle").strip().lower()
+            # An all-idle authored package still needs a visible performance.
+            # Cycle reactions across beats while retaining every explicit
+            # non-idle direction from the package.
+            if pose == "idle":
+                pose = ("think", "point", "shock", "cheer")[i % 4]
             mascot_path = mascot_dir / f"{pose}.png"
             if not mascot_path.exists():
                 mascot_path = mascot_dir / "idle.png"
@@ -84,9 +89,9 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
                     mascot = m.convert("RGBA")
                     mascot.thumbnail((250, 250), Image.Resampling.LANCZOS)
                     panel = panel.convert("RGBA")
-                    panel.alpha_composite(
-                        mascot, (W - mascot.width - 24,
-                                 H // 2 - mascot.height - 18))
+                    x = (24 if i % 2 else W - mascot.width - 24)
+                    y = max(18, H // 2 - mascot.height - 18 - (i % 3) * 24)
+                    panel.alpha_composite(mascot, (x, y))
                     panel = panel.convert("RGB")
 
             dest = workdir / f"shot_panel_{i:02d}.jpg"

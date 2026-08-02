@@ -228,5 +228,19 @@ class TestBothChannelsAreActuallyGated(unittest.TestCase):
                                         "is exactly the bypass shape")
 
 
+class TestZFormatAwareShowrunnerContract(unittest.TestCase):
+    def test_reddit_is_not_required_to_invent_a_statistic(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "reddit_story"})
+        self.assertIn("narrative, not a statistics explainer", text)
+        self.assertIn("do not demand numbers", text)
+
+    def test_graph_mascot_can_perform_by_following_the_race(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "graph_race"})
+        self.assertIn("current leader/crossover/payoff", text)
+        self.assertIn("do not require skeletal sprite animation", text)
+
+
 if __name__ == "__main__":
     unittest.main()
