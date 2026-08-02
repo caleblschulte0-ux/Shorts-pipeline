@@ -3,13 +3,15 @@
   "date": "20260802",
   "channel": "trending",
   "expected": 6,
-  "previously_uploaded": 0,
-  "rendered_or_attempted": 6,
-  "uploaded": 1,
+  "previously_uploaded": 1,
+  "rendered_or_attempted": 5,
+  "uploaded": 4,
   "quarantined": 0,
-  "failed": 5,
+  "failed": 2,
   "status": "repair_required",
   "video_urls": [
-    "https://youtube.com/shorts/sC1a9v3lN7U"
+    "https://youtube.com/shorts/8bLQMgdgoKM",
+    "https://youtube.com/shorts/KaGbGkoxVwI",
+    "https://youtube.com/shorts/uUcGuDtGOkw"
   ]
 }

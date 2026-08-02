@@ -1,4 +1,182 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "Smartphone Users Worldwide: The Climb",
+    "title": "Smartphone Users Worldwide: The Climb",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates smartphone user growth on a graph, but the mascot's role is decorative, and the payoff is confusing and misaligned with the video's core topic.",
+    "elapsed_seconds": 103.0,
+    "package_path": "state/trending_packages/20260802/01_graph-smartphone-users-worldwide.json",
+    "source": "reserve",
+    "video_path": "output/daily_20260802-194314_smartphone_users_worldwide__the_climb.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively demonstrates smartphone user growth on a graph, but the mascot's role is decorative, and the payoff is confusing and misaligned with the video's core topic.",
+      "score": 65
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Wouldn't Stop The Music. So I Got Creative",
+    "title": "He Wouldn't Stop The Music. So I Got Creative",
+    "format": "reddit",
+    "publish_at": "2026-08-02T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals and good pacing, but the mascot remains largely decorative.",
+    "elapsed_seconds": 215.3,
+    "package_path": "state/trending_packages/20260802/02_reddit-upstairs-neighbor-noise.json",
+    "source": "reserve",
+    "video_path": "output/daily_20260802-194545_he_wouldn_t_stop_the_music__so_i_got_cre.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.4,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals and good pacing, but the mascot remains largely decorative.",
+      "score": 77
+    },
+    "blocked": true
+  },
+  {
+    "topic": "China vs U.S.: The Urban Population Crossover",
+    "title": "China vs U.S.: The Urban Population Crossover",
+    "format": "graph_race",
+    "publish_at": "2026-08-02T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/8bLQMgdgoKM",
+    "error": null,
+    "elapsed_seconds": 112.4,
+    "package_path": "state/trending_packages/20260802/03_urban-china-vs-united-states.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-194832_china_vs_u_s___the_urban_population_cros.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Mobile Subscriptions: China, India, U.S.",
+    "title": "Mobile Subscriptions: China, India, U.S.",
+    "format": "graph_race",
+    "publish_at": "2026-08-03T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/KaGbGkoxVwI",
+    "error": null,
+    "elapsed_seconds": 113.3,
+    "package_path": "state/trending_packages/20260802/05_mobile-subscriptions-china-india-us.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-195024_mobile_subscriptions__china__india__u_s_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 96
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "My Boss Wanted Every Email. He Got Every Email.",
+    "title": "My Boss Wanted Every Email. He Got Every Email.",
+    "format": "reddit",
+    "publish_at": "2026-08-03T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/uUcGuDtGOkw",
+    "error": null,
+    "elapsed_seconds": 231.0,
+    "package_path": "state/trending_packages/20260802/06_boss-wanted-every-email.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260802-195306_my_boss_wanted_every_email__he_got_every.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 55.267,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 86
+    },
+    "channel": "default"
+  }
+]
