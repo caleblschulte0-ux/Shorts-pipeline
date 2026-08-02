@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260802",
+  "bundle": {
+    "identity": "c0ca71d3d3ede556319b1cb19ba0c3327a4a0a0a8532f18b6c45eb71576b4291",
+    "path": "exchange/bundles/20260802/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-02T12:26:45.397Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-upstairs-neighbor-noise-s6-1bc313f61c07",
+  "safe_request_id": "reddit-upstairs-neighbor-noise-s6-1bc313f61c07",
+  "prompt_sha256": "c8b96323c366653bf2f7241535cd6f21a3edcccd7d40767aefe1ae397d692b23",
+  "prompt_used": "An editorial illustration for a short-form video: headphones on desk. It accompanies the narration: \"a taste of their own noise\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+    "filename": "20260802__reddit-upstairs-neighbor-noise-s6-1bc313f61c07.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "eae3e43adf188cd9e2721e10ead6d3ef4ef1ac88faebae14a937dda6bba98915",
+    "bytes": 1769785,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}
