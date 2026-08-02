@@ -2291,14 +2291,22 @@
       "banger": 0.6
     },
     "clip-20260802-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/AbnegateSuaveEchidnaFeelsBadMan-8Y_J9Yn0y6Pt2O7R",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/Fydgr1WzNrA",
       "title": "man runs in front of archers",
       "kind": "twitch_clip",
-      "ts": "2026-08-02T12:35:56.212419+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-02T12:35:59.318596+00:00",
+      "uploaded_at": "2026-08-02T12:35:59.318608+00:00",
+      "publish_at": "2026-08-02T20:00:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/AbnegateSuaveEchidnaFeelsBadMan-8Y_J9Yn0y6Pt2O7R",
+      "streamer": "ludwig",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3219,
+      "banger": 0.6
     }
   }
 }
