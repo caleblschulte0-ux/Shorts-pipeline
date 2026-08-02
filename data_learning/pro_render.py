@@ -57,6 +57,12 @@ VOICE = "en-US-GuyNeural"
 # needs credit. Every image shot appends its source here; build() writes it to
 # the package as credits.json / CREDITS.txt so the operator can attribute.
 _ATTRIB: list[dict] = []
+# Every media asset THIS render has already used. motion_first consults it so no
+# clip appears twice in one film: `reseed` only skips leaders for a single beat,
+# so nothing stopped beat 12 re-picking what beat 5 already had. One render
+# filled 36 media slots with 32 distinct assets — one clip three times — and the
+# blind judge named the duplicate pairs by timestamp and called it SAMENESS.
+_USED_MEDIA: set[str] = set()
 
 # FALLBACK ledger — every time the render degrades (TTS→silence, motion→still,
 # a missing image, a swallowed sidecar), it is recorded here with a SEVERITY so
@@ -374,6 +380,7 @@ def _depict_source(shot: dict, seconds: float, work: Path, idx: int):
                 q, seconds, work,
                 perspective=str(shot.get("perspective", "")),
                 reseed=int(shot.get("reseed", 0) or 0),
+                used=_USED_MEDIA,
                 log=lambda m: print(m, file=sys.stderr))
         if hit:
             # hand the resolved clip to the normal footage path: a local file
@@ -646,6 +653,7 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     where verdict is ok / degraded / unacceptable (worst fallback severity)."""
     work.mkdir(parents=True, exist_ok=True)
     _ATTRIB.clear()
+    _USED_MEDIA.clear()
     _FALLBACKS.clear()
 
     slug = story.get("slug", Path(out).stem)

@@ -378,7 +378,8 @@ def _interleave_sources(cands: list[dict]) -> list[dict]:
 def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
                  *, min_motion: float = MOTION_FLOOR,
                  min_rel: float = MOTION_REL_FLOOR, max_probe: int = 3,
-                 reseed: int = 0, log=print) -> dict | None:
+                 reseed: int = 0, used: set | None = None,
+                 log=print) -> dict | None:
     """The decision gate. Given a subject a beat wants to DEPICT and how long the
     beat runs, return a MOVING clip of that subject when one clears the bar —
     because motion is more view-worthy than a still of the same thing. Probes the
@@ -441,8 +442,20 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
             log(f"[motion-first] reseed {skipped}/{reseed}: skipping "
                 f"{str(c.get('title',''))[:38]!r} (already tried for this beat)")
             continue
-        probed += 1
         tag = c.get("nasa_id") or c.get("url", "")
+        # NO CLIP TWICE IN ONE FILM. `reseed` only skips leaders for THIS beat;
+        # nothing told beat 12 that beat 5 already used a clip, so one render
+        # shipped 36 media slots filled by 32 distinct assets — one clip three
+        # times, another twice. The blind judge named the resulting pairs by
+        # timestamp ("17.7s/24.7s reeds, 102.5s/109.6s notebook, 137.9s/145.0s
+        # curtains — these shots carry no information") and labelled the film
+        # SAMENESS four renders running. A repeat is the one flaw a viewer
+        # notices without being told what to look for.
+        if used is not None and tag and tag in used:
+            log(f"[motion-first] {str(c.get('title',''))[:38]!r}: already used "
+                "earlier in this film — trying the next candidate")
+            continue
+        probed += 1
         safe = "".join(ch if ch.isalnum() else "_" for ch in str(tag))[:56]
         dest = work / f"mfcache_{safe}.mp4"
         try:
@@ -481,6 +494,8 @@ def motion_first(query: str, seconds: float, work: Path, perspective: str = "",
             log(f"[motion-first] MOTION WINS for {query!r}: "
                 f"{c.get('source')} {str(c.get('title',''))[:38]!r} "
                 f"motion={mv} rel={rel:.2f} ss={ss:.1f}")
+            if used is not None and tag:
+                used.add(tag)
             return {"source": c.get("source"), "nasa_id": c.get("nasa_id"),
                     "url": c.get("url"), "path": str(dest), "ss": round(ss, 2),
                     "title": c.get("title", ""), "license": c.get("license", ""),
