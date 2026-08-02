@@ -2273,13 +2273,31 @@
       "banger": 0.8
     },
     "clip-20260802-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/agent00/clip/HonestGrossScallionTheRinger-9zBMslHblJnIFfN3",
-      "story_key": null,
-      "streamer": "agent00",
+      "url": "https://youtube.com/shorts/Jf2ONyNQaYo",
       "title": "Agent and Tyler1's Hairline",
       "kind": "twitch_clip",
-      "ts": "2026-08-02T12:34:20.739807+00:00",
+      "ts": "2026-08-02T12:34:23.784361+00:00",
+      "uploaded_at": "2026-08-02T12:34:23.784376+00:00",
+      "publish_at": "2026-08-02T18:30:00Z",
+      "source_url": "https://www.twitch.tv/agent00/clip/HonestGrossScallionTheRinger-9zBMslHblJnIFfN3",
+      "streamer": "agent00",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 41814,
+      "banger": 0.6
+    },
+    "clip-20260802-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/AbnegateSuaveEchidnaFeelsBadMan-8Y_J9Yn0y6Pt2O7R",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "man runs in front of archers",
+      "kind": "twitch_clip",
+      "ts": "2026-08-02T12:35:56.212419+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
