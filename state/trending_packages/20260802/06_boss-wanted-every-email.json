@@ -1,0 +1,84 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "boss-wanted-every-email",
+  "title": "My Boss Wanted Every Email. He Got Every Email.",
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "office",
+    "karma",
+    "redditstories",
+    "shorts"
+  ],
+  "script": "My boss wanted every email. He announced that nobody could send anything without copying him because he needed 'complete visibility'\u2014his exact phrase. Fine. I updated every automated alert, calendar notice, shared-document comment, delivery receipt, and ticket notification to include him. Nothing fake\u2014just the messages our systems already generated all day. By lunch, his inbox had hundreds. By Wednesday, he missed a client's urgent approval because it was buried between a printer alert and twelve calendar updates. Complete visibility had become complete camouflage. He called me in and asked why I had flooded him. I showed him his own written rule and the audit log proving every message was legitimate. He quietly changed the policy to 'copy me only on decisions requiring approval.' I followed that one too. His inbox recovered, the client's request got handled, and the new rule lasted. Apparently visibility works better when you can still see.",
+  "shots": [
+    {
+      "phrase": "needed 'complete visibility'",
+      "query": "manager demanding an office meeting",
+      "mascot_pose": "idle",
+      "pin_query": "Complete",
+      "pin_context": "My Boss Wanted Every Email. He Got Every Email.",
+      "news_query": "Complete",
+      "news_angle": "My Boss Wanted Every Email. He Got Every Email.",
+      "image_url": "https://live.staticflickr.com/65535/52402241149_ef91f0b6a6_b.jpg"
+    },
+    {
+      "phrase": "every automated alert",
+      "query": "office notification overload represented by piles of envelopes and ringing desk phones",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "his inbox had hundreds",
+      "query": "overwhelmed office worker surrounded by physical mail trays and paper notices",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "buried between a printer alert and twelve calendar updates",
+      "query": "cluttered office desk with a printer warning light and an overfilled paper calendar",
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/32166676/pexels-photo-32166676.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill_authored"
+    },
+    {
+      "phrase": "his own written rule",
+      "query": "employee presenting a signed office policy paper to a manager",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "changed the policy",
+      "query": "relieved manager revising an office policy on paper",
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/7731326/pexels-photo-7731326.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill_authored"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "every email",
+      "text": "EVERY. EMAIL.",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "his inbox had hundreds",
+      "text": "HUNDREDS BY LUNCH",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Complete visibility had become complete camouflage",
+      "text": "COMPLETE CAMOUFLAGE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "his own written rule",
+      "text": "HIS OWN RULE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "changed the policy",
+      "text": "POLICY CHANGED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "quiet tension to playful payoff",
+  "_authored_by": "chatgpt-takeover"
+}

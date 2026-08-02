@@ -1,0 +1,56 @@
+{
+  "format": "graph_race",
+  "slug": "urban-china-vs-united-states",
+  "title": "China vs U.S.: The Urban Population Crossover",
+  "hook": "China passed the U.S.",
+  "y_label": "Urban population",
+  "duration": 13,
+  "source": "World Bank, Urban population (SP.URB.TOTL), 1980\u20132023, updated 2026-07-13: https://data.worldbank.org/indicator/SP.URB.TOTL",
+  "years": [
+    1980,
+    1990,
+    2000,
+    2010,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "icon": "CN",
+      "values": [
+        190272409,
+        297369675,
+        460007123,
+        658606042,
+        896379022,
+        924440306
+      ]
+    },
+    {
+      "name": "United States",
+      "color": "#3088ff",
+      "icon": "US",
+      "values": [
+        167579811,
+        187887615,
+        223117358,
+        249667531,
+        265254034,
+        269645027
+      ]
+    }
+  ],
+  "hashtags": [
+    "data",
+    "cities",
+    "urbanization",
+    "china",
+    "usa",
+    "graphrace",
+    "shorts"
+  ],
+  "music_vibe": "driving cinematic",
+  "_authored_by": "chatgpt-takeover"
+}
