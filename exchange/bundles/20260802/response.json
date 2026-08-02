@@ -1,0 +1,526 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260802",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 1,
+    "registry_sha256": "5d4b7cd5e29e871de0e779fc8d02a665fe5233e21a510b182700cb4f494eeee9",
+    "bundle_sha256": "c0ca71d3d3ede556319b1cb19ba0c3327a4a0a0a8532f18b6c45eb71576b4291"
+  },
+  "media": [
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s1-715ac724b90f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Id69uvwSg5Ws539iwQT1gXQBwBB6azp7",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s1-715ac724b90f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Id69uvwSg5Ws539iwQT1gXQBwBB6azp7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8270c4e70e104d9514f44767ddcf91f4215e0baaa3b198b37414a61477817854",
+        "bytes": 2153879,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s1-715ac724b90f.json",
+        "verified_at": "2026-08-02T12:11:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s2-56b743b392c4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s2-56b743b392c4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1VcdHuHndDZHvHMT6HNnMGI5Pf1ewh52k",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b4615a48ade9b220ad52ad5cf2a190f0f3af655fca18346d8b4b11c41c74f92c",
+        "bytes": 2774153,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s2-56b743b392c4.json",
+        "verified_at": "2026-08-02T12:16:12.247Z"
+      }
+    },
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s3-f228e867a79c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s3-f228e867a79c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f74df14bbff913585407bcd3f4329eef507bf738cae5ab279266b56d46dd0eec",
+        "bytes": 2079135,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s3-f228e867a79c.json",
+        "verified_at": "2026-08-02T12:16:16.120Z"
+      }
+    },
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s4-4315e9fad603",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "184QElYEZrLzi57-NbtbvqPB2y_ZNaRxb",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s4-4315e9fad603.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=184QElYEZrLzi57-NbtbvqPB2y_ZNaRxb",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4c8d5583fd876ed9d6383908d91ee4a07cb406ea855bb3e73232208526011507",
+        "bytes": 1948868,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s4-4315e9fad603.json",
+        "verified_at": "2026-08-02T12:16:19.818Z"
+      }
+    },
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s5-b547f38a419e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1zsmkkV43gxpQBIFyKDQo0XUtWgsFAJ-g",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s5-b547f38a419e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1zsmkkV43gxpQBIFyKDQo0XUtWgsFAJ-g",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "19fa2ea836195aa86ae0d0d4ab2faaf3a313143687df26107a9ccae28fbea96b",
+        "bytes": 1735103,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s5-b547f38a419e.json",
+        "verified_at": "2026-08-02T12:26:39.508Z"
+      }
+    },
+    {
+      "request_id": "reddit-upstairs-neighbor-noise-s6-1bc313f61c07",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+        "filename": "20260802__reddit-upstairs-neighbor-noise-s6-1bc313f61c07.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qVt-bnHoVmDYn1THcRC4YiUYxb9Fr8L-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "eae3e43adf188cd9e2721e10ead6d3ef4ef1ac88faebae14a937dda6bba98915",
+        "bytes": 1769785,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260802/media-progress/reddit-upstairs-neighbor-noise-s6-1bc313f61c07.json",
+        "verified_at": "2026-08-02T12:26:45.397Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-smartphone-users-worldwide",
+      "kept": true,
+      "editor_note": "Renderer-native graph package has no spoken script; its title clearly identifies the metric and the protected chart data is already production-ready."
+    },
+    {
+      "slug": "reddit-upstairs-neighbor-noise",
+      "script": "Who enjoys sleep deprivation? My upstairs neighbor played bass-heavy music at full volume past midnight for months. Management said, “just knock on his door.” So I learned he worked nights, then filed a noise complaint every afternoon between 9 a.m. and 5 p.m.—barking dog, vacuum, construction, anything vague enough to force a check. That meant knocking and waking him up, over and over, for weeks. He complained people kept disturbing his sleep. Management explained they were responding to resident complaints and had no way to verify who filed them. Bureaucracy found a hobby. Three weeks later, his music stopped at 9 p.m. sharp, every night. Apparently reciprocity has a volume knob. Who finally got a taste of their own noise?",
+      "editor_note": "Punched up to a four-word question hook, 124-word pacing, one dry aside, and a specific question kicker; preserved every number and every shot phrase/query pairing."
+    }
+  ],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "urban-china-vs-united-states",
+      "title": "China vs U.S.: The Urban Population Crossover",
+      "hook": "China passed the U.S.",
+      "y_label": "Urban population",
+      "duration": 13,
+      "source": "World Bank, Urban population (SP.URB.TOTL), 1980–2023, updated 2026-07-13: https://data.worldbank.org/indicator/SP.URB.TOTL",
+      "years": [
+        1980,
+        1990,
+        2000,
+        2010,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "icon": "CN",
+          "values": [
+            190272409,
+            297369675,
+            460007123,
+            658606042,
+            896379022,
+            924440306
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            167579811,
+            187887615,
+            223117358,
+            249667531,
+            265254034,
+            269645027
+          ]
+        }
+      ],
+      "hashtags": [
+        "data",
+        "cities",
+        "urbanization",
+        "china",
+        "usa",
+        "graphrace",
+        "shorts"
+      ],
+      "music_vibe": "driving cinematic"
+    },
+    {
+      "format": "graph_race",
+      "slug": "india-vs-us-internet-users",
+      "title": "India vs U.S.: Internet Users by Year",
+      "hook": "India crossed the U.S.",
+      "y_label": "Estimated internet users",
+      "duration": 13,
+      "source": "Derived and rounded from World Bank/ITU IT.NET.USER.ZS and World Bank population totals: https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "India",
+          "color": "#ff9933",
+          "icon": "IN",
+          "values": [
+            5600000,
+            23000000,
+            93000000,
+            195000000,
+            608000000,
+            790000000
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            124000000,
+            197000000,
+            240000000,
+            276000000,
+            312000000,
+            330000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "internet",
+        "technology",
+        "india",
+        "usa",
+        "data",
+        "graphrace",
+        "shorts"
+      ],
+      "music_vibe": "electronic momentum"
+    },
+    {
+      "format": "graph_race",
+      "slug": "mobile-subscriptions-china-india-us",
+      "title": "Mobile Subscriptions: China, India, U.S.",
+      "hook": "Three mobile giants",
+      "y_label": "Mobile subscriptions",
+      "duration": 13,
+      "source": "World Bank/ITU, Mobile cellular subscriptions (IT.CEL.SETS), 2000–2023, updated 2026-07-13: https://data.worldbank.org/indicator/IT.CEL.SETS",
+      "years": [
+        2000,
+        2005,
+        2010,
+        2015,
+        2020,
+        2023
+      ],
+      "series": [
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "icon": "CN",
+          "values": [
+            85260000,
+            393406000,
+            859003000,
+            1291984200,
+            1718411000,
+            1824422700
+          ]
+        },
+        {
+          "name": "India",
+          "color": "#ff9933",
+          "icon": "IN",
+          "values": [
+            3577095,
+            90140000,
+            752190000,
+            1001056000,
+            1153709832,
+            1158554883
+          ]
+        },
+        {
+          "name": "United States",
+          "color": "#3088ff",
+          "icon": "US",
+          "values": [
+            109478031,
+            203700000,
+            285118000,
+            332101000,
+            352522000,
+            386106000
+          ]
+        }
+      ],
+      "hashtags": [
+        "mobile",
+        "telecom",
+        "china",
+        "india",
+        "usa",
+        "data",
+        "graphrace"
+      ],
+      "music_vibe": "fast digital pulse"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "boss-wanted-every-email",
+      "title": "My Boss Wanted Every Email. He Got Every Email.",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "office",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "My boss wanted every email. He announced that nobody could send anything without copying him because he needed 'complete visibility'—his exact phrase. Fine. I updated every automated alert, calendar notice, shared-document comment, delivery receipt, and ticket notification to include him. Nothing fake—just the messages our systems already generated all day. By lunch, his inbox had hundreds. By Wednesday, he missed a client's urgent approval because it was buried between a printer alert and twelve calendar updates. Complete visibility had become complete camouflage. He called me in and asked why I had flooded him. I showed him his own written rule and the audit log proving every message was legitimate. He quietly changed the policy to 'copy me only on decisions requiring approval.' I followed that one too. His inbox recovered, the client's request got handled, and the new rule lasted. Apparently visibility works better when you can still see.",
+      "shots": [
+        {
+          "phrase": "needed 'complete visibility'",
+          "query": "manager demanding an office meeting",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+              "filename": "20260802__authored-boss-wanted-every-email-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "f1de831bd3f43dccb6b9ebb654260368972a17648f9d2496bbf143bbe79953fa",
+              "bytes": 2001788,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "every automated alert",
+          "query": "office notification overload represented by piles of envelopes and ringing desk phones",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1u_p53IsVKz3iq_SsWUCuU_8CERR1dDSr",
+              "filename": "20260802__authored-boss-wanted-every-email-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1u_p53IsVKz3iq_SsWUCuU_8CERR1dDSr",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "e6519799de49353048921302c640ffc9dbb79db307cb389754e29c09a9798bbe",
+              "bytes": 2235892,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "his inbox had hundreds",
+          "query": "overwhelmed office worker surrounded by physical mail trays and paper notices",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1k1Q7K9ug5AAuh0sYm7S1Qaifu__-RVPC",
+              "filename": "20260802__authored-boss-wanted-every-email-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1k1Q7K9ug5AAuh0sYm7S1Qaifu__-RVPC",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "069cc13bc38de0802a5609bf91c1b968223b251de6c14c2735f2701ff2768def",
+              "bytes": 2083345,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "buried between a printer alert and twelve calendar updates",
+          "query": "cluttered office desk with a printer warning light and an overfilled paper calendar",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1hbPQSGlqdNK4NMdVaHHvLh7k8rpwl3LA",
+              "filename": "20260802__authored-boss-wanted-every-email-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1hbPQSGlqdNK4NMdVaHHvLh7k8rpwl3LA",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "5265624ddf2330c51cf3984f276ece8c658ec60dc1576ffeebce552d65433e92",
+              "bytes": 1916811,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "his own written rule",
+          "query": "employee presenting a signed office policy paper to a manager",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1JWRuuSmlu__dVSK7Fb6ZK7xlDJjwhc4G",
+              "filename": "20260802__authored-boss-wanted-every-email-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1JWRuuSmlu__dVSK7Fb6ZK7xlDJjwhc4G",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "b466c3b5138b686909d608fcc52beef9a26254da856fd32560b5071fb5885cc2",
+              "bytes": 1864509,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        },
+        {
+          "phrase": "changed the policy",
+          "query": "relieved manager revising an office policy on paper",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "file_id": "1PjrudjRPPpgNs1lSQG5m2e6fcaHRv-rX",
+              "filename": "20260802__authored-boss-wanted-every-email-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1PjrudjRPPpgNs1lSQG5m2e6fcaHRv-rX",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "73b14014b6bac9a4f7ca1c82330beb1e1faa22da0976545b95324ad7f9fd1b49",
+              "bytes": 2154077,
+              "format": "png",
+              "width": 1024,
+              "height": 1536
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "every email",
+          "text": "EVERY. EMAIL.",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "his inbox had hundreds",
+          "text": "HUNDREDS BY LUNCH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Complete visibility had become complete camouflage",
+          "text": "COMPLETE CAMOUFLAGE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "his own written rule",
+          "text": "HIS OWN RULE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "changed the policy",
+          "text": "POLICY CHANGED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "quiet tension to playful payoff"
+    }
+  ],
+  "authored_explainer": [],
+  "authored_curiosity": [],
+  "notes": [
+    "The bundle arrived after the media-only worker had stopped, so the finalizer generated, uploaded, read back, hashed, publicly verified, and checkpointed all 12 required images.",
+    "Authored exactly the declared trending shortfall: three graph races and one Reddit story. Text cards remained retired.",
+    "Curiosity queue stocking was not needed: the source-commit queue remained above its minimum. No explainer package was supplied for editorial review, and ChatGPT has no authoring role for that channel.",
+    "All generated checkpoints record the generator's actual 1024x1536 dimensions rather than the requested 1080x1080 dimensions."
+  ]
+}
