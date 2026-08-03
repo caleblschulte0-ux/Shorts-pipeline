@@ -77,12 +77,12 @@ FORMAT_SPECS = {
             "UNIVERSAL premises — workplace justice, petty/pro revenge, "
             "entitled customers or neighbours, scams turned around, karma. "
             "NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query, mascot_pose}. Every `phrase` must "
+            "6-8 `shots`: {phrase, query}. Every `phrase` must "
             "be an EXACT substring of `script`. `query` is mood b-roll.",
             "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT "
             "substring of `script`; `text` SHORT CAPS; color one of "
             "#ff3030 / #ffaa30 / #50ff80.",
-            "At most 3 non-idle mascot poses.",
+            "Do not add the Data/Explainer mascot; Trending is a separate channel.",
         ],
     },
     "text_card": {

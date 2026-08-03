@@ -2,7 +2,7 @@
 """Reddit drama storytime renderer — the genre format, done right.
 
 Composes the signature look instead of the generic explainer stack:
-  * full-screen satisfying gameplay (no top b-roll / no split)
+  * verified story-beat imagery above satisfying gameplay
   * the Reddit post card overlaid while the TITLE is narrated, then it
     dings, whooshes, and fades to reveal the gameplay
   * bold word-by-word ("karaoke") captions, centered in the safe zone
@@ -50,12 +50,12 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
     but this genre renderer never consumed them; it rendered only gameplay
     while downstream QA was explicitly judging a top-image/bottom-gameplay
     composite.  That made image generation expensive theatre and turned the
-    Reddit card into a false "blank top image" failure.  Each panel also uses
-    the shot's requested mascot reaction, so Data performs with the story
-    instead of appearing as a decorative watermark.
+    Reddit card into a false "blank top image" failure.
 
-    Added by ChatGPT on 2026-08-02.  Returning an empty list is deliberately
-    safe: the caller keeps the prior full-screen-gameplay composition.
+    Added by ChatGPT on 2026-08-02; corrected by ChatGPT on 2026-08-03 so the
+    Data/Explainer mascot is never composited into the separate Trending
+    channel. Returning an empty list is deliberately safe: the caller keeps
+    the prior full-screen-gameplay composition.
     """
     try:
         from PIL import Image, ImageOps
@@ -64,7 +64,6 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
 
     out: list[Path] = []
     cache = workdir / "shot_cache"
-    mascot_dir = Path(__file__).resolve().parent / "assets/mascot/host"
     for i, shot in enumerate(pkg.get("shots") or []):
         src = shot.get("image_url") or shot.get("image")
         if not src:
@@ -74,25 +73,6 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
             with Image.open(local) as im:
                 panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
                                      method=Image.Resampling.LANCZOS)
-
-            pose = str(shot.get("mascot_pose") or "idle").strip().lower()
-            # An all-idle authored package still needs a visible performance.
-            # Cycle reactions across beats while retaining every explicit
-            # non-idle direction from the package.
-            if pose == "idle":
-                pose = ("think", "point", "shock", "cheer")[i % 4]
-            mascot_path = mascot_dir / f"{pose}.png"
-            if not mascot_path.exists():
-                mascot_path = mascot_dir / "idle.png"
-            if mascot_path.exists():
-                with Image.open(mascot_path) as m:
-                    mascot = m.convert("RGBA")
-                    mascot.thumbnail((250, 250), Image.Resampling.LANCZOS)
-                    panel = panel.convert("RGBA")
-                    x = (24 if i % 2 else W - mascot.width - 24)
-                    y = max(18, H // 2 - mascot.height - 18 - (i % 3) * 24)
-                    panel.alpha_composite(mascot, (x, y))
-                    panel = panel.convert("RGB")
 
             dest = workdir / f"shot_panel_{i:02d}.jpg"
             panel.save(dest, "JPEG", quality=92)

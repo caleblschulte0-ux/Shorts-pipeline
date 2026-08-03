@@ -235,32 +235,17 @@ class TestZFormatAwareShowrunnerContract(unittest.TestCase):
         self.assertIn("narrative, not a statistics explainer", text)
         self.assertIn("do not demand numbers", text)
 
-    def test_graph_mascot_can_perform_by_following_the_race(self):
+    def test_graph_forbids_explainer_mascot(self):
         from scripts.showrunner_review import _format_directive
         text = _format_directive({"format": "graph_race"})
-        self.assertIn("current leader/crossover/payoff", text)
-        self.assertIn("do not require skeletal sprite animation", text)
+        self.assertIn("separate Explainer channel mascot", text)
+        self.assertIn("mark decorative_mascot present", text)
 
-    def test_exact_renderer_contract_supplies_objective_mascot_evidence(self):
-        from scripts.showrunner_review import apply_renderer_evidence
-        dims, checks = apply_renderer_evidence(
-            {"mascot": 1},
-            {"decorative_mascot": {"present": True, "evidence": "model"}},
-            {"format": "reddit_story", "mascot_choreography":
-             "per_beat_pose_and_alternating_position"},
-        )
-        self.assertEqual(dims["mascot"], 3)
-        self.assertFalse(checks["decorative_mascot"]["present"])
-
-    def test_unknown_claim_cannot_override_the_gate(self):
-        from scripts.showrunner_review import apply_renderer_evidence
-        dims, checks = apply_renderer_evidence(
-            {"mascot": 1},
-            {"decorative_mascot": {"present": True, "evidence": "model"}},
-            {"format": "reddit_story", "mascot_choreography": "trust-me"},
-        )
-        self.assertEqual(dims["mascot"], 1)
-        self.assertTrue(checks["decorative_mascot"]["present"])
+    def test_reddit_forbids_explainer_mascot(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "reddit_story"})
+        self.assertIn("separate Explainer channel mascot", text)
+        self.assertIn("mark decorative_mascot present", text)
 
 
 if __name__ == "__main__":

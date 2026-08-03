@@ -79,17 +79,18 @@ def _format_directive(ctx: dict) -> str:
             "beats are visibly demonstrated with changing, relevant shot "
             "illustrations plus gameplay/captions; do not demand numbers, a "
             "chart, or a data claim. bare_number_card is relevant only if an "
-            "actual number card appears. For decorative_mascot, compare the "
-            "sampled beats: different poses, positions, and story reactions "
-            "constitute performance; do not require skeletal sprite animation.")
+            "actual number card appears. Data is the separate Explainer "
+            "channel mascot: if any mascot appears here, mark "
+            "decorative_mascot present. If none appears, grade mascot=4 for "
+            "correct channel-brand separation.")
     if fmt == "graph_race":
         return (
             "FORMAT = GRAPH RACE. The growing lines, moving tips, changing "
-            "leaderboard, and year counter are the data demonstration. A "
-            "mascot performs when its pose, position, and callout visibly "
-            "react to the current leader/crossover/payoff; do not require "
-            "skeletal sprite animation. A one-series growth chart has a scale "
-            "payoff, not a competitive winner.")
+            "leaderboard, and year counter are the data demonstration. Data "
+            "is the separate Explainer channel mascot: if any mascot appears "
+            "here, mark decorative_mascot present. If none appears, grade "
+            "mascot=4 for correct channel-brand separation. A one-series "
+            "growth chart has a scale payoff, not a competitive winner.")
     return "Apply the general director rubric exactly as written."
 
 
@@ -112,34 +113,6 @@ def apply_motion_override(checks: dict, motion: dict) -> dict:
             "present": True,
             "evidence": f"code: {motion['longest_static_s']}s frozen"}
     return checks
-
-
-def apply_renderer_evidence(dims: dict, checks: dict, ctx: dict
-                            ) -> tuple[dict, dict]:
-    """Reconcile a subjective mascot check with deterministic choreography.
-
-    This is deliberately narrow: only the two exact choreography contracts
-    emitted by the current renderers qualify. It cannot override junk imagery,
-    dead air, empty space, temporal failures, or the overall score. Added by
-    ChatGPT on 2026-08-02 after the same visible movement was inconsistently
-    labelled decorative across otherwise passing rerenders.
-    """
-    contracts = {
-        "graph_race": "leader_tip_tracking_with_pose_callouts",
-        "reddit_story": "per_beat_pose_and_alternating_position",
-    }
-    fmt = str((ctx or {}).get("format") or "").strip().lower()
-    expected = contracts.get(fmt)
-    if not expected or (ctx or {}).get("mascot_choreography") != expected:
-        return dict(dims or {}), dict(checks or {})
-    out_dims = dict(dims or {})
-    out_checks = dict(checks or {})
-    out_dims["mascot"] = max(3, int(out_dims.get("mascot", 0)))
-    out_checks["decorative_mascot"] = {
-        "present": False,
-        "evidence": f"code-verified renderer choreography: {expected}",
-    }
-    return out_dims, out_checks
 
 
 def failed_autofails(checks: dict) -> list:
@@ -614,7 +587,6 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     # get to call a choppy video smooth.
     dims["temporal_craft"] = temporal_grade(temporal)
     checks = apply_motion_override(grades.get("checks", {}) or {}, motion)
-    dims, checks = apply_renderer_evidence(dims, checks, ctx)
     score = compute_score(dims)
     failed = failed_autofails(checks)
     verdict = decide_verdict(score, checks)

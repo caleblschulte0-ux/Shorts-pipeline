@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 2,
-  "revision_note": "ChatGPT production ownership added 2026-08-02. The format ruling remains 4 graph_race + 2 reddit_story with text_card retired. Every enabled channel now assigns ChatGPT production_supervisor responsibility, so a Claude-out takeover means quarterbacking the entire registered pipeline through verified render/upload outcomes—not only authoring Trending packages.",
+  "revision": 3,
+  "revision_note": "ChatGPT channel-separation correction added 2026-08-03. Data is the Explainer channel mascot only. Trending graph races and Reddit stories must not request, render, or be judged for Data mascot choreography. The format ruling remains 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -98,7 +98,7 @@
             "chatgpt_supplies_images": true,
             "shots_min": 6,
             "shots_max": 8,
-            "per_shot": ["phrase", "query", "mascot_pose"],
+            "per_shot": ["phrase", "query"],
             "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
           },
           "chatgpt_roles": ["media_worker", "editorial_review",

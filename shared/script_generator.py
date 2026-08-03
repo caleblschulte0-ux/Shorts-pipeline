@@ -54,7 +54,7 @@ SYSTEM_PROMPT = """You write viral Reddit-style DRAMA STORYTIME scripts for \
 YouTube Shorts as strict JSON. 1080x1920 vertical, ~45-60 seconds. First-person, \
 emotionally charged, authentic Reddit voice (AITA / relationship / entitled \
 family / revenge). Write an ORIGINAL story — never copy a real post. Open on the \
-shock, build tension, end on a twist. Each shot can carry a `mascot_pose` hint. \
+shock, build tension, end on a twist. \
 Output JSON only — no prose, no fences."""
 
 
@@ -69,8 +69,7 @@ Schema:
   "script": "<130-170 words, first-person, sentence 1 drops into the shock/premise, builds tension, ends on the twist — NOT a question>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
-      "query": "<1-3 word stock-footage search, visually concrete>",
-      "mascot_pose": "<idle|shock|point|laugh|think|dismiss>"}}
+      "query": "<1-3 word stock-footage search, visually concrete>"}}
   ],
   "punches": [
     {{"phrase": "<VERBATIM substring of the script>",
@@ -297,11 +296,6 @@ def _strip_fence(text: str) -> str:
     return text
 
 
-# Allowed mascot poses. Unknown / missing pose falls back to "idle" in
-# the renderer; we DO surface a soft warning so the model learns to fill
-# the field on retry.
-_VALID_POSES = frozenset({"idle", "shock", "point", "laugh", "think", "dismiss"})
-
 # Suppression-bait phrases the algorithm flags. We reject scripts that
 # contain any of these — see 1kReach 2026 research.
 _BANNED_PHRASES = (
@@ -383,25 +377,6 @@ def _validate_package(pkg: dict) -> list[str]:
                 f"of the script. Either change the script to include it, or pick "
                 f"a different trigger phrase that IS in the script."
             )
-        pose = (s.get("mascot_pose") or "").strip().lower()
-        if pose and pose not in _VALID_POSES:
-            issues.append(
-                f"shot has unknown mascot_pose {pose!r} — must be one of: "
-                f"{sorted(_VALID_POSES)}. Omit the field for 'idle'."
-            )
-
-    # Cap non-idle poses at 3 per script so the mascot stays watermark-feel.
-    non_idle = sum(
-        1 for s in pkg.get("shots", [])
-        if (s.get("mascot_pose") or "idle").strip().lower() not in ("", "idle")
-    )
-    if non_idle > 3:
-        issues.append(
-            f"{non_idle} shots have non-idle mascot_pose — max 3 per script. "
-            "Reactive poses are for the 2-3 emotional beats only; the rest "
-            "stay idle."
-        )
-
     for p in pkg.get("punches", []):
         phrase = (p.get("phrase") or "").lower().strip()
         if not phrase:
