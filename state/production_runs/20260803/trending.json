@@ -5,12 +5,9 @@
   "expected": 6,
   "previously_uploaded": 0,
   "rendered_or_attempted": 6,
-  "uploaded": 2,
-  "quarantined": 0,
-  "failed": 4,
+  "uploaded": 0,
+  "quarantined": 1,
+  "failed": 5,
   "status": "repair_required",
-  "video_urls": [
-    "https://youtube.com/shorts/yAoVBbzBw_0",
-    "https://youtube.com/shorts/taogwkS1mvQ"
-  ]
+  "video_urls": []
 }

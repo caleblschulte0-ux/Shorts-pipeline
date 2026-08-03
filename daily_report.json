@@ -4,13 +4,13 @@
     "title": "Broadband Passed Landlines in 20 Years",
     "format": "graph_race",
     "publish_at": "2026-08-03T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/yAoVBbzBw_0",
-    "error": null,
-    "elapsed_seconds": 117.2,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 72.2,
     "package_path": "state/trending_packages/20260803/01_fixed-broadband-world.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-122056_broadband_passed_landlines_in_20_years.mp4",
+    "video_path": "output/daily_20260803-123654_broadband_passed_landlines_in_20_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +27,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "Internet Users Outran Broadband Lines",
     "title": "Internet Users Outran Broadband Lines",
     "format": "graph_race",
-    "publish_at": "2026-08-03T14:30:00Z",
+    "publish_at": "2026-08-03T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 69.9,
+    "elapsed_seconds": 66.2,
     "package_path": "state/trending_packages/20260803/02_landlines-peak-and-fall.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-122253_internet_users_outran_broadband_lines.mp4",
+    "video_path": "output/daily_20260803-123807_internet_users_outran_broadband_lines.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -71,14 +71,14 @@
     "topic": "F-Gases Grew Faster Than Methane",
     "title": "F-Gases Grew Faster Than Methane",
     "format": "graph_race",
-    "publish_at": "2026-08-03T14:30:00Z",
+    "publish_at": "2026-08-03T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 72.0,
+    "elapsed_seconds": 67.8,
     "package_path": "state/trending_packages/20260803/03_fgas-emissions-rise.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-122403_f_gases_grew_faster_than_methane.mp4",
+    "video_path": "output/daily_20260803-123913_f_gases_grew_faster_than_methane.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -105,14 +105,14 @@
     "topic": "Fish Farming Drove the Production Boom",
     "title": "Fish Farming Drove the Production Boom",
     "format": "graph_race",
-    "publish_at": "2026-08-03T14:30:00Z",
+    "publish_at": "2026-08-03T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates fish production trends with a clear graph race, but suffers from significant empty space.",
-    "elapsed_seconds": 104.2,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.",
+    "elapsed_seconds": 100.5,
     "package_path": "state/trending_packages/20260803/04_world-fisheries-production.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-122515_fish_farming_drove_the_production_boom.mp4",
+    "video_path": "output/daily_20260803-124021_fish_farming_drove_the_production_boom.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,7 +130,7 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively demonstrates fish production trends with a clear graph race, but suffers from significant empty space.",
+      "reason": "showrunner BLOCK: The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.",
       "score": 82
     },
     "blocked": true
@@ -139,17 +139,17 @@
     "topic": "My Manager's Bag Checks Became Paid Overtime",
     "title": "My Manager's Bag Checks Became Paid Overtime",
     "format": "reddit",
-    "publish_at": "2026-08-03T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/taogwkS1mvQ",
-    "error": null,
-    "elapsed_seconds": 217.7,
+    "publish_at": "2026-08-03T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.",
+    "elapsed_seconds": 237.0,
     "package_path": "state/trending_packages/20260803/05_bag-check-overtime.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-122750_my_manager_s_bag_checks_became_paid_over.mp4",
+    "video_path": "output/daily_20260803-124250_my_manager_s_bag_checks_became_paid_over.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 51.5,
+      "duration": 54.233,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.0
+      "loudness_lufs": -24.0
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 95
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.",
+      "score": 82
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "He Banned Desk Deliveries. His Office Became a Warehouse.",
     "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
     "format": "reddit",
-    "publish_at": "2026-08-03T16:00:00Z",
+    "publish_at": "2026-08-03T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video features a decorative mascot, which is an auto-fail for the Reddit Story format, and has a weak payoff.",
-    "elapsed_seconds": 237.9,
+    "error": "quarantined: vision QA: broken \u2014 Frame 3: The bottom half of the frame is gameplay, but the expected caption is missing. The instruction states 'the BOTTOM half is gameplay with captions', and the other frames include captions. Its a",
+    "elapsed_seconds": 193.3,
     "package_path": "state/trending_packages/20260803/06_manager-package-warehouse.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260803-123127_he_banned_desk_deliveries__his_office_be.mp4",
+    "video_path": "output/daily_20260803-124647_he_banned_desk_deliveries__his_office_be.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 56.3,
+      "duration": 55.5,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,18 +199,13 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.1
+      "loudness_lufs": -24.8
     },
     "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "ok": false,
+      "verdict": "broken",
+      "reason": "Frame 3: The bottom half of the frame is gameplay, but the expected caption is missing. The instruction states 'the BOTTOM half is gameplay with captions', and the other frames include captions. Its a"
     },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video features a decorative mascot, which is an auto-fail for the Reddit Story format, and has a weak payoff.",
-      "score": 66
-    },
-    "blocked": true
+    "quarantined": true
   }
 ]
