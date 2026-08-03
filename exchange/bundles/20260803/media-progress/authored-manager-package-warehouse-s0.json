@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260803",
+  "bundle": {
+    "identity": "takeover-e57b801221808ba1210bc61a19a1b51bf88679ea",
+    "path": "exchange/bundles/20260803/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-03T11:34:00Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-package-warehouse-s0",
+  "safe_request_id": "authored-manager-package-warehouse-s0",
+  "prompt_sha256": "97072ddea80bd86e438c0b6414fb55b657cbd2c7bc7e4fd67a4e61060145d236",
+  "prompt_used": "office manager making stern announcement",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc",
+    "filename": "20260803__authored-manager-package-warehouse-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "232816b30b3c58d4eaa83725e0ee0f41ad2d9933e949c97b8538e7d95ee91c53",
+    "bytes": 2064848,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "manager-package-warehouse",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260803",
+  "bundle": {
+    "identity": "takeover-e57b801221808ba1210bc61a19a1b51bf88679ea",
+    "path": "exchange/bundles/20260803/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-03T11:34:00Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-package-warehouse-s5",
+  "safe_request_id": "authored-manager-package-warehouse-s5",
+  "prompt_sha256": "65ee290214e305c41b2f0c5ac81a51d92e0a1eaba81d481f2451a8b0da60d39a",
+  "prompt_used": "employees presenting printed policy to human resources",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_",
+    "filename": "20260803__authored-manager-package-warehouse-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4deacd05770c4a7691990d5c15b49b759723e3dcc9e811322f4600f8ba657d02",
+    "bytes": 2169818,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "manager-package-warehouse",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true
+  }
+}

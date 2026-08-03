@@ -2,21 +2,170 @@
   "subreddit": "MaliciousCompliance",
   "slug": "bag-check-overtime",
   "title": "My Manager's Bag Checks Became Paid Overtime",
-  "hashtags": ["maliciouscompliance", "workplace", "retail", "karma", "redditstories", "shorts"],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "retail",
+    "karma",
+    "redditstories",
+    "shorts"
+  ],
   "script": "Every bag, seriously? Our new manager decided employees were stealing and ordered mandatory bag checks before anyone could leave. The catch was that two supervisors had to witness each inspection, and night shift usually had one supervisor total. So we clocked out, waited by the locked office, and wrote down every minute. After payroll explained that required waiting time was still work time, we stayed clocked in instead. Ten people waiting twenty minutes each night became a very expensive little security theater. By Friday, overtime had swallowed more money than the manager claimed was missing all month. Corporate asked for his evidence. He had none—just a feeling and a laminated checklist. The following Monday, bag checks became random, one witness was enough, and nobody waited off the clock. Apparently suspicion gets much more efficient when payroll starts billing by the minute.",
   "shots": [
-    {"phrase": "mandatory bag checks", "query": "retail employee bag inspection", "mascot_pose": "idle"},
-    {"phrase": "two supervisors had to witness", "query": "two store supervisors watching inspection", "mascot_pose": "idle"},
-    {"phrase": "waited by the locked office", "query": "employees waiting outside locked office", "mascot_pose": "idle"},
-    {"phrase": "required waiting time was still work time", "query": "payroll timesheet and clock", "mascot_pose": "idle"},
-    {"phrase": "overtime had swallowed more money", "query": "manager reviewing expensive payroll report", "mascot_pose": "idle"},
-    {"phrase": "a laminated checklist", "query": "laminated workplace checklist on clipboard", "mascot_pose": "idle"}
+    {
+      "phrase": "mandatory bag checks",
+      "query": "retail employee bag inspection",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s0.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7"
+        },
+        "image": {
+          "sha256": "bdec2822ef3f958f6a740e215531946cb79ed5a7bbe8f12d8bccc61a46df5f22",
+          "bytes": 1921662,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    },
+    {
+      "phrase": "two supervisors had to witness",
+      "query": "two store supervisors watching inspection",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s1.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT"
+        },
+        "image": {
+          "sha256": "2480246f0df78741053bd2ae14021f9c38e1dec24df06d0924fb1add6459c420",
+          "bytes": 1843173,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    },
+    {
+      "phrase": "waited by the locked office",
+      "query": "employees waiting outside locked office",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s2.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc"
+        },
+        "image": {
+          "sha256": "db4011d5e7857b453b4a9fe86f8e531f6f5fa34afb869109f44665cee75f2f4f",
+          "bytes": 2149054,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    },
+    {
+      "phrase": "required waiting time was still work time",
+      "query": "payroll timesheet and clock",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s3.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc"
+        },
+        "image": {
+          "sha256": "3061b279d345a68928376d20649115d16ed6a1fb5db0e94021cad62212594c4f",
+          "bytes": 1826156,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    },
+    {
+      "phrase": "overtime had swallowed more money",
+      "query": "manager reviewing expensive payroll report",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s4.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w"
+        },
+        "image": {
+          "sha256": "23fd071e4c3171c71ebc8d095c87bcc416c71153d44a9030b6645782d1581974",
+          "bytes": 1953204,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    },
+    {
+      "phrase": "a laminated checklist",
+      "query": "laminated workplace checklist on clipboard",
+      "mascot_pose": "idle",
+      "media": {
+        "status": "fulfilled",
+        "drive": {
+          "file_id": "1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo",
+          "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+          "filename": "20260803__authored-bag-check-overtime-s5.png",
+          "sharing": "anyone_with_link",
+          "download_url": "https://drive.google.com/uc?export=download&id=1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo"
+        },
+        "image": {
+          "sha256": "abee5d3d7c6f848e014900fd55d28403fac9d9bbe19bfdddfd7b04644f1caf6d",
+          "bytes": 2231868,
+          "format": "png",
+          "width": 1254,
+          "height": 1254
+        }
+      }
+    }
   ],
   "punches": [
-    {"phrase": "Every bag, seriously?", "text": "EVERY BAG?", "color": "#ffaa30"},
-    {"phrase": "still work time", "text": "STILL PAID", "color": "#50ff80"},
-    {"phrase": "very expensive little security theater", "text": "EXPENSIVE THEATER", "color": "#ff3030"},
-    {"phrase": "He had none", "text": "ZERO EVIDENCE", "color": "#ff3030"}
+    {
+      "phrase": "Every bag, seriously?",
+      "text": "EVERY BAG?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "still work time",
+      "text": "STILL PAID",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "very expensive little security theater",
+      "text": "EXPENSIVE THEATER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He had none",
+      "text": "ZERO EVIDENCE",
+      "color": "#ff3030"
+    }
   ],
   "music_vibe": "dry office tension into playful payoff",
   "_authored_by": "chatgpt-takeover"
