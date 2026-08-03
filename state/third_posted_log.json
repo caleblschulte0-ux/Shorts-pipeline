@@ -2327,13 +2327,36 @@
       "banger": 0.7
     },
     "clip-20260803-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/agent00/clip/LazyRacyKiwiBuddhaBar-7NPR19Wjkc9I1sTC",
-      "story_key": null,
-      "streamer": "agent00",
+      "url": "https://youtube.com/shorts/Pj6xiBNvuRY",
       "title": "Agent00 Makes 2 Insane Catches",
       "kind": "twitch_clip",
-      "ts": "2026-08-03T12:11:33.186791+00:00",
+      "ts": "2026-08-03T12:11:41.065239+00:00",
+      "uploaded_at": "2026-08-03T12:11:41.065260+00:00",
+      "publish_at": "2026-08-03T17:00:00Z",
+      "source_url": "https://www.twitch.tv/agent00/clip/LazyRacyKiwiBuddhaBar-7NPR19Wjkc9I1sTC",
+      "streamer": "agent00",
+      "series": "clutch",
+      "hook": "INSANE DODGEBALL CATCHES",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6089,
+      "banger": 0.7,
+      "cut": {
+        "start": 14.8,
+        "end": 31.6
+      },
+      "director_cut": true
+    },
+    "clip-20260803-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/RamshackleFlaccidLorisShadyLulu-4SF8cWMcH9SVXMGf",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Sees Summits' Move",
+      "kind": "twitch_clip",
+      "ts": "2026-08-03T12:14:41.474364+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
