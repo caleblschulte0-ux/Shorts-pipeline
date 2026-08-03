@@ -3,7 +3,7 @@
   "production_date": "20260803",
   "owner": "chatgpt",
   "mode": "takeover",
-  "status": "in_progress",
+  "status": "ready_for_finalizer_with_production_holds",
   "claimed_at": "2026-08-03T11:02:04Z",
   "trigger": {
     "bundle_missing": true,
@@ -23,16 +23,18 @@
         "graph_race": 4,
         "reddit_story": 2
       },
-      "have": 0,
-      "missing": 6
+      "have": 6,
+      "missing": 0,
+      "state": "authored_and_media_complete_but_render_held"
     },
     "explainer": {
       "expected": 1,
       "formats": {
         "data_story": 1
       },
-      "have": 0,
-      "missing": 1
+      "have": 1,
+      "missing": 0,
+      "state": "rewrite_staged_for_specialized_workflow"
     },
     "curiosity": {
       "expected": 1,
@@ -40,7 +42,8 @@
         "long_form": 1
       },
       "have": 0,
-      "missing": 1
+      "missing": 1,
+      "state": "queue_healthy_specialized_workflow_not_invoked"
     },
     "third": {
       "expected": 3,
@@ -48,16 +51,32 @@
         "clip": 3
       },
       "have": 0,
-      "missing": 3
+      "missing": 3,
+      "state": "specialized_workflow_not_invoked"
     }
   },
   "media": {
-    "completed": 0,
-    "failed": 0
+    "completed": 12,
+    "failed": 0,
+    "verified_public_reader": 12,
+    "dimensions": "1254x1254"
   },
+  "durable_commits": [
+    "e57b801221808ba1210bc61a19a1b51bf88679ea",
+    "5690c1f30743d466dcbf21f25924150c2d447a3c",
+    "45b5c861e4ca075259a19c06750be45e9fb7e061"
+  ],
+  "production_holds": [
+    "Trending graph-race renderer imports assets/mascot/host (Data mascot).",
+    "Trending Reddit renderer imports assets/mascot/host (Data mascot).",
+    "Do not write DONE until the Data mascot and cross-wired QA rubric are isolated from Trending."
+  ],
   "finalizer_resume": [
     "Read this takeover claim before any late bundle.",
-    "Resume durable authored packages and media checkpoints.",
+    "Resume six validated Trending packages and twelve verified Drive media checkpoints; do not recreate them.",
+    "Run the Explainer specialized workflow using takeover-work/explainer.json.",
+    "Invoke and monitor Curiosity and Third specialized workflows; their expected shortfalls remain 1 and 3.",
+    "Keep Trending out of rendering until the documented Data-mascot contamination is fixed by the code owner.",
     "Finalizer alone writes response.json and DONE."
   ]
 }
