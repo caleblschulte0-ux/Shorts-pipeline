@@ -1,0 +1,71 @@
+{
+  "date": "20260803",
+  "channel": "trending",
+  "offered": 12,
+  "promoted": [
+    "state/trending_packages/20260803/01_fixed-broadband-world.json",
+    "state/trending_packages/20260803/02_landlines-peak-and-fall.json",
+    "state/trending_packages/20260803/03_fgas-emissions-rise.json",
+    "state/trending_packages/20260803/04_world-fisheries-production.json",
+    "state/trending_packages/20260803/05_bag-check-overtime.json",
+    "state/trending_packages/20260803/06_manager-package-warehouse.json"
+  ],
+  "rejected": [
+    {
+      "origin": "authored/01_fixed-broadband-world.json",
+      "slug": "fixed-broadband-world",
+      "title": "Broadband Passed Landlines in 20 Years",
+      "problems": [
+        "title repeats a recently posted video: 'Broadband Passed Landlines in 20 Years'",
+        "slug already in today's slate: fixed-broadband-world"
+      ]
+    },
+    {
+      "origin": "authored/02_landlines-peak-and-fall.json",
+      "slug": "landlines-peak-and-fall",
+      "title": "Internet Users Outran Broadband Lines",
+      "problems": [
+        "title repeats a recently posted video: 'Internet Users Outran Broadband Lines'",
+        "slug already in today's slate: landlines-peak-and-fall"
+      ]
+    },
+    {
+      "origin": "authored/03_fgas-emissions-rise.json",
+      "slug": "fgas-emissions-rise",
+      "title": "F-Gases Grew Faster Than Methane",
+      "problems": [
+        "title repeats a recently posted video: 'F-Gases Grew Faster Than Methane'",
+        "slug already in today's slate: fgas-emissions-rise"
+      ]
+    },
+    {
+      "origin": "authored/04_world-fisheries-production.json",
+      "slug": "world-fisheries-production",
+      "title": "Fish Farming Drove the Production Boom",
+      "problems": [
+        "title repeats a recently posted video: 'Fish Farming Drove the Production Boom'",
+        "slug already in today's slate: world-fisheries-production"
+      ]
+    },
+    {
+      "origin": "authored/05_bag-check-overtime.json",
+      "slug": "bag-check-overtime",
+      "title": "My Manager's Bag Checks Became Paid Overtime",
+      "problems": [
+        "title repeats a recently posted video: \"My Manager's Bag Checks Became Paid Overtime\"",
+        "slug already in today's slate: bag-check-overtime"
+      ]
+    },
+    {
+      "origin": "authored/06_manager-package-warehouse.json",
+      "slug": "manager-package-warehouse",
+      "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+      "problems": [
+        "title repeats a recently posted video: 'He Banned Desk Deliveries. His Office Became a Warehouse.'",
+        "slug already in today's slate: manager-package-warehouse"
+      ]
+    }
+  ],
+  "slate_problems": [],
+  "slate_size_after": 6
+}

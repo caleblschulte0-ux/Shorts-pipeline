@@ -1,0 +1,130 @@
+{
+  "date": "20260803",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 6,
+    "rejected": 6
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 9,
+    "unfilled": 2,
+    "refused": 12
+  },
+  "checkpoints": {
+    "bundle_identity": "a1cc11d9a8685e92a5d9c68e3729febe65b4298314000910f7256e8baa63c478",
+    "required": true,
+    "checked": 12,
+    "ok": 0,
+    "rejected": 12,
+    "warnings": 0,
+    "rejected_detail": [
+      {
+        "request_id": "authored-bag-check-overtime-s0",
+        "where": "authored[bag-check-overtime].shots[0].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s0')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-bag-check-overtime-s1",
+        "where": "authored[bag-check-overtime].shots[1].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s1')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-bag-check-overtime-s2",
+        "where": "authored[bag-check-overtime].shots[2].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s2')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-bag-check-overtime-s3",
+        "where": "authored[bag-check-overtime].shots[3].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s3')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-bag-check-overtime-s4",
+        "where": "authored[bag-check-overtime].shots[4].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s4')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-bag-check-overtime-s5",
+        "where": "authored[bag-check-overtime].shots[5].media",
+        "problems": [
+          "no request_id (expected 'authored-bag-check-overtime-s5')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s0",
+        "where": "authored[manager-package-warehouse].shots[0].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s0')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s1",
+        "where": "authored[manager-package-warehouse].shots[1].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s1')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s2",
+        "where": "authored[manager-package-warehouse].shots[2].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s2')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s3",
+        "where": "authored[manager-package-warehouse].shots[3].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s3')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s4",
+        "where": "authored[manager-package-warehouse].shots[4].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s4')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      },
+      {
+        "request_id": "authored-manager-package-warehouse-s5",
+        "where": "authored[manager-package-warehouse].shots[5].media",
+        "problems": [
+          "no request_id (expected 'authored-manager-package-warehouse-s5')",
+          "checkpoint: made for a DIFFERENT bundle (takeover-e57\u2026 vs a1cc11d9a868\u2026) \u2014 the ask changed after this image was made"
+        ]
+      }
+    ],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": []
+}

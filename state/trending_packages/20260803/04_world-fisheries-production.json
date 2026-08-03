@@ -1,0 +1,55 @@
+{
+  "format": "graph_race",
+  "slug": "world-fisheries-production",
+  "title": "Fish Farming Drove the Production Boom",
+  "hook": "Wild catch went flat.",
+  "y_label": "Metric tons",
+  "duration": 13,
+  "source": "World Bank, Total fisheries production (ER.FSH.PROD.MT) and capture fisheries production (ER.FSH.CAPT.MT), 1972-2024: https://data.worldbank.org/indicator/ER.FSH.PROD.MT and https://data.worldbank.org/indicator/ER.FSH.CAPT.MT",
+  "years": [
+    1972,
+    1982,
+    1993,
+    2003,
+    2014,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Total production",
+      "color": "#27d7c8",
+      "icon": "World Bank",
+      "values": [
+        56432926,
+        71055453,
+        114461514,
+        142660467,
+        193120017,
+        235811491
+      ]
+    },
+    {
+      "name": "Wild capture",
+      "color": "#3088ff",
+      "icon": "World Bank",
+      "values": [
+        51915952,
+        62548125,
+        88788151,
+        91084188,
+        93466633,
+        94403126
+      ]
+    }
+  ],
+  "hashtags": [
+    "fishing",
+    "ocean",
+    "aquaculture",
+    "data",
+    "food",
+    "shorts"
+  ],
+  "music_vibe": "steady cinematic build",
+  "_authored_by": "chatgpt-takeover"
+}

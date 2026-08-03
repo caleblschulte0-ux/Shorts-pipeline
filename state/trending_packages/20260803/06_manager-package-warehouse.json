@@ -1,0 +1,83 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "manager-package-warehouse",
+  "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+  "hashtags": [
+    "pettyrevenge",
+    "office",
+    "workplace",
+    "karma",
+    "redditstories",
+    "shorts"
+  ],
+  "script": "Personal packages are unprofessional! That was our office manager's announcement after one small box appeared at reception. His new rule said every personal delivery had to be addressed to the department head and stored in his office until pickup. Fine. Holiday shopping started the next week, and twenty-seven employees followed the policy exactly. His office collected dog food, paper towels, birthday balloons, a desk chair, and one heroic flat-packed bookcase. Nothing blocked an exit; it just turned his workspace into the world's least convenient warehouse. He complained that people were abusing the system. We showed HR his memo, including the sentence requiring his name and office number on every label. HR asked him whether he wanted the rule enforced or deleted. It vanished before lunch. Reception got a package shelf, employees got one delivery a week, and his office became an office again. Apparently boxes look less professional when they're all addressed to you.",
+  "shots": [
+    {
+      "phrase": "Personal packages are unprofessional!",
+      "query": "office manager making stern announcement",
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/gb38e742904c2351abe14188e00b7dc002d8e7d4f1a5d84f35a3a700313af6a749c0c56037c98d0570888ea3147bba1bd8f2d155f2c61988e89f5d4c70f4ec164_1280.jpg",
+      "media_origin": "self_fill_authored"
+    },
+    {
+      "phrase": "stored in his office until pickup",
+      "query": "office beginning to fill with parcels",
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/6170100/pexels-photo-6170100.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill_authored"
+    },
+    {
+      "phrase": "twenty-seven employees followed the policy exactly",
+      "query": "employees carrying delivery boxes through office",
+      "mascot_pose": "idle",
+      "image_url": "https://pixabay.com/get/g9fee7ee3ebc0c068b73637054150f92c0ab370df263701cea0c6e80dda877992cfa3380b6036868681e76535d544517f96c15199eec7a8dd74f542d001c12445_1280.jpg",
+      "media_origin": "self_fill_authored"
+    },
+    {
+      "phrase": "dog food, paper towels, birthday balloons",
+      "query": "absurd pile of mixed household deliveries",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "the world's least convenient warehouse",
+      "query": "manager trapped behind stacks of packages",
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/6170405/pexels-photo-6170405.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill_authored"
+    },
+    {
+      "phrase": "We showed HR his memo",
+      "query": "employees presenting printed policy to human resources",
+      "mascot_pose": "idle",
+      "pin_query": "HR",
+      "pin_context": "human resources department company policy",
+      "news_query": "HR",
+      "news_angle": "HR asked the office manager whether he wanted the rule enforced or deleted after reviewing his memo.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Thomas_Perez_and_Paul_Bulcke%2C_2016.jpg/1280px-Thomas_Perez_and_Paul_Bulcke%2C_2016.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "Personal packages are unprofessional!",
+      "text": "UNPROFESSIONAL!",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "twenty-seven employees",
+      "text": "27 EMPLOYEES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "least convenient warehouse",
+      "text": "OFFICE WAREHOUSE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "It vanished before lunch",
+      "text": "RULE DELETED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "light mischievous build",
+  "_authored_by": "chatgpt-takeover"
+}
