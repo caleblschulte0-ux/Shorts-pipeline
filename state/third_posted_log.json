@@ -2350,13 +2350,36 @@
       "director_cut": true
     },
     "clip-20260803-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/RamshackleFlaccidLorisShadyLulu-4SF8cWMcH9SVXMGf",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/1B55YR_khKk",
       "title": "Stableronaldo Sees Summits' Move",
       "kind": "twitch_clip",
-      "ts": "2026-08-03T12:14:41.474364+00:00",
+      "ts": "2026-08-03T12:14:48.655031+00:00",
+      "uploaded_at": "2026-08-03T12:14:48.655054+00:00",
+      "publish_at": "2026-08-03T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/RamshackleFlaccidLorisShadyLulu-4SF8cWMcH9SVXMGf",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "SUMMITS LOSES IT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2610,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 19.28
+      },
+      "director_cut": true
+    },
+    "clip-20260803-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/agent00/clip/FrigidPoliteCrabSpicyBoy-Bft3tFp2swynZtdH",
+      "story_key": null,
+      "streamer": "agent00",
+      "title": "Agent00 Spills Drink Trying To Kick Ball",
+      "kind": "twitch_clip",
+      "ts": "2026-08-03T12:16:20.374714+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
