@@ -1,20 +1,31 @@
-# Daily Trending Shorts — 2026-08-02
+# Daily Trending Shorts — 2026-08-03
 
-> **2 package(s) came from the reserve bank** — top it up when Claude is back: `python scripts/package_reserve.py status`.
+> **ChatGPT wrote 6 of today's 6 packages** — the Claude Routine did not run (weekly limit?).
 
-- queued: **2**
-- succeeded: **1**
+- queued: **6**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **1**
+- failed: **4**
 
 ## Posted
-- **Smartphones Reached Half the Planet**
-  - topic: Smartphones Reached Half the Planet
-  - publishes: `2026-08-02T20:30:00Z`
-  - https://youtube.com/shorts/MMOE_TgX_mU
-  - took: 111.6s
+- **Broadband Passed Landlines in 20 Years**
+  - topic: Broadband Passed Landlines in 20 Years
+  - publishes: `2026-08-03T13:00:00Z`
+  - https://youtube.com/shorts/yAoVBbzBw_0
+  - took: 117.2s
+- **My Manager's Bag Checks Became Paid Overtime**
+  - topic: My Manager's Bag Checks Became Paid Overtime
+  - publishes: `2026-08-03T14:30:00Z`
+  - https://youtube.com/shorts/taogwkS1mvQ
+  - took: 217.7s
 
 ## Failed
-- **He Wouldn't Stop The Music. So I Got Creative**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets Aug 5, 12am (UTC)\n", "headless-claude[1]: claude CLI rc`
+- **Internet Users Outran Broadband Lines**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) — too many held frames`
+- **F-Gases Grew Faster Than Methane**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **Fish Farming Drove the Production Boom**
+  - error: `showrunner_block: showrunner BLOCK: The video effectively demonstrates fish production trends with a clear graph race, but suffers from significant empty space.`
+- **He Banned Desk Deliveries. His Office Became a Warehouse.**
+  - error: `showrunner_block: showrunner BLOCK: The video features a decorative mascot, which is an auto-fail for the Reddit Story format, and has a weak payoff.`
 

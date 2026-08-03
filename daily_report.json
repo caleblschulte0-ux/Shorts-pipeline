@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Smartphones Reached Half the Planet",
-    "title": "Smartphones Reached Half the Planet",
+    "topic": "Broadband Passed Landlines in 20 Years",
+    "title": "Broadband Passed Landlines in 20 Years",
     "format": "graph_race",
-    "publish_at": "2026-08-02T20:30:00Z",
+    "publish_at": "2026-08-03T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/MMOE_TgX_mU",
+    "video_url": "https://youtube.com/shorts/yAoVBbzBw_0",
     "error": null,
-    "elapsed_seconds": 111.6,
-    "package_path": "state/trending_packages/20260802/01_graph-smartphone-users-worldwide.json",
-    "source": "reserve",
-    "video_path": "output/daily_20260802-200318_smartphones_reached_half_the_planet.mp4",
+    "elapsed_seconds": 117.2,
+    "package_path": "state/trending_packages/20260803/01_fixed-broadband-world.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-122056_broadband_passed_landlines_in_20_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -34,20 +34,20 @@
     "channel": "default"
   },
   {
-    "topic": "He Wouldn't Stop The Music. So I Got Creative",
-    "title": "He Wouldn't Stop The Music. So I Got Creative",
-    "format": "reddit",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "topic": "Internet Users Outran Broadband Lines",
+    "title": "Internet Users Outran Broadband Lines",
+    "format": "graph_race",
+    "publish_at": "2026-08-03T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Aug 5, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI rc",
-    "elapsed_seconds": 200.1,
-    "package_path": "state/trending_packages/20260802/02_reddit-upstairs-neighbor-noise.json",
-    "source": "reserve",
-    "video_path": "output/daily_20260802-200558_he_wouldn_t_stop_the_music__so_i_got_cre.mp4",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 69.9,
+    "package_path": "state/trending_packages/20260803/02_landlines-peak-and-fall.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-122253_internet_users_outran_broadband_lines.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.3,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,17 +58,158 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Aug 5, 12am (UTC)\\n\", \"headless-claude[1]: claude CLI rc",
-      "score": null
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
+    },
+    "blocked": true
+  },
+  {
+    "topic": "F-Gases Grew Faster Than Methane",
+    "title": "F-Gases Grew Faster Than Methane",
+    "format": "graph_race",
+    "publish_at": "2026-08-03T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 72.0,
+    "package_path": "state/trending_packages/20260803/03_fgas-emissions-rise.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-122403_f_gases_grew_faster_than_methane.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Fish Farming Drove the Production Boom",
+    "title": "Fish Farming Drove the Production Boom",
+    "format": "graph_race",
+    "publish_at": "2026-08-03T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates fish production trends with a clear graph race, but suffers from significant empty space.",
+    "elapsed_seconds": 104.2,
+    "package_path": "state/trending_packages/20260803/04_world-fisheries-production.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-122515_fish_farming_drove_the_production_boom.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively demonstrates fish production trends with a clear graph race, but suffers from significant empty space.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "My Manager's Bag Checks Became Paid Overtime",
+    "title": "My Manager's Bag Checks Became Paid Overtime",
+    "format": "reddit",
+    "publish_at": "2026-08-03T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/taogwkS1mvQ",
+    "error": null,
+    "elapsed_seconds": 217.7,
+    "package_path": "state/trending_packages/20260803/05_bag-check-overtime.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-122750_my_manager_s_bag_checks_became_paid_over.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 95
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+    "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+    "format": "reddit",
+    "publish_at": "2026-08-03T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The video features a decorative mascot, which is an auto-fail for the Reddit Story format, and has a weak payoff.",
+    "elapsed_seconds": 237.9,
+    "package_path": "state/trending_packages/20260803/06_manager-package-warehouse.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260803-123127_he_banned_desk_deliveries__his_office_be.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 56.3,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video features a decorative mascot, which is an auto-fail for the Reddit Story format, and has a weak payoff.",
+      "score": 66
     },
     "blocked": true
   }
