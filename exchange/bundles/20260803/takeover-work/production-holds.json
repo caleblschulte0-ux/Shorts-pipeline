@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-production-holds/v1",
+  "production_date": "20260803",
+  "holds": [
+    {
+      "channels": ["trending"],
+      "formats": ["graph_race", "reddit_story"],
+      "reason": "Current Trending renderers import assets/mascot/host (Data, the Explainer channel mascot). Publishing would repeat the cross-channel brand contamination explicitly rejected by the operator.",
+      "evidence": ["engines/chart_race.py", "make_reddit_story.py"],
+      "required_before_done": "Claude must isolate Data to Explainer and give Trending format-appropriate QA. Finalizer must render only after that production-code fix lands; this scheduled task is forbidden from editing code."
+    }
+  ],
+  "finalizer_must_not": "Do not write DONE or trigger Trending rendering while this hold remains unresolved."
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "chatgpt-specialized-workflow-plan/v1",
+  "production_date": "20260803",
+  "owner": "chatgpt",
+  "curiosity": {
+    "expected": 1,
+    "queue_total": 6,
+    "queue_minimum": 3,
+    "queue_stocking_required": false,
+    "status": "awaiting_specialized_workflow",
+    "workflow": ".github/workflows/curiosity.yml",
+    "finalizer_action": "Invoke and monitor the registered Curiosity workflow; verify one QA-approved upload. Do not use the Explainer mascot system."
+  },
+  "third": {
+    "expected": 3,
+    "status": "awaiting_specialized_workflow",
+    "workflow": ".github/workflows/third.yml",
+    "finalizer_action": "Invoke and monitor the registered Third capture workflow; verify three distinct uploads and posted-log entries."
+  },
+  "dispatch_note": "The installed GitHub connector exposed read/write repository actions but no workflow_dispatch action in this run, and gh is unavailable. No workflow was falsely recorded as invoked."
+}

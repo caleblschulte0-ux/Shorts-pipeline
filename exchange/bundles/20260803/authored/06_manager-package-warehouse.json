@@ -1,0 +1,23 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "manager-package-warehouse",
+  "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+  "hashtags": ["pettyrevenge", "office", "workplace", "karma", "redditstories", "shorts"],
+  "script": "Personal packages are unprofessional! That was our office manager's announcement after one small box appeared at reception. His new rule said every personal delivery had to be addressed to the department head and stored in his office until pickup. Fine. Holiday shopping started the next week, and twenty-seven employees followed the policy exactly. His office collected dog food, paper towels, birthday balloons, a desk chair, and one heroic flat-packed bookcase. Nothing blocked an exit; it just turned his workspace into the world's least convenient warehouse. He complained that people were abusing the system. We showed HR his memo, including the sentence requiring his name and office number on every label. HR asked him whether he wanted the rule enforced or deleted. It vanished before lunch. Reception got a package shelf, employees got one delivery a week, and his office became an office again. Apparently boxes look less professional when they're all addressed to you.",
+  "shots": [
+    {"phrase": "Personal packages are unprofessional!", "query": "office manager making stern announcement", "mascot_pose": "idle"},
+    {"phrase": "stored in his office until pickup", "query": "office beginning to fill with parcels", "mascot_pose": "idle"},
+    {"phrase": "twenty-seven employees followed the policy exactly", "query": "employees carrying delivery boxes through office", "mascot_pose": "idle"},
+    {"phrase": "dog food, paper towels, birthday balloons", "query": "absurd pile of mixed household deliveries", "mascot_pose": "idle"},
+    {"phrase": "the world's least convenient warehouse", "query": "manager trapped behind stacks of packages", "mascot_pose": "idle"},
+    {"phrase": "We showed HR his memo", "query": "employees presenting printed policy to human resources", "mascot_pose": "idle"}
+  ],
+  "punches": [
+    {"phrase": "Personal packages are unprofessional!", "text": "UNPROFESSIONAL!", "color": "#ffaa30"},
+    {"phrase": "twenty-seven employees", "text": "27 EMPLOYEES", "color": "#50ff80"},
+    {"phrase": "least convenient warehouse", "text": "OFFICE WAREHOUSE", "color": "#ff3030"},
+    {"phrase": "It vanished before lunch", "text": "RULE DELETED", "color": "#50ff80"}
+  ],
+  "music_vibe": "light mischievous build",
+  "_authored_by": "chatgpt-takeover"
+}
