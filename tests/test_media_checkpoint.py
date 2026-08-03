@@ -275,6 +275,18 @@ class TestBundleIdentity(_TempBundles):
         self.assertEqual(mc.bundle_identity(DATE), ident)
         self.assertTrue((mc.bundle_dir(DATE) / mc.IDENTITY_FILE).exists())
 
+    def test_chatgpt_takeover_identity_survives_a_late_phase_a_bundle(self):
+        """A late bundle is useful as a work order, but cannot invalidate
+        media made after ChatGPT already claimed the production date."""
+        late = self._bundle("late-request")
+        mc.write_bundle_identity(DATE, late)
+        (mc.bundle_dir(DATE) / "takeover.json").write_text(json.dumps({
+            "owner": "chatgpt",
+            "mode": "takeover",
+            "checkpoint_identity": "takeover-claim-abc123",
+        }))
+        self.assertEqual(mc.bundle_identity(DATE), "takeover-claim-abc123")
+
     def test_old_bundles_without_a_sidecar_still_resolve(self):
         self.write_bundle({"a": 1})
         self.assertTrue(mc.bundle_identity(DATE))
@@ -747,11 +759,28 @@ class TestResponseValidation(_TempBundles):
             "slug": "kangaroo-court",
             "shots": [{"phrase": "a"},
                       {"phrase": "b", "media": {
-                          "request_id": rid, "status": "fulfilled",
+                          "status": "fulfilled",
                           "drive": good_drive(request_id=rid),
                           "image": good_image()}}]}]})
         self.assertEqual(out["rejected"], [])
         self.assertEqual(out["ok"], [rid])
+
+    def test_authored_shot_explicit_wrong_request_id_is_refused(self):
+        rid = mc.authored_shot_request_id("kangaroo-court", 1)
+        mc.write_checkpoint(DATE, mc.build_checkpoint(
+            date=DATE, request_id=rid, bundle_id=self.bid,
+            request_kind="authored_shot", package_id="kangaroo-court",
+            shot_index=1, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
+        out = self._validate({"authored": [{
+            "slug": "kangaroo-court",
+            "shots": [{}, {"media": {
+                "request_id": "authored-someone-else-s1",
+                "status": "fulfilled",
+                "drive": good_drive(request_id=rid),
+                "image": good_image()}}]}]})
+        self.assertTrue(any("does not match" in p
+                            for p in out["rejected"][0]["problems"]))
 
     def test_authored_media_on_the_wrong_package_is_refused(self):
         rid = mc.authored_shot_request_id("kangaroo-court", 1)

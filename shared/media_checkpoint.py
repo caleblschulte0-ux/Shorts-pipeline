@@ -331,6 +331,19 @@ def bundle_identity(date) -> str | None:
     Falls back to hashing `bundle.json` for bundles written before the
     sidecar existed, so old days stay readable."""
     d = bundle_dir(date)
+    # Added by ChatGPT 2026-08-03: a late mechanical Phase A bundle must not
+    # steal identity from an already-claimed ChatGPT takeover.  The takeover
+    # state records the exact identity used by its durable media checkpoints;
+    # prefer it while that owner remains authoritative for the date.
+    try:
+        takeover = json.loads((d / "takeover.json").read_text())
+        takeover_id = str(takeover.get("checkpoint_identity") or "").strip()
+        if (takeover.get("owner") == "chatgpt"
+                and takeover.get("mode") == "takeover"
+                and takeover_id):
+            return takeover_id
+    except Exception:                                    # noqa: BLE001
+        pass
     try:
         text = (d / IDENTITY_FILE).read_text().strip()
         if _HEX64.match(text.lower()):
@@ -909,9 +922,13 @@ def media_entry_problems(entry, *, date, bundle_id=None, request_id=None,
 
     claimed_rid = entry.get("request_id")
     if request_id is not None:
-        if claimed_rid is None:
+        # Added by ChatGPT 2026-08-03: an authored-shot pointer rides on the
+        # shot itself, so its id is already unambiguously derived from
+        # package slug + shot index.  The authoring brief intentionally omits
+        # this redundant field.  Bundle-request entries remain strict.
+        if claimed_rid is None and expect_kind != "authored_shot":
             problems.append(f"no request_id (expected {request_id!r})")
-        elif str(claimed_rid) != str(request_id):
+        elif claimed_rid is not None and str(claimed_rid) != str(request_id):
             problems.append(f"request_id {str(claimed_rid)!r} does not match "
                             f"the request it is attached to ({request_id!r})")
 
