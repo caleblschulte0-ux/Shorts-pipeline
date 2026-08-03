@@ -1,0 +1,63 @@
+{
+  "schema": "chatgpt-takeover-state/v1",
+  "production_date": "20260803",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "status": "in_progress",
+  "claimed_at": "2026-08-03T11:02:04Z",
+  "trigger": {
+    "bundle_missing": true,
+    "path": "exchange/bundles/20260803/bundle.json",
+    "reason": "No valid Claude production bundle existed at takeover check."
+  },
+  "source_commit": "392af7fff397aaf2d56c38e00961b8f12a8c91de",
+  "registry": {
+    "revision": 2,
+    "sha256": "3366a71e719dcbafdbac39bde55247b2e7dee60f5e415379e5e7f896b25626ee"
+  },
+  "ownership_rule": "ChatGPT owns 20260803. A late bundle may be reconciled only if non-conflicting and must not replace this claim.",
+  "channels": {
+    "trending": {
+      "expected": 6,
+      "formats": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": 0,
+      "missing": 6
+    },
+    "explainer": {
+      "expected": 1,
+      "formats": {
+        "data_story": 1
+      },
+      "have": 0,
+      "missing": 1
+    },
+    "curiosity": {
+      "expected": 1,
+      "formats": {
+        "long_form": 1
+      },
+      "have": 0,
+      "missing": 1
+    },
+    "third": {
+      "expected": 3,
+      "formats": {
+        "clip": 3
+      },
+      "have": 0,
+      "missing": 3
+    }
+  },
+  "media": {
+    "completed": 0,
+    "failed": 0
+  },
+  "finalizer_resume": [
+    "Read this takeover claim before any late bundle.",
+    "Resume durable authored packages and media checkpoints.",
+    "Finalizer alone writes response.json and DONE."
+  ]
+}
