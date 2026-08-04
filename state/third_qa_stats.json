@@ -3,79 +3,6 @@
     {
       "date": "20260720",
       "dry_run": false,
-      "ts": "2026-07-20T11:48:02+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 9,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 67,
-        "with_retention": 48,
-        "with_curve": 10,
-        "fetched_at": "2026-07-19T17:26:28.496126+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260720-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260720-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260720-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: subject/action is only visible in roughly a third of frames \u2014 most frames are solid black or heavy motion-blur with no v; vision: captions render over empty black frames disconnected from the "
-        },
-        {
-          "slug": "clip-20260720-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260720-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260720-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Caption text is garbled/broken \u2014 reads 'HELLO ?UMPY' with a literal '?' glyph where a character should be, clearly visib; vision: For a large stretch of the clip (roughly 7s\u201319s) the subject i"
-        },
-        {
-          "slug": "clip-20260720-7",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Multiple frames (3.7s-5.9s, 6.9s-9.1s, 10.1s-12.3s) are black, empty, or unrecognizable blur with no visible subject; vision: Camera whip-pans/shake leave long stretches with no person in fram"
-        },
-        {
-          "slug": "clip-20260720-8",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Subject completely absent from frame for a long stretch (~4.0s\u201313.5s, over half the clip) \u2014 just a blank wall and furnit; vision: Excited captions like \"ALL RIGHT!\" and \"THE RUN!\" are overlaid"
-        }
-      ]
-    },
-    {
-      "date": "20260720",
-      "dry_run": false,
       "ts": "2026-07-20T12:06:15+00:00",
       "feedback": {
         "snapshot": true,
@@ -2460,6 +2387,228 @@
             }
           },
           "took_s": 813.8
+        }
+      ]
+    },
+    {
+      "date": "20260804",
+      "dry_run": false,
+      "ts": "2026-08-04T13:39:00+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 121,
+        "with_retention": 108,
+        "with_curve": 15,
+        "fetched_at": "2026-08-04T11:04:02.145251+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 7
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tpain": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260804-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "Intriguing title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Vague title",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": false,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Finds Scary Diddy Character"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 100.3
+        },
+        {
+          "slug": "clip-20260804-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.7,
+              "why": "visible win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "Proving point",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": false,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ludwig Watches Maya Win"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 545.9
+        },
+        {
+          "slug": "clip-20260804-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "generic title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.8,
+              "why": "Emotional crowd reaction",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ludwig Wins 2026 Streamer Games"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 177.6
+        },
+        {
+          "slug": "clip-20260804-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.8,
+              "why": "physical comedy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "Observable fail",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Agent00 Falls"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 99.3
         }
       ]
     }
