@@ -2424,13 +2424,36 @@
       "ts": "2026-08-04T13:25:18.125805+00:00"
     },
     "clip-20260804-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/VivaciousShortSparrowCoolCat-VqmdmthVKmf7MZSg",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/8gWZhpu3ruA",
       "title": "Ludwig Watches Maya Win",
       "kind": "twitch_clip",
-      "ts": "2026-08-04T13:34:19.462601+00:00",
+      "ts": "2026-08-04T13:34:23.983834+00:00",
+      "uploaded_at": "2026-08-04T13:34:23.983853+00:00",
+      "publish_at": "2026-08-04T18:30:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/VivaciousShortSparrowCoolCat-VqmdmthVKmf7MZSg",
+      "streamer": "ludwig",
+      "series": "win",
+      "hook": "SHE PULLS OFF THE WIN",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 37460,
+      "banger": 0.7,
+      "cut": {
+        "start": 33.3,
+        "end": 54.1
+      },
+      "director_cut": true
+    },
+    "clip-20260804-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/CorrectArtisticAntSoonerLater-FmETIFILe40Bewfo",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig Wins 2026 Streamer Games",
+      "kind": "twitch_clip",
+      "ts": "2026-08-04T13:37:16.043455+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
