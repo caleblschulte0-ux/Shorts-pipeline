@@ -2392,13 +2392,45 @@
       "ts": "2026-08-04T13:09:45.991783+00:00"
     },
     "clip-20260804-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/AveragePiercingDiamondOSkomodo-I4-QUgtb1z9JHeGS",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/x9nQXslKBQk",
       "title": "Cinna Finds Scary Diddy Character",
       "kind": "twitch_clip",
-      "ts": "2026-08-04T13:11:45.715715+00:00",
+      "ts": "2026-08-04T13:11:50.881499+00:00",
+      "uploaded_at": "2026-08-04T13:11:50.881517+00:00",
+      "publish_at": "2026-08-04T17:00:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/AveragePiercingDiamondOSkomodo-I4-QUgtb1z9JHeGS",
+      "streamer": "cinna",
+      "series": "reaction",
+      "hook": "SCARIEST CHARACTERS EVER",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2895,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 8.9
+      },
+      "director_cut": true
+    },
+    "rejected-hardtrappedeggplantfunrun-ea42_roihduazwh4": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/HardTrappedEggplantFunRun-eA42_RoIHdUAzwh4",
+      "streamer": "jynxzi",
+      "title": "Jynzi Finally Reveals He Likes Men!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (No observable event)",
+      "ts": "2026-08-04T13:25:18.125805+00:00"
+    },
+    "clip-20260804-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/VivaciousShortSparrowCoolCat-VqmdmthVKmf7MZSg",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig Watches Maya Win",
+      "kind": "twitch_clip",
+      "ts": "2026-08-04T13:34:19.462601+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

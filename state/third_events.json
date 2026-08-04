@@ -344,6 +344,27 @@
       ],
       "published_versions": [],
       "last_updated": "2026-07-31"
+    },
+    "kaicenat-agent-during-2026w31": {
+      "event_id": "kaicenat-agent-during-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "agent",
+        "during",
+        "emily",
+        "logs"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/extraemily/clip/HelplessAwkwardOilArsonNoSexy-TtkDrW3wXRUHDoo9",
+        "https://www.twitch.tv/extraemily/clip/DependableMiniatureSpaghettiMoreCowbell-tX3Fxbm6_IXttFqe"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-04"
     }
   }
 }
