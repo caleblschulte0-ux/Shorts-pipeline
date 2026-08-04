@@ -2381,6 +2381,25 @@
       "kind": "twitch_clip",
       "ts": "2026-08-03T12:16:20.374714+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+    },
+    "rejected-gleamingdeafgullcoolstorybro-pmvr68b3tsreghaq": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/GleamingDeafGullCoolStoryBro-PmvR68B3TsrEGHAq",
+      "streamer": "erobb221",
+      "title": "racist",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (No observable event)",
+      "ts": "2026-08-04T13:09:45.991783+00:00"
+    },
+    "clip-20260804-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/AveragePiercingDiamondOSkomodo-I4-QUgtb1z9JHeGS",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Finds Scary Diddy Character",
+      "kind": "twitch_clip",
+      "ts": "2026-08-04T13:11:45.715715+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
