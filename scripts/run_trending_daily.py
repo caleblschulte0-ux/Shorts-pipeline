@@ -45,7 +45,18 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
-sys.path.insert(0, str(REPO / "scripts"))
+# APPEND, never insert. This used to `insert(0, REPO/"scripts")`, which put
+# `scripts/` AHEAD of `tests/` on sys.path for the rest of the process — so
+# the moment any test that sorts before `test_exchange` imported this
+# module, `unittest discover -s tests` resolved `test_exchange` to
+# `scripts/test_exchange.py` and died with an ImportError. The whole suite
+# stopped being discoverable because of an import side effect in a renderer.
+#
+# Nothing here needs the front of the path: the sibling imports below are
+# already fully qualified (`from scripts.discover_topic import ...`), which
+# resolves off REPO. Appending keeps direct `python scripts/x.py` execution
+# working without letting this module reorder anyone else's imports.
+sys.path.append(str(REPO / "scripts"))
 
 from scripts.discover_topic import discover_all  # noqa: E402
 from scripts import rank_topics  # noqa: E402
@@ -550,6 +561,116 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
                             "reason": gate["reason"],
                             "score": (gate.get("verdict") or {}).get("score")}
     return gate
+
+
+#: How many replacement videos one run may attempt. Bounded because each
+#: costs a full render: the cap is what stops a systematically-bad day (every
+#: chart failing the motion floor, say) from burning the whole job timeout
+#: re-rendering variations of the same fault.
+MAX_BACKFILL = int(os.environ.get("MAX_BACKFILL", "4"))
+
+
+def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
+    """Refill slots the gate emptied. **A HELD SLOT IS NOT A LOST SLOT.**
+
+    Operator ruling 2026-08-05: *"if the video doesn't make it past the
+    gates, they get a new video going — nothing doesn't post."*
+
+    On 2026-08-05 trending rendered six and shipped one: the showrunner
+    correctly held five weak videos, and then the run simply ended. The gate
+    was right every time; the pipeline's mistake was treating a refusal as
+    the end of the slot instead of the start of another attempt.
+
+    THIS DOES NOT TOUCH THE GATE. Every replacement is rendered and judged
+    by exactly the same showrunner, technical QA and vision QA as the video
+    it replaces — a backfill that shipped a held video would be the bypass
+    the doctrine forbids. The only thing that changes is that a refusal now
+    costs a render instead of a slot.
+
+    Replacements come from the RESERVE BANK, which is built for precisely
+    this: evergreen packages, structurally validated at deposit, drawn
+    exactly once (`state/package_buffer/used.json`) so a replacement can
+    never duplicate an upload. When the bank is empty the shortfall stands
+    and the run still reports it — an honest short day, never a fabricated
+    one.
+    """
+    if args.dry_run:
+        return []
+    expected = int(args.count)
+    posted = sum(1 for r in results if r.get("ok"))
+    short = expected - posted
+    if short <= 0:
+        return []
+
+    # What the gate actually refused, so the log says WHY we are backfilling.
+    held = [r for r in results
+            if not r.get("ok") and (r.get("blocked") or r.get("quarantined"))]
+    print(f"\n=== BACKFILL: {posted}/{expected} shipped, {short} slot(s) "
+          f"short ({len(held)} held by a gate) ===", flush=True)
+
+    try:
+        from shared import package_buffer as buf
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[backfill] reserve bank unavailable ({exc}) — the day stays "
+              f"short rather than shipping something unjudged", flush=True)
+        return []
+
+    # Prefer replacing like with like, so the day's format mix survives.
+    #
+    # The result dict labels a reddit package "reddit" (see
+    # run_one_from_package), while the bank keys on "reddit_story". Left
+    # unmapped the mix would never match a single banked format and the
+    # preference would quietly do nothing — the shortfall would still be
+    # covered, but by whatever was oldest, so a run that lost four charts
+    # could come back with four reddit stories and silently rewrite the
+    # day's mix. Normalise to the bank's own vocabulary.
+    known = set(buf.formats())
+    alias = {"reddit": "reddit_story", "graph": "graph_race"}
+    want_mix: dict[str, int] = {}
+    for r in held:
+        fmt = str(r.get("format") or "")
+        fmt = alias.get(fmt, fmt)
+        if fmt in known:
+            want_mix[fmt] = want_mix.get(fmt, 0) + 1
+
+    attempts = min(short, MAX_BACKFILL)
+    if short > MAX_BACKFILL:
+        print(f"[backfill] capped at {MAX_BACKFILL} attempts (short {short}) "
+              f"— a systematically bad day must not eat the job timeout",
+              flush=True)
+
+    out: list[dict] = []
+    date = now.strftime("%Y%m%d")
+    for i in range(attempts):
+        picked = buf.select(1, mix=want_mix or None)
+        if not picked:
+            print(f"[backfill] reserve bank is EMPTY after {i} replacement(s)"
+                  f" — {short - i} slot(s) will stay short. Top it up: "
+                  f"python scripts/package_reserve.py deposit ...", flush=True)
+            break
+        pkg = buf.draw(picked, date=date,
+                       reason=f"backfill: {len(held)} held by a gate")[0]
+        fmt = pkg.get("format") or ("reddit_story" if pkg.get("subreddit")
+                                    else "?")
+        if want_mix.get(fmt):
+            want_mix[fmt] -= 1
+        print(f"[backfill] {i + 1}/{attempts}: drew {pkg.get('slug')!r} "
+              f"({fmt}) from the reserve bank", flush=True)
+        slot = len(out) + sum(1 for r in results if r.get("ok"))
+        publish_at = sched[slot] if slot < len(sched) else None
+        res = run_one_from_package(pkg, publish_at, dry_run=False,
+                                   no_schedule=args.no_schedule)
+        res["backfill"] = True
+        out.append(res)
+        if res.get("ok"):
+            print(f"[backfill] replacement SHIPPED — slot recovered",
+                  flush=True)
+        else:
+            # The replacement met the same gate and lost too. That is the
+            # gate working; keep going while attempts remain.
+            print(f"[backfill] replacement also held: "
+                  f"{str(res.get('error'))[:90]}", flush=True)
+    return out
 
 
 def todays_package_dir() -> Path:
@@ -1224,6 +1345,10 @@ def main() -> int:
                 "posted_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             })
     save_log(log)
+
+    # 4b. BACKFILL. A held slot is not a lost slot.
+    results += _backfill(results, args, sched, now, log)
+    save_log(load_log())          # backfill uploads appended to the log
 
     # 5. Write report.
     date_str = now.strftime("%Y-%m-%d")
