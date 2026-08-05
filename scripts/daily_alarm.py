@@ -136,6 +136,36 @@ def check(date: str, now=None) -> dict:
         else:
             notes.append(f"{cid}: {len(posted)}/{target} posted")
 
+    # ---- 1b. the orchestrator's own production outcome ------------------
+    # Written by the render run since 2026-08-02 (ChatGPT's takeover
+    # contract, ratified): `response.json`/`DONE` mean handoff, never
+    # production. `repair_required` sitting there at end of day means the
+    # day KNOWS it is short and nobody repaired it — that is exactly the
+    # kind of silent-but-recorded failure this alarm exists to shout about.
+    outcome_dir = ROOT / "state" / "production_runs" / date
+    if outcome_dir.is_dir() and not early:
+        for f in sorted(outcome_dir.glob("*.json")):
+            oc = _load(f)
+            if not isinstance(oc, dict):
+                continue
+            cid = oc.get("channel") or f.stem
+            status = str(oc.get("status") or "")
+            if status == "repair_required":
+                alarm(f"production_repair_{cid}", "critical",
+                      f"{cid} {date}: production outcome says "
+                      f"{oc.get('uploaded', '?')}/{oc.get('expected', '?')} "
+                      f"uploaded and repair never completed "
+                      f"({oc.get('quarantined', 0)} quarantined, "
+                      f"{oc.get('failed', 0)} failed).",
+                      "The repair path is a push to .github/triggers/daily "
+                      "(resumes the unposted remainder; posted-title dedupe "
+                      "makes it safe). A held video may also just be the "
+                      "showrunner doing its job — read the run log before "
+                      "re-kicking.")
+            elif status == "production_complete":
+                notes.append(f"{cid}: production outcome complete "
+                             f"({oc.get('uploaded')}/{oc.get('expected')})")
+
     # ---- 2. did the exchange actually land? -----------------------------
     bundle_dir = ROOT / "exchange" / "bundles" / date
     bundle = _load(bundle_dir / "bundle.json")

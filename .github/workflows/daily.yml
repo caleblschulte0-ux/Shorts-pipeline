@@ -404,15 +404,40 @@ jobs:
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
         run: |
+          # THE COUNTER FEEDS AUTO-PAUSE, SO WHAT COUNTS AS "FAILURE" IS
+          # POLICY, not plumbing. The 2026-08-02 change made the run RED
+          # whenever uploaded < expected — which is right for VISIBILITY
+          # (a partial day must never look green), but it also fed every
+          # shortfall into this counter. That meant two days in which the
+          # SHOWRUNNER correctly held one video would auto-pause the whole
+          # channel — a machine that punishes the gate for working, and
+          # exactly the "more output via a lower bar" pressure the doctrine
+          # refuses. (The old code said this in its own comment: "a
+          # quarantine is an intentional skip, not a crash — it must NOT
+          # bump the auto-pause counter".)
+          #
+          # So: the RUN stays red on any shortfall (ChatGPT's visibility
+          # rule, kept), but the COUNTER bumps only on a ZERO-upload day —
+          # the outage shape it has always existed to catch. The judgment
+          # comes from the machine-readable production outcome the
+          # orchestrator now writes.
           mkdir -p state
+          TODAY=$(date -u +%Y%m%d)
+          OUT="state/production_runs/$TODAY/trending.json"
+          UPLOADED=$(python3 -c "
+          import json,sys
+          try: print(int(json.load(open('$OUT')).get('uploaded') or 0))
+          except Exception: print(-1)")
           if [ "${{ steps.run.outcome }}" = "success" ]; then
             echo "0" > state/failure_count.txt
             echo "Run OK — counter reset."
+          elif [ "$UPLOADED" -gt 0 ]; then
+            echo "::warning::partial day ($UPLOADED uploaded) — run is RED for repair visibility, but a held/quarantined video is the gate working, not an outage. Counter NOT bumped."
           else
             fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
             new=$((fc + 1))
             echo "$new" > state/failure_count.txt
-            echo "::warning::Run failed — failure counter now $new (auto-pause at 2)."
+            echo "::warning::Zero uploads — failure counter now $new (auto-pause at 2)."
           fi
 
       - name: Fetch analytics snapshot

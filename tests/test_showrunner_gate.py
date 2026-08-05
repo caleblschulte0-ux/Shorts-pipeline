@@ -120,13 +120,20 @@ class TestRunNeverRaises(unittest.TestCase):
     exists to prevent."""
 
     def setUp(self):
+        import scripts
+        self._pkg = scripts
         self.real = sys.modules.get("scripts.showrunner_review")
+        self.real_attr = getattr(scripts, "showrunner_review", None)
 
     def tearDown(self):
         if self.real is not None:
             sys.modules["scripts.showrunner_review"] = self.real
         else:
             sys.modules.pop("scripts.showrunner_review", None)
+        if self.real_attr is not None:
+            self._pkg.showrunner_review = self.real_attr
+        elif hasattr(self._pkg, "showrunner_review"):
+            del self._pkg.showrunner_review
 
     def _fake(self, fn):
         import types
@@ -135,6 +142,12 @@ class TestRunNeverRaises(unittest.TestCase):
         m.append_ledger = lambda *a, **k: None
         m.should_block = lambda v: v.get("verdict") == "block"
         sys.modules["scripts.showrunner_review"] = m
+        # `from scripts import showrunner_review` resolves via the PACKAGE
+        # ATTRIBUTE when the real module was ever imported (any earlier test
+        # importing it plants the attribute), so patching sys.modules alone
+        # works under `-m unittest tests.test_showrunner_gate` and silently
+        # fails under full discovery. Patch both, like a real seam.
+        self._pkg.showrunner_review = m
 
     def test_a_reviewer_that_explodes_holds_a_publish_run(self):
         def boom(*a, **k):

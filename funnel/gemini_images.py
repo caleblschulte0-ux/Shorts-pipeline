@@ -186,11 +186,18 @@ def _gemini_image(prompt: str, out_path: Path) -> "Path | None":
 def _vision_layout(layout: str) -> str:
     """Describe the renderer's *intended* frame shape to the QA model."""
     if layout == "reddit_illustrated":
+        # 2026-08-03 channel separation: Data is the EXPLAINER channel's
+        # mascot and never belongs in a trending frame. The 08-02 version of
+        # this text called a mascot here "intentional", which told the vision
+        # judge to excuse the exact thing the showrunner must now flag as a
+        # brand violation — the two judges contradicting each other. Vision
+        # QA still rules only on broken/unsafe; the mascot verdict is the
+        # showrunner's alone.
         return (
             "The opening may show a Reddit post card. After it clears, the "
-            "TOP half is a story illustration (often with the Data mascot) "
-            "and the BOTTOM half is gameplay with captions. The card, mascot, "
-            "and gameplay are intentional, not placeholders. ")
+            "TOP half is a story illustration and the BOTTOM half is "
+            "gameplay with captions. The card and gameplay are intentional, "
+            "not placeholders. ")
     if layout == "reddit_gameplay_card":
         return (
             "This Reddit-story format intentionally uses full-screen gameplay, "

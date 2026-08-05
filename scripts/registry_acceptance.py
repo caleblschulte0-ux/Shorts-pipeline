@@ -137,6 +137,13 @@ def run(verbose=True) -> dict:                        # noqa: C901
                 f"ChatGPT is asked for {b1['authoring_request']['write']}")
         before = {
             "mix": dict(reg.target_mix("trending")),
+            # The LIVE revision at freeze time — never a hardcoded number.
+            # This said `== 1` until 2026-08-05, which was true on the day it
+            # was written and false the moment the registry revision moved
+            # (rev 3 by then). It went unnoticed because those revision bumps
+            # were pushed straight to main, skipping the auto-merge gate that
+            # runs this script — the gate can only guard what goes through it.
+            "revision": reg.revision(),
             "bank_formats": list(buf.formats()),
             "brief_formats": sorted(b1["authoring_request"]["formats"]),
             "channels": list(reg.channel_ids()),
@@ -145,10 +152,12 @@ def run(verbose=True) -> dict:                        # noqa: C901
         # -- 3+4. swap the registry, build the NEXT date --------------------
         s = r.step(3, "Change ONLY the registry to a different plan")
         obj = build(NEW_PLAN, retired=["graph_race"],
-                    extra_formats={"quiz_card": dict(QUIZ)}, revision=2)
+                    extra_formats={"quiz_card": dict(QUIZ)},
+                    revision=before["revision"] + 1)
         obj["channels"]["curiosity"]["enabled"] = False
         with registry(registry_object=obj):
-            r.check(s, reg.revision() == 2, "registry revision bumped to 2")
+            r.check(s, reg.revision() == before["revision"] + 1,
+                    f"registry revision bumped to {reg.revision()}")
             r.check(s, reg.target_mix("trending") == NEW_PLAN,
                     f"new mix {reg.target_mix('trending')}")
 
@@ -212,9 +221,10 @@ def run(verbose=True) -> dict:                        # noqa: C901
             r.check(s, hashlib.sha256(now).hexdigest() == day_one_sha,
                     "byte-identical after the registry changed")
             frozen = xb.existing_contract(DAY_ONE)
-            r.check(s, frozen["registry_revision"] == 1,
+            r.check(s, frozen["registry_revision"] == before["revision"],
                     f"still pinned to registry rev "
-                    f"{frozen['registry_revision']}, not {reg.revision()}")
+                    f"{frozen['registry_revision']} (frozen at "
+                    f"{before['revision']}), not {reg.revision()}")
             r.check(s, frozen["channels"]["trending"]["target_mix"]
                     == before["mix"],
                     "day one still contracts the OLD mix")

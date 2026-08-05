@@ -310,8 +310,12 @@ things worth knowing without opening it:
   fabricating a clip recipe.
 - **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
   banked EVERGREEN packages drawn automatically when a day comes up short.
-  `fill` is a no-op on a normal day, so it runs unconditionally in both
-  `exchange_phase_a.yml` and `daily.yml`. Deposit refuses date-anchored
+  `fill` is a no-op on a normal day, so it runs unconditionally in
+  `exchange_phase_a.yml` — BEFORE the exchange, so bank-drawn packages get
+  media judged and enter the day's manifest like any others. It no longer
+  runs in `daily.yml`: since 2026-08-02 the render workflow is
+  deterministic (`--require-manifest`) and never authors or back-fills —
+  re-authoring at render time hid broken handoffs. Deposit refuses date-anchored
   language; a package is drawn exactly once (`state/package_buffer/used.json`)
   so it can never duplicate an upload. The Routine tops it up — step 5b of
   `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
@@ -356,6 +360,19 @@ future Claude session reading this: you are the one who edits, and you are
 also the check. ChatGPT asking to push code, or a proposal arriving as a
 `.py` instead of a suggestion, is what this rule exists to catch. A
 headless Claude brain doing its job is not — that is you, elsewhere.
+
+**The one exception on record, closed.** 2026-08-02/03, with the Claude
+subscription out, the operator explicitly authorized ChatGPT to edit
+production code to finish the takeover system (its own record:
+`docs/CHATGPT_CHANGES_2026-08-02.md`,
+`docs/CHATGPT_CHANNEL_SEPARATION_2026-08-03.md`). On 2026-08-05 a Claude
+session line-audited every one of those changes: the durable-media handoff,
+the manifest-only renderer, the takeover identity, and the channel
+separation were RATIFIED; the gate-punishing failure-counter semantics and
+the vision-QA/showrunner mascot contradiction were REPAIRED (see
+`docs/SYSTEM_AUDIT.md`, fourth pass). That was an emergency with the author
+out, done with notes and rollback instructions — it does not move the
+line. The rule above stands.
 
 ## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
 
