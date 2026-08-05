@@ -365,6 +365,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-04"
+    },
+    "kaicenat-agent-camera-2026w31": {
+      "event_id": "kaicenat-agent-camera-2026w31",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "agent",
+        "camera",
+        "remind",
+        "start"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/ThankfulExcitedButterDancingBaby-OsKNoxAz2n86BJap",
+        "https://www.twitch.tv/extraemily/clip/DependableMiniatureSpaghettiMoreCowbell-tX3Fxbm6_IXttFqe"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-05"
+    },
+    "stableronaldo-archery-arrow-2026w31": {
+      "event_id": "stableronaldo-archery-arrow-2026w31",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "archery",
+        "arrow",
+        "competit",
+        "competitor"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/MildCourteousSwallowPanicVis-AHnGgceHY4qupryj",
+        "https://www.twitch.tv/stableronaldo/clip/CuriousSpinelessSwallowHoneyBadger-vQ4Gr8rpLl98MBlt"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-05"
     }
   }
 }

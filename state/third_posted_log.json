@@ -2491,6 +2491,48 @@
         "end": 11.7
       },
       "director_cut": true
+    },
+    "rejected-impartialblindinglemursobayed-miu7g2aoiz-fnp2v": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ImpartialBlindingLemurSoBayed-MiU7g2aOIZ-FnP2v",
+      "streamer": "ohnepixel",
+      "title": "DRILLA CAUGHT IN 4K",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just reading outfit ID post, no payoff)",
+      "ts": "2026-08-05T13:03:42.230701+00:00"
+    },
+    "rejected-mushycoverttrollpetezaroll-kesxmkdzavi5l_1e": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/MushyCovertTrollPeteZaroll-KEsXMkDzAvi5L_1E",
+      "streamer": "caseoh_",
+      "title": "Case screams at ad sus",
+      "qa_rejected": true,
+      "ts": "2026-08-05T13:03:55.748931+00:00"
+    },
+    "rejected-curioustallpeanutopieop-_1zr88hhvulcgmpn": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CuriousTallPeanutOpieOP-_1ZR88hhvuLCGMPN",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe What's On Agent's Head In This Photo",
+      "qa_rejected": true,
+      "ts": "2026-08-05T13:09:36.500553+00:00"
+    },
+    "rejected-importantfairapple4head--z6e_lh3rvn1htax": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ImportantFairApple4Head--Z6e_LH3RVN1HtAX",
+      "streamer": "kaicenat",
+      "title": "Unc from Diamond Gym gives Kai his flowers",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (phone-addiction lecture, no visible even)",
+      "ts": "2026-08-05T13:44:06.604395+00:00"
+    },
+    "clip-20260805-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/FurtivePricklyTermitePupper-3zcW1cpYlQuTdEig",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig: QT Wins A T-Shirt And Everyone Starts Chanting Her Name",
+      "kind": "twitch_clip",
+      "ts": "2026-08-05T14:00:14.169556+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
