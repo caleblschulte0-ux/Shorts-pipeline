@@ -36,6 +36,20 @@ produced two regressions out of five.
 
 `check` exits non-zero when a change is refused, so it can gate a dispatch in
 CI or a shell loop without a human reading the output.
+
+WHY `record` STILL EXISTS NOW THAT produce() SELF-RECORDS. A CI canary writes
+its ledger row to the RUNNER's disk, which is thrown away with the container —
+`state/` is never pushed from CI. So the auto-record covers local and
+production runs, and a canary's row still has to be written here, from the
+downloaded package:
+
+    python scripts/quality_sprint.py record SLUG --pkg <downloaded>_pkg \
+        --note "what changed" --head <sha>
+
+That is not a workaround to tidy up later. It is the one manual step in the
+loop, and it is manual because the blind taste verdict is produced by a fresh
+subagent that has seen only the evidence package — which is the whole reason
+the verdict is worth anything.
 """
 from __future__ import annotations
 
