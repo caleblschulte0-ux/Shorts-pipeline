@@ -44,9 +44,14 @@ from data_learning import flat2d                         # noqa: E402
 from data_learning import scenes                          # noqa: E402
 from data_learning import footage_hybrid as fh           # noqa: E402
 from data_learning import perf_instrument as perf        # noqa: E402
+from shared import transitions                            # noqa: E402
 
 W, H, FPS = 1920, 1080, 30
-XFADE = 0.6
+# The dissolve length, and no longer the length of EVERY join — see
+# `shared/transitions.py`. Kept as the module's dissolve constant so anything
+# that still wants one uniform crossfade (footage_preview, the perf harness)
+# reads the same number.
+XFADE = transitions.DISSOLVE
 LEAD = 0.45          # silence before a line starts inside its shot
 TAIL = 0.9           # breathing room after a line ends
 MIN_SHOT = 2.8
@@ -741,14 +746,23 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
     # 3) dissolve-join the visuals
     silent = work / "silent.mp4"
     with perf.stage("video_assembly"):
-        fh.dissolve_join(clips, silent, xfade=XFADE)
+        # PER-JOIN TRANSITIONS. This was `xfade=XFADE` — one constant applied
+        # to every join, so a 39-shot film was 38 identical 0.6s crossfades and
+        # never once hard-cut. A dissolve says "time passed"; saying it 38
+        # times says nothing. `shared/transitions.py` keeps the documented rule
+        # (never a hard cut into or out of a held still, never within a beat)
+        # and lets the rest of the joins cut.
+        joins = transitions.plan_joins(shots)
+        print(f"[pro] JOINS: {transitions.summary(joins)}", file=sys.stderr)
+        fh.dissolve_join(clips, silent, xfade=joins)
         total = _dur(silent)
     # 4) lay the voice at each shot's start offset (accounting for xfades)
-    offset, delays, shot_start = 0.0, [], []
-    for i in range(len(shots)):
-        shot_start.append(offset)
-        delays.append(offset + LEAD)
-        offset += seconds[i] - XFADE
+    #    ONE source for this sum. The voice delays, the SRT cues and the
+    #    beatmap all read `shot_start`; with per-join overlaps there is no
+    #    constant left to re-derive it from, and three hand-maintained copies
+    #    of a timing sum is how a film silently desyncs from its own captions.
+    shot_start = transitions.starts(seconds, joins)
+    delays = [t + LEAD for t in shot_start]
     amix_in, filt = [], []
     for i, vf in enumerate(vo_files):
         if durs[i] <= 0:

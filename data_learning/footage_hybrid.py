@@ -443,10 +443,16 @@ def image_beat(src: Path, dur: float, out: Path,
 
 
 def dissolve_join(clips: list[Path], out: Path,
-                  xfade: float = 0.7) -> Path:
+                  xfade: float | list | tuple = 0.7) -> Path:
     """Rule 3: motion-matched dissolve between beats — never a hard cut from
     motion to a near-static image, never a fade to black. Chains xfade so beat
     N dissolves into beat N+1 over `xfade` seconds of overlap.
+
+    `xfade` may be a single number (every join the same, the original
+    behaviour) or a LIST of `len(clips) - 1` values, one per join. Per-join
+    values are what let an edit hard-cut between two moving shots and still
+    dissolve into a held still — see `shared/transitions.py`. A very short
+    value (~2 frames) reads as a hard cut while keeping one filter graph.
 
     A single clip is passed through unchanged."""
     clips = [Path(c) for c in clips]
@@ -457,6 +463,16 @@ def dissolve_join(clips: list[Path], out: Path,
             ["ffmpeg", "-y", "-loglevel", "error", "-i", str(clips[0]),
              "-c", "copy", str(out)], check=True)
         return out
+    if isinstance(xfade, (list, tuple)):
+        xf = [float(x) for x in xfade]
+        if len(xf) != len(clips) - 1:
+            raise RuntimeError(
+                f"dissolve_join got {len(xf)} xfade values for "
+                f"{len(clips) - 1} joins — a mismatch would desync the audio, "
+                "the captions and the beatmap, all of which re-derive their "
+                "offsets from these numbers")
+    else:
+        xf = [float(xfade)] * (len(clips) - 1)
     inputs = []
     for c in clips:
         inputs += ["-i", str(c)]
@@ -464,6 +480,7 @@ def dissolve_join(clips: list[Path], out: Path,
     # build the xfade chain; offset = running total minus the overlaps so far
     filt, prev, offset = [], "[0:v]", 0.0
     for i in range(1, len(clips)):
+        xfade = xf[i - 1]
         offset += durs[i - 1] - xfade
         label = f"[v{i}]" if i < len(clips) - 1 else "[vout]"
         # transition=FADE, a smooth alpha crossfade — NOT ffmpeg's "dissolve",
