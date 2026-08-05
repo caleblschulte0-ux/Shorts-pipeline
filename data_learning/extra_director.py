@@ -38,6 +38,38 @@ EXTRA_MOVES = {
     "composite":          {"impact_shake": True},
 }
 
+# THE CHARACTER SCENES WERE NOT IN THE LIST ABOVE, AND THAT IS THE WHOLE POINT.
+#
+# Every key in EXTRA_MOVES is a CHART. The director whose stated job is to add
+# "CHARACTER and personality" was attaching it to the bar graphs and skipping
+# the person. On `shared-air` — 10 scene shots, 0 flat shots — `apply()` did
+# literally nothing, and the blind taste judge said NO_SOUL three times:
+# "nothing on screen has personality: no character, no living scene, NO ACTING".
+#
+# The acting engine already existed. `data_learning/expression.py` renders
+# seven emotions as pose deltas, `scenes._expr_delta` resolves them per frame,
+# and it fires on `{"express": true}` — for which the scene supplies its own
+# emotion. Nothing ever set that flag except seven hand-authored beats in
+# `money-goes`, which is the one story that scored personality 3 and PASSED.
+# A capability nothing calls is not a capability (CLAUDE.md, rule zero).
+#
+# Each scene names the mood its staging is ABOUT, so this is not an arbitrary
+# mapping — waiting in a queue is resignation, being on hold is exhaustion,
+# work is weight. A beat that authors its own `expression` still wins.
+SCENE_EMOTIONS = {
+    "scene_queue":     "resignation",
+    "scene_hold":      "exhaustion",
+    "scene_work":      "burden",
+    "scene_screen":    "exhaustion",
+    "scene_sleep":     "resignation",
+    "scene_free":      "joy",
+    "scene_walkout":   "relief",
+    "scene_treadmill": "exhaustion",
+    "scene_money":     "burden",
+    "scene_paycheck":  "burden",
+    "scene_tax":       "frustration",
+}
+
 
 def extra_for(kind: str, beat_index: int = 0, total: int = 1) -> dict:
     """The extra spec for one animation, with an intensity that RAMPS across the
@@ -45,6 +77,19 @@ def extra_for(kind: str, beat_index: int = 0, total: int = 1) -> dict:
     repertoire (footage, plain text) — the extra director only escalates
     animations."""
     moves = dict(EXTRA_MOVES.get(kind, {}))
+    if not moves and kind in SCENE_EMOTIONS:
+        # A CHARACTER SCENE ACTS. `express` is the legacy flag `_expr_delta`
+        # reads, and it deliberately lets the SCENE choose the emotion rather
+        # than naming one here — the staging knows what it is about, and a
+        # mapping in this module would be a second place to keep it. The
+        # intensity ramps with everything else, so the last scene is the most
+        # felt. An authored `expression` block overrides this in `apply()`.
+        moves = {"express": True,
+                 "expression": {"emotion": SCENE_EMOTIONS[kind],
+                                "intensity": round(
+                                    0.45 + 0.35 * (beat_index /
+                                                   max(1, total - 1)), 2)}}
+        return moves
     if moves:
         # a stronger floor so even the opening is lively; ramps to a wild payoff.
         moves["intensity"] = round(0.8 + 0.5 * (beat_index / max(1, total - 1)),

@@ -167,11 +167,21 @@ def _expr_delta(extra, t, emotion):
             "speed": pose.gesture_speed}
 
 
-def _sit(d, hipx, hipy, h, col, lean=14, reach=0.0, on_ground=False):
+def _sit(d, hipx, hipy, h, col, lean=14, reach=0.0, on_ground=False,
+         head_drop=0.0):
     """The iconic SEATED pictogram, side-on, facing right. Clean rounded shapes:
     torso (leaning `lean` deg toward the right), a bent leg (thigh forward, shin
     down), a head, and one arm reaching forward by `reach` (0..1). If on_ground,
-    the knee is raised (sitting on the floor); else seated on a chair."""
+    the knee is raised (sitting on the floor); else seated on a chair.
+
+    `head_drop` (0..1) lowers the head toward the chest. WITHOUT IT A SEATED
+    FIGURE CANNOT ACT. The expression engine renders `exhaustion` as
+    arms_up / stride / head_drop and leaves `lean` at zero — and `lean` was the
+    only delta this function accepted, so switching expression ON for the
+    on-hold scene changed exactly ZERO pixels. The config was set, the flag was
+    read, the emotion was resolved, and the frame was identical. Measured, not
+    assumed: that is the difference between wiring a capability and appearing
+    to (CLAUDE.md, rule zero)."""
     r = h * 0.135
     lw = h * 0.12
     tw = h * 0.20
@@ -188,8 +198,10 @@ def _sit(d, hipx, hipy, h, col, lean=14, reach=0.0, on_ground=False):
         foot = (knee[0] + h * 0.02, hipy + h * 0.40)       # shin down to floor
     _limb(d, hipx, hipy, knee[0], knee[1], lw, col)
     _limb(d, knee[0], knee[1], foot[0], foot[1], lw, col)
-    # head just forward of the shoulders
-    hc = (sh[0] + math.sin(la) * r * 1.3, sh[1] - math.cos(la) * (r * 1.3) + r * 0.2)
+    # head just forward of the shoulders, dropping toward the chest when tired
+    hd = max(0.0, min(1.0, float(head_drop or 0.0)))
+    hc = (sh[0] + math.sin(la) * r * 1.3 + hd * r * 0.55,
+          sh[1] - math.cos(la) * (r * 1.3) + r * 0.2 + hd * r * 1.1)
     # arm reaches forward-down from the shoulder
     aw = h * 0.10
     hand = (sh[0] + h * (0.10 + 0.22 * reach), sh[1] + h * (0.16 - 0.04 * reach))
@@ -701,11 +713,18 @@ def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
                 continue
             g = int(96 * fade + 24)
             _stand(d, gx, floor_y + 20, 300, (g, g, int(g * 1.1)))
-        # OUR figure (bright) at the back, shifting weight impatiently
-        sway = 7 * math.sin(i * 0.32)
+        # OUR figure (bright) at the back, shifting weight impatiently — and
+        # ACTING, if the beat carries an expression. This scene never called
+        # `_expr_delta`, so the expression engine was dead on it; see the note
+        # in `extra_director.SCENE_EMOTIONS`. Standing in a queue is
+        # resignation; a beat may name a different one.
+        dd = _expr_delta(extra, t, "resignation")
+        sway = 7 * math.sin(i * 0.32) + (dd["sway"] if dd else 0.0)
         ox = int(W * 0.20) + int(adv) + sway
         _stand(d, ox, floor_y + 20, 320, FIG,
-               stride=6 * math.sin(i * 0.32 + 1))
+               stride=6 * math.sin(i * 0.32 + 1) + (dd["stride"] if dd else 0.0),
+               lean=(dd["lean"] if dd else 0.0),
+               head_drop=(dd["head_drop"] if dd else 0.0))
         # THE DEVICE IS THE CLAIM; THE STAGING IS NOT. A row of figures is a
         # generic human picture — people, waiting or gathered, in a dim space.
         # The NOW-SERVING ticket is what asserts "this film is about queueing",
@@ -821,8 +840,15 @@ def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
                             radius=24, fill=(36, 38, 58, 255))
         # the figure sits and SLUMPS more as time drags (one-way droop)
         droop = _ease(t) * 16
+        # ...and ACTS, if the beat carries an expression. This scene never
+        # called `_expr_delta` at all, so the whole expression engine was dead
+        # on it — see the note in `extra_director.SCENE_EMOTIONS`. Waiting on
+        # hold is exhaustion; a beat may name a different one.
+        dd = _expr_delta(extra, t, "exhaustion")
         joints = _sit(d, int(W * 0.42), floor_y + 2, h=430, col=FIG,
-                      lean=10 + droop, reach=0.0, on_ground=False)
+                      lean=10 + droop + (dd["lean"] if dd else 0.0),
+                      reach=0.0, on_ground=False,
+                      head_drop=(dd["head_drop"] if dd else 0.0))
         # arm bent up to the ear, holding a phone against the head
         hd = joints["head"]
         sh = joints["shoulder"]
