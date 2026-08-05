@@ -78,6 +78,35 @@ class TestRedVersusPaused(unittest.TestCase):
         self.assertIn("lower bar", step)
 
 
+class TestAPausedRunIsNotAGreenRun(unittest.TestCase):
+    """2026-08-03..05. The auto-pause tripped, daily.yml skipped the
+    orchestrator, and the job reported SUCCESS for three days while trending
+    shipped nothing. A green check on a dead channel is the failure shape
+    this repo keeps re-learning."""
+
+    def stop_step(self) -> str:
+        return DAILY.split("Stop here if skipped", 1)[1].split(
+            "- name:", 1)[0]
+
+    def test_an_auto_pause_fails_the_run(self):
+        step = self.stop_step()
+        self.assertIn('= "auto"', step)
+        self.assertIn("exit 1", step)
+
+    def test_a_deliberate_manual_pause_stays_green(self):
+        """Being told off daily for a decision you made on purpose is how
+        people learn to ignore red."""
+        step = self.stop_step()
+        self.assertIn("exit 0", step)
+        self.assertIn("on purpose", step)
+
+    def test_the_preflight_prints_the_command_that_clears_it(self):
+        pre = DAILY.split("Pre-flight — kill switch", 1)[1].split(
+            "- name:", 1)[0]
+        self.assertIn("failure_count.txt", pre)
+        self.assertIn("CANNOT clear itself", pre)
+
+
 class TestTheOrchestratorWritesTheOutcome(unittest.TestCase):
     def test_the_outcome_file_carries_what_the_judgment_needs(self):
         src = (ROOT / "scripts" / "run_trending_daily.py").read_text()
