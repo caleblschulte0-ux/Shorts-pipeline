@@ -177,6 +177,58 @@ source. Run by `story_forge.yml` (twice daily) and by every posting run.
 Never refill the queue with LLM-invented numbers — the editorial gate
 refuses them, so a queue full of them still ships nothing.
 
+## Score the PLAN before you spend a render — `shared/film_metrics.py`
+
+Ruling, 2026-08-05, from a sprint that went backwards. Five full renders of one
+story on 08-01/02, 2.5–4.5 hours each. Between them, one change apiece, chosen
+by whatever the last blind judge complained about loudest. **Two of the five
+made the film worse and nobody could know until the next video existed.** Net
+movement over twelve hours of compute: 4.0 → 3.0.
+
+So: **a render is only ever spent on a plan that is not already known to be
+broken.** The plan is scoreable offline, in milliseconds, with no media, no
+ffmpeg, no judge and no network.
+
+```bash
+python scripts/quality_sprint.py check SLUG   # score it, compare, REFUSE on a guard trip
+python scripts/quality_sprint.py next         # what the EVIDENCE says to work on
+python scripts/quality_sprint.py status       # the ledger + whether it is improving
+```
+
+- **`next` is the half that improves the CODE, not the film.** It splits the
+  judges' complaints into ones that RECUR across renders (the machine makes
+  them) and ones seen ONCE (that film had them). Choosing from the loudest line
+  of the latest verdict is a sample size of one — that is exactly how a single
+  UI_WIDGET note became a code change that deleted every human in the film and
+  cost a full point. Its first real run said UI_WIDGET **once**, SAMENESS and
+  BORING in **every** judged render.
+- **`produce()` records every render itself** into
+  `state/curiosity_quality_ledger.jsonl`. Never backfill it by hand — that is
+  how two regressions went unnoticed for a day, and a row whose score was
+  inferred rather than measured is worse than a missing row. Unjudged means
+  `null`, never a guess.
+- **Not measured is `None`, never `0`.** A false zero on an unmeasured axis
+  manufactures a fake regression; this module did that to itself once.
+- **`unanchored_media` is ADVISORY and has no lever.** Deriving queries from
+  narration takes it 8/15 → 0/15 while producing `'means next person breathe'`.
+  A measure that can be satisfied without improving the film must never be
+  wired to an automatic transformation.
+- A metric that goes up while the film gets worse is a bad metric. `compare()`
+  reports regressions as loudly as wins, and any regression makes the whole
+  change a REGRESSION.
+
+The two shared modules the sprint has produced so far, both found by looking
+for *constants where a decision belonged*:
+
+- **`shared/cut_rhythm.py`** — `MAX_UNCHANGED` is a ceiling, but it was also
+  the literal length of every lead shot, so a 39-shot film had FOUR distinct
+  shot lengths. Varies where the cut lands beneath the ceiling. Never changes a
+  beat's total duration: the narration is underneath it.
+- **`shared/camera_grammar.py`** — `direction` and `pan` were supported by the
+  renderer and never set by the planner, so every shot of every film pushed in.
+  The move follows the beat's role (REVEAL/CLOSE pull out, HOOK/PAYOFF push
+  in), and no two ADJACENT shots may share one.
+
 ## Engines: the shared capability layer — USE IT
 
 `engines/` is the top-of-pipeline capability library any channel, script,
