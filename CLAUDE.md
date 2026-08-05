@@ -346,7 +346,7 @@ review happens, not a difference in authority. All of the above are Claude.
 
 | Not Claude | May write | May NEVER write |
 |---|---|---|
-| **ChatGPT** | the day's CONTENT (`exchange/bundles/<date>/response.json`, authored packages, media pointers) and retro SUGGESTIONS (`retro/<date>/proposals/*.json`) | any code, workflow, gate, doc, or contract |
+| **ChatGPT** | the day's CONTENT (`exchange/bundles/<date>/response.json`, authored packages, media pointers), retro SUGGESTIONS (`retro/<date>/proposals/*.json`), and DOCTOR FINDINGS (`doctor/reports/<date>.json` — see below) | any code, workflow, gate, doc, or contract |
 | **CI itself** | run output — `state/`, `data_learning/data/`, reports | anything that changes behaviour |
 
 ChatGPT authoring content during a takeover is the quarterback role and is
@@ -373,6 +373,36 @@ the vision-QA/showrunner mascot contradiction were REPAIRED (see
 `docs/SYSTEM_AUDIT.md`, fourth pass). That was an emergency with the author
 out, done with notes and rollback instructions — it does not move the
 line. The rule above stands.
+
+## The DOCTOR — ChatGPT reads the code, Claude decides (docs/DOCTOR.md)
+
+Operator ruling 2026-08-05. ChatGPT reads this repo **line by line** and
+files findings — bugs, small fixes, a short-term plan, a long-term plan —
+into `doctor/reports/<date>.json`. Claude rules on each one in the
+operator's own vocabulary (`doing` / `not_doing` / `later` / `in_progress` /
+`done`) and builds what it accepts. **Nothing here is ever applied
+automatically**; `doctor.yml` only writes the evidence pack and validates
+incoming reports.
+
+- This is NOT the retro loop. Retro reads *analytics* and proposes one day's
+  experiment; the doctor reads the *code* and maintains a standing backlog
+  with a lifecycle. Separate queues on purpose — one is judged by a metric,
+  the other by reading code. They share the refusal list, **imported** from
+  `review_proposals.py`, so they can never drift on what is unacceptable.
+- **Verdicts are durable and keyed on what a finding TOUCHES**, never on
+  wording. A reviewer re-reading the whole repo daily will otherwise re-file
+  what you killed last week in new words, and a file that repeats itself is
+  a file nobody opens. `evidence.json` publishes every settled ruling back
+  to ChatGPT; a re-file needs `new_evidence_since` naming what changed.
+  `tests/test_doctor.py` proves the reworded-refile case specifically.
+- Always give a real `--because` when ruling. It is quoted back to the
+  reviewer; a bare "no" just gets re-argued.
+
+```bash
+python scripts/doctor.py backlog --state new     # waiting on a decision
+python scripts/doctor.py next                     # what to build
+python scripts/doctor.py rule <sig> doing --because "..."
+```
 
 ## The retro loop — self-review that PROPOSES, never applies (retro/README.md)
 
