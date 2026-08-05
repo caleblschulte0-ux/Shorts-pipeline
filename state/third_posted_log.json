@@ -2580,14 +2580,27 @@
       "ts": "2026-08-05T14:07:04.420863+00:00"
     },
     "clip-20260805-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/SlipperyGloriousAsparagusOpieOP-kxFA0n4TxE1Hwnxj",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/zI6r25r5aOo",
       "title": "Kaicenat: Kai Cenat Gets Roasted By Agent Over His Old Clips",
       "kind": "twitch_clip",
-      "ts": "2026-08-05T14:10:23.238417+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-05T14:10:26.807695+00:00",
+      "uploaded_at": "2026-08-05T14:10:26.807714+00:00",
+      "publish_at": "2026-08-05T21:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SlipperyGloriousAsparagusOpieOP-kxFA0n4TxE1Hwnxj",
+      "streamer": "kaicenat",
+      "series": "wholesome",
+      "hook": "AGENT ROASTS KAI OVER OLD CLIPS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3360,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.28
+      },
+      "director_cut": true
     }
   }
 }
