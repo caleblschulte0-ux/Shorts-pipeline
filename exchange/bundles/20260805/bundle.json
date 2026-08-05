@@ -376,7 +376,7 @@
   "done_marker": "exchange/bundles/20260805/DONE",
   "counts": {
     "packages": 6,
-    "requests": 10,
+    "requests": 0,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -447,8 +447,8 @@
           "shot_index": 0,
           "phrase": "grabbed my arm demanding",
           "query": "person grabbing arm store aisle",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
@@ -461,8 +461,8 @@
           "shot_index": 2,
           "phrase": "don't play games, I need help now",
           "query": "frustrated customer talking",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
@@ -501,16 +501,13 @@
         }
       ],
       "media_health": {
-        "strong": 6,
+        "strong": 8,
         "weak": 0,
-        "missing": 2,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.75,
-      "requested": [
-        "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
-        "reddit-hardware-store-mistaken-staff-s2-0853a4d17520"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     },
     {
       "slug": "reddit-driveway-parking-trash-cans",
@@ -521,340 +518,70 @@
           "shot_index": 0,
           "phrase": "parked across our shared driveway",
           "query": "car blocking driveway entrance",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
           "phrase": "blocking my car in",
           "query": "car boxed in driveway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 2,
           "phrase": "asked nicely three times",
           "query": "neighbor conversation doorstep",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
           "phrase": "parking enforcement swept our block",
           "query": "parking enforcement officer street",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
           "phrase": "moving my trash cans out of the second spot",
           "query": "trash cans curb street",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
           "phrase": "Three tickets in eight days",
           "query": "parking ticket on windshield",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
           "phrase": "a boot on the fourth",
           "query": "wheel boot car tire",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
           "phrase": "moved his car onto his own driveway",
           "query": "car parked in driveway",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 0,
+        "strong": 8,
         "weak": 0,
-        "missing": 8,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.0,
-      "requested": [
-        "reddit-driveway-parking-trash-cans-s0-03371ce20251",
-        "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
-        "reddit-driveway-parking-trash-cans-s2-315148f9a993",
-        "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
-        "reddit-driveway-parking-trash-cans-s4-7196534595a9",
-        "reddit-driveway-parking-trash-cans-s5-122bde615c05",
-        "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
-        "reddit-driveway-parking-trash-cans-s7-fa67521edf16"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     }
   ],
-  "requests": [
-    {
-      "request_id": "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
-      "safe_request_id": "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
-      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s0-5ea869ee7280.png",
-      "prompt_sha256": "b5ec1b5dd26d53b34d82e73f1d481f986f58165e03d1a840df620d0e5ad3a566",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s0-5ea869ee7280.json",
-      "slug": "reddit-hardware-store-mistaken-staff",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: person grabbing arm store aisle. It accompanies the narration: \"grabbed my arm demanding\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
-      "safe_request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
-      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s2-0853a4d17520.png",
-      "prompt_sha256": "b38724c502816e4a3b7b4f6a65c90e30beb3011cdf773a2bd95487aa34088cb6",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s2-0853a4d17520.json",
-      "slug": "reddit-hardware-store-mistaken-staff",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: frustrated customer talking. It accompanies the narration: \"don't play games, I need help now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s0-03371ce20251",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s0-03371ce20251",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s0-03371ce20251.png",
-      "prompt_sha256": "9fd2c9df71de98fefd8e03293d64ee27857f0b72a2227772ac4afcc2864a16b7",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s0-03371ce20251.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: car blocking driveway entrance. It accompanies the narration: \"parked across our shared driveway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s1-bfa774b8078b.png",
-      "prompt_sha256": "f4fc96d14d4c7e13af825b70627a60d4c5fc7db860981973652b467f55f2cd5a",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s1-bfa774b8078b.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: car boxed in driveway. It accompanies the narration: \"blocking my car in\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s2-315148f9a993",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s2-315148f9a993",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s2-315148f9a993.png",
-      "prompt_sha256": "43b151edae3b31013cd6adb1808062c09a3047bbecb7e8878933ea58d18f86a7",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s2-315148f9a993.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: neighbor conversation doorstep. It accompanies the narration: \"asked nicely three times\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c.png",
-      "prompt_sha256": "fca4c0de2672117ef1bd49102d4cb61903d90e62677b5aa9937a84f2b155d8b8",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: parking enforcement officer street. It accompanies the narration: \"parking enforcement swept our block\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s4-7196534595a9",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s4-7196534595a9",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s4-7196534595a9.png",
-      "prompt_sha256": "3e4bfd7deb1922897fb61b941b83b21bf4e0ee1acfeb1a572fb7409aafd2c98c",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s4-7196534595a9.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: trash cans curb street. It accompanies the narration: \"moving my trash cans out of the second spot\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s5-122bde615c05",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s5-122bde615c05",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s5-122bde615c05.png",
-      "prompt_sha256": "6b798602e03269f6a90a74ea43dda28801bf7403d0a8056ab46239eaff2a8fff",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s5-122bde615c05.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: parking ticket on windshield. It accompanies the narration: \"Three tickets in eight days\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s6-6230c32473aa.png",
-      "prompt_sha256": "c8dab20dfe45532d3509dc92545c9b1459a7385d0721f43363c23e4ee2fab763",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s6-6230c32473aa.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: wheel boot car tire. It accompanies the narration: \"a boot on the fourth\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-driveway-parking-trash-cans-s7-fa67521edf16",
-      "safe_request_id": "reddit-driveway-parking-trash-cans-s7-fa67521edf16",
-      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s7-fa67521edf16.png",
-      "prompt_sha256": "0e41ad65443f0fe92bea7b13f780332da3dd71c86292cc5d79121f6efdc8006c",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s7-fa67521edf16.json",
-      "slug": "reddit-driveway-parking-trash-cans",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: car parked in driveway. It accompanies the narration: \"moved his car onto his own driveway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    }
-  ],
+  "requests": [],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
