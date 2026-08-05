@@ -1,25 +1,26 @@
-# Daily Trending Shorts — 2026-08-03
-
-> **ChatGPT wrote 6 of today's 6 packages** — the Claude Routine did not run (weekly limit?).
+# Daily Trending Shorts — 2026-08-05
 
 - queued: **6**
-- succeeded: **0**
-- quarantined (off-topic imagery): **1**
+- succeeded: **1**
+- quarantined (off-topic imagery): **0**
 - failed: **5**
 
-## Quarantined (off-topic imagery — fix & re-author)
-- **He Banned Desk Deliveries. His Office Became a Warehouse.**
-  - quarantined: vision QA: broken — Frame 3: The bottom half of the frame is gameplay, but the expected caption is missing. The instruction states 'the BOTTOM half is gameplay with captions', and the other frames include captions. Its a
+## Posted
+- **He Blocked My Driveway. I Just Stopped Moving My Trash Cans.**
+  - topic: He Blocked My Driveway. I Just Stopped Moving My Trash Cans.
+  - publishes: `2026-08-05T16:00:00Z`
+  - https://youtube.com/shorts/FgKWlmoSE94
+  - took: 241.1s
 
 ## Failed
-- **Broadband Passed Landlines in 20 Years**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **Internet Users Outran Broadband Lines**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) — too many held frames`
-- **F-Gases Grew Faster Than Methane**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **Fish Farming Drove the Production Boom**
-  - error: `showrunner_block: showrunner BLOCK: The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.`
-- **My Manager's Bag Checks Became Paid Overtime**
-  - error: `showrunner_block: showrunner BLOCK: The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.`
+- **US Disaster Costs Are Exploding**
+  - error: `showrunner_block: showrunner BLOCK: Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.`
+- **Bald Eagles Went From 417 Pairs To 71,000**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) — too many held frames`
+- **Why Chocolate Got So Expensive (Then Didn't)**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **The Dow Just Hit 54,000 For The First Time**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **The Customer Insisted I Worked There. Fine.**
+  - error: `showrunner_block: showrunner BLOCK: The last ~9 seconds — the payoff — is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.`
 

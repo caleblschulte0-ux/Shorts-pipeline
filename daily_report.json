@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Broadband Passed Landlines in 20 Years",
-    "title": "Broadband Passed Landlines in 20 Years",
+    "topic": "US Disaster Costs Are Exploding",
+    "title": "US Disaster Costs Are Exploding",
     "format": "graph_race",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "publish_at": "2026-08-05T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 72.2,
-    "package_path": "state/trending_packages/20260803/01_fixed-broadband-world.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-123654_broadband_passed_landlines_in_20_years.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.",
+    "elapsed_seconds": 156.0,
+    "package_path": "state/trending_packages/20260805/01_graph-billion-dollar-disasters.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-154207_us_disaster_costs_are_exploding.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +28,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "reason": "showrunner BLOCK: Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "Internet Users Outran Broadband Lines",
-    "title": "Internet Users Outran Broadband Lines",
+    "topic": "Bald Eagles Went From 417 Pairs To 71,000",
+    "title": "Bald Eagles Went From 417 Pairs To 71,000",
     "format": "graph_race",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "publish_at": "2026-08-05T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 66.2,
-    "package_path": "state/trending_packages/20260803/02_landlines-peak-and-fall.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-123807_internet_users_outran_broadband_lines.mp4",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 68.0,
+    "package_path": "state/trending_packages/20260805/02_graph-bald-eagle-comeback.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-154443_bald_eagles_went_from_417_pairs_to_71_00.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,23 +62,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
       "score": 5
     },
     "blocked": true
   },
   {
-    "topic": "F-Gases Grew Faster Than Methane",
-    "title": "F-Gases Grew Faster Than Methane",
+    "topic": "Why Chocolate Got So Expensive (Then Didn't)",
+    "title": "Why Chocolate Got So Expensive (Then Didn't)",
     "format": "graph_race",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "publish_at": "2026-08-05T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 67.8,
-    "package_path": "state/trending_packages/20260803/03_fgas-emissions-rise.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-123913_f_gases_grew_faster_than_methane.mp4",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 66.4,
+    "package_path": "state/trending_packages/20260805/03_graph-cocoa-price-spike.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-154551_why_chocolate_got_so_expensive__then_did.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -92,27 +92,27 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.2
+      "loudness_lufs": -25.0
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
       "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "Fish Farming Drove the Production Boom",
-    "title": "Fish Farming Drove the Production Boom",
+    "topic": "The Dow Just Hit 54,000 For The First Time",
+    "title": "The Dow Just Hit 54,000 For The First Time",
     "format": "graph_race",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "publish_at": "2026-08-05T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.",
-    "elapsed_seconds": 100.5,
-    "package_path": "state/trending_packages/20260803/04_world-fisheries-production.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-124021_fish_farming_drove_the_production_boom.mp4",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 65.5,
+    "package_path": "state/trending_packages/20260805/04_graph-dow-record-climb.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-154657_the_dow_just_hit_54_000_for_the_first_ti.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,26 +130,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.",
-      "score": 82
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "My Manager's Bag Checks Became Paid Overtime",
-    "title": "My Manager's Bag Checks Became Paid Overtime",
+    "topic": "The Customer Insisted I Worked There. Fine.",
+    "title": "The Customer Insisted I Worked There. Fine.",
     "format": "reddit",
-    "publish_at": "2026-08-03T13:00:00Z",
+    "publish_at": "2026-08-05T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.",
-    "elapsed_seconds": 237.0,
-    "package_path": "state/trending_packages/20260803/05_bag-check-overtime.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-124250_my_manager_s_bag_checks_became_paid_over.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
+    "elapsed_seconds": 239.9,
+    "package_path": "state/trending_packages/20260805/05_reddit-hardware-store-mistaken-staff.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-154806_the_customer_insisted_i_worked_there__fi.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.233,
+      "duration": 43.267,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,46 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
+      "loudness_lufs": -23.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
+      "score": 62
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+    "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+    "format": "reddit",
+    "publish_at": "2026-08-05T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/FgKWlmoSE94",
+    "error": null,
+    "elapsed_seconds": 241.1,
+    "package_path": "state/trending_packages/20260805/06_reddit-driveway-parking-trash-cans.json",
+    "source": "brain",
+    "video_path": "output/daily_20260805-155205_he_blocked_my_driveway__i_just_stopped_m.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.433,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.7
     },
     "qa": {
       "ok": true,
@@ -168,44 +207,10 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.",
-      "score": 82
+      "blocked": false,
+      "reason": "",
+      "score": 79
     },
-    "blocked": true
-  },
-  {
-    "topic": "He Banned Desk Deliveries. His Office Became a Warehouse.",
-    "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
-    "format": "reddit",
-    "publish_at": "2026-08-03T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 Frame 3: The bottom half of the frame is gameplay, but the expected caption is missing. The instruction states 'the BOTTOM half is gameplay with captions', and the other frames include captions. Its a",
-    "elapsed_seconds": 193.3,
-    "package_path": "state/trending_packages/20260803/06_manager-package-warehouse.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260803-124647_he_banned_desk_deliveries__his_office_be.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 55.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "Frame 3: The bottom half of the frame is gameplay, but the expected caption is missing. The instruction states 'the BOTTOM half is gameplay with captions', and the other frames include captions. Its a"
-    },
-    "quarantined": true
+    "channel": "default"
   }
 ]
