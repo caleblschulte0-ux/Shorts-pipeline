@@ -376,7 +376,7 @@
   "done_marker": "exchange/bundles/20260805/DONE",
   "counts": {
     "packages": 6,
-    "requests": 12,
+    "requests": 10,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -454,8 +454,8 @@
           "shot_index": 1,
           "phrase": "I don't work at this hardware store",
           "query": "hardware store aisle shelves",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 2,
@@ -489,8 +489,8 @@
           "shot_index": 6,
           "phrase": "pulled the aisle camera",
           "query": "security camera footage screen",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
@@ -501,17 +501,15 @@
         }
       ],
       "media_health": {
-        "strong": 4,
+        "strong": 6,
         "weak": 0,
-        "missing": 4,
+        "missing": 2,
         "unknown": 0
       },
-      "strong_fraction": 0.5,
+      "strong_fraction": 0.75,
       "requested": [
         "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
-        "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
-        "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
-        "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277"
+        "reddit-hardware-store-mistaken-staff-s2-0853a4d17520"
       ]
     },
     {
@@ -623,32 +621,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
-      "safe_request_id": "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
-      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s1-8edead8d07e0.png",
-      "prompt_sha256": "a919f0f0c7302c2b6b98a0fd4369b64928032a9aece2aa5d5117c1e6fcc0ea7f",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s1-8edead8d07e0.json",
-      "slug": "reddit-hardware-store-mistaken-staff",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: hardware store aisle shelves. It accompanies the narration: \"I don't work at this hardware store\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
       "safe_request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
       "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s2-0853a4d17520.png",
@@ -658,32 +630,6 @@
       "shot_index": 2,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: frustrated customer talking. It accompanies the narration: \"don't play games, I need help now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277",
-      "safe_request_id": "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277",
-      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277.png",
-      "prompt_sha256": "41892cf24affa2f620d1bcb63d6b06ba8e808f9f875cea75e71d60a747d00534",
-      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277.json",
-      "slug": "reddit-hardware-store-mistaken-staff",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: security camera footage screen. It accompanies the narration: \"pulled the aisle camera\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

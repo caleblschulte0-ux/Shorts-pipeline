@@ -28,7 +28,12 @@
     {
       "phrase": "I don't work at this hardware store",
       "query": "hardware store aisle shelves",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "hardware store",
+      "pin_context": "retail building supplies",
+      "news_query": "hardware store",
+      "news_angle": "The narrator was mistaken for an employee at the hardware store.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hagebau.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "don't play games, I need help now",
@@ -68,7 +73,12 @@
     {
       "phrase": "pulled the aisle camera",
       "query": "security camera footage screen",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "aisle camera",
+      "pin_context": "retail security surveillance",
+      "news_query": "aisle camera",
+      "news_angle": "The aisle camera footage was used to investigate the customer's complaint.",
+      "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
     },
     {
       "phrase": "stopped wearing orange there entirely",
