@@ -176,6 +176,71 @@ class TestItDoesNotCryWolf(AlarmCase):
         self.assertIn(DATE, alarm.render(r))
 
 
+class TestAPausedChannelSaysSo(AlarmCase):
+    """2026-08-03..05: trending posted nothing for three days because the
+    auto-pause counter was stuck at 2, and every run reported success. The
+    alarm said `no_posts_trending` each morning — true, and useless. It named
+    the symptom while the cause sat in a one-byte file.
+
+    A pause explains every other symptom; nothing else explains a pause. So
+    it is checked first and it names the exact command that clears it."""
+
+    def _counter(self, n):
+        p = self.tmp / "state" / "failure_count.txt"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(f"{n}\n")
+
+    def test_the_auto_pause_is_CRITICAL_and_names_itself(self):
+        self._counter(2)
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("channel_auto_paused", self.criticals(r))
+
+    def test_it_says_the_counter_cannot_clear_itself(self):
+        self._counter(3)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == "channel_auto_paused")
+        self.assertIn("CANNOT clear itself", a["fix"])
+        self.assertIn("failure_count.txt", a["fix"])
+
+    def test_one_failure_is_a_warning_not_a_pause(self):
+        self._counter(1)
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+        self.assertTrue(any("one more failing day" in n for n in r["notes"]))
+
+    def test_a_healthy_counter_says_nothing(self):
+        self._counter(0)
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_a_missing_counter_is_not_a_pause(self):
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_a_corrupt_counter_is_not_a_pause(self):
+        p = self.tmp / "state" / "failure_count.txt"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("not a number")
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_the_kill_switch_files_are_reported_too(self):
+        for switch, code in (("PAUSED", "paused_paused"),
+                             ("PAUSED_DAILY", "paused_paused_daily")):
+            (self.tmp / switch).write_text("")
+            r = alarm.check(DATE, now=LATE)
+            self.assertIn(code, self.criticals(r))
+            (self.tmp / switch).unlink()
+
+    def test_a_pause_is_shouted_even_mid_day(self):
+        """Publishing checks defer until evening, but a pause is knowable at
+        any hour and wastes the whole day if you learn it at 18:00."""
+        self._counter(2)
+        noon = datetime(2999, 12, 15, 15, 0, tzinfo=timezone.utc)
+        r = alarm.check(DATE, now=noon)
+        self.assertIn("channel_auto_paused", self.criticals(r))
+
+
 class TestAnUnusableRegistryIsTheLoudestThing(AlarmCase):
     def test_it_reports_and_stops(self):
         from tests.registry_fixture import broken_registry

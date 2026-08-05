@@ -136,6 +136,46 @@ def check(date: str, now=None) -> dict:
         else:
             notes.append(f"{cid}: {len(posted)}/{target} posted")
 
+    # ---- 1a. IS THE CHANNEL EVEN ALLOWED TO RUN? ------------------------
+    # This is checked FIRST and unconditionally, because a paused channel
+    # explains every other symptom below and none of them explain it.
+    #
+    # 2026-08-03..05: `state/failure_count.txt` hit 2 during the takeover
+    # chaos, which correctly tripped daily.yml's auto-pause. But the step
+    # that RESETS the counter is itself gated on the run not being skipped,
+    # so once paused the counter can never clear itself — and the skipped
+    # job still reports SUCCESS. Three days, zero trending videos, every
+    # check green. The alarm said `no_posts_trending`, which was true and
+    # useless: it named the symptom every morning while the cause sat in a
+    # one-byte file nobody thought to open.
+    #
+    # The pause is a real safety gate and stays. What was missing is a
+    # signal that says WHICH gate, and how to clear it.
+    for switch, scope in (("PAUSED", "every channel"),
+                          ("PAUSED_DAILY", "the trending channel")):
+        if (ROOT / switch).exists():
+            alarm(f"paused_{switch.lower()}", "critical",
+                  f"{scope} is PAUSED — the `{switch}` file exists in the "
+                  f"repo root, so runs skip and report success.",
+                  f"If this is deliberate, ignore it. If not: "
+                  f"`git rm {switch} && git commit -m 'resume' && git push`.")
+    try:
+        fc = int((ROOT / "state" / "failure_count.txt").read_text().strip())
+    except Exception:                                    # noqa: BLE001
+        fc = 0
+    if fc >= 2:
+        alarm("channel_auto_paused", "critical",
+              f"trending is AUTO-PAUSED: state/failure_count.txt is {fc} "
+              f"(threshold 2). daily.yml skips the orchestrator and the job "
+              f"still reports success, so nothing else will look wrong.",
+              "It CANNOT clear itself — the reset step is skipped while "
+              "paused. Fix whatever failed, then: "
+              "`echo 0 > state/failure_count.txt && git commit -am "
+              "'resume trending' && git push`.")
+    elif fc == 1:
+        notes.append(f"failure counter at {fc}/2 — one more failing day "
+                     f"auto-pauses trending")
+
     # ---- 1b. the orchestrator's own production outcome ------------------
     # Written by the render run since 2026-08-02 (ChatGPT's takeover
     # contract, ratified): `response.json`/`DONE` mean handoff, never

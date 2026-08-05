@@ -97,7 +97,9 @@ jobs:
           echo "Failure count: $fc"
           if [ "$fc" -ge 2 ]; then
             echo "skip=auto" >> $GITHUB_OUTPUT
-            echo "Pipeline auto-paused: 2+ failures in a row. Reset state/failure_count.txt to resume."
+            echo "::error::TRENDING IS AUTO-PAUSED (state/failure_count.txt=$fc, threshold 2)."
+            echo "::error::This CANNOT clear itself: the step that resets the counter is skipped while paused."
+            echo "::error::Resume with: echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push"
           else
             echo "skip=" >> $GITHUB_OUTPUT
           fi
@@ -126,7 +128,25 @@ jobs:
 
       - name: Stop here if skipped
         if: steps.preflight.outputs.skip != ''
-        run: exit 0
+        run: |
+          # A SKIPPED RUN MUST NOT LOOK LIKE A WORKING ONE.
+          #
+          # This was `exit 0`. On 2026-08-03 the auto-pause tripped and, for
+          # three days, this job skipped the orchestrator and reported
+          # SUCCESS — a green check on a channel that shipped nothing. That
+          # is the exact failure shape this repo keeps re-learning: the step
+          # succeeded at the wrong thing.
+          #
+          # An AUTO-pause is a fault that needs a human, so the run goes RED.
+          # A MANUAL pause (the PAUSED / PAUSED_DAILY files) is a deliberate
+          # operator choice, so it stays green — being told off daily for a
+          # decision you made on purpose is how people learn to ignore red.
+          if [ "${{ steps.preflight.outputs.skip }}" = "auto" ]; then
+            echo "::error::auto-paused — failing the run so it is not a green check on a dead channel"
+            exit 1
+          fi
+          echo "::notice::manually paused on purpose — staying green"
+          exit 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
