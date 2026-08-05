@@ -601,8 +601,16 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
               "scene_savings": scenes.savings_scene,
               "scene_treadmill": scenes.treadmill_scene}[k]
         scenes.set_mood(shot.get("mood"))       # per-chapter color world
+        # `props` lets a beat use a scene's STAGING without its CLAIM — the
+        # NOW-SERVING ticket, the ON-HOLD counter, the "YEARS ARE YOURS" plate.
+        # Only the three staging-neutral scenes accept it; the rest are their
+        # props (a desk, a screen, a bed) and are licensed or not used at all.
+        kw = {}
+        if k in ("scene_free", "scene_hold", "scene_queue"):
+            kw["props"] = bool(shot.get("props", True))
         return fn(out, seconds, number=str(shot.get("number", "")),
-                  label=str(shot.get("label", "")), extra=shot.get("extra"))
+                  label=str(shot.get("label", "")), extra=shot.get("extra"),
+                  **kw)
     if k == "scene_money":
         scenes.set_mood(shot.get("mood"))       # per-chapter color world
         return scenes.money_scene(out, seconds, upto=int(shot.get("upto", 0)),
@@ -682,6 +690,24 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
         with perf.stage("extra_director"):
             extra_director.apply(shots)                # attach escalating character
         print(f"[pro] planned {len(beats)} beats -> {len(shots)} shots")
+        # SCORE THE PLAN BEFORE RENDERING IT. Every property here is decided by
+        # now and costs nothing to measure; discovering the same facts from a
+        # finished video costs 2.5-4.5 hours. A plan with no figure in it, or
+        # the same clip twice, is already known to be worse — print it loudly
+        # rather than let a render reveal it. shared/film_metrics.py explains
+        # which five renders paid for this lesson.
+        try:
+            from shared import film_metrics
+            _plan_metrics = film_metrics.score_plan(shots, beats)
+            print(f"[pro] PLAN: {_plan_metrics['summary']}", file=sys.stderr)
+            if not _plan_metrics["figure_shots"]:
+                print("[pro] PLAN WARNING: not one shot puts a person on "
+                      "screen — the taste rubric calls that NO_CHARACTER and "
+                      "it cost a full point the last time it shipped",
+                      file=sys.stderr)
+        except Exception as e:  # noqa: BLE001 — metrics never break a render
+            _plan_metrics = {}
+            print(f"[pro] plan metrics unavailable: {e}", file=sys.stderr)
     else:
         shots = story["shots"]
     # 1) narration per shot — the line rides only the phase that carries it.
@@ -920,6 +946,16 @@ def _emit_beatmap(story, shots, shot_start, seconds, pkg):
     bmap = {"topic": story.get("title", story.get("slug", "")),
             "beats": entries}
     (pkg / "beatmap.json").write_text(json.dumps(bmap, indent=2))
+    # The plan's score, kept with the film. A render whose package carries its
+    # own metrics can be added to the quality ledger later, from disk, without
+    # re-deriving anything — which is how the five renders that motivated
+    # shared/film_metrics.py were backfilled after the fact.
+    try:
+        from shared import film_metrics
+        (pkg / "plan_metrics.json").write_text(json.dumps(
+            film_metrics.score_plan(shots, beats), indent=2))
+    except Exception as e:  # noqa: BLE001
+        print(f"[pro] plan_metrics not written: {e}")
     print(f"[pro] beatmap -> {pkg / 'beatmap.json'} ({len(entries)} beats)")
 
 

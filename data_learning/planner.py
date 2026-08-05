@@ -94,35 +94,49 @@ SCENE_DOMAIN = {
                   "reclaim reclaimed yours",
 }
 
-# THERE IS NO STAGING-NEUTRAL SCENE IN THIS LIBRARY. An earlier pass this same
-# day picked (scene_free, scene_hold, scene_queue) as a "staging-neutral" pool
-# for beats whose words licensed nothing. That was wrong and the next render
-# proved it in one frame: `queue_scene` draws a literal "N O W  S E R V I N G"
-# ticket display and `hold_scene` a hold-time counter, both hardcoded, neither a
-# parameter. The blind judge saw "dark navy pictogram plates with an ON HOLD /
-# NOW SERVING dashboard readout" and labelled the film UI_WIDGET — the same
-# waiting room, re-imported through the pool meant to keep it out.
+# THE DEVICE IS THE CLAIM; THE STAGING IS NOT. Two passes got this wrong in
+# opposite directions and the scores recorded both.
 #
-# So the rule is not "pick the least loaded scene". It is: if the beat's own
-# words do not license a scene, DO NOT REACH INTO THIS LIBRARY AT ALL. Fall
-# back to real media of the beat's actual subject, which is both honest and the
-# thing the rubric keeps asking for. If no media resolves, `_depict_shot`
-# already degrades to a labelled statement card — a known, recorded fallback,
-# not a fictional room the story never mentioned.
+# First I rotated the whole library by beat index, so a film about the
+# atmosphere got walkout_scene's doorway. Then I called (free, hold, queue) a
+# "staging-neutral" pool — but queue_scene drew a literal "N O W  S E R V I N G"
+# ticket and hold_scene a climbing hold-time counter, so the judge labelled the
+# film UI_WIDGET and the score fell 4.0 -> 3.5. Then I banned the library
+# outright for unlicensed beats. That removed all 14 character shots from the
+# film, the judge added NO_CHARACTER, and the score fell again to 3.0 with
+# personality 2 -> 1. Trading a wrongly-staged character for no character was a
+# worse film, measured.
+#
+# The hardcoded PROP was always the whole problem. A row of figures in a dim
+# space, a figure alone in a darkening room, a figure standing in open air —
+# those are generic human pictures that survive on any film. The ticket, the
+# counter and the "YEARS ARE YOURS" plate are what assert a subject. So those
+# three scenes now take `props=False`: keep the person, drop the claim.
+#
+# The other four ARE their props — walkout is a doorway payoff, work a desk,
+# screen a monitor, sleep a bedroom. There is no propless version of a desk, so
+# those still need the beat's words to license them.
 
 
-def _scene_for(bi: int, k: int, line: str) -> str | None:
-    """The designed scene whose subject the beat's own words support, or None.
+# The three whose staging is generic once their device is switched off.
+PROPLESS_STAGINGS = ("scene_free", "scene_hold", "scene_queue")
 
-    None means "this library has nothing honest for this beat" — the caller
-    must find real material instead. Rotation survives among the scenes a line
-    does license, so a long beat still changes staging between phases.
+
+def _scene_for(bi: int, k: int, line: str) -> tuple[str, bool]:
+    """The designed scene for this beat, and whether it may show its props.
+
+    Returns (kind, props). A line that licenses a scene gets it in full. A line
+    that licenses nothing still gets a PERSON — one of the three propless
+    stagings, rotated for variety — with the film-specific device switched off.
+    Keeping a human on screen is worth more than the claim is worth avoiding;
+    removing both cost a point of overall and a point of personality.
     """
-    if not str(line).strip():
-        return None
     fit = [s for s in NEUTRAL_SCENES
-           if textmatch.shares(line, SCENE_DOMAIN.get(s, ""))]
-    return fit[(bi + k) % len(fit)] if fit else None
+           if textmatch.shares(line, SCENE_DOMAIN.get(s, ""))] \
+        if str(line).strip() else []
+    if fit:
+        return fit[(bi + k) % len(fit)], True
+    return PROPLESS_STAGINGS[(bi + k) % len(PROPLESS_STAGINGS)], False
 
 
 def _phase_lengths(secs: float, maxu: float) -> list[float]:
@@ -174,23 +188,9 @@ def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
     first phase; the rest are silent visual development."""
     out = []
     for k, dur in enumerate(_phase_lengths(secs, maxu)):
-        kind = _scene_for(bi, k, line)
-        if kind:
-            sh = {"kind": kind, "seconds": dur, "number": number,
-                  "label": label, "mood": mood}
-        else:
-            # No honest scene for these words -> REAL MATERIAL, not a borrowed
-            # room. The beat's own line is the search subject, which is exactly
-            # the anchoring the media repair enforces elsewhere.
-            # `understand` is the beat's AUTHORED intent ("a figure standing
-            # still while the world moves around them") and describes a shot;
-            # narration describes an idea. Prefer the former. `reseed` differs
-            # per phase so two phases of one beat do not fetch the same clip —
-            # that would be SAMENESS inside a single beat.
-            sh = {"kind": "depict", "seconds": dur,
-                  "motion_query": _subject_query(subject or line),
-                  "reseed": k, "line_hint": line,
-                  "number": number, "label": label}
+        kind, props = _scene_for(bi, k, line)
+        sh = {"kind": kind, "seconds": dur, "number": number,
+              "label": label, "mood": mood, "props": props}
         if k == 0 and line:
             sh["line"] = line
         out.append(sh)
@@ -276,8 +276,13 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
             # same way the rotation path refuses one: fall back to real media
             # of the beat's actual subject. An author who really wants the
             # staging can say so in the words.
+            # An AUTHORED scene the beat's words do not license is replaced by
+            # a propless staging of the same figure, not by nothing: shared-air
+            # names walkout/queue/hold/sleep/free for a film about the
+            # atmosphere, and honouring those verbatim is what shipped a
+            # waiting-room doorway under a line about lungs.
             if str(sh.get("kind", "")) in NEUTRAL_SCENES and \
-                    not _scene_for(bi, 0, line):
+                    not _scene_for(bi, 0, line)[1]:
                 for ph in _scene_phases(bi, secs, maxu, line=line,
                                         subject=str(b.get("understand", "")
                                                     or b.get("subject", ""))):

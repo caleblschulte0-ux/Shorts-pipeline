@@ -591,7 +591,8 @@ def screen_scene(out: Path, seconds: float = 6.0, number: str = "11",
 # --------------------------------------------------------------------------
 def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
                label: str = "YEARS ARE YOURS",
-               extra: dict | None = None) -> Path:
+               props: bool = True,
+                extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         # dark -> warm sunrise as the payoff lands
@@ -624,7 +625,10 @@ def free_scene(out: Path, seconds: float = 6.0, number: str = "9",
                arms_up=rise + (1.4 * dd["arms"] if dd else 0.0),
                stride=stride, lean=(dd["lean"] if dd else 0.0),
                head_drop=(dd["head_drop"] if dd else 0.0))
-        im = _label(im, number, label, col=(255, 224, 168))
+        # See queue_scene/hold_scene: a figure standing in open space as the sky
+        # warms is generic staging; "YEARS ARE YOURS" is the claim.
+        if props:
+            im = _label(im, number, label, col=(255, 224, 168))
         return im
 
     return _render(draw, out, seconds, bg)
@@ -652,6 +656,7 @@ def _clock(d, cx, cy, cr, t, spin=26.0):
 # --------------------------------------------------------------------------
 def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
                 label: str = "MONTHS IN LINE",
+                props: bool = True,
                 extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
@@ -691,16 +696,24 @@ def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
         ox = int(W * 0.20) + int(adv) + sway
         _stand(d, ox, floor_y + 20, 320, FIG,
                stride=6 * math.sin(i * 0.32 + 1))
-        # scene-specific device (NOT the shared clock): a NOW-SERVING ticket that
-        # crawls up while our number stays far away.
-        px0, py0, px1, py1 = int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)
-        nsf, sf = _font(DEJAVU, 22), _font(ANTON, 64)
-        d.text((px0 + 8, py0 - 34), "N O W   S E R V I N G", font=nsf, fill=(*FIG, 210))
-        serve = 38 + int(t * 6)
-        s = f"{serve}"
-        d.text(((px0 + px1) // 2 - sf.getlength(s) // 2, py0 + 6), s, font=sf,
-               fill=(20, 22, 30, 255))
-        im = _label(im, number, label)
+        # THE DEVICE IS THE CLAIM; THE STAGING IS NOT. A row of figures is a
+        # generic human picture — people, waiting or gathered, in a dim space.
+        # The NOW-SERVING ticket is what asserts "this film is about queueing",
+        # and on a film about the atmosphere it read to the blind judge as a
+        # "dashboard readout" and earned the whole video a UI_WIDGET label.
+        # So the prop is optional. `props=False` keeps the people and drops the
+        # claim, which is what a beat that merely needs a human on screen wants.
+        if props:
+            px0, py0, px1, py1 = (int(W * 0.845), int(H * 0.55),
+                                  int(W * 0.965), int(H * 0.66))
+            nsf, sf = _font(DEJAVU, 22), _font(ANTON, 64)
+            d.text((px0 + 8, py0 - 34), "N O W   S E R V I N G", font=nsf,
+                   fill=(*FIG, 210))
+            serve = 38 + int(t * 6)
+            s = f"{serve}"
+            d.text(((px0 + px1) // 2 - sf.getlength(s) // 2, py0 + 6), s,
+                   font=sf, fill=(20, 22, 30, 255))
+            im = _label(im, number, label)
         return im
 
     return _render(draw, out, seconds, bg)
@@ -778,7 +791,8 @@ def traffic_scene(out: Path, seconds: float = 6.0, number: str = "5",
 # --------------------------------------------------------------------------
 def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
                label: str = "DAYS ON HOLD",
-               extra: dict | None = None) -> Path:
+               props: bool = True,
+                extra: dict | None = None) -> Path:
     def bg(i, n):
         t = i / max(1, n - 1)
         k = 1.0 - 0.78 * t                            # room darkens as time drags on
@@ -819,17 +833,21 @@ def hold_scene(out: Path, seconds: float = 6.0, number: str = "43",
             d.line([nx + s - 1, ny, nx + s - 1, ny - s * 3], fill=col, width=4)  # stem
             d.line([nx + s - 1, ny - s * 3, nx + s + s, ny - s * 2.3],
                    fill=col, width=4)                                          # flag
-        # this scene's own device (NOT the shared clock): a hold-time counter that
-        # keeps climbing, mm:ss, under a small "ON HOLD" tag.
-        d = ImageDraw.Draw(im, "RGBA")
-        mm = 40 + int(t * 3)
-        ss = int((t * 220) % 60)
-        tm = f"{mm}:{ss:02d}"
-        tf, tg = _font(ANTON, 60), _font(DEJAVU, 24)
-        tx = int(W * 0.16)
-        d.text((tx, int(H * 0.20)), "O N   H O L D", font=tg, fill=(*FIG, 210))
-        d.text((tx, int(H * 0.20) + 34), tm, font=tf, fill=(150, 190, 245, 255))
-        im = _label(im, number, label)
+        # See queue_scene: the climbing mm:ss under "ON HOLD" is the CLAIM. A
+        # figure alone in a room that slowly darkens is generic staging and
+        # survives on any film. props=False keeps the room, drops the counter.
+        if props:
+            d = ImageDraw.Draw(im, "RGBA")
+            mm = 40 + int(t * 3)
+            ss = int((t * 220) % 60)
+            tm = f"{mm}:{ss:02d}"
+            tf, tg = _font(ANTON, 60), _font(DEJAVU, 24)
+            tx = int(W * 0.16)
+            d.text((tx, int(H * 0.20)), "O N   H O L D", font=tg,
+                   fill=(*FIG, 210))
+            d.text((tx, int(H * 0.20) + 34), tm, font=tf,
+                   fill=(150, 190, 245, 255))
+            im = _label(im, number, label)
         return im
 
     return _render(draw, out, seconds, bg)
