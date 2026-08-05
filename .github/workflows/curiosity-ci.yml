@@ -169,8 +169,10 @@ jobs:
       - name: "Layer 2e — decision-machinery drill: deterministic 50-story fault campaign"
         run: python scripts/simulate_pipeline.py
 
-      - name: "Layer 3 — scene: expression frames + manifest"
-        run: python scripts/test_expressions.py
+      - name: "Layer 3 — scene: expression frames + manifest + propless stagings"
+        run: |
+          python scripts/test_expressions.py
+          python scripts/test_propless_has_no_empty_widget.py
 
       - name: "Layer 4 — producer smoke (fail-closed honesty, offline-safe)"
         run: python scripts/producer_smoke.py

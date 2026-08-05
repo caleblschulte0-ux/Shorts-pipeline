@@ -669,15 +669,25 @@ def queue_scene(out: Path, seconds: float = 6.0, number: str = "6",
         floor_y = int(H * 0.82)
         d = ImageDraw.Draw(im, "RGBA")
         d.rectangle([0, floor_y, W, H], fill=(24, 26, 36, 255))
-        # a service counter on the right with a glowing "please wait" panel
+        # a service counter on the right — neutral architecture, always drawn
         d.rounded_rectangle([int(W * 0.82), int(H * 0.5), W + 10, floor_y], radius=12,
                             fill=(42, 44, 60, 255))
-        im = _glow(im, lambda dd: dd.rounded_rectangle(
-            [int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)], radius=10,
-            fill=(230, 120, 90, 160)), 24)
-        d = ImageDraw.Draw(im, "RGBA")
-        d.rounded_rectangle([int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)],
-                            radius=10, fill=(228, 120, 92, 255))
+        # THE GLOWING PANEL IS PART OF THE PROP, NOT THE ROOM. This used to be
+        # drawn unconditionally, so `props=False` stripped the "NOW SERVING"
+        # text off it and left a lit orange rectangle with nothing in it —
+        # which is exactly what the blind judge described when it labelled an
+        # earlier render EMPTY_COMPOSITION and UI_WIDGET: "a template with the
+        # content not filled in". Removing the words from a widget does not
+        # remove the widget. Found by rendering the frame and looking at it,
+        # which is the only way this class of defect is ever found.
+        if props:
+            im = _glow(im, lambda dd: dd.rounded_rectangle(
+                [int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)],
+                radius=10, fill=(230, 120, 90, 160)), 24)
+            d = ImageDraw.Draw(im, "RGBA")
+            d.rounded_rectangle(
+                [int(W * 0.845), int(H * 0.55), int(W * 0.965), int(H * 0.66)],
+                radius=10, fill=(228, 120, 92, 255))
         # a floor rope-line
         d.line([int(W * 0.14), floor_y + 30, int(W * 0.80), floor_y + 30],
                fill=(70, 74, 96, 200), width=5)
