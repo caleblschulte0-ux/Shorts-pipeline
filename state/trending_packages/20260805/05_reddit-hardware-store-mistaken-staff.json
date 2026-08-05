@@ -1,0 +1,87 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "reddit-hardware-store-mistaken-staff",
+  "title": "The Customer Insisted I Worked There. Fine.",
+  "hashtags": [
+    "idontworkherelady",
+    "reddit",
+    "storytime",
+    "retail",
+    "hardwarestore",
+    "pettyrevenge",
+    "customerservice",
+    "karma",
+    "funny",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "script": "Fourth time that hour, a stranger grabbed my arm demanding to know where the drywall screws were. I don't work at this hardware store, I just wear a lot of orange. She cut off my \"I don't work here\" with \"don't play games, I need help now.\" Fine. I walked her confidently to aisle twelve, pointed past the pool noodles, and told her drywall screws come in bulk boxes near the register, technically true since I'd seen a promo bin there that morning. She marched off triumphant. Ten minutes later an actual employee found her arguing with a cashier about being sent to buy pool floats for a bathroom renovation. Store security pulled the aisle camera and the whole break room had a good laugh at customer service's expense. I finished my paint run in total peace. Nobody has grabbed my arm at that store since. I stopped wearing orange there entirely.",
+  "shots": [
+    {
+      "phrase": "grabbed my arm demanding",
+      "query": "person grabbing arm store aisle",
+      "mascot_pose": "shock"
+    },
+    {
+      "phrase": "I don't work at this hardware store",
+      "query": "hardware store aisle shelves",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "don't play games, I need help now",
+      "query": "frustrated customer talking",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "drywall screws come in bulk boxes",
+      "query": "box of screws hardware",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "pool noodles",
+      "query": "pool noodles floats display",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "arguing with a cashier",
+      "query": "cashier checkout counter",
+      "mascot_pose": "laugh"
+    },
+    {
+      "phrase": "pulled the aisle camera",
+      "query": "security camera footage screen",
+      "mascot_pose": "idle"
+    },
+    {
+      "phrase": "stopped wearing orange there entirely",
+      "query": "orange work vest hanging",
+      "mascot_pose": "dismiss"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "grabbed my arm demanding",
+      "text": "NOT STAFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "technically true",
+      "text": "TECHNICALLY TRUE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "arguing with a cashier",
+      "text": "WRONG AISLE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a good laugh at customer service's expense",
+      "text": "CAUGHT ON CAMERA",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "playful"
+}
