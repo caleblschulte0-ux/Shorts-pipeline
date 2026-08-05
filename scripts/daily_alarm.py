@@ -55,18 +55,63 @@ def _load(path: Path, default=None):
         return default
 
 
+#: Every field a channel has used to stamp "when this went out". The third
+#: channel writes `ts`; trending and explainer write `posted_at`.
+_STAMP_FIELDS = ("posted_at", "publish_at", "ts", "uploaded_at", "at")
+
+
 def _posted_on(log_path: Path, date: str) -> list[dict]:
-    """Entries in a posted log stamped with this production date."""
+    """Entries in a posted log stamped with this production date.
+
+    THE LOGS ARE NOT ALL THE SAME SHAPE, and assuming they were made this
+    function silently blind to an entire channel:
+
+        trending / explainer   {"posted": [ {...}, {...} ]}      a LIST
+        third                  {"posted": {"clip-20260805-2": {...}}}  a DICT
+                               keyed by clip id, timestamped `ts`
+
+    Iterating a dict yields its KEYS — plain strings — so the old
+    `if not isinstance(e, dict): continue` dropped every third-channel entry
+    on the floor and the alarm reported `no_posts_third` as CRITICAL on days
+    third had posted its full slate. A false critical every morning is worse
+    than no alarm: it is precisely how people learn to ignore the real one,
+    which this file's own docstring warns about.
+
+    So: accept both shapes, and accept any of the stamp fields in use.
+    """
     log = _load(log_path, {})
     entries = log.get("posted") if isinstance(log, dict) else log
+    keyed = isinstance(entries, dict)
+    items = (list(entries.items()) if keyed
+             else [("", e) for e in (entries or [])])
     want = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
     out = []
-    for e in entries or []:
+    for key, e in items:
         if not isinstance(e, dict):
             continue
-        stamp = str(e.get("posted_at") or e.get("publish_at") or "")
-        if stamp.startswith(want):
-            out.append(e)
+        stamp = ""
+        for field in _STAMP_FIELDS:
+            if e.get(field):
+                stamp = str(e[field])
+                break
+        if not stamp.startswith(want):
+            continue
+        # AN ENTRY IS NOT AN UPLOAD JUST BECAUSE IT IS IN THE LOG.
+        # third's log also records the clips it REFUSED (`rejected-*` keys,
+        # `qa_rejected`) and slot CLAIMS written before an upload finishes.
+        # On 2026-08-05 that was 5 refusals against 3 real uploads — so
+        # counting rows would have reported a full 8/3 slate on a day the
+        # channel shipped 3. Overcounting hides a short slate exactly as
+        # effectively as undercounting invents an outage.
+        if str(key).startswith("rejected-") or e.get("qa_rejected"):
+            continue
+        if "rejected" in str(e.get("status", "")).lower():
+            continue
+        # A post is a post when it has a URL. Entries that carry no url and
+        # no explicit title are claims, not uploads.
+        if keyed and not (e.get("url") or e.get("video_url")):
+            continue
+        out.append(e)
     return out
 
 

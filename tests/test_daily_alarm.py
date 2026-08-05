@@ -176,6 +176,85 @@ class TestItDoesNotCryWolf(AlarmCase):
         self.assertIn(DATE, alarm.render(r))
 
 
+class TestItCanActuallyREADEveryChannelsLog(AlarmCase):
+    """The posted logs are not all the same shape, and assuming they were
+    made the alarm blind to a whole channel.
+
+        trending / explainer   {"posted": [ {...} ]}                 LIST
+        third                  {"posted": {"clip-...": {...}}}       DICT
+
+    Iterating a dict yields KEYS — strings — which the old loop skipped, so
+    `no_posts_third` fired as CRITICAL on days third had posted its full
+    slate. A false critical every morning is how people learn to ignore the
+    real one, which is the exact failure this alarm exists to avoid."""
+
+    def test_a_DICT_keyed_log_is_counted(self):
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"posted": {
+            f"clip-{DATE}-{i}": {"url": f"https://y/{i}", "title": f"t{i}",
+                                 "ts": f"{DATE[:4]}-{DATE[4:6]}-"
+                                       f"{DATE[6:8]}T12:00:00Z"}
+            for i in range(3)}}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 3)
+
+    def test_a_LIST_log_still_works(self):
+        p = self.tmp / "state" / "posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        stamp = f"{DATE[:4]}-{DATE[4:6]}-{DATE[6:8]}T12:00:00Z"
+        p.write_text(json.dumps({"posted": [{"title": "a",
+                                             "posted_at": stamp}]}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 1)
+
+    def test_refusals_and_claims_are_not_counted_as_posts(self):
+        """third's log records what it REFUSED and slots it CLAIMED as well
+        as what it shipped. On 2026-08-05 that was 5 refusals against 3 real
+        uploads — counting rows would report a full slate on a short day.
+        Overcounting hides an outage as effectively as undercounting
+        invents one."""
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        stamp = f"{DATE[:4]}-{DATE[4:6]}-{DATE[6:8]}T12:00:00Z"
+        p.write_text(json.dumps({"posted": {
+            "clip-1": {"url": "https://y/1", "ts": stamp},
+            # a refusal, marked the way the real log marks them: by key
+            # prefix and `qa_rejected` — there is no `status` field
+            "rejected-abc": {"source_url": "https://t/x", "ts": stamp,
+                             "qa_rejected": True, "streamer": "x"},
+            # a claimed slot whose upload never completed
+            "clip-2": {"ts": stamp, "title": "claimed but never uploaded"}}}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 1)
+
+    def test_the_real_log_gives_the_number_a_human_would_count(self):
+        real = ROOT / "state" / "third_posted_log.json"
+        if not real.exists():
+            self.skipTest("no third log in this checkout")
+        posted = json.loads(real.read_text()).get("posted") or {}
+        by_hand = sum(
+            1 for k, v in posted.items()
+            if isinstance(v, dict) and v.get("url")
+            and str(v.get("ts", "")).startswith("2026-08-05"))
+        self.assertEqual(len(alarm._posted_on(real, "20260805")), by_hand)
+
+    def test_another_days_entries_are_excluded(self):
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"posted": {
+            "clip-1": {"url": "https://y/1", "ts": "2020-01-01T00:00:00Z"}}}))
+        self.assertEqual(alarm._posted_on(p, DATE), [])
+
+    def test_the_real_third_log_shape_parses(self):
+        """Against the actual file on disk, not a fixture — the fixture is
+        what was wrong last time."""
+        real = ROOT / "state" / "third_posted_log.json"
+        if not real.exists():
+            self.skipTest("no third log in this checkout")
+        entries = json.loads(real.read_text()).get("posted")
+        self.assertIsInstance(entries, dict,
+                              "third's log changed shape — re-check the "
+                              "alarm's reader")
+
+
 class TestAPausedChannelSaysSo(AlarmCase):
     """2026-08-03..05: trending posted nothing for three days because the
     auto-pause counter was stuck at 2, and every run reported success. The
