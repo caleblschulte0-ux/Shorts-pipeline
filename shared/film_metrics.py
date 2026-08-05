@@ -115,11 +115,22 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     durs = [round(_secs(s), 2) for s in shots if _secs(s) > 0]
     span = round(max(durs) - min(durs), 2) if durs else None
 
+    # THE CAMERA, same defect shape as the cut and found the same way: the
+    # planner never set `direction` or `pan`, so every shot pushed in with the
+    # same drift for two minutes. `repeated` counts adjacent pairs sharing a
+    # move — two cuts in a row drifting the same way read as one continuous
+    # camera, not as two shots.
+    moves = [(s.get("direction"), s.get("pan")) for s in shots
+             if s.get("direction")]
+    repeated = sum(1 for a, b in zip(moves, moves[1:]) if a == b) if moves else None
+
     m = {
         "shots": len(shots),
         "runtime_s": round(total, 1),
         "shot_lengths": len(set(durs)) if durs else None,
         "length_span_s": span,
+        "camera_moves": len(set(moves)) if moves else None,
+        "repeated_moves": repeated,
         "figure_shots": len(figure),
         "figure_fraction": round(sum(_secs(s) for s in figure) / total, 3),
         "card_fraction": round(sum(_secs(s) for s in cards) / total, 3),
@@ -144,6 +155,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     m["summary"] = (
         f"{m['shots']} shots / {m['runtime_s']}s · "
         f"cut {_n(m['shot_lengths'])} lengths over {_n(m['length_span_s'])}s · "
+        f"camera {_n(m['camera_moves'])} moves, {_n(m['repeated_moves'])} repeats · "
         f"figure {m['figure_shots']} ({m['figure_fraction']:.0%}) · "
         f"cards {m['card_fraction']:.0%} · "
         f"dup-media {_n(m['duplicate_media'])} · "
@@ -208,6 +220,10 @@ BETTER = {
     # squeeze as a REGRESSION, which is exactly what it is.
     "shot_lengths": "up",
     "length_span_s": "up",
+    # The camera. `repeated_moves` is the one that matters — a plan can have
+    # many distinct moves and still put two identical ones back to back.
+    "camera_moves": "up",
+    "repeated_moves": "down",
 }
 
 

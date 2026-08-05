@@ -32,7 +32,7 @@ explicit `seconds` and a `line` only on the phase that carries the narration.
 from __future__ import annotations
 
 from data_learning import textmatch
-from shared import cut_rhythm
+from shared import camera_grammar, cut_rhythm
 
 LEAD, TAIL, MIN_SHOT = 0.45, 0.9, 2.8
 MAX_UNCHANGED = 4.5        # default: a visual may not hold longer than this
@@ -472,7 +472,19 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
         emit({"kind": "flat_statement",
                       "statement": b.get("understand", line),
                       "seconds": secs, "line": line})
-    return shots
+
+    # THE CAMERA, decided once over the finished list rather than defaulted per
+    # shot. `footage_hybrid` has supported direction in/out and pan
+    # left/right/up/down since it was written and the planner passed NEITHER —
+    # so every shot of every film pushed in, and all 14 image shots of
+    # shared-air carried the identical push 1.1. A camera that does one thing
+    # for two minutes is what LOW_ENERGY and BORING describe. Done here, at the
+    # end, because the no-two-neighbours-match rule is a property of the
+    # SEQUENCE and cannot be decided a shot at a time. An authored direction /
+    # pan / push always wins. See shared/camera_grammar.py.
+    roles = [str((beats[s.get("_beat", 0)] or {}).get("job", ""))
+             if 0 <= s.get("_beat", -1) < n else "" for s in shots]
+    return camera_grammar.plan_moves(shots, roles)
 
 
 def _chunk_footage(foot: dict, secs: float, maxu: float,
@@ -639,19 +651,25 @@ def _chunk_image(image: dict, secs: float, maxu: float) -> list[dict]:
     if secs <= hold + 0.4 or len(variants) == 1:
         # one subject: a single GENTLE hold covering the beat — no re-zoom padding.
         # (A long beat should carry multiple nouns to cut between; see `queries`.)
-        im = dict(image)
-        im.setdefault("push", 1.10)
-        return [{"kind": "image", **_img(im), "seconds": secs}]
+        # No push set here. It used to default to 1.10, which is how every
+        # image shot in the film ended up with the identical move — and a
+        # default indistinguishable from an authored value cannot be varied
+        # later without overriding the author too. The camera is assigned once,
+        # over the finished list, by `camera_grammar.plan_moves`; an authored
+        # `image.push` still reaches it through `_img` and still wins.
+        return [{"kind": "image", **_img(dict(image)), "seconds": secs}]
     n = min(len(variants), max(2, math.ceil(secs / hold)))
     each = secs / n
-    pans = ["auto", "right", "left", "up", "down"]
     shots = []
     for k in range(n):
         im = dict(image)
         im["query"] = variants[k % len(variants)]   # CUT to a DIFFERENT noun
         im.pop("url", None)                          # extra nouns resolve by query
-        im["pan"] = pans[k % len(pans)]
-        im["push"] = 1.10                            # gentle drift, not a zoom
+        # pan/push deliberately unset — these two lines used to OVERWRITE an
+        # authored camera with a fixed 1.10 push and a fixed pan rotation, so
+        # a story that specified its own move was silently ignored.
+        # `camera_grammar` assigns the move over the whole list, and honours
+        # anything the story authored.
         sh = {"kind": "image", **_img(im), "seconds": each}
         if k:
             sh["phase"] = "development"

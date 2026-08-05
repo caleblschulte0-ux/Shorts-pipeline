@@ -146,6 +146,7 @@ jobs:
           python scripts/test_film_metrics.py
           python scripts/test_quality_sprint.py
           python scripts/test_cut_rhythm.py
+          python scripts/test_camera_grammar.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 
