@@ -2548,13 +2548,45 @@
       "director_cut": true
     },
     "clip-20260805-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/SucculentBombasticRadishDoggo-I_B9Tb7WpdX_Cd5N",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/PWy92dvhfo8",
       "title": "Jasontheween Asks For Water And His Coach Says This Instead \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-08-05T14:04:43.620879+00:00",
+      "ts": "2026-08-05T14:04:46.871590+00:00",
+      "uploaded_at": "2026-08-05T14:04:46.871609+00:00",
+      "publish_at": "2026-08-05T20:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SucculentBombasticRadishDoggo-I_B9Tb7WpdX_Cd5N",
+      "streamer": "jasontheween",
+      "series": "fail",
+      "hook": "HIS COACH CAN'T GET THE WORDS OUT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3654,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 8.7
+      },
+      "director_cut": true
+    },
+    "rejected-considerateswissducksaltbae-vgmpmzwgxgoi7llu": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/ConsiderateSwissDuckSaltBae-VGMpMzwgXgoI7llu",
+      "streamer": "plaqueboymax",
+      "title": "PlaqueBoyMax IRL Part 13",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just walking, talking near jet)",
+      "ts": "2026-08-05T14:07:04.420863+00:00"
+    },
+    "clip-20260805-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SlipperyGloriousAsparagusOpieOP-kxFA0n4TxE1Hwnxj",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Roasted By Agent Over His Old Clips",
+      "kind": "twitch_clip",
+      "ts": "2026-08-05T14:10:23.238417+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
