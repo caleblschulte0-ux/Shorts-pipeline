@@ -57,9 +57,24 @@ on:
     workflows: ["Daily Shorts"]
     types: [completed]
     branches: [main]
-  # NOTE: no git cron. The morning kickoff is a Claude Routine (Claude Code
-  # Remote scheduled trigger) that dispatches this workflow directly each day.
-  # workflow_dispatch below is how the Routine (and the daily.yml chain) fires it.
+  schedule:
+    # THIS CHANNEL MUST NOT DIE WHEN ANOTHER ONE DOES.
+    #
+    # Until 2026-08-05 explainer had NO cron: it published only when "Daily
+    # Shorts" completed, or when a Routine dispatched it. So when trending
+    # auto-paused on 08-03, explainer silently stopped too — three days,
+    # zero videos, from a fault in a different channel. Its own queue was
+    # fine the whole time (193 unposted stories).
+    #
+    # A Routine is a fine kickoff but it is not a floor: it lives outside
+    # this repo, and if it lapses — a subscription, a token, a deleted task
+    # — nothing here notices. This cron is the floor. The chain and the
+    # Routine both still fire it; `auto` mode is idempotent (the posted-log
+    # dedupe makes a double-fire a no-op), so an extra trigger costs
+    # nothing and a missing one no longer costs the day.
+    - cron: '40 13 * * *'   # 08:40 Central summer / 07:40 winter
+  # workflow_dispatch below is how a Routine (and the daily.yml chain) fires
+  # this on demand; the cron above is what guarantees it runs at all.
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json
@@ -458,6 +473,15 @@ jobs:
           EXPECTED="${{ inputs.expected_channel }}"; [ -z "$EXPECTED" ] && EXPECTED="short_explainer67"
           EVERY="${{ inputs.every_hours }}";         [ -z "$EVERY" ] && EVERY="6"
           START="${{ inputs.start_in_hours }}";      [ -z "$START" ] && START="1"
+          # HOW MANY VIDEOS A DAY IS THE REGISTRY'S CALL, NOT THIS FILE'S.
+          # `--max-per-run 3` was hardcoded below while the registry said 4,
+          # which would have capped the channel one short of its own ruling
+          # and left the shortfall invisible. config/channel_registry.json is
+          # the only place a count may live (tests/test_no_second_source_of_truth
+          # fails the PR when a second copy grows back).
+          PERDAY=$(python -c "from shared import channel_registry as r; print(r.target_count('explainer'))") || {
+            echo "::error::channel registry unusable — refusing to guess a slate size"; exit 1; }
+          echo "explainer slate from the registry: $PERDAY/day"
           # Accept slugs comma- AND/OR space-separated; the scripts take them
           # space-separated (nargs), so normalise commas to spaces. Without this
           # a comma batch is read as one bogus slug and silently skipped.
@@ -541,9 +565,9 @@ jobs:
               # video — this only lifts the FREEZE, it bypasses no judgment.
               python scripts/post_stories.py $SLUGFLAG $FORCEFLAG \
                 --every-hours "$EVERY" --start-in-hours "$START" \
-                --max-per-run 3 --repair 1 ;;
+                --max-per-run "$PERDAY" --repair 1 ;;
             all)
-              python scripts/post_stories.py $SLUGFLAG --max-per-run 4 ;;
+              python scripts/post_stories.py $SLUGFLAG --max-per-run "$PERDAY" ;;
             unpublish)
               # Take down the given videos (public or scheduled) + prune the log.
               python scripts/unpublish_stories.py --slugs $SLUGS ;;
@@ -570,8 +594,11 @@ jobs:
                 sleep 2
               done ;;
             auto)
-              # post every un-posted story (no --slugs => all, deduped), hourly
-              python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" --max-per-run 4 ;;
+              # post every un-posted story (no --slugs => all, deduped), hourly.
+              # THIS is the mode the cron and the daily chain use, so its cap is
+              # the one that actually decides the channel's daily output —
+              # it reads the registry like every other count in this repo.
+              python scripts/post_stories.py --every-hours "$EVERY" --start-in-hours "$START" --max-per-run "$PERDAY" ;;
           esac
 
       # Pull view/like counts for the channel's published videos so the daily

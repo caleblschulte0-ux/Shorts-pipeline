@@ -50,12 +50,11 @@ descending authority:
 <!-- BEGIN GENERATED SLATE — regenerate with `python -m shared.channel_registry --markdown` -->
 | Channel | Per day | Active formats | Retired | ChatGPT does |
 |---|---|---|---|---|
-| `curiosity` | 1 | 1x `long_form` | — | queue_stocking, takeover_authoring, production_supervisor |
-| `explainer` | 1 | 1x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
-| `third` | 3 | 3x `clip` | — | production_supervisor |
+| `explainer` | 4 | 4x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
+| `third` | 6 | 6x `clip` | — | production_supervisor |
 | `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring, production_supervisor |
 
-<!-- generated from config/channel_registry.json rev 2 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- generated from config/channel_registry.json rev 4 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
 <!-- END GENERATED SLATE -->
 
 That table is generated from the registry. It is a CONVENIENCE, not the
