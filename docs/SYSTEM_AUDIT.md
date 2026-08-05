@@ -446,3 +446,75 @@ New this pass: `tests/test_showrunner_gate.py` (25),
 `tests/test_uploaders.py` (35), `tests/test_captions.py` (25),
 `tests/test_research_intake.py` (20), `tests/test_fsutil_writes.py` (12),
 `tests/test_repo_layout.py` (5), `tests/test_engine_registry_honesty.py` (10).
+
+---
+
+## Fourth pass, 2026-08-05: the ChatGPT emergency edits, line-audited
+
+Context: the Claude subscription lapsed ~2026-08-01. With the operator's
+explicit authorization, ChatGPT edited production code on 08-02/08-03 to
+finish the whole-pipeline takeover — a sanctioned one-off exception to the
+"only Claude edits" ruling, now closed (see CLAUDE.md). It notated its work
+well (`docs/CHATGPT_CHANGES_2026-08-02.md`,
+`docs/CHATGPT_CHANNEL_SEPARATION_2026-08-03.md`), which made this audit
+tractable. Every code file it touched was diffed and judged.
+
+### RATIFIED — kept, they are real fixes
+
+- **`pin_verified_media` (`scripts/exchange_phase_b.py`)** — Phase B used to
+  commit `/home/runner/...` paths from its disposable VM into packages; the
+  separate render runner could not read them and silently lost every ChatGPT
+  image. Now the durable Drive URL + file_id + sha256 ride the package. The
+  single best fix of the takeover work. Also kept: the idempotent takeover
+  repair (a rerun reattaches response media to already-promoted packages).
+- **Takeover identity (`shared/media_checkpoint.py`)** — a no-bundle
+  takeover has no `BUNDLE_ID` to copy, and a late Phase A cron would mint a
+  new identity and invalidate every takeover checkpoint (the wrong-bundle
+  failure shape again). `takeover.json` now pins identity for a claimed
+  date. Fails toward refusal, never acceptance.
+- **The manifest-only renderer** — `--require-manifest` in
+  `run_trending_daily.py`; daily.yml no longer authors (in-CI brain removed)
+  or back-fills (reserve fill removed — it still runs in Phase A, the right
+  place). The render job is deterministic; re-authoring at render time hid
+  broken handoffs.
+- **Channel separation** — Data is Explainer's mascot; trending renders
+  without it (registry rev 3, `mascot_pose` gone from contracts,
+  `tests/test_channel_mascot_separation.py`).
+- **Format-aware showrunner directive** — the judge is told what a
+  reddit_story/graph_race is supposed to demonstrate instead of blocking a
+  narrative for lacking a chart. Gate stays sovereign; my 25 gate tests are
+  untouched, ChatGPT only added.
+- **The illustrated Reddit layout, layout-aware vision QA, the
+  production-outcome file, `production_supervisor` in the registry.**
+
+### REPAIRED — the damage
+
+1. **The failure counter punished the gate.** The run going RED on any
+   shortfall (right — visibility) also fed the auto-pause counter, so two
+   days where the showrunner correctly held one video would pause the whole
+   channel — mechanized "more output via a lower bar" pressure, against the
+   old explicit ruling that a quarantine must not bump the counter. Fixed:
+   RED on shortfall stays; the counter bumps only on a ZERO-upload day, read
+   from the production outcome file. `tests/test_production_outcome.py` pins
+   both halves.
+2. **The two judges contradicted each other about the mascot.** The 08-02
+   vision-QA text told the judge a mascot in a trending frame was
+   "intentional"; the 08-03 separation made it a brand violation the
+   showrunner must flag. ChatGPT fixed the showrunner side and missed its
+   own vision-QA text. Fixed; tested.
+3. **`registry_acceptance.py` was broken on main since 08-02** — step 6
+   hardcoded `registry_revision == 1`; ChatGPT bumped the registry to rev
+   2, then 3, and never saw the failure because **its pushes went straight
+   to main, bypassing the auto-merge gate that runs this script**. Fixed to
+   compare against the revision captured at freeze time. This is also the
+   audit's sharpest lesson: the gate can only guard what goes through it.
+4. **Doctrine drift** — CLAUDE.md still claimed the reserve fill runs in
+   daily.yml; corrected. The who-may-edit ruling now records the exception
+   as closed and re-asserts the line.
+5. **The alarm now reads the production outcome** — `repair_required`
+   sitting at end of day is a critical (`production_repair_<cid>`), which is
+   ChatGPT's own "DONE is not production completion" contract, wired into
+   the thing that shouts.
+
+Suite: 666 (as found) → **680 tests**, dry run 9/9, acceptance 7/7 (was
+6/7 on main).
