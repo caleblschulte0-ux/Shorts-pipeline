@@ -21,11 +21,29 @@ Code: `scripts/doctor.py`. Rules held by: `tests/test_doctor.py`.
  23:15 UTC  retro.yml    performance evidence pack (analytics)
  01:15 UTC  alarm.yml    judges the finished day by OUTCOMES; red when wrong
  05:10 UTC  doctor.yml   writes doctor/evidence.json for the reviewer
-   morning  ChatGPT      reads the repo + the pack, files doctor/reports/<date>.json
+   morning  ChatGPT      ← woken by a task IN THE CHATGPT APP
+                         reads the repo + the pack, files doctor/reports/<date>.json
   on push   doctor.yml   validates it, folds accepted findings into the backlog,
                          nudges the tracking issue
-  whenever  Claude       rules on what is waiting, builds what it accepted
+      then  Claude       ← woken by a task IN THE CLAUDE APP
+                         rules on what is waiting, builds what it accepted
 ```
+
+**The two agents are woken from inside their own apps** — one scheduled task
+in ChatGPT, one in Claude. Not by GitHub, not by a browser extension. Adding
+a cron here to "start" the doctor would do nothing at all.
+
+GitHub's only jobs are the two things neither app can do for itself:
+generate the evidence pack (it needs to run Python against live state), and
+validate a report once it has landed. Everything else is the apps' own
+schedules, and they are the operator's to set.
+
+A consequence worth knowing: because the two schedules are local-time and
+the pack is a UTC cron, the reviewer can occasionally read a pack written
+before that day's rulings. That is safe by construction — `validate` reads
+`verdicts.json` live, so a stale pack costs at most a rejection ChatGPT
+could have avoided, never a wrong decision. The push trigger on
+`doctor/verdicts.json` keeps it fresh in the normal case.
 
 ## Why this is not the retro loop
 

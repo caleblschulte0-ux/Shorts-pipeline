@@ -11,6 +11,10 @@ Nothing in this folder is ever applied automatically. No workflow reads a
 finding and changes code. That separation is the safety model, and it is the
 same one `retro/` uses.
 
+**Both agents are woken by scheduled tasks inside their own apps** — one in
+ChatGPT, one in Claude. GitHub does not start either of them; it only writes
+`evidence.json` and validates a report once it lands.
+
 ## What lives here
 
 | File | Written by | What it is |

@@ -19,13 +19,29 @@ name: Doctor (evidence pack + report intake)
 on:
   schedule:
     # 05:10 UTC — after retro (23:15) and the alarm (01:15) have judged the
-    # finished day, and before ChatGPT's local-morning tasks start, so the
-    # evidence pack is always on disk when the reviewer looks.
+    # finished day, and comfortably before any local-morning task (it is
+    # ~00:10 Central in summer, ~23:10 the previous evening in winter — both
+    # sides of the DST line land before a morning wake-up, which is why this
+    # one cron is safe where the Phase B backstop needed two).
+    #
+    # THIS CRON DOES NOT WAKE ANYONE. The two agents are woken by SCHEDULED
+    # TASKS INSIDE THEIR OWN APPS — one in ChatGPT, one in Claude — not by
+    # GitHub. Adding a cron here to "start" the doctor would do nothing.
+    # GitHub's only jobs are the two things neither app can do for itself:
+    # generate the evidence pack, and validate a report once it lands.
     - cron: '10 5 * * *'
   push:
     branches: [main]
     paths:
+      # A landed report -> validate + ingest it.
       - 'doctor/reports/**'
+      # A landed RULING -> regenerate the pack immediately, so the reviewer's
+      # next read already knows what was just settled. Without this the pack
+      # is only as fresh as the last 05:10 run, and ChatGPT would re-file
+      # something ruled on during the day. (Harmless — `validate` reads
+      # verdicts.json live, so a stale pack costs a rejection, not a bad
+      # decision — but a rejection it could have avoided is still noise.)
+      - 'doctor/verdicts.json'
   workflow_dispatch:
 
 permissions:
