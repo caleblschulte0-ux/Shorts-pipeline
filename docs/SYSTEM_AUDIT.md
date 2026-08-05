@@ -446,3 +446,75 @@ New this pass: `tests/test_showrunner_gate.py` (25),
 `tests/test_uploaders.py` (35), `tests/test_captions.py` (25),
 `tests/test_research_intake.py` (20), `tests/test_fsutil_writes.py` (12),
 `tests/test_repo_layout.py` (5), `tests/test_engine_registry_honesty.py` (10).
+
+---
+
+# 2026-08-05 — the curiosity edit: four constants where a decision belonged
+
+A sprint audit rather than a repo-wide one. Scope: why five full renders of
+`shared-air` on 08-01/02 moved the blind taste score **4.0 → 4.0 → 3.5 → 3.0**
+across twelve hours of compute.
+
+## The finding that reframed everything
+
+Four blind verdicts. **SAMENESS in all four. BORING in all four.** Every
+response had been a change to *what was on screen* — restage the scenes, ban
+the library, dedupe the clips. Nobody had looked at the **edit**.
+
+The plan for that film: 39 shots, **four distinct shot lengths**, all 14 image
+shots on the identical push, 38 identical crossfades, and the "be extra"
+director attaching personality to the bar charts while the only human on
+screen never acted. Four separate places where a **constant sat where a
+decision belonged**, and each one is a thing the judge had a word for.
+
+| found | was | now | label it answers |
+|---|---|---|---|
+| `MAX_UNCHANGED` used as every lead shot's length | 4 shot lengths / 39 shots | 17, same 1.85–6.35s range | SAMENESS, BORING |
+| `direction` / `pan` supported, never set | every shot pushes in, push 1.1 | 7 moves, 0 adjacent repeats | LOW_ENERGY, BORING |
+| `XFADE` applied to every join | 38 dissolves, 0 cuts | 19 cuts / 19 dissolves | LOW_ENERGY, BORING |
+| `EXTRA_MOVES` holds only chart kinds | 0 of 10 figure shots act | 10 of 10 | NO_SOUL |
+
+New shared modules: `shared/cut_rhythm.py`, `shared/camera_grammar.py`,
+`shared/transitions.py`. All three take seconds/shots and return
+seconds/shots — no slug, no channel, no topic.
+
+## Two defects that were mine, and one that was never anyone's
+
+- **`queue_scene(props=False)` left the widget and removed only its text.** An
+  empty lit orange plate — *"a template with the content not filled in"*, the
+  judge's own words for EMPTY_COMPOSITION, reproduced by the change meant to
+  fix EMPTY_COMPOSITION. Measured: 27,388 accent pixels before, 0 after.
+- **A resolved emotion that the drawing code could not express.** `exhaustion`
+  is arms/stride/**head_drop**; `_sit` accepted only `lean`. The on-hold scene
+  read the flag, resolved the emotion, and drew a byte-identical frame — 0
+  pixels. `_sit` now takes `head_drop`; 9,193 pixels move.
+- **A push to the branch cancelled any running canary**, in three workflows.
+  Dispatch and fast gate runs shared one concurrency group with
+  `cancel-in-progress`. It killed a 4-hour render 5m17s in, and the Actions
+  tab says only "cancelled". True of every canary this repo has ever run.
+
+## What replaces "guess, render four hours, guess again"
+
+`shared/film_metrics.py` + `scripts/quality_sprint.py`. The plan is scoreable
+offline in milliseconds; a render is only ever spent on a plan not already
+known to be broken. `produce()` records every render itself.
+
+`quality_sprint next` is the half that improves the **code**: it splits the
+judges' complaints into ones that RECUR across renders (the machine makes
+them) and ones seen ONCE (that film had them). Its first real run said
+**UI_WIDGET once** — the complaint that a previous session spent a code change
+on, deleting every human in the film and costing a full point — and SAMENESS
+and BORING in **every** judged render. A sample size of one is not evidence.
+
+## Deliberately left, with reasons
+
+- **`unanchored_media` gets no automatic lever.** Deriving queries from
+  narration takes it 8/15 → 0/15 while producing `'means next person breathe'`.
+  A measure satisfiable without improving the film must not be given a lever.
+- **`verify_expression_gates` `performance_treadmill` fails on a contended
+  container** (7.4–8.1× realtime vs a 6× threshold), identically on the
+  unmodified tree. Green in CI. Widening the threshold is the "lower the bar"
+  move `review_proposals.py` refuses, so it stays failing and stated.
+- **`shared-air`'s remaining gap is AUTHORING.** 7 of 15 media shots share no
+  content word with the line they play under. No selection or repair fix can
+  invent a subject the script never had.
