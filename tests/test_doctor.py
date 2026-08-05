@@ -357,6 +357,57 @@ class TestTheEvidencePackTellsChatGPTWhatIsSettled(DoctorCase):
         self.assertIn("schema", doctor.evidence_pack())
 
 
+class TestThePromptsMatchTheCode(DoctorCase):
+    """`doctor/PROMPTS.md` is pasted verbatim into two scheduled tasks that
+    run unattended. A prompt promising a flag that does not exist fails at
+    3am in someone else's app, where nobody is watching — so the promises
+    are checked here."""
+
+    TEXT = (ROOT / "doctor" / "PROMPTS.md").read_text()
+
+    def test_every_verdict_it_names_is_a_real_verdict(self):
+        named = set(re.findall(r"rule <sig> ([a-z_]+)", self.TEXT))
+        self.assertTrue(named)
+        self.assertEqual(named - set(doctor.VERDICTS_ALLOWED), set())
+
+    def test_every_subcommand_it_names_exists(self):
+        named = set(re.findall(r"scripts/doctor\.py ([a-z-]+)", self.TEXT))
+        self.assertTrue(named)
+        self.assertEqual(named - {"backlog", "next", "rule", "show",
+                                  "validate", "ingest", "evidence"}, set())
+
+    def test_the_example_report_it_shows_actually_validates(self):
+        """If the schema in the prompt is wrong, every report is rejected
+        on arrival and the loop produces nothing, daily."""
+        res = doctor.validate_report(report(finding(
+            title="short and specific",
+            observation="what is true right now",
+            proposal="what to do about it",
+            evidence="the file and line, the log, the run — something a "
+                     "reader can open and check")))
+        self.assertEqual(res["counts"]["accepted"], 1)
+
+    def test_the_empty_report_it_mandates_is_accepted(self):
+        """The prompt tells ChatGPT to file a report even with no findings,
+        because a missing report is ambiguous. That must not be an error."""
+        res = doctor.validate_report(
+            {"schema": doctor.SCHEMA, "date": "20260806",
+             "summary": "nothing new", "findings": []})
+        self.assertEqual(res["rejected"], [])
+
+    def test_the_report_path_it_names_is_the_one_the_workflow_watches(self):
+        self.assertIn("doctor/reports/<YYYYMMDD>.json", self.TEXT)
+        wf = (ROOT / ".github" / "workflows" / "doctor.yml").read_text()
+        self.assertIn("doctor/reports/**", wf)
+
+    def test_it_tells_chatgpt_the_two_things_that_stop_repetition(self):
+        self.assertIn("new_evidence_since", self.TEXT)
+        self.assertIn("settled", self.TEXT)
+
+    def test_it_forbids_editing_code(self):
+        self.assertIn("NEVER edit", self.TEXT)
+
+
 class TestNothingIsEverApplied(unittest.TestCase):
     """The safety model, stated as a test — same as retro's."""
 
