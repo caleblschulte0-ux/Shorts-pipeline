@@ -46,7 +46,11 @@
       "query": "parking enforcement officer street",
       "mascot_pose": "idle",
       "image_url": "https://images.pexels.com/photos/15794745/pexels-photo-15794745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "parking enforcement",
+      "pin_context": "traffic police urban regulation",
+      "news_query": "parking enforcement",
+      "news_angle": "Parking enforcement sweeps the block at 8:14 a.m. sharp every day."
     },
     {
       "phrase": "moving my trash cans out of the second spot",
