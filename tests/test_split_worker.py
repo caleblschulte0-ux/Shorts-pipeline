@@ -29,7 +29,7 @@ from shared import authoring_brief as brief          # noqa: E402
 from shared import channel_registry as reg           # noqa: E402
 from shared import exchange_bundle as xb             # noqa: E402
 from shared import media_checkpoint as mc            # noqa: E402
-from tests.test_package_buffer import (               # noqa: E402
+from tests.test_package_schema import (               # noqa: E402
     graph_pkg, reddit_pkg, text_card_pkg)
 
 DATE = "29991230"
@@ -398,7 +398,7 @@ class TestPhaseBHonoursTheCheckpoints(unittest.TestCase):
 
     def test_chatgpt_packages_are_promoted_never_written_straight_in(self):
         """The promotion gate is the only way into the slate, and it runs the
-        same structural validator the reserve bank uses."""
+        same structural validator every producer is held to."""
         self._write_bundle([])
         bad = graph_pkg(slug="split-broken")
         bad["series"][0]["values"] = bad["series"][0]["values"][:2]

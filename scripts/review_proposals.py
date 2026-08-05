@@ -50,7 +50,8 @@ PROTECTED_FILES = {
     "scripts/post_stories.py": "it fails CLOSED on a publish run by design",
     "shared/punchup_guard.py": "it stops rewrites inventing facts",
     "scripts/placement_gate.py": "it keeps shared capability up the funnel",
-    "shared/package_buffer.py": "draw-once is what prevents duplicate uploads",
+    "shared/package_schema.py": "the one structural gate every package "
+                                "producer is held to",
     "docs/DIRECTOR.md": "the rubric the showrunner judges against",
 }
 PROTECTED_PATTERNS = (

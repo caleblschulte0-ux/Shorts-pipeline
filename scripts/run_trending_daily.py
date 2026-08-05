@@ -587,11 +587,15 @@ def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
     the doctrine forbids. The only thing that changes is that a refusal now
     costs a render instead of a slot.
 
-    Replacements come from the RESERVE BANK, which is built for precisely
-    this: evergreen packages, structurally validated at deposit, drawn
-    exactly once (`state/package_buffer/used.json`) so a replacement can
-    never duplicate an upload. When the bank is empty the shortfall stands
-    and the run still reports it — an honest short day, never a fabricated
+    Replacements are AUTHORED FRESH — discovery, ranking, a new script,
+    a new render. There is deliberately no reserve bank: a shelf only ever
+    covers as many failures as somebody remembered to stock it for, and
+    ours held two packages against a low-water mark of twelve. Authoring
+    has no such ceiling.
+
+    Already-posted titles are excluded, so a replacement can never
+    duplicate an upload. When discovery has nothing fresh the shortfall
+    stands and the run reports it — an honest short day, never a fabricated
     one.
     """
     if args.dry_run:
@@ -608,62 +612,66 @@ def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
     print(f"\n=== BACKFILL: {posted}/{expected} shipped, {short} slot(s) "
           f"short ({len(held)} held by a gate) ===", flush=True)
 
-    try:
-        from shared import package_buffer as buf
-    except Exception as exc:                             # noqa: BLE001
-        print(f"[backfill] reserve bank unavailable ({exc}) — the day stays "
-              f"short rather than shipping something unjudged", flush=True)
-        return []
-
-    # Prefer replacing like with like, so the day's format mix survives.
-    #
-    # The result dict labels a reddit package "reddit" (see
-    # run_one_from_package), while the bank keys on "reddit_story". Left
-    # unmapped the mix would never match a single banked format and the
-    # preference would quietly do nothing — the shortfall would still be
-    # covered, but by whatever was oldest, so a run that lost four charts
-    # could come back with four reddit stories and silently rewrite the
-    # day's mix. Normalise to the bank's own vocabulary.
-    known = set(buf.formats())
-    alias = {"reddit": "reddit_story", "graph": "graph_race"}
-    want_mix: dict[str, int] = {}
-    for r in held:
-        fmt = str(r.get("format") or "")
-        fmt = alias.get(fmt, fmt)
-        if fmt in known:
-            want_mix[fmt] = want_mix.get(fmt, 0) + 1
-
     attempts = min(short, MAX_BACKFILL)
     if short > MAX_BACKFILL:
         print(f"[backfill] capped at {MAX_BACKFILL} attempts (short {short}) "
               f"— a systematically bad day must not eat the job timeout",
               flush=True)
 
+    # FRESH TOPICS, not a pre-stocked shelf. Operator ruling 2026-08-05:
+    # "there shouldn't be a reserve bank — if something doesn't run
+    # properly, it goes through and tries again."
+    #
+    # A bank can only ever cover as many failures as somebody remembered to
+    # stock it for; ours held two packages against a low-water mark of
+    # twelve, so it would have covered one bad slot and then been empty for
+    # a week. Authoring a new one has no such ceiling: the day retries until
+    # it fills or runs out of attempts.
+    try:
+        already = posted_titles()
+        raw = discover_all()
+        try:
+            picks = rank_topics.rank(raw, top_k=attempts * 3)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[backfill] ranking unavailable ({type(exc).__name__}) — "
+                  f"using unranked candidates", flush=True)
+            picks = raw[: attempts * 3]
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[backfill] discovery failed ({type(exc).__name__}: "
+              f"{str(exc)[:80]}) — the day stays short rather than shipping "
+              f"something unjudged", flush=True)
+        return []
+
+    fresh = [t for t in picks
+             if (getattr(t, "query", "") or "").strip().casefold()
+             not in already]
+    if not fresh:
+        print("[backfill] discovery returned nothing this channel has not "
+              "already posted — an honest short day", flush=True)
+        return []
+
     out: list[dict] = []
-    date = now.strftime("%Y%m%d")
     for i in range(attempts):
-        picked = buf.select(1, mix=want_mix or None)
-        if not picked:
-            print(f"[backfill] reserve bank is EMPTY after {i} replacement(s)"
-                  f" — {short - i} slot(s) will stay short. Top it up: "
-                  f"python scripts/package_reserve.py deposit ...", flush=True)
+        if i >= len(fresh):
+            print(f"[backfill] out of fresh topics after {i} replacement(s)",
+                  flush=True)
             break
-        pkg = buf.draw(picked, date=date,
-                       reason=f"backfill: {len(held)} held by a gate")[0]
-        fmt = pkg.get("format") or ("reddit_story" if pkg.get("subreddit")
-                                    else "?")
-        if want_mix.get(fmt):
-            want_mix[fmt] -= 1
-        print(f"[backfill] {i + 1}/{attempts}: drew {pkg.get('slug')!r} "
-              f"({fmt}) from the reserve bank", flush=True)
+        topic = fresh[i]
+        print(f"[backfill] {i + 1}/{attempts}: authoring a replacement for "
+              f"{getattr(topic, 'query', '?')!r}", flush=True)
         slot = len(out) + sum(1 for r in results if r.get("ok"))
         publish_at = sched[slot] if slot < len(sched) else None
-        res = run_one_from_package(pkg, publish_at, dry_run=False,
-                                   no_schedule=args.no_schedule)
+        try:
+            res = run_one(topic, publish_at, dry_run=False,
+                          no_schedule=args.no_schedule)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[backfill] replacement crashed "
+                  f"({type(exc).__name__}: {str(exc)[:80]})", flush=True)
+            continue
         res["backfill"] = True
         out.append(res)
         if res.get("ok"):
-            print(f"[backfill] replacement SHIPPED — slot recovered",
+            print("[backfill] replacement SHIPPED — slot recovered",
                   flush=True)
         else:
             # The replacement met the same gate and lost too. That is the
@@ -784,8 +792,9 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
         if fresh:
             if d != todays_package_dir():
                 print(f"[run_trending_daily] WARNING using STALE packages "
-                      f"from {d.name} — today's dir is empty. The reserve "
-                      f"bank and the ChatGPT takeover both came up short.",
+                      f"from {d.name} — today's dir is empty. Neither "
+                      f"the Claude Routine nor the ChatGPT takeover wrote "
+                      f"anything for today.",
                       flush=True)
             return d, fresh
     return None, []
@@ -809,6 +818,9 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         # a fallback brain for a day or three at a time, several times a
         # month — often enough that it must be visible in the daily report
         # and the phone push, not buried in an Actions log nobody opens.
+        # `_reserve` is only on packages drawn from the reserve bank before
+        # it was retired (2026-08-05). Nothing writes it now; it is still
+        # read so an archived day re-rendered from disk reports honestly.
         "source": ("chatgpt" if pkg.get("_authored_by") == "chatgpt-takeover"
                    else "reserve" if pkg.get("_reserve") else "brain"),
     }
@@ -1027,10 +1039,12 @@ def format_report(date_str: str, results: list[dict]) -> str:
         banner.append(f"> **ChatGPT wrote {by_source['chatgpt']} of today's "
                       f"{len(results)} packages** — the Claude Routine did "
                       f"not run (weekly limit?).")
-    if by_source.get("reserve"):
-        banner.append(f"> **{by_source['reserve']} package(s) came from the "
-                      f"reserve bank** — top it up when Claude is back: "
-                      f"`python scripts/package_reserve.py status`.")
+    backfilled = sum(1 for r in results if r.get("backfill"))
+    if backfilled:
+        banner.append(f"> **{backfilled} slot(s) were re-authored** after a "
+                      f"gate refused the first attempt. The gate was right "
+                      f"every time; a high number here means the AUTHORING "
+                      f"needs work, never that the gate does.")
     if banner:
         banner.append("")
 

@@ -1,8 +1,8 @@
 """Tests for surviving a RECURRING authoring gap (the Claude weekly limit).
 
-The reserve bank and the ChatGPT takeover exist for a gap that lasts a day
-or three and happens several times a month — not for a one-off catastrophe.
-That frequency changes what matters:
+The ChatGPT takeover exists for a gap that lasts a day or three and happens
+several times a month — not for a one-off catastrophe. That frequency
+changes what matters:
 
   * the stale-slate fallback becomes dangerous. `most_recent_package_dir()`
     serves yesterday's dir when today's is empty, and the only upload guard
@@ -139,22 +139,23 @@ class TestFallbackBrainIsVisible(unittest.TestCase):
         self.assertIn("ChatGPT wrote 6", head)
         self.assertIn("weekly limit", head)
 
-    def test_reserve_draw_is_announced_with_the_top_up_command(self):
-        head = "\n".join(self._report(["reserve"] * 2 + ["brain"] * 4
-                                      ).splitlines()[:20])
-        self.assertIn("reserve bank", head)
-        self.assertIn("package_reserve.py status", head)
-
-    def test_a_mixed_day_reports_both(self):
-        head = "\n".join(self._report(
-            ["chatgpt", "chatgpt", "reserve", "brain"]).splitlines()[:20])
-        self.assertIn("ChatGPT wrote 2", head)
-        self.assertIn("1 package(s) came from the reserve", head)
+    def test_a_re_authored_slot_is_announced(self):
+        """A day that only hit its number by re-authoring refused videos has
+        an AUTHORING problem, and that has to be visible at the top of the
+        report — it is otherwise indistinguishable from a clean six."""
+        results = [{"ok": True, "topic": f"t{i}", "title": f"T{i}",
+                    "video_url": "u", "elapsed_seconds": 1.0,
+                    "source": "brain", "backfill": i >= 4}
+                   for i in range(6)]
+        head = "\n".join(
+            rtd.format_report("2026-08-01", results).splitlines()[:20])
+        self.assertIn("2 slot(s) were re-authored", head)
+        self.assertIn("AUTHORING", head)
 
     def test_a_normal_day_has_no_banner(self):
         report = self._report(["brain"] * 6)
         self.assertNotIn("ChatGPT wrote", report)
-        self.assertNotIn("reserve bank", report)
+        self.assertNotIn("re-authored", report)
 
     def test_missing_source_is_treated_as_the_brain(self):
         """Older report rows have no `source` key; they must not read as a

@@ -187,19 +187,18 @@ def main() -> int:
     print(f"[phase-a] contract: {args.channel} wants {target} — "
           f"{reg.mix_sentence(args.channel)}")
 
-    # AUTHORING TAKEOVER. A short day means the Claude Routine did not run
-    # AND the reserve bank could not cover it (the workflow fills from the
-    # bank immediately before this). Rather than exit 0 with nothing to ask
-    # for — which is exactly how a dead authoring night stayed invisible —
-    # put an authoring brief in the bundle and let ChatGPT be the brain.
+    # AUTHORING TAKEOVER. A short day means the Claude Routine did not run.
+    # Rather than exit 0 with nothing to ask for — which is exactly how a
+    # dead authoring night stayed invisible — put an authoring brief in the
+    # bundle and let ChatGPT be the brain.
     authoring_request = None
     if len(packages) < target:
         authoring_request = brief.build_request(
             args.date, args.channel, have_packages=packages,
             target=args.target,
             reason=(f"only {len(packages)} of {target} packages exist "
-                    f"for {args.date}: the Claude authoring Routine did not "
-                    f"run and the reserve bank could not cover the day"))
+                    f"for {args.date}: the Claude authoring Routine did "
+                    f"not run"))
         print(f"[phase-a] TAKEOVER: {len(packages)}/{target} packages — "
               f"asking ChatGPT to author {authoring_request['write']} "
               f"({', '.join(f'{n}x{f}' for f, n in authoring_request['mix'].items() if n)})")

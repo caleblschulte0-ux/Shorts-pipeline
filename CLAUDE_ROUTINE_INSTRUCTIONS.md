@@ -2,12 +2,10 @@
 
 > ## Your job did NOT end after authoring
 >
-> Two things now follow the packages. Both are quick, and skipping them is
-> how the improvement loop quietly dies:
+> One thing now follows the packages. It is quick, and skipping it is how
+> the improvement loop quietly dies:
 >
-> **1. Top up the reserve bank** — step 5b below.
->
-> **2. Answer any pending retro proposals.** The reviewer writes proposals
+> **Answer any pending retro proposals.** The reviewer writes proposals
 > each evening; `retro_decide.yml` normally answers them at 8am Central, but
 > if it did not run, they are still waiting:
 >
@@ -88,9 +86,9 @@ python -m shared.channel_registry                  # every channel
 
 This heading used to state the mix itself. On 2026-07-31 the operator moved
 trending to a graph-led slate and retired `text_card`; the ruling landed in
-`daily.yml`'s prompt and nowhere else, so this file, `package_buffer.py`,
+`daily.yml`'s prompt and nowhere else, so this file, the package validator,
 `authoring_brief.py` and three tables in `exchange/README.md` all went on
-saying something that was no longer true — and the reserve bank kept banking
+saying something that was no longer true — and the takeover kept asking for
 a retired format. **Any number written down twice is a number that will
 disagree with itself.**
 
@@ -218,47 +216,17 @@ write and HOW MANY; those say HOW.
    one**, so a single un-illustratable package no longer poisons a day,
    but it does mean you lose that slot. Fix it here instead.
 
-5b. **Top up the reserve bank — the day you can't run is the day it pays.**
-
-   Everything above depends on a live Claude subscription. If the token is
-   revoked or the subscription lapses, this Routine never fires, the in-CI
-   brain in `daily.yml` also fails, and the day falls to Groq or to
-   re-serving an already-posted slate. The reserve bank is the cover:
-   banked **evergreen** packages that any dead day draws from automatically.
-
-   ```bash
-   python3 scripts/package_reserve.py status
-   ```
-
-   If it prints `LOW` for a format, write **one extra package of that
-   format** — same quality bar, same schema — into
-   `state/package_buffer/inbox/` instead of today's dated folder. One extra
-   per day is enough; it is banked and drawn automatically.
-
-   **Reserve packages must be EVERGREEN.** They may sit for weeks, so they
-   are refused at deposit time if they contain date-anchored language:
-   weekday names, "yesterday", "today", "this morning", "breaking",
-   "just announced", "3 hours ago", or a "March 14"-style date. Write the
-   timeless version of the story — a Reddit revenge story, a "how this
-   actually works" text card, a long-arc chart. Verify before you push:
-
-   ```bash
-   python3 scripts/package_reserve.py deposit \
-     --dir state/package_buffer/inbox --dry-run
-   ```
-
-   Every file must print `OK`. Fix anything it refuses before you push —
-   a refused file sits in the inbox forever and banks nothing.
-
-   Do NOT bank a package you also put in today's slate — the bank refuses
-   any slug that has already been authored for a day, and a package is
-   drawn from the bank exactly once so it can never duplicate an upload.
+5b. **A refused slot is re-authored automatically — do not pre-stock for
+   it.** If a gate holds one of today's videos, `run_trending_daily`
+   discovers a fresh topic and writes a replacement itself (see
+   `docs/FALLBACKS.md` §5). There is no reserve bank to top up; that was
+   retired on 2026-08-05. Your job is six good packages, not seven.
 
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
-   git add state/trending_packages/$(date -u +%Y%m%d)/ state/package_buffer/
+   git add state/trending_packages/$(date -u +%Y%m%d)/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --base main \

@@ -38,7 +38,7 @@ from funnel import media_judge                       # noqa: E402
 from shared import authoring_brief as brief          # noqa: E402
 from shared import channel_registry as reg           # noqa: E402
 from shared import exchange_bundle as xb             # noqa: E402
-from shared import package_buffer as buf             # noqa: E402
+from shared import package_schema as sch             # noqa: E402
 from tests.registry_fixture import build, registry   # noqa: E402
 
 DAY_ONE = "29991201"
@@ -144,7 +144,7 @@ def run(verbose=True) -> dict:                        # noqa: C901
             # were pushed straight to main, skipping the auto-merge gate that
             # runs this script — the gate can only guard what goes through it.
             "revision": reg.revision(),
-            "bank_formats": list(buf.formats()),
+            "schema_formats": list(sch.formats()),
             "brief_formats": sorted(b1["authoring_request"]["formats"]),
             "channels": list(reg.channel_ids()),
         }
@@ -191,10 +191,8 @@ def run(verbose=True) -> dict:                        # noqa: C901
             r.check(s, req2["formats"]["quiz_card"]["media"]
                     ["chatgpt_supplies_images"],
                     "media requirements follow the new format registry")
-            r.check(s, list(buf.formats()) == sorted(NEW_PLAN),
-                    f"reserve bank  -> {list(buf.formats())}")
-            r.check(s, buf.low_water()["reddit_story"] == 5 * buf.LOW_WATER_DAYS,
-                    "bank low-water scaled with the new target")
+            r.check(s, list(sch.formats()) == sorted(NEW_PLAN),
+                    f"package validator -> {list(sch.formats())}")
 
             # validation + promotion
             zombie = {"format": "graph_race", "slug": "zombie-graph",
@@ -205,9 +203,9 @@ def run(verbose=True) -> dict:                        # noqa: C901
             problems = brief.validate_authored(zombie)
             r.check(s, any("retired" in p for p in problems),
                     "promotion refuses the newly-retired format")
-            ok, why = buf.eligible(zombie)
+            ok, why = sch.eligible(zombie)
             r.check(s, not ok and any("retired" in w for w in why),
-                    "the reserve bank refuses it too")
+                    "the package validator refuses it too")
             quiz = {"format": "quiz_card", "slug": "q1", "title": "Q",
                     "questions": ["a"]}
             r.check(s, reg.classify(quiz, "trending") == "quiz_card",
@@ -219,9 +217,9 @@ def run(verbose=True) -> dict:                        # noqa: C901
                     != sorted(b1["contract"]["channels"]),
                     "the channel set itself changed between the two days")
             r.check(s, before["mix"] != reg.target_mix("trending")
-                    and before["bank_formats"] != list(buf.formats())
+                    and before["schema_formats"] != list(sch.formats())
                     and before["brief_formats"] != sorted(req2["formats"]),
-                    "plan, bank and brief all differ from step 1")
+                    "plan, validator and brief all differ from step 1")
 
             # -- 6. day one is untouched ---------------------------------
             s = r.step(6, "Day one's bundle is unchanged and reproducible")

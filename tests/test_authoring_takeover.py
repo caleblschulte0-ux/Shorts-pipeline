@@ -23,7 +23,7 @@ sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 from shared import authoring_brief as brief          # noqa: E402
 from shared import exchange_bundle as xb             # noqa: E402
-from tests.test_package_buffer import (               # noqa: E402
+from tests.test_package_schema import (               # noqa: E402
     graph_pkg, reddit_pkg, text_card_pkg)
 
 import ingest_authored as ing                        # noqa: E402
@@ -257,23 +257,24 @@ class TestIngest(IngestTestCase):
 
 
 class TestGateIsTheSameEverywhere(unittest.TestCase):
-    """The brief, the reserve bank, and the ingest must agree on validity —
+    """The brief, the validator, and the ingest must agree on validity —
     if they drift, we ask for one thing and accept another."""
 
     def test_validate_authored_uses_the_shared_structural_gate(self):
-        from shared import package_buffer as buf
+        from shared import package_schema as buf
         bad = text_card_pkg(slug="xray-card")
         bad["highlights"].append("not in the text")
         self.assertEqual(brief.validate_authored(bad),
                          buf.structural_problems(bad))
 
-    def test_takeover_allows_todays_language_the_bank_refuses(self):
-        """The bank needs evergreen; a takeover slate is FOR today, so
-        'this morning' is correct there and must not be rejected."""
-        from shared import package_buffer as buf
+    def test_takeover_allows_todays_language_the_staleness_gate_refuses(self):
+        """The staleness gate wants language that keeps; a takeover slate is
+        FOR today, so 'this morning' is correct there and promotion must not
+        reject it. Two gates, deliberately different, on purpose."""
+        from shared import package_schema as buf
         pkg = text_card_pkg(slug="breaking-thing")
         pkg["text"] = "It happened this morning.\n\n" + pkg["text"]
-        self.assertFalse(buf.eligible(pkg)[0])          # bank: refused
+        self.assertFalse(buf.eligible(pkg)[0])          # staleness: refused
         self.assertEqual(brief.validate_authored(pkg), [])  # takeover: fine
 
 
@@ -283,8 +284,8 @@ if __name__ == "__main__":
 
 class TestSubscriptionIsFullyDead(unittest.TestCase):
     """The scenario the takeover actually exists for: no Claude Routine, no
-    in-CI brain, an empty reserve bank — and, in the worst case, no Phase A
-    either, so no bundle. ChatGPT is the only thing still running.
+    in-CI brain — and, in the worst case, no Phase A either, so no bundle.
+    ChatGPT is the only thing still running.
 
     Runs the REAL scripts as subprocesses against a scratch date, because
     what matters here is the process exit path, not a mocked function."""

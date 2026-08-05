@@ -104,12 +104,12 @@ python -m shared.channel_registry --markdown # the table docs embed
 
 Change that file and everything inherits: the Routine prompt, Phase A's
 bundle, ChatGPT's authoring brief, media requests, Phase B validation,
-promotion, the reserve bank, and the no-bundle takeover. **No scheduled-task
+promotion, the package validator, and the no-bundle takeover. **No scheduled-task
 prose ever needs editing.** Never write a count or a mix anywhere else —
 `tests/test_no_second_source_of_truth.py` runs in the auto-merge gate and
 fails the PR if a second copy grows back. That test exists because the
 2026-07-31 graph-led ruling landed in one of five places that stated the mix,
-and the reserve bank went on banking a retired format with everything green.
+and the takeover went on asking for a retired format with everything green.
 
 - **A day's bundle FREEZES the registry** into `bundle.json.contract`
   (revision, sha256, `source_commit`, resolved plan per channel, doctrine
@@ -280,10 +280,10 @@ the amount is proportionate, and the use is documented. Never bypass
 DRM/paywalls/rate limits. The funnel pulls from 18 providers; new source
 adapters are tickets M1–M9 in the doctrine doc.
 
-## Fallbacks + the reserve bank (docs/FALLBACKS.md)
+## Fallbacks (docs/FALLBACKS.md)
 
-Every fallback path is traced top-to-bottom in `docs/FALLBACKS.md`. The two
-things worth knowing without opening it:
+Every fallback path is traced top-to-bottom in `docs/FALLBACKS.md`. The
+three things worth knowing without opening it:
 
 - **Authoring is the only Claude-dependent stage.** Media, render, and
   upload have no Claude dependency; `_call_llm` has always preferred
@@ -291,34 +291,40 @@ things worth knowing without opening it:
   CLOSED — no Claude *and* no `GEMINI_API_KEY` means the explainer channel
   publishes nothing (`post_stories.py` refuses `SHOWRUNNER=off` on a
   publish run).
-- **Two lines cover a dead brain, in order.** The **reserve bank** first,
-  then the **ChatGPT whole-pipeline takeover** (`shared/authoring_brief.py` +
-  `scripts/ingest_authored.py`): Phase A normally puts the live registry plan
-  and any `authoring_request` into the bundle. If Phase A itself is missing,
-  the 06:00/07:00 workers read the registry directly; no bundle is the
-  takeover signal, not permission to stop. ChatGPT writes the missing
-  content, supplies/verifies media, and supervises every enabled channel's
-  registered worker through QA and verified upload outcomes. Nothing it
-  authors is trusted — promotion runs the same structural gates as normal
-  production and quarantines failures. `response.json`/`DONE` mean the
-  handoff is ready to render; they do **not** mean production completed.
-  Registry role `production_supervisor` is the durable statement of this
-  whole-pipeline ownership. Trending is authored as packages; Explainer's
-  sourced datasets retain their numbers while ChatGPT repairs words;
-  Curiosity receives queue stock; Third still captures its own real clips,
-  while ChatGPT invokes/monitors that specialized workflow rather than
-  fabricating a clip recipe.
-- **The reserve bank** (`shared/package_buffer.py`) covers a dead brain:
-  banked EVERGREEN packages drawn automatically when a day comes up short.
-  `fill` is a no-op on a normal day, so it runs unconditionally in
-  `exchange_phase_a.yml` — BEFORE the exchange, so bank-drawn packages get
-  media judged and enter the day's manifest like any others. It no longer
-  runs in `daily.yml`: since 2026-08-02 the render workflow is
-  deterministic (`--require-manifest`) and never authors or back-fills —
-  re-authoring at render time hid broken handoffs. Deposit refuses date-anchored
-  language; a package is drawn exactly once (`state/package_buffer/used.json`)
-  so it can never duplicate an upload. The Routine tops it up — step 5b of
-  `CLAUDE_ROUTINE_INSTRUCTIONS.md`.
+- **A dead brain is covered by the ChatGPT whole-pipeline takeover**
+  (`shared/authoring_brief.py` + `scripts/ingest_authored.py`): Phase A
+  normally puts the live registry plan and any `authoring_request` into the
+  bundle. If Phase A itself is missing, the 06:00/07:00 workers read the
+  registry directly; no bundle is the takeover signal, not permission to
+  stop. ChatGPT writes the missing content, supplies/verifies media, and
+  supervises every enabled channel's registered worker through QA and
+  verified upload outcomes. Nothing it authors is trusted — promotion runs
+  the same structural gates as normal production and quarantines failures.
+  `response.json`/`DONE` mean the handoff is ready to render; they do **not**
+  mean production completed. Registry role `production_supervisor` is the
+  durable statement of this whole-pipeline ownership. Trending is authored
+  as packages; Explainer's sourced datasets retain their numbers while
+  ChatGPT repairs words; Curiosity receives queue stock; Third still
+  captures its own real clips, while ChatGPT invokes/monitors that
+  specialized workflow rather than fabricating a clip recipe.
+- **A slot the GATES emptied is RE-AUTHORED, not lost.**
+  `run_trending_daily._backfill` discovers a fresh topic (excluding every
+  posted title), writes it, renders it, and sends it through the identical
+  QA + showrunner path — capped at `MAX_BACKFILL` attempts. It is not and
+  must never become a bypass: `_backfill` mentions the showrunner nowhere,
+  and `tests/test_backfill.py` fails if it ever does. A replacement the gate
+  also refuses stays refused, and a day with nothing fresh to author stays
+  honestly short.
+
+  **There is no reserve bank.** `shared/package_buffer.py` +
+  `scripts/package_reserve.py` were retired 2026-08-05 on the operator's
+  ruling — *"if something doesn't run properly, it goes through and tries
+  again."* A shelf covers only as many failures as somebody remembered to
+  stock it for (ours held two against a low-water mark of twelve) while
+  reading like a safety net in every report. Its structural validator moved
+  to `shared/package_schema.py`, which was never about banking: it is the
+  one "is this package well formed" gate every producer runs through — the
+  Routine, the in-CI brain, and a ChatGPT takeover alike.
 
 ## WHO MAY EDIT THIS PIPELINE — Claude, and only Claude
 

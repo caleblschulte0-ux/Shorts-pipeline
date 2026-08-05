@@ -62,16 +62,13 @@ stale directory it returns nothing and the run falls through to Groq —
 failure the posted logs exist to prevent. Using a stale directory at all now
 logs a loud warning naming what else came up short.
 
-### How much cover the bank really provides
+### What actually carries a dead brain
 
-Be honest about the arithmetic: the Routine banks roughly one evergreen
-package a day while it is healthy, and a full slate costs six. So the
-reserve is **about a one-day buffer**, not a week's. Banking harder would be
-self-defeating — writing extra packages spends the very Claude budget that
-is running out.
-
-That is the point of the ordering: the bank absorbs a one-day miss cleanly,
-and **the ChatGPT takeover is what actually carries a multi-day gap.**
+Nothing on the Claude side. **The ChatGPT takeover (§6) is the whole
+answer** — it authors the missing slate from the live registry, with or
+without a bundle from Phase A. Retry (§5) is a different mechanism for a
+different failure: it refills a slot the GATES emptied, on a day that was
+authored fine.
 
 ## 2. The exchange (Phase A → ChatGPT → Phase B)
 
@@ -83,8 +80,7 @@ The failure mode here is not "Claude died", it's "there was nothing to
 prepare": **a Phase A that finds no packages exits 0**, so a dead authoring
 night is invisible in the Actions tab. Confirm the exchange ran by checking
 for `exchange/bundles/<date>/bundle.json`, never by looking for a green
-checkmark. The reserve fill now runs *before* Phase A precisely so this
-stage has something to work on.
+checkmark.
 
 If ChatGPT no-shows, Policy A holds: Phase B self-fills the gaps with real
 media and the 12:45 UTC backstop cron renders the day anyway.
@@ -120,58 +116,69 @@ load-bearing secret here, not `CLAUDE_CODE_OAUTH_TOKEN`.
 If you ever need to ship with both judges down, that is a deliberate
 operator decision, not a config toggle: it means publishing ungraded video.
 
-## 5. The reserve bank — cover for a dead brain
+## 5. Retry — cover for a slot the gates emptied
 
-`shared/package_buffer.py` + `scripts/package_reserve.py`. A small bank of
-**evergreen** packages, banked while the brain is healthy and drawn
-automatically on a day that comes up empty.
+`run_trending_daily._backfill`. A slot a gate refused is not a lost slot: the
+run authors a REPLACEMENT — discovery, ranking, a new script, a new render —
+and puts it through the identical path.
 
 ```
-Routine authors 6 for today  +  1 extra evergreen -> state/package_buffer/inbox/
-                                                        │
-   exchange_phase_a.yml / daily.yml:  deposit ──────────┘
-                                      fill  ── day short? draw into
-                                                state/trending_packages/<date>/
+6 slots attempted
+  1 shipped, 5 held by the showrunner
+        │
+        └─ _backfill: discover fresh topics (excluding every posted title)
+                      -> run_one() -> render -> technical QA -> vision QA
+                      -> SHOWRUNNER (same gate, same bar)
+                      -> shipped, or held again and the next topic tries
 ```
 
-Two invariants make it safe to run unattended:
+Three properties keep it honest:
 
-- **Evergreen only.** Deposit refuses date-anchored language — weekday
-  names, "yesterday", "breaking", "just announced", "3 hours ago",
-  "March 14". A banked package may sit for weeks; a stale news script is
-  worse than no video.
-- **Drawn exactly once.** Withdrawal deletes the bank file and appends to
-  `state/package_buffer/used.json`, and deposit refuses any slug already
-  authored for a day. A reserve package can never collide with posted-log
-  dedupe.
+- **It is not a bypass.** The replacement goes through `run_one`, the exact
+  function every other video goes through. `_backfill` contains no reference
+  to the showrunner at all, and `tests/test_backfill.py` fails if one grows.
+  A replacement the gate also refuses stays refused.
+- **It cannot duplicate an upload.** Candidate topics are filtered against
+  `posted_titles()` before anything renders.
+- **It is bounded.** `MAX_BACKFILL` (default 4) attempts, so a
+  systematically bad day costs renders, not the job timeout. When discovery
+  has nothing fresh the day stays short and the report says so — it never
+  fabricates a video to hit the number.
 
-`fill` is a **no-op when the day is already at target**, so it never
-displaces work the brain actually produced. It runs unconditionally in both
-`exchange_phase_a.yml` and `daily.yml`.
+A short day after retries is a REAL alarm (`trending_short_after_retries`)
+and a retro signal (`slots.backfilled` / `slots.short` in the brief). High
+backfill with zero shortfall means the safety net is working and the
+AUTHORING is weak — which is the useful thing to know, and was invisible
+while the retro only counted uploads.
 
-```bash
-python scripts/package_reserve.py status          # what's in the bank
-python scripts/package_reserve.py fill --date 20260801 --dry-run
-```
+### There is no reserve bank
 
-The bank starts **empty** and fills forward — it deliberately cannot be
-seeded from past slates, because every one of those already aired. Expect
-roughly a week of Routine runs before it holds a full slate of cover; the
-`status` output prints `LOW` per format until it does, and step 5b of
-`CLAUDE_ROUTINE_INSTRUCTIONS.md` tells the Routine to write one extra
-evergreen package whenever it sees that.
+There used to be: `shared/package_buffer.py` + `scripts/package_reserve.py`,
+a shelf of pre-authored evergreen packages drawn when a day came up short.
+The operator retired it on 2026-08-05 — *"there shouldn't be a reserve bank.
+If something doesn't run properly, it goes through and tries again."*
+
+The reasoning holds up. A shelf covers only as many failures as somebody
+remembered to stock it for; ours held two packages against a low-water mark
+of twelve, so it would have covered one bad slot and then been empty for a
+week — while reading, in every status output, like a safety net that was
+there. Re-authoring has no such ceiling.
+
+Its structural validator survived and moved to `shared/package_schema.py`.
+That was never about banking: it is the answer to "is this package well
+formed", which every producer still needs.
 
 ## 6. The ChatGPT whole-pipeline takeover — the brain of last resort
 
 `shared/authoring_brief.py` + `scripts/ingest_authored.py`. When Phase A
-finds the day still short *after* the reserve fill, it puts an
+finds the day short, it puts an
 `authoring_request` in the same `bundle.json` ChatGPT already reads at 6:00
 AM Central and flips the bundle's `mode` to `"author"`. ChatGPT writes the
 missing packages into its `response.json`; Phase B validates and promotes
 them; the renderer cannot tell the difference.
 
 ```
-09:45 UTC  Phase A   0 packages, bank empty
+09:45 UTC  Phase A   0 packages
                      -> bundle.json  mode:"author", authoring_request{write, mix} <- registry
 11:00 UTC  ChatGPT   reads the brief, writes response.json.authored[], DONE
            Phase B   INGEST: validate -> promote -> quarantine failures
@@ -186,8 +193,8 @@ registry, inventories every enabled channel, and starts the same work without
 waiting for a Claude-authored package or a Python-generated bundle.
 
 **Nothing ChatGPT writes is trusted.** Promotion runs the same structural
-gate the reserve bank and the renderers use
-(`package_buffer.structural_problems`), so the brief, the bank, and the
+gate every other producer is held to
+(`shared/package_schema.py:structural_problems`), so the brief and the
 ingest cannot drift apart — we ask for exactly what we accept. A package
 that fails is written to `exchange/bundles/<date>/authored_report.json` with
 its reasons and does not ship; the rest of the slate is unaffected. Slugs
@@ -201,18 +208,17 @@ comes back is six of one format — the exact regression of 2026-07-30.
 ### Does it survive with nothing on the Claude side running?
 
 The weekly limit takes out the morning Routine AND the in-CI brain at once —
-they are the same subscription — and by day two the reserve bank is drained
-too. Every link that still has to fire, and what it actually runs on:
+they are the same subscription. Every link that still has to fire, and what
+it actually runs on:
 
 | Link | Fires because | Needs Claude? |
 |---|---|---|
 | Phase A | `schedule: 45 9 * * *` — a GitHub cron | no |
-| reserve fill inside Phase A | plain Python | no |
 | the bundle / brief | `shared/authoring_brief.py`, pure data | no |
 | ChatGPT authors | ChatGPT's own scheduled task, a **separate subscription** | no |
 | ChatGPT's push fires Phase B | a user token, not `GITHUB_TOKEN`, so it CAN trigger workflows | no |
 | Phase B (if no DONE) | DST-aware 08:30 Central backstop gate | no |
-| ingest + validate | `package_buffer.structural_problems` | no |
+| ingest + validate | `package_schema.structural_problems` | no |
 | media for the new packages | entity resolver + funnel (Groq/Gemini/keyless lanes) | no |
 | `daily.yml` renders | `workflow_run` on Phase B completing | no |
 | `daily.yml`'s Brain step | — | yes, but it is `continue-on-error` and `exit 0`s on a missing token or a failed npm install, and skips entirely when the day already has packages |
@@ -264,16 +270,17 @@ must carry an explicit terminal failure.
 
 A fallback brain is a recurring Tuesday, not an incident, so it cannot live
 only in an Actions log. Every rendered package carries who wrote it —
-`_authored_by: chatgpt-takeover` or `_reserve` — and `format_report()` turns
-that into a banner at the TOP of `daily_report.md`:
+`_authored_by: chatgpt-takeover` — and `format_report()` turns that into a
+banner at the TOP of `daily_report.md`:
 
 > **ChatGPT wrote 6 of today's 6 packages** — the Claude Routine did not run
 > (weekly limit?).
 
 Top matters: the ntfy push sends only the first ~20 lines to your phone, so
 a banner below the per-post list would never reach you. The same file is
-posted to the tracking issue. A reserve draw adds its own line with the
-top-up command, since the bank needs refilling once Claude is back.
+posted to the tracking issue. A day that had to re-author a refused slot
+adds its own line saying how many, because a high count means the authoring
+needs work — never that the gate does.
 
 A normal day prints no banner at all.
 
@@ -281,7 +288,7 @@ A normal day prints no banner at all.
 
 | Secret / subscription gone | Consequence |
 |---|---|
-| Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. Trending draws from the reserve, then ChatGPT authors the day (§6); only if BOTH miss does Groq write. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
+| Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. ChatGPT authors the day (§6); only if that misses too does Groq write. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
 | `GEMINI_API_KEY` | Showrunner has no fallback judge → explainer publishes nothing if Claude is also down. Media judging gets dumber. |
 | `GROQ_API_KEY` | Last-resort writer gone; ranking degrades. Harmless while packages are authored. |
 | ChatGPT task | Policy A: Phase B self-fills, backstop cron renders. A weaker shot beats no video. |

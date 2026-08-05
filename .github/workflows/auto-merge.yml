@@ -71,8 +71,8 @@ jobs:
           #     queue thresholds. This fails if a second copy of any of that
           #     grows back — a constant, a prompt, a doc table. The 2026-07-31
           #     graph-led ruling landed in ONE of five places that stated the
-          #     mix, and for weeks the reserve bank banked a retired format
-          #     while every check stayed green.
+          #     mix, and for weeks the takeover kept asking for a retired
+          #     format while every check stayed green.
           python3 -m shared.channel_registry --validate || {
             echo "::error::config/channel_registry.json is invalid"; fail=1; }
           python3 -m unittest tests.test_no_second_source_of_truth -q || {
