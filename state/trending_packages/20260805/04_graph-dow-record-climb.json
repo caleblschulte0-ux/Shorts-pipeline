@@ -1,0 +1,16 @@
+{
+  "format": "graph_race",
+  "slug": "graph-dow-record-climb",
+  "title": "The Dow Just Hit 54,000 For The First Time",
+  "hook": "The Dow just broke 54,000.",
+  "y_label": "Index close (points)",
+  "duration": 13,
+  "source": "Sources: Dow Jones Industrial Average and S&P 500 year-end closes 2013-2022 (S&P Dow Jones Indices, widely reported historical data); August 4, 2026 record closes of Dow 54,215.07 and S&P 500 7,737 per CNBC/CNN Business market reporting.",
+  "hashtags": ["dowjones", "sp500", "stockmarket", "wallstreet", "records", "investing", "economy", "finance", "markets", "data", "chart", "didyouknow", "fyp", "shorts"],
+  "years": [2013, 2016, 2018, 2020, 2022, 2026],
+  "series": [
+    {"name": "Dow Jones close", "color": "#50ff80", "values": [16577, 19763, 23327, 30606, 33147, 54215]},
+    {"name": "S&P 500 close", "color": "#ffaa30", "values": [1848, 2239, 2507, 3756, 3839, 7737]}
+  ],
+  "music_vibe": "driving electronic"
+}
