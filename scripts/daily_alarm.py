@@ -325,17 +325,26 @@ def check(date: str, now=None) -> dict:
                       "Promotion should have refused these. If they predate "
                       "the retirement that is expected once, not twice.")
 
-    # ---- 4. the reserve bank still has cover ----------------------------
+    # ---- 4. every slot ended up filled -----------------------------------
+    # Replaces the old reserve-bank-inventory alarm (the bank was retired
+    # 2026-08-05). The question a shelf was answering — "is there cover for a
+    # bad day" — is now answered by whether bad days actually recover, which
+    # is a fact about last night rather than a guess about tomorrow.
     try:
-        from shared import package_buffer as buf
-        low = buf.low_formats()
-        if low:
-            alarm("reserve_bank_low", "warning",
-                  f"reserve bank is low on {', '.join(low)}.",
-                  "A dead-Claude morning is covered by the bank first. "
-                  "Top up: python scripts/package_reserve.py deposit ...")
+        rows = json.loads((ROOT / "daily_report.json").read_text())
+        if isinstance(rows, list) and rows:
+            shipped = sum(1 for r in rows if r.get("ok"))
+            want = int(reg.channel("trending").get("target_count") or 0)
+            retried = sum(1 for r in rows if r.get("backfill"))
+            if want and shipped < want:
+                alarm("trending_short_after_retries", "warning",
+                      f"trending shipped {shipped}/{want}; {retried} "
+                      f"re-authored replacement(s) also failed to fill it.",
+                      "Read daily_report.json for each hold reason. The gate "
+                      "being right is not the bug — the authoring feeding it "
+                      "is. NEVER weaken the gate to close this alarm.")
     except Exception as exc:                             # noqa: BLE001
-        notes.append(f"reserve bank not checked: {exc}")
+        notes.append(f"slot fill not checked: {exc}")
 
     ok = not any(a["severity"] == "critical" for a in alarms)
     return {"date": date, "ok": ok, "alarms": alarms, "notes": notes,

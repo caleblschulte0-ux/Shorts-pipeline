@@ -2,12 +2,11 @@
 
 The chain normally runs: Claude Routine authors 6 packages -> Phase A judges
 the media -> ChatGPT fills gaps and punches up scripts -> Phase B -> render.
-Every one of those first steps needs a live Claude subscription. If it lapses,
-the Routine never fires, `daily.yml`'s in-CI brain step also fails, and the
-reserve bank (`shared/package_buffer.py`) covers the day only while it has
-stock.
+Every one of those first steps needs a live Claude subscription. If it
+lapses, the Routine never fires and `daily.yml`'s in-CI brain step fails too,
+so the day has no slate at all.
 
-This module is the next line: when Phase A finds the day still short, it
+This module is the answer: when Phase A finds the day short, it
 writes an AUTHORING REQUEST into the same `bundle.json` ChatGPT already reads
 at 6:00 AM Central. ChatGPT sees `mode: "author"`, writes the missing
 packages into its `response.json`, and Phase B validates and promotes them
@@ -36,7 +35,7 @@ if str(ROOT) not in sys.path:
 
 from shared import channel_registry as _reg      # noqa: E402
 from shared import levity as _levity             # noqa: E402
-from shared import package_buffer as _buf        # noqa: E402
+from shared import package_schema as _sch        # noqa: E402
 
 
 def _levity_moves() -> list:
@@ -49,7 +48,7 @@ def _levity_never() -> list:
 SCHEMA = "chatgpt-authoring-request/v1"
 
 # THE SLATE IS NOT DECLARED HERE. `SLATE_MIX` used to be a copy of a constant
-# in package_buffer, which was itself a copy of a heading in
+# in the package validator, which was itself a copy of a heading in
 # CLAUDE_ROUTINE_INSTRUCTIONS.md — three copies of one ruling, and when the
 # operator changed it only a fourth place (daily.yml's prompt) was updated.
 # The takeover then kept asking ChatGPT for a retired format.
@@ -293,8 +292,7 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
         "schema": SCHEMA,
         "date": str(date),
         "channel": channel,
-        "reason": reason or ("the Claude authoring Routine did not run and "
-                             "the reserve bank could not cover the day"),
+        "reason": reason or "the Claude authoring Routine did not run",
         "authored_already": len(have_packages),
         "target": int(target) if target is not None else registry_target,
         "registry_target": registry_target,
@@ -379,12 +377,12 @@ def validate_authored(pkg: dict, *, known_titles: set[str] | None = None,
                       channel: str = "trending") -> list[str]:
     """Problems that disqualify a ChatGPT-authored package from promotion.
 
-    Deliberately the SAME structural gate the reserve bank uses, so the
-    brief, the bank, and the renderer all agree on what a valid package is.
-    The evergreen/staleness gate is NOT applied — a takeover slate is for
-    today, so "this morning" is correct language there and only wrong in
-    the bank."""
-    problems = _buf.structural_problems(pkg)
+    Deliberately the SAME structural gate (`shared/package_schema.py`) every
+    other producer is held to, so the brief, the validator and the renderer
+    all agree on what a valid package is. The staleness gate is NOT applied
+    here — a takeover slate renders the same day, so "this morning" is
+    correct language in it."""
+    problems = _sch.structural_problems(pkg)
     # THE RETIREMENT GATE. A retired format must not reach a slate no matter
     # who wrote it — a remembered instruction, a README example, or an old
     # constant. Structural validity is not the question; authorisation is.

@@ -84,8 +84,8 @@ def build_bundle(date: str, packages: list[dict],
 
     `authoring_request` is the AUTHORING TAKEOVER brief (see
     `shared/authoring_brief.py`): present only when the day came up short of
-    packages, which means the Claude Routine did not run and the reserve bank
-    could not cover it. When present the bundle's `mode` flips to `"author"`
+    packages, which means the Claude Routine did not run. When present the
+    bundle's `mode` flips to `"author"`
     and ChatGPT writes the missing packages itself. Both jobs can be live at
     once — 2 authored packages still want their media judged and punched up
     while the other 4 get written from scratch."""
@@ -371,8 +371,8 @@ def build_bundle(date: str, packages: list[dict],
         if authoring_request:
             job_zero = (
                 "0. AUTHOR THE DAY — READ `authoring_request` FIRST. The "
-                "channel's own writing brain did not run today and the reserve "
-                "bank could not cover it, so there is no slate. You are the "
+                "channel's own writing brain did not run today, so there is "
+                "no slate. You are the "
                 "brain: write the missing packages per the spec in "
                 "`authoring_request.formats` and return them in this "
                 "response's `authored` array. Without this the channel posts "

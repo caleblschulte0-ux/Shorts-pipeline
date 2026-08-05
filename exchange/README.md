@@ -302,9 +302,8 @@ the reply that would have taught you why.
 
 `bundle.json` carries a top-level `mode`. Normally it is `"punch_up"` and
 your job is media + script editing. When it is **`"author"`**, the channel's
-own writing brain (a Claude Routine) did not run and the reserve bank could
-not cover the day. **There is no slate. Without you the channel posts
-nothing.**
+own writing brain (a Claude Routine) did not run. **There is no slate.
+Without you the channel posts nothing.**
 
 ### On a takeover day you own the WHOLE day — words AND pictures
 

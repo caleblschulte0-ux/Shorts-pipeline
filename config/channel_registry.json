@@ -1,6 +1,6 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 4,
+  "revision": 5,
   "revision_note": "Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
@@ -10,7 +10,8 @@
     "",
     "Change it and everything inherits: the Claude Routine prompt, Phase A's",
     "bundle, ChatGPT's authoring brief, media requests, Phase B validation,",
-    "promotion, the reserve bank, and the no-bundle takeover. No scheduled-task",
+    "promotion, the package validator, and the no-bundle takeover. No",
+    "scheduled-task",
     "prose needs editing, ever.",
     "",
     "What does NOT belong here: deep editorial doctrine (voice, topic banks,",
@@ -183,11 +184,10 @@
       "paths": {
         "packages": "state/trending_packages/<date>",
         "posted_log": "state/posted_log.json",
-        "reserve_bank": "state/package_buffer",
         "promotion_target": "state/trending_packages/<date>",
         "quarantine": "exchange/bundles/<date>/authored_report.json"
       },
-      "package_schema": "shared/package_buffer.py:structural_problems",
+      "package_schema": "shared/package_schema.py:structural_problems",
       "response_schema": "chatgpt-exchange-response/v1",
       "doctrine": [
         "CLAUDE_ROUTINE_INSTRUCTIONS.md",

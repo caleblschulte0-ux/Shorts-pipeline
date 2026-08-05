@@ -312,6 +312,42 @@ def levity_coverage() -> dict:
     }
 
 
+def _slot_health() -> dict:
+    """Did the last trending run fill every slot, and at what cost?
+
+    `daily_report.json` is one entry per attempted slot. A slot that a gate
+    refused is re-authored (`run_trending_daily._backfill`), and the
+    replacement carries `backfill: true`. So:
+
+      shipped     slots that produced an upload
+      held        slots a gate refused (correctly — the gate is sovereign)
+      backfilled  replacements attempted after a refusal
+      short       slots that ended with nothing, after every retry
+
+    `short > 0` is the one that matters. `backfilled` high with `short` 0
+    means the safety net is doing its job and the AUTHORING is weak — that
+    is worth a proposal, and it was invisible while the retro only counted
+    what got uploaded.
+    """
+    rows = _load(ROOT / "daily_report.json", [])
+    if not isinstance(rows, list) or not rows:
+        return {"note": "no daily_report.json — the trending run has not "
+                        "reported since this clone was made"}
+    shipped = [r for r in rows if r.get("ok")]
+    backfilled = [r for r in rows if r.get("backfill")]
+    held = [r for r in rows if not r.get("ok")
+            and (r.get("blocked") or r.get("quarantined"))]
+    try:
+        from shared import channel_registry as _reg
+        target = int(_reg.channel("trending").get("target_count") or 0)
+    except Exception:                                # noqa: BLE001
+        target = 0
+    return {"target": target, "shipped": len(shipped), "held": len(held),
+            "backfilled": len(backfilled),
+            "short": max(0, target - len(shipped)) if target else None,
+            "held_reasons": [str(r.get("error"))[:120] for r in held][:6]}
+
+
 def pipeline_health(today: str) -> dict:
     """Did the machine work, separately from whether the videos landed?"""
     out: dict = {}
@@ -333,12 +369,13 @@ def pipeline_health(today: str) -> dict:
         out["chatgpt_takeover"] = {"promoted": len(a.get("promoted") or []),
                                    "rejected": a.get("rejected") or []}
 
-    try:
-        from shared import package_buffer as buf
-        out["reserve_bank"] = {f: len(v) for f, v in buf.inventory().items()}
-        out["reserve_bank"]["low_on"] = buf.low_formats()
-    except Exception as exc:                         # noqa: BLE001
-        out["reserve_bank"] = {"error": str(exc)[:80]}
+    # SLOT HEALTH. This used to report reserve-bank inventory; the bank was
+    # retired 2026-08-05 in favour of re-authoring a refused slot, so the
+    # question is no longer "how much stock is on the shelf" but "did every
+    # slot end up filled, and how hard did it have to work". A day that
+    # ships six only because it backfilled four is a day whose AUTHORING is
+    # broken, and that is invisible if you only count uploads.
+    out["slots"] = _slot_health()
 
     verdicts = STATE / "showrunner_verdicts.jsonl"
     if verdicts.exists():
@@ -559,9 +596,14 @@ def executive_summary(brief: dict) -> str:
         broken.append("the ChatGPT exchange did not complete")
     if (ex_.get("media") or {}).get("unfilled"):
         broken.append(f"{ex_['media']['unfilled']} shot(s) shipped with no media")
-    bank = h.get("reserve_bank") or {}
-    if bank.get("low_on"):
-        broken.append(f"reserve bank low on {', '.join(bank['low_on'])}")
+    slots = h.get("slots") or {}
+    if slots.get("short"):
+        broken.append(f"{slots['short']} trending slot(s) ended with no "
+                      f"video, after {slots.get('backfilled', 0)} retry(ies)")
+    elif slots.get("backfilled"):
+        broken.append(f"{slots['backfilled']} slot(s) only filled because a "
+                      f"refused video was re-authored — the authoring is "
+                      f"producing videos the gate won't pass")
     L += ["## Health", ""]
     L += [f"- {b}" for b in broken] or ["- nothing broken"]
     L.append("")
@@ -684,7 +726,7 @@ def to_markdown(brief: dict) -> str:
     L += ["## Pipeline health", "",
           f"- consecutive failures: {h.get('consecutive_failures')}",
           f"- exchange: {json.dumps(h.get('exchange'))[:200]}",
-          f"- reserve bank: {json.dumps(h.get('reserve_bank'))[:160]}",
+          f"- slots: {json.dumps(h.get('slots'))[:200]}",
           f"- showrunner: {json.dumps(h.get('showrunner'))[:160]}", "",
           "## Repo", "",
           f"- HEAD {brief['repo']['head']}, "

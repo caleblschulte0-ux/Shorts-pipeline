@@ -8,7 +8,7 @@ Two jobs, deliberately separated:
     the change.
   * **The propagation.** Everything else changes ONLY the registry — never a
     line of code — and asserts that Phase A, the authoring shortfall, the
-    reserve bank, validation, promotion and the takeover all move with it.
+    package validation, promotion and the takeover all move with it.
     If any of these fails, a second source of truth has grown back.
 
     python -m unittest tests.test_channel_registry -v
@@ -28,10 +28,10 @@ sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 from shared import authoring_brief as brief          # noqa: E402
 from shared import channel_registry as reg           # noqa: E402
-from shared import package_buffer as buf             # noqa: E402
+from shared import package_schema as buf             # noqa: E402
 from tests.registry_fixture import (broken_registry,  # noqa: E402
                                     build, registry)
-from tests.test_package_buffer import (               # noqa: E402
+from tests.test_package_schema import (               # noqa: E402
     graph_pkg, reddit_pkg, text_card_pkg)
 
 
@@ -120,12 +120,10 @@ class TestArbitraryMixPropagates(unittest.TestCase):
             self.assertEqual(brief.missing_mix(have),
                              {"graph_race": 0, "reddit_story": 4})
 
-    def test_the_reserve_bank_follows_the_same_mix(self):
+    def test_the_package_validator_follows_the_same_mix(self):
         with registry(self.ARBITRARY):
             self.assertEqual(buf.target_mix(), self.ARBITRARY)
             self.assertEqual(set(buf.formats()), set(self.ARBITRARY))
-            self.assertEqual(buf.low_water()["reddit_story"],
-                             5 * buf.LOW_WATER_DAYS)
 
     def test_phase_a_bundles_the_new_plan(self):
         with registry(self.ARBITRARY):

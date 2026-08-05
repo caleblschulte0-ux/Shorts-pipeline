@@ -1,0 +1,129 @@
+name: Doctor (evidence pack + report intake)
+
+# THE DOCTOR'S PLUMBING — and nothing else.
+#
+# ChatGPT reads this repo line by line and files findings; Claude rules on
+# them and builds the ones it accepts. This workflow does the two mechanical
+# jobs in between, and it deliberately CANNOT change any code:
+#
+#   1. every morning, write `doctor/evidence.json` — runtime truth for the
+#      reviewer to read alongside the source, INCLUDING every settled ruling,
+#      so it never re-files something already decided;
+#   2. when ChatGPT pushes a report, validate it and fold the accepted
+#      findings into the standing backlog.
+#
+# There is no apply path here by design. See doctor/README.md and
+# docs/DOCTOR.md. `tests/test_doctor.py` fails if this workflow ever grows
+# one.
+
+on:
+  schedule:
+    # 05:10 UTC — after retro (23:15) and the alarm (01:15) have judged the
+    # finished day, and comfortably before any local-morning task (it is
+    # ~00:10 Central in summer, ~23:10 the previous evening in winter — both
+    # sides of the DST line land before a morning wake-up, which is why this
+    # one cron is safe where the Phase B backstop needed two).
+    #
+    # THIS CRON DOES NOT WAKE ANYONE. The two agents are woken by SCHEDULED
+    # TASKS INSIDE THEIR OWN APPS — one in ChatGPT, one in Claude — not by
+    # GitHub. Adding a cron here to "start" the doctor would do nothing.
+    # GitHub's only jobs are the two things neither app can do for itself:
+    # generate the evidence pack, and validate a report once it lands.
+    - cron: '10 5 * * *'
+  push:
+    branches: [main]
+    paths:
+      # A landed report -> validate + ingest it.
+      - 'doctor/reports/**'
+      # A landed RULING -> regenerate the pack immediately, so the reviewer's
+      # next read already knows what was just settled. Without this the pack
+      # is only as fresh as the last 05:10 run, and ChatGPT would re-file
+      # something ruled on during the day. (Harmless — `validate` reads
+      # verdicts.json live, so a stale pack costs a rejection, not a bad
+      # decision — but a rejection it could have avoided is still noise.)
+      - 'doctor/verdicts.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # the evidence pack and the backlog are run output
+  issues: write     # the "you have findings to rule on" nudge
+
+env:
+  PYTHON_VERSION: '3.11'
+  REPORT_ISSUE_NUMBER: ${{ vars.REPORT_ISSUE_NUMBER || '1' }}
+
+concurrency:
+  group: doctor
+  cancel-in-progress: false
+
+jobs:
+  doctor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # fetch-depth 2 so a push can be diffed against its parent — a
+          # grafted shallow clone lists the whole tree as added, which is
+          # how the 2026-08-01 wrong-date bug happened.
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      # ---- intake: a report that just landed --------------------------
+      - name: Find a pushed report
+        id: find
+        run: |
+          REPORT=$(git diff-tree --no-commit-id --name-only -r HEAD \
+            | grep -E '^doctor/reports/[0-9]+\.json$' | sort -r | head -1)
+          echo "report=$REPORT" >> "$GITHUB_OUTPUT"
+          [ -n "$REPORT" ] && echo "found $REPORT" || echo "no report in this push"
+
+      - name: Validate and ingest it
+        id: ingest
+        if: steps.find.outputs.report != ''
+        run: |
+          set +e
+          python scripts/doctor.py ingest "${{ steps.find.outputs.report }}" \
+            | tee "$RUNNER_TEMP/ingest.txt"
+          echo "status=$?" >> "$GITHUB_OUTPUT"
+          # A rejected finding is the gate working (a re-file of something
+          # settled, a bar-lowering proposal, an imaginary file). It is
+          # reported, not treated as an infrastructure failure.
+          {
+            echo "## Doctor — report intake"
+            echo
+            sed 's/^/    /' "$RUNNER_TEMP/ingest.txt"
+            echo
+            echo "Rule on what is waiting:"
+            echo '```'
+            echo 'python scripts/doctor.py backlog --state new'
+            echo 'python scripts/doctor.py rule <sig> doing|not_doing|later --because "..."'
+            echo '```'
+          } > "$RUNNER_TEMP/comment.md"
+
+      # ---- the daily pack ---------------------------------------------
+      - name: Write the evidence pack
+        run: |
+          python scripts/doctor.py evidence
+          echo "--- what is waiting on a ruling ---"
+          python scripts/doctor.py backlog --state new || true
+
+      - name: Persist run output
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "doctor: evidence pack + backlog $(date -u +%Y-%m-%d)" \
+            doctor/ || echo "::warning::doctor state commit failed"
+
+      - name: Nudge the tracking issue when findings are waiting
+        if: steps.find.outputs.report != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue comment "$REPORT_ISSUE_NUMBER" \
+            --repo "${{ github.repository }}" \
+            --body-file "$RUNNER_TEMP/comment.md" \
+            || echo "::warning::could not comment on issue $REPORT_ISSUE_NUMBER"
