@@ -135,6 +135,48 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     return m
 
 
+# ADVISORY, NOT ACTIONABLE. `unanchored_media` is deliberately absent from any
+# automatic repair, and this is not an oversight.
+#
+# 2026-08-02: the metric said 8 of 15 shots were unanchored. The obvious fix —
+# derive the query from the beat's own narration, which does contain the nouns —
+# took it to 0/15 and would have shipped a worse film:
+#
+#     'wind blowing grass field'        -> 'stay home moves constantly'
+#     'two people talking outdoors'     -> 'every argument anyone ever'
+#     'child running outdoors sunlight' -> 'means next person breathe'
+#
+# First-N-content-words grabs verbs and abstractions; those are not stock
+# searches. A perfect score, no footage, every beat degraded to a card.
+#
+# Picking a searchable SUBJECT out of prose needs language understanding, not
+# word counting. The pipeline has that in the authoring brain, which runs before
+# the planner. So this number is REPORTED for an author to act on and is never
+# wired to a transformation. A measure that can be satisfied without improving
+# the film must not be given a lever.
+UNANCHORED_IS_ADVISORY = True
+
+
+def unanchored_beats(shots: list[dict]) -> list[dict]:
+    """The shots whose query does not depict their own line — for an AUTHOR.
+
+    Returns what a person (or the authoring brain) needs to rewrite the beat:
+    the query that was used and the line it played under. No suggestion is
+    offered, because the one this module tried to generate was word salad.
+    """
+    out = []
+    try:
+        from data_learning import textmatch
+    except Exception:  # noqa: BLE001
+        return out
+    for s in shots or []:
+        q = s.get("motion_query") or (s.get("image") or {}).get("query")
+        line = s.get("line") or s.get("line_hint") or ""
+        if q and str(line).strip() and not textmatch.shares(q, line):
+            out.append({"query": str(q), "line": str(line)[:120]})
+    return out
+
+
 # What "better" means, per metric. This is the only place the direction of
 # improvement is written down, so a future change cannot quietly redefine it.
 BETTER = {

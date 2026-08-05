@@ -155,6 +155,48 @@ def test_trend_refuses_to_judge_too_little_data():
     print("ok  trend refuses to call a direction without two full windows")
 
 
+def test_unanchored_is_reported_not_repaired():
+    """A number that can be satisfied without improving the film gets no lever.
+
+    Deriving queries from narration took unanchored 8/15 -> 0/15 and produced
+    'every argument anyone ever' and 'means next person breathe' — unsearchable
+    verb salad that would degrade every beat to a card. The metric is advisory;
+    `unanchored_beats` hands an author the evidence and suggests nothing.
+    """
+    assert fm.UNANCHORED_IS_ADVISORY is True
+    assert "unanchored_media" not in fm.__dict__.get("REPAIRABLE", {}), \
+        "unanchored must never be wired to an automatic transformation"
+    rows = fm.unanchored_beats([
+        {"kind": "depict", "motion_query": "two people talking outdoors",
+         "line": "Every argument anyone has ever had ended with them exhaling."},
+        {"kind": "depict", "motion_query": "glacier ice melting",
+         "line": "The glacier is melting."},
+    ])
+    assert len(rows) == 1, rows
+    assert rows[0]["query"] == "two people talking outdoors", rows
+    assert "argument" in rows[0]["line"], rows
+    assert "suggestion" not in rows[0] and "fix" not in rows[0], (
+        "the module must not propose a replacement query — the one it tried "
+        "was word salad")
+    print("ok  unanchored beats are reported to an author, never auto-rewritten")
+
+
+def test_the_planner_does_not_rewrite_authored_queries():
+    """The reverted change, pinned so it is not re-attempted."""
+    import json
+    from pathlib import Path as _P
+    from data_learning import planner
+    beats = [{"job": "DEVELOP", "mode": "footage",
+              "narration": "Every argument anyone has ever had ended with them exhaling.",
+              "understand": "a real person mid-conversation",
+              "image": {"query": "two people talking outdoors"}}]
+    got = planner._motion_subject(beats[0], beats[0]["image"])
+    assert got == "two people talking outdoors", (
+        f"the planner rewrote an authored query to {got!r} — that path was "
+        "reverted on 2026-08-02 because it produced unsearchable verb salad")
+    print("ok  the planner keeps the authored query instead of guessing one")
+
+
 if __name__ == "__main__":
     test_the_regression_is_visible_without_a_render()
     test_the_guard_refuses_it_outright()
@@ -165,4 +207,6 @@ if __name__ == "__main__":
     test_an_empty_plan_does_not_explode()
     test_the_ledger_round_trips_and_trends()
     test_trend_refuses_to_judge_too_little_data()
+    test_unanchored_is_reported_not_repaired()
+    test_the_planner_does_not_rewrite_authored_queries()
     print("all film-metrics checks pass")

@@ -497,15 +497,45 @@ def _chunk_footage(foot: dict, secs: float, maxu: float,
 
 
 def _motion_subject(beat: dict, image: dict) -> str:
-    """What to search MOVING footage of, for a depiction beat that declared a
-    still. Prefer an explicit motion query, then the image's own search query,
-    then the beat's SUBJECT (the schema's 'what this beat is about') — never the
-    narration prose, which is a sentence, not a search."""
+    """What to search MOVING footage of, for a depiction beat.
+
+    Prefer an explicit motion query, then the image's own search query, then the
+    beat's SUBJECT. But an authored query is only preferred while it actually
+    DEPICTS THIS BEAT — see `_anchored_or_narration`.
+    """
     for q in (image.get("motion_query"), beat.get("motion_query"),
               image.get("query"), beat.get("subject")):
         if q:
             return str(q)
     return ""
+
+
+# ATTEMPTED AND REVERTED, 2026-08-02 — the metric got gamed by its own fix.
+#
+# shared/film_metrics.py reported 8 of 15 media shots "unanchored": their query
+# shared no content word with the line they play under. That is real, and it is
+# what five blind judges kept describing as "shots you could shuffle with zero
+# consequence". The obvious fix was to derive the query from the beat's own
+# narration, which does contain the nouns.
+#
+# It took the metric from 8/15 to 0/15 and would have made the film WORSE:
+#
+#     'wind blowing grass field'       -> 'stay home moves constantly'
+#     'two people talking outdoors'    -> 'every argument anyone ever'
+#     'child running outdoors sunlight'-> 'means next person breathe'
+#
+# First-N-content-words grabs verbs and abstractions. Those are not stock
+# searches; they return nothing, and the beat degrades to a card. A perfect
+# score on the measure, a worse video — which is the exact failure mode
+# scripts/review_proposals.py refuses when a retro proposes it, and it is no
+# more acceptable when the pipeline does it to itself.
+#
+# The honest conclusion: picking a searchable SUBJECT out of prose needs
+# language understanding, not word frequency. The pipeline has that — the
+# authoring brain — and it runs before the planner. So the metric REPORTS
+# unanchored beats for an author to fix; it does not rewrite them. A number
+# that can be satisfied without improving the film must never be wired to an
+# automatic action.
 
 
 def _motion_eligible(beat: dict, image: dict) -> str | None:

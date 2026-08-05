@@ -26,12 +26,25 @@ which while who will with would you your""".split())
 
 
 def words(s) -> set[str]:
-    """Content words, prefix-stemmed to 5 chars. Stopwords and 1-2 letter
-    tokens dropped — they anchor nothing."""
+    """Content words, plural-stripped then prefix-stemmed to 5 chars.
+
+    The plural strip is not cosmetic. Without it "tree" stems to "tree" and
+    "trees" to "trees", so a shot querying `old tree forest sunlight` under the
+    line "it has been through the leaves of trees" was counted as depicting
+    something else entirely — a false positive in the one metric that decides
+    whether a shot is about its own beat. A measure that cries wolf gets
+    ignored, which is worse than not having it.
+
+    Only a trailing "s" is removed, and only from words long enough that the
+    stem still carries meaning. Nothing cleverer: this runs offline in CI with
+    no model, and every rule added here is a rule that can misfire.
+    """
     out = set()
     for w in re.findall(r"[a-z]+", str(s).lower()):
         if len(w) < 3 or w in STOP:
             continue
+        if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+            w = w[:-1]
         out.add(w[:5] if len(w) > 5 else w)
     return out
 
