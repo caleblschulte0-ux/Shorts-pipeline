@@ -34,8 +34,14 @@ permissions:
 
 concurrency:
   # Separate from the daily publish lane so a preview never blocks a real
-  # run (and vice-versa). Newer preview pushes cancel older in-flight ones.
-  group: preview-render-${{ github.ref }}
+  # run (and vice-versa). Newer preview PUSHES still cancel older in-flight
+  # ones — that was and remains the intent. But a manually dispatched render
+  # is a deliberate act that a later push must not kill: see the note in
+  # curiosity-ci.yml, where exactly that cancelled a 4-hour canary five
+  # minutes in. A dispatch groups by its own run_id and stands alone.
+  group: >-
+    preview-render-${{ github.event_name == 'workflow_dispatch'
+      && github.run_id || github.ref }}
   cancel-in-progress: true
 
 env:

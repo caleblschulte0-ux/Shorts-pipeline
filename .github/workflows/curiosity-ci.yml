@@ -36,8 +36,23 @@ on:
         required: false
         default: 'money-goes'
 
+# A PUSH MUST NOT KILL A RUNNING CANARY.
+#
+# This was `group: curiosity-ci-${{ github.ref }}` with cancel-in-progress, so
+# a manually dispatched 4-hour canary render and a 5-minute push-triggered gate
+# run landed in the SAME group. On 2026-08-05 a canary of shared-air was
+# cancelled 5m17s in, before the render job even started, by a push of an
+# unrelated commit to the same branch. It cost the run and nothing in the
+# Actions tab explains why — the run just reads "cancelled".
+#
+# Cancelling a superseded gate run is right: it is fast and only the newest
+# commit matters. Cancelling a deliberate expensive render is never right. So
+# a dispatch groups by its own run_id, which is unique, and therefore never
+# collides with anything.
 concurrency:
-  group: curiosity-ci-${{ github.ref }}
+  group: >-
+    curiosity-ci-${{ github.event_name == 'workflow_dispatch'
+      && github.run_id || github.ref }}
   cancel-in-progress: true
 
 
@@ -147,6 +162,7 @@ jobs:
           python scripts/test_quality_sprint.py
           python scripts/test_cut_rhythm.py
           python scripts/test_camera_grammar.py
+          python scripts/test_workflow_concurrency.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 

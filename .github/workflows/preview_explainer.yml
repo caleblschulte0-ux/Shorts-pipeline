@@ -34,8 +34,16 @@ on:
 permissions:
   contents: write   # push the rendered mp4 to the preview-renders branch
 
+# Same fix as curiosity-ci (2026-08-05): this renders for up to 120 minutes and
+# is fired BOTH by workflow_dispatch and by a trigger-file push on the same
+# branch. Grouped by ref with cancel-in-progress, a deliberately dispatched
+# preview was killed by any later push — including the trigger bump meant to
+# start a different one. A dispatch groups by its own run_id and is never
+# cancelled; a trigger-file push still supersedes an older push.
 concurrency:
-  group: preview-explainer-${{ github.ref }}
+  group: >-
+    preview-explainer-${{ github.event_name == 'workflow_dispatch'
+      && github.run_id || github.ref }}
   cancel-in-progress: true
 
 env:
