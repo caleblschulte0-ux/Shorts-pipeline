@@ -38,17 +38,32 @@
     {
       "phrase": "drywall screws come in bulk boxes",
       "query": "box of screws hardware",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "drywall screws",
+      "pin_context": "hardware store building materials",
+      "news_query": "drywall screws",
+      "news_angle": "The customer insisted on finding drywall screws in the hardware store.",
+      "image_url": "https://live.staticflickr.com/3742/9419150700_26acdf146d_b.jpg"
     },
     {
       "phrase": "pool noodles",
       "query": "pool noodles floats display",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "pin_query": "pool noodles",
+      "pin_context": "swimming pool toys",
+      "news_query": "pool noodles",
+      "news_angle": "The narrator pointed past the pool noodles to direct the customer to the drywall screws.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Noodle_%282780523440%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "arguing with a cashier",
       "query": "cashier checkout counter",
-      "mascot_pose": "laugh"
+      "mascot_pose": "laugh",
+      "pin_query": "cashier",
+      "pin_context": "store employee checkout",
+      "news_query": "cashier",
+      "news_angle": "The customer argued with a cashier about being sent to buy pool floats for a bathroom renovation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "pulled the aisle camera",
@@ -58,7 +73,12 @@
     {
       "phrase": "stopped wearing orange there entirely",
       "query": "orange work vest hanging",
-      "mascot_pose": "dismiss"
+      "mascot_pose": "dismiss",
+      "pin_query": "orange",
+      "pin_context": "clothing color",
+      "news_query": "orange",
+      "news_angle": "The narrator wore a lot of orange, which led customers to mistake them for a store employee.",
+      "image_url": "https://live.staticflickr.com/181/484275757_91cdc2eb39.jpg"
     }
   ],
   "punches": [

@@ -375,14 +375,540 @@
   "response_path": "exchange/bundles/20260805/response.json",
   "done_marker": "exchange/bundles/20260805/DONE",
   "counts": {
-    "packages": 0,
-    "requests": 0,
+    "packages": 6,
+    "requests": 12,
     "animations": 0,
-    "to_author": 6,
-    "channels_needing_a_brain": 2
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
-  "packages": [],
-  "requests": [],
+  "packages": [
+    {
+      "slug": "graph-billion-dollar-disasters",
+      "title": "US Disaster Costs Are Exploding",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-bald-eagle-comeback",
+      "title": "Bald Eagles Went From 417 Pairs To 71,000",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-cocoa-price-spike",
+      "title": "Why Chocolate Got So Expensive (Then Didn't)",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-dow-record-climb",
+      "title": "The Dow Just Hit 54,000 For The First Time",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "title": "The Customer Insisted I Worked There. Fine.",
+      "script": "Fourth time that hour, a stranger grabbed my arm demanding to know where the drywall screws were. I don't work at this hardware store, I just wear a lot of orange. She cut off my \"I don't work here\" with \"don't play games, I need help now.\" Fine. I walked her confidently to aisle twelve, pointed past the pool noodles, and told her drywall screws come in bulk boxes near the register, technically true since I'd seen a promo bin there that morning. She marched off triumphant. Ten minutes later an actual employee found her arguing with a cashier about being sent to buy pool floats for a bathroom renovation. Store security pulled the aisle camera and the whole break room had a good laugh at customer service's expense. I finished my paint run in total peace. Nobody has grabbed my arm at that store since. I stopped wearing orange there entirely.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "grabbed my arm demanding",
+          "query": "person grabbing arm store aisle",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "I don't work at this hardware store",
+          "query": "hardware store aisle shelves",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "don't play games, I need help now",
+          "query": "frustrated customer talking",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "drywall screws come in bulk boxes",
+          "query": "box of screws hardware",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "pool noodles",
+          "query": "pool noodles floats display",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "arguing with a cashier",
+          "query": "cashier checkout counter",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "pulled the aisle camera",
+          "query": "security camera footage screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "stopped wearing orange there entirely",
+          "query": "orange work vest hanging",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 4,
+        "weak": 0,
+        "missing": 4,
+        "unknown": 0
+      },
+      "strong_fraction": 0.5,
+      "requested": [
+        "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
+        "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
+        "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
+        "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277"
+      ]
+    },
+    {
+      "slug": "reddit-driveway-parking-trash-cans",
+      "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+      "script": "He parked across our shared driveway every morning, blocking my car in for \"just five minutes\" that stretched to forty. I asked nicely three times. He shrugged and said the city never tickets there anyway. So I started paying attention to exactly when parking enforcement swept our block, turns out it's eight fourteen a.m. sharp, right when his car was always sitting there. I didn't call anyone. I didn't need to. I just stopped moving my trash cans out of the second spot at eight like I used to, so the officer had a clean sightline to his bumper instead of mine. Three tickets in eight days, then a boot on the fourth. He knocked on my door convinced I had reported him. I told him, truthfully, I hadn't dialed a single number. He moved his car onto his own driveway the very next morning, and it has been there every day since.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "parked across our shared driveway",
+          "query": "car blocking driveway entrance",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "blocking my car in",
+          "query": "car boxed in driveway",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "asked nicely three times",
+          "query": "neighbor conversation doorstep",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "parking enforcement swept our block",
+          "query": "parking enforcement officer street",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "moving my trash cans out of the second spot",
+          "query": "trash cans curb street",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Three tickets in eight days",
+          "query": "parking ticket on windshield",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "a boot on the fourth",
+          "query": "wheel boot car tire",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "moved his car onto his own driveway",
+          "query": "car parked in driveway",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": [
+        "reddit-driveway-parking-trash-cans-s0-03371ce20251",
+        "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
+        "reddit-driveway-parking-trash-cans-s2-315148f9a993",
+        "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
+        "reddit-driveway-parking-trash-cans-s4-7196534595a9",
+        "reddit-driveway-parking-trash-cans-s5-122bde615c05",
+        "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
+        "reddit-driveway-parking-trash-cans-s7-fa67521edf16"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
+      "safe_request_id": "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
+      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s0-5ea869ee7280.png",
+      "prompt_sha256": "b5ec1b5dd26d53b34d82e73f1d481f986f58165e03d1a840df620d0e5ad3a566",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s0-5ea869ee7280.json",
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: person grabbing arm store aisle. It accompanies the narration: \"grabbed my arm demanding\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
+      "safe_request_id": "reddit-hardware-store-mistaken-staff-s1-8edead8d07e0",
+      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s1-8edead8d07e0.png",
+      "prompt_sha256": "a919f0f0c7302c2b6b98a0fd4369b64928032a9aece2aa5d5117c1e6fcc0ea7f",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s1-8edead8d07e0.json",
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: hardware store aisle shelves. It accompanies the narration: \"I don't work at this hardware store\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
+      "safe_request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
+      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s2-0853a4d17520.png",
+      "prompt_sha256": "b38724c502816e4a3b7b4f6a65c90e30beb3011cdf773a2bd95487aa34088cb6",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s2-0853a4d17520.json",
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: frustrated customer talking. It accompanies the narration: \"don't play games, I need help now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277",
+      "safe_request_id": "reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277",
+      "drive_filename": "20260805__reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277.png",
+      "prompt_sha256": "41892cf24affa2f620d1bcb63d6b06ba8e808f9f875cea75e71d60a747d00534",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-hardware-store-mistaken-staff-s6-b9ab9b9ff277.json",
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: security camera footage screen. It accompanies the narration: \"pulled the aisle camera\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s0-03371ce20251",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s0-03371ce20251",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s0-03371ce20251.png",
+      "prompt_sha256": "9fd2c9df71de98fefd8e03293d64ee27857f0b72a2227772ac4afcc2864a16b7",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s0-03371ce20251.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car blocking driveway entrance. It accompanies the narration: \"parked across our shared driveway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s1-bfa774b8078b.png",
+      "prompt_sha256": "f4fc96d14d4c7e13af825b70627a60d4c5fc7db860981973652b467f55f2cd5a",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s1-bfa774b8078b.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car boxed in driveway. It accompanies the narration: \"blocking my car in\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s2-315148f9a993",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s2-315148f9a993",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s2-315148f9a993.png",
+      "prompt_sha256": "43b151edae3b31013cd6adb1808062c09a3047bbecb7e8878933ea58d18f86a7",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s2-315148f9a993.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: neighbor conversation doorstep. It accompanies the narration: \"asked nicely three times\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c.png",
+      "prompt_sha256": "fca4c0de2672117ef1bd49102d4cb61903d90e62677b5aa9937a84f2b155d8b8",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: parking enforcement officer street. It accompanies the narration: \"parking enforcement swept our block\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s4-7196534595a9",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s4-7196534595a9",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s4-7196534595a9.png",
+      "prompt_sha256": "3e4bfd7deb1922897fb61b941b83b21bf4e0ee1acfeb1a572fb7409aafd2c98c",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s4-7196534595a9.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: trash cans curb street. It accompanies the narration: \"moving my trash cans out of the second spot\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s5-122bde615c05",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s5-122bde615c05",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s5-122bde615c05.png",
+      "prompt_sha256": "6b798602e03269f6a90a74ea43dda28801bf7403d0a8056ab46239eaff2a8fff",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s5-122bde615c05.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: parking ticket on windshield. It accompanies the narration: \"Three tickets in eight days\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s6-6230c32473aa.png",
+      "prompt_sha256": "c8dab20dfe45532d3509dc92545c9b1459a7385d0721f43363c23e4ee2fab763",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s6-6230c32473aa.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wheel boot car tire. It accompanies the narration: \"a boot on the fourth\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s7-fa67521edf16",
+      "safe_request_id": "reddit-driveway-parking-trash-cans-s7-fa67521edf16",
+      "drive_filename": "20260805__reddit-driveway-parking-trash-cans-s7-fa67521edf16.png",
+      "prompt_sha256": "0e41ad65443f0fe92bea7b13f780332da3dd71c86292cc5d79121f6efdc8006c",
+      "checkpoint_path": "exchange/bundles/20260805/media-progress/reddit-driveway-parking-trash-cans-s7-fa67521edf16.json",
+      "slug": "reddit-driveway-parking-trash-cans",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: car parked in driveway. It accompanies the narration: \"moved his car onto his own driveway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
@@ -508,7 +1034,7 @@
       "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
     },
     "two_jobs": [
-      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today and the reserve bank could not cover it, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but explainer do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -551,238 +1077,6 @@
     "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
   },
   "authoring_requests": {
-    "trending": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260805",
-      "channel": "trending",
-      "reason": "only 0 of 6 packages exist for 20260805: the Claude authoring Routine did not run and the reserve bank could not cover the day",
-      "authored_already": 0,
-      "target": 6,
-      "registry_target": 6,
-      "write": 6,
-      "mix": {
-        "graph_race": 4,
-        "reddit_story": 2
-      },
-      "retired_formats": [
-        "text_card"
-      ],
-      "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-      "where": {
-        "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-        "alternative": "Or commit one file per package to exchange/bundles/20260805/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-        "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-      },
-      "formats": {
-        "graph_race": {
-          "how_to_signal": "set \"format\": \"graph_race\"",
-          "renderer": "make_graph_race.py",
-          "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "y_label",
-            "duration",
-            "source",
-            "years",
-            "series",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-            "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-            "BIG NUMBERS \u2014 a HARD renderer gate, not a preference: the chart is REFUSED if the leader peaks under 1,000 or grows less than 3x (1.6x when there is a lead change). A line creeping from 12 to 40 is an instant reject.",
-            "Prefer a dramatic crossover or collapse mid-video.",
-            "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-            "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-          ],
-          "media": {
-            "shots": false,
-            "chatgpt_supplies_images": false,
-            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-          },
-          "target_today": 4
-        },
-        "reddit_story": {
-          "how_to_signal": "omit the `format` field, set `subreddit`",
-          "renderer": "make_reddit_story.py",
-          "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-          "required": [
-            "subreddit",
-            "slug",
-            "title",
-            "hashtags",
-            "script",
-            "shots",
-            "punches",
-            "music_vibe"
-          ],
-          "subreddit_options": [
-            "pettyrevenge",
-            "MaliciousCompliance",
-            "ProRevenge",
-            "entitledparents",
-            "TalesFromTheCustomer",
-            "IDontWorkHereLady"
-          ],
-          "rules": [
-            "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-            "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-            "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-            "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-            "Do not add the Data/Explainer mascot; Trending is a separate channel."
-          ],
-          "media": {
-            "shots": true,
-            "chatgpt_supplies_images": true,
-            "shots_min": 6,
-            "shots_max": 8,
-            "per_shot": [
-              "phrase",
-              "query"
-            ],
-            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-          },
-          "target_today": 2
-        }
-      },
-      "hard_rules": [
-        "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-        "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-        "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-        "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-        "TOS-safe: no slurs, no explicit content, no gore.",
-        "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-        "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-        "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-      ],
-      "do_not_repeat": [
-        "Broadband Passed Landlines in 20 Years",
-        "Internet Users Outran Broadband Lines",
-        "F-Gases Grew Faster Than Methane",
-        "Fish Farming Drove the Production Boom",
-        "My Manager's Bag Checks Became Paid Overtime",
-        "He Banned Desk Deliveries. His Office Became a Warehouse.",
-        "Smartphones Reached Half the Planet",
-        "He Wouldn't Stop The Music. So I Got Creative",
-        "China vs U.S.: The Urban Population Crossover",
-        "India vs U.S.: Internet Users by Year",
-        "Mobile Subscriptions: China, India, U.S.",
-        "My Boss Wanted Every Email. He Got Every Email.",
-        "Internet Users Vs World Population By Year",
-        "The gym said there was no record I ever canceled",
-        "Canada's Wildfires: Area Burned By Year",
-        "China vs The World: Electric Car Sales",
-        "Naples' Supervolcano: Quakes Per Week",
-        "He Said 'In Writing Only.' I Took Him Literally",
-        "The HOA fined me for a shed they approved in writing",
-        "Someone kept stealing my numbered parking spot at work",
-        "Spain Just Sent Its Military Into One Of Its Own Cities",
-        "15 Pigs Just Took Over A New Jersey Highway",
-        "OpenAI vs Anthropic: Valuation By Year",
-        "US Wildfire Acres Burned By Year",
-        "A Sinkhole Opened Right at a Funeral Home",
-        "This Goat Cannot Be Contained",
-        "Superman Got Arrested in Florida",
-        "An Entire Reservation Just Got Evacuated",
-        "Iran Just Attacked a US Base in Jordan",
-        "The FCC Just Banned Humanoid Robots",
-        "My landlord tried to keep my deposit for damage from my own move-in video.",
-        "A woman said she basically ran the store. The real manager was standing behind her.",
-        "The asteroid didn't kill the dinosaurs with fire",
-        "A sixth person has died from an outbreak in NYC's air",
-        "Nvidia vs AMD: Data Center Revenue by Year",
-        "India vs China: The Population Race"
-      ],
-      "levity": {
-        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-        "moves": [
-          {
-            "name": "the flat undercut",
-            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-            "example": "The chase lasted two hours. Top speed: twelve."
-          },
-          {
-            "name": "the mundane detail",
-            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-            "example": "He fled on foot, still holding the salad."
-          },
-          {
-            "name": "the understatement",
-            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-            "example": "This did not go well for the bees."
-          },
-          {
-            "name": "the callback kicker",
-            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-          },
-          {
-            "name": "the deadpan attribution",
-            "how": "Quote officialese straight and let it sit. Do not mock it.",
-            "example": "The report calls this 'an unplanned pond entry'."
-          }
-        ],
-        "never": [
-          "puns and wordplay",
-          "setup-then-punchline structure",
-          "'wait for it', 'plot twist', 'you won't believe'",
-          "exclamation marks",
-          "telling the viewer it was funny ('hilariously', 'comedy gold')",
-          "emoji, 'lol', 'lmao'",
-          "sarcasm aimed at a person rather than a situation",
-          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-        ],
-        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-      },
-      "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-      "read_first": [
-        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-        "docs/FALLBACKS.md"
-      ],
-      "media_contract": {
-        "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-        "shape": {
-          "shots": [
-            {
-              "phrase": "...exact substring of your script...",
-              "query": "...what the shot shows...",
-              "media": {
-                "status": "fulfilled",
-                "drive": {
-                  "file_id": "1AbC...",
-                  "folder_id": "1FolderXyz...",
-                  "filename": "<date>__authored-<slug>-s0.png",
-                  "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                  "sharing": "anyone_with_link"
-                },
-                "image": {
-                  "sha256": "...64 hex of the exact bytes...",
-                  "bytes": 1554380,
-                  "format": "png",
-                  "width": 1080,
-                  "height": 1080
-                }
-              }
-            }
-          ]
-        },
-        "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-        "verified_on_arrival": [
-          "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-          "Full pixel decode \u2014 an undecodable file is refused.",
-          "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-          "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-        ],
-        "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-        "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-        "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-      }
-    },
     "explainer": {
       "schema": "chatgpt-authoring-request/v1",
       "date": "20260805",
@@ -795,8 +1089,8 @@
           "slug": "cereal-production-is-1-5x-higher-than-in-1972",
           "current_title": "Cereal production Is 1.5x Higher Than In 1972",
           "current_hook": "In 1972 it was 1083.7 million. Now it's 1644.1 million, and almost nobody noticed.",
-          "current_closing": "The numbers were public the whole time.",
-          "current_question": "Which number surprised you most?",
+          "current_closing": "The world quietly grew itself out of a famine era.",
+          "current_question": "Which number surprised you most - school, grain, or land?",
           "says": [
             "In 1985, progression to secondary school (%) was 77.8. By 2017: 91.3 \u2014 1.2 times higher.",
             "In 1972, cereal production was 1083.7 million metric tons. By 2024: 1644.1 million metric tons \u2014 1.5 times higher.",
@@ -807,8 +1101,8 @@
           "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
           "current_title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
           "current_hook": "In 1990 it was 10.2. Now it's 30.1, and almost nobody noticed.",
-          "current_closing": "The numbers were public the whole time.",
-          "current_question": "Which number surprised you most?",
+          "current_closing": "A third of the world's energy now comes from things we used to just throw away.",
+          "current_question": "Which number surprised you most - fuel, power, or waste?",
           "says": [
             "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024: 30.1 % of total energy \u2014 3.0 times higher.",
             "In 1998, access to electricity was 73.2 % of population. By 2024: 91.9 % of population \u2014 1.3 times higher.",
@@ -819,8 +1113,8 @@
           "slug": "population-growth-fell-54-since-1972",
           "current_title": "Population growth Fell 54% Since 1972",
           "current_hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
-          "current_closing": "The numbers were public the whole time.",
-          "current_question": "Which number surprised you most?",
+          "current_closing": "The planet is still growing. It has just almost stopped accelerating.",
+          "current_question": "Which number surprised you most - rural, city, or growth?",
           "says": [
             "In 1972, rural population was 63.1 % of total population. By 2025: 42.2 % of total population \u2014 down to 67 percent of that.",
             "In 1972, population in the largest city was 18.2 % of urban population. By 2025: 16.2 % of urban population \u2014 barely moved.",
@@ -839,236 +1133,5 @@
       }
     }
   },
-  "authoring_request": {
-    "schema": "chatgpt-authoring-request/v1",
-    "date": "20260805",
-    "channel": "trending",
-    "reason": "only 0 of 6 packages exist for 20260805: the Claude authoring Routine did not run and the reserve bank could not cover the day",
-    "authored_already": 0,
-    "target": 6,
-    "registry_target": 6,
-    "write": 6,
-    "mix": {
-      "graph_race": 4,
-      "reddit_story": 2
-    },
-    "retired_formats": [
-      "text_card"
-    ],
-    "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-    "where": {
-      "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-      "alternative": "Or commit one file per package to exchange/bundles/20260805/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-      "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-    },
-    "formats": {
-      "graph_race": {
-        "how_to_signal": "set \"format\": \"graph_race\"",
-        "renderer": "make_graph_race.py",
-        "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "y_label",
-          "duration",
-          "source",
-          "years",
-          "series",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-          "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-          "BIG NUMBERS \u2014 a HARD renderer gate, not a preference: the chart is REFUSED if the leader peaks under 1,000 or grows less than 3x (1.6x when there is a lead change). A line creeping from 12 to 40 is an instant reject.",
-          "Prefer a dramatic crossover or collapse mid-video.",
-          "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-          "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-        ],
-        "media": {
-          "shots": false,
-          "chatgpt_supplies_images": false,
-          "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-        },
-        "target_today": 4
-      },
-      "reddit_story": {
-        "how_to_signal": "omit the `format` field, set `subreddit`",
-        "renderer": "make_reddit_story.py",
-        "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-        "required": [
-          "subreddit",
-          "slug",
-          "title",
-          "hashtags",
-          "script",
-          "shots",
-          "punches",
-          "music_vibe"
-        ],
-        "subreddit_options": [
-          "pettyrevenge",
-          "MaliciousCompliance",
-          "ProRevenge",
-          "entitledparents",
-          "TalesFromTheCustomer",
-          "IDontWorkHereLady"
-        ],
-        "rules": [
-          "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-          "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-          "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-          "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-          "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-          "Do not add the Data/Explainer mascot; Trending is a separate channel."
-        ],
-        "media": {
-          "shots": true,
-          "chatgpt_supplies_images": true,
-          "shots_min": 6,
-          "shots_max": 8,
-          "per_shot": [
-            "phrase",
-            "query"
-          ],
-          "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-        },
-        "target_today": 2
-      }
-    },
-    "hard_rules": [
-      "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-      "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-      "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-      "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-      "TOS-safe: no slurs, no explicit content, no gore.",
-      "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-      "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-      "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-    ],
-    "do_not_repeat": [
-      "Broadband Passed Landlines in 20 Years",
-      "Internet Users Outran Broadband Lines",
-      "F-Gases Grew Faster Than Methane",
-      "Fish Farming Drove the Production Boom",
-      "My Manager's Bag Checks Became Paid Overtime",
-      "He Banned Desk Deliveries. His Office Became a Warehouse.",
-      "Smartphones Reached Half the Planet",
-      "He Wouldn't Stop The Music. So I Got Creative",
-      "China vs U.S.: The Urban Population Crossover",
-      "India vs U.S.: Internet Users by Year",
-      "Mobile Subscriptions: China, India, U.S.",
-      "My Boss Wanted Every Email. He Got Every Email.",
-      "Internet Users Vs World Population By Year",
-      "The gym said there was no record I ever canceled",
-      "Canada's Wildfires: Area Burned By Year",
-      "China vs The World: Electric Car Sales",
-      "Naples' Supervolcano: Quakes Per Week",
-      "He Said 'In Writing Only.' I Took Him Literally",
-      "The HOA fined me for a shed they approved in writing",
-      "Someone kept stealing my numbered parking spot at work",
-      "Spain Just Sent Its Military Into One Of Its Own Cities",
-      "15 Pigs Just Took Over A New Jersey Highway",
-      "OpenAI vs Anthropic: Valuation By Year",
-      "US Wildfire Acres Burned By Year",
-      "A Sinkhole Opened Right at a Funeral Home",
-      "This Goat Cannot Be Contained",
-      "Superman Got Arrested in Florida",
-      "An Entire Reservation Just Got Evacuated",
-      "Iran Just Attacked a US Base in Jordan",
-      "The FCC Just Banned Humanoid Robots",
-      "My landlord tried to keep my deposit for damage from my own move-in video.",
-      "A woman said she basically ran the store. The real manager was standing behind her.",
-      "The asteroid didn't kill the dinosaurs with fire",
-      "A sixth person has died from an outbreak in NYC's air",
-      "Nvidia vs AMD: Data Center Revenue by Year",
-      "India vs China: The Population Race"
-    ],
-    "levity": {
-      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-      "moves": [
-        {
-          "name": "the flat undercut",
-          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-          "example": "The chase lasted two hours. Top speed: twelve."
-        },
-        {
-          "name": "the mundane detail",
-          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-          "example": "He fled on foot, still holding the salad."
-        },
-        {
-          "name": "the understatement",
-          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-          "example": "This did not go well for the bees."
-        },
-        {
-          "name": "the callback kicker",
-          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-        },
-        {
-          "name": "the deadpan attribution",
-          "how": "Quote officialese straight and let it sit. Do not mock it.",
-          "example": "The report calls this 'an unplanned pond entry'."
-        }
-      ],
-      "never": [
-        "puns and wordplay",
-        "setup-then-punchline structure",
-        "'wait for it', 'plot twist', 'you won't believe'",
-        "exclamation marks",
-        "telling the viewer it was funny ('hilariously', 'comedy gold')",
-        "emoji, 'lol', 'lmao'",
-        "sarcasm aimed at a person rather than a situation",
-        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-      ],
-      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-    },
-    "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-    "read_first": [
-      "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-      "data_learning/SCHULTE_MEDIA_BRAIN.md",
-      "docs/FALLBACKS.md"
-    ],
-    "media_contract": {
-      "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-      "shape": {
-        "shots": [
-          {
-            "phrase": "...exact substring of your script...",
-            "query": "...what the shot shows...",
-            "media": {
-              "status": "fulfilled",
-              "drive": {
-                "file_id": "1AbC...",
-                "folder_id": "1FolderXyz...",
-                "filename": "<date>__authored-<slug>-s0.png",
-                "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                "sharing": "anyone_with_link"
-              },
-              "image": {
-                "sha256": "...64 hex of the exact bytes...",
-                "bytes": 1554380,
-                "format": "png",
-                "width": 1080,
-                "height": 1080
-              }
-            }
-          }
-        ]
-      },
-      "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-      "verified_on_arrival": [
-        "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-        "Full pixel decode \u2014 an undecodable file is refused.",
-        "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-        "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-      ],
-      "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-      "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-      "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-    }
-  }
+  "authoring_request": null
 }

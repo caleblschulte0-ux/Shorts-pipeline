@@ -6,11 +6,55 @@
   "y_label": "Nesting pairs (lower 48 states)",
   "duration": 13,
   "source": "Sources: U.S. Fish & Wildlife Service bald eagle population surveys, nesting-pair counts for the lower 48 states (1963 all-time low of 417 pairs; 1982, 1997, 2007, 2009 and 2020 counts per USFWS, American Eagle Foundation and 2021 DOI/USFWS announcement reporting).",
-  "hashtags": ["baldeagle", "wildlife", "conservation", "endangeredspecies", "usfws", "nature", "animals", "comeback", "data", "chart", "didyouknow", "fyp", "shorts", "trending"],
-  "years": [1963, 1982, 1997, 2007, 2009, 2020],
+  "hashtags": [
+    "baldeagle",
+    "wildlife",
+    "conservation",
+    "endangeredspecies",
+    "usfws",
+    "nature",
+    "animals",
+    "comeback",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "trending"
+  ],
+  "years": [
+    1963,
+    1982,
+    1997,
+    2007,
+    2009,
+    2020
+  ],
   "series": [
-    {"name": "Bald eagle nesting pairs", "color": "#3088ff", "values": [417, 1482, 7066, 11040, 30548, 71467]},
-    {"name": "1963 low point", "color": "#8a8fa3", "values": [417, 417, 417, 417, 417, 417]}
+    {
+      "name": "Bald eagle nesting pairs",
+      "color": "#3088ff",
+      "values": [
+        417,
+        1482,
+        7066,
+        11040,
+        30548,
+        71467
+      ]
+    },
+    {
+      "name": "1963 low point",
+      "color": "#8a8fa3",
+      "values": [
+        417,
+        417,
+        417,
+        417,
+        417,
+        417
+      ]
+    }
   ],
   "music_vibe": "cinematic"
 }

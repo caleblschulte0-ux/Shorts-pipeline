@@ -1,0 +1,92 @@
+{
+  "banked_at": "2026-08-05T09:22:51Z",
+  "source": "routine",
+  "format": "reddit_story",
+  "package": {
+    "subreddit": "TalesFromTheCustomer",
+    "slug": "reddit-blender-serial-returner",
+    "title": "He Forgot His Folder Of Fake Return Receipts On The Counter",
+    "hashtags": [
+      "talesfromthecustomer",
+      "reddit",
+      "storytime",
+      "retail",
+      "returns",
+      "customerservice",
+      "karma",
+      "funny",
+      "truestory",
+      "satisfying",
+      "fyp",
+      "shorts",
+      "viral",
+      "trending"
+    ],
+    "script": "He wanted a cash refund for store credit, no receipt, six months after buying it, insisting the sign said satisfaction guaranteed. Our policy is store credit only without a receipt, manager's call. I called her over. She said fine, cash refund, but only after we confirmed the purchase on security footage from that day. He agreed immediately, certain we'd never dig up six month old footage. We keep ninety days, I told him, calmly, and watched him realize what he had just admitted to. He left without the item or the refund, forgetting a little folder on the counter: three receipts for the exact same blender from three different branches, stapled together. Corporate flags serial returners automatically once a pattern like that shows up. His account got flagged that same afternoon. Every store in the chain declined his returns for a full year after. He never tried to guess our footage policy again.",
+    "shots": [
+      {
+        "phrase": "cash refund for store credit",
+        "query": "customer service return counter",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "satisfaction guaranteed",
+        "query": "store guarantee sign",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "manager's call",
+        "query": "store manager talking",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "security footage from that day",
+        "query": "security camera store",
+        "mascot_pose": "think"
+      },
+      {
+        "phrase": "left without the item or the refund",
+        "query": "person leaving store empty handed",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "three receipts for the exact same blender",
+        "query": "store receipts paper stack",
+        "mascot_pose": "shock"
+      },
+      {
+        "phrase": "His account got flagged that same afternoon",
+        "query": "computer flagged account screen",
+        "mascot_pose": "idle"
+      },
+      {
+        "phrase": "declined his returns for a full year",
+        "query": "return declined sign",
+        "mascot_pose": "laugh"
+      }
+    ],
+    "punches": [
+      {
+        "phrase": "cash refund for store credit",
+        "text": "CASH, NO RECEIPT?",
+        "color": "#ffaa30"
+      },
+      {
+        "phrase": "three receipts for the exact same blender",
+        "text": "3 RECEIPTS",
+        "color": "#ff3030"
+      },
+      {
+        "phrase": "His account got flagged that same afternoon",
+        "text": "FLAGGED",
+        "color": "#ff3030"
+      },
+      {
+        "phrase": "declined his returns for a full year",
+        "text": "BANNED: 1 YEAR",
+        "color": "#50ff80"
+      }
+    ],
+    "music_vibe": "dry office tension into playful payoff"
+  }
+}

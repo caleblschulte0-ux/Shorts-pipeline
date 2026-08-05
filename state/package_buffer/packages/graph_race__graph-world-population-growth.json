@@ -1,0 +1,64 @@
+{
+  "banked_at": "2026-08-05T09:22:51Z",
+  "source": "routine",
+  "format": "graph_race",
+  "package": {
+    "format": "graph_race",
+    "slug": "graph-world-population-growth",
+    "title": "World Population Has Tripled Since 1950",
+    "hook": "3x more humans since 1950.",
+    "y_label": "World population (billions)",
+    "duration": 13,
+    "source": "Sources: United Nations World Population Prospects; US Census Bureau International Database — widely reported world population estimates by year.",
+    "hashtags": [
+      "population",
+      "worldpopulation",
+      "demographics",
+      "un",
+      "data",
+      "chart",
+      "history",
+      "didyouknow",
+      "science",
+      "growth",
+      "fyp",
+      "shorts",
+      "trending"
+    ],
+    "years": [
+      1950,
+      1970,
+      1990,
+      2000,
+      2011,
+      2023
+    ],
+    "series": [
+      {
+        "name": "World population",
+        "color": "#3088ff",
+        "values": [
+          2.5,
+          3.7,
+          5.3,
+          6.1,
+          7.0,
+          8.0
+        ]
+      },
+      {
+        "name": "1950 starting point",
+        "color": "#8a8fa3",
+        "values": [
+          2.5,
+          2.5,
+          2.5,
+          2.5,
+          2.5,
+          2.5
+        ]
+      }
+    ],
+    "music_vibe": "cinematic"
+  }
+}
