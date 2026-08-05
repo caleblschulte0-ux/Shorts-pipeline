@@ -35,6 +35,14 @@ import produce  # noqa: E402
 def main() -> int:
     td = Path(tempfile.mkdtemp(prefix="curio_smoke_"))
     out = td / "smoke.mp4"
+    # THE SMOKE MUST NOT WRITE TO THE STANDING QUALITY LEDGER. `produce()`
+    # records every render into it automatically now, and this runs the real
+    # producer on a throwaway fixture — so the first smoke after that landed
+    # put a `zz-ci-smoke` row into the record, and every CI run would have
+    # added another. `trend()` averages whatever it finds; a window of fixture
+    # scores reported as the channel's quality is worse than no ledger.
+    import os
+    os.environ["CURIOSITY_QUALITY_LEDGER"] = str(td / "ledger.jsonl")
     fixture = REPO / "data_learning" / "pro_stories" / "fixtures" / "smoke.beats.json"
 
     # produce.resolve_story looks in pro_stories/; point it at the fixture by

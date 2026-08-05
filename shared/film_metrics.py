@@ -266,6 +266,20 @@ def guard(before: dict, after: dict, *, forbid: tuple = ("figure_shots",)) -> li
 LEDGER = Path("state/curiosity_quality_ledger.jsonl")
 
 
+def ledger_path() -> Path:
+    """Where rows go. `CURIOSITY_QUALITY_LEDGER` overrides it.
+
+    Needed the moment `produce()` started recording every render by itself:
+    the CI producer smoke runs the real producer on a throwaway fixture, so
+    the first smoke after that landed wrote a `zz-ci-smoke` row into the
+    standing ledger. Every CI run would have added one, and `trend()` averages
+    whatever it finds — a window of fixture scores reported as the channel's
+    quality. Fixtures go to a temp file; only real renders reach the record.
+    """
+    import os
+    return Path(os.environ.get("CURIOSITY_QUALITY_LEDGER") or LEDGER)
+
+
 def record(slug: str, metrics: dict, *, verdict: dict | None = None,
            note: str = "", head: str = "", path: Path | None = None) -> None:
     """Append one row: what was planned, and what the judge said about it.
@@ -273,7 +287,7 @@ def record(slug: str, metrics: dict, *, verdict: dict | None = None,
     Without this, "is it improving?" is answered from memory across renders
     hours apart. With it, five videos is a table.
     """
-    f = Path(path) if path else LEDGER
+    f = Path(path) if path else ledger_path()
     row = {"slug": slug, "head": head, "note": note, **metrics}
     if verdict:
         row["overall_10"] = verdict.get("overall_10")
@@ -289,7 +303,7 @@ def record(slug: str, metrics: dict, *, verdict: dict | None = None,
 
 
 def history(path: Path | None = None) -> list[dict]:
-    f = Path(path) if path else LEDGER
+    f = Path(path) if path else ledger_path()
     if not f.exists():
         return []
     out = []

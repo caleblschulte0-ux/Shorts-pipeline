@@ -91,6 +91,44 @@ def test_produce_actually_calls_it():
     print("ok  produce() calls the recorder on every render")
 
 
+def test_a_fixture_render_cannot_pollute_the_STANDING_ledger():
+    """The CI smoke runs the REAL producer on a throwaway fixture.
+
+    Once `produce()` started recording every render by itself, the first smoke
+    after that wrote a `zz-ci-smoke` row into the standing ledger — and every
+    CI run would have added one. `trend()` averages whatever it finds, so a
+    window of fixture scores would have been reported as the channel's
+    quality. That is the failure mode this whole system exists against: a
+    number that looks like evidence and is not.
+    """
+    import os
+    with tempfile.TemporaryDirectory() as d:
+        f = Path(d) / "throwaway.jsonl"
+        old = os.environ.get("CURIOSITY_QUALITY_LEDGER")
+        os.environ["CURIOSITY_QUALITY_LEDGER"] = str(f)
+        try:
+            assert fm.ledger_path() == f, fm.ledger_path()
+            fm.record("zz-ci-smoke", fm.score_plan(
+                [{"kind": "depict", "seconds": 4.0}]))
+            assert f.exists() and len(fm.history(f)) == 1
+        finally:
+            if old is None:
+                os.environ.pop("CURIOSITY_QUALITY_LEDGER", None)
+            else:
+                os.environ["CURIOSITY_QUALITY_LEDGER"] = old
+        assert fm.ledger_path() == fm.LEDGER, "the override must not stick"
+    # ...and the smoke actually sets it, rather than this just being possible
+    src = (REPO / "scripts" / "producer_smoke.py").read_text()
+    assert 'os.environ["CURIOSITY_QUALITY_LEDGER"]' in src, (
+        "producer_smoke must redirect the ledger; a capability nothing calls "
+        "is not a capability")
+    # ...and no fixture row survives in the real one
+    for r in fm.history():
+        assert not str(r.get("slug", "")).startswith("zz-"), (
+            f"a fixture row is in the standing ledger: {r.get('slug')}")
+    print("ok  fixture renders go to a temp ledger, and the record is clean")
+
+
 def test_the_driver_runs():
     """Each subcommand must at least execute against the real ledger."""
     import subprocess
@@ -106,5 +144,6 @@ if __name__ == "__main__":
     test_a_render_records_itself()
     test_a_broken_ledger_never_costs_a_render()
     test_produce_actually_calls_it()
+    test_a_fixture_render_cannot_pollute_the_STANDING_ledger()
     test_the_driver_runs()
     print("all quality-sprint checks pass")
