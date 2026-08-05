@@ -56,8 +56,26 @@ class TestTheLiveRuling(unittest.TestCase):
         self.assertNotIn("text_card", reg.active_formats("trending"))
 
     def test_every_channel_is_accounted_for(self):
+        """Only ENABLED channels resolve. Curiosity was disabled 2026-08-05
+        (long-form is deliberately not publishing), and disabling it is the
+        whole mechanism: an enabled channel that nobody expects to post
+        makes the alarm cry `no_posts_curiosity` every night, which is how
+        a real alarm gets ignored."""
         self.assertEqual(reg.channel_ids(),
-                         ["curiosity", "explainer", "third", "trending"])
+                         ["explainer", "third", "trending"])
+        self.assertNotIn("curiosity", reg.channel_ids())
+
+    def test_a_disabled_channel_can_be_switched_back_on(self):
+        """Disabled is a pause, not a deletion — the config must survive so
+        flipping `enabled` is the only step needed to resume."""
+        import json
+        from pathlib import Path
+        raw = json.loads((Path(reg.__file__).resolve().parent.parent
+                          / "config" / "channel_registry.json").read_text())
+        cur = raw["channels"].get("curiosity")
+        self.assertIsNotNone(cur, "curiosity's config was deleted, not paused")
+        self.assertFalse(cur.get("enabled"))
+        self.assertTrue(cur.get("formats"), "its formats must survive the pause")
 
     def test_every_channel_has_a_chatgpt_production_supervisor(self):
         """A Claude-out takeover owns outcomes, including specialized jobs."""

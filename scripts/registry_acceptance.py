@@ -154,7 +154,15 @@ def run(verbose=True) -> dict:                        # noqa: C901
         obj = build(NEW_PLAN, retired=["graph_race"],
                     extra_formats={"quiz_card": dict(QUIZ)},
                     revision=before["revision"] + 1)
-        obj["channels"]["curiosity"]["enabled"] = False
+        # Pick the channel to switch off DYNAMICALLY. This named
+        # "curiosity" until 2026-08-05, when curiosity was disabled for real
+        # — and the step silently stopped testing anything, because a
+        # channel that is already off cannot demonstrate "a frozen contract
+        # keeps a channel that was disabled later". Hardcoding a name the
+        # registry controls is the same second-source-of-truth mistake this
+        # whole script exists to catch.
+        victim = next(c for c in before["channels"] if c != "trending")
+        obj["channels"][victim]["enabled"] = False
         with registry(registry_object=obj):
             r.check(s, reg.revision() == before["revision"] + 1,
                     f"registry revision bumped to {reg.revision()}")
@@ -204,9 +212,9 @@ def run(verbose=True) -> dict:                        # noqa: C901
                     "questions": ["a"]}
             r.check(s, reg.classify(quiz, "trending") == "quiz_card",
                     "the brand-new format classifies without a code change")
-            r.check(s, "curiosity" not in reg.channel_ids()
-                    and "curiosity" not in b2["contract"]["channels"],
-                    "the disabled channel is gone from the plan")
+            r.check(s, victim not in reg.channel_ids()
+                    and victim not in b2["contract"]["channels"],
+                    f"the disabled channel ({victim}) is gone from the plan")
             r.check(s, sorted(b2["contract"]["channels"])
                     != sorted(b1["contract"]["channels"]),
                     "the channel set itself changed between the two days")
@@ -228,8 +236,9 @@ def run(verbose=True) -> dict:                        # noqa: C901
             r.check(s, frozen["channels"]["trending"]["target_mix"]
                     == before["mix"],
                     "day one still contracts the OLD mix")
-            r.check(s, "curiosity" in frozen["channels"],
-                    "day one still contracts the since-disabled channel")
+            r.check(s, victim in frozen["channels"],
+                    f"day one still contracts the since-disabled channel "
+                    f"({victim})")
             rebuilt = xb.existing_contract(DAY_ONE)
             r.check(s, rebuilt == frozen,
                     "re-reading the frozen contract is deterministic")
