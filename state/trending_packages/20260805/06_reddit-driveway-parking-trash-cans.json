@@ -25,7 +25,11 @@
       "query": "car blocking driveway entrance",
       "mascot_pose": "idle",
       "image_url": "https://live.staticflickr.com/7001/6575749763_2165ed1ecc_b.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "driveway",
+      "pin_context": "shared residential parking",
+      "news_query": "driveway",
+      "news_angle": "The neighbor parks across the shared driveway, blocking the narrator's car."
     },
     {
       "phrase": "blocking my car in",
@@ -75,14 +79,22 @@
       "query": "wheel boot car tire",
       "mascot_pose": "laugh",
       "image_url": "https://images.pexels.com/photos/6110081/pexels-photo-6110081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "boot",
+      "pin_context": "parking enforcement vehicle immobilizer",
+      "news_query": "boot",
+      "news_angle": "A boot is placed on the neighbor's car after multiple tickets."
     },
     {
       "phrase": "moved his car onto his own driveway",
       "query": "car parked in driveway",
       "mascot_pose": "idle",
       "image_url": "https://live.staticflickr.com/2022/3781645377_4bf3e12b70_b.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "car",
+      "pin_context": "parked vehicle",
+      "news_query": "car",
+      "news_angle": "The neighbor's car is parked across the shared driveway and gets ticketed."
     }
   ],
   "punches": [
