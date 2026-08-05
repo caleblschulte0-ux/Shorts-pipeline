@@ -32,6 +32,7 @@ explicit `seconds` and a `line` only on the phase that carries the narration.
 from __future__ import annotations
 
 from data_learning import textmatch
+from shared import cut_rhythm
 
 LEAD, TAIL, MIN_SHOT = 0.45, 0.9, 2.8
 MAX_UNCHANGED = 4.5        # default: a visual may not hold longer than this
@@ -139,7 +140,7 @@ def _scene_for(bi: int, k: int, line: str) -> tuple[str, bool]:
     return PROPLESS_STAGINGS[(bi + k) % len(PROPLESS_STAGINGS)], False
 
 
-def _phase_lengths(secs: float, maxu: float) -> list[float]:
+def _phase_lengths(secs: float, maxu: float, index: int = 0) -> list[float]:
     """Split a beat into phases none longer than max_unchanged.
 
     A footage beat already develops across phases; a DESIGNED beat did not — it
@@ -148,15 +149,14 @@ def _phase_lengths(secs: float, maxu: float) -> list[float]:
     STALE 114.5-124.0s span on exactly such a beat) and it is the largest single
     contributor to a film's dead fraction.
 
-    Phases are equal so the cut lands on a rhythm rather than leaving a runt
-    tail, and the count is reduced rather than emitting anything under MIN_SHOT:
-    two long-ish shots read better than three stutters."""
-    if secs <= maxu:
-        return [secs]
-    n = max(2, int(-(-secs // maxu)))          # ceil
-    while n > 2 and secs / n < MIN_SHOT:
-        n -= 1
-    return [secs / n] * n
+    The phases USED to be equal, justified as "landing on a rhythm rather than
+    leaving a runt tail". Equal spacing is a metronome, and every scene beat in
+    shared-air came out as two identical 3.18s halves. The split is now skewed
+    inside the same legal window (`shared/cut_rhythm`), which changes where the
+    cut lands and nothing else: the phase count, the ceiling, the MIN_SHOT
+    floor and the beat's total duration are all exactly as before."""
+    return cut_rhythm.phase_lengths(secs, maxu, index=index,
+                                    min_shot=MIN_SHOT)
 
 
 def _subject_query(text: str) -> str:
@@ -187,7 +187,7 @@ def _scene_phases(bi: int, secs: float, maxu: float, *, line: str = "",
     without importing a subject the story never had. The narration rides only the
     first phase; the rest are silent visual development."""
     out = []
-    for k, dur in enumerate(_phase_lengths(secs, maxu)):
+    for k, dur in enumerate(_phase_lengths(secs, maxu, index=bi)):
         kind, props = _scene_for(bi, k, line)
         sh = {"kind": kind, "seconds": dur, "number": number,
               "label": label, "mood": mood, "props": props}
@@ -218,7 +218,17 @@ def plan_story(beats: list[dict], durs: list[float]) -> list[dict]:
 
     for bi, (b, dur) in enumerate(zip(beats, durs)):
         secs = _beat_seconds(dur)
-        maxu = float(b.get("max_unchanged", MAX_UNCHANGED))
+        ceiling = float(b.get("max_unchanged", MAX_UNCHANGED))
+        # WHERE THE CUT LANDS, per beat. `max_unchanged` is a CEILING — a law
+        # about how long a visual may hold. It was also being used as the
+        # literal length of every lead shot (`emit(..., seconds=maxu)` at eight
+        # sites below), which made it a constant: on shared-air every beat cut
+        # at exactly 4.5s and the whole 39-shot film had four distinct shot
+        # lengths. Four blind judges in a row said SAMENESS and BORING. The
+        # ceiling still governs; `hold_for` only decides where under it this
+        # beat cuts, and returns the ceiling untouched whenever varying it
+        # would break a phase. See shared/cut_rhythm.py.
+        maxu = cut_rhythm.hold_for(bi, secs, ceiling)
         line = b.get("narration", "")
         is_last = bi == n - 1
         foot = b.get("footage")

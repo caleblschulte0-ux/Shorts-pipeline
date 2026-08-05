@@ -144,6 +144,8 @@ jobs:
           python scripts/test_scene_fits_the_line.py
           python scripts/test_no_clip_twice.py
           python scripts/test_film_metrics.py
+          python scripts/test_quality_sprint.py
+          python scripts/test_cut_rhythm.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 

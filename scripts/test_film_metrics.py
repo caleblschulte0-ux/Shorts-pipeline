@@ -181,6 +181,44 @@ def test_unanchored_is_reported_not_repaired():
     print("ok  unanchored beats are reported to an author, never auto-rewritten")
 
 
+def test_a_defect_seen_once_is_not_a_code_problem():
+    """The sample-size-of-one error that produced two regressions in five.
+
+    UI_WIDGET appeared in ONE verdict. The response was a code change that
+    banned the whole scene library, which deleted every human in the film and
+    cost a full point. A label has to survive a render before it is evidence
+    about the machine rather than about that film.
+    """
+    rows = [{"head": "aaaaaaaa", "reject_labels": ["UI_WIDGET"]},
+            {"head": "bbbbbbbb", "reject_labels": ["SAMENESS", "NO_CHARACTER"]},
+            {"head": "cccccccc", "reject_labels": ["SAMENESS"]}]
+    r = fm.recurring_defects(rows, n=5)
+    assert list(r["recurring"]) == ["SAMENESS"], r
+    assert r["recurring"]["SAMENESS"] == ["bbbbbbbb", "cccccccc"], r
+    assert set(r["once"]) == {"UI_WIDGET", "NO_CHARACTER"}, r
+    assert r["n_judged"] == 3, r
+    print("ok  one sighting is a film problem; two is a code problem")
+
+
+def test_recurrence_says_nothing_when_nothing_was_judged():
+    r = fm.recurring_defects([{"head": "x"}, {"head": "y"}], n=5)
+    assert r["recurring"] == {} and r["once"] == {} and r["n_judged"] == 0, r
+    print("ok  unjudged renders produce no mandate")
+
+
+def test_a_flat_window_is_itself_a_finding():
+    """Five renders that never move mean the changes are the wrong changes."""
+    flat = [{"overall_10": 4.0} for _ in range(5)]
+    assert fm.stagnant(flat, n=5), "a dead-flat window must be reported"
+    down = [{"overall_10": v} for v in (4.0, 4.0, 3.5, 3.5, 3.0)]
+    assert "no better than" in fm.stagnant(down, n=5)
+    up = [{"overall_10": v} for v in (3.0, 3.5, 4.0, 5.0, 6.0)]
+    assert fm.stagnant(up, n=5) is None, "real movement must not be nagged"
+    # ...and it refuses to call a window that has not happened yet
+    assert fm.stagnant([{"overall_10": 4.0}], n=5) is None
+    print("ok  stagnation is reported, and only once there is a full window")
+
+
 def test_the_planner_does_not_rewrite_authored_queries():
     """The reverted change, pinned so it is not re-attempted."""
     import json
@@ -208,5 +246,8 @@ if __name__ == "__main__":
     test_the_ledger_round_trips_and_trends()
     test_trend_refuses_to_judge_too_little_data()
     test_unanchored_is_reported_not_repaired()
+    test_a_defect_seen_once_is_not_a_code_problem()
+    test_recurrence_says_nothing_when_nothing_was_judged()
+    test_a_flat_window_is_itself_a_finding()
     test_the_planner_does_not_rewrite_authored_queries()
     print("all film-metrics checks pass")

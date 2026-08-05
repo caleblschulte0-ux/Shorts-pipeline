@@ -102,9 +102,24 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     except Exception:  # noqa: BLE001 — metrics must never break a render
         pass
 
+    # THE CUT ITSELF. SAMENESS and BORING appeared in EVERY taste verdict on
+    # shared-air and every response was a change to what was on screen. The
+    # plan for that film had 39 shots and FOUR distinct shot lengths, because
+    # `max_unchanged` was a constant and every beat cut at exactly 4.5s.
+    #
+    # Two numbers, because one of them alone is gameable and I gamed it: an
+    # early version of the rhythm fix raised distinct lengths 4 -> 8 while
+    # squeezing the range from 1.85-4.5s down to 2.80-3.55s. More values, less
+    # contrast, a worse edit — and a scorer counting only distinct values would
+    # have called it progress. Variety without range is a different monotony.
+    durs = [round(_secs(s), 2) for s in shots if _secs(s) > 0]
+    span = round(max(durs) - min(durs), 2) if durs else None
+
     m = {
         "shots": len(shots),
         "runtime_s": round(total, 1),
+        "shot_lengths": len(set(durs)) if durs else None,
+        "length_span_s": span,
         "figure_shots": len(figure),
         "figure_fraction": round(sum(_secs(s) for s in figure) / total, 3),
         "card_fraction": round(sum(_secs(s) for s in cards) / total, 3),
@@ -128,6 +143,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
 
     m["summary"] = (
         f"{m['shots']} shots / {m['runtime_s']}s · "
+        f"cut {_n(m['shot_lengths'])} lengths over {_n(m['length_span_s'])}s · "
         f"figure {m['figure_shots']} ({m['figure_fraction']:.0%}) · "
         f"cards {m['card_fraction']:.0%} · "
         f"dup-media {_n(m['duplicate_media'])} · "
@@ -186,6 +202,12 @@ BETTER = {
     "duplicate_media": "down",
     "unanchored_media": "down",
     "unanchored_fraction": "down",
+    # The cut. Both, always, together — see the note in `score_plan`: raising
+    # the count while shrinking the span is a WORSE edit that scores better on
+    # either number read alone. Listing both here means `compare` reports the
+    # squeeze as a REGRESSION, which is exactly what it is.
+    "shot_lengths": "up",
+    "length_span_s": "up",
 }
 
 
@@ -295,6 +317,66 @@ def trend(rows: list[dict] | None = None, n: int = 5) -> dict:
     out["delta_overall"] = round(d, 2)
     out["direction"] = "better" if d > 0.25 else "worse" if d < -0.25 else "flat"
     return out
+
+
+# How many renders a defect must survive before it is a CODE problem.
+# Two is the smallest number that can distinguish "this film had that flaw"
+# from "the machine produces that flaw". One is not evidence of anything.
+RECURRENCE_THRESHOLD = 2
+
+
+def recurring_defects(rows: list[dict] | None = None, n: int = 5) -> dict:
+    """Split the judge's complaints into CODE problems and FILM problems.
+
+    THE MISTAKE THIS EXISTS TO STOP. Across the 2026-08-01/02 sprint every
+    change was chosen from the single loudest complaint in the single most
+    recent verdict. That is a sample size of one, and it produced two
+    regressions out of five: the scene-library ban was a response to one
+    judge's UI_WIDGET note, and it deleted every human in the film.
+
+    A label that appears in ONE verdict is evidence about ONE film — re-author
+    the beat. A label that survives across renders, through repairs aimed at
+    it, is evidence about the MACHINE — that is the one worth spending a code
+    change on. This function does not rank, score, or suggest; it counts, and
+    counting is the whole contribution. What to do about a recurring label is
+    a judgment, and judgments do not belong in a metrics module.
+    """
+    rows = rows if rows is not None else history()
+    window = rows[-n:] if n else rows
+    seen: dict[str, list[str]] = {}
+    for r in window:
+        for lab in (r.get("reject_labels") or []):
+            seen.setdefault(str(lab), []).append(str(r.get("head", ""))[:8])
+    recurring = {k: v for k, v in seen.items() if len(v) >= RECURRENCE_THRESHOLD}
+    once = {k: v for k, v in seen.items() if len(v) < RECURRENCE_THRESHOLD}
+    return {"window": len(window), "n_judged":
+            sum(1 for r in window if r.get("reject_labels") is not None),
+            "recurring": dict(sorted(recurring.items(),
+                                     key=lambda kv: -len(kv[1]))),
+            "once": once,
+            "threshold": RECURRENCE_THRESHOLD}
+
+
+def stagnant(rows: list[dict] | None = None, n: int = 5) -> str | None:
+    """Has the window moved at all? Returns why not, or None if it moved.
+
+    A flat trend across a full window is itself a finding: it means the
+    changes being made are not the changes that matter. Saying so is the
+    difference between a sprint and a treadmill.
+    """
+    rows = rows if rows is not None else history()
+    scored = [r for r in (rows[-n:] if n else rows)
+              if r.get("overall_10") is not None]
+    if len(scored) < n:
+        return None                      # not a full window yet: no claim
+    vals = [r["overall_10"] for r in scored]
+    if max(vals) - min(vals) < 0.25:
+        return (f"{len(vals)} renders and the score never left {vals[0]} — the "
+                "changes being made are not the ones that matter")
+    if vals[-1] <= vals[0]:
+        return (f"{len(vals)} renders ended at {vals[-1]}, no better than the "
+                f"{vals[0]} it started at")
+    return None
 
 
 if __name__ == "__main__":  # pragma: no cover

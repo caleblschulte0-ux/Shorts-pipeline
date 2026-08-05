@@ -366,6 +366,45 @@ def _beatmap(out: Path) -> dict | None:
         return None
 
 
+def _record_quality(slug: str, out: Path, pkg: Path, result: dict) -> None:
+    """Append this render to the standing quality ledger — automatically.
+
+    Rule zero: a capability nothing calls is not a capability. `film_metrics`
+    can only answer "are five renders actually getting better" if EVERY render
+    lands in the ledger without anyone remembering to log it. The five rows
+    from 2026-08-01/02 had to be reconstructed by hand from `performance.json`
+    afterwards, which is exactly how two regressions went unnoticed for a day.
+
+    Evidence only — never fatal. A metrics failure must not cost a render.
+    """
+    try:
+        from shared import film_metrics
+        pm = pkg / "plan_metrics.json"
+        metrics = json.loads(pm.read_text()) if pm.exists() else {}
+        if not metrics:
+            return          # nothing measured: a row of blanks teaches nothing
+        verdict = None
+        v = pkg / "verdict.json"
+        if v.exists():
+            verdict = json.loads(v.read_text())
+        film_metrics.record(slug, metrics, verdict=verdict,
+                            note=result.get("status", ""), head=_head_sha())
+        print(f"[produce] {slug}: quality ledger += {metrics.get('summary', '')}")
+    except Exception as e:  # noqa: BLE001 — measurement never breaks a render
+        print(f"[produce] {slug}: quality ledger not written ({e})",
+              file=sys.stderr)
+
+
+def _head_sha() -> str:
+    import subprocess
+    try:
+        return subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                              capture_output=True, text=True,
+                              cwd=REPO).stdout.strip()
+    except Exception:  # noqa: BLE001
+        return ""
+
+
 def _round_signature(result: dict) -> tuple:
     """What this round COMPLAINED and what it SCORED — the pair the circuit
     breaker compares across renders."""
@@ -633,6 +672,7 @@ def produce(slug: str, out: Path, rounds: int = 2, fresh: bool = False,
                       {"status": result.get("status"),
                        "n_reasons": len(result.get("reasons", [])),
                        "repair_rounds": len(repair_log)})
+    _record_quality(slug, out, pkg, result)
     if result.get("status") == "pass":
         print(f"[produce] {slug}: PASS — publishing package ready")
     else:
