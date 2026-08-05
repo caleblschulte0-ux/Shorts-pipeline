@@ -57,7 +57,11 @@
       "query": "trash cans curb street",
       "mascot_pose": "think",
       "image_url": "https://images.pexels.com/photos/32799389/pexels-photo-32799389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "trash cans",
+      "pin_context": "waste management outdoor bins",
+      "news_query": "trash cans",
+      "news_angle": "Trash cans left unmoved to allow parking enforcement a clear sightline to the blocking car"
     },
     {
       "phrase": "Three tickets in eight days",
