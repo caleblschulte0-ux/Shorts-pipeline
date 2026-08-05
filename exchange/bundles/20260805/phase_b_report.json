@@ -1,0 +1,83 @@
+{
+  "date": "20260805",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 10,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "e1dac69971cfc5eb94c65a0d3cc2c1084a4495916a2ccb63c81b0143a1633f41",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s0-5ea869ee7280",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/11608887/pexels-photo-11608887.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-hardware-store-mistaken-staff-s2-0853a4d17520",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/5700201/pexels-photo-5700201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s0-03371ce20251",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/7001/6575749763_2165ed1ecc_b.jpg"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s1-bfa774b8078b",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/26626348/pexels-photo-26626348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s2-315148f9a993",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2529/3860946744_1f9d3a1397_b.jpg"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s3-8bb4ac72ee0c",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/15794745/pexels-photo-15794745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s4-7196534595a9",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/32799389/pexels-photo-32799389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s5-122bde615c05",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/12641792/pexels-photo-12641792.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s6-6230c32473aa",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/6110081/pexels-photo-6110081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-driveway-parking-trash-cans-s7-fa67521edf16",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2022/3781645377_4bf3e12b70_b.jpg"
+    }
+  ]
+}

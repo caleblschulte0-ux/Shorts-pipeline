@@ -23,7 +23,9 @@
     {
       "phrase": "grabbed my arm demanding",
       "query": "person grabbing arm store aisle",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "image_url": "https://images.pexels.com/photos/11608887/pexels-photo-11608887.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I don't work at this hardware store",
@@ -38,7 +40,9 @@
     {
       "phrase": "don't play games, I need help now",
       "query": "frustrated customer talking",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/5700201/pexels-photo-5700201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "drywall screws come in bulk boxes",

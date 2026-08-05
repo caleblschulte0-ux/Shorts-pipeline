@@ -23,42 +23,58 @@
     {
       "phrase": "parked across our shared driveway",
       "query": "car blocking driveway entrance",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/7001/6575749763_2165ed1ecc_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "blocking my car in",
       "query": "car boxed in driveway",
-      "mascot_pose": "shock"
+      "mascot_pose": "shock",
+      "image_url": "https://images.pexels.com/photos/26626348/pexels-photo-26626348.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "asked nicely three times",
       "query": "neighbor conversation doorstep",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/2529/3860946744_1f9d3a1397_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "parking enforcement swept our block",
       "query": "parking enforcement officer street",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/15794745/pexels-photo-15794745.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "moving my trash cans out of the second spot",
       "query": "trash cans curb street",
-      "mascot_pose": "think"
+      "mascot_pose": "think",
+      "image_url": "https://images.pexels.com/photos/32799389/pexels-photo-32799389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Three tickets in eight days",
       "query": "parking ticket on windshield",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/12641792/pexels-photo-12641792.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a boot on the fourth",
       "query": "wheel boot car tire",
-      "mascot_pose": "laugh"
+      "mascot_pose": "laugh",
+      "image_url": "https://images.pexels.com/photos/6110081/pexels-photo-6110081.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "moved his car onto his own driveway",
       "query": "car parked in driveway",
-      "mascot_pose": "idle"
+      "mascot_pose": "idle",
+      "image_url": "https://live.staticflickr.com/2022/3781645377_4bf3e12b70_b.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
