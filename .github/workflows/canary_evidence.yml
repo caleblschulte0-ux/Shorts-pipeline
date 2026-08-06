@@ -1,0 +1,125 @@
+# PUBLISH A CANARY'S BLIND EVIDENCE OVER PLAIN GIT.
+#
+# THE PROBLEM. The blind taste verdict — the only number the quality sprint is
+# actually measured on — requires LOOKING at the film: contact_sheet.png, the
+# begin/mid/end frames, the camera trace, the low-res clip. Those live inside a
+# ~375MB `actions/upload-artifact` zip, and an artifact can only be fetched
+# through the GitHub API. A Claude session whose egress does not include the
+# artifacts API therefore cannot judge a render it just spent four hours
+# producing. On 2026-08-06 exactly that happened: shared-air finished, uploaded
+# 374,213,375 bytes, and could not be looked at.
+#
+# Re-rendering to work around it would cost another four hours and change
+# nothing — the next render would be just as unreachable.
+#
+# THE FIX. The evidence package is a handful of PNGs and a short low-res clip:
+# a few MB, not 375. `preview-renders` is the repo's existing orphan branch for
+# exactly this ("previews go to the preview-renders orphan branch or
+# artifacts", CLAUDE.md) and plain git reaches it from anywhere. So this
+# workflow pulls a finished run's artifact, keeps ONLY the blind-evidence
+# files, and pushes them there.
+#
+# Deliberately a SEPARATE workflow, not a step inside the canary:
+#   * it retro-fits runs that have ALREADY finished — the two that prompted it;
+#   * `contents: write` stays scoped to this tiny job instead of being granted
+#     to the 5-hour render job, which needs no write access at all;
+#   * an evidence-publishing bug can never cost a render.
+#
+# WHAT IT MUST NOT PUBLISH: the full mp4. It is the bulk of the artifact, git
+# is the wrong place for it, and the blind protocol does not use it — the judge
+# sees frames, a contact sheet and a low-res clip, and nothing else.
+name: canary-evidence
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Workflow run id whose canary artifact to publish'
+        required: true
+      slug:
+        description: 'Story slug (names the artifact and the output folder)'
+        required: true
+        default: 'shared-air'
+
+concurrency:
+  # Every dispatch stands alone: two of these are normally fired back to back,
+  # one per story, and neither may cancel the other. Same rule as the canary
+  # itself — see the note in curiosity-ci.yml.
+  group: canary-evidence-${{ github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write        # the whole point: push to preview-renders
+  actions: read          # download another run's artifact
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download the canary artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: curiosity-full-canary-${{ inputs.slug }}
+          path: dl
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Keep ONLY the blind evidence
+        id: pick
+        run: |
+          set -euo pipefail
+          dest="evidence/${{ inputs.run_id }}-${{ inputs.slug }}"
+          mkdir -p "$dest"
+          pkg="dl/output/curiosity_${{ inputs.slug }}_pkg"
+          # The blind protocol's inputs, and the machine-readable context a
+          # RECORD needs afterwards. No mp4: the judge never sees one, and the
+          # 720p/full renders are what make the artifact 375MB.
+          for f in contact_sheet.png frame_begin.png frame_mid.png \
+                   frame_end.png camera_trace.png camera_trace.txt \
+                   clip_lowres.mp4 plan_metrics.json produce_report.json \
+                   beatmap.json performance.json director_findings.json \
+                   fallbacks.json verdict.json; do
+            [ -f "$pkg/$f" ] && cp "$pkg/$f" "$dest/" || true
+          done
+          # A silent empty publish would look exactly like a successful one.
+          n=$(find "$dest" -type f | wc -l)
+          if [ "$n" -eq 0 ]; then
+            echo "no evidence files found under $pkg — the artifact layout changed"
+            find dl -maxdepth 3 -type d | head -40
+            exit 1
+          fi
+          # git is the wrong home for anything large; the clip is the only file
+          # here that can grow. Drop it rather than bloat the branch forever.
+          if [ -f "$dest/clip_lowres.mp4" ]; then
+            sz=$(stat -c%s "$dest/clip_lowres.mp4")
+            [ "$sz" -gt 26214400 ] && rm "$dest/clip_lowres.mp4" \
+              && echo "clip_lowres.mp4 was ${sz}B (>25MB) — dropped"
+          fi
+          du -sh "$dest"; ls -la "$dest"
+          echo "dest=$dest" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to the preview-renders orphan branch
+        run: |
+          set -euo pipefail
+          dest="${{ steps.pick.outputs.dest }}"
+          tmp="$(mktemp -d)"
+          cp -r "$dest" "$tmp/payload"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # ADD to the branch, never replace it: preview.yml force-pushes an
+          # orphan, which would delete every earlier render's evidence. The
+          # sprint compares renders ACROSS DAYS, so history here is the point.
+          git fetch origin preview-renders --depth=1 || true
+          git checkout -B preview-renders origin/preview-renders 2>/dev/null \
+            || git checkout --orphan preview-renders
+          git rm -rq --cached . 2>/dev/null || true
+          mkdir -p "$dest"
+          cp -r "$tmp/payload/." "$dest/"
+          git add -f "$dest"
+          git commit -m "canary evidence: ${{ inputs.slug }} run ${{ inputs.run_id }}" \
+            || { echo "nothing new to commit"; exit 0; }
+          git push origin preview-renders
+          echo "published -> preview-renders:$dest"
