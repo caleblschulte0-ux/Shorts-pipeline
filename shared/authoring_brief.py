@@ -42,6 +42,29 @@ def _levity_moves() -> list:
     return _levity.MOVES
 
 
+def _drama_gate_rule() -> str:
+    """The graph_race data-drama rule, read off the gate itself.
+
+    `engines.chart_race.assess()` is the code that actually refuses a spec;
+    quoting its thresholds by value here is how the brief spent a week
+    telling authors "1,000 / 3x" while the gate enforced 50 / 5.0x."""
+    try:
+        from engines import chart_race as _cr            # noqa: PLC0415
+        return (f"BIG MOVING NUMBERS — a HARD renderer gate "
+                f"(engines/chart_race.assess), not a preference: the chart "
+                f"is REFUSED if the leader peaks under {_cr.MIN_PEAK:g} "
+                f"after unit scaling, or if the biggest swing is under "
+                f"{_cr.MIN_SWING:g}x ({_cr.CROSSOVER_SWING:g}x only when "
+                f"two MOVING series genuinely trade the lead — a flat "
+                f"reference line crossing does not count). Verify before "
+                f"submitting: python -c \"from engines import chart_race; "
+                f"print(chart_race.assess(<spec>))\".")
+    except Exception:                                    # noqa: BLE001
+        return ("BIG MOVING NUMBERS — a HARD renderer gate: run "
+                "engines/chart_race.assess() on your spec before "
+                "submitting; the thresholds live there, not here.")
+
+
 def _levity_never() -> list:
     return _levity.ANTI_PATTERNS
 
@@ -117,10 +140,13 @@ FORMAT_SPECS = {
             "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, "
             "otherwise a brand/org name to look up (\"Netflix\"). Omit only "
             "for abstract categories.",
-            "BIG NUMBERS — a HARD renderer gate, not a preference: the "
-            "chart is REFUSED if the leader peaks under 1,000 or grows less "
-            "than 3x (1.6x when there is a lead change). A line creeping "
-            "from 12 to 40 is an instant reject.",
+            # GENERATED from the gate's own constants, never typed. The
+            # typed version said "peaks under 1,000 / grows less than 3x"
+            # long after the real gate moved to 50 / 5.0x — the 2026-08-06
+            # Routine caught the drift itself and had to go read the code.
+            # A brief that mis-states a gate trains the author to write
+            # packages the renderer then refuses.
+            _drama_gate_rule(),
             "Prefer a dramatic crossover or collapse mid-video.",
             "`source` must cite real, defensible numbers. Approximate is "
             "fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but "

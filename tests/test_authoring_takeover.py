@@ -82,10 +82,21 @@ class TestBrief(unittest.TestCase):
 
     def test_brief_names_the_graph_drama_gate(self):
         """The renderer hard-refuses small numbers. If the brief doesn't say
-        so, ChatGPT writes charts that are silently dropped."""
+        so, ChatGPT writes charts that are silently dropped.
+
+        This used to pin the thresholds by VALUE ("1,000", "3x") — which is
+        the disease, not the cure: the gate moved to 50 / 5.0x and both this
+        test and the brief kept agreeing on the stale numbers. The 2026-08-06
+        Routine had to go read the engine's code to learn the real bar. The
+        rule is now GENERATED from the gate's constants; what this test pins
+        is that the generation stays live."""
+        from engines import chart_race as cr
         rules = " ".join(brief.FORMAT_SPECS["graph_race"]["rules"]).lower()
-        self.assertIn("1,000", rules)
-        self.assertIn("3x", rules)
+        self.assertIn(f"{cr.MIN_PEAK:g}", rules)
+        self.assertIn(f"{cr.MIN_SWING:g}x", rules)
+        self.assertIn(f"{cr.CROSSOVER_SWING:g}x", rules)
+        self.assertIn("chart_race.assess", rules,
+                      "the brief must point at the gate, not paraphrase it")
 
     def test_do_not_repeat_reads_real_recent_titles(self):
         req = brief.build_request("20260801", "trending")

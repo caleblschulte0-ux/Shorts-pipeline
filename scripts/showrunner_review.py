@@ -15,13 +15,17 @@ Design notes:
   CLAUDE_CODE_OAUTH_TOKEN subscription, the SAME mechanism the pipeline's brain
   step already uses. NOT the paid Anthropic API. The CLI Reads the sampled
   frame images itself (vision). Free Gemini vision is the only fallback.
-- FAIL-OPEN on infrastructure problems (CLI missing, timeout, ffmpeg error) on a
-  preview run; the caller (post_stories) fails CLOSED on a real publish run.
+- Infrastructure problems (CLI missing, timeout, ffmpeg error) RAISE. What
+  that means for the video is not this module's call: every publishing
+  channel routes the outcome through `shared/showrunner_gate.decide()`,
+  which fails OPEN on a preview run and CLOSED on a real publish run — an
+  infra failure is not evidence of quality, and it is not approval either.
 - Model: the CLI 'opus' alias (override with SHOWRUNNER_MODEL).
 
 CLI:
     python scripts/showrunner_review.py output/story_x.mp4 [--context ctx.json]
-    # exit 0 = ship, 2 = block, 1 = skipped/errored (treated as ship by callers)
+    # exit 0 = ship, 2 = block, 1 = skipped/errored — on a PUBLISH run the
+    # shared gate treats 1 as a hold (fail-closed); only previews proceed
 """
 from __future__ import annotations
 
@@ -538,7 +542,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     """Grade the finished video and COMPUTE the verdict in code. The model
     supplies anchored dimension grades + hard-check answers; this function turns
     them into the 100-pt score, folds in objective motion evidence, and decides
-    ship/block. Raises only on genuine infra failure (caller fails open on that)."""
+    ship/block. Raises only on genuine infra failure — which
+    `shared/showrunner_gate.decide()` turns into a HOLD on a publish run
+    and a skip on a preview. This function never decides that itself."""
     mp4 = Path(mp4)
     ctx = dict(context or {})
     manifest = ctx.get("manifest")

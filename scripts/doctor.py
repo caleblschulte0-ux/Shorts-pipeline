@@ -165,13 +165,7 @@ def ruling_of(sig: str, verdicts: dict | None = None) -> str:
 # The refusal list. Inherited, not re-written — one list for every agent that
 # suggests anything to this repo.
 # ---------------------------------------------------------------------------
-def forbidden(item: dict) -> list[str]:
-    """The "make the numbers go up by lowering the bar" class, refused.
-
-    Reuses `review_proposals.check_forbidden` so the doctor and the retro
-    reviewer cannot drift apart on what is unacceptable. A well-argued,
-    well-evidenced violation is still refused — that is policy, not a score.
-    """
+def _rp_reasons(item: dict) -> list[str]:
     try:
         sys.path.insert(0, str(ROOT / "scripts"))
         import review_proposals as rp
@@ -182,6 +176,36 @@ def forbidden(item: dict) -> list[str]:
         return rp.check_forbidden(probe)
     except Exception:                                    # noqa: BLE001
         return []
+
+
+def forbidden(item: dict) -> list[str]:
+    """The "make the numbers go up by lowering the bar" class, refused.
+
+    Reuses `review_proposals.check_forbidden` for the INTENT rules so the
+    doctor and the retro reviewer cannot drift on what is unacceptable to
+    ASK FOR. But the retro's file-touch refusals ("touches <protected>")
+    are deliberately NOT applied here, because the two queues differ in
+    what a submission IS: a retro proposal gets implemented by
+    retro_decide, so touching a protected file is itself the danger; a
+    doctor finding is a DIAGNOSIS that a Claude session rules on, and
+    nothing is applied automatically.
+
+    Day one proved why this matters: the doctor's first report contained a
+    verified HIGH bug in the publish gate — malformed verdicts shipping —
+    proposing to make the gate STRICTER, and the file-touch rule silently
+    binned it along with two more showrunner findings. The area a finding
+    points at is not a crime; what it asks for can be. Protected-area
+    context is preserved as `protected_notes()` and stored on the backlog
+    item, so the session ruling on it sees the constraint (fixes may only
+    ever ADD blocks) instead of never seeing the finding at all.
+    """
+    return [r for r in _rp_reasons(item) if not r.startswith("touches ")]
+
+
+def protected_notes(item: dict) -> list[str]:
+    """The protected-area warnings for a finding — context for the ruling,
+    not grounds for refusal. See `forbidden` for why these are split."""
+    return [r for r in _rp_reasons(item) if r.startswith("touches ")]
 
 
 # ---------------------------------------------------------------------------
@@ -292,6 +316,12 @@ def ingest(report: dict, *, date: str | None = None) -> dict:
     added, refreshed = [], []
     for acc in res["accepted"]:
         sig, item = acc["signature"], acc["item"]
+        notes = protected_notes(item)
+        if notes:
+            # Context the ruling session must see: this finding points at a
+            # protected area, so whatever gets built may only ever ADD
+            # blocks / strengthen the gate — never the reverse.
+            item["protected"] = notes
         item["last_seen"] = date
         if sig in items:
             item["first_seen"] = items[sig].get("first_seen", date)
