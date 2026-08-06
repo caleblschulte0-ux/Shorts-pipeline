@@ -111,5 +111,126 @@ class TestTheRegistryAndTheWorkflowsAgree(unittest.TestCase):
             self.assertNotIn("longform", fmts)
 
 
+class TestNoSelfTriggerLoops(unittest.TestCase):
+    """A workflow that commits to a path another workflow (or itself) treats
+    as a push trigger must say [skip ci], or one day's run pokes the next
+    stage back awake after the day is done. Found live on 2026-08-06:
+    daily.yml's blanket `state/` commit includes any package `_backfill`
+    authored, `state/trending_packages/**` is Phase A's push trigger, and the
+    message had no [skip ci] — so every day with a re-authored slot would
+    have re-run Phase A against an already-rendered day."""
+
+    def _commit_messages(self, name: str) -> list[str]:
+        src = body(name)
+        return re.findall(r'ci_commit_state\.sh\s*\\\n\s*"([^"]+)"', src) + \
+               re.findall(r'git commit[^\n]*-m\s*"([^"\n]+)"', src)
+
+    def test_workflows_committing_trigger_paths_skip_ci(self):
+        # (workflow, path fragment it commits that is somebody's push trigger)
+        risky = {
+            "daily.yml": "state/",              # trending_packages -> Phase A
+            "doctor.yml": "doctor/",            # doctor/reports -> doctor.yml
+            "exchange_phase_a.yml": "state/trending_packages",
+            "exchange_phase_b.yml": "state/trending_packages",
+            "retro.yml": "retro/",
+            "third.yml": "state/third",         # third_packages -> third.yml
+        }
+        for name in risky:
+            for msg in self._commit_messages(name):
+                self.assertIn("[skip ci]", msg,
+                              f"{name} commits with {msg!r} — a push-trigger "
+                              f"path without [skip ci] is a self-poke loop")
+
+    def test_explainer_has_exactly_one_automatic_trigger(self):
+        """Two automatic triggers + a per-RUN cap = 8 posts against a 4/day
+        ruling: the posted log dedupes slugs, not days, so a second same-day
+        run posts the NEXT four stories."""
+        import yaml
+        d = yaml.safe_load(body("explainer.yml"))
+        on = d.get("on") or d.get(True)
+        self.assertNotIn("workflow_run", on)
+        self.assertIn("schedule", on)
+
+    def test_post_stories_carries_a_per_day_cap(self):
+        src = (ROOT / "scripts" / "post_stories.py").read_text()
+        self.assertIn("posted_today", src,
+                      "the per-day cap is the backstop for ANY double-fire "
+                      "(manual re-run included) — do not remove it")
+
+
+class TestEveryWorkflowIsValidToGitHub(unittest.TestCase):
+    """PyYAML is more forgiving than GitHub Actions, and the gap is fatal in
+    a hands-off system: a file GitHub rejects still parses green locally,
+    its CRON silently never fires, and the only symptom is a jobless
+    'failure' run named by file path on every non-[skip ci] push — which
+    nobody reads.
+
+    That is not hypothetical. retro_decide.yml carried a duplicated
+    `continue-on-error:` key on one step from the day it merged (#213) to
+    2026-08-06. PyYAML kept the last copy without a word; Actions refused
+    the whole file; the decide half of the retro improvement loop NEVER ran
+    once, while 135 validation-failure runs piled up unnoticed. This class
+    checks, for every workflow, the Actions strictnesses PyYAML forgives."""
+
+    @staticmethod
+    def _strict_load(text: str):
+        import yaml
+
+        class Strict(yaml.SafeLoader):
+            pass
+
+        def mapping(loader, node, deep=False):
+            seen = []
+            for k, _ in node.value:
+                key = loader.construct_object(k, deep=deep)
+                if key in seen:
+                    raise AssertionError(f"duplicate key {key!r}")
+                seen.append(key)
+            return yaml.SafeLoader.construct_mapping(loader, node, deep)
+
+        Strict.construct_mapping = mapping
+        return yaml.load(text, Strict)
+
+    def test_no_workflow_has_duplicate_keys(self):
+        for p in sorted(WF.glob("*.yml")):
+            try:
+                self._strict_load(p.read_text())
+            except AssertionError as e:
+                self.fail(f"{p.name}: {e} — GitHub rejects the whole file, "
+                          f"so its crons silently never fire")
+
+    def test_no_step_declares_both_uses_and_run(self):
+        import yaml
+        for p in sorted(WF.glob("*.yml")):
+            d = yaml.safe_load(p.read_text())
+            for jname, j in (d.get("jobs") or {}).items():
+                for i, s in enumerate(j.get("steps") or []):
+                    self.assertFalse(
+                        "uses" in s and "run" in s,
+                        f"{p.name} {jname}[{i}] has both uses and run — "
+                        f"PyYAML-fine, Actions-fatal")
+
+
+class TestAutoPauseIsABackoffNotALatch(unittest.TestCase):
+    """Two zero-upload days sit the channel out for ONE day, then it retries
+    itself. The old behavior — skip forever until a human resets a counter
+    over SSH — contradicted the standing ruling ("it goes through and tries
+    again") and would have parked the channel on any two-day external
+    outage."""
+
+    def test_the_preflight_can_resume_itself(self):
+        src = body("daily.yml")
+        self.assertIn("auto_pause_day", src)
+        self.assertIn("auto-resume", src.lower())
+        self.assertNotIn("This CANNOT clear itself", src)
+
+    def test_the_paused_day_is_still_loudly_alarmed(self):
+        """Self-retry must not become self-silence — daily_alarm keeps its
+        channel_auto_paused CRITICAL (tests/test_daily_alarm.py owns the
+        behavior; this just pins the wiring)."""
+        src = (ROOT / "scripts" / "daily_alarm.py").read_text()
+        self.assertIn("channel_auto_paused", src)
+
+
 if __name__ == "__main__":
     unittest.main()

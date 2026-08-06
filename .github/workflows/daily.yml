@@ -95,11 +95,45 @@ jobs:
           fi
           fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
           echo "Failure count: $fc"
+          # AUTO-PAUSE IS A BACKOFF, NOT A LATCH. It used to skip forever
+          # until a human reset the counter by hand — the exact opposite of
+          # the operator's standing ruling ("if something doesn't run
+          # properly, it goes through and tries again"), and a two-day
+          # external outage (YouTube API, a runner image break) would have
+          # parked the channel permanently on a box nobody was watching.
+          #
+          # Now: two zero-upload days -> sit out ONE day (that still
+          # protects quota and render minutes against a systematically
+          # broken pipeline) -> retry automatically. A retry that fails
+          # again earns another day off; one that works resets to 0. The
+          # channel can degrade to every-other-day, never to never. The
+          # alarm's `channel_auto_paused` critical still fires on every
+          # paused day, so a real breakage is loud while it self-retries.
           if [ "$fc" -ge 2 ]; then
-            echo "skip=auto" >> $GITHUB_OUTPUT
-            echo "::error::TRENDING IS AUTO-PAUSED (state/failure_count.txt=$fc, threshold 2)."
-            echo "::error::This CANNOT clear itself: the step that resets the counter is skipped while paused."
-            echo "::error::Resume with: echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push"
+            TODAY=$(date -u +%Y%m%d)
+            SAT_OUT=$(cat state/auto_pause_day.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
+            if [ "$SAT_OUT" -ge "$TODAY" ]; then
+              # already sitting out this day — a re-fire stays skipped
+              echo "skip=auto" >> $GITHUB_OUTPUT
+              echo "::error::TRENDING IS PAUSED for $TODAY (2 zero-upload days). Retrying automatically tomorrow."
+            elif [ "$SAT_OUT" -gt 0 ]; then
+              # sat out a full day — retry now
+              echo "1" > state/failure_count.txt
+              rm -f state/auto_pause_day.txt
+              bash scripts/ci_commit_state.sh \
+                "trending: auto-resume after a paused day [skip ci]" \
+                state/failure_count.txt state/auto_pause_day.txt || true
+              echo "skip=" >> $GITHUB_OUTPUT
+              echo "::warning::AUTO-RESUME: sat out $SAT_OUT, retrying today. Another zero-upload day pauses again tomorrow."
+            else
+              # first paused day — record it so tomorrow's run can retry
+              echo "$TODAY" > state/auto_pause_day.txt
+              bash scripts/ci_commit_state.sh \
+                "trending: auto-pause day $TODAY recorded [skip ci]" \
+                state/auto_pause_day.txt || true
+              echo "skip=auto" >> $GITHUB_OUTPUT
+              echo "::error::TRENDING IS PAUSED for $TODAY (state/failure_count.txt=$fc). It will retry ITSELF tomorrow — no manual reset needed. To retry sooner: echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push"
+            fi
           else
             echo "skip=" >> $GITHUB_OUTPUT
           fi
@@ -114,9 +148,9 @@ jobs:
           if [ "$SKIP_REASON" = "manual" ]; then
             REASON="manual pause (PAUSED file present in repo root)"
           else
-            REASON="auto-pause (state/failure_count.txt >= 2 — 2 days in a row failed)"
+            REASON="auto-pause (2 zero-upload days in a row — sitting out today, retrying itself tomorrow)"
           fi
-          MSG="Daily shorts run SKIPPED — $REASON. Resume by removing the file (manual) or resetting the counter to 0 (auto)."
+          MSG="Daily shorts run SKIPPED — $REASON. Manual pause: remove the PAUSED file. Auto-pause: no action needed (it retries tomorrow); to retry sooner reset state/failure_count.txt to 0."
           gh issue comment "$REPORT_ISSUE_NUMBER" \
             --repo "${{ github.repository }}" \
             --body "$MSG"
@@ -502,8 +536,14 @@ jobs:
           # Shared hardened persist (audit Ticket 1): retry loop + backup/
           # restore of our artifacts + UNION-MERGE of every posted-log on a
           # push race, so no dedupe entry from either side is ever lost.
+          # [skip ci] is LOAD-BEARING here, not tidiness: this blanket
+          # `state/` add includes any package `run_one` wrote during a
+          # backfill (state/trending_packages/<ts>_auto_*.json), and
+          # state/trending_packages/** is a PUSH TRIGGER for Phase A.
+          # Without it, every day with a re-authored slot pokes Phase A
+          # back awake AFTER the day rendered.
           bash scripts/ci_commit_state.sh \
-            "daily: $(date -u +%Y-%m-%d) report + state" \
+            "daily: $(date -u +%Y-%m-%d) report + state [skip ci]" \
             state/ daily_report.md daily_report.json
 
       - name: Post report to tracking issue

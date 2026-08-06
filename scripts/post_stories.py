@@ -174,6 +174,29 @@ def main() -> int:
     rendered = 0
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
 
+    # PER-DAY cap, not just per-RUN. `--max-per-run` alone cannot hold the
+    # registry's daily count when the workflow fires twice in a day (a cron
+    # AND a chained trigger, or a manual re-run after a partial): the posted
+    # log dedupes SLUGS, so a second run simply posts the NEXT four stories
+    # — different videos, same day, 8/4. Count what already went out today
+    # and shrink this run's budget by it. `--force` re-posts are exempt: an
+    # operator explicitly re-shipping a fixed video is not a scheduling bug.
+    if args.max_per_run and not args.force:
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        posted_today = sum(
+            1 for e in log["posted"].values()
+            if str(e.get("at", "")).startswith(today))
+        if posted_today:
+            budget = max(0, args.max_per_run - posted_today)
+            print(f"[post_stories] {posted_today} already posted today — "
+                  f"this run's budget is {budget} (per-day cap "
+                  f"{args.max_per_run})", flush=True)
+            args.max_per_run = budget
+            if budget == 0:
+                print("[post_stories] the day is full — nothing to do",
+                      flush=True)
+                return 0
+
     # FAIL-CLOSED publish control. Publishing is FROZEN unless explicitly opted
     # into; nothing here can silently upload. See scripts/editorial_gate.py.
     from scripts import editorial_gate as _eg
