@@ -55,8 +55,10 @@ on:
   # (2026-08-05, so explainer no longer dies when trending dies) the chain
   # became a SECOND daily firing: the posted log dedupes slugs, not days, so
   # run two would simply post the NEXT four stories — 8/day against a ruling
-  # of 4. `post_stories` now also carries a per-day cap, but the right number
-  # of automatic triggers for one channel is one.
+  # of 4. `post_stories`' per-day cap is what makes MULTIPLE CRONS safe
+  # below while a second trigger KIND (workflow_run) stays wrong: the crons
+  # are main + backstop for the same daily budget; the chain was a second
+  # budget nobody was counting.
   schedule:
     # THIS CHANNEL MUST NOT DIE WHEN ANOTHER ONE DOES.
     #
@@ -73,8 +75,18 @@ on:
     # dedupe makes a double-fire a no-op), so an extra trigger costs
     # nothing and a missing one no longer costs the day.
     - cron: '40 13 * * *'   # 08:40 Central summer / 07:40 winter
+    # BACKSTOP. One cron is a single point of failure and that failure is
+    # not hypothetical: on 2026-08-06 — this cron's FIRST scheduled day —
+    # GitHub simply never fired it (new schedule entries commonly skip
+    # their first day while the scheduler registers them), the old Daily
+    # Shorts chain had just been removed as a double-post risk, and the
+    # channel posted nothing until a human noticed at 15:05 UTC. Same
+    # pattern as Phase B's late backstop: if the morning run happened,
+    # post_stories' per-day cap makes this a free no-op (budget 0, exit);
+    # if it didn't, this run IS the day.
+    - cron: '10 17 * * *'   # 12:10 Central summer — late enough to be sure
   # workflow_dispatch below is how a Routine (and the daily.yml chain) fires
-  # this on demand; the cron above is what guarantees it runs at all.
+  # this on demand; the crons above are what guarantee it runs at all.
 
 permissions:
   contents: write          # persist state/explainer_posted_log.json

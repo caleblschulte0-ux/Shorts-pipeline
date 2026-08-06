@@ -141,15 +141,21 @@ class TestNoSelfTriggerLoops(unittest.TestCase):
                               f"{name} commits with {msg!r} — a push-trigger "
                               f"path without [skip ci] is a self-poke loop")
 
-    def test_explainer_has_exactly_one_automatic_trigger(self):
-        """Two automatic triggers + a per-RUN cap = 8 posts against a 4/day
-        ruling: the posted log dedupes slugs, not days, so a second same-day
-        run posts the NEXT four stories."""
+    def test_explainer_fires_only_by_cron_and_has_a_backstop(self):
+        """Two rules with one root cause. No workflow_run chain: a second
+        trigger KIND is a second daily budget nobody counts — 8 posts
+        against a 4/day ruling. But AT LEAST two crons: on the single
+        cron's first scheduled day (2026-08-06) GitHub simply never fired
+        it and the channel posted nothing until a human noticed. The
+        per-day cap in post_stories is what reconciles the two — a
+        backstop cron on an already-full day exits at budget 0."""
         import yaml
         d = yaml.safe_load(body("explainer.yml"))
         on = d.get("on") or d.get(True)
         self.assertNotIn("workflow_run", on)
-        self.assertIn("schedule", on)
+        self.assertGreaterEqual(len(on.get("schedule") or []), 2,
+                                "the backstop cron is load-bearing — a "
+                                "skipped morning cron must not cost the day")
 
     def test_post_stories_carries_a_per_day_cap(self):
         src = (ROOT / "scripts" / "post_stories.py").read_text()
