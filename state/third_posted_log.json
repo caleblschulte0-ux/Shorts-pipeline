@@ -2702,14 +2702,27 @@
       "ts": "2026-08-06T13:42:01.180777+00:00"
     },
     "clip-20260806-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/ImpartialVenomousWebDoritosChip-rEzhi_gNhdlAyjp3",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/3kz91pap34g",
       "title": "Stableronaldo Demands A Replay Then Gets Exposed By It",
       "kind": "twitch_clip",
-      "ts": "2026-08-06T14:07:25.722203+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-06T14:07:29.109803+00:00",
+      "uploaded_at": "2026-08-06T14:07:29.109820+00:00",
+      "publish_at": "2026-08-06T21:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ImpartialVenomousWebDoritosChip-rEzhi_gNhdlAyjp3",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "HE DEMANDED THE REPLAY THEN GOT CAUGHT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2920,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 22.1
+      },
+      "director_cut": true
     }
   }
 }
