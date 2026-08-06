@@ -17580,11 +17580,11 @@
           "insight_type": "trend",
           "role": "1 · CAPTURE FISHERIES ",
           "topic": "Capture fisheries production",
-          "say": "Capture fisheries production has been relatively stable since 1993, with 94403126 metric tons in 2024",
+          "say": "Capture fisheries have barely moved since 1993 - 88.8 million metric tons then, just 94.4 million now.",
           "scene": {
             "mechanic": "trawl-net-haul",
-            "concept": "two hanging trawler nets fill with fish sized to the catch, 1972 vs 2024, under a boat",
-            "code": "v0 = values[0]; v1 = values[-1]\ncx0 = RX0 + 220; cx1 = RX1 - 220\ntop = RTOP + 160; bot = RBOT - 40\nfor cx, v, col, yr in ((cx0, v0, WARN, labels[0]), (cx1, v1, HIGHLIGHT, labels[-1])):\n    d.line([cx-140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    d.line([cx+140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    frac = clamp(v / vmax) * reveal\n    r = int(120 * frac) + 10\n    d.ellipse([cx-r, bot-160-r, cx+r, bot-160+r], fill=rgba(col, 60))\n    fish = subject_image('fish')\n    cnt = max(1, int(9 * frac))\n    for i in range(cnt):\n        fx = cx - 70 + (i % 3) * 60\n        fy = bot - 220 - (i // 3) * 55\n        if fish is not None:\n            paste(fish, fx, fy, 55, 36)\n    text(yr, cx, top - 60, size=36, color=col, center=True)\n    text(str(int(v)), cx, bot - 20, size=44, color=col, center=True)\nboat = subject_image('fishing trawler boat')\nif boat is not None:\n    bw = 300; bh = int(bw * boat.height / boat.width)\n    paste(boat, (RX0 + RX1) // 2 - bw // 2, top - 120, bw, bh)"
+            "concept": "two hanging trawler nets fill with fish sized to the catch, 1993 vs 2024 - nearly the same fullness",
+            "code": "v0 = values[2]; v1 = values[-1]\ncx0 = RX0 + 220; cx1 = RX1 - 220\ntop = RTOP + 160; bot = RBOT - 40\nfor cx, v, col, yr in ((cx0, v0, WARN, labels[2]), (cx1, v1, HIGHLIGHT, labels[-1])):\n    d.line([cx-140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    d.line([cx+140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    frac = clamp(v / vmax) * reveal\n    r = int(120 * frac) + 10\n    d.ellipse([cx-r, bot-160-r, cx+r, bot-160+r], fill=rgba(col, 60))\n    fish = subject_image('fish')\n    cnt = max(1, int(9 * frac))\n    for i in range(cnt):\n        fx = cx - 70 + (i % 3) * 60\n        fy = bot - 220 - (i // 3) * 55\n        if fish is not None:\n            paste(fish, fx, fy, 55, 36)\n    text(yr, cx, top - 60, size=36, color=col, center=True)\n    text(str(int(v)), cx, bot - 20, size=44, color=col, center=True)\nboat = subject_image('fishing trawler boat')\nif boat is not None:\n    bw = 300; bh = int(bw * boat.height / boat.width)\n    paste(boat, (RX0 + RX1) // 2 - bw // 2, top - 120, bw, bh)"
           }
         },
         {
@@ -17596,7 +17596,7 @@
           "insight_type": "trend",
           "role": "2 · MARINE PROTECTED A",
           "topic": "Marine protected areas",
-          "say": "Marine protected areas now cover 17.5 percent of the world's territorial waters as of 2025",
+          "say": "Marine protected areas have nearly tripled since 2013 - from 6.8 percent of the ocean to 17.5 percent now.",
           "scene": {
             "mechanic": "ocean-shield-dome",
             "concept": "a translucent shield dome expands over an ocean photo as protected-water share climbs",
@@ -17612,7 +17612,7 @@
           "insight_type": "trend",
           "role": "3 · TERRESTRIAL AND MA",
           "topic": "Terrestrial and marine protected areas",
-          "say": "Terrestrial and marine protected areas make up 17.0 percent of the total territorial area by 2025",
+          "say": "So if the ocean's capped, why not protect what's left? Guarded land and sea has grown from 11 percent to 17 percent of Earth's surface.",
           "scene": {
             "mechanic": "guardian-fence-globe",
             "concept": "a ring of guardian posts closes around a rotating globe as protected land+sea share climbs",
@@ -17643,7 +17643,7 @@
           "insight_type": "trend",
           "role": "1 · ADOLESCENT FERTILI",
           "topic": "Adolescent fertility rate",
-          "say": "Adolescent fertility rates have dropped to 38.3 births per 1,000 women.",
+          "say": "Teen birth rates have crashed - from 85 per 1,000 girls in 1972 to just 38.3 today.",
           "scene": {
             "mechanic": "cradle-grid-thin",
             "concept": "a grid of cradle icons thins from the 1972 teen-birth rate down to the 2024 rate",
@@ -17659,7 +17659,7 @@
           "insight_type": "trend",
           "role": "2 · SUICIDE MORTALITY ",
           "topic": "Suicide mortality rate",
-          "say": "Suicide mortality rates have fallen to 9.13 per 100,000 population.",
+          "say": "Suicide deaths have fallen too - 12.5 per 100,000 people in 2000, down to 9.13 now.",
           "scene": null,
           "viz": "trend"
         },
@@ -17672,7 +17672,7 @@
           "insight_type": "trend",
           "role": "3 · CURRENT HEALTH EXP",
           "topic": "Current health expenditure per capita",
-          "say": "Current health expenditure per capita has risen to 1317 dollars.",
+          "say": "So why does the bill keep climbing? Health spending per person has nearly tripled - from $476 in 2000 to $1,317 today.",
           "scene": {
             "mechanic": "cash-cross-fill",
             "concept": "a hospital cross vessel fills with coin stacks as per-capita health spending rises",
@@ -17685,7 +17685,7 @@
     {
       "slug": "cereal-production-is-1-5x-higher-than-in-1972",
       "title": "Cereal production Is 1.5x Higher Than In 1972",
-      "hook": "In 1972 it was 1083.7 million. Now it's 1644.1 million, and almost nobody noticed.",
+      "hook": "By the 1970s, experts were warning the world would run out of food - here's what the data says actually happened.",
       "closing": "The world quietly grew itself out of a famine era.",
       "hashtags": [
         "data",
@@ -17790,7 +17790,7 @@
     {
       "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
       "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
-      "hook": "In 1990 it was 10.2. Now it's 30.1, and almost nobody noticed.",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind - can you guess what it is?",
       "closing": "A third of the world's energy now comes from things we used to just throw away.",
       "hashtags": [
         "data",
@@ -17855,7 +17855,7 @@
     {
       "slug": "population-growth-fell-54-since-1972",
       "title": "Population growth Fell 54% Since 1972",
-      "hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
+      "hook": "Population growth was supposed to keep accelerating forever - here's the number that proves it didn't.",
       "closing": "The planet is still growing. It has just almost stopped accelerating.",
       "hashtags": [
         "data",
