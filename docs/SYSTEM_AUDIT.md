@@ -518,3 +518,51 @@ and BORING in **every** judged render. A sample size of one is not evidence.
 - **`shared-air`'s remaining gap is AUTHORING.** 7 of 15 media shots share no
   content word with the line they play under. No selection or repair fix can
   invent a subject the script never had.
+
+## 2026-08-06 — the blind judge has a ±0.5 noise band, and I nearly reported it as a regression
+
+The SAME evidence package, judged twice by two fresh agents with identical
+prompts: **4.5 and 4.0**. Nothing about the film differed — same PNGs, same
+bytes.
+
+That matters because the next render scored 4.0 and I was one step from
+recording "transitions + character acting = REGRESSION". The two shared-air
+renders have **byte-identical plan metrics on every measured axis** (40 shots,
+31 shot lengths, 9.55s span, 6 camera moves, 0 repeats, 14 figure shots) and
+near-identical camera traces (mean pixel motion 45.52 vs 45.97). They are the
+same film to within noise, and their scores differ by exactly the amount a
+re-judge of one film differs from itself.
+
+**A single blind verdict cannot resolve a 0.5 change.** Every score in this
+ledger before today is a single sample, which means the 4.0 → 4.0 → 3.5 → 3.0
+sequence that motivated the whole sprint carries the same uncertainty. The
+direction of that decline is still supported — 3.0 vs 4.5 is well outside the
+band, and `figure_shots` 14 → 0 is a hard fact, not a judgment — but no
+individual 0.5 step in it should ever have been treated as signal.
+
+Standing rule from here: **a recorded score is the MEDIAN OF THREE independent
+blind verdicts**, and the spread is recorded with it. Three parallel judges
+cost ~80 seconds; a wrong conclusion costs a four-hour render.
+
+### What four independent judges agreed on, across two different films
+
+  shared-air #1  "94.4s, and its verbatim repeats at 59.5s and 150.4s — a flat
+                  orange plate with one small white clip-art figure"
+  shared-air #2  "92.6s — the third near-identical white stick-figure-on-navy
+                  plate ... reads as an unfinished template"
+  shared-air #3  "115.4s — a row of white pictogram figures fading out along a
+                  baseline: a literal bar chart dropped into a photographed film"
+  money-goes     "the sleeping figure appears identically at 4.7s, 42.6s and
+                  184.5s"
+
+Four judges, two films, one finding: **the designed pictogram scenes repeat
+verbatim and are the emptiest frames in the film.** That is recurrence in the
+strict sense — the machine makes this, not one story — and it is the first
+defect this sprint has identified from four independent samples rather than
+one.
+
+The character-acting change did NOT fix it, and the reason is now clear: it
+varies the FIGURE (a few degrees of lean, a head drop) while the judges are
+describing the COMPOSITION — same framing, same background, same figure scale,
+same layout. At contact-sheet size the pose delta is invisible. Varying a pose
+was the wrong lever for a complaint about staging.
