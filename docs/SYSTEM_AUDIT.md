@@ -451,7 +451,53 @@ New this pass: `tests/test_showrunner_gate.py` (25),
 
 # 2026-08-06 — the fifth constant: the frame itself was empty
 
-Two findings, one measurement and one film.
+Three findings: one measurement, one film, one **silence**.
+
+## Every film this pipeline has produced was narration over silence
+
+`pro_render` — the canonical producer — chose its music with
+
+```python
+sorted((REPO / "data_learning" / "music").glob("*.mp3"))
+```
+
+and `scripts/fetch_music.py` writes to `data_learning/music/<vibe>/*.mp3`. One
+directory deeper. The glob never matched, `music` was always `None`, and the
+sidechain-ducking chain beneath it has **never executed once**. The module
+docstring says "a music bed sits ducked under the voice".
+
+Two independent faults, same symptom. The second: `curiosity.yml` and
+`explainer.yml` have fetched the music library for months; `curiosity-ci.yml`
+— the workflow where every pro render happens, and therefore every film any
+blind judge has ever scored — never did.
+
+Five of five judged renders came back BORING. Four of five, LOW_ENERGY.
+
+**The working implementation was already in the repo.** `studio_render.py`,
+the LEGACY renderer, has the whole sound design: four synthesized vibes, a
+real royalty-free library selected by vibe and rotated by slug, a synthesized
+fallback, a ducked mix, a synthesized one-shot kit. Rule zero's instruction
+for this exact case — *look for the duplicate before you write the caller* —
+means none of the fix is new work. It is that code lifted into
+`shared/soundtrack.py` so both renderers call one copy, with
+`scripts/test_soundtrack.py` holding EQUIVALENCE against the originals kept
+verbatim as oracles, including a fixture that reproduces the real directory
+layout and asserts the OLD glob finds nothing in it.
+
+`build_music` has no path back to silence: a missing library costs the real
+track and falls through to the synthesized bed. **A missing asset directory
+must degrade the score, never delete it.**
+
+One new decision: the vibe was a hand-typed per-story constant in the legacy
+table and the pro stories have no such table, so it now derives from the
+film's dominant chapter mood — a value the planner already sets and nothing
+read. Moods are taken from the BEAT and its nested `flat`/`scene` block, where
+the authors actually wrote them; reading shots alone would have scored every
+footage-carried film `calm` forever, because `planner` stamps `mood` onto
+designed scenes only. money-goes resolves `dark`, shared-air `calm`.
+
+Verified on a real render: `[pro] music: vibe calm · synthesized bed` followed
+by `[perf] music_ducking: 0.39s` — a stage that was unreachable before.
 
 ## The guard was crying regression at its own arithmetic
 

@@ -231,6 +231,20 @@ one `trend()` averages.
 The shared modules the sprint has produced so far, all found by looking for
 *constants where a decision belonged*:
 
+- **`shared/soundtrack.py`** — the music bed, for every renderer that scores a
+  film. `pro_render` globbed `music/*.mp3` while `scripts/fetch_music.py`
+  writes `music/<vibe>/*.mp3`, so it always found nothing and the ducking chain
+  below it never ran: **every curiosity film produced through the pro path is
+  narration over silence**, while its docstring claimed otherwise. The working
+  implementation was already in `studio_render.py` — this is that code shared,
+  not new code, and `scripts/test_soundtrack.py` holds equivalence against the
+  originals. Two rules: `build_music` has NO path back to silence (a missing
+  library costs the real track and falls through to a synthesized bed — a
+  missing asset directory degrades the score, never deletes it), and the vibe
+  is read from the BEAT and its nested `flat`/`scene` block, because `planner`
+  stamps `mood` onto designed scenes only and reading shots alone scores every
+  footage-carried film `calm`. Any workflow that renders must fetch the library
+  (`curiosity-ci.yml` never did, which is the other half of the same bug).
 - **`shared/scene_depth.py`** — `scenes._vgrad` was the ENTIRE environment of
   every designed scene ever rendered here: a two-stop wash with nothing in it.
   That is EMPTY_COMPOSITION in 3 of the last 5 verdicts and the literal phrase
