@@ -1,0 +1,11 @@
+{
+  "out": "output/curiosity_money-goes.mp4",
+  "status": "quarantine",
+  "reasons": [
+    "director gates failed (rc=3: stale span \u2014 the video holds one idea too long (novelty))",
+    "no vision taste verdict (pkg/verdict.json) \u2014 FAILS CLOSED; judge the blind package before publishing"
+  ],
+  "director_rc": 3,
+  "pkg": "output/curiosity_money-goes_pkg",
+  "fallback_verdict": "ok"
+}

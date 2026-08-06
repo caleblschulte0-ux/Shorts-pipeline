@@ -1,0 +1,29 @@
+{
+  "director_rc": 3,
+  "findings": [
+    {
+      "judge": "director",
+      "defect_code": "STALE_SPAN",
+      "severity": "major",
+      "target": "41.0-47.0s",
+      "complaint": "nothing new for 6.0s",
+      "recommended_fix": "cut, or introduce a genuinely new element inside the span"
+    },
+    {
+      "judge": "director",
+      "defect_code": "STALE_SPAN",
+      "severity": "major",
+      "target": "65.0-71.0s",
+      "complaint": "nothing new for 6.0s",
+      "recommended_fix": "cut, or introduce a genuinely new element inside the span"
+    },
+    {
+      "judge": "director",
+      "defect_code": "STALE_SPAN",
+      "severity": "major",
+      "target": "212.0-218.0s",
+      "complaint": "nothing new for 6.0s",
+      "recommended_fix": "cut, or introduce a genuinely new element inside the span"
+    }
+  ]
+}
