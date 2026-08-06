@@ -117,82 +117,22 @@ def _theme_for(slug: str) -> dict:
 # the visuals: a whoosh when each chart sweeps in, a color-keyed tick when
 # the ring lands on a number, a pop when the closing bubble appears.
 # --------------------------------------------------------------------------
-_VIBES = {
-    # Gentle pad + slow heartbeat kick — the default teaching vibe.
-    "calm": dict(
-        drone="0.22*sin(2*PI*98*t)+0.10*sin(2*PI*196*t)",
-        kick="0.30*sin(2*PI*55*t)*exp(-5*mod(t,1.0))",
-        pad="0.12*sin(2*PI*294*t)*sin(2*PI*0.1*t)"),
-    # Sub drone + 90bpm pulse — for the doom-ier money topics.
-    "dark": dict(
-        drone="0.26*sin(2*PI*55*t)+0.14*sin(2*PI*110*t)",
-        kick="0.40*sin(2*PI*58*t)*exp(-7*mod(t,0.667))",
-        pad="0.10*sin(2*PI*220*t)*sin(2*PI*0.125*t)"),
-    # Low swell, sparse 60bpm pulse — space/nature awe.
-    "cinematic": dict(
-        drone="0.26*sin(2*PI*49*t)+0.10*sin(2*PI*98*t)",
-        kick="0.34*sin(2*PI*55*t)*exp(-5*mod(t,1.0))",
-        pad="0.10*sin(2*PI*196*t)*sin(2*PI*0.0625*t)"),
-    # Brighter 120bpm tick — tech/behavior energy.
-    "pulse": dict(
-        drone="0.18*sin(2*PI*82*t)",
-        kick="0.38*sin(2*PI*65*t)*exp(-9*mod(t,0.5))",
-        pad="0.09*sin(2*PI*330*t)*sin(2*PI*0.2*t)"),
-}
+# The four synthesized vibes moved to shared/soundtrack.VIBES when pro_render
+# turned out to have no working music path at all. Nothing here referenced
+# them after `_synth_music` delegated, and a dead second copy of a table is
+# exactly how the two drift apart.
 
 
 def _synth_music(total: float, out: Path, vibe: str) -> None:
-    v = _VIBES.get(vibe, _VIBES["calm"])
-    d = max(8.0, total + 1.0)
-    _run(["ffmpeg", "-y", "-loglevel", "error",
-          "-f", "lavfi", "-i", f"aevalsrc='{v['drone']}':d={d}:s=44100",
-          "-f", "lavfi", "-i", f"aevalsrc='{v['kick']}':d={d}:s=44100",
-          "-f", "lavfi", "-i", f"aevalsrc='{v['pad']}':d={d}:s=44100",
-          "-filter_complex",
-          "[0][1][2]amix=inputs=3:duration=longest:weights=1 1.3 0.6,"
-          "highpass=f=30,lowpass=f=3500,"
-          "acompressor=threshold=0.4:ratio=4[m]",
-          "-map", "[m]", "-ac", "2", "-ar", "44100",
-          "-c:a", "pcm_s16le", str(out)])
+    """The synthesized bed. Delegates to shared/soundtrack — see _music_track."""
+    from shared import soundtrack
+    soundtrack.synth_bed(total, out, vibe, run=_run)
 
 
 def _synth_sfx(work: Path) -> dict[str, Path]:
-    """Small synthesized one-shot library (no asset files needed)."""
-    recipes = {
-        # Chart sweep-in: short filtered noise whoosh.
-        "whoosh": ("anoisesrc=duration=0.22:color=brown:amplitude=0.6",
-                   "highpass=f=400,lowpass=f=6000,volume=0.6"),
-        # Ring lands on a number — tone keyed to the punch color.
-        "pos": ("aevalsrc='0.45*sin(2*PI*880*t)*exp(-8*t)+"
-                "0.25*sin(2*PI*1320*t)*exp(-10*t)':d=0.35:s=44100",
-                "highpass=f=400,lowpass=f=8000"),
-        "warn": ("aevalsrc='0.5*sin(2*PI*420*t)*exp(-7*t)+"
-                 "0.3*sin(2*PI*660*t)*exp(-10*t)':d=0.33:s=44100",
-                 "highpass=f=200,lowpass=f=5000"),
-        "shock": ("aevalsrc='0.8*sin(2*PI*40*t)*exp(-5*t)+"
-                  "0.45*sin(2*PI*55*t)*exp(-8*t)':d=0.40:s=44100",
-                  "highpass=f=25,lowpass=f=2200"),
-        "money": ("aevalsrc='0.4*sin(2*PI*1480*t)*exp(-12*t)+"
-                  "0.28*sin(2*PI*2100*t)*exp(-14*t)+"
-                  "0.4*sin(2*PI*1480*(t-0.095))*exp(-12*(t-0.095))*gt(t,0.095)':"
-                  "d=0.4:s=44100",
-                  "highpass=f=600"),
-        "neutral": ("aevalsrc='0.6*sin(2*PI*70*t)*exp(-10*t)+"
-                    "0.3*sin(2*PI*45*t)*exp(-6*t)':d=0.30:s=44100", None),
-        # Closing bubble pops in.
-        "pop": ("aevalsrc='0.5*sin(2*PI*620*t)*exp(-9*t)+"
-                "0.3*sin(2*PI*930*t)*exp(-12*t)':d=0.30:s=44100",
-                "highpass=f=300"),
-    }
-    sfx: dict[str, Path] = {}
-    for name, (src, af) in recipes.items():
-        p = work / f"sfx_{name}.wav"
-        cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "lavfi", "-i", src]
-        if af:
-            cmd += ["-af", af]
-        _run(cmd + [str(p)])
-        sfx[name] = p
-    return sfx
+    """The synthesized one-shot kit. Delegates to shared/soundtrack."""
+    from shared import soundtrack
+    return soundtrack.synth_sfx(work, run=_run)
 
 
 MUSIC_DIR = PKG_DIR / "music"
@@ -200,17 +140,17 @@ MUSIC_DIR = PKG_DIR / "music"
 
 def _music_track(vibe: str, slug: str) -> Path | None:
     """A real royalty-free track for this vibe (rotated by slug), or None to
-    fall back to the synthesized bed. Populated by scripts/fetch_music.py."""
-    import hashlib
-    d = MUSIC_DIR / vibe
-    files = sorted(d.glob("*.mp3")) if d.is_dir() else []
-    if not files:
-        # try any vibe so a partial library still gives real music
-        files = sorted(MUSIC_DIR.glob("*/*.mp3")) if MUSIC_DIR.is_dir() else []
-    if not files:
-        return None
-    h = int(hashlib.md5(slug.encode()).hexdigest(), 16)
-    return files[h % len(files)]
+    fall back to the synthesized bed. Populated by scripts/fetch_music.py.
+
+    DELEGATES to shared/soundtrack. The implementation moved there because
+    pro_render — the canonical producer — had grown its own copy of the idea
+    that globbed one directory too shallow and so never found a track, which
+    meant every film through the pro path was narration over silence. Two
+    copies of a decision is how one of them ends up wrong and nobody notices;
+    the equivalence is held by scripts/test_soundtrack.py.
+    """
+    from shared import soundtrack
+    return soundtrack.music_track(vibe, slug, root=MUSIC_DIR)
 
 
 def _build_music(total: float, out: Path, vibe: str, slug: str) -> None:

@@ -799,8 +799,43 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
               f"{voice_lbls.count('[')}:normalize=0,volume=2.0,"
               f"aresample=48000[vo]", "-map", "[vo]", "-t", f"{total:.2f}",
               str(vo_mix)])
-    # 5) music bed, ducked under the voice
-    music = _music_track()
+    # 5) MUSIC BED, DUCKED UNDER THE VOICE — and it now actually exists.
+    #
+    # This read `music = _music_track()`, which globbed
+    # `data_learning/music/*.mp3`. `scripts/fetch_music.py` writes to
+    # `data_learning/music/<vibe>/*.mp3` — one directory deeper — so the glob
+    # never matched, `music` was always None, and this whole ducking chain has
+    # never run once. Every curiosity film ever produced through the pro path
+    # is narration over silence, while the module docstring above says "a
+    # music bed sits ducked under the voice". Five of five judged renders came
+    # back BORING; four of five, LOW_ENERGY.
+    #
+    # `shared/soundtrack.build_music` ALWAYS returns a bed: a real
+    # royalty-free track when the library is present, a synthesized one when
+    # it is not. There is no path back to silence, which is the point — a
+    # missing asset directory must degrade the score, never delete it.
+    music = None
+    try:
+        from shared import soundtrack
+        # MOODS COME FROM THE BEATS FIRST. `planner` only stamps `mood` onto
+        # designed-scene shots, so a footage-carried film like shared-air has
+        # none on any shot and every such film would have scored `calm` — the
+        # default, which is indistinguishable from "the author said nothing".
+        # The author writes the mood on the BEAT; that is where to read it.
+        moods = []
+        for b in (story.get("beats") or []):
+            moods.append(b.get("mood"))
+            for k in ("flat", "scene", "image", "motion"):
+                v = b.get(k)
+                if isinstance(v, dict):
+                    moods.append(v.get("mood"))
+        moods += [s.get("mood") for s in shots]
+        vibe = soundtrack.vibe_for(moods)
+        music = soundtrack.build_music(total, work / "bed.wav", vibe, slug,
+                                       run=_run)
+        print(f"[pro] music: {soundtrack.summary(vibe, slug)}", file=sys.stderr)
+    except Exception as e:  # noqa: BLE001
+        _fallback("music_bed", "degraded", f"no music bed ({e})")
     final_audio = work / "mix.m4a"
     if music:
         with perf.stage("music_ducking"):
@@ -1087,11 +1122,12 @@ def _emit_thumbnail(out, total, title):
     print(f"[pro] thumbnail -> {out.with_suffix('.jpg').name}")
 
 
-def _music_track():
-    for p in sorted((REPO / "data_learning" / "music").glob("*.mp3")) \
-            if (REPO / "data_learning" / "music").exists() else []:
-        return p
-    return None
+# `_music_track` lived here and globbed one directory too shallow, so it
+# returned None on every run this pipeline has ever made and the film shipped
+# silent. The working implementation — vibe selection, slug rotation, and a
+# synthesized fallback so a missing library costs quality and never the score
+# — was already in data_learning/studio_render.py and is now shared:
+# shared/soundtrack.py. See step 5 of build().
 
 
 def main(argv):

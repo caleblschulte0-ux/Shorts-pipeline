@@ -167,6 +167,7 @@ jobs:
           python scripts/test_the_character_acts.py
           python scripts/test_staging_variety.py
           python scripts/test_scene_depth.py
+          python scripts/test_soundtrack.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 
@@ -220,6 +221,31 @@ jobs:
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           pip install -q pillow numpy edge-tts requests psutil
+
+      # THE MUSIC LIBRARY, AND WHY IT WAS MISSING HERE.
+      #
+      # `curiosity.yml` and `explainer.yml` have both fetched this for months.
+      # THIS workflow — the one where every measured pro render happens, and
+      # therefore every film any blind judge has ever scored — never did. On
+      # top of that `pro_render` globbed `music/*.mp3` while the fetcher writes
+      # `music/<vibe>/*.mp3`, so even a fetched library would have been
+      # invisible to it. Two independent faults, same symptom: silence.
+      #
+      # `shared/soundtrack.build_music` now falls through to a synthesized bed
+      # when this cache misses AND the download fails, so a bad network costs
+      # the real track and never the score. That is the reason this step is
+      # allowed to fail.
+      - name: Cache music library
+        id: cache-music
+        uses: actions/cache@v4
+        with:
+          path: data_learning/music/
+          key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
+      - name: Fetch music if missing
+        if: steps.cache-music.outputs.cache-hit != 'true'
+        continue-on-error: true
+        run: python3 scripts/fetch_music.py
+
       - name: Full canary through the canonical producer (NO upload)
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
