@@ -28,6 +28,14 @@ for p in (REPO, REPO / "scripts"):
 
 from shared import film_metrics as fm  # noqa: E402
 
+def score(shots, beats=None, *, duration_source="estimated"):
+    """Every fixture here is a hand-written plan, so its seconds are all of a
+    kind. Saying so is the whole point: `compare` refuses two dicts that do
+    not agree on where their seconds came from, and a test that let itself
+    off that requirement would not be exercising the code that ships."""
+    return fm.score_plan(shots, beats, duration_source=duration_source)
+
+
 # The real attempt-1 shape: figures present, some real media, some cards.
 A1 = ([{"kind": "scene_free", "seconds": 4.0}] * 14
       + [{"kind": "depict", "seconds": 5.0, "motion_query": "child running",
@@ -40,7 +48,7 @@ A4 = ([{"kind": "depict", "seconds": 5.0, "motion_query": f"thing {i}",
 
 
 def test_the_regression_is_visible_without_a_render():
-    before, after = fm.score_plan(A1), fm.score_plan(A4)
+    before, after = score(A1), score(A4)
     # `figure_shots` counts a human on screen BY ANY MEANS — the 14 pictogram
     # scenes plus the 15 "child running" clips, which contain a person too.
     # It used to count only `scene_*`, which made a film carried entirely by
@@ -66,31 +74,31 @@ def test_a_film_of_REAL_PEOPLE_is_not_called_characterless():
     A scorer that counts only pictograms would refuse a film for replacing
     clip art with people — the opposite of what the evidence asks for.
     """
-    live = fm.score_plan([{"kind": "depict", "seconds": 4.0,
+    live = score([{"kind": "depict", "seconds": 4.0,
                            "motion_query": "person standing still",
                            "line": "x"}] * 6)
     assert live["figure_shots"] == 6, live
     assert live["pictogram_shots"] == 0 and live["live_figure_shots"] == 6, live
-    assert fm.guard(fm.score_plan(A1), live) == [], (
+    assert fm.guard(score(A1), live) == [], (
         "a film of real people must not trip the no-character guard")
     print("ok  real footage of people counts as characters on screen")
 
 
 def test_the_guard_refuses_it_outright():
     """Some changes are never worth making whatever else improves."""
-    bad = fm.guard(fm.score_plan(A1), fm.score_plan(A4))
+    bad = fm.guard(score(A1), score(A4))
     assert bad and "ZERO" in bad[0], bad
     # and it does not fire on a change that keeps people on screen
-    ok = fm.guard(fm.score_plan(A1), fm.score_plan(A1[:20]))
+    ok = fm.guard(score(A1), score(A1[:20]))
     assert ok == [], ok
     print(f"ok  guard refuses the figure-wipe: {bad[0]}")
 
 
 def test_compare_reports_regressions_not_only_wins():
     """Reporting only the wins is how the figure-wipe shipped as a fix."""
-    before = fm.score_plan(A1)
+    before = score(A1)
     # a change that removes duplicates AND every figure: one win, one loss
-    after = fm.score_plan(A4)
+    after = score(A4)
     cmp = fm.compare(before, after)
     assert cmp["regressed"], cmp
     assert cmp["verdict"] == "REGRESSION", (
@@ -110,13 +118,13 @@ def test_a_SCENE_SHOWING_A_BIG_NUMBER_is_a_card():
     plate = {"kind": "scene_money", "seconds": 4.0, "props": True,
              "number": "$2,400", "label": "LEFT THIS MONTH"}
     person = {"kind": "scene_free", "seconds": 4.0, "props": False}
-    m = fm.score_plan([plate] * 3 + [person] * 3)
+    m = score([plate] * 3 + [person] * 3)
     assert m["plate_scene_fraction"] == 0.5, m
     assert m["card_fraction"] == 0.5, m
     assert m["flat_card_fraction"] == 0.0, m
     # ...and a propless scene, which carries no number and no label, is not
     # a card: it is the person alone, which is what the rubric asks for.
-    only_people = fm.score_plan([person] * 4)
+    only_people = score([person] * 4)
     assert only_people["card_fraction"] == 0.0, only_people
     print("ok  a scene displaying a number counts as a card; a bare figure does not")
 
@@ -126,7 +134,7 @@ def test_duplicate_media_is_counted():
     dupes = [{"kind": "depict", "seconds": 4.0, "motion_query": "reeds in wind"},
              {"kind": "depict", "seconds": 4.0, "motion_query": "reeds in wind"},
              {"kind": "depict", "seconds": 4.0, "motion_query": "ocean waves"}]
-    m = fm.score_plan(dupes)
+    m = score(dupes)
     assert m["duplicate_media"] == 1, m
     assert m["distinct_media"] == 2, m
     print("ok  a repeated media query is counted before it is ever fetched")
@@ -134,7 +142,7 @@ def test_duplicate_media_is_counted():
 
 def test_unanchored_media_is_counted():
     """A query sharing no word with its line would serve any other beat."""
-    m = fm.score_plan([
+    m = score([
         {"kind": "depict", "seconds": 4, "motion_query": "glacier ice melting",
          "line": "The glacier is melting fast."},
         {"kind": "depict", "seconds": 4, "motion_query": "two people talking",
@@ -152,13 +160,13 @@ def test_not_measured_is_None_never_zero():
     unanchored_media=0, and comparing a real plan against it reported
     "REGRESSION: unanchored 0 -> 8" for a change that improved the film.
     """
-    blind = fm.score_plan([{"kind": "scene_free", "seconds": 4.0}])
+    blind = score([{"kind": "scene_free", "seconds": 4.0}])
     assert blind["duplicate_media"] is None, blind
     assert blind["unanchored_media"] is None, blind
     assert blind["unanchored_fraction"] is None, blind
     assert "n/a" in blind["summary"], blind["summary"]
     # ...and compare() then declines to judge that axis at all
-    real = fm.score_plan([{"kind": "depict", "seconds": 4.0,
+    real = score([{"kind": "depict", "seconds": 4.0,
                            "motion_query": "x y", "line": "nothing alike"}])
     cmp = fm.compare(blind, real)
     assert not any("unanchored" in x for x in cmp["regressed"]), cmp
@@ -167,7 +175,7 @@ def test_not_measured_is_None_never_zero():
 
 def test_an_empty_plan_does_not_explode():
     """Metrics must never be the thing that breaks a render."""
-    m = fm.score_plan([])
+    m = score([])
     assert m["shots"] == 0 and m["figure_shots"] == 0, m
     assert isinstance(m["summary"], str), m
     assert fm.compare(m, m)["verdict"] == "no change"
@@ -179,10 +187,10 @@ def test_the_ledger_round_trips_and_trends():
         f = Path(d) / "led.jsonl"
         # five weak renders, then five better ones
         for i in range(5):
-            fm.record("s", fm.score_plan(A4), path=f,
+            fm.record("s", score(A4), path=f,
                       verdict={"overall_10": 3.0, "personality": 1})
         for i in range(5):
-            fm.record("s", fm.score_plan(A1), path=f,
+            fm.record("s", score(A1), path=f,
                       verdict={"overall_10": 6.0, "personality": 3})
         rows = fm.history(f)
         assert len(rows) == 10, len(rows)
@@ -199,7 +207,7 @@ def test_trend_refuses_to_judge_too_little_data():
     """A retro that launders noise into a mandate is worse than none."""
     with tempfile.TemporaryDirectory() as d:
         f = Path(d) / "led.jsonl"
-        fm.record("s", fm.score_plan(A1), path=f,
+        fm.record("s", score(A1), path=f,
                   verdict={"overall_10": 4.0, "personality": 2})
         assert fm.trend(fm.history(f), n=5)["enough_data"] is False
     print("ok  trend refuses to call a direction without two full windows")
@@ -285,7 +293,86 @@ def test_the_planner_does_not_rewrite_authored_queries():
     print("ok  the planner keeps the authored query instead of guessing one")
 
 
+def test_estimated_and_measured_seconds_are_NEVER_diffed():
+    """THE BUG THIS EXISTS FOR, reproduced exactly.
+
+    2026-08-06. `quality_sprint check` scores a plan with a flat 5.0s per beat
+    so it can answer in milliseconds. `produce()` records renders with real
+    TTS durations. `check` diffed one against the other and printed
+
+        -  shot_lengths 31 -> 17
+        -  length_span_s 9.55 -> 4.5
+              => REGRESSION
+
+    on a change that touched nothing but how figures were COUNTED. The whole
+    delta was the units. Beat length decides how many shots a beat chunks
+    into, so it moves every count in the dict, and the cut metrics ARE
+    lengths.
+
+    That REGRESSION was about to refuse the next render — the guard would have
+    spent its authority on a fight with its own arithmetic. A gate that fires
+    on everything is indistinguishable from one that fires on nothing, except
+    that people eventually turn it off.
+    """
+    plan = [{"kind": "scene_free", "seconds": 5.0}] * 10
+    est = score(plan, duration_source="estimated")
+    # same shots, real narration lengths — a longer film, same structure
+    meas = score([{"kind": "scene_free", "seconds": 9.2}] * 10,
+                 duration_source="measured")
+    cmp = fm.compare(est, meas)
+    assert cmp["verdict"] == "incomparable", cmp
+    assert not cmp["regressed"], (
+        "a units mismatch must produce NO findings — a fabricated regression "
+        "is worse than silence, because it teaches the reader to ignore real "
+        "ones")
+    assert fm.guard(est, meas) == [], "a guard must not fire on a unit mismatch"
+    print("ok  estimated vs measured seconds is 'incomparable', not REGRESSION")
+
+
+def test_a_row_that_does_not_say_is_incomparable_with_everything():
+    """Including with itself. Every ledger row written before this change is
+    `unknown`; those renders were real, but nothing recorded their provenance,
+    and inferring it now would be the same guess this module refuses when it
+    writes `None` for an unmeasured axis."""
+    old = score([{"kind": "scene_free", "seconds": 4.0}] * 8,
+                duration_source="unknown")
+    assert fm.compare(old, old)["verdict"] == "incomparable"
+    new = score([{"kind": "scene_free", "seconds": 4.0}] * 8)
+    assert fm.compare(old, new)["verdict"] == "incomparable"
+    assert fm.compare(new, new)["verdict"] == "no change", (
+        "two tagged, matching scores must still compare normally")
+    print("ok  an untagged row is incomparable, with anything, including itself")
+
+
+def test_the_plan_history_is_SEPARATE_from_the_render_ledger():
+    """A free offline score must never land in the window `trend()` averages.
+
+    The two files answer different questions — 'did this change help' costs
+    milliseconds and has no verdict; 'is the channel improving' costs hours
+    and is nothing but verdicts. Mixing them lets a shell loop running `check`
+    flood the trend with verdict-less rows and flatten it to no-signal.
+    """
+    with tempfile.TemporaryDirectory() as d:
+        snaps = Path(d) / "snap.jsonl"
+        ledger = Path(d) / "ledger.jsonl"
+        m = score(A1)
+        fm.snapshot("s", m, note="offline", head="aaa", path=snaps)
+        fm.record("s", m, verdict={"overall_10": 4.5, "personality": 3,
+                                   "reject_labels": [], "pass": True},
+                  note="rendered", head="bbb", path=ledger)
+        got = fm.snapshots("s", path=snaps)
+        assert len(got) == 1 and got[0]["head"] == "aaa"
+        assert "overall_10" not in got[0], (
+            "a snapshot carries no score — it never watched a film")
+        assert len(fm.history(ledger)) == 1
+        assert fm.history(ledger)[0]["overall_10"] == 4.5
+    print("ok  offline plan scores and judged renders live in separate files")
+
+
 if __name__ == "__main__":
+    test_estimated_and_measured_seconds_are_NEVER_diffed()
+    test_a_row_that_does_not_say_is_incomparable_with_everything()
+    test_the_plan_history_is_SEPARATE_from_the_render_ledger()
     test_the_regression_is_visible_without_a_render()
     test_a_film_of_REAL_PEOPLE_is_not_called_characterless()
     test_the_guard_refuses_it_outright()

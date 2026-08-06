@@ -66,12 +66,36 @@ def _media_key(sh: dict) -> str:
     return f"image_query:{str(q).strip().lower()}" if q else ""
 
 
-def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
+def score_plan(shots: list[dict], beats: list[dict] | None = None, *,
+               duration_source: str = "unknown") -> dict:
     """Objective, render-free properties of a planned film.
 
     Every number here is something a blind judge has actually complained about
     in a recorded verdict, which is the bar for being in this dict at all. No
     metric is included because it seemed sensible.
+
+    `duration_source` SAYS WHERE THE SECONDS CAME FROM, and it is not
+    bookkeeping — it is the difference between a comparison and a lie.
+
+    Nearly every number in this dict is downstream of how long each beat is.
+    Beat length decides how many shots a beat chunks into, which decides every
+    count; the fractions are seconds-weighted; the cut metrics ARE lengths. So
+    a plan scored with `estimated` seconds (5.0 per beat, no TTS, the thing
+    that makes `quality_sprint check` instant) and one scored with `measured`
+    seconds (the real narration, from a render) are two different films'
+    worth of numbers even when the code that produced them is byte-identical.
+
+    On 2026-08-06 `check` compared an estimated plan against a measured ledger
+    row and reported `shot_lengths 31 -> 17` and `length_span_s 9.55 -> 4.5`
+    as a REGRESSION, refusing a change that had done nothing to either. The
+    change under test only touched how figures were COUNTED. The entire delta
+    was the units. A guard that cries regression on every change is not a
+    guard — it is noise with an exit code, and it would have burned the next
+    render slot arguing with itself.
+
+    `compare` and `guard` now refuse to put two different sources side by
+    side. `unknown` is treated as incomparable with everything including
+    itself, because a row that does not say cannot be trusted to match.
     """
     shots = list(shots or [])
     total = sum(_secs(s) for s in shots) or 1.0
@@ -188,6 +212,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
         seen_stagings.add(key)
 
     m = {
+        "duration_source": duration_source,
         "shots": len(shots),
         "runtime_s": round(total, 1),
         "shot_lengths": len(set(durs)) if durs else None,
@@ -302,12 +327,41 @@ BETTER = {
 }
 
 
+def comparable(before: dict, after: dict) -> str | None:
+    """None if these two metric dicts may be diffed, else why not.
+
+    See the `duration_source` note in `score_plan`. Two rows are comparable
+    only when both name the same source and that source is not `unknown`.
+    Every ledger row written before 2026-08-06 is `unknown`, which is correct:
+    those rows came from real renders, but nothing recorded that, and guessing
+    it now would be exactly the inference this module refuses everywhere else.
+    """
+    a = before.get("duration_source") or "unknown"
+    b = after.get("duration_source") or "unknown"
+    if a == "unknown" or b == "unknown":
+        return (f"one side does not say where its seconds came from "
+                f"({a} vs {b}) — nothing here is comparable")
+    if a != b:
+        return (f"{a} durations vs {b} durations — these are different units, "
+                "not a difference in the film")
+    return None
+
+
 def compare(before: dict, after: dict) -> dict:
     """What a change did — improvements AND regressions, both named.
 
     Reporting only the wins is how a change that removed every human from the
     frame got shipped as a fix. `regressions` is not optional output.
+
+    A mixed-provenance pair returns `incomparable` rather than a diff. Saying
+    nothing is the right answer when the two sides are in different units;
+    saying REGRESSION would be a fabricated finding, and a fabricated finding
+    is what stops the next real one from being believed.
     """
+    why = comparable(before, after)
+    if why:
+        return {"improved": [], "regressed": [], "incomparable": why,
+                "verdict": "incomparable"}
     wins, losses = [], []
     for k, want in BETTER.items():
         a, b = before.get(k), after.get(k)
@@ -326,7 +380,13 @@ def guard(before: dict, after: dict, *, forbid: tuple = ("figure_shots",)) -> li
     `figure_shots` going to zero is the default because that exact regression is
     measured — it cost a point of overall score and a point of personality, and
     it was invisible until a 4-hour render and a blind judge said NO_CHARACTER.
+
+    Refuses silently on a mixed-provenance pair: a guard that fires on a units
+    mismatch blocks good changes, and a guard that blocks good changes gets
+    switched off, which is how the real one stops working.
     """
+    if comparable(before, after):
+        return []
     bad = []
     for k in forbid:
         a, b = before.get(k), after.get(k)
@@ -375,6 +435,53 @@ def record(slug: str, metrics: dict, *, verdict: dict | None = None,
             fh.write(json.dumps(row, sort_keys=True) + "\n")
     except Exception as e:  # noqa: BLE001 — a ledger write must not fail a render
         print(f"[film_metrics] could not record: {e}")
+
+
+# ------------------------------------------------- the OFFLINE plan history
+#
+# A SECOND LEDGER, AND IT HAS TO BE SEPARATE.
+#
+# `LEDGER` holds RENDERS: one row per film that actually exists, each with a
+# blind verdict attached. It is the thing `trend()` reads to answer "is the
+# channel getting better", and its rows cost hours apiece.
+#
+# `SNAPSHOTS` holds PLANS: one row per time anyone scored a story offline.
+# They cost milliseconds, carry no verdict, and can never move the trend.
+#
+# They were briefly the same file, and that is what broke `check`: the only
+# baselines available were measured-duration render rows, so the instant
+# offline scorer had nothing in its own units to compare against and diffed
+# across the boundary instead. Giving the offline half its own history is
+# what makes `check` a guard rather than a coin flip — and keeping it out of
+# `LEDGER` is what stops a free, verdict-less row from diluting a window of
+# real renders.
+SNAPSHOTS = Path("state/curiosity_plan_snapshots.jsonl")
+
+
+def snapshot_path() -> Path:
+    import os
+    return Path(os.environ.get("CURIOSITY_PLAN_SNAPSHOTS") or SNAPSHOTS)
+
+
+def snapshot(slug: str, metrics: dict, *, note: str = "", head: str = "",
+             path: Path | None = None) -> None:
+    """Append one offline plan score. No verdict, ever — see above."""
+    f = Path(path) if path else snapshot_path()
+    row = {"slug": slug, "head": head, "note": note,
+           **{k: v for k, v in metrics.items()
+              if k not in ("overall_10", "personality", "pass",
+                           "reject_labels")}}
+    try:
+        f.parent.mkdir(parents=True, exist_ok=True)
+        with f.open("a") as fh:
+            fh.write(json.dumps(row, sort_keys=True) + "\n")
+    except Exception as e:  # noqa: BLE001
+        print(f"[film_metrics] could not snapshot: {e}")
+
+
+def snapshots(slug: str | None = None, path: Path | None = None) -> list[dict]:
+    rows = history(Path(path) if path else snapshot_path())
+    return [r for r in rows if slug is None or r.get("slug") == slug]
 
 
 def history(path: Path | None = None) -> list[dict]:

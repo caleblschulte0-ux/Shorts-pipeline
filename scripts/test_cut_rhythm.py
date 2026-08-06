@@ -28,6 +28,14 @@ for p in (REPO, REPO / "scripts"):
 
 from shared import cut_rhythm as cr  # noqa: E402
 from shared import film_metrics as fm  # noqa: E402
+
+def _score(shots, beats=None):
+    """Fixture plans are written in one unit; `compare` requires saying which.
+    See film_metrics.score_plan's duration_source note — an untagged pair is
+    'incomparable', which is the correct answer for a real mismatch and a
+    useless one for a test that controls both sides."""
+    return fm.score_plan(shots, beats, duration_source="estimated")
+
 from data_learning import planner  # noqa: E402
 
 
@@ -126,9 +134,9 @@ def test_variety_WITHOUT_range_is_not_an_improvement():
     A cut with more distinct lengths, all clustered in the middle, must read as
     a REGRESSION — otherwise the metric rewards the squeeze.
     """
-    was = fm.score_plan([{"kind": "depict", "seconds": s}
+    was = _score([{"kind": "depict", "seconds": s}
                          for s in (4.5, 1.85) * 8])
-    squeezed = fm.score_plan([{"kind": "depict", "seconds": s} for s in
+    squeezed = _score([{"kind": "depict", "seconds": s} for s in
                               (2.8, 3.55, 2.88, 3.48, 3.15, 3.2, 2.8, 3.55,
                                2.88, 3.48, 3.15, 3.2, 2.8, 3.55, 2.88, 3.48)])
     assert squeezed["shot_lengths"] > was["shot_lengths"], (was, squeezed)
@@ -145,7 +153,7 @@ def test_the_real_story_actually_gets_a_rhythm():
         (REPO / "data_learning" / "pro_stories" / "shared-air.beats.json")
         .read_text())["beats"]
     shots = planner.plan_story(beats, [5.0] * len(beats))
-    m = fm.score_plan(shots, beats)
+    m = _score(shots, beats)
     assert m["shot_lengths"] >= 12, (
         f"shared-air planned {m['shot_lengths']} distinct shot lengths across "
         f"{m['shots']} shots — it had 4, and four judges said SAMENESS")

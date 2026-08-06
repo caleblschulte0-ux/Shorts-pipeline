@@ -710,7 +710,11 @@ def build(story: dict, out: Path, work: Path, voice: str = VOICE) -> dict:
         # which five renders paid for this lesson.
         try:
             from shared import film_metrics
-            _plan_metrics = film_metrics.score_plan(shots, beats)
+            # `measured`: these shots carry real TTS durations, so the numbers
+            # may be compared with other renders and NEVER with an offline
+            # `estimated` score. See score_plan's duration_source note.
+            _plan_metrics = film_metrics.score_plan(
+                shots, beats, duration_source="measured")
             print(f"[pro] PLAN: {_plan_metrics['summary']}", file=sys.stderr)
             if not _plan_metrics["figure_shots"]:
                 print("[pro] PLAN WARNING: not one shot puts a person on "

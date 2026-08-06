@@ -36,6 +36,14 @@ for p in (REPO, REPO / "scripts"):
 
 from shared import camera_grammar as cg  # noqa: E402
 from shared import film_metrics as fm  # noqa: E402
+
+def _score(shots, beats=None):
+    """Fixture plans are written in one unit; `compare` requires saying which.
+    See film_metrics.score_plan's duration_source note — an untagged pair is
+    'incomparable', which is the correct answer for a real mismatch and a
+    useless one for a test that controls both sides."""
+    return fm.score_plan(shots, beats, duration_source="estimated")
+
 from data_learning import extra_director as ed, planner, scenes  # noqa: E402
 
 
@@ -111,15 +119,15 @@ def test_the_framing_is_clamped_and_junk_is_ignored():
 
 def test_the_metric_can_SEE_the_defect():
     """Nothing in film_metrics could measure this before, which is why it ran."""
-    same = fm.score_plan([{"kind": "scene_free", "seconds": 3.0}] * 4)
+    same = _score([{"kind": "scene_free", "seconds": 3.0}] * 4)
     assert same["repeated_stagings"] == 3, same
-    varied = fm.score_plan([
+    varied = _score([
         {"kind": "scene_free", "seconds": 3.0, "framing": list(cg.framing_for(i))}
         for i in range(4)])
     assert varied["repeated_stagings"] == 0, varied
     assert fm.compare(same, varied)["verdict"] == "improvement"
     # and a plan with no scene shots at all cannot report a number
-    assert fm.score_plan([{"kind": "depict", "seconds": 3.0}])["repeated_stagings"] is None
+    assert _score([{"kind": "depict", "seconds": 3.0}])["repeated_stagings"] is None
     print("ok  repeated_stagings measures it, and is None when unmeasurable")
 
 
@@ -134,7 +142,7 @@ def test_BOTH_real_films_reach_zero():
             (REPO / "data_learning" / "pro_stories" / f"{slug}.beats.json")
             .read_text())["beats"]
         shots = ed.apply(planner.plan_story(beats, [5.0] * len(beats)))
-        m = fm.score_plan(shots, beats)
+        m = _score(shots, beats)
         n = sum(1 for s in shots if str(s.get("kind", "")).startswith("scene_"))
         assert m["repeated_stagings"] == 0, (
             f"{slug}: {m['repeated_stagings']} of {n} scene shots are still "

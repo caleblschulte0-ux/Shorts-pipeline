@@ -80,33 +80,49 @@ def _plan_for(slug: str) -> tuple[list[dict], list[dict]]:
     from data_learning import planner
     f = REPO / "data_learning" / "pro_stories" / f"{slug}.beats.json"
     beats = json.loads(f.read_text())["beats"]
-    # Real narration durations need TTS; 5s per beat is close enough for the
-    # structural metrics (counts, kinds, duplicate queries) and is what makes
-    # this instant. Anything measured here must be duration-insensitive.
+    # Real narration durations need TTS; a flat 5s per beat is what makes this
+    # instant. It is NOT "close enough" — that claim used to be in this
+    # comment and it was wrong. Beat length decides how many shots a beat
+    # chunks into, so it moves every count, every seconds-weighted fraction,
+    # and the cut metrics outright. The numbers are internally consistent and
+    # comparable ONLY against another plan scored the same way, which is why
+    # they are tagged `estimated` and kept in their own history.
     return planner.plan_story(beats, [5.0] * len(beats)), beats
 
 
 def cmd_check(args) -> int:
     shots, beats = _plan_for(args.slug)
-    now = fm.score_plan(shots, beats)
+    now = fm.score_plan(shots, beats, duration_source="estimated")
     print(f"PLAN  {args.slug}: {now['summary']}")
 
-    rows = [r for r in fm.history() if r.get("slug") == args.slug]
+    # The baseline is the last OFFLINE score of this slug, not the last
+    # render. Both are real measurements; only one is in the same units. See
+    # `film_metrics.score_plan`'s duration_source note — diffing across that
+    # boundary reported a REGRESSION on a change that touched no durations at
+    # all, and would have refused it.
+    rows = fm.snapshots(args.slug)
+    refused: list[str] = []
     if not rows:
-        print("no prior render recorded for this slug — nothing to compare")
-        return 0
-    last = rows[-1]
-    cmp = fm.compare(last, now)
-    print(f"vs    {last.get('head', '?')[:8]} ({last.get('note', '')})")
-    for x in cmp["improved"]:
-        print(f"  +  {x}")
-    for x in cmp["regressed"]:
-        print(f"  -  {x}")
-    print(f"      => {cmp['verdict']}")
+        print("no prior OFFLINE score for this slug — this run becomes the "
+              "baseline for the next one")
+    else:
+        last = rows[-1]
+        cmp = fm.compare(last, now)
+        print(f"vs    {last.get('head', '?')[:8]} ({last.get('note', '')})")
+        if cmp["verdict"] == "incomparable":
+            print(f"      => INCOMPARABLE: {cmp['incomparable']}")
+        else:
+            for x in cmp["improved"]:
+                print(f"  +  {x}")
+            for x in cmp["regressed"]:
+                print(f"  -  {x}")
+            print(f"      => {cmp['verdict']}")
+        refused = fm.guard(last, now)
+        for r in refused:
+            print(f"REFUSED: {r}")
 
-    refused = fm.guard(last, now)
-    for r in refused:
-        print(f"REFUSED: {r}")
+    if not args.no_save and not refused:
+        fm.snapshot(args.slug, now, note=args.note or "", head=_head())
 
     unanchored = fm.unanchored_beats(shots)
     if unanchored:
@@ -210,6 +226,9 @@ def main() -> int:
     sub = ap.add_subparsers(dest="cmd", required=True)
     c = sub.add_parser("check", help="score a slug's current plan and gate it")
     c.add_argument("slug")
+    c.add_argument("--note", default="", help="what changed since the last check")
+    c.add_argument("--no-save", action="store_true",
+                   help="do not append this score to the offline history")
     c.set_defaults(fn=cmd_check)
     r = sub.add_parser("record", help="add a finished render to the ledger")
     r.add_argument("slug")

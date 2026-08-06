@@ -23,6 +23,14 @@ for p in (REPO, REPO / "scripts"):
 
 from shared import camera_grammar as cg  # noqa: E402
 from shared import film_metrics as fm  # noqa: E402
+
+def _score(shots, beats=None):
+    """Fixture plans are written in one unit; `compare` requires saying which.
+    See film_metrics.score_plan's duration_source note — an untagged pair is
+    'incomparable', which is the correct answer for a real mismatch and a
+    useless one for a test that controls both sides."""
+    return fm.score_plan(shots, beats, duration_source="estimated")
+
 from data_learning import planner  # noqa: E402
 
 
@@ -91,12 +99,12 @@ def test_an_empty_plan_does_not_explode():
 
 def test_the_metric_reports_it_and_None_when_absent():
     """Unmeasured is None — the rule the whole module runs on."""
-    blind = fm.score_plan([{"kind": "depict", "seconds": 4.0}])
+    blind = _score([{"kind": "depict", "seconds": 4.0}])
     assert blind["camera_moves"] is None and blind["repeated_moves"] is None, blind
-    bad = fm.score_plan([{"kind": "depict", "seconds": 4.0, "direction": "in",
+    bad = _score([{"kind": "depict", "seconds": 4.0, "direction": "in",
                           "pan": "left"} for _ in range(5)])
     assert bad["camera_moves"] == 1 and bad["repeated_moves"] == 4, bad
-    good = fm.score_plan(cg.plan_moves(
+    good = _score(cg.plan_moves(
         [{"kind": "depict", "seconds": 4.0} for _ in range(5)]))
     assert good["repeated_moves"] == 0, good
     assert fm.compare(bad, good)["verdict"] == "improvement", fm.compare(bad, good)
@@ -109,7 +117,7 @@ def test_the_real_story_gets_a_camera():
         (REPO / "data_learning" / "pro_stories" / "shared-air.beats.json")
         .read_text())["beats"]
     shots = planner.plan_story(beats, [5.0] * len(beats))
-    m = fm.score_plan(shots, beats)
+    m = _score(shots, beats)
     assert m["repeated_moves"] == 0, m
     assert m["camera_moves"] >= 4, m
     pushes = {round(float(s.get("push") or 0), 2) for s in shots}
