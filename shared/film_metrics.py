@@ -103,7 +103,28 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     except Exception:  # noqa: BLE001 — metrics never break a render
         pass
     figure = pictogram + live_figure
-    cards = [s for s in shots if _kind(s).startswith(_CARD_PREFIX)]
+    # A CARD IS WHAT THE VIEWER SEES, NOT WHAT THE KIND IS CALLED. This
+    # counted `flat_*` only, and reported money-goes at 15% cards while the
+    # blind judge — looking at the frames — estimated 40% and fired
+    # CARDS_OVER_BUDGET, the rubric's "#1 killer". Both were describing the
+    # same film.
+    #
+    # The gap is the DESIGNED SCENES THAT DISPLAY A BIG NUMBER AND A LABEL:
+    # `scene_money` is a money meter, `scene_paycheck` and `scene_tax` are a
+    # pictogram behind a giant figure and a caption. On screen those are stat
+    # plates; only their class name says "character scene". Counting by class
+    # name understated the film's card load by 12 points of runtime, which is
+    # the difference between passing a budget and failing it.
+    #
+    # A scene with its props switched OFF carries no number and no label — it
+    # is the person alone — and is correctly not a card.
+    flat_cards = [s for s in shots if _kind(s).startswith(_CARD_PREFIX)]
+    plate_scenes = [
+        s for s in shots
+        if _kind(s).startswith(_FIGURE_PREFIX) and s.get("props", True)
+        and (str(s.get("number") or "").strip() or str(s.get("label") or "").strip())
+    ]
+    cards = flat_cards + plate_scenes
 
     # A repeated asset is the flaw a viewer notices unprompted. Judges have
     # named duplicate pairs by timestamp without being asked to look for them.
@@ -179,6 +200,10 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
         "live_figure_shots": len(live_figure),
         "figure_fraction": round(sum(_secs(s) for s in figure) / total, 3),
         "card_fraction": round(sum(_secs(s) for s in cards) / total, 3),
+        # Kept apart so the two causes stay separable: too many designed
+        # plates, versus character scenes that are secretly stat plates.
+        "flat_card_fraction": round(sum(_secs(s) for s in flat_cards) / total, 3),
+        "plate_scene_fraction": round(sum(_secs(s) for s in plate_scenes) / total, 3),
         # NOT-MEASURED IS None, NEVER ZERO. A plan with no media queries in it
         # (a legacy plan, or one reconstructed from performance.json, which
         # records what rendered and not what was searched) can say nothing

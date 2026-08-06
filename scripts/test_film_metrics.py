@@ -98,6 +98,29 @@ def test_compare_reports_regressions_not_only_wins():
     print("ok  a mixed change reads as REGRESSION, not 'improvement'")
 
 
+def test_a_SCENE_SHOWING_A_BIG_NUMBER_is_a_card():
+    """A renamed money bar is still a money bar.
+
+    `card_fraction` counted `flat_*` only and reported money-goes at 15% while
+    the blind judge, looking at the frames, estimated 40% and fired
+    CARDS_OVER_BUDGET — the rubric's "#1 killer". The gap was the designed
+    scenes that display a giant number and a caption: on screen those are stat
+    plates, and only their class name says "character".
+    """
+    plate = {"kind": "scene_money", "seconds": 4.0, "props": True,
+             "number": "$2,400", "label": "LEFT THIS MONTH"}
+    person = {"kind": "scene_free", "seconds": 4.0, "props": False}
+    m = fm.score_plan([plate] * 3 + [person] * 3)
+    assert m["plate_scene_fraction"] == 0.5, m
+    assert m["card_fraction"] == 0.5, m
+    assert m["flat_card_fraction"] == 0.0, m
+    # ...and a propless scene, which carries no number and no label, is not
+    # a card: it is the person alone, which is what the rubric asks for.
+    only_people = fm.score_plan([person] * 4)
+    assert only_people["card_fraction"] == 0.0, only_people
+    print("ok  a scene displaying a number counts as a card; a bare figure does not")
+
+
 def test_duplicate_media_is_counted():
     """36 slots / 32 clips was real, and a judge named the pairs by timestamp."""
     dupes = [{"kind": "depict", "seconds": 4.0, "motion_query": "reeds in wind"},
@@ -266,6 +289,7 @@ if __name__ == "__main__":
     test_the_regression_is_visible_without_a_render()
     test_a_film_of_REAL_PEOPLE_is_not_called_characterless()
     test_the_guard_refuses_it_outright()
+    test_a_SCENE_SHOWING_A_BIG_NUMBER_is_a_card()
     test_compare_reports_regressions_not_only_wins()
     test_duplicate_media_is_counted()
     test_unanchored_media_is_counted()
