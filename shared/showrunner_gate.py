@@ -101,10 +101,28 @@ def decide(*, will_upload: bool, gate_on: bool, verdict: dict | None,
     if str(verdict.get("verdict")) == "block":
         reasons.append(f"showrunner BLOCK: {verdict.get('one_line') or ''}"
                        .strip())
-    # Rule 2 — a verdict with no score means it never really saw the video.
-    if will_upload and verdict.get("score") is None:
-        reasons.append("showrunner produced no real verdict (fail-closed on a "
-                       "publish run)")
+    # Rule 2 — on a publish run, only an EXPLICIT AFFIRMATIVE ships.
+    #
+    # This used to be two negative checks: token == "block" blocks, score
+    # None blocks. The doctor's 2026-08-05 report (finding 3aae…, HIGH)
+    # caught what that leaves open: a malformed verdict — an unknown token
+    # like "error" carrying a numeric score — matched neither check and
+    # SHIPPED. "Not refused" is not the same thing as "approved", and in a
+    # fail-closed gate the difference is the whole design. The reviewer's
+    # token domain is exactly {"ship", "block"} (`decide_verdict`), so on a
+    # publish run anything that is not literally "ship" with a bounded
+    # numeric score is treated as no verdict at all.
+    if will_upload:
+        tok = str(verdict.get("verdict") or "").lower()
+        score = verdict.get("score")
+        # The reviewer scores 0-100 (compute_score; MIN_SCORE defaults 70).
+        score_ok = (isinstance(score, (int, float))
+                    and not isinstance(score, bool) and 0 <= score <= 100)
+        if tok != "block" and (tok != "ship" or not score_ok):
+            reasons.append(
+                f"showrunner verdict is not an explicit ship "
+                f"(verdict={tok or 'missing'!r}, score={score!r}) — "
+                f"fail-closed on a publish run")
 
     return {"blocked": bool(reasons), "ran": True,
             "reason": "; ".join(r for r in reasons if r),

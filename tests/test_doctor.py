@@ -182,10 +182,39 @@ class TestTheRefusalListIsInherited(DoctorCase):
         return " ".join(res["rejected"][0]["problems"]).lower()
 
     def test_weakening_the_showrunner(self):
-        self.assertIn("showrunner", self.refuse(
+        self.assertIn("lowering a quality bar", self.refuse(
             title="lower the showrunner threshold",
             files=["scripts/showrunner_review.py"],
             proposal="Lower the min score so more videos pass the gate."))
+
+    def test_a_gate_bug_report_is_ACCEPTED_and_flagged_not_binned(self):
+        """Day one, for real: the doctor's first report carried a verified
+        HIGH bug in the publish gate — malformed verdicts shipping — with a
+        proposal to make the gate STRICTER, and the retro's file-touch rule
+        silently refused it along with two more showrunner findings. Only 1
+        of 4 findings reached the backlog. A diagnosis queue that cannot
+        hear about its own gate is blind exactly where it matters most.
+
+        Findings touching protected areas are ACCEPTED, carrying
+        `protected` notes so the ruling session sees the only-ADD-blocks
+        constraint. Refusal stays for what a finding ASKS FOR, never for
+        where it points."""
+        f = finding(
+            title="Publish gate accepts malformed non-block verdicts",
+            files=["shared/showrunner_gate.py"],
+            proposal="Require an explicit ship verdict with a bounded "
+                     "numeric score on publish runs; treat every unknown "
+                     "or malformed value as blocked.")
+        res = doctor.validate_report(report(f))
+        self.assertEqual(res["counts"]["accepted"], 1,
+                         f"a strengthen-the-gate finding was refused: "
+                         f"{res['rejected']}")
+        out = doctor.ingest(report(f))
+        sig = out["added"][0] if out["added"] else out["refreshed"][0]
+        item = doctor.load_backlog()[sig]
+        self.assertTrue(item.get("protected"),
+                        "the protected-area context must reach the ruling")
+        self.assertIn("showrunner", " ".join(item["protected"]))
 
     def test_deleting_a_test(self):
         self.assertIn("test", self.refuse(

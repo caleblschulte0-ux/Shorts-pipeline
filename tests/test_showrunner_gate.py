@@ -84,6 +84,53 @@ class TestAPublishRunFailsClosed(unittest.TestCase):
                                        "a gate nothing passes gets removed")
 
 
+class TestOnlyAnExplicitShipShips(unittest.TestCase):
+    """The doctor's first HIGH finding (2026-08-05), verified real: the gate
+    used to block on the exact token 'block' or a missing score — so a
+    MALFORMED verdict, an unknown token carrying a numeric score, matched
+    neither check and shipped on a publish run. 'Not refused' is not
+    'approved'. On publish, the only thing that ships is literally
+    verdict='ship' with a bounded numeric score."""
+
+    def hold(self, verdict):
+        d = gate.decide(will_upload=True, gate_on=True, verdict=verdict)
+        self.assertTrue(d["blocked"], f"{verdict!r} must not ship")
+        return d
+
+    def test_an_unknown_token_with_a_score_holds(self):
+        # The exact shape from the doctor's report: verdict='error', score=7.
+        d = self.hold({"verdict": "error", "score": 7})
+        self.assertIn("not an explicit ship", d["reason"])
+
+    def test_misc_malformed_verdicts_all_hold(self):
+        for v in ({"verdict": "approved", "score": 9},
+                  {"verdict": "SHIP?", "score": 8},
+                  {"verdict": None, "score": 8},
+                  {"score": 8},
+                  {"verdict": "ship", "score": "88"},     # string score
+                  {"verdict": "ship", "score": True},     # bool is not a score
+                  {"verdict": "ship", "score": 101},      # out of range (0-100)
+                  {"verdict": "ship", "score": -1},
+                  {"verdict": "ship", "score": float("nan")},
+                  {"verdict": "ship"}):
+            self.hold(v)
+
+    def test_a_preview_is_still_lenient(self):
+        """The strictness is publish-only — a preview with a weird verdict
+        proceeds, same as every other preview leniency."""
+        d = gate.decide(will_upload=False, gate_on=True,
+                        verdict={"verdict": "error", "score": 7})
+        self.assertFalse(d["blocked"])
+
+    def test_a_real_block_reason_still_leads(self):
+        """A malformed BLOCK is still reported as the brain's block, not
+        re-labelled malformed — the brain's veto stays sovereign."""
+        d = gate.decide(will_upload=True, gate_on=True,
+                        verdict={"verdict": "block", "one_line": "bad"})
+        self.assertTrue(d["blocked"])
+        self.assertIn("showrunner BLOCK", d["reason"])
+
+
 class TestAPreviewRunFailsOpen(unittest.TestCase):
     """Iteration must not be blocked by infrastructure."""
 

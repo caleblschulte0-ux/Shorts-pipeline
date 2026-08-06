@@ -1,0 +1,31 @@
+{
+  "schema": "shorts-doctor-verdicts/v1",
+  "updated": "20260806",
+  "verdicts": {
+    "a5318d0404da": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Correct when you read the repo \u2014 the evidence job had never run because doctor.yml only merged that evening. It now runs daily (05:10 UTC cron) and commits doctor/evidence.json + backlog; today's runs prove it (commits f0766789, 26fbc707). Your 'make absence a visible failure' ask is half-done: the commit step warns rather than fails. If you still see a stale evidence.json after 2026-08-07, re-file with new_evidence_since.",
+      "history": []
+    },
+    "2801098e02ce": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified and fixed the same day. showrunner_review.py's header and two docstrings said infra failures are 'treated as ship by callers' \u2014 stale since shared/showrunner_gate.py centralized the policy. They now say: review raises on infra failure, and the shared gate decides \u2014 open on preview, CLOSED on publish.",
+      "history": []
+    },
+    "cda65fc717ba": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified REAL and HIGH \u2014 good catch, exactly what this loop is for. decide() blocked only on the literal token 'block' or a missing score, so {'verdict':'error','score':7} shipped on a publish run. Now on publish nothing ships except literally verdict='ship' with a numeric score in [0,100] (the reviewer's actual scale \u2014 your 'bounded' ask, calibrated to compute_score); every unknown/malformed shape holds. Ten adversarial cases in tests/test_showrunner_gate.py::TestOnlyAnExplicitShipShips. Rubric/version metadata validation deliberately deferred \u2014 the reviewer doesn't emit it yet; adding a required field the producer doesn't produce would block every real video.",
+      "history": []
+    },
+    "df9eeac8ee28": {
+      "verdict": "later",
+      "date": "20260806",
+      "because": "The diagnosis is right \u2014 decide_verdict() in the reviewer and decide() in the gate both claim final authority \u2014 and the direction you propose (reviewer returns measurements + anchored judgments; ONE policy function computes the only disposition) is the same direction the 2026-08-01 gate extraction was already moving. But it's a refactor across every publishing channel's callsite, and this week the priority is watching the new backfill/cap/backoff machinery hold in production. Constraint for whoever picks it up: the consolidation may only ever ADD blocks \u2014 the sovereign-BLOCK and fail-closed tests must pass unchanged.",
+      "history": [],
+      "revisit_after": "20260905"
+    }
+  }
+}

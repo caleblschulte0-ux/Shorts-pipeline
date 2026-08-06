@@ -33,7 +33,7 @@
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 1/6; 0 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 2/6; 4 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
@@ -41,6 +41,22 @@
     "deferred": false
   },
   "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260806",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 2,
+      "quarantined": 0,
+      "failed": 8,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/mrUqpMU95qY",
+        "https://youtube.com/shorts/IaprIWrtr_0"
+      ]
+    },
     {
       "schema": "production-channel-outcome/v1",
       "date": "20260805",
@@ -832,20 +848,364 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:27:57+00:00",
+      "slug": "nvidia_just_overtook_intel_in_revenue",
+      "score": 78,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
+      "auto_fails": [
+        "empty_void: hook@0.3 through mid0 (t=2.5s): the entire 20B\u201380B mid-band and the whole right half (2022\u20132025) of the plot are pure black with only two short line stubs; dark_fraction 1.0."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:29:01+00:00",
+      "slug": "renewables_just_beat_coal_in_the_us",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:31:06+00:00",
+      "slug": "china_vs_hollywood__the_box_office_war",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A genuine, well-sourced two-series race with a real lead change \u2014 but the hook is a static text card over an empty grid and the payoff whispers the result instead of landing it.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:33:07+00:00",
+      "slug": "the_global_ev_race__china_vs_europe_vs_u",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest graph race with a real lead change and a landed winner \u2014 but the hook card ghosts illegibly over the lines while the chart is still empty, wasting the first 2 seconds.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:36:56+00:00",
+      "slug": "she_demanded_i_follow_the_return_policy_",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
+      "auto_fails": [
+        "dead_air: The story illustration is one frozen AI still, pixel-identical across mid1 (12.43s), mid2 (22.37s), mid3 (32.30s), mid4 (42.23s), mid5 (52.17s) and payoff@-0.4 (53.77s) \u2014 ~41s in which the only story-bearing visual never changes."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:40:41+00:00",
+      "slug": "she_wanted_a_refund_for_kids_who_never_s",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
+      "auto_fails": [
+        "dead_air: The upper illustration panel is the SAME empty-room still at mid1 (11.9s), mid2 (21.3s), mid3 (30.8s), mid4 (40.2s), mid5 (49.6s), payoff@-1.8 and payoff@-0.4 \u2014 ~40s in which the story-carrying half of the frame never changes, and consecutive beats are visually identical.",
+        "empty_void: The top ~50% of the frame from mid1 onward is a dim, subject-less empty room \u2014 half the canvas holds no element, no motion and no story information for the entire body."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 155
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:49:20+00:00",
+      "slug": "moment_first_rare_tiger_in_70_years_rele",
+      "score": 30,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
+      "auto_fails": [
+        "junk_imagery: mid1 (t=10.79s) shows two SNAILS on a plank over 'HER FIRST STEPS INTO THE' \u2014 nothing to do with an Amur tiger release; mid2 (t=19.07s) is a burning forest for 'FROM RUSSIA AS PART OF' and mid3 (t=27.36s) is empty sand dunes for '12 MILLION PEOPLE WERE'. All three are auto-grabbed stock with no relation to the line.",
+        "decorative_mascot: No mascot appears in any frame from hook@0.3 through payoff@-0.4 \u2014 Data is entirely absent, so there is no bit tied to any stat.",
+        "empty_void: hook@0.3 and hook@0.8 (t=0.30-0.80s) are a fully black screen with only a wall of white text \u2014 no imagery, no motion, roughly two seconds of dead frame opening the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.022,
+        "sampled": 138
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T09:58:04+00:00",
+      "slug": "ukraine_s_military_hits_one_of_russia_s_",
+      "score": 17,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
+      "auto_fails": [
+        "junk_imagery: mid2 (t=19.35s) shows a hand holding a UK 'SKY' TV remote under the line 'THE VIDEO SHOWED THE SLAVNAF', and mid5/payoff (t=44.63-46.23s) sit on a US 82nd Airborne 'WAALCROSSING 1944' memorial stone for a Ukraine drone-strike story; mid1 (t=10.93s) captions 'TOP SECRET' over a white gym/clinic interior.",
+        "empty_void: hook@0.3 and hook@0.8 are a full-frame black void with nothing but static white text \u2014 no image, no motion, no mascot, for the entire opening beat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.021,
+        "sampled": 140
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T10:05:41+00:00",
+      "slug": "this_school_bus_sized__terror_croc__ate_",
+      "score": 22,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
+      "auto_fails": [
+        "junk_imagery: mid0 (t=2.50s) is a melted/garbled 3D render with unreadable letterforms ('af...roV'); mid2 (t=20.53s) is a museum insect HOLOTYPE specimen label for a wasp (Cressoniella/Chaetochile), mid3 (t=29.54s) is an empty marine-park aquarium, mid4 (t=38.56s) is clay lettering reading 'INFORMATION EXPLAINED', and mid5/payoff (t=47.57\u201349.17s) is an art-gallery photo of a man kneeling \u2014 none of these depict a croc, a family, or anything in the narration.",
+        "decorative_mascot: Data does not appear in a single frame (hook@0.3 through payoff@-0.4); the lower half is generic Geometry-Dash-style gameplay, so there is no performer and no setup\u2192action\u2192payoff bit anywhere.",
+        "bare_number_card: hook@0.3 and hook@0.8 are identical plain white/yellow text on a flat black field ('I WAS 12 WHEN MY DAD...') \u2014 the only number in the video is typeset on a blank card with zero demonstration.",
+        "empty_void: hook@0.3 and hook@0.8 fill the entire 9:16 frame with near-black emptiness holding only three lines of centered text \u2014 roughly two-thirds of the frame is dead space with nothing happening, before the split-screen even begins."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.02,
+        "sampled": 149
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-06T10:12:00+00:00",
+      "slug": "winner_of_florida_python_hunting_contest",
+      "score": 26,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
+      "auto_fails": [
+        "junk_imagery: mid5/payoff@-1.8/payoff@-0.4 fill the top half with a scanned newspaper page about the FBI's D.B. Cooper hijacking wanted poster \u2014 nothing to do with Florida python hunting; mid4 uses a generic stock headshot of a young male model behind 'SECRET ABOUT MY PAST'.",
+        "decorative_mascot: Data never appears in any frame (hook@0.3 through payoff@-0.4); the only moving figure is an unrelated Geometry Dash cube, so there is no setup->action->payoff bit tied to any stat.",
+        "bare_number_card: mid3 presents '$12 MILLION' as caption text over a stock fan of $100 bills, and hook@0.3 states '96 BURMESE PYTHONS' as text over a snake photo \u2014 neither number is demonstrated, only captioned."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 103
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "26fbc70 2026-08-06 doctor: evidence pack + backlog 2026-08-06 [skip ci]",
-    "a402b3a 2026-08-05 doctor: findings for 20260805"
+    "ae05b47e 2026-08-06 explainer: update posted log + analytics [skip ci]",
+    "d10ba4e9 2026-08-06 exchange: phase A bundle for 20260806 [skip ci]",
+    "23fa1b95 2026-08-06 explainer: a backstop cron, because the morning cron's first day never fired (#243)",
+    "8a5646b1 2026-08-06 third: analytics [skip ci]",
+    "722da25b 2026-08-06 third: update posted log + analytics [skip ci]",
+    "da9ce99a 2026-08-06 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "07ebb8fb 2026-08-06 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "65eafce9 2026-08-06 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "d6d29887 2026-08-06 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "5c138ac9 2026-08-06 every publish was DELETING the previous render's evidence",
+    "04a3e3c1 2026-08-06 exchange: phase A bundle for 20260806 [skip ci]",
+    "84af4151 2026-08-06 third: analytics snapshot [skip ci]",
+    "52e9fa85 2026-08-06 daily: 2026-08-06 report + state [skip ci]",
+    "377c6f74 2026-08-06 exchange: phase A bundle for 20260806 [skip ci]",
+    "768b6ef2 2026-08-06 daily packages 2026-08-06 (#242)",
+    "f0766789 2026-08-06 doctor: evidence pack + backlog 2026-08-06 [skip ci]",
+    "26fbc707 2026-08-06 doctor: evidence pack + backlog 2026-08-06 [skip ci]",
+    "a402b3a3 2026-08-05 doctor: findings for 20260805",
+    "5202edf8 2026-08-05 find the package instead of guessing its path",
+    "af4d2148 2026-08-05 loop audit: no self-pokes, no double-posts, no dead crons, no latch a human must clear (#241)",
+    "9fbfcfe1 2026-08-05 canary evidence over plain git, so a finished render can actually be judged",
+    "c484c7b1 2026-08-06 exchange: phase A bundle for 20260806 [skip ci]",
+    "92fa66a9 2026-08-05 longform: the Sunday cron can no longer publish a switched-off channel (#240)",
+    "b61057dd 2026-08-05 graph_race fixed + the reserve bank retired (a refused slot is re-authored) + the doctor (#239)",
+    "c47c7ea6 2026-08-05 exchange: phase A bundle for 20260805 [skip ci]",
+    "c068ae4d 2026-08-05 a held slot is not a lost slot: backfill, without ever touching the gate (#238)",
+    "29a35a91 2026-08-05 exchange: phase A bundle for 20260805 [skip ci]",
+    "24d02883 2026-08-05 the slate ruling, and a channel that can no longer be killed by another channel (#237)",
+    "0c5a4830 2026-08-05 exchange: phase A bundle for 20260805 [skip ci]",
+    "9bb00e8f 2026-08-05 the alarm could not read the third channel's log at all (#236)",
+    "4ac938f1 2026-08-05 daily: 2026-08-05 report + state",
+    "011b5365 2026-08-05 exchange: phase A bundle for 20260805 [skip ci]",
+    "0de7d553 2026-08-05 a paused channel must SAY it is paused \u2014 three silent days (#235)",
+    "06341310 2026-08-05 exchange: phase B applied for 20260805 [skip ci]",
+    "5931b807 2026-08-05 exchange: phase B applied for 20260805 [skip ci]",
+    "3889b99c 2026-08-05 unpause trending: reset the auto-pause counter stuck at 2 since 2026-08-03",
+    "5e56a007 2026-08-05 third: analytics [skip ci]",
+    "ccf291ca 2026-08-05 third: update posted log + analytics [skip ci]",
+    "ce28a638 2026-08-05 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "d6676a5e 2026-08-05 third: checkpoint posted log (claim upload slot) [skip ci]"
   ],
-  "open_backlog": [
+  "open_backlog": [],
+  "settled": [
     {
       "signature": "a5318d0404da",
-      "title": "Doctor evidence file is absent from main",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Correct when you read the repo \u2014 the evidence job had never run because doctor.yml only merged that evening. It now runs daily (05:10 UTC cron) and commits doctor/evidence.json + backlog; today's runs prove it (commits f0766789, 26fbc707). Your 'make absence a visible failure' ask is half-done: the commit step warns rather than fails. If you still see a stale evidence.json after 2026-08-07, re-file with new_evidence_since.",
+      "revisit_after": null
+    },
+    {
+      "signature": "2801098e02ce",
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified and fixed the same day. showrunner_review.py's header and two docstrings said infra failures are 'treated as ship by callers' \u2014 stale since shared/showrunner_gate.py centralized the policy. They now say: review raises on infra failure, and the shared gate decides \u2014 open on preview, CLOSED on publish.",
+      "revisit_after": null
+    },
+    {
+      "signature": "cda65fc717ba",
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified REAL and HIGH \u2014 good catch, exactly what this loop is for. decide() blocked only on the literal token 'block' or a missing score, so {'verdict':'error','score':7} shipped on a publish run. Now on publish nothing ships except literally verdict='ship' with a numeric score in [0,100] (the reviewer's actual scale \u2014 your 'bounded' ask, calibrated to compute_score); every unknown/malformed shape holds. Ten adversarial cases in tests/test_showrunner_gate.py::TestOnlyAnExplicitShipShips. Rubric/version metadata validation deliberately deferred \u2014 the reviewer doesn't emit it yet; adding a required field the producer doesn't produce would block every real video.",
+      "revisit_after": null
+    },
+    {
+      "signature": "df9eeac8ee28",
+      "verdict": "later",
+      "date": "20260806",
+      "because": "The diagnosis is right \u2014 decide_verdict() in the reviewer and decide() in the gate both claim final authority \u2014 and the direction you propose (reviewer returns measurements + anchored judgments; ONE policy function computes the only disposition) is the same direction the 2026-08-01 gate extraction was already moving. But it's a refactor across every publishing channel's callsite, and this week the priority is watching the new backfill/cap/backoff machinery hold in production. Constraint for whoever picks it up: the consolidation may only ever ADD blocks \u2014 the sovereign-BLOCK and fail-closed tests must pass unchanged.",
+      "revisit_after": "20260905"
     }
-  ],
-  "settled": []
+  ]
 }
