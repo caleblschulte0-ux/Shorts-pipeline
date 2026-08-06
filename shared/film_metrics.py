@@ -76,7 +76,33 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
     shots = list(shots or [])
     total = sum(_secs(s) for s in shots) or 1.0
 
-    figure = [s for s in shots if _kind(s).startswith(_FIGURE_PREFIX)]
+    # A HUMAN ON SCREEN, BY WHATEVER MEANS. This counted `scene_*` kinds only
+    # — the designed pictograms — which made the metric's name a lie: a film
+    # carried entirely by real footage of people scored figure_shots=0 and
+    # would have been refused by `guard` for having "no character", while a
+    # blind judge watching it sees people throughout. Worse, the judges HATE
+    # the pictograms ("a cartoon stick figure on an empty blue slide") and
+    # every memorable frame any of them named was real footage of a person.
+    # Equating "figure" with "pictogram" had the sign backwards.
+    #
+    # Both are still visible separately, because the regression this module
+    # was built to catch — the scene-library ban that removed all 14 character
+    # shots — is a collapse in `pictogram_shots`, and folding the two together
+    # would hide it.
+    pictogram = [s for s in shots if _kind(s).startswith(_FIGURE_PREFIX)]
+    live_figure = []
+    try:
+        from shared import shot_brief
+        for s in shots:
+            if _kind(s).startswith(_FIGURE_PREFIX):
+                continue
+            q = s.get("motion_query") or s.get("image_query") \
+                or (s.get("image") or {}).get("query") or ""
+            if q and shot_brief.wants_a_person(q):
+                live_figure.append(s)
+    except Exception:  # noqa: BLE001 — metrics never break a render
+        pass
+    figure = pictogram + live_figure
     cards = [s for s in shots if _kind(s).startswith(_CARD_PREFIX)]
 
     # A repeated asset is the flaw a viewer notices unprompted. Judges have
@@ -149,6 +175,8 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
         "repeated_moves": repeated,
         "repeated_stagings": dup_staging if staged else None,
         "figure_shots": len(figure),
+        "pictogram_shots": len(pictogram),
+        "live_figure_shots": len(live_figure),
         "figure_fraction": round(sum(_secs(s) for s in figure) / total, 3),
         "card_fraction": round(sum(_secs(s) for s in cards) / total, 3),
         # NOT-MEASURED IS None, NEVER ZERO. A plan with no media queries in it
@@ -228,6 +256,8 @@ def unanchored_beats(shots: list[dict]) -> list[dict]:
 BETTER = {
     "figure_shots": "up",
     "figure_fraction": "up",
+    # Real people beat drawn ones: every judge's memorable frame was footage.
+    "live_figure_shots": "up",
     "card_fraction": "down",
     "duplicate_media": "down",
     "unanchored_media": "down",

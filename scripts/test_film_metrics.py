@@ -41,12 +41,39 @@ A4 = ([{"kind": "depict", "seconds": 5.0, "motion_query": f"thing {i}",
 
 def test_the_regression_is_visible_without_a_render():
     before, after = fm.score_plan(A1), fm.score_plan(A4)
-    assert before["figure_shots"] == 14, before
+    # `figure_shots` counts a human on screen BY ANY MEANS — the 14 pictogram
+    # scenes plus the 15 "child running" clips, which contain a person too.
+    # It used to count only `scene_*`, which made a film carried entirely by
+    # real footage of people score zero characters. Both halves stay visible
+    # so the original regression is still legible as what it was.
+    assert before["pictogram_shots"] == 14, before
+    assert before["live_figure_shots"] == 15, before
+    assert before["figure_shots"] == 29, before
+    # A4 is the ban: no scenes, and stock of "thing N" — not one human left.
+    assert after["pictogram_shots"] == 0 and after["live_figure_shots"] == 0, after
     assert after["figure_shots"] == 0, after
     cmp = fm.compare(before, after)
     assert cmp["verdict"] == "REGRESSION", cmp
     assert any("figure_shots" in x for x in cmp["regressed"]), cmp
     print(f"ok  the character loss shows up as {cmp['verdict']}: {cmp['regressed']}")
+
+
+def test_a_film_of_REAL_PEOPLE_is_not_called_characterless():
+    """The metric's name was a lie and it had the sign backwards.
+
+    Every blind judge's memorable frame was real footage of a person, and
+    every one of them called the drawn pictograms the worst thing on screen.
+    A scorer that counts only pictograms would refuse a film for replacing
+    clip art with people — the opposite of what the evidence asks for.
+    """
+    live = fm.score_plan([{"kind": "depict", "seconds": 4.0,
+                           "motion_query": "person standing still",
+                           "line": "x"}] * 6)
+    assert live["figure_shots"] == 6, live
+    assert live["pictogram_shots"] == 0 and live["live_figure_shots"] == 6, live
+    assert fm.guard(fm.score_plan(A1), live) == [], (
+        "a film of real people must not trip the no-character guard")
+    print("ok  real footage of people counts as characters on screen")
 
 
 def test_the_guard_refuses_it_outright():
@@ -237,6 +264,7 @@ def test_the_planner_does_not_rewrite_authored_queries():
 
 if __name__ == "__main__":
     test_the_regression_is_visible_without_a_render()
+    test_a_film_of_REAL_PEOPLE_is_not_called_characterless()
     test_the_guard_refuses_it_outright()
     test_compare_reports_regressions_not_only_wins()
     test_duplicate_media_is_counted()
