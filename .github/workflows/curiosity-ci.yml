@@ -202,6 +202,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     needs: gates
+    # Scoped override of the workflow's read-only default: the last step pushes
+    # the blind evidence to the `preview-renders` orphan branch. Only this job
+    # gets write, and only because a 375MB artifact is unreachable to the
+    # session that has to judge the film — see that step's note.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -261,3 +267,65 @@ jobs:
             output/curiosity_*_pkg/**
           retention-days: 90
           if-no-files-found: warn
+
+      # THE FILM HAS TO BE LOOKABLE-AT, NOT JUST STORED.
+      #
+      # On 2026-08-06 a shared-air canary finished cleanly and uploaded
+      # 374,213,375 bytes — and could not be judged, because an artifact is
+      # only reachable through the GitHub API and the session that had to
+      # produce the blind taste verdict has no route to it. Four hours of
+      # compute, a correct render, and no verdict: the ONLY number the quality
+      # sprint measures.
+      #
+      # The blind protocol needs a handful of PNGs and a short low-res clip —
+      # a few MB, not 375. `preview-renders` is this repo's orphan branch for
+      # exactly that ("previews go to the preview-renders orphan branch or
+      # artifacts", CLAUDE.md) and plain git reaches it from anywhere.
+      #
+      # `if: always()` because a QUARANTINED render is the normal outcome here
+      # and is precisely the one worth looking at. Every failure is swallowed:
+      # publishing evidence must never be able to fail a render that already
+      # succeeded.
+      - name: Publish the blind evidence to preview-renders
+        if: always()
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          slug="${{ inputs.canary_slug }}"
+          pkg="output/curiosity_${slug}_pkg"
+          dest="evidence/${{ github.run_id }}-${slug}"
+          [ -d "$pkg" ] || { echo "no package at $pkg — nothing to publish"; exit 0; }
+          tmp="$(mktemp -d)"; mkdir -p "$tmp/payload"
+          # The blind judge's inputs, plus the machine-readable context a
+          # ledger row needs. NO mp4 — the judge never sees one, and the
+          # full/720p renders are what make the artifact 375MB.
+          for f in contact_sheet.png frame_begin.png frame_mid.png \
+                   frame_end.png camera_trace.png camera_trace.txt \
+                   clip_lowres.mp4 plan_metrics.json produce_report.json \
+                   beatmap.json performance.json director_findings.json \
+                   fallbacks.json verdict.json; do
+            [ -f "$pkg/$f" ] && cp "$pkg/$f" "$tmp/payload/"
+          done
+          n=$(find "$tmp/payload" -type f | wc -l)
+          [ "$n" -eq 0 ] && { echo "package held no evidence files"; exit 0; }
+          # git is the wrong home for anything large; the clip is the only file
+          # here that can grow without bound.
+          if [ -f "$tmp/payload/clip_lowres.mp4" ]; then
+            sz=$(stat -c%s "$tmp/payload/clip_lowres.mp4")
+            [ "$sz" -gt 26214400 ] && rm "$tmp/payload/clip_lowres.mp4"
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # ADD to the branch, never force-push an orphan the way preview.yml
+          # does — that would delete every earlier render's evidence, and the
+          # sprint's whole purpose is comparing renders ACROSS days.
+          git fetch origin preview-renders --depth=1 || true
+          git checkout -B preview-renders origin/preview-renders 2>/dev/null \
+            || git checkout --orphan preview-renders
+          git rm -rq --cached . 2>/dev/null || true
+          mkdir -p "$dest"; cp -r "$tmp/payload/." "$dest/"
+          git add -f "$dest"
+          git commit -m "canary evidence: ${slug} run ${{ github.run_id }}" \
+            && git push origin preview-renders \
+            && echo "published -> preview-renders:$dest" \
+            || echo "nothing to publish"
