@@ -158,6 +158,59 @@ class TestNoSelfTriggerLoops(unittest.TestCase):
                       "(manual re-run included) — do not remove it")
 
 
+class TestEveryWorkflowIsValidToGitHub(unittest.TestCase):
+    """PyYAML is more forgiving than GitHub Actions, and the gap is fatal in
+    a hands-off system: a file GitHub rejects still parses green locally,
+    its CRON silently never fires, and the only symptom is a jobless
+    'failure' run named by file path on every non-[skip ci] push — which
+    nobody reads.
+
+    That is not hypothetical. retro_decide.yml carried a duplicated
+    `continue-on-error:` key on one step from the day it merged (#213) to
+    2026-08-06. PyYAML kept the last copy without a word; Actions refused
+    the whole file; the decide half of the retro improvement loop NEVER ran
+    once, while 135 validation-failure runs piled up unnoticed. This class
+    checks, for every workflow, the Actions strictnesses PyYAML forgives."""
+
+    @staticmethod
+    def _strict_load(text: str):
+        import yaml
+
+        class Strict(yaml.SafeLoader):
+            pass
+
+        def mapping(loader, node, deep=False):
+            seen = []
+            for k, _ in node.value:
+                key = loader.construct_object(k, deep=deep)
+                if key in seen:
+                    raise AssertionError(f"duplicate key {key!r}")
+                seen.append(key)
+            return yaml.SafeLoader.construct_mapping(loader, node, deep)
+
+        Strict.construct_mapping = mapping
+        return yaml.load(text, Strict)
+
+    def test_no_workflow_has_duplicate_keys(self):
+        for p in sorted(WF.glob("*.yml")):
+            try:
+                self._strict_load(p.read_text())
+            except AssertionError as e:
+                self.fail(f"{p.name}: {e} — GitHub rejects the whole file, "
+                          f"so its crons silently never fire")
+
+    def test_no_step_declares_both_uses_and_run(self):
+        import yaml
+        for p in sorted(WF.glob("*.yml")):
+            d = yaml.safe_load(p.read_text())
+            for jname, j in (d.get("jobs") or {}).items():
+                for i, s in enumerate(j.get("steps") or []):
+                    self.assertFalse(
+                        "uses" in s and "run" in s,
+                        f"{p.name} {jname}[{i}] has both uses and run — "
+                        f"PyYAML-fine, Actions-fatal")
+
+
 class TestAutoPauseIsABackoffNotALatch(unittest.TestCase):
     """Two zero-upload days sit the channel out for ONE day, then it retries
     itself. The old behavior — skip forever until a human resets a counter
