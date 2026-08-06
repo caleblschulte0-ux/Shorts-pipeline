@@ -2672,13 +2672,43 @@
       "ts": "2026-08-06T13:16:04.796547+00:00"
     },
     "clip-20260806-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/DeafWildMetalWutFace-_md-8ABFRX8P871e",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/g3NQR7-IKzY",
       "title": "Jasontheween Isn't Sure If This Throw Even Counted",
       "kind": "twitch_clip",
-      "ts": "2026-08-06T13:19:24.636345+00:00",
+      "ts": "2026-08-06T13:19:27.362426+00:00",
+      "uploaded_at": "2026-08-06T13:19:27.362443+00:00",
+      "publish_at": "2026-08-06T20:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/DeafWildMetalWutFace-_md-8ABFRX8P871e",
+      "streamer": "jasontheween",
+      "series": "fail",
+      "hook": "WAIT DID THAT EVEN COUNT",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 3971,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 18.57
+      },
+      "director_cut": true
+    },
+    "rejected-faithfulinexpensivelocustpjsalt-naxrsyyqw8a2ojtu": {
+      "source_url": "https://www.twitch.tv/lirik/clip/FaithfulInexpensiveLocustPJSalt-NaxrSYYQW8A2oJtu",
+      "streamer": "lirik",
+      "title": "lol",
+      "qa_rejected": true,
+      "ts": "2026-08-06T13:42:01.180777+00:00"
+    },
+    "clip-20260806-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ImpartialVenomousWebDoritosChip-rEzhi_gNhdlAyjp3",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Demands A Replay Then Gets Exposed By It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-06T14:07:25.722203+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

@@ -407,6 +407,69 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-05"
+    },
+    "kaicenat-agent-cenat-2026w32": {
+      "event_id": "kaicenat-agent-cenat-2026w32",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "agent",
+        "cenat",
+        "kaicenat",
+        "photo"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/CuriousTallPeanutOpieOP-_1ZR88hhvuLCGMPN",
+        "https://www.twitch.tv/kaicenat/clip/SlipperyGloriousAsparagusOpieOP-kxFA0n4TxE1Hwnxj"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-06"
+    },
+    "jasontheween-about-bant-2026w31": {
+      "event_id": "jasontheween-about-bant-2026w31",
+      "people": [
+        "jasontheween"
+      ],
+      "actions": [
+        "about",
+        "bant",
+        "camera",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/HungryAggressiveBoarAMPEnergy-2VFyeSS0kp9A5aRQ",
+        "https://www.twitch.tv/jasontheween/clip/PrettyQuaintMarjoramYee-ksm9u0rhhIOS4SV-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-06"
+    },
+    "stableronaldo-camera-directly-2026w31": {
+      "event_id": "stableronaldo-camera-directly-2026w31",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "camera",
+        "directly",
+        "door",
+        "passcode"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/SnappyFaithfulOkapiKAPOW-kabSg5alOdHWRE4O",
+        "https://www.twitch.tv/stableronaldo/clip/CharmingOriginalStrawberryVoteYea-R5H7yT9rTGlqxAy5"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-06"
     }
   }
 }
