@@ -124,6 +124,22 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
              if s.get("direction")]
     repeated = sum(1 for a, b in zip(moves, moves[1:]) if a == b) if moves else None
 
+    # THE SAME DESIGNED SCENE, DRAWN THE SAME WAY, MORE THAN ONCE. Not an
+    # adjacency check like `repeated_moves` — the judges' complaint was about
+    # recurrence anywhere in the film ("94.4s and its verbatim repeats at
+    # 59.5s and 150.4s"), so this counts every scene shot after the first that
+    # shares BOTH its kind and its framing with an earlier one. Four blind
+    # judges across two films named this and nothing in this module could see
+    # it, which is why it is here.
+    staged = [(_kind(s), tuple(s.get("framing") or ()))
+              for s in shots if _kind(s).startswith(_FIGURE_PREFIX)]
+    seen_stagings: set = set()
+    dup_staging = 0
+    for key in staged:
+        if key in seen_stagings:
+            dup_staging += 1
+        seen_stagings.add(key)
+
     m = {
         "shots": len(shots),
         "runtime_s": round(total, 1),
@@ -131,6 +147,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
         "length_span_s": span,
         "camera_moves": len(set(moves)) if moves else None,
         "repeated_moves": repeated,
+        "repeated_stagings": dup_staging if staged else None,
         "figure_shots": len(figure),
         "figure_fraction": round(sum(_secs(s) for s in figure) / total, 3),
         "card_fraction": round(sum(_secs(s) for s in cards) / total, 3),
@@ -156,6 +173,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None) -> dict:
         f"{m['shots']} shots / {m['runtime_s']}s · "
         f"cut {_n(m['shot_lengths'])} lengths over {_n(m['length_span_s'])}s · "
         f"camera {_n(m['camera_moves'])} moves, {_n(m['repeated_moves'])} repeats · "
+        f"staging-repeats {_n(m['repeated_stagings'])} · "
         f"figure {m['figure_shots']} ({m['figure_fraction']:.0%}) · "
         f"cards {m['card_fraction']:.0%} · "
         f"dup-media {_n(m['duplicate_media'])} · "
@@ -224,6 +242,8 @@ BETTER = {
     # many distinct moves and still put two identical ones back to back.
     "camera_moves": "up",
     "repeated_moves": "down",
+    # The same designed scene drawn identically twice. Four judges, two films.
+    "repeated_stagings": "down",
 }
 
 

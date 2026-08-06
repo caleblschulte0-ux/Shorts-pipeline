@@ -62,6 +62,46 @@ def move_for(index: int, role: str = "", *, still: bool = False) -> dict:
             "push": round(push, 3)}
 
 
+# WHERE THE FRAME SITS on a DESIGNED scene. Every scene builder draws exactly
+# one composition, so N uses of one scene kind gave N identical pictures. Four
+# blind judges across two films named that as the worst thing on screen, each
+# in their own words, each pointing at the timestamps where a plate recurred.
+#
+# (zoom, cx, cy): 1.0 is the full frame the scene was designed at; above that
+# crops in, and cx/cy move the crop off centre. The first entry is deliberately
+# the untouched frame — the designed composition is a good one, it was only
+# ever the REPETITION that failed, so the fix must not throw it away.
+#
+# Ordered so consecutive entries differ in BOTH scale and position: two
+# framings that differ only by a few percent of zoom are the same picture to
+# anyone watching, which is the mistake the pose-variation attempt made.
+#
+# TWELVE, not six. Six covered shared-air (10 scene shots, 3 kinds) but
+# money-goes uses `scene_free` ELEVEN times, so a six-entry cycle still left 8
+# verbatim repeats out of 31 scene shots — a smaller version of the same
+# defect. The cycle has to cover the worst real case, not the first one that
+# looked fixed.
+SCENE_FRAMINGS = (
+    (1.00, 0.50, 0.50),    # the designed frame, whole
+    (1.45, 0.40, 0.56),    # medium, figure left of centre, slightly low
+    (1.18, 0.60, 0.46),    # loose, pushed right and a touch high
+    (1.65, 0.46, 0.62),    # close, low — the figure fills the frame
+    (1.30, 0.56, 0.40),    # medium-loose, high right
+    (1.55, 0.36, 0.50),    # close left
+    (1.10, 0.44, 0.58),    # barely in, low left
+    (1.72, 0.54, 0.44),    # tightest, high right
+    (1.38, 0.50, 0.66),    # medium, centred but low — feet and floor
+    (1.25, 0.34, 0.44),    # loose, far left and high
+    (1.60, 0.62, 0.56),    # close right
+    (1.05, 0.52, 0.38),    # almost whole, tipped high
+)
+
+
+def framing_for(occurrence: int) -> tuple:
+    """The framing for the Nth time a given scene kind is used in one film."""
+    return SCENE_FRAMINGS[int(occurrence) % len(SCENE_FRAMINGS)]
+
+
 def plan_moves(shots: list[dict], roles: list[str] | None = None) -> list[dict]:
     """Assign a move to every shot, with no two neighbours matching.
 
@@ -72,10 +112,20 @@ def plan_moves(shots: list[dict], roles: list[str] | None = None) -> list[dict]:
     """
     out: list[dict] = []
     prev = None
+    seen_kind: dict[str, int] = {}
     for i, sh in enumerate(shots or []):
         s = dict(sh)
         role = (roles[i] if roles and i < len(roles) else s.get("role")) or ""
         kind = str(s.get("kind") or "")
+        # A DESIGNED SCENE GETS A FRAMING, counted per KIND rather than per
+        # shot: the complaint is that `scene_free` looks the same every time
+        # `scene_free` appears, so the cycle has to advance with that kind's
+        # own occurrences and not with the global shot index — otherwise two
+        # uses six shots apart can land on the same entry.
+        if kind.startswith("scene_") and not s.get("framing"):
+            n = seen_kind.get(kind, 0)
+            seen_kind[kind] = n + 1
+            s["framing"] = list(framing_for(n))
         mv = move_for(i, role, still=kind.startswith("image"))
         # An authored camera wins outright.
         if s.get("direction"):

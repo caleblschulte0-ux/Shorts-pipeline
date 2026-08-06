@@ -258,6 +258,63 @@ def set_mood(m):
     _MOOD = m if m in MOODS else None
 
 
+# THE SAME SCENE, FRAMED DIFFERENTLY. Every scene function draws exactly ONE
+# composition, so calling `free_scene` five times in a film produced five
+# identical pictures. FOUR independent blind judges, across TWO different
+# films, named that unprompted as the worst thing on screen:
+#
+#   "94.4s, and its verbatim repeats at 59.5s and 150.4s"
+#   "the third near-identical white stick-figure-on-navy plate"
+#   "a row of white pictogram figures ... a literal bar chart"
+#   "the sleeping figure appears identically at 4.7s, 42.6s and 184.5s"
+#
+# An earlier attempt to fix this varied the FIGURE — a few degrees of lean, a
+# head drop, via the expression engine. It changed nothing the judges could
+# see, because at contact-sheet size a pose delta is invisible and they were
+# describing the COMPOSITION: same framing, same scale, same layout.
+#
+# So the frame moves instead. A crop-and-rescale of the finished frame is a
+# camera position, and it costs one resize per frame rather than a second
+# encode pass — which is why it lives here, in the one funnel every scene
+# renders through, rather than in sixteen separate draw functions.
+_FRAMING = None
+
+
+def set_framing(f):
+    """(zoom, cx, cy) for the scenes that follow, or None for the full frame.
+
+    zoom 1.0 is the whole frame; 1.6 crops to 62% of it. cx/cy in [0,1] place
+    the crop's centre, so the figure can sit left, right, high or low instead
+    of dead centre every time.
+    """
+    global _FRAMING
+    if not f:
+        _FRAMING = None
+        return
+    try:
+        z, cx, cy = float(f[0]), float(f[1]), float(f[2])
+    except (TypeError, ValueError, IndexError):
+        _FRAMING = None
+        return
+    # A 1080p source cannot survive an arbitrary crop: past ~1.8 the pictogram
+    # edges go soft and the fix starts costing what it bought.
+    _FRAMING = (max(1.0, min(1.8, z)), max(0.0, min(1.0, cx)),
+                max(0.0, min(1.0, cy)))
+
+
+def _reframe(im):
+    """Apply the current framing to a finished frame. Identity when unset."""
+    if not _FRAMING or _FRAMING[0] <= 1.0001:
+        return im
+    z, cx, cy = _FRAMING
+    cw, ch = int(round(W / z)), int(round(H / z))
+    x = int(round(cx * W - cw / 2))
+    y = int(round(cy * H - ch / 2))
+    x = max(0, min(W - cw, x))          # never crop outside the frame
+    y = max(0, min(H - ch, y))
+    return im.crop((x, y, x + cw, y + ch)).resize((W, H), Image.LANCZOS)
+
+
 def _grade(im):
     if _MOOD is None:
         return im
@@ -360,7 +417,7 @@ def _render(draw_fn, out: Path, seconds: float, bg_fn):
          "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
     lift = None
     for i in range(n):
-        im = _grade(draw_fn(i, n, bg_fn(i, n)).convert("RGB"))
+        im = _reframe(_grade(draw_fn(i, n, bg_fn(i, n)).convert("RGB")))
         if i == 0:                      # one grade, decided once, held all shot
             lift = _lift_params(im)
         if lift is not None:

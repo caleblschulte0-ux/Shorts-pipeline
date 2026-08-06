@@ -606,6 +606,13 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
               "scene_savings": scenes.savings_scene,
               "scene_treadmill": scenes.treadmill_scene}[k]
         scenes.set_mood(shot.get("mood"))       # per-chapter color world
+        # ...and WHERE THE FRAME SITS. Every scene builder draws one fixed
+        # composition, so five uses of `scene_free` were five identical
+        # pictures — the single thing four independent blind judges named,
+        # across two different films, as the worst on screen. Set the same way
+        # as the mood, for the same reason: it applies to every scene kind at
+        # once, including ones added later. See shared/camera_grammar.
+        scenes.set_framing(shot.get("framing"))
         # `props` lets a beat use a scene's STAGING without its CLAIM — the
         # NOW-SERVING ticket, the ON-HOLD counter, the "YEARS ARE YOURS" plate.
         # Only the three staging-neutral scenes accept it; the rest are their
