@@ -1,0 +1,18 @@
+{
+  "shots": 40,
+  "runtime_s": 192.1,
+  "shot_lengths": 31,
+  "length_span_s": 9.55,
+  "camera_moves": 6,
+  "repeated_moves": 0,
+  "figure_shots": 14,
+  "figure_fraction": 0.258,
+  "card_fraction": 0.0,
+  "duplicate_media": 0,
+  "distinct_media": 26,
+  "unanchored_media": 7,
+  "anchorable_media": 15,
+  "unanchored_fraction": 0.467,
+  "beats": 20,
+  "summary": "40 shots / 192.1s \u00b7 cut 31 lengths over 9.55s \u00b7 camera 6 moves, 0 repeats \u00b7 figure 14 (26%) \u00b7 cards 0% \u00b7 dup-media 0 \u00b7 unanchored 7/15"
+}
