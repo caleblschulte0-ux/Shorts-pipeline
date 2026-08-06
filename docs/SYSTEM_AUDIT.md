@@ -449,6 +449,81 @@ New this pass: `tests/test_showrunner_gate.py` (25),
 
 ---
 
+# 2026-08-06 — the fifth constant: the frame itself was empty
+
+Two findings, one measurement and one film.
+
+## The guard was crying regression at its own arithmetic
+
+`quality_sprint check` scores a plan with a flat 5.0s per beat so it can answer
+in milliseconds. `produce()` records renders with real TTS durations. `check`
+diffed one against the other and reported `shot_lengths 31 -> 17`,
+`length_span_s 9.55 -> 4.5`, **REGRESSION** — on a change that touched neither.
+Beat length decides how many shots a beat chunks into, so it moves every count
+in the dict, and the cut metrics *are* lengths. The whole delta was units.
+
+The comment claiming a flat 5s was "close enough for the structural metrics"
+was simply wrong, and wrong in the one direction that matters: the guard was
+about to refuse the next render over a difference that did not exist. **A gate
+that fires on everything is indistinguishable from one that fires on nothing,
+except that people eventually switch it off.**
+
+Fixed: `score_plan` tags every dict with `duration_source`; `compare`/`guard`
+return `incomparable` across a mismatch, and `unknown` is incomparable with
+everything including itself. The offline scorer got its own history,
+`state/curiosity_plan_snapshots.jsonl`, seeded by re-scoring each sprint commit
+in a worktree with today's scorer — computed, not backfilled.
+
+That seeding produced the first apples-to-apples view of the whole sprint:
+
+| | cut lengths | camera moves | staging repeats | figure |
+|---|---|---|---|---|
+| shared-air `9b6aac4d` → head | 4 → 17 | 0 → 7 | 7 → 0 | 25% → 45% |
+| money-goes `9b6aac4d` → head | 4 → 15 | 0 → 8 | 16 → 0 | 35% → 46% |
+
+## The fifth constant: `_vgrad`
+
+SAMENESS and NO_SOUL are gone from the recent verdicts. What survives is
+**BORING (5 of 5 judged), LOW_ENERGY (4 of 5), EMPTY_COMPOSITION (3 of 5)** —
+and four judges across two films independently wrote some version of *"a
+cartoon stick figure on an empty blue slide"*.
+
+`scenes._vgrad(top, bot)` — a two-stop vertical wash — was the entire
+environment of every designed scene ever rendered by this channel. Its colour
+ramped over the beat, which is why "something changed" gates always passed,
+but the *space* was empty in every frame of every scene of every film.
+
+`shared/scene_depth.py` gives each scene a world: six environments of three-
+plus parallax strata (ground plane, skyline, ceiling, ridge, furniture, lit
+windows), sliding at different rates because the rate difference is what the
+eye reads as depth — and is the LOW_ENERGY answer. Measured, no judge needed:
+`occupancy` 0.000 → 0.09–0.14, `parallax_energy` 0.000 → 0.5–7.7.
+
+Four bugs were caught by looking at rendered pixels, none by a test that
+existed:
+
+- **`PLACES` was keyed on one spelling.** `pro_render` says `scene_free`,
+  `scenes` says `free_scene`. Every pin silently missed and fell through to the
+  hash rotation — a bed as likely to be outdoors as in.
+- **Half the strata were drawn off-camera.** The tile is three screens wide and
+  composited at −w, so only the middle third is ever seen; the first version
+  authored in screen space, putting the room's window in a third the camera
+  never reaches. It measured as an empty room and looked like one.
+- **`scene_queue` and `scene_hold` drew a pixel-identical background** — both
+  pinned to HALL, seeded on `len(scene_key)`, every stratum starting at x=0. A
+  fix for EMPTY_COMPOSITION that shipped SAMENESS.
+- **Strata were tinted from frame 0** while the sky ramped, so `free_scene`'s
+  clouds became dark blobs over an orange sunrise. Rather than delete the layer
+  or special-case one kind, the tint refreshes from the live frame every 10
+  frames; shapes are stored as alpha masks so a re-tint is a `putalpha`.
+
+`film_metrics` gained `scene_worlds` so a future collapse back to one place
+cannot ship unnoticed, and `scripts/test_scene_depth.py` opens with the
+negative control: the flat wash must measure as empty, or nothing measured
+afterwards means anything.
+
+---
+
 # 2026-08-05 — the curiosity edit: four constants where a decision belonged
 
 A sprint audit rather than a repo-wide one. Scope: why five full renders of

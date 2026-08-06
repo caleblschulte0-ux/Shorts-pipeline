@@ -166,6 +166,7 @@ jobs:
           python scripts/test_workflow_concurrency.py
           python scripts/test_the_character_acts.py
           python scripts/test_staging_variety.py
+          python scripts/test_scene_depth.py
           python scripts/check_hooks.py
           python scripts/test_stock_titles.py
 

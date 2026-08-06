@@ -302,6 +302,40 @@ def set_framing(f):
                 max(0.0, min(1.0, cy)))
 
 
+_DEPTH = (None, 0)              # (scene_key, occurrence index)
+
+
+def set_depth(scene_key, index: int = 0):
+    """Which WORLD the scenes that follow happen in — see shared/scene_depth.
+
+    Set alongside `set_mood` and `set_framing` by the renderer, and unset with
+    `set_depth(None)`. The three together are the whole of a shot's staging:
+    the grade, the crop, and the place.
+
+    This exists because `_vgrad` — a two-stop wash with nothing in it — was
+    the entire environment of every designed scene in the channel, and three
+    of the last five blind verdicts said EMPTY_COMPOSITION with four judges
+    across two films independently describing "a stick figure on an empty
+    slide". The strata are drawn BEHIND everything the scene draws, so no
+    scene body needed to change and none of them can be broken by this.
+    """
+    global _DEPTH
+    _DEPTH = (scene_key if scene_key else None, int(index or 0))
+
+
+def _depth_for(base):
+    """The prepared strata for this shot, or None. Built once per render."""
+    key, idx = _DEPTH
+    if not key:
+        return None
+    try:
+        from shared import scene_depth
+        return scene_depth.Depth(base, key, idx)
+    except Exception as e:  # noqa: BLE001 — staging never breaks a render
+        print(f"[scenes] depth unavailable ({e}) — flat background")
+        return None
+
+
 def _reframe(im):
     """Apply the current framing to a finished frame. Identity when unset."""
     if not _FRAMING or _FRAMING[0] <= 1.0001:
@@ -416,8 +450,18 @@ def _render(draw_fn, out: Path, seconds: float, bg_fn):
          "-c:v", "libx264", "-crf", "18", "-preset", "medium",
          "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
     lift = None
+    depth = None
     for i in range(n):
-        im = _reframe(_grade(draw_fn(i, n, bg_fn(i, n)).convert("RGB")))
+        bg = bg_fn(i, n)
+        # THE WORLD GOES IN BEFORE THE CHARACTER. Strata are composited onto
+        # the wash and then handed to draw_fn as its background, so the figure
+        # and its props are drawn in FRONT of the environment without a single
+        # scene body knowing this happened. One hook, every designed scene.
+        if i == 0:                      # built once; only its offset moves
+            depth = _depth_for(bg)
+        if depth is not None:
+            bg = depth.at(bg, i / max(1, n - 1))
+        im = _reframe(_grade(draw_fn(i, n, bg).convert("RGB")))
         if i == 0:                      # one grade, decided once, held all shot
             lift = _lift_params(im)
         if lift is not None:

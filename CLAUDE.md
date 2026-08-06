@@ -217,9 +217,32 @@ python scripts/quality_sprint.py status       # the ledger + whether it is impro
   reports regressions as loudly as wins, and any regression makes the whole
   change a REGRESSION.
 
-The two shared modules the sprint has produced so far, both found by looking
-for *constants where a decision belonged*:
+**Never compare an offline plan score with a rendered one.** `check` scores a
+plan at a flat 5s per beat so it can answer instantly; `produce()` records real
+TTS durations. Beat length decides how many shots a beat chunks into, so it
+moves every count, every seconds-weighted fraction, and the cut metrics
+outright. Mixing the two made `check` report a REGRESSION on a change that
+touched no durations at all, and it would have refused the next render. Every
+metrics dict now carries `duration_source`; `compare`/`guard` return
+`incomparable` across a mismatch, and the offline half keeps its own history in
+`state/curiosity_plan_snapshots.jsonl` — never the render ledger, which is the
+one `trend()` averages.
 
+The shared modules the sprint has produced so far, all found by looking for
+*constants where a decision belonged*:
+
+- **`shared/scene_depth.py`** — `scenes._vgrad` was the ENTIRE environment of
+  every designed scene ever rendered here: a two-stop wash with nothing in it.
+  That is EMPTY_COMPOSITION in 3 of the last 5 verdicts and the literal phrase
+  four judges used. Gives each scene one of six worlds of parallax strata,
+  chosen by the scene's meaning where it has one and rotated where it does not;
+  the differing slide rates are the depth cue AND the LOW_ENERGY answer. Set
+  through `scenes.set_depth(kind, staging_index)` beside `set_mood` /
+  `set_framing`, so it applies to every scene kind at once including ones added
+  later. Two rules it must keep: a stratum never approaches the figure's
+  brightness (busy is the same complaint as empty), and two scenes sharing a
+  world must not draw the same picture (`scene_queue` and `scene_hold` did,
+  once — a fix for EMPTY_COMPOSITION that shipped SAMENESS).
 - **`shared/cut_rhythm.py`** — `MAX_UNCHANGED` is a ceiling, but it was also
   the literal length of every lead shot, so a 39-shot film had FOUR distinct
   shot lengths. Varies where the cut lands beneath the ceiling. Never changes a

@@ -613,6 +613,12 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
         # as the mood, for the same reason: it applies to every scene kind at
         # once, including ones added later. See shared/camera_grammar.
         scenes.set_framing(shot.get("framing"))
+        # ...and WHAT IS BEHIND HIM. `_vgrad` — a two-stop wash — was the
+        # entire environment of every designed scene ever rendered here, which
+        # is EMPTY_COMPOSITION in 3 of the last 5 blind verdicts and the
+        # literal phrase four judges used: "a stick figure on an empty slide".
+        # See shared/scene_depth.
+        scenes.set_depth(k, int(shot.get("staging_index", 0)))
         # `props` lets a beat use a scene's STAGING without its CLAIM — the
         # NOW-SERVING ticket, the ON-HOLD counter, the "YEARS ARE YOURS" plate.
         # Only the three staging-neutral scenes accept it; the rest are their
@@ -625,6 +631,10 @@ def _render_shot(shot: dict, seconds: float, out: Path, work: Path, idx: int):
                   **kw)
     if k == "scene_money":
         scenes.set_mood(shot.get("mood"))       # per-chapter color world
+        # SET EXPLICITLY, never inherited. `_DEPTH` is module state, so a
+        # branch that forgets it renders the PREVIOUS shot's world — a bedroom
+        # behind the money motif, and nothing would have raised.
+        scenes.set_depth(k, int(shot.get("staging_index", 0)))
         return scenes.money_scene(out, seconds, upto=int(shot.get("upto", 0)),
                                   final=bool(shot.get("final", False)),
                                   number=str(shot.get("number", "")),

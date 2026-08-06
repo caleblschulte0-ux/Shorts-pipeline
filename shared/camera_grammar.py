@@ -122,10 +122,18 @@ def plan_moves(shots: list[dict], roles: list[str] | None = None) -> list[dict]:
         # `scene_free` appears, so the cycle has to advance with that kind's
         # own occurrences and not with the global shot index — otherwise two
         # uses six shots apart can land on the same entry.
-        if kind.startswith("scene_") and not s.get("framing"):
+        if kind.startswith("scene_"):
             n = seen_kind.get(kind, 0)
             seen_kind[kind] = n + 1
-            s["framing"] = list(framing_for(n))
+            if not s.get("framing"):
+                s["framing"] = list(framing_for(n))
+            # The same count also picks the WORLD the scene happens in
+            # (shared/scene_depth): the second `scene_free` gets a different
+            # place as well as a different crop. Stamped here rather than
+            # recounted downstream so the two can never disagree — a crop that
+            # says "second time" over an environment that says "first" is the
+            # continuity error this whole per-kind count exists to avoid.
+            s.setdefault("staging_index", n)
         mv = move_for(i, role, still=kind.startswith("image"))
         # An authored camera wins outright.
         if s.get("direction"):

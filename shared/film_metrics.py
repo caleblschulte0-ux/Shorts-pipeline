@@ -66,6 +66,24 @@ def _media_key(sh: dict) -> str:
     return f"image_query:{str(q).strip().lower()}" if q else ""
 
 
+def _worlds(shots: list[dict]) -> int | None:
+    """Distinct environments the designed scenes are staged in.
+
+    None when the plan has no designed scenes — an all-footage film is not
+    staged in zero worlds, it is not staged at all, and reporting 0 would
+    manufacture the regression this module writes None to avoid.
+    """
+    keys = [(_kind(s), int(s.get("staging_index", 0))) for s in shots
+            if _kind(s).startswith(_FIGURE_PREFIX)]
+    if not keys:
+        return None
+    try:
+        from shared import scene_depth
+        return len({scene_depth.name_for(k, i) for k, i in keys})
+    except Exception:  # noqa: BLE001 — metrics never break a render
+        return None
+
+
 def score_plan(shots: list[dict], beats: list[dict] | None = None, *,
                duration_source: str = "unknown") -> dict:
     """Objective, render-free properties of a planned film.
@@ -220,6 +238,14 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None, *,
         "camera_moves": len(set(moves)) if moves else None,
         "repeated_moves": repeated,
         "repeated_stagings": dup_staging if staged else None,
+        # HOW MANY DIFFERENT PLACES the designed scenes happen in. Every one
+        # of them used to happen in the same two-stop gradient — the void
+        # three of the last five blind verdicts called EMPTY_COMPOSITION — so
+        # this read 1 for every film ever made here and nothing could see it.
+        # Counted, not scored: a world can be well or badly drawn and this
+        # says nothing about which. It only refuses to let the whole film
+        # collapse back into one place without the number moving.
+        "scene_worlds": _worlds(shots),
         "figure_shots": len(figure),
         "pictogram_shots": len(pictogram),
         "live_figure_shots": len(live_figure),
@@ -252,6 +278,7 @@ def score_plan(shots: list[dict], beats: list[dict] | None = None, *,
         f"cut {_n(m['shot_lengths'])} lengths over {_n(m['length_span_s'])}s · "
         f"camera {_n(m['camera_moves'])} moves, {_n(m['repeated_moves'])} repeats · "
         f"staging-repeats {_n(m['repeated_stagings'])} · "
+        f"worlds {_n(m['scene_worlds'])} · "
         f"figure {m['figure_shots']} ({m['figure_fraction']:.0%}) · "
         f"cards {m['card_fraction']:.0%} · "
         f"dup-media {_n(m['duplicate_media'])} · "
@@ -324,6 +351,9 @@ BETTER = {
     "repeated_moves": "down",
     # The same designed scene drawn identically twice. Four judges, two films.
     "repeated_stagings": "down",
+    # More places is better than fewer, and a collapse back to one is the
+    # regression `scene_depth` exists to make impossible to ship unnoticed.
+    "scene_worlds": "up",
 }
 
 
