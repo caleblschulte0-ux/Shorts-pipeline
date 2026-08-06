@@ -24,6 +24,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+# Invoked as `python scripts/normalize_charts.py` from the workflows, so the
+# repo root is NOT on sys.path and `from shared...` raises. That crash was
+# swallowed by the callers' `|| echo "normalize skipped"` — normalization
+# silently never ran in CI (seen live 2026-08-06, explainer run 31123718975).
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 CONFIG = ROOT / "data_learning" / "niche.config.json"
 DATA = ROOT / "data_learning" / "data"
 
@@ -57,6 +63,7 @@ def main() -> int:
 
     cfg = json.loads(CONFIG.read_text())
     fixed: list[str] = []
+    unfixable: list[str] = []
     for s in cfg.get("stories", []):
         for seg in s.get("segments", []):
             key = seg.get("key", "")
@@ -67,11 +74,24 @@ def main() -> int:
             needs = seg.get("insight_type") == "comparison" or len(pts) < 2
             if not needs:
                 continue
-            fixed.append(f"{s['slug']}/{key}")
-            if not args.check:
-                _normalise_datafile(datafile)
+            if args.check:
+                fixed.append(f"{s['slug']}/{key}")
+                continue
+            # Only claim a fix that actually happened. This used to flip
+            # `insight_type` to "rank" and report "normalised" even when
+            # `_normalise_datafile` returned False — a datafile with one
+            # point and no baseline cannot become a 2-point rank chart
+            # without inventing a number, which nothing here may do. The
+            # config then said "rank" over data that cannot rank, and the
+            # check kept flagging the same specs the normalizer claimed fixed.
+            if _normalise_datafile(datafile):
                 seg["insight_type"] = "rank"
                 seg["ascending"] = False
+                fixed.append(f"{s['slug']}/{key}")
+            else:
+                unfixable.append(
+                    f"{s['slug']}/{key} — {len(pts)} point(s), no baseline: "
+                    f"needs REAL data (a second point), not a rewrite")
 
     if args.check:
         if fixed:
@@ -87,6 +107,10 @@ def main() -> int:
               + "\n  ".join(fixed))
     else:
         print("nothing to normalise")
+    if unfixable:
+        print("UNFIXABLE by rewrite (need real data — the forge or the "
+              "author must supply a second point):\n  "
+              + "\n  ".join(unfixable))
     return 0
 
 
