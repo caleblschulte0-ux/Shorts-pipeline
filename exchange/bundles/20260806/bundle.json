@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260806/DONE",
   "counts": {
     "packages": 6,
-    "requests": 13,
+    "requests": 12,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -391,8 +391,8 @@
           "shot_index": 3,
           "phrase": "verification line",
           "query": "office phone call hold",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
@@ -424,15 +424,14 @@
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 3,
         "weak": 0,
-        "missing": 6,
+        "missing": 5,
         "unknown": 0
       },
-      "strong_fraction": 0.25,
+      "strong_fraction": 0.375,
       "requested": [
         "reddit-return-policy-maximum-effort-s1-cb444981ae61",
-        "reddit-return-policy-maximum-effort-s3-f78a0d8a7b5e",
         "reddit-return-policy-maximum-effort-s4-d32be61b8fc9",
         "reddit-return-policy-maximum-effort-s5-881c2d23bfb6",
         "reddit-return-policy-maximum-effort-s6-54f49e172929",
@@ -530,32 +529,6 @@
       "shot_index": 1,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: customer service counter. It accompanies the narration: \"corporate policy required me to accept any return\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-return-policy-maximum-effort-s3-f78a0d8a7b5e",
-      "safe_request_id": "reddit-return-policy-maximum-effort-s3-f78a0d8a7b5e",
-      "drive_filename": "20260806__reddit-return-policy-maximum-effort-s3-f78a0d8a7b5e.png",
-      "prompt_sha256": "bfd7abe0767ac0c549176e77ba795c36ef482b7344ea8be39fe41d71c4816da3",
-      "checkpoint_path": "exchange/bundles/20260806/media-progress/reddit-return-policy-maximum-effort-s3-f78a0d8a7b5e.json",
-      "slug": "reddit-return-policy-maximum-effort",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office phone call hold. It accompanies the narration: \"verification line\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

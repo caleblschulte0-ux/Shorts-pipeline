@@ -44,7 +44,12 @@
     },
     {
       "phrase": "verification line",
-      "query": "office phone call hold"
+      "query": "office phone call hold",
+      "pin_query": "verification line",
+      "pin_context": "customer service phone",
+      "news_query": "verification line",
+      "news_angle": "The store employee calls the verification line for a return verification.",
+      "image_url": "https://live.staticflickr.com/2326/2046228644_05507000b3.jpg"
     },
     {
       "phrase": "twenty-two minutes while she stood there tapping her foot",
