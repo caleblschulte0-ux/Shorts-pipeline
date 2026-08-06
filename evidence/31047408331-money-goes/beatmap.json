@@ -1,0 +1,208 @@
+{
+  "topic": "Where All Your Money Actually Goes",
+  "beats": [
+    {
+      "t": "0.0-10.6",
+      "job": "HOOK",
+      "narration": "You'll earn about two million dollars in your life. So why does it never feel like enough? Watch where almost all of it quietly disappears.",
+      "intended_understanding": "cold open: a paycheck lands and the money instantly starts leaking away",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "10.0-15.8",
+      "job": "TEASE",
+      "narration": "In the end, only about fifteen cents of every dollar you earn is ever really yours.",
+      "intended_understanding": "a stark stat card teasing the punchline of the whole video",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "15.2-31.1",
+      "job": "DEVELOP",
+      "narration": "Two million dollars. On paper, it's a fortune. A mansion, a boat, a life of never checking a price tag. But in reality you never really hold it, because it's spoken for long before it ever lands in your account.",
+      "intended_understanding": "a real photo of cash \u2014 the raw number, before reality takes its cut",
+      "visual": "footage"
+    },
+    {
+      "t": "30.5-35.5",
+      "job": "CHAPTER",
+      "narration": "Chapter one. The government's cut.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "34.9-45.4",
+      "job": "DEVELOP",
+      "narration": "Before you hold a single dollar, a share is already gone. Income tax, payroll tax, and sales tax on almost everything you buy with what's left.",
+      "intended_understanding": "the figure hands a stack of cash through a cold government window",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "44.8-51.7",
+      "job": "DEVELOP",
+      "narration": "Across a lifetime, that adds up to roughly five hundred thousand dollars, handed over a little at a time.",
+      "intended_understanding": "the quarter made VISIBLE: earnings vs the tax bite as an animated proportional pair",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "51.1-58.1",
+      "job": "DEVELOP",
+      "narration": "A full quarter of everything you will ever make, gone before you can even decide what to do with it.",
+      "intended_understanding": "a real close-up grounding the loss \u2014 hands counting away dollar bills (brief noun cutaway; the cut itself breaks the 5s novelty ceiling the single 5.5s beat kept tripping)",
+      "visual": "footage"
+    },
+    {
+      "t": "57.5-63.4",
+      "job": "DATA",
+      "narration": "Two million, minus taxes. One and a half million left.",
+      "intended_understanding": "the recurring money bar: taxes drain out",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "62.8-67.9",
+      "job": "CHAPTER",
+      "narration": "Chapter two. A roof over your head.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "67.3-75.9",
+      "job": "DEVELOP",
+      "narration": "Now the biggest bite of all. Rent or a mortgage takes about a third of every paycheck, month after month, for decades.",
+      "intended_understanding": "the figure stands small in a lit doorway; rent floats out the chimney each month",
+      "visual": "footage"
+    },
+    {
+      "t": "75.3-91.2",
+      "job": "DEVELOP",
+      "narration": "You don't really buy a home. For most of your life you rent it, from a landlord or from a bank. And when you add up every payment, every repair, and every year of property tax, just having somewhere to sleep swallows another half a million dollars.",
+      "intended_understanding": "a real photo of houses grounding the housing point",
+      "visual": "footage"
+    },
+    {
+      "t": "90.6-94.7",
+      "job": "DATA",
+      "narration": "And just like that, we're down to one million dollars.",
+      "intended_understanding": "the money bar: housing drains out",
+      "visual": ""
+    },
+    {
+      "t": "94.1-99.0",
+      "job": "CHAPTER",
+      "narration": "Chapter three. Getting around.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "98.4-109.4",
+      "job": "DEVELOP",
+      "narration": "Then there's simply getting from place to place. Car payments, insurance, gas, and repairs \u2014 the machine that carries you to work quietly eats the money you go to work for.",
+      "intended_understanding": "the figure at a gas pump, the dollar meter racing up",
+      "visual": "footage"
+    },
+    {
+      "t": "108.8-120.2",
+      "job": "DEVELOP",
+      "narration": "A car spends most of its life parked, losing value, while you keep paying for it. Over a lifetime of commutes, getting around costs about a quarter of a million dollars.",
+      "intended_understanding": "a real photo of traffic grounding the transport point",
+      "visual": "footage"
+    },
+    {
+      "t": "119.6-123.6",
+      "job": "DATA",
+      "narration": "Seven hundred and fifty thousand left.",
+      "intended_understanding": "the money bar: getting around drains out",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "123.0-127.9",
+      "job": "CHAPTER",
+      "narration": "Chapter four. Staying alive.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "127.3-138.8",
+      "job": "DEVELOP",
+      "narration": "Now the one you can't skip. Groceries, restaurants, the coffee on the way in. It never feels like much at the register, but it quietly becomes a fortune.",
+      "intended_understanding": "the figure at a checkout, the total climbing, the receipt printing longer",
+      "visual": "footage"
+    },
+    {
+      "t": "138.2-147.5",
+      "job": "DEVELOP",
+      "narration": "Three meals a day, every day, for a whole lifetime. Feeding yourself alone runs around three hundred thousand dollars over the years.",
+      "intended_understanding": "a real photo of groceries grounding the food point",
+      "visual": "footage"
+    },
+    {
+      "t": "146.9-151.4",
+      "job": "DATA",
+      "narration": "Four hundred and fifty thousand now.",
+      "intended_understanding": "the money bar: food drains out",
+      "visual": "footage"
+    },
+    {
+      "t": "150.8-155.8",
+      "job": "CHAPTER",
+      "narration": "Chapter five. The little leaks.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "155.2-165.8",
+      "job": "DEVELOP",
+      "narration": "And then the leaks you barely notice. Streaming, subscriptions, fees, the free trial you forgot to cancel \u2014 draining every month whether you use them or not.",
+      "intended_understanding": "the figure on a couch ringed by subscription tiles, each siphoning a coin",
+      "visual": "footage"
+    },
+    {
+      "t": "165.2-175.3",
+      "job": "DATA",
+      "narration": "Alone, each one is nothing. Together, they siphon off a hundred and fifty thousand dollars, leaving just three hundred thousand.",
+      "intended_understanding": "the money bar: the little leaks drain out",
+      "visual": "footage"
+    },
+    {
+      "t": "174.7-179.2",
+      "job": "CHAPTER",
+      "narration": "Chapter six. The trap.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "178.6-190.0",
+      "job": "DEVELOP",
+      "narration": "Here's the cruel part. When you finally earn more, you don't keep more. You just buy a nicer car and a bigger place, and the money drains right back out.",
+      "intended_understanding": "the figure runs on a treadmill going nowhere as money pours in and drains out",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "189.4-200.8",
+      "job": "DEVELOP",
+      "narration": "It's why so many people who earn a lot still feel like they have nothing. The trap isn't how much you make \u2014 it's that the spending quietly grows to match it, every single time you get ahead.",
+      "intended_understanding": "a real photo grounding the trap \u2014 a busy city of workers",
+      "visual": "footage"
+    },
+    {
+      "t": "200.2-205.4",
+      "job": "CHAPTER",
+      "narration": "Chapter seven. What's actually left.",
+      "intended_understanding": "chapter title card",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "204.8-212.2",
+      "job": "REVEAL",
+      "narration": "So out of two million dollars, this is the part that's actually yours. Three hundred thousand.",
+      "intended_understanding": "the money bar resolves on the small glowing 'actually yours' sliver",
+      "visual": "designed_2d"
+    },
+    {
+      "t": "211.6-226.7",
+      "job": "PAYOFF",
+      "narration": "Fifteen cents of every dollar you will ever earn, free to spend however you choose. It isn't much, but it's truly yours. So spend it on something that actually matters, because you paid for every last cent of it with your life.",
+      "intended_understanding": "close on real human moments \u2014 a life well spent",
+      "visual": "footage"
+    }
+  ]
+}

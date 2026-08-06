@@ -1,0 +1,1862 @@
+{
+  "story_slug": "money-goes",
+  "total_beats": 29,
+  "total_shots": 0,
+  "start_time": 1785969924.2075756,
+  "end_time": 1785971652.1096191,
+  "total_elapsed_s": 1727.902043581009,
+  "planned_total_s": 270.53400000000005,
+  "actual_duration_s": 227.1,
+  "shots": [
+    {
+      "shot_idx": 0,
+      "shot_kind": "scene_paycheck",
+      "planned_duration_s": 4.1,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 12.025551557540894,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 12.026134252548218,
+      "mem_start": {
+        "rss_mb": 59.4375,
+        "vms_mb": 445.23046875,
+        "available_mb": 14840.83203125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 61.0078125,
+        "vms_mb": 444.98046875,
+        "available_mb": 14656.6171875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 1,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 3.299,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 9.201609134674072,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 9.202011585235596,
+      "mem_start": {
+        "rss_mb": 61.0078125,
+        "vms_mb": 444.98046875,
+        "available_mb": 14656.6171875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 90.69921875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14444.5,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 2,
+      "shot_kind": "scene_queue",
+      "planned_duration_s": 4.367,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 11.198233842849731,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 11.198673963546753,
+      "mem_start": {
+        "rss_mb": 90.69921875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14444.5,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 90.71484375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14547.4765625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 3,
+      "shot_kind": "flat_hook",
+      "planned_duration_s": 2.4,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.838087320327759,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.838511228561401,
+      "mem_start": {
+        "rss_mb": 90.71484375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14547.4765625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 120.87109375,
+        "vms_mb": 504.30859375,
+        "available_mb": 14571.25390625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 4,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.699,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 11.778503656387329,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 11.778898477554321,
+      "mem_start": {
+        "rss_mb": 120.87109375,
+        "vms_mb": 504.30859375,
+        "available_mb": 14571.25390625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.30078125,
+        "vms_mb": 466.734375,
+        "available_mb": 14669.8125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 5,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 1.891,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.678951978683472,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.679335117340088,
+      "mem_start": {
+        "rss_mb": 83.30078125,
+        "vms_mb": 466.734375,
+        "available_mb": 14669.8125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.3046875,
+        "vms_mb": 466.734375,
+        "available_mb": 14608.2421875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 6,
+      "shot_kind": "image",
+      "planned_duration_s": 5.722,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.244920492172241,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.245319366455078,
+      "mem_start": {
+        "rss_mb": 83.3046875,
+        "vms_mb": 466.734375,
+        "available_mb": 14608.2421875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.35546875,
+        "vms_mb": 466.734375,
+        "available_mb": 14676.55859375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 7,
+      "shot_kind": "image",
+      "planned_duration_s": 5.722,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.688682556152344,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.689041376113892,
+      "mem_start": {
+        "rss_mb": 83.359375,
+        "vms_mb": 466.734375,
+        "available_mb": 14676.55859375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.359375,
+        "vms_mb": 466.734375,
+        "available_mb": 14752.25390625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 8,
+      "shot_kind": "image",
+      "planned_duration_s": 5.722,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 9.611913919448853,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 9.612245082855225,
+      "mem_start": {
+        "rss_mb": 83.359375,
+        "vms_mb": 466.734375,
+        "available_mb": 14752.25390625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.3671875,
+        "vms_mb": 466.734375,
+        "available_mb": 14820.26953125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 9,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 2.75,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.0513222217559814,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.051680564880371,
+      "mem_start": {
+        "rss_mb": 83.37109375,
+        "vms_mb": 466.734375,
+        "available_mb": 14820.26953125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 120.9453125,
+        "vms_mb": 504.30859375,
+        "available_mb": 14762.81640625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 10,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 2.8000000000000007,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.790684461593628,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.7910425662994385,
+      "mem_start": {
+        "rss_mb": 120.9453125,
+        "vms_mb": 504.30859375,
+        "available_mb": 14762.81640625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.421875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14532.55078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 11,
+      "shot_kind": "scene_tax",
+      "planned_duration_s": 4.1,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 11.080034255981445,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 11.080392122268677,
+      "mem_start": {
+        "rss_mb": 91.421875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14532.55078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 118.8515625,
+        "vms_mb": 502.1953125,
+        "available_mb": 14583.11328125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 12,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 4.367,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 12.019230127334595,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 12.019604206085205,
+      "mem_start": {
+        "rss_mb": 118.8515625,
+        "vms_mb": 502.1953125,
+        "available_mb": 14583.11328125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4296875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14490.2265625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 13,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 3.299,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 9.173642873764038,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 9.17400574684143,
+      "mem_start": {
+        "rss_mb": 91.4296875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14490.2265625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4296875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14596.71875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 14,
+      "shot_kind": "flat_compare",
+      "planned_duration_s": 3.17,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 13.616995811462402,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 13.617371320724487,
+      "mem_start": {
+        "rss_mb": 91.4296875,
+        "vms_mb": 474.64453125,
+        "available_mb": 14596.71875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 122.94921875,
+        "vms_mb": 506.28515625,
+        "available_mb": 14695.71875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 15,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 1.85,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.786138772964478,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.786534786224365,
+      "mem_start": {
+        "rss_mb": 122.94921875,
+        "vms_mb": 506.28515625,
+        "available_mb": 14695.71875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.3984375,
+        "vms_mb": 466.734375,
+        "available_mb": 14703.6875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 16,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 3.05,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.484848022460938,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.485220909118652,
+      "mem_start": {
+        "rss_mb": 83.3984375,
+        "vms_mb": 466.734375,
+        "available_mb": 14703.6875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14581.3359375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 17,
+      "shot_kind": "image",
+      "planned_duration_s": 3.7950000000000004,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 3.772691249847412,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 3.7730565071105957,
+      "mem_start": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14581.3359375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14741.5390625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 18,
+      "shot_kind": "image",
+      "planned_duration_s": 3.7950000000000004,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 3.905691623687744,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 3.906026840209961,
+      "mem_start": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14741.5390625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14785.078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 19,
+      "shot_kind": "scene_money",
+      "planned_duration_s": 2.4,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.889306545257568,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.889646053314209,
+      "mem_start": {
+        "rss_mb": 91.4375,
+        "vms_mb": 474.64453125,
+        "available_mb": 14785.078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 118.8984375,
+        "vms_mb": 503.1953125,
+        "available_mb": 14689.1953125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 20,
+      "shot_kind": "scene_queue",
+      "planned_duration_s": 1.956,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.77619194984436,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.776577711105347,
+      "mem_start": {
+        "rss_mb": 118.8984375,
+        "vms_mb": 503.1953125,
+        "available_mb": 14689.1953125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.4765625,
+        "vms_mb": 475.64453125,
+        "available_mb": 14639.859375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 21,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.706,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 12.16979718208313,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 12.170164823532104,
+      "mem_start": {
+        "rss_mb": 91.4765625,
+        "vms_mb": 475.64453125,
+        "available_mb": 14639.859375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.44140625,
+        "vms_mb": 467.734375,
+        "available_mb": 14658.9296875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 22,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 3.47,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.736161231994629,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.736526966094971,
+      "mem_start": {
+        "rss_mb": 83.44140625,
+        "vms_mb": 467.734375,
+        "available_mb": 14658.9296875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.01953125,
+        "vms_mb": 505.30859375,
+        "available_mb": 14733.59375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 23,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.2240000000000006,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 10.451577425003052,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 10.451947212219238,
+      "mem_start": {
+        "rss_mb": 121.01953125,
+        "vms_mb": 505.30859375,
+        "available_mb": 14733.59375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14522.328125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 24,
+      "shot_kind": "image",
+      "planned_duration_s": 3.266,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.892422199249268,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.892782926559448,
+      "mem_start": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14522.328125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14731.7109375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 25,
+      "shot_kind": "image",
+      "planned_duration_s": 3.266,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.6698081493377686,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.670154094696045,
+      "mem_start": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14731.7109375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14701.01953125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 26,
+      "shot_kind": "image",
+      "planned_duration_s": 3.266,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.900029182434082,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.900393962860107,
+      "mem_start": {
+        "rss_mb": 83.4453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14701.01953125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14811.015625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 27,
+      "shot_kind": "image",
+      "planned_duration_s": 5.7139999999999995,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.141379117965698,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.141753673553467,
+      "mem_start": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14811.015625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14845.5546875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 28,
+      "shot_kind": "image",
+      "planned_duration_s": 5.7139999999999995,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.212888240814209,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.213263988494873,
+      "mem_start": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14845.5546875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14826.71875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 29,
+      "shot_kind": "image",
+      "planned_duration_s": 5.7139999999999995,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.7907936573028564,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.791155099868774,
+      "mem_start": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14826.71875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14832.01171875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 30,
+      "shot_kind": "scene_money",
+      "planned_duration_s": 2.4,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.913009881973267,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.91339635848999,
+      "mem_start": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14832.01171875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 118.9140625,
+        "vms_mb": 503.1953125,
+        "available_mb": 14730.796875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 31,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 1.4670000000000003,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.2061920166015625,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.206581354141235,
+      "mem_start": {
+        "rss_mb": 118.9140625,
+        "vms_mb": 503.1953125,
+        "available_mb": 14730.796875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14641.4296875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 32,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 1.4670000000000003,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.631446361541748,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.631806135177612,
+      "mem_start": {
+        "rss_mb": 83.453125,
+        "vms_mb": 467.734375,
+        "available_mb": 14641.4296875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.48828125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14654.6796875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 33,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 3.33,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.2472028732299805,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.247571706771851,
+      "mem_start": {
+        "rss_mb": 91.48828125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14654.6796875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.02734375,
+        "vms_mb": 505.30859375,
+        "available_mb": 14639.55078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 34,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 2.1000000000000005,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.189343690872192,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.189716815948486,
+      "mem_start": {
+        "rss_mb": 121.02734375,
+        "vms_mb": 505.30859375,
+        "available_mb": 14639.55078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.48828125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14455.26953125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 35,
+      "shot_kind": "image",
+      "planned_duration_s": 4.074,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.194468975067139,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.194799423217773,
+      "mem_start": {
+        "rss_mb": 91.48828125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14455.26953125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14575.9375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 36,
+      "shot_kind": "image",
+      "planned_duration_s": 4.074,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.6087775230407715,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.609132766723633,
+      "mem_start": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14575.9375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14721.05078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 37,
+      "shot_kind": "image",
+      "planned_duration_s": 4.074,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 2.886510133743286,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 2.8868610858917236,
+      "mem_start": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14721.05078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14681.19140625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 38,
+      "shot_kind": "image",
+      "planned_duration_s": 4.218,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.464383840560913,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.464733839035034,
+      "mem_start": {
+        "rss_mb": 91.49609375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14681.19140625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.5,
+        "vms_mb": 475.64453125,
+        "available_mb": 14772.64453125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 39,
+      "shot_kind": "image",
+      "planned_duration_s": 4.218,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.606560230255127,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.606913805007935,
+      "mem_start": {
+        "rss_mb": 91.5,
+        "vms_mb": 475.64453125,
+        "available_mb": 14772.64453125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.5,
+        "vms_mb": 475.64453125,
+        "available_mb": 14788.10546875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 40,
+      "shot_kind": "image",
+      "planned_duration_s": 4.218,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.91682505607605,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.917150020599365,
+      "mem_start": {
+        "rss_mb": 91.5,
+        "vms_mb": 475.64453125,
+        "available_mb": 14788.10546875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.50390625,
+        "vms_mb": 475.64453125,
+        "available_mb": 14784.51171875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 41,
+      "shot_kind": "scene_money",
+      "planned_duration_s": 2.5140000000000002,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.1617820262908936,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.16211724281311,
+      "mem_start": {
+        "rss_mb": 91.50390625,
+        "vms_mb": 475.64453125,
+        "available_mb": 14784.51171875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 118.93359375,
+        "vms_mb": 503.1953125,
+        "available_mb": 14647.99609375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 42,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 2.0999999999999996,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.24219822883606,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.2425856590271,
+      "mem_start": {
+        "rss_mb": 118.93359375,
+        "vms_mb": 503.1953125,
+        "available_mb": 14647.99609375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.5078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14632.8203125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 43,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 3.354,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.2437214851379395,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.244079828262329,
+      "mem_start": {
+        "rss_mb": 91.5078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14632.8203125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.046875,
+        "vms_mb": 505.30859375,
+        "available_mb": 14683.08203125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 44,
+      "shot_kind": "scene_queue",
+      "planned_duration_s": 2.1000000000000005,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.051054000854492,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.051400423049927,
+      "mem_start": {
+        "rss_mb": 121.046875,
+        "vms_mb": 505.30859375,
+        "available_mb": 14683.08203125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.5078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14516.6640625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 45,
+      "shot_kind": "image",
+      "planned_duration_s": 4.242,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.216234445571899,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.216597080230713,
+      "mem_start": {
+        "rss_mb": 91.5078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14516.6640625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.515625,
+        "vms_mb": 475.64453125,
+        "available_mb": 14580.19921875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 46,
+      "shot_kind": "image",
+      "planned_duration_s": 4.242,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.751739263534546,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.752071857452393,
+      "mem_start": {
+        "rss_mb": 91.51953125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14580.19921875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.51953125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14727.35546875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 47,
+      "shot_kind": "image",
+      "planned_duration_s": 4.242,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.916781663894653,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.917105674743652,
+      "mem_start": {
+        "rss_mb": 91.51953125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14727.35546875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14776.59375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 48,
+      "shot_kind": "image",
+      "planned_duration_s": 3.506,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 3.6109745502471924,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 3.6113228797912598,
+      "mem_start": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14776.59375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14809.55078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 49,
+      "shot_kind": "image",
+      "planned_duration_s": 3.506,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 3.725494623184204,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 3.7258644104003906,
+      "mem_start": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14809.55078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14790.8828125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 50,
+      "shot_kind": "image",
+      "planned_duration_s": 3.506,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 3.845903158187866,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 3.846276044845581,
+      "mem_start": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14790.8828125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14811.50390625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 51,
+      "shot_kind": "image",
+      "planned_duration_s": 4.494000000000001,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.294505596160889,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.294877767562866,
+      "mem_start": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14811.50390625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14827.24609375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 52,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 3.45,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.514408826828003,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.514776229858398,
+      "mem_start": {
+        "rss_mb": 91.52734375,
+        "vms_mb": 475.64453125,
+        "available_mb": 14827.24609375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.06640625,
+        "vms_mb": 505.30859375,
+        "available_mb": 14602.96875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 53,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.1000000000000005,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 9.561841011047363,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 9.562240362167358,
+      "mem_start": {
+        "rss_mb": 121.06640625,
+        "vms_mb": 505.30859375,
+        "available_mb": 14602.96875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.49609375,
+        "vms_mb": 467.734375,
+        "available_mb": 14551.89453125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 54,
+      "shot_kind": "image",
+      "planned_duration_s": 3.922,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.201230049133301,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.201578855514526,
+      "mem_start": {
+        "rss_mb": 83.49609375,
+        "vms_mb": 467.734375,
+        "available_mb": 14551.89453125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5,
+        "vms_mb": 467.734375,
+        "available_mb": 14689.1484375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 55,
+      "shot_kind": "image",
+      "planned_duration_s": 3.922,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.187045574188232,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.187408208847046,
+      "mem_start": {
+        "rss_mb": 83.5,
+        "vms_mb": 467.734375,
+        "available_mb": 14689.1484375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5,
+        "vms_mb": 467.734375,
+        "available_mb": 14771.21484375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 56,
+      "shot_kind": "image",
+      "planned_duration_s": 3.922,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.256978750228882,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.257304906845093,
+      "mem_start": {
+        "rss_mb": 83.5,
+        "vms_mb": 467.734375,
+        "available_mb": 14771.21484375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14791.4296875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 57,
+      "shot_kind": "image",
+      "planned_duration_s": 10.158,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 9.429556608200073,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 9.4298996925354,
+      "mem_start": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14791.4296875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14818.95703125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 58,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 2.4,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.1082470417022705,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.108627557754517,
+      "mem_start": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14818.95703125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.08203125,
+        "vms_mb": 505.30859375,
+        "available_mb": 14614.16796875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 59,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.7180000000000004,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 12.001264095306396,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 12.001640319824219,
+      "mem_start": {
+        "rss_mb": 121.08203125,
+        "vms_mb": 505.30859375,
+        "available_mb": 14614.16796875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14646.94921875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 60,
+      "shot_kind": "scene_treadmill",
+      "planned_duration_s": 4.1,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 13.953818559646606,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 13.954172134399414,
+      "mem_start": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14646.94921875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14524.91015625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 61,
+      "shot_kind": "scene_hold",
+      "planned_duration_s": 4.448,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 11.621006727218628,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 11.62137222290039,
+      "mem_start": {
+        "rss_mb": 83.5078125,
+        "vms_mb": 467.734375,
+        "available_mb": 14524.91015625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.54296875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14526.09375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 62,
+      "shot_kind": "scene_queue",
+      "planned_duration_s": 4.034,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 10.594168663024902,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 10.594529628753662,
+      "mem_start": {
+        "rss_mb": 91.54296875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14526.09375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.54296875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14624.11328125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 63,
+      "shot_kind": "image",
+      "planned_duration_s": 4.21,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 6.535022735595703,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 6.535395860671997,
+      "mem_start": {
+        "rss_mb": 91.54296875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14624.11328125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.55078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14728.10546875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 64,
+      "shot_kind": "image",
+      "planned_duration_s": 4.21,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 4.466973304748535,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 4.46733021736145,
+      "mem_start": {
+        "rss_mb": 91.55078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14728.10546875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.55078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14752.37890625,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 65,
+      "shot_kind": "image",
+      "planned_duration_s": 4.21,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.574673175811768,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.575052499771118,
+      "mem_start": {
+        "rss_mb": 91.55078125,
+        "vms_mb": 475.64453125,
+        "available_mb": 14752.37890625,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 91.5546875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14750.7421875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 66,
+      "shot_kind": "flat_title",
+      "planned_duration_s": 3.47,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 7.639338493347168,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 7.639700174331665,
+      "mem_start": {
+        "rss_mb": 91.5546875,
+        "vms_mb": 475.64453125,
+        "available_mb": 14750.7421875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 121.09375,
+        "vms_mb": 505.30859375,
+        "available_mb": 14733.7109375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 67,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 2.2960000000000007,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 10.403379201889038,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 10.403752088546753,
+      "mem_start": {
+        "rss_mb": 121.09375,
+        "vms_mb": 505.30859375,
+        "available_mb": 14733.7109375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.51953125,
+        "vms_mb": 467.734375,
+        "available_mb": 14662.78125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 68,
+      "shot_kind": "scene_money",
+      "planned_duration_s": 3.722,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 15.840696334838867,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 15.841051816940308,
+      "mem_start": {
+        "rss_mb": 83.51953125,
+        "vms_mb": 467.734375,
+        "available_mb": 14662.78125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 61.89453125,
+        "vms_mb": 445.98046875,
+        "available_mb": 14741.98046875,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 69,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 1.85,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 8.645974159240723,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 8.646348714828491,
+      "mem_start": {
+        "rss_mb": 61.89453125,
+        "vms_mb": 445.98046875,
+        "available_mb": 14741.98046875,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.52734375,
+        "vms_mb": 467.734375,
+        "available_mb": 14592.078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 70,
+      "shot_kind": "scene_free",
+      "planned_duration_s": 3.05,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 13.268039226531982,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 13.268421649932861,
+      "mem_start": {
+        "rss_mb": 83.52734375,
+        "vms_mb": 467.734375,
+        "available_mb": 14592.078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.53125,
+        "vms_mb": 467.734375,
+        "available_mb": 14651.23828125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 71,
+      "shot_kind": "image",
+      "planned_duration_s": 5.434,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.683262348175049,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.683613538742065,
+      "mem_start": {
+        "rss_mb": 83.53125,
+        "vms_mb": 467.734375,
+        "available_mb": 14651.23828125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.53125,
+        "vms_mb": 467.734375,
+        "available_mb": 14716.96484375,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 72,
+      "shot_kind": "image",
+      "planned_duration_s": 5.434,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 10.369322538375854,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 10.369672536849976,
+      "mem_start": {
+        "rss_mb": 83.53125,
+        "vms_mb": 467.734375,
+        "available_mb": 14716.96484375,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5390625,
+        "vms_mb": 467.734375,
+        "available_mb": 14797.05078125,
+        "fd_count": 4
+      },
+      "processes": []
+    },
+    {
+      "shot_idx": 73,
+      "shot_kind": "image",
+      "planned_duration_s": 5.434,
+      "asset_resolution_s": 0.0,
+      "scene_construction_s": 0.0,
+      "frame_render_s": 5.544013977050781,
+      "encoding_s": 0.0,
+      "cleanup_s": 0.0,
+      "total_s": 5.5443501472473145,
+      "mem_start": {
+        "rss_mb": 83.5390625,
+        "vms_mb": 467.734375,
+        "available_mb": 14797.05078125,
+        "fd_count": 4
+      },
+      "mem_end": {
+        "rss_mb": 83.5390625,
+        "vms_mb": 467.734375,
+        "available_mb": 14817.015625,
+        "fd_count": 4
+      },
+      "processes": []
+    }
+  ],
+  "stages": {
+    "narration_synthesis": {
+      "elapsed_s": 20.531595945358276,
+      "count": 1
+    },
+    "beat_planning": {
+      "elapsed_s": 0.001981019973754883,
+      "count": 1
+    },
+    "extra_director": {
+      "elapsed_s": 2.3365020751953125e-05,
+      "count": 1
+    },
+    "shot_narration": {
+      "elapsed_s": 31.046767711639404,
+      "count": 1
+    },
+    "shot_visual": {
+      "elapsed_s": 570.9034597873688,
+      "count": 74
+    },
+    "shot_rendering": {
+      "elapsed_s": 570.9327676296234,
+      "count": 1
+    },
+    "video_assembly": {
+      "elapsed_s": 243.27297925949097,
+      "count": 1
+    },
+    "voice_mix": {
+      "elapsed_s": 3.0684049129486084,
+      "count": 1
+    },
+    "audio_mastering": {
+      "elapsed_s": 5.368075847625732,
+      "count": 1
+    },
+    "final_mux_and_grade": {
+      "elapsed_s": 580.1622099876404,
+      "count": 1
+    },
+    "downscale_720p": {
+      "elapsed_s": 165.6694836616516,
+      "count": 1
+    },
+    "judge_evidence_package": {
+      "elapsed_s": 100.70224118232727,
+      "count": 1
+    },
+    "beatmap_emission": {
+      "elapsed_s": 0.0008065700531005859,
+      "count": 1
+    },
+    "continuity_check": {
+      "elapsed_s": 6.183713912963867,
+      "count": 1
+    },
+    "meta_json": {
+      "elapsed_s": 0.0002727508544921875,
+      "count": 1
+    },
+    "srt_captions": {
+      "elapsed_s": 0.0005273818969726562,
+      "count": 1
+    },
+    "thumbnail_generation": {
+      "elapsed_s": 0.957362174987793,
+      "count": 1
+    },
+    "credits_emission": {
+      "elapsed_s": 0.00041556358337402344,
+      "count": 1
+    }
+  }
+}
