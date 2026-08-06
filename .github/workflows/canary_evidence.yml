@@ -73,7 +73,19 @@ jobs:
           set -euo pipefail
           dest="evidence/${{ inputs.run_id }}-${{ inputs.slug }}"
           mkdir -p "$dest"
-          pkg="dl/output/curiosity_${{ inputs.slug }}_pkg"
+          # FIND the package, do not assume where it sits. The first run of
+          # this workflow looked in `dl/output/curiosity_<slug>_pkg` and found
+          # nothing: `upload-artifact` strips the common leading directory
+          # from the paths it is given, so the `output/` prefix that exists on
+          # the render runner does not exist inside the artifact. Hardcoding a
+          # second guess would be the same mistake with a different string.
+          pkg="$(find dl -maxdepth 4 -type d -name "curiosity_${{ inputs.slug }}_pkg" | head -1)"
+          if [ -z "$pkg" ]; then
+            echo "no curiosity_${{ inputs.slug }}_pkg anywhere under dl/:"
+            find dl -maxdepth 4 -type d | head -40
+            exit 1
+          fi
+          echo "package: $pkg"
           # The blind protocol's inputs, and the machine-readable context a
           # RECORD needs afterwards. No mp4: the judge never sees one, and the
           # 720p/full renders are what make the artifact 375MB.
@@ -87,8 +99,8 @@ jobs:
           # A silent empty publish would look exactly like a successful one.
           n=$(find "$dest" -type f | wc -l)
           if [ "$n" -eq 0 ]; then
-            echo "no evidence files found under $pkg — the artifact layout changed"
-            find dl -maxdepth 3 -type d | head -40
+            echo "found $pkg but it held none of the evidence files:"
+            ls -la "$pkg" | head -40
             exit 1
           fi
           # git is the wrong home for anything large; the clip is the only file
