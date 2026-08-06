@@ -2603,13 +2603,43 @@
       "director_cut": true
     },
     "clip-20260806-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/MildCourteousSwallowPanicVis-AHnGgceHY4qupryj",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/Tv_sBw1Owkk",
       "title": "Stableronaldo Gets Sold Out By His Own Teammate And Eliminated",
       "kind": "twitch_clip",
-      "ts": "2026-08-06T13:08:23.615122+00:00",
+      "ts": "2026-08-06T13:08:27.342155+00:00",
+      "uploaded_at": "2026-08-06T13:08:27.342172+00:00",
+      "publish_at": "2026-08-06T17:00:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/MildCourteousSwallowPanicVis-AHnGgceHY4qupryj",
+      "streamer": "stableronaldo",
+      "series": "drama",
+      "hook": "HIS OWN TEAMMATE SOLD HIM OUT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 42024,
+      "banger": 0.5,
+      "cut": {
+        "start": 25.5,
+        "end": 44.3
+      },
+      "director_cut": true
+    },
+    "rejected-curiouscrowdedhamnerfredblaster-kgieur4pfnbwr-sm": {
+      "source_url": "https://www.twitch.tv/nmplol/clip/CuriousCrowdedHamNerfRedBlaster-KgiEur4PfNBWR-SM",
+      "streamer": "nmplol",
+      "title": "Ain't No Way",
+      "qa_rejected": true,
+      "ts": "2026-08-06T13:09:39.596739+00:00"
+    },
+    "clip-20260806-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/HardKitschyMagpiePartyTime-kDoUOMvNB0nh6VFO",
+      "story_key": null,
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Killed Myth And Then Caught Him In A Lie",
+      "kind": "twitch_clip",
+      "ts": "2026-08-06T13:14:37.663892+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
