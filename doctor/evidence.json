@@ -1,0 +1,851 @@
+{
+  "schema": "shorts-doctor-evidence/v1",
+  "date": "20260806",
+  "judged_date": "20260805",
+  "alarm": {
+    "date": "20260805",
+    "ok": false,
+    "alarms": [
+      {
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20260805 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260805. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 3/6 posted for 20260805.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 1/6 posted for 20260805.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "production_repair_trending",
+        "severity": "critical",
+        "detail": "trending 20260805: production outcome says 1/6 uploaded and repair never completed (0 quarantined, 5 failed).",
+        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "trending_short_after_retries",
+        "severity": "warning",
+        "detail": "trending shipped 1/6; 0 re-authored replacement(s) also failed to fill it.",
+        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
+      }
+    ],
+    "notes": [],
+    "deferred": false
+  },
+  "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260805",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 6,
+      "uploaded": 1,
+      "quarantined": 0,
+      "failed": 5,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/FgKWlmoSE94"
+      ]
+    },
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260803",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 6,
+      "uploaded": 0,
+      "quarantined": 1,
+      "failed": 5,
+      "status": "repair_required",
+      "video_urls": []
+    },
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260802",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 4,
+      "rendered_or_attempted": 2,
+      "uploaded": 5,
+      "quarantined": 0,
+      "failed": 1,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/MMOE_TgX_mU"
+      ]
+    }
+  ],
+  "showrunner_recent": [
+    {
+      "ts": "2026-08-02T12:43:24+00:00",
+      "slug": "smartphone_users_worldwide__the_climb",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 1.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T12:47:35+00:00",
+      "slug": "china_vs_u_s___the_urban_population_cros",
+      "score": 64,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "A clear and well-paced graph race showing urban population trends, but completely lacks the mascot character.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T12:49:11+00:00",
+      "slug": "india_vs_u_s___internet_users_by_year",
+      "score": 42,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 0,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "The video effectively shows data progression and a clear payoff but lacks a mascot, uses a generic data demonstration, and has a slow, empty hook.",
+      "auto_fails": [
+        "empty_void: hook@0.3 shows a large black background with only small lines at the bottom of the chart area, wasting significant frame space."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T12:50:50+00:00",
+      "slug": "mobile_subscriptions__china__india__u_s_",
+      "score": 56,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 0,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively demonstrates mobile subscription trends with a clear line race chart but completely lacks a mascot.",
+      "auto_fails": [
+        "decorative_mascot: No mascot is present in any frame, thus it cannot perform a bit."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:20:07+00:00",
+      "slug": "smartphone_users_worldwide__the_climb",
+      "score": 65,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The video clearly visualizes smartphone user growth but the mascot is largely static and the 'race' payoff is confusing.",
+      "auto_fails": [
+        "decorative_mascot: Mascot stands in place for almost the entire video, only raising arms at the very end (payoff@-0.4)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:23:47+00:00",
+      "slug": "he_wouldn_t_stop_the_music__so_i_got_cre",
+      "score": 51,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The video tells an engaging story with a dynamic game overlay, but the mascot is static and it lacks a clear data demonstration.",
+      "auto_fails": [
+        "decorative_mascot: The mascot is visible in frames like `mid1`, `mid2`, `mid3`, `mid4`, `mid5`, `payoff@-1.8`, `payoff@-0.4` but remains static in the bottom right corner, not performing a bit."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 149
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:25:30+00:00",
+      "slug": "china_vs_u_s___the_urban_population_cros",
+      "score": 69,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively visualizes the urban population crossover between China and the US using a clear line graph, but the mascot remains largely decorative.",
+      "auto_fails": [
+        "decorative_mascot: The mascot stands in the same spot, mostly just changing its speech bubble and arm position, not performing a dynamic bit tied to the data (e.g., hook@0.3, mid1@4.47s, payoff@-0.4).",
+        "empty_void: The background is entirely black, and while the graph fills a good portion, there's still a significant amount of unused black space, especially on the right and bottom, where the mascot is small (dark_fraction: 1.0)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:27:20+00:00",
+      "slug": "india_vs_u_s___internet_users_by_year",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clear and engaging data race showing India's internet user growth surpassing the US, with a reactive mascot.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:29:12+00:00",
+      "slug": "mobile_subscriptions__china__india__u_s_",
+      "score": 77,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clear and well-paced data race, but the mascot is largely decorative and the frame has significant empty space.",
+      "auto_fails": [
+        "decorative_mascot: The mascot stands in the bottom left corner for most of the video (e.g., mid0), with only minor reactions and a final pointer, not a real bit.",
+        "empty_void: The background is entirely black, and while the graph is prominent, there are large areas of unused black space, especially on the right and bottom (dark_fraction: 1.0)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:33:02+00:00",
+      "slug": "my_boss_wanted_every_email__he_got_every",
+      "score": 78,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a malicious compliance story with engaging split-screen visuals, but the mascot is entirely static and decorative.",
+      "auto_fails": [
+        "decorative_mascot: From frame mid1 onwards, the mascot is visible in the top frame, standing perfectly still on the right side without any movement or interaction."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 154
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:44:57+00:00",
+      "slug": "smartphone_users_worldwide__the_climb",
+      "score": 65,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively demonstrates smartphone user growth on a graph, but the mascot's role is decorative, and the payoff is confusing and misaligned with the video's core topic.",
+      "auto_fails": [
+        "decorative_mascot: The mascot merely moves with the 'World population' line and does not perform a bit tied to the 'Smartphone users' climb or the race's outcome for them, as seen in mid5.",
+        "empty_void: Large black areas on the sides and bottom of the frame are not utilized by the graph or other elements, as seen in mid5."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:48:32+00:00",
+      "slug": "he_wouldn_t_stop_the_music__so_i_got_cre",
+      "score": 77,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively tells a Reddit story with engaging visuals and good pacing, but the mascot remains largely decorative.",
+      "auto_fails": [
+        "decorative_mascot: The mascot is largely static in mid2, mid3, mid4, mid5, payoff@-1.8, and payoff@-0.4, merely standing in place."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 151
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:50:20+00:00",
+      "slug": "china_vs_u_s___the_urban_population_cros",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively demonstrates the growth of urban populations in China and the US through a graph race, but the title and hook text are misleading as no crossover event is depicted.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:52:13+00:00",
+      "slug": "mobile_subscriptions__china__india__u_s_",
+      "score": 96,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-executed graph race demonstrating mobile subscription growth with a performing mascot.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T19:56:05+00:00",
+      "slug": "my_boss_wanted_every_email__he_got_every",
+      "score": 86,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A well-paced narrative demonstrating malicious compliance with clear story beats and good visual craft, though the mascot's performance could be more dynamic.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 166
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-02T20:05:06+00:00",
+      "slug": "smartphones_reached_half_the_planet",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively demonstrates smartphone user growth towards half the world's population, but the final payoff text is confusing and detracts from the main message.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-03T12:38:07+00:00",
+      "slug": "broadband_passed_landlines_in_20_years",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 8.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-03T12:39:13+00:00",
+      "slug": "internet_users_outran_broadband_lines",
+      "score": 5,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 1
+      },
+      "one_line": "blocked before vision review: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "auto_fails": [
+        "temporal_gate: duplicate_ratio 0.451 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-03T12:40:21+00:00",
+      "slug": "f_gases_grew_faster_than_methane",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 8.0 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-03T12:42:01+00:00",
+      "slug": "fish_farming_drove_the_production_boom",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 1
+      },
+      "one_line": "The video effectively demonstrates the divergence of total fish production from wild capture through a clear graph race, but the visual space could be utilized more dynamically.",
+      "auto_fails": [
+        "empty_void: The `dark_fraction` is 1.0, indicating a predominantly black background with significant unused space around the graph and text, visible from `hook@0.3` onwards."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-03T12:45:58+00:00",
+      "slug": "my_manager_s_bag_checks_became_paid_over",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells the Reddit story with relevant visuals, but the background mascot is decorative and not integrated.",
+      "auto_fails": [
+        "decorative_mascot: The Geometry Dash character (e.g., hook@0.3, mid0) is present and moves but does not perform a bit tied to the story content."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:44:43+00:00",
+      "slug": "us_disaster_costs_are_exploding",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 1
+      },
+      "one_line": "Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.",
+      "auto_fails": [
+        "empty_void: dark_fraction 1.0; hook@0.3 through mid0 t=2.50s show a plot area ~90% empty black with only a few-pixel stub of line pinned to the far-left axis, and a large dead black band persists between the x-axis and the year counter in every frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:45:51+00:00",
+      "slug": "bald_eagles_went_from_417_pairs_to_71_00",
+      "score": 5,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 1
+      },
+      "one_line": "blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "auto_fails": [
+        "temporal_gate: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:46:57+00:00",
+      "slug": "why_chocolate_got_so_expensive__then_did",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 12.33,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:48:03+00:00",
+      "slug": "the_dow_just_hit_54_000_for_the_first_ti",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 13.67,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:52:02+00:00",
+      "slug": "the_customer_insisted_i_worked_there__fi",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
+      "auto_fails": [
+        "junk_imagery: mid2 (t=18.01s) shows a wooden cabinet interior with a drilled hole while the caption reads 'POOL NOODLES,' \u2014 an unrelated woodworking photo that matches neither the line nor a retail-store story.",
+        "dead_air: The top illustration panel is the identical orange-crate photo at mid4 (t=33.51s), mid5 (t=41.27s), payoff@-1.8 (t=41.47s) and payoff@-0.4 (t=42.87s) \u2014 one frozen still across the final ~9s, four identical beats.",
+        "empty_void: Bottom gameplay half is near-black with only faint dark silhouettes at mid4 (t=33.51s) and mid5 (t=41.27s); at payoff@-0.4 the caption 'ORANGE THERE ENTIRELY.' floats in an otherwise empty black lower frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 130
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-05T15:55:55+00:00",
+      "slug": "he_blocked_my_driveway__i_just_stopped_m",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong hook and three well-matched story shots, but the last quarter recycles one stale photo so the punchline has no visual to land on.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 142
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    }
+  ],
+  "recent_commits": [
+    "a402b3a 2026-08-05 doctor: findings for 20260805",
+    "5202edf 2026-08-05 find the package instead of guessing its path"
+  ],
+  "open_backlog": [
+    {
+      "signature": "a5318d0404da",
+      "title": "Doctor evidence file is absent from main",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "new"
+    }
+  ],
+  "settled": []
+}

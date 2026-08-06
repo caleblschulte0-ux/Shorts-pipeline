@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-doctor-backlog/v1",
+  "updated": "20260806",
+  "items": {
+    "a5318d0404da": {
+      "title": "Doctor evidence file is absent from main",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "doctor/control-plane",
+      "files": [
+        "doctor/README.md"
+      ],
+      "observation": "doctor/README.md requires evidence.json to be read first because it carries settled rulings and the open backlog, but the doctor directory on main contains only PROMPTS.md and README.md. The required runtime truth therefore cannot be consulted, making duplicate-safe diagnosis impossible.",
+      "proposal": "Restore the job that writes doctor/evidence.json before the Doctor run, and make absence or staleness of that file a visible failing workflow condition rather than silent missing state.",
+      "evidence": "doctor/README.md lines 15-18 and 24-26 define doctor/evidence.json as required runtime truth; opening the main-branch doctor directory on 2026-08-05 shows only doctor/PROMPTS.md and doctor/README.md.",
+      "signature": "a5318d0404da",
+      "last_seen": "20260806",
+      "first_seen": "20260806"
+    }
+  }
+}
