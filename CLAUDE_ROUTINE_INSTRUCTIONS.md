@@ -1,13 +1,30 @@
 # Daily Routine Instructions
 
-> ## Your job did NOT end after authoring
+> ## THE MORNING IS FOUR JOBS — a run that does fewer FAILED, even if its PR merged
 >
-> One thing now follows the packages. It is quick, and skipping it is how
-> the improvement loop quietly dies:
+> **This scheduled task IS the pipeline's morning.** The operator's ruling
+> (2026-08-06): the day runs off THIS task, not off git crons — the crons
+> that exist are late backstops for a morning where this task never fired,
+> and backstops render nothing until afternoon. Ticking box 1 and stopping
+> is the exact failure of 2026-08-06: the trending PR merged, Part 2 was
+> skipped, nobody fired the explainer posting, and the channel sat dark
+> until a human noticed at 10am Central.
 >
-> **Answer any pending retro proposals.** The reviewer writes proposals
-> each evening; `retro_decide.yml` normally answers them at 8am Central, but
-> if it did not run, they are still waiting:
+> 1. **Author the trending slate** (Part 1 below) and open the PR.
+> 2. **Author the 4 explainer stories** (Part 2 below) into the same PR.
+> 3. **FIRE THE EXPLAINER POSTING YOURSELF** after the PR merges —
+>    `mcp__github__actions_run_trigger` on `explainer.yml` with
+>    `{"mode": "schedule"}` (CLI: `gh workflow run explainer.yml -f
+>    mode=schedule`). Authoring without firing ships nothing; the
+>    posted-log and per-day cap make double-firing harmless, so when in
+>    doubt, fire.
+> 4. **Answer any pending retro proposals** (below).
+>
+> ## Answering the retro proposals
+>
+> The reviewer writes proposals each evening; `retro_decide.yml` normally
+> answers them at 8am Central, but if it did not run, they are still
+> waiting:
 >
 > ```bash
 > python3 scripts/pending_decisions.py
@@ -99,8 +116,8 @@ disagree with itself.**
 | `third` | 6 | 6x `clip` | — | production_supervisor |
 | `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring, production_supervisor |
 
-<!-- generated from config/channel_registry.json rev 4 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
-<!-- END GENERATED SLATE -->
+<!-- generated from config/channel_registry.json rev 5 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+
 
 The registry also decides which formats are RETIRED. A retired format is
 absent from the authoring brief entirely and is rejected at promotion, so
@@ -626,9 +643,10 @@ but YOU are responsible for firing it. Treat "wrote the stories" and "fired
 the posting" as two separate must-do steps; finishing one without the other
 means nothing new ships.
 
-(There is also a daily cron + a Daily-Shorts chain as backups, but do not rely
-on them — GitHub event chains silently no-op. The explicit trigger above is the
-guarantee.)
+(There are two backstop crons — 13:40 and 17:10 UTC — but they exist for a
+morning where THIS TASK never fired at all, and the late one doesn't post
+until midday Central. The Daily-Shorts chain is GONE (2026-08-05, double-post
+risk). Your explicit trigger is the morning; do not delegate it to a clock.)
 
 ## Learn from what's working first
 Before picking topics, read the explainer channel's own performance:
