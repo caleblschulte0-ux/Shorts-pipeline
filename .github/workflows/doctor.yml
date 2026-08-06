@@ -115,7 +115,7 @@ jobs:
           CI_COMMIT_BRANCH: ${{ github.ref_name }}
         run: |
           bash scripts/ci_commit_state.sh \
-            "doctor: evidence pack + backlog $(date -u +%Y-%m-%d)" \
+            "doctor: evidence pack + backlog $(date -u +%Y-%m-%d) [skip ci]" \
             doctor/ || echo "::warning::doctor state commit failed"
 
       - name: Nudge the tracking issue when findings are waiting

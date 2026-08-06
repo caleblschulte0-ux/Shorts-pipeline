@@ -7,9 +7,8 @@ name: Explainer Stories
 #
 # Two ways to run:
 #   * manual (workflow_dispatch): verify / canary / schedule / all
-#   * automatic (workflow_run): after "Auto-merge claude PRs" merges the daily
-#     PR, this fires and posts any NEW (un-posted) stories the daily routine
-#     authored — scheduled hourly. The posted-log dedupes, so it's idempotent.
+#   * automatic (schedule): the 13:40 UTC cron — explainer's ONLY automatic
+#     trigger, so the registry's 4/day cannot be posted twice.
 
 on:
   workflow_dispatch:
@@ -50,13 +49,14 @@ on:
         description: 'keep at least this many un-posted stories (auto-author to refill)'
         required: false
         default: '6'
-  # Chain off "Daily Shorts" (runs on main, so branches:[main] matches): after
-  # each daily batch, render + post any un-posted explainer stories. The plan
-  # job no-ops when there's nothing new, so chaining every daily run is cheap.
-  workflow_run:
-    workflows: ["Daily Shorts"]
-    types: [completed]
-    branches: [main]
+  # ONE automatic firing path: the cron. This used to ALSO chain off "Daily
+  # Shorts" completing — from before explainer had a schedule of its own, when
+  # the chain was the only thing that ran it. Once the 13:40 cron was added
+  # (2026-08-05, so explainer no longer dies when trending dies) the chain
+  # became a SECOND daily firing: the posted log dedupes slugs, not days, so
+  # run two would simply post the NEXT four stories — 8/day against a ruling
+  # of 4. `post_stories` now also carries a per-day cap, but the right number
+  # of automatic triggers for one channel is one.
   schedule:
     # THIS CHANNEL MUST NOT DIE WHEN ANOTHER ONE DOES.
     #
@@ -115,13 +115,10 @@ jobs:
     needs: plan
     # Manual dispatch always runs. The daily CRON always runs too — even with an
     # empty queue — because the author step refills it before posting (that's how
-    # the channel keeps inventing new topics instead of going dry). The Daily
-    # Shorts chain still only fires when there's already something to post.
+    # the channel keeps inventing new topics instead of going dry).
     if: >-
       github.event_name == 'workflow_dispatch' ||
-      github.event_name == 'schedule' ||
-      (needs.plan.outputs.new_count != '0' &&
-       github.event.workflow_run.conclusion == 'success')
+      github.event_name == 'schedule'
     runs-on: ubuntu-latest
     # Raised from 60: each video now renders a 3D opener+closer, so a batch
     # needs more headroom. Paired with post_stories --max-per-run so a run

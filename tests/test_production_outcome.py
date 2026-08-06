@@ -100,11 +100,19 @@ class TestAPausedRunIsNotAGreenRun(unittest.TestCase):
         self.assertIn("exit 0", step)
         self.assertIn("on purpose", step)
 
-    def test_the_preflight_prints_the_command_that_clears_it(self):
+    def test_the_preflight_retries_itself_and_says_so(self):
+        """This used to pin the opposite: the pause 'CANNOT clear itself'
+        and printed the manual reset command. Changed 2026-08-06 under the
+        standing ruling ('if something doesn't run properly, it goes through
+        and tries again'): auto-pause is now a one-day BACKOFF that resumes
+        on its own. What must stay pinned is that it says so honestly, and
+        that the sooner-than-tomorrow escape hatch is still printed."""
         pre = DAILY.split("Pre-flight — kill switch", 1)[1].split(
             "- name:", 1)[0]
         self.assertIn("failure_count.txt", pre)
-        self.assertIn("CANNOT clear itself", pre)
+        self.assertIn("auto_pause_day", pre)
+        self.assertIn("retry ITSELF tomorrow", pre)
+        self.assertNotIn("CANNOT clear itself", pre)
 
 
 class TestTheOrchestratorWritesTheOutcome(unittest.TestCase):
