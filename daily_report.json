@@ -1,16 +1,50 @@
 [
   {
-    "topic": "US Disaster Costs Are Exploding",
-    "title": "US Disaster Costs Are Exploding",
+    "topic": "Nvidia Just Overtook Intel in Revenue",
+    "title": "Nvidia Just Overtook Intel in Revenue",
     "format": "graph_race",
-    "publish_at": "2026-08-05T16:00:00Z",
+    "publish_at": "2026-08-06T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.",
-    "elapsed_seconds": 156.0,
-    "package_path": "state/trending_packages/20260805/01_graph-billion-dollar-disasters.json",
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
+    "elapsed_seconds": 107.3,
+    "package_path": "state/trending_packages/20260806/01_graph-nvidia-overtakes-intel.json",
     "source": "brain",
-    "video_path": "output/daily_20260805-154207_us_disaster_costs_are_exploding.mp4",
+    "video_path": "output/daily_20260806-092610_nvidia_just_overtook_intel_in_revenue.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Renewables Just Beat Coal in the US",
+    "title": "Renewables Just Beat Coal in the US",
+    "format": "graph_race",
+    "publish_at": "2026-08-06T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 63.8,
+    "package_path": "state/trending_packages/20260806/02_graph-us-renewables-pass-coal.json",
+    "source": "brain",
+    "video_path": "output/daily_20260806-092757_renewables_just_beat_coal_in_the_us.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,57 +62,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Honest sourced data and a good baseline comparison, but it is a default-looking chart on black that ends on a decline instead of its own $400B peak, with clipped and overlapping labels.",
-      "score": 57
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
     },
     "blocked": true
   },
   {
-    "topic": "Bald Eagles Went From 417 Pairs To 71,000",
-    "title": "Bald Eagles Went From 417 Pairs To 71,000",
+    "topic": "China vs Hollywood: The Box Office War",
+    "title": "China vs Hollywood: The Box Office War",
     "format": "graph_race",
-    "publish_at": "2026-08-05T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 68.0,
-    "package_path": "state/trending_packages/20260805/02_graph-bald-eagle-comeback.json",
+    "publish_at": "2026-08-06T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/mrUqpMU95qY",
+    "error": null,
+    "elapsed_seconds": 129.5,
+    "package_path": "state/trending_packages/20260806/03_graph-china-vs-hollywood-box-office.json",
     "source": "brain",
-    "video_path": "output/daily_20260805-154443_bald_eagles_went_from_417_pairs_to_71_00.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.541 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Why Chocolate Got So Expensive (Then Didn't)",
-    "title": "Why Chocolate Got So Expensive (Then Didn't)",
-    "format": "graph_race",
-    "publish_at": "2026-08-05T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 66.4,
-    "package_path": "state/trending_packages/20260805/03_graph-cocoa-price-spike.json",
-    "source": "brain",
-    "video_path": "output/daily_20260805-154551_why_chocolate_got_so_expensive__then_did.mp4",
+    "video_path": "output/daily_20260806-092901_china_vs_hollywood__the_box_office_war.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,24 +95,24 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "The Dow Just Hit 54,000 For The First Time",
-    "title": "The Dow Just Hit 54,000 For The First Time",
+    "topic": "The Global EV Race: China vs Europe vs US",
+    "title": "The Global EV Race: China vs Europe vs US",
     "format": "graph_race",
-    "publish_at": "2026-08-05T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 65.5,
-    "package_path": "state/trending_packages/20260805/04_graph-dow-record-climb.json",
+    "publish_at": "2026-08-06T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/IaprIWrtr_0",
+    "error": null,
+    "elapsed_seconds": 121.8,
+    "package_path": "state/trending_packages/20260806/04_graph-ev-race-china-europe-us.json",
     "source": "brain",
-    "video_path": "output/daily_20260805-154657_the_dow_just_hit_54_000_for_the_first_ti.mp4",
+    "video_path": "output/daily_20260806-093111_the_global_ev_race__china_vs_europe_vs_u.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -129,27 +129,27 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "blocked": false,
+      "reason": "",
+      "score": 78
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "The Customer Insisted I Worked There. Fine.",
-    "title": "The Customer Insisted I Worked There. Fine.",
+    "topic": "She Demanded I Follow the Return Policy. I Did.",
+    "title": "She Demanded I Follow the Return Policy. I Did.",
     "format": "reddit",
-    "publish_at": "2026-08-05T16:00:00Z",
+    "publish_at": "2026-08-06T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
-    "elapsed_seconds": 239.9,
-    "package_path": "state/trending_packages/20260805/05_reddit-hardware-store-mistaken-staff.json",
+    "error": "showrunner_block: showrunner BLOCK: One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
+    "elapsed_seconds": 223.5,
+    "package_path": "state/trending_packages/20260806/05_reddit-return-policy-maximum-effort.json",
     "source": "brain",
-    "video_path": "output/daily_20260805-154806_the_customer_insisted_i_worked_there__fi.mp4",
+    "video_path": "output/daily_20260806-093339_she_demanded_i_follow_the_return_policy_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 43.267,
+      "duration": 54.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.5
+      "loudness_lufs": -24.0
     },
     "qa": {
       "ok": true,
@@ -169,26 +169,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
-      "score": 62
+      "reason": "showrunner BLOCK: One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
-    "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+    "topic": "She Wanted a Refund for Kids Who Never Showed Up",
+    "title": "She Wanted a Refund for Kids Who Never Showed Up",
     "format": "reddit",
-    "publish_at": "2026-08-05T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/FgKWlmoSE94",
-    "error": null,
-    "elapsed_seconds": 241.1,
-    "package_path": "state/trending_packages/20260805/06_reddit-driveway-parking-trash-cans.json",
+    "publish_at": "2026-08-06T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
+    "elapsed_seconds": 224.6,
+    "package_path": "state/trending_packages/20260806/06_reddit-birthday-party-refund-demand.json",
     "source": "brain",
-    "video_path": "output/daily_20260805-155205_he_blocked_my_driveway__i_just_stopped_m.mp4",
+    "video_path": "output/daily_20260806-093721_she_wanted_a_refund_for_kids_who_never_s.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 47.433,
+      "duration": 51.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,18 +199,174 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.7
+      "loudness_lufs": -24.8
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 79
+      "blocked": true,
+      "reason": "showrunner BLOCK: The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
+      "score": 62
     },
-    "channel": "default"
+    "blocked": true
+  },
+  {
+    "topic": "Moment first rare tiger in 70 years released in Kazakhstan",
+    "angle": "A female Amur tiger named Umit has been released into the wild in Kazakhstan as part of a program to restore the species' population.",
+    "publish_at": "2026-08-06T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
+    "elapsed_seconds": 493.9,
+    "title": "Tiger Released After 70 Years",
+    "package_path": "state/trending_packages/20260806-094116_auto_moment_first_rare_tiger_in_70_years_rele.json",
+    "video_path": "output/daily_20260806-094116_moment_first_rare_tiger_in_70_years_rele.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.933,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
+      "score": 30
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Ukraine\u2019s military hits one of Russia\u2019s biggest oil refineries in long-range drone attack",
+    "angle": "Ukraine's military has launched a long-range drone attack on one of Russia's biggest oil refineries, in a significant escalation of the conflict.",
+    "publish_at": "2026-08-06T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
+    "elapsed_seconds": 524.3,
+    "title": "Drone Attack Hits Home",
+    "package_path": "state/trending_packages/20260806-094922_auto_ukraine_s_military_hits_one_of_russia_s_.json",
+    "video_path": "output/daily_20260806-094922_ukraine_s_military_hits_one_of_russia_s_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 46.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
+      "score": 17
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "This school-bus-sized \u201cterror croc\u201d ate dinosaurs. Now it\u2019s back",
+    "angle": "A massive crocodilian that could attack dinosaurs has been brought back to life as a scientifically accurate mounted skeleton.",
+    "publish_at": "2026-08-06T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
+    "elapsed_seconds": 456.9,
+    "title": "Terror Croc Stalks My Family",
+    "package_path": "state/trending_packages/20260806-095806_auto_this_school_bus_sized__terror_croc__ate_.json",
+    "video_path": "output/daily_20260806-095806_this_school_bus_sized__terror_croc__ate_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.574,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
+      "score": 22
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "Winner of Florida python hunting contest nabs 96 snakes: \u2018I was on a mission\u2019",
+    "angle": "A Florida man has won a python hunting contest by catching 96 Burmese pythons, an invasive species in the Everglades.",
+    "publish_at": "2026-08-06T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
+    "elapsed_seconds": 379.2,
+    "title": "Python Hunter's Dark Secret",
+    "package_path": "state/trending_packages/20260806-100543_auto_winner_of_florida_python_hunting_contest.json",
+    "video_path": "output/daily_20260806-100543_winner_of_florida_python_hunting_contest.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 34.3,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
+      "score": 26
+    },
+    "blocked": true,
+    "backfill": true
   }
 ]

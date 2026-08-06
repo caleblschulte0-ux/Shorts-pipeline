@@ -2,83 +2,23 @@
   "subreddit": "entitledparents",
   "slug": "reddit-birthday-party-refund-demand",
   "title": "She Wanted a Refund for Kids Who Never Showed Up",
-  "hashtags": [
-    "entitledparents",
-    "reddit",
-    "storytime",
-    "pettyrevenge",
-    "smallbusiness",
-    "partyrental",
-    "karma",
-    "receipts",
-    "funny",
-    "truestory",
-    "fyp",
-    "shorts",
-    "viral",
-    "trending"
-  ],
+  "hashtags": ["entitledparents", "reddit", "storytime", "pettyrevenge", "smallbusiness", "partyrental", "karma", "receipts", "funny", "truestory", "fyp", "shorts", "viral", "trending"],
   "script": "I run a small bounce house party rental out of my garage, cash deposit required, no refunds within 48 hours, printed right on the contract she signed. The morning after the party she calls, furious, demanding money back because only six of the twelve kids she invited showed up to her son's party. Not my fault, not my policy, I told her the inflatable ran the full four hours regardless of headcount. She said she'd leave a one star review unless I refunded the difference per absent kid. Fine. I told her to send screenshots of the RSVPs proving exactly six kids were confirmed, per my terms for partial refunds on no-shows. She sent them. Every single RSVP said yes. All twelve. She'd double invited half the guest list and blamed me for her own group chat. I posted the screenshots in my reply to her review instead of refunding a cent. The review came down within the hour.",
   "shots": [
-    {
-      "phrase": "bounce house party rental",
-      "query": "bounce house inflatable backyard",
-      "pin_query": "bounce house",
-      "pin_context": "inflatable party rental",
-      "news_query": "bounce house",
-      "news_angle": "The bounce house was rented for a kid's party with only six of the twelve invited kids showing up.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Jumping_castle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "no refunds within 48 hours",
-      "query": "rental contract paperwork"
-    },
-    {
-      "phrase": "only six of the twelve kids she invited showed up",
-      "query": "empty birthday party table"
-    },
-    {
-      "phrase": "ran the full four hours regardless of headcount",
-      "query": "kids bounce house playing"
-    },
-    {
-      "phrase": "leave a one star review",
-      "query": "phone one star review"
-    },
-    {
-      "phrase": "screenshots of the RSVPs",
-      "query": "phone screenshot text messages"
-    },
-    {
-      "phrase": "double invited half the guest list",
-      "query": "group chat phone messages"
-    },
-    {
-      "phrase": "review came down within the hour",
-      "query": "laptop review page"
-    }
+    {"phrase": "bounce house party rental", "query": "bounce house inflatable backyard"},
+    {"phrase": "no refunds within 48 hours", "query": "rental contract paperwork"},
+    {"phrase": "only six of the twelve kids she invited showed up", "query": "empty birthday party table"},
+    {"phrase": "ran the full four hours regardless of headcount", "query": "kids bounce house playing"},
+    {"phrase": "leave a one star review", "query": "phone one star review"},
+    {"phrase": "screenshots of the RSVPs", "query": "phone screenshot text messages"},
+    {"phrase": "double invited half the guest list", "query": "group chat phone messages"},
+    {"phrase": "review came down within the hour", "query": "laptop review page"}
   ],
   "punches": [
-    {
-      "phrase": "no refunds within 48 hours",
-      "text": "IN THE CONTRACT",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "leave a one star review",
-      "text": "THREATENED REVIEW",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "Every single RSVP said yes",
-      "text": "ALL 12 CONFIRMED",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "review came down within the hour",
-      "text": "RECEIPTS WIN",
-      "color": "#50ff80"
-    }
+    {"phrase": "no refunds within 48 hours", "text": "IN THE CONTRACT", "color": "#ffaa30"},
+    {"phrase": "leave a one star review", "text": "THREATENED REVIEW", "color": "#ff3030"},
+    {"phrase": "Every single RSVP said yes", "text": "ALL 12 CONFIRMED", "color": "#50ff80"},
+    {"phrase": "review came down within the hour", "text": "RECEIPTS WIN", "color": "#50ff80"}
   ],
   "music_vibe": "cinematic"
 }

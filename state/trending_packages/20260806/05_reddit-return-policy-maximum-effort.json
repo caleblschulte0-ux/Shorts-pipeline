@@ -2,88 +2,23 @@
   "subreddit": "MaliciousCompliance",
   "slug": "reddit-return-policy-maximum-effort",
   "title": "She Demanded I Follow the Return Policy. I Did.",
-  "hashtags": [
-    "maliciouscompliance",
-    "reddit",
-    "storytime",
-    "retail",
-    "customerservice",
-    "returnpolicy",
-    "pettyrevenge",
-    "karma",
-    "funny",
-    "truestory",
-    "fyp",
-    "shorts",
-    "viral",
-    "trending"
-  ],
+  "hashtags": ["maliciouscompliance", "reddit", "storytime", "retail", "customerservice", "returnpolicy", "pettyrevenge", "karma", "funny", "truestory", "fyp", "shorts", "viral", "trending"],
   "script": "She slid a blender across the counter with no receipt and said corporate policy required me to accept any return regardless of proof of purchase. I don't argue with retail rules, I follow them, so I pulled up the actual policy on the register screen and read it out loud: returns without a receipt require a valid government ID, store credit only, and a mandatory fifteen minute manager verification call. She said fine, and handed over her license. Fine. I called the verification line, which put us on hold for twenty-two minutes while she stood there tapping her foot. When the rep finally picked up, the blender's serial number came back registered to a different store four states away, purchased in 2019. Store credit only, expired promotions excluded, prorated for five years of use: total refund, four dollars and twelve cents. She said that wasn't what she meant by the policy. I told her it was exactly what she asked for. She left without the four dollars.",
   "shots": [
-    {
-      "phrase": "slid a blender across the counter",
-      "query": "blender countertop store",
-      "pin_query": "blender",
-      "pin_context": "kitchen appliance counter",
-      "news_query": "blender",
-      "news_angle": "She slid a blender across the counter to return it without a receipt.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Vitamix_Blender.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "corporate policy required me to accept any return",
-      "query": "customer service counter"
-    },
-    {
-      "phrase": "valid government ID, store credit only",
-      "query": "drivers license id card",
-      "pin_query": "government ID",
-      "pin_context": "license identification card",
-      "news_query": "government ID",
-      "news_angle": "She handed over her government ID for the return process.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "verification line",
-      "query": "office phone call hold"
-    },
-    {
-      "phrase": "twenty-two minutes while she stood there tapping her foot",
-      "query": "impatient customer waiting"
-    },
-    {
-      "phrase": "registered to a different store four states away",
-      "query": "cash register receipt printer"
-    },
-    {
-      "phrase": "four dollars and twelve cents",
-      "query": "cash register coins"
-    },
-    {
-      "phrase": "left without the four dollars",
-      "query": "empty store checkout"
-    }
+    {"phrase": "slid a blender across the counter", "query": "blender countertop store"},
+    {"phrase": "corporate policy required me to accept any return", "query": "customer service counter"},
+    {"phrase": "valid government ID, store credit only", "query": "drivers license id card"},
+    {"phrase": "verification line", "query": "office phone call hold"},
+    {"phrase": "twenty-two minutes while she stood there tapping her foot", "query": "impatient customer waiting"},
+    {"phrase": "registered to a different store four states away", "query": "cash register receipt printer"},
+    {"phrase": "four dollars and twelve cents", "query": "cash register coins"},
+    {"phrase": "left without the four dollars", "query": "empty store checkout"}
   ],
   "punches": [
-    {
-      "phrase": "no receipt",
-      "text": "NO RECEIPT",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "twenty-two minutes",
-      "text": "22 MIN HOLD",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "four dollars and twelve cents",
-      "text": "$4.12",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "left without the four dollars",
-      "text": "POLICY WON",
-      "color": "#50ff80"
-    }
+    {"phrase": "no receipt", "text": "NO RECEIPT", "color": "#ffaa30"},
+    {"phrase": "twenty-two minutes", "text": "22 MIN HOLD", "color": "#ff3030"},
+    {"phrase": "four dollars and twelve cents", "text": "$4.12", "color": "#50ff80"},
+    {"phrase": "left without the four dollars", "text": "POLICY WON", "color": "#50ff80"}
   ],
   "music_vibe": "hiphop"
 }

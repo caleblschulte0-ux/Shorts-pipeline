@@ -6,57 +6,21 @@
   "y_label": "Annual revenue (USD)",
   "duration": 13,
   "source": "Sources: NVIDIA Corp SEC filings and investor press releases (fiscal-year total revenue, FY2020-FY2025; NVIDIA's fiscal year ends in late January); Intel Corp SEC filings and quarterly/annual earnings releases (calendar-year total revenue, 2020-2025).",
-  "years": [
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
-  ],
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
   "series": [
     {
       "name": "Nvidia",
       "color": "#76b900",
       "icon": "Nvidia",
-      "values": [
-        10920000000,
-        16680000000,
-        26914000000,
-        26974000000,
-        60922000000,
-        130497000000
-      ]
+      "values": [10920000000, 16680000000, 26914000000, 26974000000, 60922000000, 130497000000]
     },
     {
       "name": "Intel",
       "color": "#0071c5",
       "icon": "Intel",
-      "values": [
-        77867000000,
-        79024000000,
-        63054000000,
-        54228000000,
-        53100000000,
-        52900000000
-      ]
+      "values": [77867000000, 79024000000, 63054000000, 54228000000, 53100000000, 52900000000]
     }
   ],
-  "hashtags": [
-    "nvidia",
-    "intel",
-    "aichips",
-    "semiconductors",
-    "techwars",
-    "stockmarket",
-    "datacenter",
-    "aiboom",
-    "siliconvalley",
-    "chips",
-    "wallstreet",
-    "bigtech",
-    "shorts",
-    "trending"
-  ],
+  "hashtags": ["nvidia", "intel", "aichips", "semiconductors", "techwars", "stockmarket", "datacenter", "aiboom", "siliconvalley", "chips", "wallstreet", "bigtech", "shorts", "trending"],
   "music_vibe": "dark"
 }
