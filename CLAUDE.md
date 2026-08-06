@@ -124,6 +124,16 @@ and the takeover went on asking for a retired format with everything green.
   per-format writing rules). The registry says WHAT and HOW MANY; those say
   HOW. Verify the whole chain offline with
   `python scripts/registry_acceptance.py`.
+- **The registry only governs REGISTERED channels — two publishing crons sit
+  outside it.** `curiosity.yml` and `longform.yml` each have their own weekly
+  schedule and their own uploader, and long-form posts to *explainer*, which
+  is enabled — so nothing in the registry looks wrong while a switched-off
+  format ships. Turning a channel off therefore means the registry **and**
+  the workflow. `tests/test_disabled_channels_stay_off.py` holds both ends
+  together: a cron for an off channel may build, never upload; publishing
+  hangs off a manual dispatch a schedule cannot supply. This was found live
+  on 2026-08-06 — long-form was three days from uploading a video the
+  2026-08-05 ruling had switched off everywhere except that one file.
 
 Trending's formats are `reddit_story` (gameplay + post card + TTS) and
 `graph_race` (animated chart); `text_card` is retired. **Those are the
