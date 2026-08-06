@@ -121,13 +121,22 @@ jobs:
           cp -r "$dest" "$tmp/payload"
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # ADD to the branch, never replace it: preview.yml force-pushes an
-          # orphan, which would delete every earlier render's evidence. The
-          # sprint compares renders ACROSS DAYS, so history here is the point.
+          # ADD to the branch, never replace it: the sprint compares renders
+          # ACROSS DAYS, so history here is the point.
           git fetch origin preview-renders --depth=1 || true
-          git checkout -B preview-renders origin/preview-renders 2>/dev/null \
-            || git checkout --orphan preview-renders
-          git rm -rq --cached . 2>/dev/null || true
+          if git checkout -B preview-renders origin/preview-renders 2>/dev/null; then
+            :        # the branch exists: its files are now the working tree
+          else
+            git checkout --orphan preview-renders
+            git rm -rq --cached . 2>/dev/null || true   # only an ORPHAN inherits main
+            git clean -fdq -e evidence 2>/dev/null || true
+          fi
+          # NO `git rm --cached .` on the existing-branch path. It empties the
+          # index, and only $dest gets re-added — so every publish COMMITTED A
+          # TREE CONTAINING ONLY THE NEWEST FOLDER and deleted every earlier
+          # render's evidence. That is the precise failure the comment above
+          # claims to prevent, and it silently destroyed one before I caught
+          # it: two publishes ran, one directory survived.
           mkdir -p "$dest"
           cp -r "$tmp/payload/." "$dest/"
           git add -f "$dest"
