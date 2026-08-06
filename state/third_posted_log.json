@@ -2633,13 +2633,52 @@
       "ts": "2026-08-06T13:09:39.596739+00:00"
     },
     "clip-20260806-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/HardKitschyMagpiePartyTime-kDoUOMvNB0nh6VFO",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/Mzxts2b2X9g",
       "title": "Sodapoppin Killed Myth And Then Caught Him In A Lie",
       "kind": "twitch_clip",
-      "ts": "2026-08-06T13:14:37.663892+00:00",
+      "ts": "2026-08-06T13:14:41.588046+00:00",
+      "uploaded_at": "2026-08-06T13:14:41.588062+00:00",
+      "publish_at": "2026-08-06T18:30:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/HardKitschyMagpiePartyTime-kDoUOMvNB0nh6VFO",
+      "streamer": "sodapoppin",
+      "series": "drama",
+      "hook": "SODA KILLED MYTH THEN EXPOSED HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 13684,
+      "banger": 0.6,
+      "cut": {
+        "start": 1.1,
+        "end": 49.5
+      },
+      "director_cut": true
+    },
+    "rejected-differentoptimisticcormorantjoncarnage-w60i2ar4n9avisqz": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DifferentOptimisticCormorantJonCarnage-w60i2Ar4N9aVIsqZ",
+      "streamer": "jynxzi",
+      "title": "L assault",
+      "qa_rejected": true,
+      "ts": "2026-08-06T13:14:51.027791+00:00"
+    },
+    "rejected-productivebumblingwatertbtacoright-nwgiepz1ziws2nxi": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ProductiveBumblingWaterTBTacoRight-NwgiePZ1ZIwS2NXI",
+      "streamer": "jynxzi",
+      "title": "logic",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (insider gameplay rant, no visible event)",
+      "ts": "2026-08-06T13:16:04.796547+00:00"
+    },
+    "clip-20260806-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/DeafWildMetalWutFace-_md-8ABFRX8P871e",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Isn't Sure If This Throw Even Counted",
+      "kind": "twitch_clip",
+      "ts": "2026-08-06T13:19:24.636345+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
