@@ -6,26 +6,72 @@
   "y_label": "Share of new car sales (%)",
   "duration": 13,
   "source": "Sources: IEA Global EV Outlook 2023-2026 (annual electric-car sales share by market: China, Europe, United States); 2024 figures as reported by IEA; 2018-2022 approximate from IEA's published year-over-year trend data.",
-  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "China",
       "color": "#e74c3c",
       "icon": "CN",
-      "values": [4.2, 4.7, 5.4, 15.0, 29.0, 35.0, 45.0]
+      "values": [
+        4.2,
+        4.7,
+        5.4,
+        15.0,
+        29.0,
+        35.0,
+        45.0
+      ]
     },
     {
       "name": "Europe",
       "color": "#4a90e2",
-      "values": [2.0, 3.0, 10.0, 17.0, 21.0, 21.0, 20.0]
+      "values": [
+        2.0,
+        3.0,
+        10.0,
+        17.0,
+        21.0,
+        21.0,
+        20.0
+      ]
     },
     {
       "name": "United States",
       "color": "#f5c518",
       "icon": "US",
-      "values": [1.0, 1.9, 2.0, 4.5, 7.6, 9.5, 10.0]
+      "values": [
+        1.0,
+        1.9,
+        2.0,
+        4.5,
+        7.6,
+        9.5,
+        10.0
+      ]
     }
   ],
-  "hashtags": ["electricvehicles", "ev", "china", "europe", "unitedstates", "evsales", "climatetech", "autoindustry", "cars", "data", "cleanenergy", "shorts", "trending"],
+  "hashtags": [
+    "electricvehicles",
+    "ev",
+    "china",
+    "europe",
+    "unitedstates",
+    "evsales",
+    "climatetech",
+    "autoindustry",
+    "cars",
+    "data",
+    "cleanenergy",
+    "shorts",
+    "trending"
+  ],
   "music_vibe": "cinematic"
 }

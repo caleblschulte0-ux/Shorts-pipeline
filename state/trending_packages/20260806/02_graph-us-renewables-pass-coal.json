@@ -7,19 +7,55 @@
   "duration": 13,
   "unit_scale": 1,
   "source": "Sources: U.S. Energy Information Administration (EIA), Electric Power Annual and Today in Energy (annual net U.S. electricity generation by fuel source); 2020, 2022 and 2024 figures as reported by EIA; 2010, 2015 and 2018 approximate from EIA's published generation-mix shares for those years.",
-  "years": [2010, 2015, 2018, 2020, 2022, 2024],
+  "years": [
+    2010,
+    2015,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
   "series": [
     {
       "name": "Coal",
       "color": "#5a5a5a",
-      "values": [1850, 1320, 1150, 774, 830, 653]
+      "values": [
+        1850,
+        1320,
+        1150,
+        774,
+        830,
+        653
+      ]
     },
     {
       "name": "Renewables",
       "color": "#2ecc71",
-      "values": [425, 539, 742, 834, 910, 971]
+      "values": [
+        425,
+        539,
+        742,
+        834,
+        910,
+        971
+      ]
     }
   ],
-  "hashtags": ["renewableenergy", "coal", "solarpower", "windenergy", "climatechange", "energy", "cleanenergy", "powergrid", "eia", "electricity", "climate", "greenenergy", "shorts", "trending"],
+  "hashtags": [
+    "renewableenergy",
+    "coal",
+    "solarpower",
+    "windenergy",
+    "climatechange",
+    "energy",
+    "cleanenergy",
+    "powergrid",
+    "eia",
+    "electricity",
+    "climate",
+    "greenenergy",
+    "shorts",
+    "trending"
+  ],
   "music_vibe": "cinematic"
 }
