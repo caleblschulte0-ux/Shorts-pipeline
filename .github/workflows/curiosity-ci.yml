@@ -216,6 +216,23 @@ jobs:
         env:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          # THE PRODUCER'S CLOCK. `produce._wallclock_budget_s()` reads this so
+          # the repair loop can refuse a round it cannot finish. Its docstring
+          # has said "the workflow sets this from its own timeout-minutes"
+          # since it was written — and THIS workflow never did. `curiosity.yml`
+          # set it; the canary, which is where every measured render of the
+          # quality sprint actually happens, did not.
+          #
+          # Unset means unbounded, so the loop would begin a third full render
+          # with forty minutes of job left, get killed mid-encode, and take the
+          # mp4, the package and the verdict down with it. A job TIMEOUT is not
+          # a step failure: the `if: always()` upload below does not run, so
+          # the run ends with nothing at all — strictly worse than the
+          # quarantine it already had in hand after round one.
+          #
+          # 300 min of job, less ~40 for setup, deps, the media probe and
+          # uploading ~100MB of mp4s. Same margin curiosity.yml uses.
+          CURIOSITY_WALLCLOCK_S: '15600'
         run: |
           set +e
           python scripts/produce.py "${{ inputs.canary_slug }}" \
