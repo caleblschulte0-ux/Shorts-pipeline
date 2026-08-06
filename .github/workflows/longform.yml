@@ -111,6 +111,24 @@ jobs:
           [ -n "${{ inputs.slugs }}" ] && ARGS="$ARGS --slugs ${{ inputs.slugs }}"
           [ -n "${{ inputs.title }}" ] && ARGS="$ARGS --title '${{ inputs.title }}'"
           [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          # THE CRON CAN NEVER UPLOAD. Operator ruling 2026-08-05: long-form
+          # is not posting right now. That ruling reached the registry
+          # (`curiosity` disabled, explainer = 4x data_story and nothing
+          # else) but it could not reach HERE, because long-form is not a
+          # registry channel — it is an extra format posted to explainer,
+          # with its own Sunday cron and its own upload path. So for half a
+          # week the ruling was true everywhere except the one workflow that
+          # would actually have published one.
+          #
+          # Same shape as curiosity.yml: a scheduled run builds and reports,
+          # a HUMAN with `dry_run: false` publishes. Turning long-form back
+          # on is a deliberate act, not a cron nobody remembered.
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            echo "::notice::scheduled run — building WITHOUT upload "\
+                 "(long-form publishing is off; dispatch manually with "\
+                 "dry_run=false to publish)"
+            case "$ARGS" in *--dry-run*) ;; *) ARGS="$ARGS --dry-run" ;; esac
+          fi
           eval python scripts/build_longform.py $ARGS
       - name: Persist long-form log
         if: always()
