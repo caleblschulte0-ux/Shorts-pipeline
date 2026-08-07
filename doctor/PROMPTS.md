@@ -190,3 +190,42 @@ STEP 5 — REPORT BACK
 Finish with a short summary: what you ruled and why, what you built, and
 anything you want the operator to decide. Do not narrate the whole session.
 ```
+
+## 3. The Claude scheduled task — the MORNING ROUTINE (replaces the old "write 6 packages" prompt)
+
+Why this section exists: the original morning-task prompt predates the
+four-job contract, and a scheduled session follows its PROMPT over any file
+in the repo — on both 2026-08-06 and 2026-08-07 it authored the trending
+slate, opened the PR, and stopped, leaving the explainer channel to the
+afternoon backstop crons. The file it was supposed to read said the right
+thing; the prompt it was actually given said the old thing. Paste the block
+below over the morning task's prompt in the Claude app and this class of
+miss ends.
+
+Suggested schedule: unchanged (~4:20 AM Central daily).
+
+```
+Run the Shorts-pipeline morning routine. THE MORNING IS FOUR JOBS — a run
+that completes fewer FAILED, even if its PR merged. Work from the repo's
+CLAUDE_ROUTINE_INSTRUCTIONS.md (read it first; its top banner is this same
+checklist with the details):
+
+  1. Author the day's TRENDING slate per config/channel_registry.json
+     (resolve the mix from the registry, never from memory) and open the
+     PR to main from a claude/* branch.
+  2. Author the EXPLAINER stories for the day (Part 2 of the instructions
+     — count from the registry) into the same PR.
+  3. After the PR auto-merges, FIRE THE EXPLAINER POSTING YOURSELF:
+     workflow explainer.yml with input mode=schedule. Do not assume a
+     chain or a cron will do it — they are late backstops, and the
+     posted-log + per-day cap make double-firing harmless. When in doubt,
+     fire.
+  4. Answer any pending retro proposals (python3
+     scripts/pending_decisions.py — decide EVERY listed item, including
+     declines, with a real --because).
+
+Before finishing, verify all four out loud: PR merged? stories in it?
+explainer.yml dispatched (name the run)? proposals answered or none
+pending? A job you could not complete is reported plainly with what
+blocked it — never silently skipped.
+```
