@@ -1,0 +1,80 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-price-match-bluff-print-shop",
+  "title": "He Demanded A Price Match. We Called To Confirm It.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "customerservice",
+    "retail",
+    "pettyrevenge",
+    "karma",
+    "printshop",
+    "maliciouscompliance",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "retailstories"
+  ],
+  "script": "He slapped a crumpled flyer on my counter and said the print shop across town charged half what we did, so I'd better match it or he was calling corporate. I told him our policy requires a verified quote, so I'd happily call them right now, on speaker, with him standing right there. He said fine, sure, go ahead, clearly expecting me to back down first. I dialed. A very confused employee on the other end read us their current price for the same order, and it was actually higher than ours, because the flyer in his hand was two years old, printed before their last rate increase. He stood there listening to his own bluff fall apart in real time, mumbled something about a special promotion, and pushed his card across the counter without another word. I rang up the full price, stapled the outdated flyer to the receipt, and wrote PRICE MATCH: DENIED BY THE COMPETITOR right across the top in red marker.",
+  "shots": [
+    {
+      "phrase": "slapped a crumpled flyer on my counter",
+      "query": "crumpled paper flyer counter"
+    },
+    {
+      "phrase": "our policy requires a verified quote",
+      "query": "store policy sign"
+    },
+    {
+      "phrase": "on speaker, with him standing right there",
+      "query": "speakerphone office desk"
+    },
+    {
+      "phrase": "A very confused employee on the other end",
+      "query": "phone call customer service"
+    },
+    {
+      "phrase": "printed before their last rate increase",
+      "query": "old printed paper faded"
+    },
+    {
+      "phrase": "pushed his card across the counter",
+      "query": "credit card counter payment"
+    },
+    {
+      "phrase": "stapled the outdated flyer to the",
+      "query": "receipt printer stapler"
+    },
+    {
+      "phrase": "wrote PRICE MATCH: DENIED BY THE COMPETITOR",
+      "query": "red marker writing note"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "half what we did",
+      "text": "HALF PRICE?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "it was actually higher than ours",
+      "text": "HIGHER PRICE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "his own bluff fall apart",
+      "text": "BLUFF CALLED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "PRICE MATCH: DENIED BY THE COMPETITOR",
+      "text": "DENIED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop"
+}
