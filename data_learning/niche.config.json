@@ -18473,7 +18473,7 @@
       "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
       "title": "World Renewable Power Was Still Only 19.7% After Two Decades",
       "hook": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
-      "closing": "Real change is slower than the headlines make it sound \u2014 irrigation, power, and internet all prove it.",
+      "closing": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff.",
       "hashtags": [
         "data",
         "facts",
@@ -18667,6 +18667,138 @@
         }
       ],
       "words_by": "brain(attempt 3, judge llm-pass)"
+    },
+    {
+      "slug": "world-coal-power-fell-below-its-1990-level",
+      "title": "World Coal Power Fell Below Its 1990 Level",
+      "hook": "You'd think coal keeps grabbing more of the world's power grid every year \u2014 it just fell below where it stood in 1990.",
+      "closing": "The grid didn't stop growing. Coal's slice of it did.",
+      "hashtags": [
+        "coal",
+        "energy",
+        "electricity",
+        "data",
+        "climate"
+      ],
+      "question": "Did you think coal power was still climbing?",
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eg_elc_coal_zs_trend",
+          "params": {
+            "file": "eg_elc_coal_zs_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 ELECTRICITY PRODUC",
+          "topic": "Electricity production from coal sources",
+          "say": "Coal supplied 37.4% of world electricity in 1990, climbed to 40.2% by 2010, then plunged to just 15% by 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coal_power_plant",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "coal_power_plant",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1990: 37.4%  ->  2024: 15%"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "ag_prd_food_xd_trend",
+          "params": {
+            "file": "ag_prd_food_xd_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 FOOD PRODUCTION IN",
+          "topic": "Food production index",
+          "say": "World food production sat at 16.9 in 1972, crept up to 89.9 by 2001, and reached 100 by 2020 on the index.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "grain_sack",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 10.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "grain_sack",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 10.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "1972: 16.9  ->  2020: 100"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "it_net_secr_p6_trend",
+          "params": {
+            "file": "it_net_secr_p6_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 SECURE INTERNET SE",
+          "topic": "Secure Internet servers",
+          "say": "Secure internet servers were just 185.2 per million people in 2010, exploding to 6,088 by 2018, then 16,381 by 2024.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "server_rack",
+                "data": {
+                  "value_from": "item:0",
+                  "per_value": 1000.0
+                }
+              },
+              {
+                "type": "stack",
+                "region": "center",
+                "subject": "server_rack",
+                "data": {
+                  "value_from": "item:1",
+                  "per_value": 1000.0
+                }
+              },
+              {
+                "type": "caption",
+                "region": "center",
+                "text": "2010: 185.2 per million  ->  2024: 16,381 per million"
+              }
+            ]
+          }
+        }
+      ],
+      "words_by": "brain(attempt 1, judge deterministic (llm unavailable: HTTP Error 429: Too Many Requests))"
     }
   ],
   "videos": [
