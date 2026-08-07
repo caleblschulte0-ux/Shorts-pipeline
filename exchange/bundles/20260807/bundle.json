@@ -398,8 +398,8 @@
           "shot_index": 4,
           "phrase": "printed schedule with her own words highlighted in yellow",
           "query": "highlighted paper document",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
@@ -424,17 +424,16 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 2,
         "weak": 0,
-        "missing": 7,
+        "missing": 6,
         "unknown": 0
       },
-      "strong_fraction": 0.125,
+      "strong_fraction": 0.25,
       "requested": [
         "reddit-entitled-parent-starting-lineup-s0-bff2933b4e18",
         "reddit-entitled-parent-starting-lineup-s2-3159e1aa1511",
         "reddit-entitled-parent-starting-lineup-s3-804408f4ed49",
-        "reddit-entitled-parent-starting-lineup-s4-4d3ae9e383dd",
         "reddit-entitled-parent-starting-lineup-s5-c58b2e5ef962",
         "reddit-entitled-parent-starting-lineup-s6-813974953976",
         "reddit-entitled-parent-starting-lineup-s7-37ed4f388c79"
@@ -449,8 +448,8 @@
           "shot_index": 0,
           "phrase": "slapped a crumpled flyer on my counter",
           "query": "crumpled paper flyer counter",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
@@ -463,8 +462,8 @@
           "shot_index": 2,
           "phrase": "on speaker, with him standing right there",
           "query": "speakerphone office desk",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 3,
@@ -484,8 +483,8 @@
           "shot_index": 5,
           "phrase": "pushed his card across the counter",
           "query": "credit card counter payment",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 6,
@@ -503,17 +502,18 @@
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 1,
         "weak": 0,
-        "missing": 6,
+        "missing": 7,
         "unknown": 0
       },
-      "strong_fraction": 0.25,
+      "strong_fraction": 0.125,
       "requested": [
-        "reddit-price-match-bluff-print-shop-s0-26e165277616",
         "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
+        "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
         "reddit-price-match-bluff-print-shop-s3-76b3f36684dc",
         "reddit-price-match-bluff-print-shop-s4-5cfc7092ebcb",
+        "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
         "reddit-price-match-bluff-print-shop-s6-feae1fe4cb85",
         "reddit-price-match-bluff-print-shop-s7-30cfb3832d63"
       ]
@@ -582,32 +582,6 @@
       "shot_index": 3,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: angry parent argument. It accompanies the narration: \"waving the same rule she'd quoted at me\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-entitled-parent-starting-lineup-s4-4d3ae9e383dd",
-      "safe_request_id": "reddit-entitled-parent-starting-lineup-s4-4d3ae9e383dd",
-      "drive_filename": "20260807__reddit-entitled-parent-starting-lineup-s4-4d3ae9e383dd.png",
-      "prompt_sha256": "3c4f9d88ed57dfb11cb6d0b57d294c04a111585d38f4a0d0ffeef4ade2e57fc4",
-      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-entitled-parent-starting-lineup-s4-4d3ae9e383dd.json",
-      "slug": "reddit-entitled-parent-starting-lineup",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: highlighted paper document. It accompanies the narration: \"printed schedule with her own words highlighted in yellow\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -703,15 +677,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-price-match-bluff-print-shop-s0-26e165277616",
-      "safe_request_id": "reddit-price-match-bluff-print-shop-s0-26e165277616",
-      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s0-26e165277616.png",
-      "prompt_sha256": "53199830f9dd7624244032942eb0708f6cedd0677aa6687cd99c8d2dfbb3e4e3",
-      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s0-26e165277616.json",
+      "request_id": "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
+      "safe_request_id": "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
+      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s1-417c12e141d5.png",
+      "prompt_sha256": "c7fc2d9606f15bc607ab9e1968ad46ff22d555b44afe6a06849215f3d21a3025",
+      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s1-417c12e141d5.json",
       "slug": "reddit-price-match-bluff-print-shop",
-      "shot_index": 0,
+      "shot_index": 1,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: crumpled paper flyer counter. It accompanies the narration: \"slapped a crumpled flyer on my counter\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: store policy sign. It accompanies the narration: \"our policy requires a verified quote\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -729,15 +703,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
-      "safe_request_id": "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
-      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s1-417c12e141d5.png",
-      "prompt_sha256": "c7fc2d9606f15bc607ab9e1968ad46ff22d555b44afe6a06849215f3d21a3025",
-      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s1-417c12e141d5.json",
+      "request_id": "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
+      "safe_request_id": "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
+      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s2-aaad9e61cf69.png",
+      "prompt_sha256": "b9638d7ff3937ec00f2e1f8187799714f78faacf6b1c7b411fdeeccfae08e4df",
+      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s2-aaad9e61cf69.json",
       "slug": "reddit-price-match-bluff-print-shop",
-      "shot_index": 1,
+      "shot_index": 2,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: store policy sign. It accompanies the narration: \"our policy requires a verified quote\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: speakerphone office desk. It accompanies the narration: \"on speaker, with him standing right there\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -790,6 +764,32 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: old printed paper faded. It accompanies the narration: \"printed before their last rate increase\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
+      "safe_request_id": "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
+      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s5-c50b10630df2.png",
+      "prompt_sha256": "a1c4bf72c8461dc1647377e052281a026b2d2ce14f13f0d2a617d40c810d6b4b",
+      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s5-c50b10630df2.json",
+      "slug": "reddit-price-match-bluff-print-shop",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: credit card counter payment. It accompanies the narration: \"pushed his card across the counter\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

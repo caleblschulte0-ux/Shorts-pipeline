@@ -23,7 +23,12 @@
   "shots": [
     {
       "phrase": "slapped a crumpled flyer on my counter",
-      "query": "crumpled paper flyer counter"
+      "query": "crumpled paper flyer counter",
+      "pin_query": "flyer",
+      "pin_context": "paper advertisement with prices",
+      "news_query": "flyer",
+      "news_angle": "The customer presents a crumpled flyer as proof of a lower price at the print shop across town.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/GrimaultA_Cannabis_Indica_Cigarettes.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
     },
     {
       "phrase": "our policy requires a verified quote",
