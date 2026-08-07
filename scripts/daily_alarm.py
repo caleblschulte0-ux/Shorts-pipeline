@@ -272,6 +272,41 @@ def check(date: str, now=None) -> dict:
               "Phase B resolved a different date. Check which date its run "
               "logged; it must come from `git diff-tree -r HEAD` on a "
               "checkout with fetch-depth >= 2.")
+    # TOTAL SILENCE is its own failure mode and it was invisible: from
+    # 08-04 to 08-07 Phase A published 10-12 image requests every morning
+    # and ChatGPT returned nothing — no checkpoint, no response, no DONE —
+    # while every alarm below stayed quiet because they all key off a
+    # response that exists. Policy A self-fill kept the days shipping, so
+    # the only symptom was the showrunner blocking reddit stories for weak
+    # stock, two days running, with nobody connecting the two. Silence
+    # must page.
+    if bundle is not None and response is None and not done:
+        asked = len(bundle.get("media_requests")
+                    or bundle.get("requests") or [])
+        progress = list((bundle_dir / "media-progress").glob("*.json")) \
+            if (bundle_dir / "media-progress").exists() else []
+        if asked and not progress:
+            streak = 0
+            for i in range(0, 14):
+                d = (datetime.strptime(str(date), "%Y%m%d")
+                     - timedelta(days=i)).strftime("%Y%m%d")
+                bd = ROOT / "exchange" / "bundles" / d
+                if not (bd / "bundle.json").exists():
+                    break
+                if (bd / "response.json").exists() or (bd / "DONE").exists() \
+                        or list((bd / "media-progress").glob("*.json")
+                                if (bd / "media-progress").exists() else []):
+                    break
+                streak += 1
+            alarm("chatgpt_exchange_silent",
+                  "critical" if streak >= 2 else "warning",
+                  f"ChatGPT answered NOTHING for {date} — {asked} image "
+                  f"request(s) published, zero checkpoints, no response, no "
+                  f"DONE (day {streak} of silence).",
+                  "The days still ship via self-fill (Policy A), but weak "
+                  "stock is what the showrunner keeps blocking. Check the "
+                  "6:00/7:00 ChatGPT scheduled tasks in the ChatGPT app — "
+                  "the repo side is verified and waiting.")
     elif report is not None:
         media = report.get("media") or {}
         offered = len((response or {}).get("media") or [])

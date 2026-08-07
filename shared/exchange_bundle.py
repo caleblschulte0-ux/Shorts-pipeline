@@ -197,13 +197,29 @@ def build_bundle(date: str, packages: list[dict],
             "read_first": "exchange/README.md",
             "who_runs_what": {
                 "media_worker_0600": (
-                    "MEDIA ONLY. Work `requests` (and, on a takeover, the "
-                    "shots of the packages you author). Upload under the "
+                    "MEDIA ONLY. YOUR FIRST ACTION, before generating "
+                    "anything, is to commit media-progress/STARTED.json "
+                    "({\"task\": \"media_worker\", \"date\": ...}) — it is "
+                    "the difference between 'never ran' and 'ran and died', "
+                    "and four silent days (08-04..08-07) were undiagnosable "
+                    "without it. Then work `requests` (and, on a takeover, "
+                    "the shots of the packages you author). Upload under the "
                     "`drive_filename` each request carries, verify the bytes, "
                     "and write a checkpoint the moment each image verifies — "
-                    "one file per request, not one batch at the end. NEVER "
-                    "write response.json and NEVER write DONE."),
+                    "one file per request, not one batch at the end. A step "
+                    "you cannot complete gets a FAILED-<step>.json note in "
+                    "media-progress/ naming what blocked it — silence is the "
+                    "one output that is never acceptable. NEVER write "
+                    "response.json and NEVER write DONE."),
                 "finalizer_0700": (
+                    "FINISH OR SAY WHY. The run is judged ONLY by its two "
+                    "closure artifacts (response.json, then DONE as a second "
+                    "commit) — partial work that never reaches them counts "
+                    "as a no-show, and downstream automation activity is not "
+                    "credit for this task. If any step is impossible, still "
+                    "commit response.json with what you HAVE plus a "
+                    "`blocked` note naming the step; only skip DONE when the "
+                    "response itself could not be written. "
                     "RECOVER FIRST: read media-progress/ before generating "
                     "anything — a verified checkpoint is an image that "
                     "already exists, and re-making it both burns the budget "
