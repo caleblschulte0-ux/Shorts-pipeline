@@ -1,77 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260719b",
-      "dry_run": false,
-      "ts": "2026-07-21T16:43:10+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 77,
-        "with_retention": 59,
-        "with_curve": 12,
-        "fetched_at": "2026-07-21T11:45:00.035211+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260719b-1",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260719b-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260719b-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260719b-4",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Many frames (4.3s, 5.6s, 6.8s, 8.0s, 10.5s, 11.7s, 13.0s) show no clear subject \u2014 just blurry motion smears, near-black ; vision: Roughly half the contact sheet reads as broken/empty rather th"
-        },
-        {
-          "slug": "clip-20260719b-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: black screen 3.3s at 10.6s; black screen 1.6s at 15.8s; black screen 1.9s at 18.3s; black screen 0.8s at 25.5s; black screen 1.5s at 26.3s; black screen 2.8s at 32.7s; black screen 1.2s at 39.7s; blac"
-        },
-        {
-          "slug": "clip-20260719b-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Frames at 9.5s, 12.2s, and 14.9s show no visible subject at all \u2014 just a blurred/near-black background with only bold ca; vision: Frames around 25.8s-31.2s also drop into heavily blurred/subje"
-        },
-        {
-          "slug": "clip-20260719b-7",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260719b-8",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: subject/person missing or barely visible from frames at 6.0s-9.4s (empty room shot, no face); vision: subject's head cropped out of frame for 11.2s-14.6s (only torso visible); vision: framing "
-        }
-      ]
-    },
-    {
       "date": "20260722",
       "dry_run": false,
       "ts": "2026-07-22T11:21:55+00:00",
@@ -2958,6 +2887,291 @@
             }
           },
           "took_s": 1527.9
+        }
+      ]
+    },
+    {
+      "date": "20260807",
+      "dry_run": false,
+      "ts": "2026-08-07T12:38:31+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 128,
+        "with_retention": 112,
+        "with_curve": 15,
+        "fetched_at": "2026-08-06T14:07:37.853120+00:00"
+      },
+      "brain": {
+        "ok": 20,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tpain": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:erobb221": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shylily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260807-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "kaicenat/kaicenat-agent-cenat-2026w32",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                },
+                {
+                  "cluster": "jasontheween/jasontheween-about-black-2026w31",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.8,
+              "why": "vei saves chance, real injury scare",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "phone call interrupts neck adjustment, f",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Sodapoppin Vei Just Saved Chance From A Neck Injury"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 1619.8
+        },
+        {
+          "slug": "clip-20260807-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "garbage title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "vague debate talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Defends The Guy His Whole Friend Group Turned On"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 207.2
+        },
+        {
+          "slug": "clip-20260807-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible clutch win, gameplay-heavy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "clutch win, genuine emotional reaction",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Summit1G Clutches A 1v4 And Can't Believe It Himself"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 376.1
+        },
+        {
+          "slug": "clip-20260807-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "visible fall, shocking knockout",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "chair spin fall, knocked out",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rosii Falls And Gets Knocked Out On Cinna Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 161.4
         }
       ]
     }

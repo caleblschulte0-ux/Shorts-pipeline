@@ -2794,14 +2794,27 @@
       "director_cut": true
     },
     "clip-20260807-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/FaithfulNimbleAniseFeelsBadMan-btRc5WBEUXwnTM_B",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/1M5rZcgoGv0",
       "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
       "kind": "twitch_clip",
-      "ts": "2026-08-07T12:38:27.588249+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-07T12:38:31.262811+00:00",
+      "uploaded_at": "2026-08-07T12:38:31.262830+00:00",
+      "publish_at": "2026-08-07T21:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/FaithfulNimbleAniseFeelsBadMan-btRc5WBEUXwnTM_B",
+      "streamer": "cinna",
+      "series": "fail",
+      "hook": "ROSII JUST GOT KNOCKED OUT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2453,
+      "banger": 0.85,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
     }
   }
 }
