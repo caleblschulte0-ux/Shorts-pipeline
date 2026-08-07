@@ -27,7 +27,12 @@
     },
     {
       "phrase": "pulled up the bylaw on my phone",
-      "query": "phone reading document"
+      "query": "phone reading document",
+      "pin_query": "bylaw",
+      "pin_context": "youth sports rules organization",
+      "news_query": "bylaw",
+      "news_angle": "The narrator reads the bylaw to the mother, explaining the rule of guaranteed equal playing time.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sign_in_a_car_park_in_Ripon%2C_North_Yorkshire.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
     },
     {
       "phrase": "He started the next five games too",
