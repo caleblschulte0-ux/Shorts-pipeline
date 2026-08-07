@@ -32,7 +32,9 @@
     },
     {
       "phrase": "our policy requires a verified quote",
-      "query": "store policy sign"
+      "query": "store policy sign",
+      "image_url": "https://images.pexels.com/photos/27946928/pexels-photo-27946928.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "on speaker, with him standing right there",
@@ -45,11 +47,15 @@
     },
     {
       "phrase": "A very confused employee on the other end",
-      "query": "phone call customer service"
+      "query": "phone call customer service",
+      "image_url": "https://pixabay.com/get/g982f356e58a38c301bb0c98baecae5ce5c10eeca57a7eeff2dc53af1515810046440c73619e5478023591433439ac440c8114c79d922a5ff4c63a484c943f12c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "printed before their last rate increase",
-      "query": "old printed paper faded"
+      "query": "old printed paper faded",
+      "image_url": "https://pixabay.com/get/g58c608e849fb40b28914e7a9a7717506d49b1ffd59966d863ab8a22bc60ec413b12d74ae75c4cb6e5ab1ef4dbaec1f62e70d767d6d0d78c0d842c5fcf7f0e008_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "pushed his card across the counter",
@@ -62,11 +68,15 @@
     },
     {
       "phrase": "stapled the outdated flyer to the",
-      "query": "receipt printer stapler"
+      "query": "receipt printer stapler",
+      "image_url": "https://pixabay.com/get/gc736bf0f0d71a1e47962daba386454fbb3a98c9f715407192c243d4e13e2954cd12c4466de59b2c130f43c328b92e878bbf207bc07ece7336cbf5eff84c4d522_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "wrote PRICE MATCH: DENIED BY THE COMPETITOR",
-      "query": "red marker writing note"
+      "query": "red marker writing note",
+      "image_url": "https://images.pexels.com/photos/15543033/pexels-photo-15543033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

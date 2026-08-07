@@ -23,7 +23,9 @@
   "shots": [
     {
       "phrase": "cornered me at halftime",
-      "query": "youth soccer sideline"
+      "query": "youth soccer sideline",
+      "image_url": "https://live.staticflickr.com/3763/10586043946_f159539418_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "pulled up the bylaw on my phone",
@@ -36,11 +38,15 @@
     },
     {
       "phrase": "He started the next five games too",
-      "query": "kids soccer bench"
+      "query": "kids soccer bench",
+      "image_url": "https://images.pexels.com/photos/12887245/pexels-photo-12887245.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "waving the same rule she'd quoted at me",
-      "query": "angry parent argument"
+      "query": "angry parent argument",
+      "image_url": "https://pixabay.com/get/g26332490cd2f9ca316d2e3dc119a4bdfde3bf8f1fc9222faa52e7a9334711b12cd0fdcb78353ceb00db66aba5b648c3f9abb458be21aed826592d2c639e1411d_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "printed schedule with her own words highlighted in yellow",
@@ -53,15 +59,21 @@
     },
     {
       "phrase": "timing his starts on their phones",
-      "query": "parents phone stopwatch"
+      "query": "parents phone stopwatch",
+      "image_url": "https://images.pexels.com/photos/4114789/pexels-photo-4114789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "cheering when the whistle blew",
-      "query": "referee whistle blow"
+      "query": "referee whistle blow",
+      "image_url": "https://images.pexels.com/photos/29582086/pexels-photo-29582086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "quietly asked to just play normal minutes",
-      "query": "kid soccer field walking"
+      "query": "kid soccer field walking",
+      "image_url": "https://pixabay.com/get/gc1c04a07fcb998f3d0f2817b0ba664db6c137e32d105b289d533f02fd711dd5f6dd2277a881333aed21143d0838239ef_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
