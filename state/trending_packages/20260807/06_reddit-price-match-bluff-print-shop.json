@@ -28,7 +28,7 @@
       "pin_context": "paper advertisement with prices",
       "news_query": "flyer",
       "news_angle": "The customer presents a crumpled flyer as proof of a lower price at the print shop across town.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/GrimaultA_Cannabis_Indica_Cigarettes.gif?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      "image_url": "https://live.staticflickr.com/1187/5151820112_80bd340452.jpg"
     },
     {
       "phrase": "our policy requires a verified quote",
@@ -36,7 +36,12 @@
     },
     {
       "phrase": "on speaker, with him standing right there",
-      "query": "speakerphone office desk"
+      "query": "speakerphone office desk",
+      "pin_query": "speaker",
+      "pin_context": "phone speakerphone",
+      "news_query": "speaker",
+      "news_angle": "The employee calls the competitor on speaker to verify the quote.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     },
     {
       "phrase": "A very confused employee on the other end",
@@ -48,7 +53,12 @@
     },
     {
       "phrase": "pushed his card across the counter",
-      "query": "credit card counter payment"
+      "query": "credit card counter payment",
+      "pin_query": "card",
+      "pin_context": "payment credit card",
+      "news_query": "card",
+      "news_angle": "The customer pushes his card across the counter to pay for the order.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     },
     {
       "phrase": "stapled the outdated flyer to the",

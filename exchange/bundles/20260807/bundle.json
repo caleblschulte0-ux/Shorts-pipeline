@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260807/DONE",
   "counts": {
     "packages": 6,
-    "requests": 13,
+    "requests": 11,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -462,8 +462,8 @@
           "shot_index": 2,
           "phrase": "on speaker, with him standing right there",
           "query": "speakerphone office desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
@@ -483,8 +483,8 @@
           "shot_index": 5,
           "phrase": "pushed his card across the counter",
           "query": "credit card counter payment",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
@@ -502,18 +502,16 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 3,
         "weak": 0,
-        "missing": 7,
+        "missing": 5,
         "unknown": 0
       },
-      "strong_fraction": 0.125,
+      "strong_fraction": 0.375,
       "requested": [
         "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
-        "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
         "reddit-price-match-bluff-print-shop-s3-76b3f36684dc",
         "reddit-price-match-bluff-print-shop-s4-5cfc7092ebcb",
-        "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
         "reddit-price-match-bluff-print-shop-s6-feae1fe4cb85",
         "reddit-price-match-bluff-print-shop-s7-30cfb3832d63"
       ]
@@ -703,32 +701,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
-      "safe_request_id": "reddit-price-match-bluff-print-shop-s2-aaad9e61cf69",
-      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s2-aaad9e61cf69.png",
-      "prompt_sha256": "b9638d7ff3937ec00f2e1f8187799714f78faacf6b1c7b411fdeeccfae08e4df",
-      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s2-aaad9e61cf69.json",
-      "slug": "reddit-price-match-bluff-print-shop",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: speakerphone office desk. It accompanies the narration: \"on speaker, with him standing right there\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-price-match-bluff-print-shop-s3-76b3f36684dc",
       "safe_request_id": "reddit-price-match-bluff-print-shop-s3-76b3f36684dc",
       "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s3-76b3f36684dc.png",
@@ -764,32 +736,6 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: old printed paper faded. It accompanies the narration: \"printed before their last rate increase\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
-      "safe_request_id": "reddit-price-match-bluff-print-shop-s5-c50b10630df2",
-      "drive_filename": "20260807__reddit-price-match-bluff-print-shop-s5-c50b10630df2.png",
-      "prompt_sha256": "a1c4bf72c8461dc1647377e052281a026b2d2ce14f13f0d2a617d40c810d6b4b",
-      "checkpoint_path": "exchange/bundles/20260807/media-progress/reddit-price-match-bluff-print-shop-s5-c50b10630df2.json",
-      "slug": "reddit-price-match-bluff-print-shop",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: credit card counter payment. It accompanies the narration: \"pushed his card across the counter\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
