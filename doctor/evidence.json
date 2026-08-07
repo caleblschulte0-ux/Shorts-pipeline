@@ -1,33 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260806",
-  "judged_date": "20260805",
+  "date": "20260807",
+  "judged_date": "20260806",
   "alarm": {
-    "date": "20260805",
+    "date": "20260806",
     "ok": false,
     "alarms": [
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260805 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260805. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260806 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260806. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20260805.",
+        "detail": "third: 4/6 posted for 20260806.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 1/6 posted for 20260805.",
+        "detail": "trending: 2/6 posted for 20260806.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260805: production outcome says 1/6 uploaded and repair never completed (0 quarantined, 5 failed).",
+        "detail": "trending 20260806: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
@@ -1136,10 +1136,39 @@
     }
   ],
   "recent_commits": [
-    "cb36a79 2026-08-06 doctor day one: the HIGH finding was real, the intake nearly binned it + the morning checklist (#244)",
-    "ae05b47 2026-08-06 explainer: update posted log + analytics [skip ci]"
+    "95beb0a 2026-08-06 doctor: findings for 20260806",
+    "a30aaba 2026-08-06 normalize_charts: it crashed in CI every day, and lied when it did run (#245)"
   ],
-  "open_backlog": [],
+  "open_backlog": [
+    {
+      "signature": "6be0849a55e4",
+      "title": "Cache hits bypass the recent-use penalty",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "3cca8a711ec4",
+      "title": "Cached scores are not recomputed",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "e02d4cf673bd",
+      "title": "Timed-out providers lack terminal outcomes",
+      "horizon": "short_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "4c58349192b8",
+      "title": "Asset metadata is assigned by provider class",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
+    }
+  ],
   "settled": [
     {
       "signature": "a5318d0404da",
