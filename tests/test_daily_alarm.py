@@ -72,6 +72,55 @@ class AlarmCase(unittest.TestCase):
                 if a["severity"] == "critical"}
 
 
+class TestChatGPTSilenceIsPaged(AlarmCase):
+    """The 08-04..08-07 hole: Phase A published 10-12 image requests every
+    morning, ChatGPT returned nothing, and every exchange alarm stayed
+    quiet because they all key off a response that exists. Four days of
+    weak self-fill stock — the exact media the showrunner kept blocking —
+    with no page. Silence must page."""
+
+    def _requests_bundle(self, n=10):
+        self._bundle(bundle={"media_requests": [{"request_id": f"r{i}"}
+                                                for i in range(n)]})
+
+    def test_requests_out_nothing_back_is_an_alarm(self):
+        self._requests_bundle()
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_two_silent_days_escalate_to_critical(self):
+        self._requests_bundle()
+        import json as _json
+        prev = self.tmp / "exchange" / "bundles" / "29991214"
+        prev.mkdir(parents=True)
+        (prev / "bundle.json").write_text(_json.dumps(
+            {"media_requests": [{"request_id": "x"}]}))
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("chatgpt_exchange_silent", self.criticals(r))
+
+    def test_a_single_checkpoint_counts_as_alive(self):
+        """The STARTED/checkpoint heartbeat is exactly what distinguishes
+        'ran and died' (visible, debuggable) from 'never ran' (this
+        alarm)."""
+        self._requests_bundle()
+        mp = self.tmp / "exchange" / "bundles" / DATE / "media-progress"
+        mp.mkdir()
+        (mp / "STARTED.json").write_text("{}")
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_a_response_counts_as_alive(self):
+        self._requests_bundle()
+        self._bundle(response={"media": []})
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_a_day_with_no_requests_stays_quiet(self):
+        self._bundle(bundle={"media_requests": []})
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+
 class TestSilentOutage(AlarmCase):
     """2026-07-26..28: three days, zero videos, nothing alerted."""
 
