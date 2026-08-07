@@ -17614,9 +17614,9 @@
           "topic": "Terrestrial and marine protected areas",
           "say": "So if the ocean's capped, why not protect what's left? Guarded land and sea has grown from 11 percent to 17 percent of Earth's surface.",
           "scene": {
-            "mechanic": "guardian-fence-globe",
-            "concept": "a ring of guardian posts closes around a rotating globe as protected land+sea share climbs",
-            "code": "v0 = values[0]; v1 = values[-1]\nglobe = subject_image('planet earth globe')\ncx = (RX0 + RX1) // 2; cy = RTOP + 460\ngr = 220\nif globe is not None:\n    paste(globe, cx - gr, cy - gr, gr * 2, gr * 2)\nfrac = clamp(v1 / 100.0) * reveal\nposts = max(1, int(24 * frac))\nfor i in range(posts):\n    ang = (i / 24.0) * 2 * math.pi\n    px = cx + int((gr + 40) * math.cos(ang))\n    py = cy + int((gr + 40) * math.sin(ang))\n    d.ellipse([px-10, py-10, px+10, py+10], fill=rgba(HIGHLIGHT,255))\ntext(labels[-1], cx, RTOP + 20, size=34, color=HIGHLIGHT, center=True)\ntext(str(v1) + '%', cx, RTOP + 65, size=48, color=HIGHLIGHT, center=True)\ntext(labels[0] + ' -> ' + str(v0) + '%', cx, cy + gr + 80, size=36, color=WARN, center=True)"
+            "mechanic": "guardian-perimeter-grow",
+            "concept": "a dashed guarded perimeter grows outward across a real forest-landscape photo, with watchtowers landing along its edge, as protected land+sea share climbs",
+            "code": "v0 = values[0]; v1 = values[-1]\nland = subject_image('forest landscape aerial')\nif land is not None:\n    paste(land, RX0, RTOP + 140, RX1 - RX0, 640)\nfrac = clamp(v1 / 100.0) * reveal\ncx = (RX0 + RX1) // 2; cy = RTOP + 140 + 320\nw = int((RX1 - RX0) * frac); h = int(640 * frac)\nx0, y0, x1, y1 = cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2\nd.rectangle([x0, y0, x1, y1], outline=rgba(HIGHLIGHT, 240), width=8)\nd.rectangle([x0, y0, x1, y1], fill=rgba(HIGHLIGHT, 45))\ntower = subject_image('watchtower guard post')\npositions = [(x0, y0), (x1, y0), (x0, y1), (x1, y1), ((x0 + x1) // 2, y0),\n             ((x0 + x1) // 2, y1), (x0, (y0 + y1) // 2), (x1, (y0 + y1) // 2)]\nposts = max(1, int(len(positions) * frac))\nfor i in range(posts):\n    px, py = positions[i]\n    if tower is not None:\n        paste(tower, px - 24, py - 44, 48, 60)\n    else:\n        d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(HIGHLIGHT, 255))\ntext(labels[0] + ': ' + str(v0) + '%', RX0 + 20, RTOP + 40, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(v1) + '%', RX1 - 300, RTOP + 40, size=36, color=HIGHLIGHT)\ntext('land + sea under protection', cx, RBOT - 40, size=28, color=TEXT, center=True)"
           }
         }
       ],
@@ -17737,51 +17737,11 @@
           "insight_type": "rank",
           "role": "3 \u00b7 AGRICULTURAL LAND",
           "topic": "Agricultural land",
-          "say": "China leads at 5.2 million sq. km. United States is 4.2 million sq. km. Russian Federation \u2014 2.2 million sq. km.",
+          "say": "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million.",
           "scene": {
-            "title": true,
-            "elements": [
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "China flag",
-                "data": {
-                  "value_from": "item:0"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "United States flag",
-                "data": {
-                  "value_from": "item:1"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "Australia flag",
-                "data": {
-                  "value_from": "item:2"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "Brazil flag",
-                "data": {
-                  "value_from": "item:3"
-                }
-              },
-              {
-                "type": "object",
-                "region": "ground-row",
-                "subject": "Russia flag",
-                "data": {
-                  "value_from": "item:4"
-                }
-              }
-            ]
+            "mechanic": "farmland-tile-columns",
+            "concept": "each country's farmland rises as a column of stacked real farmland-photo tiles, tile count scaled to land area",
+            "code": "cols = n\ngap = 20\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 70\ntop_y = RTOP + 260\ntile_h = 46\nmax_tiles = 10\nfield = subject_image('aerial farmland patchwork fields')\nfor i in range(n):\n    x0 = int(RX0 + i * (gw + gap))\n    frac = clamp(values[i] / vmax) * reveal\n    tiles = max(1, int(max_tiles * frac))\n    for t in range(tiles):\n        ty = base_y - (t + 1) * tile_h\n        if field is not None:\n            paste(field, x0, ty, gw, tile_h - 6)\n        else:\n            d.rounded_rectangle([x0, ty, x0 + gw, ty + tile_h - 6], radius=8, fill=rgba(HIGHLIGHT, 200))\n    d.rectangle([x0, top_y, x0 + gw, base_y], outline=rgba(TEXT, 120), width=2)\n    text(str(round(values[i] / 1e6, 1)) + 'M', x0 + gw // 2, base_y - tiles * tile_h - 40, size=26, color=HIGHLIGHT, center=True)\n    text(labels[i][:10], x0 + gw // 2, base_y + 22, size=18, color=TEXT, center=True)\ntext('agricultural land, million sq km', (RX0 + RX1) // 2, RTOP + 90, size=30, color=WARN, center=True)"
           }
         }
       ],
