@@ -1,0 +1,69 @@
+{
+  "format": "graph_race",
+  "slug": "graph-bitcoin-vs-gold-price",
+  "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+  "hook": "One of these keeps crashing.",
+  "y_label": "Price per unit (USD)",
+  "duration": 13,
+  "source": "Sources: year-end closing prices \u2014 Bitcoin (BTC-USD via Yahoo Finance); gold (troy ounce spot via goldprice.org / tradingeconomics.com); 2026 figures as of early August.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Gold (1 oz)",
+      "color": "#d4af37",
+      "icon": "",
+      "values": [
+        1517,
+        1895,
+        1828,
+        1824,
+        2063,
+        2624,
+        4100,
+        4255
+      ]
+    },
+    {
+      "name": "Bitcoin (1 BTC)",
+      "color": "#f7931a",
+      "icon": "Bitcoin",
+      "values": [
+        7200,
+        29000,
+        46266,
+        16536,
+        42233,
+        106000,
+        87000,
+        62000
+      ]
+    }
+  ],
+  "hashtags": [
+    "bitcoin",
+    "gold",
+    "crypto",
+    "btc",
+    "investing",
+    "storeofvalue",
+    "cryptocurrency",
+    "preciousmetals",
+    "stockmarket",
+    "wallstreet",
+    "digitalgold",
+    "finance",
+    "shorts",
+    "trending",
+    "money"
+  ],
+  "music_vibe": "dark"
+}

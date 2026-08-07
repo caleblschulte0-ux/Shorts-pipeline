@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-sports-betting-vs-vegas-strip",
+  "title": "Sports Betting Just Beat the Las Vegas Strip",
+  "hook": "Vegas didn't see this coming.",
+  "y_label": "Annual gaming revenue (USD)",
+  "duration": 13,
+  "source": "Sources: American Gaming Association Commercial Gaming Revenue Tracker (nationwide sports-betting revenue) and Nevada Gaming Control Board / UNLV Center for Gaming Research (Las Vegas Strip gaming win), 2019-2024.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Las Vegas Strip",
+      "color": "#e74c3c",
+      "icon": "",
+      "values": [
+        6600000000,
+        6500000000,
+        7100000000,
+        8300000000,
+        8900000000,
+        7670000000
+      ]
+    },
+    {
+      "name": "Sports Betting (US)",
+      "color": "#2ecc71",
+      "icon": "",
+      "values": [
+        1100000000,
+        1500000000,
+        4300000000,
+        7500000000,
+        10920000000,
+        13710000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "sportsbetting",
+    "lasvegas",
+    "gambling",
+    "vegas",
+    "draftkings",
+    "fanduel",
+    "casino",
+    "nevada",
+    "moneymoves",
+    "bettingapps",
+    "sportsbook",
+    "money",
+    "shorts",
+    "trending",
+    "sports"
+  ],
+  "music_vibe": "hiphop"
+}
