@@ -2771,13 +2771,36 @@
       "director_cut": true
     },
     "clip-20260807-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/summit1g/clip/CloudyApatheticAlligatorM4xHeh-l7SuU1t6jRdVg0NV",
-      "story_key": null,
-      "streamer": "summit1g",
+      "url": "https://youtube.com/shorts/Er16IvjXoKE",
       "title": "Summit1G Clutches A 1v4 And Can't Believe It Himself",
       "kind": "twitch_clip",
-      "ts": "2026-08-07T12:35:46.326507+00:00",
+      "ts": "2026-08-07T12:35:49.854463+00:00",
+      "uploaded_at": "2026-08-07T12:35:49.854479+00:00",
+      "publish_at": "2026-08-07T20:00:00Z",
+      "source_url": "https://www.twitch.tv/summit1g/clip/CloudyApatheticAlligatorM4xHeh-l7SuU1t6jRdVg0NV",
+      "streamer": "summit1g",
+      "series": "clutch",
+      "hook": "HE JUST CLUTCHED A FULL 1V4",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3608,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 45.6
+      },
+      "director_cut": true
+    },
+    "clip-20260807-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/FaithfulNimbleAniseFeelsBadMan-btRc5WBEUXwnTM_B",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-08-07T12:38:27.588249+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
