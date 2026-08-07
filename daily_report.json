@@ -1,16 +1,84 @@
 [
   {
-    "topic": "Nvidia Just Overtook Intel in Revenue",
-    "title": "Nvidia Just Overtook Intel in Revenue",
+    "topic": "Who's Actually Worth More: Nvidia or Apple?",
+    "title": "Who's Actually Worth More: Nvidia or Apple?",
     "format": "graph_race",
-    "publish_at": "2026-08-06T13:00:00Z",
+    "publish_at": "2026-08-07T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/kq4GcKmXlmM",
+    "error": null,
+    "elapsed_seconds": 101.6,
+    "package_path": "state/trending_packages/20260807/01_graph-nvidia-apple-trillion-crown.json",
+    "source": "brain",
+    "video_path": "output/daily_20260807-092536_who_s_actually_worth_more__nvidia_or_app.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "SpaceX Now Out-Launches the Entire Planet",
+    "title": "SpaceX Now Out-Launches the Entire Planet",
+    "format": "graph_race",
+    "publish_at": "2026-08-07T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
-    "elapsed_seconds": 107.3,
-    "package_path": "state/trending_packages/20260806/01_graph-nvidia-overtakes-intel.json",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 55.2,
+    "package_path": "state/trending_packages/20260807/02_graph-spacex-vs-rest-of-world-launches.json",
     "source": "brain",
-    "video_path": "output/daily_20260806-092610_nvidia_just_overtook_intel_in_revenue.mp4",
+    "video_path": "output/daily_20260807-092717_spacex_now_out_launches_the_entire_plane.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Bitcoin vs. Gold: Which One Actually Wins?",
+    "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+    "format": "graph_race",
+    "publish_at": "2026-08-07T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/5g_6YVYSrTQ",
+    "error": null,
+    "elapsed_seconds": 133.2,
+    "package_path": "state/trending_packages/20260807/03_graph-bitcoin-vs-gold-price.json",
+    "source": "brain",
+    "video_path": "output/daily_20260807-092813_bitcoin_vs__gold__which_one_actually_win.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,58 +95,24 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
-      "score": 78
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "Renewables Just Beat Coal in the US",
-    "title": "Renewables Just Beat Coal in the US",
+    "topic": "Sports Betting Just Beat the Las Vegas Strip",
+    "title": "Sports Betting Just Beat the Las Vegas Strip",
     "format": "graph_race",
-    "publish_at": "2026-08-06T13:00:00Z",
+    "publish_at": "2026-08-07T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 63.8,
-    "package_path": "state/trending_packages/20260806/02_graph-us-renewables-pass-coal.json",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 58.0,
+    "package_path": "state/trending_packages/20260807/04_graph-sports-betting-vs-vegas-strip.json",
     "source": "brain",
-    "video_path": "output/daily_20260806-092757_renewables_just_beat_coal_in_the_us.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
-    },
-    "blocked": true
-  },
-  {
-    "topic": "China vs Hollywood: The Box Office War",
-    "title": "China vs Hollywood: The Box Office War",
-    "format": "graph_race",
-    "publish_at": "2026-08-06T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/mrUqpMU95qY",
-    "error": null,
-    "elapsed_seconds": 129.5,
-    "package_path": "state/trending_packages/20260806/03_graph-china-vs-hollywood-box-office.json",
-    "source": "brain",
-    "video_path": "output/daily_20260806-092901_china_vs_hollywood__the_box_office_war.mp4",
+    "video_path": "output/daily_20260807-093026_sports_betting_just_beat_the_las_vegas_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,61 +129,27 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "The Global EV Race: China vs Europe vs US",
-    "title": "The Global EV Race: China vs Europe vs US",
-    "format": "graph_race",
-    "publish_at": "2026-08-06T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/IaprIWrtr_0",
-    "error": null,
-    "elapsed_seconds": 121.8,
-    "package_path": "state/trending_packages/20260806/04_graph-ev-race-china-europe-us.json",
-    "source": "brain",
-    "video_path": "output/daily_20260806-093111_the_global_ev_race__china_vs_europe_vs_u.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "She Demanded I Follow the Return Policy. I Did.",
-    "title": "She Demanded I Follow the Return Policy. I Did.",
+    "topic": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
+    "title": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
     "format": "reddit",
-    "publish_at": "2026-08-06T16:00:00Z",
+    "publish_at": "2026-08-07T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
-    "elapsed_seconds": 223.5,
-    "package_path": "state/trending_packages/20260806/05_reddit-return-policy-maximum-effort.json",
+    "error": "showrunner_block: showrunner BLOCK: One garbled AI still is frozen over the entire story from 12s to the end \u2014 the visuals demonstrate none of the escalation the captions are carrying.",
+    "elapsed_seconds": 215.5,
+    "package_path": "state/trending_packages/20260807/05_reddit-entitled-parent-starting-lineup.json",
     "source": "brain",
-    "video_path": "output/daily_20260806-093339_she_demanded_i_follow_the_return_policy_.mp4",
+    "video_path": "output/daily_20260807-093151_she_wanted_her_son_starting_every_game__.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 54.167,
+      "duration": 56.033,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,79 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
+      "loudness_lufs": -25.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: One garbled AI still is frozen over the entire story from 12s to the end \u2014 the visuals demonstrate none of the escalation the captions are carrying.",
+      "score": 53
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Demanded A Price Match. We Called To Confirm It.",
+    "title": "He Demanded A Price Match. We Called To Confirm It.",
+    "format": "reddit",
+    "publish_at": "2026-08-07T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 The text below 'NAME MALICY' on the sign in the top half of the images is garbled and unreadable, which constitutes corrupt visual content as per the 'garbled' criteria.",
+    "elapsed_seconds": 144.4,
+    "package_path": "state/trending_packages/20260807/06_reddit-price-match-bluff-print-shop.json",
+    "source": "brain",
+    "video_path": "output/daily_20260807-093526_he_demanded_a_price_match__we_called_to_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.067,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.9
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The text below 'NAME MALICY' on the sign in the top half of the images is garbled and unreadable, which constitutes corrupt visual content as per the 'garbled' criteria."
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "stake us",
+    "angle": null,
+    "publish_at": "2026-08-07T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script \u2014 a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' \u2014 and there is no mascot performance or data demonstration anywhere.",
+    "elapsed_seconds": 498.7,
+    "title": "Stake Us Nightmare",
+    "package_path": "state/trending_packages/20260807-093734_auto_stake_us.json",
+    "video_path": "output/daily_20260807-093734_stake_us.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 32.733,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -14.2
     },
     "qa": {
       "ok": true,
@@ -169,26 +241,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
-      "score": 57
+      "reason": "showrunner BLOCK: The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script \u2014 a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' \u2014 and there is no mascot performance or data demonstration anywhere.",
+      "score": 34
     },
-    "blocked": true
+    "blocked": true,
+    "backfill": true
   },
   {
-    "topic": "She Wanted a Refund for Kids Who Never Showed Up",
-    "title": "She Wanted a Refund for Kids Who Never Showed Up",
-    "format": "reddit",
-    "publish_at": "2026-08-06T16:00:00Z",
+    "topic": "auto accident attorney",
+    "angle": null,
+    "publish_at": "2026-08-07T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
-    "elapsed_seconds": 224.6,
-    "package_path": "state/trending_packages/20260806/06_reddit-birthday-party-refund-demand.json",
-    "source": "brain",
-    "video_path": "output/daily_20260806-093721_she_wanted_a_refund_for_kids_who_never_s.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.",
+    "elapsed_seconds": 426.5,
+    "title": "Fiance's Mom Exposed My Secrets",
+    "package_path": "state/trending_packages/20260807-094553_auto_auto_accident_attorney.json",
+    "video_path": "output/daily_20260807-094553_auto_accident_attorney.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 51.6,
+      "duration": 46.0,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +271,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.8
+      "loudness_lufs": -13.2
     },
     "qa": {
       "ok": true,
@@ -208,25 +280,65 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
-      "score": 62
+      "reason": "showrunner BLOCK: Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.",
+      "score": 26
     },
-    "blocked": true
+    "blocked": true,
+    "backfill": true
   },
   {
-    "topic": "Moment first rare tiger in 70 years released in Kazakhstan",
-    "angle": "A female Amur tiger named Umit has been released into the wild in Kazakhstan as part of a program to restore the species' population.",
-    "publish_at": "2026-08-06T16:00:00Z",
+    "topic": "truck accident attorney",
+    "angle": null,
+    "publish_at": "2026-08-07T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
-    "elapsed_seconds": 493.9,
-    "title": "Tiger Released After 70 Years",
-    "package_path": "state/trending_packages/20260806-094116_auto_moment_first_rare_tiger_in_70_years_rele.json",
-    "video_path": "output/daily_20260806-094116_moment_first_rare_tiger_in_70_years_rele.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a TTS story over unrelated stock car photos and Geometry Dash gameplay \u2014 there is no data demonstration and no mascot at all, so it doesn't meet the channel's bar in any dimension.",
+    "elapsed_seconds": 468.5,
+    "title": "Truck Crash Changed My Life",
+    "package_path": "state/trending_packages/20260807-095259_auto_truck_accident_attorney.json",
+    "video_path": "output/daily_20260807-095259_truck_accident_attorney.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.933,
+      "duration": 45.667,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.7
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: This is a TTS story over unrelated stock car photos and Geometry Dash gameplay \u2014 there is no data demonstration and no mascot at all, so it doesn't meet the channel's bar in any dimension.",
+      "score": 22
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "deportaci\u00f3n",
+    "angle": null,
+    "publish_at": "2026-08-07T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Two mid beats illustrate 'ICE' with literal photos of ice cubes and a frozen bubble \u2014 auto-fail junk imagery that reads as an unsupervised keyword grab.",
+    "elapsed_seconds": 524.2,
+    "title": "Deportation Nightmare",
+    "package_path": "state/trending_packages/20260807-100051_auto_deportaci\u00f3n.json",
+    "video_path": "output/daily_20260807-100051_deportaci\u00f3n.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 26.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -246,125 +358,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
-      "score": 30
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Ukraine\u2019s military hits one of Russia\u2019s biggest oil refineries in long-range drone attack",
-    "angle": "Ukraine's military has launched a long-range drone attack on one of Russia's biggest oil refineries, in a significant escalation of the conflict.",
-    "publish_at": "2026-08-06T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
-    "elapsed_seconds": 524.3,
-    "title": "Drone Attack Hits Home",
-    "package_path": "state/trending_packages/20260806-094922_auto_ukraine_s_military_hits_one_of_russia_s_.json",
-    "video_path": "output/daily_20260806-094922_ukraine_s_military_hits_one_of_russia_s_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.633,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
-      "score": 17
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "This school-bus-sized \u201cterror croc\u201d ate dinosaurs. Now it\u2019s back",
-    "angle": "A massive crocodilian that could attack dinosaurs has been brought back to life as a scientifically accurate mounted skeleton.",
-    "publish_at": "2026-08-06T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
-    "elapsed_seconds": 456.9,
-    "title": "Terror Croc Stalks My Family",
-    "package_path": "state/trending_packages/20260806-095806_auto_this_school_bus_sized__terror_croc__ate_.json",
-    "video_path": "output/daily_20260806-095806_this_school_bus_sized__terror_croc__ate_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.574,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
-      "score": 22
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "Winner of Florida python hunting contest nabs 96 snakes: \u2018I was on a mission\u2019",
-    "angle": "A Florida man has won a python hunting contest by catching 96 Burmese pythons, an invasive species in the Everglades.",
-    "publish_at": "2026-08-06T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
-    "elapsed_seconds": 379.2,
-    "title": "Python Hunter's Dark Secret",
-    "package_path": "state/trending_packages/20260806-100543_auto_winner_of_florida_python_hunting_contest.json",
-    "video_path": "output/daily_20260806-100543_winner_of_florida_python_hunting_contest.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 34.3,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
-      "score": 26
+      "reason": "showrunner BLOCK: Two mid beats illustrate 'ICE' with literal photos of ice cubes and a frozen bubble \u2014 auto-fail junk imagery that reads as an unsupervised keyword grab.",
+      "score": 34
     },
     "blocked": true,
     "backfill": true

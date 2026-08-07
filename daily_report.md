@@ -1,39 +1,41 @@
-# Daily Trending Shorts — 2026-08-06
+# Daily Trending Shorts — 2026-08-07
 
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **10**
 - succeeded: **2**
-- quarantined (off-topic imagery): **0**
-- failed: **8**
+- quarantined (off-topic imagery): **1**
+- failed: **7**
 
 ## Posted
-- **China vs Hollywood: The Box Office War**
-  - topic: China vs Hollywood: The Box Office War
-  - publishes: `2026-08-06T13:00:00Z`
-  - https://youtube.com/shorts/mrUqpMU95qY
-  - took: 129.5s
-- **The Global EV Race: China vs Europe vs US**
-  - topic: The Global EV Race: China vs Europe vs US
-  - publishes: `2026-08-06T14:30:00Z`
-  - https://youtube.com/shorts/IaprIWrtr_0
-  - took: 121.8s
+- **Who's Actually Worth More: Nvidia or Apple?**
+  - topic: Who's Actually Worth More: Nvidia or Apple?
+  - publishes: `2026-08-07T13:00:00Z`
+  - https://youtube.com/shorts/kq4GcKmXlmM
+  - took: 101.6s
+- **Bitcoin vs. Gold: Which One Actually Wins?**
+  - topic: Bitcoin vs. Gold: Which One Actually Wins?
+  - publishes: `2026-08-07T14:30:00Z`
+  - https://youtube.com/shorts/5g_6YVYSrTQ
+  - took: 133.2s
+
+## Quarantined (off-topic imagery — fix & re-author)
+- **He Demanded A Price Match. We Called To Confirm It.**
+  - quarantined: vision QA: broken — The text below 'NAME MALICY' on the sign in the top half of the images is garbled and unreadable, which constitutes corrupt visual content as per the 'garbled' criteria.
 
 ## Failed
-- **Nvidia Just Overtook Intel in Revenue**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honest, well-paced race with a real payoff — but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.`
-- **Renewables Just Beat Coal in the US**
-  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
-- **She Demanded I Follow the Return Policy. I Did.**
-  - error: `showrunner_block: showrunner BLOCK: One frozen AI still carries the entire 54-second story — the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.`
-- **She Wanted a Refund for Kids Who Never Showed Up**
-  - error: `showrunner_block: showrunner BLOCK: The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown — only captioned.`
-- **Moment first rare tiger in 70 years released in Kazakhstan**
-  - error: `showrunner_block: showrunner BLOCK: Half the visuals are stock footage of the wrong subject — snails, a wildfire, empty dunes — behind a story about a tiger release, and Data never appears at all.`
-- **Ukraine’s military hits one of Russia’s biggest oil refineries in long-range drone attack**
-  - error: `showrunner_block: showrunner BLOCK: There is no data demonstration, no mascot, and no relevant imagery — this is a mismatched-stock reddit-story slideshow that opens on a black text card.`
-- **This school-bus-sized “terror croc” ate dinosaurs. Now it’s back**
-  - error: `showrunner_block: showrunner BLOCK: There is no data demonstration and no mascot at all — this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.`
-- **Winner of Florida python hunting contest nabs 96 snakes: ‘I was on a mission’**
-  - error: `showrunner_block: showrunner BLOCK: A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.`
+- **SpaceX Now Out-Launches the Entire Planet**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) — low-fps source in a 30fps master`
+- **Sports Betting Just Beat the Las Vegas Strip**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) — too many held frames`
+- **She Wanted Her Son Starting Every Game. I Read Her The Rule.**
+  - error: `showrunner_block: showrunner BLOCK: One garbled AI still is frozen over the entire story from 12s to the end — the visuals demonstrate none of the escalation the captions are carrying.`
+- **stake us**
+  - error: `showrunner_block: showrunner BLOCK: The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script — a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' — and there is no mascot performance or data demonstration anywhere.`
+- **auto accident attorney**
+  - error: `showrunner_block: showrunner BLOCK: Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.`
+- **truck accident attorney**
+  - error: `showrunner_block: showrunner BLOCK: This is a TTS story over unrelated stock car photos and Geometry Dash gameplay — there is no data demonstration and no mascot at all, so it doesn't meet the channel's bar in any dimension.`
+- **deportación**
+  - error: `showrunner_block: showrunner BLOCK: Two mid beats illustrate 'ICE' with literal photos of ice cubes and a frozen bubble — auto-fail junk imagery that reads as an unsupervised keyword grab.`
 

@@ -23,11 +23,7 @@
   "shots": [
     {
       "phrase": "slapped a crumpled flyer on my counter",
-      "query": "crumpled paper flyer counter",
-      "pin_query": "flyer",
-      "pin_context": "paper advertisement brochure",
-      "news_query": "flyer",
-      "news_angle": "The customer slaps a crumpled flyer on the counter to demand a price match."
+      "query": "crumpled paper flyer counter"
     },
     {
       "phrase": "our policy requires a verified quote",
@@ -35,12 +31,7 @@
     },
     {
       "phrase": "on speaker, with him standing right there",
-      "query": "speakerphone office desk",
-      "pin_query": "speaker",
-      "pin_context": "phone speakerphone",
-      "news_query": "speaker",
-      "news_angle": "The employee calls the competitor on speaker to verify the quote.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      "query": "speakerphone office desk"
     },
     {
       "phrase": "A very confused employee on the other end",
@@ -52,12 +43,7 @@
     },
     {
       "phrase": "pushed his card across the counter",
-      "query": "credit card counter payment",
-      "pin_query": "card",
-      "pin_context": "payment credit card",
-      "news_query": "card",
-      "news_angle": "The customer pushes his card across the counter to pay for the order.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      "query": "credit card counter payment"
     },
     {
       "phrase": "stapled the outdated flyer to the",
