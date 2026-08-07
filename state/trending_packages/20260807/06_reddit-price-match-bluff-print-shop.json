@@ -76,7 +76,11 @@
       "phrase": "wrote PRICE MATCH: DENIED BY THE COMPETITOR",
       "query": "red marker writing note",
       "image_url": "https://images.pexels.com/photos/15543033/pexels-photo-15543033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "PRICE MATCH",
+      "pin_context": "He Demanded A Price Match. We Called To Confirm It.",
+      "news_query": "PRICE MATCH",
+      "news_angle": "He Demanded A Price Match. We Called To Confirm It."
     }
   ],
   "punches": [
