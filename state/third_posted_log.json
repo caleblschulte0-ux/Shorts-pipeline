@@ -2890,14 +2890,27 @@
       "ts": "2026-08-08T11:56:05.646417+00:00"
     },
     "clip-20260808-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/StrongGiantVelociraptorHeyGirl-pec1eVI2TTPzY6m1",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/1gtzLasz5Hs",
       "title": "Plaqueboymax Gets Caught Lookin' And It's Instant Chaos",
       "kind": "twitch_clip",
-      "ts": "2026-08-08T12:52:01.666653+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-08T12:52:08.064348+00:00",
+      "uploaded_at": "2026-08-08T12:52:08.064368+00:00",
+      "publish_at": "2026-08-08T21:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/StrongGiantVelociraptorHeyGirl-pec1eVI2TTPzY6m1",
+      "streamer": "plaqueboymax",
+      "series": "chaos",
+      "hook": "HE GOT CAUGHT LOOKIN'",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9336,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 9.15
+      },
+      "director_cut": true
     }
   }
 }
