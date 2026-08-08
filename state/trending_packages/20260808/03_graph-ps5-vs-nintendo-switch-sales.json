@@ -1,0 +1,26 @@
+{
+  "format": "graph_race",
+  "slug": "graph-ps5-vs-nintendo-switch-sales",
+  "title": "The Switch Buried the PS5 in Sales",
+  "hook": "It wasn't close.",
+  "y_label": "Cumulative units sold",
+  "duration": 13,
+  "source": "Sources: Nintendo and Sony official investor earnings releases, cumulative hardware shipments as of each fiscal year-end (Nintendo and Sony both close their fiscal year in March). 2026 Switch figure combines the original Switch (~153M as of June 2025) with Switch 2 (19.86M shipped by March 2026); PS5 total is as of June 2026 per Sony's Q1 FY26 report.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "series": [
+    {
+      "name": "Nintendo Switch",
+      "color": "#E60012",
+      "icon": "Nintendo",
+      "values": [34740000, 55770000, 84590000, 107650000, 125620000, 139360000, 150830000, 175000000]
+    },
+    {
+      "name": "PlayStation 5",
+      "color": "#003791",
+      "icon": "PlayStation",
+      "values": [0, 0, 7800000, 19300000, 32100000, 59300000, 77800000, 93700000]
+    }
+  ],
+  "hashtags": ["nintendoswitch", "ps5", "playstation", "xbox", "gaming", "videogames", "consolewars", "nintendo", "sony", "gamer", "tech", "gamingnews", "shorts", "trending", "fyp"],
+  "music_vibe": "hiphop"
+}

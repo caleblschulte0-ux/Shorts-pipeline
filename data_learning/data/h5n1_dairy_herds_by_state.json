@@ -1,0 +1,22 @@
+{
+  "key": "h5n1_dairy_herds_by_state",
+  "title": "Confirmed H5N1 dairy cattle herds by state (cumulative since March 2024)",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "March 2024-January 2025 (cumulative)",
+  "source": {
+    "name": "HPAI confirmed cases in livestock",
+    "publisher": "U.S. Department of Agriculture, Animal and Plant Health Inspection Service (APHIS)",
+    "url": "https://www.aphis.usda.gov/livestock-poultry-disease/avian/avian-influenza/hpai-livestock",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Cumulative confirmed H5N1 detections in dairy cattle herds by state, as of the ~959-herd national milestone in January 2025 (APHIS data, via UK government outbreak assessment reporting). The national cumulative total continued climbing past 1,000 herds across 17-19 states by April 2025.",
+  "points": [
+    {"label": "California", "value": 738},
+    {"label": "Colorado", "value": 64},
+    {"label": "Idaho", "value": 35},
+    {"label": "Michigan", "value": 30},
+    {"label": "Texas", "value": 27}
+  ]
+}

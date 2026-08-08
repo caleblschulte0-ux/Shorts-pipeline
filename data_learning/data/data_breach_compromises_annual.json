@@ -1,0 +1,22 @@
+{
+  "key": "data_breach_compromises_annual",
+  "title": "US data breach compromises, per year",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2021-2025 (annual)",
+  "source": {
+    "name": "Annual Data Breach Report",
+    "publisher": "Identity Theft Resource Center (ITRC)",
+    "url": "https://www.idtheftcenter.org/publication/2025-data-breach-report/",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Number of publicly reported US data compromise events (companies/organizations breached) tracked each year by ITRC. 2021: 1,862 (a record at the time). 2022: 1,802. 2023: 3,202 (new record). 2024: 3,158 (a slight dip from 2023). 2025: 3,322, a new all-time record, up 79% over the prior five years.",
+  "points": [
+    {"label": "2021", "value": 1862, "period": "2021"},
+    {"label": "2022", "value": 1802, "period": "2022"},
+    {"label": "2023", "value": 3202, "period": "2023"},
+    {"label": "2024", "value": 3158, "period": "2024"},
+    {"label": "2025", "value": 3322, "period": "2025"}
+  ]
+}

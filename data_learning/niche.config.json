@@ -18759,6 +18759,245 @@
         }
       ],
       "words_by": "brain(attempt 1, judge deterministic (llm unavailable: HTTP Error 429: Too Many Requests))"
+    },
+    {
+      "slug": "bird-flu-species-jump",
+      "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "hook": "A bird virus just learned to infect cows.",
+      "closing": "One species at a time -- that's how spillovers happen.",
+      "question": "Does bird flu worry you? Tell me below.",
+      "caption": "Since 2022, bird flu has killed off 206 million US birds. Then in 2024 it did something new: it crossed into dairy cows, and from cows into 70 people. Here's how a bird-only virus keeps finding new hosts, one species at a time. Ever worry about the next pandemic? \ud83d\udc47",
+      "hashtags": [
+        "birdflu",
+        "h5n1",
+        "avianflu",
+        "pandemic",
+        "publichealth",
+        "virus",
+        "cdc",
+        "usda",
+        "science",
+        "health",
+        "dairycattle",
+        "spillover",
+        "outbreak",
+        "biology",
+        "data"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "h5n1_poultry_cumulative",
+          "params": {
+            "file": "h5n1_poultry_cumulative.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SETUP",
+          "topic": "US birds lost to bird flu",
+          "say": "Since 2022, bird flu has killed off 206 million birds in the US, and the number keeps climbing every single year."
+        },
+        {
+          "source": "offline",
+          "key": "h5n1_dairy_herds_by_state",
+          "params": {
+            "file": "h5n1_dairy_herds_by_state.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 THE JUMP",
+          "topic": "dairy herds infected by state",
+          "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined."
+        },
+        {
+          "source": "offline",
+          "key": "h5n1_human_exposure_source",
+          "params": {
+            "file": "h5n1_human_exposure_source.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 THE COST",
+          "topic": "human cases by exposure source",
+          "say": "Of the 70 people infected so far, 41 caught it from cows, not birds. It's already learning new hosts, not just new flocks."
+        }
+      ]
+    },
+    {
+      "slug": "ozone-hole-recovery",
+      "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+      "hook": "Remember the ozone hole? It's actually healing.",
+      "closing": "Proof humanity can actually fix what it breaks.",
+      "question": "Did you know the ozone hole was healing? Tell me below.",
+      "caption": "In 2000, the hole in the ozone layer over Antarctica hit 29.9 million square kilometers -- nearly the size of North America. Since the world banned the chemicals causing it, it's been shrinking. Here's the real timeline for when it fully closes (spoiler: it's not soon). Did you know this was happening? \ud83d\udc47",
+      "hashtags": [
+        "ozonelayer",
+        "climate",
+        "science",
+        "montrealprotocol",
+        "nasa",
+        "noaa",
+        "environment",
+        "atmosphere",
+        "goodnews",
+        "earth",
+        "globalwarming",
+        "sustainability",
+        "didyouknow",
+        "data"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ozone_hole_peak_extent",
+          "params": {
+            "file": "ozone_hole_peak_extent.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE WOUND",
+          "topic": "size of the Antarctic ozone hole",
+          "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9."
+        },
+        {
+          "source": "offline",
+          "key": "ozone_depleting_chemicals_phased_out",
+          "params": {
+            "file": "ozone_depleting_chemicals_phased_out.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE FIX",
+          "topic": "ozone-depleting chemicals phased out",
+          "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there."
+        },
+        {
+          "source": "offline",
+          "key": "ozone_recovery_years_by_region",
+          "params": {
+            "file": "ozone_recovery_years_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "role": "3 \u00b7 THE TIMELINE",
+          "topic": "years until full recovery",
+          "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now."
+        }
+      ]
+    },
+    {
+      "slug": "data-breach-exposure",
+      "title": "One Leaked Password Can Unlock Your Whole Digital Life",
+      "hook": "One leaked password can unlock your whole life.",
+      "closing": "Reuse a password, and you're gambling your digital life.",
+      "question": "Do you reuse the same password everywhere? Be honest below.",
+      "caption": "US data breaches just hit an all-time record: 3,322 in 2025 alone. Here's the part nobody tells you -- if you reuse passwords, you're not just risking one account, you're risking every account tied to it. And banks are the #1 target. Do you reuse passwords? Be honest \ud83d\udc47",
+      "hashtags": [
+        "databreach",
+        "cybersecurity",
+        "password",
+        "hacked",
+        "onlinesecurity",
+        "privacy",
+        "tech",
+        "internetsafety",
+        "identitytheft",
+        "infosec",
+        "digitalsecurity",
+        "data",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "data_breach_compromises_annual",
+          "params": {
+            "file": "data_breach_compromises_annual.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE RECORD",
+          "topic": "US data breaches per year",
+          "say": "US data breaches hit a record 3,322 last year, up from 1,862 just a few years earlier. It keeps getting worse, not better."
+        },
+        {
+          "source": "offline",
+          "key": "password_manager_breach_rate",
+          "params": {
+            "file": "password_manager_breach_rate.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 WHY IT SPREADS",
+          "topic": "credential theft by password habit",
+          "say": "Here's why one breach becomes ten: 32 percent of people who reuse passwords get hit again within a year, compared to just 17 percent who don't."
+        },
+        {
+          "source": "offline",
+          "key": "data_breach_sector_2025",
+          "params": {
+            "file": "data_breach_sector_2025.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 WHERE IT LANDS",
+          "topic": "breaches by industry",
+          "say": "And it's landing on your money first. Financial services got hit 739 times last year, more than any other industry."
+        }
+      ]
+    },
+    {
+      "slug": "global-illiteracy-gap",
+      "title": "The World Learned To Read. Not Everyone Did.",
+      "hook": "Global literacy is rising. Some got left behind.",
+      "closing": "Progress isn't finished until it reaches everyone.",
+      "question": "Who taught you to read? Tell me below.",
+      "caption": "Global literacy climbed from 67% in 1976 to 87.7% today -- a real success story. But 739 million adults still can't read, and it's not evenly split: 63% are women, concentrated in just two regions. Here's why the gap won't close for decades. Who taught you to read? \ud83d\udc47",
+      "hashtags": [
+        "literacy",
+        "education",
+        "unesco",
+        "genderequality",
+        "globaleducation",
+        "womensrights",
+        "demographics",
+        "society",
+        "didyouknow",
+        "worldfacts",
+        "data",
+        "girlseducation",
+        "statistics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "global_literacy_rate_trend",
+          "params": {
+            "file": "global_literacy_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE PROGRESS",
+          "topic": "global adult literacy rate",
+          "say": "Global literacy has climbed for 50 years straight, from 67 percent in 1976 to 87.7 percent today. That's real progress."
+        },
+        {
+          "source": "offline",
+          "key": "illiterate_adults_gender_share",
+          "params": {
+            "file": "illiterate_adults_gender_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 WHO'S LEFT OUT",
+          "topic": "illiterate adults by gender",
+          "say": "But of the 739 million adults who still can't read, 63 percent are women. Girls got left out of that progress the most."
+        },
+        {
+          "source": "offline",
+          "key": "illiterate_adults_by_region",
+          "params": {
+            "file": "illiterate_adults_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 WHERE IT'S STUCK",
+          "topic": "illiterate adults by region",
+          "say": "And it's stuck in one place: Central and Southern Asia alone accounts for 347 million of them. The gap isn't global anymore, it's local."
+        }
+      ]
     }
   ],
   "videos": [

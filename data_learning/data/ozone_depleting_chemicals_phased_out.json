@@ -1,0 +1,19 @@
+{
+  "key": "ozone_depleting_chemicals_phased_out",
+  "title": "Ozone-depleting chemicals: phased out vs still in use (percent)",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2024 (status)",
+  "source": {
+    "name": "WMO Bulletin on ozone layer recovery",
+    "publisher": "World Meteorological Organization (WMO)",
+    "url": "https://wmo.int/news/media-centre/wmo-bulletin-shows-successful-recovery-of-ozone-layer-driven-science",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "The Montreal Protocol (1987) has achieved phase-out of nearly 99% of the banned ozone-depleting substances (CFCs and related chemicals) it controls, per the WMO's ozone bulletin; the remaining ~1% reflects substances still in permitted use or residual atmospheric banks.",
+  "points": [
+    {"label": "Phased out", "value": 99},
+    {"label": "Still in use", "value": 1}
+  ]
+}
