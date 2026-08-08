@@ -18794,7 +18794,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE SETUP",
           "topic": "US birds lost to bird flu",
-          "say": "Since 2022, bird flu has killed off 206 million birds in the US, and the number keeps climbing every single year."
+          "say": "Since 2022, bird flu has killed off 206 million birds in the US, and the number keeps climbing every single year.",
+          "scene": {
+            "mechanic": "flock-collapse-tower",
+            "concept": "a tower of chicken cutouts stacks higher each year as the US bird-flu death toll climbs from 58 million to 206 million",
+            "code": "cx = (RX0 + RX1) // 2\nbase_y = RBOT - 70\nchicken = subject_image('dead chicken silhouette')\nn_shown = max(1, int(n * reveal) if reveal < 1 else n)\ncw = 150; ch = 110; gap = 14\ntotal_w = n_shown * cw + (n_shown - 1) * gap\nx0 = cx - total_w // 2\nfor i in range(n_shown):\n    v = values[i]\n    frac = clamp(v / vmax)\n    tiles = max(1, int(frac * 6))\n    x = x0 + i * (cw + gap)\n    for t in range(tiles):\n        y = base_y - (t + 1) * (ch - 20)\n        if chicken is not None:\n            paste(chicken, x, y, cw, ch)\n        else:\n            d.rounded_rectangle([x, y, x + cw, y + ch - 10], radius=12, fill=rgba(WARN, 200))\n    text(labels[i], x + cw // 2, base_y + 20, size=26, color=TEXT, center=True)\n    text(str(int(v)) + 'M', x + cw // 2, base_y - tiles * (ch - 20) - 40, size=30, color=HIGHLIGHT, center=True)\ntext('US birds lost, millions', cx, RTOP + 40, size=34, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18806,7 +18811,12 @@
           "ascending": false,
           "role": "2 \u00b7 THE JUMP",
           "topic": "dairy herds infected by state",
-          "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined."
+          "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined.",
+          "scene": {
+            "mechanic": "herd-map-outbreak",
+            "concept": "cow cutouts stack on a US-map silhouette, sized per state's infected dairy herds, California towering over the rest",
+            "code": "usa = subject_image('blank map of united states silhouette')\nif usa is not None:\n    paste(usa, RX0 - 20, RTOP + 60, (RX1 - RX0) + 40, 640)\ncow = subject_image('dairy cow')\ncols = n\ngap = 16\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 60\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    stack = max(1, int(frac * 7))\n    for t in range(stack):\n        y = base_y - (t + 1) * 70\n        if cow is not None:\n            paste(cow, x0, y, gw, 80)\n        else:\n            d.rounded_rectangle([x0, y, x0 + gw, y + 60], radius=10, fill=rgba(HIGHLIGHT, 200))\n    text(str(int(v)), x0 + gw // 2, base_y - stack * 70 - 44, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 20, size=20, color=TEXT, center=True)\ntext('infected dairy herds by state', (RX0 + RX1) // 2, RTOP + 20, size=32, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18817,7 +18827,12 @@
           "insight_type": "comparison",
           "role": "3 \u00b7 THE COST",
           "topic": "human cases by exposure source",
-          "say": "Of the 70 people infected so far, 41 caught it from cows, not birds. It's already learning new hosts, not just new flocks."
+          "say": "Of the 70 people infected so far, 41 caught it from cows, not birds. It's already learning new hosts, not just new flocks.",
+          "scene": {
+            "mechanic": "spillover-tally",
+            "concept": "two columns of person silhouettes fill upward, one fed by a cow icon and one by a chicken icon, tallying human cases by source",
+            "code": "cx = (RX0 + RX1) // 2\ngap = 220\ncols_x = [cx - gap, cx + gap]\ntop_icons = ['dairy cow', 'chicken']\nbase_y = RBOT - 80\nperson = subject_image('person silhouette icon')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    icon = subject_image(top_icons[i % 2])\n    x = cols_x[i % 2]\n    if icon is not None:\n        paste(icon, x - 90, RTOP + 140, 180, 130)\n    rows = max(1, int(frac * 10))\n    for r in range(rows):\n        y = base_y - (r + 1) * 42\n        if person is not None:\n            paste(person, x - 26, y, 52, 40)\n        else:\n            d.ellipse([x - 20, y, x + 20, y + 36], fill=rgba(HIGHLIGHT, 210))\n    text(str(int(v)), x, base_y + 24, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 64, size=22, color=TEXT, center=True)\ntext('human cases by exposure source', cx, RTOP + 50, size=32, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -18854,7 +18869,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE WOUND",
           "topic": "size of the Antarctic ozone hole",
-          "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9."
+          "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9.",
+          "scene": {
+            "mechanic": "healing-scar-shrink",
+            "concept": "a torn hole over an Antarctica photo shrinks from its 2000 size down to today's, showing the wound closing",
+            "code": "antarctica = subject_image('antarctica ice sheet from space')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 480\nw = RX1 - RX0\nh = 620\nif antarctica is not None:\n    paste(antarctica, RX0, RTOP + 160, w, h)\nv0 = values[0]\nv1 = values[-1]\nr0 = 280\nr_now = r0 * (1 - (1 - v1 / v0) * reveal)\nr = int(r_now)\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba((8, 10, 18, 255)), outline=rgba(WARN, 230), width=8)\nd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(HIGHLIGHT, 160), width=3)\ntext(labels[0] + ': ' + str(v0) + 'M km2', RX0 + 20, RTOP + 50, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(v1) + 'M km2', RX0 + 20, RTOP + 100, size=40, color=HIGHLIGHT)\ntext('size of the ozone hole', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18865,7 +18885,12 @@
           "insight_type": "comparison",
           "role": "2 \u00b7 THE FIX",
           "topic": "ozone-depleting chemicals phased out",
-          "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there."
+          "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there.",
+          "scene": {
+            "mechanic": "banned-canister-drain",
+            "concept": "an aerosol spray-can image drains from full to nearly empty, showing 99 percent of the chemicals banned and 1 percent still leaking",
+            "code": "cx = (RX0 + RX1) // 2\ncan = subject_image('aerosol spray can')\ncw = 300\nch = 640\ntop_y = RTOP + 180\nstill = values[1] if labels[1].lower().startswith('still') else values[-1]\nfrac = clamp(still / 100.0) * reveal + (1 - reveal) * 1.0\nif can is not None:\n    fill_image(can, frac, cx - cw // 2, top_y, cw, ch, direction='down', color=WARN)\nelse:\n    fh = int(ch * frac)\n    d.rounded_rectangle([cx - cw // 2, top_y, cx + cw // 2, top_y + fh], radius=24, fill=rgba(WARN, 200))\nd.rounded_rectangle([cx - cw // 2, top_y, cx + cw // 2, top_y + ch], radius=24, outline=rgba(TEXT, 220), width=6)\ntext('99% banned since 1987', cx, top_y - 70, size=36, color=HIGHLIGHT, center=True)\ntext('1% still in use', cx, top_y + ch + 30, size=32, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18877,7 +18902,12 @@
           "ascending": true,
           "role": "3 \u00b7 THE TIMELINE",
           "topic": "years until full recovery",
-          "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now."
+          "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now.",
+          "scene": {
+            "mechanic": "recovery-hourglass-row",
+            "concept": "three hourglasses, one per region, fill with sand to a height set by years-until-healed - Antarctica's towers over the rest",
+            "code": "cols = n\ngap = 40\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 100\ntop_y = RTOP + 220\nhourglass = subject_image('hourglass with sand')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    if hourglass is not None:\n        fill_image(hourglass, frac, x0, top_y, gw, base_y - top_y, direction='up', color=WARN)\n    else:\n        fh = int((base_y - top_y) * frac)\n        d.rounded_rectangle([x0, base_y - fh, x0 + gw, base_y], radius=16, fill=rgba(WARN, 200))\n    d.rounded_rectangle([x0, top_y, x0 + gw, base_y], radius=16, outline=rgba(TEXT, 200), width=4)\n    text(str(int(v)) + ' yrs', x0 + gw // 2, top_y - 46, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 24, size=20, color=TEXT, center=True)\ntext('years until full recovery', (RX0 + RX1) // 2, RTOP + 90, size=32, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -18913,7 +18943,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE RECORD",
           "topic": "US data breaches per year",
-          "say": "US data breaches hit a record 3,322 last year, up from 1,862 just a few years earlier. It keeps getting worse, not better."
+          "say": "US data breaches hit a record 3,322 last year, up from 1,862 just a few years earlier. It keeps getting worse, not better.",
+          "scene": {
+            "mechanic": "vault-crack-widen",
+            "concept": "a bank vault door cracks open wider each year as annual US data breaches climb from 1,862 to 3,322",
+            "code": "cx = (RX0 + RX1) // 2\ncy = RTOP + 480\nvault = subject_image('bank vault door')\nvw = 520\nvh = 620\nv0 = values[0]\nv1 = values[-1]\ngap_now = clamp(v1 / vmax) * reveal\nif vault is not None:\n    paste(vault, cx - vw // 2 - int(gap_now * 60), RTOP + 160, vw // 2, vh)\n    paste(vault, cx + int(gap_now * 60), RTOP + 160, vw // 2, vh)\nelse:\n    d.rectangle([cx - vw // 2 - int(gap_now * 60), RTOP + 160, cx - int(gap_now * 60), RTOP + 160 + vh], fill=rgba(TEXT, 200))\n    d.rectangle([cx + int(gap_now * 60), RTOP + 160, cx + vw // 2 + int(gap_now * 60), RTOP + 160 + vh], fill=rgba(TEXT, 200))\nlock = subject_image('broken padlock')\nleaks = max(1, int(gap_now * 8))\nfor i in range(leaks):\n    lx = cx - 100 + (i % 4) * 60\n    ly = RTOP + 780 + (i // 4) * 60\n    if lock is not None:\n        paste(lock, lx, ly, 44, 44)\ntext(labels[0] + ': ' + str(int(v0)), RX0 + 20, RTOP + 50, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(int(v1)), RX0 + 20, RTOP + 100, size=42, color=HIGHLIGHT)\ntext('US data breaches per year', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18924,7 +18959,12 @@
           "insight_type": "comparison",
           "role": "2 \u00b7 WHY IT SPREADS",
           "topic": "credential theft by password habit",
-          "say": "Here's why one breach becomes ten: 32 percent of people who reuse passwords get hit again within a year, compared to just 17 percent who don't."
+          "say": "Here's why one breach becomes ten: 32 percent of people who reuse passwords get hit again within a year, compared to just 17 percent who don't.",
+          "scene": {
+            "mechanic": "padlock-breach-race",
+            "concept": "two columns of padlocks, one for reused-password habits one for password-manager users, broken padlocks rising to each group's re-breach rate",
+            "code": "cx = (RX0 + RX1) // 2\ngap = 220\ncols_x = [cx - gap, cx + gap]\nbase_y = RBOT - 80\ntop_y = RTOP + 240\nbroken = subject_image('broken padlock')\nclosed = subject_image('closed padlock')\nrows = 10\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / 100.0) * reveal\n    x = cols_x[i % 2]\n    hit = max(1, int(rows * frac))\n    for r in range(rows):\n        y = base_y - (r + 1) * 46\n        img = broken if r < hit else closed\n        if img is not None:\n            paste(img, x - 24, y, 48, 40)\n        else:\n            d.ellipse([x - 20, y, x + 20, y + 36], fill=rgba(WARN if r < hit else TEXT, 200))\n    text(str(v) + '%', x, base_y + 24, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 64, size=20, color=TEXT, center=True)\ntext('re-breached within a year', cx, RTOP + 60, size=32, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18936,7 +18976,12 @@
           "ascending": false,
           "role": "3 \u00b7 WHERE IT LANDS",
           "topic": "breaches by industry",
-          "say": "And it's landing on your money first. Financial services got hit 739 times last year, more than any other industry."
+          "say": "And it's landing on your money first. Financial services got hit 739 times last year, more than any other industry.",
+          "scene": {
+            "mechanic": "bullseye-row",
+            "concept": "a row of dartboard targets, one per industry, filling with darts sized to that sector's 2025 breach count - financial services riddled the most",
+            "code": "cols = n\ngap = 18\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\ncy = RTOP + 420\ntarget = subject_image('dartboard target')\ndart = subject_image('dart')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    cx = x0 + gw // 2\n    r = gw // 2 - 6\n    if target is not None:\n        paste(target, cx - r, cy - r, r * 2, r * 2)\n    else:\n        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 220), width=6)\n    darts = max(1, int(frac * 9))\n    for k in range(darts):\n        ang = (k / 9.0) * 6.283\n        dr = r * (0.2 + 0.7 * (k % 5) / 5.0)\n        dx = cx + int(dr * math.cos(ang))\n        dy = cy + int(dr * math.sin(ang))\n        if dart is not None:\n            paste(dart, dx - 14, dy - 14, 28, 28)\n        else:\n            d.ellipse([dx - 8, dy - 8, dx + 8, dy + 8], fill=rgba(WARN, 230))\n    text(str(int(v)), cx, cy + r + 30, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], cx, cy + r + 66, size=20, color=TEXT, center=True)\ntext('breaches by industry, 2025', (RX0 + RX1) // 2, RTOP + 80, size=32, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -18972,7 +19017,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE PROGRESS",
           "topic": "global adult literacy rate",
-          "say": "Global literacy has climbed for 50 years straight, from 67 percent in 1976 to 87.7 percent today. That's real progress."
+          "say": "Global literacy has climbed for 50 years straight, from 67 percent in 1976 to 87.7 percent today. That's real progress.",
+          "scene": {
+            "mechanic": "book-pages-glow",
+            "concept": "an open book image brightens and its pages fill with glowing text as global literacy climbs from 67 percent in 1976 to 87.7 today",
+            "code": "cx = (RX0 + RX1) // 2\nbook = subject_image('open book')\nbw = 640\nbh = 460\ntop_y = RTOP + 260\nif book is not None:\n    paste(book, cx - bw // 2, top_y, bw, bh)\nv0 = values[0]\nv1 = values[-1]\nfrac = clamp(v1 / 100.0) * reveal\nlines = max(1, int(frac * 12))\nfor i in range(lines):\n    ly = top_y + 50 + i * 32\n    lw = int(bw * 0.36)\n    d.rectangle([cx - bw // 2 + 40, ly, cx - bw // 2 + 40 + lw, ly + 10], fill=rgba(HIGHLIGHT, 200))\n    d.rectangle([cx + 20, ly, cx + 20 + lw, ly + 10], fill=rgba(HIGHLIGHT, 200))\ntext(labels[0] + ': ' + str(v0) + '%', RX0 + 20, RTOP + 50, size=34, color=WARN)\ntext(labels[-1] + ': ' + str(v1) + '%', RX0 + 20, RTOP + 100, size=42, color=HIGHLIGHT)\ntext('world adult literacy rate', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18983,7 +19033,12 @@
           "insight_type": "share",
           "role": "2 \u00b7 WHO'S LEFT OUT",
           "topic": "illiterate adults by gender",
-          "say": "But of the 739 million adults who still can't read, 63 percent are women. Girls got left out of that progress the most."
+          "say": "But of the 739 million adults who still can't read, 63 percent are women. Girls got left out of that progress the most.",
+          "scene": {
+            "mechanic": "silhouette-crowd-split",
+            "concept": "a grid of person silhouettes splits into two colors, showing the 63/37 gender share of the world's illiterate adults",
+            "code": "cols = 10\nrows = 10\ncell = 92\ngx0 = RX0 + 20\ngy0 = RTOP + 220\ntotal = cols * rows\nwomen_share = values[0] / (values[0] + values[1])\nperson = subject_image('person silhouette icon')\nshown = max(1, int(total * reveal))\nwomen_n = int(shown * women_share)\nfor i in range(shown):\n    r = i // cols\n    c = i % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_woman = i < women_n\n    col = WARN if is_woman else TEXT\n    if person is not None:\n        paste(person, x, y, cell - 14, cell - 14)\n        d.rectangle([x, y, x + cell - 14, y + cell - 14], fill=rgba(col, 90))\n    else:\n        d.ellipse([x, y, x + cell - 14, y + cell - 14], fill=rgba(col, 220))\ntext('Women: ' + str(values[0]) + '%', RX0 + 20, RTOP + 60, size=36, color=WARN)\ntext('Men: ' + str(values[1]) + '%', RX0 + 20, RTOP + 120, size=36, color=TEXT)\ntext('of 739 million illiterate adults', (RX0 + RX1) // 2, RBOT - 30, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -18995,7 +19050,12 @@
           "ascending": false,
           "role": "3 \u00b7 WHERE IT'S STUCK",
           "topic": "illiterate adults by region",
-          "say": "And it's stuck in one place: Central and Southern Asia alone accounts for 347 million of them. The gap isn't global anymore, it's local."
+          "say": "And it's stuck in one place: Central and Southern Asia alone accounts for 347 million of them. The gap isn't global anymore, it's local.",
+          "scene": {
+            "mechanic": "region-silhouette-stacks",
+            "concept": "stacks of person silhouettes rise from a world-map backdrop, one column per region, height set by millions of illiterate adults",
+            "code": "world = subject_image('world map silhouette')\nif world is not None:\n    paste(world, RX0 - 20, RTOP + 60, (RX1 - RX0) + 40, 560)\nperson = subject_image('person silhouette icon')\ncols = n\ngap = 30\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 70\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    stack = max(1, int(frac * 8))\n    for t in range(stack):\n        y = base_y - (t + 1) * 66\n        if person is not None:\n            paste(person, x0, y, gw, 60)\n        else:\n            d.ellipse([x0, y, x0 + gw, y + 50], fill=rgba(WARN, 210))\n    text(str(int(v)) + 'M', x0 + gw // 2, base_y - stack * 66 - 44, size=28, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 20, size=18, color=TEXT, center=True)\ntext('illiterate adults by region', (RX0 + RX1) // 2, RTOP + 30, size=32, color=WARN, center=True)\n"
+          }
         }
       ]
     }
