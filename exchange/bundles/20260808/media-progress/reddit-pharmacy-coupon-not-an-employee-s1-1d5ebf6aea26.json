@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260808",
+  "bundle": {
+    "identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "path": "exchange/bundles/20260808/bundle.json"
+  },
+  "request_id": "reddit-pharmacy-coupon-not-an-employee-s1-1d5ebf6aea26",
+  "safe_request_id": "reddit-pharmacy-coupon-not-an-employee-s1-1d5ebf6aea26",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1557c913bed042f8a4bef1ce812e6bdbe2dffa6f0df1b1af6872971573b2919f",
+  "prompt_used": "An editorial illustration for a short-form video: hand holding coupon. It accompanies the narration: \"holding a crumpled coupon\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11R9fF2bGsv2UMBQBsRTOJLacgFfKtZYG",
+    "filename": "20260808__reddit-pharmacy-coupon-not-an-employee-s1-1d5ebf6aea26.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11R9fF2bGsv2UMBQBsRTOJLacgFfKtZYG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0b9fc021eb913d6c7792c9b4e4839443b1b82550fc6acae521e05e7f3d2644d5",
+    "bytes": 2311517,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-08T12:19:59Z",
+  "error": null,
+  "retryable": false
+}
