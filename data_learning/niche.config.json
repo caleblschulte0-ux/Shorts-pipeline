@@ -18796,9 +18796,9 @@
           "topic": "US birds lost to bird flu",
           "say": "Since 2022, bird flu has killed off 206 million birds in the US, and the number keeps climbing every single year.",
           "scene": {
-            "mechanic": "flock-collapse-tower",
-            "concept": "a tower of chicken cutouts stacks higher each year as the US bird-flu death toll climbs from 58 million to 206 million",
-            "code": "cx = (RX0 + RX1) // 2\nbase_y = RBOT - 70\nchicken = subject_image('dead chicken silhouette')\nn_shown = max(1, int(n * reveal) if reveal < 1 else n)\ncw = 150; ch = 110; gap = 14\ntotal_w = n_shown * cw + (n_shown - 1) * gap\nx0 = cx - total_w // 2\nfor i in range(n_shown):\n    v = values[i]\n    frac = clamp(v / vmax)\n    tiles = max(1, int(frac * 6))\n    x = x0 + i * (cw + gap)\n    for t in range(tiles):\n        y = base_y - (t + 1) * (ch - 20)\n        if chicken is not None:\n            paste(chicken, x, y, cw, ch)\n        else:\n            d.rounded_rectangle([x, y, x + cw, y + ch - 10], radius=12, fill=rgba(WARN, 200))\n    text(labels[i], x + cw // 2, base_y + 20, size=26, color=TEXT, center=True)\n    text(str(int(v)) + 'M', x + cw // 2, base_y - tiles * (ch - 20) - 40, size=30, color=HIGHLIGHT, center=True)\ntext('US birds lost, millions', cx, RTOP + 40, size=34, color=WARN, center=True)\n"
+            "mechanic": "feather-toll-climb",
+            "concept": "a poultry photo tops a rising feather pile whose height climbs year by year to the cumulative US bird toll",
+            "code": "v1 = values[-1]\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nmax_h = 520\nbird = subject_image('chicken')\nbh = 0\nif bird is not None:\n    bw = 200\n    bh = int(bw * bird.height / bird.width)\n    paste(bird, cx - bw // 2, RTOP + 10, bw, bh)\ngap = (RX1 - RX0 - 120) // max(1, n - 1)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * n - i)\n    h = int(max_h * frac * stage)\n    x = RX0 + 60 + i * gap\n    if h > 0:\n        w = 26\n        d.rounded_rectangle([x - w // 2, base_y - h, x + w // 2, base_y], radius=10,\n                             fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n        for fy in range(base_y - h, base_y, 34):\n            d.ellipse([x - 20, fy, x + 20, fy + 22], fill=rgba(TEXT, 160))\n    text(lab, x, base_y + 14, size=26, color=TEXT, center=True)\n    if stage >= 1:\n        text(str(int(v)), x, base_y - h - 34, size=28,\n             color=WARN if i == n - 1 else HIGHLIGHT, center=True)\nd.line([RX0 + 30, base_y, RX1 - 30, base_y], fill=rgba(TEXT, 140), width=4)\ntext(f\"{int(v1)}M birds lost\", cx, RTOP + 20 + bh + 10, size=40, color=WARN, center=True)"
           }
         },
         {
@@ -18812,11 +18812,8 @@
           "role": "2 \u00b7 THE JUMP",
           "topic": "dairy herds infected by state",
           "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined.",
-          "scene": {
-            "mechanic": "herd-map-outbreak",
-            "concept": "cow cutouts stack on a US-map silhouette, sized per state's infected dairy herds, California towering over the rest",
-            "code": "usa = subject_image('blank map of united states silhouette')\nif usa is not None:\n    paste(usa, RX0 - 20, RTOP + 60, (RX1 - RX0) + 40, 640)\ncow = subject_image('dairy cow')\ncols = n\ngap = 16\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 60\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    stack = max(1, int(frac * 7))\n    for t in range(stack):\n        y = base_y - (t + 1) * 70\n        if cow is not None:\n            paste(cow, x0, y, gw, 80)\n        else:\n            d.rounded_rectangle([x0, y, x0 + gw, y + 60], radius=10, fill=rgba(HIGHLIGHT, 200))\n    text(str(int(v)), x0 + gw // 2, base_y - stack * 70 - 44, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 20, size=20, color=TEXT, center=True)\ntext('infected dairy herds by state', (RX0 + RX1) // 2, RTOP + 20, size=32, color=WARN, center=True)\n"
-          }
+          "scene": null,
+          "viz": "geo_us"
         },
         {
           "source": "offline",
@@ -18829,9 +18826,9 @@
           "topic": "human cases by exposure source",
           "say": "Of the 70 people infected so far, 41 caught it from cows, not birds. It's already learning new hosts, not just new flocks.",
           "scene": {
-            "mechanic": "spillover-tally",
-            "concept": "two columns of person silhouettes fill upward, one fed by a cow icon and one by a chicken icon, tallying human cases by source",
-            "code": "cx = (RX0 + RX1) // 2\ngap = 220\ncols_x = [cx - gap, cx + gap]\ntop_icons = ['dairy cow', 'chicken']\nbase_y = RBOT - 80\nperson = subject_image('person silhouette icon')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    icon = subject_image(top_icons[i % 2])\n    x = cols_x[i % 2]\n    if icon is not None:\n        paste(icon, x - 90, RTOP + 140, 180, 130)\n    rows = max(1, int(frac * 10))\n    for r in range(rows):\n        y = base_y - (r + 1) * 42\n        if person is not None:\n            paste(person, x - 26, y, 52, 40)\n        else:\n            d.ellipse([x - 20, y, x + 20, y + 36], fill=rgba(HIGHLIGHT, 210))\n    text(str(int(v)), x, base_y + 24, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 64, size=22, color=TEXT, center=True)\ntext('human cases by exposure source', cx, RTOP + 50, size=32, color=WARN, center=True)\n"
+            "mechanic": "cross-species-bridge",
+            "concept": "a cow and a chicken funnel dot-streams toward a human silhouette, sized to how many human cases each source caused",
+            "code": "cow = subject_image('dairy cow')\nbird = subject_image('chicken')\nperson = subject_image('person silhouette')\ncx = (RX0 + RX1) // 2\ntop = RTOP + 30\nif cow is not None:\n    paste(cow, RX0 + 10, top, 260, 190)\nif bird is not None:\n    paste(bird, RX1 - 270, top, 260, 190)\npy_h = 210\nif person is not None:\n    pw = 190\n    py_h = int(pw * person.height / person.width)\n    paste(person, cx - pw // 2, RBOT - py_h - 30, pw, py_h)\nvtot = values[0] + values[1]\ntarget = (cx, RBOT - py_h - 30)\nsources = ((RX0 + 140, top + 200, values[0], WARN),\n           (RX1 - 140, top + 200, values[1], HIGHLIGHT))\nfor sx, sy, v, col in sources:\n    share = v / vtot\n    cnt = max(1, int(16 * share))\n    shown = max(1, int(cnt * reveal))\n    for i in range(shown):\n        t = clamp((i + 1) / cnt)\n        px = lerp(sx, target[0], t)\n        py = lerp(sy, target[1], t)\n        d.ellipse([px - 8, py - 8, px + 8, py + 8], fill=rgba(col, 220))\n    text(str(int(v)), sx, sy - 34, size=40, color=col, center=True)\ntext('human cases', cx, target[1] - 34, size=28, color=TEXT, center=True)"
           }
         }
       ]
@@ -18871,9 +18868,9 @@
           "topic": "size of the Antarctic ozone hole",
           "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9.",
           "scene": {
-            "mechanic": "healing-scar-shrink",
-            "concept": "a torn hole over an Antarctica photo shrinks from its 2000 size down to today's, showing the wound closing",
-            "code": "antarctica = subject_image('antarctica ice sheet from space')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 480\nw = RX1 - RX0\nh = 620\nif antarctica is not None:\n    paste(antarctica, RX0, RTOP + 160, w, h)\nv0 = values[0]\nv1 = values[-1]\nr0 = 280\nr_now = r0 * (1 - (1 - v1 / v0) * reveal)\nr = int(r_now)\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba((8, 10, 18, 255)), outline=rgba(WARN, 230), width=8)\nd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(HIGHLIGHT, 160), width=3)\ntext(labels[0] + ': ' + str(v0) + 'M km2', RX0 + 20, RTOP + 50, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(v1) + 'M km2', RX0 + 20, RTOP + 100, size=40, color=HIGHLIGHT)\ntext('size of the ozone hole', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+            "mechanic": "ozone-hole-shrink",
+            "concept": "a violet hole over an Earth photo shrinks in radius as the ozone hole's peak extent falls year by year",
+            "code": "earth = subject_image('earth from space')\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 - 40\nif earth is not None:\n    ew = RX1 - RX0\n    eh = int(ew * earth.height / earth.width)\n    paste(earth, RX0, cy - eh // 2, ew, eh)\nmax_r = 260\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\nr = int(max_r * (v_now / vmax))\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba(WARN, 90), outline=rgba(WARN, 220), width=6)\nd.ellipse([cx - r // 2, cy - r // 2, cx + r // 2, cy + r // 2], fill=rgba('#7C3AED', 70))\ntext(labels[i], cx, cy + max_r + 50, size=40, color=WARN, center=True)\ntext(f\"{v_now:.1f}M km2\", cx, cy + max_r + 96, size=32, color=TEXT, center=True)\nfor j in range(n):\n    x = RX0 + 60 + j * ((RX1 - RX0 - 120) // max(1, n - 1))\n    on = j <= i\n    d.ellipse([x - 8, RBOT - 28, x + 8, RBOT - 12],\n              fill=rgba(WARN if on else TEXT, 220 if on else 90))"
           }
         },
         {
@@ -18887,9 +18884,9 @@
           "topic": "ozone-depleting chemicals phased out",
           "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there.",
           "scene": {
-            "mechanic": "banned-canister-drain",
-            "concept": "an aerosol spray-can image drains from full to nearly empty, showing 99 percent of the chemicals banned and 1 percent still leaking",
-            "code": "cx = (RX0 + RX1) // 2\ncan = subject_image('aerosol spray can')\ncw = 300\nch = 640\ntop_y = RTOP + 180\nstill = values[1] if labels[1].lower().startswith('still') else values[-1]\nfrac = clamp(still / 100.0) * reveal + (1 - reveal) * 1.0\nif can is not None:\n    fill_image(can, frac, cx - cw // 2, top_y, cw, ch, direction='down', color=WARN)\nelse:\n    fh = int(ch * frac)\n    d.rounded_rectangle([cx - cw // 2, top_y, cx + cw // 2, top_y + fh], radius=24, fill=rgba(WARN, 200))\nd.rounded_rectangle([cx - cw // 2, top_y, cx + cw // 2, top_y + ch], radius=24, outline=rgba(TEXT, 220), width=6)\ntext('99% banned since 1987', cx, top_y - 70, size=36, color=HIGHLIGHT, center=True)\ntext('1% still in use', cx, top_y + ch + 30, size=32, color=WARN, center=True)\n"
+            "mechanic": "banned-barrel-drain",
+            "concept": "a chemical barrel drains from full down to the 1 percent still-in-use level, then a BANNED stamp lands",
+            "code": "barrel = subject_image('chemical barrel')\ncx = (RX0 + RX1) // 2\nbw, bh = 280, 460\nbx, by = cx - bw // 2, RTOP + 120\nstill_frac = values[1] / 100.0\ndrained = clamp(reveal)\nfrac_now = lerp(1.0, still_frac, drained)\nfill_image(barrel, frac_now, bx, by, bw, bh, direction='up', color=WARN)\nd.rounded_rectangle([bx, by, bx + bw, by + bh], radius=24, outline=rgba(TEXT, 160), width=5)\ntext(f\"{int(round(frac_now * 100))}% still in use\", cx, by + bh + 40, size=36, color=WARN, center=True)\nif drained > 0.6:\n    stamp_a = clamp((drained - 0.6) / 0.3)\n    d.ellipse([cx - 140, by - 40, cx + 140, by + 220],\n              outline=rgba(HIGHLIGHT, int(230 * stamp_a)), width=10)\n    text('BANNED', cx, by + 70, size=44, color=HIGHLIGHT, center=True)\n    text(f\"{int(values[0])}% phased out\", cx, by + 130, size=30, color=TEXT, center=True)"
           }
         },
         {
@@ -18904,9 +18901,9 @@
           "topic": "years until full recovery",
           "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now.",
           "scene": {
-            "mechanic": "recovery-hourglass-row",
-            "concept": "three hourglasses, one per region, fill with sand to a height set by years-until-healed - Antarctica's towers over the rest",
-            "code": "cols = n\ngap = 40\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 100\ntop_y = RTOP + 220\nhourglass = subject_image('hourglass with sand')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    if hourglass is not None:\n        fill_image(hourglass, frac, x0, top_y, gw, base_y - top_y, direction='up', color=WARN)\n    else:\n        fh = int((base_y - top_y) * frac)\n        d.rounded_rectangle([x0, base_y - fh, x0 + gw, base_y], radius=16, fill=rgba(WARN, 200))\n    d.rounded_rectangle([x0, top_y, x0 + gw, base_y], radius=16, outline=rgba(TEXT, 200), width=4)\n    text(str(int(v)) + ' yrs', x0 + gw // 2, top_y - 46, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 24, size=20, color=TEXT, center=True)\ntext('years until full recovery', (RX0 + RX1) // 2, RTOP + 90, size=32, color=WARN, center=True)\n"
+            "mechanic": "recovery-vessel-row",
+            "concept": "three vessels, one per region photo, fill bottom-up to how many years each still has left until full recovery",
+            "code": "cols = n\ngap = 40\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\nsubjects = ['world map', 'arctic ice', 'antarctica glacier']\ntop = RTOP + 60\nimg_h = 170\nvessel_h = 480\nvessel_y = top + img_h + 20\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    img = subject_image(subjects[i % len(subjects)])\n    if img is not None:\n        iw = box_w - 10\n        ih = min(img_h, int(iw * img.height / img.width))\n        paste(img, x0 + 5, top, iw, ih)\n    vw = box_w - 40\n    vx = x0 + 20\n    d.rounded_rectangle([vx, vessel_y, vx + vw, vessel_y + vessel_h], radius=16,\n                         outline=rgba(TEXT, 200), width=5)\n    frac = clamp(v / vmax) * reveal\n    fh = int(vessel_h * frac)\n    d.rounded_rectangle([vx + 6, vessel_y + vessel_h - fh, vx + vw - 6, vessel_y + vessel_h - 6],\n                         radius=12, fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n    text(lab, cx, vessel_y + vessel_h + 22, size=22, color=TEXT, center=True)\n    text(f\"{int(v)}y left\", cx, vessel_y + vessel_h + 52, size=28,\n         color=WARN if i == n - 1 else HIGHLIGHT, center=True)"
           }
         }
       ]
@@ -18945,9 +18942,9 @@
           "topic": "US data breaches per year",
           "say": "US data breaches hit a record 3,322 last year, up from 1,862 just a few years earlier. It keeps getting worse, not better.",
           "scene": {
-            "mechanic": "vault-crack-widen",
-            "concept": "a bank vault door cracks open wider each year as annual US data breaches climb from 1,862 to 3,322",
-            "code": "cx = (RX0 + RX1) // 2\ncy = RTOP + 480\nvault = subject_image('bank vault door')\nvw = 520\nvh = 620\nv0 = values[0]\nv1 = values[-1]\ngap_now = clamp(v1 / vmax) * reveal\nif vault is not None:\n    paste(vault, cx - vw // 2 - int(gap_now * 60), RTOP + 160, vw // 2, vh)\n    paste(vault, cx + int(gap_now * 60), RTOP + 160, vw // 2, vh)\nelse:\n    d.rectangle([cx - vw // 2 - int(gap_now * 60), RTOP + 160, cx - int(gap_now * 60), RTOP + 160 + vh], fill=rgba(TEXT, 200))\n    d.rectangle([cx + int(gap_now * 60), RTOP + 160, cx + vw // 2 + int(gap_now * 60), RTOP + 160 + vh], fill=rgba(TEXT, 200))\nlock = subject_image('broken padlock')\nleaks = max(1, int(gap_now * 8))\nfor i in range(leaks):\n    lx = cx - 100 + (i % 4) * 60\n    ly = RTOP + 780 + (i // 4) * 60\n    if lock is not None:\n        paste(lock, lx, ly, 44, 44)\ntext(labels[0] + ': ' + str(int(v0)), RX0 + 20, RTOP + 50, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(int(v1)), RX0 + 20, RTOP + 100, size=42, color=HIGHLIGHT)\ntext('US data breaches per year', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+            "mechanic": "vault-crack-spread",
+            "concept": "a bank vault cracks more and leaks more binary digits as the yearly breach count climbs toward the record",
+            "code": "vault = subject_image('bank vault door')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 260\nvw, vh = 420, 420\nif vault is not None:\n    paste(vault, cx - vw // 2, cy - vh // 2, vw, vh)\nelse:\n    d.ellipse([cx - vw // 2, cy - vh // 2, cx + vw // 2, cy + vh // 2],\n              fill=rgba('#334155', 230), outline=rgba(TEXT, 200), width=6)\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\ncrack_n = 2 + int(6 * clamp(v_now / vmax))\nfor k in range(crack_n):\n    ang = (k / max(1, crack_n)) * 6.283 + reveal\n    x2 = cx + int((vw // 2 + 30) * math.cos(ang))\n    y2 = cy + int((vh // 2 + 30) * math.sin(ang))\n    d.line([cx, cy, x2, y2], fill=rgba(WARN, 220), width=4)\nfor k in range(int(18 * clamp(v_now / vmax))):\n    t = (k * 37 + reveal * 400) % 400\n    px = cx - vw // 2 - 40 + (k * 53) % (vw + 80)\n    py = cy + vh // 2 + int(t * 0.6)\n    if py < RBOT - 40:\n        text('01'[k % 2], px, py, size=22, color=rgba(HIGHLIGHT, 200), center=True)\ntext(labels[i], cx, cy + vh // 2 + 60, size=34, color=WARN, center=True)\ntext(f\"{int(v_now)} breaches\", cx, cy + vh // 2 + 98, size=30, color=TEXT, center=True)"
           }
         },
         {
@@ -18961,9 +18958,9 @@
           "topic": "credential theft by password habit",
           "say": "Here's why one breach becomes ten: 32 percent of people who reuse passwords get hit again within a year, compared to just 17 percent who don't.",
           "scene": {
-            "mechanic": "padlock-breach-race",
-            "concept": "two columns of padlocks, one for reused-password habits one for password-manager users, broken padlocks rising to each group's re-breach rate",
-            "code": "cx = (RX0 + RX1) // 2\ngap = 220\ncols_x = [cx - gap, cx + gap]\nbase_y = RBOT - 80\ntop_y = RTOP + 240\nbroken = subject_image('broken padlock')\nclosed = subject_image('closed padlock')\nrows = 10\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / 100.0) * reveal\n    x = cols_x[i % 2]\n    hit = max(1, int(rows * frac))\n    for r in range(rows):\n        y = base_y - (r + 1) * 46\n        img = broken if r < hit else closed\n        if img is not None:\n            paste(img, x - 24, y, 48, 40)\n        else:\n            d.ellipse([x - 20, y, x + 20, y + 36], fill=rgba(WARN if r < hit else TEXT, 200))\n    text(str(v) + '%', x, base_y + 24, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 64, size=20, color=TEXT, center=True)\ntext('re-breached within a year', cx, RTOP + 60, size=32, color=WARN, center=True)\n"
+            "mechanic": "shield-breach-wash",
+            "concept": "two security shields side by side, each washed red from the bottom up to its own breach-within-a-year rate",
+            "code": "cols = n\ngap = 60\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\ntop = RTOP + 60\nsh_h = 480\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    shield = subject_image('security shield padlock')\n    if shield is not None:\n        paste(shield, x0 + 10, top, box_w - 20, sh_h)\n    else:\n        d.rounded_rectangle([x0 + 10, top, x0 + box_w - 10, top + sh_h], radius=30,\n                             outline=rgba(TEXT, 200), width=6)\n    frac = clamp(v / 100.0) * reveal\n    ch = int(sh_h * frac)\n    d.rectangle([x0 + 10, top + sh_h - ch, x0 + box_w - 10, top + sh_h],\n                fill=rgba(WARN, 120))\n    for k in range(int(6 * frac)):\n        cxk = x0 + 30 + (k * 41) % (box_w - 60)\n        cyk = top + sh_h - (k * 67) % max(1, ch) - 10\n        d.line([cxk - 14, cyk - 14, cxk + 14, cyk + 14], fill=rgba(TEXT, 230), width=3)\n        d.line([cxk - 14, cyk + 14, cxk + 14, cyk - 14], fill=rgba(TEXT, 230), width=3)\n    text(lab, cx, top + sh_h + 26, size=22, color=TEXT, center=True)\n    text(f\"{int(v)}% breached\", cx, top + sh_h + 58, size=30, color=WARN, center=True)"
           }
         },
         {
@@ -18978,9 +18975,9 @@
           "topic": "breaches by industry",
           "say": "And it's landing on your money first. Financial services got hit 739 times last year, more than any other industry.",
           "scene": {
-            "mechanic": "bullseye-row",
-            "concept": "a row of dartboard targets, one per industry, filling with darts sized to that sector's 2025 breach count - financial services riddled the most",
-            "code": "cols = n\ngap = 18\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\ncy = RTOP + 420\ntarget = subject_image('dartboard target')\ndart = subject_image('dart')\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    cx = x0 + gw // 2\n    r = gw // 2 - 6\n    if target is not None:\n        paste(target, cx - r, cy - r, r * 2, r * 2)\n    else:\n        d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 220), width=6)\n    darts = max(1, int(frac * 9))\n    for k in range(darts):\n        ang = (k / 9.0) * 6.283\n        dr = r * (0.2 + 0.7 * (k % 5) / 5.0)\n        dx = cx + int(dr * math.cos(ang))\n        dy = cy + int(dr * math.sin(ang))\n        if dart is not None:\n            paste(dart, dx - 14, dy - 14, 28, 28)\n        else:\n            d.ellipse([dx - 8, dy - 8, dx + 8, dy + 8], fill=rgba(WARN, 230))\n    text(str(int(v)), cx, cy + r + 30, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], cx, cy + r + 66, size=20, color=TEXT, center=True)\ntext('breaches by industry, 2025', (RX0 + RX1) // 2, RTOP + 80, size=32, color=WARN, center=True)\n"
+            "mechanic": "breach-target-board",
+            "concept": "one target board per industry, real sector icon at the bullseye, dart hits raining in scaled to its breach count",
+            "code": "cols = n\ngap = 30\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\nsubjects = ['bank building', 'hospital', 'office briefcase', 'factory']\ntop = RTOP + 40\ntarget_r = min(box_w, 300) // 2 - 10\ncy = top + target_r + 60\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    for ring, alpha_col in ((1.0, rgba(TEXT, 90)), (0.66, rgba(WARN, 110)), (0.33, rgba(WARN, 180))):\n        rr = int(target_r * ring)\n        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=alpha_col, width=4)\n    icon = subject_image(subjects[i % len(subjects)])\n    if icon is not None:\n        iw = int(target_r * 1.1)\n        paste(icon, cx - iw // 2, cy - iw // 2, iw, iw)\n    darts = max(1, int(10 * clamp(v / vmax) * reveal))\n    for k in range(darts):\n        ang = (k * 2.4) % 6.283\n        rad = target_r * (0.15 + 0.75 * ((k * 53) % 100) / 100.0)\n        dx = cx + int(rad * math.cos(ang))\n        dy = cy + int(rad * math.sin(ang))\n        d.line([dx - 3, dy - 12, dx + 3, dy + 12], fill=rgba(HIGHLIGHT, 230), width=5)\n        d.ellipse([dx - 5, dy - 5, dx + 5, dy + 5], fill=rgba(HIGHLIGHT, 230))\n    text(lab, cx, cy + target_r + 30, size=20, color=TEXT, center=True)\n    text(str(int(v)), cx, cy + target_r + 58, size=32,\n         color=WARN if i == 0 else TEXT, center=True)"
           }
         }
       ]
@@ -19019,9 +19016,9 @@
           "topic": "global adult literacy rate",
           "say": "Global literacy has climbed for 50 years straight, from 67 percent in 1976 to 87.7 percent today. That's real progress.",
           "scene": {
-            "mechanic": "book-pages-glow",
-            "concept": "an open book image brightens and its pages fill with glowing text as global literacy climbs from 67 percent in 1976 to 87.7 today",
-            "code": "cx = (RX0 + RX1) // 2\nbook = subject_image('open book')\nbw = 640\nbh = 460\ntop_y = RTOP + 260\nif book is not None:\n    paste(book, cx - bw // 2, top_y, bw, bh)\nv0 = values[0]\nv1 = values[-1]\nfrac = clamp(v1 / 100.0) * reveal\nlines = max(1, int(frac * 12))\nfor i in range(lines):\n    ly = top_y + 50 + i * 32\n    lw = int(bw * 0.36)\n    d.rectangle([cx - bw // 2 + 40, ly, cx - bw // 2 + 40 + lw, ly + 10], fill=rgba(HIGHLIGHT, 200))\n    d.rectangle([cx + 20, ly, cx + 20 + lw, ly + 10], fill=rgba(HIGHLIGHT, 200))\ntext(labels[0] + ': ' + str(v0) + '%', RX0 + 20, RTOP + 50, size=34, color=WARN)\ntext(labels[-1] + ': ' + str(v1) + '%', RX0 + 20, RTOP + 100, size=42, color=HIGHLIGHT)\ntext('world adult literacy rate', cx, RBOT - 30, size=30, color=TEXT, center=True)\n"
+            "mechanic": "reading-ladder-climb",
+            "concept": "a reader climbs a ladder built of stacked books, its height set by the world literacy rate at each year checkpoint",
+            "code": "cx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nmax_h = 620\nbook = subject_image('open book')\nreader = subject_image('person reading silhouette')\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\nfrac = clamp(v_now / 100.0)\nh = int(max_h * frac)\nrung_h = 34\nrungs = max(1, h // rung_h)\nfor r in range(rungs):\n    ry = base_y - r * rung_h\n    if book is not None:\n        paste(book, cx - 90, ry - rung_h, 180, rung_h)\n    else:\n        d.rectangle([cx - 90, ry - rung_h + 4, cx + 90, ry - 4], fill=rgba(ACCENT, 200))\nif reader is not None:\n    rw = 140\n    rh = int(rw * reader.height / reader.width)\n    paste(reader, cx - rw // 2, base_y - h - rh + 10, rw, rh)\nd.line([RX0 + 30, base_y, RX1 - 30, base_y], fill=rgba(TEXT, 140), width=4)\ntext(labels[i], cx, RTOP + 40, size=34, color=TEXT, center=True)\ntext(f\"{v_now:.1f}%\", cx, RTOP + 84, size=44, color=HIGHLIGHT, center=True)"
           }
         },
         {
@@ -19035,9 +19032,9 @@
           "topic": "illiterate adults by gender",
           "say": "But of the 739 million adults who still can't read, 63 percent are women. Girls got left out of that progress the most.",
           "scene": {
-            "mechanic": "silhouette-crowd-split",
-            "concept": "a grid of person silhouettes splits into two colors, showing the 63/37 gender share of the world's illiterate adults",
-            "code": "cols = 10\nrows = 10\ncell = 92\ngx0 = RX0 + 20\ngy0 = RTOP + 220\ntotal = cols * rows\nwomen_share = values[0] / (values[0] + values[1])\nperson = subject_image('person silhouette icon')\nshown = max(1, int(total * reveal))\nwomen_n = int(shown * women_share)\nfor i in range(shown):\n    r = i // cols\n    c = i % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_woman = i < women_n\n    col = WARN if is_woman else TEXT\n    if person is not None:\n        paste(person, x, y, cell - 14, cell - 14)\n        d.rectangle([x, y, x + cell - 14, y + cell - 14], fill=rgba(col, 90))\n    else:\n        d.ellipse([x, y, x + cell - 14, y + cell - 14], fill=rgba(col, 220))\ntext('Women: ' + str(values[0]) + '%', RX0 + 20, RTOP + 60, size=36, color=WARN)\ntext('Men: ' + str(values[1]) + '%', RX0 + 20, RTOP + 120, size=36, color=TEXT)\ntext('of 739 million illiterate adults', (RX0 + RX1) // 2, RBOT - 30, size=28, color=TEXT, center=True)\n"
+            "mechanic": "crowd-gender-fill",
+            "concept": "an 80-icon crowd grid fills in, colored by gender share of the world's illiterate adults",
+            "code": "cols, rows = 10, 8\ncell = min((RX1 - RX0) // cols, (RBOT - RTOP - 140) // rows)\ngx0 = RX0 + ((RX1 - RX0) - cell * cols) // 2\ngy0 = RTOP + 60\ntotal = cols * rows\nwomen_frac = values[0] / 100.0\nwomen_n = int(round(total * women_frac))\nwoman = subject_image('woman silhouette icon')\nman = subject_image('man silhouette icon')\nshown = int(total * reveal)\nfor idx in range(shown):\n    r, c = divmod(idx, cols)\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_woman = idx < women_n\n    img = woman if is_woman else man\n    col = HIGHLIGHT if is_woman else ACCENT\n    if img is not None:\n        paste(img, x + 4, y + 4, cell - 8, cell - 8)\n    else:\n        d.ellipse([x + 8, y + 8, x + cell - 8, y + cell - 8], fill=rgba(col, 220))\ntext(f\"{int(values[0])}% women\", RX0 + 20, RBOT - 70, size=32, color=HIGHLIGHT)\ntext(f\"{int(values[1])}% men\", RX1 - 220, RBOT - 70, size=32, color=ACCENT)"
           }
         },
         {
@@ -19052,9 +19049,33 @@
           "topic": "illiterate adults by region",
           "say": "And it's stuck in one place: Central and Southern Asia alone accounts for 347 million of them. The gap isn't global anymore, it's local.",
           "scene": {
-            "mechanic": "region-silhouette-stacks",
-            "concept": "stacks of person silhouettes rise from a world-map backdrop, one column per region, height set by millions of illiterate adults",
-            "code": "world = subject_image('world map silhouette')\nif world is not None:\n    paste(world, RX0 - 20, RTOP + 60, (RX1 - RX0) + 40, 560)\nperson = subject_image('person silhouette icon')\ncols = n\ngap = 30\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 70\nfor i in range(n):\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    x0 = int(RX0 + i * (gw + gap))\n    stack = max(1, int(frac * 8))\n    for t in range(stack):\n        y = base_y - (t + 1) * 66\n        if person is not None:\n            paste(person, x0, y, gw, 60)\n        else:\n            d.ellipse([x0, y, x0 + gw, y + 50], fill=rgba(WARN, 210))\n    text(str(int(v)) + 'M', x0 + gw // 2, base_y - stack * 66 - 44, size=28, color=HIGHLIGHT, center=True)\n    text(labels[i], x0 + gw // 2, base_y + 20, size=18, color=TEXT, center=True)\ntext('illiterate adults by region', (RX0 + RX1) // 2, RTOP + 30, size=32, color=WARN, center=True)\n"
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "crowded street South Asia",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "village market Sub-Saharan Africa",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "market street Middle East",
+                "data": {
+                  "value_from": "item:2"
+                }
+              }
+            ]
           }
         }
       ]
