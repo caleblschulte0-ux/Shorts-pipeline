@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260807",
+  "updated": "20260808",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -137,6 +137,67 @@
       "signature": "4c58349192b8",
       "last_seen": "20260807",
       "first_seen": "20260807"
+    },
+    "653acb99b575": {
+      "title": "Third-capture QA passes clips when QA itself crashes",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "third_capture/qa",
+      "files": [
+        "third_capture/clip_qa.py"
+      ],
+      "observation": "The full review gate promises NEVER to raise, but its outer exception handler appends 'qa internal error (failed open)' and then sets verdict='pass'. Any unexpected probe, contact-sheet, vision, or local QA failure inside that try block therefore authorizes the clip instead of withholding it.",
+      "proposal": "Fail closed on QA-internal errors: return verdict='fail' (or an explicit quarantine/error verdict that every caller treats as non-publishable), preserve the exception text as evidence, and add a regression test that forces an internal QA exception and proves the clip cannot advance.",
+      "evidence": "third_capture/clip_qa.py, review(): the docstring says 'QA-internal error fails open'; the outer except appends 'qa internal error (failed open)' and assigns verdict = 'pass'.",
+      "signature": "653acb99b575",
+      "last_seen": "20260808",
+      "first_seen": "20260808"
+    },
+    "75af24a46374": {
+      "title": "Dropping an overlength replay leaves its whoosh cue behind",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "third_capture/edit",
+      "files": [
+        "third_capture/auto_edit.py"
+      ],
+      "observation": "build_edl() adds a 'whoosh' SFX cue at the start of an appended replay. If the output exceeds 52 seconds, it removes replay segments but filters cues only where cue[1] != 'riser'. The replay never added a riser, so its whoosh survives after the replay segment is gone and can fire at the old end-of-timeline position.",
+      "proposal": "When removing replay segments, remove the cue(s) owned by that replay using the replay start time or explicit cue ownership instead of filtering the unrelated 'riser' label; add a unit test for an over-cap EDL with replay enabled.",
+      "evidence": "third_capture/auto_edit.py, build_edl(): the replay branch appends (out_t, 'whoosh'); the subsequent max_out cleanup deletes kind=='replay' segments but removes only cues whose label is 'riser'.",
+      "signature": "75af24a46374",
+      "last_seen": "20260808",
+      "first_seen": "20260808"
+    },
+    "cf263a770061": {
+      "title": "Hard novelty gate treats probe failure as a clean video",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "data_learning/director",
+      "files": [
+        "scripts/no_dull_beats.py",
+        "data_learning/DIRECTOR.md"
+      ],
+      "observation": "DIRECTOR.md defines NOVELTY as gate 0, says it is enforced rather than advised, and says a stale span rejects the render. novelty_check() obtains duration with ffprobe inside a broad exception handler, but on any exception it returns an empty list. Empty means no stale spans, so a broken/missing probe silently satisfies the hard gate.",
+      "proposal": "Represent 'could not evaluate novelty' separately from 'no novelty violations' and make the director fail closed when gate 0 cannot run. Persist the probe failure in the scorecard/report so a tooling outage is distinguishable from a genuinely clean film, with a test that forces ffprobe failure.",
+      "evidence": "data_learning/DIRECTOR.md, 'The hardline rule' and scorecard gate 0 require novelty enforcement; scripts/no_dull_beats.py, novelty_check(), catches any duration-probe exception and immediately returns [].",
+      "signature": "cf263a770061",
+      "last_seen": "20260808",
+      "first_seen": "20260808"
+    },
+    "79e94e61b5a9": {
+      "title": "Proof-mode ledger is evidence without an integrity boundary",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "third_capture/provenance",
+      "files": [
+        "third_capture/capture_cli.py"
+      ],
+      "observation": "capture_cli.py describes itself as the truthfulness layer whose replay and measured claims come from recorded artifacts. It hashes files that callers explicitly record, but the displayed shell_line is accepted directly from the caller, and save_ledger()/load_ledger() simply serialize and deserialize ordinary JSON. Nothing in this module binds argv, terminal events, shell_line, measurements, and referenced file hashes into one identity that a downstream renderer can verify before replay.",
+      "proposal": "Evolve proof mode toward a content-addressed proof manifest: derive or validate the displayed command from argv, hash a canonical ledger payload containing argv/events/measurements/artifact hashes, and require downstream composition to verify that identity before treating a capture as proof. Keep human-readable JSON, but make tampering or accidental post-capture edits detectable rather than trusted by convention.",
+      "evidence": "third_capture/capture_cli.py: capture() stores shell_line as shell_line or ' '.join(argv); record_file() hashes selected files; save_ledger() writes json.dumps(asdict(cap)); load_ledger() only json.loads() the file with no ledger-integrity verification.",
+      "signature": "79e94e61b5a9",
+      "last_seen": "20260808",
+      "first_seen": "20260808"
     }
   }
 }
