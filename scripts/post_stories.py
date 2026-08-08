@@ -213,6 +213,19 @@ def main() -> int:
                   f"skipping (use --force to repost)")
             continue
 
+        # Check the run's render budget FIRST — before the editorial gate.
+        # `pre_render_verdict` is an LLM call (rate-limited on the free Groq
+        # tier); running it on every backlog story ahead of this check burns
+        # the whole run's rate-limit budget reviewing stories that get
+        # deferred anyway, and starves the ones that would actually render
+        # (see the 2026-08-06/07 explainer.yml failures: "done: 0/5 ok"
+        # after dozens of "[groq] 429 rate-limited" retries). Deferred
+        # stories still get reviewed — on the run where they're actually up.
+        if args.max_per_run and rendered >= args.max_per_run:
+            print(f"[{slug}] deferred to next run (hit --max-per-run="
+                  f"{args.max_per_run})")
+            continue
+
         # PRE-RENDER editorial gate (#2 real data, #3 premise bar). A story that
         # can never publish — synthetic numbers, or a searchable-noun premise —
         # is HELD before we spend a render on it. Previews (--dry-run) still
@@ -226,11 +239,6 @@ def main() -> int:
                                 "error": "editorial_hold",
                                 "reasons": pre["reasons"]})
                 continue
-
-        if args.max_per_run and rendered >= args.max_per_run:
-            print(f"[{slug}] deferred to next run (hit --max-per-run="
-                  f"{args.max_per_run})")
-            continue
         rendered += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
