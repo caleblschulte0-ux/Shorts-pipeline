@@ -1,0 +1,19 @@
+{
+  "key": "h5n1_human_exposure_source",
+  "title": "Confirmed US human H5 bird flu cases by exposure source",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "April 2024-February 2025",
+  "source": {
+    "name": "A(H5) Bird Flu: Current Situation",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/bird-flu/situation-summary/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Of 70 total confirmed/probable US human H5 cases reported since April 2024, 41 were linked to exposure to sick dairy cows, 26 to exposure to infected poultry, and 3 had an undetermined source (omitted here as it isn't one of the two named exposure routes). One case was hospitalized and died; 94% of cases were mild.",
+  "points": [
+    {"label": "Dairy cow exposure", "value": 41},
+    {"label": "Poultry exposure", "value": 26}
+  ]
+}

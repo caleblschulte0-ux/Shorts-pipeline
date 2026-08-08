@@ -1,0 +1,21 @@
+{
+  "key": "global_literacy_rate_trend",
+  "title": "Global adult literacy rate (percent, ages 15+)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1976-2024 (selected years)",
+  "source": {
+    "name": "Literacy rate, adult total (% of people ages 15 and above)",
+    "publisher": "World Bank (UNESCO Institute for Statistics data)",
+    "url": "https://data.worldbank.org/indicator/SE.ADT.LITR.ZS",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Share of the world's adult population (15+) able to read and write a simple statement, per UNESCO Institute for Statistics estimates as compiled by the World Bank.",
+  "points": [
+    {"label": "1976", "value": 67.0, "period": "1976"},
+    {"label": "2000", "value": 81.1, "period": "2000"},
+    {"label": "2020", "value": 87.0, "period": "2020"},
+    {"label": "2024", "value": 87.7, "period": "2024"}
+  ]
+}

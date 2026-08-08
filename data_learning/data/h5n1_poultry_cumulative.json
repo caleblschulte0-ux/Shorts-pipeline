@@ -1,0 +1,22 @@
+{
+  "key": "h5n1_poultry_cumulative",
+  "title": "US poultry affected by H5N1 avian flu, cumulative since Feb 2022 (million birds)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2022-2026 (cumulative, annual snapshots)",
+  "source": {
+    "name": "Confirmed HPAI detections in commercial and backyard flocks",
+    "publisher": "U.S. Department of Agriculture, Animal and Plant Health Inspection Service (APHIS)",
+    "url": "https://www.aphis.usda.gov/livestock-poultry-disease/avian/avian-influenza/hpai-detections/commercial-backyard-flocks",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Cumulative U.S. poultry affected since the outbreak began Feb 2022, sampled at year-end (2022 ~58M full-year total per APHIS/CIDRAP; 2023 adds ~22M for a ~80M running total; 2024 running total ~148M per widely reported APHIS-sourced figure; 2025 running total ~179M per APHIS FY25 Q4 epidemiologic report (as of Sept 30, 2025); 2026 running total ~206M per May 2026 reporting). Snapshot dates vary through each year; figures rounded to the nearest million.",
+  "points": [
+    {"label": "2022", "value": 58, "period": "2022"},
+    {"label": "2023", "value": 80, "period": "2023"},
+    {"label": "2024", "value": 148, "period": "2024"},
+    {"label": "2025", "value": 179, "period": "2025"},
+    {"label": "2026", "value": 206, "period": "2026"}
+  ]
+}

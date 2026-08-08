@@ -1,0 +1,19 @@
+{
+  "key": "illiterate_adults_gender_share",
+  "title": "Share of the world's illiterate adults, by gender (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "International Literacy Day 2025 fact sheet",
+    "publisher": "UNESCO Institute for Statistics (UIS)",
+    "url": "https://www.unesco.org/sites/default/files/medias/fichiers/2025/09/ild-2025-factsheet.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Of the 739 million illiterate adults worldwide in 2024, 466 million are women (63%) and the remaining 273 million are men (37%), per UNESCO Institute for Statistics. The gender gap has narrowed from about 71% female in 2000 but has not closed.",
+  "points": [
+    {"label": "Women", "value": 63},
+    {"label": "Men", "value": 37}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "key": "data_breach_sector_2025",
+  "title": "US data breach compromises by industry sector, 2025",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2025 (annual)",
+  "source": {
+    "name": "2025 Annual Data Breach Report",
+    "publisher": "Identity Theft Resource Center (ITRC)",
+    "url": "https://www.idtheftcenter.org/post/2025-annual-data-breach-report-record-number-compromises/",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Number of confirmed 2025 data compromises by targeted industry sector. Financial Services was the most-breached sector for the year (739 compromises, up slightly from 733 in 2024), followed by Healthcare (534), Professional Services (478, up 39% year over year), and Manufacturing (299).",
+  "points": [
+    {"label": "Financial services", "value": 739},
+    {"label": "Healthcare", "value": 534},
+    {"label": "Professional services", "value": 478},
+    {"label": "Manufacturing", "value": 299}
+  ]
+}
