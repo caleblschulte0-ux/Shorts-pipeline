@@ -1,50 +1,16 @@
 [
   {
-    "topic": "Who's Actually Worth More: Nvidia or Apple?",
-    "title": "Who's Actually Worth More: Nvidia or Apple?",
+    "topic": "Disney+ Almost Caught Netflix. Then It Didn't.",
+    "title": "Disney+ Almost Caught Netflix. Then It Didn't.",
     "format": "graph_race",
-    "publish_at": "2026-08-07T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/kq4GcKmXlmM",
-    "error": null,
-    "elapsed_seconds": 101.6,
-    "package_path": "state/trending_packages/20260807/01_graph-nvidia-apple-trillion-crown.json",
-    "source": "brain",
-    "video_path": "output/daily_20260807-092536_who_s_actually_worth_more__nvidia_or_app.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "SpaceX Now Out-Launches the Entire Planet",
-    "title": "SpaceX Now Out-Launches the Entire Planet",
-    "format": "graph_race",
-    "publish_at": "2026-08-07T14:30:00Z",
+    "publish_at": "2026-08-08T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 55.2,
-    "package_path": "state/trending_packages/20260807/02_graph-spacex-vs-rest-of-world-launches.json",
+    "error": "showrunner_block: showrunner BLOCK: An honest, legible, well-sourced two-line race that does land its story \u2014 Disney+ peaking in 2022 and sliding while Netflix accelerates \u2014 but it opens on an empty chart building from zero and coasts to a frozen tail.",
+    "elapsed_seconds": 138.4,
+    "package_path": "state/trending_packages/20260808/01_graph-netflix-vs-disney-plus-subscribers.json",
     "source": "brain",
-    "video_path": "output/daily_20260807-092717_spacex_now_out_launches_the_entire_plane.mp4",
+    "video_path": "output/daily_20260808-092811_disney__almost_caught_netflix__then_it_d.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,57 +28,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "reason": "showrunner BLOCK: An honest, legible, well-sourced two-line race that does land its story \u2014 Disney+ peaking in 2022 and sliding while Netflix accelerates \u2014 but it opens on an empty chart building from zero and coasts to a frozen tail.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "Bitcoin vs. Gold: Which One Actually Wins?",
-    "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+    "topic": "Threads Went From Zero to Beating X",
+    "title": "Threads Went From Zero to Beating X",
     "format": "graph_race",
-    "publish_at": "2026-08-07T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/5g_6YVYSrTQ",
-    "error": null,
-    "elapsed_seconds": 133.2,
-    "package_path": "state/trending_packages/20260807/03_graph-bitcoin-vs-gold-price.json",
-    "source": "brain",
-    "video_path": "output/daily_20260807-092813_bitcoin_vs__gold__which_one_actually_win.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Sports Betting Just Beat the Las Vegas Strip",
-    "title": "Sports Betting Just Beat the Las Vegas Strip",
-    "format": "graph_race",
-    "publish_at": "2026-08-07T16:00:00Z",
+    "publish_at": "2026-08-08T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 58.0,
-    "package_path": "state/trending_packages/20260807/04_graph-sports-betting-vs-vegas-strip.json",
+    "error": "showrunner_block: showrunner BLOCK: The race itself is solid, but it opens on 2.5 seconds of empty black grid and then draws its hero series in grey \u2014 the weakest-contrast thing on screen.",
+    "elapsed_seconds": 118.0,
+    "package_path": "state/trending_packages/20260808/02_graph-threads-vs-bluesky-users.json",
     "source": "brain",
-    "video_path": "output/daily_20260807-093026_sports_betting_just_beat_the_las_vegas_s.mp4",
+    "video_path": "output/daily_20260808-093029_threads_went_from_zero_to_beating_x.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,26 +62,133 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "score": 5
+      "reason": "showrunner BLOCK: The race itself is solid, but it opens on 2.5 seconds of empty black grid and then draws its hero series in grey \u2014 the weakest-contrast thing on screen.",
+      "score": 61
     },
     "blocked": true
   },
   {
-    "topic": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
-    "title": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
-    "format": "reddit",
-    "publish_at": "2026-08-07T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: One garbled AI still is frozen over the entire story from 12s to the end \u2014 the visuals demonstrate none of the escalation the captions are carrying.",
-    "elapsed_seconds": 215.5,
-    "package_path": "state/trending_packages/20260807/05_reddit-entitled-parent-starting-lineup.json",
+    "topic": "The Switch Buried the PS5 in Sales",
+    "title": "The Switch Buried the PS5 in Sales",
+    "format": "graph_race",
+    "publish_at": "2026-08-08T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/7DSdOKQLb5Y",
+    "error": null,
+    "elapsed_seconds": 123.5,
+    "package_path": "state/trending_packages/20260808/03_graph-ps5-vs-nintendo-switch-sales.json",
     "source": "brain",
-    "video_path": "output/daily_20260807-093151_she_wanted_her_son_starting_every_game__.mp4",
+    "video_path": "output/daily_20260808-093227_the_switch_buried_the_ps5_in_sales.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 56.033,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Vinyl Beat CDs. Nobody Saw It Coming.",
+    "title": "Vinyl Beat CDs. Nobody Saw It Coming.",
+    "format": "graph_race",
+    "publish_at": "2026-08-08T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good race with a real crossover and a 1B payoff, undermined by a wrong-entity 'SEGA' logo badge glued to the CD line for the entire video.",
+    "elapsed_seconds": 122.6,
+    "package_path": "state/trending_packages/20260808/04_graph-vinyl-vs-cd-revenue.json",
+    "source": "brain",
+    "video_path": "output/daily_20260808-093430_vinyl_beat_cds__nobody_saw_it_coming_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good race with a real crossover and a 1B payoff, undermined by a wrong-entity 'SEGA' logo badge glued to the CD line for the entire video.",
+      "score": 74
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Sat On My Invoice For Two Months. I Sat On His Closing.",
+    "title": "He Sat On My Invoice For Two Months. I Sat On His Closing.",
+    "format": "reddit",
+    "publish_at": "2026-08-08T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: One AI photo is held motionless over the entire 40-second body, so the story's cause-and-effect beats are never actually shown \u2014 and the punchline lands over a half-black frame with no caption.",
+    "elapsed_seconds": 206.1,
+    "package_path": "state/trending_packages/20260808/05_reddit-unpaid-driveway-lien.json",
+    "source": "brain",
+    "video_path": "output/daily_20260808-093700_he_sat_on_my_invoice_for_two_months__i_s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 52.967,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: One AI photo is held motionless over the entire 40-second body, so the story's cause-and-effect beats are never actually shown \u2014 and the punchline lands over a half-black frame with no caption.",
+      "score": 49
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Was Sure I Worked There. I Let Her Believe It.",
+    "title": "She Was Sure I Worked There. I Let Her Believe It.",
+    "format": "reddit",
+    "publish_at": "2026-08-08T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story's entire illustration track is one frozen, unrelated AI portrait held for 37 seconds \u2014 the beats are never shown, only captioned.",
+    "elapsed_seconds": 213.0,
+    "package_path": "state/trending_packages/20260808/06_reddit-pharmacy-coupon-not-an-employee.json",
+    "source": "brain",
+    "video_path": "output/daily_20260808-094024_she_was_sure_i_worked_there__i_let_her_b.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.833,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -165,63 +204,29 @@
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: One garbled AI still is frozen over the entire story from 12s to the end \u2014 the visuals demonstrate none of the escalation the captions are carrying.",
-      "score": 53
+      "reason": "showrunner BLOCK: The story's entire illustration track is one frozen, unrelated AI portrait held for 37 seconds \u2014 the beats are never shown, only captioned.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "He Demanded A Price Match. We Called To Confirm It.",
-    "title": "He Demanded A Price Match. We Called To Confirm It.",
-    "format": "reddit",
-    "publish_at": "2026-08-07T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 The text below 'NAME MALICY' on the sign in the top half of the images is garbled and unreadable, which constitutes corrupt visual content as per the 'garbled' criteria.",
-    "elapsed_seconds": 144.4,
-    "package_path": "state/trending_packages/20260807/06_reddit-price-match-bluff-print-shop.json",
-    "source": "brain",
-    "video_path": "output/daily_20260807-093526_he_demanded_a_price_match__we_called_to_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 50.067,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.9
-    },
-    "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "The text below 'NAME MALICY' on the sign in the top half of the images is garbled and unreadable, which constitutes corrupt visual content as per the 'garbled' criteria."
-    },
-    "quarantined": true
-  },
-  {
-    "topic": "stake us",
+    "topic": "julian newman sister",
     "angle": null,
-    "publish_at": "2026-08-07T16:00:00Z",
+    "publish_at": "2026-08-08T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script \u2014 a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' \u2014 and there is no mascot performance or data demonstration anywhere.",
-    "elapsed_seconds": 498.7,
-    "title": "Stake Us Nightmare",
-    "package_path": "state/trending_packages/20260807-093734_auto_stake_us.json",
-    "video_path": "output/daily_20260807-093734_stake_us.mp4",
+    "error": "showrunner_block: showrunner BLOCK: This is a Subway Surfers slop reel: no mascot, no data demonstration, and its B-roll is unrelated news footage, a Tokyo street, a Netflix trailer, and a real family's memorial pin bolted onto a stranger's private-account story.",
+    "elapsed_seconds": 671.7,
+    "title": "Sister's Dark Secret Exposed",
+    "package_path": "state/trending_packages/20260808-094341_auto_julian_newman_sister.json",
+    "video_path": "output/daily_20260808-094341_julian_newman_sister.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 32.733,
+      "duration": 34.933,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -241,104 +246,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script \u2014 a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' \u2014 and there is no mascot performance or data demonstration anywhere.",
-      "score": 34
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "auto accident attorney",
-    "angle": null,
-    "publish_at": "2026-08-07T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.",
-    "elapsed_seconds": 426.5,
-    "title": "Fiance's Mom Exposed My Secrets",
-    "package_path": "state/trending_packages/20260807-094553_auto_auto_accident_attorney.json",
-    "video_path": "output/daily_20260807-094553_auto_accident_attorney.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 46.0,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.",
-      "score": 26
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "truck accident attorney",
-    "angle": null,
-    "publish_at": "2026-08-07T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a TTS story over unrelated stock car photos and Geometry Dash gameplay \u2014 there is no data demonstration and no mascot at all, so it doesn't meet the channel's bar in any dimension.",
-    "elapsed_seconds": 468.5,
-    "title": "Truck Crash Changed My Life",
-    "package_path": "state/trending_packages/20260807-095259_auto_truck_accident_attorney.json",
-    "video_path": "output/daily_20260807-095259_truck_accident_attorney.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.667,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.7
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is a TTS story over unrelated stock car photos and Geometry Dash gameplay \u2014 there is no data demonstration and no mascot at all, so it doesn't meet the channel's bar in any dimension.",
+      "reason": "showrunner BLOCK: This is a Subway Surfers slop reel: no mascot, no data demonstration, and its B-roll is unrelated news footage, a Tokyo street, a Netflix trailer, and a real family's memorial pin bolted onto a stranger's private-account story.",
       "score": 22
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "deportaci\u00f3n",
+    "topic": "bleach",
     "angle": null,
-    "publish_at": "2026-08-07T20:30:00Z",
+    "publish_at": "2026-08-08T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Two mid beats illustrate 'ICE' with literal photos of ice cubes and a frozen bubble \u2014 auto-fail junk imagery that reads as an unsupervised keyword grab.",
-    "elapsed_seconds": 524.2,
-    "title": "Deportation Nightmare",
-    "package_path": "state/trending_packages/20260807-100051_auto_deportaci\u00f3n.json",
-    "video_path": "output/daily_20260807-100051_deportaci\u00f3n.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The story beats are illustrated with auto-grabbed stock that has nothing to do with the narration \u2014 including 'LIAR' branded onto a real stranger's photo \u2014 and it ends on two seconds of blank beige wall.",
+    "elapsed_seconds": 402.9,
+    "title": "My Dad's Dark Secret",
+    "package_path": "state/trending_packages/20260808-095456_auto_bleach.json",
+    "video_path": "output/daily_20260808-095456_bleach.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 26.967,
+      "duration": 28.667,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -349,19 +276,39 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.4
+      "loudness_lufs": -12.9
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": "short"
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Two mid beats illustrate 'ICE' with literal photos of ice cubes and a frozen bubble \u2014 auto-fail junk imagery that reads as an unsupervised keyword grab.",
-      "score": 34
+      "reason": "showrunner BLOCK: The story beats are illustrated with auto-grabbed stock that has nothing to do with the narration \u2014 including 'LIAR' branded onto a real stranger's photo \u2014 and it ends on two seconds of blank beige wall.",
+      "score": 26
     },
     "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "fashion",
+    "angle": null,
+    "publish_at": "2026-08-08T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 27.6,
+    "backfill": true
+  },
+  {
+    "topic": "new york",
+    "angle": null,
+    "publish_at": "2026-08-08T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 24.7,
     "backfill": true
   }
 ]

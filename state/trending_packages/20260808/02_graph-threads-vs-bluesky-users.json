@@ -6,58 +6,21 @@
   "y_label": "Reported users",
   "duration": 13,
   "source": "Sources: Meta investor disclosures and reporting by TechCrunch, Social Media Today and eMarketer on Threads MAU (130M end of 2023, 275M Q4 2024, 400M Aug 2025, and passing X in daily mobile users by Jan 2026); Bluesky's own published user-count updates (41.4M by Dec 2025). 2026 values are conservative extrapolations since neither platform has published a full 2026 total.",
-  "years": [
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2021, 2022, 2023, 2024, 2025, 2026],
   "series": [
     {
       "name": "Threads",
       "color": "#4A4A4A",
       "icon": "Threads",
-      "values": [
-        0,
-        0,
-        130000000,
-        275000000,
-        400000000,
-        440000000
-      ]
+      "values": [0, 0, 130000000, 275000000, 400000000, 440000000]
     },
     {
       "name": "Bluesky",
       "color": "#1185FE",
       "icon": "Bluesky",
-      "values": [
-        0,
-        0,
-        3000000,
-        25000000,
-        41000000,
-        43000000
-      ]
+      "values": [0, 0, 3000000, 25000000, 41000000, 43000000]
     }
   ],
-  "hashtags": [
-    "threads",
-    "bluesky",
-    "socialmedia",
-    "twitter",
-    "elonmusk",
-    "zuckerberg",
-    "app",
-    "socialmediawar",
-    "tech",
-    "instagram",
-    "xapp",
-    "newapp",
-    "shorts",
-    "trending",
-    "fyp"
-  ],
+  "hashtags": ["threads", "bluesky", "socialmedia", "twitter", "elonmusk", "zuckerberg", "app", "socialmediawar", "tech", "instagram", "xapp", "newapp", "shorts", "trending", "fyp"],
   "music_vibe": "hiphop"
 }
