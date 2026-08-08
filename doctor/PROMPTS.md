@@ -1,11 +1,30 @@
-# The two scheduled-task prompts
+# Every scheduled task's prompt is ONE LINE — the directions live HERE
 
-The doctor is driven by two scheduled tasks that live **inside the apps** —
-one in ChatGPT, one in Claude. GitHub does not wake either of them. Paste
-these in verbatim; they are written to be standalone, because each firing
-starts with no memory of the last one.
+Operator ruling 2026-08-07: *"the scheduled task should be nothing more
+than go look at the directions at this part of the report."* So the app
+prompts below are POINTERS, pasted once and never again. The actual
+contracts are the numbered sections of THIS FILE, read fresh from `main`
+at every firing — updating this file updates every agent's behavior with
+zero re-pasting. (This is the no-second-source-of-truth rule applied to
+prompts: the 08-06/08-07 morning misses happened because the app prompt
+and the repo file disagreed, and a session obeys its prompt.)
 
-Keep this file in sync if the contract in `doctor/README.md` changes.
+## PASTE THESE — one line each, once, done forever
+
+| App task | Paste exactly this |
+|---|---|
+| Claude — morning routine (~4:20 AM CT) | `Read doctor/PROMPTS.md section 3 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
+| ChatGPT — "Shorts Daily Media" (6:00 AM CT) | `Read doctor/PROMPTS.md section 4 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
+| ChatGPT — "Shorts Daily Finalizer" (7:00 AM CT) | `Read doctor/PROMPTS.md section 5 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
+| ChatGPT — "Shorts Doctor" (daily read) | `Read doctor/PROMPTS.md section 1 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY.` |
+| Claude — "Shorts Doctor triage" | `Read doctor/PROMPTS.md section 2 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY.` |
+
+The two doctor tasks (1 and 2) may already carry their full prompts from
+the first setup — that still works; the pointer versions just mean you
+never have to touch them again when the contract evolves.
+
+Sections below are the CONTRACTS the pointers execute. Keep them in sync
+with `doctor/README.md` and `exchange/README.md` when those change.
 
 ---
 
