@@ -1,0 +1,26 @@
+{
+  "format": "graph_race",
+  "slug": "graph-vinyl-vs-cd-revenue",
+  "title": "Vinyl Beat CDs. Nobody Saw It Coming.",
+  "hook": "The comeback nobody predicted.",
+  "y_label": "U.S. recorded music revenue",
+  "duration": 13,
+  "source": "Sources: RIAA Year-End Music Industry Revenue Reports, 2018-2025 (U.S. physical-format revenue, CD albums vs vinyl LP/EP). Vinyl overtook CD revenue in 2020 for the first time since 1986 and has kept extending its lead since.",
+  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "CD",
+      "color": "#999999",
+      "icon": "",
+      "values": [698300000, 615000000, 483300000, 584000000, 483000000, 537000000, 541100000, 312400000]
+    },
+    {
+      "name": "Vinyl",
+      "color": "#C9A227",
+      "icon": "",
+      "values": [268400000, 321600000, 626200000, 679400000, 799800000, 906200000, 954400000, 1040000000]
+    }
+  ],
+  "hashtags": ["vinyl", "cds", "music", "recordstore", "riaa", "musicindustry", "nostalgia", "records", "cdcollection", "turntable", "physicalmedia", "musichistory", "shorts", "trending", "fyp"],
+  "music_vibe": "cinematic"
+}

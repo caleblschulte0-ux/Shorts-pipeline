@@ -1,0 +1,80 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "reddit-unpaid-driveway-lien",
+  "title": "He Sat On My Invoice For Two Months. I Sat On His Closing.",
+  "hashtags": [
+    "prorevenge",
+    "maliciouscompliance",
+    "contractor",
+    "smallbusiness",
+    "karma",
+    "payup",
+    "construction",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "pettyrevenge"
+  ],
+  "script": "I paved a driveway for a general contractor who promised payment net-30, then went quiet for two months once the concrete cured. Emails ignored, calls ignored, my invoice just sitting there while he quietly closed on selling that exact property for eight hundred grand. I still had the signed work order and a state law most GCs forget: an unpaid subcontractor can file a mechanic's lien directly against the property, buyer be damned. So I filed it three days before closing. The title company found it in escrow and froze the whole sale. His buyer's lawyer called him screaming, and my invoice that had been in review for two months got paid in full within four hours, plus the statutory penalty interest I'd quietly been racking up the whole time. He tried playing it off as a misunderstanding on the phone. I told him the lien release would go out the second the wire cleared, not a minute before. It cleared in nine minutes.",
+  "shots": [
+    {
+      "phrase": "paved a driveway for a general contractor",
+      "query": "driveway paving construction"
+    },
+    {
+      "phrase": "went quiet for two months",
+      "query": "phone silence ignored calls"
+    },
+    {
+      "phrase": "signed work order",
+      "query": "construction contract paperwork"
+    },
+    {
+      "phrase": "file a mechanic's lien directly against the property",
+      "query": "legal document filing office"
+    },
+    {
+      "phrase": "filed it three days before closing",
+      "query": "courthouse filing clerk"
+    },
+    {
+      "phrase": "found it in escrow and froze the whole sale",
+      "query": "real estate closing frozen"
+    },
+    {
+      "phrase": "buyer's lawyer called him screaming",
+      "query": "angry phone call office"
+    },
+    {
+      "phrase": "paid in full within four hours",
+      "query": "bank wire transfer"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "eight hundred grand",
+      "text": "$800K SALE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "file a mechanic's lien",
+      "text": "LIEN FILED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "paid in full within four hours",
+      "text": "PAID IN 4 HOURS",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "It cleared in nine minutes",
+      "text": "9 MINUTES",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}
