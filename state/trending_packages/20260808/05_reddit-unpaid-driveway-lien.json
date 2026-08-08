@@ -23,7 +23,12 @@
   "shots": [
     {
       "phrase": "paved a driveway for a general contractor",
-      "query": "driveway paving construction"
+      "query": "driveway paving construction",
+      "pin_query": "general contractor",
+      "pin_context": "construction company builder",
+      "news_query": "general contractor",
+      "news_angle": "The general contractor failed to pay the invoice for two months after the work was completed.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Top_400_construction_companies_in_the_United_States.webp/1280px-Top_400_construction_companies_in_the_United_States.webp.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     },
     {
       "phrase": "went quiet for two months",
@@ -35,7 +40,12 @@
     },
     {
       "phrase": "file a mechanic's lien directly against the property",
-      "query": "legal document filing office"
+      "query": "legal document filing office",
+      "pin_query": "mechanic's lien",
+      "pin_context": "legal document property law",
+      "news_query": "mechanic's lien",
+      "news_angle": "The unpaid subcontractor filed a mechanic's lien against the property to secure payment.",
+      "image_url": "https://live.staticflickr.com/6091/6372375697_7cef21e303_b.jpg"
     },
     {
       "phrase": "filed it three days before closing",

@@ -23,15 +23,30 @@
   "shots": [
     {
       "phrase": "cornered me by the pharmacy counter",
-      "query": "pharmacy store aisle"
+      "query": "pharmacy store aisle",
+      "pin_query": "pharmacy counter",
+      "pin_context": "store retail pharmacy",
+      "news_query": "pharmacy counter",
+      "news_angle": "A woman corners the narrator by the pharmacy counter, mistaking him for an employee.",
+      "image_url": "https://live.staticflickr.com/3447/3821327489_08a458cf47_b.jpg"
     },
     {
       "phrase": "holding a crumpled coupon",
-      "query": "hand holding coupon"
+      "query": "hand holding coupon",
+      "pin_query": "coupon",
+      "pin_context": "discount voucher paper",
+      "news_query": "coupon",
+      "news_angle": "The woman insists the narrator ring up her expired coupon at the pharmacy counter.",
+      "image_url": "https://live.staticflickr.com/4036/4589903824_03a475f73b_m.jpg"
     },
     {
       "phrase": "picking up my own prescription",
-      "query": "pharmacy counter customer"
+      "query": "pharmacy counter customer",
+      "pin_query": "prescription",
+      "pin_context": "medical medication",
+      "news_query": "prescription",
+      "news_angle": "The narrator is at the pharmacy to pick up his prescription, not to work.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Drug_Prescription_form.jpg/1280px-Drug_Prescription_form.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
     },
     {
       "phrase": "radioed my invisible manager",

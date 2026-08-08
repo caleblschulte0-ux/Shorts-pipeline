@@ -6,21 +6,64 @@
   "y_label": "Global subscribers",
   "duration": 13,
   "source": "Sources: Netflix and Disney quarterly investor reports as compiled by Business of Apps and Demandsage; year-end subscriber counts 2019-2026. Disney+ 2024-2026 figures reflect Disney's 2024 sale of its majority stake in Star India/Hotstar, which removed those subscribers from the reported total.",
-  "years": [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
   "series": [
     {
       "name": "Netflix",
       "color": "#E50914",
       "icon": "Netflix",
-      "values": [167000000, 204000000, 222000000, 231000000, 260000000, 302000000, 316000000, 325000000]
+      "values": [
+        167000000,
+        204000000,
+        222000000,
+        231000000,
+        260000000,
+        302000000,
+        316000000,
+        325000000
+      ]
     },
     {
       "name": "Disney+",
       "color": "#113CCF",
       "icon": "Disney",
-      "values": [24000000, 87000000, 118000000, 164000000, 150000000, 125000000, 128000000, 132000000]
+      "values": [
+        24000000,
+        87000000,
+        118000000,
+        164000000,
+        150000000,
+        125000000,
+        128000000,
+        132000000
+      ]
     }
   ],
-  "hashtags": ["netflix", "disneyplus", "streamingwars", "streaming", "hbomax", "subscribers", "entertainment", "cordcutting", "hollywood", "media", "tvindustry", "bingewatch", "shorts", "trending", "fyp"],
+  "hashtags": [
+    "netflix",
+    "disneyplus",
+    "streamingwars",
+    "streaming",
+    "hbomax",
+    "subscribers",
+    "entertainment",
+    "cordcutting",
+    "hollywood",
+    "media",
+    "tvindustry",
+    "bingewatch",
+    "shorts",
+    "trending",
+    "fyp"
+  ],
   "music_vibe": "cinematic"
 }
