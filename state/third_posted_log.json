@@ -2849,13 +2849,54 @@
       "ts": "2026-08-08T11:47:25.697495+00:00"
     },
     "clip-20260808-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/PiliableGorgeousKoupreyDeIlluminati-VBUBLI-Etnp8ySPf",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/mM5tJDVUx1k",
       "title": "Kaicenat: Kai Cenat Loses It Screaming At Him Not To Die",
       "kind": "twitch_clip",
-      "ts": "2026-08-08T11:52:24.131864+00:00",
+      "ts": "2026-08-08T11:52:27.889387+00:00",
+      "uploaded_at": "2026-08-08T11:52:27.889407+00:00",
+      "publish_at": "2026-08-08T18:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PiliableGorgeousKoupreyDeIlluminati-VBUBLI-Etnp8ySPf",
+      "streamer": "kaicenat",
+      "series": "rage",
+      "hook": "HE'S SCREAMING AT HIM NOT TO DIE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8402,
+      "banger": 0.5,
+      "cut": {
+        "start": 12.3,
+        "end": 49.5
+      },
+      "director_cut": true
+    },
+    "rejected-softelegantpoxdoritoschip-fa3rqwdmzqns9fd8": {
+      "source_url": "https://www.twitch.tv/forsen/clip/SoftElegantPoxDoritosChip-Fa3rqwDmZqnS9Fd8",
+      "streamer": "forsen",
+      "title": "Forsen meets Hassan",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (game cutscene, no real reaction)",
+      "ts": "2026-08-08T11:55:09.696788+00:00"
+    },
+    "rejected-wittybovinesquirrelbabyrage-jlwflqkpfy-tpdk1": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WittyBovineSquirrelBabyRage-jlwfLqkpFY-tPDk1",
+      "streamer": "xqc",
+      "title": "take take",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (talk about reaction, no visible event)",
+      "ts": "2026-08-08T11:56:05.646417+00:00"
+    },
+    "clip-20260808-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/StrongGiantVelociraptorHeyGirl-pec1eVI2TTPzY6m1",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Gets Caught Lookin' And It's Instant Chaos",
+      "kind": "twitch_clip",
+      "ts": "2026-08-08T12:52:01.666653+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
