@@ -2934,6 +2934,25 @@
         "end": 10.7
       },
       "director_cut": true
+    },
+    "rejected-onerousagitatedpoultrydxcat-vsczig8opi6yvqeb": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/OnerousAgitatedPoultryDxCat-vsczIg8oPi6YVqeb",
+      "streamer": "sodapoppin",
+      "title": "Unusual drawing of a cat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just walking to view a drawing)",
+      "ts": "2026-08-09T11:40:15.088506+00:00"
+    },
+    "clip-20260809-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SucculentKnottySandwichThunBeast-PKsGRmX4AvQm7Snl",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe It After Speed Dies",
+      "kind": "twitch_clip",
+      "ts": "2026-08-09T12:12:02.580625+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
