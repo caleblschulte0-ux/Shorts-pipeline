@@ -6,63 +6,20 @@
   "y_label": "Active satellites in orbit",
   "duration": 13,
   "source": "Source: Jonathan McDowell's satellite catalog / KeepTrack.space tracking data, active satellites by year, 2019-2026. SpaceX launched Starlink's first batch of 60 satellites in May 2019; the constellation passed 10,000 active satellites in 2026. Figures approximate.",
-  "years": [
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026],
   "series": [
     {
       "name": "Starlink",
       "color": "#2fa8e0",
       "icon": "SpaceX",
-      "values": [
-        120,
-        900,
-        1900,
-        3300,
-        5400,
-        6700,
-        9900,
-        10900
-      ]
+      "values": [120, 900, 1900, 3300, 5400, 6700, 9900, 10900]
     },
     {
       "name": "Rest of World",
       "color": "#c0c0c0",
-      "values": [
-        2100,
-        2600,
-        3000,
-        3600,
-        4200,
-        4700,
-        5100,
-        5400
-      ]
+      "values": [2100, 2600, 3000, 3600, 4200, 4700, 5100, 5400]
     }
   ],
-  "hashtags": [
-    "starlink",
-    "spacex",
-    "satellites",
-    "elonmusk",
-    "space",
-    "orbit",
-    "internet",
-    "technology",
-    "satelliteinternet",
-    "spacetech",
-    "astronomy",
-    "science",
-    "trending",
-    "shorts",
-    "fyp"
-  ],
+  "hashtags": ["starlink", "spacex", "satellites", "elonmusk", "space", "orbit", "internet", "technology", "satelliteinternet", "spacetech", "astronomy", "science", "trending", "shorts", "fyp"],
   "music_vibe": "cinematic"
 }

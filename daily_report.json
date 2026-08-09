@@ -1,4 +1,242 @@
-{
-  "skipped": true,
-  "recent_posts": 1
-}
+[
+  {
+    "topic": "Nvidia's Gaming Empire Got Swallowed By AI",
+    "title": "Nvidia's Gaming Empire Got Swallowed By AI",
+    "format": "graph_race",
+    "publish_at": "2026-08-09T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest, well-paced race with a genuinely great payoff shape \u2014 but it opens on a mostly-black frame because the axis is pre-scaled to headroom the data won't reach for 3 more seconds.",
+    "elapsed_seconds": 100.6,
+    "package_path": "state/trending_packages/20260809/01_graph-nvidia-datacenter-vs-gaming.json",
+    "source": "brain",
+    "video_path": "output/daily_20260809-093004_nvidia_s_gaming_empire_got_swallowed_by_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, honest, well-paced race with a genuinely great payoff shape \u2014 but it opens on a mostly-black frame because the axis is pre-scaled to headroom the data won't reach for 3 more seconds.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The UK Killed Coal In One Decade",
+    "title": "The UK Killed Coal In One Decade",
+    "format": "graph_race",
+    "publish_at": "2026-08-09T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 62.0,
+    "package_path": "state/trending_packages/20260809/02_graph-uk-coal-vs-wind-power.json",
+    "source": "brain",
+    "video_path": "output/daily_20260809-093144_the_uk_killed_coal_in_one_decade.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Starlink Now Outnumbers Every Other Satellite",
+    "title": "Starlink Now Outnumbers Every Other Satellite",
+    "format": "graph_race",
+    "publish_at": "2026-08-09T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/dDJvKOfOg80",
+    "error": null,
+    "elapsed_seconds": 121.9,
+    "package_path": "state/trending_packages/20260809/03_graph-starlink-vs-rest-of-world-satellites.json",
+    "source": "brain",
+    "video_path": "output/daily_20260809-093246_starlink_now_outnumbers_every_other_sate.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The $800 Loophole That Shipped A Billion Boxes",
+    "title": "The $800 Loophole That Shipped A Billion Boxes",
+    "format": "graph_race",
+    "publish_at": "2026-08-09T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The collapse payoff genuinely lands, but the first three seconds are a hairline stub in a mostly black frame because the axes are pre-scaled to the endgame.",
+    "elapsed_seconds": 112.7,
+    "package_path": "state/trending_packages/20260809/04_graph-de-minimis-packages-boom-bust.json",
+    "source": "brain",
+    "video_path": "output/daily_20260809-093448_the__800_loophole_that_shipped_a_billion.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The collapse payoff genuinely lands, but the first three seconds are a hairline stub in a mostly black frame because the axes are pre-scaled to the endgame.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Made Every Favor Need His Sign-Off. So I Sent Every Favor.",
+    "title": "He Made Every Favor Need His Sign-Off. So I Sent Every Favor.",
+    "format": "reddit",
+    "publish_at": "2026-08-09T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The back three quarters of the video is one garbled AI sign-holder image frozen over a gameplay panel that fades to black \u2014 the story is never visually demonstrated after the hook.",
+    "elapsed_seconds": 184.4,
+    "package_path": "state/trending_packages/20260809/05_reddit-sign-off-flood.json",
+    "source": "brain",
+    "video_path": "output/daily_20260809-093709_he_made_every_favor_need_his_sign_off__s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 45.567,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The back three quarters of the video is one garbled AI sign-holder image frozen over a gameplay panel that fades to black \u2014 the story is never visually demonstrated after the hook.",
+      "score": 53
+    },
+    "blocked": true
+  },
+  {
+    "topic": "He Kept Stealing My WiFi. I Just Started Throttling It.",
+    "title": "He Kept Stealing My WiFi. I Just Started Throttling It.",
+    "format": "reddit",
+    "publish_at": "2026-08-09T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['stealing my WiFi for a year', 'throttled his device to dial-up speeds', 'three hours every evening', 'his internet had gotten terrible lately', 'bought his own plan', 'my network usage dropped in half']",
+    "elapsed_seconds": 3.6,
+    "package_path": "state/trending_packages/20260809/06_reddit-wifi-throttle.json",
+    "source": "brain",
+    "quarantined": true
+  },
+  {
+    "topic": "internet",
+    "angle": null,
+    "publish_at": "2026-08-09T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['hacked and all my posts', 'seeing a therapist', 'using them against me', 'build a case against him', 'facing a lawsuit', '12 million followers', 'anxious about his future']",
+    "elapsed_seconds": 6.0,
+    "title": "Internet Exposed My Dark Secret",
+    "package_path": "state/trending_packages/20260809-094000_auto_internet.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "alaskaair",
+    "angle": null,
+    "publish_at": "2026-08-09T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['dream honeymoon', '50% off award ticket', '12,000 more points', 'same flight', '20,000 points less', \"if I'll ever get my points back\"]",
+    "elapsed_seconds": 5.4,
+    "title": "Alaska Airlines Ruined My Honeymoon",
+    "package_path": "state/trending_packages/20260809-094005_auto_alaskaair.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "lottery",
+    "angle": null,
+    "publish_at": "2026-08-09T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['12 million dollars', '32, forged my name', 'sued by my own sister', 'struggling to pay my bills', 'brand new house in East Hartford', 'fake texts, pretending to be a lottery official', 'shattered relationship with my own flesh and blood']",
+    "elapsed_seconds": 6.1,
+    "title": "$12 Million Lottery Secret",
+    "package_path": "state/trending_packages/20260809-094011_auto_lottery.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "car",
+    "angle": null,
+    "publish_at": "2026-08-09T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['My Sister', 'brand new car', 'autopilot feature', 'police report', '12 thousand dollars', 'deep financial trouble', 'trying to sell my car']",
+    "elapsed_seconds": 35.9,
+    "title": "My Sister Stole My Car",
+    "package_path": "state/trending_packages/20260809-094022_auto_car.json",
+    "quarantined": true,
+    "backfill": true
+  }
+]
