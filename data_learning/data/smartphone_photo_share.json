@@ -1,0 +1,19 @@
+{
+  "key": "smartphone_photo_share",
+  "title": "Share of photos taken on a smartphone vs. any other camera",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Global photo capture-device share",
+    "publisher": "Photutorial / industry camera-vs-smartphone photo tracking",
+    "url": "https://photutorial.com/photos-statistics/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "As of 2024, an estimated 94% of all photos taken worldwide are captured on a smartphone, up from about 92.5% in 2023; the remaining 6% come from dedicated cameras and other devices.",
+  "points": [
+    {"label": "Smartphone", "value": 94},
+    {"label": "Any other camera", "value": 6}
+  ]
+}

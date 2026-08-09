@@ -19079,6 +19079,248 @@
           }
         }
       ]
+    },
+    {
+      "slug": "baby-name-diversity",
+      "title": "The #1 Baby Name Isn't What It Used To Be",
+      "hook": "The most popular baby name isn't that popular anymore.",
+      "closing": "Somewhere, a baby named Kaeleigh-with-an-h is thriving.",
+      "question": "How common is your name in your class? Comment below.",
+      "caption": "In 1947, 1 in 18 baby girls was named Linda. Today's #1 name doesn't even crack 1 in 100. Names have basically gone extinct as a shared thing... How common is your name? \ud83d\udc47",
+      "hashtags": [
+        "babynames",
+        "names",
+        "demographics",
+        "culture",
+        "socialsecurity",
+        "uniquenames",
+        "parenting",
+        "genalpha",
+        "genz",
+        "society",
+        "popculture",
+        "statistics",
+        "data",
+        "trending",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "baby_name_top_share",
+          "params": {
+            "file": "baby_name_top_share.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 \u00b7 THE #1 NAME",
+          "topic": "top baby name share",
+          "say": "In 1947, 5.48% of baby girls were named Linda, about 1 in 18. Today's top name, Olivia, is just 0.83%, or 1 in 120."
+        },
+        {
+          "source": "offline",
+          "key": "baby_name_top10_concentration",
+          "params": {
+            "file": "baby_name_top10_concentration.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 NOT JUST ONE NAME",
+          "topic": "top 10 names' share",
+          "say": "It's not just one name. In the 1950s, the ten most popular girls' names covered 21% of all babies. By 2024, that dropped to 6.5%."
+        },
+        {
+          "source": "offline",
+          "key": "baby_name_outside_top1000",
+          "params": {
+            "file": "baby_name_outside_top1000.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 NAMES SCATTERED",
+          "topic": "names outside the top 1,000",
+          "say": "So parents scattered. In 2025, 28% of babies got a name that isn't even in the top 1,000 \u2014 names basically stopped being shared."
+        }
+      ]
+    },
+    {
+      "slug": "body-renewal-clock",
+      "title": "How Much Of 'You' Is Actually New",
+      "hook": "You're not the same person you were a year ago.",
+      "closing": "So technically, your skin is younger than your phone.",
+      "question": "How old do you think your oldest cells actually are? Guess below.",
+      "caption": "Your stomach rebuilds itself every 5 days. Your skeleton takes 10 years. But scientists carbon-dated your brain cells and found something wild... How old do you think your oldest cells are? \ud83d\udc47",
+      "hashtags": [
+        "humanbody",
+        "biology",
+        "cellbiology",
+        "science",
+        "health",
+        "bodyfacts",
+        "neuroscience",
+        "anatomy",
+        "sciencefacts",
+        "wellness",
+        "didyouknow",
+        "biologyfacts",
+        "humananatomy",
+        "trending",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cell_renewal_speed",
+          "params": {
+            "file": "cell_renewal_speed.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "role": "1 \u00b7 RENEWAL SPEED",
+          "topic": "how fast tissue renews",
+          "say": "Your stomach lining rebuilds every 5 days. Skin, every 28 days. Red blood cells, about 120 days. Your skeleton, roughly 10 years."
+        },
+        {
+          "source": "offline",
+          "key": "cell_replacement_cumulative",
+          "params": {
+            "file": "cell_replacement_cumulative.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 IT ADDS UP",
+          "topic": "cumulative cells replaced",
+          "say": "About 330 billion cells get replaced every day. Add that up, and in just 100 days your body has swapped out 30 trillion cells."
+        },
+        {
+          "source": "offline",
+          "key": "neuron_vs_skin_age",
+          "params": {
+            "file": "neuron_vs_skin_age.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 EXCEPT...",
+          "topic": "neurons vs skin age",
+          "say": "But not everything renews. Carbon-dating shows your brain's neurons are basically as old as you are, while your skin fully replaces in weeks."
+        }
+      ]
+    },
+    {
+      "slug": "insect-planet",
+      "title": "Earth Is Actually The Planet Of The Bugs",
+      "hook": "You are massively outnumbered right now.",
+      "closing": "Somewhere right now, an unnamed beetle is judging you.",
+      "question": "What's the weirdest bug you've ever seen? Tell me below.",
+      "caption": "About 80% of all animal species on Earth are insects. Beetles alone outnumber every mammal and bird species combined. And most of them haven't even been named yet... What's the weirdest bug you've seen? \ud83d\udc47",
+      "hashtags": [
+        "insects",
+        "biodiversity",
+        "entomology",
+        "beetles",
+        "nature",
+        "wildlife",
+        "sciencefacts",
+        "biology",
+        "animalkingdom",
+        "didyouknow",
+        "naturefacts",
+        "ecology",
+        "species",
+        "trending",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "insect_share_of_animal_species",
+          "params": {
+            "file": "insect_share_of_animal_species.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 WHO'S HERE",
+          "topic": "insects' share of animal species",
+          "say": "About 80% of every animal species on Earth is an insect. Every mammal, bird, fish, and reptile combined makes up the rest."
+        },
+        {
+          "source": "offline",
+          "key": "beetle_vs_vertebrate_species_count",
+          "params": {
+            "file": "beetle_vs_vertebrate_species_count.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 \u00b7 JUST ONE GROUP",
+          "topic": "beetles vs mammals and birds",
+          "say": "Beetles alone account for an estimated 1.5 million species \u2014 more than all 6,400 mammal species and all 11,000 bird species combined."
+        },
+        {
+          "source": "offline",
+          "key": "insect_species_described_vs_estimated",
+          "params": {
+            "file": "insect_species_described_vs_estimated.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 STILL UNNAMED",
+          "topic": "described vs estimated insect species",
+          "say": "And we've only actually named about 1 million insect species so far. Scientists estimate 5.5 million exist \u2014 most still nameless."
+        }
+      ]
+    },
+    {
+      "slug": "photo-flood",
+      "title": "We Take More Photos Every 2 Minutes Than All Of History",
+      "hook": "We just out-photographed the entire 1800s.",
+      "closing": "Somehow we still don't have a good photo of Bigfoot.",
+      "question": "How many photos are actually on your phone right now? Guess below.",
+      "caption": "The world takes more photos every 2 minutes than existed in the entire 1800s. 94% come from a phone. Here's why cameras basically disappeared while photos exploded... How many are on your phone? \ud83d\udc47",
+      "hashtags": [
+        "photography",
+        "smartphone",
+        "technology",
+        "photos",
+        "digitalculture",
+        "statistics",
+        "tech",
+        "phonecamera",
+        "socialmedia",
+        "datafacts",
+        "sciencefacts",
+        "trending",
+        "shorts",
+        "didyouknow",
+        "camera"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "photos_per_2min_vs_1800s",
+          "params": {
+            "file": "photos_per_2min_vs_1800s.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 \u00b7 2 MINUTES",
+          "topic": "photos every 2 minutes vs the 1800s",
+          "say": "Right now, the world takes about 7.4 million photos every 2 minutes. The entire 1800s produced somewhere around 5 million photos, total."
+        },
+        {
+          "source": "offline",
+          "key": "global_photo_count_trend",
+          "params": {
+            "file": "global_photo_count_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "2 \u00b7 STILL CLIMBING",
+          "topic": "global photo count by year",
+          "say": "It's still climbing. Global photo counts went from about 1.2 trillion in 2017 to 1.8 trillion in 2023, and past 2.1 trillion in 2025."
+        },
+        {
+          "source": "offline",
+          "key": "smartphone_photo_share",
+          "params": {
+            "file": "smartphone_photo_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 \u00b7 WHY",
+          "topic": "smartphone share of all photos",
+          "say": "Here's why: 94% of all photos now come from a phone in someone's pocket, not a camera anyone had to plan around."
+        }
+      ]
     }
   ],
   "videos": [

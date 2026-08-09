@@ -1,0 +1,19 @@
+{
+  "key": "insect_species_described_vs_estimated",
+  "title": "Insect species described so far vs. estimated to actually exist",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "current taxonomy",
+  "source": {
+    "name": "Stork (2018), Annual Review of Entomology",
+    "publisher": "Annual Reviews / peer-reviewed entomology research",
+    "url": "https://www.annualreviews.org/doi/10.1146/annurev-ento-020117-043348",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Roughly 1 million insect species have been formally described and named; Stork (2018) estimates the true global total at about 5.5 million species -- meaning the large majority of insect species have not yet been discovered or named.",
+  "points": [
+    {"label": "Described so far", "value": 1},
+    {"label": "Estimated to exist", "value": 5.5}
+  ]
+}
