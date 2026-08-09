@@ -1,0 +1,58 @@
+{
+  "schema": "chatgpt-takeover-explainer/v1",
+  "production_date": "20260809",
+  "channel": "explainer",
+  "job": "rewrite_words",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "source_bundle": "exchange/bundles/20260809/bundle.json",
+  "expected": 4,
+  "candidates_supplied": 3,
+  "completed": 3,
+  "missing": 1,
+  "protected_data_unchanged": true,
+  "rewrites": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Famine Forecast Lost: Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s famine forecast aged badly.",
+      "closing": "The world did not stumble into more food. It quietly grew its way out of the famine era.",
+      "question": "Which shift matters more: school, grain, or land?",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher. Quietly, school kept moving.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ]
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "The Energy Source Nobody Names Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled — and it isn't solar or wind.",
+      "closing": "A third of the world's energy now comes from what we once treated as leftovers.",
+      "question": "Which change hits hardest: fuel, power, or waste?",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it hit 1,652 Mt CO2e — 1.8 times higher."
+      ]
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating forever. The data says it didn't.",
+      "closing": "The planet is still growing. It has simply, quietly, hit the brakes.",
+      "question": "Which shift surprised you most: rural, city, or growth?",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that earlier pace."
+      ]
+    }
+  ],
+  "remaining_work": [
+    {
+      "count": 1,
+      "reason": "The immutable bundle supplies only three deterministic World Bank stories for protected-field-safe rewriting, while the frozen channel target is four. ChatGPT may not fabricate or stock the Explainer queue; the registered story_forge/specialized workflow must supply the fourth."
+    }
+  ],
+  "finalizer_action": "Run punchup_guard against all three rewrites, place accepted objects into response.json authored_explainer, invoke the registered Explainer workflow to supply/render the fourth target, and preserve the frozen target of four."
+}
