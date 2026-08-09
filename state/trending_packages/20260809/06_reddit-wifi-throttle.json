@@ -2,22 +2,80 @@
   "subreddit": "pettyrevenge",
   "slug": "reddit-wifi-throttle",
   "title": "He Kept Stealing My WiFi. I Just Started Throttling It.",
-  "hashtags": ["pettyrevenge", "wifi", "neighbor", "karma", "revenge", "reddit", "storytime", "truestory", "fyp", "shorts", "viral", "trending", "technology", "homeowner", "internet"],
+  "hashtags": [
+    "pettyrevenge",
+    "wifi",
+    "neighbor",
+    "karma",
+    "revenge",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "technology",
+    "homeowner",
+    "internet"
+  ],
   "script": "My neighbor had been stealing my WiFi for a year before I finally said something. He said sure, no problem, he'd stop, then I watched his laptop show up on my router that same night. So I stopped saying anything and just throttled his device to dial-up speeds instead, three hours every evening, right when he sat down to stream something. A week later he complained to me that his internet had gotten terrible lately and asked if mine was doing the same thing. I told him mine worked perfectly fine, which was true, because it was mine. This went on for two months before he finally broke down and bought his own plan. The week his new router showed up, my network usage dropped in half, and I finally understood exactly how much of my bandwidth he had been eating the whole time.",
   "shots": [
-    {"phrase": "stealing my WiFi for a year", "query": "wifi router glowing lights"},
-    {"phrase": "his laptop show up on my router", "query": "laptop screen network list"},
-    {"phrase": "throttled his device to dial-up speeds", "query": "slow loading buffering screen"},
-    {"phrase": "three hours every evening", "query": "clock evening living room"},
-    {"phrase": "his internet had gotten terrible lately", "query": "frustrated man laptop"},
-    {"phrase": "bought his own plan", "query": "internet bill paperwork"},
-    {"phrase": "my network usage dropped in half", "query": "router lights dashboard"}
+    {
+      "phrase": "stealing my WiFi for a year",
+      "query": "wifi router glowing lights"
+    },
+    {
+      "phrase": "his laptop show up on my router",
+      "query": "laptop screen network list",
+      "pin_query": "laptop",
+      "pin_context": "computer device technology",
+      "news_query": "laptop",
+      "news_angle": "The neighbor's laptop shows up on the router after being throttled to dial-up speeds.",
+      "image_url": "https://live.staticflickr.com/1063/5114191251_dcd2ae245c_b.jpg"
+    },
+    {
+      "phrase": "throttled his device to dial-up speeds",
+      "query": "slow loading buffering screen"
+    },
+    {
+      "phrase": "three hours every evening",
+      "query": "clock evening living room"
+    },
+    {
+      "phrase": "his internet had gotten terrible lately",
+      "query": "frustrated man laptop"
+    },
+    {
+      "phrase": "bought his own plan",
+      "query": "internet bill paperwork"
+    },
+    {
+      "phrase": "my network usage dropped in half",
+      "query": "router lights dashboard"
+    }
   ],
   "punches": [
-    {"phrase": "stealing my WiFi for a year", "text": "1 YEAR STOLEN", "color": "#ff3030"},
-    {"phrase": "throttled his device to dial-up speeds", "text": "DIAL-UP SPEED", "color": "#ffaa30"},
-    {"phrase": "This went on for two months", "text": "2 MONTHS", "color": "#ffaa30"},
-    {"phrase": "my network usage dropped in half", "text": "USAGE HALVED", "color": "#50ff80"}
+    {
+      "phrase": "stealing my WiFi for a year",
+      "text": "1 YEAR STOLEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "throttled his device to dial-up speeds",
+      "text": "DIAL-UP SPEED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "This went on for two months",
+      "text": "2 MONTHS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "my network usage dropped in half",
+      "text": "USAGE HALVED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }
