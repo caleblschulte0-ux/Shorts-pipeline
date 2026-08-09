@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260809",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20",
+    "path": "exchange/bundles/20260809/bundle.json"
+  },
+  "request_id": "reddit-sign-off-flood-s7-66cf9ea395a0",
+  "safe_request_id": "reddit-sign-off-flood-s7-66cf9ea395a0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d0acf0c772a32dce5fc6a903dab4adcf67ff54160ec24ac5df59cc26ad6c5028",
+  "prompt_used": "An editorial illustration for a short-form video: empty break room wall. It accompanies the narration: \"The sign-off rule disappeared from the break room wall\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1gxk57xFwdMdGYc_3A1nznj4Y9frabwM3",
+    "filename": "20260809__reddit-sign-off-flood-s7-66cf9ea395a0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1gxk57xFwdMdGYc_3A1nznj4Y9frabwM3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "64fffb3357f7269010c550b32e8c7ce6adee18568dd00c62c6ac805014ade38c",
+    "bytes": 1499585,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-09T11:12:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "raw_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true,
+    "decoded_locally_before_upload": true
+  }
+}
