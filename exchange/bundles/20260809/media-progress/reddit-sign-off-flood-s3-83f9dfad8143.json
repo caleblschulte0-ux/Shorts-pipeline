@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260809",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20",
+    "path": "exchange/bundles/20260809/bundle.json"
+  },
+  "request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
+  "safe_request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9dea65675b59e814d74f2bc71bac5adfe83e93f3d9027789a93bc9774c0f472a",
+  "prompt_used": "An editorial illustration for a short-form video: inbox overflowing emails. It accompanies the narration: \"Sixty emails a day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1B6ooaeBJ9XDYSuvu1FBsUncbraDbmHTQ",
+    "filename": "20260809__reddit-sign-off-flood-s3-83f9dfad8143.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1B6ooaeBJ9XDYSuvu1FBsUncbraDbmHTQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "201363b82947aa05ef2a5f1e4824f1f609540c5170a753b1a22b66031e90498f",
+    "bytes": 1157353,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-09T11:12:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "raw_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true,
+    "decoded_locally_before_upload": true
+  }
+}
