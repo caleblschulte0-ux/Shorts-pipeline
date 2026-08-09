@@ -1,0 +1,76 @@
+{
+  "schema": "chatgpt-takeover-state/v1",
+  "production_date": "20260809",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "status": "in_progress",
+  "claimed_at": "2026-08-09T11:01:30Z",
+  "trigger": {
+    "bundle_missing": false,
+    "bundle_path": "exchange/bundles/20260809/bundle.json",
+    "bundle_status": "open",
+    "bundle_mode": "author",
+    "reason": "The immutable bundle is materially incomplete: Explainer has 0/4 renderer-ready units and Third requires 0/6 specialized captures. Under the frozen contract, this is a positive ChatGPT takeover signal."
+  },
+  "source_commit": "f860e2e9bf5ef5a51945d46835d60abac8b37405",
+  "registry": {
+    "revision": 5,
+    "sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f"
+  },
+  "ownership_rule": "ChatGPT owns 20260809. A late Claude or Phase A result may be reconciled only when genuinely useful and non-conflicting; it must not replace this claim or checkpoint_identity.",
+  "channels": {
+    "trending": {
+      "expected": 6,
+      "formats": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": 6,
+      "missing": 0,
+      "state": "packages_present_media_incomplete"
+    },
+    "explainer": {
+      "expected": 4,
+      "formats": {
+        "data_story": 4
+      },
+      "have": 0,
+      "missing": 4,
+      "state": "rewrite_candidates_present_not_renderer_ready"
+    },
+    "third": {
+      "expected": 6,
+      "formats": {
+        "clip": 6
+      },
+      "have": 0,
+      "missing": 6,
+      "state": "specialized_workflow_required"
+    },
+    "curiosity": {
+      "expected": 0,
+      "formats": {
+        "long_form": 0
+      },
+      "have": 0,
+      "missing": 0,
+      "state": "disabled_by_frozen_registry"
+    }
+  },
+  "media": {
+    "expected_requests": 13,
+    "completed": 0,
+    "failed": 0,
+    "verified_public_reader": 0
+  },
+  "durable_commits": [],
+  "finalizer_resume": [
+    "Preserve this ChatGPT ownership claim and checkpoint_identity.",
+    "Reuse every exact verified checkpoint created by the 06:00 producer; do not regenerate successful media.",
+    "Complete and promote four protected-field-safe Explainer rewrites through its specialized workflow.",
+    "Invoke or resume the Third/Twitch workflow and verify six uploads.",
+    "Do not invoke Curiosity long-form; it is disabled in registry revision 5.",
+    "Finalizer alone writes response.json and DONE after ordered reconciliation."
+  ]
+}
