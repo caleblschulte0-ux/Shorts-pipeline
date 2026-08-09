@@ -1,0 +1,19 @@
+{
+  "key": "neuron_vs_skin_age",
+  "title": "How old your cells are, by type (days)",
+  "unit": "days",
+  "geography": "Human body",
+  "time_coverage": "current biology",
+  "source": {
+    "name": "Carbon-14 birth dating of human cells (Jonas Frisen, Karolinska Institute)",
+    "publisher": "Peer-reviewed cell biology research, as compiled in mainstream science coverage",
+    "url": "https://www.livescience.com/33179-does-human-body-replace-cells-seven-years.html",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Carbon-14 dating studies (pioneered by Jonas Frisen's lab) found that neurons in the cerebral cortex are essentially as old as the person -- they are not meaningfully replaced across a lifetime, so their 'age' is shown here as roughly a full lifespan (~80 years = ~29,200 days). Skin's outer layer, by contrast, fully renews roughly every 28 days.",
+  "points": [
+    {"label": "Skin", "value": 28},
+    {"label": "Brain neurons (cortex)", "value": 29200}
+  ]
+}

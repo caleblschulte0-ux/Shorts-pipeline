@@ -1,0 +1,19 @@
+{
+  "key": "baby_name_top_share",
+  "title": "Share of baby girls given the #1 most popular name, by year",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1947 vs 2024",
+  "source": {
+    "name": "Social Security Administration baby name records",
+    "publisher": "U.S. Social Security Administration (SSA)",
+    "url": "https://www.ssa.gov/oact/babynames/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Linda was 5.48% of baby girls born in 1947, the single most concentrated name year in SSA's records (roughly 1 in 18 girls). Olivia, the #1 girls' name for 2024, was 0.83% of baby girls (roughly 1 in 120) -- as compiled from SSA's full national baby-name dataset by multiple demographic analyses.",
+  "points": [
+    {"label": "1947 (Linda)", "value": 5.48},
+    {"label": "2024 (Olivia)", "value": 0.83}
+  ]
+}

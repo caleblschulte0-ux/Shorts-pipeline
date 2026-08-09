@@ -1,0 +1,19 @@
+{
+  "key": "insect_share_of_animal_species",
+  "title": "Insects as a share of all known animal species",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "current taxonomy",
+  "source": {
+    "name": "Insect biodiversity estimates",
+    "publisher": "Smithsonian Institution / Royal Entomological Society",
+    "url": "https://www.si.edu/spotlight/buginfo/bugnos",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Insects make up roughly 80% of all described animal species on Earth; all other animals -- mammals, birds, fish, reptiles, amphibians, mollusks and the rest -- share the remaining 20%, per commonly cited Smithsonian/Royal Entomological Society figures.",
+  "points": [
+    {"label": "Insects", "value": 80},
+    {"label": "All other animals", "value": 20}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "photos_per_2min_vs_1800s",
+  "title": "Photos taken every 2 minutes today vs. the entire 1800s",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2025 vs. 1800-1899",
+  "source": {
+    "name": "Global photo volume estimates",
+    "publisher": "Photutorial / PetaPixel / Mylio annual photo-count compilations",
+    "url": "https://photutorial.com/photos-statistics/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "The world takes an estimated 61,400 photos per second in 2025 (about 7.4 million every 2 minutes). Estimates for total photographs taken across the entire 19th century (1800-1899) run from roughly 2 million to 10 million; this uses a compiled middle estimate of about 5 million, consistent with the widely cited claim that more photos are taken every couple of minutes today than existed in all of the 1800s.",
+  "points": [
+    {"label": "Every 2 minutes, today", "value": 7.4},
+    {"label": "All of the 1800s", "value": 5}
+  ]
+}

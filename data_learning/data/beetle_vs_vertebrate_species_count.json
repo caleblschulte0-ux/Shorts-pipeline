@@ -1,0 +1,20 @@
+{
+  "key": "beetle_vs_vertebrate_species_count",
+  "title": "Estimated beetle species vs. total mammal and bird species",
+  "unit": "species",
+  "geography": "Global",
+  "time_coverage": "current taxonomy",
+  "source": {
+    "name": "Global species estimates",
+    "publisher": "Stork (2018), Annual Review of Entomology; IUCN / BirdLife International species counts",
+    "url": "https://www.annualreviews.org/doi/10.1146/annurev-ento-020117-043348",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Stork (2018) estimates roughly 1.5 million beetle species worldwide. There are about 6,400 described mammal species (IUCN / Mammal Diversity Database) and about 11,000 described bird species (BirdLife International). Beetles alone are estimated to far outnumber all mammal and bird species combined.",
+  "points": [
+    {"label": "Beetles (estimated)", "value": 1500000},
+    {"label": "All mammal species", "value": 6400},
+    {"label": "All bird species", "value": 11000}
+  ]
+}

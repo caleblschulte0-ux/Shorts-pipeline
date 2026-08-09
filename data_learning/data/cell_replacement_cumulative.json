@@ -1,0 +1,22 @@
+{
+  "key": "cell_replacement_cumulative",
+  "title": "Cumulative human cells replaced over 100 days",
+  "unit": "trillion",
+  "geography": "Human body",
+  "time_coverage": "100-day cycle",
+  "source": {
+    "name": "Cell replacement rate research",
+    "publisher": "Peer-reviewed cell biology studies, as compiled by Scientific American",
+    "url": "https://www.scientificamerican.com/article/our-bodies-replace-billions-of-cells-every-day/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "About 330 billion human cells are replaced daily (roughly 1% of all cells in the body); cumulatively that reaches about 30 trillion replaced cells -- equivalent to a full cellular replacement -- within 80 to 100 days. Interior points are a straight-line approximation of the daily rate.",
+  "points": [
+    {"label": "Day 0", "value": 0, "period": "0"},
+    {"label": "Day 25", "value": 8.3, "period": "25"},
+    {"label": "Day 50", "value": 16.5, "period": "50"},
+    {"label": "Day 75", "value": 24.8, "period": "75"},
+    {"label": "Day 100", "value": 30, "period": "100"}
+  ]
+}
