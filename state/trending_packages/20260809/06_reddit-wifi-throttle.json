@@ -23,7 +23,9 @@
   "shots": [
     {
       "phrase": "stealing my WiFi for a year",
-      "query": "wifi router glowing lights"
+      "query": "wifi router glowing lights",
+      "image_url": "https://pixabay.com/get/g0461310b0f1d77dc53484a7256972bda8f7c17367aa50f749cbca759f03f12bbc4d6af52f66936bd1e076d0df41cc5f37e4bf2a48fc1d6ea1bdff9f6d7fd883d_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "his laptop show up on my router",
@@ -36,23 +38,33 @@
     },
     {
       "phrase": "throttled his device to dial-up speeds",
-      "query": "slow loading buffering screen"
+      "query": "slow loading buffering screen",
+      "image_url": "https://pixabay.com/get/gc20cba2d022516368684745a6679ab62b634b85e8403ef56df30cccb4fe920f20f50572d1e79cc00db793a918d8e2e43b75238de9ca37102ec23c8d842dd4440_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "three hours every evening",
-      "query": "clock evening living room"
+      "query": "clock evening living room",
+      "image_url": "https://pixabay.com/get/gb436bbbb0825d93db1bb29bcdc7b5cfbe4f46fa9e422e279cd2c63f72dc69576d1c36c9e5f18ad3905db358fe9416365f26c033311a555a3f8b3d0d9d50dc4aa_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "his internet had gotten terrible lately",
-      "query": "frustrated man laptop"
+      "query": "frustrated man laptop",
+      "image_url": "https://pixabay.com/get/g4b9eae3d0179bceff0b30d658aef97b230aa98ce5e5c1674445880b8b6f441444821b0dd9c9080f4ab470a03728757865bc26fbf3dbba1ef960c26413dbe47fc_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "bought his own plan",
-      "query": "internet bill paperwork"
+      "query": "internet bill paperwork",
+      "image_url": "https://pixabay.com/get/g3f57c50a2f8cf847ee04e40da562313a4a39caeb364f5fde9fb9add278cbf9c8452dc288ab111f0858033f4b51c3d40159c09acd5c0c7c820b4308d775e223e5_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "my network usage dropped in half",
-      "query": "router lights dashboard"
+      "query": "router lights dashboard",
+      "image_url": "https://pixabay.com/get/gc151d8d41bc2edf7ba4dbe45e912ffb8716f2b79adb29231350fbad01a371b4ba6f56a91754b93551d4247fb64d58f69da4ea8ef84ec6c28ba52ce3bb0e29ea7_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

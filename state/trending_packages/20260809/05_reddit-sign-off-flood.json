@@ -23,11 +23,15 @@
   "shots": [
     {
       "phrase": "every customer favor now needed his written sign-off",
-      "query": "manager memo office"
+      "query": "manager memo office",
+      "image_url": "https://images.pexels.com/photos/7845149/pexels-photo-7845149.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I started emailing him for approval on everything",
-      "query": "typing email computer"
+      "query": "typing email computer",
+      "image_url": "https://images.pexels.com/photos/7372/startup-photos.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "A customer wanted a free bag",
@@ -40,7 +44,9 @@
     },
     {
       "phrase": "Sixty emails a day",
-      "query": "inbox overflowing emails"
+      "query": "inbox overflowing emails",
+      "image_url": "https://live.staticflickr.com/3253/2602415335_557c710294_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "his inbox held four hundred unread messages",
@@ -48,15 +54,21 @@
     },
     {
       "phrase": "corporate started asking why he wasn't answering",
-      "query": "corporate office call"
+      "query": "corporate office call",
+      "image_url": "https://pixabay.com/get/g9623d26d9fa260a243dd579660770fe2b19df7747aecc92601b2146a854963f67725aa992690a0d30e269f36eb33d3efbc920f82070cf81cc33d5f36ab6d4381_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "told me to just use common sense",
-      "query": "frustrated manager desk"
+      "query": "frustrated manager desk",
+      "image_url": "https://pixabay.com/get/g7ce994d1f741f9503b7d17c5bcd65bffdcde30c8a2d80e2a7b842ba7e2e7a6dc2ca4374f994f22f29c3b2bb28e761899edc9428494174c77e17fea0d0d69be0c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "The sign-off rule disappeared from the break room wall",
-      "query": "empty break room wall"
+      "query": "empty break room wall",
+      "image_url": "https://pixabay.com/get/g9edccaf0d066040667ecb906634431b408520cb5a5dea2585e92e11e31597c31e8db5d7e57ef34a2563217a69e0ce6291ced737836ac6868d22b0d266544c0ea_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
