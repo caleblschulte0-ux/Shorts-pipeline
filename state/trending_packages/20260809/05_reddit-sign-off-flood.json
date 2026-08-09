@@ -2,23 +2,84 @@
   "subreddit": "MaliciousCompliance",
   "slug": "reddit-sign-off-flood",
   "title": "He Made Every Favor Need His Sign-Off. So I Sent Every Favor.",
-  "hashtags": ["maliciouscompliance", "workplace", "retail", "manager", "karma", "pettyrevenge", "customerservice", "reddit", "storytime", "truestory", "fyp", "shorts", "viral", "trending", "worklife"],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "retail",
+    "manager",
+    "karma",
+    "pettyrevenge",
+    "customerservice",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "worklife"
+  ],
   "script": "Our new manager decided every customer favor now needed his written sign-off, even a free bag. Fine. I started emailing him for approval on everything. A customer wanted a free bag? I cc'd him. A regular asked where the bathroom was? I cc'd him too, just to be safe. Sixty emails a day, every single one technically required by his own new rule. By day three his inbox held four hundred unread messages, and corporate started asking why he wasn't answering real requests. He called me into the office, furious, and told me to just use common sense. I told him common sense was exactly what got banned on day one of his new rule. He didn't have an answer for that. The sign-off rule disappeared from the break room wall within a week, and the free bags quietly came back.",
   "shots": [
-    {"phrase": "every customer favor now needed his written sign-off", "query": "manager memo office"},
-    {"phrase": "I started emailing him for approval on everything", "query": "typing email computer"},
-    {"phrase": "A customer wanted a free bag", "query": "grocery bag checkout"},
-    {"phrase": "Sixty emails a day", "query": "inbox overflowing emails"},
-    {"phrase": "his inbox held four hundred unread messages", "query": "phone notifications overload"},
-    {"phrase": "corporate started asking why he wasn't answering", "query": "corporate office call"},
-    {"phrase": "told me to just use common sense", "query": "frustrated manager desk"},
-    {"phrase": "The sign-off rule disappeared from the break room wall", "query": "empty break room wall"}
+    {
+      "phrase": "every customer favor now needed his written sign-off",
+      "query": "manager memo office"
+    },
+    {
+      "phrase": "I started emailing him for approval on everything",
+      "query": "typing email computer"
+    },
+    {
+      "phrase": "A customer wanted a free bag",
+      "query": "grocery bag checkout",
+      "pin_query": "free bag",
+      "pin_context": "shopping bag retail store",
+      "news_query": "free bag",
+      "news_angle": "A customer requested a free bag, which required the new manager's written sign-off.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bag_containing_fabric_samples.jpg/1280px-Bag_containing_fabric_samples.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    },
+    {
+      "phrase": "Sixty emails a day",
+      "query": "inbox overflowing emails"
+    },
+    {
+      "phrase": "his inbox held four hundred unread messages",
+      "query": "phone notifications overload"
+    },
+    {
+      "phrase": "corporate started asking why he wasn't answering",
+      "query": "corporate office call"
+    },
+    {
+      "phrase": "told me to just use common sense",
+      "query": "frustrated manager desk"
+    },
+    {
+      "phrase": "The sign-off rule disappeared from the break room wall",
+      "query": "empty break room wall"
+    }
   ],
   "punches": [
-    {"phrase": "Sixty emails a day", "text": "60 EMAILS/DAY", "color": "#ffaa30"},
-    {"phrase": "four hundred unread messages", "text": "400 UNREAD", "color": "#ff3030"},
-    {"phrase": "common sense was exactly what got banned on day one", "text": "BANNED DAY ONE", "color": "#ff3030"},
-    {"phrase": "disappeared from the break room wall within a week", "text": "GONE IN A WEEK", "color": "#50ff80"}
+    {
+      "phrase": "Sixty emails a day",
+      "text": "60 EMAILS/DAY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "four hundred unread messages",
+      "text": "400 UNREAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "common sense was exactly what got banned on day one",
+      "text": "BANNED DAY ONE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "disappeared from the break room wall within a week",
+      "text": "GONE IN A WEEK",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "hiphop"
 }

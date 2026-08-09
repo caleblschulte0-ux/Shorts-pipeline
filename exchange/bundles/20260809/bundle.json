@@ -384,8 +384,8 @@
           "shot_index": 2,
           "phrase": "A customer wanted a free bag",
           "query": "grocery bag checkout",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
@@ -398,8 +398,8 @@
           "shot_index": 4,
           "phrase": "his inbox held four hundred unread messages",
           "query": "phone notifications overload",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
@@ -433,8 +433,8 @@
       "requested": [
         "reddit-sign-off-flood-s0-95e30c986393",
         "reddit-sign-off-flood-s1-6cf557ec3372",
-        "reddit-sign-off-flood-s2-b3a6e9f37c79",
         "reddit-sign-off-flood-s3-83f9dfad8143",
+        "reddit-sign-off-flood-s4-56f8fb034166",
         "reddit-sign-off-flood-s5-5446dc635396",
         "reddit-sign-off-flood-s6-b58982b7ee00",
         "reddit-sign-off-flood-s7-66cf9ea395a0"
@@ -566,15 +566,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-sign-off-flood-s2-b3a6e9f37c79",
-      "safe_request_id": "reddit-sign-off-flood-s2-b3a6e9f37c79",
-      "drive_filename": "20260809__reddit-sign-off-flood-s2-b3a6e9f37c79.png",
-      "prompt_sha256": "55f00dd7180120d93fb8e4413605a7ed1500e975fb64700cac4fc8fceae42c02",
-      "checkpoint_path": "exchange/bundles/20260809/media-progress/reddit-sign-off-flood-s2-b3a6e9f37c79.json",
+      "request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
+      "safe_request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
+      "drive_filename": "20260809__reddit-sign-off-flood-s3-83f9dfad8143.png",
+      "prompt_sha256": "9dea65675b59e814d74f2bc71bac5adfe83e93f3d9027789a93bc9774c0f472a",
+      "checkpoint_path": "exchange/bundles/20260809/media-progress/reddit-sign-off-flood-s3-83f9dfad8143.json",
       "slug": "reddit-sign-off-flood",
-      "shot_index": 2,
+      "shot_index": 3,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: grocery bag checkout. It accompanies the narration: \"A customer wanted a free bag\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: inbox overflowing emails. It accompanies the narration: \"Sixty emails a day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -592,15 +592,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
-      "safe_request_id": "reddit-sign-off-flood-s3-83f9dfad8143",
-      "drive_filename": "20260809__reddit-sign-off-flood-s3-83f9dfad8143.png",
-      "prompt_sha256": "9dea65675b59e814d74f2bc71bac5adfe83e93f3d9027789a93bc9774c0f472a",
-      "checkpoint_path": "exchange/bundles/20260809/media-progress/reddit-sign-off-flood-s3-83f9dfad8143.json",
+      "request_id": "reddit-sign-off-flood-s4-56f8fb034166",
+      "safe_request_id": "reddit-sign-off-flood-s4-56f8fb034166",
+      "drive_filename": "20260809__reddit-sign-off-flood-s4-56f8fb034166.png",
+      "prompt_sha256": "06be48c3d86e7ff891a60b00e8681e03ef0f50cb1f820045e9423f4c87a7ac22",
+      "checkpoint_path": "exchange/bundles/20260809/media-progress/reddit-sign-off-flood-s4-56f8fb034166.json",
       "slug": "reddit-sign-off-flood",
-      "shot_index": 3,
+      "shot_index": 4,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: inbox overflowing emails. It accompanies the narration: \"Sixty emails a day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone notifications overload. It accompanies the narration: \"his inbox held four hundred unread messages\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

@@ -6,21 +6,58 @@
   "y_label": "Annual segment revenue (USD)",
   "duration": 13,
   "source": "Source: NVIDIA Corp. 10-K/annual filings, Data Center and Gaming reportable segment revenue by fiscal year (FY2021-FY2026; fiscal years end late January/February).",
-  "years": [2021, 2022, 2023, 2024, 2025, 2026],
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
   "series": [
     {
       "name": "Data Center",
       "color": "#76B900",
       "icon": "Nvidia",
-      "values": [6700000000, 10600000000, 15000000000, 47500000000, 115200000000, 193700000000]
+      "values": [
+        6700000000,
+        10600000000,
+        15000000000,
+        47500000000,
+        115200000000,
+        193700000000
+      ]
     },
     {
       "name": "Gaming",
       "color": "#1F77B4",
       "icon": "GeForce",
-      "values": [7800000000, 12500000000, 9100000000, 10400000000, 11400000000, 16000000000]
+      "values": [
+        7800000000,
+        12500000000,
+        9100000000,
+        10400000000,
+        11400000000,
+        16000000000
+      ]
     }
   ],
-  "hashtags": ["nvidia", "ai", "datacenter", "gaming", "geforce", "chips", "semiconductors", "stockmarket", "tech", "investing", "aiboom", "gpu", "silicon", "wallstreet", "trending"],
+  "hashtags": [
+    "nvidia",
+    "ai",
+    "datacenter",
+    "gaming",
+    "geforce",
+    "chips",
+    "semiconductors",
+    "stockmarket",
+    "tech",
+    "investing",
+    "aiboom",
+    "gpu",
+    "silicon",
+    "wallstreet",
+    "trending"
+  ],
   "music_vibe": "cinematic"
 }
