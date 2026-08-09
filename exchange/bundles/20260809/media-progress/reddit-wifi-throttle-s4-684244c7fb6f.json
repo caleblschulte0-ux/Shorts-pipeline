@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260809",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20",
+    "path": "exchange/bundles/20260809/bundle.json"
+  },
+  "request_id": "reddit-wifi-throttle-s4-684244c7fb6f",
+  "safe_request_id": "reddit-wifi-throttle-s4-684244c7fb6f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9835a3db2731db3503dc4c320abd45c759b7af3d54e9d21c2912b9cd899b7aaa",
+  "prompt_used": "An editorial illustration for a short-form video: frustrated man laptop. It accompanies the narration: \"his internet had gotten terrible lately\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1PsOtQHpvynMYbbZuivouBs0-ZGR2q9TB",
+    "filename": "20260809__reddit-wifi-throttle-s4-684244c7fb6f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1PsOtQHpvynMYbbZuivouBs0-ZGR2q9TB",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "fb5225e86001c6cdc7dc093849ce246152fbd26a425baf6223a7976185741c74",
+    "bytes": 1229623,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-09T11:12:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "raw_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true,
+    "decoded_locally_before_upload": true
+  }
+}
