@@ -4,7 +4,7 @@
   "owner": "chatgpt",
   "mode": "takeover",
   "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
-  "status": "in_progress",
+  "status": "ready_for_finalizer",
   "claimed_at": "2026-08-09T11:01:30Z",
   "trigger": {
     "bundle_missing": false,
@@ -28,16 +28,17 @@
       },
       "have": 6,
       "missing": 0,
-      "state": "packages_present_media_incomplete"
+      "state": "packages_present_all_13_requested_media_verified"
     },
     "explainer": {
       "expected": 4,
       "formats": {
         "data_story": 4
       },
-      "have": 0,
-      "missing": 4,
-      "state": "rewrite_candidates_present_not_renderer_ready"
+      "have": 3,
+      "missing": 1,
+      "state": "three_protected_field_safe_rewrites_staged; fourth requires registered story_forge/explainer workflow",
+      "work_path": "exchange/bundles/20260809/takeover-work/explainer.json"
     },
     "third": {
       "expected": 6,
@@ -46,7 +47,8 @@
       },
       "have": 0,
       "missing": 6,
-      "state": "specialized_workflow_required"
+      "state": "specialized_workflow_invoked; no verified current-day uploads at handoff",
+      "trigger_commit": "af3eed958bb9db326e58d79cb12c6468780ce84f"
     },
     "curiosity": {
       "expected": 0,
@@ -60,17 +62,45 @@
   },
   "media": {
     "expected_requests": 13,
-    "completed": 0,
+    "completed": 13,
     "failed": 0,
-    "verified_public_reader": 0
+    "verified_public_reader": 13,
+    "dimensions": "1080x1080",
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5"
   },
-  "durable_commits": [],
+  "durable_commits": [
+    "354ee8330161970bce7151855b2cbc02ceec107d",
+    "fb206eeefad53ebf52a5c586469dd8b57db0ef2e",
+    "b331061c6d6d39c00fc26cc82a4c918077eb3406",
+    "41189b859a1ce0ef6a86f968b6cec16ffecbabf3",
+    "f760ead2d08b1d5e9ffd4ec7dd0c8e073bfe2b68",
+    "ba0027ce08c46723cbcd3a627d27be87010ebd5f",
+    "213ca532e8d51bd34612fa6d25fcd2c340a01650",
+    "2d05ac908f84d86cfa38a41be748f658584070a9",
+    "f0e2431b5465269166cf0b546717bad992fddaa0",
+    "1956c70714f6dabac402b4a5740477ff1ee262a5",
+    "2d5d60ffccd46cd5c88c18a13abc695987ef319f",
+    "449f3f8ab58e673dec83027160af79b8e129f38b",
+    "11324bd8b5c80357074de9af655a12923bea4b00",
+    "224be9a7be9c607ccd46e17e4b781d6c49f806bb",
+    "830e16c60f24404bfc683382d1a65952dabb1c5c",
+    "bf5a2d5a6408412d33d5e6cedb801e83f2bc1d77",
+    "af3eed958bb9db326e58d79cb12c6468780ce84f"
+  ],
   "finalizer_resume": [
-    "Preserve this ChatGPT ownership claim and checkpoint_identity.",
-    "Reuse every exact verified checkpoint created by the 06:00 producer; do not regenerate successful media.",
-    "Complete and promote four protected-field-safe Explainer rewrites through its specialized workflow.",
-    "Invoke or resume the Third/Twitch workflow and verify six uploads.",
-    "Do not invoke Curiosity long-form; it is disabled in registry revision 5.",
-    "Finalizer alone writes response.json and DONE after ordered reconciliation."
+    "Read this takeover claim before accepting any late Claude/Phase A result; ownership and checkpoint_identity remain ChatGPT.",
+    "Reuse all 13 verified media checkpoints; do not regenerate or rename successful assets.",
+    "Read exchange/bundles/20260809/takeover-work/explainer.json, run the protected-field guard, and include the three accepted rewrites in authored_explainer.",
+    "Supply the fourth Explainer only through the registered story_forge/Explainer workflow; do not fabricate its World Bank data. The channel target remains 4.",
+    "Monitor the Third/Twitch workflow invoked by af3eed958bb9db326e58d79cb12c6468780ce84f and verify six uploads; retry/repair unresolved slots without duplicating successful sources.",
+    "Perform the six Trending package editorial decisions and reconcile the 13 checkpoint pointers.",
+    "Curiosity long-form remains disabled and must not run.",
+    "Write response.json, read it back from main and validate it, then write DONE as a separate ordered commit. Continue supervision through per-channel verified uploads."
+  ],
+  "updated_at": "2026-08-09T11:18:30Z",
+  "protocol_notes": [
+    "All media checkpoints carry checkpoint_identity takeover-20260809-chatgpt-r5-f770a999 and bundle identity 77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20.",
+    "The required STARTED marker was recorded late, after the takeover claim and media generation had begun; its note states this honestly.",
+    "Per-request claim leases were not written before generation. No checkpoint existed when generation began, and each verified checkpoint now supersedes any claim, but the ordering miss is recorded rather than concealed."
   ]
 }
