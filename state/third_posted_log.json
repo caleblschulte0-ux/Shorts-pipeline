@@ -2991,13 +2991,36 @@
       "director_cut": true
     },
     "clip-20260809-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/CrispyVastConsoleOMGScoots-ueqMM9J2u-85wNKH",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/3x2bpPcvkJw",
       "title": "Lacy Whole Body Went Numb... Except One Place",
       "kind": "twitch_clip",
-      "ts": "2026-08-09T12:22:00.694867+00:00",
+      "ts": "2026-08-09T12:22:03.560168+00:00",
+      "uploaded_at": "2026-08-09T12:22:03.560189+00:00",
+      "publish_at": "2026-08-09T20:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/CrispyVastConsoleOMGScoots-ueqMM9J2u-85wNKH",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "BODY WENT NUMB EXCEPT ONE PLACE",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 4363,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 16.0
+      },
+      "director_cut": true
+    },
+    "clip-20260809-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/SpotlessSavageSquidNotATK-_KdqIU4Oa_UK9m6T",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+      "kind": "twitch_clip",
+      "ts": "2026-08-09T12:25:57.599537+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
