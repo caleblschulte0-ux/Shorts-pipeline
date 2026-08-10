@@ -3069,13 +3069,36 @@
       "ts": "2026-08-10T11:33:04.059050+00:00"
     },
     "clip-20260810-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/FrailMoralLorisNotATK-rCFtYwXxdlPs9twr",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/snqgXAgmU_s",
       "title": "Silky Crowd Went Absolutely Wild",
       "kind": "twitch_clip",
-      "ts": "2026-08-10T11:35:09.671500+00:00",
+      "ts": "2026-08-10T11:35:12.375602+00:00",
+      "uploaded_at": "2026-08-10T11:35:12.375621+00:00",
+      "publish_at": "2026-08-10T18:30:00Z",
+      "source_url": "https://www.twitch.tv/silky/clip/FrailMoralLorisNotATK-rCFtYwXxdlPs9twr",
+      "streamer": "silky",
+      "series": "chaos",
+      "hook": "THE CROWD WENT WILD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5091,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 18.0
+      },
+      "director_cut": true
+    },
+    "clip-20260810-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CrepuscularBloodyHummingbirdCurseLit-yERpsF67DTxbke5w",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe His Dad Actually Sent Him This",
+      "kind": "twitch_clip",
+      "ts": "2026-08-10T11:38:19.221134+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
