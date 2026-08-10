@@ -3,49 +3,6 @@
     {
       "date": "20260723",
       "dry_run": false,
-      "ts": "2026-07-23T11:50:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 97,
-        "with_retention": 71,
-        "with_curve": 13,
-        "fetched_at": "2026-07-23T10:39:51.060758+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260723-1",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260723-2",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true
-        },
-        {
-          "slug": "clip-20260723-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260723-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        }
-      ]
-    },
-    {
-      "date": "20260723",
-      "dry_run": false,
       "ts": "2026-07-23T13:51:00+00:00",
       "feedback": {
         "snapshot": true,
@@ -3595,6 +3552,235 @@
           "slug": "clip-20260809-4",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20260810",
+      "dry_run": false,
+      "ts": "2026-08-10T12:28:19+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 123,
+        "with_retention": 104,
+        "with_curve": 14,
+        "fetched_at": "2026-08-09T12:28:38.298717+00:00"
+      },
+      "brain": {
+        "ok": 23,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260810-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "shocking reveal, visible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine spooked reaction to creepy figur",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Gets Chills Seeing Who's Still Standing There \u2620\ufe0f"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 209.2
+        },
+        {
+          "slug": "clip-20260810-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "garbage title, unknown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "skateboard trick attempts, chat reacts l",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky Crowd Went Absolutely Wild"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 128.3
+        },
+        {
+          "slug": "clip-20260810-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "unboxes pink item, genuine shocked react",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Can't Believe His Dad Actually Sent Him This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 189.4
+        },
+        {
+          "slug": "clip-20260810-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (vague clip, no visible event)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "kaicenat/kaicenat-cenat-down-2026w32",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.65,
+              "why": "visible death fail moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "vague clip, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 824.3
         }
       ]
     }

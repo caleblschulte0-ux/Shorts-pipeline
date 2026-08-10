@@ -3092,14 +3092,36 @@
       "director_cut": true
     },
     "clip-20260810-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/CrepuscularBloodyHummingbirdCurseLit-yERpsF67DTxbke5w",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/ovJJ9ftvf0o",
       "title": "Jynxzi Can't Believe His Dad Actually Sent Him This",
       "kind": "twitch_clip",
-      "ts": "2026-08-10T11:38:19.221134+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-10T11:38:21.804534+00:00",
+      "uploaded_at": "2026-08-10T11:38:21.804561+00:00",
+      "publish_at": "2026-08-10T20:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CrepuscularBloodyHummingbirdCurseLit-yERpsF67DTxbke5w",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "MY DAD WOULD NEVER SEND THAT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5641,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 18.6
+      },
+      "director_cut": true
+    },
+    "rejected-kindbittergoshawkbabyrage-ciqgbjkkgldnvqf3": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/KindBitterGoshawkBabyRage-ciQGBjKKgldNVQf3",
+      "streamer": "kaicenat",
+      "title": "WORST DEATH SO FAR - DAY 3",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (vague clip, no visible event)",
+      "ts": "2026-08-10T12:28:19.866448+00:00"
     }
   }
 }
