@@ -6,35 +6,51 @@
   "shots": [
     {
       "phrase": "kept mistaking me for staff",
-      "query": "hardware store aisle customer"
+      "query": "hardware store aisle customer",
+      "image_url": "https://pixabay.com/get/g5812b591771d670f791ff5dce8858cdc77f669a515494010a8fbd2fd4a2755f7805fbf1339e86d56234751021d24048bf4eaff6ada4e2eda44062522b228fb7b_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "shoving paint cans into my hands",
-      "query": "paint cans shelf"
+      "query": "paint cans shelf",
+      "image_url": "https://pixabay.com/get/gf52e91ea3e01d648fe12fb037c6303b322679fd58da7bc6d278c62838a3edf4557d2ec40fbf1d582d4289a200579d67760d771099868d1f1366d9fc42334f5c6_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "barking aisle numbers",
-      "query": "hardware store aisle sign"
+      "query": "hardware store aisle sign",
+      "image_url": "https://pixabay.com/get/g57cbd97e095c960b130dd348a7b4aacd6c2d8462a533e06c150a2fab6e8ea264a567ea1900dd1b50c76b9a9b600ee0a0e5d873dfa20ac99470ccb053c28b5626_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "mixed a paint color from memory",
-      "query": "paint mixing machine"
+      "query": "paint mixing machine",
+      "image_url": "https://pixabay.com/get/g5b4aa0d0b1a0e82258fee123c9c39ae8831078a6b9e7852302fbf26e78d231f7908f43904728dca837db5f69918f0caaebff9304fa2cc3f4958a4f560c5cf221_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "walked her to the checkout",
-      "query": "store checkout counter"
+      "query": "store checkout counter",
+      "image_url": "https://pixabay.com/get/gd778cfa7411de206857d60d0c4668906df0f308f8b0f43fb279ef5ce803460b88cda3df398b9e8eecc2f9d922e1f140a045a44b32c13a0d402060c7a364dc22e_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "watched the whole thing from the office window",
-      "query": "manager office window"
+      "query": "manager office window",
+      "image_url": "https://pixabay.com/get/gba6d5246c899862e76e6e79e90dcc00e8585a2996ac495db5c48133eeb3962706963290f77305e7a653a9e3cd52ccaee27b40c5ff364d4712ef4a68fdd3befbe_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "outperformed two people on his actual payroll",
-      "query": "employee name tag"
+      "query": "employee name tag",
+      "image_url": "https://pixabay.com/get/gfe6623be843dd502ed3b8a1ffc689edb1f8aaa68673788b5007405e00af0af30ffb25d050e9b3f8e5abdb10639b4f7b5_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "started training the following Monday",
-      "query": "new employee training"
+      "query": "new employee training",
+      "image_url": "https://pixabay.com/get/g568fcb32bc4f3637893d4f62f6614b75dd05d2bf3d16972f8d4e595bd46aed4ebbb6aea36a2795db251f8f65fc64cdbd9ec8da84fc0e2295772519ebf74a50f8_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
