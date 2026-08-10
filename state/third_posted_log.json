@@ -3037,13 +3037,45 @@
       "director_cut": true
     },
     "clip-20260810-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/ShortCrypticCodTBTacoLeft-jwTkEATcnecdmTKH",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/KrDMtk8yCSQ",
       "title": "Caseoh Gets Chills Seeing Who's Still Standing There \u2620\ufe0f",
       "kind": "twitch_clip",
-      "ts": "2026-08-10T11:31:44.736446+00:00",
+      "ts": "2026-08-10T11:31:50.914718+00:00",
+      "uploaded_at": "2026-08-10T11:31:50.914738+00:00",
+      "publish_at": "2026-08-10T17:00:00Z",
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ShortCrypticCodTBTacoLeft-jwTkEATcnecdmTKH",
+      "streamer": "caseoh_",
+      "series": "jumpscare",
+      "hook": "WHO IS STILL STANDING THERE?",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 5077,
+      "banger": 0.75,
+      "cut": {
+        "start": 18.0,
+        "end": 44.7
+      },
+      "director_cut": true
+    },
+    "rejected-boreduninterestedkleenotlikethis-9lzuyeswyqeq_cpt": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/BoredUninterestedKleeNotLikeThis-9LZUYeSWyQEq_CpT",
+      "streamer": "kaicenat",
+      "title": "game over",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (countdown, no visible payoff)",
+      "ts": "2026-08-10T11:33:04.059050+00:00"
+    },
+    "clip-20260810-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/FrailMoralLorisNotATK-rCFtYwXxdlPs9twr",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Crowd Went Absolutely Wild",
+      "kind": "twitch_clip",
+      "ts": "2026-08-10T11:35:09.671500+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
