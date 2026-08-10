@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260810/DONE",
   "counts": {
     "packages": 6,
-    "requests": 10,
+    "requests": 13,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -454,8 +454,8 @@
           "shot_index": 1,
           "phrase": "shoving paint cans into my hands",
           "query": "paint cans shelf",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 2,
@@ -475,15 +475,15 @@
           "shot_index": 4,
           "phrase": "walked her to the checkout",
           "query": "store checkout counter",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
           "phrase": "watched the whole thing from the office window",
           "query": "manager office window",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 6,
@@ -501,16 +501,19 @@
         }
       ],
       "media_health": {
-        "strong": 3,
+        "strong": 0,
         "weak": 0,
-        "missing": 5,
+        "missing": 8,
         "unknown": 0
       },
-      "strong_fraction": 0.375,
+      "strong_fraction": 0.0,
       "requested": [
         "reddit-mistaken-employee-raise-s0-94d616066df7",
+        "reddit-mistaken-employee-raise-s1-af7b6447241e",
         "reddit-mistaken-employee-raise-s2-9175a50c7833",
         "reddit-mistaken-employee-raise-s3-66ad14715b27",
+        "reddit-mistaken-employee-raise-s4-7375221055b5",
+        "reddit-mistaken-employee-raise-s5-8dde257e21fb",
         "reddit-mistaken-employee-raise-s6-85bb44f36103",
         "reddit-mistaken-employee-raise-s7-a7c616b9ffbd"
       ]
@@ -674,6 +677,32 @@
       "verdict": "missing"
     },
     {
+      "request_id": "reddit-mistaken-employee-raise-s1-af7b6447241e",
+      "safe_request_id": "reddit-mistaken-employee-raise-s1-af7b6447241e",
+      "drive_filename": "20260810__reddit-mistaken-employee-raise-s1-af7b6447241e.png",
+      "prompt_sha256": "fc591a80ce7bac13a37281691405f7caf2ced5d08a03365ca327673b72bc7167",
+      "checkpoint_path": "exchange/bundles/20260810/media-progress/reddit-mistaken-employee-raise-s1-af7b6447241e.json",
+      "slug": "reddit-mistaken-employee-raise",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: paint cans shelf. It accompanies the narration: \"shoving paint cans into my hands\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
       "request_id": "reddit-mistaken-employee-raise-s2-9175a50c7833",
       "safe_request_id": "reddit-mistaken-employee-raise-s2-9175a50c7833",
       "drive_filename": "20260810__reddit-mistaken-employee-raise-s2-9175a50c7833.png",
@@ -709,6 +738,58 @@
       "shot_index": 3,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: paint mixing machine. It accompanies the narration: \"mixed a paint color from memory\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-mistaken-employee-raise-s4-7375221055b5",
+      "safe_request_id": "reddit-mistaken-employee-raise-s4-7375221055b5",
+      "drive_filename": "20260810__reddit-mistaken-employee-raise-s4-7375221055b5.png",
+      "prompt_sha256": "d59121f2c5da4b273273b0c630107ee31a5584c23b76aa2bbaaf6d5da09599fc",
+      "checkpoint_path": "exchange/bundles/20260810/media-progress/reddit-mistaken-employee-raise-s4-7375221055b5.json",
+      "slug": "reddit-mistaken-employee-raise",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: store checkout counter. It accompanies the narration: \"walked her to the checkout\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-mistaken-employee-raise-s5-8dde257e21fb",
+      "safe_request_id": "reddit-mistaken-employee-raise-s5-8dde257e21fb",
+      "drive_filename": "20260810__reddit-mistaken-employee-raise-s5-8dde257e21fb.png",
+      "prompt_sha256": "efa0eae6d211cc99aa9cf85b6339e49c3434f474be30f7879a44081934a55b11",
+      "checkpoint_path": "exchange/bundles/20260810/media-progress/reddit-mistaken-employee-raise-s5-8dde257e21fb.json",
+      "slug": "reddit-mistaken-employee-raise",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: manager office window. It accompanies the narration: \"watched the whole thing from the office window\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

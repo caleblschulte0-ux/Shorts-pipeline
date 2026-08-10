@@ -4,21 +4,77 @@
   "title": "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job.",
   "script": "A woman at the hardware store kept mistaking me for staff, shoving paint cans into my hands and barking aisle numbers like I worked there. Third time it happened in ten minutes I gave up correcting her and just started answering, mostly to see how far it would go. I pointed her to the right bolts, mixed a paint color from memory, even walked her to the checkout. The actual manager watched the whole thing from the office window, and when the woman finally left happy, he came over and asked how long I'd been working there. I told him about four minutes. He laughed, then asked if I wanted to make it official, because I'd just outperformed two people on his actual payroll. I filled out the application in the break room I definitely wasn't supposed to be in, and started training the following Monday.",
   "shots": [
-    {"phrase": "kept mistaking me for staff", "query": "hardware store aisle customer"},
-    {"phrase": "shoving paint cans into my hands", "query": "paint cans shelf"},
-    {"phrase": "barking aisle numbers", "query": "hardware store aisle sign"},
-    {"phrase": "mixed a paint color from memory", "query": "paint mixing machine"},
-    {"phrase": "walked her to the checkout", "query": "store checkout counter"},
-    {"phrase": "watched the whole thing from the office window", "query": "manager office window"},
-    {"phrase": "outperformed two people on his actual payroll", "query": "employee name tag"},
-    {"phrase": "started training the following Monday", "query": "new employee training"}
+    {
+      "phrase": "kept mistaking me for staff",
+      "query": "hardware store aisle customer"
+    },
+    {
+      "phrase": "shoving paint cans into my hands",
+      "query": "paint cans shelf"
+    },
+    {
+      "phrase": "barking aisle numbers",
+      "query": "hardware store aisle sign"
+    },
+    {
+      "phrase": "mixed a paint color from memory",
+      "query": "paint mixing machine"
+    },
+    {
+      "phrase": "walked her to the checkout",
+      "query": "store checkout counter"
+    },
+    {
+      "phrase": "watched the whole thing from the office window",
+      "query": "manager office window"
+    },
+    {
+      "phrase": "outperformed two people on his actual payroll",
+      "query": "employee name tag"
+    },
+    {
+      "phrase": "started training the following Monday",
+      "query": "new employee training"
+    }
   ],
   "punches": [
-    {"phrase": "Third time it happened in ten minutes", "text": "3RD TIME, 10 MIN", "color": "#ffaa30"},
-    {"phrase": "about four minutes", "text": "4 MINUTES ON THE JOB", "color": "#50ff80"},
-    {"phrase": "outperformed two people on his actual payroll", "text": "BEAT 2 REAL EMPLOYEES", "color": "#ff3030"},
-    {"phrase": "started training the following Monday", "text": "HIRED MONDAY", "color": "#50ff80"}
+    {
+      "phrase": "Third time it happened in ten minutes",
+      "text": "3RD TIME, 10 MIN",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "about four minutes",
+      "text": "4 MINUTES ON THE JOB",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "outperformed two people on his actual payroll",
+      "text": "BEAT 2 REAL EMPLOYEES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "started training the following Monday",
+      "text": "HIRED MONDAY",
+      "color": "#50ff80"
+    }
   ],
-  "hashtags": ["idontworkherelady", "retail", "hardwarestore", "karma", "pettyrevenge", "customerservice", "workplace", "reddit", "storytime", "truestory", "jobinterview", "fyp", "shorts", "viral", "trending"],
+  "hashtags": [
+    "idontworkherelady",
+    "retail",
+    "hardwarestore",
+    "karma",
+    "pettyrevenge",
+    "customerservice",
+    "workplace",
+    "reddit",
+    "storytime",
+    "truestory",
+    "jobinterview",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
   "music_vibe": "hiphop"
 }
