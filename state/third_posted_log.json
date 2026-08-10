@@ -3122,6 +3122,31 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (vague clip, no visible event)",
       "ts": "2026-08-10T12:28:19.866448+00:00"
+    },
+    "rejected-adventurouslighttardigradeampenergy-liw0he21qw19kthx": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/AdventurousLightTardigradeAMPEnergy-liw0HE21qw19ktHx",
+      "streamer": "loltyler1",
+      "title": "theory of relativity",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confused rambling, no clear event)",
+      "ts": "2026-08-10T12:50:39.084597+00:00"
+    },
+    "rejected-shyhonestdaddaesuppy-j0vebasawgdwsh2r": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ShyHonestDadDAESuppy-J0vEBAsawgdwSh2R",
+      "streamer": "jynxzi",
+      "title": "Evil Siege",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine FPS callouts, no clear event)",
+      "ts": "2026-08-10T13:03:03.828835+00:00"
+    },
+    "rejected-homelysillyplumkappa-n8pu8r8gkmdoinfe": {
+      "source_url": "https://www.twitch.tv/forsen/clip/HomelySillyPlumKappa-N8pU8R8GKMDoinfe",
+      "streamer": "forsen",
+      "title": "monkaOMEGA",
+      "qa_rejected": true,
+      "ts": "2026-08-10T13:15:59.273584+00:00"
     }
   }
 }
