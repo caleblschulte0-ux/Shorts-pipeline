@@ -1,0 +1,42 @@
+{
+  "key": "chatgpt_weekly_users_trend",
+  "title": "ChatGPT active users over time",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "Jan 2023-Feb 2026",
+  "source": {
+    "name": "OpenAI usage announcements / press coverage",
+    "publisher": "OpenAI",
+    "url": "https://openai.com/index/chatgpt",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "Jan 2023 figure is monthly active users (100M, 2 months after Nov 2022 launch); Aug 2024 onward are OpenAI-reported weekly active users.",
+  "points": [
+    {
+      "label": "Jan 2023",
+      "value": 100,
+      "period": "2023"
+    },
+    {
+      "label": "Aug 2024",
+      "value": 200,
+      "period": "2024"
+    },
+    {
+      "label": "Feb 2025",
+      "value": 400,
+      "period": "2025"
+    },
+    {
+      "label": "Sep 2025",
+      "value": 700,
+      "period": "2025.7"
+    },
+    {
+      "label": "Feb 2026",
+      "value": 900,
+      "period": "2026"
+    }
+  ]
+}

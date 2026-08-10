@@ -1,0 +1,25 @@
+{
+  "key": "chatgpt_paying_share",
+  "title": "ChatGPT paying subscribers vs free users",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "February 2026",
+  "source": {
+    "name": "OpenAI usage announcement",
+    "publisher": "OpenAI",
+    "url": "https://openai.com/index/chatgpt",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "OpenAI reported 50 million paying subscribers against 900 million weekly active users as of February 2026; remainder shown as free users.",
+  "points": [
+    {
+      "label": "Paying subscribers",
+      "value": 50
+    },
+    {
+      "label": "Free users",
+      "value": 850
+    }
+  ]
+}

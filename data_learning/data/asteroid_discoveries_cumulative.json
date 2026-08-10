@@ -1,0 +1,42 @@
+{
+  "key": "asteroid_discoveries_cumulative",
+  "title": "Cumulative near-Earth asteroids discovered",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1998-2025",
+  "source": {
+    "name": "NEA Discovery Statistics",
+    "publisher": "NASA JPL Center for Near-Earth Object Studies (CNEOS)",
+    "url": "https://cneos.jpl.nasa.gov/stats/",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "1998 figure approximate (start of NASA's Spaceguard survey goal); 2002, 2020, 2024, 2025 figures as reported by CNEOS discovery statistics.",
+  "points": [
+    {
+      "label": "1998",
+      "value": 500,
+      "period": "1998"
+    },
+    {
+      "label": "2002",
+      "value": 1500,
+      "period": "2002"
+    },
+    {
+      "label": "2020",
+      "value": 21696,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 37255,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 38985,
+      "period": "2025"
+    }
+  ]
+}
