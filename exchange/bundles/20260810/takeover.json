@@ -1,0 +1,63 @@
+{
+  "schema": "chatgpt-takeover/v1",
+  "date": "20260810",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "status": "in_progress",
+  "reason": "Claude bundle is valid but materially incomplete for active registry: Explainer has 0/4 and Third has 0/6.",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json",
+    "source_commit": "9912ed1b9d8d062ebb10e41ddfff2216602a2c0f"
+  },
+  "registry": {
+    "revision": 5,
+    "sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f"
+  },
+  "channels": {
+    "trending": {
+      "expected": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "missing": {
+        "graph_race": 0,
+        "reddit_story": 0
+      }
+    },
+    "explainer": {
+      "expected": {
+        "data_story": 4
+      },
+      "have": {
+        "data_story": 0
+      },
+      "missing": {
+        "data_story": 4
+      }
+    },
+    "third": {
+      "expected": {
+        "clip": 6
+      },
+      "have": {
+        "clip": 0
+      },
+      "missing": {
+        "clip": 6
+      }
+    }
+  },
+  "media": {
+    "expected": 13,
+    "verified": 0,
+    "failed": 0
+  },
+  "claimed_at": "2026-08-10T11:05:28Z",
+  "immutable_note": "This checkpoint_identity remains authoritative for every takeover checkpoint even if a later Phase A result appears."
+}
