@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s0-94d616066df7",
+  "safe_request_id": "reddit-mistaken-employee-raise-s0-94d616066df7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "cb795f200e8279c7e93d4837f4d110f63adbaa1dbff1b4271af75f2ff0245347",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle customer. It accompanies the narration: \"kept mistaking me for staff\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "153Z-4phCkIgl-O3360WKEwUIprWqjZXb",
+    "filename": "20260810__reddit-mistaken-employee-raise-s0-94d616066df7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=153Z-4phCkIgl-O3360WKEwUIprWqjZXb",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "59a051249d1b3e3ed07f5b533cec58e969882bd79e473bfd88b423334cf56b90",
+    "bytes": 1357318,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}
