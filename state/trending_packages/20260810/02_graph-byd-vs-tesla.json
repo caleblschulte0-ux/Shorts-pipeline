@@ -6,40 +6,19 @@
   "y_label": "Battery-electric vehicles sold (annual)",
   "duration": 13,
   "source": "Source: Tesla quarterly delivery reports (2020-2025); BYD full-year BEV sales as reported by BYD/CnEVPost/CleanTechnica/Statista (2020 figure approximate industry estimate, all other years as company-reported).",
-  "years": [
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
-  ],
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
   "series": [
     {
       "name": "Tesla",
       "color": "#e74c3c",
       "icon": "Tesla",
-      "values": [
-        499550,
-        936222,
-        1313851,
-        1808581,
-        1789226,
-        1636129
-      ]
+      "values": [499550, 936222, 1313851, 1808581, 1789226, 1636129]
     },
     {
       "name": "BYD",
       "color": "#2ecc71",
       "icon": "BYD",
-      "values": [
-        100000,
-        320810,
-        911140,
-        1574822,
-        1760000,
-        2256714
-      ]
+      "values": [100000, 320810, 911140, 1574822, 1760000, 2256714]
     }
   ],
   "hashtags": [

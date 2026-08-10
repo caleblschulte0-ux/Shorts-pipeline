@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Nvidia's Gaming Empire Got Swallowed By AI",
-    "title": "Nvidia's Gaming Empire Got Swallowed By AI",
+    "topic": "Pickleball Is Catching Tennis. For Real.",
+    "title": "Pickleball Is Catching Tennis. For Real.",
     "format": "graph_race",
-    "publish_at": "2026-08-09T13:00:00Z",
+    "publish_at": "2026-08-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest, well-paced race with a genuinely great payoff shape \u2014 but it opens on a mostly-black frame because the axis is pre-scaled to headroom the data won't reach for 3 more seconds.",
-    "elapsed_seconds": 100.6,
-    "package_path": "state/trending_packages/20260809/01_graph-nvidia-datacenter-vs-gaming.json",
+    "error": "showrunner_block: showrunner BLOCK: A competent, readable race that is fatally undercut by units three orders of magnitude wrong \u2014 'US participants: 24300B' \u2014 and a payoff card that crowns Tennis on a video titled 'Pickleball Is Catching Tennis'.",
+    "elapsed_seconds": 132.9,
+    "package_path": "state/trending_packages/20260810/01_graph-pickleball-vs-tennis.json",
     "source": "brain",
-    "video_path": "output/daily_20260809-093004_nvidia_s_gaming_empire_got_swallowed_by_.mp4",
+    "video_path": "output/daily_20260810-092830_pickleball_is_catching_tennis__for_real_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,57 +28,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest, well-paced race with a genuinely great payoff shape \u2014 but it opens on a mostly-black frame because the axis is pre-scaled to headroom the data won't reach for 3 more seconds.",
-      "score": 82
+      "reason": "showrunner BLOCK: A competent, readable race that is fatally undercut by units three orders of magnitude wrong \u2014 'US participants: 24300B' \u2014 and a payoff card that crowns Tennis on a video titled 'Pickleball Is Catching Tennis'.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "The UK Killed Coal In One Decade",
-    "title": "The UK Killed Coal In One Decade",
+    "topic": "BYD Just Passed Tesla in EV Sales",
+    "title": "BYD Just Passed Tesla in EV Sales",
     "format": "graph_race",
-    "publish_at": "2026-08-09T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 62.0,
-    "package_path": "state/trending_packages/20260809/02_graph-uk-coal-vs-wind-power.json",
-    "source": "brain",
-    "video_path": "output/daily_20260809-093144_the_uk_killed_coal_in_one_decade.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Starlink Now Outnumbers Every Other Satellite",
-    "title": "Starlink Now Outnumbers Every Other Satellite",
-    "format": "graph_race",
-    "publish_at": "2026-08-09T13:00:00Z",
+    "publish_at": "2026-08-10T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/dDJvKOfOg80",
+    "video_url": "https://youtube.com/shorts/x_Yz-kEfWOY",
     "error": null,
-    "elapsed_seconds": 121.9,
-    "package_path": "state/trending_packages/20260809/03_graph-starlink-vs-rest-of-world-satellites.json",
+    "elapsed_seconds": 119.7,
+    "package_path": "state/trending_packages/20260810/02_graph-byd-vs-tesla.json",
     "source": "brain",
-    "video_path": "output/daily_20260809-093246_starlink_now_outnumbers_every_other_sate.mp4",
+    "video_path": "output/daily_20260810-093043_byd_just_passed_tesla_in_ev_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -97,22 +63,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 70
+      "score": 74
     },
     "channel": "default"
   },
   {
-    "topic": "The $800 Loophole That Shipped A Billion Boxes",
-    "title": "The $800 Loophole That Shipped A Billion Boxes",
+    "topic": "Canada's Wildfires Dwarfed America's in 2023",
+    "title": "Canada's Wildfires Dwarfed America's in 2023",
     "format": "graph_race",
-    "publish_at": "2026-08-09T14:30:00Z",
+    "publish_at": "2026-08-10T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The collapse payoff genuinely lands, but the first three seconds are a hairline stub in a mostly black frame because the axes are pre-scaled to the endgame.",
-    "elapsed_seconds": 112.7,
-    "package_path": "state/trending_packages/20260809/04_graph-de-minimis-packages-boom-bust.json",
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 real lead change, honest axis rescale that makes the 18.2M spike land \u2014 sabotaged by a hook caption clipped off both edges of the frame and pasted over the chart.",
+    "elapsed_seconds": 120.6,
+    "package_path": "state/trending_packages/20260810/03_graph-canada-vs-us-wildfires.json",
     "source": "brain",
-    "video_path": "output/daily_20260809-093448_the__800_loophole_that_shipped_a_billion.mp4",
+    "video_path": "output/daily_20260810-093243_canada_s_wildfires_dwarfed_america_s_in_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -130,26 +96,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The collapse payoff genuinely lands, but the first three seconds are a hairline stub in a mostly black frame because the axes are pre-scaled to the endgame.",
-      "score": 82
+      "reason": "showrunner BLOCK: A genuinely good race \u2014 real lead change, honest axis rescale that makes the 18.2M spike land \u2014 sabotaged by a hook caption clipped off both edges of the frame and pasted over the chart.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "He Made Every Favor Need His Sign-Off. So I Sent Every Favor.",
-    "title": "He Made Every Favor Need His Sign-Off. So I Sent Every Favor.",
-    "format": "reddit",
-    "publish_at": "2026-08-09T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The back three quarters of the video is one garbled AI sign-holder image frozen over a gameplay panel that fades to black \u2014 the story is never visually demonstrated after the hook.",
-    "elapsed_seconds": 184.4,
-    "package_path": "state/trending_packages/20260809/05_reddit-sign-off-flood.json",
+    "topic": "Solar Just Overtook Wind Power Worldwide",
+    "title": "Solar Just Overtook Wind Power Worldwide",
+    "format": "graph_race",
+    "publish_at": "2026-08-10T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/a1e6EnouGBs",
+    "error": null,
+    "elapsed_seconds": 131.5,
+    "package_path": "state/trending_packages/20260810/04_graph-solar-vs-wind.json",
     "source": "brain",
-    "video_path": "output/daily_20260809-093709_he_made_every_favor_need_his_sign_off__s.mp4",
+    "video_path": "output/daily_20260810-093443_solar_just_overtook_wind_power_worldwide.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.567,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,83 +126,247 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.8
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
+    "title": "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
+    "format": "reddit",
+    "publish_at": "2026-08-10T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: One frozen, AI-garbled barista still sits over the entire 36-second story \u2014 nothing is demonstrated, and the video ends mid-sentence with no payoff.",
+    "elapsed_seconds": 241.9,
+    "package_path": "state/trending_packages/20260810/05_reddit-karen-cup-review.json",
+    "source": "brain",
+    "video_path": "output/daily_20260810-093721_she_threatened_a_bad_review_over_free_co.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 47.367,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The back three quarters of the video is one garbled AI sign-holder image frozen over a gameplay panel that fades to black \u2014 the story is never visually demonstrated after the hook.",
+      "reason": "showrunner BLOCK: One frozen, AI-garbled barista still sits over the entire 36-second story \u2014 nothing is demonstrated, and the video ends mid-sentence with no payoff.",
       "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "He Kept Stealing My WiFi. I Just Started Throttling It.",
-    "title": "He Kept Stealing My WiFi. I Just Started Throttling It.",
+    "topic": "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job.",
+    "title": "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job.",
     "format": "reddit",
-    "publish_at": "2026-08-09T14:30:00Z",
+    "publish_at": "2026-08-10T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['stealing my WiFi for a year', 'throttled his device to dial-up speeds', 'three hours every evening', 'his internet had gotten terrible lately', 'bought his own plan', 'my network usage dropped in half']",
-    "elapsed_seconds": 3.6,
-    "package_path": "state/trending_packages/20260809/06_reddit-wifi-throttle.json",
+    "error": "showrunner_block: showrunner BLOCK: One AI supermarket still is reused for the entire ~33-second story, so nothing in the narrative is actually shown \u2014 the gameplay half is the only thing moving.",
+    "elapsed_seconds": 197.0,
+    "package_path": "state/trending_packages/20260810/06_reddit-mistaken-employee-raise.json",
     "source": "brain",
-    "quarantined": true
+    "video_path": "output/daily_20260810-094122_she_wouldn_t_stop_ordering_me_around__so.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 43.667,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: One AI supermarket still is reused for the entire ~33-second story, so nothing in the narrative is actually shown \u2014 the gameplay half is the only thing moving.",
+      "score": 57
+    },
+    "blocked": true
   },
   {
-    "topic": "internet",
+    "topic": "love island reunion season 8",
     "angle": null,
-    "publish_at": "2026-08-09T14:30:00Z",
+    "publish_at": "2026-08-10T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['hacked and all my posts', 'seeing a therapist', 'using them against me', 'build a case against him', 'facing a lawsuit', '12 million followers', 'anxious about his future']",
-    "elapsed_seconds": 6.0,
-    "title": "Internet Exposed My Dark Secret",
-    "package_path": "state/trending_packages/20260809-094000_auto_internet.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: Narration is pasted over unrelated stock canyon footage, an AI woman, and an Illuminati-eye sunflower \u2014 zero data demonstration, zero mascot, and no visual that matches a single line of the script.",
+    "elapsed_seconds": 658.8,
+    "title": "Reality TV Show Nightmare",
+    "package_path": "state/trending_packages/20260810-094426_auto_love_island_reunion_season_8.json",
+    "video_path": "output/daily_20260810-094426_love_island_reunion_season_8.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 38.967,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -11.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Narration is pasted over unrelated stock canyon footage, an AI woman, and an Illuminati-eye sunflower \u2014 zero data demonstration, zero mascot, and no visual that matches a single line of the script.",
+      "score": 22
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "alaskaair",
+    "topic": "airbus a380",
     "angle": null,
-    "publish_at": "2026-08-09T16:00:00Z",
+    "publish_at": "2026-08-10T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['dream honeymoon', '50% off award ticket', '12,000 more points', 'same flight', '20,000 points less', \"if I'll ever get my points back\"]",
-    "elapsed_seconds": 5.4,
-    "title": "Alaska Airlines Ruined My Honeymoon",
-    "package_path": "state/trending_packages/20260809-094005_auto_alaskaair.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: Every visual is unrelated stock \u2014 a sepia 1900s photo, small children, and a politician at a podium \u2014 sitting over an adult wedding-betrayal narration, with no mascot, no data demonstration, and an ending mid-sentence.",
+    "elapsed_seconds": 592.2,
+    "title": "My Sister Stole My Fianc\u00e9",
+    "package_path": "state/trending_packages/20260810-095528_auto_airbus_a380.json",
+    "video_path": "output/daily_20260810-095528_airbus_a380.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.833,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Every visual is unrelated stock \u2014 a sepia 1900s photo, small children, and a politician at a podium \u2014 sitting over an adult wedding-betrayal narration, with no mascot, no data demonstration, and an ending mid-sentence.",
+      "score": 26
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "lottery",
+    "topic": "rey fenix",
     "angle": null,
-    "publish_at": "2026-08-09T17:30:00Z",
+    "publish_at": "2026-08-10T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['12 million dollars', '32, forged my name', 'sued by my own sister', 'struggling to pay my bills', 'brand new house in East Hartford', 'fake texts, pretending to be a lottery official', 'shattered relationship with my own flesh and blood']",
-    "elapsed_seconds": 6.1,
-    "title": "$12 Million Lottery Secret",
-    "package_path": "state/trending_packages/20260809-094011_auto_lottery.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: Two beats cut to wholly unrelated archival imagery (a Georgian courtroom engraving and a silent-film interior), and the video ends mid-sentence on 'LUXURY' with no payoff.",
+    "elapsed_seconds": 725.5,
+    "title": "Family Betrayal",
+    "package_path": "state/trending_packages/20260810-100517_auto_rey_fenix.json",
+    "video_path": "output/daily_20260810-100517_rey_fenix.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 31.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Two beats cut to wholly unrelated archival imagery (a Georgian courtroom engraving and a silent-film interior), and the video ends mid-sentence on 'LUXURY' with no payoff.",
+      "score": 26
+    },
+    "blocked": true,
     "backfill": true
   },
   {
-    "topic": "car",
+    "topic": "alaska airlines flight",
     "angle": null,
-    "publish_at": "2026-08-09T19:00:00Z",
+    "publish_at": "2026-08-10T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['My Sister', 'brand new car', 'autopilot feature', 'police report', '12 thousand dollars', 'deep financial trouble', 'trying to sell my car']",
-    "elapsed_seconds": 35.9,
-    "title": "My Sister Stole My Car",
-    "package_path": "state/trending_packages/20260809-094022_auto_car.json",
-    "quarantined": true,
+    "error": "showrunner_block: showrunner BLOCK: Clean captions and constant gameplay motion, but the story is illustrated by photos that don't match it \u2014 a snake close-up carries the entire ending of a hijack story.",
+    "elapsed_seconds": 435.8,
+    "title": "Flight 305 Nightmare",
+    "package_path": "state/trending_packages/20260810-101721_auto_alaska_airlines_flight.json",
+    "video_path": "output/daily_20260810-101721_alaska_airlines_flight.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 41.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -13.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Clean captions and constant gameplay motion, but the story is illustrated by photos that don't match it \u2014 a snake close-up carries the entire ending of a hijack story.",
+      "score": 35
+    },
+    "blocked": true,
     "backfill": true
   }
 ]

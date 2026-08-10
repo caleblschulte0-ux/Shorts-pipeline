@@ -6,40 +6,19 @@
   "y_label": "Hectares burned (millions)",
   "duration": 13,
   "source": "Source: Natural Resources Canada annual wildfire statistics; US National Interagency Fire Center (NIFC) annual acres burned, converted to hectares (1 acre = 0.4047 ha).",
-  "years": [
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024
-  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
   "series": [
     {
       "name": "USA",
       "color": "#4a90e2",
       "icon": "US",
-      "values": [
-        1.9,
-        4.09,
-        2.87,
-        3.08,
-        1.09,
-        3.6
-      ]
+      "values": [1.90, 4.09, 2.87, 3.08, 1.09, 3.60]
     },
     {
       "name": "Canada",
       "color": "#e74c3c",
       "icon": "CA",
-      "values": [
-        0.8,
-        0.605,
-        1.0,
-        1.8,
-        18.5,
-        5.4
-      ]
+      "values": [0.80, 0.605, 1.0, 1.8, 18.5, 5.4]
     }
   ],
   "hashtags": [

@@ -6,43 +6,19 @@
   "y_label": "Global installed capacity (GW)",
   "duration": 13,
   "source": "Source: IRENA Renewable Capacity Statistics, annual editions 2016-2026; global cumulative installed capacity, year-end gigawatts (2025 wind figure estimated from IRENA's reported growth trend).",
-  "years": [
-    2015,
-    2018,
-    2020,
-    2022,
-    2023,
-    2024,
-    2025
-  ],
+  "years": [2015, 2018, 2020, 2022, 2023, 2024, 2025],
   "series": [
     {
       "name": "Wind",
       "color": "#1F77B4",
       "icon": "Wind",
-      "values": [
-        433,
-        591,
-        743,
-        899,
-        1021,
-        1136,
-        1270
-      ]
+      "values": [433, 591, 743, 899, 1021, 1136, 1270]
     },
     {
       "name": "Solar",
       "color": "#f5c518",
       "icon": "Solar",
-      "values": [
-        227,
-        509,
-        760,
-        1053,
-        1419,
-        1873,
-        2383
-      ]
+      "values": [227, 509, 760, 1053, 1419, 1873, 2383]
     }
   ],
   "hashtags": [
