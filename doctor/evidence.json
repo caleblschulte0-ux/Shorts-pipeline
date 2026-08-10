@@ -1,42 +1,61 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260809",
-  "judged_date": "20260808",
+  "date": "20260810",
+  "judged_date": "20260809",
   "alarm": {
-    "date": "20260808",
+    "date": "20260809",
     "ok": false,
     "alarms": [
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260808 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260808. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260809 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260809. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 4/6 posted for 20260808.",
+        "detail": "third: 4/6 posted for 20260809.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 1/6 posted for 20260808.",
+        "detail": "trending: 1/6 posted for 20260809.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260808: production outcome says 1/6 uploaded and repair never completed (0 quarantined, 9 failed).",
+        "detail": "trending 20260809: production outcome says 1/6 uploaded and repair never completed (5 quarantined, 4 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "trending_short_after_retries",
+        "severity": "warning",
+        "detail": "trending shipped 1/6; 4 re-authored replacement(s) also failed to fill it.",
+        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
-    "notes": [
-      "exchange: 16/16 ChatGPT images pinned"
-    ],
+    "notes": [],
     "deferred": false
   },
   "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260809",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 1,
+      "quarantined": 5,
+      "failed": 4,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/dDJvKOfOg80"
+      ]
+    },
     {
       "schema": "production-channel-outcome/v1",
       "date": "20260808",
@@ -1637,11 +1656,151 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-09T09:31:44+00:00",
+      "slug": "nvidia_s_gaming_empire_got_swallowed_by_",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest, well-paced race with a genuinely great payoff shape \u2014 but it opens on a mostly-black frame because the axis is pre-scaled to headroom the data won't reach for 3 more seconds.",
+      "auto_fails": [
+        "empty_void: dark_fraction=1.0 and in hook@0.3\u2013mid1 (t=0.30\u20134.47s) the entire upper-right two-thirds of the plot area above 12B is empty black, with both lines crammed into a thin band near the bottom-left."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-09T09:32:46+00:00",
+      "slug": "the_uk_killed_coal_in_one_decade",
+      "score": 0,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 0
+      },
+      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-09T09:34:43+00:00",
+      "slug": "starlink_now_outnumbers_every_other_sate",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest, well-labelled race with a real crossover and leaderboard flip \u2014 undercut by a slow, cluttered opening and a tail that stops moving.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-09T09:36:41+00:00",
+      "slug": "the__800_loophole_that_shipped_a_billion",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The collapse payoff genuinely lands, but the first three seconds are a hairline stub in a mostly black frame because the axes are pre-scaled to the endgame.",
+      "auto_fails": [
+        "empty_void: dark_fraction=1.00 and the entire upper-right half of hook@0.8 through mid1 is empty black \u2014 at mid0 the plotted lines occupy only the left third while ~60% of the plot area is void, and the band between the title block and the y-axis top is dead in every frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-09T09:39:46+00:00",
+      "slug": "he_made_every_favor_need_his_sign_off__s",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The back three quarters of the video is one garbled AI sign-holder image frozen over a gameplay panel that fades to black \u2014 the story is never visually demonstrated after the hook.",
+      "auto_fails": [
+        "junk_imagery: mid1 (t=10.71s) through payoff@-0.4 (t=45.17s) all carry the same AI-generated man-in-suit holding a sign whose handwriting is garbled illegible scribble ('lNOTHUJ\\@ / FRLIAS / T.CIC-OIA?') \u2014 a broken AI cutout, not a real illustration.",
+        "dead_air: Two-plus beats identical: the top illustration is pixel-identical across mid1 (10.71s), mid2 (18.93s), mid3 (27.14s), mid4 (35.35s), mid5 (43.57s) and both payoff frames \u2014 ~35s with one unchanging shot (gameplay below still moves, so no frozen-frame reading in the motion facts).",
+        "empty_void: mid4 (t=35.35s) and mid5 (t=43.57s) show the bottom gameplay half as near-total black with no readable subject and no caption at mid4 \u2014 half the frame is dead space."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 137
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "1bcaee0 2026-08-09 doctor: evidence pack + backlog 2026-08-09 [skip ci]",
-    "c88808c 2026-08-08 doctor: findings for 20260808"
+    "811bfee 2026-08-09 doctor: findings for 20260809",
+    "82b6c99 2026-08-09 retro: brief + triage for 20260809 [skip ci]"
   ],
   "open_backlog": [
     {
@@ -1654,6 +1813,13 @@
     {
       "signature": "653acb99b575",
       "title": "Third-capture QA passes clips when QA itself crashes",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "69a886343361",
+      "title": "Production shortfall test never executes the red exit path",
       "horizon": "bug",
       "severity": "high",
       "ruling": "new"
@@ -1680,6 +1846,13 @@
       "ruling": "new"
     },
     {
+      "signature": "9943424b8251",
+      "title": "Workflow policy tests pin text tokens instead of executable behavior",
+      "horizon": "short_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
       "signature": "4c58349192b8",
       "title": "Asset metadata is assigned by provider class",
       "horizon": "long_term",
@@ -1694,8 +1867,22 @@
       "ruling": "new"
     },
     {
+      "signature": "74db7c4b3786",
+      "title": "Production safety is tested as seams, not as one state machine",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
       "signature": "75af24a46374",
       "title": "Dropping an overlength replay leaves its whoosh cue behind",
+      "horizon": "small_fix",
+      "severity": "low",
+      "ruling": "new"
+    },
+    {
+      "signature": "9b8b29a78b87",
+      "title": "Malformed production-outcome test cannot detect a regression",
       "horizon": "small_fix",
       "severity": "low",
       "ruling": "new"

@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260808",
+  "updated": "20260810",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -198,6 +198,68 @@
       "signature": "79e94e61b5a9",
       "last_seen": "20260808",
       "first_seen": "20260808"
+    },
+    "69a886343361": {
+      "title": "Production shortfall test never executes the red exit path",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "tests/production-contract",
+      "files": [
+        "tests/test_production_outcome.py"
+      ],
+      "observation": "TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall says it proves the orchestrator exits non-zero when production is incomplete, but the test only reads scripts/run_trending_daily.py as text and checks for the substrings `if not complete:` and `repair/retry required`. It would still pass if that branch became unreachable, returned zero, or wrote the wrong outcome. The current runtime evidence for 20260808 shows trending ended 1/6 with status repair_required, so this is an actively important contract rather than a theoretical edge.",
+      "proposal": "Replace or supplement the source-text assertion with an executable regression test around the real completion decision: drive a fixture outcome below expected and assert the orchestrator's callable/CLI result is non-zero and the persisted production outcome remains repair_required. Keep all showrunner and quarantine holds sovereign; the test should verify visibility of the shortfall, not force uploads.",
+      "evidence": "tests/test_production_outcome.py, TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall(), reads scripts/run_trending_daily.py and uses two assertIn() calls instead of executing the branch; doctor/evidence.json dated 20260809 records trending 1/6 for 20260808 with status repair_required.",
+      "signature": "69a886343361",
+      "last_seen": "20260810",
+      "first_seen": "20260810"
+    },
+    "9b8b29a78b87": {
+      "title": "Malformed production-outcome test cannot detect a regression",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "tests/malformed-outcome",
+      "files": [
+        "tests/test_production_outcome.py"
+      ],
+      "observation": "TestTheAlarmReadsTheOutcome.test_a_junk_outcome_file_is_ignored writes `{not json` to the trending outcome file, calls alarm.check(), and then asserts only that the returned object contains an `alarms` key. That key is part of the normal result shape, so the assertion does not establish how malformed outcome state is handled and can stay green across materially different behaviors.",
+      "proposal": "Make the test assert the actual safety contract for malformed outcome state: it should be surfaced as a named diagnostic or at minimum be proven unable to masquerade as a production_complete outcome. Assert the specific code/notes/status expected from the chosen stronger behavior rather than the existence of the top-level `alarms` field.",
+      "evidence": "tests/test_production_outcome.py, TestTheAlarmReadsTheOutcome.test_a_junk_outcome_file_is_ignored(), writes invalid JSON and finishes with `self.assertIn(\"alarms\", r)`; neighboring tests assert specific alarm codes, showing the malformed case is the outlier.",
+      "signature": "9b8b29a78b87",
+      "last_seen": "20260810",
+      "first_seen": "20260810"
+    },
+    "9943424b8251": {
+      "title": "Workflow policy tests pin text tokens instead of executable behavior",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "tests/workflow-policy",
+      "files": [
+        "tests/test_production_outcome.py",
+        ".github/workflows/daily.yml"
+      ],
+      "observation": "The production-outcome suite extracts sections of daily.yml with string splits and then checks for fragments such as `exit 1`, `exit 0`, `production_runs`, `uploaded`, and counter messages. These tests protect wording and rough shape, but they do not prove that the YAML remains syntactically valid, that the intended branch conditions bind to the intended steps, or that the shell snippets produce the claimed exit/status behavior.",
+      "proposal": "Move the load-bearing pause/counter/completion policy into testable functions or checked scripts and have the workflow call them, then test inputs and exit codes directly. Add a lightweight workflow-structure validation that parses the YAML and verifies step conditions/identifiers, so refactors can change comments and formatting without weakening executable coverage.",
+      "evidence": "tests/test_production_outcome.py defines counter_step() and stop_step() by splitting the raw daily.yml text, and TestRedVersusPaused/TestAPausedRunIsNotAGreenRun assert string fragments from those slices; .github/workflows/daily.yml contains the actual preflight, skipped-run, orchestrator, and failure-counter shell logic those tests intend to protect.",
+      "signature": "9943424b8251",
+      "last_seen": "20260810",
+      "first_seen": "20260810"
+    },
+    "74db7c4b3786": {
+      "title": "Production safety is tested as seams, not as one state machine",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "tests/production-state-machine",
+      "files": [
+        "tests/test_production_outcome.py",
+        "tests/test_daily_alarm.py"
+      ],
+      "observation": "The suite has good focused tests for alarm codes and separate tests for production-outcome policy, but the current production path is validated as isolated seams: fixture outcome -> alarm behavior in one module, source/YAML text -> expected policy tokens in another. There is no test in these two incident-focused modules that drives one synthetic day through incomplete production, persisted outcome, red disposition, next-day alarm interpretation, and the bounded recovery/hold decision as a single contract.",
+      "proposal": "Build a small deterministic production-state-machine harness around filesystem fixtures and callable orchestration boundaries. Exercise complete, partial, zero-upload, showrunner-held, auto-paused, retry-success, retry-failure, and malformed-state cases across consecutive synthetic days, asserting that stronger gates stay blocking while operational failures remain visible and recoverable.",
+      "evidence": "tests/test_production_outcome.py separately tests workflow text and alarm.check() against hand-written outcome files; tests/test_daily_alarm.py separately seeds posted logs/bundles and asserts alarm codes. doctor/evidence.json for 20260809 shows the real multi-step failure shape persisted across production: 20260808 trending uploaded 1/6 and remained repair_required.",
+      "signature": "74db7c4b3786",
+      "last_seen": "20260810",
+      "first_seen": "20260810"
     }
   }
 }
