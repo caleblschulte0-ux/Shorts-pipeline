@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s7-a7c616b9ffbd",
+  "safe_request_id": "reddit-mistaken-employee-raise-s7-a7c616b9ffbd",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1f272a6aa9e350e21da5d7ee9c61c6c3dffd97f48c92191324fb2b9797a2bee3",
+  "prompt_used": "An editorial illustration for a short-form video: new employee training. It accompanies the narration: \"started training the following Monday\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1gYFwtZo06WzNI00Vnc90iHT8XYo_kWbo",
+    "filename": "20260810__reddit-mistaken-employee-raise-s7-a7c616b9ffbd.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1gYFwtZo06WzNI00Vnc90iHT8XYo_kWbo",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e5cc2c8af2abe98e1b08aa34b6af2203e9aa45c7ff0cec63e486f03be23e1c7d",
+    "bytes": 1143138,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}
