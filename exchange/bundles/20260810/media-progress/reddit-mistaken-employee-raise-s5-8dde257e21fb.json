@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s5-8dde257e21fb",
+  "safe_request_id": "reddit-mistaken-employee-raise-s5-8dde257e21fb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "efa0eae6d211cc99aa9cf85b6339e49c3434f474be30f7879a44081934a55b11",
+  "prompt_used": "An editorial illustration for a short-form video: manager office window. It accompanies the narration: \"watched the whole thing from the office window\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "193grB_f0gi3w2YaRVoJXX-Z6QlC95RxS",
+    "filename": "20260810__reddit-mistaken-employee-raise-s5-8dde257e21fb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=193grB_f0gi3w2YaRVoJXX-Z6QlC95RxS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9283c41af3a4a011d5955542025f6dd9b122c1a2e4160564143be45885e5e304",
+    "bytes": 1847172,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}
