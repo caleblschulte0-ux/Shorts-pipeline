@@ -19377,6 +19377,240 @@
           }
         }
       ]
+    },
+    {
+      "slug": "asteroid-hunt-still-blind",
+      "title": "We've Found 39,000 Asteroids. That's Not Enough.",
+      "hook": "Space is way more crowded than you think.",
+      "closing": "The scariest asteroid isn't one we've found. It's the one we haven't.",
+      "question": "Does it worry you that half the big ones are still out there? Tell me below.",
+      "caption": "NASA has now catalogued 38,985 near-Earth asteroids, up from about 500 in 1998. But of the ones large enough to level a city, we've only found 45%. Here's the real number 👇",
+      "hashtags": [
+        "asteroid",
+        "nasa",
+        "space",
+        "science",
+        "astronomy",
+        "neo",
+        "planetarydefense",
+        "spacefacts",
+        "didyouknow",
+        "universe",
+        "telescope",
+        "spacenews",
+        "jpl",
+        "cosmos"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "asteroid_discoveries_cumulative",
+          "params": {
+            "file": "asteroid_discoveries_cumulative.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE COUNT",
+          "topic": "near-Earth asteroids catalogued",
+          "say": "In 1998, NASA had catalogued about 500 near-Earth asteroids. By 2025 that number hit 38,985, seventy-eight times more, and it keeps climbing every year."
+        },
+        {
+          "source": "offline",
+          "key": "asteroid_hazard_classification",
+          "params": {
+            "file": "asteroid_hazard_classification.json"
+          },
+          "insight_type": "share",
+          "role": "2 · THE RISK",
+          "topic": "asteroids by hazard classification",
+          "say": "Of those, 2,500 are classified potentially hazardous, big enough and close enough to actually worry about. Still a small slice of everything we've mapped."
+        },
+        {
+          "source": "offline",
+          "key": "asteroid_140m_found_vs_missing",
+          "params": {
+            "file": "asteroid_140m_found_vs_missing.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE GAP",
+          "topic": "city-killer asteroids found vs missing",
+          "say": "Congress told NASA to find 90 percent of the city-killer sized ones, 140 meters or wider. So far we've found 45 percent. More than half are still out there, unfound."
+        }
+      ]
+    },
+    {
+      "slug": "eight-glasses-water-myth",
+      "title": "The 8-Glasses-a-Day Rule Was Never Real",
+      "hook": "That water rule you follow? Never existed.",
+      "closing": "Drink when you're thirsty. Your body already does the math.",
+      "question": "Did you know the 8 glasses rule wasn't real? Tell me below.",
+      "caption": "The '8 glasses a day' rule traces back to a 1945 recommendation of 2.5 liters, and that included water FROM FOOD. Here's what your body actually needs 👇",
+      "hashtags": [
+        "hydration",
+        "health",
+        "wellness",
+        "nutrition",
+        "water",
+        "mythbusted",
+        "science",
+        "healthfacts",
+        "didyouknow",
+        "bodyscience",
+        "selfcare",
+        "healthtips",
+        "fitness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "hydration_myth_vs_guidance",
+          "params": {
+            "file": "hydration_myth_vs_guidance.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 · THE MYTH",
+          "topic": "the 8-glasses myth vs real guidance",
+          "say": "The 8-glasses rule works out to about 1.9 liters of plain water. Modern guidance from the National Academies actually recommends more, an average of about 3.2 liters of fluid a day."
+        },
+        {
+          "source": "offline",
+          "key": "hydration_source_breakdown",
+          "params": {
+            "file": "hydration_source_breakdown.json"
+          },
+          "insight_type": "share",
+          "role": "2 · THE CATCH",
+          "topic": "where your fluid actually comes from",
+          "say": "Here's the twist. About 20 percent of that already comes from food, soup, fruit, your morning coffee. You're not starting from zero every single day."
+        },
+        {
+          "source": "offline",
+          "key": "hydration_by_gender",
+          "params": {
+            "file": "hydration_by_gender.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE REAL RULE",
+          "topic": "recommended fluid intake by sex",
+          "say": "And the real number depends on you. Men need about 3.7 liters a day, women about 2.7. One fixed number for every single person was always going to be wrong."
+        }
+      ]
+    },
+    {
+      "slug": "solo-living-overtakes-family",
+      "title": "Living Alone Just Became the New Normal",
+      "hook": "1 in 3 homes now has just one person.",
+      "closing": "The 'nuclear family' is now the minority household.",
+      "question": "Do you live alone? Tell me how long below.",
+      "caption": "In 1960, only 13% of US households were one person. Today it's 29%, bigger than the share of married-couple homes. Here's the shift 👇",
+      "hashtags": [
+        "demographics",
+        "society",
+        "sololiving",
+        "livingalone",
+        "census",
+        "culture",
+        "familytrends",
+        "data",
+        "didyouknow",
+        "singlelife",
+        "modernlife",
+        "sociology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "one_person_households_trend",
+          "params": {
+            "file": "one_person_households_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SHIFT",
+          "topic": "US one-person households",
+          "say": "In 1960, just 13 percent of US households were one person living alone. By 2023 that's 29 percent, almost 1 in 3 homes in the entire country."
+        },
+        {
+          "source": "offline",
+          "key": "married_household_decline",
+          "params": {
+            "file": "married_household_decline.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE FLIP",
+          "topic": "married-couple households, then and now",
+          "say": "Meanwhile, married-couple households collapsed, from 71 percent of all homes in 1970 down to 47 percent today. The 'typical' household isn't typical anymore."
+        },
+        {
+          "source": "offline",
+          "key": "solo_living_by_country",
+          "params": {
+            "file": "solo_living_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE EXTREME",
+          "topic": "solo living around the world",
+          "say": "And the US isn't even close to the extreme. Finland tops the world at 45 percent, with Germany and Sweden near 41. Living alone there is normal, not sad."
+        }
+      ]
+    },
+    {
+      "slug": "chatgpt-fastest-adoption-ever",
+      "title": "ChatGPT Grew Faster Than Any App Ever Has",
+      "hook": "This app broke every growth record.",
+      "closing": "900 million people use it weekly. Fifty million of them pay.",
+      "question": "Do you use ChatGPT every week? Tell me below.",
+      "caption": "ChatGPT hit 100 million users within 2 months of launch. TikTok took 9 months. Instagram took two and a half years. Here's the full curve 👇",
+      "hashtags": [
+        "chatgpt",
+        "ai",
+        "openai",
+        "technology",
+        "artificialintelligence",
+        "tech",
+        "techfacts",
+        "data",
+        "didyouknow",
+        "app",
+        "innovation",
+        "future"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "chatgpt_weekly_users_trend",
+          "params": {
+            "file": "chatgpt_weekly_users_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE ROCKET",
+          "topic": "ChatGPT users over time",
+          "say": "ChatGPT hit 100 million users just 2 months after launch. By February 2026, weekly active users had climbed to 900 million people using it every single week."
+        },
+        {
+          "source": "offline",
+          "key": "app_100m_users_speed",
+          "params": {
+            "file": "app_100m_users_speed.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "role": "2 · THE OLD GUARD",
+          "topic": "months to reach 100 million users",
+          "say": "Compare that to the old guard. TikTok took 9 months to reach 100 million users. Instagram took 30 months, two and a half years. ChatGPT did it in 2."
+        },
+        {
+          "source": "offline",
+          "key": "chatgpt_paying_share",
+          "params": {
+            "file": "chatgpt_paying_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE CATCH",
+          "topic": "paying vs free ChatGPT users",
+          "say": "And yet, of those 900 million weekly users, only 50 million actually pay. The other 850 million ride free, which is exactly why AI companies need so much investor cash."
+        }
+      ]
     }
   ],
   "videos": [
