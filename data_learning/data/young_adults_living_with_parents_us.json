@@ -1,0 +1,22 @@
+{
+  "key": "young_adults_living_with_parents_us",
+  "title": "Share of 18-29 year-olds living with a parent",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1940-2025 (selected years)",
+  "source": {
+    "name": "Historical living-arrangements series",
+    "publisher": "U.S. Census Bureau / Pew Research Center analysis of Census and Federal Reserve data",
+    "url": "https://www.pewresearch.org/short-reads/2020/09/04/a-majority-of-young-adults-in-the-u-s-live-with-their-parents-for-the-first-time-since-the-great-depression/",
+    "officiality": "secondary",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Pew Research: 1940 (Great Depression era) was the last time a majority of 18-29 year-olds lived with parents (48%); the share fell to a low of 29% by 1960, then climbed back, hitting 52% in July 2020 during the pandemic (the first majority since 1940) before easing slightly. 2025 figure from Federal Reserve survey data on adults under 30.",
+  "points": [
+    {"label": "1940", "value": 48, "period": "1940"},
+    {"label": "1960", "value": 29, "period": "1960"},
+    {"label": "2012", "value": 36, "period": "2012"},
+    {"label": "2020", "value": 52, "period": "2020"},
+    {"label": "2025", "value": 49, "period": "2025"}
+  ]
+}

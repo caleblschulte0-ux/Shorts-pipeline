@@ -1,0 +1,22 @@
+{
+  "key": "cement_production_share_country",
+  "title": "Share of world cement production, by country",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "recent year",
+  "source": {
+    "name": "Mineral Commodity Summaries, Cement",
+    "publisher": "U.S. Geological Survey (USGS)",
+    "url": "https://www.usgs.gov/centers/national-minerals-information-center/cement-statistics-and-information",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Approximate shares rounded from recent USGS Mineral Commodity Summaries: China alone accounts for roughly half of global cement production (a rough proxy for sand and gravel demand, since cement/concrete is sand's largest single use), with India a distant second.",
+  "points": [
+    {"label": "China", "value": 51},
+    {"label": "India", "value": 8},
+    {"label": "Vietnam", "value": 4},
+    {"label": "United States", "value": 2},
+    {"label": "Rest of world", "value": 35}
+  ]
+}
