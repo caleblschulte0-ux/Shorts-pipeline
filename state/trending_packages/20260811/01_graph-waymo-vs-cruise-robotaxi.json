@@ -6,57 +6,15 @@
   "y_label": "Weekly paid robotaxi rides (thousands)",
   "duration": 13,
   "source": "Source: Waymo weekly paid-ride disclosures as reported by TechCrunch, CNBC, Forbes and Axios (2021-2026); Cruise weekly ride volume approximated from company and media reporting prior to its October 2023 California permit suspension and General Motors' December 2024 shutdown of the robotaxi program. Figures approximate.",
-  "years": [
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2021, 2022, 2023, 2024, 2025, 2026],
   "series": [
-    {
-      "name": "Waymo",
-      "color": "#4a90e2",
-      "icon": "Waymo",
-      "values": [
-        1,
-        4,
-        10,
-        100,
-        450,
-        500
-      ]
-    },
-    {
-      "name": "Cruise",
-      "color": "#e74c3c",
-      "icon": "Cruise",
-      "values": [
-        1,
-        5,
-        10,
-        0,
-        0,
-        0
-      ]
-    }
+    {"name": "Waymo", "color": "#4a90e2", "icon": "Waymo",
+     "values": [1, 4, 10, 100, 450, 500]},
+    {"name": "Cruise", "color": "#e74c3c", "icon": "Cruise",
+     "values": [1, 5, 10, 0, 0, 0]}
   ],
-  "hashtags": [
-    "waymo",
-    "robotaxi",
-    "selfdrivingcars",
-    "cruise",
-    "gm",
-    "autonomousvehicles",
-    "ai",
-    "tech",
-    "futuretech",
-    "sanfrancisco",
-    "alphabet",
-    "google",
-    "innovation",
-    "electricvehicles"
-  ],
+  "hashtags": ["waymo", "robotaxi", "selfdrivingcars", "cruise", "gm",
+    "autonomousvehicles", "ai", "tech", "futuretech", "sanfrancisco",
+    "alphabet", "google", "innovation", "electricvehicles"],
   "music_vibe": "cinematic"
 }

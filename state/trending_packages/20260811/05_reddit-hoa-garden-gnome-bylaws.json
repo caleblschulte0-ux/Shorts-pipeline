@@ -4,107 +4,25 @@
   "title": "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
   "script": "Our HOA president left a $150 fine on my door for unapproved yard decor, meaning one ceramic gnome my grandmother gave me. The bylaws never mention gnomes, so I actually read all forty pages that night. Turns out half the street was already in violation of something: unregistered trailers, a trampoline over the height limit, a shed built without a permit, and one parked boat sitting in her own driveway for three years. I filed one formal complaint per violation, cited the exact clause each time, and copied the whole board. The next meeting ran four hours. Neighbors who'd never spoken to each other suddenly had opinions about setback rules. By the time the dust settled, the board voted to grandfather in most of it, my fine got dropped for lack of a written decor policy, and the gnome stayed exactly where it was, now with a tiny sign that says approved.",
   "shots": [
-    {
-      "phrase": "left a $150 fine on my door",
-      "query": "notice on front door"
-    },
-    {
-      "phrase": "one ceramic gnome my grandmother gave me",
-      "query": "garden gnome lawn",
-      "pin_query": "garden gnome",
-      "pin_context": "ceramic lawn ornament statue",
-      "news_query": "garden gnome",
-      "news_angle": "A garden gnome became the center of a neighborhood dispute over yard decor rules.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/ML-W%C3%A4chter_%28cropped%29.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "read all forty pages that night",
-      "query": "reading documents at night"
-    },
-    {
-      "phrase": "unregistered trailers",
-      "query": "trailer parked driveway",
-      "pin_query": "trailer",
-      "pin_context": "unregistered vehicle lawn",
-      "news_query": "trailer",
-      "news_angle": "Unregistered trailers were found to be in violation of neighborhood rules.",
-      "image_url": "https://live.staticflickr.com/7244/6890179264_cfc78c1622_b.jpg"
-    },
-    {
-      "phrase": "a trampoline over the height limit",
-      "query": "backyard trampoline",
-      "pin_query": "trampoline",
-      "pin_context": "backyard playground equipment",
-      "news_query": "trampoline",
-      "news_angle": "A trampoline over the height limit was discovered in the neighborhood.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Hometrampoline.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "a shed built without a permit",
-      "query": "backyard storage shed",
-      "pin_query": "shed",
-      "pin_context": "backyard storage building",
-      "news_query": "shed",
-      "news_angle": "A shed was found to have been built without a permit in the neighborhood.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Schuppen_7235.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "one parked boat sitting in her own driveway",
-      "query": "boat parked driveway",
-      "pin_query": "boat",
-      "pin_context": "parked vehicle driveway",
-      "news_query": "boat",
-      "news_angle": "A boat had been sitting in a driveway for three years, violating neighborhood rules.",
-      "image_url": "https://live.staticflickr.com/8036/8031082024_7c4d5fce9a_b.jpg"
-    },
-    {
-      "phrase": "The next meeting ran four hours",
-      "query": "community meeting room"
-    }
+    {"phrase": "left a $150 fine on my door", "query": "notice on front door"},
+    {"phrase": "one ceramic gnome my grandmother gave me", "query": "garden gnome lawn"},
+    {"phrase": "read all forty pages that night", "query": "reading documents at night"},
+    {"phrase": "unregistered trailers", "query": "trailer parked driveway"},
+    {"phrase": "a trampoline over the height limit", "query": "backyard trampoline"},
+    {"phrase": "a shed built without a permit", "query": "backyard storage shed"},
+    {"phrase": "one parked boat sitting in her own driveway", "query": "boat parked driveway"},
+    {"phrase": "The next meeting ran four hours", "query": "community meeting room"}
   ],
   "punches": [
-    {
-      "phrase": "$150 fine",
-      "text": "$150 FINE",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "forty pages",
-      "text": "40 PAGES",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "three years",
-      "text": "3 YEARS",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "four hours",
-      "text": "4 HOURS",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "fine got dropped",
-      "text": "FINE DROPPED",
-      "color": "#50ff80"
-    }
+    {"phrase": "$150 fine", "text": "$150 FINE", "color": "#ff3030"},
+    {"phrase": "forty pages", "text": "40 PAGES", "color": "#ffaa30"},
+    {"phrase": "three years", "text": "3 YEARS", "color": "#ffaa30"},
+    {"phrase": "four hours", "text": "4 HOURS", "color": "#ffaa30"},
+    {"phrase": "fine got dropped", "text": "FINE DROPPED", "color": "#50ff80"}
   ],
-  "hashtags": [
-    "hoa",
-    "hoafine",
-    "gardengnome",
-    "pettyrevenge",
-    "neighborhood",
-    "bylaws",
-    "communityassociation",
-    "homeownersassociation",
-    "karma",
-    "maliciouscompliance",
-    "suburbs",
-    "reddit",
-    "revenge",
-    "neighbors"
-  ],
+  "hashtags": ["hoa", "hoafine", "gardengnome", "pettyrevenge", "neighborhood",
+    "bylaws", "communityassociation", "homeownersassociation", "karma",
+    "maliciouscompliance", "suburbs", "reddit", "revenge", "neighbors"],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
 }

@@ -1,0 +1,13 @@
+{
+  "schema": "production-channel-outcome/v1",
+  "date": "20260811",
+  "channel": "trending",
+  "expected": 6,
+  "previously_uploaded": 0,
+  "rendered_or_attempted": 10,
+  "uploaded": 0,
+  "quarantined": 1,
+  "failed": 9,
+  "status": "repair_required",
+  "video_urls": []
+}
