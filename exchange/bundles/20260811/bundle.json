@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260811/DONE",
   "counts": {
     "packages": 6,
-    "requests": 9,
+    "requests": 15,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -391,29 +391,29 @@
           "shot_index": 3,
           "phrase": "unregistered trailers",
           "query": "trailer parked driveway",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 4,
           "phrase": "a trampoline over the height limit",
           "query": "backyard trampoline",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
           "phrase": "a shed built without a permit",
           "query": "backyard storage shed",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 6,
           "phrase": "one parked boat sitting in her own driveway",
           "query": "boat parked driveway",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 7,
@@ -424,15 +424,19 @@
         }
       ],
       "media_health": {
-        "strong": 5,
+        "strong": 1,
         "weak": 0,
-        "missing": 3,
+        "missing": 7,
         "unknown": 0
       },
-      "strong_fraction": 0.625,
+      "strong_fraction": 0.125,
       "requested": [
         "reddit-hoa-garden-gnome-bylaws-s0-7ecb84ea5ee3",
         "reddit-hoa-garden-gnome-bylaws-s2-bbfc47140df5",
+        "reddit-hoa-garden-gnome-bylaws-s3-41f91586236c",
+        "reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944",
+        "reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64",
+        "reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8",
         "reddit-hoa-garden-gnome-bylaws-s7-8c0cbd5056aa"
       ]
     },
@@ -480,15 +484,15 @@
           "shot_index": 5,
           "phrase": "a rival chain two blocks over",
           "query": "retail storefront street",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 6,
           "phrase": "her kitchen counter that morning",
           "query": "kitchen counter paper",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 7,
@@ -499,18 +503,20 @@
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 0,
         "weak": 0,
-        "missing": 6,
+        "missing": 8,
         "unknown": 0
       },
-      "strong_fraction": 0.25,
+      "strong_fraction": 0.0,
       "requested": [
         "reddit-wrong-store-coupon-s0-06039ea8da2a",
         "reddit-wrong-store-coupon-s1-6cdae6d9e2b9",
         "reddit-wrong-store-coupon-s2-c80f3165b0fa",
         "reddit-wrong-store-coupon-s3-4fafcf6fe3e4",
         "reddit-wrong-store-coupon-s4-8bde1ab28dd0",
+        "reddit-wrong-store-coupon-s5-55116d03995d",
+        "reddit-wrong-store-coupon-s6-6de19989e98b",
         "reddit-wrong-store-coupon-s7-a59fa74186d6"
       ]
     }
@@ -552,6 +558,110 @@
       "shot_index": 2,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: reading documents at night. It accompanies the narration: \"read all forty pages that night\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hoa-garden-gnome-bylaws-s3-41f91586236c",
+      "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s3-41f91586236c",
+      "drive_filename": "20260811__reddit-hoa-garden-gnome-bylaws-s3-41f91586236c.png",
+      "prompt_sha256": "1763f5d803580aa4a060c22e5f7b5121e75faf3018272cae602e1a919db171ac",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-hoa-garden-gnome-bylaws-s3-41f91586236c.json",
+      "slug": "reddit-hoa-garden-gnome-bylaws",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: trailer parked driveway. It accompanies the narration: \"unregistered trailers\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944",
+      "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944",
+      "drive_filename": "20260811__reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944.png",
+      "prompt_sha256": "4efca28fc7687dcf1807c9180c3e3bb245f7779c55c910a09943d82829d103dc",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944.json",
+      "slug": "reddit-hoa-garden-gnome-bylaws",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: backyard trampoline. It accompanies the narration: \"a trampoline over the height limit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64",
+      "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64",
+      "drive_filename": "20260811__reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64.png",
+      "prompt_sha256": "72244280eef691666ccce90596f7d48a50011272c7f3e388dc0fc8d405b43f22",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64.json",
+      "slug": "reddit-hoa-garden-gnome-bylaws",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: backyard storage shed. It accompanies the narration: \"a shed built without a permit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8",
+      "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8",
+      "drive_filename": "20260811__reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8.png",
+      "prompt_sha256": "122a512abd19612843d62f6ac5e2bd5341907f56db61c21801854dc189b06506",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8.json",
+      "slug": "reddit-hoa-garden-gnome-bylaws",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: boat parked driveway. It accompanies the narration: \"one parked boat sitting in her own driveway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -708,6 +818,58 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: smartphone speaker counter. It accompanies the narration: \"right there on speaker\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-wrong-store-coupon-s5-55116d03995d",
+      "safe_request_id": "reddit-wrong-store-coupon-s5-55116d03995d",
+      "drive_filename": "20260811__reddit-wrong-store-coupon-s5-55116d03995d.png",
+      "prompt_sha256": "697d92858833a9b6a4fe889220cbd19f37b5768dd461e55bb9159b52a476fb81",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-wrong-store-coupon-s5-55116d03995d.json",
+      "slug": "reddit-wrong-store-coupon",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: retail storefront street. It accompanies the narration: \"a rival chain two blocks over\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-wrong-store-coupon-s6-6de19989e98b",
+      "safe_request_id": "reddit-wrong-store-coupon-s6-6de19989e98b",
+      "drive_filename": "20260811__reddit-wrong-store-coupon-s6-6de19989e98b.png",
+      "prompt_sha256": "6585f65c062b949689be6555f02c3feab53f62f125fb054c12e803265dfb48f4",
+      "checkpoint_path": "exchange/bundles/20260811/media-progress/reddit-wrong-store-coupon-s6-6de19989e98b.json",
+      "slug": "reddit-wrong-store-coupon",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: kitchen counter paper. It accompanies the narration: \"her kitchen counter that morning\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
