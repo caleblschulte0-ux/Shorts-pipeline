@@ -479,6 +479,27 @@ def main() -> int:
 
     response = xb.read_response(args.date)
     idx = xb.response_index(response)
+
+    # RECOVER THE MEDIA WORKER'S OUTPUT FROM ITS CHECKPOINTS.
+    #
+    # Pointers used to come ONLY from response.json, which made every image
+    # the 6:00 worker produced hostage to the 7:00 finalizer writing an
+    # envelope for them. On 2026-08-09/10 the worker delivered 14-16 verified
+    # images a day, the finalizer stopped closing, and Phase B discarded all
+    # of it and self-filled with unrelated stock — which is precisely what
+    # the showrunner then blocked trending's reddit stories for.
+    #
+    # A checkpoint is written at the moment the bytes verify and carries the
+    # same file_id / sha256 / dimensions a pointer does, so it IS the
+    # evidence. Recovered pointers fill only the gaps the response left, and
+    # they are handed to the identical contract validation and the identical
+    # byte-level fetch below — recovery grants no extra trust, it only stops
+    # verified work from being thrown away.
+    _recovered = mc.recovered_media(args.date, have=set(idx["media"]))
+    if _recovered:
+        idx["media"].update(_recovered)
+        print(f"[phase-b] recovered {len(_recovered)} media pointer(s) from "
+              f"checkpoints (requests the response did not answer)")
     if response is None:
         if done:
             # DONE says "I finished" but the payload will not parse. That is

@@ -1298,3 +1298,57 @@ def protocol_block(date) -> dict:
                     "than writing nothing, because the next worker will skip "
                     "the work believing it is done."),
     }
+
+
+def pointer_from_checkpoint(cp: dict) -> dict | None:
+    """A verified checkpoint, expressed as a response-shaped media pointer.
+
+    THE CHECKPOINT IS ALREADY THE PROOF. It carries every field a pointer
+    does — drive.file_id, download_url, sha256, bytes, format, dimensions,
+    sharing — because the media worker writes it at the moment those bytes
+    verify. `response.json` was never the evidence; it was only the envelope
+    the finalizer put the evidence in.
+
+    That distinction cost the channel real videos. From 2026-08-09 the 6:00
+    media worker delivered 14-16 verified images a day and the 7:00 finalizer
+    stopped writing `response.json`, so Phase B — which read pointers ONLY
+    from the response — threw every one of them away and self-filled the day
+    with unrelated stock. That stock is exactly what the showrunner then
+    blocked trending's reddit stories for, two days running. The work existed,
+    was verified, and was discarded for want of an envelope.
+
+    Returns None when the checkpoint is not a usable record; the caller still
+    runs it through the same `validate_response_media` contract and the same
+    byte-level fetch as any pointer, so recovery grants no extra trust.
+    """
+    if not isinstance(cp, dict):
+        return None
+    if str(cp.get("status") or "").lower() != "verified":
+        return None
+    rid = cp.get("request_id")
+    drive = cp.get("drive") or {}
+    image = cp.get("image") or {}
+    if not rid or not drive.get("file_id") or not image.get("sha256"):
+        return None
+    return {
+        "request_id": str(rid),
+        "status": "fulfilled",
+        "drive": dict(drive),
+        "image": dict(image),
+        "recovered_from_checkpoint": True,
+    }
+
+
+def recovered_media(date, *, have: set | None = None) -> dict[str, dict]:
+    """Pointers rebuilt from the day's checkpoints for requests the response
+    did not already answer. `have` is the set of request_ids the response
+    covers, which always wins — recovery fills gaps, it never overrides."""
+    have = have or set()
+    out: dict[str, dict] = {}
+    for rid, cp in all_checkpoints(date).items():
+        if rid in have:
+            continue
+        ptr = pointer_from_checkpoint(cp)
+        if ptr:
+            out[rid] = ptr
+    return out

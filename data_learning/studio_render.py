@@ -1855,10 +1855,38 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # A data beat sweeps in from its own entry point (onto the datum);
             # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)
+            # IDLE AMPLITUDE IS A MEASUREMENT, NOT A TASTE CALL.
+            #
+            # This was `6*sin(1.3*t)` / `9*sin(2.1*t)`, written to keep Data
+            # "alive every frame". It does not. What the temporal grade
+            # measures is the change between CONSECUTIVE frames, and that
+            # idle moves him 6*1.3/30 = 0.26 px per frame — sub-pixel at full
+            # res, and ~0.05 px once the detector downscales to 192px. It is
+            # invisible to the metric and very nearly to the eye, so every
+            # chart beat read as a held frame: explainer measured 0.8-2.3
+            # effective fps against an 11.0 floor and posted NOTHING for the
+            # eleven days to 2026-08-10.
+            #
+            # Calibrated against `showrunner_review._temporal_evidence` on
+            # synthetic explainer frames (dark bg + bars + labels + a 300px
+            # mascot), sweeping per-frame displacement:
+            #
+            #     0.26 px/frame (the old idle)  ->   0.0 fps   dup 1.00
+            #     2.3  px/frame                 ->   8.9 fps   dup 0.63
+            #     6.0  px/frame                 ->  20.0 fps   dup 0.17  PASS
+            #     6.7  px/frame                 ->  21.9 fps   dup 0.09  PASS
+            #
+            # Per-frame displacement is amplitude*coefficient/30, so these
+            # pairs are chosen to land at ~6 px/frame while keeping the
+            # motion a slow float rather than a jitter (under 1 Hz, and the
+            # two axes stay out of phase so he traces a lazy figure rather
+            # than a diagonal shake). Raise the AMPLITUDE, not the frequency,
+            # if this ever needs more — frequency is what would read as
+            # nervous.
             xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+6*sin(1.3*t)")
+                  f"+30*sin(6.0*t)")
             ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+9*sin(2.1*t)")
+                  f"+34*sin(5.4*t)")
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
