@@ -684,3 +684,54 @@ Two things the fix had to not break, both pinned:
   would have been false, and a loose one would have hidden real drift.
 
 Suite: 860 → **874 tests**.
+
+### Same day, third finding: the bubble scene was 8.7% ink
+
+Three of the five stories carried showrunner notes about the same scene:
+
+> "seg0 is a near-empty card with a flat bubble row"
+> "tiny bubbles in a mostly empty frame"
+> "equal-size blobs that only reveal numbers at the very end"
+
+All three are literally true, and all three are measurable. `_story_bubbles`
+packed every item into ONE row scaled to fit the **width**, inside a card
+1.15x **taller** than it is wide. With five items the row is already 92% of
+the width, so the bubbles cannot grow and the rest of the frame stays empty:
+
+| items | ink coverage | frame height used | after |
+|---|---|---|---|
+| 5 (the macao seg0) | **8.7%** | **18.5%** | 20.1% / 50.8% |
+| 5 near-identical | 7.9% | 13.4% | 26.3% / 54.9% |
+| 4 | — | — | 37.5% / 77.4% |
+| 3 | 16.9% | 31.4% | **unchanged** |
+| 2 | 27.7% | 46.8% | **unchanged** |
+
+Four or more items now pack into two staggered rows and scale to whichever
+of width/height binds first. Two things that mattered while doing it:
+
+* **Gaps do not scale.** Solving the scale by shrinking the whole block
+  (circles + gaps together) silently under-sizes every bubble; the gaps have
+  to come out of the budget first and only the circles divide what is left.
+  Getting this wrong made 2- and 3-item scenes *worse* than before, which is
+  how the "unchanged" column above became a test.
+* **A second row puts the top row's labels where the bottom row's circles
+  are.** Measured at 2.0 units of overlap on a 4-item scene at the in-row
+  gap; rows are now separated by a dedicated label band. Trading an empty
+  frame for a collided one is not an improvement.
+
+And the numbers: `_lblalpha` holds every label at alpha 0 until 80% of the
+build. That is right for a BAR — the label sits at the tip and lands as the
+bar reaches it — but a bubble's number sits at the CENTRE of a circle drawn
+from frame one, so there is nothing to land. On the hook beat, whose reveal
+curve does not pass 0.8 until ~71% of a 20-second window, the values were
+invisible for **fourteen seconds**. Bubbles now fade their labels with the
+inflation, complete by a third of the way in. Bars are untouched.
+
+What is NOT fixed, and cannot honestly be: five near-identical values still
+render as near-identical circles (radius ∝ sqrt(value), so area ∝ value).
+That encoding is correct and distorting it to exaggerate differences would
+be fabricating the data's appearance. The honest answer to "these values are
+too close for bubbles" is a different depiction, which is the scene-repair
+router's decision — and it can now aim at the right scene.
+
+Suite: 874 → **887 tests**.
