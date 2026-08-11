@@ -50,6 +50,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from shared import camera_float                                    # noqa: E402
+from shared.fit_title import fit_title                              # noqa: E402
 
 FPS = 24
 HOLD_S = 1.4                 # hold the finished chart at the end
@@ -386,50 +387,15 @@ def _fit_title(fig, text: str, font_path: str | None, max_w_px: float,
                max_lines: int = 2, hi: int = 46, lo: int = 26):
     """Wrap + auto-shrink a title so it NEVER runs off frame.
 
-    matplotlib's own `wrap=True` measures against the figure, not the
-    band we allot, and silently overflowed long titles off both edges
-    (seen in production). This measures the real rendered width with the
-    canvas renderer and steps the size down until the text fits
-    `max_lines` lines of `max_w_px`. Returns (text_with_newlines, fp).
+    The implementation moved to `shared/fit_title.py` when the explainer
+    turned out to need the identical thing and had been guessing font size
+    from the character count instead — shipping "a headline clipped off the
+    right edge" (the showrunner's words, 2026-08-11). This delegates with
+    the same defaults, and `tests/test_fit_title.py` holds the shared
+    version against the original code kept verbatim as an oracle.
     """
-    import matplotlib.font_manager as fm
-    words = text.split()
-    if not words:
-        return text, fm.FontProperties(size=hi)
-    try:
-        renderer = fig.canvas.get_renderer()
-    except Exception:  # noqa: BLE001 — no renderer: trust the caller's size
-        return text, (fm.FontProperties(fname=font_path, size=hi)
-                      if font_path else fm.FontProperties(weight="bold",
-                                                          size=hi))
-
-    def _fp(size):
-        return (fm.FontProperties(fname=font_path, size=size) if font_path
-                else fm.FontProperties(weight="bold", size=size))
-
-    def _width(s, fp):
-        probe = fig.text(0, 0, s, fontproperties=fp)
-        w = probe.get_window_extent(renderer=renderer).width
-        probe.remove()
-        return w
-
-    for size in range(hi, lo - 1, -2):
-        fp = _fp(size)
-        lines, cur = [], ""
-        for w in words:
-            trial = f"{cur} {w}".strip()
-            if cur and _width(trial, fp) > max_w_px:
-                lines.append(cur)
-                cur = w
-            else:
-                cur = trial
-        if cur:
-            lines.append(cur)
-        # a single word wider than the band can't be fixed by wrapping
-        if len(lines) <= max_lines and all(_width(x, fp) <= max_w_px
-                                           for x in lines):
-            return "\n".join(lines), fp
-    return "\n".join(words[:max_lines]), _fp(lo)
+    return fit_title(fig, text, font_path, max_w_px,
+                     max_lines=max_lines, hi=hi, lo=lo)
 
 
 def _spread(pos: list[float], min_sep: float, floor: float,

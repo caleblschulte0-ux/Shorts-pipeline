@@ -12,7 +12,14 @@ from __future__ import annotations
 
 import math
 import re
+import sys
 from pathlib import Path
+
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
+from shared.fit_title import fit_title
 
 from .insights import Insight
 
@@ -416,17 +423,53 @@ def _card_base():
     return fig, plt
 
 
+# The title band: from the left text margin to a matching right margin
+# inside the card. `_heading` fits the title to THIS width, measured.
+HEAD_X = 0.085
+HEAD_RIGHT = 0.915
+HEAD_Y = 0.91
+SUB_Y = 0.845
+
+
 def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
-    # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)") and
-    # auto-shrink so long titles never clip the right edge of the card.
+    """Title + subtitle, fitted to the card by MEASUREMENT.
+
+    This used to pick a font size from `len(title)` under a comment claiming
+    it "auto-shrink[s] so long titles never clip the right edge of the card".
+    Character count is not width, and it did not: measured on this very card,
+    "World hydropower fell below its 1990 level" reached 0.966 of figure
+    width against a 0.915 margin, and it shipped that way on 2026-08-11 —
+    the showrunner's note was "a headline clipped off the right edge".
+    Longer real titles reached 1.35, a third of the way off frame.
+
+    `shared.fit_title` measures the rendered extent and steps the size down,
+    wrapping to a second line only if shrinking alone cannot do it — and a
+    wrapped title is capped at a size whose two lines still fit ABOVE the
+    subtitle. Nothing below it moves. A fix that traded a clipped title for
+    one printed over the chart would not be a fix.
+    """
+    # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)").
     title = re.sub(r"\s*\([^)]*\)\s*$", "", title).strip()
-    size = (42 if len(title) <= 24 else 36 if len(title) <= 31
-            else 30 if len(title) <= 40 else 26)
-    fig.text(0.085, 0.91, title, color=TEXT, fontsize=size, fontweight="bold",
-             ha="left", va="top")
+    W_px = fig.get_size_inches()[0] * fig.dpi
+    band = (HEAD_RIGHT - HEAD_X) * W_px
+    # SHRINK BEFORE WRAPPING. The tallest chart axes on this card top out at
+    # 0.85, and the subtitle already sits at 0.845 — so a second title line
+    # pushes the subtitle onto the plot. Trading a clipped title for one
+    # printed over the chart is not a fix. One line down to 24pt first; only
+    # a title that cannot fit even there is allowed to wrap.
+    fitted, fp = fit_title(fig, title, None, band, max_lines=1, hi=42, lo=24)
+    if "\n" in fitted or len(fitted.split()) < len(title.split()):
+        # 32pt is the largest two-line block that still fits ABOVE the
+        # subtitle: 2 * 32 * 1.08 linespacing = 105px against the 111px band
+        # between HEAD_Y and SUB_Y. Staying inside it means the subtitle
+        # never has to move, so it never lands on the plot.
+        fitted, fp = fit_title(fig, title, None, band,
+                               max_lines=2, hi=32, lo=20)
+    fig.text(HEAD_X, HEAD_Y, fitted, color=TEXT, fontproperties=fp,
+             ha="left", va="top", linespacing=1.08)
     if subtitle:
-        fig.text(0.085, 0.845, subtitle.upper(), color=accent, fontsize=22,
-                 fontweight="bold", ha="left", va="top")
+        fig.text(HEAD_X, SUB_Y, subtitle.upper(), color=accent,
+                 fontsize=22, fontweight="bold", ha="left", va="top")
 
 
 def _footer(fig, insight: Insight):
