@@ -3158,13 +3158,52 @@
       "ts": "2026-08-11T11:55:04.904977+00:00"
     },
     "clip-20260811-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/VibrantThankfulPterodactylDAESuppy-H4xuwKo4nSvWb3_n",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/ubhsS8FEgYA",
       "title": "Plaqueboymax Warns Everyone He's About To Get Feisty",
       "kind": "twitch_clip",
-      "ts": "2026-08-11T11:57:35.479572+00:00",
+      "ts": "2026-08-11T11:57:38.841952+00:00",
+      "uploaded_at": "2026-08-11T11:57:38.841969+00:00",
+      "publish_at": "2026-08-11T17:00:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/VibrantThankfulPterodactylDAESuppy-H4xuwKo4nSvWb3_n",
+      "streamer": "plaqueboymax",
+      "series": "chaos",
+      "hook": "HE'S ABOUT TO GET FEISTY",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4663,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 8.1
+      },
+      "director_cut": true
+    },
+    "rejected-darlingshinytrianglepartytime-behl6zbug-vlbvro": {
+      "source_url": "https://www.twitch.tv/forsen/clip/DarlingShinyTrianglePartyTime-BeHl6zbUG-Vlbvro",
+      "streamer": "forsen",
+      "title": "BabyRage",
+      "qa_rejected": true,
+      "ts": "2026-08-11T11:57:48.667079+00:00"
+    },
+    "rejected-fairdiligenttigerpjsalt-pu9eystnquofecgb": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/FairDiligentTigerPJSalt-pu9EYStnqUOFECGb",
+      "streamer": "ludwig",
+      "title": "Ludwig on Not Inviting Back people to his Events",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (talking head, insider streamer drama)",
+      "ts": "2026-08-11T11:59:08.840417+00:00"
+    },
+    "clip-20260811-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/DelightfulDeliciousSandpiperBCouch-9mdVRPkfIkZeeYHr",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Finds Out Zoil Already Pulled This Off Before",
+      "kind": "twitch_clip",
+      "ts": "2026-08-11T12:03:02.247929+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
