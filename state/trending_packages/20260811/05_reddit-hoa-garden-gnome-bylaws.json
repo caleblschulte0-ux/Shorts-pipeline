@@ -6,7 +6,12 @@
   "shots": [
     {
       "phrase": "left a $150 fine on my door",
-      "query": "notice on front door"
+      "query": "notice on front door",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Z8KoHHS_Ivqc5s6VWOvnUjhCOKluq0CT",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Z8KoHHS_Ivqc5s6VWOvnUjhCOKluq0CT",
+      "media_sha256": "2408ca18a34abff89c7d4fde675b49dfd4538d44c208b92e3cbcc466791c739c",
+      "media_bytes": 2108153
     },
     {
       "phrase": "one ceramic gnome my grandmother gave me",
@@ -19,27 +24,57 @@
     },
     {
       "phrase": "read all forty pages that night",
-      "query": "reading documents at night"
+      "query": "reading documents at night",
+      "image_url": "https://drive.google.com/uc?export=download&id=1i_g4zcWMaP2KENsDX3TxYRqM4HBULZE1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1i_g4zcWMaP2KENsDX3TxYRqM4HBULZE1",
+      "media_sha256": "dfb3f57e8719afb1edc249cb7439fd406f400d76c55b611a86cc79001cddf32b",
+      "media_bytes": 1746607
     },
     {
       "phrase": "unregistered trailers",
-      "query": "trailer parked driveway"
+      "query": "trailer parked driveway",
+      "image_url": "https://drive.google.com/uc?export=download&id=1EKuZ8KGuIM95N32va6iznVHgEuf-fsIQ",
+      "media_origin": "chatgpt",
+      "media_file_id": "1EKuZ8KGuIM95N32va6iznVHgEuf-fsIQ",
+      "media_sha256": "1d657e24002917ca87de52615b2231fb5394f6fcb6c496ae6e550873e7d0806a",
+      "media_bytes": 2395017
     },
     {
       "phrase": "a trampoline over the height limit",
-      "query": "backyard trampoline"
+      "query": "backyard trampoline",
+      "image_url": "https://drive.google.com/uc?export=download&id=1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+      "media_origin": "chatgpt",
+      "media_file_id": "1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+      "media_sha256": "098f6a0a2125bf605c91ebe6c7a7cb8eccdb1eac7d7a733be2fefb5c4d300a65",
+      "media_bytes": 2209034
     },
     {
       "phrase": "a shed built without a permit",
-      "query": "backyard storage shed"
+      "query": "backyard storage shed",
+      "image_url": "https://drive.google.com/uc?export=download&id=1wqa1arIqTgQ7CQyUBfwEe6YlP-uG-JE5",
+      "media_origin": "chatgpt",
+      "media_file_id": "1wqa1arIqTgQ7CQyUBfwEe6YlP-uG-JE5",
+      "media_sha256": "e29548321de41a686df6cc3576359d87da8dfb024e1b5f88992f64fb976b8832",
+      "media_bytes": 2705325
     },
     {
       "phrase": "one parked boat sitting in her own driveway",
-      "query": "boat parked driveway"
+      "query": "boat parked driveway",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Fx3CE__uNomPPSj-Gu48z_8fLoGAG8mK",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Fx3CE__uNomPPSj-Gu48z_8fLoGAG8mK",
+      "media_sha256": "032325485e98f19c1eb83a6acc8f6189067f5fba8388b52fc6a08a491aeb3e6f",
+      "media_bytes": 2207293
     },
     {
       "phrase": "The next meeting ran four hours",
-      "query": "community meeting room"
+      "query": "community meeting room",
+      "image_url": "https://drive.google.com/uc?export=download&id=1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+      "media_origin": "chatgpt",
+      "media_file_id": "1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+      "media_sha256": "7e795ea9589a7c47316b715eb0dcbb408d591a0bc2b35a31998c9bbb9cd47828",
+      "media_bytes": 2248231
     }
   ],
   "punches": [
