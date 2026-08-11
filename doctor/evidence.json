@@ -1828,121 +1828,79 @@
     }
   ],
   "recent_commits": [
-    "30b97cf 2026-08-10 doctor: findings for 20260810",
-    "ba5a837 2026-08-11 exchange: phase A bundle for 20260811 [skip ci]"
+    "89aa6b8 2026-08-11 doctor: mark 6be0849a55e4 / 3cca8a711ec4 done (#256)",
+    "a404247 2026-08-11 doctor triage 20260811: rule the backlog, fix cache score staleness (#255)"
   ],
   "open_backlog": [
-    {
-      "signature": "6be0849a55e4",
-      "title": "Cache hits bypass the recent-use penalty",
-      "horizon": "bug",
-      "severity": "high",
-      "ruling": "new"
-    },
     {
       "signature": "653acb99b575",
       "title": "Third-capture QA passes clips when QA itself crashes",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "69a886343361",
       "title": "Production shortfall test never executes the red exit path",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "a544d37c275e",
       "title": "Reddit illustrations ignore narrated beat timing",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "cf263a770061",
       "title": "Hard novelty gate treats probe failure as a clean video",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d17724dfb1c0",
       "title": "Chart preflight cannot see fixed-axis empty openings",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
-    },
-    {
-      "signature": "3cca8a711ec4",
-      "title": "Cached scores are not recomputed",
-      "horizon": "small_fix",
-      "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
       "title": "Nonnumeric chart values pass structural validation",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "e02d4cf673bd",
       "title": "Timed-out providers lack terminal outcomes",
       "horizon": "short_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "9943424b8251",
       "title": "Workflow policy tests pin text tokens instead of executable behavior",
       "horizon": "short_term",
       "severity": "medium",
-      "ruling": "new"
-    },
-    {
-      "signature": "4c58349192b8",
-      "title": "Asset metadata is assigned by provider class",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
-    },
-    {
-      "signature": "79e94e61b5a9",
-      "title": "Proof-mode ledger is evidence without an integrity boundary",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
-    },
-    {
-      "signature": "74db7c4b3786",
-      "title": "Production safety is tested as seams, not as one state machine",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
-    },
-    {
-      "signature": "30d9585ddd32",
-      "title": "Finished-video QA has two conflicting analysis authorities",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
       "title": "Dropping an overlength replay leaves its whoosh cue behind",
       "horizon": "small_fix",
       "severity": "low",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "9b8b29a78b87",
       "title": "Malformed production-outcome test cannot detect a regression",
       "horizon": "small_fix",
       "severity": "low",
-      "ruling": "new"
+      "ruling": "doing"
     }
   ],
   "settled": [
@@ -1973,6 +1931,48 @@
       "date": "20260806",
       "because": "The diagnosis is right \u2014 decide_verdict() in the reviewer and decide() in the gate both claim final authority \u2014 and the direction you propose (reviewer returns measurements + anchored judgments; ONE policy function computes the only disposition) is the same direction the 2026-08-01 gate extraction was already moving. But it's a refactor across every publishing channel's callsite, and this week the priority is watching the new backfill/cap/backoff machinery hold in production. Constraint for whoever picks it up: the consolidation may only ever ADD blocks \u2014 the sovereign-BLOCK and fail-closed tests must pass unchanged.",
       "revisit_after": "20260905"
+    },
+    {
+      "signature": "6be0849a55e4",
+      "verdict": "done",
+      "date": "20260811",
+      "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "3cca8a711ec4",
+      "verdict": "done",
+      "date": "20260811",
+      "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "4c58349192b8",
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate long-term direction (provenance-first asset manifest vs current provider-class metadata assignment in funnel/media_funnel.py _prefilter), but it's an architectural change to the media-governance model, not urgent \u2014 parking per the long_term horizon; the doctor's evidence.json will resurface it if this becomes blocking.",
+      "revisit_after": "20260910"
+    },
+    {
+      "signature": "79e94e61b5a9",
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction (content-addressed proof manifest for third_capture/capture_cli.py so tampering is detectable, not just trusted by convention), but proof-mode's ledger has no known live incident driving urgency \u2014 parking as long_term.",
+      "revisit_after": "20260910"
+    },
+    {
+      "signature": "74db7c4b3786",
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction \u2014 a real end-to-end production-state-machine test harness would catch what the current seam-tests (test_production_outcome.py + test_daily_alarm.py) can't. Overlaps with 69a886343361/9943424b8251, which are the concrete near-term slice of the same problem and are already queued doing; parking the full state-machine harness as the long_term version of the same work.",
+      "revisit_after": "20260910"
+    },
+    {
+      "signature": "30d9585ddd32",
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Confirmed: engines/render_qa.py (fail-open on analyzer error) and shared/video_qa.py (fail-closed) are two independent finished-video QA engines with different semantics, used by different channels (trending vs third capture). Consolidating them safely needs parity fixtures across both channels before either implementation can be retired \u2014 real risk of silently changing what ships if rushed. Parking as long_term; not something to build in a single triage session.",
+      "revisit_after": "20260910"
     }
   ]
 }
