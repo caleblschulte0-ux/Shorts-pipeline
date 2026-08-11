@@ -632,3 +632,55 @@ Raising it now would be guessing on top of guessing. Read tomorrow's
 measured numbers first.
 
 Suite: 830 → **860 tests**.
+
+### Same day, second finding: the headline really was clipped
+
+The showrunner's note on the hydropower story was, in its own words, *"a
+headline clipped off the right edge"*. It was right, and the cause was a
+comment asserting a property the code did not have:
+
+```python
+# ...auto-shrink so long titles never clip the right edge of the card.
+size = (42 if len(title) <= 24 else 36 if len(title) <= 31
+        else 30 if len(title) <= 40 else 26)
+```
+
+Character count is not width. Measured on that very card (right edge as a
+fraction of figure width; the card's text margin is 0.915):
+
+| title | before |
+|---|---|
+| "Urban growth just hit a 50-year low" | 0.929 |
+| "World hydropower fell below its 1990 level" | **0.966** (shipped) |
+| "Prevalence of undernourishment in the population" | 1.120 |
+| "Agricultural land area as a share of total land area" | 1.352 |
+| `"M" * 24` | 1.481 |
+
+`engines/chart_race.py` had already solved this properly — it measures the
+rendered extent with the canvas renderer and steps the size down, and its
+docstring records the same production bug. So this is the CLAUDE.md case
+exactly: **look for the duplicate before you write the caller.** The
+measuring implementation moved to `shared/fit_title.py`, `chart_race`
+delegates, and `charts._heading` now calls it. Every title above fits, and
+short ones stopped being needlessly shrunk (the hydropower headline went
+from size 26 *clipping* to size 24 *fitting*, and "People per sq km" from a
+guessed 42 to a measured 42).
+
+Two things the fix had to not break, both pinned:
+
+* **A wrapped title must not land on the plot.** The tallest chart axes on
+  this card top out at 0.85 and the subtitle sits at 0.845, so `_heading`
+  shrinks to one line first and only wraps when it cannot — and a wrapped
+  title is capped at 32pt, the largest two-line block that still fits above
+  the subtitle. Nothing below it moves.
+* **The consolidation must change nothing.** `tests/test_fit_title.py` keeps
+  the pre-move `chart_race` implementation VERBATIM as an oracle and
+  compares over generated input. It asserts identity wherever the original
+  produced a fitting result and improvement where it did not — because the
+  move deliberately added one behaviour: an unbreakable token (a long
+  compound, a run of caps) is now ellipsized instead of returned untouched
+  to run off the card, which is how a function whose docstring promised
+  "NEVER runs off frame" shipped one that did. A blanket identity claim
+  would have been false, and a loose one would have hidden real drift.
+
+Suite: 860 → **874 tests**.
