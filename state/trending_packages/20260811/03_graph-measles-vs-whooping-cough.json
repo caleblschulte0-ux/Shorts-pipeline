@@ -6,15 +6,55 @@
   "y_label": "US cases reported per year",
   "duration": 13,
   "source": "Source: CDC National Notifiable Diseases Surveillance System annual case counts for measles and pertussis (whooping cough), 2019-2024, as published by CDC and reported by NBC News, ABC News and CIDRAP. Most recent year figures are provisional.",
-  "years": [2019, 2020, 2021, 2022, 2023, 2024],
-  "series": [
-    {"name": "Measles", "color": "#e74c3c",
-     "values": [1274, 13, 49, 121, 59, 285]},
-    {"name": "Whooping Cough", "color": "#9b59b6",
-     "values": [18617, 6124, 2116, 3044, 7063, 35435]}
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
   ],
-  "hashtags": ["measles", "whoopingcough", "pertussis", "publichealth",
-    "vaccines", "cdc", "outbreak", "health", "immunization", "disease",
-    "epidemiology", "medicine", "science", "kids"],
+  "series": [
+    {
+      "name": "Measles",
+      "color": "#e74c3c",
+      "values": [
+        1274,
+        13,
+        49,
+        121,
+        59,
+        285
+      ]
+    },
+    {
+      "name": "Whooping Cough",
+      "color": "#9b59b6",
+      "values": [
+        18617,
+        6124,
+        2116,
+        3044,
+        7063,
+        35435
+      ]
+    }
+  ],
+  "hashtags": [
+    "measles",
+    "whoopingcough",
+    "pertussis",
+    "publichealth",
+    "vaccines",
+    "cdc",
+    "outbreak",
+    "health",
+    "immunization",
+    "disease",
+    "epidemiology",
+    "medicine",
+    "science",
+    "kids"
+  ],
   "music_vibe": "cinematic"
 }

@@ -4,24 +4,87 @@
   "title": "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
   "script": "A woman shoved a coupon across the counter insisting our system was glitching because it wouldn't scan her forty percent off code. She got loud fast, said she'd been a loyal customer for ten years, and demanded I override it manually. Store policy says I can call the printed number on any coupon to verify it live, so I did, right there on speaker so she could hear too. The automated line that picked up was not ours. It was a rival chain two blocks over, reading back its own return policy in a cheerful robotic voice. She'd grabbed the wrong flyer off her kitchen counter that morning and never noticed the logo. I offered her our actual weekly discount instead, ten percent, no drama. She took it without a word, and the coupon stayed folded on the counter until the next customer used it as a napkin.",
   "shots": [
-    {"phrase": "shoved a coupon across the counter", "query": "coupon on store counter"},
-    {"phrase": "forty percent off code", "query": "discount coupon percent off"},
-    {"phrase": "loyal customer for ten years", "query": "customer at checkout counter"},
-    {"phrase": "call the printed number on any coupon", "query": "phone call at register"},
-    {"phrase": "right there on speaker", "query": "smartphone speaker counter"},
-    {"phrase": "a rival chain two blocks over", "query": "retail storefront street"},
-    {"phrase": "her kitchen counter that morning", "query": "kitchen counter paper"},
-    {"phrase": "the coupon stayed folded on the counter", "query": "folded paper counter"}
+    {
+      "phrase": "shoved a coupon across the counter",
+      "query": "coupon on store counter"
+    },
+    {
+      "phrase": "forty percent off code",
+      "query": "discount coupon percent off"
+    },
+    {
+      "phrase": "loyal customer for ten years",
+      "query": "customer at checkout counter"
+    },
+    {
+      "phrase": "call the printed number on any coupon",
+      "query": "phone call at register"
+    },
+    {
+      "phrase": "right there on speaker",
+      "query": "smartphone speaker counter"
+    },
+    {
+      "phrase": "a rival chain two blocks over",
+      "query": "retail storefront street",
+      "pin_query": "rival chain",
+      "pin_context": "retail store competitor",
+      "news_query": "rival chain",
+      "news_angle": "The rival chain's coupon was mistakenly used by the woman at the counter.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Warm_up_at_the_DW_Stadium%2C_Wigan_-_geograph.org.uk_-_2012508.jpg"
+    },
+    {
+      "phrase": "her kitchen counter that morning",
+      "query": "kitchen counter paper",
+      "pin_query": "kitchen counter",
+      "pin_context": "home interior furniture",
+      "news_query": "kitchen counter",
+      "news_angle": "The woman grabbed the wrong flyer from her kitchen counter that morning.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Kitchen_050918_154652.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "the coupon stayed folded on the counter",
+      "query": "folded paper counter"
+    }
   ],
   "punches": [
-    {"phrase": "forty percent off", "text": "40% OFF", "color": "#ffaa30"},
-    {"phrase": "ten years", "text": "10 YEARS", "color": "#ffaa30"},
-    {"phrase": "not ours", "text": "NOT OURS", "color": "#ff3030"},
-    {"phrase": "ten percent", "text": "10% OFF", "color": "#50ff80"}
+    {
+      "phrase": "forty percent off",
+      "text": "40% OFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "ten years",
+      "text": "10 YEARS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "not ours",
+      "text": "NOT OURS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "ten percent",
+      "text": "10% OFF",
+      "color": "#50ff80"
+    }
   ],
-  "hashtags": ["talesfromthecustomer", "customerservice", "retail", "coupon",
-    "karma", "pettyrevenge", "reddit", "viral", "customer", "retailworker",
-    "funnystory", "revenge", "shopping", "cashier"],
+  "hashtags": [
+    "talesfromthecustomer",
+    "customerservice",
+    "retail",
+    "coupon",
+    "karma",
+    "pettyrevenge",
+    "reddit",
+    "viral",
+    "customer",
+    "retailworker",
+    "funnystory",
+    "revenge",
+    "shopping",
+    "cashier"
+  ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
 }
