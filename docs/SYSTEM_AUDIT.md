@@ -735,3 +735,47 @@ too close for bubbles" is a different depiction, which is the scene-repair
 router's decision — and it can now aim at the right scene.
 
 Suite: 874 → **887 tests**.
+
+### Same day, fourth finding: the hook was narrated over somebody else's chart
+
+The showrunner's note on the macao story was:
+
+> "Three unrelated datasets stapled together — the hook promises Macao's
+> density but the first 14 seconds are a cropland bar race, and the closing
+> line about 'the most crowded place' lands over a fertilizer line chart."
+
+That reads like a bad script. It was not: it was a **desync**, and a
+systematic one.
+
+`scripts/story_forge.py` authors title / hook / `says[i]` / closing against
+its datasets **in sequence**, and `studio_render` makes segment 0's chart
+span the hook window (`lead_hook`). But `story.build` sorted **every**
+segment to push `trend` (line) charts to the end — so any story whose
+opening dataset is a time series had its hook narrated over a different
+dataset's chart.
+
+That is most of them. Of the six most recently authored stories, four open
+on a trend, and every one of those hooks names the opening dataset:
+
+| story | hook | seg0 |
+|---|---|---|
+| solo-living-overtakes-family | "1 in 3 homes now has just one person." | US one-person households (trend) |
+| sand-mining-crisis | "We're mining sand faster than nature makes it." | sand extraction (trend) |
+| boomerang-generation | "Living with your parents at 27?" | living with parents over time (trend) |
+| chatgpt-fastest-adoption-ever | "This app broke every growth record." | ChatGPT users over time (trend) |
+
+Two of those four were in the 2026-08-11 slate.
+
+**Segment 0 is now pinned** — the hook is written about it, so it does not
+move. Segments 1..n still sort, so a mid-video line chart still sinks. The
+"never open on a line" rule is kept and applied to the DEPICTION instead of
+the ORDER, which is exactly what the code already did one line below for the
+all-trend case; `timeline` is the other time-shaped kind, renders full-frame,
+and falls back to `trend` on its own if it cannot produce.
+
+`tests/test_the_hook_gets_its_own_chart.py` pins both halves — the hook
+keeps its chart AND the video still never opens on a line — plus the
+renderer contract the whole argument rests on (`windows[0][0] if (i == 0 and
+lead_hook)`), so the two files cannot drift apart silently.
+
+Suite: 887 → **900 tests**.

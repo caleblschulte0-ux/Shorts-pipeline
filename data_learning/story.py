@@ -218,18 +218,48 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     import zlib as _zl
     viz_director.assign(inss,
                         seed=_zl.crc32(story_cfg["slug"].encode()) % 997)
-    # NEVER open on a chart — viewers swipe away. Move trend (line) segments to
-    # the end so the video opens on a map / diorama / scene. Stable within groups.
-    # Long-form stories with a hand-authored narrative arc opt out with
-    # "keep_order": true (their beats are chained prose — reordering breaks
-    # the story, and they open on a title card, not a chart).
-    if not story_cfg.get("keep_order"):
-        order = sorted(range(len(inss)),
-                       key=lambda i: (inss[i].kind == "trend", i))
+    # NEVER open on a chart — viewers swipe away. Trend (line) segments move
+    # to the end so the video opens on a map / diorama / scene. Stable within
+    # groups. Long-form stories with a hand-authored narrative arc opt out
+    # with "keep_order": true (their beats are chained prose — reordering
+    # breaks the story, and they open on a title card, not a chart).
+    #
+    # SEGMENT 0 IS PINNED, because the HOOK IS WRITTEN ABOUT IT.
+    #
+    # This used to sort ALL the segments, and the words are authored against
+    # the ORIGINAL order — `story_forge` writes title/hook/says[i]/closing
+    # from `dss` in sequence. `studio_render` then makes segment 0's chart
+    # span the hook window (`lead_hook`), so moving segment 0 puts the hook's
+    # narration over a DIFFERENT dataset's chart. Four of the six most
+    # recently authored stories open on a `trend` and were therefore
+    # desynced:
+    #
+    #   solo-living-overtakes-family  "1 in 3 homes now has just one person"
+    #                                 -> seg0 "US one-person households"
+    #   sand-mining-crisis            "We're mining sand faster than nature
+    #                                  makes it" -> seg0 "sand extraction"
+    #   boomerang-generation          "Living with your parents at 27?"
+    #                                 -> seg0 "living with parents over time"
+    #   chatgpt-fastest-adoption-ever "This app broke every growth record."
+    #                                 -> seg0 "ChatGPT users over time"
+    #
+    # In every one the hook names the opening dataset and the sort moved that
+    # dataset to the end. The showrunner caught it on 2026-08-11: "the hook
+    # promises Macao's density but the first 14 seconds are a cropland bar
+    # race", and "Three unrelated datasets stapled together".
+    #
+    # So the "don't open on a line" rule is applied to the DEPICTION instead
+    # of the ORDER — which is what the code already did for the all-trend
+    # case one line below. `timeline` is the other time-shaped kind, renders
+    # full-frame, and falls back to `trend` on its own if it cannot produce.
+    if not story_cfg.get("keep_order") and inss:
+        tail = sorted(range(1, len(inss)),
+                      key=lambda i: (inss[i].kind == "trend", i))
+        order = [0] + tail
         seg_cfgs = [seg_cfgs[i] for i in order]
         inss = [inss[i] for i in order]
-        if inss and inss[0].kind == "trend":  # all-trend video: don't lead w/ a line
-            inss[0].kind = "bubbles"
+        if inss[0].kind == "trend":     # don't LEAD with a line: re-depict it
+            inss[0].kind = "timeline"
     for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
         # Render a CHEAP build here (few frames) just to resolve anchors from the
         # final frame + settle any viz fallback-hop. The studio renderer
