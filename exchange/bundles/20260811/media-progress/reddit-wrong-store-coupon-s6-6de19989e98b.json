@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260811",
+  "bundle": {
+    "identity": "cd0376b7fa910be8a856c1b4a8c8e13268b5be955a52367e2d28de3ce72b4a84",
+    "path": "exchange/bundles/20260811/bundle.json"
+  },
+  "request_id": "reddit-wrong-store-coupon-s6-6de19989e98b",
+  "safe_request_id": "reddit-wrong-store-coupon-s6-6de19989e98b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6585f65c062b949689be6555f02c3feab53f62f125fb054c12e803265dfb48f4",
+  "prompt_used": "An editorial illustration for a short-form video: kitchen counter paper. It accompanies the narration: \"her kitchen counter that morning\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1lcX63MAt5KMHwTVI7D3Ugj1fQr6NActd",
+    "filename": "20260811__reddit-wrong-store-coupon-s6-6de19989e98b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1lcX63MAt5KMHwTVI7D3Ugj1fQr6NActd",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e85f3ac4d3fc39d61a9765e9fd9b3cf112cd9862b2d6e2bc0748c63d84b61499",
+    "bytes": 2092935,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-11T11:12:00Z",
+  "error": null,
+  "retryable": false
+}
