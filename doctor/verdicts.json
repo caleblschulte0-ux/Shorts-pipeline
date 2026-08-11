@@ -28,21 +28,27 @@
       "revisit_after": "20260905"
     },
     "6be0849a55e4": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260811",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260811",
           "because": "Confirmed: search()'s cache-hit path restored stored score verbatim, so the 14-day recent-use penalty never applied to cached results. Fixed in this run: cache-hit now rebuilds raw Candidates and reruns _prefilter (fresh penalty/freshness/staleness/same-host) before adding back a separately-cached llm_bonus. Regression test tests/test_media_funnel_cache.py fails pre-fix, passes post-fix."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260811",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "a4042472ba8131bccb935ff636a67e33673c476f"
     },
     "3cca8a711ec4": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260811",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
@@ -53,8 +59,14 @@
           "verdict": "doing",
           "date": "20260811",
           "because": "Same root cause and same fix as 6be0849a55e4 (built this run): cache-hit path in funnel/media_funnel.py search() now recomputes the full dynamic score via _prefilter on every read instead of trusting the stored total, with only the paid LLM-rerank bonus cached separately and re-added. See tests/test_media_funnel_cache.py."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260811",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "a4042472ba8131bccb935ff636a67e33673c476f"
     },
     "653acb99b575": {
       "verdict": "doing",
