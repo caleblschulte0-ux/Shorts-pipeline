@@ -92,13 +92,40 @@ def _visual_track(pkg: dict, duration: float, workdir: Path) -> Path | None:
     clips: list[Path] = []
     for i, panel in enumerate(panels):
         clip = workdir / f"shot_clip_{i:02d}.mp4"
-        # A restrained Ken Burns push keeps a still photographic panel alive
-        # without competing with the gameplay or captions below it.
+        # A still panel must never stop moving, for as long as it is on
+        # screen. The old push was `min(zoom+0.0007,1.07)`: it reached the
+        # cap after (1.07-1.00)/0.0007 = 100 frames = 3.3 s and then held a
+        # DEAD STILL for the rest of the panel. On 2026-08-11 the showrunner
+        # blocked two reddit stories in those exact words — "the last ~11s
+        # freezes on one repeated clock still", "one dark wallet still
+        # frozen for the last ten seconds". Worse, even its moving phase was
+        # invisible: 0.0007 zoom/frame is ~0.4 px/frame at this width, which
+        # is sub-pixel once the temporal detector downscales, so the panel
+        # measured 0.0 effective fps for its WHOLE duration.
+        #
+        # Two changes, both measured through the reviewer's own detector on
+        # a 14 s panel:
+        #
+        #   old (cap at 3.3 s)              ->  0.0 fps, dup 1.00, 280-frame
+        #                                       frozen run
+        #   ramp across the panel + orbit   -> 13.4 fps, dup 0.44, max run 13
+        #
+        #   * the zoom is a function of the FRAME INDEX over this panel's own
+        #     length, so it spans exactly the time the panel is shown and can
+        #     never reach a cap early, whether the panel runs 2 s or 20 s;
+        #   * a slow orbital drift rides on top. Amplitude*coefficient/fps is
+        #     the per-frame displacement that actually decides whether the
+        #     gate can see motion — 22*6.0/30 = 4.4 px/frame here — and being
+        #     cyclic it stays constant no matter how long the panel lasts,
+        #     which a pure pan cannot do (a pan slow enough to last 20 s is
+        #     sub-pixel again). Under 1 Hz, so it reads as a gentle float.
+        _frames = max(1, int(round(per * FPS)))
         _run([
             "ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
             "-t", f"{per:.3f}", "-i", str(panel),
-            "-vf", (f"zoompan=z='min(zoom+0.0007,1.07)':"
-                    f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+            "-vf", (f"zoompan=z='min(1+0.10*on/{_frames},1.10)':"
+                    f"x='iw/2-(iw/zoom/2)+22*sin(6.0*on/{FPS})':"
+                    f"y='ih/2-(ih/zoom/2)+22*cos(5.2*on/{FPS})':"
                     f"d=1:s={W}x{H // 2}:fps={FPS},format=yuv420p"),
             "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             str(clip),
