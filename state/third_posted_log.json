@@ -3197,13 +3197,61 @@
       "ts": "2026-08-11T11:59:08.840417+00:00"
     },
     "clip-20260811-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/DelightfulDeliciousSandpiperBCouch-9mdVRPkfIkZeeYHr",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/f2uKox0Tsd4",
       "title": "Cinna Finds Out Zoil Already Pulled This Off Before",
       "kind": "twitch_clip",
-      "ts": "2026-08-11T12:03:02.247929+00:00",
+      "ts": "2026-08-11T12:03:05.933032+00:00",
+      "uploaded_at": "2026-08-11T12:03:05.933051+00:00",
+      "publish_at": "2026-08-11T18:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/DelightfulDeliciousSandpiperBCouch-9mdVRPkfIkZeeYHr",
+      "streamer": "cinna",
+      "series": "wholesome",
+      "hook": "WAIT SHE'S DONE THIS BEFORE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3932,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 16.5
+      },
+      "director_cut": true
+    },
+    "rejected-observantamusedlardm4xheh-1to9_frcujk7wil4": {
+      "source_url": "https://www.twitch.tv/tenz/clip/ObservantAmusedLardM4xHeh-1TO9_FRcujk7WiL4",
+      "streamer": "tenz",
+      "title": "bug",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (technical crosshair bug explanation, no )",
+      "ts": "2026-08-11T12:05:01.292102+00:00"
+    },
+    "rejected-successfulcharmingpotdbstyle-xfzltryjfbzq1gen": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SuccessfulCharmingPotDBstyle-XfZLTrYJfbZQ1geN",
+      "streamer": "caseoh_",
+      "title": "Caseoh Loses It Screaming 'Have Mercy!!'",
+      "qa_rejected": true,
+      "ts": "2026-08-11T12:08:39.511889+00:00"
+    },
+    "rejected-sparklylovelypotdancingbaby-zu8dzcnkhqtckgqv": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SparklyLovelyPotDancingBaby-zU8DzcNkhqTcKGqv",
+      "streamer": "xqc",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine Minecraft griefing, no payoff)",
+      "ts": "2026-08-11T12:27:56.761660+00:00"
+    },
+    "clip-20260811-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AgitatedSavoryStarTheTarFu-r_CPk8DyHrYlE9mm",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Panics When He Can't See What's Right In Front Of Him",
+      "kind": "twitch_clip",
+      "ts": "2026-08-11T12:44:22.604396+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
