@@ -13,8 +13,13 @@
   },
   "notes": "A German survey found 36% of respondents overall said they put off important phone calls out of fear or discomfort; that share rose to 44% among 16-29 year-olds specifically.",
   "points": [
-    {"label": "16-29 year-olds", "value": 44},
-    {"label": "All adults", "value": 36}
-  ],
-  "baseline": {"label": "All adults", "value": 36}
+    {
+      "label": "16-29 year-olds",
+      "value": 44
+    },
+    {
+      "label": "All adults",
+      "value": 36
+    }
+  ]
 }

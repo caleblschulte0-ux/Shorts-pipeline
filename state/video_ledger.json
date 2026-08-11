@@ -101,6 +101,206 @@
           "detail": "what-can-we-do question"
         }
       ]
+    },
+    {
+      "slug": "sand-mining-crisis",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "shock_stat",
+      "hook_text": "We're mining sand faster than nature makes it.",
+      "words_first_10s": 12,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:sand-mound-buildup",
+        "mechanic:hourglass-overflow",
+        "mechanic:concrete-pour-skyline"
+      ],
+      "ending_type": "inversion",
+      "franchise": "The World Is Quietly Running Out Of Sand",
+      "notes": "No prior analytics for this slug. Bet: three physical-volume mechanics (growing sand mounds, an overflowing hourglass, a pouring-concrete skyline) so the 4x extraction-vs-replenishment gap reads as a real overflow, not a bar.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "We're mining sand faster than nature makes it."
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:sand-mound-buildup"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:hourglass-overflow"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "mechanic:concrete-pour-skyline"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "Somehow, the beach is the crisis."
+        },
+        {
+          "t": 36,
+          "event": "cta",
+          "detail": "Did you know sand could run out? Comment below."
+        }
+      ]
+    },
+    {
+      "slug": "phone-call-avoidance",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "behavior",
+      "hook_type": "question",
+      "hook_text": "Why won't anyone answer your call?",
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:phone-duel-fill",
+        "mechanic:anxiety-pulse-spike",
+        "mechanic:voice-waveform-duel"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Why Gen Z Refuses To Answer The Phone",
+      "notes": "No prior analytics for this slug. Bet: device-first depictions (a texting phone filling with bubbles, an anxiety pulse-spike, dueling voice-note waveforms) keep the phone itself the hero subject throughout.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Why won't anyone answer your call?"
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:phone-duel-fill"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:anxiety-pulse-spike"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "mechanic:voice-waveform-duel"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "Just text next time. Everyone will thank you."
+        },
+        {
+          "t": 36,
+          "event": "cta",
+          "detail": "Are you a caller or a texter? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "blood-type-rarity",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "question",
+      "hook_text": "How rare is your blood type, really?",
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:blood-vial-rack",
+        "mechanic:rh-genetic-drop",
+        "mechanic:donor-meter-lineup"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The World's Rarest Blood Type, By The Numbers",
+      "notes": "No prior analytics for this slug. Bet: a lab-vial rack for the full 8-type spread, a single filling blood-drop for the Rh gene split, then a donor-photo meter lineup so ethnicity variance lands on real faces, not a table.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "How rare is your blood type, really?"
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:blood-vial-rack"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:rh-genetic-drop"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "mechanic:donor-meter-lineup"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "Somebody out there needs exactly your type."
+        },
+        {
+          "t": 36,
+          "event": "cta",
+          "detail": "Do you know your blood type? Drop it below."
+        }
+      ]
+    },
+    {
+      "slug": "boomerang-generation",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "demographics",
+      "hook_type": "question",
+      "hook_text": "Living with your parents at 27? You're not alone.",
+      "words_first_10s": 11,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:porch-crowd-timeline",
+        "mechanic:generational-thermometer-row",
+        "mechanic:independence-wallet-shrink"
+      ],
+      "ending_type": "escalation",
+      "franchise": "Why So Many Young Adults Still Live With Mom And Dad",
+      "notes": "No prior analytics for this slug. Bet: a porch crowd across 5 US decades, then 4 country thermometers, then a shrinking wallet pair -- each beat moves from 'how many' to 'how much', ending on the money reason instead of vibes.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Living with your parents at 27? You're not alone."
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:porch-crowd-timeline"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:generational-thermometer-row"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "mechanic:independence-wallet-shrink"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "Adulthood got a later start date."
+        },
+        {
+          "t": 36,
+          "event": "cta",
+          "detail": "Do you still live with your parents? Tell me below."
+        }
+      ]
     }
   ]
 }

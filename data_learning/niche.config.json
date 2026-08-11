@@ -19706,7 +19706,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE DEMAND",
           "topic": "sand extraction",
-          "say": "We're now mining 50 billion tonnes of sand and gravel a year, five times what we mined back in 1970. It's the second most extracted material on Earth, after water."
+          "say": "We're now mining 50 billion tonnes of sand and gravel a year, five times what we mined back in 1970. It's the second most extracted material on Earth, after water.",
+          "scene": {
+            "mechanic": "sand-mound-buildup",
+            "concept": "three sand-pile photo mounds rise left to right, taller each year, an excavator standing over the tallest 2020 pile",
+            "code": "n_pts = min(n, 3)\npile = subject_image('pile of sand mound photo')\nexcavator = subject_image('excavator digging sand')\nbase_y = RBOT - 60\ngw = (RX1 - RX0) // n_pts\nmaxh = base_y - (RTOP + 220)\nfor i in range(n_pts):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / vmax) * reveal\n    h = int(maxh * frac)\n    w = int(gw * 0.72)\n    if pile is not None:\n        paste(pile, cx - w // 2, base_y - h, w, h)\n    else:\n        d.polygon([(cx - w // 2, base_y), (cx, base_y - h), (cx + w // 2, base_y)],\n                  fill=rgba(WARN, 210))\n    text(labels[i], cx, base_y + 18, size=24, color=TEXT, center=True)\n    text(f'{v:.0f}B t', cx, base_y - h - 34, size=28,\n         color=HIGHLIGHT if i == n_pts - 1 else TEXT, center=True)\nif excavator is not None and reveal > 0.5:\n    ew = 220\n    paste(excavator, RX1 - ew - 10, base_y - maxh - 140, ew, 160)\n"
+          }
         },
         {
           "source": "offline",
@@ -19714,11 +19719,17 @@
           "params": {
             "file": "sand_extraction_vs_replenishment.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 THE CATCH",
           "topic": "extraction vs nature's pace",
-          "say": "But rivers only replace about 13 billion tonnes of sand a year. So we're pulling it out roughly four times faster than the planet can put it back."
+          "say": "But rivers only replace about 13 billion tonnes of sand a year. So we're pulling it out roughly four times faster than the planet can put it back.",
+          "scene": {
+            "mechanic": "hourglass-overflow",
+            "concept": "an hourglass trickles nature's 13B-tonne replenishment through the neck while a mined sand pile below overflows the glass onto the ground for the 50B-tonne draw",
+            "code": "mined = values[0]; replen = values[1] if n > 1 else values[0] * 0.26\ncx = (RX0 + RX1) // 2\nneck_y = RTOP + 300\nglass_top = RTOP + 120\nd.polygon([(cx - 150, glass_top), (cx + 150, glass_top), (cx + 20, neck_y), (cx - 20, neck_y)],\n          outline=rgba(TEXT, 220), width=6)\nsand = subject_image('sand grains texture close up')\ntop_frac = clamp(replen / mined) * reveal\nth = int((neck_y - glass_top) * top_frac)\nif sand is not None and th > 4:\n    paste(sand, cx - 140, neck_y - th, 280, th)\nbot_h = 280\nd.polygon([(cx - 20, neck_y), (cx + 20, neck_y), (cx + 160, neck_y + bot_h), (cx - 160, neck_y + bot_h)],\n          outline=rgba(TEXT, 220), width=6)\nmound = subject_image('large sand pile mound photo')\nmfrac = reveal\nmh = int(bot_h * mfrac)\nif mound is not None:\n    paste(mound, cx - 160, neck_y + bot_h - mh, 320, mh)\noverflow_frac = clamp((mined - replen) / mined) * reveal\now = int(220 * overflow_frac)\nif mound is not None and ow > 10:\n    paste(mound, cx - 160 - ow, neck_y + bot_h - 60, ow + 40, 80)\n    paste(mound, cx + 160 - 40, neck_y + bot_h - 60, ow + 40, 80)\ntext('REPLENISHED', cx, glass_top - 46, size=25, color=HIGHLIGHT, center=True)\ntext(f'{replen:.0f}B t/yr', cx, glass_top - 12, size=30, color=HIGHLIGHT, center=True)\ntext('MINED', cx, neck_y + bot_h + 44, size=25, color=WARN, center=True)\ntext(f'{mined:.0f}B t/yr', cx, neck_y + bot_h + 78, size=34, color=WARN, center=True)\n"
+          },
+          "ascending": false
         },
         {
           "source": "offline",
@@ -19730,7 +19741,12 @@
           "ascending": false,
           "role": "3 \u00b7 WHO'S BUYING IT",
           "topic": "who's driving demand",
-          "say": "China alone pours about 51 percent of the world's cement, which is mostly sand and gravel. One country's construction boom is emptying riverbeds and beaches on every continent."
+          "say": "China alone pours about 51 percent of the world's cement, which is mostly sand and gravel. One country's construction boom is emptying riverbeds and beaches on every continent.",
+          "scene": {
+            "mechanic": "concrete-pour-skyline",
+            "concept": "five under-construction buildings fill with wet concrete texture bottom-up to each country's share of world cement, a crane standing over China's",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 70\ntop_y = RTOP + 200\nconcrete = subject_image('wet concrete pour texture')\ncrane = subject_image('construction crane silhouette')\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    bw = int(gw * 0.68)\n    frac = clamp(v / 100.0) * reveal\n    bh = int((base_y - top_y) * frac)\n    d.rectangle([cx - bw // 2, base_y - bh, cx + bw // 2, base_y],\n                outline=rgba(TEXT, 200), width=4)\n    if concrete is not None and bh > 4:\n        paste(concrete, cx - bw // 2, base_y - bh, bw, bh)\n    text(labels[i], cx, base_y + 16, size=17, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - bh - 30, size=25,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\nif crane is not None:\n    cw = 170\n    paste(crane, RX0 + gw // 2 - cw // 2, top_y - 150, cw, 170)\n"
+          }
         }
       ]
     },
@@ -19767,7 +19783,12 @@
           "insight_type": "share",
           "role": "1 \u00b7 THE SPLIT",
           "topic": "text vs call preference",
-          "say": "70 percent of 18 to 34 year olds say they'd rather get a text than a phone call. For most of Gen Z, a ringing phone is already the exception, not the rule."
+          "say": "70 percent of 18 to 34 year olds say they'd rather get a text than a phone call. For most of Gen Z, a ringing phone is already the exception, not the rule.",
+          "scene": {
+            "mechanic": "phone-duel-fill",
+            "concept": "a texting phone fills with speech bubbles for the 70% share while a ringing phone next to it fades and shrinks for the 30% who still call",
+            "code": "cx0 = RX0 + 260; cx1 = RX1 - 260\nphone_text = subject_image('smartphone texting screen photo')\nphone_call = subject_image('smartphone incoming call screen photo')\nbubble = subject_image('speech bubble icon')\npw = 220; ph = 380\npy = RTOP + 260\nif phone_text is not None:\n    paste(phone_text, cx0 - pw // 2, py, pw, ph)\nif phone_call is not None:\n    fade = 0.35 + 0.65 * (1 - reveal)\n    paste(phone_call, cx1 - pw // 2, py, pw, ph)\ntfrac = clamp(values[0] / 100.0) * reveal\nbubbles = int(tfrac * 9)\nfor i in range(bubbles):\n    bx = cx0 - 90 + (i % 3) * 70\n    by = py - 30 - (i // 3) * 66\n    if bubble is not None:\n        paste(bubble, bx, by, 56, 46)\n    else:\n        d.ellipse([bx, by, bx + 50, by + 40], fill=rgba(HIGHLIGHT, 220))\ncfrac = clamp((values[1] if n > 1 else 100 - values[0]) / 100.0)\nring_a = int(120 + 100 * (1 - reveal))\nd.ellipse([cx1 - 110, py - 40, cx1 + 110, py + 40], outline=rgba(WARN, ring_a), width=5)\ntext('TEXT', cx0, py - 90, size=30, color=HIGHLIGHT, center=True)\ntext(f'{values[0]:.0f}%', cx0, py + ph + 30, size=40, color=HIGHLIGHT, center=True)\ntext('CALL', cx1, py - 90, size=30, color=WARN, center=True)\ntext(f'{(values[1] if n > 1 else 100 - values[0]):.0f}%', cx1, py + ph + 30, size=40, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -19775,11 +19796,17 @@
           "params": {
             "file": "phone_call_anxiety_by_age.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "2 \u00b7 WHY",
           "topic": "phone call anxiety",
-          "say": "It's not just preference, it's dread. 44 percent of 16 to 29 year olds say they actually avoid making calls out of anxiety, well above the 36 percent of adults overall."
+          "say": "It's not just preference, it's dread. 44 percent of 16 to 29 year olds say they actually avoid making calls out of anxiety, well above the 36 percent of adults overall.",
+          "scene": {
+            "mechanic": "anxiety-pulse-spike",
+            "concept": "an anxious phone-holder photo sits under a heart-monitor line whose spike height is set by the call-avoidance rate, sharper for 16-29s than all adults",
+            "code": "cx = (RX0 + RX1) // 2\nyoung = values[0]; allad = values[1] if n > 1 else values[0]\ny0 = RTOP + 300\nperson = subject_image('young person staring anxiously at ringing phone')\npw = 320; ph = 420\nif person is not None:\n    paste(person, cx - pw // 2, y0, pw, ph)\nline_y = y0 - 70\namp = int((young / 60.0) * 170 * reveal)\npts = [(cx - 170, line_y), (cx - 90, line_y), (cx - 60, line_y - amp),\n       (cx - 20, line_y + amp // 2), (cx + 10, line_y), (cx + 90, line_y),\n       (cx + 170, line_y)]\nd.line(pts, fill=rgba(WARN, 235), width=6, joint='curve')\nd.ellipse([cx - 66, line_y - amp - 6, cx - 54, line_y - amp + 6], fill=rgba(WARN, 255))\ntext(labels[0] + f': {young:.0f}% avoid calls', cx, line_y - 210, size=27, color=WARN, center=True)\namp2 = int((allad / 60.0) * 60 * reveal)\nbase2 = y0 + ph + 60\npts2 = [(cx - 140, base2), (cx - 60, base2), (cx - 30, base2 - amp2),\n        (cx, base2), (cx + 60, base2), (cx + 140, base2)]\nd.line(pts2, fill=rgba(TEXT, 200), width=5, joint='curve')\ntext((labels[1] if n > 1 else 'All adults') + f': {allad:.0f}%', cx, base2 + 20, size=24,\n     color=TEXT, center=True)\n"
+          },
+          "ascending": false
         },
         {
           "source": "offline",
@@ -19787,11 +19814,17 @@
           "params": {
             "file": "voice_note_preference_by_age.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "3 \u00b7 THE WORKAROUND",
           "topic": "voice notes over calls",
-          "say": "So they found a middle ground. 37 percent of 18 to 34 year olds would rather send a voice note than call, compared with just 1 percent of people age 35 to 54."
+          "say": "So they found a middle ground. 37 percent of 18 to 34 year olds would rather send a voice note than call, compared with just 1 percent of people age 35 to 54.",
+          "scene": {
+            "mechanic": "voice-waveform-duel",
+            "concept": "two voice-memo microphones each broadcast a bar waveform sized to how much that age group prefers voice notes - a lively 37% wave next to a nearly flat 1% line",
+            "code": "cx0 = RX0 + 260; cx1 = RX1 - 260\nmic = subject_image('microphone voice memo recording icon')\ny0 = RTOP + 320\nif mic is not None:\n    paste(mic, cx0 - 70, y0 - 170, 140, 140)\n    paste(mic, cx1 - 70, y0 - 170, 140, 140)\nbars = 9; bw = 15\ngroups = [(cx0, values[0], HIGHLIGHT, labels[0]),\n          (cx1, values[1] if n > 1 else values[0], TEXT, labels[1] if n > 1 else labels[0])]\nfor cx, v, color, lab in groups:\n    amp_scale = clamp(v / 40.0) * reveal\n    for i in range(bars):\n        h = int((20 + 90 * abs(math.sin(i * 1.4))) * amp_scale) + 6\n        bx = cx - (bars * bw) // 2 + i * bw\n        d.rounded_rectangle([bx, y0 - h // 2, bx + bw - 4, y0 + h // 2], radius=4,\n                             fill=rgba(color, 220))\n    text(lab, cx, y0 + 90, size=22, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, y0 + 124, size=32, color=color, center=True)\n"
+          },
+          "ascending": false
         }
       ]
     },
@@ -19829,7 +19862,12 @@
           "ascending": false,
           "role": "1 \u00b7 THE SPREAD",
           "topic": "blood type distribution",
-          "say": "37 percent of Americans are O positive, the most common type. AB negative sits at just 1 percent, making it the rarest by a wide margin."
+          "say": "37 percent of Americans are O positive, the most common type. AB negative sits at just 1 percent, making it the rarest by a wide margin.",
+          "scene": {
+            "mechanic": "blood-vial-rack",
+            "concept": "eight blood-sample vials stand in a lab rack, each filled to its share of the US population, O+ towering over a nearly-empty AB- vial",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 70\ntop_y = RTOP + 200\nvial = subject_image('blood sample vial tube photo')\nmaxh = base_y - top_y\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / vmax) * reveal\n    h = int(maxh * frac)\n    vw = int(gw * 0.5)\n    if vial is not None and h > 4:\n        paste(vial, cx - vw // 2, base_y - h - 16, vw, h + 16)\n    else:\n        d.rounded_rectangle([cx - vw // 2, base_y - h, cx + vw // 2, base_y], radius=14,\n                             fill=rgba(WARN, 200))\n    text(labels[i], cx, base_y + 14, size=16, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - h - 42, size=19,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -19840,7 +19878,12 @@
           "insight_type": "share",
           "role": "2 \u00b7 THE FACTOR",
           "topic": "Rh positive vs negative",
-          "say": "That rarity comes down to one gene. 85 percent of people are Rh positive, so the 15 percent who are negative are the ones hospitals actually run short on."
+          "say": "That rarity comes down to one gene. 85 percent of people are Rh positive, so the 15 percent who are negative are the ones hospitals actually run short on.",
+          "scene": {
+            "mechanic": "rh-genetic-drop",
+            "concept": "one giant blood-drop shape fills red from the bottom to the 85% Rh-positive line, leaving the top 15% Rh-negative sliver empty, a DNA strand overhead",
+            "code": "cx = (RX0 + RX1) // 2\ndrop = subject_image('red blood drop shape icon')\ndw = 420; dh = 560\ndy = RTOP + 220\npos = values[0]; neg = values[1] if n > 1 else 100 - values[0]\nfrac = clamp(pos / 100.0) * reveal\nif drop is not None:\n    fill_image(drop, frac, cx - dw // 2, dy, dw, dh, direction='up', color=WARN)\nelse:\n    fh = int(dh * frac)\n    d.rounded_rectangle([cx - dw // 2, dy + dh - fh, cx + dw // 2, dy + dh], radius=40,\n                         fill=rgba(WARN, 210))\ntext('Rh+', cx, dy + dh - int(dh * frac) - 46, size=32, color=WARN, center=True)\ntext(f'{pos:.0f}%', cx, dy + dh - int(dh * frac) - 86, size=42, color=WARN, center=True)\ntext('Rh-', cx, dy - 42, size=28, color=TEXT, center=True)\ntext(f'{neg:.0f}%', cx, dy - 82, size=34, color=TEXT, center=True)\ngene = subject_image('DNA double helix icon')\nif gene is not None and reveal > 0.4:\n    gw2 = 150\n    paste(gene, cx - gw2 // 2, dy - 230, gw2, 150)\n"
+          }
         },
         {
           "source": "offline",
@@ -19852,7 +19895,12 @@
           "ascending": false,
           "role": "3 \u00b7 WHY DIVERSITY MATTERS",
           "topic": "O positive by background",
-          "say": "And it varies by background too. O positive shows up in 53 percent of Latin American donors but just 37 percent of Caucasian donors, which is why blood drives need every background represented."
+          "say": "And it varies by background too. O positive shows up in 53 percent of Latin American donors but just 37 percent of Caucasian donors, which is why blood drives need every background represented.",
+          "scene": {
+            "mechanic": "donor-meter-lineup",
+            "concept": "four blood-donor photos stand over their own filling meter, height set by how common O-positive is in that ethnic background",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 90\ntop_y = RTOP + 220\nperson = subject_image('blood donor giving blood photo')\nmeter_h = 240\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    pw = int(gw * 0.6); ph2 = 250\n    if person is not None:\n        paste(person, cx - pw // 2, top_y, pw, ph2)\n    frac = clamp(v / 100.0) * reveal\n    mh = int(meter_h * frac)\n    d.rounded_rectangle([cx - 30, base_y - meter_h, cx + 30, base_y], radius=16,\n                         outline=rgba(TEXT, 200), width=4)\n    d.rounded_rectangle([cx - 30, base_y - mh, cx + 30, base_y], radius=16,\n                         fill=rgba(WARN, 210))\n    text(labels[i], cx, base_y + 18, size=16, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - meter_h - 30, size=22,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\n"
+          }
         }
       ]
     },
@@ -19889,7 +19937,12 @@
           "insight_type": "trend",
           "role": "1 \u00b7 THE FLIP",
           "topic": "living with parents over time",
-          "say": "In 1960, only 29 percent of 18 to 29 year olds lived with a parent. By 2020, that hit 52 percent, the first majority since the Great Depression."
+          "say": "In 1960, only 29 percent of 18 to 29 year olds lived with a parent. By 2020, that hit 52 percent, the first majority since the Great Depression.",
+          "scene": {
+            "mechanic": "porch-crowd-timeline",
+            "concept": "young adults stack up on a house's front porch across five year-checkpoints, the crowd swelling to 1940 and 2020's highs and thinning at 1960's low",
+            "code": "house = subject_image('house front porch photo')\ncx = (RX0 + RX1) // 2\nhw = 700; hh = 380\nhy = RTOP + 100\nif house is not None:\n    paste(house, cx - hw // 2, hy, hw, hh)\nperson = subject_image('young adult standing silhouette')\npts = min(n, 5)\ngw = (RX1 - RX0) // pts\nbase_y = RBOT - 40\nfor i in range(pts):\n    v = values[i]\n    px = RX0 + gw * i + gw // 2\n    frac = clamp(v / 100.0) * reveal\n    count = max(1, int(frac * 8))\n    for k in range(count):\n        if person is not None:\n            paste(person, px - 18 + (k % 2) * 12, base_y - 40 - (k // 2) * 42, 36, 42)\n        else:\n            d.ellipse([px - 10, base_y - 40 - k * 20, px + 10, base_y - 20 - k * 20],\n                      fill=rgba(HIGHLIGHT, 220))\n    text(labels[i], px, base_y + 14, size=15, color=TEXT, center=True)\n    text(f'{v:.0f}%', px, hy + hh + 14, size=17,\n         color=HIGHLIGHT if i == pts - 1 else TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -19902,7 +19955,12 @@
           "use_baseline": true,
           "role": "2 \u00b7 NOT JUST US",
           "topic": "living with parents worldwide",
-          "say": "It's not only an American thing. In Italy, 71 percent of 18 to 34 year olds still live at home, and in Croatia it's 77, way past the US rate of 33."
+          "say": "It's not only an American thing. In Italy, 71 percent of 18 to 34 year olds still live at home, and in Croatia it's 77, way past the US rate of 33.",
+          "scene": {
+            "mechanic": "generational-thermometer-row",
+            "concept": "four fever-style thermometers, one per country, fill to that share of young adults still living with parents - Croatia and Italy running hot, Sweden barely warm",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 90\ntop_y = RTOP + 240\nhouse_small = subject_image('small house icon illustration')\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    tube_w = 46\n    d.rounded_rectangle([cx - tube_w // 2, top_y, cx + tube_w // 2, base_y],\n                         radius=tube_w // 2, outline=rgba(TEXT, 210), width=5)\n    frac = clamp(v / 100.0) * reveal\n    fh = int((base_y - top_y) * frac)\n    d.rounded_rectangle([cx - tube_w // 2 + 6, base_y - fh, cx + tube_w // 2 - 6, base_y - 6],\n                         radius=(tube_w - 12) // 2, fill=rgba(WARN, 220))\n    d.ellipse([cx - tube_w, base_y - 6, cx + tube_w, base_y + tube_w], fill=rgba(WARN, 230))\n    if house_small is not None:\n        paste(house_small, cx - 30, top_y - 76, 60, 60)\n    text(labels[i], cx, base_y + tube_w + 14, size=17, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, top_y - 96, size=22, color=HIGHLIGHT if i == 0 else TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -19910,11 +19968,17 @@
           "params": {
             "file": "financial_independence_age_21.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "3 \u00b7 THE REAL REASON",
           "topic": "financial independence by 21",
-          "say": "Here's the actual shift. In 1980, 42 percent of 21 year olds were financially independent. By 2021, that number had dropped to just 25 percent."
+          "say": "Here's the actual shift. In 1980, 42 percent of 21 year olds were financially independent. By 2021, that number had dropped to just 25 percent.",
+          "scene": {
+            "mechanic": "independence-wallet-shrink",
+            "concept": "two open wallets, 1980 and 2021, sized and stacked with coins by the share of 21-year-olds who were financially independent - the 2021 wallet visibly smaller and thinner",
+            "code": "v0 = values[0]; v1 = values[1] if n > 1 else values[0]\nwallet = subject_image('open leather wallet with cash photo')\ncoin = subject_image('gold coin icon')\nbase_y = RBOT - 160\nscale0 = clamp(v0 / 60.0) * reveal\nscale1 = clamp(v1 / 60.0) * reveal\nw0 = max(int(300 * scale0), 10); h0 = max(int(200 * scale0), 10)\nw1 = max(int(300 * scale1), 10); h1 = max(int(200 * scale1), 10)\ncx0 = RX0 + 280; cx1 = RX1 - 280\nif wallet is not None:\n    paste(wallet, cx0 - w0 // 2, base_y - h0, w0, h0)\n    paste(wallet, cx1 - w1 // 2, base_y - h1, w1, h1)\nfor i in range(int(scale0 * 6)):\n    if coin is not None:\n        paste(coin, cx0 - 90 + (i % 4) * 40, base_y + 10 + (i // 4) * 30, 30, 30)\nfor i in range(int(scale1 * 6)):\n    if coin is not None:\n        paste(coin, cx1 - 90 + (i % 4) * 40, base_y + 10 + (i // 4) * 30, 30, 30)\ntext(labels[0], cx0, base_y - h0 - 190, size=27, color=TEXT, center=True)\ntext(f'{v0:.0f}% independent', cx0, base_y - h0 - 150, size=23, color=HIGHLIGHT, center=True)\ntext(labels[1] if n > 1 else labels[0], cx1, base_y - h1 - 190, size=27, color=TEXT, center=True)\ntext(f'{v1:.0f}% independent', cx1, base_y - h1 - 150, size=23, color=WARN, center=True)\n"
+          },
+          "ascending": false
         }
       ]
     }

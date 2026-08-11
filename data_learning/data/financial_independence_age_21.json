@@ -13,8 +13,13 @@
   },
   "notes": "Pew Research Center analysis: 42% of 21-year-olds were financially independent of their parents in 1980, compared with 25% of 21-year-olds in 2021.",
   "points": [
-    {"label": "1980", "value": 42},
-    {"label": "2021", "value": 25}
-  ],
-  "baseline": {"label": "1980", "value": 42}
+    {
+      "label": "1980",
+      "value": 42
+    },
+    {
+      "label": "1980",
+      "value": 42
+    }
+  ]
 }

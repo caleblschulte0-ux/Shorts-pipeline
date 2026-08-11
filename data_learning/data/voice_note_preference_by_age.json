@@ -13,8 +13,13 @@
   },
   "notes": "The same 2024 Uswitch survey found 37% of 18-34 year-olds prefer sending a voice note over making a phone call, versus just 1% of 35-54 year-olds.",
   "points": [
-    {"label": "18-34", "value": 37},
-    {"label": "35-54", "value": 1}
-  ],
-  "baseline": {"label": "35-54", "value": 1}
+    {
+      "label": "18-34",
+      "value": 37
+    },
+    {
+      "label": "35-54",
+      "value": 1
+    }
+  ]
 }

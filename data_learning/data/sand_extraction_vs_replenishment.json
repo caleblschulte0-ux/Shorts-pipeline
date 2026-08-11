@@ -13,8 +13,13 @@
   },
   "notes": "UNEP estimates roughly 50 billion tonnes of sand and gravel are extracted worldwide per year, while the world's rivers are estimated to carry only about 12-13 billion tonnes of new sediment to the coasts annually (a figure further reduced by dams). Extraction is estimated at roughly 4x the natural replacement rate; treated here as approximate.",
   "points": [
-    {"label": "Mined per year", "value": 50},
-    {"label": "Naturally replenished per year", "value": 13}
-  ],
-  "baseline": {"label": "Naturally replenished per year", "value": 13}
+    {
+      "label": "Mined per year",
+      "value": 50
+    },
+    {
+      "label": "Naturally replenished per year",
+      "value": 13
+    }
+  ]
 }
