@@ -1228,31 +1228,90 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     ax.set_aspect("equal")
     ymax = 100 * hpx / wpx
     t = max(0.0, min(1.0, reveal))
-    # radius ~ sqrt(value) (area ∝ value); scale the packed row to fit width.
+    # radius ~ sqrt(value) (area ∝ value)
     rraw = [_m.sqrt(v) for v in vals]
     gap = 4.0
-    scale = (100 - gap * (n + 1)) / (2 * sum(rraw)) if sum(rraw) else 1.0
+    # LAY OUT ACROSS BOTH AXES, NOT JUST THE WIDTH.
+    #
+    # This packed every bubble into ONE row scaled to fit the WIDTH, in a
+    # frame 1.15x TALLER than it is wide. With five items the row is already
+    # 92% of the width, so the bubbles cannot grow — and the other 80%+ of
+    # the frame stays empty. Measured on the final frame of the 2026-08-11
+    # macao story, whose seg0 used exactly this:
+    #
+    #     items   ink coverage   frame height used
+    #       5         8.7%            18.5%
+    #       3        16.9%            31.4%
+    #       2        27.7%            46.8%
+    #
+    # The showrunner's notes that day were "tiny bubbles in a mostly empty
+    # frame", "a near-empty card with a flat bubble row" and "equal-size
+    # blobs" — all three describing this. Four or more items now pack into
+    # TWO staggered rows and scale to whichever of width/height binds first,
+    # so the bubbles are as large as the frame allows.
+    per_row = n if n <= 3 else (n + 1) // 2
+    rows = [list(range(0, per_row)), list(range(per_row, n))]
+    rows = [r for r in rows if r]
+
+    # Solve the scale directly on each axis. GAPS DO NOT SCALE, so they come
+    # out of the budget FIRST and only the circles divide what is left —
+    # scaling the whole block instead silently shrinks every bubble.
+    # Every row needs the label band UNDER it clear — the label sits 3.2
+    # below the circle and a fontsize-22 line is ~3.3 units tall here, so
+    # rows are separated by more than the in-row gap. At `gap` the top row's
+    # labels landed 2.0 units inside the bottom row's circles.
+    LABEL_BAND = 6.8
+    row_gap = LABEL_BAND + 0.7
+    avail_w = 100 - gap * 2
+    avail_h = ymax - gap * 2 - LABEL_BAND
+    scale_w = min(
+        ((avail_w - gap * (len(row) - 1))
+         / sum(2 * rraw[i] for i in row)) for row in rows)
+    tall = sum(2 * max(rraw[i] for i in row) for row in rows)
+    scale_h = ((avail_h - row_gap * (len(rows) - 1)) / tall
+               if tall else scale_w)
+    scale = max(0.0001, min(scale_w, scale_h))
     rad = [r * scale for r in rraw]
-    rad = [min(r, ymax / 2 - 6) for r in rad]      # keep inside vertical band
-    # Centre the packed row both ways so there's no empty band / left bias.
-    row_w = sum(2 * r for r in rad) + gap * (n - 1)
-    cy = ymax / 2
-    x = (100 - row_w) / 2.0
+    row_h = [2 * max(rad[i] for i in row) for row in rows]
+    block_h = sum(row_h) + row_gap * (len(rows) - 1)
+    cy_top = ymax / 2 + block_h / 2.0
     specs = []
+    # centre of each item, laid out row by row from the top of the block
+    centres: list[tuple[float, float]] = [(0.0, 0.0)] * n
+    _y = cy_top
+    for ri, row in enumerate(rows):
+        row_w = sum(2 * rad[i] for i in row) + gap * (len(row) - 1)
+        _x = (100 - row_w) / 2.0
+        cyr = _y - row_h[ri] / 2.0
+        for i in row:
+            centres[i] = (_x + rad[i], cyr)
+            _x += 2 * rad[i] + gap
+        _y -= row_h[ri] + row_gap
+    cy = ymax / 2
     for i, (p, r) in enumerate(zip(items, rad)):
-        cx = x + r
-        x += 2 * r + gap
+        cx, cy = centres[i]
         color = (HIGHLIGHT if p.label == insight.highlight_label
                  else WARN if (insight.baseline and p.label == insight.baseline.label)
                  else ACCENT)
         ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor="white",
                             linewidth=1.5, alpha=0.92, zorder=3))
         fs = max(16, min(46, r * 2.0))
+        # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
+        # `_lblalpha` holds every label at alpha 0 until 80% of the build,
+        # which is right for a BAR — the label sits at the tip and lands as
+        # the bar reaches it. A bubble's number sits at the CENTRE of a
+        # circle that is on screen from frame one, so there is nothing to
+        # land: on the hook beat, whose reveal curve does not pass 0.8 until
+        # ~71% of a 20-second window, that left the values invisible for
+        # fourteen seconds. The showrunner's note on 2026-08-11 was
+        # "equal-size blobs that only reveal numbers at the very end".
+        # Fade with the inflation instead, complete by a third of the way in.
+        _balpha = max(0.0, min(1.0, (t - 0.05) / 0.28))
         tt = ax.text(cx, cy, _vfmt(p.value), ha="center", va="center",
                      color="#0B1020", fontsize=fs, fontweight="bold",
-                     zorder=4, alpha=_lblalpha(reveal))
+                     zorder=4, alpha=_balpha)
         ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
-                fontsize=22, fontweight="bold", zorder=4, alpha=_lblalpha(reveal),
+                fontsize=22, fontweight="bold", zorder=4, alpha=_balpha,
                 path_effects=_shadow())
         specs.append((p.value, "art", tt, None))
         if i == 0:
