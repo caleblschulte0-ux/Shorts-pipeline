@@ -6,11 +6,11 @@
     "publish_at": "2026-08-11T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The Waymo-vs-Cruise divergence lands hard once the axis rescales, but the first six seconds are a near-black frame with two invisible lines pinned to the baseline.",
-    "elapsed_seconds": 144.7,
+    "error": "showrunner_block: showrunner BLOCK: The 2023 overtake and the 500K finish land hard, but the first four seconds are two flat lines hugging the bottom of a mostly-black 60K axis \u2014 the race has no visible stakes until it is half over.",
+    "elapsed_seconds": 99.1,
     "package_path": "state/trending_packages/20260811/01_graph-waymo-vs-cruise-robotaxi.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-092957_waymo_won_the_robotaxi_war__cruise_didn_.mp4",
+    "video_path": "output/daily_20260811-121016_waymo_won_the_robotaxi_war__cruise_didn_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The Waymo-vs-Cruise divergence lands hard once the axis rescales, but the first six seconds are a near-black frame with two invisible lines pinned to the baseline.",
-      "score": 78
+      "reason": "showrunner BLOCK: The 2023 overtake and the 500K finish land hard, but the first four seconds are two flat lines hugging the bottom of a mostly-black 60K axis \u2014 the race has no visible stakes until it is half over.",
+      "score": 74
     },
     "blocked": true
   },
@@ -41,10 +41,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 59.5,
+    "elapsed_seconds": 59.8,
     "package_path": "state/trending_packages/20260811/02_graph-suez-vs-cape-good-hope.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-093222_the_detour_that_broke_the_suez_canal.mp4",
+    "video_path": "output/daily_20260811-121155_the_detour_that_broke_the_suez_canal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -75,10 +75,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 62.6,
+    "elapsed_seconds": 62.3,
     "package_path": "state/trending_packages/20260811/03_graph-measles-vs-whooping-cough.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-093322_vaccine_preventable_diseases_are_roaring.mp4",
+    "video_path": "output/daily_20260811-121255_vaccine_preventable_diseases_are_roaring.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -109,10 +109,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 61.5,
+    "elapsed_seconds": 61.0,
     "package_path": "state/trending_packages/20260811/04_graph-eggs-vs-milk-prices.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-093424_eggs_now_cost_more_than_milk__seriously_.mp4",
+    "video_path": "output/daily_20260811-121357_eggs_now_cost_more_than_milk__seriously_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -142,14 +142,14 @@
     "publish_at": "2026-08-11T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: One frozen AI still carries ~50 seconds of story over a half-black gameplay panel \u2014 the beats are narrated but never shown.",
-    "elapsed_seconds": 214.8,
+    "error": "showrunner_block: showrunner BLOCK: Solid topical shots for the first half, but the last ~11s freezes on one repeated clock still and the captions collide at seg4 \u2014 the punchline lands on a stale frame.",
+    "elapsed_seconds": 244.4,
     "package_path": "state/trending_packages/20260811/05_reddit-hoa-garden-gnome-bylaws.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-093553_she_fined_me_over_a_garden_gnome__so_i_r.mp4",
+    "video_path": "output/daily_20260811-121523_she_fined_me_over_a_garden_gnome__so_i_r.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 55.9,
+      "duration": 49.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,17 +160,17 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
+      "loudness_lufs": -24.7
     },
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: One frozen AI still carries ~50 seconds of story over a half-black gameplay panel \u2014 the beats are narrated but never shown.",
-      "score": 49
+      "reason": "showrunner BLOCK: Solid topical shots for the first half, but the last ~11s freezes on one repeated clock still and the captions collide at seg4 \u2014 the punchline lands on a stale frame.",
+      "score": 57
     },
     "blocked": true
   },
@@ -181,14 +181,14 @@
     "publish_at": "2026-08-11T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: One garbled, off-subject AI photo sits frozen over the entire 34-second story \u2014 there is no visual storytelling here, just a caption crawl on stock gameplay.",
-    "elapsed_seconds": 209.1,
+    "error": "showrunner_block: showrunner BLOCK: The story's climax is served by one dark wallet still frozen for the last ten seconds, and the final caption is garbled \u2014 the payoff never lands.",
+    "elapsed_seconds": 253.6,
     "package_path": "state/trending_packages/20260811/06_reddit-wrong-store-coupon.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-093927_she_waved_a_rival_store_s_coupon_at_me__.mp4",
+    "video_path": "output/daily_20260811-121951_she_waved_a_rival_store_s_coupon_at_me__.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.133,
+      "duration": 45.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +199,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.9
+      "loudness_lufs": -27.5
     },
     "qa": {
       "ok": true,
@@ -208,110 +208,49 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: One garbled, off-subject AI photo sits frozen over the entire 34-second story \u2014 there is no visual storytelling here, just a caption crawl on stock gameplay.",
-      "score": 57
+      "reason": "showrunner BLOCK: The story's climax is served by one dark wallet still frozen for the last ten seconds, and the final caption is garbled \u2014 the payoff never lands.",
+      "score": 62
     },
     "blocked": true
   },
   {
-    "topic": "Jackie, the famous California bald eagle, dies after weeks of intensive care",
-    "angle": "Jackie, a beloved bald eagle and livestream star, has passed away after a long battle with illness, leaving behind a legacy of inspiration and education for millions of fans worldwide.",
+    "topic": "tomb",
+    "angle": null,
     "publish_at": "2026-08-11T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 2.6,
+    "elapsed_seconds": 25.6,
     "backfill": true
   },
   {
-    "topic": "Ukraine drone strike on oil refinery deep inside Russia kills at least 13",
-    "angle": "A daring Ukrainian drone strike on a Russian oil refinery has killed at least 13 people, marking a significant escalation in the conflict and raising questions about the potential for further retaliation.",
+    "topic": "anthropic claude eu ai watermarks",
+    "angle": null,
     "publish_at": "2026-08-11T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['Ukrainian drone strike', 'oil refinery', '750 miles', '25 and had a wife', 'extra shift', 'military potential', '23, and their kids']",
-    "elapsed_seconds": 43.5,
-    "title": "Drone Strike Horror",
-    "package_path": "state/trending_packages/20260811-094301_auto_ukraine_drone_strike_on_oil_refinery_dee.json",
-    "quarantined": true,
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 24.5,
     "backfill": true
   },
   {
-    "topic": "Young girl finds whale stranded on Australian beach",
-    "angle": "A young girl's discovery of a stranded whale on an Australian beach has led to a dramatic rescue effort, highlighting the importance of community and conservation.",
+    "topic": "pence",
+    "angle": null,
     "publish_at": "2026-08-11T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is a keyword-matched stock reel: the beats meant to show a stranded whale show a cyclone satellite image and a night city skyline, there is no data demonstration and no mascot at all, and the video ends mid-sentence with no payoff.",
-    "elapsed_seconds": 482.3,
-    "title": "Stranded Whale Miracle",
-    "package_path": "state/trending_packages/20260811-094337_auto_young_girl_finds_whale_stranded_on_austr.json",
-    "video_path": "output/daily_20260811-094337_young_girl_finds_whale_stranded_on_austr.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.1,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is a keyword-matched stock reel: the beats meant to show a stranded whale show a cyclone satellite image and a night city skyline, there is no data demonstration and no mascot at all, and the video ends mid-sentence with no payoff.",
-      "score": 22
-    },
-    "blocked": true,
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 24.7,
     "backfill": true
   },
   {
-    "topic": "Watch: Moment powerful earthquake shakes Colombia and crumbles buildings",
-    "angle": "A devastating 7.4-magnitude earthquake has struck Colombia, causing widespread destruction and loss of life, with rescue efforts underway to search for survivors trapped under the rubble.",
+    "topic": "luigi mangione",
+    "angle": null,
     "publish_at": "2026-08-11T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: This is not a data video at all: it is a Reddit-style narration slideshowed over keyword-matched stock photos and unrelated Minecraft parkour, with no data demonstration and no mascot anywhere.",
-    "elapsed_seconds": 849.8,
-    "title": "Family Reunion Nightmare",
-    "package_path": "state/trending_packages/20260811-095141_auto_watch__moment_powerful_earthquake_shakes.json",
-    "video_path": "output/daily_20260811-095141_watch__moment_powerful_earthquake_shakes.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 38.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -14.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: This is not a data video at all: it is a Reddit-style narration slideshowed over keyword-matched stock photos and unrelated Minecraft parkour, with no data demonstration and no mascot anywhere.",
-      "score": 22
-    },
-    "blocked": true,
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 25.0,
     "backfill": true
   }
 ]
