@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260806",
+  "updated": "20260811",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -26,6 +26,123 @@
       "because": "The diagnosis is right \u2014 decide_verdict() in the reviewer and decide() in the gate both claim final authority \u2014 and the direction you propose (reviewer returns measurements + anchored judgments; ONE policy function computes the only disposition) is the same direction the 2026-08-01 gate extraction was already moving. But it's a refactor across every publishing channel's callsite, and this week the priority is watching the new backfill/cap/backoff machinery hold in production. Constraint for whoever picks it up: the consolidation may only ever ADD blocks \u2014 the sovereign-BLOCK and fail-closed tests must pass unchanged.",
       "history": [],
       "revisit_after": "20260905"
+    },
+    "6be0849a55e4": {
+      "verdict": "in_progress",
+      "date": "20260811",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: search()'s cache-hit path restored stored score verbatim, so the 14-day recent-use penalty never applied to cached results. Fixed in this run: cache-hit now rebuilds raw Candidates and reruns _prefilter (fresh penalty/freshness/staleness/same-host) before adding back a separately-cached llm_bonus. Regression test tests/test_media_funnel_cache.py fails pre-fix, passes post-fix."
+        }
+      ]
+    },
+    "3cca8a711ec4": {
+      "verdict": "in_progress",
+      "date": "20260811",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Same root cause and same fix as 6be0849a55e4 (cached scores are frozen for up to 48h): cache-hit path now recomputes the full dynamic score via _prefilter on every read instead of trusting the stored total, with only the paid LLM-rerank bonus cached and re-added on top. See funnel/media_funnel.py search()/to_dict()/_llm_rerank() and tests/test_media_funnel_cache.py."
+        },
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Same root cause and same fix as 6be0849a55e4 (built this run): cache-hit path in funnel/media_funnel.py search() now recomputes the full dynamic score via _prefilter on every read instead of trusting the stored total, with only the paid LLM-rerank bonus cached separately and re-added. See tests/test_media_funnel_cache.py."
+        }
+      ]
+    },
+    "653acb99b575": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in third_capture/clip_qa.py review(): the outer except at line 444 sets verdict='pass' on ANY internal exception (probe/vision/contact-sheet failure), and scripts/run_third.py:1938 treats verdict!='fail' as ship-it with no other gate downstream. This contradicts the pipeline's fail-closed doctrine (CLAUDE.md showrunner section) even though the local docstring calls it deliberate. Queued to fail closed (verdict='fail'/quarantine) with the exception text preserved as evidence; not built this run \u2014 next highest-value pickup.",
+      "history": []
+    },
+    "69a886343361": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed: TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall (tests/test_production_outcome.py:47-52) only does two assertIn() substring checks against the raw source text of run_trending_daily.py, never executes the branch. Queued to replace with a fixture-driven test on the real completion decision.",
+      "history": []
+    },
+    "a544d37c275e": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in make_reddit_story.py: _shot_panels() (line ~42-76) drops any shot whose image failed to resolve, and _visual_track() (line ~86) computes per = duration/len(panels), an equal split with no reference to shot phrase/word timing. This is a real renderer defect (matches the 2026-08-09 showrunner evidence of ~35s dead air on one stretched panel) but the fix is a nontrivial renderer change (phrase-aligned scheduling + a refusal/quarantine path for insufficient panel coverage) \u2014 queued, not attempted in this run.",
+      "history": []
+    },
+    "cf263a770061": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in scripts/no_dull_beats.py novelty_check(): the ffprobe duration call is wrapped in a bare except that returns [] on ANY failure, which the caller reads as 'no stale spans' \u2014 a broken probe silently satisfies DIRECTOR.md's gate-0 hard rule. Queued: needs a distinguishable could-not-evaluate sentinel and a fail-closed caller change plus a forced-failure test.",
+      "history": []
+    },
+    "d17724dfb1c0": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed shape: engines/chart_race.py's assess() (data-drama gate) has no visibility into the renderer's fixed full-year x-axis span or the 12%-of-global-max y-floor, so a package can pass preflight and still open as a near-empty plot. Real August 9 evidence (two empty-void blocks, one 1.7fps block) backs this. Queued \u2014 needs a cheap composition/motion preflight derived from the same axis math, larger than a one-line fix, not attempted this run.",
+      "history": []
+    },
+    "d64b063a21bd": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in shared/package_schema.py structural_problems(): the graph_race branch only checks values-array LENGTH against years, never numeric/finite-ness, and wraps chart_race.assess() in a blanket except Exception: pass that swallows both 'engine absent' and 'assess() crashed on bad data' identically. A fix here only ADDS validation (numeric/finite/strictly-increasing years, narrowing the except to ImportError) so it strengthens rather than weakens the one structural gate every package producer is held to. Queued, not built this run.",
+      "history": []
+    },
+    "e02d4cf673bd": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed: funnel/media_funnel.py search() calls shutdown(wait=False, cancel_futures=True) after a 15s timeout while already-running provider calls keep executing and mutating shared quota state with no recorded terminal outcome. Legitimate observability gap, not urgent \u2014 queued as short_term.",
+      "history": []
+    },
+    "9943424b8251": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed: tests/test_production_outcome.py's counter_step()/stop_step() helpers slice daily.yml as text and assert substrings, proving wording survives but not that the YAML is valid or the branch conditions actually bind. Overlaps with 69a886343361 (same file) \u2014 worth doing together in one future pass that moves the policy into testable functions.",
+      "history": []
+    },
+    "75af24a46374": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in third_capture/auto_edit.py build_edl(): the replay branch appends an ('whoosh') cue, but the over-cap cleanup at line 392 only filters cues where cue[1]!='riser', leaving the replay's whoosh cue firing at the old position after its segment is removed. Small, contained, queued for a quick pickup.",
+      "history": []
+    },
+    "9b8b29a78b87": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed: test_a_junk_outcome_file_is_ignored (tests/test_production_outcome.py:196-201) writes malformed JSON and asserts only that the result contains an 'alarms' key, which is true of the normal result shape too \u2014 the test can't detect a regression in malformed-state handling. Small, contained, queued.",
+      "history": []
+    },
+    "4c58349192b8": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate long-term direction (provenance-first asset manifest vs current provider-class metadata assignment in funnel/media_funnel.py _prefilter), but it's an architectural change to the media-governance model, not urgent \u2014 parking per the long_term horizon; the doctor's evidence.json will resurface it if this becomes blocking.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "79e94e61b5a9": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction (content-addressed proof manifest for third_capture/capture_cli.py so tampering is detectable, not just trusted by convention), but proof-mode's ledger has no known live incident driving urgency \u2014 parking as long_term.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "74db7c4b3786": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction \u2014 a real end-to-end production-state-machine test harness would catch what the current seam-tests (test_production_outcome.py + test_daily_alarm.py) can't. Overlaps with 69a886343361/9943424b8251, which are the concrete near-term slice of the same problem and are already queued doing; parking the full state-machine harness as the long_term version of the same work.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "30d9585ddd32": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Confirmed: engines/render_qa.py (fail-open on analyzer error) and shared/video_qa.py (fail-closed) are two independent finished-video QA engines with different semantics, used by different channels (trending vs third capture). Consolidating them safely needs parity fixtures across both channels before either implementation can be retired \u2014 real risk of silently changing what ships if rushed. Parking as long_term; not something to build in a single triage session.",
+      "history": [],
+      "revisit_after": "20260910"
     }
   }
 }

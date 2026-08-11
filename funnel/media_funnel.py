@@ -154,7 +154,12 @@ class Candidate:
                 "article_url": self.article_url,
                 "published_at": self.published_at,
                 "source_class": self.source_class,
-                "license": self.license}
+                "license": self.license,
+                # The LLM-rerank bonus is the one score component that
+                # isn't cheaply recomputable from source facts (it costs
+                # an API call) — cache it explicitly so cache reads can
+                # add it back on top of freshly recomputed dynamic score.
+                "llm_bonus": round(self.boosts.get("llm_bonus", 0.0), 3)}
 
 
 # ---------- cache + quota ----------
@@ -1559,6 +1564,7 @@ def _llm_rerank(candidates: list[Candidate], story_angle: str,
         seen.add(idx)
         top[idx].score += bonuses[slot]
         top[idx].boosts["llm_rank"] = slot
+        top[idx].boosts["llm_bonus"] = bonuses[slot]
     # Return the merged list (top reranked + tail unchanged).
     merged = top + candidates[10:]
     merged.sort(key=lambda c: c.score, reverse=True)
@@ -1581,12 +1587,28 @@ def search(story_angle: str, entities: list[str],
                 print(f"  [media_funnel] cache HIT for "
                       f"{primary!r} on {story_slug!r}: "
                       f"{len(cached)} candidates")
-            return [Candidate(**{k: v for k, v in c.items()
-                                  if k in {"url", "source", "score",
-                                           "article_title", "article_url",
-                                           "published_at",
-                                           "source_class", "license"}})
-                    for c in cached]
+            # Only source facts (url/source/article_title/article_url/
+            # published_at/source_class/license) are trustworthy from a
+            # cache written up to 48h ago. Score is time-dependent — the
+            # recent-use penalty, freshness/staleness age, and same-host
+            # boost all depend on "now", not "when this was cached" — so
+            # it is recomputed via _prefilter on every read instead of
+            # being restored verbatim. The one component that isn't
+            # cheaply recomputable (the paid LLM-rerank bonus) is cached
+            # separately and re-added on top.
+            raw = [Candidate(**{k: v for k, v in c.items()
+                                 if k in {"url", "source",
+                                          "article_title", "article_url",
+                                          "published_at",
+                                          "source_class", "license"}})
+                   for c in cached]
+            rescored = _prefilter(raw, entity=primary)
+            bonus_by_url = {c["url"]: c.get("llm_bonus", 0.0)
+                             for c in cached}
+            for c in rescored:
+                c.score += bonus_by_url.get(c.url, 0.0)
+            rescored.sort(key=lambda c: c.score, reverse=True)
+            return rescored
 
     # 1. Fan out — every provider for the PRIMARY entity. Other
     # entities are used only to disambiguate inside the LLM rerank
