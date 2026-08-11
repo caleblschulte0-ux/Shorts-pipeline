@@ -1,0 +1,60 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260810",
+  "summary": "Monday's renderer pass found that the current quality gates are correctly refusing weak output, but the renderers are still manufacturing avoidable failures before those gates: Reddit illustrations are distributed by the count of successfully resolved files rather than by narrated beat timing, and the chart preflight measures data magnitude without predicting the fixed-axis empty-frame and low-motion shapes now visible in production. The package validator also lets malformed nonnumeric chart values through because an exception from the drama gate is treated like an unavailable engine. Longer term, finished-video mechanical QA should have one analysis authority and explicit channel policy; today two overlapping implementations disagree about checks and analyzer-failure semantics. None of these calls for weakening a gate: the direction is earlier, deterministic refusal of bad inputs and one stronger post-render contract.",
+  "findings": [
+    {
+      "title": "Reddit illustrations ignore narrated beat timing",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "trending/reddit-render",
+      "files": [
+        "make_reddit_story.py"
+      ],
+      "observation": "The Reddit renderer drops every shot whose image cannot be resolved, then gives each surviving panel an equal share of the entire post-title narration. It never uses each shot's phrase or word timing, so one surviving image is deliberately stretched across the whole story and multiple surviving images change at arbitrary fractions rather than when their beats are spoken. The current evidence contains exactly this live shape: an August 9 Reddit render held the same garbled sign-holder image from 10.71 seconds through the payoff while the narration advanced through multiple beats.",
+      "proposal": "Build the illustrated track from the package's full ordered shot list and phrase-aligned narration times. Refuse or visibly quarantine a story when the verified panels cannot cover those windows; do not let missing panels collapse the schedule and silently stretch a neighbor across unrelated beats. Add a deterministic renderer test proving each panel begins within its own phrase window and that a one-panel multi-shot package cannot pass as fully illustrated.",
+      "evidence": "make_reddit_story.py lines 67-83 skip unresolved shots and return only surviving panels; lines 86-113 compute `per = duration / len(panels)` and concatenate equal-length clips without reading shot phrases or word timings. doctor/evidence.json showrunner entry `he_made_every_favor_need_his_sign_off__s` at 2026-08-09T09:39:46+00:00 reports the same image at mid1 through payoff, about 35 seconds of dead air."
+    },
+    {
+      "title": "Nonnumeric chart values pass structural validation",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "trending/chart-schema",
+      "files": [
+        "shared/package_schema.py",
+        "engines/chart_race.py"
+      ],
+      "observation": "Graph structure validation checks only that each values array has the same length as years. It does not require numeric finite values or ordered numeric years, and it catches every exception from chart_race.assess as though the engine were absent. With otherwise valid fields, two series containing string values pass structural_problems with an empty problem list and then reach a renderer that performs numeric division, interpolation, and axis arithmetic.",
+      "proposal": "Validate that years and every series value are finite real numbers, that years are strictly increasing, and that all series lengths match before invoking the drama gate. Remove the blanket exception path: an unavailable drama engine, invalid data, or any assessment exception must make the package structurally ineligible, with the failed field or engine condition named.",
+      "evidence": "shared/package_schema.py lines 166-186 validate only years/series counts and value-array lengths, then use `except Exception: pass` around chart_race.assess. engines/chart_race.py lines 297-306 and 444-451 assume numeric maxima, comparisons, subtraction, division, and interpolation. Running structural_problems on a valid-shaped graph whose values are strings `['1','2','3','4']` and `['4','3','2','1']` returns `[]`."
+    },
+    {
+      "title": "Chart preflight cannot see fixed-axis empty openings",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "trending/chart-preflight",
+      "files": [
+        "engines/chart_race.py",
+        "scripts/run_trending_daily.py"
+      ],
+      "observation": "The pre-render chart gate assesses series count, peak, swing, and lead changes, but the renderer always exposes the full year span from frame one and reserves at least 12 percent of the eventual global maximum on the y-axis. A package can therefore pass the data-drama gate while opening as a tiny lower-left stub in a mostly empty plot or producing too little effective motion. On August 9, two chart races were blocked for mostly empty black openings and another passed preflight but hit 1.7 effective fps; trending finished 1/6 after replacement attempts.",
+      "proposal": "Add a deterministic composition/motion preflight before the expensive full render: derive opening occupied-area and expected pixel-travel from the same axis/timeline math, or render a cheap low-resolution sample and run the existing temporal/empty-frame measurements. Reject the package before it consumes a slot when those stronger floors fail, and feed the measured reason into replacement authoring. Keep the final showrunner sovereign as the last check.",
+      "evidence": "engines/chart_race.py lines 281-335 define assess using only magnitude/swing/crossovers; lines 546-609 keep a monotonic y camera with `global_max * 0.12` and call `set_xlim(years[0], years[-1])` on every frame. scripts/run_trending_daily.py lines 839-851 uses assess as the only chart preflight. doctor/evidence.json entries at 2026-08-09T09:31:44, 09:32:46, and 09:36:41 record two empty-void chart blocks and one 1.7-effective-fps temporal block."
+    },
+    {
+      "title": "Finished-video QA has two conflicting analysis authorities",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "render/qa-architecture",
+      "files": [
+        "engines/render_qa.py",
+        "shared/video_qa.py",
+        "scripts/run_trending_daily.py",
+        "third_capture/clip_qa.py"
+      ],
+      "observation": "The repository maintains two separate ffmpeg analyzers for the same finished-video boundary. engines/render_qa checks black open/tail, freezes, A/V drift, and active area and declares analyzer failure fail-open; shared/video_qa separately checks black/freeze/silence/audio/loudness and its passes function declares analyzer failure fail-closed. Trending calls shared/video_qa but explicitly proceeds when qa_report returns None, while third capture calls engines/render_qa. Thresholds, defect coverage, result schemas, and failure semantics can therefore drift by channel even though both modules claim to be shared finished-render QA.",
+      "proposal": "Consolidate mechanical measurement into one engine with one typed report covering black intervals, freeze, silence, stream/duration integrity, loudness, and active area. Put channel-specific thresholds in thin policy adapters, and require publish paths to record an explicit analyzed/pass/hold/infrastructure-error disposition. Migrate both trending and third capture with parity fixtures before retiring either implementation; preserve or strengthen every current blocking condition.",
+      "evidence": "engines/render_qa.py lines 11-23 and 133-226 define its checks and fail-open None contract; shared/video_qa.py lines 1-21 and 87-183 independently define overlapping checks and a fail-closed passes(None) contract. scripts/run_trending_daily.py lines 409-435 returns success when qa_report is None or raises, while third_capture/clip_qa.py lines 419-430 imports engines.render_qa.maybe_check."
+    }
+  ]
+}
