@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260811",
+  "bundle": {
+    "identity": "cd0376b7fa910be8a856c1b4a8c8e13268b5be955a52367e2d28de3ce72b4a84",
+    "path": "exchange/bundles/20260811/bundle.json"
+  },
+  "request_id": "reddit-hoa-garden-gnome-bylaws-s7-8c0cbd5056aa",
+  "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s7-8c0cbd5056aa",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fc3da30f8e45e3e2c1f9a1f46042d08264f0cadc46e820f60989620457632ec7",
+  "prompt_used": "An editorial illustration for a short-form video: community meeting room. It accompanies the narration: \"The next meeting ran four hours\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+    "filename": "20260811__reddit-hoa-garden-gnome-bylaws-s7-8c0cbd5056aa.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1diq-atfqbljYt6A0EkBvtjvbzpeo3Wj0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7e795ea9589a7c47316b715eb0dcbb408d591a0bc2b35a31998c9bbb9cd47828",
+    "bytes": 2248231,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-11T11:12:00Z",
+  "error": null,
+  "retryable": false
+}
