@@ -19672,6 +19672,251 @@
           }
         }
       ]
+    },
+    {
+      "slug": "sand-mining-crisis",
+      "title": "The World Is Quietly Running Out Of Sand",
+      "hook": "We're mining sand faster than nature makes it.",
+      "closing": "Somehow, the beach is the crisis.",
+      "question": "Did you know sand could run out? Comment below.",
+      "caption": "We're mining 50 billion tonnes of sand a year, more than four times what rivers replace naturally. China alone drives about half of world cement demand, and the beach under your feet is part of a shrinking resource. \ud83d\udc47 Did you know sand could run out?",
+      "hashtags": [
+        "sand",
+        "sandmining",
+        "construction",
+        "concrete",
+        "environment",
+        "sustainability",
+        "didyouknow",
+        "geology",
+        "climate",
+        "resources",
+        "infrastructure",
+        "globaltrade",
+        "science",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sand_extraction_growth",
+          "params": {
+            "file": "sand_extraction_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE DEMAND",
+          "topic": "sand extraction",
+          "say": "We're now mining 50 billion tonnes of sand and gravel a year, five times what we mined back in 1970. It's the second most extracted material on Earth, after water."
+        },
+        {
+          "source": "offline",
+          "key": "sand_extraction_vs_replenishment",
+          "params": {
+            "file": "sand_extraction_vs_replenishment.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 \u00b7 THE CATCH",
+          "topic": "extraction vs nature's pace",
+          "say": "But rivers only replace about 13 billion tonnes of sand a year. So we're pulling it out roughly four times faster than the planet can put it back."
+        },
+        {
+          "source": "offline",
+          "key": "cement_production_share_country",
+          "params": {
+            "file": "cement_production_share_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 WHO'S BUYING IT",
+          "topic": "who's driving demand",
+          "say": "China alone pours about 51 percent of the world's cement, which is mostly sand and gravel. One country's construction boom is emptying riverbeds and beaches on every continent."
+        }
+      ]
+    },
+    {
+      "slug": "phone-call-avoidance",
+      "title": "Why Gen Z Refuses To Answer The Phone",
+      "hook": "Why won't anyone answer your call?",
+      "closing": "Just text next time. Everyone will thank you.",
+      "question": "Are you a caller or a texter? Tell me below.",
+      "caption": "70% of 18-34 year-olds would rather text than call, and nearly half say phone calls genuinely make them anxious. So they compromise: voice notes, which 37% prefer over calling \u2014 versus just 1% of people over 35. \ud83d\udc47 Caller or texter?",
+      "hashtags": [
+        "genz",
+        "phonecalls",
+        "texting",
+        "telephobia",
+        "communication",
+        "socialanxiety",
+        "millennials",
+        "psychology",
+        "tech",
+        "digitalculture",
+        "socialmedia",
+        "mentalhealth",
+        "behavior",
+        "data"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "genz_text_vs_call_share",
+          "params": {
+            "file": "genz_text_vs_call_share.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 THE SPLIT",
+          "topic": "text vs call preference",
+          "say": "70 percent of 18 to 34 year olds say they'd rather get a text than a phone call. For most of Gen Z, a ringing phone is already the exception, not the rule."
+        },
+        {
+          "source": "offline",
+          "key": "phone_call_anxiety_by_age",
+          "params": {
+            "file": "phone_call_anxiety_by_age.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 \u00b7 WHY",
+          "topic": "phone call anxiety",
+          "say": "It's not just preference, it's dread. 44 percent of 16 to 29 year olds say they actually avoid making calls out of anxiety, well above the 36 percent of adults overall."
+        },
+        {
+          "source": "offline",
+          "key": "voice_note_preference_by_age",
+          "params": {
+            "file": "voice_note_preference_by_age.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 \u00b7 THE WORKAROUND",
+          "topic": "voice notes over calls",
+          "say": "So they found a middle ground. 37 percent of 18 to 34 year olds would rather send a voice note than call, compared with just 1 percent of people age 35 to 54."
+        }
+      ]
+    },
+    {
+      "slug": "blood-type-rarity",
+      "title": "The World's Rarest Blood Type, By The Numbers",
+      "hook": "How rare is your blood type, really?",
+      "closing": "Somebody out there needs exactly your type.",
+      "question": "Do you know your blood type? Drop it below.",
+      "caption": "AB negative is the rarest blood type in America, at just 1%. It comes down to one gene most people never think about \u2014 and it varies by ethnic background too, which is exactly why blood banks need donors from every community. \ud83d\udc47 Know your type?",
+      "hashtags": [
+        "bloodtype",
+        "bloodtypes",
+        "health",
+        "genetics",
+        "didyouknow",
+        "science",
+        "biology",
+        "medicine",
+        "donation",
+        "blooddonor",
+        "healthfacts",
+        "human",
+        "wellness",
+        "publichealth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "blood_type_distribution_us",
+          "params": {
+            "file": "blood_type_distribution_us.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 \u00b7 THE SPREAD",
+          "topic": "blood type distribution",
+          "say": "37 percent of Americans are O positive, the most common type. AB negative sits at just 1 percent, making it the rarest by a wide margin."
+        },
+        {
+          "source": "offline",
+          "key": "rh_factor_share_us",
+          "params": {
+            "file": "rh_factor_share_us.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE FACTOR",
+          "topic": "Rh positive vs negative",
+          "say": "That rarity comes down to one gene. 85 percent of people are Rh positive, so the 15 percent who are negative are the ones hospitals actually run short on."
+        },
+        {
+          "source": "offline",
+          "key": "o_positive_share_by_ethnicity",
+          "params": {
+            "file": "o_positive_share_by_ethnicity.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 \u00b7 WHY DIVERSITY MATTERS",
+          "topic": "O positive by background",
+          "say": "And it varies by background too. O positive shows up in 53 percent of Latin American donors but just 37 percent of Caucasian donors, which is why blood drives need every background represented."
+        }
+      ]
+    },
+    {
+      "slug": "boomerang-generation",
+      "title": "Why So Many Young Adults Still Live With Mom And Dad",
+      "hook": "Living with your parents at 27? You're not alone.",
+      "closing": "Adulthood got a later start date.",
+      "question": "Do you still live with your parents? Tell me below.",
+      "caption": "Living with your parents past 25 isn't just a US thing \u2014 Italy and Croatia have it worse. But the real story is financial independence itself: only 25% of 21-year-olds are financially independent today, down from 42% in 1980. \ud83d\udc47 Still at home?",
+      "hashtags": [
+        "genz",
+        "millennials",
+        "boomerang",
+        "livingwithparents",
+        "demographics",
+        "adulting",
+        "familytrends",
+        "economy",
+        "society",
+        "census",
+        "pewresearch",
+        "generationgap",
+        "homelife",
+        "parenting"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "young_adults_living_with_parents_us",
+          "params": {
+            "file": "young_adults_living_with_parents_us.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE FLIP",
+          "topic": "living with parents over time",
+          "say": "In 1960, only 29 percent of 18 to 29 year olds lived with a parent. By 2020, that hit 52 percent, the first majority since the Great Depression."
+        },
+        {
+          "source": "offline",
+          "key": "young_adults_with_parents_by_country",
+          "params": {
+            "file": "young_adults_with_parents_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 \u00b7 NOT JUST US",
+          "topic": "living with parents worldwide",
+          "say": "It's not only an American thing. In Italy, 71 percent of 18 to 34 year olds still live at home, and in Croatia it's 77, way past the US rate of 33."
+        },
+        {
+          "source": "offline",
+          "key": "financial_independence_age_21",
+          "params": {
+            "file": "financial_independence_age_21.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 \u00b7 THE REAL REASON",
+          "topic": "financial independence by 21",
+          "say": "Here's the actual shift. In 1980, 42 percent of 21 year olds were financially independent. By 2021, that number had dropped to just 25 percent."
+        }
+      ]
     }
   ],
   "videos": [

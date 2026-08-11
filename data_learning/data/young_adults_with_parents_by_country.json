@@ -1,0 +1,22 @@
+{
+  "key": "young_adults_with_parents_by_country",
+  "title": "Share of 18-34 year-olds living with a parent, by country",
+  "unit": "percent",
+  "geography": "Selected countries",
+  "time_coverage": "2021",
+  "source": {
+    "name": "Living arrangements of young adults",
+    "publisher": "Eurostat / U.S. Census Bureau, compiled by Pew Research Center",
+    "url": "https://www.pewresearch.org/short-reads/2023/05/03/in-the-u-s-and-abroad-more-young-adults-are-living-with-their-parents/",
+    "officiality": "secondary",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Pew Research's 2023 comparison of Eurostat and Census Bureau data: 18-34 year-olds living with a parent in 2021 (or nearest year) were 77% in Croatia, 71% in Italy, roughly a third (about 33%) in the United States, and just 17% in Sweden.",
+  "points": [
+    {"label": "Croatia", "value": 77},
+    {"label": "Italy", "value": 71},
+    {"label": "United States", "value": 33},
+    {"label": "Sweden", "value": 17}
+  ],
+  "baseline": {"label": "United States", "value": 33}
+}

@@ -1,0 +1,20 @@
+{
+  "key": "phone_call_anxiety_by_age",
+  "title": "Share who feel anxious about making phone calls",
+  "unit": "percent",
+  "geography": "Germany (survey)",
+  "time_coverage": "recent survey year",
+  "source": {
+    "name": "German phone-anxiety survey, reported via UChealth and multiple outlets",
+    "publisher": "Survey research reported by UCHealth / news coverage",
+    "url": "https://www.uchealth.org",
+    "officiality": "secondary",
+    "access_date": "2026-08-11"
+  },
+  "notes": "A German survey found 36% of respondents overall said they put off important phone calls out of fear or discomfort; that share rose to 44% among 16-29 year-olds specifically.",
+  "points": [
+    {"label": "16-29 year-olds", "value": 44},
+    {"label": "All adults", "value": 36}
+  ],
+  "baseline": {"label": "All adults", "value": 36}
+}

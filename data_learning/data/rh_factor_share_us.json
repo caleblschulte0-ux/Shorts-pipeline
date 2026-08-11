@@ -1,0 +1,19 @@
+{
+  "key": "rh_factor_share_us",
+  "title": "Share of US population, Rh-positive vs Rh-negative",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "recent",
+  "source": {
+    "name": "Blood type distribution figures",
+    "publisher": "American Red Cross",
+    "url": "https://www.redcrossblood.org",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Approximately 85% of the US population is Rh-positive (O+, A+, B+ or AB+ combined); the remaining roughly 15% is Rh-negative.",
+  "points": [
+    {"label": "Rh-positive", "value": 85},
+    {"label": "Rh-negative", "value": 15}
+  ]
+}

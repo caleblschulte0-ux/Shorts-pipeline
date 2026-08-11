@@ -1,0 +1,25 @@
+{
+  "key": "blood_type_distribution_us",
+  "title": "US population share by blood type",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "recent",
+  "source": {
+    "name": "Blood type distribution figures",
+    "publisher": "American Red Cross",
+    "url": "https://www.redcrossblood.org",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "American Red Cross reported US blood type distribution: O+ 37%, A+ 36%, B+ 9%, O- 7%, A- 6%, AB+ 3%, B- 2%, AB- 1% (AB- is the rarest).",
+  "points": [
+    {"label": "O+", "value": 37},
+    {"label": "A+", "value": 36},
+    {"label": "B+", "value": 9},
+    {"label": "O-", "value": 7},
+    {"label": "A-", "value": 6},
+    {"label": "AB+", "value": 3},
+    {"label": "B-", "value": 2},
+    {"label": "AB-", "value": 1}
+  ]
+}

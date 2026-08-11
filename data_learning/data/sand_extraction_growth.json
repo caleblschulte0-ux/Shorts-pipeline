@@ -1,0 +1,20 @@
+{
+  "key": "sand_extraction_growth",
+  "title": "Global sand and gravel extraction per year",
+  "unit": "billion tonnes",
+  "geography": "World",
+  "time_coverage": "1970-2020",
+  "source": {
+    "name": "Sand and Sustainability report series",
+    "publisher": "United Nations Environment Programme (UNEP)",
+    "url": "https://www.unep.org",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "UNEP's Sand and Sustainability reporting: global demand for sand and gravel rose roughly fivefold between 1970 (about 9.6 billion tonnes) and 2020 (about 50 billion tonnes), an average annual growth rate near 3.2%. The 1994 midpoint is interpolated from that reported growth rate, not a directly published data point.",
+  "points": [
+    {"label": "1970", "value": 9.6, "period": "1970"},
+    {"label": "1994", "value": 20.5, "period": "1994"},
+    {"label": "2020", "value": 50, "period": "2020"}
+  ]
+}
