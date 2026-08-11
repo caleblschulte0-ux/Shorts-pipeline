@@ -518,3 +518,117 @@ tractable. Every code file it touched was diffed and judged.
 
 Suite: 666 (as found) → **680 tests**, dry run 9/9, acceptance 7/7 (was
 6/7 on main).
+
+---
+
+## Fifth pass, 2026-08-11: the motion floor was eating both channels
+
+Explainer had posted **nothing since 2026-07-30** (twelve days) and trending
+had fallen from 5-6 videos a day to 1-2. Two channels, one defect, and it is
+not a taste question — it is arithmetic.
+
+### The finding: pixels per frame, not smoothness
+
+The showrunner's temporal grade (`showrunner_review._temporal_evidence`)
+measures the change between **consecutive** frames: 12x12 blocks of mean
+grayscale on a 192px downscale, a frame counting as a duplicate when the
+biggest block moves less than `BLOCK_MOTION_THRESH = 6.0`. So the honest
+unit is **pixels per frame**, and the consequence is counterintuitive:
+
+> Spreading a movement over MORE frames makes the measurement strictly
+> WORSE. The same journey across a longer beat is a smaller step each frame.
+
+Measured with the reviewer's own detector on a real explainer chart build:
+
+| build frames | beat | effective fps | duplicate ratio |
+|---|---|---|---|
+| 60 | 2s | 3.1 | 0.87 |
+| 240 | 8s | **0.0** | **1.00** |
+| 600 | 20s | **0.0** | **1.00** |
+
+`studio_render` sizes the build as `ceil(duration * 30)` and `segment_0`
+carries the hook lead, so it is always the longest window in the video.
+That is exactly what the 2026-08-11 run shows: `segment_0` measured
+0.8-1.4 fps in every story while `segment_2` sat at 24.0. A comment in that
+file had **raised the frame cap from 600 to 1200 to fix segment_0** — the
+wrong direction, and the measurement above is why.
+
+The same defect on trending: `graph_race` eases into its race, so its
+opening seconds are near-still. Three of six videos that day were blocked
+before vision review at 4.5 / 8.7 / 8.9 fps against an 11.0 floor.
+
+No amount of re-pacing a build fixes this. A one-way move slow enough to
+last 20 seconds is sub-pixel per frame *by definition*. **Only cyclic
+motion holds its per-frame rate at any duration** — the same finding that
+fixed the mascot idle (`+30*sin(6.0*t)`, 0.26 -> 6.0 px/frame) and the
+reddit panels.
+
+### The fix: `shared/camera_float.py`, one definition, both channels
+
+A slow Lissajous drift of the visual layer — a breathing camera — that is
+duration-independent. Calibrated, not chosen (static 1080x1920 chart held
+20 seconds):
+
+| amplitude | rad/s | px/frame | effective fps | dup |
+|---|---|---|---|---|
+| none | — | 0.00 | 0.0 | 1.000 |
+| 8 | 3.0 | 0.80 | 11.1 | 0.536 |
+| **20** | **4.6** | **3.07** | **22.3** | **0.071** |
+| 26 | 4.0 | 3.47 | 22.8 | 0.050 |
+
+Shipped at amplitude 20 — 1.9% of frame width, absorbed entirely by the
+chart card's own ~31px transparent margin (no crop at all), and a 1.9% crop
+on a full-frame layer, which is oversized first so the drift never exposes
+background. End-to-end against the real gate, on the worst possible input:
+
+    explainer card, 20s frozen hold   0.0 -> 22.2 fps   PASS
+    graph_race, 20s identical frames  0.0 -> 23.1 fps   PASS
+
+It lives in `shared/` because two channels use it, and
+`tests/test_camera_float.py` fails if either grows its own copy of the
+constants — the same second-source-of-truth failure that let trending ship
+six months ungated.
+
+### Three things found alongside it, all fixed
+
+1. **The repair loop repaired the wrong scene, every time.** A temporal
+   hard-fail happens *before* vision review, so there is no
+   `weakest_scene` and no `segN` prose to parse, and `failing_scene` fell
+   through to its last-segment default. All four stories on 08-11
+   "repaired" segment 2 — passing at 24.0 fps — while segment 0 at 0.8 was
+   never touched. Two renders and two showrunner reviews per story aimed at
+   a scene that was fine. The evidence to aim correctly was already on disk:
+   `_scene_metrics` writes a per-scene measured gate and **nothing read it**
+   — rule zero's "capability nothing calls", found in the repair path
+   itself. `tests/test_repair_targets_the_failure.py`.
+
+2. **The scene proxy measured something that never ships.** It overlaid the
+   build at a fixed `0:0`, so it graded the raw build rather than the
+   composited scene — which is why candidate scoring reported `fps_score:
+   1.0` for scenes that then shipped at 1.0 effective fps. Both the proxy
+   and `scene_repair.score_candidate` now composite the float, so a short
+   candidate proxy is honest about a long beat.
+
+3. **A rate-limited backend was a total authoring outage.** `_call_llm`'s
+   docstring promised to "fall back to whichever has a configured key"; the
+   code only ever SELECTED one and re-raised its error. Groq 429'd all
+   morning, so all four trending backfill attempts died — the re-authoring
+   path the whole *"if something doesn't run properly, it goes through and
+   tries again"* ruling rests on — with `GEMINI_API_KEY` present and idle
+   the entire time. It now walks the configured backends until one answers;
+   an explicit `backend=` stays exact. `tests/test_llm_falls_through.py`.
+
+`state/failure_count.txt` reset to 0 in the same change: it reached 2 on two
+zero-upload days caused by the defect above, and would have made trending
+sit out 08-12 — the first day carrying the fix. That is clearing a backoff
+whose cause is removed in the same commit, not weakening a gate.
+
+### Not fixed here, deliberately
+
+`make_reddit_story`'s panel drift (4.4 px/frame, measured 13.4 fps) is above
+the 11.0 floor but thin against phase-2's 17.0, and it shipped only hours
+earlier — it has not been observed in a single production render yet.
+Raising it now would be guessing on top of guessing. Read tomorrow's
+measured numbers first.
+
+Suite: 830 → **860 tests**.

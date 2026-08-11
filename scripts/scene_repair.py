@@ -114,11 +114,53 @@ def shape_of(insight) -> str:
     return "ranking"
 
 
-def failing_scene(verdict: dict, n_segs: int) -> int:
-    """The scene to repair. PRIMARY source: the judge's STRUCTURED
-    weakest_scene diagnosis (id/index emitted directly by the showrunner).
-    Prose parsing ('segN' in auto-fail text) and the last-segment default are
-    EMERGENCY fallbacks only, and are loudly logged as such."""
+def measured_failures(slug: str, n_segs: int) -> list[tuple[int, float]]:
+    """Segments whose OWN measured temporal gate failed, worst first.
+
+    `studio_render._scene_metrics` already encodes every scene and grades it
+    with the reviewer's own detector, writing
+    `output/scenes/<slug>/segment_<i>/metrics.json`. That evidence existed on
+    disk and nothing read it: on 2026-08-11 all four explainer stories were
+    blocked BEFORE vision review (so there is no `weakest_scene` and no
+    `segN` prose to parse), the repair fell through to its last-segment
+    default, and every one of them "repaired" segment 2 — which was passing
+    at 24.0 fps — while segment 0, measuring 0.8-1.4, was never touched.
+    A measurement beats a default.
+    """
+    out: list[tuple[int, float]] = []
+    d = REPO / "output" / "scenes" / slug
+    for i in range(n_segs):
+        f = d / f"segment_{i}" / "metrics.json"
+        if not f.exists():
+            continue
+        try:
+            m = json.loads(f.read_text())
+        except Exception:  # noqa: BLE001 — a junk sidecar is not a diagnosis
+            continue
+        gate = m.get("gate") or (m.get("verdict") or {}).get("gate")
+        fps = (m.get("effective_fps")
+               if m.get("effective_fps") is not None
+               else (m.get("temporal") or {}).get("effective_fps"))
+        if gate and gate != "pass":
+            out.append((i, float(fps or 0.0)))
+    return sorted(out, key=lambda t: t[1])
+
+
+def failing_scene(verdict: dict, n_segs: int, slug: str = "") -> int:
+    """The scene to repair. PRIMARY source: the scene's OWN MEASUREMENT when
+    a scene actually failed its temporal gate — that is evidence, and it is
+    the only source available at all when the video was blocked before vision
+    review. Then the judge's STRUCTURED weakest_scene diagnosis (id/index
+    emitted directly by the showrunner). Prose parsing ('segN' in auto-fail
+    text) and the last-segment default are EMERGENCY fallbacks only, and are
+    loudly logged as such."""
+    if slug:
+        meas = measured_failures(slug, n_segs)
+        if meas:
+            i, fps = meas[0]
+            print(f"[scene_repair] measured failure: seg{i} at {fps} "
+                  f"effective fps — repairing the scene that FAILED", flush=True)
+            return i
     ws = verdict.get("weakest_scene")
     if isinstance(ws, dict):
         idx = ws.get("index")
@@ -167,18 +209,29 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
     attach = json.loads(ap.read_text()) if ap.exists() else {}
     contact = attach.get("contact_frames", 0) / max(1, len(fs))
     # cadence: encode tiny mp4 and run the reviewer's own temporal detector
+    # CADENCE IS MEASURED ON THE COMPOSITED SCENE, NOT THE RAW BUILD.
+    # Candidates are rendered at ~60 frames while the real beat is up to
+    # 1200, so a raw-build cadence score was measuring something the shipped
+    # video never is: every candidate scored fps_score 1.0 on 2026-08-11 and
+    # then shipped at 1.0 effective fps. The camera float is duration-
+    # independent (shared/camera_float.py), so including it makes the short
+    # proxy honest about the long beat.
     fps_score = 0.5
     ff = _ffmpeg()
     if ff:
         try:
+            from shared import camera_float as _cf
+            _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
+            _fx, _fy = _cf.overlay_xy(-_A, -_A, amp=_A)
             mp4 = build_dir / f"{tag}.mp4"
             subprocess.run(
                 [ff, "-y", "-loglevel", "error",
                  "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
                  "-framerate", "30", "-i", str(build_dir / f"{tag}_build%02d.png"),
                  "-filter_complex",
-                 "[1:v]scale=540:-1,format=rgba[c];"
-                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 f"[1:v]scale={540 + 2 * _A}:-1,format=rgba[c];"
+                 f"[0:v][c]overlay=x='{_fx}':y='{_fy}':shortest=1,"
+                 f"format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=120)
             from scripts.showrunner_review import _temporal_evidence
             with tempfile.TemporaryDirectory() as td:
@@ -255,7 +308,7 @@ def propose(slug: str, verdict: dict, frames: int = 60,
     with tempfile.TemporaryDirectory() as td:
         st = story.build(story_cfg, cfg, Path(td), REPO)
         segs = [s for s in st.segments if getattr(s, "insight", None)]
-        idx = failing_scene(verdict, len(segs))
+        idx = failing_scene(verdict, len(segs), slug=slug)
         base = segs[idx].insight
         shape = shape_of(base)
         cands = semantic_candidates(base, shape)

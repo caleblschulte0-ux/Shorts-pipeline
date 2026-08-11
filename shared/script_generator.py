@@ -269,15 +269,51 @@ def _call_anthropic(system: str, user: str, model: str = DEFAULT_ANTHROPIC_MODEL
     return resp["content"][0]["text"]
 
 
-def _call_llm(system: str, user: str, *, backend: str | None = None, model: str | None = None) -> str:
-    """Dispatch to whichever backend the caller asked for, or fall back
-    to whichever has a configured key. Free backends win over paid."""
-    if backend == "groq" or (backend is None and os.environ.get("GROQ_API_KEY")):
-        return _call_groq(system, user, model=model or DEFAULT_GROQ_MODEL)
-    if backend == "gemini" or (backend is None and os.environ.get("GEMINI_API_KEY")):
-        return _call_gemini(system, user, model=model or DEFAULT_GEMINI_MODEL)
-    if backend == "anthropic" or (backend is None and os.environ.get("ANTHROPIC_API_KEY")):
-        return _call_anthropic(system, user, model=model or DEFAULT_ANTHROPIC_MODEL)
+_LLM_CHAIN = (
+    ("groq", "GROQ_API_KEY", lambda s, u, m: _call_groq(
+        s, u, model=m or DEFAULT_GROQ_MODEL)),
+    ("gemini", "GEMINI_API_KEY", lambda s, u, m: _call_gemini(
+        s, u, model=m or DEFAULT_GEMINI_MODEL)),
+    ("anthropic", "ANTHROPIC_API_KEY", lambda s, u, m: _call_anthropic(
+        s, u, model=m or DEFAULT_ANTHROPIC_MODEL)),
+)
+
+
+def _call_llm(system: str, user: str, *, backend: str | None = None,
+              model: str | None = None) -> str:
+    """Dispatch to the backend the caller asked for, or walk the configured
+    ones in order (free before paid) until one ANSWERS.
+
+    This used to CHOOSE a backend and then raise whatever that one raised —
+    the docstring said "fall back" but the code only ever selected. So a
+    Groq rate limit was a total authoring outage even with Gemini configured:
+    on 2026-08-11 all four trending backfill attempts and the entity-media
+    pass died on `HTTP Error 429` in a run where the showrunner's own Gemini
+    fallback key was present and idle. Falling through on a FAILURE is the
+    thing the name always promised.
+
+    An explicit `backend=` is still exact — the caller asked for that one, so
+    it gets that one's error rather than a silent substitution.
+    """
+    if backend is not None:
+        for name, _env, call in _LLM_CHAIN:
+            if name == backend:
+                return call(system, user, model)
+        raise RuntimeError(f"unknown LLM backend {backend!r}")
+    errs: list[str] = []
+    for name, env, call in _LLM_CHAIN:
+        if not os.environ.get(env):
+            continue
+        try:
+            return call(system, user, model)
+        except Exception as e:  # noqa: BLE001 — try the next backend
+            errs.append(f"{name}: {type(e).__name__}: {str(e)[:120]}")
+            print(f"[llm] {name} unavailable ({type(e).__name__}: "
+                  f"{str(e)[:90]}) — trying the next backend",
+                  file=sys.stderr, flush=True)
+    if errs:
+        raise RuntimeError("every configured LLM backend failed — "
+                           + " | ".join(errs))
     raise RuntimeError(
         "no LLM backend configured. Set one of:\n"
         "  GROQ_API_KEY    (free, recommended — https://console.groq.com/keys)\n"

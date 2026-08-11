@@ -32,6 +32,7 @@ if str(REPO) not in sys.path:
 from data_learning import ambient, charts, mascot, story           # noqa: E402
 from data_learning.demo_render import (                            # noqa: E402
     _ass_time, _chunks, _dur, _hex_to_ass, _run)
+from shared import camera_float as _cf                             # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 KOKORO_MODEL = REPO / "kokoro_models" / "kokoro-v1.0.onnx"
@@ -1201,14 +1202,22 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
+        # MEASURE WHAT SHIPS. This proxy used to overlay the build at a fixed
+        # 0:0, so it measured the raw build and not the composited scene —
+        # which meant the number it reported (and the repair loop chased) was
+        # not the number the whole-video gate produces. The camera float is
+        # part of the scene, so it is part of the proxy.
+        _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
+        _fx, _fy = _cf.overlay_xy(-_A, -_A, amp=_A)
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
                  "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
                  "-framerate", "30", "-i", pat,
                  "-filter_complex",
-                 "[1:v]scale=540:-1,format=rgba[c];"
-                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 f"[1:v]scale={540 + 2 * _A}:-1,format=rgba[c];"
+                 f"[0:v][c]overlay=x='{_fx}':y='{_fy}':shortest=1,"
+                 f"format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
             with _tf.TemporaryDirectory() as td:
                 ev = _temporal_evidence(mp4, Path(td))
@@ -1225,7 +1234,8 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
             _shm.copy2(mp4, seg_dir / "scene.mp4")
             metrics = {"slug": slug, "scene": i, "id": f"segment_{i}",
                        "kind": getattr(seg, "kind", ""),
-                       "frames": n, "temporal": ev,
+                       "frames": n, "temporal": ev, "gate": gate or "pass",
+                       "effective_fps": ev.get("effective_fps"),
                        "performance": attach.get("performance"),
                        "contact_frames": attach.get("contact_frames"),
                        "timeline": attach.get("timeline")}
@@ -1825,6 +1835,21 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             full = getattr(st.segments[i], "kind", "") in charts.FULLFRAME_RENDERERS
             vw, vh = (W, H) if full else (CHART_W, CHART_H)
             vx, vy = (0, 0) if full else (CHART_X, CHART_Y)
+            # CAMERA FLOAT — see shared/camera_float.py for the measurement.
+            # The build is stretched to fill the beat, so its per-frame motion
+            # is inversely proportional to the beat length: 60 frames measured
+            # 3.1 effective fps, 240 frames 0.0, 600 frames 0.0 with a
+            # duplicate_ratio of 1.00. segment_0 carries the hook lead and is
+            # therefore always the longest window, which is why it measured
+            # 0.8-1.4 fps in every story while segment_2 sat at 24.0. A cyclic
+            # float does not thin out with duration — measured 22.3 fps on a
+            # COMPLETELY STATIC chart held for 20 seconds. A full-frame layer
+            # is oversized first so the drift never exposes the background.
+            _A = _cf.FLOAT_A
+            _fx, _fy = _cf.overlay_xy(vx - (_A if full else 0),
+                                      vy - (_A if full else 0))
+            if full:
+                vw, vh = vw + 2 * _A, vh + 2 * _A
             fc.append(
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
@@ -1832,7 +1857,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
-                f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"
+                f"[{prev}][g{i}]overlay=x='{_fx}':y='{_fy}':"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — Data TRAVELS. He glides from his previous spot to this
