@@ -381,6 +381,50 @@ def check(date: str, now=None) -> dict:
     except Exception as exc:                             # noqa: BLE001
         notes.append(f"slot fill not checked: {exc}")
 
+    # ---- the DOCTOR's input can go silent and nothing notices -----------
+    # The doctor is two halves and only one of them is ours. `doctor.yml`
+    # writes the evidence pack every morning and the triage rules whatever is
+    # waiting — both ran daily through 2026-08-12. The REVIEWER half is a
+    # ChatGPT scheduled task that files `doctor/reports/<date>.json`, and it
+    # stopped after 2026-08-10: nothing on 08-11, nothing on 08-12.
+    #
+    # Nothing shouted. `backlog --state new` reads "empty", which is what a
+    # HEALTHY fully-ruled backlog also reads, so a dead reviewer and a
+    # perfectly-serviced one are indistinguishable from the outside. That is
+    # the same shape as the 08-03 auto-pause (a green check on a dead
+    # channel) and the Phase A "exits 0 with no packages" bug — the ones this
+    # repo keeps re-learning. A queue with no producer is not an empty queue.
+    try:
+        rdir = ROOT / "doctor" / "reports"
+        stamps = sorted(f.stem for f in rdir.glob("*.json")
+                        if f.stem.isdigit()) if rdir.is_dir() else []
+        if stamps:
+            from datetime import date as _d
+            last = stamps[-1]
+            _l = _d(int(last[:4]), int(last[4:6]), int(last[6:8]))
+            _t = _d(int(date[:4]), int(date[4:6]), int(date[6:8]))
+            gap = (_t - _l).days
+            if gap >= 2:
+                alarm("doctor_reviewer_silent",
+                      "critical" if gap >= 3 else "warning",
+                      f"No doctor findings filed since {last} ({gap} days). "
+                      f"The evidence pack and triage are still running — the "
+                      f"REVIEWER stopped.",
+                      "An empty backlog looks identical whether every finding "
+                      "was ruled or nobody filed one. Check the doctor "
+                      "scheduled task in the ChatGPT app; it writes "
+                      "doctor/reports/<date>.json. The repo side is waiting "
+                      "and needs no changes.")
+            else:
+                notes.append(f"doctor: findings current ({last})")
+        elif rdir.is_dir():
+            alarm("doctor_reviewer_silent", "warning",
+                  "doctor/reports/ has no findings at all.",
+                  "The doctor loop has never received input. See "
+                  "doctor/PROMPTS.md section 1.")
+    except Exception as exc:                             # noqa: BLE001
+        notes.append(f"doctor freshness not checked: {exc}")
+
     ok = not any(a["severity"] == "critical" for a in alarms)
     return {"date": date, "ok": ok, "alarms": alarms, "notes": notes,
             "deferred": early}
