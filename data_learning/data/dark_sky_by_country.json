@@ -1,0 +1,33 @@
+{
+  "key": "dark_sky_by_country",
+  "title": "Share of population under pristine dark skies, by country",
+  "unit": "percent",
+  "geography": "Selected countries",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "World Atlas of Artificial Night Sky Brightness \u2014 least and most light-polluted countries",
+    "publisher": "Falchi et al., Science Advances (2016), as reported by the World Economic Forum",
+    "url": "https://www.weforum.org/stories/2016/07/the-countries-with-the-most-light-pollution/",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Figures approximate, from the 2016 global light pollution atlas.",
+  "points": [
+    {
+      "label": "Chad",
+      "value": 78
+    },
+    {
+      "label": "Madagascar",
+      "value": 75
+    },
+    {
+      "label": "United States",
+      "value": 20
+    },
+    {
+      "label": "Singapore",
+      "value": 1
+    }
+  ]
+}

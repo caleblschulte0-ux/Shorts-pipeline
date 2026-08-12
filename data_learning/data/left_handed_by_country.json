@@ -1,0 +1,37 @@
+{
+  "key": "left_handed_by_country",
+  "title": "Left-handedness rate by country",
+  "unit": "percent",
+  "geography": "Selected countries",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Rate of left-handedness in selected countries",
+    "publisher": "Statista chart compilation of national surveys",
+    "url": "https://www.statista.com/chart/20708/rate-of-left-handedness-in-selected-countries/",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Figures approximate, compiled from national survey estimates.",
+  "points": [
+    {
+      "label": "Netherlands",
+      "value": 13.2
+    },
+    {
+      "label": "United States",
+      "value": 10.5
+    },
+    {
+      "label": "United Kingdom",
+      "value": 10.0
+    },
+    {
+      "label": "China",
+      "value": 3.5
+    }
+  ],
+  "baseline": {
+    "label": "World",
+    "value": 10.6
+  }
+}

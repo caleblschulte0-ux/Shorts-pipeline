@@ -1,0 +1,78 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-clock-in-exactly-on-time",
+  "title": "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
+  "script": "My new manager posted a memo: no clocking in early, not even sixty seconds, because unpaid labor is unpaid labor, clearly aimed at the two of us who always started fifteen minutes early to prep the queue. Fine. I set an alarm and clocked in at exactly nine o'clock every single day, and refused to answer a message before that second. Turns out those fifteen minutes were the only reason his nine-fifteen report ever went out on time. The first week, it was late. The second week, it was late and wrong, because nobody had pre-sorted the queue. By the third week he was standing at my desk at eight fifty-nine, watching the clock like it owed him money. He pulled me into his office, said the policy was more of a guideline, and asked if I would consider coming back fifteen minutes early, paid this time, and backdated to the memo. I said I would think about it. I clocked in at exactly nine o'clock the next morning too.",
+  "shots": [
+    {
+      "phrase": "posted a memo",
+      "query": "office bulletin board memo"
+    },
+    {
+      "phrase": "clocked in at exactly nine o'clock every",
+      "query": "time clock punch card"
+    },
+    {
+      "phrase": "refused to answer a message",
+      "query": "phone screen unread messages"
+    },
+    {
+      "phrase": "his nine-fifteen report ever went out",
+      "query": "office desk report printout"
+    },
+    {
+      "phrase": "nobody had pre-sorted the queue",
+      "query": "messy inbox paperwork stack"
+    },
+    {
+      "phrase": "standing at my desk at eight fifty-nine",
+      "query": "manager standing hallway office"
+    },
+    {
+      "phrase": "more of a guideline",
+      "query": "manager talking office door"
+    },
+    {
+      "phrase": "backdated to the memo",
+      "query": "paycheck stub closeup"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no clocking in early",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "it was late and wrong",
+      "text": "LATE. AGAIN.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "more of a guideline",
+      "text": "\"A GUIDELINE\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "paid this time, and backdated",
+      "text": "BACKDATED PAY",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "9to5",
+    "corporatelife",
+    "reddit",
+    "worklife",
+    "management",
+    "9to5life",
+    "boss",
+    "karma",
+    "workplacestories",
+    "officelife"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

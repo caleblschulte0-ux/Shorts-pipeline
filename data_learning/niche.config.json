@@ -19981,6 +19981,247 @@
           "ascending": false
         }
       ]
+    },
+    {
+      "slug": "left-handed-minority",
+      "title": "Why Only 10% Of Us Are Left-Handed",
+      "hook": "Left-handed? You're rarer than you think.",
+      "closing": "Turns out being rare just took permission.",
+      "question": "Are you left-handed? Tell me below.",
+      "caption": "Only about 10.6% of people are left-handed today \u2014 but a century ago it was closer to 3%. The jump wasn't genetics, it was permission: kids stopped being forced to write right-handed. Men are 23% more likely to be lefties than women, and in China the rate is still just 3.5%. \ud83d\udc47 Are you a lefty?",
+      "hashtags": [
+        "lefthanded",
+        "handedness",
+        "psychology",
+        "didyouknow",
+        "brainfacts",
+        "science",
+        "genetics",
+        "leftyproblems",
+        "humanbody",
+        "neuroscience",
+        "factsdaily",
+        "minority",
+        "culture",
+        "leftorright"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "left_handed_rate_by_year",
+          "params": {
+            "file": "left_handed_rate_by_year.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE JUMP",
+          "topic": "left-handedness over time",
+          "say": "In 1900, only 3 percent of people were left-handed. By the 1960s that had jumped to 12 percent \u2014 not genetics changing, just kids finally allowed to write with their natural hand."
+        },
+        {
+          "source": "offline",
+          "key": "left_handed_by_gender",
+          "params": {
+            "file": "left_handed_by_gender.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE GAP",
+          "topic": "left-handedness by gender",
+          "say": "It's not evenly spread, either. Men are about 23 percent more likely to be left-handed than women \u2014 a gap researchers still can't fully explain."
+        },
+        {
+          "source": "offline",
+          "key": "left_handed_by_country",
+          "params": {
+            "file": "left_handed_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "3 \u00b7 STILL CULTURAL",
+          "topic": "left-handedness by country",
+          "say": "Culture still shapes it. The Netherlands sits at 13 percent left-handed \u2014 in China it's just 3.5, because millions there are still trained to switch."
+        }
+      ]
+    },
+    {
+      "slug": "light-pollution-erasing-sky",
+      "title": "Light Pollution Is Erasing The Night Sky",
+      "hook": "Ever seen the actual Milky Way?",
+      "closing": "The stars didn't leave. The lights just won.",
+      "question": "When did you last see a truly dark sky? Tell me below.",
+      "caption": "Artificial light is getting about 2% brighter every year worldwide \u2014 so the sky tonight is roughly 22% dimmer than a decade ago. In North America, 80% of people can no longer see the Milky Way at all. In Chad, 78% still can, every clear night. \ud83d\udc47 When did you last see real stars?",
+      "hashtags": [
+        "lightpollution",
+        "nightsky",
+        "milkyway",
+        "astronomy",
+        "stargazing",
+        "darkskies",
+        "space",
+        "climate",
+        "environment",
+        "didyouknow",
+        "science",
+        "stars",
+        "sciencefacts",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sky_brightness_index",
+          "params": {
+            "file": "sky_brightness_index.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 GETTING BRIGHTER",
+          "topic": "night sky brightness over time",
+          "say": "Skies have been getting brighter for years. Artificial light grows about 2 percent a year worldwide, so the sky tonight is roughly 22 percent dimmer than it was a decade ago."
+        },
+        {
+          "source": "offline",
+          "key": "milky_way_visibility_north_america",
+          "params": {
+            "file": "milky_way_visibility_north_america.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE COST",
+          "topic": "who can still see the Milky Way",
+          "say": "In North America, that's already cost most of us the view. Eighty percent of people live under skies too bright to see the Milky Way at all, even on a clear night."
+        },
+        {
+          "source": "offline",
+          "key": "dark_sky_by_country",
+          "params": {
+            "file": "dark_sky_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 \u00b7 NOT INEVITABLE",
+          "topic": "dark skies by country",
+          "say": "But it's not inevitable. In Chad, 78 percent of people still see a pristine sky every clear night. In Singapore, it's close to zero \u2014 a choice, not a law of nature."
+        }
+      ]
+    },
+    {
+      "slug": "americans-stopped-moving",
+      "title": "Americans Stopped Moving. Here's Why.",
+      "hook": "Nobody's moving anymore. Here's the data.",
+      "closing": "We didn't get more content. We got more stuck.",
+      "question": "How many years have you lived in the same place? Tell me below.",
+      "caption": "In the 1950s, 1 in 5 Americans moved every year. In 2023, it fell below 1 in 10 \u2014 the lowest ever recorded. Part of it is math: most homeowners have a mortgage under 4%, while a new one costs almost 7%. Part of it is licensing rules that used to cover 5% of jobs and now cover 25%. \ud83d\udc47 How long have you lived in the same place?",
+      "hashtags": [
+        "migration",
+        "moving",
+        "demographics",
+        "housingmarket",
+        "mortgagerates",
+        "economics",
+        "census",
+        "society",
+        "relocation",
+        "homeownership",
+        "occupationallicensing",
+        "unitedstates",
+        "data",
+        "americana"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_mobility_rate_by_year",
+          "params": {
+            "file": "us_mobility_rate_by_year.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE COLLAPSE",
+          "topic": "share of Americans who moved",
+          "say": "In the 1950s, 1 in 5 Americans moved every single year. By 2023 that fell below 1 in 10 \u2014 the lowest rate ever recorded."
+        },
+        {
+          "source": "offline",
+          "key": "mortgage_lock_in_rate_gap",
+          "params": {
+            "file": "mortgage_lock_in_rate_gap.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE MATH",
+          "topic": "mortgage lock-in",
+          "say": "Part of it is math. Most homeowners are sitting on a mortgage under 4 percent, while a new one costs almost 7 \u2014 moving means trading a cheap loan for a pricier one."
+        },
+        {
+          "source": "offline",
+          "key": "occupational_licensing_share",
+          "params": {
+            "file": "occupational_licensing_share.json"
+          },
+          "insight_type": "trend",
+          "role": "3 \u00b7 THE PAPERWORK",
+          "topic": "workers needing a license",
+          "say": "Then there's the paperwork. In the 1950s, about 5 percent of jobs needed a license. Today it's roughly 25 \u2014 and it often doesn't transfer across state lines."
+        }
+      ]
+    },
+    {
+      "slug": "lottery-odds-vs-real-life",
+      "title": "The Real Odds Behind The Lottery Jackpot",
+      "hook": "The odds are worse than you think.",
+      "closing": "The jackpot isn't luck. It's the fine print.",
+      "question": "Would you still play, knowing the real odds? Tell me below.",
+      "caption": "Winning the Powerball jackpot is a 1 in 292 million shot \u2014 worse than a royal flush, worse than a lifetime shark attack, worse than getting struck by lightning nineteen thousand times over. And it's not an accident: in 2015 Powerball deliberately made the odds worse, on purpose, to grow the jackpot. \ud83d\udc47 Still buying a ticket?",
+      "hashtags": [
+        "powerball",
+        "lottery",
+        "odds",
+        "megamillions",
+        "probability",
+        "statistics",
+        "didyouknow",
+        "moneyfacts",
+        "gambling",
+        "financialliteracy",
+        "jackpot",
+        "mathfacts",
+        "personalfinance"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lottery_vs_lightning_odds",
+          "params": {
+            "file": "lottery_vs_lightning_odds.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 \u00b7 THE ODDS",
+          "topic": "lottery odds vs lightning",
+          "say": "Winning the Powerball jackpot is a 1 in 292 million shot. Getting struck by lightning in your lifetime? 1 in 15,300 \u2014 nineteen thousand times more likely."
+        },
+        {
+          "source": "offline",
+          "key": "rare_odds_ranked",
+          "params": {
+            "file": "rare_odds_ranked.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": false,
+          "role": "2 \u00b7 STILL WORSE",
+          "topic": "how rare, ranked",
+          "say": "Line up the improbable: a royal flush is 1 in 649,740. A shark attack in your lifetime, about 1 in 11.5 million. The jackpot beats both, at 1 in 292 million."
+        },
+        {
+          "source": "offline",
+          "key": "powerball_odds_rule_change",
+          "params": {
+            "file": "powerball_odds_rule_change.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 ON PURPOSE",
+          "topic": "why the odds got worse",
+          "say": "So why do jackpots keep hitting a billion? In 2015, Powerball deliberately made the odds worse, from 1 in 175 million to 1 in 292 million \u2014 harder odds, bigger rollovers."
+        }
+      ]
     }
   ],
   "videos": [

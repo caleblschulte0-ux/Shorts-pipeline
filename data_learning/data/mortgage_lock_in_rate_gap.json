@@ -1,0 +1,25 @@
+{
+  "key": "mortgage_lock_in_rate_gap",
+  "title": "Existing mortgage rate vs. a new mortgage rate today",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Share of outstanding mortgages under 4% vs. current 30-year fixed rate ('mortgage lock-in effect')",
+    "publisher": "Federal Reserve / Redfin mortgage lock-in analyses",
+    "url": "https://fred.stlouisfed.org",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Illustrative: most outstanding US mortgages carry rates under 4%, widely documented as the 'lock-in effect' discouraging moves, versus a new 30-year fixed rate near 7%.",
+  "points": [
+    {
+      "label": "Existing mortgage (most homeowners)",
+      "value": 3.8
+    },
+    {
+      "label": "New mortgage today",
+      "value": 6.9
+    }
+  ]
+}
