@@ -321,3 +321,49 @@ class TestTheClosingTextClearsTheChart(unittest.TestCase):
         """The precedent is three lines up in the same function — if that
         plate ever moves, this should move with it."""
         self.assertIn("pos(540,1734)", self.SRC)
+
+
+class TestRepairKeepsTheBestCut(unittest.TestCase):
+    """Bounded self-repair re-rendered over the output and replaced the
+    verdict UNCONDITIONALLY, so a repair that landed worse discarded a better
+    video. Its own docstring claimed the opposite ("a repair that lands worse
+    simply keeps the video held, exactly as before"). Measured on the
+    2026-08-12 explainer slate:
+
+        urban   53 -> 48      hydro   48 -> 39
+        hunger  44 -> 35      macao   56 -> 69
+
+    three of four downhill, each discarding the better cut. The gate still
+    decides everything — this only stops throwing away its best judgment.
+    """
+
+    SRC = (ROOT / "scripts" / "post_stories.py").read_text()
+
+    def body(self):
+        return self.SRC.split("BOUNDED SELF-REPAIR", 1)[1].split(
+            "\n        if args.dry_run", 1)[0]
+
+    def test_the_new_verdict_is_compared_before_it_is_adopted(self):
+        b = self.body()
+        self.assertIn("_better", b)
+        self.assertIn("> _prev_score", b)
+
+    def test_a_worse_repair_reverts_the_video(self):
+        b = self.body()
+        self.assertIn("REVERTING to the better cut", b)
+        self.assertIn("_sh.move(", b)
+
+    def test_the_kept_verdict_is_re_logged(self):
+        """Otherwise the sidecar on disk describes a cut that was thrown
+        away, and the next repair reads the wrong diagnosis."""
+        self.assertIn("_gate.log(gate, slug)", self.body())
+
+    def test_the_gate_still_decides(self):
+        """Nothing here may turn a BLOCK into a ship — it only chooses which
+        of two judged cuts to keep."""
+        b = self.body()
+        self.assertNotIn("blocked = False", b)
+        self.assertNotIn('"ship"', b)
+
+    def test_the_scratch_copy_is_cleaned_up(self):
+        self.assertIn("unlink(missing_ok=True)", self.body())

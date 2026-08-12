@@ -292,15 +292,51 @@ def main() -> int:
                 print(f"[{slug}] repair {repairs} could not plan a fix: "
                       f"{str(e)[:120]}", flush=True)
                 break
+            # KEEP THE BEST CUT, NOT THE LAST ONE.
+            #
+            # This re-rendered over `out` and replaced the verdict
+            # unconditionally, so a repair that landed WORSE threw away a
+            # better video — and the docstring above ("a repair that lands
+            # worse simply keeps the video held, exactly as before") was
+            # describing behaviour the code did not have. Measured on the
+            # 2026-08-12 explainer slate, where repair moved:
+            #
+            #     urban   53 -> 48      hydro   48 -> 39
+            #     hunger  44 -> 35      macao   56 -> 69
+            #
+            # three of four downhill, each one discarding the better cut.
+            # The gate still decides everything; we just stop throwing away
+            # its best judgment. A repair only sticks if it scores higher.
+            import shutil as _sh
+            _prev_score = (verdict or {}).get("score")
+            _keep = out.with_suffix(".prerepair.mp4")
+            try:
+                _sh.copy2(out, _keep)
+            except Exception:                        # noqa: BLE001
+                _keep = None
             studio_render.render(slug, out, config_path=args.config)
-            gate = _gate.run(out, slug=slug, context=ctx,
-                             will_upload=will_upload)
-            blocked = gate["blocked"]
-            verdict = gate["verdict"]
-            print(f"[{slug}] after repair {repairs}: "
-                  f"{'BLOCK' if blocked else 'SHIP'} "
-                  f"score={verdict.get('score')} — "
-                  f"{verdict.get('one_line') or gate['reason']}", flush=True)
+            new_gate = _gate.run(out, slug=slug, context=ctx,
+                                 will_upload=will_upload)
+            _new_score = (new_gate.get("verdict") or {}).get("score")
+            _better = (_new_score is not None and _prev_score is not None
+                       and _new_score > _prev_score)
+            if _better or _prev_score is None:
+                gate, blocked = new_gate, new_gate["blocked"]
+                verdict = new_gate["verdict"]
+                print(f"[{slug}] after repair {repairs}: "
+                      f"{'BLOCK' if blocked else 'SHIP'} "
+                      f"score={_new_score} — "
+                      f"{verdict.get('one_line') or gate['reason']}",
+                      flush=True)
+            else:
+                print(f"[{slug}] repair {repairs} scored {_new_score} vs "
+                      f"{_prev_score} — REVERTING to the better cut",
+                      flush=True)
+                if _keep and _keep.exists():
+                    _sh.move(str(_keep), str(out))
+                    _gate.log(gate, slug)      # re-assert the kept verdict
+            if _keep and Path(_keep).exists():
+                Path(_keep).unlink(missing_ok=True)
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")
