@@ -3291,13 +3291,45 @@
       "director_cut": true
     },
     "clip-20260812-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/CleverDeadDugongPupper-hbMPp6AHXTasD0x2",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/f4hvVUPGpiQ",
       "title": "Jynxzi Won't Stop Screaming 'Ferox I Love You'",
       "kind": "twitch_clip",
-      "ts": "2026-08-12T12:06:55.697038+00:00",
+      "ts": "2026-08-12T12:07:02.092651+00:00",
+      "uploaded_at": "2026-08-12T12:07:02.092669+00:00",
+      "publish_at": "2026-08-12T18:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CleverDeadDugongPupper-hbMPp6AHXTasD0x2",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "JYNXZI CAN'T STOP YELLING FEROX",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4253,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 18.6
+      },
+      "director_cut": true
+    },
+    "rejected-wittyunsightlynuggetsnomnom-q2wlkczbolzfp2sv": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/WittyUnsightlyNuggetsNomNom-Q2WlKcZBoLZFP2Sv",
+      "streamer": "ohnepixel",
+      "title": "lmaooo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (just browsing site, no event)",
+      "ts": "2026-08-12T12:47:37.154016+00:00"
+    },
+    "clip-20260812-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/LuckyAgitatedEagleKeepo-11SA16Q96EelHONx",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
+      "kind": "twitch_clip",
+      "ts": "2026-08-12T13:07:32.710589+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

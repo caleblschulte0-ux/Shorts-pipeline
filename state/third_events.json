@@ -617,10 +617,74 @@
       "candidate_sources": [
         "https://www.twitch.tv/kaicenat/clip/SlipperyGloriousAsparagusOpieOP-kxFA0n4TxE1Hwnxj",
         "https://www.twitch.tv/kaicenat/clip/PiliableGorgeousKoupreyDeIlluminati-VBUBLI-Etnp8ySPf",
-        "https://www.twitch.tv/kaicenat/clip/SavoryBreakableLatteSquadGoals-WffmB4tFQXsiG9ru"
+        "https://www.twitch.tv/kaicenat/clip/SavoryBreakableLatteSquadGoals-WffmB4tFQXsiG9ru",
+        "https://www.twitch.tv/kaicenat/clip/SucculentKnottySandwichThunBeast-PKsGRmX4AvQm7Snl"
       ],
       "published_versions": [],
-      "last_updated": "2026-08-11"
+      "last_updated": "2026-08-12"
+    },
+    "kaicenat-charact-damage-2026w33": {
+      "event_id": "kaicenat-charact-damage-2026w33",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "charact",
+        "damage",
+        "dies",
+        "fall"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/SucculentKnottySandwichThunBeast-PKsGRmX4AvQm7Snl",
+        "https://www.twitch.tv/kaicenat/clip/KindBitterGoshawkBabyRage-ciQGBjKKgldNVQf3"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-12"
+    },
+    "kaicenat-damage-death-2026w33": {
+      "event_id": "kaicenat-damage-death-2026w33",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "damage",
+        "death",
+        "dies",
+        "minecraft"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/SucculentKnottySandwichThunBeast-PKsGRmX4AvQm7Snl",
+        "https://www.twitch.tv/kaicenat/clip/KindBitterGoshawkBabyRage-ciQGBjKKgldNVQf3"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-12"
+    },
+    "jasontheween-camera-corrupt-2026w32": {
+      "event_id": "jasontheween-camera-corrupt-2026w32",
+      "people": [
+        "jasontheween"
+      ],
+      "actions": [
+        "camera",
+        "corrupt",
+        "feed",
+        "fram"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-12",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/GorgeousAbstemiousHerdShadyLulu-9vRYP2z63xMe8fTu",
+        "https://www.twitch.tv/jasontheween/clip/SpinelessRelievedClamWow-a_2KwEYk8rk5aFvr"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-12"
     }
   }
 }
