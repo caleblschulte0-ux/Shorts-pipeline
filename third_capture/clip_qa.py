@@ -15,10 +15,12 @@ Runs AFTER the render, BEFORE upload. Two layers:
    overlays covering faces? anything broken?). Only a confident "do not
    publish" blocks; no CLI/token or an unclear answer never blocks.
 
-Contract: `review()` NEVER raises. A QA-internal error fails open (publish)
-with the error recorded — the gate exists to catch broken clips, not to
-become a new way to lose good ones. Verdict "fail" means: do not upload;
-the slot's clip is rejected and a different clip competes next run.
+Contract: `review()` NEVER raises. A QA-internal error fails CLOSED
+(verdict "fail") with the error recorded as a problem — an unexpected
+probe/vision/contact-sheet crash is not proof the clip is fine, and the
+pipeline's fail-closed doctrine (CLAUDE.md, showrunner section) applies
+here too. Verdict "fail" means: do not upload; the slot's clip is
+rejected and a different clip competes next run.
 """
 from __future__ import annotations
 
@@ -410,7 +412,8 @@ def preflight(video: Path) -> list[str]:
 def review(video: Path, led: dict, work: Path) -> dict:
     """Full QA gate. Returns {"verdict": "pass"|"fail", "problems": [...],
     "vision": {...}|None, "contact_sheet": str|None}. NEVER raises; a
-    QA-internal error fails open with the error recorded."""
+    QA-internal error fails CLOSED (verdict="fail") with the error
+    recorded as a problem."""
     problems: list[str] = []
     vision = None
     sheet_rel = None
@@ -441,9 +444,9 @@ def review(video: Path, led: dict, work: Path) -> dict:
         if vis_fail:
             problems.extend(f"vision: {p}" for p in vision["problems"])
         verdict = "fail" if (mech_fail or vis_fail) else "pass"
-    except Exception as e:  # noqa: BLE001 — the gate must not lose clips
-        problems.append(f"qa internal error (failed open): "
+    except Exception as e:  # noqa: BLE001 — never raise; fail the clip instead
+        problems.append(f"qa internal error (failed closed): "
                         f"{type(e).__name__}: {e}"[:140])
-        verdict = "pass"
+        verdict = "fail"
     return {"verdict": verdict, "problems": problems,
             "vision": vision, "contact_sheet": sheet_rel}
