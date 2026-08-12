@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-us-debt-vs-gdp",
+  "title": "The Year US Debt Beat The Whole Economy",
+  "hook": "Debt just passed the economy.",
+  "y_label": "US dollars (trillions)",
+  "duration": 13,
+  "source": "US federal debt (total public debt outstanding) vs US nominal GDP \u2014 US Treasury and Bureau of Economic Analysis data as commonly reported (FRED, Treasury.gov); 2025 figures extrapolated from early-2024 debt levels and recent GDP growth trends. Figures approximate.",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2020,
+    2025
+  ],
+  "series": [
+    {
+      "name": "US National Debt",
+      "color": "#b22222",
+      "values": [
+        5.6,
+        7.9,
+        13.6,
+        18.2,
+        26.9,
+        36.2
+      ]
+    },
+    {
+      "name": "US GDP",
+      "color": "#2e8b57",
+      "values": [
+        10.25,
+        13.04,
+        15.0,
+        18.2,
+        21.06,
+        30.3
+      ]
+    }
+  ],
+  "hashtags": [
+    "nationaldebt",
+    "usdebt",
+    "economy",
+    "gdp",
+    "usdollar",
+    "treasury",
+    "federalbudget",
+    "macroeconomics",
+    "finance",
+    "moneytalk",
+    "useconomy",
+    "debtceiling",
+    "financialliteracy",
+    "economics"
+  ],
+  "music_vibe": "dark"
+}

@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-lilly-overtakes-novo-glp1",
+  "title": "Lilly Just Overtook Novo In The Weight-Loss Drug War",
+  "hook": "The chart just flipped.",
+  "y_label": "GLP-1 drug sales ($ billions)",
+  "duration": 13,
+  "source": "Combined annual sales of Novo Nordisk's Ozempic + Wegovy and Eli Lilly's Mounjaro + Zepbound, approximated from company quarterly earnings reports as reported by Reuters, CNBC, BioSpace and Fierce Pharma (2021-2026); 2025-2026 figures partly annualized from quarterly run-rates. Figures approximate.",
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Novo Nordisk",
+      "color": "#c8102e",
+      "icon": "Novo Nordisk",
+      "values": [
+        3.0,
+        6.1,
+        18.4,
+        26.0,
+        29.0,
+        27.0
+      ]
+    },
+    {
+      "name": "Eli Lilly",
+      "color": "#ff8c00",
+      "icon": "Eli Lilly",
+      "values": [
+        0.0,
+        0.5,
+        5.34,
+        16.47,
+        33.0,
+        42.0
+      ]
+    }
+  ],
+  "hashtags": [
+    "ozempic",
+    "wegovy",
+    "zepbound",
+    "mounjaro",
+    "novonordisk",
+    "elililly",
+    "weightlossdrug",
+    "glp1",
+    "pharma",
+    "bigpharma",
+    "obesitydrug",
+    "stockmarket",
+    "healthnews",
+    "pharmaceuticals"
+  ],
+  "music_vibe": "cinematic"
+}

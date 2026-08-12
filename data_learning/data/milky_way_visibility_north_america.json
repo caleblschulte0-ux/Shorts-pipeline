@@ -1,0 +1,25 @@
+{
+  "key": "milky_way_visibility_north_america",
+  "title": "Can you still see the Milky Way? (North America)",
+  "unit": "percent",
+  "geography": "North America",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "World Atlas of Artificial Night Sky Brightness",
+    "publisher": "Falchi et al., Science Advances (2016), as reported by NPR and National Geographic",
+    "url": "https://www.npr.org/sections/thetwo-way/2016/06/10/481545778/light-pollution-hides-milky-way-from-80-percent-of-north-americans-atlas-shows",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "~80% of North Americans live under skies too bright to see the Milky Way.",
+  "points": [
+    {
+      "label": "Can't see it",
+      "value": 80
+    },
+    {
+      "label": "Still can",
+      "value": 20
+    }
+  ]
+}
