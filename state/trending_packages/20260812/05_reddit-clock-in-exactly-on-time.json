@@ -51,7 +51,11 @@
       "phrase": "standing at my desk at eight fifty-nine",
       "query": "manager standing hallway office",
       "image_url": "https://pixabay.com/get/gfd87492e1cfd532582b041ecf8675619162bd530707721da686ef2f25f379690fd5dcb3421caf9643dd1c2cce5a9e7e465703658e20ee825b503644648f576d4_1280.jpg",
-      "media_origin": "self_fill"
+      "media_origin": "self_fill",
+      "pin_query": "desk",
+      "pin_context": "workplace furniture",
+      "news_query": "desk",
+      "news_angle": "The manager stood at the narrator's desk to discuss the policy change."
     },
     {
       "phrase": "more of a guideline",
