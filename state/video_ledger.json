@@ -301,6 +301,906 @@
           "detail": "Do you still live with your parents? Tell me below."
         }
       ]
+    },
+    {
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "nature",
+      "hook_type": "question",
+      "hook_text": "The world eats more fish than ever - so why has the catch barely budged in 30 years?",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:trawl-net-haul",
+        "mechanic:ocean-shield-dome",
+        "mechanic:guardian-perimeter-grow"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Why The Ocean Catch Stopped Growing",
+      "notes": "No prior analytics for this slug. Bet: trawl-net-haul -> ocean-shield-dome -> guardian-perimeter-grow, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "The world eats more fish than ever - so why has the catch barely budged in 30 years?"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "mechanic:trawl-net-haul"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "mechanic:ocean-shield-dome"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "mechanic:guardian-perimeter-grow"
+        },
+        {
+          "t": 38,
+          "event": "payoff",
+          "detail": "If the ocean can't give more, something out there already hit its ceiling."
+        },
+        {
+          "t": 44,
+          "event": "cta",
+          "detail": "What do you think capped the world's fish catch?"
+        }
+      ]
+    },
+    {
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "question",
+      "hook_text": "Two of the world's toughest health numbers are falling fast - so why is spending climbing faster than ever?",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:cradle-grid-thin",
+        "viz:trend",
+        "mechanic:cash-cross-fill"
+      ],
+      "ending_type": "inversion",
+      "franchise": "The Health Numbers That Do Not Add Up",
+      "notes": "No prior analytics for this slug. Bet: cradle-grid-thin -> trend -> cash-cross-fill, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Two of the world's toughest health numbers are falling fast - so why is spending climbing faster than ever?"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "mechanic:cradle-grid-thin"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "viz:trend"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "mechanic:cash-cross-fill"
+        },
+        {
+          "t": 36,
+          "event": "payoff",
+          "detail": "The emergencies got smaller. The bill did not."
+        },
+        {
+          "t": 40,
+          "event": "cta",
+          "detail": "Which of these three numbers surprised you the most?"
+        }
+      ]
+    },
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "economics",
+      "hook_type": "inversion",
+      "hook_text": "By the 1970s, experts were warning the world would run out of food - here's what the data says actually happened.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:school-steps-climb",
+        "mechanic:grain-silo-fill",
+        "mechanic:farmland-tile-columns"
+      ],
+      "ending_type": "inversion",
+      "franchise": "The Famine That Never Came",
+      "notes": "No prior analytics for this slug. Bet: school-steps-climb -> grain-silo-fill -> farmland-tile-columns, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "By the 1970s, experts were warning the world would run out of food - here's what the data says actually happened."
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "mechanic:school-steps-climb"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "mechanic:grain-silo-fill"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "mechanic:farmland-tile-columns"
+        },
+        {
+          "t": 40,
+          "event": "payoff",
+          "detail": "The famine everyone predicted never showed up - and almost nobody noticed it skip town."
+        },
+        {
+          "t": 47,
+          "event": "cta",
+          "detail": "Which number surprised you most - school, grain, or land?"
+        }
+      ]
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "energy",
+      "hook_type": "question",
+      "hook_text": "One energy source has tripled since 1990, and it isn't solar or wind - can you guess what it is?",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:biomass-flame-rise",
+        "mechanic:village-lights-on",
+        "mechanic:landfill-gas-plume"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Energy Source Nobody Talks About",
+      "notes": "No prior analytics for this slug. Bet: biomass-flame-rise -> village-lights-on -> landfill-gas-plume, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "One energy source has tripled since 1990, and it isn't solar or wind - can you guess what it is?"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "mechanic:biomass-flame-rise"
+        },
+        {
+          "t": 20,
+          "event": "visual_swap",
+          "detail": "mechanic:village-lights-on"
+        },
+        {
+          "t": 30,
+          "event": "visual_swap",
+          "detail": "mechanic:landfill-gas-plume"
+        },
+        {
+          "t": 39,
+          "event": "payoff",
+          "detail": "A third of the world's energy now comes from things we used to just throw away."
+        },
+        {
+          "t": 46,
+          "event": "cta",
+          "detail": "Which number surprised you most - fuel, power, or waste?"
+        }
+      ]
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "demographics",
+      "hook_type": "inversion",
+      "hook_text": "Population growth was supposed to keep accelerating forever - here's the number that proves it didn't.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:village-recede",
+        "mechanic:barely-moved-gauge",
+        "mechanic:growth-crowd-thin"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Population Slowdown Nobody Predicted",
+      "notes": "No prior analytics for this slug. Bet: village-recede -> barely-moved-gauge -> growth-crowd-thin, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Population growth was supposed to keep accelerating forever - here's the number that proves it didn't."
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "mechanic:village-recede"
+        },
+        {
+          "t": 19,
+          "event": "visual_swap",
+          "detail": "mechanic:barely-moved-gauge"
+        },
+        {
+          "t": 30,
+          "event": "visual_swap",
+          "detail": "mechanic:growth-crowd-thin"
+        },
+        {
+          "t": 39,
+          "event": "payoff",
+          "detail": "The planet is still growing. It has just almost stopped accelerating."
+        },
+        {
+          "t": 44,
+          "event": "cta",
+          "detail": "Which number surprised you most - rural, city, or growth?"
+        }
+      ]
+    },
+    {
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "energy",
+      "hook_type": "inversion",
+      "hook_text": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:paddy-flood-row",
+        "mechanic:solar-array-rise",
+        "mechanic:router-signal-reach"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Two Decades Of Clean Energy Hype Vs Reality",
+      "notes": "No prior analytics for this slug. Bet: paddy-flood-row -> solar-array-rise -> router-signal-reach, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved."
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "mechanic:paddy-flood-row"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "mechanic:solar-array-rise"
+        },
+        {
+          "t": 29,
+          "event": "visual_swap",
+          "detail": "mechanic:router-signal-reach"
+        },
+        {
+          "t": 40,
+          "event": "payoff",
+          "detail": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff."
+        },
+        {
+          "t": 48,
+          "event": "cta",
+          "detail": "Which of these three numbers surprised you the most?"
+        }
+      ]
+    },
+    {
+      "slug": "bird-flu-species-jump",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "shock_stat",
+      "hook_text": "A bird virus just learned to infect cows.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:feather-toll-climb",
+        "viz:geo_us",
+        "mechanic:cross-species-bridge"
+      ],
+      "ending_type": "consequence",
+      "franchise": "How A Virus Jumps Species",
+      "notes": "No prior analytics for this slug. Bet: feather-toll-climb -> geo_us -> cross-species-bridge, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "A bird virus just learned to infect cows."
+        },
+        {
+          "t": 4,
+          "event": "visual_swap",
+          "detail": "mechanic:feather-toll-climb"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "viz:geo_us"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "mechanic:cross-species-bridge"
+        },
+        {
+          "t": 34,
+          "event": "payoff",
+          "detail": "One species at a time -- that's how spillovers happen."
+        },
+        {
+          "t": 39,
+          "event": "cta",
+          "detail": "Does bird flu worry you? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "ozone-hole-recovery",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "science",
+      "hook_type": "inversion",
+      "hook_text": "Remember the ozone hole? It's actually healing.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:ozone-hole-shrink",
+        "mechanic:banned-barrel-drain",
+        "mechanic:recovery-vessel-row"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Environmental Fix That Actually Worked",
+      "notes": "No prior analytics for this slug. Bet: ozone-hole-shrink -> banned-barrel-drain -> recovery-vessel-row, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Remember the ozone hole? It's actually healing."
+        },
+        {
+          "t": 4,
+          "event": "visual_swap",
+          "detail": "mechanic:ozone-hole-shrink"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "mechanic:banned-barrel-drain"
+        },
+        {
+          "t": 28,
+          "event": "visual_swap",
+          "detail": "mechanic:recovery-vessel-row"
+        },
+        {
+          "t": 39,
+          "event": "payoff",
+          "detail": "Proof humanity can actually fix what it breaks."
+        },
+        {
+          "t": 43,
+          "event": "cta",
+          "detail": "Did you know the ozone hole was healing? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "data-breach-exposure",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "stake",
+      "hook_text": "One leaked password can unlock your whole life.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:vault-crack-spread",
+        "mechanic:shield-breach-wash",
+        "mechanic:breach-target-board"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Why Your Password Keeps Getting You Hacked",
+      "notes": "No prior analytics for this slug. Bet: vault-crack-spread -> shield-breach-wash -> breach-target-board, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "One leaked password can unlock your whole life."
+        },
+        {
+          "t": 4,
+          "event": "visual_swap",
+          "detail": "mechanic:vault-crack-spread"
+        },
+        {
+          "t": 15,
+          "event": "visual_swap",
+          "detail": "mechanic:shield-breach-wash"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "mechanic:breach-target-board"
+        },
+        {
+          "t": 36,
+          "event": "payoff",
+          "detail": "Reuse a password, and you're gambling your digital life."
+        },
+        {
+          "t": 41,
+          "event": "cta",
+          "detail": "Do you reuse the same password everywhere? Be honest below."
+        }
+      ]
+    },
+    {
+      "slug": "global-illiteracy-gap",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "society",
+      "hook_type": "question",
+      "hook_text": "The whole world learned to read. So why can't 739 million adults?",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:reading-ladder-climb",
+        "mechanic:crowd-gender-fill",
+        "kit:object,object,object"
+      ],
+      "ending_type": "inversion",
+      "franchise": "The Literacy Gap That Moved, Not Closed",
+      "notes": "No prior analytics for this slug. Bet: reading-ladder-climb -> crowd-gender-fill -> object,object,object, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "The whole world learned to read. So why can't 739 million adults?"
+        },
+        {
+          "t": 6,
+          "event": "visual_swap",
+          "detail": "mechanic:reading-ladder-climb"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "mechanic:crowd-gender-fill"
+        },
+        {
+          "t": 27,
+          "event": "visual_swap",
+          "detail": "kit:object,object,object"
+        },
+        {
+          "t": 38,
+          "event": "payoff",
+          "detail": "347 million of them are stuck in one region. The gap didn't close - it moved."
+        },
+        {
+          "t": 45,
+          "event": "cta",
+          "detail": "Who taught you to read? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "baby-name-diversity",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "culture",
+      "hook_type": "inversion",
+      "hook_text": "The most popular baby name isn't that popular anymore.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:nursery-ratio-grid",
+        "mechanic:concentration-funnel-bands",
+        "viz:waffle_grid"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Why Nobody Shares A Name Anymore",
+      "notes": "No prior analytics for this slug. Bet: nursery-ratio-grid -> concentration-funnel-bands -> waffle_grid, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "The most popular baby name isn't that popular anymore."
+        },
+        {
+          "t": 5,
+          "event": "visual_swap",
+          "detail": "mechanic:nursery-ratio-grid"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "mechanic:concentration-funnel-bands"
+        },
+        {
+          "t": 29,
+          "event": "visual_swap",
+          "detail": "viz:waffle_grid"
+        },
+        {
+          "t": 40,
+          "event": "payoff",
+          "detail": "Somewhere, a baby named Kaeleigh-with-an-h is thriving."
+        },
+        {
+          "t": 44,
+          "event": "cta",
+          "detail": "How common is your name in your class? Comment below."
+        }
+      ]
+    },
+    {
+      "slug": "body-renewal-clock",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "You're not the same person you were a year ago.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:body-clock-dials",
+        "mechanic:cell-tally-swarm",
+        "mechanic:scale-break-lifetime-ruler"
+      ],
+      "ending_type": "consequence",
+      "franchise": "How Old Is Your Body Really",
+      "notes": "No prior analytics for this slug. Bet: body-clock-dials -> cell-tally-swarm -> scale-break-lifetime-ruler, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "You're not the same person you were a year ago."
+        },
+        {
+          "t": 5,
+          "event": "visual_swap",
+          "detail": "mechanic:body-clock-dials"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "mechanic:cell-tally-swarm"
+        },
+        {
+          "t": 28,
+          "event": "visual_swap",
+          "detail": "mechanic:scale-break-lifetime-ruler"
+        },
+        {
+          "t": 38,
+          "event": "payoff",
+          "detail": "So technically, your skin is younger than your phone."
+        },
+        {
+          "t": 43,
+          "event": "cta",
+          "detail": "How old do you think your oldest cells actually are? Guess below."
+        }
+      ]
+    },
+    {
+      "slug": "insect-planet",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "animals",
+      "hook_type": "shock_stat",
+      "hook_text": "You are massively outnumbered right now.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:insect-tide-overlay",
+        "mechanic:log-species-columns",
+        "mechanic:specimen-drawer-fill"
+      ],
+      "ending_type": "consequence",
+      "franchise": "You Are Massively Outnumbered",
+      "notes": "No prior analytics for this slug. Bet: insect-tide-overlay -> log-species-columns -> specimen-drawer-fill, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "You are massively outnumbered right now."
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:insect-tide-overlay"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:log-species-columns"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "mechanic:specimen-drawer-fill"
+        },
+        {
+          "t": 34,
+          "event": "payoff",
+          "detail": "Somewhere right now, an unnamed beetle is judging you."
+        },
+        {
+          "t": 39,
+          "event": "cta",
+          "detail": "What's the weirdest bug you've ever seen? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "photo-flood",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "shock_stat",
+      "hook_text": "We just out-photographed the entire 1800s.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:photo-avalanche-clock",
+        "mechanic:film-reel-unspool",
+        "mechanic:camera-grid-takeover"
+      ],
+      "ending_type": "consequence",
+      "franchise": "We Broke Photography",
+      "notes": "No prior analytics for this slug. Bet: photo-avalanche-clock -> film-reel-unspool -> camera-grid-takeover, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "We just out-photographed the entire 1800s."
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:photo-avalanche-clock"
+        },
+        {
+          "t": 14,
+          "event": "visual_swap",
+          "detail": "mechanic:film-reel-unspool"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "mechanic:camera-grid-takeover"
+        },
+        {
+          "t": 36,
+          "event": "payoff",
+          "detail": "Somehow we still don't have a good photo of Bigfoot."
+        },
+        {
+          "t": 41,
+          "event": "cta",
+          "detail": "How many photos are actually on your phone right now? Guess below."
+        }
+      ]
+    },
+    {
+      "slug": "asteroid-hunt-still-blind",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "space",
+      "hook_type": "shock_stat",
+      "hook_text": "Space is way more crowded than you think.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:radar-sweep-catalog",
+        "mechanic:hazard-swarm-highlight",
+        "mechanic:citykiller-searchlight"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Asteroids We Have Not Found Yet",
+      "notes": "No prior analytics for this slug. Bet: radar-sweep-catalog -> hazard-swarm-highlight -> citykiller-searchlight, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "Space is way more crowded than you think."
+        },
+        {
+          "t": 4,
+          "event": "visual_swap",
+          "detail": "mechanic:radar-sweep-catalog"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "mechanic:hazard-swarm-highlight"
+        },
+        {
+          "t": 28,
+          "event": "visual_swap",
+          "detail": "mechanic:citykiller-searchlight"
+        },
+        {
+          "t": 41,
+          "event": "payoff",
+          "detail": "The scariest asteroid isn't one we've found. It's the one we haven't."
+        },
+        {
+          "t": 47,
+          "event": "cta",
+          "detail": "Does it worry you that half the big ones are still out there? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "eight-glasses-water-myth",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "inversion",
+      "hook_text": "That water rule you follow? Never existed.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:myth-pitcher-duel",
+        "mechanic:glass-source-layers",
+        "mechanic:hydration-seesaw"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Hydration Rule That Was Never Real",
+      "notes": "No prior analytics for this slug. Bet: myth-pitcher-duel -> glass-source-layers -> hydration-seesaw, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "That water rule you follow? Never existed."
+        },
+        {
+          "t": 4,
+          "event": "visual_swap",
+          "detail": "mechanic:myth-pitcher-duel"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "mechanic:glass-source-layers"
+        },
+        {
+          "t": 30,
+          "event": "visual_swap",
+          "detail": "mechanic:hydration-seesaw"
+        },
+        {
+          "t": 43,
+          "event": "payoff",
+          "detail": "Drink when you're thirsty. Your body already does the math."
+        },
+        {
+          "t": 48,
+          "event": "cta",
+          "detail": "Did you know the 8 glasses rule wasn't real? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "solo-living-overtakes-family",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "demographics",
+      "hook_type": "shock_stat",
+      "hook_text": "1 in 3 homes now has just one person.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:solo-door-count",
+        "mechanic:aisle-runway-shrink",
+        "mechanic:solo-column-lofts"
+      ],
+      "ending_type": "inversion",
+      "franchise": "The Rise Of Living Alone",
+      "notes": "No prior analytics for this slug. Bet: solo-door-count -> aisle-runway-shrink -> solo-column-lofts, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "1 in 3 homes now has just one person."
+        },
+        {
+          "t": 5,
+          "event": "visual_swap",
+          "detail": "mechanic:solo-door-count"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "mechanic:aisle-runway-shrink"
+        },
+        {
+          "t": 29,
+          "event": "visual_swap",
+          "detail": "mechanic:solo-column-lofts"
+        },
+        {
+          "t": 42,
+          "event": "payoff",
+          "detail": "The 'nuclear family' is now the minority household."
+        },
+        {
+          "t": 46,
+          "event": "cta",
+          "detail": "Do you live alone? Tell me how long below."
+        }
+      ]
+    },
+    {
+      "slug": "chatgpt-fastest-adoption-ever",
+      "directed_at": "2026-08-11",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "shock_stat",
+      "hook_text": "This app broke every growth record.",
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:rocket-altitude-climb",
+        "mechanic:speed-race-track",
+        "mechanic:wallet-crowd-fill"
+      ],
+      "ending_type": "consequence",
+      "franchise": "The Fastest App Growth Ever Recorded",
+      "notes": "No prior analytics for this slug. Bet: rocket-altitude-climb -> speed-race-track -> wallet-crowd-fill, each beat escalating toward the numbers the hook promised.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "This app broke every growth record."
+        },
+        {
+          "t": 3,
+          "event": "visual_swap",
+          "detail": "mechanic:rocket-altitude-climb"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "mechanic:speed-race-track"
+        },
+        {
+          "t": 30,
+          "event": "visual_swap",
+          "detail": "mechanic:wallet-crowd-fill"
+        },
+        {
+          "t": 43,
+          "event": "payoff",
+          "detail": "850 million people are riding free - somebody else is paying the server bill for that."
+        },
+        {
+          "t": 50,
+          "event": "cta",
+          "detail": "Do you use ChatGPT every week? Tell me below."
+        }
+      ]
     }
   ]
 }

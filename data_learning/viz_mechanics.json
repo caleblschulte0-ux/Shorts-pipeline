@@ -392,5 +392,47 @@
     "code": "v0 = values[0]; v1 = values[1] if n > 1 else values[0]\nwallet = subject_image('open leather wallet with cash photo')\ncoin = subject_image('gold coin icon')\nbase_y = RBOT - 160\nscale0 = clamp(v0 / 60.0) * reveal\nscale1 = clamp(v1 / 60.0) * reveal\nw0 = max(int(300 * scale0), 10); h0 = max(int(200 * scale0), 10)\nw1 = max(int(300 * scale1), 10); h1 = max(int(200 * scale1), 10)\ncx0 = RX0 + 280; cx1 = RX1 - 280\nif wallet is not None:\n    paste(wallet, cx0 - w0 // 2, base_y - h0, w0, h0)\n    paste(wallet, cx1 - w1 // 2, base_y - h1, w1, h1)\nfor i in range(int(scale0 * 6)):\n    if coin is not None:\n        paste(coin, cx0 - 90 + (i % 4) * 40, base_y + 10 + (i // 4) * 30, 30, 30)\nfor i in range(int(scale1 * 6)):\n    if coin is not None:\n        paste(coin, cx1 - 90 + (i % 4) * 40, base_y + 10 + (i // 4) * 30, 30, 30)\ntext(labels[0], cx0, base_y - h0 - 190, size=27, color=TEXT, center=True)\ntext(f'{v0:.0f}% independent', cx0, base_y - h0 - 150, size=23, color=HIGHLIGHT, center=True)\ntext(labels[1] if n > 1 else labels[0], cx1, base_y - h1 - 190, size=27, color=TEXT, center=True)\ntext(f'{v1:.0f}% independent', cx1, base_y - h1 - 150, size=23, color=WARN, center=True)\n",
     "topic": "Financial Independence At 21",
     "starred": false
+  },
+  {
+    "mechanic": "ozone-hole-shrink",
+    "concept": "a violet hole over an Earth photo shrinks in radius as the ozone hole's peak extent falls year by year",
+    "code": "earth = subject_image('earth from space')\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 - 40\nif earth is not None:\n    ew = RX1 - RX0\n    eh = int(ew * earth.height / earth.width)\n    paste(earth, RX0, cy - eh // 2, ew, eh)\nmax_r = 260\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\nr = int(max_r * (v_now / vmax))\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba(WARN, 90), outline=rgba(WARN, 220), width=6)\nd.ellipse([cx - r // 2, cy - r // 2, cx + r // 2, cy + r // 2], fill=rgba('#7C3AED', 70))\ntext(labels[i], cx, cy + max_r + 50, size=40, color=WARN, center=True)\ntext(f\"{v_now:.1f}M km2\", cx, cy + max_r + 96, size=32, color=TEXT, center=True)\nfor j in range(n):\n    x = RX0 + 60 + j * ((RX1 - RX0 - 120) // max(1, n - 1))\n    on = j <= i\n    d.ellipse([x - 8, RBOT - 28, x + 8, RBOT - 12],\n              fill=rgba(WARN if on else TEXT, 220 if on else 90))",
+    "topic": "size of the Antarctic ozone hole",
+    "starred": true
+  },
+  {
+    "mechanic": "radar-sweep-catalog",
+    "concept": "an observatory dish sweeps a night starfield while catalogued near-Earth-asteroid dots accumulate year by year toward 2025's count",
+    "code": "tele = subject_image('observatory telescope dome at night')\ncx = (RX0 + RX1) // 2\nif tele is not None:\n    tw = 260; th = int(tw * tele.height / tele.width)\n    paste(tele, cx - tw // 2, RTOP + 20, tw, th)\nidx = clamp(reveal) * (n - 1)\ni = int(idx)\nt = idx - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t)\ndot = subject_image('tiny asteroid rock')\narea_top = RTOP + 280; area_bot = RBOT - 140\nshown = min(60, int(clamp(math.sqrt(cur / vmax)) * 56) + 4)\nfor k in range(shown):\n    xseed = (k * 53) % 1000 / 1000.0\n    yseed = (k * 97) % 1000 / 1000.0\n    px = RX0 + 30 + xseed * (RX1 - RX0 - 60)\n    py = area_top + yseed * (area_bot - area_top)\n    r = 7\n    if dot is not None:\n        paste(dot, int(px - r), int(py - r), 2 * r, 2 * r)\n    else:\n        d.ellipse([px - r, py - r, px + r, py + r], fill=rgba(HIGHLIGHT, 220))\nang = (reveal * 720) % 360\nd.arc([cx - 260, area_top - 40, cx + 260, area_top + 300], start=ang, end=ang + 40, fill=rgba(ACCENT, 200), width=6)\nyr = labels[i] if t < 0.5 else labels[min(i + 1, n - 1)]\ntext(yr, cx, RTOP + 40, size=40, color=WARN, center=True)\ntext(f'{int(cur):,} catalogued', cx, area_bot + 30, size=38, color=HIGHLIGHT, center=True)",
+    "topic": "near-Earth asteroids catalogued",
+    "starred": true
+  },
+  {
+    "mechanic": "trawl-net-haul",
+    "concept": "two hanging trawler nets fill with fish sized to the catch, 1993 vs 2024 - nearly the same fullness",
+    "code": "v0 = values[2]; v1 = values[-1]\ncx0 = RX0 + 220; cx1 = RX1 - 220\ntop = RTOP + 160; bot = RBOT - 40\nfor cx, v, col, yr in ((cx0, v0, WARN, labels[2]), (cx1, v1, HIGHLIGHT, labels[-1])):\n    d.line([cx-140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    d.line([cx+140, top, cx, bot-160], fill=rgba(TEXT,150), width=5)\n    frac = clamp(v / vmax) * reveal\n    r = int(120 * frac) + 10\n    d.ellipse([cx-r, bot-160-r, cx+r, bot-160+r], fill=rgba(col, 60))\n    fish = subject_image('fish')\n    cnt = max(1, int(9 * frac))\n    for i in range(cnt):\n        fx = cx - 70 + (i % 3) * 60\n        fy = bot - 220 - (i // 3) * 55\n        if fish is not None:\n            paste(fish, fx, fy, 55, 36)\n    text(yr, cx, top - 60, size=36, color=col, center=True)\n    text(str(int(v)), cx, bot - 20, size=44, color=col, center=True)\nboat = subject_image('fishing trawler boat')\nif boat is not None:\n    bw = 300; bh = int(bw * boat.height / boat.width)\n    paste(boat, (RX0 + RX1) // 2 - bw // 2, top - 120, bw, bh)",
+    "topic": "Capture fisheries production",
+    "starred": false
+  },
+  {
+    "mechanic": "vault-crack-spread",
+    "concept": "a bank vault cracks more and leaks more binary digits as the yearly breach count climbs toward the record",
+    "code": "vault = subject_image('bank vault door')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 260\nvw, vh = 420, 420\nif vault is not None:\n    paste(vault, cx - vw // 2, cy - vh // 2, vw, vh)\nelse:\n    d.ellipse([cx - vw // 2, cy - vh // 2, cx + vw // 2, cy + vh // 2],\n              fill=rgba('#334155', 230), outline=rgba(TEXT, 200), width=6)\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\ncrack_n = 2 + int(6 * clamp(v_now / vmax))\nfor k in range(crack_n):\n    ang = (k / max(1, crack_n)) * 6.283 + reveal\n    x2 = cx + int((vw // 2 + 30) * math.cos(ang))\n    y2 = cy + int((vh // 2 + 30) * math.sin(ang))\n    d.line([cx, cy, x2, y2], fill=rgba(WARN, 220), width=4)\nfor k in range(int(18 * clamp(v_now / vmax))):\n    t = (k * 37 + reveal * 400) % 400\n    px = cx - vw // 2 - 40 + (k * 53) % (vw + 80)\n    py = cy + vh // 2 + int(t * 0.6)\n    if py < RBOT - 40:\n        text('01'[k % 2], px, py, size=22, color=rgba(HIGHLIGHT, 200), center=True)\ntext(labels[i], cx, cy + vh // 2 + 60, size=34, color=WARN, center=True)\ntext(f\"{int(v_now)} breaches\", cx, cy + vh // 2 + 98, size=30, color=TEXT, center=True)",
+    "topic": "US data breaches per year",
+    "starred": true
+  },
+  {
+    "mechanic": "rocket-altitude-climb",
+    "concept": "a rocket climbs an altitude scale marked by each user-count checkpoint, flame flickering as it rises toward 900 million weekly users",
+    "code": "rocket = subject_image('rocket launching into sky')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\ntop_y = RTOP + 140\ntrack_h = base_y - top_y\nidx = clamp(reveal) * (n - 1)\ni = int(idx)\nt = idx - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t)\nfrac = clamp(cur / vmax)\nalt_y = base_y - int(track_h * frac)\nd.line([RX0 + 60, base_y, RX0 + 60, top_y], fill=rgba(TEXT, 150), width=4)\nfor k, lab in enumerate(labels):\n    ty = base_y - int(track_h * clamp(values[k] / vmax))\n    d.line([RX0 + 50, ty, RX0 + 70, ty], fill=rgba(TEXT, 200), width=3)\n    if k <= i:\n        text(lab, RX0 + 80, ty - 16, size=20, color=rgba(TEXT, 200))\nrw, rh = 140, 220\nif rocket is not None:\n    paste(rocket, cx - rw // 2, alt_y - rh, rw, rh)\nelse:\n    d.polygon([(cx, alt_y - rh), (cx - rw // 2, alt_y), (cx + rw // 2, alt_y)], fill=rgba(HIGHLIGHT, 220))\nflame_h = int(30 + 20 * math.sin(reveal * 30))\nd.polygon([(cx - 20, alt_y), (cx + 20, alt_y), (cx, alt_y + flame_h)], fill=rgba(WARN, 220))\ntext(f'{int(cur)}M weekly users', cx, top_y - 70, size=38, color=HIGHLIGHT, center=True)",
+    "topic": "ChatGPT users over time",
+    "starred": false
+  },
+  {
+    "mechanic": "myth-pitcher-duel",
+    "concept": "two water pitchers fill side by side to the myth's 1.9L versus real guidance's 3.2L, so the gap reads as a real volume difference",
+    "code": "v0 = values[0]; v1 = values[-1]\njug = subject_image('glass water pitcher')\nmaxL = 4.0\njw, jh = 220, 420\nbase_y = RBOT - 80\ncx0 = RX0 + 240; cx1 = RX1 - 240\nfor cx, v, col, lbl in ((cx0, v0, WARN, 'THE MYTH'), (cx1, v1, HIGHLIGHT, 'REAL GUIDANCE')):\n    x = cx - jw // 2; y = base_y - jh\n    frac = clamp(v / maxL) * reveal\n    d.rounded_rectangle([x, y, x + jw, y + jh], radius=18, outline=rgba(TEXT, 160), width=4)\n    if jug is not None:\n        fill_image(jug, frac, x, y, jw, jh, direction='up', color=col)\n    else:\n        fp = int(jh * frac)\n        d.rounded_rectangle([x, y + jh - fp, x + jw, y + jh], radius=18, fill=rgba(col, 220))\n    text(lbl, cx, y - 60, size=30, color=col, center=True)\n    text(f'{v:.1f} L', cx, y + jh + 16, size=46, color=col, center=True)\nmid = (cx0 + cx1) // 2\ntext('vs', mid, base_y - jh // 2 - 20, size=40, color=TEXT, center=True)",
+    "topic": "the 8-glasses myth vs real guidance",
+    "starred": false
   }
 ]
