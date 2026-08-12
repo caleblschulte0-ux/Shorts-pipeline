@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260812/DONE",
   "counts": {
     "packages": 6,
-    "requests": 13,
+    "requests": 0,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -384,15 +384,15 @@
           "shot_index": 2,
           "phrase": "refused to answer a message",
           "query": "phone screen unread messages",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
           "phrase": "his nine-fifteen report ever went out",
           "query": "office desk report printout",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
@@ -405,38 +405,32 @@
           "shot_index": 5,
           "phrase": "standing at my desk at eight fifty-nine",
           "query": "manager standing hallway office",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
           "phrase": "more of a guideline",
           "query": "manager talking office door",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
           "phrase": "backdated to the memo",
           "query": "paycheck stub closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 3,
+        "strong": 8,
         "weak": 0,
-        "missing": 5,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.375,
-      "requested": [
-        "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
-        "reddit-clock-in-exactly-on-time-s3-85676eb4ad03",
-        "reddit-clock-in-exactly-on-time-s5-11c2426f20ce",
-        "reddit-clock-in-exactly-on-time-s6-c037238b24b0",
-        "reddit-clock-in-exactly-on-time-s7-7f293a0ae92f"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     },
     {
       "slug": "reddit-gym-arbitration-clause",
@@ -447,418 +441,70 @@
           "shot_index": 0,
           "phrase": "one sentence in twelve-point font",
           "query": "fine print contract closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
           "phrase": "mailed a certified letter instead",
           "query": "certified mail envelope post office",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 2,
           "phrase": "never received it three separate times",
           "query": "customer service phone call frustrated",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
           "phrase": "kept charging my card forty-nine ninety-nine",
           "query": "credit card statement charge",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
           "phrase": "pulled the contract and found their own arbitration clause",
           "query": "reading legal document highlighter",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
           "phrase": "nineteen hundred dollar filing fee",
           "query": "filing fee invoice paperwork",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
           "phrase": "corporate office called within four days",
           "query": "office phone ringing desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
           "phrase": "cashed the refund check",
           "query": "bank check deposit closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 0,
+        "strong": 8,
         "weak": 0,
-        "missing": 8,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.0,
-      "requested": [
-        "reddit-gym-arbitration-clause-s0-e37f14bdddbb",
-        "reddit-gym-arbitration-clause-s1-97335790c841",
-        "reddit-gym-arbitration-clause-s2-a6836453e63f",
-        "reddit-gym-arbitration-clause-s3-311637248706",
-        "reddit-gym-arbitration-clause-s4-574476c1afbd",
-        "reddit-gym-arbitration-clause-s5-d2a281d1fd45",
-        "reddit-gym-arbitration-clause-s6-23e30610ef7e",
-        "reddit-gym-arbitration-clause-s7-78bb0dc75f51"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     }
   ],
-  "requests": [
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s2-5610a3767ad6.png",
-      "prompt_sha256": "272b749092925e977db5588c87e1f5bf707ca16488a7a6d0b3f52a0b59956e87",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s2-5610a3767ad6.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone screen unread messages. It accompanies the narration: \"refused to answer a message\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s3-85676eb4ad03",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s3-85676eb4ad03",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s3-85676eb4ad03.png",
-      "prompt_sha256": "21c6737a7a0d09962eff93598ecf1fe39b18c535dac5a4374ef19d7251020b34",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s3-85676eb4ad03.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office desk report printout. It accompanies the narration: \"his nine-fifteen report ever went out\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s5-11c2426f20ce",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s5-11c2426f20ce",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s5-11c2426f20ce.png",
-      "prompt_sha256": "0a813c82509887c46aba964a421ee7a8149a7d373f2ccd56b9c8fd3edfc61434",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s5-11c2426f20ce.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: manager standing hallway office. It accompanies the narration: \"standing at my desk at eight fifty-nine\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s6-c037238b24b0",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s6-c037238b24b0",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s6-c037238b24b0.png",
-      "prompt_sha256": "9084fe27738583eaa91a5746437220fe39dd82984347e1588b838a4a0b02fb28",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s6-c037238b24b0.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: manager talking office door. It accompanies the narration: \"more of a guideline\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s7-7f293a0ae92f",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s7-7f293a0ae92f",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s7-7f293a0ae92f.png",
-      "prompt_sha256": "cf329808961b900e223be33cddbe400e1c8dc7f0bd16ffbb135e13810a619ab0",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s7-7f293a0ae92f.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: paycheck stub closeup. It accompanies the narration: \"backdated to the memo\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s0-e37f14bdddbb",
-      "safe_request_id": "reddit-gym-arbitration-clause-s0-e37f14bdddbb",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s0-e37f14bdddbb.png",
-      "prompt_sha256": "a06ef15f984580eb90d4203d2e75f91b6ab2defb361bfb63e718dce5808a4528",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s0-e37f14bdddbb.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: fine print contract closeup. It accompanies the narration: \"one sentence in twelve-point font\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s1-97335790c841",
-      "safe_request_id": "reddit-gym-arbitration-clause-s1-97335790c841",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s1-97335790c841.png",
-      "prompt_sha256": "fb7537e35cbc0251762fa40d59e4c20f6f33084d0214e51b1f783810eee7e6ff",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s1-97335790c841.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: certified mail envelope post office. It accompanies the narration: \"mailed a certified letter instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s2-a6836453e63f",
-      "safe_request_id": "reddit-gym-arbitration-clause-s2-a6836453e63f",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s2-a6836453e63f.png",
-      "prompt_sha256": "a47cf9fc563f91480d83e987a2450863a37c4e39ae98c39a37cb3159d971510f",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s2-a6836453e63f.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: customer service phone call frustrated. It accompanies the narration: \"never received it three separate times\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s3-311637248706",
-      "safe_request_id": "reddit-gym-arbitration-clause-s3-311637248706",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s3-311637248706.png",
-      "prompt_sha256": "e9f6027f268bc6552a6560d8a667bff3f72c22029e97ecd53c828c9341be6f63",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s3-311637248706.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: credit card statement charge. It accompanies the narration: \"kept charging my card forty-nine ninety-nine\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s4-574476c1afbd",
-      "safe_request_id": "reddit-gym-arbitration-clause-s4-574476c1afbd",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s4-574476c1afbd.png",
-      "prompt_sha256": "8c676a7052928e300efbc5208762323fde0d376bc308f59f8b228e662847d535",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s4-574476c1afbd.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: reading legal document highlighter. It accompanies the narration: \"pulled the contract and found their own arbitration clause\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s5-d2a281d1fd45",
-      "safe_request_id": "reddit-gym-arbitration-clause-s5-d2a281d1fd45",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s5-d2a281d1fd45.png",
-      "prompt_sha256": "fcf64ec24fe380704bae65e977b521cb0f6478b1c3988dd5ea574655703f2c9b",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s5-d2a281d1fd45.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: filing fee invoice paperwork. It accompanies the narration: \"nineteen hundred dollar filing fee\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s6-23e30610ef7e",
-      "safe_request_id": "reddit-gym-arbitration-clause-s6-23e30610ef7e",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s6-23e30610ef7e.png",
-      "prompt_sha256": "84069c8abb15effcc060bf27ca3e0c43f2749e708c7bb6bb20b4cdf6d1afa64d",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s6-23e30610ef7e.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office phone ringing desk. It accompanies the narration: \"corporate office called within four days\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-gym-arbitration-clause-s7-78bb0dc75f51",
-      "safe_request_id": "reddit-gym-arbitration-clause-s7-78bb0dc75f51",
-      "drive_filename": "20260812__reddit-gym-arbitration-clause-s7-78bb0dc75f51.png",
-      "prompt_sha256": "ac0a91196df2bf9d597fb60f8dd955d1c6afff03f003166b8a466ca21cbfe5f4",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-gym-arbitration-clause-s7-78bb0dc75f51.json",
-      "slug": "reddit-gym-arbitration-clause",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: bank check deposit closeup. It accompanies the narration: \"cashed the refund check\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    }
-  ],
+  "requests": [],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
