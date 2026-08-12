@@ -1,0 +1,98 @@
+{
+  "date": "20260812",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 13,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "0f503554ff82626df84907c4061254a0080a8b653ee1943ef0d6c38087d7b51f",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gea4d33c1beaaa0b7228fdd9ec9c7c919e9550fd27329ebfab8d43cbd688d3c34e4fe775971976745a4e6296fdadb8a219135ebc229cf3d93a7016d1965301b2a_1280.jpg"
+    },
+    {
+      "request_id": "reddit-clock-in-exactly-on-time-s3-85676eb4ad03",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gcd8174bed62c09402f030f82c0581a31acf8b66b82eef7ef30aa80b9a0d463fc3a65ed5e7a99960cf8fed9fc176cf13783168d4a644359b34fd00cab5abf7ecb_1280.jpg"
+    },
+    {
+      "request_id": "reddit-clock-in-exactly-on-time-s5-11c2426f20ce",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfd87492e1cfd532582b041ecf8675619162bd530707721da686ef2f25f379690fd5dcb3421caf9643dd1c2cce5a9e7e465703658e20ee825b503644648f576d4_1280.jpg"
+    },
+    {
+      "request_id": "reddit-clock-in-exactly-on-time-s6-c037238b24b0",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2c4a9a2ae1fb9eab4b69ebb2c81de660aeb75dae4e8847b1b5bf7a0de025600ba35a3394d55fad412f380ab2ccde66136064996ae9d26e20b5ef3ca43e953916_1280.jpg"
+    },
+    {
+      "request_id": "reddit-clock-in-exactly-on-time-s7-7f293a0ae92f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb5bb0124d2e9927b0ac9f5eb88d45e46600ddb30f8c673854d2ee84e50f41c1949b07a507133d524d0075951b98317036b772b37db27a9e237135e092c262fb6_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s0-e37f14bdddbb",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g68c8ed797e8120cd03c8cf7754ff7bce086b6c1cfc81092e634e819ef918582d338ff6a27f275000fdfe4fe6ed6e8870bce858feef299cd5ce999cb903d91168_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s1-97335790c841",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8b2303315b9b5370aa0997976c6d1008c8f97f282c7bae8cd86c8a8412fbb50b08cfa5b26ad0ae048616278bd73cd0acb81eb09f09f7e455a76a58eb69ee4f05_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s2-a6836453e63f",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/4333575/pexels-photo-4333575.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s3-311637248706",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb4b019d9aae1bea4ae51b350b2df2635e11ea8207c27fafd903c0c41e52c33ba7c34d1d4ba83f512af677c2692fb8251d64ed56d83bee3e8ab8a022be36ff31c_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s4-574476c1afbd",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7ec50cc63a9a13ea2f09565f321a1f254838d932a6fb77a15d69e808fd2163d11ffb8d55b57755407bf147b805fb4549f01ba470fba8d7f8434343abdc8cd6f3_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s5-d2a281d1fd45",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g31beb08cbfafd4041bd28ef1da4b4593a9a5bb8e69f7c8c84fc8a7ce179fb968fbaf5bda2fae15334fcba42ea8eab3efb8d96a26fc590cabc3cfe819a8cbd402_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s6-23e30610ef7e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2793b10b04ec4a64638dd6ca3f3971b39609bb52df6a7cf8ab05a60eca18b72a36c733b1d1543f5d35b7a3c7f604ece1e94cb491cd6f62dcf73682d07918429b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-gym-arbitration-clause-s7-78bb0dc75f51",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/4200744/pexels-photo-4200744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  ]
+}

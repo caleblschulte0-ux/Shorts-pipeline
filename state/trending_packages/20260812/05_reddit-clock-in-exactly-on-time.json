@@ -24,7 +24,9 @@
     },
     {
       "phrase": "refused to answer a message",
-      "query": "phone screen unread messages"
+      "query": "phone screen unread messages",
+      "image_url": "https://pixabay.com/get/gea4d33c1beaaa0b7228fdd9ec9c7c919e9550fd27329ebfab8d43cbd688d3c34e4fe775971976745a4e6296fdadb8a219135ebc229cf3d93a7016d1965301b2a_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "his nine-fifteen report ever went out",
@@ -32,7 +34,9 @@
       "pin_query": "report",
       "pin_context": "office document deadline",
       "news_query": "report",
-      "news_angle": "The nine-fifteen report was late and wrong due to the lack of pre-sorting."
+      "news_angle": "The nine-fifteen report was late and wrong due to the lack of pre-sorting.",
+      "image_url": "https://pixabay.com/get/gcd8174bed62c09402f030f82c0581a31acf8b66b82eef7ef30aa80b9a0d463fc3a65ed5e7a99960cf8fed9fc176cf13783168d4a644359b34fd00cab5abf7ecb_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "nobody had pre-sorted the queue",
@@ -45,15 +49,21 @@
     },
     {
       "phrase": "standing at my desk at eight fifty-nine",
-      "query": "manager standing hallway office"
+      "query": "manager standing hallway office",
+      "image_url": "https://pixabay.com/get/gfd87492e1cfd532582b041ecf8675619162bd530707721da686ef2f25f379690fd5dcb3421caf9643dd1c2cce5a9e7e465703658e20ee825b503644648f576d4_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "more of a guideline",
-      "query": "manager talking office door"
+      "query": "manager talking office door",
+      "image_url": "https://pixabay.com/get/g2c4a9a2ae1fb9eab4b69ebb2c81de660aeb75dae4e8847b1b5bf7a0de025600ba35a3394d55fad412f380ab2ccde66136064996ae9d26e20b5ef3ca43e953916_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "backdated to the memo",
-      "query": "paycheck stub closeup"
+      "query": "paycheck stub closeup",
+      "image_url": "https://pixabay.com/get/gb5bb0124d2e9927b0ac9f5eb88d45e46600ddb30f8c673854d2ee84e50f41c1949b07a507133d524d0075951b98317036b772b37db27a9e237135e092c262fb6_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
