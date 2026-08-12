@@ -1,16 +1,50 @@
 [
   {
-    "topic": "Waymo Won The Robotaxi War. Cruise Didn't.",
-    "title": "Waymo Won The Robotaxi War. Cruise Didn't.",
+    "topic": "Lilly Just Overtook Novo In The Weight-Loss Drug War",
+    "title": "Lilly Just Overtook Novo In The Weight-Loss Drug War",
     "format": "graph_race",
-    "publish_at": "2026-08-11T13:00:00Z",
+    "publish_at": "2026-08-12T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/qN9JgZQFgaY",
+    "error": null,
+    "elapsed_seconds": 126.9,
+    "package_path": "state/trending_packages/20260812/01_graph-lilly-overtakes-novo-glp1.json",
+    "source": "brain",
+    "video_path": "output/daily_20260812-092654_lilly_just_overtook_novo_in_the_weight_l.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 83
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Race To A Billion AI Users",
+    "title": "The Race To A Billion AI Users",
+    "format": "graph_race",
+    "publish_at": "2026-08-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The 2023 overtake and the 500K finish land hard, but the first four seconds are two flat lines hugging the bottom of a mostly-black 60K axis \u2014 the race has no visible stakes until it is half over.",
-    "elapsed_seconds": 99.1,
-    "package_path": "state/trending_packages/20260811/01_graph-waymo-vs-cruise-robotaxi.json",
+    "error": "showrunner_block: showrunner BLOCK: A genuine photo-finish race with a real payoff, undercut by an opening 2.5 seconds of empty black grid and labels clipping off the right edge.",
+    "elapsed_seconds": 120.3,
+    "package_path": "state/trending_packages/20260812/02_graph-chatgpt-vs-gemini-billion-users.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-121016_waymo_won_the_robotaxi_war__cruise_didn_.mp4",
+    "video_path": "output/daily_20260812-092901_the_race_to_a_billion_ai_users.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,23 +62,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The 2023 overtake and the 500K finish land hard, but the first four seconds are two flat lines hugging the bottom of a mostly-black 60K axis \u2014 the race has no visible stakes until it is half over.",
-      "score": 74
+      "reason": "showrunner BLOCK: A genuine photo-finish race with a real payoff, undercut by an opening 2.5 seconds of empty black grid and labels clipping off the right edge.",
+      "score": 70
     },
     "blocked": true
   },
   {
-    "topic": "The Detour That Broke The Suez Canal",
-    "title": "The Detour That Broke The Suez Canal",
+    "topic": "Wolves Came Back. The Elk Paid For It.",
+    "title": "Wolves Came Back. The Elk Paid For It.",
     "format": "graph_race",
-    "publish_at": "2026-08-11T13:00:00Z",
+    "publish_at": "2026-08-12T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 59.8,
-    "package_path": "state/trending_packages/20260811/02_graph-suez-vs-cape-good-hope.json",
+    "error": "showrunner_block: showrunner BLOCK: A real, sourced elk-decline chart wrecked by a scraped 'Elk Grove' town-crest logo, a blank white wolf swatch, and a half-empty black frame where the wolf line sits invisible at zero.",
+    "elapsed_seconds": 122.1,
+    "package_path": "state/trending_packages/20260812/03_graph-yellowstone-wolves-vs-elk.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-121155_the_detour_that_broke_the_suez_canal.mp4",
+    "video_path": "output/daily_20260812-093101_wolves_came_back__the_elk_paid_for_it_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -62,23 +96,23 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "reason": "showrunner BLOCK: A real, sourced elk-decline chart wrecked by a scraped 'Elk Grove' town-crest logo, a blank white wolf swatch, and a half-empty black frame where the wolf line sits invisible at zero.",
+      "score": 53
     },
     "blocked": true
   },
   {
-    "topic": "Vaccine-Preventable Diseases Are Roaring Back",
-    "title": "Vaccine-Preventable Diseases Are Roaring Back",
+    "topic": "The Year US Debt Beat The Whole Economy",
+    "title": "The Year US Debt Beat The Whole Economy",
     "format": "graph_race",
-    "publish_at": "2026-08-11T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 62.3,
-    "package_path": "state/trending_packages/20260811/03_graph-measles-vs-whooping-cough.json",
+    "publish_at": "2026-08-12T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/YssTXROufD4",
+    "error": null,
+    "elapsed_seconds": 127.4,
+    "package_path": "state/trending_packages/20260812/04_graph-us-debt-vs-gdp.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-121255_vaccine_preventable_diseases_are_roaring.mp4",
+    "video_path": "output/daily_20260812-093303_the_year_us_debt_beat_the_whole_economy.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -92,64 +126,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.2
+      "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
+      "blocked": false,
+      "reason": "",
+      "score": 75
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "Eggs Now Cost More Than Milk. Seriously.",
-    "title": "Eggs Now Cost More Than Milk. Seriously.",
-    "format": "graph_race",
-    "publish_at": "2026-08-11T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 61.0,
-    "package_path": "state/trending_packages/20260811/04_graph-eggs-vs-milk-prices.json",
-    "source": "brain",
-    "video_path": "output/daily_20260811-121357_eggs_now_cost_more_than_milk__seriously_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
-    "title": "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
+    "topic": "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
+    "title": "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
     "format": "reddit",
-    "publish_at": "2026-08-11T13:00:00Z",
+    "publish_at": "2026-08-12T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid topical shots for the first half, but the last ~11s freezes on one repeated clock still and the captions collide at seg4 \u2014 the punchline lands on a stale frame.",
-    "elapsed_seconds": 244.4,
-    "package_path": "state/trending_packages/20260811/05_reddit-hoa-garden-gnome-bylaws.json",
+    "error": "showrunner_block: showrunner BLOCK: The bottom gameplay is alive but the story half is one frozen, out-of-focus alarm clock held for the entire 40-second body \u2014 the beats are narrated, never shown.",
+    "elapsed_seconds": 281.3,
+    "package_path": "state/trending_packages/20260812/05_reddit-clock-in-exactly-on-time.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-121523_she_fined_me_over_a_garden_gnome__so_i_r.mp4",
+    "video_path": "output/daily_20260812-093536_he_banned_early_clock_ins__so_i_stopped_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 49.567,
+      "duration": 52.533,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -23.4
     },
     "qa": {
       "ok": true,
@@ -169,88 +169,71 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Solid topical shots for the first half, but the last ~11s freezes on one repeated clock still and the captions collide at seg4 \u2014 the punchline lands on a stale frame.",
+      "reason": "showrunner BLOCK: The bottom gameplay is alive but the story half is one frozen, out-of-focus alarm clock held for the entire 40-second body \u2014 the beats are narrated, never shown.",
       "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
-    "title": "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
+    "topic": "My Gym Wouldn't Let Me Cancel. So I Read The Contract.",
+    "title": "My Gym Wouldn't Let Me Cancel. So I Read The Contract.",
     "format": "reddit",
-    "publish_at": "2026-08-11T13:00:00Z",
+    "publish_at": "2026-08-12T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's climax is served by one dark wallet still frozen for the last ten seconds, and the final caption is garbled \u2014 the payoff never lands.",
-    "elapsed_seconds": 253.6,
-    "package_path": "state/trending_packages/20260811/06_reddit-wrong-store-coupon.json",
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['mailed a certified letter instead', 'never received it three separate times', 'kept charging my card forty-nine ninety-nine', 'pulled the contract and found their own arbitratio', 'nineteen hundred dollar filing fee', 'corporate office called within four days', 'cashed the refund check']",
+    "elapsed_seconds": 26.3,
+    "package_path": "state/trending_packages/20260812/06_reddit-gym-arbitration-clause.json",
     "source": "brain",
-    "video_path": "output/daily_20260811-121951_she_waved_a_rival_store_s_coupon_at_me__.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.967,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -27.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story's climax is served by one dark wallet still frozen for the last ten seconds, and the final caption is garbled \u2014 the payoff never lands.",
-      "score": 62
-    },
-    "blocked": true
+    "quarantined": true
   },
   {
-    "topic": "tomb",
-    "angle": null,
-    "publish_at": "2026-08-11T13:00:00Z",
+    "topic": "great white",
+    "angle": "A veteran lifeguard was dragged underwater by a great white shark at a popular family beach, sparking concerns about beach safety.",
+    "publish_at": "2026-08-12T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 25.6,
+    "elapsed_seconds": 9.9,
     "backfill": true
   },
   {
-    "topic": "anthropic claude eu ai watermarks",
-    "angle": null,
-    "publish_at": "2026-08-11T14:30:00Z",
+    "topic": "Dolphins caught on camera using seashells to catch fish for first time - The Independent",
+    "angle": "Dolphins have been observed using seashells to catch fish, a never-before-seen behavior that highlights the intelligence and adaptability of these marine mammals.",
+    "publish_at": "2026-08-12T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 24.5,
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['using seashells', '5 years', 'shoo them away', 'taking videos', 'jumped out of the water', 'walking away']",
+    "elapsed_seconds": 36.4,
+    "title": "Dolphins Stole My Fishing Spot",
+    "package_path": "state/trending_packages/20260812-094046_auto_dolphins_caught_on_camera_using_seashell.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "pence",
-    "angle": null,
-    "publish_at": "2026-08-11T16:00:00Z",
+    "topic": "High school football player in Arkansas practices with viper in helmet",
+    "angle": "A high school football player in Arkansas found a venomous snake in his helmet, highlighting the unusual dangers of sports equipment.",
+    "publish_at": "2026-08-12T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 24.7,
+    "error": "quarantined: illustration coverage 16.7% < 20.0% \u2014 5 shot(s) have no real image and would fall to off-topic keyword stock: ['demanded that I pay', 'entitled attitude', 'yelling at me', 'called him out', 'exposed her scheme']",
+    "elapsed_seconds": 32.2,
+    "title": "Sister's Shocking Lie Exposed",
+    "package_path": "state/trending_packages/20260812-094125_auto_high_school_football_player_in_arkansas_.json",
+    "quarantined": true,
     "backfill": true
   },
   {
-    "topic": "luigi mangione",
-    "angle": null,
-    "publish_at": "2026-08-11T17:30:00Z",
+    "topic": "CAUGHT ON CAMERA: Ohio storm flips car on highway - kyma.com",
+    "angle": "A powerful storm in Ohio flipped a car on a highway, capturing the intense moment on camera and showcasing the destructive power of weather.",
+    "publish_at": "2026-08-12T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 25.0,
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['driving home', 'massive storm', 'passenger seat', '70mph winds', 'rolled 3 times', 'on the news', 'ex-boyfriend']",
+    "elapsed_seconds": 6.1,
+    "title": "Storm Chaser Nightmare",
+    "package_path": "state/trending_packages/20260812-094154_auto_caught_on_camera__ohio_storm_flips_car_o.json",
+    "quarantined": true,
     "backfill": true
   }
 ]
