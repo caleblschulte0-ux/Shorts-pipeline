@@ -6,7 +6,12 @@
   "shots": [
     {
       "phrase": "posted a memo",
-      "query": "office bulletin board memo"
+      "query": "office bulletin board memo",
+      "pin_query": "memo",
+      "pin_context": "office document policy",
+      "news_query": "memo",
+      "news_angle": "The new manager posted a memo banning early clock-ins.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
     },
     {
       "phrase": "clocked in at exactly nine o'clock every",
@@ -18,11 +23,21 @@
     },
     {
       "phrase": "his nine-fifteen report ever went out",
-      "query": "office desk report printout"
+      "query": "office desk report printout",
+      "pin_query": "report",
+      "pin_context": "office document deadline",
+      "news_query": "report",
+      "news_angle": "The manager's nine-fifteen report was late and wrong due to the new policy.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Hurt_Report_cover_page.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "nobody had pre-sorted the queue",
-      "query": "messy inbox paperwork stack"
+      "query": "messy inbox paperwork stack",
+      "pin_query": "queue",
+      "pin_context": "office workflow task",
+      "news_query": "queue",
+      "news_angle": "The queue was pre-sorted by employees who clocked in early.",
+      "image_url": "https://live.staticflickr.com/5301/5557256203_2e8f8bfdc0_b.jpg"
     },
     {
       "phrase": "standing at my desk at eight fifty-nine",
