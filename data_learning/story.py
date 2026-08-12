@@ -259,7 +259,29 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
         seg_cfgs = [seg_cfgs[i] for i in order]
         inss = [inss[i] for i in order]
         if inss[0].kind == "trend":     # don't LEAD with a line: re-depict it
-            inss[0].kind = "timeline"
+            # NOT `timeline`. That was this file's first answer and it made
+            # things worse: `timeline` reveals one dot at a time across the
+            # whole beat, and segment 0 carries the hook lead, so it is the
+            # LONGEST window in the video. The showrunner named it in three
+            # of four stories on 2026-08-12 — "a frozen one-point timeline in
+            # a half-empty frame under a title clipped off both edges", "six
+            # seconds parked on a lone 2001 dot", "holds on '12.8 / 2001' for
+            # 13 seconds". It is also a FULLFRAME renderer with its own title
+            # code, so the measured title fit does not reach it.
+            #
+            # Ask the viz director for this insight's own ranked candidates
+            # and take the first renderable non-line one, so the opener is a
+            # depiction chosen FOR THIS DATA rather than a fixed substitute.
+            _alt = None
+            try:
+                from data_learning import viz_director as _vd
+                _f = _vd._features(inss[0])
+                _alt = next((c for c in _vd._candidates(inss[0], _f)
+                             if c not in ("trend", "timeline")
+                             and _vd.renderable(c)), None)
+            except Exception:  # noqa: BLE001 — never fail a build on this
+                _alt = None
+            inss[0].kind = _alt or "bubbles"
     for i, (seg_cfg, ins) in enumerate(zip(seg_cfgs, inss)):
         # Render a CHEAP build here (few frames) just to resolve anchors from the
         # final frame + settle any viz fallback-hop. The studio renderer

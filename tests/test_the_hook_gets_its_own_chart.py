@@ -70,7 +70,7 @@ def reorder(kinds, keep_order=False):
         seg_cfgs = [seg_cfgs[i] for i in order]
         inss = [inss[i] for i in order]
         if inss[0].kind == "trend":
-            inss[0].kind = "timeline"
+            inss[0].kind = "bubbles"        # stand-in for the director pick
     return [s["n"] for s in seg_cfgs], [i.kind for i in inss]
 
 
@@ -86,7 +86,21 @@ class TestSegmentZeroNeverMoves(unittest.TestCase):
 
     def test_it_is_re_depicted_rather_than_relocated(self):
         _order, kinds = reorder(["trend", "rank", "rank"])
-        self.assertEqual(kinds[0], "timeline")
+        self.assertNotIn(kinds[0], ("trend", "timeline"))
+
+    def test_the_opener_is_never_a_timeline(self):
+        """`timeline` was this file's first answer and it made things worse:
+        it reveals one dot at a time across the whole beat, and segment 0
+        carries the hook lead so it is the LONGEST window in the video. The
+        showrunner named it in three of four stories on 2026-08-12 — "a
+        frozen one-point timeline in a half-empty frame", "six seconds
+        parked on a lone 2001 dot", "holds on '12.8 / 2001' for 13
+        seconds"."""
+        src = (ROOT / "data_learning" / "story.py").read_text()
+        body = src.split("don't LEAD with a line", 1)[1].split("\n    for ", 1)[0]
+        code = "\n".join(l for l in body.splitlines()
+                         if not l.lstrip().startswith("#"))
+        self.assertNotIn('= "timeline"', code)
 
     def test_a_non_trend_opener_is_left_completely_alone(self):
         order, kinds = reorder(["share", "rank", "rank"])
@@ -128,7 +142,7 @@ class TestEdges(unittest.TestCase):
     def test_a_single_segment_story(self):
         order, kinds = reorder(["trend"])
         self.assertEqual(order, [0])
-        self.assertEqual(kinds[0], "timeline")
+        self.assertNotIn(kinds[0], ("trend", "timeline"))
 
     def test_no_segments_at_all(self):
         self.assertEqual(reorder([]), ([], []))
