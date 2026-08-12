@@ -3268,13 +3268,36 @@
       "director_cut": true
     },
     "clip-20260812-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/OnerousGrossDillFUNgineer-nS-SxQ0IX12by8gD",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/ZrLb6MhOXAE",
       "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
       "kind": "twitch_clip",
-      "ts": "2026-08-12T12:01:28.024976+00:00",
+      "ts": "2026-08-12T12:01:31.697622+00:00",
+      "uploaded_at": "2026-08-12T12:01:31.697645+00:00",
+      "publish_at": "2026-08-12T17:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/OnerousGrossDillFUNgineer-nS-SxQ0IX12by8gD",
+      "streamer": "kaicenat",
+      "series": "fail",
+      "hook": "THE BOAT DIDN'T LAST LONG",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 10993,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
+    },
+    "clip-20260812-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CleverDeadDugongPupper-hbMPp6AHXTasD0x2",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Won't Stop Screaming 'Ferox I Love You'",
+      "kind": "twitch_clip",
+      "ts": "2026-08-12T12:06:55.697038+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
