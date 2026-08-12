@@ -262,3 +262,62 @@ class TestTheRepairJudgeCanBeCalledAtAll(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTheClosingTextClearsTheChart(unittest.TestCase):
+    """"the strong bubble finale is buried under overlapping text" — and the
+    fix note that came with it: "Move the CTA block below the bubble cluster
+    ... so it never overlaps 'Hong Kong SAR, China' or 'Gibraltar'".
+
+    On a `lead_payoff` close the LAST segment's chart spans the closing, so
+    anything drawn inside the chart region lands on its value labels. The
+    answer was already in the same function: narration is pinned to the
+    lower-band plate "so it never lands on the chart". The closing's question
+    and CTA now join it.
+    """
+
+    SRC = (ROOT / "data_learning" / "studio_render.py").read_text()
+
+    def ys(self):
+        import data_learning.studio_render as S
+        block = self.SRC.split('question = getattr(st, "question", "")', 1)[1]
+        block = block.split("# Dedupe", 1)[0]
+        q = int(re.search(r"pos\(540,(\d+)\)", block).group(1))
+        cta = int(re.search(r"move\(540,\d+,540,(\d+),", block).group(1))
+        return q, cta, S
+
+    def test_both_sit_below_the_chart(self):
+        q, cta, S = self.ys()
+        chart_bottom = S.CHART_Y + S.CHART_H
+        # an5 is centred; a 2-line fs42 block reaches ~55px above its centre
+        self.assertGreater(q - 55, chart_bottom - 20,
+                           f"question at {q} still overlaps the chart "
+                           f"(bottom {chart_bottom})")
+        self.assertGreater(cta - 34, chart_bottom)
+
+    def test_both_sit_inside_the_foot_band(self):
+        q, cta, S = self.ys()
+        self.assertGreaterEqual(q - 55, S.FOOT_Y - 5)
+        self.assertLess(cta + 34, 1920)
+
+    def test_they_do_not_overlap_each_other(self):
+        q, cta, _S = self.ys()
+        self.assertGreater(cta - 34, q + 55,
+                           "the CTA overlaps the question")
+
+    def test_they_clear_the_sources_strip(self):
+        """Sources are an2 fs15 at y=1898, so they occupy ~1880..1898."""
+        _q, cta, _S = self.ys()
+        self.assertIn("pos(540,1898)", self.SRC)
+        self.assertLess(cta + 34, 1880)
+
+    def test_the_question_cannot_grow_to_three_lines(self):
+        """A third line pushes its top back over the chart, so the wrap is
+        part of the geometry, not a formatting preference."""
+        block = self.SRC.split('question = getattr(st, "question", "")', 1)[1]
+        self.assertIn("_wrap(question, 30)", block)
+
+    def test_it_matches_the_plate_the_narration_already_uses(self):
+        """The precedent is three lines up in the same function — if that
+        plate ever moves, this should move with it."""
+        self.assertIn("pos(540,1734)", self.SRC)
