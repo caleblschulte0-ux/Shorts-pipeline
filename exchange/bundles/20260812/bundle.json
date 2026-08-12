@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260812/DONE",
   "counts": {
     "packages": 6,
-    "requests": 13,
+    "requests": 12,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -377,8 +377,8 @@
           "shot_index": 1,
           "phrase": "clocked in at exactly nine o'clock every",
           "query": "time clock punch card",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 2,
@@ -424,14 +424,13 @@
         }
       ],
       "media_health": {
-        "strong": 3,
+        "strong": 4,
         "weak": 0,
-        "missing": 5,
+        "missing": 4,
         "unknown": 0
       },
-      "strong_fraction": 0.375,
+      "strong_fraction": 0.5,
       "requested": [
-        "reddit-clock-in-exactly-on-time-s1-2b5467c77b1a",
         "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
         "reddit-clock-in-exactly-on-time-s5-11c2426f20ce",
         "reddit-clock-in-exactly-on-time-s6-c037238b24b0",
@@ -520,32 +519,6 @@
     }
   ],
   "requests": [
-    {
-      "request_id": "reddit-clock-in-exactly-on-time-s1-2b5467c77b1a",
-      "safe_request_id": "reddit-clock-in-exactly-on-time-s1-2b5467c77b1a",
-      "drive_filename": "20260812__reddit-clock-in-exactly-on-time-s1-2b5467c77b1a.png",
-      "prompt_sha256": "015f2ba0aa9fb13e5387ca66c1d58688a7326214d5121a57651e98848e3ee3a2",
-      "checkpoint_path": "exchange/bundles/20260812/media-progress/reddit-clock-in-exactly-on-time-s1-2b5467c77b1a.json",
-      "slug": "reddit-clock-in-exactly-on-time",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: time clock punch card. It accompanies the narration: \"clocked in at exactly nine o'clock every\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",
       "safe_request_id": "reddit-clock-in-exactly-on-time-s2-5610a3767ad6",

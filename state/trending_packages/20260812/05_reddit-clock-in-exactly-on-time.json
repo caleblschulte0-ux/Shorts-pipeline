@@ -15,7 +15,12 @@
     },
     {
       "phrase": "clocked in at exactly nine o'clock every",
-      "query": "time clock punch card"
+      "query": "time clock punch card",
+      "pin_query": "clock",
+      "pin_context": "timekeeping device",
+      "news_query": "clock",
+      "news_angle": "The manager was anxiously watching the clock as the employee refused to work before nine o'clock.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "refused to answer a message",
