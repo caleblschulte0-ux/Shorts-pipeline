@@ -779,3 +779,104 @@ renderer contract the whole argument rests on (`windows[0][0] if (i == 0 and
 lead_hook)`), so the two files cannot drift apart silently.
 
 Suite: 887 → **900 tests**.
+
+---
+
+## Sixth pass, 2026-08-12: three ChatGPT tasks fired and left nothing
+
+All three ChatGPT scheduled tasks ran on time — media ~06:03 CT, finalizer
+~07:03, doctor overnight — and committed **nothing**: no
+`media-progress/STARTED.json`, no `response.json`, no `DONE`, no
+`doctor/reports/20260812.json`.
+
+### It was not the instructions, and it was not the bundle
+
+Both were checked before anything was written:
+
+* Today's `bundle.json` is **structurally identical** to yesterday's — same
+  schema, `mode: "author"`, `status: "open"`, well-formed `requests[]` with
+  every field (`prompt_verbatim`, `drive_filename`, `checkpoint_path`,
+  `safe_request_id`, …).
+* It was **present and populated when each worker fired**: 13 requests at
+  06:03 CT, 12 at 07:03 CT.
+* The same tasks committed normally the previous morning — a STARTED.json
+  heartbeat at 06:03, sixteen checkpoints by 06:15, `response.json` 07:06,
+  `DONE` 07:07.
+
+### The decisive observation is STEP 0
+
+The media worker's first instruction is a heartbeat: one small JSON file,
+committed **before** any real work. It needs no Drive, no image generation,
+no bundle parsing, no Phase A. It depends on exactly **one** capability —
+the ability to write to the repo.
+
+It did not land. Neither did the other two tasks' artifacts. On the same
+day. The only thing all three share is that capability.
+
+So the failing component is not the prompts, the contract, or the work: it
+is **ChatGPT's ability to COMMIT from a scheduled session**, which worked at
+08-11 07:07 and has not worked since. No repo change can grant it — a
+stronger prompt cannot make a session write where it has no write path.
+
+**What the repo CAN stop doing is depending on it silently**, and that is
+where the real engineering defects were.
+
+### Defect 1 — a no-show was indistinguishable from an idle day
+
+`daily_alarm` runs at **01:15 UTC**. A 06:03 CT failure therefore went
+unreported for nearly **twenty hours**, long past the point where re-firing
+the task could still have saved the day. And even then the signals were
+ambiguous by construction: an empty `media-progress/` reads the same whether
+the worker failed or the day legitimately had no media requests, exactly as
+an empty doctor backlog reads the same whether every finding was ruled or
+nobody filed one.
+
+Fixed with `scripts/chatgpt_watchdog.py` + `.github/workflows/
+chatgpt_watchdog.yml` — the deterministic half of the boundary the operator
+asked for. **ChatGPT supplies judgment and content; WE verify and record.**
+It runs on paired, DST-gated crons shortly after each task's deadline,
+decides on filesystem evidence, writes
+`state/chatgpt_tasks/<date>/<task>.json`, and exits non-zero so the run goes
+RED. Validated in both directions before shipping:
+
+    20260812 (the failure)  media FAILED · finalizer FAILED · doctor FAILED
+    20260811 (it worked)    media OK     · finalizer OK     · doctor FAILED
+    a date with no bundle   not_required, exit 0 — it does not cry wolf
+
+Care taken so the alarm keeps its credibility: a day with zero media
+requests is `not_required`, not a failure; a `FAILED-<id>.json` note counts
+as a **successful** heartbeat (the worker showed up and said what blocked
+it — "silence is the one output that is never acceptable"); before the
+deadline a task is `pending`, never failed; and the doctor's deadline is
+23:00 CT because it files nightly, so it is judged the following morning
+rather than reported failed every day of its life.
+
+### Defect 2 — a missing verdict would have been silent the same way
+
+The first cut had `daily_alarm` read only the recorded verdicts, which
+recreates the blind spot one level up: a watchdog that never runs produces
+no record, and no record produced no alarm. The alarm now **evaluates live**
+for any task without a record, and says so in the fix text.
+
+### Defect 3 — the bundle was not frozen while a worker was running
+
+Phase A's primary trigger is `workflow_run: ["Auto-merge claude PRs"]`, so
+**every merged PR rewrites the day's bundle.** It ran three times on 08-12,
+the last at 07:02 CT — sixty seconds before the finalizer fired — changing
+the ask from 13 requests to 12 and moving `BUNDLE_ID`.
+
+A guard for this already existed but only engaged when verified
+**checkpoints** were present, so the whole window between "worker announced
+itself" and "first image verified" was unprotected — precisely the window
+STEP 0 exists to mark. Any artifact in `media-progress/` now freezes the
+ask. This did not cause today's failure (nothing was written to orphan) but
+would silently destroy a *successful* run.
+
+### What is still outside the repo
+
+Nothing here can make a scheduled ChatGPT session able to write to GitHub.
+If the connector's write path is unavailable to those tasks, they will keep
+failing — but they will now fail **loudly, by name, within the hour**,
+instead of looking idle until the next morning.
+
+Suite: 938 → **962 tests**.
