@@ -950,11 +950,33 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
     if question:
-        q = ("{\\an5\\pos(540,1330)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
-             "\\shad0\\fad(300,0)}" + _wrap(question, 24))
+        # THE CLOSING STILL HAS A CHART UNDER IT.
+        #
+        # These sat at y=1330 and y=1442, inside the chart region (26..1673),
+        # so on a `lead_payoff` close — where the last segment's chart spans
+        # the closing — they printed straight over its value labels. The
+        # showrunner on 2026-08-11: "the strong bubble finale is buried under
+        # overlapping text", and its own fix note, "Move the CTA block below
+        # the bubble cluster ... so it never overlaps 'Hong Kong SAR, China'
+        # or 'Gibraltar'".
+        #
+        # The answer is three lines up in this same function: narration is
+        # already pinned to the lower-band plate at y=1734 precisely "so it
+        # never lands on the chart". The closing's two lines join it. The
+        # foot band is 1683..1920 and is free during the closing except the
+        # sources strip at 1898, so the stack is:
+        #
+        #     question  an5 fs42, <=2 lines   1690 .. 1800
+        #     CTA       an5 fs54, 1 line      1802 .. 1870
+        #     sources   an2 fs15              1880 .. 1898
+        #
+        # Wrapped at 30 rather than 24 to hold the question to two lines; a
+        # third would push its top back over the chart.
+        q = ("{\\an5\\pos(540,1745)\\fs42\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+             "\\shad0\\fad(300,0)}" + _wrap(question, 30))
         lines.append(f"Dialogue: 5,{_ass_time(qs)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        # CTA pops in late (below the big central mascot) with a bounce.
-        cta = ("{\\an5\\move(540,1454,540,1442,0,900)\\fs54\\c&H" + acc
+        # CTA pops in late, under the question, with the same bounce.
+        cta = ("{\\an5\\move(540,1848,540,1836,0,900)\\fs54\\c&H" + acc
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
