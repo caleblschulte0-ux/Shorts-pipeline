@@ -69,16 +69,22 @@
       "commit": "a4042472ba8131bccb935ff636a67e33673c476f"
     },
     "653acb99b575": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260812",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260811",
           "because": "Confirmed in third_capture/clip_qa.py review(): the outer except at line 444 sets verdict='pass' on ANY internal exception (probe/vision/contact-sheet failure), and scripts/run_third.py:1938 treats verdict!='fail' as ship-it with no other gate downstream. This contradicts the pipeline's fail-closed doctrine (CLAUDE.md showrunner section) even though the local docstring calls it deliberate. Queued to fail closed (verdict='fail'/quarantine) with the exception text preserved as evidence; not built this run \u2014 next highest-value pickup."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260812",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "1660dda"
     },
     "69a886343361": {
       "verdict": "doing",
