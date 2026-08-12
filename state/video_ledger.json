@@ -558,7 +558,7 @@
       "video_id": null,
       "topic_category": "energy",
       "hook_type": "inversion",
-      "hook_text": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
+      "hook_text": "You'd think green energy took off years ago — two decades in, it had barely moved.",
       "words_first_10s": 25,
       "scene_changes_before_5s": 3,
       "depictions": [
@@ -573,7 +573,7 @@
         {
           "t": 0,
           "event": "hook",
-          "detail": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved."
+          "detail": "You'd think green energy took off years ago — two decades in, it had barely moved."
         },
         {
           "t": 7,
@@ -593,7 +593,7 @@
         {
           "t": 40,
           "event": "payoff",
-          "detail": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff."
+          "detail": "Two decades of 'clean energy revolution' headlines — and the grid still ran mostly on the old stuff."
         },
         {
           "t": 48,
@@ -1199,6 +1199,206 @@
           "t": 50,
           "event": "cta",
           "detail": "Do you use ChatGPT every week? Tell me below."
+        }
+      ]
+    },
+    {
+      "slug": "left-handed-minority",
+      "directed_at": "2026-08-12",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "Left-handed? You're rarer than you think.",
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:notebook-ink-bloom",
+        "mechanic:hand-raise-fill-duel",
+        "mechanic:flag-hand-wall"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Why Are You Like This",
+      "notes": "First ledger entry for this slug. Bet: reframe the 'rare trait' curiosity gap as a suppression story (rate tripled once kids stopped being forced to switch), so the arc is jump -> gender gap -> culture, ending on 'permission' not biology -- an inversion of the usual genetics explanation.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'you're rarer than you think' over notebook-ink-bloom build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "notebook-ink-bloom: ink blots grow per birth-era, peak at 1960 then dip by 2026"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "hand-raise-fill-duel: women vs men silhouettes fill to their own rate, +23% gap arrow"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "flag-hand-wall: country flags with hand-size scaled to rate against a world-avg line"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "closing line: being rare just took permission"
+        },
+        {
+          "t": 36,
+          "event": "cta",
+          "detail": "comment-your-handedness question"
+        }
+      ]
+    },
+    {
+      "slug": "light-pollution-erasing-sky",
+      "directed_at": "2026-08-12",
+      "video_id": null,
+      "topic_category": "space",
+      "hook_type": "question",
+      "hook_text": "Ever seen the actual Milky Way?",
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:orange-glow-rise",
+        "mechanic:curtain-wipe-split",
+        "mechanic:night-photo-star-count"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Vanishing Sky",
+      "notes": "First ledger entry for this slug. Bet: make the loss visible by literally erasing the image on screen (glow rising, curtain wiping stars away) rather than charting a brightness index, then land on 'not inevitable' with real country contrasts so the ending isn't just despair.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'ever seen the actual Milky Way' over a full starfield photo"
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "orange-glow-rise: city glow eats the starry sky bottom-up across year checkpoints"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "curtain-wipe-split: city glare wipes 80% of the frame, leaving a 20% sliver of stars"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "night-photo-star-count: four countries' night skies, star density scaled to pristine-sky share"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing line: the stars didn't leave, the lights just won"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "when-did-you-last-see-a-dark-sky question"
+        }
+      ]
+    },
+    {
+      "slug": "americans-stopped-moving",
+      "directed_at": "2026-08-12",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "shock_stat",
+      "hook_text": "Nobody's moving anymore. Here's the data.",
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:moving-truck-thin-out",
+        "mechanic:keychain-rate-scale",
+        "mechanic:permit-stack-rise"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Why Are You Like This",
+      "notes": "First ledger entry for this slug. Bet: chain three causes (mobility collapse -> mortgage lock-in math -> licensing paperwork) each as a physical object changing size, so 'stuck' reads as a mechanism, not just a headline stat.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'nobody's moving anymore' over a road with moving trucks thinning out"
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "moving-truck-thin-out: trucks parked along the road shrink from 1-in-5 to under 1-in-10 by decade"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "keychain-rate-scale: new-loan house key grows far past the existing-loan key"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "permit-stack-rise: a stack of license documents climbs from 1950 to 2023"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing line: we didn't get more content, we got more stuck"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "how-long-have-you-lived-there question"
+        }
+      ]
+    },
+    {
+      "slug": "lottery-odds-vs-real-life",
+      "directed_at": "2026-08-12",
+      "video_id": null,
+      "topic_category": "math",
+      "hook_type": "shock_stat",
+      "hook_text": "The odds are worse than you think.",
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:odds-ring-zoom",
+        "mechanic:shrinking-rarity-circles",
+        "mechanic:ball-drum-swell"
+      ],
+      "ending_type": "consequence",
+      "franchise": "How Rare, Really",
+      "notes": "First ledger entry for this slug. Bet: never print the raw 9-digit numbers as the payoff -- depict scale via log-scaled rings/circle-size instead, since a literal '292,201,338' on screen means nothing at a glance. Ends on the rule change being deliberate, not fate.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'the odds are worse than you think' over odds-ring-zoom build-in"
+        },
+        {
+          "t": 7,
+          "event": "visual_swap",
+          "detail": "odds-ring-zoom: lightning target rings out a few times, jackpot target keeps ringing far past it"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "shrinking-rarity-circles: royal flush, shark attack, jackpot photos shrink log-scaled by rarity"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "ball-drum-swell: the post-2015 lottery drum swells bigger and more crowded with balls"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing line: the jackpot isn't luck, it's the fine print"
+        },
+        {
+          "t": 35,
+          "event": "cta",
+          "detail": "would-you-still-play question"
         }
       ]
     }
