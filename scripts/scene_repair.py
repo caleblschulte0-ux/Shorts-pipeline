@@ -288,7 +288,18 @@ def vision_rank(bdir: Path, survivors: list[dict], claim: str) -> dict | None:
             for pick, ph in ((0, "start"), (len(fs) // 2, "mid"),
                              (len(fs) - 1, "end")):
                 if fs:
-                    labeled.append((f"candidate_{c['index']}@{ph}", fs[pick]))
+                    # (path, label, seconds) — the SAME shape the judge
+                    # unpacks (`for p, lab, ts in labeled`). This used to
+                    # append (label, path): two items, reversed, so every
+                    # call died on "not enough values to unpack (expected
+                    # 3, got 2)" and vision ranking NEVER ran. Every repair
+                    # in production fell to "DEGRADED: objective-only", and
+                    # the objective score saturates at exactly 1.0 for all
+                    # three candidates — so repair was picking blind, and
+                    # picked the same trend+drag_line every single time.
+                    labeled.append((fs[pick],
+                                    f"candidate_{c['index']}@{ph}",
+                                    pick / 30.0))
         grades, backend = sr._judge(
             _RANK_PROMPT.format(n=len(survivors), claim=claim[:200]), labeled)
         if grades.get("winner"):

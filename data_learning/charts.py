@@ -628,7 +628,12 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     pts = insight.items
     x = list(range(len(pts)))
     values = [p.value for p in pts]
-    ax = fig.add_axes([0.13, 0.18, 0.80, 0.56])
+    # Top at 0.80, just under the subtitle band (SUB_Y 0.845). At 0.56 height
+    # the plot stopped at 0.74 and left a further tenth of the card as bare
+    # navy above it — part of the same "empty frame" the showrunner kept
+    # naming. The peak callout sits inside the axes headroom, so raising the
+    # box cannot push it into the subtitle.
+    ax = fig.add_axes([0.13, 0.18, 0.80, 0.62])
     ax.set_facecolor("none")
     lo = min(values)
     span = max(values) - lo
@@ -677,16 +682,41 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
             arts.append((values[k], "pt", x[k], values[k]))
     ax.set_xticks(x)
     ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
-    ax.set_yticks([])
     ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
-    _ylo, _yhi = lo - span * 0.18, max(values) * 1.22
+    # FRAME THE DATA, NOT THE ORIGIN.
+    #
+    # This was `_yhi = max(values) * 1.22` — headroom as a fraction of the
+    # ABSOLUTE VALUE rather than of the variation. For a series that lives in
+    # a narrow band high above zero (a percentage, an index, a population)
+    # that is enormous dead space, and it flattens the very change the video
+    # is about. Measured on the hydropower story of 2026-08-11:
+    #
+    #     values 16.1 .. 18.7  (span 2.6)  ->  ylim 15.63 .. 22.81
+    #     the data occupied 36% of the axis and 20% of the CARD
+    #
+    # The showrunner's notes were "a hairline timeline and an empty lower
+    # frame that no scroller would stay for", "no frame is >30% empty", and
+    # — decisively — "the headline stat, hydro falling from 18.4% to 16.1%,
+    # is never actually shown". It was on screen the whole time, drawn nearly
+    # flat. Padding is now proportional to the SPAN, so the fall reads.
+    _pad = max(span, abs(max(values)) * 0.02, 1e-9)
+    _ylo = lo - _pad * 0.28
+    _yhi = max(values) + _pad * 0.50      # room for the peak callout
     ax.set_ylim(_ylo, _yhi)
-    # Faint horizontal reference lines across the FULL card width so the upper
-    # area reads as chart space, not empty navy. set_yticks([]) meant the old
-    # grid drew nothing, leaving the top two-thirds a void (empty_void).
-    for _f in (0.22, 0.42, 0.62, 0.82):
-        ax.axhline(_ylo + (_yhi - _ylo) * _f, color="#1E2A44",
-                   linewidth=1.3, zorder=0, alpha=0.8)
+    # A non-zero-based axis has to SAY so, or the framing above becomes a way
+    # of overstating a change. `set_yticks([])` drew no scale at all — the
+    # reader could not tell 16-19 from 0-19. Three labelled gridlines make the
+    # framing legible instead of flattering.
+    _ticks = [lo, (lo + max(values)) / 2.0, max(values)]
+    ax.set_yticks(_ticks)
+    ax.set_yticklabels([_ulabel(v, insight.unit) for v in _ticks],
+                       fontsize=19, color=SUBTLE)
+    # Gridlines ON the labelled ticks, so the lines and the scale agree.
+    # These used to sit at four arbitrary fractions of the axis because
+    # set_yticks([]) meant matplotlib's own grid drew nothing — decorative
+    # rules that described no value.
+    for _t in _ticks:
+        ax.axhline(_t, color="#1E2A44", linewidth=1.3, zorder=0, alpha=0.8)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)

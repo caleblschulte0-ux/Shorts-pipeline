@@ -570,6 +570,51 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
                     images += 1
                 break
 
+    # ONE LINE CHART PER VIDEO.
+    #
+    # `_take` lets any `time` or `place` kind repeat freely, on the reasoning
+    # that "place/trend/real-photo depictions may repeat (all good)". For
+    # MAPS that holds — two different countries are two different pictures.
+    # For `trend` it does not: the line-chart template is the same shot every
+    # time, and explainer stories are almost all time series, so videos came
+    # out as three identical charts. The showrunner blocked exactly that on
+    # 2026-08-11 — "One chart-draw template is doing all the work for three
+    # very different numbers, so the video is 89 seconds of the same rising
+    # line", and "Three different indicators rendered as the same faded line
+    # chart with the mascot walking it".
+    #
+    # Done as a POST-PASS rather than a cap inside `_take`: refusing there
+    # can leave a segment with no depiction at all, whereas here a segment
+    # only ever moves to a candidate that is genuinely renderable, and keeps
+    # its line chart when nothing else fits. Variety is worth a lot; a
+    # crashed or mis-shaped render is worth less than a repeat.
+    for _lim in ("trend", "timeline"):
+        _seen = False
+        for i in range(n):
+            if chosen[i] != _lim:
+                continue
+            if not _seen:
+                _seen = True
+                continue
+            # The replacement must not itself be a repeat — the first cut of
+            # this pass turned trend/trend/trend into trend/waffle/waffle,
+            # which is the same complaint with a different template. Honour
+            # the same distinctness rule `_take` uses.
+            def _free(c):
+                m = KINDS.get(c, {})
+                return (m.get("place") or m.get("repeatable")
+                        or c not in used)
+            alt = next((c for c in _candidates(inss[i], feats[i])
+                        if c != _lim and c not in ("trend", "timeline")
+                        and renderable(c) and _free(c)
+                        and not (KINDS.get(c, {}).get("image")
+                                 and images >= image_budget)), None)
+            if alt:
+                chosen[i] = alt
+                used.add(alt)
+                if KINDS.get(alt, {}).get("image"):
+                    images += 1
+
     for ins, k in zip(inss, chosen):
         if k in _SCENE_BUILDERS:                 # deterministic scene token
             builder = getattr(viz_scene, _SCENE_BUILDERS[k])
