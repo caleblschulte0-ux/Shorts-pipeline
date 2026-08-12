@@ -3323,14 +3323,43 @@
       "ts": "2026-08-12T12:47:37.154016+00:00"
     },
     "clip-20260812-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/LuckyAgitatedEagleKeepo-11SA16Q96EelHONx",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/R-9mKdCQJuw",
       "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
       "kind": "twitch_clip",
-      "ts": "2026-08-12T13:07:32.710589+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-12T13:07:39.760651+00:00",
+      "uploaded_at": "2026-08-12T13:07:39.760668+00:00",
+      "publish_at": "2026-08-12T20:00:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/LuckyAgitatedEagleKeepo-11SA16Q96EelHONx",
+      "streamer": "plaqueboymax",
+      "series": "wholesome",
+      "hook": "NO BUDGET ON THIS SHOPPING SPREE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2907,
+      "banger": 0.65,
+      "cut": {
+        "start": 14.4,
+        "end": 29.9
+      },
+      "director_cut": true
+    },
+    "rejected-courageousroundgrassdendiface-ztjtueqibn-kxobq": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CourageousRoundGrassDendiFace-ZtJTueQibN-kxObq",
+      "streamer": "stableronaldo",
+      "title": "LMAOO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling talk, static promo screen, no e)",
+      "ts": "2026-08-12T13:09:55.367075+00:00"
+    },
+    "rejected-geniuswrongcamelhassanchop-9bvujxhryc2xlkux": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GeniusWrongCamelHassanChop-9bVuJxHRyC2xLkUx",
+      "streamer": "caseoh_",
+      "title": "Caseoh Completely Loses It Screaming 'What Do You Want From Me?!'",
+      "qa_rejected": true,
+      "ts": "2026-08-12T13:13:23.179238+00:00"
     }
   }
 }
