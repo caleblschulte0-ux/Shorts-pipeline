@@ -259,7 +259,22 @@ def main() -> int:
     # Rewriting the ask now orphans its work. A re-judge that changes nothing
     # is harmless and allowed through; a changed ask is refused unless the
     # operator explicitly migrates the day.
-    existing_cps = mc.all_checkpoints(args.date)
+    # "A worker is running" is announced by the HEARTBEAT, not only by
+    # finished work. STEP 0 commits media-progress/STARTED.json before any
+    # image exists, and FAILED-<id>.json notes are also evidence of a live
+    # session — but this guard only counted verified checkpoints, so the
+    # whole window between "worker started" and "first image verified" was
+    # unprotected. Phase A re-runs on EVERY auto-merge (three times on
+    # 2026-08-12, the last of them 60 seconds before the finalizer fired,
+    # changing the ask from 13 requests to 12 and moving BUNDLE_ID), so that
+    # window is not theoretical. Any artifact in media-progress/ now freezes
+    # the ask.
+    existing_cps = dict(mc.all_checkpoints(args.date))
+    _prog = mc.progress_dir(args.date)
+    if not existing_cps and _prog.is_dir() and any(_prog.glob("*.json")):
+        existing_cps = {"_heartbeat": {"note": "media-progress/ is not empty"}}
+        print(f"[phase-a] a worker has announced itself for {args.date} "
+              f"(media-progress/ is not empty) — the ask is frozen")
     if existing_cps and not args.rebuild_contract:
         live = mc.ask_fingerprint(bundle)
         frozen_id = mc.bundle_identity(args.date)

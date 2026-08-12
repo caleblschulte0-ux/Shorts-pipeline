@@ -150,6 +150,53 @@ def check(date: str, now=None) -> dict:
               "check below is meaningless until it loads.")
         return {"date": date, "alarms": alarms, "notes": notes, "ok": False}
 
+    # ---- the DETERMINISTIC ChatGPT artifact verdict ---------------------
+    # `scripts/chatgpt_watchdog.py` runs on a cron shortly after each task's
+    # deadline and records, on evidence, whether the artifact landed. That
+    # record is AUTHORITATIVE here: it was written by us, at a known time,
+    # from the filesystem — not inferred hours later from an absence.
+    #
+    # It is deliberately NOT subject to the mid-day deferral below. Whether a
+    # 06:00 task left a file by 07:00 is a settled fact by 07:00; waiting
+    # until 20:15 to mention it is how 2026-08-12 got to mid-afternoon with
+    # three silent tasks and nothing on fire.
+    # If the watchdog never ran there is no record — and a MISSING RECORD
+    # must not be silent, or this fix just moves the blind spot up one level.
+    # So: prefer the recorded verdict, and evaluate live for any task that
+    # has none. The live answer reads the same filesystem and is just as
+    # true; it only lacks the "we checked at 07:00" timestamp.
+    _wd = {}
+    try:
+        import chatgpt_watchdog as _cw
+        _wd = _cw.outcomes(date)
+        for _t in _cw.TASKS:
+            if _t not in _wd:
+                _wd[_t] = _cw.evaluate(_t, date)
+                _wd[_t]["unrecorded"] = True
+    except Exception as exc:                             # noqa: BLE001
+        notes.append(f"chatgpt watchdog not read: {exc}")
+    for _t, _o in sorted(_wd.items()):
+        if _o.get("status") == "FAILED_NO_ARTIFACT":
+            alarm(f"chatgpt_task_failed_{_t}", "critical",
+                  _o.get("headline") or f"{_t} left no artifact for {date}.",
+                  "The scheduled task fired and committed nothing. Its work "
+                  "is judged only by what reaches the repo, so this is a "
+                  "FAILED run, not an idle one. Expected: "
+                  + ", ".join(_o.get("expected") or []) + ". Re-fire the task "
+                  "in the ChatGPT app; the repo side needs no changes."
+                  + (" (No watchdog record for this date — this verdict was "
+                     "computed live, so check that chatgpt_watchdog.yml is "
+                     "firing too.)" if _o.get("unrecorded") else ""))
+        elif _o.get("partial"):
+            alarm(f"chatgpt_task_partial_{_t}", "critical",
+                  f"{_t} wrote response.json but never DONE for {date}.",
+                  "DONE is the only thing that fires the render, so the day "
+                  "is authored and will not ship. Nothing else may create "
+                  "DONE — re-fire the finalizer.")
+        elif _o.get("status") == "ok":
+            notes.append(f"chatgpt {_t}: artifact present")
+
+
     early = _too_early(date, now)
     if early:
         notes.append(f"still before {JUDGE_AFTER_HOUR_CENTRAL}:00 Central on "
@@ -298,7 +345,14 @@ def check(date: str, now=None) -> dict:
                                 if (bd / "media-progress").exists() else []):
                     break
                 streak += 1
+            # The watchdog already reported this outage precisely, hours
+            # earlier and by task. Saying it twice in different words makes
+            # the report harder to read, not louder.
+            _already = any(
+                _wd.get(k, {}).get("status") == "FAILED_NO_ARTIFACT"
+                for k in ("media", "finalizer"))
             alarm("chatgpt_exchange_silent",
+                  "note" if _already else
                   "critical" if streak >= 2 else "warning",
                   f"ChatGPT answered NOTHING for {date} — {asked} image "
                   f"request(s) published, zero checkpoints, no response, no "
