@@ -3360,6 +3360,25 @@
       "title": "Caseoh Completely Loses It Screaming 'What Do You Want From Me?!'",
       "qa_rejected": true,
       "ts": "2026-08-12T13:13:23.179238+00:00"
+    },
+    "rejected-fragilecuriouspigeondogface-75-valjokafrfjos": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/FragileCuriousPigeonDogFace-75-VAljOKafRfjos",
+      "streamer": "loltyler1",
+      "title": "OMEGALUL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static stats screen, generic chat, no ev)",
+      "ts": "2026-08-13T12:01:07.824420+00:00"
+    },
+    "clip-20260813-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/JollyMoistEyeballTwitchRPG-W3vc0Sy7lCqCN_tu",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe He Actually Got The Warden Down",
+      "kind": "twitch_clip",
+      "ts": "2026-08-13T12:04:53.163002+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
