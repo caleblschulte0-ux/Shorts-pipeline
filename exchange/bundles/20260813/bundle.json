@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260813/DONE",
   "counts": {
     "packages": 6,
-    "requests": 10,
+    "requests": 13,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -468,15 +468,15 @@
           "shot_index": 3,
           "phrase": "the drop cloths were discontinued",
           "query": "canvas drop cloth",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 4,
           "phrase": "two aisles over by the pet food",
           "query": "pet food aisle store",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
@@ -489,8 +489,8 @@
           "shot_index": 6,
           "phrase": "an actual employee in a red vest",
           "query": "retail employee red vest",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 7,
@@ -501,17 +501,20 @@
         }
       ],
       "media_health": {
-        "strong": 3,
+        "strong": 0,
         "weak": 0,
-        "missing": 5,
+        "missing": 8,
         "unknown": 0
       },
-      "strong_fraction": 0.375,
+      "strong_fraction": 0.0,
       "requested": [
         "reddit-dont-work-here-s0-a3c7ca5f5575",
         "reddit-dont-work-here-s1-2440c6bc8a3d",
         "reddit-dont-work-here-s2-8151a6619d83",
+        "reddit-dont-work-here-s3-298eda6a00d5",
+        "reddit-dont-work-here-s4-323f8a3298a5",
         "reddit-dont-work-here-s5-2c55ebfafc62",
+        "reddit-dont-work-here-s6-90936589fe90",
         "reddit-dont-work-here-s7-9f58260e268c"
       ]
     }
@@ -726,6 +729,58 @@
       "verdict": "missing"
     },
     {
+      "request_id": "reddit-dont-work-here-s3-298eda6a00d5",
+      "safe_request_id": "reddit-dont-work-here-s3-298eda6a00d5",
+      "drive_filename": "20260813__reddit-dont-work-here-s3-298eda6a00d5.png",
+      "prompt_sha256": "d14eacf07249b8ab3986a1bcfb8a0894913ca64e878ab522367d0ab56e9e7d03",
+      "checkpoint_path": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s3-298eda6a00d5.json",
+      "slug": "reddit-dont-work-here",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: canvas drop cloth. It accompanies the narration: \"the drop cloths were discontinued\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-dont-work-here-s4-323f8a3298a5",
+      "safe_request_id": "reddit-dont-work-here-s4-323f8a3298a5",
+      "drive_filename": "20260813__reddit-dont-work-here-s4-323f8a3298a5.png",
+      "prompt_sha256": "5671e197ed71ae9b6b213943018f1563d78aefa7c564262cb84e1121c8facc4f",
+      "checkpoint_path": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s4-323f8a3298a5.json",
+      "slug": "reddit-dont-work-here",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: pet food aisle store. It accompanies the narration: \"two aisles over by the pet food\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
       "request_id": "reddit-dont-work-here-s5-2c55ebfafc62",
       "safe_request_id": "reddit-dont-work-here-s5-2c55ebfafc62",
       "drive_filename": "20260813__reddit-dont-work-here-s5-2c55ebfafc62.png",
@@ -735,6 +790,32 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: dog treats shelf. It accompanies the narration: \"marched off toward dog treats\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-dont-work-here-s6-90936589fe90",
+      "safe_request_id": "reddit-dont-work-here-s6-90936589fe90",
+      "drive_filename": "20260813__reddit-dont-work-here-s6-90936589fe90.png",
+      "prompt_sha256": "355324f36199c0e8eaa3b2cff9632e4f3312c110f3660b235b64d2d206b22019",
+      "checkpoint_path": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s6-90936589fe90.json",
+      "slug": "reddit-dont-work-here",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: retail employee red vest. It accompanies the narration: \"an actual employee in a red vest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
