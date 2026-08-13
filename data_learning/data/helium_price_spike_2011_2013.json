@@ -1,0 +1,19 @@
+{
+  "key": "helium_price_spike_2011_2013",
+  "title": "Helium price index during the 2011-2013 supply crunch",
+  "unit": "index",
+  "geography": "World",
+  "time_coverage": "2011-2013",
+  "source": {
+    "name": "Helium supply and pricing history",
+    "publisher": "National Academies of Sciences / industry reporting",
+    "url": "https://www.nationalacademies.org/read/12844/chapter/7",
+    "officiality": "reference",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Index (2011 = 100) reflecting the widely-reported roughly 4x increase in helium prices between 2011 and 2013 during a global supply shortage.",
+  "points": [
+    {"label": "2011", "value": 100, "period": "2011"},
+    {"label": "2013", "value": 400, "period": "2013"}
+  ]
+}

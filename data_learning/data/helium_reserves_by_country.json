@@ -1,0 +1,21 @@
+{
+  "key": "helium_reserves_by_country",
+  "title": "Estimated helium reserves by country",
+  "unit": "billion cubic meters",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Mineral Commodity Summaries — Helium",
+    "publisher": "U.S. Geological Survey (USGS)",
+    "url": "https://pubs.usgs.gov/periodicals/mcs2024/mcs2024-helium.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "US reserves converted from USGS's reported 306 billion cubic feet to billion cubic meters for a consistent unit across countries.",
+  "points": [
+    {"label": "Qatar", "value": 10.1},
+    {"label": "United States", "value": 8.7},
+    {"label": "Algeria", "value": 8.2},
+    {"label": "Russia", "value": 6.8}
+  ]
+}

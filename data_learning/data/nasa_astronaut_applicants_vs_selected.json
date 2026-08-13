@@ -1,0 +1,19 @@
+{
+  "key": "nasa_astronaut_applicants_vs_selected",
+  "title": "2017 astronaut class: applicants vs. selected",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2017",
+  "source": {
+    "name": "NASA 2017 Astronaut Candidate Class announcement",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/humans-in-space/astronauts/astronaut-selection-program/",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "NASA's 2017 astronaut class was selected from a record 18,300 applications; 12 candidates were chosen.",
+  "points": [
+    {"label": "Applicants", "value": 18300},
+    {"label": "Selected", "value": 12}
+  ]
+}

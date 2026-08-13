@@ -1,0 +1,19 @@
+{
+  "key": "cavendish_export_share",
+  "title": "Cavendish share of global banana exports",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "current",
+  "source": {
+    "name": "Banana export variety composition",
+    "publisher": "U.S. International Trade Commission",
+    "url": "https://www.usitc.gov/publications/332/executive_briefings/ebot_decarlo_legrand_bananas.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Cavendish bananas make up 99% of internationally exported bananas.",
+  "points": [
+    {"label": "Cavendish", "value": 99},
+    {"label": "All other varieties", "value": 1}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "plastic_waste_growth_2019_2060",
+  "title": "Global plastic waste generated",
+  "unit": "million tons",
+  "geography": "World",
+  "time_coverage": "2019 vs. 2060 (projected)",
+  "source": {
+    "name": "Global Plastics Outlook",
+    "publisher": "OECD",
+    "url": "https://www.oecd.org/en/about/news/press-releases/2022/06/global-plastic-waste-set-to-almost-triple-by-2060.html",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "OECD projects global plastic waste will almost triple between 2019 and 2060.",
+  "points": [
+    {"label": "2019", "value": 353, "period": "2019"},
+    {"label": "2060 (projected)", "value": 1014, "period": "2060"}
+  ]
+}

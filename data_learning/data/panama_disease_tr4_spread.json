@@ -1,0 +1,20 @@
+{
+  "key": "panama_disease_tr4_spread",
+  "title": "Tropical Race 4 (Panama disease) — continents with confirmed detections",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1990-2019",
+  "source": {
+    "name": "Fusarium Wilt of Banana: Current Knowledge on Epidemiology and Research Needs",
+    "publisher": "peer-reviewed plant pathology literature (PMC)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6202804/",
+    "officiality": "reference",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Cumulative count of continents with confirmed Tropical Race 4 detections: first identified in Taiwan/Asia (early 1990s), reached Mozambique/Africa (2013), then Colombia/Latin America (2019) — the strain's first confirmed appearance in the Americas.",
+  "points": [
+    {"label": "1990", "value": 1, "period": "1990"},
+    {"label": "2013", "value": 2, "period": "2013"},
+    {"label": "2019", "value": 3, "period": "2019"}
+  ]
+}
