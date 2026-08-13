@@ -1,0 +1,384 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260813",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "0f99083c52688a4a070c110b8a2bbab4910f14e4",
+    "production_date": "20260813",
+    "bundle_sha256": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820"
+  },
+  "media": [
+    {
+      "request_id": "reddit-email-everything-s1-24862e412cdb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+        "filename": "20260813__reddit-email-everything-s1-24862e412cdb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "43ac74e4aaf055d41197f21da9ea6b5de766f15a465a71c968075d2521b26fce",
+        "bytes": 853693,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-email-everything-s1-24862e412cdb.json",
+        "verified_at": "2026-08-13T11:12:30Z"
+      }
+    },
+    {
+      "request_id": "reddit-email-everything-s3-a4fe8ab645c9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+        "filename": "20260813__reddit-email-everything-s3-a4fe8ab645c9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d6bfd689458ae251d2dd92635ddb1ab433c668524eb64a74d95dcaf64b7f65ae",
+        "bytes": 1369166,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-email-everything-s3-a4fe8ab645c9.json",
+        "verified_at": "2026-08-13T11:14:43.690Z"
+      }
+    },
+    {
+      "request_id": "reddit-email-everything-s5-9db7554b6c2f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+        "filename": "20260813__reddit-email-everything-s5-9db7554b6c2f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d1474c2ae0fe957ae6fe16bfe58b5bf4b4fd470ab4d7dcf2ec1f493ce486a029",
+        "bytes": 1335763,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-email-everything-s5-9db7554b6c2f.json",
+        "verified_at": "2026-08-13T11:14:50.524Z"
+      }
+    },
+    {
+      "request_id": "reddit-email-everything-s6-c6698a2d7477",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+        "filename": "20260813__reddit-email-everything-s6-c6698a2d7477.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7eeb96c3ec1ce8abea03628224374e0acb30ff3542a4eca5685ed20e5cd83ecd",
+        "bytes": 1572860,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-email-everything-s6-c6698a2d7477.json",
+        "verified_at": "2026-08-13T11:14:57.325Z"
+      }
+    },
+    {
+      "request_id": "reddit-email-everything-s7-c2b08a15da4a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+        "filename": "20260813__reddit-email-everything-s7-c2b08a15da4a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d876cd4fb9f7c887732a8f014a02009c3937bb15def4e51ff27e1151e8afb6bc",
+        "bytes": 1029192,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-email-everything-s7-c2b08a15da4a.json",
+        "verified_at": "2026-08-13T11:15:03.751Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s0-a3c7ca5f5575",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+        "filename": "20260813__reddit-dont-work-here-s0-a3c7ca5f5575.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3e77bc1c92722294c241bc056688331c6b13bda2079f36dcc51d5cc8fe4615bf",
+        "bytes": 1546468,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s0-a3c7ca5f5575.json",
+        "verified_at": "2026-08-13T11:15:50.804Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s1-2440c6bc8a3d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+        "filename": "20260813__reddit-dont-work-here-s1-2440c6bc8a3d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "50cc18aa71d70307b7f0168df679609d30d683268c173bdd5041048c58b9683f",
+        "bytes": 1377320,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s1-2440c6bc8a3d.json",
+        "verified_at": "2026-08-13T11:15:56.400Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s2-8151a6619d83",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gSgQuF_eRL5SyRnp3Dr40ZwsePx-i_-N",
+        "filename": "20260813__reddit-dont-work-here-s2-8151a6619d83.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gSgQuF_eRL5SyRnp3Dr40ZwsePx-i_-N",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "199f8b4af61df995b4f3dd9fc0cc7c58ebc9d8875033c736246205f651d371ad",
+        "bytes": 1150264,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s2-8151a6619d83.json",
+        "verified_at": "2026-08-13T11:16:02.354Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s3-298eda6a00d5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+        "filename": "20260813__reddit-dont-work-here-s3-298eda6a00d5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2ae654cfe6b8dae95c455efc26fb4cbd8072bdcc7ec00805a262997c8e6bc8b3",
+        "bytes": 1406489,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s3-298eda6a00d5.json",
+        "verified_at": "2026-08-13T11:16:08.111Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s4-323f8a3298a5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1CFkbKSRRT5nc4Knt71sTTKiS85EjKhPh",
+        "filename": "20260813__reddit-dont-work-here-s4-323f8a3298a5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1CFkbKSRRT5nc4Knt71sTTKiS85EjKhPh",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5f3b4726822c60c2a775ef140d38bc51c195ed878b9ee05d38fe5aecc6536b22",
+        "bytes": 1498414,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s4-323f8a3298a5.json",
+        "verified_at": "2026-08-13T11:17:07.156Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s5-2c55ebfafc62",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "16t0oF8Gyf66eVUIzpI3f8fru9SMgz__2",
+        "filename": "20260813__reddit-dont-work-here-s5-2c55ebfafc62.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=16t0oF8Gyf66eVUIzpI3f8fru9SMgz__2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "738f60698af8eaa3eedd3de09958a59da70f27693626ca89ef79e2719651a287",
+        "bytes": 1605181,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s5-2c55ebfafc62.json",
+        "verified_at": "2026-08-13T11:17:15.036Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s6-90936589fe90",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+        "filename": "20260813__reddit-dont-work-here-s6-90936589fe90.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "edcd4d3f02a77a815b3304abeee8ef88f52a5071b4004c381c2fb002282310f2",
+        "bytes": 1350086,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s6-90936589fe90.json",
+        "verified_at": "2026-08-13T11:17:25.130Z"
+      }
+    },
+    {
+      "request_id": "reddit-dont-work-here-s7-9f58260e268c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+        "filename": "20260813__reddit-dont-work-here-s7-9f58260e268c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d7d5a9307c86c0618e8bbbd9a04061b248b00b649f9c8be425d45d3bd7676b1a",
+        "bytes": 1429159,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260813/media-progress/reddit-dont-work-here-s7-9f58260e268c.json",
+        "verified_at": "2026-08-13T11:17:33.719Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-china-passed-japan-car-exports",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names China, Japan, and the car-export lead change immediately."
+    },
+    {
+      "slug": "graph-streaming-beat-cable-broadcast",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already lands the concrete streaming upset over both cable and broadcast."
+    },
+    {
+      "slug": "graph-airport-that-beat-atlanta",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title creates a clean winner-versus-Atlanta mystery without weakening the chart reveal."
+    },
+    {
+      "slug": "graph-vinyl-outselling-cd-again",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title delivers the specific vinyl-versus-CD reversal in six direct words."
+    },
+    {
+      "slug": "reddit-email-everything",
+      "script": "Email everything? Fine. My new supervisor hated 'wasting time' on hallway questions, so he posted a memo: every request goes through email, no exceptions, effective immediately. I stopped answering anyone who just walked up to my desk. Day one, seven emails piled into his inbox before lunch—each a two-line question he once waved off in ten seconds. By day four, ninety-one unread messages waited, plus a folder titled 'URGENT' with fourteen items, half from himself asking where things were. Very efficient. Day five brought an all-staff meeting: verbal requests were, actually, fine again, especially small ones, and please stop CC'ing him on literally everything. I printed his original memo, framed it, and hung it above my monitor. He passed it every single day and never once said a word. Who really won the email-everything memo?",
+      "editor_note": "Punched up to a two-word question hook, front-loaded the email rule, added one dry efficiency beat, and landed on the memo while preserving every number, entity, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-dont-work-here",
+      "script": "She thought I worked there? I was standing in the paint aisle for four minutes, in street clothes, holding my own basket, when a woman demanded to know why nobody had restocked the drop cloths. I told her, twice, I didn't work there. She said 'don't play dumb' and pointed at a shelf. So I became the single most confident employee that store never hired. I explained the drop cloths were discontinued; the good ones were two aisles over by the pet food, and the industrial size was 'in the back, by returns.' Extremely official. She thanked me and marched off toward dog treats. Ninety seconds later, an actual employee in a red vest passed. She demanded to know why his coworker misdirected her on purpose. He had no idea. I was already checking out. Who promoted the paint-aisle stranger?",
+      "editor_note": "Punched up to a five-word question hook, tightened the fake-employee escalation, added one dry aside, and landed on the paint-aisle stranger while preserving every number, entity, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Famine Forecast Lost: Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s famine forecast aged badly.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher. Quietly, school kept moving.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never showed up. It quietly skipped town while the world grew more food.",
+      "question": "Which shift matters more: school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "The Energy Source Nobody Names Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled — and it isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it hit 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from what we once treated as leftovers.",
+      "question": "Which change hits hardest: fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating forever. The data says it didn't.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that earlier pace."
+      ],
+      "closing": "The planet is still growing. It has simply, quietly, hit the brakes.",
+      "question": "Which shift surprised you most: rural, city, or growth?"
+    }
+  ]
+}
