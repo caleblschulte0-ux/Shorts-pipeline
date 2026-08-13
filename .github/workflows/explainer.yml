@@ -476,6 +476,24 @@ jobs:
           # provenance, the premise bar and the fail-closed showrunner veto
           # still decide what is allowed out.
           PUBLISH_ENABLED: '1'
+          # INTERIM REBUILD POLICY — operator ruling 2026-08-13, twice
+          # reaffirmed ("I don't care if the quality dips ... we should never
+          # not be posting"; the channel had posted nothing for 14 days).
+          # Craft auto-fails (empty_void / decorative_mascot /
+          # bare_number_card / dead_air) stop HARD-blocking and the floor
+          # below decides; junk_imagery and the measured temporal gate still
+          # block at any score, publish runs still fail CLOSED, and the brain
+          # grades exactly as before — every craft note is still recorded for
+          # the repair loop and the retro. Full rationale + the measured
+          # ledger evidence: scripts/showrunner_review.py (POLICY block) and
+          # docs/SYSTEM_AUDIT.md, seventh pass.
+          #
+          # RATCHET PLAN: raise the floor as the retro shows medians climbing
+          # (55 -> 60 -> 70), then END the rebuild by DELETING these two
+          # lines — code defaults restore standard/70. Never widen this to
+          # another channel by copy-paste; trending never opted in.
+          SHOWRUNNER_POLICY: rebuild
+          SHOWRUNNER_MIN_SCORE: '55'
         run: |
           set -e
           MODE="${{ inputs.mode }}";                 [ -z "$MODE" ] && MODE="auto"
