@@ -1,0 +1,21 @@
+{
+  "key": "nasa_astronaut_applicants_trend",
+  "title": "NASA astronaut candidate applicants per selection class",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2013-2025 (selection classes)",
+  "source": {
+    "name": "NASA Astronaut Candidate Class application totals",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/humans-in-space/astronauts/astronaut-selection-program/",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Applicant counts as announced by NASA for each astronaut candidate class selection cycle (2013, 2017, 2021, 2025).",
+  "points": [
+    {"label": "2013", "value": 6300, "period": "2013"},
+    {"label": "2017", "value": 18300, "period": "2017"},
+    {"label": "2021", "value": 12000, "period": "2021"},
+    {"label": "2025", "value": 8000, "period": "2025"}
+  ]
+}

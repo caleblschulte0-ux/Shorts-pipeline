@@ -20282,6 +20282,241 @@
           }
         }
       ]
+    },
+    {
+      "slug": "nasa-astronaut-selection-odds",
+      "title": "Getting Into Space Just Got Nearly Impossible",
+      "hook": "NASA gets 18,000 applicants. Picks 10.",
+      "closing": "Somewhere right now, an astronaut dream just got a rejection email.",
+      "question": "Would you still apply, knowing the odds? Tell me below.",
+      "caption": "NASA's 2017 astronaut class got a record 18,300 applications. It selected 12 — a 0.065% acceptance rate. The active astronaut corps has shrunk from about 149 in 2000 to around 41 today. Would you still apply? 👇",
+      "hashtags": [
+        "nasa",
+        "astronaut",
+        "space",
+        "spacefacts",
+        "spacex",
+        "careers",
+        "odds",
+        "didyouknow",
+        "sciencefacts",
+        "spaceexploration",
+        "jobs",
+        "statistics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "nasa_astronaut_applicants_trend",
+          "params": {
+            "file": "nasa_astronaut_applicants_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE FLOOD",
+          "topic": "NASA astronaut applicants",
+          "say": "In 2017 NASA got a record 18,300 applications for its astronaut program. That's not a typo — eighteen thousand people for one job posting."
+        },
+        {
+          "source": "offline",
+          "key": "nasa_astronaut_applicants_vs_selected",
+          "params": {
+            "file": "nasa_astronaut_applicants_vs_selected.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · THE ODDS",
+          "topic": "applicants vs. selected",
+          "say": "Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate — thinner than any job on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "nasa_active_astronaut_corps_size",
+          "params": {
+            "file": "nasa_active_astronaut_corps_size.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · FEWER SEATS",
+          "topic": "active astronaut corps size",
+          "say": "Even the corps itself shrank — from about 149 active astronauts in 2000 down to around 41 today. Fewer seats, way more applicants."
+        }
+      ]
+    },
+    {
+      "slug": "helium-supply-squeeze",
+      "title": "The Element Running Out Faster Than Anyone Noticed",
+      "hook": "Helium doesn't come back. Ever.",
+      "closing": "Once it's gone, it's gone — literally into space.",
+      "question": "Noticed helium balloons getting pricier? Tell me below.",
+      "caption": "Qatar alone holds more helium reserves than any other country on Earth. Global demand is set to nearly double by 2035 as chipmakers need it to cool production lines. It already caused prices to quadruple once, from 2011 to 2013. 👇",
+      "hashtags": [
+        "helium",
+        "science",
+        "shortage",
+        "chips",
+        "semiconductors",
+        "mri",
+        "sciencefacts",
+        "didyouknow",
+        "supplychain",
+        "manufacturing",
+        "resources",
+        "geology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "helium_reserves_by_country",
+          "params": {
+            "file": "helium_reserves_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · THE SOURCE",
+          "topic": "helium reserves by country",
+          "say": "Almost all of it comes from a handful of countries. Qatar alone holds 10.1 billion cubic meters, more than any nation on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "helium_demand_2024_vs_2035",
+          "params": {
+            "file": "helium_demand_2024_vs_2035.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE SQUEEZE",
+          "topic": "helium demand, 2024 vs. 2035",
+          "say": "Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors need helium to keep production lines cold enough to work."
+        },
+        {
+          "source": "offline",
+          "key": "helium_price_spike_2011_2013",
+          "params": {
+            "file": "helium_price_spike_2011_2013.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · IT HAPPENED BEFORE",
+          "topic": "helium price index",
+          "say": "This already happened once. Prices quadrupled between 2011 and 2013 in the last supply crunch — and demand is climbing even faster this time."
+        }
+      ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "title": "Why 'Just Recycle It' Barely Works",
+      "hook": "Recycling isn't doing what you think.",
+      "closing": "The label says recyclable. The landfill says otherwise.",
+      "question": "Guess: how much plastic actually gets recycled? Drop it below.",
+      "caption": "Global plastic waste is set to almost triple by 2060. Right now only 9% of it actually gets recycled — half goes straight to landfills. Even OECD's best-case forecast only gets recycling to 17% by 2060. 👇",
+      "hashtags": [
+        "recycling",
+        "plastic",
+        "environment",
+        "sustainability",
+        "oecd",
+        "wastemanagement",
+        "climate",
+        "didyouknow",
+        "ecofacts",
+        "pollution",
+        "dataviz",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "plastic_waste_growth_2019_2060",
+          "params": {
+            "file": "plastic_waste_growth_2019_2060.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SCALE",
+          "topic": "global plastic waste generated",
+          "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year."
+        },
+        {
+          "source": "offline",
+          "key": "plastic_waste_end_fate_2019",
+          "params": {
+            "file": "plastic_waste_end_fate_2019.json"
+          },
+          "insight_type": "share",
+          "role": "2 · WHERE IT GOES",
+          "topic": "where plastic waste actually ends up",
+          "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump."
+        },
+        {
+          "source": "offline",
+          "key": "plastic_recycling_rate_2019_vs_2060",
+          "params": {
+            "file": "plastic_recycling_rate_2019_vs_2060.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE 'FIX'",
+          "topic": "recycling rate, today vs. 2060",
+          "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix."
+        }
+      ]
+    },
+    {
+      "slug": "cavendish-banana-monoculture",
+      "title": "Why Every Banana Tastes Exactly The Same",
+      "hook": "Every banana you've eaten is a clone.",
+      "closing": "One fungus away from déjà vu.",
+      "question": "Ever tried a banana that wasn't a Cavendish? Tell me below.",
+      "caption": "99% of bananas sold internationally are one single clone: the Cavendish. Over 1,000 other varieties exist, but almost none are exported. The last time one variety dominated like this — the Gros Michel — a fungus wiped it out. That fungus is spreading again. 👇",
+      "hashtags": [
+        "banana",
+        "bananas",
+        "food",
+        "agriculture",
+        "cavendish",
+        "monoculture",
+        "science",
+        "foodfacts",
+        "didyouknow",
+        "farming",
+        "biology",
+        "sustainability"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cavendish_export_share",
+          "params": {
+            "file": "cavendish_export_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 · ONE CLONE",
+          "topic": "Cavendish share of banana exports",
+          "say": "99 percent of bananas sold internationally are one single variety: the Cavendish. Every one genetically identical — grown from cuttings, not seeds."
+        },
+        {
+          "source": "offline",
+          "key": "banana_varieties_grown_vs_exported",
+          "params": {
+            "file": "banana_varieties_grown_vs_exported.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · NO BACKUP",
+          "topic": "varieties that exist vs. exported",
+          "say": "There are over 1,000 banana varieties on Earth. The entire global export trade runs on essentially just this one clone."
+        },
+        {
+          "source": "offline",
+          "key": "panama_disease_tr4_spread",
+          "params": {
+            "file": "panama_disease_tr4_spread.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · IT HAPPENED BEFORE",
+          "topic": "Panama disease spread",
+          "say": "This happened before — a Panama disease wiped out the world's last banana, the Gros Michel, in the 1950s. The new strain has now reached three continents, and Cavendish has zero genetic backup."
+        }
+      ]
     }
   ],
   "videos": [

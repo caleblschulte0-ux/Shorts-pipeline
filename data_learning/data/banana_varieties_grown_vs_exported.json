@@ -1,0 +1,19 @@
+{
+  "key": "banana_varieties_grown_vs_exported",
+  "title": "Banana varieties that exist vs. varieties actually exported",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "current",
+  "source": {
+    "name": "Global banana cultivar diversity",
+    "publisher": "Bioversity International",
+    "url": "https://www.thefuturemarket.com/biodiversity-banana",
+    "officiality": "reference",
+    "access_date": "2026-08-13"
+  },
+  "notes": "More than 1,000 banana cultivars are known worldwide; effectively one (Cavendish) supplies the global export trade.",
+  "points": [
+    {"label": "Varieties that exist", "value": 1000},
+    {"label": "Varieties actually exported", "value": 1}
+  ]
+}

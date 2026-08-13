@@ -1,0 +1,24 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-email-everything",
+  "title": "He Said Email Everything. So I Did.",
+  "script": "My new supervisor hated 'wasting time' on hallway questions, so he posted a memo: every request goes through email, no exceptions, effective immediately. Fine by me — I stopped answering anyone who just walked up to my desk, no matter how small the ask. Day one, seven emails piled into his inbox before lunch, every one a two-line question he used to wave off verbally in ten seconds. By day four he had ninety-one unread messages and a folder titled 'URGENT' with fourteen items in it, half of them from himself asking where things were. Day five he called an all-staff meeting to announce that verbal requests were, actually, fine again, small ones especially, and could everyone please stop CC'ing him on literally everything. I printed his original memo, framed it, and hung it directly above my monitor. He walked past it every single day and never once said a word about taking it down.",
+  "shots": [
+    {"phrase": "posted a memo", "query": "office memo bulletin board"},
+    {"phrase": "answering anyone who just walked up", "query": "office cubicle desk"},
+    {"phrase": "seven emails piled into his inbox", "query": "email inbox overflow"},
+    {"phrase": "ninety-one unread messages", "query": "computer screen inbox"},
+    {"phrase": "an all-staff meeting", "query": "office meeting room"},
+    {"phrase": "verbal requests were, actually, fine again", "query": "manager talking employees"},
+    {"phrase": "framed it", "query": "framed paper wall"},
+    {"phrase": "never once said a word", "query": "office hallway walking"}
+  ],
+  "punches": [
+    {"phrase": "no exceptions", "text": "NO EXCEPTIONS", "color": "#ffaa30"},
+    {"phrase": "ninety-one unread messages", "text": "91 UNREAD", "color": "#ff3030"},
+    {"phrase": "verbal requests were, actually, fine again", "text": "POLICY REVERSED", "color": "#50ff80"}
+  ],
+  "hashtags": ["maliciouscompliance", "workplace", "9to5", "corporatelife", "reddit", "worklife", "management", "office", "boss", "karma", "workplacestories", "officelife"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
