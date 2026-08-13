@@ -1848,17 +1848,10 @@
     }
   ],
   "recent_commits": [
-    "c1f3cee 2026-08-12 doctor: findings for 20260812",
-    "4f369b6 2026-08-13 explainer: update posted log + analytics [skip ci]"
+    "299e93b 2026-08-13 doctor: mark 6e0d256d4c2f done (merged in #271) (#272)",
+    "05e1e92 2026-08-13 exchange: phase A bundle for 20260813 [skip ci]"
   ],
   "open_backlog": [
-    {
-      "signature": "6e0d256d4c2f",
-      "title": "Missing showrunner hard-check answers count as passes",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
-    },
     {
       "signature": "69a886343361",
       "title": "Production shortfall test never executes the red exit path",
@@ -1892,7 +1885,7 @@
       "title": "Daily alarm attributes the latest trending report to historical dates",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
@@ -1906,7 +1899,7 @@
       "title": "Punch-up guard loses repeated numeric claims",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "e02d4cf673bd",
@@ -1927,7 +1920,7 @@
       "title": "Showrunner memory drops the scene diagnosis needed to detect recurrences",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -2021,6 +2014,13 @@
       "date": "20260811",
       "because": "Confirmed: engines/render_qa.py (fail-open on analyzer error) and shared/video_qa.py (fail-closed) are two independent finished-video QA engines with different semantics, used by different channels (trending vs third capture). Consolidating them safely needs parity fixtures across both channels before either implementation can be retired \u2014 real risk of silently changing what ships if rushed. Parking as long_term; not something to build in a single triage session.",
       "revisit_after": "20260910"
+    },
+    {
+      "signature": "6e0d256d4c2f",
+      "verdict": "done",
+      "date": "20260813",
+      "because": "",
+      "revisit_after": null
     }
   ]
 }
