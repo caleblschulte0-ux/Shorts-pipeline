@@ -6,11 +6,56 @@
   "y_label": "Vehicle exports (millions of units)",
   "duration": 13,
   "source": "Annual vehicle export volumes: China Association of Automobile Manufacturers (CAAM) for China 2020-2024 figures; Japan Automobile Manufacturers Association (JAMA) reporting via Reuters/Nikkei for Japan; 2018-2019 figures approximate from industry trend data. Figures approximate.",
-  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024],
-  "series": [
-    {"name": "Japan", "color": "#bc002d", "icon": "JP", "values": [4.87, 4.82, 3.75, 3.82, 3.81, 4.42, 4.2]},
-    {"name": "China", "color": "#de2910", "icon": "CN", "values": [1.04, 1.02, 0.995, 2.015, 3.11, 4.91, 5.86]}
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
   ],
-  "hashtags": ["china", "japan", "carexports", "automotive", "byd", "manufacturing", "globaltrade", "evexports", "tradewar", "carindustry"],
+  "series": [
+    {
+      "name": "Japan",
+      "color": "#bc002d",
+      "icon": "JP",
+      "values": [
+        4.87,
+        4.82,
+        3.75,
+        3.82,
+        3.81,
+        4.42,
+        4.2
+      ]
+    },
+    {
+      "name": "China",
+      "color": "#de2910",
+      "icon": "CN",
+      "values": [
+        1.04,
+        1.02,
+        0.995,
+        2.015,
+        3.11,
+        4.91,
+        5.86
+      ]
+    }
+  ],
+  "hashtags": [
+    "china",
+    "japan",
+    "carexports",
+    "automotive",
+    "byd",
+    "manufacturing",
+    "globaltrade",
+    "evexports",
+    "tradewar",
+    "carindustry"
+  ],
   "music_vibe": "cinematic"
 }

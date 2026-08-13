@@ -4,22 +4,90 @@
   "title": "She Wouldn't Believe I Don't Work Here. So I Helped.",
   "script": "I was standing in the paint aisle for four minutes, in street clothes, holding my own basket, when a woman marched up demanding to know why nobody had restocked the drop cloths. I told her, twice, I didn't work there. She said 'don't play dumb' and pointed at a shelf, so I stopped arguing and became the single most confident employee that store never hired. I told her the drop cloths were discontinued, the good ones were two aisles over by the pet food, and the industrial size was 'in the back, by returns.' She thanked me and marched off toward dog treats. Ninety seconds later an actual employee in a red vest walked past, and she flagged him down demanding to know why his coworker sent her to the wrong aisle on purpose. He had no idea what she was talking about. I was already checking out.",
   "shots": [
-    {"phrase": "the paint aisle", "query": "hardware store aisle"},
-    {"phrase": "in street clothes, holding my own basket", "query": "shopping basket person"},
-    {"phrase": "don't play dumb", "query": "woman pointing shelf"},
-    {"phrase": "the drop cloths were discontinued", "query": "canvas drop cloth"},
-    {"phrase": "two aisles over by the pet food", "query": "pet food aisle store"},
-    {"phrase": "marched off toward dog treats", "query": "dog treats shelf"},
-    {"phrase": "an actual employee in a red vest", "query": "retail employee red vest"},
-    {"phrase": "I was already checking out", "query": "checkout register store"}
+    {
+      "phrase": "the paint aisle",
+      "query": "hardware store aisle"
+    },
+    {
+      "phrase": "in street clothes, holding my own basket",
+      "query": "shopping basket person"
+    },
+    {
+      "phrase": "don't play dumb",
+      "query": "woman pointing shelf"
+    },
+    {
+      "phrase": "the drop cloths were discontinued",
+      "query": "canvas drop cloth",
+      "pin_query": "drop cloths",
+      "pin_context": "painting supplies home improvement",
+      "news_query": "drop cloths",
+      "news_angle": "The woman demanded to know why the drop cloths were not restocked in the store.",
+      "image_url": "https://live.staticflickr.com/4046/4328854203_d763608f54_b.jpg"
+    },
+    {
+      "phrase": "two aisles over by the pet food",
+      "query": "pet food aisle store",
+      "pin_query": "pet food",
+      "pin_context": "animal supplies store aisle",
+      "news_query": "pet food",
+      "news_angle": "The narrator sent the woman to the pet food aisle to find the good drop cloths.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Pet_Food_Aisle.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "marched off toward dog treats",
+      "query": "dog treats shelf"
+    },
+    {
+      "phrase": "an actual employee in a red vest",
+      "query": "retail employee red vest",
+      "pin_query": "red vest",
+      "pin_context": "store employee uniform",
+      "news_query": "red vest",
+      "news_angle": "An actual employee wearing a red vest walked past the narrator after the woman had been misdirected.",
+      "image_url": "https://live.staticflickr.com/2818/32970329112_7566436113_b.jpg"
+    },
+    {
+      "phrase": "I was already checking out",
+      "query": "checkout register store"
+    }
   ],
   "punches": [
-    {"phrase": "don't play dumb", "text": "\"DON'T PLAY DUMB\"", "color": "#ffaa30"},
-    {"phrase": "the drop cloths were discontinued", "text": "DISCONTINUED", "color": "#ff3030"},
-    {"phrase": "in the back, by returns", "text": "\"BY RETURNS\"", "color": "#ffaa30"},
-    {"phrase": "had no idea what she was talking about", "text": "NO IDEA", "color": "#50ff80"}
+    {
+      "phrase": "don't play dumb",
+      "text": "\"DON'T PLAY DUMB\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "the drop cloths were discontinued",
+      "text": "DISCONTINUED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "in the back, by returns",
+      "text": "\"BY RETURNS\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "had no idea what she was talking about",
+      "text": "NO IDEA",
+      "color": "#50ff80"
+    }
   ],
-  "hashtags": ["idontworkhere", "retail", "reddit", "pettyrevenge", "storystory", "funnystory", "customerservice", "shopping", "karma", "hardwarestore", "retailproblems", "storetime"],
+  "hashtags": [
+    "idontworkhere",
+    "retail",
+    "reddit",
+    "pettyrevenge",
+    "storystory",
+    "funnystory",
+    "customerservice",
+    "shopping",
+    "karma",
+    "hardwarestore",
+    "retailproblems",
+    "storetime"
+  ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
 }
