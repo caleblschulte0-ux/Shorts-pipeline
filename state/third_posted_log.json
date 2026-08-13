@@ -3401,13 +3401,45 @@
       "ts": "2026-08-13T12:07:35.153317+00:00"
     },
     "clip-20260813-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/ConfidentHealthyHamHotPokket-UWbt1aWEuHnzGkM1",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/n9PcMJW1L6E",
       "title": "Ludwig Reaction Was Just 'Dude....'",
       "kind": "twitch_clip",
-      "ts": "2026-08-13T13:08:47.449940+00:00",
+      "ts": "2026-08-13T13:08:53.980571+00:00",
+      "uploaded_at": "2026-08-13T13:08:53.980587+00:00",
+      "publish_at": "2026-08-13T20:00:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/ConfidentHealthyHamHotPokket-UWbt1aWEuHnzGkM1",
+      "streamer": "ludwig",
+      "series": "chaos",
+      "hook": "ALL HE COULD SAY WAS DUDE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3137,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 49.0
+      },
+      "director_cut": true
+    },
+    "rejected-lachrymosewildsashiminotlikethis-s0_nvabk8lb31jmg": {
+      "source_url": "https://www.twitch.tv/forsen/clip/LachrymoseWildSashimiNotLikeThis-s0_NVaBk8lb31JMg",
+      "streamer": "forsen",
+      "title": "forsen on a stealth mission",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (routine stealth gameplay, no real event)",
+      "ts": "2026-08-13T13:11:19.272917+00:00"
+    },
+    "clip-20260813-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/GleamingPlumpHawkCoolCat-B4ETJ6WM6yq8i-FV",
+      "story_key": null,
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Gets Corrected On This Streamer's Real Name",
+      "kind": "twitch_clip",
+      "ts": "2026-08-13T13:14:56.817160+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
