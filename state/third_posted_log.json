@@ -3454,6 +3454,22 @@
         "end": 23.7
       },
       "director_cut": true
+    },
+    "rejected-faintartisticgalagodxabomb-srtf4vehnwl_ri1x": {
+      "source_url": "https://www.twitch.tv/cinna/clip/FaintArtisticGalagoDxAbomb-sRtF4VEHnWL_Ri1X",
+      "streamer": "cinna",
+      "title": "ROSII SHOWERS WITH ZOIL?!!!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just showering, no real event)",
+      "ts": "2026-08-13T13:20:30.219702+00:00"
+    },
+    "rejected-interestingsourmonkeyampenergycherry-0cw3lkmz8ygovnbw": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/InterestingSourMonkeyAMPEnergyCherry-0Cw3LkMz8YGOvnbW",
+      "streamer": "jasontheween",
+      "title": "Jasontheween Reacts To Rosii And Zoil Showering Together",
+      "qa_rejected": true,
+      "ts": "2026-08-13T13:24:52.245242+00:00"
     }
   }
 }
