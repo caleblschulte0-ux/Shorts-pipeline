@@ -32,20 +32,6 @@
     "starred": true
   },
   {
-    "sig": "b837b288dcb4",
-    "mechanic": "migration-map",
-    "concept": "a stylized world map with migration paths tracing the routes of each bird species, their images and values displayed at the terminus of each path",
-    "code": "\nfor i in range(n):\n    v = values[i]\n    label = labels[i]\n    img = subject_image(label)\n    cx = RX0 + 200 + i * 260\n    cy = RBOT - 200\n    if img is not None:\n        asp = img.width / img.height\n        w = 140\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h, w, h)\n    path_x = [cx, cx, RX0 + 100, RX1 - 100, cx]\n    path_y = [cy, RTOP + 100, RTOP + 100, RTOP + 100, cy]\n    for j in range(len(path_x) - 1):\n        dx = path_x[j + 1] - path_x[j]\n        dy = path_y[j + 1] - path_y[j]\n        dist = math.sqrt(dx * dx + dy * dy)\n        dx /= dist\n        dy /= dist\n        steps = int(dist * reveal * 10)\n        for k in range(steps):\n            x = path_x[j] + k * dx * dist / steps\n            y = path_y[j] + k * dy * dist / steps\n            d.ellipse([x - 2, y - 2, x + 2, y + 2], fill=rgba(ACCENT, 255))\n    text(str(int(v)) + ' miles', cx, cy + 20, size=36, color=TEXT, center=True)\n    text(label, cx, cy - 40, size=32, center=True)\n",
-    "topic": "Longest Migrations"
-  },
-  {
-    "sig": "7f3a9ec7ae51",
-    "mechanic": "cargo-crane",
-    "concept": "a cargo crane lifts shipping containers filled to each ship's cargo capacity, with the ship's photo and label displayed alongside",
-    "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RTOP + 200\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    fill_image(subject_image('shipping container'), clamp(v / vmax) * reveal, cxs - r, cy - r, r * 2, r * 2)\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy + r + 20, w, h)\n    text(str(int(v)) + ' TEU', cxs, cy + r + 150, size=46, color=col, center=True)\n    text(labels[i], cxs, cy + r + 220, size=38, center=True)\n    crane_y = lerp(cy + r + 20, cy + r + 150, reveal)\n    d.line([cxs, crane_y, cxs, cy + r + 150], fill=rgba(col, 255), width=8)\n",
-    "topic": "Cargo Capacity"
-  },
-  {
     "sig": "5f0c4600df0d",
     "mechanic": "ancient-scrolls",
     "concept": "two ancient scrolls with images of food unroll to reveal the year and recipe name, the length of the unrolled portion representing the time period",
@@ -165,6 +151,13 @@
     "topic": "Forest Oxygen"
   },
   {
+    "sig": "172f69baf686",
+    "mechanic": "petalometer",
+    "concept": "a stylized flower blooms in sync with the data, each petal representing a research paper, with the center filling to show the proportion of plant-based medicines",
+    "code": "\nfor i in range(n):\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    cx = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 500\n    r = 150\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 90), width=4)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cx - r, cy - r, cx + r, cy + r], 150, int(sweep), fill=rgba(col, 255), width=16)\n    img = subject_image('plant cell')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h // 2, w, h)\n    text(labels[i], cx, cy - r - 100, size=38, color=col, center=True)\n    text(str(int(v)) + ' ' + 'percent' if i == 0 else 'percent', cx, cy + r + 100, size=38, color=col, center=True)\nmid = clamp((reveal - 0.4) / 0.6)\nif mid > 0:\n    fill_image(subject_image('flower'), mid, RX0 + 500, RTOP + 200, 400, 600, 'up', ACCENT)\n    text('Plant Toxin Research', RX0 + 500, RTOP + 50, size=46, color=TEXT, center=True)\n",
+    "topic": "Plant Toxin Research"
+  },
+  {
     "sig": "1f9340d9b99d",
     "mechanic": "toxin-vials",
     "concept": "Two toxin-filled vials rise from the bottom, their fill levels and labels indicating the potency and quantity of the toxins.",
@@ -191,6 +184,13 @@
     "concept": "gears and conveyor belts show the production of teeth, with images of sharks and snakes on the belts",
     "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 200 + i * 300\n    r = 80\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.ellipse([cxs - r, cy - r, cxs + r, cy + r], fill=rgba(TEXT, 90))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 120\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    text(str(int(v)) + ' teeth', cxs, cy + r + 50, size=36, color=col, center=True)\n    text(labels[i], cxs, cy + r + 100, size=32, center=True)\n    if reveal > 0.5:\n        d.line([cxs, cy - r, cxs, cy + r], fill=rgba(col, 255), width=5)\n        for j in range(int((reveal - 0.5) * 10)):\n            x = cxs + (j % 2 == 0 and 1 or -1) * (j // 2) * 20\n            y = cy + (j % 2 == 0 and 1 or -1) * 20\n            d.ellipse([x - 10, y - 10, x + 10, y + 10], fill=rgba(col, 255))\n",
     "topic": "Tooth Replacement"
+  },
+  {
+    "sig": "d72fb2b9f2a8",
+    "mechanic": "hairgrowth",
+    "concept": "two hair follicles with growing strands, each with a label and value displayed",
+    "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = 560\n    d.ellipse([cxs - 50, cy - 50, cxs + 50, cy + 50], fill=rgba(TEXT, 90))\n    strand_length = 100 * clamp(v / vmax) * reveal\n    d.line([cxs, cy, cxs, cy - strand_length], fill=rgba(HIGHLIGHT if i == 0 else ACCENT, 255), width=10)\n    img = subject_image('human hair')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - 50 - h, w, h)\n    text(labels[i], cxs, cy + 70, size=38, center=True)\n    text(str(int(v)) + ' years', cxs, cy - 120, size=40, color=HIGHLIGHT if i == 0 else ACCENT, center=True)\n",
+    "topic": "Hair Care"
   },
   {
     "sig": "790d055a3306",
@@ -233,6 +233,13 @@
     "concept": "a trail of water droplets rises from the desert floor, with each droplet's size and label representing the data points",
     "code": "\nfor i in range(n):\n    v = values[i]\n    y = RTOP + 200 + i * 150\n    img = subject_image('water droplet')\n    if img is not None:\n        asp = img.width / img.height\n        w = int(30.0 * (v / vmax) * reveal)\n        h = int(w / asp)\n        paste(img, RX0 + 20, y, w, h)\n    text(labels[i], RX0 + 60, y + h // 2, size=38, center=False)\n    text(str(int(v)) + ' mm/yr', RX0 + 220, y + h // 2, size=38, center=False)\n    trail_len = int(200.0 * reveal)\n    for j in range(trail_len):\n        d.ellipse([RX0 + 20 + j * 2, y + h // 2 - 5, RX0 + 20 + j * 2 + 5, y + h // 2 + 5], fill=rgba(HIGHLIGHT, 128))\n",
     "topic": "Drop vs Puddle"
+  },
+  {
+    "sig": "62c6f879039e",
+    "mechanic": "rootgrowth",
+    "concept": "A botanical garden scene where roots of different plants grow and rise from the bottom to represent the root growth rate of each data point",
+    "code": "\ncx = (RX0 + RX1) // 2\ncy = RBOT\nd.rectangle([RX0, RTOP, RX1, RBOT], fill=rgba((34, 139, 34), 100))\nfor i in range(n):\n    v = values[i]\n    x = RX0 + (i + 0.5) * (RX1 - RX0) / n\n    h = lerp(0, 600, clamp(v / vmax))\n    root_h = int(h * reveal)\n    d.line([x, cy, x, cy - root_h], fill=rgba(ACCENT, 255), width=8)\n    img = subject_image('roots')\n    if img is not None:\n        asp = img.width / img.height\n        w = 40\n        h = int(w / asp)\n        paste(img, x - w // 2, cy - root_h - h, w, h)\n    text(labels[i], x, cy + 40, size=36, color=TEXT, center=True)\n    text(str(v) + ' inches', x, cy - root_h - 60, size=36, color=TEXT, center=True)\n",
+    "topic": "Root Growth Rate"
   },
   {
     "sig": "f0ba0042702f",
@@ -415,24 +422,11 @@
     "starred": false
   },
   {
-    "mechanic": "clone-army-grid",
-    "concept": "a grid of 80 identical Cavendish bananas fills the frame; exactly one heirloom variety stands out at the very end - the lone 1 percent",
-    "code": "banana = subject_image('cavendish banana photo')\nodd = subject_image('unusual heirloom banana variety photo')\ncols, rows = 10, 8\ntotal = cols * rows\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 170\nshown = int(clamp(reveal) * total)\nodd_idx = total - 1\nfor k in range(shown):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    img = odd if (k == odd_idx and odd is not None) else banana\n    if img is not None:\n        paste(img, x + 3, y + 3, cell - 6, cell - 6)\n    else:\n        d.rectangle([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(HIGHLIGHT, 200))\ntext('99% ARE THE SAME CLONE', (RX0 + RX1) // 2, RTOP + 70, size=27, color=TEXT, center=True)\nif shown >= odd_idx:\n    ox = gx0 + (odd_idx % cols) * cell\n    oy = gy0 + (odd_idx // cols) * cell + cell + 12\n    text('1 IN 100 IS DIFFERENT', ox - 60, oy, size=20, color=WARN)\n",
-    "topic": "Cavendish share of banana exports",
-    "starred": true
-  },
-  {
-    "mechanic": "funnel-to-hatch",
-    "concept": "a packed grid standing for all 18,300 applicants narrows through a funnel into a spacecraft hatch that only fits a handful of gold astronaut helmets - the 12 selected",
-    "code": "crowd = subject_image('crowd of tiny people icon silhouette')\nhelmet = subject_image('gold astronaut helmet icon')\ncols, rows = 22, 10\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 140\ntotal_cells = cols * rows\nshown = int(clamp(reveal) * total_cells)\nfor k in range(shown):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    if crowd is not None:\n        paste(crowd, x + 2, y + 2, cell - 4, cell - 4)\n    else:\n        d.ellipse([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(TEXT, 90))\nfunnel_top_y = gy0 + rows * cell + 10\nfunnel_bot_y = funnel_top_y + 130\nfx0, fx1 = RX0 + 260, RX1 - 260\nd.polygon([(RX0 + 40, funnel_top_y), (RX1 - 40, funnel_top_y), (fx1, funnel_bot_y), (fx0, funnel_bot_y)],\n          outline=rgba(TEXT, 200), width=5)\nhatch_w = fx1 - fx0\nselected = int(values[-1])\nshown_sel = int(clamp(reveal) * selected)\nfor i in range(shown_sel):\n    hx = fx0 + 20 + (i % 6) * ((hatch_w - 60) // 6)\n    hy = funnel_bot_y + 20 + (i // 6) * 34\n    if helmet is not None:\n        paste(helmet, hx, hy, 30, 30)\n    else:\n        d.ellipse([hx, hy, hx + 26, hy + 26], fill=rgba(HIGHLIGHT, 230))\ntext(f'{int(values[0]):,} APPLIED', (RX0 + RX1) // 2, gy0 - 60, size=30, color=TEXT, center=True)\ntext(f'ONLY {selected} SELECTED', (RX0 + RX1) // 2, funnel_bot_y + 95, size=32, color=HIGHLIGHT, center=True)\n",
-    "topic": "applicants vs. selected",
-    "starred": true
-  },
-  {
-    "mechanic": "trash-mountain-rise",
-    "concept": "a mountain of plastic waste grows from today's pile toward 2060's towering scale, a human silhouette pinned beside it for horrifying scale",
-    "code": "trash = subject_image('plastic waste pile photo')\nperson = subject_image('person silhouette icon for scale')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / vmax)\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\nmax_h = RBOT - RTOP - 220\nh = int(max_h * frac)\nw = int(500 * (0.5 + 0.5 * frac))\nif trash is not None:\n    paste(trash, cx - w // 2, base_y - h, w, h)\nelse:\n    d.polygon([(cx - w // 2, base_y), (cx + w // 2, base_y), (cx, base_y - h)], fill=rgba(WARN, 210))\nif person is not None:\n    paste(person, cx - w // 2 - 60, base_y - 140, 50, 140)\ntext(f'{int(cur)}M TONS/YEAR', cx, base_y - h - 50, size=33, color=WARN, center=True)\ntext(f'{labels[0]}: {int(values[0])}M  ->  {labels[-1]}: {int(values[-1])}M', cx, RTOP + 70, size=25, color=TEXT, center=True)\n",
-    "topic": "global plastic waste generated",
+    "sig": "cross-species-funnel",
+    "mechanic": "cross-species-bridge",
+    "concept": "a cow and a chicken funnel dot-streams toward a human silhouette, sized to how many human cases each source caused",
+    "code": "cow = subject_image('dairy cow')\nbird = subject_image('chicken')\nperson = subject_image('person silhouette')\ncx = (RX0 + RX1) // 2\ntop = RTOP + 30\nif cow is not None:\n    paste(cow, RX0 + 10, top, 260, 190)\nif bird is not None:\n    paste(bird, RX1 - 270, top, 260, 190)\npy_h = 210\nif person is not None:\n    pw = 190\n    py_h = int(pw * person.height / person.width)\n    paste(person, cx - pw // 2, RBOT - py_h - 30, pw, py_h)\nvtot = values[0] + values[1]\ntarget = (cx, RBOT - py_h - 30)\nsources = ((RX0 + 140, top + 200, values[0], WARN),\n           (RX1 - 140, top + 200, values[1], HIGHLIGHT))\nfor sx, sy, v, col in sources:\n    share = v / vtot\n    cnt = max(1, int(16 * share))\n    shown = max(1, int(cnt * reveal))\n    for i in range(shown):\n        t = clamp((i + 1) / cnt)\n        px = lerp(sx, target[0], t)\n        py = lerp(sy, target[1], t)\n        d.ellipse([px - 8, py - 8, px + 8, py + 8], fill=rgba(col, 220))\n    text(str(int(v)), sx, sy - 34, size=40, color=col, center=True)\ntext('human cases', cx, target[1] - 34, size=28, color=TEXT, center=True)",
+    "topic": "bird-flu-species-jump",
     "starred": true
   }
 ]
