@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-dont-work-here-s1-2440c6bc8a3d",
+  "safe_request_id": "reddit-dont-work-here-s1-2440c6bc8a3d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b79e72e3f4cf1317b21767d2ef5d5875b331a15497275ce4a23e0c5dae857750",
+  "prompt_used": "An editorial illustration for a short-form video: shopping basket person. It accompanies the narration: \"in street clothes, holding my own basket\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+    "filename": "20260813__reddit-dont-work-here-s1-2440c6bc8a3d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_8Is3SawhmcbM85intJVm6ZwmhdLyTB4",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "50cc18aa71d70307b7f0168df679609d30d683268c173bdd5041048c58b9683f",
+    "bytes": 1377320,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:15:56.400Z",
+  "error": null,
+  "retryable": false
+}
