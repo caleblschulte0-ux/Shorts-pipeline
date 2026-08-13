@@ -20314,7 +20314,12 @@
           "insight_type": "trend",
           "role": "1 · THE FLOOD",
           "topic": "NASA astronaut applicants",
-          "say": "In 2017 NASA got a record 18,300 applications for its astronaut program. That's not a typo — eighteen thousand people for one job posting."
+          "say": "In 2017 NASA got a record 18,300 applications for its astronaut program. That's not a typo — eighteen thousand people for one job posting.",
+          "scene": {
+            "mechanic": "application-pile-surge",
+            "concept": "a stack of paper application forms rises per selection year, spiking hard in 2017 then receding - the record year visually towering over the rest",
+            "code": "paper = subject_image('stack of white paper application forms photo')\ncols = n\ngap = (RX1 - RX0) // cols\nbase_y = RBOT - 90\ntop_y = RTOP + 170\ntrack_h = base_y - top_y\npeak_i = 0\nfor k in range(n):\n    if values[k] > values[peak_i]:\n        peak_i = k\nfor i in range(n):\n    cx = RX0 + gap * i + gap // 2\n    frac = clamp(values[i] / vmax) * clamp(reveal * n - i)\n    h = int(track_h * frac)\n    w = min(gap - 30, 140)\n    col = WARN if i == peak_i else ACCENT\n    if paper is not None:\n        paste(paper, cx - w // 2, base_y - h, w, h)\n    else:\n        d.rectangle([cx - w // 2, base_y - h, cx + w // 2, base_y], fill=rgba(col, 220))\n    text(labels[i], cx, base_y + 20, size=25, color=TEXT, center=True)\n    if frac > 0.05:\n        text(f'{int(values[i]):,}', cx, base_y - h - 34, size=23, color=col, center=True)\ntext('APPLICANTS PER SELECTION CLASS', (RX0 + RX1) // 2, RTOP + 70, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20327,7 +20332,12 @@
           "use_baseline": true,
           "role": "2 · THE ODDS",
           "topic": "applicants vs. selected",
-          "say": "Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate — thinner than any job on Earth."
+          "say": "Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate — thinner than any job on Earth.",
+          "scene": {
+            "mechanic": "funnel-to-hatch",
+            "concept": "a packed grid standing for all 18,300 applicants narrows through a funnel into a spacecraft hatch that only fits a handful of gold astronaut helmets - the 12 selected",
+            "code": "crowd = subject_image('crowd of tiny people icon silhouette')\nhelmet = subject_image('gold astronaut helmet icon')\ncols, rows = 22, 10\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 140\ntotal_cells = cols * rows\nshown = int(clamp(reveal) * total_cells)\nfor k in range(shown):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    if crowd is not None:\n        paste(crowd, x + 2, y + 2, cell - 4, cell - 4)\n    else:\n        d.ellipse([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(TEXT, 90))\nfunnel_top_y = gy0 + rows * cell + 10\nfunnel_bot_y = funnel_top_y + 130\nfx0, fx1 = RX0 + 260, RX1 - 260\nd.polygon([(RX0 + 40, funnel_top_y), (RX1 - 40, funnel_top_y), (fx1, funnel_bot_y), (fx0, funnel_bot_y)],\n          outline=rgba(TEXT, 200), width=5)\nhatch_w = fx1 - fx0\nselected = int(values[-1])\nshown_sel = int(clamp(reveal) * selected)\nfor i in range(shown_sel):\n    hx = fx0 + 20 + (i % 6) * ((hatch_w - 60) // 6)\n    hy = funnel_bot_y + 20 + (i // 6) * 34\n    if helmet is not None:\n        paste(helmet, hx, hy, 30, 30)\n    else:\n        d.ellipse([hx, hy, hx + 26, hy + 26], fill=rgba(HIGHLIGHT, 230))\ntext(f'{int(values[0]):,} APPLIED', (RX0 + RX1) // 2, gy0 - 60, size=30, color=TEXT, center=True)\ntext(f'ONLY {selected} SELECTED', (RX0 + RX1) // 2, funnel_bot_y + 95, size=32, color=HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20338,7 +20348,12 @@
           "insight_type": "trend",
           "role": "3 · FEWER SEATS",
           "topic": "active astronaut corps size",
-          "say": "Even the corps itself shrank — from about 149 active astronauts in 2000 down to around 41 today. Fewer seats, way more applicants."
+          "say": "Even the corps itself shrank — from about 149 active astronauts in 2000 down to around 41 today. Fewer seats, way more applicants.",
+          "scene": {
+            "mechanic": "cockpit-seats-dim",
+            "concept": "a grid of spacecraft seats lit for the full 2000-era corps gradually dims to today's much smaller active roster",
+            "code": "seat = subject_image('spacecraft astronaut seat icon')\ncols, rows = 15, 10\ntotal = cols * rows\nv0 = values[0]\nv1 = values[-1]\ncur = lerp(v0, v1, clamp(reveal))\nlit = int(clamp(cur / v0) * total)\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 170\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    on = k < lit\n    if seat is not None:\n        paste(seat, x + 3, y + 3, cell - 6, cell - 6)\n        if not on:\n            d.rectangle([x, y, x + cell, y + cell], fill=rgba((10, 10, 14), 210))\n    else:\n        d.rectangle([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(ACCENT, 210) if on else rgba(TEXT, 40))\ntext(f'{int(cur)} ACTIVE ASTRONAUTS', (RX0 + RX1) // 2, gy0 - 80, size=32, color=HIGHLIGHT, center=True)\ntext(f'{labels[0]}: {int(v0)}  ->  {labels[-1]}: {int(v1)}', (RX0 + RX1) // 2, RBOT - 40, size=24, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
@@ -20374,7 +20389,12 @@
           "ascending": false,
           "role": "1 · THE SOURCE",
           "topic": "helium reserves by country",
-          "say": "Almost all of it comes from a handful of countries. Qatar alone holds 10.1 billion cubic meters, more than any nation on Earth."
+          "say": "Almost all of it comes from a handful of countries. Qatar alone holds 10.1 billion cubic meters, more than any nation on Earth.",
+          "scene": {
+            "mechanic": "reserve-tank-row",
+            "concept": "industrial helium gas cylinders rise per country, sized to each nation's reserve - Qatar's tank towering slightly over the rest",
+            "code": "tank = subject_image('industrial gas cylinder tank photo')\ncols = n\ngap = (RX1 - RX0) // cols\nbase_y = RBOT - 100\ntop_y = RTOP + 160\ntrack_h = base_y - top_y\nfor i in range(n):\n    cx = RX0 + gap * i + gap // 2\n    frac = clamp(values[i] / vmax) * clamp(reveal * n - i)\n    h = int(track_h * frac)\n    w = min(gap - 40, 130)\n    if tank is not None:\n        paste(tank, cx - w // 2, base_y - h, w, h)\n    else:\n        d.rounded_rectangle([cx - w // 2, base_y - h, cx + w // 2, base_y], radius=18, fill=rgba(ACCENT, 220))\n    text(labels[i], cx, base_y + 18, size=23, color=TEXT, center=True)\n    if frac > 0.05:\n        text(f'{values[i]:.1f}B m3', cx, base_y - h - 32, size=21, color=HIGHLIGHT, center=True)\ntext('HELIUM RESERVES BY COUNTRY', (RX0 + RX1) // 2, RTOP + 70, size=27, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20386,7 +20406,12 @@
           "use_baseline": true,
           "role": "2 · THE SQUEEZE",
           "topic": "helium demand, 2024 vs. 2035",
-          "say": "Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors need helium to keep production lines cold enough to work."
+          "say": "Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors need helium to keep production lines cold enough to work.",
+          "scene": {
+            "mechanic": "balloon-squeeze-double",
+            "concept": "two helium balloons side by side, 2035's balloon swollen nearly double 2024's size with a microchip riding it - the chipmaking demand made physical",
+            "code": "balloon = subject_image('red helium balloon photo')\nchip = subject_image('semiconductor microchip icon')\nv0 = values[0]\nv1 = values[-1]\ncx0 = RX0 + 260\ncx1 = RX1 - 260\nbase_y = RBOT - 140\ns0 = clamp(v0 / vmax) * reveal\ns1 = clamp(v1 / vmax) * reveal\nw0, h0 = max(int(220 * s0), 10), max(int(280 * s0), 10)\nw1, h1 = max(int(220 * s1), 10), max(int(280 * s1), 10)\nif balloon is not None:\n    paste(balloon, cx0 - w0 // 2, base_y - h0, w0, h0)\n    paste(balloon, cx1 - w1 // 2, base_y - h1, w1, h1)\nelse:\n    d.ellipse([cx0 - w0 // 2, base_y - h0, cx0 + w0 // 2, base_y], fill=rgba(ACCENT, 210))\n    d.ellipse([cx1 - w1 // 2, base_y - h1, cx1 + w1 // 2, base_y], fill=rgba(WARN, 210))\nif chip is not None and s1 > 0.3:\n    paste(chip, cx1 - 30, base_y - h1 - 50, 60, 60)\ntext(labels[0], cx0, base_y + 30, size=23, color=TEXT, center=True)\ntext(f'index {v0:.0f}', cx0, base_y + 58, size=21, color=HIGHLIGHT, center=True)\ntext(labels[-1], cx1, base_y + 30, size=23, color=TEXT, center=True)\ntext(f'index {v1:.0f}', cx1, base_y + 58, size=21, color=WARN, center=True)\ntext('DEMAND NEARLY DOUBLES', (RX0 + RX1) // 2, RTOP + 80, size=29, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20397,7 +20422,12 @@
           "insight_type": "trend",
           "role": "3 · IT HAPPENED BEFORE",
           "topic": "helium price index",
-          "say": "This already happened once. Prices quadrupled between 2011 and 2013 in the last supply crunch — and demand is climbing even faster this time."
+          "say": "This already happened once. Prices quadrupled between 2011 and 2013 in the last supply crunch — and demand is climbing even faster this time.",
+          "scene": {
+            "mechanic": "price-climb-balloon-shrink",
+            "concept": "as the price index line climbs the scale, the helium balloon beside it visibly deflates - scarcity driving the price up in real time",
+            "code": "balloon = subject_image('red helium balloon photo')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / values[-1])\ncx = RX0 + 220\nbase_y = RBOT - 120\nbw = max(int(240 * (1.0 - 0.6 * frac)), 40)\nbh = max(int(300 * (1.0 - 0.6 * frac)), 50)\nif balloon is not None:\n    paste(balloon, cx - bw // 2, base_y - bh, bw, bh)\nelse:\n    d.ellipse([cx - bw // 2, base_y - bh, cx + bw // 2, base_y], fill=rgba(ACCENT, 210))\ngx0 = RX0 + 480\ngx1 = RX1 - 40\ngy0 = RTOP + 200\ngy1 = RBOT - 140\nd.line([gx0, gy1, gx1, gy1], fill=rgba(TEXT, 150), width=4)\nd.line([gx0, gy1, gx0, gy0], fill=rgba(TEXT, 150), width=4)\npx = gx0 + int((gx1 - gx0) * clamp(reveal))\npy = gy1 - int((gy1 - gy0) * frac)\nd.line([gx0, gy1, px, py], fill=rgba(WARN, 230), width=8)\nd.ellipse([px - 12, py - 12, px + 12, py + 12], fill=rgba(WARN, 255))\ntext(f'{int(cur)}', px + 20, py - 20, size=30, color=WARN)\ntext('PRICE INDEX', gx0, gy0 - 40, size=23, color=TEXT)\ntext(f'{labels[0]} -> {labels[-1]}: 4x', cx, base_y + 30, size=23, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
@@ -20432,7 +20462,12 @@
           "insight_type": "trend",
           "role": "1 · THE SCALE",
           "topic": "global plastic waste generated",
-          "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year."
+          "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year.",
+          "scene": {
+            "mechanic": "trash-mountain-rise",
+            "concept": "a mountain of plastic waste grows from today's pile toward 2060's towering scale, a human silhouette pinned beside it for horrifying scale",
+            "code": "trash = subject_image('plastic waste pile photo')\nperson = subject_image('person silhouette icon for scale')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / vmax)\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\nmax_h = RBOT - RTOP - 220\nh = int(max_h * frac)\nw = int(500 * (0.5 + 0.5 * frac))\nif trash is not None:\n    paste(trash, cx - w // 2, base_y - h, w, h)\nelse:\n    d.polygon([(cx - w // 2, base_y), (cx + w // 2, base_y), (cx, base_y - h)], fill=rgba(WARN, 210))\nif person is not None:\n    paste(person, cx - w // 2 - 60, base_y - 140, 50, 140)\ntext(f'{int(cur)}M TONS/YEAR', cx, base_y - h - 50, size=33, color=WARN, center=True)\ntext(f'{labels[0]}: {int(values[0])}M  ->  {labels[-1]}: {int(values[-1])}M', cx, RTOP + 70, size=25, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20443,7 +20478,8 @@
           "insight_type": "share",
           "role": "2 · WHERE IT GOES",
           "topic": "where plastic waste actually ends up",
-          "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump."
+          "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump.",
+          "viz": "share"
         },
         {
           "source": "offline",
@@ -20455,7 +20491,12 @@
           "use_baseline": true,
           "role": "3 · THE 'FIX'",
           "topic": "recycling rate, today vs. 2060",
-          "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix."
+          "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix.",
+          "scene": {
+            "mechanic": "recycling-bin-fill-duel",
+            "concept": "two recycling bins side by side, today's barely-filled bin next to 2060's best-case bin - still mostly empty even in the optimistic future",
+            "code": "bin_img = subject_image('blue recycling bin photo')\nv0 = values[0]\nv1 = values[-1]\ncx0 = RX0 + 260\ncx1 = RX1 - 260\nbase_y = RBOT - 120\nbin_h = 340\nbin_w = 220\nif bin_img is not None:\n    paste(bin_img, cx0 - bin_w // 2, base_y - bin_h, bin_w, bin_h)\n    paste(bin_img, cx1 - bin_w // 2, base_y - bin_h, bin_w, bin_h)\nelse:\n    d.rectangle([cx0 - bin_w // 2, base_y - bin_h, cx0 + bin_w // 2, base_y], outline=rgba(TEXT, 220), width=5)\n    d.rectangle([cx1 - bin_w // 2, base_y - bin_h, cx1 + bin_w // 2, base_y], outline=rgba(TEXT, 220), width=5)\nf0 = clamp(v0 / 100.0) * reveal\nf1 = clamp(v1 / 100.0) * reveal\nfh0 = int(bin_h * f0)\nfh1 = int(bin_h * f1)\nd.rectangle([cx0 - bin_w // 2 + 15, base_y - fh0, cx0 + bin_w // 2 - 15, base_y - 10], fill=rgba(HIGHLIGHT, 190))\nd.rectangle([cx1 - bin_w // 2 + 15, base_y - fh1, cx1 + bin_w // 2 - 15, base_y - 10], fill=rgba(HIGHLIGHT, 190))\ntext(f'{labels[0]}: {v0:.0f}%', cx0, base_y + 30, size=25, color=TEXT, center=True)\ntext(f'{labels[-1]}: {v1:.0f}%', cx1, base_y + 30, size=25, color=WARN, center=True)\ntext('STILL MOSTLY EMPTY', (RX0 + RX1) // 2, RTOP + 70, size=29, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -20491,7 +20532,12 @@
           "use_baseline": true,
           "role": "1 · ONE CLONE",
           "topic": "Cavendish share of banana exports",
-          "say": "99 percent of bananas sold internationally are one single variety: the Cavendish. Every one genetically identical — grown from cuttings, not seeds."
+          "say": "99 percent of bananas sold internationally are one single variety: the Cavendish. Every one genetically identical — grown from cuttings, not seeds.",
+          "scene": {
+            "mechanic": "clone-army-grid",
+            "concept": "a grid of 80 identical Cavendish bananas fills the frame; exactly one heirloom variety stands out at the very end - the lone 1 percent",
+            "code": "banana = subject_image('cavendish banana photo')\nodd = subject_image('unusual heirloom banana variety photo')\ncols, rows = 10, 8\ntotal = cols * rows\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 170\nshown = int(clamp(reveal) * total)\nodd_idx = total - 1\nfor k in range(shown):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    img = odd if (k == odd_idx and odd is not None) else banana\n    if img is not None:\n        paste(img, x + 3, y + 3, cell - 6, cell - 6)\n    else:\n        d.rectangle([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(HIGHLIGHT, 200))\ntext('99% ARE THE SAME CLONE', (RX0 + RX1) // 2, RTOP + 70, size=27, color=TEXT, center=True)\nif shown >= odd_idx:\n    ox = gx0 + (odd_idx % cols) * cell\n    oy = gy0 + (odd_idx // cols) * cell + cell + 12\n    text('1 IN 100 IS DIFFERENT', ox - 60, oy, size=20, color=WARN)\n"
+          }
         },
         {
           "source": "offline",
@@ -20503,7 +20549,12 @@
           "ascending": false,
           "role": "2 · NO BACKUP",
           "topic": "varieties that exist vs. exported",
-          "say": "There are over 1,000 banana varieties on Earth. The entire global export trade runs on essentially just this one clone."
+          "say": "There are over 1,000 banana varieties on Earth. The entire global export trade runs on essentially just this one clone.",
+          "scene": {
+            "mechanic": "variety-vault-vs-single-crate",
+            "concept": "a rich collage of colorful banana varieties on one side dwarfs a single shipping crate on the other - a thousand options, one actually used",
+            "code": "varieties = subject_image('assorted colorful banana varieties photo collage')\ncrate = subject_image('banana shipping crate photo')\ncx0 = RX0 + 260\ncx1 = RX1 - 260\nbase_y = RBOT - 120\nv0 = values[0]\nv1 = values[-1]\ns0 = clamp(reveal)\ns1 = clamp(reveal)\nw0, h0 = int(300 * s0), int(360 * s0)\nw1, h1 = int(180 * s1), int(200 * s1)\nif varieties is not None:\n    paste(varieties, cx0 - w0 // 2, base_y - h0, w0, h0)\nelse:\n    d.rectangle([cx0 - w0 // 2, base_y - h0, cx0 + w0 // 2, base_y], fill=rgba(ACCENT, 210))\nif crate is not None:\n    paste(crate, cx1 - w1 // 2, base_y - h1, w1, h1)\nelse:\n    d.rectangle([cx1 - w1 // 2, base_y - h1, cx1 + w1 // 2, base_y], fill=rgba(WARN, 210))\ntext(f'{int(v0):,} VARIETIES EXIST', cx0, base_y + 30, size=23, color=TEXT, center=True)\ntext(f'ONLY {int(v1)} EXPORTED', cx1, base_y + 30, size=25, color=WARN, center=True)\ntext('NO GENETIC BACKUP', (RX0 + RX1) // 2, RTOP + 70, size=29, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -20514,7 +20565,12 @@
           "insight_type": "trend",
           "role": "3 · IT HAPPENED BEFORE",
           "topic": "Panama disease spread",
-          "say": "This happened before — a Panama disease wiped out the world's last banana, the Gros Michel, in the 1950s. The new strain has now reached three continents, and Cavendish has zero genetic backup."
+          "say": "This happened before — a Panama disease wiped out the world's last banana, the Gros Michel, in the 1950s. The new strain has now reached three continents, and Cavendish has zero genetic backup.",
+          "scene": {
+            "mechanic": "blight-map-creep",
+            "concept": "a world map lights up with infection markers continent by continent as the fungus spreads across decades, a wilting banana plant bearing witness",
+            "code": "world = subject_image('world map silhouette illustration')\nplant = subject_image('wilting diseased banana plant photo')\nif world is not None:\n    paste(world, RX0, RTOP + 140, RX1 - RX0, 560)\nidx = clamp(reveal) * (n - 1)\ni = int(idx)\nshown = min(i + 1, n) if reveal < 1.0 else n\nmarker_positions = [(RX0 + 260, RTOP + 260), (RX0 + 560, RTOP + 460), (RX0 + 200, RTOP + 560)]\nfor k in range(shown):\n    mx, my = marker_positions[k % len(marker_positions)]\n    d.ellipse([mx - 26, my - 26, mx + 26, my + 26], outline=rgba(WARN, 230), width=6)\n    d.ellipse([mx - 10, my - 10, mx + 10, my + 10], fill=rgba(WARN, 230))\n    text(labels[k], mx + 30, my - 14, size=22, color=WARN)\nif plant is not None:\n    paste(plant, RX1 - 220, RBOT - 300, 180, 220)\ntext(f'{shown} CONTINENTS INFECTED', (RX0 + RX1) // 2, RTOP + 70, size=29, color=WARN, center=True)\n"
+          }
         }
       ]
     }
