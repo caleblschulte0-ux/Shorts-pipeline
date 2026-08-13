@@ -169,16 +169,22 @@
       "revisit_after": "20260910"
     },
     "6e0d256d4c2f": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260813",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260813",
           "because": "Confirmed: failed_autofails() only counts checks present as dicts with present=true; grades.get('checks', {}) is passed straight through with no validation that the model answered all five mandatory AUTOFAIL_CHECKS. An empty/malformed checks payload silently ships. This is a fail-closed violation on the sovereign gate, per CLAUDE.md rule zero we fix it now, not file it."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260813",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "0f99083c52688a4a070c110b8a2bbab4910f14e4"
     },
     "06e600e3ecaa": {
       "verdict": "doing",
