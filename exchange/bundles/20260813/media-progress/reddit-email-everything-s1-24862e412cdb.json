@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-email-everything-s1-24862e412cdb",
+  "safe_request_id": "reddit-email-everything-s1-24862e412cdb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "87d8da97b374366c6c3a708b9582654911a18611c2f9fa30edeb4e40b9dbd326",
+  "prompt_used": "An editorial illustration for a short-form video: office cubicle desk. It accompanies the narration: \"answering anyone who just walked up\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+    "filename": "20260813__reddit-email-everything-s1-24862e412cdb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "43ac74e4aaf055d41197f21da9ea6b5de766f15a465a71c968075d2521b26fce",
+    "bytes": 853693,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:12:30Z",
+  "error": null,
+  "retryable": false
+}
