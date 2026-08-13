@@ -66,6 +66,38 @@ WEIGHTS = {
 AUTOFAIL_CHECKS = ["junk_imagery", "decorative_mascot", "bare_number_card",
                    "dead_air", "empty_void"]
 
+# DECISION POLICY — which auto-fails hard-block, and at what floor.
+#
+# "standard" is the rule as it has always been: ANY auto-fail blocks, floor
+# MIN_SCORE. "rebuild" is an INTERIM OPERATOR RULING (2026-08-13, twice
+# reaffirmed: "I don't care if the quality dips ... we should never not be
+# posting"): only the FATAL classes hard-block, and the numeric floor —
+# lowered by env in the one workflow that opts in — decides the rest.
+#
+# The ruling was made against measured data, not vibes. Of 23 blocks in the
+# ledger since 08-11, ZERO were held by the score floor alone — every hold
+# was the any-auto-fail rule, and the craft classes (empty_void,
+# decorative_mascot, bare_number_card, dead_air) held videos the judge
+# itself scored 55-78. Fourteen days of zero posts on the explainer channel
+# is the outcome the operator overruled.
+#
+# What "rebuild" does NOT change, ever:
+#   * the brain still watches every video and grades exactly as before —
+#     nothing here touches the judge, the rubric, or its sovereignty;
+#   * junk_imagery still blocks at ANY score: mismatched or misleading
+#     imagery is a trust defect, not a craft one, and "quality can dip"
+#     does not cover publishing visuals that misrepresent the data;
+#   * the measured temporal gate (frozen/choppy video) still blocks in code;
+#   * a publish run still fails CLOSED on no-verdict/infra-error/timeout;
+#   * every craft check is still recorded in the verdict, the ledger and
+#     the fix notes — the repair loop and the retro keep working the
+#     backlog while the channel posts.
+#
+# To END the rebuild: delete the SHOWRUNNER_POLICY / SHOWRUNNER_MIN_SCORE
+# env lines from the workflow that set them. Defaults restore "standard"/70.
+POLICY = os.environ.get("SHOWRUNNER_POLICY", "standard").strip() or "standard"
+FATAL_CHECKS = ("junk_imagery",)
+
 
 def _format_directive(ctx: dict) -> str:
     """Translate the shared quality bar for the format actually rendered.
@@ -160,10 +192,20 @@ def validate_judge_response(grades: dict) -> list:
     return problems
 
 
-def decide_verdict(score: int, checks: dict) -> str:
-    """The single ship/block rule: block on ANY auto-fail OR a sub-threshold
-    score. Pure so the calibration fixtures can pin it in CI."""
-    return "block" if (failed_autofails(checks) or score < MIN_SCORE) else "ship"
+def decide_verdict(score: int, checks: dict, *, policy: str | None = None,
+                   min_score: int | None = None) -> str:
+    """The single ship/block rule, pure so the calibration fixtures can pin
+    it in CI. "standard": ANY auto-fail blocks, floor MIN_SCORE — unchanged
+    from the day it was written. "rebuild" (interim operator ruling, see
+    POLICY above): only FATAL_CHECKS hard-block; craft auto-fails are
+    recorded and repair-targeted but the numeric floor decides."""
+    policy = policy if policy is not None else POLICY
+    floor = min_score if min_score is not None else MIN_SCORE
+    fails = failed_autofails(checks)
+    if policy == "rebuild":
+        fatal = [f for f in fails if f in FATAL_CHECKS]
+        return "block" if (fatal or score < floor) else "ship"
+    return "block" if (fails or score < floor) else "ship"
 
 
 def _duration(mp4: Path) -> float:
