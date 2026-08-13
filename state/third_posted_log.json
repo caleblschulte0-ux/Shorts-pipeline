@@ -3371,13 +3371,43 @@
       "ts": "2026-08-13T12:01:07.824420+00:00"
     },
     "clip-20260813-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/JollyMoistEyeballTwitchRPG-W3vc0Sy7lCqCN_tu",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/W1N6bD_bQtw",
       "title": "Kaicenat: Kai Cenat Can't Believe He Actually Got The Warden Down",
       "kind": "twitch_clip",
-      "ts": "2026-08-13T12:04:53.163002+00:00",
+      "ts": "2026-08-13T12:04:56.405932+00:00",
+      "uploaded_at": "2026-08-13T12:04:56.405954+00:00",
+      "publish_at": "2026-08-13T17:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/JollyMoistEyeballTwitchRPG-W3vc0Sy7lCqCN_tu",
+      "streamer": "kaicenat",
+      "series": "clutch",
+      "hook": "HE FINALLY GOT THE WARDEN",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 28205,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 14.0
+      },
+      "director_cut": true
+    },
+    "rejected-opencrispyicecreamkippa-nuxscgbr7y9jeuyr": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/OpenCrispyIcecreamKippa-NuXsCgbR7y9JEuyR",
+      "streamer": "caseoh_",
+      "title": "Don't do it sir.",
+      "qa_rejected": true,
+      "ts": "2026-08-13T12:07:35.153317+00:00"
+    },
+    "clip-20260813-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/ConfidentHealthyHamHotPokket-UWbt1aWEuHnzGkM1",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig Reaction Was Just 'Dude....'",
+      "kind": "twitch_clip",
+      "ts": "2026-08-13T13:08:47.449940+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
