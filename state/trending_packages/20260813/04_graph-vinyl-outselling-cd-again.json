@@ -6,53 +6,11 @@
   "y_label": "US revenue ($ millions)",
   "duration": 13,
   "source": "RIAA U.S. year-end music industry revenue reports (vinyl LP and CD album revenue). 2018-2019 figures approximate from RIAA year-end trend data. Figures approximate.",
-  "years": [
-    2018,
-    2019,
-    2020,
-    2021,
-    2022,
-    2023
-  ],
+  "years": [2018, 2019, 2020, 2021, 2022, 2023],
   "series": [
-    {
-      "name": "CDs",
-      "color": "#3060c0",
-      "icon": "CD",
-      "values": [
-        873,
-        615,
-        483.3,
-        589,
-        483,
-        537
-      ]
-    },
-    {
-      "name": "Vinyl",
-      "color": "#ffaa30",
-      "icon": "Vinyl",
-      "values": [
-        419,
-        504,
-        626,
-        1000,
-        1263,
-        1400
-      ]
-    }
+    {"name": "CDs", "color": "#3060c0", "icon": "CD", "values": [873, 615, 483.3, 589, 483, 537]},
+    {"name": "Vinyl", "color": "#ffaa30", "icon": "Vinyl", "values": [419, 504, 626, 1000, 1263, 1400]}
   ],
-  "hashtags": [
-    "vinyl",
-    "cds",
-    "music",
-    "riaa",
-    "recordstore",
-    "physicalmedia",
-    "musicindustry",
-    "records",
-    "nostalgia",
-    "albumsales"
-  ],
+  "hashtags": ["vinyl", "cds", "music", "riaa", "recordstore", "physicalmedia", "musicindustry", "records", "nostalgia", "albumsales"],
   "music_vibe": "hiphop"
 }
