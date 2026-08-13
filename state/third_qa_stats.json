@@ -3,43 +3,6 @@
     {
       "date": "20260724",
       "dry_run": false,
-      "ts": "2026-07-24T12:08:23+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 13,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 101,
-        "with_retention": 85,
-        "with_curve": 15,
-        "fetched_at": "2026-07-24T10:33:55.179794+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260724-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.35 < 0.7 (title claims clash, snip garbled/unclear)"
-        },
-        {
-          "slug": "clip-20260724-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        },
-        {
-          "slug": "clip-20260724-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        },
-        {
-          "slug": "clip-20260724-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.35 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        }
-      ]
-    },
-    {
-      "date": "20260724",
-      "dry_run": false,
       "ts": "2026-07-24T13:31:24+00:00",
       "feedback": {
         "snapshot": true,
@@ -4313,6 +4276,250 @@
             }
           },
           "took_s": 207.8
+        }
+      ]
+    },
+    {
+      "date": "20260813",
+      "dry_run": false,
+      "ts": "2026-08-13T13:14:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 109,
+        "with_retention": 90,
+        "with_curve": 14,
+        "fetched_at": "2026-08-12T13:13:31.151478+00:00"
+      },
+      "brain": {
+        "ok": 32,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:disguisedtoast": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260813-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "boss defeated, visible win moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "boss kill, excited but generic Minecraft",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Can't Believe He Actually Got The Warden Down"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "bottom caption cards read as scrambled repeated words (\"GOT HIM GOT\", \"HIM GOT HIM\", \"GOT HIM HIM\") rather than coherent"
+              ]
+            }
+          },
+          "took_s": 228.6
+        },
+        {
+          "slug": "clip-20260813-2",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "tense warning, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "routine horror gameplay, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 32.7
+        },
+        {
+          "slug": "clip-20260813-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "kaicenat/kaicenat-cenat-kaicenat-2026w33",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, can't tell event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ludwig Reaction Was Just 'Dude....'"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 1260.7
+        },
+        {
+          "slug": "clip-20260813-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "mildly funny name mix-up, low stakes",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Sodapoppin Gets Corrected On This Streamer's Real Name"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": [
+                "at 20.5s the skull emoji + \"CANUTE\" caption is large and sits right over the subject's mouth/chin, partially obscuring h"
+              ]
+            }
+          },
+          "took_s": 220.5
         }
       ]
     }

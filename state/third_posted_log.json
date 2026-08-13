@@ -3433,14 +3433,27 @@
       "ts": "2026-08-13T13:11:19.272917+00:00"
     },
     "clip-20260813-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/GleamingPlumpHawkCoolCat-B4ETJ6WM6yq8i-FV",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/jkTChqd-oMA",
       "title": "Sodapoppin Gets Corrected On This Streamer's Real Name",
       "kind": "twitch_clip",
-      "ts": "2026-08-13T13:14:56.817160+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-13T13:14:59.822576+00:00",
+      "uploaded_at": "2026-08-13T13:14:59.822599+00:00",
+      "publish_at": "2026-08-13T21:30:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/GleamingPlumpHawkCoolCat-B4ETJ6WM6yq8i-FV",
+      "streamer": "sodapoppin",
+      "series": "fail",
+      "hook": "HE THOUGHT HIS NAME WAS SOMETHING ELSE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2883,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 23.7
+      },
+      "director_cut": true
     }
   }
 }
