@@ -1,48 +1,71 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260812",
-  "judged_date": "20260811",
+  "date": "20260813",
+  "judged_date": "20260812",
   "alarm": {
-    "date": "20260811",
+    "date": "20260812",
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_finalizer",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260812 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260812/response.json, exchange/bundles/20260812/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes. (No watchdog record for this date \u2014 this verdict was computed live, so check that chatgpt_watchdog.yml is firing too.)"
+      },
+      {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260811 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260811. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260812 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260812. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20260811.",
+        "detail": "third: 3/6 posted for 20260812.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "no_posts_trending",
-        "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20260811 (registry wants 6).",
-        "fix": "Check the trending workflow run for 20260811. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 2/6 posted for 20260812.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260811: production outcome says 0/6 uploaded and repair never completed (0 quarantined, 10 failed).",
+        "detail": "trending 20260812: production outcome says 2/6 uploaded and repair never completed (4 quarantined, 4 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 0/6; 4 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 2/6; 4 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
-      "exchange: 15/15 ChatGPT images pinned"
+      "chatgpt doctor: artifact present",
+      "doctor: findings current (20260812)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260812",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 2,
+      "quarantined": 4,
+      "failed": 4,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/qN9JgZQFgaY",
+        "https://youtube.com/shorts/YssTXROufD4"
+      ]
+    },
     {
       "schema": "production-channel-outcome/v1",
       "date": "20260811",
@@ -133,164 +156,9 @@
         "https://youtube.com/shorts/mrUqpMU95qY",
         "https://youtube.com/shorts/IaprIWrtr_0"
       ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260805",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 6,
-      "uploaded": 1,
-      "quarantined": 0,
-      "failed": 5,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/FgKWlmoSE94"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-05T15:46:57+00:00",
-      "slug": "why_chocolate_got_so_expensive__then_did",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 5.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 12.33,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-05T15:48:03+00:00",
-      "slug": "the_dow_just_hit_54_000_for_the_first_ti",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.4 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 13.67,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-05T15:52:02+00:00",
-      "slug": "the_customer_insisted_i_worked_there__fi",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The last ~9 seconds \u2014 the payoff \u2014 is a single frozen orange photo over a black gameplay void, so the joke lands on a dead screen.",
-      "auto_fails": [
-        "junk_imagery: mid2 (t=18.01s) shows a wooden cabinet interior with a drilled hole while the caption reads 'POOL NOODLES,' \u2014 an unrelated woodworking photo that matches neither the line nor a retail-store story.",
-        "dead_air: The top illustration panel is the identical orange-crate photo at mid4 (t=33.51s), mid5 (t=41.27s), payoff@-1.8 (t=41.47s) and payoff@-0.4 (t=42.87s) \u2014 one frozen still across the final ~9s, four identical beats.",
-        "empty_void: Bottom gameplay half is near-black with only faint dark silhouettes at mid4 (t=33.51s) and mid5 (t=41.27s); at payoff@-0.4 the caption 'ORANGE THERE ENTIRELY.' floats in an otherwise empty black lower frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 130
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-05T15:55:55+00:00",
-      "slug": "he_blocked_my_driveway__i_just_stopped_m",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong hook and three well-matched story shots, but the last quarter recycles one stale photo so the punchline has no visual to land on.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:27:57+00:00",
-      "slug": "nvidia_just_overtook_intel_in_revenue",
-      "score": 78,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, honest, well-paced race with a real payoff \u2014 but the first 2.5 seconds are an empty pre-scaled grid that gives a scroller nothing to stop for.",
-      "auto_fails": [
-        "empty_void: hook@0.3 through mid0 (t=2.5s): the entire 20B\u201380B mid-band and the whole right half (2022\u20132025) of the plot are pure black with only two short line stubs; dark_fraction 1.0."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-06T09:29:01+00:00",
       "slug": "renewables_just_beat_coal_in_the_us",
@@ -1840,13 +1708,157 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-12T09:28:55+00:00",
+      "slug": "lilly_just_overtook_novo_in_the_weight_l",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely well-built two-line race that lands the overtake and the '#1 Eli Lilly' payoff, held back by a hook that promises a flip while showing the opposite and a right edge that clips its own labels.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-12T09:31:01+00:00",
+      "slug": "the_race_to_a_billion_ai_users",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuine photo-finish race with a real payoff, undercut by an opening 2.5 seconds of empty black grid and labels clipping off the right edge.",
+      "auto_fails": [
+        "empty_void: dark_fraction=1.0, and from hook@0.3 through mid0 (t=2.5s) the y-axis is pinned at 120M while both series sit under 5M, leaving roughly 95% of the plot area as flat black with a hairline at the baseline."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-12T09:33:03+00:00",
+      "slug": "wolves_came_back__the_elk_paid_for_it_",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A real, sourced elk-decline chart wrecked by a scraped 'Elk Grove' town-crest logo, a blank white wolf swatch, and a half-empty black frame where the wolf line sits invisible at zero.",
+      "auto_fails": [
+        "junk_imagery: Every frame (hook@0.3 through payoff@-0.4) tags 'Northern range elk' with a scraped 'ELK GROVE' municipal/village crest logo \u2014 an irrelevant name-match graphic \u2014 and tags 'Gray wolves' with a blank white rectangle, a broken/missing-image placeholder.",
+        "empty_void: dark_fraction 1.0 and, from mid1 (t=4.47s) onward, the entire right-and-centre plot area above the elk line is unbroken black; the 'Gray wolves' series (31\u2013108) is pinned flat on the 0 line of a 20K axis, so half the frame carries nothing."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-12T09:35:06+00:00",
+      "slug": "the_year_us_debt_beat_the_whole_economy",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuine two-line race with a real 2015 crossover and a leaderboard flip, undercut by clipped axis labels in every frame and a hook caption that ghosts illegibly over an empty chart.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-12T09:39:52+00:00",
+      "slug": "he_banned_early_clock_ins__so_i_stopped_",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The bottom gameplay is alive but the story half is one frozen, out-of-focus alarm clock held for the entire 40-second body \u2014 the beats are narrated, never shown.",
+      "auto_fails": [
+        "dead_air: The top illustration panel is the identical out-of-focus alarm clock, hands frozen at ~10:10, at mid1 (12.11s), mid2 (21.71s), mid3 (31.32s), mid4 (40.93s), mid5 (50.53s) and payoff@-0.4 (52.13s) \u2014 the content-bearing half of the frame never changes for ~40s across every story beat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 158
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "0d5491d 2026-08-12 doctor: close out 653acb99b575 (merged in #263) (#264)",
-    "a01778a 2026-08-12 exchange: phase A bundle for 20260812 [skip ci]"
+    "c1f3cee 2026-08-12 doctor: findings for 20260812",
+    "4f369b6 2026-08-13 explainer: update posted log + analytics [skip ci]"
   ],
   "open_backlog": [
+    {
+      "signature": "6e0d256d4c2f",
+      "title": "Missing showrunner hard-check answers count as passes",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "new"
+    },
     {
       "signature": "69a886343361",
       "title": "Production shortfall test never executes the red exit path",
@@ -1876,11 +1888,25 @@
       "ruling": "doing"
     },
     {
+      "signature": "06e600e3ecaa",
+      "title": "Daily alarm attributes the latest trending report to historical dates",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "d64b063a21bd",
       "title": "Nonnumeric chart values pass structural validation",
       "horizon": "small_fix",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "ddfcb2ed4837",
+      "title": "Punch-up guard loses repeated numeric claims",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "e02d4cf673bd",
@@ -1895,6 +1921,13 @@
       "horizon": "short_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "8dc00d1eadd0",
+      "title": "Showrunner memory drops the scene diagnosis needed to detect recurrences",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
