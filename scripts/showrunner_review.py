@@ -126,6 +126,40 @@ def failed_autofails(checks: dict) -> list:
             if isinstance((checks or {}).get(k), dict) and checks[k].get("present")]
 
 
+def validate_judge_response(grades: dict) -> list:
+    """Sanity-check the judge's JSON against the schema `_GRADE_PROMPT` asked
+    for. Non-empty return means the response cannot be trusted to score or
+    grade: every WEIGHTS dimension and every AUTOFAIL_CHECKS key must be
+    present with the right shape, or `review_video` blocks outright rather
+    than letting a missing/malformed answer read as a silent pass (an empty
+    or partial `checks` object previously computed zero auto-fails)."""
+    problems = []
+    dims = (grades or {}).get("dimensions")
+    if not isinstance(dims, dict):
+        problems.append("dimensions missing or not an object")
+    else:
+        for k, (_, ceil) in WEIGHTS.items():
+            if k == "temporal_craft":
+                continue  # code-graded, not part of the judge's answer
+            v = dims.get(k)
+            if isinstance(v, bool) or not isinstance(v, int) or not (0 <= v <= ceil):
+                problems.append(f"dimensions.{k} missing or out of range 0-{ceil}")
+    checks = (grades or {}).get("checks")
+    if not isinstance(checks, dict):
+        problems.append("checks missing or not an object")
+    else:
+        for k in AUTOFAIL_CHECKS:
+            c = checks.get(k)
+            if not isinstance(c, dict):
+                problems.append(f"checks.{k} missing or not an object")
+                continue
+            if not isinstance(c.get("present"), bool):
+                problems.append(f"checks.{k}.present missing or not boolean")
+            if not str(c.get("evidence") or "").strip():
+                problems.append(f"checks.{k}.evidence missing or empty")
+    return problems
+
+
 def decide_verdict(score: int, checks: dict) -> str:
     """The single ship/block rule: block on ANY auto-fail OR a sub-threshold
     score. Pure so the calibration fixtures can pin it in CI."""
@@ -587,6 +621,25 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             rubric=_rubric()[:6000],
             ctx=json.dumps(ctx, indent=0)[:3000])
         grades, backend = _judge(prompt, labeled)
+
+    schema_problems = validate_judge_response(grades)
+    if schema_problems:
+        dims = {k: 0 for k in WEIGHTS}
+        dims["temporal_craft"] = temporal_grade(temporal)
+        evidence = "; ".join(schema_problems)[:500]
+        return {
+            "score": compute_score(dims), "verdict": "block",
+            "dimensions": dims,
+            "auto_fails": [f"malformed_judge_response: {p}" for p in schema_problems],
+            "checks": {"malformed_judge_response": {"present": True, "evidence": evidence}},
+            "motion": motion, "temporal": temporal,
+            "judge": backend,
+            "one_line": "blocked: judge response failed schema validation",
+            "problems": schema_problems,
+            "fixes": ["judge must answer every WEIGHTS dimension and every "
+                      "AUTOFAIL_CHECKS key with present(bool) + nonempty "
+                      "evidence, per _GRADE_PROMPT"],
+        }
 
     dims = grades.get("dimensions", {}) or {}
     # temporal_craft is CODE-graded from measured cadence — the model doesn't

@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260812",
+  "updated": "20260813",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -167,6 +167,36 @@
       "because": "Confirmed: engines/render_qa.py (fail-open on analyzer error) and shared/video_qa.py (fail-closed) are two independent finished-video QA engines with different semantics, used by different channels (trending vs third capture). Consolidating them safely needs parity fixtures across both channels before either implementation can be retired \u2014 real risk of silently changing what ships if rushed. Parking as long_term; not something to build in a single triage session.",
       "history": [],
       "revisit_after": "20260910"
+    },
+    "6e0d256d4c2f": {
+      "verdict": "in_progress",
+      "date": "20260813",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260813",
+          "because": "Confirmed: failed_autofails() only counts checks present as dicts with present=true; grades.get('checks', {}) is passed straight through with no validation that the model answered all five mandatory AUTOFAIL_CHECKS. An empty/malformed checks payload silently ships. This is a fail-closed violation on the sovereign gate, per CLAUDE.md rule zero we fix it now, not file it."
+        }
+      ]
+    },
+    "06e600e3ecaa": {
+      "verdict": "doing",
+      "date": "20260813",
+      "because": "Confirmed: check(date) reads ROOT/daily_report.json unconditionally with no filter on the date argument, so a stale root report misattributes another day's slot-fill outcome. Real bug in alarm evidence integrity, worth fixing, but lower priority than the showrunner fail-open gap this run; queued for a future triage session's top-item build.",
+      "history": []
+    },
+    "ddfcb2ed4837": {
+      "verdict": "doing",
+      "date": "20260813",
+      "because": "Confirmed: numeric_claims() returns a set, collapsing repeated identical numeric claims to one membership test, so a punch-up can silently drop a repeated stat. Small, well-scoped fix (Counter-based multiplicity) that strengthens a guard CLAUDE.md says is not advisory; accepted, queued behind today's higher-severity build.",
+      "history": []
+    },
+    "8dc00d1eadd0": {
+      "verdict": "doing",
+      "date": "20260813",
+      "because": "Confirmed: append_ledger() persists only dimensions/one_line/auto_fails/motion/judge/model/rubric_sha and drops checks, weakest_scene, problems, fixes, temporal and format/package lineage, so the ledger can't detect recurring failure classes across days. Legitimate long-term direction (ledger schema versioning + migration) but too large for a single session; accepted as doing, to be picked up as a dedicated build, not bundled into a smaller fix.",
+      "history": []
     }
   }
 }
