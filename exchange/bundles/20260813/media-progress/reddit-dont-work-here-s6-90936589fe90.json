@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-dont-work-here-s6-90936589fe90",
+  "safe_request_id": "reddit-dont-work-here-s6-90936589fe90",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "355324f36199c0e8eaa3b2cff9632e4f3312c110f3660b235b64d2d206b22019",
+  "prompt_used": "An editorial illustration for a short-form video: retail employee red vest. It accompanies the narration: \"an actual employee in a red vest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+    "filename": "20260813__reddit-dont-work-here-s6-90936589fe90.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=180JGvmlq22YhhvgW95TDoNgpDz9hwGkQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "edcd4d3f02a77a815b3304abeee8ef88f52a5071b4004c381c2fb002282310f2",
+    "bytes": 1350086,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:17:25.130Z",
+  "error": null,
+  "retryable": false
+}
