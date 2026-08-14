@@ -29,11 +29,21 @@
     },
     {
       "phrase": "gave her every single one, free",
-      "query": "grocery store checkout"
+      "query": "grocery store checkout",
+      "image_url": "https://drive.google.com/uc?export=download&id=1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+      "media_origin": "chatgpt",
+      "media_file_id": "1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+      "media_sha256": "f94acff3e5c32406e1d84b9aa0686e3ab8bd7a320ced41d5864aedf5f8d76cc2",
+      "media_bytes": 1287533
     },
     {
       "phrase": "paging it over the intercom",
-      "query": "store intercom speaker"
+      "query": "store intercom speaker",
+      "image_url": "https://drive.google.com/uc?export=download&id=1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+      "media_origin": "chatgpt",
+      "media_file_id": "1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+      "media_sha256": "64e087b561abcb56ddc30f5087f0744a0361b89f7b76215cc45f040f27b0ae29",
+      "media_bytes": 1572498
     },
     {
       "phrase": "people started watching her cart",
@@ -42,7 +52,12 @@
     },
     {
       "phrase": "corporate finally added one word to the policy",
-      "query": "corporate policy document"
+      "query": "corporate policy document",
+      "image_url": "https://drive.google.com/uc?export=download&id=1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+      "media_origin": "chatgpt",
+      "media_file_id": "1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+      "media_sha256": "a54c2215dbfcfb3925f873a06353fe45c2a00a0a9a7ebadf152f4c124c14850a",
+      "media_bytes": 1158603
     }
   ],
   "punches": [
