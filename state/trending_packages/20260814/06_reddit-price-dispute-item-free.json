@@ -2,7 +2,7 @@
   "subreddit": "TalesFromTheCustomer",
   "slug": "reddit-price-dispute-item-free",
   "title": "Wrong Price? It's Free. Every Single Time.",
-  "script": "Corporate rolled out a new rule for cashiers: if a customer says an item rang up wrong, don't argue, don't call for a price check, just make it free and keep the line moving. One regular figured that out within a week. Every visit, something new had \"scanned wrong\" — a rotisserie chicken, a case of water, once an entire pack of steaks. Store policy was store policy, so I gave her every single one, free, exactly like corporate wanted. I also started paging it over the intercom. \"Price dispute at register two — item free.\" Every item, every time, loud enough for the whole store to hear. Three visits of that and people started watching her cart. The store manager started watching too. Two weeks in, corporate finally added one word to the policy: \"verify.\" She hasn't been back since. I heard she tried the same routine four towns over, and they already knew her name.",
+  "script": "Corporate rolled out a new rule for cashiers: if a customer says an item rang up wrong, don't argue, don't call for a price check, just make it free and keep the line moving. One regular figured that out within a week. Every visit, something new had \"scanned wrong\" \u2014 a rotisserie chicken, a case of water, once an entire pack of steaks. Store policy was store policy, so I gave her every single one, free, exactly like corporate wanted. I also started paging it over the intercom. \"Price dispute at register two \u2014 item free.\" Every item, every time, loud enough for the whole store to hear. Three visits of that and people started watching her cart. The store manager started watching too. Two weeks in, corporate finally added one word to the policy: \"verify.\" She hasn't been back since. I heard she tried the same routine four towns over, and they already knew her name.",
   "shots": [
     {
       "phrase": "if a customer says an item rang up wrong",
@@ -11,11 +11,21 @@
     },
     {
       "phrase": "a rotisserie chicken",
-      "query": "rotisserie chicken store"
+      "query": "rotisserie chicken store",
+      "pin_query": "rotisserie chicken",
+      "pin_context": "grocery store food product",
+      "news_query": "rotisserie chicken",
+      "news_angle": "A customer falsely claimed a rotisserie chicken scanned wrong to get it for free.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Donauinselfest2007_Grillhendl.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "a case of water",
-      "query": "bottled water case"
+      "query": "bottled water case",
+      "pin_query": "case of water",
+      "pin_context": "bottled beverage grocery",
+      "news_query": "case of water",
+      "news_angle": "The customer also got a case of water for free by claiming it scanned wrong.",
+      "image_url": "https://live.staticflickr.com/5217/5405402182_8697e6243d_b.jpg"
     },
     {
       "phrase": "gave her every single one, free",
@@ -24,8 +34,7 @@
     },
     {
       "phrase": "paging it over the intercom",
-      "query": "store intercom speaker",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg"
+      "query": "store intercom speaker"
     },
     {
       "phrase": "people started watching her cart",
@@ -34,8 +43,7 @@
     },
     {
       "phrase": "corporate finally added one word to the policy",
-      "query": "corporate policy document",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+      "query": "corporate policy document"
     }
   ],
   "punches": [

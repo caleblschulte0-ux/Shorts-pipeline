@@ -2,7 +2,7 @@
   "subreddit": "MaliciousCompliance",
   "slug": "reddit-badge-every-room",
   "title": "Badge In For Every Room. Even The Bathroom.",
-  "script": "Our new facilities director rolled out a mandate: badge in and out of every room in the building, every single time, no exceptions — the break room, the supply closet, even the bathroom, all \"for security audit accuracy.\" Fine by me. I badged in for the bathroom. I badged out of the bathroom. I badged into the break room for eleven seconds to grab a pen and badged right back out on my way to the printer. Within two days my badge history ran four hundred and twelve entries long. By day four the security software flagged our whole floor for \"anomalous access patterns\" and froze half the badges — including his. He spent the next morning locked out of his own office, badging the door twelve times while security reviewed a log that now showed, in exact timestamps, exactly how many bathroom trips a security audit apparently required. The mandate quietly vanished from the intranet that afternoon. I kept a screenshot of all four hundred and twelve entries anyway.",
+  "script": "Our new facilities director rolled out a mandate: badge in and out of every room in the building, every single time, no exceptions \u2014 the break room, the supply closet, even the bathroom, all \"for security audit accuracy.\" Fine by me. I badged in for the bathroom. I badged out of the bathroom. I badged into the break room for eleven seconds to grab a pen and badged right back out on my way to the printer. Within two days my badge history ran four hundred and twelve entries long. By day four the security software flagged our whole floor for \"anomalous access patterns\" and froze half the badges \u2014 including his. He spent the next morning locked out of his own office, badging the door twelve times while security reviewed a log that now showed, in exact timestamps, exactly how many bathroom trips a security audit apparently required. The mandate quietly vanished from the intranet that afternoon. I kept a screenshot of all four hundred and twelve entries anyway.",
   "shots": [
     {
       "phrase": "badge in and out of every room",
@@ -11,7 +11,12 @@
     },
     {
       "phrase": "the break room for eleven seconds",
-      "query": "office break room"
+      "query": "office break room",
+      "pin_query": "break room",
+      "pin_context": "office building interior",
+      "news_query": "break room",
+      "news_angle": "The narrator badges into the break room for eleven seconds to grab a pen as part of the new badging mandate.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "four hundred and twelve entries long",
@@ -35,7 +40,11 @@
     {
       "phrase": "quietly vanished from the intranet",
       "query": "computer intranet screen",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png",
+      "pin_query": "intranet",
+      "pin_context": "office building internal network",
+      "news_query": "intranet",
+      "news_angle": "The mandate quietly vanishes from the intranet after the security software flags the floor for anomalous access patterns."
     }
   ],
   "punches": [
