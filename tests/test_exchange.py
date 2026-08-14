@@ -13,6 +13,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -302,6 +303,47 @@ class TestSelfFillContracts(unittest.TestCase):
         self.assertIsNone(self_fill({"shots": []}, 0))
         self.assertIsNone(self_fill({"shots": [{"query": ""}]}, 0))
         self.assertIsNone(self_fill({}, 5))
+
+    def test_lane_3_topic_fallback_respects_the_image_trust_boundary(self):
+        """Found live 2026-08-14: lane 2 (entity_media.resolve_entity_media)
+        runs every topic_media.search() candidate through url_is_image() —
+        its own docstring calls that "the trust boundary for routine-supplied
+        image URLs" — but when every candidate failed it, lane 3 called
+        topic_media.search() again directly and returned the first nonempty
+        URL with NO verification at all, handing back the exact dead/HTML/
+        non-image candidate the trust boundary had just rejected."""
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+        import exchange_phase_b as pb
+        from funnel import entity_media, media_funnel, topic_media
+
+        pkg = {"shots": [{"query": "some entity", "phrase": "some entity"}],
+              "title": "Some Story"}
+
+        with mock.patch.object(
+                media_funnel, "search", return_value=[]), \
+            mock.patch.object(
+                entity_media, "resolve_entity_media", return_value=None), \
+            mock.patch.object(
+                topic_media, "search",
+                return_value=["https://example.com/dead-or-html.html"]), \
+            mock.patch.object(
+                entity_media, "url_is_image", return_value=False) as m_verify:
+            self.assertIsNone(pb.self_fill(pkg, 0),
+                              "lane 3 must not return a URL that fails "
+                              "url_is_image, same as lane 2 would refuse it")
+            m_verify.assert_called()
+
+        with mock.patch.object(
+                media_funnel, "search", return_value=[]), \
+            mock.patch.object(
+                entity_media, "resolve_entity_media", return_value=None), \
+            mock.patch.object(
+                topic_media, "search",
+                return_value=["https://example.com/real.jpg"]), \
+            mock.patch.object(
+                entity_media, "url_is_image", return_value=True):
+            self.assertEqual(pb.self_fill(pkg, 0),
+                             "https://example.com/real.jpg")
 
 
 class TestPunchupBriefIsActionable(unittest.TestCase):

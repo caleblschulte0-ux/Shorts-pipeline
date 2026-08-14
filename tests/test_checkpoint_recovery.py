@@ -32,8 +32,9 @@ def checkpoint(rid="req-1", status="verified", **over):
     cp = {
         "schema": mc.SCHEMA, "schema_version": mc.SCHEMA_VERSION,
         "date": "20260810", "request_id": rid, "status": status,
+        "request_kind": "bundle_request",
         "drive": {"file_id": "1abcFILEID", "folder_id": "1folder",
-                  "filename": "20260810__req-1.png",
+                  "filename": f"20260810__{rid}.png",
                   "download_url": "https://drive.google.com/uc?id=1abcFILEID",
                   "sharing": "anyone_with_link"},
         "image": {"sha256": "a" * 64, "bytes": 1002732, "format": "png",
@@ -127,6 +128,82 @@ class TestRecoveryFillsGapsAndNeverOverrides(unittest.TestCase):
         self.assertEqual(mc.recovered_media("20260810"), {})
 
 
+class TestRecoveryIsNotASideDoor(unittest.TestCase):
+    """A checkpoint that would be REFUSED as a response pointer must be
+    refused identically when it is recovered instead. Found live 2026-08-14:
+    `pointer_from_checkpoint` only required status + file_id + sha256, and
+    Phase B validated the raw response object rather than the checkpoint-
+    augmented index, so a verified-looking-but-stale checkpoint (wrong
+    schema, wrong day, wrong bundle, no folder/sharing/filename/dimensions)
+    was recovered, merged in, and pinned without ever going through
+    `checkpoint_problems` — the exact trust contract a response pointer's
+    own checkpoint is held to inside `validate_response_media`."""
+
+    def setUp(self):
+        import tempfile
+        self.tmp = Path(tempfile.mkdtemp(prefix="cprec-badcp-"))
+        self._saved_dir = mc.progress_dir
+        d = self.tmp / "media-progress"
+        d.mkdir(parents=True)
+        mc.progress_dir = lambda date: d                  # noqa: ARG005
+        self.dir = d
+
+    def tearDown(self):
+        import shutil
+        mc.progress_dir = self._saved_dir
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def write(self, cp):
+        import json
+        (self.dir / f"{cp['request_id']}.json").write_text(json.dumps(cp))
+
+    def test_a_verified_but_contractually_broken_checkpoint_is_refused(self):
+        bad = checkpoint(
+            "req-1", schema="wrong-schema", date="20200101",
+            bundle={"identity": "not-the-current-bundle"},
+            drive={"file_id": "1abcFILEID"},               # no folder/sharing/filename
+            image={"sha256": "a" * 64},                    # no dims/format
+        )
+        self.write(bad)
+
+        got = mc.recovered_media(
+            "20260810", have=set(),
+            bundle={"requests": [{"request_id": "req-1",
+                                  "prompt_verbatim": "a red bicycle"}]},
+            bundle_id="the-real-current-bundle-identity")
+
+        self.assertEqual(got, {},
+                         "a checkpoint that fails checkpoint_problems on "
+                         "schema, date, bundle identity, folder_id, sharing, "
+                         "filename and image dimensions must never be "
+                         "returned as a usable recovered pointer")
+
+    def test_refused_recovered_checkpoints_are_reported(self):
+        bad = checkpoint("req-1", date="20200101")
+        self.write(bad)
+        refused: dict = {}
+        got = mc.recovered_media("20260810", have=set(), refused_out=refused)
+        self.assertEqual(got, {})
+        self.assertIn("req-1", refused)
+        self.assertTrue(refused["req-1"])
+
+    def test_a_genuinely_current_checkpoint_still_recovers(self):
+        """The fix must not turn recovery off — only stale/foreign checkpoints
+        are refused; a checkpoint made for THIS bundle, THIS prompt, on THIS
+        day still fills the gap."""
+        prompt = "irrelevant here"
+        good = checkpoint(
+            "req-1", bundle={"identity": "the-current-bundle"},
+            prompt_sha256=mc.prompt_sha256(prompt))
+        self.write(good)
+        got = mc.recovered_media(
+            "20260810", have=set(),
+            bundle={"requests": [{"request_id": "req-1",
+                                  "prompt_verbatim": prompt}]},
+            bundle_id="the-current-bundle")
+        self.assertEqual(set(got), {"req-1"})
+
+
 class TestPhaseBActuallyUsesIt(unittest.TestCase):
     """Wiring, pinned: the module can be perfect and still be dead code."""
 
@@ -149,6 +226,14 @@ class TestPhaseBActuallyUsesIt(unittest.TestCase):
         self.assertLess(i_rec, self.SRC.index('fetch_media(rid, idx["media"]'),
                         "recovery must precede the fetch loop, so recovered "
                         "pointers take the same byte-level verification")
+
+    def test_recovery_is_passed_the_current_bundle_and_identity(self):
+        """The whole point of the fix: recovery must be told what "current"
+        means, or it has nothing to compare a stale checkpoint against."""
+        call = self.SRC[self.SRC.index("mc.recovered_media("):
+                        self.SRC.index("mc.recovered_media(") + 400]
+        self.assertIn("bundle_id=bundle_id", call)
+        self.assertIn("bundle=bundle", call)
 
 
 if __name__ == "__main__":

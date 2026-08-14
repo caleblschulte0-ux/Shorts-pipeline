@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260813",
+  "updated": "20260814",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -202,6 +202,42 @@
       "verdict": "doing",
       "date": "20260813",
       "because": "Confirmed: append_ledger() persists only dimensions/one_line/auto_fails/motion/judge/model/rubric_sha and drops checks, weakest_scene, problems, fixes, temporal and format/package lineage, so the ledger can't detect recurring failure classes across days. Legitimate long-term direction (ledger schema versioning + migration) but too large for a single session; accepted as doing, to be picked up as a dedicated build, not bundled into a smaller fix.",
+      "history": []
+    },
+    "71d8f01ef635": {
+      "verdict": "in_progress",
+      "date": "20260814",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified: recovered_media() checkpoints are merged into idx['media'] but validate_response_media() at exchange_phase_b.py:529-532 validates the raw response object only, never idx \u2014 checkpoint_problems' bundle-identity/schema/sharing/filename checks never run on the recovery path, and the fetch/pin loop at lines 668-681 pins straight from idx. test_checkpoint_recovery.py only asserts textual ordering, not that recovered pointers are actually checked. This is the exact staleness gap the bundle-identity check exists to close. Fixing now."
+        }
+      ]
+    },
+    "44caf5d53209": {
+      "verdict": "in_progress",
+      "date": "20260814",
+      "because": "picked up alongside the critical checkpoint-recovery fix; both verified, both small, fixed in the same PR",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified: self_fill()'s lane 3 (exchange_phase_b.py ~288-296) calls topic_media.search() directly and returns the first nonempty URL with zero url_is_image() check, even though lane 2 (entity_media.resolve_entity_media) just fed the same search results through url_is_image and rejected all of them. Lane 3 can return the exact dead/non-image URL lane 2 already refused. Small, clear fix: gate lane 3 on entity_media.url_is_image() same as lane 2. Queuing for a future build after today's critical item; scope is small enough to pick up next."
+        }
+      ]
+    },
+    "2f7ee366fb9b": {
+      "verdict": "doing",
+      "date": "20260814",
+      "because": "Verified is_done() in shared/exchange_bundle.py, but the finding conflates two different things. The malformed-JSON case (DONE present but not parseable JSON -> True) is INTENTIONAL: the comment at line 485 says so, and exchange_phase_b.py:503-511 already treats done=True + unreadable response.json as an error state that forces strict/mandatory checkpoint enforcement rather than silently falling back to the lenient no-DONE backstop -- that is correct fail-strict behavior, not a bug. The real gap is narrower: an empty/blank date field ({} or {\"date\":\"\"}) makes is_done() return True for ANY requested date via 'not stamped', which contradicts the function's own docstring ('a marker for another day never fires this day's render'). Ruling doing scoped to closing that date-scoping gap only (require an exact non-blank date match) plus adding the missing malformed/empty-payload regression tests test_done_marker_is_date_scoped lacks -- not the blanket 'all malformed shapes must be false' proposal, which would break the intentional fail-strict path.",
+      "history": []
+    },
+    "ab49431193c5": {
+      "verdict": "doing",
+      "date": "20260814",
+      "because": "Verified: response_index() never reads schema/date/status/contract, contract_problems() explicitly tolerates a missing contract by design (pinned by test_a_silent_response_is_tolerated), and ingest_authored.py consumes authored/explainer/curiosity sections with no envelope check. This is a real latent gap (no incident yet -- the Aug 13 bundle correctly declares the envelope) and genuinely spans 5 files needing a new typed validator plus a phased rollout so the live scheduled worker isn't broken by a hard requirement it doesn't yet emit. Agree long_term is the right horizon; queuing as doing so it's on the backlog, but it is not a one-session build -- a smaller first slice (require schema+date only, defer status/contract) would be the way to start it when picked up.",
       "history": []
     }
   }
