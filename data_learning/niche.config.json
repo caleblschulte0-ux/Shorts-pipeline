@@ -19034,7 +19034,7 @@
           "scene": {
             "mechanic": "crowd-gender-fill",
             "concept": "an 80-icon crowd grid fills in, colored by gender share of the world's illiterate adults",
-            "code": "cols, rows = 10, 8\ncell = min((RX1 - RX0) // cols, (RBOT - RTOP - 140) // rows)\ngx0 = RX0 + ((RX1 - RX0) - cell * cols) // 2\ngy0 = RTOP + 60\ntotal = cols * rows\nwomen_frac = values[0] / 100.0\nwomen_n = int(round(total * women_frac))\nwoman = subject_image('woman silhouette icon')\nman = subject_image('man silhouette icon')\nshown = int(total * reveal)\nfor idx in range(shown):\n    r, c = divmod(idx, cols)\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_woman = idx < women_n\n    img = woman if is_woman else man\n    col = HIGHLIGHT if is_woman else ACCENT\n    if img is not None:\n        paste(img, x + 4, y + 4, cell - 8, cell - 8)\n    else:\n        d.ellipse([x + 8, y + 8, x + cell - 8, y + cell - 8], fill=rgba(col, 220))\ntext(f\"{int(values[0])}% women\", RX0 + 20, RBOT - 70, size=32, color=HIGHLIGHT)\ntext(f\"{int(values[1])}% men\", RX1 - 220, RBOT - 70, size=32, color=ACCENT)"
+            "code": "cols, rows = 10, 8\ncell = min((RX1 - RX0) // cols, (RBOT - RTOP - 140) // rows)\ngx0 = RX0 + ((RX1 - RX0) - cell * cols) // 2\ngy0 = RTOP + 60\ntotal = cols * rows\nwomen_frac = values[0] / 100.0\nwomen_n = int(round(total * women_frac))\nwoman = subject_image('woman silhouette icon')\nman = subject_image('man silhouette icon')\nshown = int(total * reveal)\nfor idx in range(shown):\n    r = idx // cols\n    c = idx % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_woman = idx < women_n\n    img = woman if is_woman else man\n    col = HIGHLIGHT if is_woman else ACCENT\n    if img is not None:\n        paste(img, x + 4, y + 4, cell - 8, cell - 8)\n    else:\n        d.ellipse([x + 8, y + 8, x + cell - 8, y + cell - 8], fill=rgba(col, 220))\ntext(f\"{int(values[0])}% women\", RX0 + 20, RBOT - 70, size=32, color=HIGHLIGHT)\ntext(f\"{int(values[1])}% men\", RX1 - 220, RBOT - 70, size=32, color=ACCENT)"
           }
         },
         {
@@ -19218,7 +19218,7 @@
           "insight_type": "comparison",
           "role": "3 · EXCEPT...",
           "topic": "neurons vs skin age",
-          "say": "But not everything renews. Carbon-dating shows your brain's neurons are basically as old as you are, while your skin fully replaces in weeks.",
+          "say": "But not everything renews. Carbon-dating shows your brain's neurons are about twenty-nine thousand days old, basically your whole lifetime, while your skin fully replaces every twenty-eight days.",
           "scene": {
             "mechanic": "scale-break-lifetime-ruler",
             "concept": "a single ruler with a jagged scale-break: skin's renewal mark sits just past the start, neuron's mark lands far out near the ruler's end, dramatizing that one cell type is basically as old as the person",

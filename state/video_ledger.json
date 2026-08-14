@@ -558,7 +558,7 @@
       "video_id": null,
       "topic_category": "energy",
       "hook_type": "inversion",
-      "hook_text": "You'd think green energy took off years ago — two decades in, it had barely moved.",
+      "hook_text": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
       "words_first_10s": 25,
       "scene_changes_before_5s": 3,
       "depictions": [
@@ -573,7 +573,7 @@
         {
           "t": 0,
           "event": "hook",
-          "detail": "You'd think green energy took off years ago — two decades in, it had barely moved."
+          "detail": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved."
         },
         {
           "t": 7,
@@ -593,7 +593,7 @@
         {
           "t": 40,
           "event": "payoff",
-          "detail": "Two decades of 'clean energy revolution' headlines — and the grid still ran mostly on the old stuff."
+          "detail": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff."
         },
         {
           "t": 48,
@@ -1403,202 +1403,52 @@
       ]
     },
     {
-      "slug": "nasa-astronaut-selection-odds",
+      "slug": "activity-inequality-steps",
       "directed_at": "2026-08-14",
       "video_id": null,
-      "topic_category": "space",
-      "hook_type": "shock_stat",
-      "hook_text": "NASA gets 18,000 applicants. Picks 10.",
+      "topic_category": "body",
+      "hook_type": "inversion",
+      "hook_text": "Walking more won't fix obesity. This will.",
       "words_first_10s": 7,
       "scene_changes_before_5s": 2,
       "depictions": [
-        "mechanic:application-pile-surge",
-        "mechanic:funnel-to-hatch",
-        "mechanic:cockpit-seats-dim"
+        "mechanic:footprint-trail-row",
+        "mechanic:risk-scale-tilt",
+        "mechanic:step-gap-scale"
       ],
-      "ending_type": "consequence",
-      "franchise": "Getting In",
-      "notes": "First ledger entry for this slug. Bet: chain the funnel physically -- a paper pile spikes, then the whole applicant grid funnels down into one hatch, then the seat grid itself shrinks -- so 'nearly impossible' reads as three compounding squeezes, not one stat. Ends on a single rejected dreamer, not a summary of odds.",
+      "ending_type": "inversion",
+      "franchise": "This Will Actually Fix It",
+      "notes": "First ledger entry for this slug. Bet: open by rejecting the obvious fix ('walking more won't fix obesity') so the arc reframes step-count as a distribution problem, not an average problem -- footprint-trail-row establishes the country spread, risk-scale-tilt names the real predictor (inequality, not average), step-gap-scale closes on the specific 43% gender driver. Ends on the reframe itself, not a summary stat.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "'NASA gets 18,000 applicants, picks 10' over application-pile-surge build-in"
+          "detail": "\"Walking more won't fix obesity. This will.\" over footprint-trail-row build-in"
         },
         {
-          "t": 7,
+          "t": 8,
           "event": "visual_swap",
-          "detail": "application-pile-surge: paper stack rises per selection year, spiking hard in 2017"
+          "detail": "footprint-trail-row: Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global avera"
         },
         {
-          "t": 16,
+          "t": 17,
           "event": "visual_swap",
-          "detail": "funnel-to-hatch: the packed 18,300-applicant grid narrows through a funnel into a spacecraft hatch"
+          "detail": "risk-scale-tilt: It's not the average \u2014 it's the GAP between the most and least active people. That gap mak"
         },
         {
-          "t": 25,
+          "t": 26,
           "event": "visual_swap",
-          "detail": "cockpit-seats-dim: lit seat grid for the 2000-era corps dims down to today's much smaller active corps"
-        },
-        {
-          "t": 32,
-          "event": "payoff",
-          "detail": "closing line: somewhere an astronaut dream just got a rejection email"
+          "detail": "step-gap-scale: Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men"
         },
         {
           "t": 35,
-          "event": "cta",
-          "detail": "would-you-still-apply question"
-        }
-      ]
-    },
-    {
-      "slug": "helium-supply-squeeze",
-      "directed_at": "2026-08-14",
-      "video_id": null,
-      "topic_category": "resources",
-      "hook_type": "shock_stat",
-      "hook_text": "Helium doesn't come back. Ever.",
-      "words_first_10s": 5,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "mechanic:reserve-tank-row",
-        "mechanic:balloon-squeeze-double",
-        "mechanic:price-climb-balloon-shrink"
-      ],
-      "ending_type": "consequence",
-      "franchise": "Running Out",
-      "notes": "First ledger entry for this slug. Bet: use the balloon as the through-line object (source tanks -> demand doubling -> price-vs-deflation duel) so the same familiar prop carries all three numbers instead of three unrelated charts. Ends on the finality of atmospheric loss, not a market forecast.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "'helium doesn't come back, ever' over reserve-tank-row build-in"
-        },
-        {
-          "t": 6,
-          "event": "visual_swap",
-          "detail": "reserve-tank-row: industrial gas cylinders rise per country, Qatar's tower tallest"
-        },
-        {
-          "t": 15,
-          "event": "visual_swap",
-          "detail": "balloon-squeeze-double: 2035's chip-driven demand balloon swells nearly double 2024's"
-        },
-        {
-          "t": 24,
-          "event": "visual_swap",
-          "detail": "price-climb-balloon-shrink: price index climbs as a helium balloon visibly deflates beside it"
-        },
-        {
-          "t": 31,
           "event": "payoff",
-          "detail": "closing line: once it's gone, it's gone, literally into space"
+          "detail": "closing line: It's never about the steps. It's the gap."
         },
         {
-          "t": 34,
+          "t": 38,
           "event": "cta",
-          "detail": "noticed-pricier-balloons question"
-        }
-      ]
-    },
-    {
-      "slug": "recycling-myth-reality",
-      "directed_at": "2026-08-14",
-      "video_id": null,
-      "topic_category": "environment",
-      "hook_type": "shock_stat",
-      "hook_text": "Recycling isn't doing what you think.",
-      "words_first_10s": 6,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "mechanic:trash-mountain-rise",
-        "viz:share",
-        "mechanic:recycling-bin-fill-duel"
-      ],
-      "ending_type": "inversion",
-      "franchise": "The Label Lies",
-      "notes": "First ledger entry for this slug. Bet: open on scale (a plastic mountain dwarfing a human silhouette) before the guilt-trip share breakdown, then close on a bin-fill duel showing even the best-case 2060 forecast still mostly fails -- so the twist isn't 'recycling doesn't work', it's 'even the optimistic future doesn't fix it'.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "'recycling isn't doing what you think' over trash-mountain-rise build-in"
-        },
-        {
-          "t": 6,
-          "event": "visual_swap",
-          "detail": "trash-mountain-rise: plastic waste pile grows from today's scale toward 2060's towering forecast"
-        },
-        {
-          "t": 15,
-          "event": "visual_swap",
-          "detail": "share donut: only 9% recycled, half landfilled, 22% never even makes a dump"
-        },
-        {
-          "t": 24,
-          "event": "visual_swap",
-          "detail": "recycling-bin-fill-duel: today's barely-filled bin next to 2060's best-case bin, still mostly empty"
-        },
-        {
-          "t": 31,
-          "event": "payoff",
-          "detail": "closing line: the label says recyclable, the landfill says otherwise"
-        },
-        {
-          "t": 34,
-          "event": "cta",
-          "detail": "guess-the-real-rate question"
-        }
-      ]
-    },
-    {
-      "slug": "cavendish-banana-monoculture",
-      "directed_at": "2026-08-14",
-      "video_id": null,
-      "topic_category": "food",
-      "hook_type": "shock_stat",
-      "hook_text": "Every banana you've eaten is a clone.",
-      "words_first_10s": 6,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "mechanic:clone-army-grid",
-        "mechanic:variety-vault-vs-single-crate",
-        "mechanic:blight-map-creep"
-      ],
-      "ending_type": "consequence",
-      "franchise": "It Happened Before",
-      "notes": "First ledger entry for this slug. Bet: show the clone-ness visually first (identical grid, one odd-one-out) before naming the risk, then land on the historical repeat (Gros Michel wipeout) so the ending is a warning with precedent, not a vague 'monoculture is bad'.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "'every banana you've eaten is a clone' over clone-army-grid build-in"
-        },
-        {
-          "t": 6,
-          "event": "visual_swap",
-          "detail": "clone-army-grid: 80 identical Cavendish bananas fill the frame, one heirloom variety stands out"
-        },
-        {
-          "t": 15,
-          "event": "visual_swap",
-          "detail": "variety-vault-vs-single-crate: a rich collage of 1,000+ varieties dwarfs the single export crate"
-        },
-        {
-          "t": 24,
-          "event": "visual_swap",
-          "detail": "blight-map-creep: Panama disease TR4 lights up continent by continent across decades"
-        },
-        {
-          "t": 31,
-          "event": "payoff",
-          "detail": "closing line: one fungus away from deja vu"
-        },
-        {
-          "t": 34,
-          "event": "cta",
-          "detail": "ever-tried-another-variety question"
+          "detail": "comment question"
         }
       ]
     },
@@ -1609,46 +1459,196 @@
       "topic_category": "space",
       "hook_type": "shock_stat",
       "hook_text": "Six months in space costs you years of bone.",
-      "words_first_10s": 7,
+      "words_first_10s": 9,
       "scene_changes_before_5s": 2,
       "depictions": [
         "mechanic:bone-erosion-duel",
         "mechanic:region-erosion-columns",
         "mechanic:mission-bone-gauge"
       ],
-      "ending_type": "escalation",
-      "franchise": "What Space Costs You",
-      "notes": "First ledger entry for this slug. Bet: x-ray erosion imagery does the explaining (astronaut vs osteoporosis patient, then region-by-region) so the 1.5%/month figure is felt, not just read; escalates straight into the Mars stakes (30% loss on a 30-month mission) rather than closing on the ISS number alone.",
+      "ending_type": "consequence",
+      "franchise": "The Cost Of Leaving Earth",
+      "notes": "First ledger entry for this slug. Bet: the monthly-rate shock stat (1.5%/month, worse than severe osteoporosis) earns the hook, region-erosion-columns explains WHY only weight-bearing bone erodes (gravity, not just spaceflight generically), mission-bone-gauge escalates ISS-short to Mars-long so the payoff is the forward-looking risk, not the historical fact.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "'six months in space costs you years of bone' over bone-erosion-duel build-in"
+          "detail": "'Six months in space costs you years of bone.' over bone-erosion-duel build-in"
         },
         {
-          "t": 7,
+          "t": 8,
           "event": "visual_swap",
-          "detail": "bone-erosion-duel: astronaut x-ray erodes far faster than an osteoporosis patient's, both eaten from both ends"
+          "detail": "bone-erosion-duel: Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis pa"
         },
         {
-          "t": 16,
+          "t": 17,
           "event": "visual_swap",
-          "detail": "region-erosion-columns: hip erodes fastest, forearm barely moves, across four bone x-ray columns"
+          "detail": "region-erosion-columns: It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never"
         },
         {
-          "t": 25,
+          "t": 26,
           "event": "visual_swap",
-          "detail": "mission-bone-gauge: ISS gauge fills to 9%, Mars gauge fills to 30%, both topped with a suited astronaut"
-        },
-        {
-          "t": 32,
-          "event": "payoff",
-          "detail": "closing line: bones need gravity to bother staying strong"
+          "detail": "mission-bone-gauge: Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost"
         },
         {
           "t": 35,
+          "event": "payoff",
+          "detail": "closing line: Bones need gravity to bother staying strong."
+        },
+        {
+          "t": 38,
           "event": "cta",
-          "detail": "would-you-handle-mars question"
+          "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "cavendish-banana-monoculture",
+      "directed_at": "2026-08-14",
+      "video_id": null,
+      "topic_category": "nature",
+      "hook_type": "shock_stat",
+      "hook_text": "Every banana you've eaten is a clone.",
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:clone-army-grid",
+        "mechanic:variety-vault-vs-single-crate",
+        "mechanic:blight-map-creep"
+      ],
+      "ending_type": "consequence",
+      "franchise": "One Fungus Away",
+      "notes": "First ledger entry for this slug. Bet: clone-army-grid makes '99% one variety' visually undeniable before the number is even spoken, variety-vault-vs-single-crate contrasts the 1,000+ varieties that exist against the single one we actually eat, blight-map-creep closes on the Gros Michel precedent so the ending is 'this already happened once' -- a consequence, not a fresh warning.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "\"Every banana you've eaten is a clone.\" over clone-army-grid build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "clone-army-grid: 99 percent of bananas sold internationally are one single variety: the Cavendish. Every on"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "variety-vault-vs-single-crate: There are over 1,000 banana varieties on Earth. The entire global export trade runs on ess"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "blight-map-creep: This happened before \u2014 a Panama disease wiped out the world's last banana, the Gros Michel"
+        },
+        {
+          "t": 35,
+          "event": "payoff",
+          "detail": "closing line: One fungus away from d\u00e9j\u00e0 vu."
+        },
+        {
+          "t": 38,
+          "event": "cta",
+          "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "helium-supply-squeeze",
+      "directed_at": "2026-08-14",
+      "video_id": null,
+      "topic_category": "science",
+      "hook_type": "stake",
+      "hook_text": "Helium doesn't come back. Ever.",
+      "words_first_10s": 5,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:reserve-tank-row",
+        "mechanic:balloon-squeeze-double",
+        "mechanic:price-climb-balloon-shrink"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Gone Into Space, Literally",
+      "notes": "First ledger entry for this slug. Bet: 'doesn't come back, ever' sets an irreversibility stake up front, reserve-tank-row shows the supply concentration (Qatar), balloon-squeeze-double makes chip-demand growth physical (double the balloon), price-climb-balloon-shrink closes on the 2011-2013 precedent so scarcity reads as a recurring pattern, not a one-off.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "\"Helium doesn't come back. Ever.\" over reserve-tank-row build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "reserve-tank-row: Almost all of it comes from a handful of countries. Qatar alone holds 10.1 billion cubic m"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "balloon-squeeze-double: Demand is about to nearly double by 2035, driven by chipmaking \u2014 advanced semiconductors n"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "price-climb-balloon-shrink: This already happened once. Prices quadrupled between 2011 and 2013 in the last supply cru"
+        },
+        {
+          "t": 35,
+          "event": "payoff",
+          "detail": "closing line: Once it's gone, it's gone \u2014 literally into space."
+        },
+        {
+          "t": 38,
+          "event": "cta",
+          "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "homeschool-surge",
+      "directed_at": "2026-08-14",
+      "video_id": null,
+      "topic_category": "society",
+      "hook_type": "inversion",
+      "hook_text": "School reopened. A lot of families didn't go back.",
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:empty-desk-swap",
+        "mechanic:concern-flag-row",
+        "mechanic:house-vs-school-growth"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Habits That Never Reset",
+      "notes": "First ledger entry for this slug. Bet: 'school reopened, they didn't go back' inverts the expected return-to-normal, empty-desk-swap makes the 2020 spike-then-partial-retreat visible as a shape (not a flat before/after), concern-flag-row names the actual driver (safety, not convenience), house-vs-school-growth closes on scale (near-parity with private school) so the surprise is durability, not the spike itself.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "\"School reopened. A lot of families didn't go back.\" over empty-desk-swap build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "empty-desk-swap: Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, the"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "concern-flag-row: Why'd it stick? The number one reason parents give \u2014 83 percent \u2014 is concern about the env"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "house-vs-school-growth: That's now close to the entire private school system \u2014 9.6 percent of kids, versus 5.4 per"
+        },
+        {
+          "t": 35,
+          "event": "payoff",
+          "detail": "closing line: Some habits from 2020 just stuck."
+        },
+        {
+          "t": 38,
+          "event": "cta",
+          "detail": "comment question"
         }
       ]
     },
@@ -1667,138 +1667,138 @@
         "mechanic:money-swarm-stack"
       ],
       "ending_type": "consequence",
-      "franchise": "The Bug Problem",
-      "notes": "First ledger entry for this slug. Bet: the hook sets up a contradiction (weak flier, fast spread) that segment 2's hitchhike-highway mechanic resolves visually (car-riding jump dwarfs the walking hop), then lands on the dollar cost so 'your car might be the ride it needed' isn't hyperbole.",
+      "franchise": "The Ride It Needed",
+      "notes": "First ledger entry for this slug. Bet: 'can't fly far, spreading anyway' is a built-in contradiction hook, spread-map-bloom shows the 2014-to-2026 state-by-state bloom, hitchhike-highway makes the mechanism physical (16 mi/yr on its own vs one car ride), money-swarm-stack closes on the Pennsylvania dollar cost so the payoff is 'you're the vector,' landing directly on the closing line.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "'this bug can't fly far, it's spreading anyway' over spread-map-bloom build-in"
+          "detail": "\"This bug can't fly far. It's spreading anyway.\" over spread-map-bloom build-in"
         },
         {
           "t": 8,
           "event": "visual_swap",
-          "detail": "spread-map-bloom: US map fills with lanternfly cutouts scattering outward from 2014 to 2026"
+          "detail": "spread-map-bloom: In 2014, this bug was found in one Pennsylvania county. By 2026 it's confirmed in 19 state"
         },
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "hitchhike-highway: a lanternfly hops a short trail alone, another riding a car streaks far past it"
+          "detail": "hitchhike-highway: On its own, it spreads about 16 miles a year. Hitching a ride in a car or train, one jump "
         },
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "money-swarm-stack: cash stacks grow for current $50M, projected, and worst-case $324M cost"
-        },
-        {
-          "t": 33,
-          "event": "payoff",
-          "detail": "closing line: your car might be the ride it needed"
-        },
-        {
-          "t": 36,
-          "event": "cta",
-          "detail": "seen-one-near-you question"
-        }
-      ]
-    },
-    {
-      "slug": "activity-inequality-steps",
-      "directed_at": "2026-08-14",
-      "video_id": null,
-      "topic_category": "body",
-      "hook_type": "inversion",
-      "hook_text": "Walking more won't fix obesity. This will.",
-      "words_first_10s": 7,
-      "scene_changes_before_5s": 2,
-      "depictions": [
-        "mechanic:footprint-trail-row",
-        "mechanic:risk-scale-tilt",
-        "mechanic:step-gap-scale"
-      ],
-      "ending_type": "inversion",
-      "franchise": "It's Not The Average",
-      "notes": "First ledger entry for this slug. Bet: hook inverts the obvious fix (walk more) before the data reveals the real predictor is the GAP between most/least active, not the average -- footprint trails set country averages, then the balance-beam tilt and gendered step-gap scale do the actual explaining.",
-      "timeline": [
-        {
-          "t": 0,
-          "event": "hook",
-          "detail": "'walking more won't fix obesity, this will' over footprint-trail-row build-in"
-        },
-        {
-          "t": 7,
-          "event": "visual_swap",
-          "detail": "footprint-trail-row: dotted footprint trails walk out longer for Hong Kong, shorter for Indonesia"
-        },
-        {
-          "t": 16,
-          "event": "visual_swap",
-          "detail": "risk-scale-tilt: balance beam tilts hard as inequality rises, obesity risk climbing toward 200%"
-        },
-        {
-          "t": 25,
-          "event": "visual_swap",
-          "detail": "step-gap-scale: male and female walking silhouettes, a red band rising to the 43% gender share of the gap"
-        },
-        {
-          "t": 32,
-          "event": "payoff",
-          "detail": "closing line: it's never about the steps, it's the gap"
+          "detail": "money-swarm-stack: That hitchhiking already costs Pennsylvania 50 million dollars a year. Left unchecked, res"
         },
         {
           "t": 35,
+          "event": "payoff",
+          "detail": "closing line: Your car might be the ride it needed."
+        },
+        {
+          "t": 38,
           "event": "cta",
-          "detail": "how-many-steps question"
+          "detail": "comment question"
         }
       ]
     },
     {
-      "slug": "homeschool-surge",
+      "slug": "nasa-astronaut-selection-odds",
       "directed_at": "2026-08-14",
       "video_id": null,
-      "topic_category": "society",
+      "topic_category": "space",
       "hook_type": "shock_stat",
-      "hook_text": "School reopened. A lot of families didn't go back.",
-      "words_first_10s": 9,
+      "hook_text": "NASA gets 18,000 applicants. Picks 10.",
+      "words_first_10s": 6,
       "scene_changes_before_5s": 2,
       "depictions": [
-        "mechanic:empty-desk-swap",
-        "mechanic:concern-flag-row",
-        "mechanic:house-vs-school-growth"
+        "mechanic:application-pile-surge",
+        "mechanic:funnel-to-hatch",
+        "mechanic:cockpit-seats-dim"
       ],
       "ending_type": "consequence",
-      "franchise": "Stuck Since 2020",
-      "notes": "First ledger entry for this slug. Bet: the desk-to-house swap literalizes the COVID spike-then-plateau (2.8% -> 11.1% -> 5.4%) before naming why it stuck, then closes on the scale comparison to private school so 5.4% reads as structurally large, not a rounding error.",
+      "franchise": "Getting Into Space",
+      "notes": "First ledger entry for this slug. Bet: '18,000 applicants, picks 10' is the whole video in one line, so application-pile-surge dramatizes the record 2017 flood, funnel-to-hatch is the signature mechanic (funnel narrowing into a hatch that only fits the 12 selected helmets) landing the 0.065% figure visually instead of as a read-aloud decimal, cockpit-seats-dim closes on the corps shrinking too -- the odds are getting worse, not just already bad.",
       "timeline": [
         {
           "t": 0,
           "event": "hook",
-          "detail": "'school reopened, a lot of families didn't go back' over empty-desk-swap build-in"
+          "detail": "'NASA gets 18,000 applicants. Picks 10.' over application-pile-surge build-in"
         },
         {
-          "t": 9,
+          "t": 8,
           "event": "visual_swap",
-          "detail": "empty-desk-swap: a 5x4 grid of school desks swaps to house icons as the rate spikes then partly recedes, 2019 to 2023"
+          "detail": "application-pile-surge: In 2017 NASA got a record 18,300 applications for its astronaut program. That's not a typo"
         },
         {
-          "t": 18,
+          "t": 17,
           "event": "visual_swap",
-          "detail": "concern-flag-row: four flagpoles rise to each top reason, 83% environment-concern flag tallest"
+          "detail": "funnel-to-hatch: Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate \u2014 thi"
         },
         {
-          "t": 27,
+          "t": 26,
           "event": "visual_swap",
-          "detail": "house-vs-school-growth: homeschool house and private school building grow side by side, near-equal shares"
+          "detail": "cockpit-seats-dim: Even the corps itself shrank \u2014 from about 149 active astronauts in 2000 down to around 41 "
         },
         {
-          "t": 34,
+          "t": 35,
           "event": "payoff",
-          "detail": "closing line: some habits from 2020 just stuck"
+          "detail": "closing line: Somewhere right now, an astronaut dream just got a rejection email."
         },
         {
-          "t": 37,
+          "t": 38,
           "event": "cta",
-          "detail": "would-you-homeschool question"
+          "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "recycling-myth-reality",
+      "directed_at": "2026-08-14",
+      "video_id": null,
+      "topic_category": "environment",
+      "hook_type": "inversion",
+      "hook_text": "Recycling isn't doing what you think.",
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:recycling-bin-fill-duel"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Just Recycle It",
+      "notes": "First ledger entry for this slug. Bet: 'isn't doing what you think' sets up a myth-bust, trash-mountain-rise shows the 2060 trajectory before any blame, the share viz gives the honest 9%-recycled/landfill/other split as a classic chart (only one non-mechanic segment, per house variety rule), recycling-bin-fill-duel closes on OECD's own best-case (17%) still being mostly empty -- so even the optimistic future doesn't rescue the label.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "\"Recycling isn't doing what you think.\" over trash-mountain-rise build-in"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "trash-mountain-rise: Global plastic waste is on track to almost triple by 2060 \u2014 from 353 million tons today to"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "share: Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfil"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "recycling-bin-fill-duel: Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Ju"
+        },
+        {
+          "t": 35,
+          "event": "payoff",
+          "detail": "closing line: The label says recyclable. The landfill says otherwise."
+        },
+        {
+          "t": 38,
+          "event": "cta",
+          "detail": "comment question"
         }
       ]
     }
