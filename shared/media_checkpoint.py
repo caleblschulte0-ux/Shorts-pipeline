@@ -1317,9 +1317,12 @@ def pointer_from_checkpoint(cp: dict) -> dict | None:
     blocked trending's reddit stories for, two days running. The work existed,
     was verified, and was discarded for want of an envelope.
 
-    Returns None when the checkpoint is not a usable record; the caller still
-    runs it through the same `validate_response_media` contract and the same
-    byte-level fetch as any pointer, so recovery grants no extra trust.
+    Returns None when the checkpoint is not a usable record. This is only
+    the SHAPE check (status + the minimum fields to build a pointer at all);
+    it is not the trust check. `recovered_media` below is the caller that
+    also runs `checkpoint_problems` before ever handing one back, so a
+    checkpoint this function accepts can still be refused for being stale,
+    for the wrong bundle, or for the wrong day.
     """
     if not isinstance(cp, dict):
         return None
@@ -1339,16 +1342,44 @@ def pointer_from_checkpoint(cp: dict) -> dict | None:
     }
 
 
-def recovered_media(date, *, have: set | None = None) -> dict[str, dict]:
+def recovered_media(date, *, have: set | None = None, bundle: dict | None = None,
+                    bundle_id: str | None = None,
+                    refused_out: dict[str, list[str]] | None = None,
+                    ) -> dict[str, dict]:
     """Pointers rebuilt from the day's checkpoints for requests the response
     did not already answer. `have` is the set of request_ids the response
-    covers, which always wins — recovery fills gaps, it never overrides."""
+    covers, which always wins — recovery fills gaps, it never overrides.
+
+    Recovery grants NO extra trust: every candidate is put through
+    `checkpoint_problems` — the identical schema / date / bundle-identity /
+    prompt / sharing / filename / image checks a response pointer's own
+    checkpoint gets inside `validate_response_media` — before it is ever
+    handed back. A checkpoint made for a different bundle revision, the
+    wrong day, or missing the fields that make it fetchable is dropped
+    exactly like a refused response pointer, never silently promoted.
+    Pass `bundle` (for prompt-agreement checks on bundle requests) and
+    `bundle_id` (for the identity check) whenever they are known; a caller
+    that omits them only loses those two axes, it never loses the rest.
+    Refused candidates are reported via `refused_out` (rid -> problems)
+    when the caller passes a dict, purely for logging."""
     have = have or set()
+    prompts = {
+        str(r.get("request_id")): r.get("prompt_verbatim")
+        for r in (bundle or {}).get("requests") or []
+        if isinstance(r, dict) and r.get("request_id")
+    }
     out: dict[str, dict] = {}
     for rid, cp in all_checkpoints(date).items():
         if rid in have:
             continue
         ptr = pointer_from_checkpoint(cp)
-        if ptr:
-            out[rid] = ptr
+        if not ptr:
+            continue
+        problems = checkpoint_problems(cp, date=date, bundle_id=bundle_id,
+                                       request_id=rid, prompt=prompts.get(rid))
+        if problems:
+            if refused_out is not None:
+                refused_out[rid] = problems
+            continue
+        out[rid] = ptr
     return out

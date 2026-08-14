@@ -284,12 +284,17 @@ def self_fill(pkg: dict, shot_index: int) -> str | None:
         pass
 
     # Lane 3 — topic image finder: search(topic, context) -> list[str]
-    # (Wikipedia article images, Commons, Openverse; keyless).
+    # (Wikipedia article images, Commons, Openverse; keyless). This draws
+    # from the SAME sources lane 2 just fed through url_is_image() and
+    # rejected every candidate from, so it must clear the identical trust
+    # boundary — otherwise it is a side door back to the dead/HTML/non-image
+    # URLs lane 2 already refused (entity_media.url_is_image's own docstring:
+    # "the trust boundary for routine-supplied image URLs").
     try:
-        from funnel import topic_media
+        from funnel import entity_media, topic_media
         urls = topic_media.search(entity, angle) or []
         for url in urls:
-            if url:
+            if url and entity_media.url_is_image(url):
                 print(f"[phase-b] self-fill lane=topic shot={shot_index}")
                 return url
     except Exception:                                # noqa: BLE001
@@ -480,6 +485,13 @@ def main() -> int:
     response = xb.read_response(args.date)
     idx = xb.response_index(response)
 
+    # Computed here (not at its old spot, right before validate_response_media
+    # below) because RECOVERY needs it too — a recovered checkpoint made for a
+    # stale bundle revision must fail the identity check exactly like an
+    # explicit response pointer would, and that requires knowing the current
+    # bundle_id before recovery runs, not after.
+    bundle_id = mc.bundle_identity(args.date)
+
     # RECOVER THE MEDIA WORKER'S OUTPUT FROM ITS CHECKPOINTS.
     #
     # Pointers used to come ONLY from response.json, which made every image
@@ -492,14 +504,23 @@ def main() -> int:
     # A checkpoint is written at the moment the bytes verify and carries the
     # same file_id / sha256 / dimensions a pointer does, so it IS the
     # evidence. Recovered pointers fill only the gaps the response left, and
-    # they are handed to the identical contract validation and the identical
-    # byte-level fetch below — recovery grants no extra trust, it only stops
-    # verified work from being thrown away.
-    _recovered = mc.recovered_media(args.date, have=set(idx["media"]))
+    # `recovered_media` puts each one through `checkpoint_problems` — the
+    # same schema / date / bundle-identity / prompt / sharing / filename /
+    # image checks an explicit pointer's checkpoint gets inside
+    # `validate_response_media` — before it is ever merged in, so recovery
+    # grants no extra trust; it only stops verified work from being thrown
+    # away.
+    _recovered_refused: dict[str, list[str]] = {}
+    _recovered = mc.recovered_media(args.date, have=set(idx["media"]),
+                                    bundle=bundle, bundle_id=bundle_id,
+                                    refused_out=_recovered_refused)
     if _recovered:
         idx["media"].update(_recovered)
         print(f"[phase-b] recovered {len(_recovered)} media pointer(s) from "
               f"checkpoints (requests the response did not answer)")
+    for rid, problems in _recovered_refused.items():
+        print(f"::warning::[phase-b] REFUSED recovered checkpoint for "
+              f"{rid}: {problems[0]}")
     if response is None:
         if done:
             # DONE says "I finished" but the payload will not parse. That is
@@ -526,7 +547,6 @@ def main() -> int:
     # and strong on its own, and hard-failing here would mean a worker that
     # skipped its checkpoints loses every image to stock self-fill — a
     # regression dressed up as strictness.
-    bundle_id = mc.bundle_identity(args.date)
     validation = mc.validate_response_media(
         response, bundle, date=args.date, bundle_id=bundle_id,
         require_checkpoint=require_cp)
