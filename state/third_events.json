@@ -685,6 +685,49 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-12"
+    },
+    "kaicenat-cave-cenat-2026w33": {
+      "event_id": "kaicenat-cave-cenat-2026w33",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "cave",
+        "cenat",
+        "kaicenat",
+        "minecraft"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/SucculentKnottySandwichThunBeast-PKsGRmX4AvQm7Snl",
+        "https://www.twitch.tv/kaicenat/clip/SavoryBreakableLatteSquadGoals-WffmB4tFQXsiG9ru",
+        "https://www.twitch.tv/kaicenat/clip/AgitatedSavoryStarTheTarFu-r_CPk8DyHrYlE9mm"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-14"
+    },
+    "kaicenat-death-minecraft-2026w33": {
+      "event_id": "kaicenat-death-minecraft-2026w33",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "death",
+        "minecraft",
+        "open",
+        "over"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/BoredUninterestedKleeNotLikeThis-9LZUYeSWyQEq_CpT",
+        "https://www.twitch.tv/kaicenat/clip/KindBitterGoshawkBabyRage-ciQGBjKKgldNVQf3"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-14"
     }
   }
 }
