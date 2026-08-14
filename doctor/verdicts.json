@@ -205,28 +205,40 @@
       "history": []
     },
     "71d8f01ef635": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260814",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260814",
           "because": "Verified: recovered_media() checkpoints are merged into idx['media'] but validate_response_media() at exchange_phase_b.py:529-532 validates the raw response object only, never idx \u2014 checkpoint_problems' bundle-identity/schema/sharing/filename checks never run on the recovery path, and the fetch/pin loop at lines 668-681 pins straight from idx. test_checkpoint_recovery.py only asserts textual ordering, not that recovered pointers are actually checked. This is the exact staleness gap the bundle-identity check exists to close. Fixing now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260814",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "f1e0250"
     },
     "44caf5d53209": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260814",
-      "because": "picked up alongside the critical checkpoint-recovery fix; both verified, both small, fixed in the same PR",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260814",
           "because": "Verified: self_fill()'s lane 3 (exchange_phase_b.py ~288-296) calls topic_media.search() directly and returns the first nonempty URL with zero url_is_image() check, even though lane 2 (entity_media.resolve_entity_media) just fed the same search results through url_is_image and rejected all of them. Lane 3 can return the exact dead/non-image URL lane 2 already refused. Small, clear fix: gate lane 3 on entity_media.url_is_image() same as lane 2. Queuing for a future build after today's critical item; scope is small enough to pick up next."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260814",
+          "because": "picked up alongside the critical checkpoint-recovery fix; both verified, both small, fixed in the same PR"
         }
-      ]
+      ],
+      "commit": "f1e0250"
     },
     "2f7ee366fb9b": {
       "verdict": "doing",
