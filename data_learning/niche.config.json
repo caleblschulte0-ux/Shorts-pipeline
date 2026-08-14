@@ -20609,7 +20609,12 @@
           "use_baseline": true,
           "role": "1 · THE RATE",
           "topic": "monthly bone density loss",
-          "say": "Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis patient on Earth loses 1 percent — in a whole year."
+          "say": "Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis patient on Earth loses 1 percent — in a whole year.",
+          "scene": {
+            "mechanic": "bone-erosion-duel",
+            "concept": "two bone x-rays, astronaut on top and an osteoporosis patient below, each eaten away from both ends by a dark erosion mask that grows with reveal - the astronaut's bone erodes visibly faster",
+            "code": "v0 = values[0]; v1 = values[1]\nbone = subject_image('human bone x-ray')\ncx = (RX0 + RX1) // 2\nbw = 560; bh = 240\ny0 = RTOP + 160\ny1 = RTOP + 620\nfor y, v, col, lab, unit in ((y0, v0, WARN, 'Astronaut', '%/month in space'), (y1, v1, HIGHLIGHT, 'Osteoporosis patient', '%/year on Earth')):\n    if bone is not None:\n        paste(bone, cx - bw // 2, y, bw, bh)\n    frac = clamp(v / 2.5) * reveal\n    ew = int(bw / 2 * frac)\n    d.rectangle([cx - bw // 2, y, cx - bw // 2 + ew, y + bh], fill=rgba((10, 10, 15), 190))\n    d.rectangle([cx + bw // 2 - ew, y, cx + bw // 2, y + bh], fill=rgba((10, 10, 15), 190))\n    text(lab, cx, y - 36, size=30, color=col, center=True)\n    text(f'{v:.1f}{unit}', cx, y + bh + 16, size=38, color=col, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -20621,7 +20626,12 @@
           "ascending": false,
           "role": "2 · WHY",
           "topic": "bone loss by body part",
-          "say": "It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never weight-bearing, barely loses 0.1."
+          "say": "It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never weight-bearing, barely loses 0.1.",
+          "scene": {
+            "mechanic": "region-erosion-columns",
+            "concept": "four bone x-ray columns (hip, spine, pelvis, forearm) each filled from the bottom with a red erosion overlay to its monthly loss rate - the weight-bearing hip erodes tallest, the forearm barely at all",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\ntop = RTOP + 240\nbot = RBOT - 160\nbone = subject_image('bone x-ray cross section')\nsuit = subject_image('astronaut spacesuit helmet')\nif suit is not None:\n    paste(suit, (RX0 + RX1) // 2 - 70, RTOP + 20, 140, 150)\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    bw = int(gw * 0.6)\n    if bone is not None:\n        paste(bone, cx - bw // 2, top, bw, bot - top)\n    frac = clamp(v / vmax) * reveal\n    eh = int((bot - top) * frac)\n    d.rectangle([cx - bw // 2, bot - eh, cx + bw // 2, bot], fill=rgba(WARN, 150))\n    short = labels[i].split('(')[0].strip()\n    text(short, cx, bot + 14, size=17, color=TEXT, center=True)\n    text(f'{v:.1f}%', cx, top - 30, size=22, color=HIGHLIGHT if i == 0 else TEXT, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -20633,7 +20643,12 @@
           "use_baseline": true,
           "role": "3 · THE MARS PROBLEM",
           "topic": "ISS vs Mars mission bone loss",
-          "say": "Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost 30. So astronauts train daily to slow it."
+          "say": "Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost 30. So astronauts train daily to slow it.",
+          "scene": {
+            "mechanic": "mission-bone-gauge",
+            "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
+            "code": "v0 = values[0]; v1 = values[1]\nsuit = subject_image('astronaut spacesuit')\ncx0 = RX0 + 240; cx1 = RX1 - 240\ntop = RTOP + 220; bot = RBOT - 80\ngw = 160\nfor cx, v, col, lab in ((cx0, v0, WARN, 'ISS · 6 months'), (cx1, v1, HIGHLIGHT, 'Mars · 30 months')):\n    d.rounded_rectangle([cx - gw // 2, top, cx + gw // 2, bot], radius=40, outline=rgba(TEXT, 180), width=6)\n    frac = clamp(v / 35.0) * reveal\n    fh = int((bot - top) * frac)\n    if fh > 12:\n        d.rounded_rectangle([cx - gw // 2 + 6, bot - fh, cx + gw // 2 - 6, bot - 6], radius=30, fill=rgba(col, 210))\n    if suit is not None:\n        paste(suit, cx - 70, top - 170, 140, 150)\n    text(lab, cx, top - 190, size=24, color=col, center=True)\n    text(f'{v:.0f}% bone lost', cx, bot + 20, size=26, color=col, center=True)"
+          }
         }
       ]
     },
@@ -20671,7 +20686,12 @@
           "insight_type": "trend",
           "role": "1 · THE SPREAD",
           "topic": "states with confirmed populations",
-          "say": "In 2014, this bug was found in one Pennsylvania county. By 2026 it's confirmed in 19 states."
+          "say": "In 2014, this bug was found in one Pennsylvania county. By 2026 it's confirmed in 19 states.",
+          "scene": {
+            "mechanic": "spread-map-bloom",
+            "concept": "a US map fills with lanternfly cutouts scattered outward as reveal sweeps through the years 2014 to 2026, the swarm count tracking the states-confirmed number",
+            "code": "usmap = subject_image('outline map of the united states')\nbug = subject_image('spotted lanternfly insect')\nif usmap is not None:\n    paste(usmap, RX0, RTOP + 140, RX1 - RX0, 760)\nidx = clamp(reveal * (n - 1), 0, n - 1)\ni0 = int(idx)\ni1 = min(i0 + 1, n - 1)\nv = values[i0] + (values[i1] - values[i0]) * (idx - i0)\ncount = max(1, int(v))\ncx = (RX0 + RX1) // 2; cy = RTOP + 520\nfor i in range(count):\n    ang = (i * 47) % 360\n    rad = 60 + (i * 29) % 340\n    x = cx + int(rad * math.cos(math.radians(ang)))\n    y = cy + int(rad * math.sin(math.radians(ang)) * 0.6)\n    if bug is not None:\n        paste(bug, x - 24, y - 24, 48, 48)\ntext(labels[i0], RX0 + 20, RTOP + 70, size=40, color=HIGHLIGHT)\ntext(f'{count} states confirmed', RX0 + 20, RTOP + 122, size=40, color=WARN)"
+          }
         },
         {
           "source": "offline",
@@ -20683,7 +20703,12 @@
           "use_baseline": true,
           "role": "2 · HOW",
           "topic": "natural vs hitchhiking spread",
-          "say": "On its own, it spreads about 16 miles a year. Hitching a ride in a car or train, one jump can cover 57."
+          "say": "On its own, it spreads about 16 miles a year. Hitching a ride in a car or train, one jump can cover 57.",
+          "scene": {
+            "mechanic": "hitchhike-highway",
+            "concept": "a lanternfly hops a short trail down a highway on its own, while a second one riding a car streaks nearly the full length of the road - natural spread vs a human-aided jump",
+            "code": "road = subject_image('highway road top down')\nbug = subject_image('spotted lanternfly insect')\ncar = subject_image('car driving on highway top view')\ncy0 = RTOP + 300; cy1 = RTOP + 680\nif road is not None:\n    paste(road, RX0, RTOP + 180, RX1 - RX0, 700)\nv0 = values[0]; v1 = values[1]\nx0 = RX0 + 60\nspan = RX1 - RX0 - 120\nfrac0 = clamp(v0 / 70.0) * reveal\nfrac1 = clamp(v1 / 70.0) * reveal\nx_end0 = x0 + int(span * frac0)\nx_end1 = x0 + int(span * frac1)\nd.line([x0, cy0, x_end0, cy0], fill=rgba(WARN, 200), width=8)\nd.line([x0, cy1, x_end1, cy1], fill=rgba(HIGHLIGHT, 200), width=8)\nif bug is not None:\n    paste(bug, x_end0 - 30, cy0 - 30, 60, 60)\nif car is not None:\n    paste(car, x_end1 - 60, cy1 - 40, 120, 80)\ntext(f'{v0:.0f} mi/yr on its own', x0, cy0 - 56, size=30, color=WARN)\ntext(f'{v1:.0f} mi in one hitchhike', x0, cy1 - 56, size=30, color=HIGHLIGHT)"
+          }
         },
         {
           "source": "offline",
@@ -20695,7 +20720,12 @@
           "ascending": true,
           "role": "3 · THE BILL",
           "topic": "economic cost to Pennsylvania",
-          "say": "That hitchhiking already costs Pennsylvania 50 million dollars a year. Left unchecked, researchers say that could hit 324 million."
+          "say": "That hitchhiking already costs Pennsylvania 50 million dollars a year. Left unchecked, researchers say that could hit 324 million.",
+          "scene": {
+            "mechanic": "money-swarm-stack",
+            "concept": "three cash stacks grow taller left to right for current, projected, and worst-case damage, a lanternfly perched on top of the tallest pile",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbot = RBOT - 140\ntop = RTOP + 200\ncash = subject_image('stack of dollar bills')\nbug = subject_image('spotted lanternfly insect')\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / vmax) * reveal\n    h = int((bot - top) * frac)\n    cw = int(gw * 0.55)\n    if cash is not None and h > 6:\n        paste(cash, cx - cw // 2, bot - h, cw, h)\n    text(labels[i][:16], cx, bot + 16, size=15, color=TEXT, center=True)\n    text(f'${v:.0f}M', cx, bot - h - 34, size=24, color=HIGHLIGHT if i == cols - 1 else TEXT, center=True)\n    if i == cols - 1 and bug is not None:\n        paste(bug, cx - 30, bot - h - 96, 60, 60)"
+          }
         }
       ]
     },
@@ -20735,7 +20765,12 @@
           "use_baseline": true,
           "role": "1 · THE STEPS",
           "topic": "average daily steps by country",
-          "say": "Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global average sits around 4,961."
+          "say": "Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global average sits around 4,961.",
+          "scene": {
+            "mechanic": "footprint-trail-row",
+            "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
+            "code": "rows = n\nrh = (RBOT - RTOP - 100) // rows\nshoe = subject_image('walking shoe footprint icon')\ntop = RTOP + 60\nfor i in range(rows):\n    v = values[i]\n    y = top + i * rh + rh // 2\n    frac = clamp(v / vmax) * reveal\n    w = int((RX1 - RX0 - 260) * frac)\n    x0 = RX0 + 220\n    steps_n = max(1, int(w / 42))\n    for s in range(steps_n):\n        fx = x0 + s * 42\n        fy = y + (16 if s % 2 == 0 else -16)\n        if shoe is not None:\n            paste(shoe, fx, fy - 14, 30, 28)\n    text(labels[i], RX0 + 10, y - 12, size=21, color=HIGHLIGHT if i == 0 else TEXT)\n    text(f'{int(v)}', x0 + w + 14, y - 12, size=22, color=TEXT)"
+          }
         },
         {
           "source": "offline",
@@ -20747,7 +20782,12 @@
           "use_baseline": true,
           "role": "2 · THE REAL PREDICTOR",
           "topic": "activity inequality and obesity risk",
-          "say": "It's not the average — it's the GAP between the most and least active people. That gap makes obesity almost 200 percent more likely."
+          "say": "It's not the average — it's the GAP between the most and least active people. That gap makes obesity almost 200 percent more likely.",
+          "scene": {
+            "mechanic": "risk-scale-tilt",
+            "concept": "a balance beam tilts as reveal builds, a fit-silhouette icon on the low-inequality side stays level while an overweight-silhouette icon on the high-inequality side sinks toward the 297 risk index",
+            "code": "v0 = values[0]; v1 = values[1]\ncx = (RX0 + RX1) // 2\npivot_y = RTOP + 260\nbeam_w = 560\ntilt = clamp((v1 - v0) / 300.0) * reveal\ndy = int(80 * tilt)\nlx, ly = cx - beam_w // 2, pivot_y + dy\nrx, ry = cx + beam_w // 2, pivot_y - dy\nd.line([lx, ly, rx, ry], fill=rgba(TEXT, 220), width=10)\nd.polygon([(cx - 20, pivot_y - 40), (cx + 20, pivot_y - 40), (cx, pivot_y)], fill=rgba(TEXT, 220))\nfit = subject_image('fit person silhouette icon')\nheavy = subject_image('overweight silhouette icon')\nif fit is not None:\n    paste(fit, lx - 50, ly, 100, 140)\nif heavy is not None:\n    paste(heavy, rx - 60, ry, 120, 170)\ntext('Low activity-inequality', lx, ly + 150, size=19, color=TEXT, center=True)\ntext(f'{v0:.0f} baseline', lx, ly + 180, size=22, color=TEXT, center=True)\ntext('High activity-inequality', rx, ry + 190, size=19, color=WARN, center=True)\ntext(f'{v1:.0f} index (+197%)', rx, ry + 220, size=24, color=WARN, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -20758,7 +20798,12 @@
           "insight_type": "share",
           "role": "3 · WHY THE GAP",
           "topic": "what drives activity inequality",
-          "say": "Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men in nearly every country studied."
+          "say": "Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men in nearly every country studied.",
+          "scene": {
+            "mechanic": "step-gap-scale",
+            "concept": "a male and female walking-silhouette pair stand side by side, a red band rising up both figures to the 43% line that marks how much of the activity gap the gender difference alone explains",
+            "code": "cx = (RX0 + RX1) // 2\ntop = RTOP + 260\nmaleicon = subject_image('male walking silhouette icon')\nfemaleicon = subject_image('female walking silhouette icon')\nbw = 260\nxm = cx - 180; xf = cx + 180\nfull_h = 500\nif maleicon is not None:\n    paste(maleicon, xm - bw // 2, top, bw, full_h)\nif femaleicon is not None:\n    paste(femaleicon, xf - bw // 2, top, bw, full_h)\nv0 = values[0]\nfrac = clamp(v0 / 100.0) * reveal\ngap_h = int(full_h * frac)\nd.rectangle([xm - bw // 2 - 20, top + full_h - gap_h, xm + bw // 2 + 20, top + full_h], fill=rgba(WARN, 90))\nd.rectangle([xf - bw // 2 - 20, top + full_h - gap_h, xf + bw // 2 + 20, top + full_h], fill=rgba(WARN, 90))\ntext(f'{v0:.0f}% of the gap = gender', cx, top - 60, size=30, color=WARN, center=True)\ntext('women walk fewer steps than men', cx, top + full_h + 30, size=22, color=TEXT, center=True)"
+          }
         }
       ]
     },
@@ -20796,7 +20841,12 @@
           "insight_type": "trend",
           "role": "1 · THE SPIKE",
           "topic": "share of families homeschooling",
-          "say": "Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, then only fell back to 5.4 percent."
+          "say": "Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, then only fell back to 5.4 percent.",
+          "scene": {
+            "mechanic": "empty-desk-swap",
+            "concept": "a 5x4 grid of school desks swaps to little house icons as reveal sweeps 2019 to 2023, the house count tracking the homeschool share for that year - the grid fills with houses at the 2020 spike, then partly empties back",
+            "code": "idx = clamp(reveal * (n - 1), 0, n - 1)\ni0 = int(idx)\ni1 = min(i0 + 1, n - 1)\nv = values[i0] + (values[i1] - values[i0]) * (idx - i0)\ndesk = subject_image('school desk and chair')\nhome = subject_image('small house icon')\ncols = 5; rows = 4\ncell = 170\ngx0 = RX0 + 30; gy0 = RTOP + 180\ntotal = cols * rows\nhomen = max(0, min(total, int(round(total * v / 100.0))))\nfor i in range(total):\n    r = i // cols; c = i % cols\n    x = gx0 + c * cell; y = gy0 + r * cell\n    img = home if i < homen else desk\n    if img is not None:\n        paste(img, x, y, cell - 24, cell - 24)\ntext(labels[i0], RX0 + 20, RTOP + 70, size=38, color=HIGHLIGHT)\ntext(f'{v:.1f}% homeschooled', RX0 + 20, RTOP + 120, size=34, color=WARN)"
+          }
         },
         {
           "source": "offline",
@@ -20808,7 +20858,12 @@
           "ascending": false,
           "role": "2 · WHY IT STUCK",
           "topic": "top reasons parents give",
-          "say": "Why'd it stick? The number one reason parents give — 83 percent — is concern about the environment at other schools."
+          "say": "Why'd it stick? The number one reason parents give — 83 percent — is concern about the environment at other schools.",
+          "scene": {
+            "mechanic": "concern-flag-row",
+            "concept": "four flagpoles rise to each reason's percentage, topped with an icon for that reason (shield, heart, family, book) - safety concern rises tallest",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\nbot = RBOT - 160\ntop = RTOP + 200\nicon_names = ['shield icon', 'heart icon', 'family icon', 'open book icon']\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / 100.0) * reveal\n    h = int((bot - top) * frac)\n    fw = int(gw * 0.5)\n    d.rectangle([cx - 6, bot - h, cx + 6, bot], fill=rgba(TEXT, 200))\n    poleimg = subject_image(icon_names[i % len(icon_names)])\n    if poleimg is not None and h > fw:\n        paste(poleimg, cx - fw // 2, bot - h - fw, fw, fw)\n    text(f'{v:.0f}%', cx, bot - h - fw - 32, size=24, color=HIGHLIGHT if i == 0 else TEXT, center=True)\n    text(labels[i][:16], cx, bot + 16, size=13, color=TEXT, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -20820,7 +20875,12 @@
           "use_baseline": true,
           "role": "3 · THE SCALE",
           "topic": "homeschool vs private school, 2023",
-          "say": "That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 percent homeschooled. Same year, same survey."
+          "say": "That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 percent homeschooled. Same year, same survey.",
+          "scene": {
+            "mechanic": "house-vs-school-growth",
+            "concept": "a small house and a school building grow side by side, each scaled to its own share of kids - the school building noticeably bigger at 9.6% versus the house at 5.4%",
+            "code": "house = subject_image('small house exterior')\nschool = subject_image('school building exterior')\nv0 = values[0]; v1 = values[1]\ncx0 = RX0 + 260; cx1 = RX1 - 260\nbase_y = RBOT - 120\nfor cx, v, img, col, lab in ((cx0, v0, house, WARN, labels[0]), (cx1, v1, school, HIGHLIGHT, labels[1])):\n    frac = clamp(v / 12.0) * reveal\n    bw = int(120 + 380 * frac)\n    if img is not None:\n        ih = int(bw * img.height / img.width)\n        paste(img, cx - bw // 2, base_y - ih, bw, ih)\n        top_y = base_y - ih\n    else:\n        top_y = base_y - bw\n    text(lab, cx, base_y + 40, size=20, color=col, center=True)\n    text(f'{v:.1f}%', cx, top_y - 36, size=34, color=col, center=True)"
+          }
         }
       ]
     }
