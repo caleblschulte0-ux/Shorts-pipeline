@@ -1839,17 +1839,10 @@
     }
   ],
   "recent_commits": [
-    "1f3bbb8 2026-08-13 doctor: findings for 20260813",
-    "974f6bb 2026-08-13 retro: brief + triage for 20260813 [skip ci]"
+    "6af583e 2026-08-14 doctor: close out 71d8f01ef635 and 44caf5d53209, shipped in #275 (#276)",
+    "11552ef 2026-08-14 exchange: phase A bundle for 20260814 [skip ci]"
   ],
   "open_backlog": [
-    {
-      "signature": "71d8f01ef635",
-      "title": "Recovered media checkpoints bypass their contract validator",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
-    },
     {
       "signature": "69a886343361",
       "title": "Production shortfall test never executes the red exit path",
@@ -1869,7 +1862,7 @@
       "title": "Malformed DONE payloads count as completed Finalizer runs",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "cf263a770061",
@@ -1891,13 +1884,6 @@
       "horizon": "short_term",
       "severity": "high",
       "ruling": "doing"
-    },
-    {
-      "signature": "44caf5d53209",
-      "title": "Last-resort topic media bypasses the image URL trust boundary",
-      "horizon": "short_term",
-      "severity": "high",
-      "ruling": "new"
     },
     {
       "signature": "d64b063a21bd",
@@ -1939,7 +1925,7 @@
       "title": "The versioned exchange response schema is not enforced",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -2038,6 +2024,20 @@
       "signature": "6e0d256d4c2f",
       "verdict": "done",
       "date": "20260813",
+      "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "71d8f01ef635",
+      "verdict": "done",
+      "date": "20260814",
+      "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "44caf5d53209",
+      "verdict": "done",
+      "date": "20260814",
       "because": "",
       "revisit_after": null
     }
