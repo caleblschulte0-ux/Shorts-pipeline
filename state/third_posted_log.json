@@ -3536,13 +3536,36 @@
       "ts": "2026-08-14T12:32:00.948807+00:00"
     },
     "clip-20260814-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/SlickAcceptableSwordTinyFace-C76WiafRSC7ZWuE_",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/GSDAC3Lp3ws",
       "title": "Xqc Loses It And Says",
       "kind": "twitch_clip",
-      "ts": "2026-08-14T12:36:09.150368+00:00",
+      "ts": "2026-08-14T12:36:14.147439+00:00",
+      "uploaded_at": "2026-08-14T12:36:14.147456+00:00",
+      "publish_at": "2026-08-14T20:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/SlickAcceptableSwordTinyFace-C76WiafRSC7ZWuE_",
+      "streamer": "xqc",
+      "series": "rage",
+      "hook": "THEN HE SNAPS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4221,
+      "banger": 0.5,
+      "cut": {
+        "start": 18.6,
+        "end": 54.9
+      },
+      "director_cut": true
+    },
+    "clip-20260814-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/TacitCoyBeaverOhMyDog-lI-5EjZ7ETnw5Z2O",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Can't Believe What's Inside This Burger",
+      "kind": "twitch_clip",
+      "ts": "2026-08-14T12:41:11.664814+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
