@@ -1,0 +1,21 @@
+{
+  "key": "homeschool_top_reasons",
+  "title": "Top reasons US parents give for homeschooling (2023)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022-23 school year",
+  "source": {
+    "name": "National Household Education Survey (NHES), homeschooling module",
+    "publisher": "National Center for Education Statistics (NCES)",
+    "url": "https://nces.ed.gov/nhes/homeschooling.asp",
+    "officiality": "official",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Parents could select multiple reasons, so shares don't sum to 100%. Concern about the environment of other schools (safety, negative peer pressure, drugs) was the most commonly cited reason both before and after the pandemic, cited by 83% of homeschooling parents in the 2022-23 wave.",
+  "points": [
+    {"label": "Concern about school environment/safety", "value": 83},
+    {"label": "Desire for moral instruction", "value": 75},
+    {"label": "Desire for family time together", "value": 72},
+    {"label": "Dissatisfied with academics elsewhere", "value": 72}
+  ]
+}

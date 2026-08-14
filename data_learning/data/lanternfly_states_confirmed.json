@@ -1,0 +1,22 @@
+{
+  "key": "lanternfly_states_confirmed",
+  "title": "US states with a confirmed spotted lanternfly population",
+  "unit": "states",
+  "geography": "United States",
+  "time_coverage": "2014-2026",
+  "source": {
+    "name": "Spotted lanternfly detection/quarantine tracking",
+    "publisher": "USDA Animal and Plant Health Inspection Service (APHIS), state departments of agriculture",
+    "url": "https://www.aphis.usda.gov/plant-pests-diseases/slf",
+    "officiality": "official",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Cumulative count of US states with an established/confirmed spotted lanternfly population. First US detection: Berks County, Pennsylvania, 2014. By 2026, APHIS lists confirmed populations across roughly 19 states plus DC. Intermediate points compiled from state agriculture department detection timelines (DE/VA/NJ/MD by 2018; CT/OH/NY added by 2020; IN/KY and NC/MI added by 2021-2022).",
+  "points": [
+    {"label": "2014", "value": 1, "period": "2014"},
+    {"label": "2018", "value": 5, "period": "2018"},
+    {"label": "2020", "value": 9, "period": "2020"},
+    {"label": "2022", "value": 12, "period": "2022"},
+    {"label": "2026", "value": 19, "period": "2026"}
+  ]
+}

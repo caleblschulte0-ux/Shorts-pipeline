@@ -20573,6 +20573,256 @@
           }
         }
       ]
+    },
+    {
+      "slug": "astronaut-bone-loss",
+      "title": "Space Doesn't Just Float You. It Hollows You.",
+      "hook": "Six months in space costs you years of bone.",
+      "closing": "Bones need gravity to bother staying strong.",
+      "question": "Would you handle a Mars mission knowing the cost? Comment below.",
+      "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
+      "hashtags": [
+        "astronautbones",
+        "bonedensity",
+        "spaceflight",
+        "microgravity",
+        "nasa",
+        "marsmission",
+        "spacescience",
+        "spacehealth",
+        "astronaut",
+        "biology",
+        "spacefacts",
+        "science",
+        "didyouknow",
+        "shorts",
+        "dataviz"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "astronaut_bone_loss_rate",
+          "params": {
+            "file": "astronaut_bone_loss_rate.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "1 · THE RATE",
+          "topic": "monthly bone density loss",
+          "say": "Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis patient on Earth loses 1 percent — in a whole year."
+        },
+        {
+          "source": "offline",
+          "key": "astronaut_bone_loss_by_region",
+          "params": {
+            "file": "astronaut_bone_loss_by_region.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHY",
+          "topic": "bone loss by body part",
+          "say": "It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never weight-bearing, barely loses 0.1."
+        },
+        {
+          "source": "offline",
+          "key": "iss_vs_mars_bone_loss",
+          "params": {
+            "file": "iss_vs_mars_bone_loss.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE MARS PROBLEM",
+          "topic": "ISS vs Mars mission bone loss",
+          "say": "Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost 30. So astronauts train daily to slow it."
+        }
+      ]
+    },
+    {
+      "slug": "invasive-lanternfly-spread",
+      "title": "The Bug That's Already In 19 States",
+      "hook": "This bug can't fly far. It's spreading anyway.",
+      "closing": "Your car might be the ride it needed.",
+      "question": "Seen a spotted lanternfly near you? Tell me below.",
+      "caption": "This invasive bug barely flies — but it's already confirmed in 19 US states, and it's already cost Pennsylvania $50 million a year. Turns out it doesn't need wings when your car will do. Seen a spotted lanternfly near you? 👇",
+      "hashtags": [
+        "spottedlanternfly",
+        "invasivespecies",
+        "lanternfly",
+        "agriculture",
+        "pestcontrol",
+        "usda",
+        "insects",
+        "ecology",
+        "nature",
+        "science",
+        "didyouknow",
+        "farming",
+        "invasion",
+        "dataviz",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lanternfly_states_confirmed",
+          "params": {
+            "file": "lanternfly_states_confirmed.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPREAD",
+          "topic": "states with confirmed populations",
+          "say": "In 2014, this bug was found in one Pennsylvania county. By 2026 it's confirmed in 19 states."
+        },
+        {
+          "source": "offline",
+          "key": "lanternfly_spread_rate",
+          "params": {
+            "file": "lanternfly_spread_rate.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · HOW",
+          "topic": "natural vs hitchhiking spread",
+          "say": "On its own, it spreads about 16 miles a year. Hitching a ride in a car or train, one jump can cover 57."
+        },
+        {
+          "source": "offline",
+          "key": "lanternfly_economic_cost",
+          "params": {
+            "file": "lanternfly_economic_cost.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "role": "3 · THE BILL",
+          "topic": "economic cost to Pennsylvania",
+          "say": "That hitchhiking already costs Pennsylvania 50 million dollars a year. Left unchecked, researchers say that could hit 324 million."
+        }
+      ]
+    },
+    {
+      "slug": "activity-inequality-steps",
+      "title": "It's Not How Much You Walk. It's How Unequal It Is.",
+      "hook": "Walking more won't fix obesity. This will.",
+      "closing": "It's never about the steps. It's the gap.",
+      "question": "How many steps do you actually walk a day? Drop it below.",
+      "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
+      "hashtags": [
+        "activityinequality",
+        "obesity",
+        "stepcount",
+        "walking",
+        "publichealth",
+        "stanford",
+        "fitness",
+        "health",
+        "science",
+        "steps",
+        "dataviz",
+        "didyouknow",
+        "wellness",
+        "shorts",
+        "research"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "global_daily_steps_by_country",
+          "params": {
+            "file": "global_daily_steps_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "1 · THE STEPS",
+          "topic": "average daily steps by country",
+          "say": "Hong Kong walks 6,880 steps a day on average. Indonesia walks just 3,513. The global average sits around 4,961."
+        },
+        {
+          "source": "offline",
+          "key": "activity_inequality_obesity_risk",
+          "params": {
+            "file": "activity_inequality_obesity_risk.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE REAL PREDICTOR",
+          "topic": "activity inequality and obesity risk",
+          "say": "It's not the average — it's the GAP between the most and least active people. That gap makes obesity almost 200 percent more likely."
+        },
+        {
+          "source": "offline",
+          "key": "activity_inequality_gender_gap_share",
+          "params": {
+            "file": "activity_inequality_gender_gap_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · WHY THE GAP",
+          "topic": "what drives activity inequality",
+          "say": "Why the gap? 43 percent of it comes down to one thing: women walk far fewer steps than men in nearly every country studied."
+        }
+      ]
+    },
+    {
+      "slug": "homeschool-surge",
+      "title": "Homeschooling Never Went Back To Normal After Covid",
+      "hook": "School reopened. A lot of families didn't go back.",
+      "closing": "Some habits from 2020 just stuck.",
+      "question": "Would you ever homeschool your kids? Tell me why.",
+      "caption": "Homeschooling spiked to 11.1% of families during COVID — then it was supposed to fall back to normal. It didn't. Years later it's still double the pre-pandemic rate, and closing in on the entire private school system. Would you ever homeschool your kids? 👇",
+      "hashtags": [
+        "homeschooling",
+        "education",
+        "pandemic",
+        "covid19",
+        "parenting",
+        "census",
+        "publicschool",
+        "privateschool",
+        "demographics",
+        "familylife",
+        "schoolchoice",
+        "dataviz",
+        "didyouknow",
+        "shorts",
+        "kids"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "homeschool_rate_trend",
+          "params": {
+            "file": "homeschool_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPIKE",
+          "topic": "share of families homeschooling",
+          "say": "Before COVID, 2.8 percent of families homeschooled. It spiked to 11.1 percent in 2020, then only fell back to 5.4 percent."
+        },
+        {
+          "source": "offline",
+          "key": "homeschool_top_reasons",
+          "params": {
+            "file": "homeschool_top_reasons.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHY IT STUCK",
+          "topic": "top reasons parents give",
+          "say": "Why'd it stick? The number one reason parents give — 83 percent — is concern about the environment at other schools."
+        },
+        {
+          "source": "offline",
+          "key": "homeschool_vs_private_2023",
+          "params": {
+            "file": "homeschool_vs_private_2023.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE SCALE",
+          "topic": "homeschool vs private school, 2023",
+          "say": "That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 percent homeschooled. Same year, same survey."
+        }
+      ]
     }
   ],
   "videos": [

@@ -1,0 +1,19 @@
+{
+  "key": "lanternfly_spread_rate",
+  "title": "Spotted lanternfly spread rate: natural dispersal vs human-aided jumps",
+  "unit": "miles",
+  "geography": "Northeastern United States",
+  "time_coverage": "2014-2022 invasion period",
+  "source": {
+    "name": "Human-mediated dispersal drives the spread of the spotted lanternfly (Lycorma delicatula)",
+    "publisher": "Scientific Reports (Nature Portfolio), Ladin et al. 2022",
+    "url": "https://www.nature.com/articles/s41598-022-25989-3",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "The study found a natural, diffusive spread rate (local hopping/walking/short flights) of about 25 km/yr (~16 miles), versus discrete long-distance jump events of 55-92 km/yr (~34-57 miles) attributed to human-mediated transport (vehicles, trains). The upper end of the human-aided range (~57 miles) is shown here for contrast with natural spread.",
+  "points": [
+    {"label": "Natural spread (hopping/walking/short flights)", "value": 16},
+    {"label": "Human-aided long-distance jumps", "value": 57}
+  ]
+}
