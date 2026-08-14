@@ -1,0 +1,20 @@
+{
+  "key": "homeschool_rate_trend",
+  "title": "Share of US families homeschooling: before, during, and after the pandemic",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2023",
+  "source": {
+    "name": "Pre-pandemic baseline: National Household Education Survey (NHES). 2020/2023: Household Pulse Survey",
+    "publisher": "National Center for Education Statistics (NCES) / U.S. Census Bureau",
+    "url": "https://nces.ed.gov/fastfacts/display.asp?id=91",
+    "officiality": "official",
+    "access_date": "2026-08-14"
+  },
+  "notes": "2019 figure (2.8%) is NCES's pre-pandemic National Household Education Survey estimate, the benchmark the Census Bureau itself uses when reporting Household Pulse Survey results. 2020 (11.1%, fall wave) and 2023 (5.4%, May wave) are from the Census Bureau's Household Pulse Survey, which began in April 2020 specifically to track pandemic-era shifts and has continued periodically since. Two different survey instruments measuring the same concept -- both cited here for their own periods since NHES was not fielded in the same way during the pandemic's acute phase.",
+  "points": [
+    {"label": "2019 (pre-pandemic)", "value": 2.8, "period": "2019"},
+    {"label": "2020 (pandemic peak)", "value": 11.1, "period": "2020"},
+    {"label": "2023", "value": 5.4, "period": "2023"}
+  ]
+}

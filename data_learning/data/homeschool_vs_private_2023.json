@@ -1,0 +1,19 @@
+{
+  "key": "homeschool_vs_private_2023",
+  "title": "Homeschooled vs privately schooled share of US K-12 kids (2023)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "May 2023",
+  "source": {
+    "name": "Household Pulse Survey, May 2023 wave",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/programs-surveys/household-pulse-survey.html",
+    "officiality": "official",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Same survey wave (May 2023) breaks down school enrollment as approximately 85% public school, 9.6% private school, 5.4% homeschooled -- used here to show homeschooling has grown to a scale approaching the entire private school sector.",
+  "points": [
+    {"label": "Homeschooled", "value": 5.4},
+    {"label": "Private school", "value": 9.6}
+  ]
+}

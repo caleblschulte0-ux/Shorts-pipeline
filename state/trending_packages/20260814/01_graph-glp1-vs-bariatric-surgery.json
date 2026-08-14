@@ -1,0 +1,65 @@
+{
+  "format": "graph_race",
+  "slug": "graph-glp1-vs-bariatric-surgery",
+  "title": "Weight-Loss Drugs Just Crushed Bariatric Surgery",
+  "hook": "One line replaced surgery.",
+  "y_label": "People treated per year (millions)",
+  "duration": 13,
+  "source": "GLP-1 weight-loss-drug users: Gallup polling reported ~3% of US adults using a GLP-1 for weight loss in 2024, rising to an estimated 40 million adults (~11%) by 2026 per Medical Daily/Forbes Health coverage of Medicare GLP-1 coverage (Aug 2026); 2019-2023 figures approximate, back-modeled from the well-documented Ozempic/Wegovy/Zepbound adoption ramp (Wegovy approved 2021, Zepbound 2023). Bariatric/metabolic surgery counts: American Society for Metabolic and Bariatric Surgery (ASMBS) annual estimates; procedures fell below 200,000 in 2024 for the first time since 2020, a 20%+ drop; 2025-2026 approximate, continuing the reported decline.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "GLP-1 weight-loss users",
+      "color": "#50c8ff",
+      "icon": "Rx",
+      "values": [
+        0.3,
+        0.6,
+        1.5,
+        3.0,
+        5.0,
+        7.7,
+        20.0,
+        40.0
+      ]
+    },
+    {
+      "name": "Bariatric surgeries",
+      "color": "#ff9f40",
+      "icon": "MD",
+      "values": [
+        0.256,
+        0.198,
+        0.262,
+        0.28,
+        0.253,
+        0.198,
+        0.19,
+        0.185
+      ]
+    }
+  ],
+  "hashtags": [
+    "glp1",
+    "ozempic",
+    "wegovy",
+    "zepbound",
+    "weightloss",
+    "bariatricsurgery",
+    "health",
+    "obesity",
+    "pharma",
+    "medicine"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

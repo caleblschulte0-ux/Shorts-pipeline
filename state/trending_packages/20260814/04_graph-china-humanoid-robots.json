@@ -1,0 +1,54 @@
+{
+  "format": "graph_race",
+  "slug": "graph-china-humanoid-robots",
+  "title": "China's Humanoid Robots Went From Hundreds To 50,000",
+  "hook": "The robot army already shipped.",
+  "y_label": "Humanoid robots deployed (units)",
+  "duration": 13,
+  "source": "Morgan Stanley research (via BigGo Finance / Futu News, June 2026): roughly 16,000 humanoid robots deployed worldwide in 2025, with China accounting for more than 80% of that; Morgan Stanley raised its 2026 China humanoid shipment forecast to 50,000 units (from an earlier 28,000 estimate), its second upgrade in six months. 2023-2024 figures are approximate, back-modeled from the reported pilot-to-commercialization ramp (China's earliest factory/warehouse humanoid pilots began around 2023). 2026 rest-of-world figure is an approximation derived from Morgan Stanley's stated ~80% China share.",
+  "years": [
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#de2910",
+      "icon": "CN",
+      "values": [
+        400,
+        2200,
+        13000,
+        50000
+      ]
+    },
+    {
+      "name": "Rest of world",
+      "color": "#50c8ff",
+      "icon": "RW",
+      "values": [
+        100,
+        800,
+        3000,
+        12500
+      ]
+    }
+  ],
+  "hashtags": [
+    "humanoidrobot",
+    "china",
+    "robotics",
+    "ai",
+    "automation",
+    "tech",
+    "manufacturing",
+    "robots",
+    "morganstanley",
+    "factoryautomation",
+    "futuretech"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

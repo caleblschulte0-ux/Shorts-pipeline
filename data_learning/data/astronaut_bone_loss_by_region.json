@@ -1,0 +1,21 @@
+{
+  "key": "astronaut_bone_loss_by_region",
+  "title": "Monthly bone mineral density loss in spaceflight, by skeletal region",
+  "unit": "percent",
+  "geography": "International Space Station (long-duration crew)",
+  "time_coverage": "4-6 month ISS missions",
+  "source": {
+    "name": "Bone mineral and lean tissue loss after long duration spaceflight (LeBlanc et al.)",
+    "publisher": "Journal of Musculoskeletal and Neuronal Interactions (NASA-funded spaceflight bone research)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7200725/",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Weight-bearing regions (trochanter/hip, spine, pelvis) lose bone mineral density fastest during spaceflight, while non-weight-bearing regions like the forearm -- which do little structural work against gravity even on Earth -- show minimal change. Figures reflect the range widely reported across long-duration ISS crew bone-density studies.",
+  "points": [
+    {"label": "Hip (trochanter)", "value": 2.2},
+    {"label": "Spine (lumbar)", "value": 1.1},
+    {"label": "Pelvis", "value": 1.0},
+    {"label": "Forearm (non-weight-bearing)", "value": 0.1}
+  ]
+}

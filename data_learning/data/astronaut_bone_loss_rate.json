@@ -1,0 +1,19 @@
+{
+  "key": "astronaut_bone_loss_rate",
+  "title": "Bone mineral density loss: astronaut (per month in space) vs osteoporosis patient (per year on Earth)",
+  "unit": "percent",
+  "geography": "International Space Station / Earth",
+  "time_coverage": "current (based on decades of NASA/ESA spaceflight bone research)",
+  "source": {
+    "name": "Systematic review and meta-analysis of bone loss in space travelers",
+    "publisher": "Peer-reviewed spaceflight bone-density research (NASA/ESA-funded studies, as compiled in mainstream science coverage)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7200725/",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Astronauts on the ISS lose roughly 1 to 2 percent of bone mineral density per month in weight-bearing bones (hip, spine) under microgravity; 1.5% used here as the commonly-cited midpoint. A severe osteoporosis patient on Earth loses on the order of 1 percent per YEAR -- so the monthly spaceflight rate is well over 10x faster. Corroborated by ESA and Canadian Space Agency spaceflight-medicine summaries.",
+  "points": [
+    {"label": "Astronaut (per month, in space)", "value": 1.5},
+    {"label": "Osteoporosis patient (per year, on Earth)", "value": 1.0}
+  ]
+}
