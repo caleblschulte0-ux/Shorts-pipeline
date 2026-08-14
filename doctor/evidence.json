@@ -1,55 +1,61 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260813",
-  "judged_date": "20260812",
+  "date": "20260814",
+  "judged_date": "20260813",
   "alarm": {
-    "date": "20260812",
+    "date": "20260813",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_finalizer",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260812 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260812/response.json, exchange/bundles/20260812/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes. (No watchdog record for this date \u2014 this verdict was computed live, so check that chatgpt_watchdog.yml is firing too.)"
-      },
-      {
-        "code": "no_posts_explainer",
-        "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260812 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260812. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 1/4 posted for 20260813.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20260812.",
+        "detail": "third: 3/6 posted for 20260813.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/6 posted for 20260812.",
+        "detail": "trending: 1/6 posted for 20260813.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260812: production outcome says 2/6 uploaded and repair never completed (4 quarantined, 4 failed).",
+        "detail": "trending 20260813: production outcome says 1/6 uploaded and repair never completed (1 quarantined, 8 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
-      },
-      {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 2/6; 4 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
       "chatgpt doctor: artifact present",
-      "doctor: findings current (20260812)"
+      "chatgpt finalizer: artifact present",
+      "chatgpt media: artifact present",
+      "exchange: 13/13 ChatGPT images pinned",
+      "doctor: findings current (20260813)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260813",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 1,
+      "quarantined": 1,
+      "failed": 8,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/68qpwmWkouY"
+      ]
+    },
     {
       "schema": "production-channel-outcome/v1",
       "date": "20260812",
@@ -140,221 +146,9 @@
         "https://youtube.com/shorts/kq4GcKmXlmM",
         "https://youtube.com/shorts/5g_6YVYSrTQ"
       ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260806",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 0,
-      "failed": 8,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/mrUqpMU95qY",
-        "https://youtube.com/shorts/IaprIWrtr_0"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-06T09:29:01+00:00",
-      "slug": "renewables_just_beat_coal_in_the_us",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:31:06+00:00",
-      "slug": "china_vs_hollywood__the_box_office_war",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A genuine, well-sourced two-series race with a real lead change \u2014 but the hook is a static text card over an empty grid and the payoff whispers the result instead of landing it.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:33:07+00:00",
-      "slug": "the_global_ev_race__china_vs_europe_vs_u",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, honest graph race with a real lead change and a landed winner \u2014 but the hook card ghosts illegibly over the lines while the chart is still empty, wasting the first 2 seconds.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:36:56+00:00",
-      "slug": "she_demanded_i_follow_the_return_policy_",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "One frozen AI still carries the entire 54-second story \u2014 the narrative never changes shot after the hook card, so nothing visual demonstrates the cause-and-effect turns.",
-      "auto_fails": [
-        "dead_air: The story illustration is one frozen AI still, pixel-identical across mid1 (12.43s), mid2 (22.37s), mid3 (32.30s), mid4 (42.23s), mid5 (52.17s) and payoff@-0.4 (53.77s) \u2014 ~41s in which the only story-bearing visual never changes."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 163
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:40:41+00:00",
-      "slug": "she_wanted_a_refund_for_kids_who_never_s",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The gameplay half is alive but the story half is one frozen empty-room photo for ~40 seconds, so nothing in this narrative is actually shown \u2014 only captioned.",
-      "auto_fails": [
-        "dead_air: The upper illustration panel is the SAME empty-room still at mid1 (11.9s), mid2 (21.3s), mid3 (30.8s), mid4 (40.2s), mid5 (49.6s), payoff@-1.8 and payoff@-0.4 \u2014 ~40s in which the story-carrying half of the frame never changes, and consecutive beats are visually identical.",
-        "empty_void: The top ~50% of the frame from mid1 onward is a dim, subject-less empty room \u2014 half the canvas holds no element, no motion and no story information for the entire body."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 155
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:49:20+00:00",
-      "slug": "moment_first_rare_tiger_in_70_years_rele",
-      "score": 30,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Half the visuals are stock footage of the wrong subject \u2014 snails, a wildfire, empty dunes \u2014 behind a story about a tiger release, and Data never appears at all.",
-      "auto_fails": [
-        "junk_imagery: mid1 (t=10.79s) shows two SNAILS on a plank over 'HER FIRST STEPS INTO THE' \u2014 nothing to do with an Amur tiger release; mid2 (t=19.07s) is a burning forest for 'FROM RUSSIA AS PART OF' and mid3 (t=27.36s) is empty sand dunes for '12 MILLION PEOPLE WERE'. All three are auto-grabbed stock with no relation to the line.",
-        "decorative_mascot: No mascot appears in any frame from hook@0.3 through payoff@-0.4 \u2014 Data is entirely absent, so there is no bit tied to any stat.",
-        "empty_void: hook@0.3 and hook@0.8 (t=0.30-0.80s) are a fully black screen with only a wall of white text \u2014 no imagery, no motion, roughly two seconds of dead frame opening the video."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.022,
-        "sampled": 138
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T09:58:04+00:00",
-      "slug": "ukraine_s_military_hits_one_of_russia_s_",
-      "score": 17,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "There is no data demonstration, no mascot, and no relevant imagery \u2014 this is a mismatched-stock reddit-story slideshow that opens on a black text card.",
-      "auto_fails": [
-        "junk_imagery: mid2 (t=19.35s) shows a hand holding a UK 'SKY' TV remote under the line 'THE VIDEO SHOWED THE SLAVNAF', and mid5/payoff (t=44.63-46.23s) sit on a US 82nd Airborne 'WAALCROSSING 1944' memorial stone for a Ukraine drone-strike story; mid1 (t=10.93s) captions 'TOP SECRET' over a white gym/clinic interior.",
-        "empty_void: hook@0.3 and hook@0.8 are a full-frame black void with nothing but static white text \u2014 no image, no motion, no mascot, for the entire opening beat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.021,
-        "sampled": 140
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-06T10:05:41+00:00",
       "slug": "this_school_bus_sized__terror_croc__ate_",
@@ -1845,13 +1639,217 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:27:55+00:00",
+      "slug": "china_just_passed_japan_in_car_exports",
+      "score": 78,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean, honest, correctly-branded graph race whose crossover payoff lands \u2014 but it opens on a static 2018 chart under an opaque caption box, and the mid-race frames waste half the screen on empty black.",
+      "auto_fails": [
+        "empty_void: mid1 (t=4.47s) and mid2 (t=6.45s): the entire 1M\u20134.7M band, roughly half the frame, is flat black with only two thin flat lines; dark_fraction=1.0."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:30:00+00:00",
+      "slug": "streaming_just_beat_cable_and_broadcast",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The race itself is clean and the 2025 crossover genuinely lands, but the first second is an obscured static grid and label collisions dog the whole run.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:32:15+00:00",
+      "slug": "the_airport_that_knocked_atlanta_off_the",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The chart never shows the lead change the title and hook sell \u2014 Atlanta stays #1 in the leaderboard from frame one to the '#1 Atlanta' end card, so the video disproves its own premise.",
+      "auto_fails": [
+        "empty_void: The whole 0\u201340M band of the plot is flat black in every frame (hook@1.5, mid3 t=8.43s), dark_fraction 1.0, and at hook@0.3\u20132.2 the entire right half of the plot is empty before the lines arrive."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:34:41+00:00",
+      "slug": "vinyl_is_outselling_cds_again",
+      "score": 75,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely good race \u2014 real crossover, moving tips, reordering leaderboard \u2014 sabotaged by irrelevant scraped brand logos (a SEGA logo standing in for CDs) riding on every data point.",
+      "auto_fails": [
+        "junk_imagery: Every frame from hook@0.3 to payoff@-0.4 uses a scraped SEGA game-company logo as the marker for 'CDs' and a random 'Vinyl Cache' retailer logo for 'Vinyl' \u2014 neither has anything to do with RIAA album revenue, and both are squashed into unreadable smears that sit on top of the line tips (mid2 t=6.45s, mid4 t=10.40s)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:38:12+00:00",
+      "slug": "he_said_email_everything__so_i_did_",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "One frozen cubicle photo carries 39 of the 51 seconds \u2014 the story is narrated, never shown.",
+      "auto_fails": [
+        "empty_void: mid1 bottom half is near-solid black with nothing but the caption 'FIND BY ME.' and a sliver of the cube at the far left; mid5 repeats the same near-black lower half around 'ONCE SAID A'."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 152
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:42:50+00:00",
+      "slug": "she_wouldn_t_believe_i_don_t_work_here__",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "One garbled AI store-aisle still is frozen on the top half for the last 34 seconds while the narration moves through four different beats \u2014 the story is never visually demonstrated.",
+      "auto_fails": [
+        "junk_imagery: mid1/mid2/mid3 top half: AI-generated store-aisle worker with a smeared, featureless face and melted, fingerless hands \u2014 a visibly garbled cutout.",
+        "dead_air: The illustration track is a single frozen still: mid1 (10.47s), mid2 (18.45s), mid3 (26.42s), mid4 (34.39s), mid5 (42.37s), payoff@-1.8 and payoff@-0.4 are pixel-identical in the top half \u2014 ~34s with no change while captions move through four different story beats."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 133
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-13T09:50:09+00:00",
+      "slug": "hi",
+      "score": 22,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "This is a generic two-panel Reddit-story/Minecraft cut with mismatched stock photos and zero data demonstration or mascot performance \u2014 it does not meet this channel's bar at all.",
+      "auto_fails": [
+        "junk_imagery: mid5/payoff@-1.8 and payoff@-0.4 show an unrelated stock portrait of a woman at a restaurant table while the narration is 'on the text\u2026 ago'; mid4 (t=33.97) is a black-and-white thumb/coin stock clip with no connection to the wedding story.",
+        "decorative_mascot: No mascot appears in any frame (hook@0.3 through payoff@-0.4) \u2014 Data performs no bit at all.",
+        "empty_void: mid1 (t=10.37) top half is a small letterboxed image floating in a large flat navy field, and mid4 (t=33.97) wastes most of the top panel on flat grey; the pillarboxed navy bars persist through mid2/mid3/payoff frames."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 132
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "299e93b 2026-08-13 doctor: mark 6e0d256d4c2f done (merged in #271) (#272)",
-    "05e1e92 2026-08-13 exchange: phase A bundle for 20260813 [skip ci]"
+    "1f3bbb8 2026-08-13 doctor: findings for 20260813",
+    "974f6bb 2026-08-13 retro: brief + triage for 20260813 [skip ci]"
   ],
   "open_backlog": [
+    {
+      "signature": "71d8f01ef635",
+      "title": "Recovered media checkpoints bypass their contract validator",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "new"
+    },
     {
       "signature": "69a886343361",
       "title": "Production shortfall test never executes the red exit path",
@@ -1865,6 +1863,13 @@
       "horizon": "bug",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "2f7ee366fb9b",
+      "title": "Malformed DONE payloads count as completed Finalizer runs",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "cf263a770061",
@@ -1886,6 +1891,13 @@
       "horizon": "short_term",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "44caf5d53209",
+      "title": "Last-resort topic media bypasses the image URL trust boundary",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "d64b063a21bd",
@@ -1921,6 +1933,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "ab49431193c5",
+      "title": "The versioned exchange response schema is not enforced",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
