@@ -1,0 +1,34 @@
+{
+ "checked_at": "2026-08-14T13:40:33+00:00",
+ "date": "20260813",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260813/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-dont-work-here-s0-a3c7ca5f5575.json",
+  "reddit-dont-work-here-s1-2440c6bc8a3d.json",
+  "reddit-dont-work-here-s2-8151a6619d83.json",
+  "reddit-dont-work-here-s3-298eda6a00d5.json",
+  "reddit-dont-work-here-s4-323f8a3298a5.json",
+  "reddit-dont-work-here-s5-2c55ebfafc62.json",
+  "reddit-dont-work-here-s6-90936589fe90.json",
+  "reddit-dont-work-here-s7-9f58260e268c.json",
+  "reddit-email-everything-s1-24862e412cdb.json",
+  "reddit-email-everything-s3-a4fe8ab645c9.json",
+  "reddit-email-everything-s5-9db7554b6c2f.json",
+  "reddit-email-everything-s6-c6698a2d7477.json",
+  "reddit-email-everything-s7-c2b08a15da4a.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 13 image(s)"
+}
