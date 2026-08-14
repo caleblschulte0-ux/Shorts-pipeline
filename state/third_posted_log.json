@@ -3470,6 +3470,25 @@
       "title": "Jasontheween Reacts To Rosii And Zoil Showering Together",
       "qa_rejected": true,
       "ts": "2026-08-13T13:24:52.245242+00:00"
+    },
+    "rejected-amazonianpeppycucumberphilosoraptor-9rxi2-n1mersduds": {
+      "source_url": "https://www.twitch.tv/knut/clip/AmazonianPeppyCucumberPhilosoraptor-9rxI2-N1mersDUds",
+      "streamer": "knut",
+      "title": "Cops",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine driving chat, nothing happens)",
+      "ts": "2026-08-14T11:56:16.128160+00:00"
+    },
+    "clip-20260814-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/SmokyFragileFoxRedCoat-MRH2eCK-8aE8xUzd",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Reads The Most Savage Roast Text Out Loud",
+      "kind": "twitch_clip",
+      "ts": "2026-08-14T11:59:05.736116+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
