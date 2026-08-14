@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260814",
+  "bundle": {
+    "identity": "6581f9bd693e5a115cf37385d3dbd5e51b0bf8a20f7b162478a19ca7892522f2",
+    "path": "exchange/bundles/20260814/bundle.json"
+  },
+  "request_id": "reddit-price-dispute-item-free-s3-010821445738",
+  "safe_request_id": "reddit-price-dispute-item-free-s3-010821445738",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-price-dispute-item-free",
+  "shot_index": 3,
+  "prompt_sha256": "eabba65b7a6478f0c36954b76aad66f53a08ff2fcc8a08c3238afcf5d55aeb47",
+  "prompt_used": "An editorial illustration for a short-form video: grocery store checkout. It accompanies the narration: \"gave her every single one, free\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+    "filename": "20260814__reddit-price-dispute-item-free-s3-010821445738.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f94acff3e5c32406e1d84b9aa0686e3ab8bd7a320ced41d5864aedf5f8d76cc2",
+    "bytes": 1287533,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-14T11:10:21Z",
+  "error": null,
+  "retryable": false
+}
