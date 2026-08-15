@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Weight-Loss Drugs Just Crushed Bariatric Surgery",
-    "title": "Weight-Loss Drugs Just Crushed Bariatric Surgery",
+    "topic": "Japan Just Lapped South Korea In Tourism",
+    "title": "Japan Just Lapped South Korea In Tourism",
     "format": "graph_race",
-    "publish_at": "2026-08-14T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely great data story \u2014 245K surgeries flat while GLP-1 goes 354K \u2192 40M \u2014 undercut by an opening that spends its first two seconds as a title card over an empty grid.",
-    "elapsed_seconds": 171.7,
-    "package_path": "state/trending_packages/20260814/01_graph-glp1-vs-bariatric-surgery.json",
+    "publish_at": "2026-08-15T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/14l6P7itp9o",
+    "error": null,
+    "elapsed_seconds": 127.7,
+    "package_path": "state/trending_packages/20260815/01_graph-japan-korea-tourism.json",
     "source": "brain",
-    "video_path": "output/daily_20260814-093503_weight_loss_drugs_just_crushed_bariatric.mp4",
+    "video_path": "output/daily_20260815-092958_japan_just_lapped_south_korea_in_tourism.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +27,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely great data story \u2014 245K surgeries flat while GLP-1 goes 354K \u2192 40M \u2014 undercut by an opening that spends its first two seconds as a title card over an empty grid.",
+      "blocked": false,
+      "reason": "",
       "score": 83
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "One WNBA Team Now Outdraws The Whole League",
-    "title": "One WNBA Team Now Outdraws The Whole League",
+    "topic": "BYD Just Overtook Tesla In EV Sales",
+    "title": "BYD Just Overtook Tesla In EV Sales",
     "format": "graph_race",
-    "publish_at": "2026-08-14T13:00:00Z",
+    "publish_at": "2026-08-15T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/XHDB8RIQHTM",
+    "video_url": "https://youtube.com/shorts/hugIYuTAQBA",
     "error": null,
-    "elapsed_seconds": 110.9,
-    "package_path": "state/trending_packages/20260814/02_graph-fever-outdraws-the-league.json",
+    "elapsed_seconds": 118.1,
+    "package_path": "state/trending_packages/20260815/02_graph-byd-vs-tesla.json",
     "source": "brain",
-    "video_path": "output/daily_20260814-093754_one_wnba_team_now_outdraws_the_whole_lea.mp4",
+    "video_path": "output/daily_20260815-093206_byd_just_overtook_tesla_in_ev_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -68,17 +68,51 @@
     "channel": "default"
   },
   {
-    "topic": "The Electric Truck Lead Just Flipped Twice",
-    "title": "The Electric Truck Lead Just Flipped Twice",
+    "topic": "Americans Now Bet $167 Billion A Year On Sports",
+    "title": "Americans Now Bet $167 Billion A Year On Sports",
     "format": "graph_race",
-    "publish_at": "2026-08-14T14:30:00Z",
+    "publish_at": "2026-08-15T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The double lead-flip genuinely lands on the leaderboard, but the first half of the video is a mostly black frame with two hairlines in it, and the craft blemishes (ghosted caption fade, clipped axis label, constantly rescaling y-axis) make it read as an unfinished chart export rather than a designed short.",
-    "elapsed_seconds": 109.2,
-    "package_path": "state/trending_packages/20260814/03_graph-cybertruck-vs-lightning.json",
+    "error": "showrunner_block: showrunner BLOCK: The data story is real and the growth curve lands, but the hook caption is smeared illegibly across the plot and the first half of the video is mostly empty black panel.",
+    "elapsed_seconds": 104.2,
+    "package_path": "state/trending_packages/20260815/03_graph-sports-betting-handle.json",
     "source": "brain",
-    "video_path": "output/daily_20260814-093945_the_electric_truck_lead_just_flipped_twi.mp4",
+    "video_path": "output/daily_20260815-093404_americans_now_bet__167_billion_a_year_on.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The data story is real and the growth curve lands, but the hook caption is smeared illegibly across the plot and the first half of the video is mostly empty black panel.",
+      "score": 78
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The Labubu Company's Revenue Just 8Xed",
+    "title": "The Labubu Company's Revenue Just 8Xed",
+    "format": "graph_race",
+    "publish_at": "2026-08-15T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race that ends by crowning the wrong company \u2014 the payoff says '#1 Mattel' when the whole video promised Pop Mart's 8x climb.",
+    "elapsed_seconds": 112.8,
+    "package_path": "state/trending_packages/20260815/04_graph-popmart-vs-mattel.json",
+    "source": "brain",
+    "video_path": "output/daily_20260815-093548_the_labubu_company_s_revenue_just_8xed.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,26 +130,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The double lead-flip genuinely lands on the leaderboard, but the first half of the video is a mostly black frame with two hairlines in it, and the craft blemishes (ghosted caption fade, clipped axis label, constantly rescaling y-axis) make it read as an unfinished chart export rather than a designed short.",
+      "reason": "showrunner BLOCK: A clean, honest two-line race that ends by crowning the wrong company \u2014 the payoff says '#1 Mattel' when the whole video promised Pop Mart's 8x climb.",
       "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "China's Humanoid Robots Went From Hundreds To 50,000",
-    "title": "China's Humanoid Robots Went From Hundreds To 50,000",
-    "format": "graph_race",
-    "publish_at": "2026-08-14T14:30:00Z",
+    "topic": "He Wanted Reply-All Confirmation. He Got It.",
+    "title": "He Wanted Reply-All Confirmation. He Got It.",
+    "format": "reddit",
+    "publish_at": "2026-08-15T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean, honest, fast-rescaling race chart with a real 50K payoff, but the first two seconds are a near-black empty panel with a caption that fades into it.",
-    "elapsed_seconds": 80.1,
-    "package_path": "state/trending_packages/20260814/04_graph-china-humanoid-robots.json",
+    "error": "showrunner_block: showrunner BLOCK: The story beats are illustrated with a scanned Iraq-war invasion memo and a corporate retreat poster \u2014 imagery that has nothing to do with a reply-all email meltdown.",
+    "elapsed_seconds": 182.4,
+    "package_path": "state/trending_packages/20260815/05_reddit-reply-all-chaos.json",
     "source": "brain",
-    "video_path": "output/daily_20260814-094135_china_s_humanoid_robots_went_from_hundre.mp4",
+    "video_path": "output/daily_20260815-093744_he_wanted_reply_all_confirmation__he_got.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 14.375,
+      "duration": 48.467,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -126,30 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.2
+      "loudness_lufs": -26.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Clean, honest, fast-rescaling race chart with a real 50K payoff, but the first two seconds are a near-black empty panel with a caption that fades into it.",
-      "score": 87
+      "reason": "showrunner BLOCK: The story beats are illustrated with a scanned Iraq-war invasion memo and a corporate retreat poster \u2014 imagery that has nothing to do with a reply-all email meltdown.",
+      "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "Badge In For Every Room. Even The Bathroom.",
-    "title": "Badge In For Every Room. Even The Bathroom.",
+    "topic": "He Stopped Me At The Exit Every Visit. Big Mistake.",
+    "title": "He Stopped Me At The Exit Every Visit. Big Mistake.",
     "format": "reddit",
-    "publish_at": "2026-08-14T14:30:00Z",
+    "publish_at": "2026-08-15T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The gameplay-and-captions layer is fine, but the top-panel illustrations are unrelated stock (agile poster, laptop reviews, a GNOME bugzilla inbox) and one screenshot is held across the last three beats, so the story is never actually shown.",
-    "elapsed_seconds": 265.5,
-    "package_path": "state/trending_packages/20260814/05_reddit-badge-every-room.json",
+    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions carry, but three of five story beats sit under wholly unrelated stock scans (an Iraq war memo, a meeting-rules poster, a GNOME bug inbox) \u2014 the illustration track is junk and freezes for the final 12 seconds.",
+    "elapsed_seconds": 210.2,
+    "package_path": "state/trending_packages/20260815/06_reddit-loss-prevention-audit.json",
     "source": "brain",
-    "video_path": "output/daily_20260814-094259_badge_in_for_every_room__even_the_bathro.mp4",
+    "video_path": "output/daily_20260815-094046_he_stopped_me_at_the_exit_every_visit__b.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 55.2,
+      "duration": 52.9,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -165,68 +204,29 @@
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The gameplay-and-captions layer is fine, but the top-panel illustrations are unrelated stock (agile poster, laptop reviews, a GNOME bugzilla inbox) and one screenshot is held across the last three beats, so the story is never actually shown.",
-      "score": 48
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Wrong Price? It's Free. Every Single Time.",
-    "title": "Wrong Price? It's Free. Every Single Time.",
-    "format": "reddit",
-    "publish_at": "2026-08-14T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean gameplay and captions, but the illustration track is off-topic junk \u2014 a declassified Iraq-war memo holds the top half for the entire final third of a story about a store's wrong-price policy.",
-    "elapsed_seconds": 235.4,
-    "package_path": "state/trending_packages/20260814/06_reddit-price-dispute-item-free.json",
-    "source": "brain",
-    "video_path": "output/daily_20260814-094722_wrong_price__it_s_free__every_single_tim.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 51.867,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Clean gameplay and captions, but the illustration track is off-topic junk \u2014 a declassified Iraq-war memo holds the top half for the entire final third of a story about a store's wrong-price policy.",
+      "reason": "showrunner BLOCK: The gameplay and captions carry, but three of five story beats sit under wholly unrelated stock scans (an Iraq war memo, a meeting-rules poster, a GNOME bug inbox) \u2014 the illustration track is junk and freezes for the final 12 seconds.",
       "score": 57
     },
     "blocked": true
   },
   {
-    "topic": "pokemon 30th anniversary",
+    "topic": "kick",
     "angle": null,
-    "publish_at": "2026-08-14T14:30:00Z",
+    "publish_at": "2026-08-15T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Topical Krispy Kreme/Pokemon stills carry most of it, but the hook is a frozen darkened storefront photo, an irrelevant e-reader stock shot lands mid-story, and it ends mid-sentence with no payoff.",
-    "elapsed_seconds": 579.9,
-    "title": "POKEMON FURY",
-    "package_path": "state/trending_packages/20260814-095150_auto_pokemon_30th_anniversary.json",
-    "video_path": "output/daily_20260814-095150_pokemon_30th_anniversary.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The visuals have nothing to do with the story \u2014 mugshots, arrest body-cam, and stock laptop ads over a narration about being kicked out by family.",
+    "elapsed_seconds": 590.9,
+    "title": "Kicked Out By My Own Family",
+    "package_path": "state/trending_packages/20260815-094430_auto_kick.json",
+    "video_path": "output/daily_20260815-094430_kick.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 33.233,
+      "duration": 35.767,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -237,7 +237,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -13.7
+      "loudness_lufs": -14.0
     },
     "qa": {
       "ok": true,
@@ -246,39 +246,78 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Topical Krispy Kreme/Pokemon stills carry most of it, but the hook is a frozen darkened storefront photo, an irrelevant e-reader stock shot lands mid-story, and it ends mid-sentence with no payoff.",
+      "reason": "showrunner BLOCK: The visuals have nothing to do with the story \u2014 mugshots, arrest body-cam, and stock laptop ads over a narration about being kicked out by family.",
+      "score": 18
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "hurricane weather",
+    "angle": null,
+    "publish_at": "2026-08-15T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['family business', 'punched in the gut', 'lavish lifestyle', 'pay off her debts', 'lying to our faces', 'destroying our family']",
+    "elapsed_seconds": 27.6,
+    "title": "Family Deceit",
+    "package_path": "state/trending_packages/20260815-095423_auto_hurricane_weather.json",
+    "quarantined": true,
+    "backfill": true
+  },
+  {
+    "topic": "restaurants near me",
+    "angle": null,
+    "publish_at": "2026-08-15T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Unrelated stock media (a salad bowl, a random bar photo) is illustrating a diary-betrayal story, and half of several frames is dead black gameplay space.",
+    "elapsed_seconds": 646.5,
+    "title": "Fiance's Mom Exposed Me",
+    "package_path": "state/trending_packages/20260815-095449_auto_restaurants_near_me.json",
+    "video_path": "output/daily_20260815-095449_restaurants_near_me.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 38.467,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -12.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Unrelated stock media (a salad bowl, a random bar photo) is illustrating a diary-betrayal story, and half of several frames is dead black gameplay space.",
       "score": 39
     },
     "blocked": true,
     "backfill": true
   },
   {
-    "topic": "cricket",
+    "topic": "bighead carp",
     "angle": null,
-    "publish_at": "2026-08-14T16:00:00Z",
+    "publish_at": "2026-08-15T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['having an affair', 'heated tournament', 'guilt was eating', 'love triangle', 'true feelings', 'leaving me', 'final blow']",
-    "elapsed_seconds": 30.3,
-    "title": "Cricket Scandal Exposed",
-    "package_path": "state/trending_packages/20260814-100129_auto_cricket.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "fidelity 500 index fund",
-    "angle": null,
-    "publish_at": "2026-08-14T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Nothing in this video demonstrates the data \u2014 it is a stack of unrelated stock photos (statues, painted stairs, a classroom, coals) over Minecraft/Subway Surfers footage, with no mascot and no payoff.",
-    "elapsed_seconds": 501.1,
-    "title": "I Invested 360k in FXAIX",
-    "package_path": "state/trending_packages/20260814-100158_auto_fidelity_500_index_fund.json",
-    "video_path": "output/daily_20260814-100158_fidelity_500_index_fund.mp4",
+    "error": "showrunner_block: showrunner BLOCK: Off-topic stock faces and a random frog break the visual chain of a story that already has real carp and river footage available.",
+    "elapsed_seconds": 692.2,
+    "title": "Family Secret Unleashed",
+    "package_path": "state/trending_packages/20260815-100538_auto_bighead_carp.json",
+    "video_path": "output/daily_20260815-100538_bighead_carp.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 42.8,
+      "duration": 42.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -289,7 +328,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -12.9
+      "loudness_lufs": -11.9
     },
     "qa": {
       "ok": true,
@@ -298,47 +337,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Nothing in this video demonstrates the data \u2014 it is a stack of unrelated stock photos (statues, painted stairs, a classroom, coals) over Minecraft/Subway Surfers footage, with no mascot and no payoff.",
-      "score": 26
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "darren anthony robinson",
-    "angle": null,
-    "publish_at": "2026-08-14T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every top-half visual is unrelated news and crime b-roll pasted over a personal rehearsal-dinner story \u2014 the exact auto-grabbed-junk failure the channel bans.",
-    "elapsed_seconds": 380.3,
-    "title": "Fiance's Mom Exposed My Dark Secret",
-    "package_path": "state/trending_packages/20260814-101020_auto_darren_anthony_robinson.json",
-    "video_path": "output/daily_20260814-101020_darren_anthony_robinson.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 39.967,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -13.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every top-half visual is unrelated news and crime b-roll pasted over a personal rehearsal-dinner story \u2014 the exact auto-grabbed-junk failure the channel bans.",
-      "score": 30
+      "reason": "showrunner BLOCK: Off-topic stock faces and a random frog break the visual chain of a story that already has real carp and river footage available.",
+      "score": 43
     },
     "blocked": true,
     "backfill": true

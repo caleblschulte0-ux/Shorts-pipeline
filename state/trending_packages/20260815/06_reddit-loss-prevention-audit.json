@@ -12,29 +12,17 @@
     {
       "phrase": "the register printing a receipt every time",
       "query": "cash register receipt",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg",
-      "pin_query": "receipt",
-      "pin_context": "store purchase receipt",
-      "news_query": "receipt",
-      "news_angle": "The customer kept every receipt in a folder as evidence of the loss-prevention guy's stops."
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
     },
     {
       "phrase": "filed a formal complaint with corporate",
       "query": "printed complaint letter",
-      "pin_query": "corporate",
-      "pin_context": "company headquarters office",
-      "news_query": "corporate",
-      "news_angle": "Corporate investigated the customer's complaint and took action against the loss-prevention guy.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
     },
     {
       "phrase": "pulled the store's loss-prevention log",
       "query": "computer log screen",
-      "pin_query": "loss-prevention log",
-      "pin_context": "store security records",
-      "news_query": "loss-prevention log",
-      "news_angle": "The loss-prevention log was pulled by corporate to investigate the customer's complaint.",
-      "image_url": "https://live.staticflickr.com/4424/36258389453_975352ba24.jpg"
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
     },
     {
       "phrase": "An internal audit found what the stops were covering for",
@@ -43,12 +31,7 @@
     },
     {
       "phrase": "walking product out the loading dock himself",
-      "query": "warehouse loading dock",
-      "pin_query": "loading dock",
-      "pin_context": "store warehouse area",
-      "news_query": "loading dock",
-      "news_angle": "The loss-prevention guy was walking product out of the store through the loading dock.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Modern_loading_dock.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "query": "warehouse loading dock"
     },
     {
       "phrase": "corporate mailed me a written apology",
@@ -57,31 +40,11 @@
     }
   ],
   "punches": [
-    {
-      "phrase": "the register printing a receipt every time",
-      "text": "RECEIPT: PROOF",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "filed a formal complaint with corporate",
-      "text": "COMPLAINT FILED",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "An internal audit found what the stops were covering for",
-      "text": "AUDIT TIME",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "walking product out the loading dock himself",
-      "text": "HE WAS STEALING",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "corporate mailed me a written apology",
-      "text": "SORRY + GIFT CARD",
-      "color": "#50ff80"
-    }
+    {"phrase": "the register printing a receipt every time", "text": "RECEIPT: PROOF", "color": "#50ff80"},
+    {"phrase": "filed a formal complaint with corporate", "text": "COMPLAINT FILED", "color": "#ffaa30"},
+    {"phrase": "An internal audit found what the stops were covering for", "text": "AUDIT TIME", "color": "#ff3030"},
+    {"phrase": "walking product out the loading dock himself", "text": "HE WAS STEALING", "color": "#ff3030"},
+    {"phrase": "corporate mailed me a written apology", "text": "SORRY + GIFT CARD", "color": "#50ff80"}
   ],
   "hashtags": [
     "prorevenge",

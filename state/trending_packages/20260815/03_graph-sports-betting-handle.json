@@ -6,43 +6,19 @@
   "y_label": "US legal sports betting (billions $)",
   "duration": 13,
   "source": "American Gaming Association (AGA) annual commercial gaming reports, first full year after the May 2018 PASPA repeal opened legal sports betting beyond Nevada: handle (total amount wagered) 2019 $13.0B, 2020 $21.5B, 2021 $57.22B, 2022 $93.4B, 2023 $119.84B, 2024 $149.90B, 2025 $166.94B. Sportsbook revenue (the house's cut) over the same years, also AGA: 2019 ~$0.9B, 2020 ~$1.5B, 2021 $4.29B, 2022 $7.5B, 2023 $10.9B (ESPN), 2024 ~$13.7B, 2025 ~$15.8B (approximate from reported handle/hold ratios).",
-  "years": [
-    2019,
-    2020,
-    2021,
-    2022,
-    2023,
-    2024,
-    2025
-  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024, 2025],
   "series": [
     {
       "name": "Total handle",
       "color": "#f5c518",
       "icon": "Handle",
-      "values": [
-        13.0,
-        21.5,
-        57.22,
-        93.4,
-        119.84,
-        149.9,
-        166.94
-      ]
+      "values": [13.0, 21.5, 57.22, 93.4, 119.84, 149.90, 166.94]
     },
     {
       "name": "Sportsbook revenue",
       "color": "#4a90e2",
       "icon": "Rev",
-      "values": [
-        0.9,
-        1.5,
-        4.29,
-        7.5,
-        10.9,
-        13.7,
-        15.8
-      ]
+      "values": [0.9, 1.5, 4.29, 7.5, 10.9, 13.7, 15.8]
     }
   ],
   "hashtags": [

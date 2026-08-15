@@ -1,38 +1,41 @@
-# Daily Trending Shorts — 2026-08-14
+# Daily Trending Shorts — 2026-08-15
 
 > **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **10**
-- succeeded: **1**
+- succeeded: **2**
 - quarantined (off-topic imagery): **1**
-- failed: **8**
+- failed: **7**
 
 ## Posted
-- **One WNBA Team Now Outdraws The Whole League**
-  - topic: One WNBA Team Now Outdraws The Whole League
-  - publishes: `2026-08-14T13:00:00Z`
-  - https://youtube.com/shorts/XHDB8RIQHTM
-  - took: 110.9s
+- **Japan Just Lapped South Korea In Tourism**
+  - topic: Japan Just Lapped South Korea In Tourism
+  - publishes: `2026-08-15T13:00:00Z`
+  - https://youtube.com/shorts/14l6P7itp9o
+  - took: 127.7s
+- **BYD Just Overtook Tesla In EV Sales**
+  - topic: BYD Just Overtook Tesla In EV Sales
+  - publishes: `2026-08-15T14:30:00Z`
+  - https://youtube.com/shorts/hugIYuTAQBA
+  - took: 118.1s
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **cricket**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['having an affair', 'heated tournament', 'guilt was eating', 'love triangle', 'true feelings', 'leaving me', 'final blow']
+- **hurricane weather**
+  - quarantined: illustration coverage 14.3% < 20.0% — 6 shot(s) have no real image and would fall to off-topic keyword stock: ['family business', 'punched in the gut', 'lavish lifestyle', 'pay off her debts', 'lying to our faces', 'destroying our family']
 
 ## Failed
-- **Weight-Loss Drugs Just Crushed Bariatric Surgery**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely great data story — 245K surgeries flat while GLP-1 goes 354K → 40M — undercut by an opening that spends its first two seconds as a title card over an empty grid.`
-- **The Electric Truck Lead Just Flipped Twice**
-  - error: `showrunner_block: showrunner BLOCK: The double lead-flip genuinely lands on the leaderboard, but the first half of the video is a mostly black frame with two hairlines in it, and the craft blemishes (ghosted caption fade, clipped axis label, constantly rescaling y-axis) make it read as an unfinished chart export rather than a designed short.`
-- **China's Humanoid Robots Went From Hundreds To 50,000**
-  - error: `showrunner_block: showrunner BLOCK: Clean, honest, fast-rescaling race chart with a real 50K payoff, but the first two seconds are a near-black empty panel with a caption that fades into it.`
-- **Badge In For Every Room. Even The Bathroom.**
-  - error: `showrunner_block: showrunner BLOCK: The gameplay-and-captions layer is fine, but the top-panel illustrations are unrelated stock (agile poster, laptop reviews, a GNOME bugzilla inbox) and one screenshot is held across the last three beats, so the story is never actually shown.`
-- **Wrong Price? It's Free. Every Single Time.**
-  - error: `showrunner_block: showrunner BLOCK: Clean gameplay and captions, but the illustration track is off-topic junk — a declassified Iraq-war memo holds the top half for the entire final third of a story about a store's wrong-price policy.`
-- **pokemon 30th anniversary**
-  - error: `showrunner_block: showrunner BLOCK: Topical Krispy Kreme/Pokemon stills carry most of it, but the hook is a frozen darkened storefront photo, an irrelevant e-reader stock shot lands mid-story, and it ends mid-sentence with no payoff.`
-- **fidelity 500 index fund**
-  - error: `showrunner_block: showrunner BLOCK: Nothing in this video demonstrates the data — it is a stack of unrelated stock photos (statues, painted stairs, a classroom, coals) over Minecraft/Subway Surfers footage, with no mascot and no payoff.`
-- **darren anthony robinson**
-  - error: `showrunner_block: showrunner BLOCK: Every top-half visual is unrelated news and crime b-roll pasted over a personal rehearsal-dinner story — the exact auto-grabbed-junk failure the channel bans.`
+- **Americans Now Bet $167 Billion A Year On Sports**
+  - error: `showrunner_block: showrunner BLOCK: The data story is real and the growth curve lands, but the hook caption is smeared illegibly across the plot and the first half of the video is mostly empty black panel.`
+- **The Labubu Company's Revenue Just 8Xed**
+  - error: `showrunner_block: showrunner BLOCK: A clean, honest two-line race that ends by crowning the wrong company — the payoff says '#1 Mattel' when the whole video promised Pop Mart's 8x climb.`
+- **He Wanted Reply-All Confirmation. He Got It.**
+  - error: `showrunner_block: showrunner BLOCK: The story beats are illustrated with a scanned Iraq-war invasion memo and a corporate retreat poster — imagery that has nothing to do with a reply-all email meltdown.`
+- **He Stopped Me At The Exit Every Visit. Big Mistake.**
+  - error: `showrunner_block: showrunner BLOCK: The gameplay and captions carry, but three of five story beats sit under wholly unrelated stock scans (an Iraq war memo, a meeting-rules poster, a GNOME bug inbox) — the illustration track is junk and freezes for the final 12 seconds.`
+- **kick**
+  - error: `showrunner_block: showrunner BLOCK: The visuals have nothing to do with the story — mugshots, arrest body-cam, and stock laptop ads over a narration about being kicked out by family.`
+- **restaurants near me**
+  - error: `showrunner_block: showrunner BLOCK: Unrelated stock media (a salad bowl, a random bar photo) is illustrating a diary-betrayal story, and half of several frames is dead black gameplay space.`
+- **bighead carp**
+  - error: `showrunner_block: showrunner BLOCK: Off-topic stock faces and a random frog break the visual chain of a story that already has real carp and river footage available.`
 
