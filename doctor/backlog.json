@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260814",
+  "updated": "20260815",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -470,6 +470,70 @@
       "signature": "ab49431193c5",
       "last_seen": "20260814",
       "first_seen": "20260814"
+    },
+    "5ac409690185": {
+      "title": "Third's fallback slate can never meet its registered target",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "third_capture/slate-size",
+      "files": [
+        "config/channel_registry.json",
+        "state/third_packages/default_clip.json",
+        "scripts/run_third.py"
+      ],
+      "observation": "The registry is the declared authority and requires six Third clips per day, but the live default template says count=4. When there is no authored day directory, run_third reads that template count and synthesizes exactly four packages without consulting the registry. A flawless fallback run therefore tops out at 4/6; any one quality rejection produces the 3/6 shape in the August 13 alarm. The committed Third QA history confirms that production synthesized four slots on August 10 through August 14, including three successes and one rejection on August 13.",
+      "proposal": "Derive the synthesized package count from channel_registry.target_count('third') and treat any template count as invalid drift rather than a second authority. Keep story_count as a bounded format allocation inside that registered total. Add a production-level test that removes the dated package directory, resolves the live registry fixture, and proves run_third creates exactly the registered target with unique deterministic slugs; make the workflow fail visibly if the two sources ever disagree.",
+      "evidence": "config/channel_registry.json lines 384-396 set third cadence.per_day, target_count, and clip target to 6. state/third_packages/default_clip.json line 2 sets count to 4. scripts/run_third.py lines 2202-2237 use the dated directory if present, otherwise pop count from the template and build range(1, n+1), with no registry lookup. state/third_qa_stats.json records exactly four clip results for every dated run from 20260810 through 20260814; its 20260813 run has three ok and one director rejection. doctor/evidence.json alarm for 20260813 reports third 3/6. A direct main-branch read prints registry target 6 and fallback count 4.",
+      "signature": "5ac409690185",
+      "last_seen": "20260815",
+      "first_seen": "20260815"
+    },
+    "ec1665fbf9fa": {
+      "title": "An unrecognized premise-judge response is recorded as a pass",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "data_learning/editorial-gate",
+      "files": [
+        "scripts/editorial_gate.py"
+      ],
+      "observation": "premise_ok asks the adversarial brain for a strict PASS or REJECT verdict, but only the literal REJECT branch blocks. Any other parsed object, including {}, a misspelled verdict, or a structurally unrelated JSON object, falls into the else branch and is labeled llm-pass. That turns a malformed answer into affirmative quality evidence even though the prompt says to default to rejection when unsure and the module describes the publish control as fail-closed.",
+      "proposal": "Accept only the exact normalized verdict PASS as approval and exact REJECT as rejection. Treat every missing, unknown, non-string, or malformed verdict as unavailable evidence and retain the deterministic result without labeling it an LLM pass; if the brain is intended to be binding, hold instead. Add table-driven cases for {}, null, arrays, lowercase valid values, unknown tokens, prose around JSON, and both exact verdicts.",
+      "evidence": "scripts/editorial_gate.py lines 138-156 specify an adversarial strict PASS|REJECT response and tell the judge to default to rejection. Lines 157-164 parse any JSON object, block only when verdict uppercases to REJECT, and label every other object llm-pass. There are no premise_ok or pre_render_verdict tests in tests/, scripts/test*, or data_learning/tests/. With shared.script_generator._call_llm mocked to return '{}', premise_ok on a deterministic-floor-passing title/hook returns {'ok': True, 'reasons': [], 'judge': 'llm-pass'}.",
+      "signature": "ec1665fbf9fa",
+      "last_seen": "20260815",
+      "first_seen": "20260815"
+    },
+    "9fe73cb62e3f": {
+      "title": "Quality-policy overrides have no schema or safety floor",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "data_learning/judge-policy",
+      "files": [
+        "data_learning/judge_policy.py"
+      ],
+      "observation": "The binding quality policy says malformed overrides are ignored and that autonomous publishing stays off, but load copies recognized config values without type, range, or cross-field validation and lets environment variables override every field. A nonnumeric max_attempts survives the broad parse block and crashes during the later int conversion. More importantly, a config can set development_min_overall and owner_review_min_overall to zero and autonomous_publish to true; decide then advances a zero-score film and marks autonomous publishing allowed when the three required judges merely return pass. The ordering among repair, internal, owner, and advancement thresholds is not checked either.",
+      "proposal": "Define and validate a typed policy schema before use: finite 0-10 score bounds, positive integer attempt limits, nonempty required-judge identities, monotonic score bands, and immutable safety invariants for autonomous publishing and minimum floors. Reject the entire override atomically on any invalid field and emit a durable diagnostic rather than combining partially trusted values. Limit environment overrides to operational tuning explicitly approved by the registry, never safety-bar removal. Add adversarial config and environment tests for wrong types, NaN/infinity, negative limits, inverted bands, empty required judges, and attempts to enable publishing.",
+      "evidence": "data_learning/judge_policy.py lines 69-102 overlay config values directly, parse environment values using the current value's type, and convert max_unresolved_major/max_attempts after the exception guard. Lines 167-245 trust the resulting required_judges, score floors, and autonomous_publish value. A temporary config with judge_policy.max_attempts='abc' raises ValueError from load. A config with development_min_overall=0, owner_review_min_overall=0, and autonomous_publish=true loads unchanged; decide advances an overall_10=0 film with three passing judge objects. scripts/test_judge_policy.py covers normal decisions and environment parsing but has no schema, monotonicity, or immutable-safety tests.",
+      "signature": "9fe73cb62e3f",
+      "last_seen": "20260815",
+      "first_seen": "20260815"
+    },
+    "ca6665bd598d": {
+      "title": "Two closed-loop orchestrators have already drifted apart",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "data_learning/judging-architecture",
+      "files": [
+        "data_learning/judge_loop.py",
+        "data_learning/judging_store.py",
+        "scripts/produce.py"
+      ],
+      "observation": "data_learning.judge_loop.run presents itself as the shared render-judge-repair loop, but no production module calls it; scripts/produce.py implements a separate orchestration path using only its lower-level helpers. The unused loop has already drifted in two consequential ways: it opens the attempt manifest before render_fn, so the manifest hashes the prior or absent artifact, and it records a failed render as a non-required pseudo-judge that judge_policy.decide never sees. Three passing judge stubs therefore make the loop return status=pass even when render_fn returns ok=false. Maintaining two state machines makes fixes and invariants land in one while the other continues to advertise itself as authoritative.",
+      "proposal": "Converge on one production-used state machine with typed attempt phases and terminal outcomes: open an attempt, render, bind the completed artifact identity, require render success, run required judges, plan repair, and persist the final disposition. Make scripts/produce.py a thin adapter around that engine or explicitly retire judge_loop.run after migrating its useful comparison and escalation behavior. Add contract tests that execute the same failure matrix through every channel adapter and prove render failure, absent artifact identity, required-judge failure, stalled repair, and successful advancement produce identical safe outcomes.",
+      "evidence": "data_learning/judge_loop.py lines 229-258 call JudgingStore.open_attempt before render_fn, record ok=false under the name render, then pass only the configured judge verdicts into judge_policy.decide; the manifest hash read at line 258 was stamped before rendering. data_learning/judging_store.py lines 85-114 show open_attempt writes mp4_sha256 immediately. Repository search finds no judge_loop.run call under scripts/, data_learning/, third_capture/, or .github/; scripts/produce.py record_judging and produce implement their own attempt, decision, comparison, repair, and loop flow. Running judge_loop.run with render_fn returning {'ok': False, 'detail': 'encode failed'} and taste/technical/factual stubs returning pass yields final status 'pass' with no blockers.",
+      "signature": "ca6665bd598d",
+      "last_seen": "20260815",
+      "first_seen": "20260815"
     }
   }
 }

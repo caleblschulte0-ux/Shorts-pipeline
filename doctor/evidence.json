@@ -1,46 +1,66 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260814",
-  "judged_date": "20260813",
+  "date": "20260815",
+  "judged_date": "20260814",
   "alarm": {
-    "date": "20260813",
+    "date": "20260814",
     "ok": false,
     "alarms": [
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20260813.",
+        "detail": "explainer: 2/4 posted for 20260814.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20260813.",
+        "detail": "third: 4/6 posted for 20260814.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 1/6 posted for 20260813.",
+        "detail": "trending: 1/6 posted for 20260814.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260813: production outcome says 1/6 uploaded and repair never completed (1 quarantined, 8 failed).",
+        "detail": "trending 20260814: production outcome says 1/6 uploaded and repair never completed (1 quarantined, 8 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "trending_short_after_retries",
+        "severity": "warning",
+        "detail": "trending shipped 1/6; 4 re-authored replacement(s) also failed to fill it.",
+        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
-      "chatgpt doctor: artifact present",
       "chatgpt finalizer: artifact present",
       "chatgpt media: artifact present",
-      "exchange: 13/13 ChatGPT images pinned",
-      "doctor: findings current (20260813)"
+      "exchange: 4/4 ChatGPT images pinned",
+      "doctor: findings current (20260814)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "schema": "production-channel-outcome/v1",
+      "date": "20260814",
+      "channel": "trending",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 1,
+      "quarantined": 1,
+      "failed": 8,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/XHDB8RIQHTM"
+      ]
+    },
     {
       "schema": "production-channel-outcome/v1",
       "date": "20260813",
@@ -130,280 +150,9 @@
       "video_urls": [
         "https://youtube.com/shorts/7DSdOKQLb5Y"
       ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260807",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 1,
-      "failed": 7,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/kq4GcKmXlmM",
-        "https://youtube.com/shorts/5g_6YVYSrTQ"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-06T10:05:41+00:00",
-      "slug": "this_school_bus_sized__terror_croc__ate_",
-      "score": 22,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "There is no data demonstration and no mascot at all \u2014 this is a black text card followed by five unrelated stock/garbled images stacked over stock gameplay.",
-      "auto_fails": [
-        "junk_imagery: mid0 (t=2.50s) is a melted/garbled 3D render with unreadable letterforms ('af...roV'); mid2 (t=20.53s) is a museum insect HOLOTYPE specimen label for a wasp (Cressoniella/Chaetochile), mid3 (t=29.54s) is an empty marine-park aquarium, mid4 (t=38.56s) is clay lettering reading 'INFORMATION EXPLAINED', and mid5/payoff (t=47.57\u201349.17s) is an art-gallery photo of a man kneeling \u2014 none of these depict a croc, a family, or anything in the narration.",
-        "decorative_mascot: Data does not appear in a single frame (hook@0.3 through payoff@-0.4); the lower half is generic Geometry-Dash-style gameplay, so there is no performer and no setup\u2192action\u2192payoff bit anywhere.",
-        "bare_number_card: hook@0.3 and hook@0.8 are identical plain white/yellow text on a flat black field ('I WAS 12 WHEN MY DAD...') \u2014 the only number in the video is typeset on a blank card with zero demonstration.",
-        "empty_void: hook@0.3 and hook@0.8 fill the entire 9:16 frame with near-black emptiness holding only three lines of centered text \u2014 roughly two-thirds of the frame is dead space with nothing happening, before the split-screen even begins."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.02,
-        "sampled": 149
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-06T10:12:00+00:00",
-      "slug": "winner_of_florida_python_hunting_contest",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "A caption-over-stock-photo reddit-style cut with no mascot, no data demonstration, and irrelevant imagery (D.B. Cooper newspaper, stock model headshot) carrying the final beats.",
-      "auto_fails": [
-        "junk_imagery: mid5/payoff@-1.8/payoff@-0.4 fill the top half with a scanned newspaper page about the FBI's D.B. Cooper hijacking wanted poster \u2014 nothing to do with Florida python hunting; mid4 uses a generic stock headshot of a young male model behind 'SECRET ABOUT MY PAST'.",
-        "decorative_mascot: Data never appears in any frame (hook@0.3 through payoff@-0.4); the only moving figure is an unrelated Geometry Dash cube, so there is no setup->action->payoff bit tied to any stat.",
-        "bare_number_card: mid3 presents '$12 MILLION' as caption text over a stock fan of $100 bills, and hook@0.3 states '96 BURMESE PYTHONS' as text over a snake photo \u2014 neither number is demonstrated, only captioned."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 103
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:27:11+00:00",
-      "slug": "who_s_actually_worth_more__nvidia_or_app",
-      "score": 82,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, genuinely legible two-series race that lands its crossover payoff \u2014 the only real weakness is a first second of empty grid with the hook caption sitting on top of the data.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:28:13+00:00",
-      "slug": "spacex_now_out_launches_the_entire_plane",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:30:20+00:00",
-      "slug": "bitcoin_vs__gold__which_one_actually_win",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, honest, well-labelled graph race whose contest is over by second one \u2014 gold is a flat line on the floor for all 14s \u2014 and whose hook is the least interesting 2 seconds in the video.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:31:24+00:00",
-      "slug": "sports_betting_just_beat_the_las_vegas_s",
-      "score": 5,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 1
-      },
-      "one_line": "blocked before vision review: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "auto_fails": [
-        "temporal_gate: duplicate_ratio 0.5 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:34:59+00:00",
-      "slug": "she_wanted_her_son_starting_every_game__",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "One garbled AI still is frozen over the entire story from 12s to the end \u2014 the visuals demonstrate none of the escalation the captions are carrying.",
-      "auto_fails": [
-        "junk_imagery: mid1/mid2/mid3 (t=12.8-33.4s) top panel: AI kids-on-pitch image with a melted, fused right arm/hand and a warped balloon-shaped jersey on the right child \u2014 visibly garbled generation held on screen for 40+ seconds.",
-        "empty_void: payoff@-1.8 (t=54.2s) and mid5 (t=54.0s): the entire lower half is near-black with one small caption line and a sliver of geometry \u2014 the frame's space is wasted."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 168
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:45:50+00:00",
-      "slug": "stake_us",
-      "score": 34,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The story's real evidence screenshots are strong, but the top panel keeps cutting to imagery that has nothing to do with the script \u2014 a herbarium plant sheet for 'our accountant', a red-carpet celebrity photo for 'DEBT' \u2014 and there is no mascot performance or data demonstration anywhere.",
-      "auto_fails": [
-        "junk_imagery: mid3 (t=19.44s) shows a scanned herbarium plant specimen sheet over the line 'OUR ACCOUNTANT SAYING WE'RE'; hook@1.5/2.2 show a GQ red-carpet celebrity couple photo captioned 'DEBT' for a story about a sister using a 25% stake \u2014 neither image relates to the topic.",
-        "decorative_mascot: No mascot appears in any frame (hook@0.3 through payoff@-0.4); the only recurring figure is the Subway Surfers avatar in the lower gameplay panel, which performs no bit tied to any stat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 98
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-07T09:52:57+00:00",
-      "slug": "auto_accident_attorney",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Every top-panel image is irrelevant stock (salad, pizza, strangers at a bar, a baseball game) bolted onto Subway Surfers with no mascot, no demonstration, and an ending that cuts off mid-sentence.",
-      "auto_fails": [
-        "junk_imagery: mid1 (t=10.8s) shows a stock salad bowl and mid2 (t=19.1s) a pizza in an oven over narration about a fianc\u00e9's mother exposing secrets; mid3 is an unrelated group bar photo and mid4 a brutalist plaza \u2014 none match the topic."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 138
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-07T10:00:45+00:00",
       "slug": "truck_accident_attorney",
@@ -1836,11 +1585,265 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:37:54+00:00",
+      "slug": "weight_loss_drugs_just_crushed_bariatric",
+      "score": 83,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely great data story \u2014 245K surgeries flat while GLP-1 goes 354K \u2192 40M \u2014 undercut by an opening that spends its first two seconds as a title card over an empty grid.",
+      "auto_fails": [
+        "empty_void: Through the entire first half the plot area is near-empty black \u2014 at hook@2.2 and mid0 (t=2.50s) both lines are crushed into the bottom ~10% of a 4M-tall axis, leaving roughly two-thirds of the frame unused black."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:39:38+00:00",
+      "slug": "one_wnba_team_now_outdraws_the_whole_lea",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest graph race with a real crossover and a legible leaderboard reorder \u2014 held back by a flat title-card hook and labels that run off the right edge.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:41:35+00:00",
+      "slug": "the_electric_truck_lead_just_flipped_twi",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The double lead-flip genuinely lands on the leaderboard, but the first half of the video is a mostly black frame with two hairlines in it, and the craft blemishes (ghosted caption fade, clipped axis label, constantly rescaling y-axis) make it read as an unfinished chart export rather than a designed short.",
+      "auto_fails": [
+        "empty_void: dark_fraction 1.00 \u2014 at hook@0.3 and hook@2.2 the entire plot area below 15K is black with one near-invisible gray Tesla stub, and at mid0 (t=2.50s) roughly the bottom two-thirds plus the right margin is dead black; the frame's space is unused until ~8s."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:42:55+00:00",
+      "slug": "china_s_humanoid_robots_went_from_hundre",
+      "score": 87,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Clean, honest, fast-rescaling race chart with a real 50K payoff, but the first two seconds are a near-black empty panel with a caption that fades into it.",
+      "auto_fails": [
+        "empty_void: hook@0.3 through mid1: the plot area is ~80% empty black with both lines squashed into the bottom-left corner under a 6K ceiling, and the whole frame reads near-black (dark_fraction 1.0)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:47:20+00:00",
+      "slug": "badge_in_for_every_room__even_the_bathro",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The gameplay-and-captions layer is fine, but the top-panel illustrations are unrelated stock (agile poster, laptop reviews, a GNOME bugzilla inbox) and one screenshot is held across the last three beats, so the story is never actually shown.",
+      "auto_fails": [
+        "junk_imagery: mid3 (t=32.92s) shows a printed 'Remember... Whoever comes are the right people' agile-retro poster and mid2 (t=22.78s) a laptop-review collage \u2014 neither relates to badge access, bathrooms, or the office-security story; mid4/mid5/payoff show a Linux Evolution mail client on a GNOME bugzilla thread, unrelated to a badge log.",
+        "empty_void: hook@0.8 and hook@1.5 are near-black across the whole lower two-thirds with only a thin cyan cursor at frame-left; mid1 (t=12.64s) is again a black lower half with a faint teal ramp."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 166
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T09:51:15+00:00",
+      "slug": "wrong_price__it_s_free__every_single_tim",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Clean gameplay and captions, but the illustration track is off-topic junk \u2014 a declassified Iraq-war memo holds the top half for the entire final third of a story about a store's wrong-price policy.",
+      "auto_fails": [
+        "junk_imagery: mid4/mid5/payoff@-1.8/payoff@-0.4 fill the entire top half with a scanned handwritten Iraq-war planning memo (\"WMD sites\", \"Seize Baghdad\") behind a retail wrong-price story; mid3 shows a rural stone church, and mid2 a conference speakerphone under the caption \"STORE POLICY WAS\" \u2014 none match the topic.",
+        "dead_air: The top-half illustration is byte-identical across mid4 (t=40.4s), mid5 (t=49.9s), payoff@-1.8 and payoff@-0.4 \u2014 the same memo scan holds for the final ~12s while only gameplay moves."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 156
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T10:01:26+00:00",
+      "slug": "pokemon_30th_anniversary",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Topical Krispy Kreme/Pokemon stills carry most of it, but the hook is a frozen darkened storefront photo, an irrelevant e-reader stock shot lands mid-story, and it ends mid-sentence with no payoff.",
+      "auto_fails": [
+        "junk_imagery: mid2 (t=13.99s) top panel is a generic Kobo e-reader/coffee product stock photo \u2014 an e-reader has nothing to do with a stolen-donuts birthday story; it reads as auto-grabbed filler.",
+        "empty_void: mid1 (t=8.25s) and mid5/payoff@-1.8/payoff@-0.4 waste roughly a third of the top half on flat navy bands framing a short wide banner, and mid2 has the same dead bands above and below the photo."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 100
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T10:10:17+00:00",
+      "slug": "fidelity_500_index_fund",
+      "score": 26,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "Nothing in this video demonstrates the data \u2014 it is a stack of unrelated stock photos (statues, painted stairs, a classroom, coals) over Minecraft/Subway Surfers footage, with no mascot and no payoff.",
+      "auto_fails": [
+        "junk_imagery: mid2 (t=17.82s) shows two stone statues holding lanterns, mid3 (t=25.48s) a graffiti-painted staircase, mid4 (t=33.14s) a classroom of schoolchildren, mid5/payoff (t=40.8-42.4s) glowing coals \u2014 none of these relate to FXAIX, index funds, or fees; only mid0's FXAIX-vs-VOO card is on-topic.",
+        "empty_void: hook@0.3/@0.8 are a dimmed near-black magenta stage with one tiny unreadable silhouette, and mid4 (t=33.14s) inset the classroom photo between wide dead navy bands top and bottom."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 128
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-14T10:16:37+00:00",
+      "slug": "darren_anthony_robinson",
+      "score": 30,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Every top-half visual is unrelated news and crime b-roll pasted over a personal rehearsal-dinner story \u2014 the exact auto-grabbed-junk failure the channel bans.",
+      "auto_fails": [
+        "junk_imagery: Top half is unrelated news b-roll throughout: police walking a suspect at hook@1.5/2.2, a DOJ podium presser at mid0, a governor testifying at mid1, a gavel with a drug baggie and crypto coins at mid2, a street crowd at mid3, a novelty $1,000,000 bill at mid4 \u2014 none of it matches a rehearsal-dinner story."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.025,
+        "sampled": 120
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "6af583e 2026-08-14 doctor: close out 71d8f01ef635 and 44caf5d53209, shipped in #275 (#276)",
-    "11552ef 2026-08-14 exchange: phase A bundle for 20260814 [skip ci]"
+    "adc279b 2026-08-14 doctor: findings for 20260814",
+    "d837584 2026-08-14 retro: brief + triage for 20260814 [skip ci]"
   ],
   "open_backlog": [
     {
@@ -1858,11 +1861,25 @@
       "ruling": "doing"
     },
     {
+      "signature": "5ac409690185",
+      "title": "Third's fallback slate can never meet its registered target",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "2f7ee366fb9b",
       "title": "Malformed DONE payloads count as completed Finalizer runs",
       "horizon": "small_fix",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "ec1665fbf9fa",
+      "title": "An unrecognized premise-judge response is recorded as a pass",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "cf263a770061",
@@ -1884,6 +1901,13 @@
       "horizon": "short_term",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "9fe73cb62e3f",
+      "title": "Quality-policy overrides have no schema or safety floor",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "d64b063a21bd",
@@ -1926,6 +1950,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "ca6665bd598d",
+      "title": "Two closed-loop orchestrators have already drifted apart",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
