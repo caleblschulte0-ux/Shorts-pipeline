@@ -1842,8 +1842,8 @@
     }
   ],
   "recent_commits": [
-    "adc279b 2026-08-14 doctor: findings for 20260814",
-    "d837584 2026-08-14 retro: brief + triage for 20260814 [skip ci]"
+    "d1297d8 2026-08-15 exchange: phase A bundle for 20260815 [skip ci]",
+    "1ca7436 2026-08-15 doctor: production-shortfall exit path now executes, not just greps (#278)"
   ],
   "open_backlog": [
     {
@@ -1851,7 +1851,7 @@
       "title": "Production shortfall test never executes the red exit path",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "a544d37c275e",
@@ -1865,7 +1865,7 @@
       "title": "Third's fallback slate can never meet its registered target",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "2f7ee366fb9b",
@@ -1879,7 +1879,7 @@
       "title": "An unrecognized premise-judge response is recorded as a pass",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "cf263a770061",
@@ -1907,7 +1907,7 @@
       "title": "Quality-policy overrides have no schema or safety floor",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
@@ -1950,13 +1950,6 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
-    },
-    {
-      "signature": "ca6665bd598d",
-      "title": "Two closed-loop orchestrators have already drifted apart",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
@@ -2071,6 +2064,13 @@
       "date": "20260814",
       "because": "",
       "revisit_after": null
+    },
+    {
+      "signature": "ca6665bd598d",
+      "verdict": "later",
+      "date": "20260815",
+      "because": "Confirmed real: judge_loop.run is unwired (scripts/produce.py only imports its lower-level helpers -- run_judges/combine/compare/next_escalation -- never .run itself), and it has drifted from produce.py's path in two ways: JudgingStore.open_attempt() hashes the artifact BEFORE render_fn runs, and a failed render is written to the store but never added to the verdicts dict decide() sees, so three passing required judges can yield advance=True even when render_fn returned ok=false. Real bug, but the actual fix is an architecture call (converge produce.py onto judge_loop.run vs. formally retire judge_loop.run and migrate its useful comparison/escalation logic) that deserves a dedicated session, not a rushed patch competing with today's one-item budget. Parking 30 days; revisit after items 1-3 land.",
+      "revisit_after": "20260914"
     }
   ]
 }
