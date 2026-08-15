@@ -412,8 +412,8 @@
           "shot_index": 6,
           "phrase": "urgent memo asking everyone to please stop",
           "query": "printed office memo",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 7,
@@ -424,14 +424,15 @@
         }
       ],
       "media_health": {
-        "strong": 6,
+        "strong": 5,
         "weak": 0,
-        "missing": 2,
+        "missing": 3,
         "unknown": 0
       },
-      "strong_fraction": 0.75,
+      "strong_fraction": 0.625,
       "requested": [
         "reddit-reply-all-chaos-s2-6c6e5362b64d",
+        "reddit-reply-all-chaos-s6-0fea0eba1793",
         "reddit-reply-all-chaos-s7-becff40b5e6a"
       ]
     },
@@ -479,8 +480,8 @@
           "shot_index": 5,
           "phrase": "walking product out the loading dock himself",
           "query": "warehouse loading dock",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
@@ -491,15 +492,13 @@
         }
       ],
       "media_health": {
-        "strong": 6,
+        "strong": 7,
         "weak": 0,
-        "missing": 1,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.857,
-      "requested": [
-        "reddit-loss-prevention-audit-s5-ae0891068e4b"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     }
   ],
   "requests": [
@@ -530,15 +529,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
-      "safe_request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
-      "drive_filename": "20260815__reddit-reply-all-chaos-s7-becff40b5e6a.png",
-      "prompt_sha256": "68b1959ddd145b0c6d963c7c7397decbf146a13d90ffaaae7cd5f7c6810009b7",
-      "checkpoint_path": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s7-becff40b5e6a.json",
+      "request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+      "safe_request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+      "drive_filename": "20260815__reddit-reply-all-chaos-s6-0fea0eba1793.png",
+      "prompt_sha256": "dcb1cb2da62a74be380e997ad18303097a8a5344f469eef254a2295cf10cbe3f",
+      "checkpoint_path": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s6-0fea0eba1793.json",
       "slug": "reddit-reply-all-chaos",
-      "shot_index": 7,
+      "shot_index": 6,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: employee handbook binder. It accompanies the narration: \"quietly disappeared from the handbook\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: printed office memo. It accompanies the narration: \"urgent memo asking everyone to please stop\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -556,15 +555,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-loss-prevention-audit-s5-ae0891068e4b",
-      "safe_request_id": "reddit-loss-prevention-audit-s5-ae0891068e4b",
-      "drive_filename": "20260815__reddit-loss-prevention-audit-s5-ae0891068e4b.png",
-      "prompt_sha256": "1a2eac93ee1eba3adc5aac566dac0b7d2627d8b5973460484efccabd868b155f",
-      "checkpoint_path": "exchange/bundles/20260815/media-progress/reddit-loss-prevention-audit-s5-ae0891068e4b.json",
-      "slug": "reddit-loss-prevention-audit",
-      "shot_index": 5,
+      "request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+      "safe_request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+      "drive_filename": "20260815__reddit-reply-all-chaos-s7-becff40b5e6a.png",
+      "prompt_sha256": "68b1959ddd145b0c6d963c7c7397decbf146a13d90ffaaae7cd5f7c6810009b7",
+      "checkpoint_path": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s7-becff40b5e6a.json",
+      "slug": "reddit-reply-all-chaos",
+      "shot_index": 7,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse loading dock. It accompanies the narration: \"walking product out the loading dock himself\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: employee handbook binder. It accompanies the narration: \"quietly disappeared from the handbook\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
