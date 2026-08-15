@@ -1,47 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260725",
-      "dry_run": false,
-      "ts": "2026-07-25T14:35:17+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 10,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 89,
-        "with_curve": 15,
-        "fetched_at": "2026-07-25T10:07:58.679430+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260725-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Severe motion blur/whip-pans dominate most frames (0.3s, 2.2s, 2.9s, 3.5s, 4.8s, 6.0s, 6.7s) \u2014 subject unreadable; vision: Several frames are just ceiling or extreme fabric/shoulder close-ups "
-        },
-        {
-          "slug": "clip-20260725-2",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Bottom half of nearly every frame is a heavy blurred/smeared artifact (looks like a broken motion-blur or duplicated str; vision: Subject's face is obscured or absent for most of the clip \u2014 mo"
-        },
-        {
-          "slug": "clip-20260725-3",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.50 < 0.7 (vague title, unclear snip)"
-        },
-        {
-          "slug": "clip-20260725-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (coach recruits her, no stakes)"
-        }
-      ]
-    },
-    {
       "date": "20260729",
       "dry_run": false,
       "ts": "2026-07-29T12:00:18+00:00",
@@ -4855,6 +4814,238 @@
             }
           },
           "took_s": 175.3
+        }
+      ]
+    },
+    {
+      "date": "20260815",
+      "dry_run": false,
+      "ts": "2026-08-15T12:29:07+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 114,
+        "with_retention": 93,
+        "with_curve": 15,
+        "fetched_at": "2026-08-15T08:55:40.482196+00:00"
+      },
+      "brain": {
+        "ok": 28,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:fanum": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260815-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "no context, vague title",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "DNA test reveal, genuine surprised react",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Finds Out He's '102% African' And Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.88,
+              "problems": []
+            }
+          },
+          "took_s": 215.2
+        },
+        {
+          "slug": "clip-20260815-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (rambling talk, no visible event)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "plaqueboymax/plaqueboymax-about-camera-2026w33",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                },
+                {
+                  "cluster": "plaqueboymax/plaqueboymax-caption-couch-2026w33",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "blank title, no info",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "rambling talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 877.3
+        },
+        {
+          "slug": "clip-20260815-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "live event, no clear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "shocked reaction to eclipse event",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Can't Believe What He Just Saw During This Solar Eclipse"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "frames at 16.2s and 18.1s show a blurry indistinct close-up (likely a fast punch/zoom transition) rather than clear subj"
+              ]
+            }
+          },
+          "took_s": 177.4
+        },
+        {
+          "slug": "clip-20260815-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (just talking about tournament bracket, n)",
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "streamer caught saying slur, controversy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "just talking about tournament bracket, n",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 62.9
         }
       ]
     }

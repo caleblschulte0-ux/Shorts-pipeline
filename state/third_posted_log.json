@@ -3641,14 +3641,45 @@
       "ts": "2026-08-15T12:22:13.980752+00:00"
     },
     "clip-20260815-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/CleverBitterAlbatrossTwitchRPG-MMEtSdMaPkJj3d5J",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/vftZv8kUEuc",
       "title": "Ohnepixel Can't Believe What He Just Saw During This Solar Eclipse",
       "kind": "twitch_clip",
-      "ts": "2026-08-15T12:25:05.968727+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-15T12:25:11.428101+00:00",
+      "uploaded_at": "2026-08-15T12:25:11.428117+00:00",
+      "publish_at": "2026-08-15T20:00:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/CleverBitterAlbatrossTwitchRPG-MMEtSdMaPkJj3d5J",
+      "streamer": "ohnepixel",
+      "series": "jumpscare",
+      "hook": "HE COULDN'T BELIEVE HIS EYES",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2563,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 19.4
+      },
+      "director_cut": true
+    },
+    "rejected-elegantexpensivedugongnerfblueblaster-uwazoycyq_hw5b-v": {
+      "source_url": "https://www.twitch.tv/alinity/clip/ElegantExpensiveDugongNerfBlueBlaster-uWazOyCyq_hW5b-V",
+      "streamer": "alinity",
+      "title": "\ud83e\udd14",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (mundane unpacking, no real event)",
+      "ts": "2026-08-15T12:28:04.071559+00:00"
+    },
+    "rejected-amorphousresilientcheetahjoncarnage-e-lkcvn1iy7myprt": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AmorphousResilientCheetahJonCarnage-E-lkCvN1iy7myprT",
+      "streamer": "jynxzi",
+      "title": "jynxzi says hard r",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (just talking about tournament bracket, n)",
+      "ts": "2026-08-15T12:29:07.000266+00:00"
     }
   }
 }
