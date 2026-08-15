@@ -15,7 +15,12 @@
     },
     {
       "phrase": "confirmed read",
-      "query": "typing keyboard closeup"
+      "query": "typing keyboard closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+      "media_sha256": "33de0c834cdbdc64a11fe952f7fe1c2bdb48380bd21cee9f4664084d61ca9722",
+      "media_bytes": 1034560
     },
     {
       "phrase": "four hundred people",
@@ -35,19 +40,43 @@
     {
       "phrase": "urgent memo asking everyone to please stop",
       "query": "printed office memo",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+      "media_origin": "chatgpt",
+      "media_file_id": "1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+      "media_sha256": "b382798b43f73b74570b99d1ffcde85972141de86973017cfdfba479d52887a6",
+      "media_bytes": 1261544
     },
     {
       "phrase": "quietly disappeared from the handbook",
       "query": "employee handbook binder",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Community_Insights_2024_User_conduct_policy_sentiments.png"
+      "image_url": "https://drive.google.com/uc?export=download&id=1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+      "media_origin": "chatgpt",
+      "media_file_id": "1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+      "media_sha256": "a596c748d32ff217911acb735b04c8d2d9594411d16c942946666dfbb1c7a61f",
+      "media_bytes": 1535959
     }
   ],
   "punches": [
-    {"phrase": "four hundred people", "text": "400 PEOPLE", "color": "#ffaa30"},
-    {"phrase": "eleven thousand messages", "text": "11,000 MSGS", "color": "#ffaa30"},
-    {"phrase": "shut off outbound email company-wide", "text": "EMAIL: DOWN", "color": "#ff3030"},
-    {"phrase": "quietly disappeared from the handbook", "text": "RULE: GONE", "color": "#50ff80"}
+    {
+      "phrase": "four hundred people",
+      "text": "400 PEOPLE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "eleven thousand messages",
+      "text": "11,000 MSGS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "shut off outbound email company-wide",
+      "text": "EMAIL: DOWN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "quietly disappeared from the handbook",
+      "text": "RULE: GONE",
+      "color": "#50ff80"
+    }
   ],
   "hashtags": [
     "maliciouscompliance",
