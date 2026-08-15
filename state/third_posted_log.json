@@ -3600,13 +3600,54 @@
       "ts": "2026-08-15T11:34:00.543983+00:00"
     },
     "clip-20260815-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/ObedientSleepySpindlePJSalt--pJ-tzYKjwLOz8fO",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/EUDLmEUx4cI",
       "title": "Xqc Finds Out He's '102% African' And Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-08-15T11:37:32.763482+00:00",
+      "ts": "2026-08-15T11:37:35.733871+00:00",
+      "uploaded_at": "2026-08-15T11:37:35.733888+00:00",
+      "publish_at": "2026-08-15T17:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/ObedientSleepySpindlePJSalt--pJ-tzYKjwLOz8fO",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "HIS DNA RESULTS BROKE HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6907,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 29.8
+      },
+      "director_cut": true
+    },
+    "rejected-cutebrainychamoiswow-3olzitppbkqch3dq": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CuteBrainyChamoisWow-3oLZITpPbkqCH3dQ",
+      "streamer": "jasontheween",
+      "title": "HTII",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no visible event, vague talk)",
+      "ts": "2026-08-15T11:55:22.275965+00:00"
+    },
+    "rejected-artisticrockycoyotebigbrother-pufeh5ztdo7cc3cr": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/ArtisticRockyCoyoteBigBrother-PuFeH5zTdO7cC3Cr",
+      "streamer": "plaqueboymax",
+      "title": ":",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling talk, no visible event)",
+      "ts": "2026-08-15T12:22:13.980752+00:00"
+    },
+    "clip-20260815-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/CleverBitterAlbatrossTwitchRPG-MMEtSdMaPkJj3d5J",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Can't Believe What He Just Saw During This Solar Eclipse",
+      "kind": "twitch_clip",
+      "ts": "2026-08-15T12:25:05.968727+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

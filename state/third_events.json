@@ -706,7 +706,7 @@
         "https://www.twitch.tv/kaicenat/clip/AgitatedSavoryStarTheTarFu-r_CPk8DyHrYlE9mm"
       ],
       "published_versions": [],
-      "last_updated": "2026-08-14"
+      "last_updated": "2026-08-15"
     },
     "kaicenat-death-minecraft-2026w33": {
       "event_id": "kaicenat-death-minecraft-2026w33",
@@ -728,6 +728,90 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-14"
+    },
+    "jasontheween-brows-jasontheween-2026w33": {
+      "event_id": "jasontheween-brows-jasontheween-2026w33",
+      "people": [
+        "jasontheween"
+      ],
+      "actions": [
+        "brows",
+        "jasontheween",
+        "shown",
+        "webcam"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-15",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jasontheween/clip/CuteBrainyChamoisWow-3oLZITpPbkqCH3dQ",
+        "https://www.twitch.tv/jasontheween/clip/InterestingSourMonkeyAMPEnergyCherry-0Cw3LkMz8YGOvnbW"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-15"
+    },
+    "kaicenat-charact-creep-2026w33": {
+      "event_id": "kaicenat-charact-creep-2026w33",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "charact",
+        "creep",
+        "minecraft",
+        "over"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-15",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/ScrumptiousTacitRabbitStoneLightning-3d8cerkIeBQcsQv3",
+        "https://www.twitch.tv/kaicenat/clip/BoredUninterestedKleeNotLikeThis-9LZUYeSWyQEq_CpT"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-15"
+    },
+    "plaqueboymax-about-camera-2026w33": {
+      "event_id": "plaqueboymax-about-camera-2026w33",
+      "people": [
+        "plaqueboymax"
+      ],
+      "actions": [
+        "about",
+        "camera",
+        "feisty",
+        "plaqueboymax"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-15",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/plaqueboymax/clip/VibrantThankfulPterodactylDAESuppy-H4xuwKo4nSvWb3_n",
+        "https://www.twitch.tv/plaqueboymax/clip/ThoughtfulFriendlyFlamingoFeelsBadMan-sRSb5WnBX0CkxeZw"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-15"
+    },
+    "plaqueboymax-caption-couch-2026w33": {
+      "event_id": "plaqueboymax-caption-couch-2026w33",
+      "people": [
+        "plaqueboymax"
+      ],
+      "actions": [
+        "caption",
+        "couch",
+        "over",
+        "plaqueboymax"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-15",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/plaqueboymax/clip/ArtisticRockyCoyoteBigBrother-PuFeH5zTdO7cC3Cr",
+        "https://www.twitch.tv/plaqueboymax/clip/ToughOutstandingCattleThisIsSparta-aMgEVurprXo1I5wQ"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-15"
     }
   }
 }
