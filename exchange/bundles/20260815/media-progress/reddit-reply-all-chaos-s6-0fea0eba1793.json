@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260815",
+  "bundle": {
+    "identity": "2558e1c1be73aebb5cabf791878de00713675fe9769d9093fe33538c883f5fe2",
+    "path": "exchange/bundles/20260815/bundle.json"
+  },
+  "request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+  "safe_request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-reply-all-chaos",
+  "shot_index": 6,
+  "prompt_sha256": "dcb1cb2da62a74be380e997ad18303097a8a5344f469eef254a2295cf10cbe3f",
+  "prompt_used": "An editorial illustration for a short-form video: printed office memo. It accompanies the narration: \"urgent memo asking everyone to please stop\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+    "filename": "20260815__reddit-reply-all-chaos-s6-0fea0eba1793.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b382798b43f73b74570b99d1ffcde85972141de86973017cfdfba479d52887a6",
+    "bytes": 1261544,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-15T11:02:11Z",
+  "error": null,
+  "retryable": false
+}
