@@ -558,7 +558,7 @@
       "video_id": null,
       "topic_category": "energy",
       "hook_type": "inversion",
-      "hook_text": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved.",
+      "hook_text": "You'd think green energy took off years ago — two decades in, it had barely moved.",
       "words_first_10s": 25,
       "scene_changes_before_5s": 3,
       "depictions": [
@@ -573,7 +573,7 @@
         {
           "t": 0,
           "event": "hook",
-          "detail": "You'd think green energy took off years ago \u2014 two decades in, it had barely moved."
+          "detail": "You'd think green energy took off years ago — two decades in, it had barely moved."
         },
         {
           "t": 7,
@@ -593,7 +593,7 @@
         {
           "t": 40,
           "event": "payoff",
-          "detail": "Two decades of 'clean energy revolution' headlines \u2014 and the grid still ran mostly on the old stuff."
+          "detail": "Two decades of 'clean energy revolution' headlines — and the grid still ran mostly on the old stuff."
         },
         {
           "t": 48,
@@ -1433,7 +1433,7 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "risk-scale-tilt: It's not the average \u2014 it's the GAP between the most and least active people. That gap mak"
+          "detail": "risk-scale-tilt: It's not the average — it's the GAP between the most and least active people. That gap mak"
         },
         {
           "t": 26,
@@ -1538,12 +1538,12 @@
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "blight-map-creep: This happened before \u2014 a Panama disease wiped out the world's last banana, the Gros Michel"
+          "detail": "blight-map-creep: This happened before — a Panama disease wiped out the world's last banana, the Gros Michel"
         },
         {
           "t": 35,
           "event": "payoff",
-          "detail": "closing line: One fungus away from d\u00e9j\u00e0 vu."
+          "detail": "closing line: One fungus away from déjà vu."
         },
         {
           "t": 38,
@@ -1583,7 +1583,7 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "balloon-squeeze-double: Demand is about to nearly double by 2035, driven by chipmaking \u2014 advanced semiconductors n"
+          "detail": "balloon-squeeze-double: Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors n"
         },
         {
           "t": 26,
@@ -1593,7 +1593,7 @@
         {
           "t": 35,
           "event": "payoff",
-          "detail": "closing line: Once it's gone, it's gone \u2014 literally into space."
+          "detail": "closing line: Once it's gone, it's gone — literally into space."
         },
         {
           "t": 38,
@@ -1633,12 +1633,12 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "concern-flag-row: Why'd it stick? The number one reason parents give \u2014 83 percent \u2014 is concern about the env"
+          "detail": "concern-flag-row: Why'd it stick? The number one reason parents give — 83 percent — is concern about the env"
         },
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "house-vs-school-growth: That's now close to the entire private school system \u2014 9.6 percent of kids, versus 5.4 per"
+          "detail": "house-vs-school-growth: That's now close to the entire private school system — 9.6 percent of kids, versus 5.4 per"
         },
         {
           "t": 35,
@@ -1733,12 +1733,12 @@
         {
           "t": 17,
           "event": "visual_swap",
-          "detail": "funnel-to-hatch: Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate \u2014 thi"
+          "detail": "funnel-to-hatch: Out of those 18,300 people, NASA selected 12. That's a 0.065 percent acceptance rate — thi"
         },
         {
           "t": 26,
           "event": "visual_swap",
-          "detail": "cockpit-seats-dim: Even the corps itself shrank \u2014 from about 149 active astronauts in 2000 down to around 41 "
+          "detail": "cockpit-seats-dim: Even the corps itself shrank — from about 149 active astronauts in 2000 down to around 41 "
         },
         {
           "t": 35,
@@ -1778,7 +1778,7 @@
         {
           "t": 8,
           "event": "visual_swap",
-          "detail": "trash-mountain-rise: Global plastic waste is on track to almost triple by 2060 \u2014 from 353 million tons today to"
+          "detail": "trash-mountain-rise: Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to"
         },
         {
           "t": 17,
@@ -1799,6 +1799,186 @@
           "t": 38,
           "event": "cta",
           "detail": "comment question"
+        }
+      ]
+    },
+    {
+      "slug": "diabetes-quietly-doubled",
+      "directed_at": "2026-08-15",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "shock_stat",
+      "hook_text": "It quietly doubled worldwide. Nobody's talking about it.",
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:hundred-body-crowd-double",
+        "mechanic:pill-bottle-treatment-duel",
+        "mechanic:clinic-window-light-row"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Quietly Doubled",
+      "notes": "First ledger entry for this slug. Bet: NCD-RisC's 7%->14% is a clean doubling, so a 100-person crowd grid makes the doubling countable at a glance instead of stated; the treatment-gap segment uses two pill bottles (fed/unfed) so 'untreated' reads as a physical shortfall, not a percent; the income-tier clinic-lights row closes on inequality (lit windows vs dark) rather than a bare ranking bar.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'quietly doubled, nobody's talking about it' over a filling crowd grid"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "pill bottles: treated fills with pills, untreated stays dark"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "three hospital buildings, window-light share by income tier"
+        },
+        {
+          "t": 28,
+          "event": "payoff",
+          "detail": "closing line: doubling a disease is easy, treating it is not"
+        },
+        {
+          "t": 30,
+          "event": "cta",
+          "detail": "do you know your blood sugar numbers?"
+        }
+      ]
+    },
+    {
+      "slug": "two-speed-aging-world",
+      "directed_at": "2026-08-15",
+      "video_id": null,
+      "topic_category": "demographics",
+      "hook_type": "shock_stat",
+      "hook_text": "Some countries are basically all kids. Others aren't.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:silver-tide-rise",
+        "mechanic:age-thermometer-duel",
+        "mechanic:piggyback-worker-columns"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Two-Speed World",
+      "notes": "First ledger entry for this slug. Bet: the world trend (5.5%->10.3% over-65) sets the global frame with a rising tide, then the Niger-vs-Japan comparison lands the real gut-punch as two thermometers on one 0-60yr scale, and piggyback-worker-columns turns the abstract 2050 dependency ratio into a literal load one worker is carrying - the visual argument for 'who pays for it'.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'some countries are basically all kids, others aren't' over rising silver tide"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "Niger vs Japan median-age thermometers, same scale"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "three workers each piggybacking a stack of elderly riders, 2050 projection"
+        },
+        {
+          "t": 28,
+          "event": "payoff",
+          "detail": "closing line: growing old is optional, for some countries mandatory"
+        },
+        {
+          "t": 30,
+          "event": "cta",
+          "detail": "what's the median age where you live?"
+        }
+      ]
+    },
+    {
+      "slug": "plastic-in-your-body",
+      "directed_at": "2026-08-15",
+      "video_id": null,
+      "topic_category": "health",
+      "hook_type": "shock_stat",
+      "hook_text": "Your brain has plastic in it. Right now.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:brain-speckle-accumulate",
+        "mechanic:body-site-fill-trio",
+        "mechanic:heartbeat-risk-duel"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Quietly Doubled",
+      "notes": "First ledger entry for this slug. Bet: opening on a real brain cut-out that visibly speckles denser from 2016->2024 makes the Nature Medicine number visceral instead of abstract; body-site-fill-trio spreads the shock across three real body sites (placenta/blood/artery) so it reads as pervasive, not one outlier study; heartbeat-risk-duel closes on the NEJM 4.5x cardiovascular-risk finding with a visibly faster, larger pulse rather than a stated multiplier.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'your brain has plastic in it, right now' over speckling brain cut-out"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "placenta/blood/artery fill trio, percent of samples with plastic found"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "two hearts pulse duel, 1x calm vs 4.5x risk"
+        },
+        {
+          "t": 28,
+          "event": "payoff",
+          "detail": "closing line: you're not just what you eat, you're what you can't see"
+        },
+        {
+          "t": 30,
+          "event": "cta",
+          "detail": "does this freak you out, or just me?"
+        }
+      ]
+    },
+    {
+      "slug": "debt-per-american",
+      "directed_at": "2026-08-15",
+      "video_id": null,
+      "topic_category": "economics",
+      "hook_type": "shock_stat",
+      "hook_text": "You're personally in debt. You never signed for it.",
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2,
+      "depictions": [
+        "mechanic:cash-stack-climb",
+        "viz:share",
+        "mechanic:budget-money-tower-row"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Nobody Told You",
+      "notes": "First ledger entry for this slug. Bet: a literal climbing cash stack from $60,570 to $116,480 makes 'roughly doubled in 10 years' tangible; the public-vs-intragovernmental split uses the classic share donut (only non-mechanic segment, per house variety rule) since it's a clean two-way split that doesn't need an invented mechanic; the budget-tower row closes on interest now nearly matching Medicare, the actual 'why this costs you' payoff.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'you're personally in debt, you never signed for it' over climbing cash stack"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "share donut: 80.6% held by public vs 19.4% intragovernmental"
+        },
+        {
+          "t": 18,
+          "event": "visual_swap",
+          "detail": "three money towers: Social Security, interest, Medicare"
+        },
+        {
+          "t": 28,
+          "event": "payoff",
+          "detail": "closing line: that's not a bill, that's a birthright"
+        },
+        {
+          "t": 30,
+          "event": "cta",
+          "detail": "did you know you owed this much?"
         }
       ]
     }

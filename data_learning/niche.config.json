@@ -20917,7 +20917,12 @@
           "insight_type": "trend",
           "role": "1 · THE SPREAD",
           "topic": "diabetes among adults worldwide",
-          "say": "In 1990, just 7 percent of adults worldwide had diabetes. By 2022, that number doubled to 14 percent. It happened in a single generation."
+          "say": "In 1990, just 7 percent of adults worldwide had diabetes. By 2022, that number doubled to 14 percent. It happened in a single generation.",
+          "scene": {
+            "mechanic": "hundred-body-crowd-double",
+            "concept": "a 10x10 grid of standing-person icons where the count colored WARN (diabetic) grows from the 1990 rate to the 2022 rate, doubling the crowd in place",
+            "code": "v0 = values[0]; v1 = values[-1]\nperson = subject_image('standing person icon')\ncols = 10\ncell = 92\ngx0 = RX0 + 10; gy0 = RTOP + 170\nfrac = lerp(v0, v1, reveal) / 100.0\nlit = max(1, int(100 * frac))\nfor i in range(100):\n    row = i // cols; col = i % cols\n    x = gx0 + col * cell; y = gy0 + row * cell\n    active = i < lit\n    if person is not None:\n        paste(person, x, y, cell - 14, cell - 14)\n        if not active:\n            d.rectangle([x, y, x + cell - 14, y + cell - 14], fill=rgba((5, 8, 15), 205))\n        else:\n            d.rectangle([x, y, x + cell - 14, y + cell - 14], fill=rgba(WARN, 70))\n    else:\n        d.rounded_rectangle([x, y, x + cell - 14, y + cell - 14], radius=10,\n                             fill=rgba(WARN if active else TEXT, 220 if active else 35))\ntext('1990: ' + str(int(v0)) + '%', RX0 + 20, RTOP + 60, size=40, color=TEXT)\ntext('2022: ' + str(int(v1)) + '%', RX0 + 20, RTOP + 110, size=44, color=WARN)\ntext('of every 100 adults worldwide', RX0 + 20, RBOT - 50, size=28, color=TEXT)"
+          }
         },
         {
           "source": "offline",
@@ -20929,7 +20934,12 @@
           "use_baseline": false,
           "role": "2 · THE GAP",
           "topic": "diabetics who actually get treated",
-          "say": "So here's the catch: only 45.8 percent of those people are actually treated. The other 54.2 percent are managing a disease that can blind or kill them, with no treatment at all."
+          "say": "So here's the catch: only 45.8 percent of those people are actually treated. The other 54.2 percent are managing a disease that can blind or kill them, with no treatment at all.",
+          "scene": {
+            "mechanic": "pill-bottle-treatment-duel",
+            "concept": "two pill bottles side by side; the treated bottle fills with pills to 45.8%, the untreated bottle stays mostly empty and dark at 54.2% — same total population, opposite fates",
+            "code": "v0 = values[0]; v1 = values[1]\npill = subject_image('prescription pill')\nbw = 260; bh = 620\nx0 = RX0 + 60; x1 = RX1 - bw - 60\ntop = RTOP + 200; bot = top + bh\nfor x, v, col, lab in ((x0, v0, HIGHLIGHT, labels[0]), (x1, v1, WARN, labels[1])):\n    d.rounded_rectangle([x, top, x + bw, bot], radius=36, outline=rgba(TEXT, 190), width=6)\n    frac = clamp(v / 100.0) * reveal\n    fh = int(bh * frac)\n    if pill is not None:\n        rows = max(1, fh // 70)\n        for r in range(rows):\n            paste(pill, x + 30, bot - 30 - r * 70, bw - 60, 60)\n    else:\n        d.rounded_rectangle([x + 8, bot - fh, x + bw - 8, bot - 8], radius=22, fill=rgba(col, 220))\n    text(lab, x, top - 70, size=32, color=col)\n    text(str(v) + '%', x, bot + 20, size=44, color=col)"
+          }
         },
         {
           "source": "offline",
@@ -20941,7 +20951,12 @@
           "ascending": false,
           "role": "3 · THE DIVIDE",
           "topic": "treatment coverage by country income",
-          "say": "Where you live decides your odds. High-income countries treat 53 percent of cases. Poorer countries barely reach 37 percent — and in some low-income countries, it's under 9 percent."
+          "say": "Where you live decides your odds. High-income countries treat 53 percent of cases. Poorer countries barely reach 37 percent — and in some low-income countries, it's under 9 percent.",
+          "scene": {
+            "mechanic": "clinic-window-light-row",
+            "concept": "three hospital buildings in a row; the share of lit, staffed windows scales to that income tier's treatment coverage — rich countries glow, poor countries stay mostly dark",
+            "code": "clinic = subject_image('hospital building')\ncols = n\ngw = (RX1 - RX0 - 40) // max(1, cols)\ny0 = RTOP + 200\nbh = 560\nfor i in range(cols):\n    x = RX0 + 20 + i * gw\n    v = values[i]\n    frac = clamp(v / 100.0) * reveal\n    if clinic is not None:\n        paste(clinic, x, y0, gw - 30, bh)\n    else:\n        d.rounded_rectangle([x, y0, x + gw - 30, y0 + bh], radius=14, outline=rgba(TEXT, 180), width=4)\n    wcols = 3; wrows = 6\n    lit = int(wcols * wrows * frac)\n    ww = (gw - 30) // wcols\n    wh = bh // wrows\n    idx = 0\n    for r in range(wrows):\n        for c in range(wcols):\n            wx = x + c * ww + 14\n            wy = y0 + r * wh + 14\n            on = idx < lit\n            d.rectangle([wx, wy, wx + ww - 26, wy + wh - 26],\n                        fill=rgba(HIGHLIGHT, 230) if on else rgba((10, 12, 18), 210))\n            idx += 1\n    text(str(int(v)) + '%', x + 10, y0 + bh + 20, size=34, color=HIGHLIGHT)\n    text(labels[i], x + 10, y0 + bh + 70, size=22, color=TEXT)"
+          }
         }
       ]
     },
@@ -20977,7 +20992,12 @@
           "insight_type": "trend",
           "role": "1 · THE SHIFT",
           "topic": "share of the world 65 or older",
-          "say": "In 1974, only 5.5 percent of the world was 65 or older. By 2024, that nearly doubled to 10.3 percent. The whole planet is quietly getting older."
+          "say": "In 1974, only 5.5 percent of the world was 65 or older. By 2024, that nearly doubled to 10.3 percent. The whole planet is quietly getting older.",
+          "scene": {
+            "mechanic": "silver-tide-rise",
+            "concept": "a rising water line packed with elderly-figure silhouettes floods up the frame from the 1974 share to the 2024 share, like an incoming tide of gray hair",
+            "code": "v0 = values[0]; v1 = values[-1]\nelder = subject_image('elderly person silhouette')\nfrac = lerp(v0, v1, reveal) / 21.0\nfh = int((RBOT - RTOP - 260) * clamp(frac))\nwaterline = RBOT - 60 - fh\nd.rectangle([RX0, RTOP + 140, RX1, RBOT - 60], outline=rgba(TEXT, 120), width=3)\nd.rectangle([RX0 + 4, waterline, RX1 - 4, RBOT - 64], fill=rgba(HIGHLIGHT, 140))\ncols = 8\ncw = (RX1 - RX0) // cols\nfor c in range(cols):\n    x = RX0 + c * cw + 10\n    if elder is not None:\n        paste(elder, x, waterline - 40, cw - 30, cw - 10)\ntext('1974: ' + str(v0) + '%', RX0 + 20, RTOP + 60, size=38, color=TEXT)\ntext('2024: ' + str(v1) + '%', RX0 + 20, RTOP + 100, size=44, color=HIGHLIGHT)\ntext('of the world is 65 or older', RX0 + 20, RTOP + 150, size=26, color=TEXT)"
+          }
         },
         {
           "source": "offline",
@@ -20989,7 +21009,12 @@
           "use_baseline": false,
           "role": "2 · THE SPLIT",
           "topic": "median age, youngest vs oldest country",
-          "say": "But it's not even. Niger's median age is 15 — half the country is basically kids. Japan's median age is 49.9. Same planet, two completely different worlds."
+          "say": "But it's not even. Niger's median age is 15 — half the country is basically kids. Japan's median age is 49.9. Same planet, two completely different worlds.",
+          "scene": {
+            "mechanic": "age-thermometer-duel",
+            "concept": "two vertical thermometers topped with a person cut-out, filling to each country's median age on the same 0-60yr scale — Niger barely rises, Japan nearly tops out",
+            "code": "v0 = values[0]; v1 = values[1]\nperson = subject_image('person silhouette')\ntop = RTOP + 220; bot = RBOT - 100\nscale = 60.0\nx0 = RX0 + 220; x1 = RX1 - 220\nfor cx, v, col, lab in ((x0, v0, ACCENT, labels[0]), (x1, v1, WARN, labels[1])):\n    d.rounded_rectangle([cx - 60, top, cx + 60, bot], radius=50, outline=rgba(TEXT, 190), width=6)\n    frac = clamp(v / scale) * reveal\n    fh = int((bot - top) * frac)\n    d.rounded_rectangle([cx - 52, bot - fh, cx + 52, bot - 8], radius=40, fill=rgba(col, 220))\n    if person is not None:\n        paste(person, cx - 70, bot - fh - 150, 140, 150)\n    text(lab, cx, top - 60, size=34, color=col, center=True)\n    text(str(v) + ' yrs', cx, bot + 20, size=40, color=col, center=True)"
+          }
         },
         {
           "source": "offline",
@@ -21001,7 +21026,12 @@
           "ascending": false,
           "role": "3 · WHO PAYS FOR IT",
           "topic": "elderly per 100 workers by 2050",
-          "say": "So who supports all those retirees? By 2050, Japan will have 80.7 people over 65 for every 100 workers. South Korea, 75.6. There won't be enough workers left."
+          "say": "So who supports all those retirees? By 2050, Japan will have 80.7 people over 65 for every 100 workers. South Korea, 75.6. There won't be enough workers left.",
+          "scene": {
+            "mechanic": "piggyback-worker-columns",
+            "concept": "three worker silhouettes each carry a stack of elderly-rider cut-outs on their back sized to that country's 2050 dependency ratio — the stack towers over Japan's worker",
+            "code": "worker = subject_image('worker silhouette')\nrider = subject_image('elderly person silhouette')\ncols = n\ngw = (RX1 - RX0 - 40) // max(1, cols)\nbase_y = RBOT - 120\nfor i in range(cols):\n    x = RX0 + 20 + i * gw + gw // 2\n    v = values[i]\n    if worker is not None:\n        paste(worker, x - 70, base_y - 150, 140, 150)\n    frac = clamp(v / 100.0) * reveal\n    riders = max(1, int(8 * frac))\n    for r in range(riders):\n        ry = base_y - 150 - r * 46\n        if rider is not None:\n            paste(rider, x - 55, ry, 110, 60)\n    text(str(v), x, base_y + 30, size=40, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 80, size=24, color=TEXT, center=True)\ntext('elderly per 100 workers, 2050', RX0 + 20, RTOP + 100, size=30, color=TEXT)"
+          }
         }
       ]
     },
@@ -21038,7 +21068,12 @@
           "insight_type": "trend",
           "role": "1 · THE BUILDUP",
           "topic": "plastic found in brain tissue",
-          "say": "In 2016, autopsy brains averaged 3,300 micrograms of plastic per gram of tissue. By 2024, that jumped to 4,900. Your brain is quietly accumulating plastic, and it's speeding up."
+          "say": "In 2016, autopsy brains averaged 3,300 micrograms of plastic per gram of tissue. By 2024, that jumped to 4,900. Your brain is quietly accumulating plastic, and it's speeding up.",
+          "scene": {
+            "mechanic": "brain-speckle-accumulate",
+            "concept": "a real brain cut-out speckles with plastic-particle dots that multiply from the 2016 density to the 2024 density, denser and more saturated as reveal advances",
+            "code": "v0 = values[0]; v1 = values[-1]\nbrain = subject_image('human brain')\nbx, by, bw, bh = RX0 + 140, RTOP + 160, RX1 - RX0 - 280, 620\nif brain is not None:\n    paste(brain, bx, by, bw, bh)\nelse:\n    d.ellipse([bx, by, bx + bw, by + bh], outline=rgba(TEXT, 200), width=6)\nfrac = lerp(v0, v1, reveal) / v1\ndots = max(6, int(140 * frac))\nfor i in range(dots):\n    seed = (i * 977) % 1000 / 1000.0\n    seed2 = (i * 613 + 41) % 1000 / 1000.0\n    px = bx + int(bw * seed)\n    py = by + int(bh * seed2)\n    d.ellipse([px - 5, py - 5, px + 5, py + 5], fill=rgba(WARN, 220))\ntext(str(int(v0)) + ' µg/g (2016)', RX0 + 20, RTOP + 60, size=32, color=TEXT)\ntext(str(int(v1)) + ' µg/g (2024)', RX0 + 20, RTOP + 110, size=40, color=WARN)"
+          }
         },
         {
           "source": "offline",
@@ -21050,7 +21085,12 @@
           "ascending": false,
           "role": "2 · NOT JUST YOUR BRAIN",
           "topic": "where plastic has been found in the body",
-          "say": "It's everywhere else too. Plastic showed up in 100 percent of placentas tested, 77 percent of blood samples, and 58 percent of people's artery plaque. Almost nowhere is off-limits."
+          "say": "It's everywhere else too. Plastic showed up in 100 percent of placentas tested, 77 percent of blood samples, and 58 percent of people's artery plaque. Almost nowhere is off-limits.",
+          "scene": {
+            "mechanic": "body-site-fill-trio",
+            "concept": "three real body-part cut-outs (placenta, blood drop, artery) each fill bottom-up to the percent of tested samples where plastic was found — placenta nearly full, artery about half",
+            "code": "cols = n\ngw = (RX1 - RX0 - 60) // max(1, cols)\ny0 = RTOP + 220\nbh = 560\nfor i in range(cols):\n    x = RX0 + 30 + i * gw\n    v = values[i]\n    img = subject_image(labels[i])\n    frac = clamp(v / 100.0) * reveal\n    if img is not None:\n        fill_image(img, frac, x, y0, gw - 40, bh)\n    else:\n        fh = int(bh * frac)\n        d.rounded_rectangle([x, y0 + bh - fh, x + gw - 40, y0 + bh], radius=16, fill=rgba(WARN, 220))\n    d.rounded_rectangle([x, y0, x + gw - 40, y0 + bh], radius=16, outline=rgba(TEXT, 140), width=3)\n    text(str(int(v)) + '%', x + 10, y0 + bh + 20, size=36, color=WARN)\n    text(labels[i], x + 10, y0 + bh + 70, size=22, color=TEXT)"
+          }
         },
         {
           "source": "offline",
@@ -21062,7 +21102,12 @@
           "use_baseline": false,
           "role": "3 · WHY IT MATTERS",
           "topic": "heart attack and stroke risk",
-          "say": "Here's why that's not just gross: people with plastic in their artery plaque had 4.5 times the risk of heart attack, stroke, or death within 3 years. It's doing something in there."
+          "say": "Here's why that's not just gross: people with plastic in their artery plaque had 4.5 times the risk of heart attack, stroke, or death within 3 years. It's doing something in there.",
+          "scene": {
+            "mechanic": "heartbeat-risk-duel",
+            "concept": "two heart cut-outs pulse on an ECG baseline; the clean heart beats calmly at 1x, the plastic-laden heart pulses violently to 4.5x with a spiking red line",
+            "code": "v0 = values[0]; v1 = values[1]\nheart = subject_image('human heart')\ncx0 = RX0 + 260; cx1 = RX1 - 260\ncy = RTOP + 420\npulse = 0.5 + 0.5 * abs(math.sin(reveal * 6.283 * 3))\nfor cx, v, col, lab in ((cx0, v0, HIGHLIGHT, labels[0]), (cx1, v1, WARN, labels[1])):\n    scale = 1.0 + (v / 4.5) * 0.35 * pulse * reveal\n    sz = int(260 * scale)\n    if heart is not None:\n        paste(heart, cx - sz // 2, cy - sz // 2, sz, sz)\n    else:\n        d.ellipse([cx - sz // 2, cy - sz // 2, cx + sz // 2, cy + sz // 2], fill=rgba(col, 200))\n    text(lab, cx, cy + 200, size=28, color=col, center=True)\n    text(str(v) + 'x risk', cx, cy + 240, size=38, color=col, center=True)\necg_y = RBOT - 140\nfor i in range(RX1 - RX0):\n    xx = RX0 + i\n    spike = 40 * math.sin((xx + reveal * 400) * 0.09) * (1 if (i // 20) % 3 == 0 else 0.1)\n    d.line([xx, ecg_y, xx, ecg_y - spike], fill=rgba(WARN, 160), width=2)"
+          }
         }
       ]
     },
@@ -21099,7 +21144,12 @@
           "insight_type": "trend",
           "role": "1 · THE BILL",
           "topic": "national debt per person",
-          "say": "In 2016, your personal share of the national debt was about 60,570 dollars. By 2026, it's 116,480. It roughly doubled in exactly 10 years."
+          "say": "In 2016, your personal share of the national debt was about 60,570 dollars. By 2026, it's 116,480. It roughly doubled in exactly 10 years.",
+          "scene": {
+            "mechanic": "cash-stack-climb",
+            "concept": "a stack of dollar-bill images climbs from the 2016 per-person debt height to the 2026 height, a rising column of money nobody chose to carry",
+            "code": "v0 = values[0]; v1 = values[-1]\nbill = subject_image('dollar bill')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\ncap_h = 700\nfrac = lerp(v0, v1, reveal) / v1\nstack_h = int(cap_h * frac)\nbw = 420\nbill_h = 34\ncount = max(1, stack_h // bill_h)\nfor i in range(count):\n    y = base_y - i * bill_h\n    if bill is not None:\n        paste(bill, cx - bw // 2, y, bw, bill_h + 4)\n    else:\n        d.rounded_rectangle([cx - bw // 2, y, cx + bw // 2, y + bill_h - 4], radius=6, fill=rgba(HIGHLIGHT, 210))\ntext('2016: $' + str(int(v0)), RX0 + 20, RTOP + 60, size=34, color=TEXT)\ntext('2026: $' + str(int(v1)), RX0 + 20, RTOP + 110, size=44, color=WARN)\ntext('owed per person, right now', RX0 + 20, RTOP + 160, size=26, color=TEXT)"
+          }
         },
         {
           "source": "offline",
@@ -21110,7 +21160,8 @@
           "insight_type": "share",
           "role": "2 · WHO IT'S OWED TO",
           "topic": "who actually holds the debt",
-          "say": "So who's it owed to? 80.6 percent is held by outside investors and other countries. Only 19.4 percent is money the government owes itself."
+          "say": "So who's it owed to? 80.6 percent is held by outside investors and other countries. Only 19.4 percent is money the government owes itself.",
+          "viz": "share"
         },
         {
           "source": "offline",
@@ -21122,7 +21173,12 @@
           "ascending": false,
           "role": "3 · THE COST",
           "topic": "biggest federal spending categories",
-          "say": "And that debt isn't free. In 2025, interest payments cost 1 trillion dollars — more than the entire 987 billion dollar Medicare program. Only Social Security, at 1.6 trillion, costs more."
+          "say": "And that debt isn't free. In 2025, interest payments cost 1 trillion dollars — more than the entire 987 billion dollar Medicare program. Only Social Security, at 1.6 trillion, costs more.",
+          "scene": {
+            "mechanic": "budget-money-tower-row",
+            "concept": "three government-spending towers built from stacked dollar-bill images, height scaled to FY2025 outlays — interest on the debt now looms nearly as tall as Medicare",
+            "code": "bill = subject_image('dollar bill')\ncols = n\ngw = (RX1 - RX0 - 40) // max(1, cols)\nbase_y = RBOT - 100\ncap_h = 640\nfor i in range(cols):\n    x = RX0 + 20 + i * gw\n    v = values[i]\n    frac = clamp(v / vmax) * reveal\n    th = int(cap_h * frac)\n    bh2 = 30\n    rows = max(1, th // bh2)\n    for r in range(rows):\n        y = base_y - r * bh2\n        if bill is not None:\n            paste(bill, x, y, gw - 30, bh2 + 4)\n        else:\n            d.rounded_rectangle([x, y, x + gw - 30, y + bh2 - 4], radius=6, fill=rgba(ACCENT, 210))\n    text('$' + str(int(v)) + 'B', x + 6, base_y + 20, size=30, color=WARN)\n    text(labels[i], x + 6, base_y + 65, size=22, color=TEXT)"
+          }
         }
       ]
     }
