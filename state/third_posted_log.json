@@ -3580,6 +3580,34 @@
         "end": 29.7
       },
       "director_cut": true
+    },
+    "rejected-spotlessnaivegrasshopperprchase-5ucyxzxycxi1jg7m": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/SpotlessNaiveGrasshopperPRChase-5uCyxzxycXi1JG7M",
+      "streamer": "extraemily",
+      "title": "Rage and Emily hit their goal of reaching and beating Round 52 in BO3 Zombies in just 37 hours",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine zombies strategy talk, no clear )",
+      "ts": "2026-08-15T11:32:13.809491+00:00"
+    },
+    "rejected-incredulousamazingwolfresidentsleeper-fsi5s9kr3ohmg6ip": {
+      "source_url": "https://www.twitch.tv/atrioc/clip/IncredulousAmazingWolfResidentSleeper-FSi5S9kR3oHMg6Ip",
+      "streamer": "atrioc",
+      "title": "test",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (no real event, just rant)",
+      "ts": "2026-08-15T11:34:00.543983+00:00"
+    },
+    "clip-20260815-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/ObedientSleepySpindlePJSalt--pJ-tzYKjwLOz8fO",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Finds Out He's '102% African' And Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-15T11:37:32.763482+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
