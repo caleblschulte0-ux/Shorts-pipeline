@@ -1,0 +1,20 @@
+{
+  "key": "diabetes_treatment_gap_2022",
+  "title": "Adults with diabetes: treated vs untreated, 2022 (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Worldwide trends in diabetes prevalence and treatment from 1990 to 2022 (NCD-RisC)",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), with WHO",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02317-1/fulltext",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Global age-standardized diabetes treatment coverage reached 45.8% in 2022 (up from 33.2% in 1990); the remainder of the roughly 828 million adults with diabetes were not receiving treatment, per the same 2024 Lancet/NCD-RisC analysis.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Treated", "value": 45.8},
+    {"label": "Untreated", "value": 54.2}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "median_age_extremes",
+  "title": "Median age, youngest vs oldest country (years)",
+  "unit": "years",
+  "geography": "Niger vs Japan",
+  "time_coverage": "2024 estimate",
+  "source": {
+    "name": "The World Factbook - Median Age",
+    "publisher": "U.S. Central Intelligence Agency (CIA)",
+    "url": "https://www.cia.gov/the-world-factbook/field/median-age/",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Niger has the world's lowest median age (about 15 years); Japan is among the world's highest (about 49.9 years), 2024 CIA World Factbook estimates.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Niger", "value": 15.0},
+    {"label": "Japan", "value": 49.9}
+  ]
+}

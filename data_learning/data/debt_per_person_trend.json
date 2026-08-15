@@ -1,0 +1,20 @@
+{
+  "key": "debt_per_person_trend",
+  "title": "US gross national debt per person (dollars)",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2016-2026",
+  "source": {
+    "name": "Debt to the Penny / Historical Debt Outstanding",
+    "publisher": "U.S. Department of the Treasury (Fiscal Data)",
+    "url": "https://fiscaldata.treasury.gov/datasets/debt-to-the-penny/",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Total gross federal debt divided by U.S. population: about $60,570 per person at the end of FY2016 ($19.57 trillion debt / ~323.1 million people, Census estimate), vs $116,480 per person as of Aug 5, 2026 ($39.83 trillion debt), per U.S. Treasury Fiscal Data and JEC Republicans' Monthly Debt Update.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "2016", "value": 60570, "period": "2016"},
+    {"label": "2026", "value": 116480, "period": "2026"}
+  ]
+}

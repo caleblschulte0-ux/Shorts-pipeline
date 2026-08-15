@@ -1,0 +1,65 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "reddit-loss-prevention-audit",
+  "title": "He Stopped Me At The Exit Every Visit. Big Mistake.",
+  "script": "The loss-prevention guy at my regular grocery store started stopping me at the exit every single visit, bag check and receipt check both, despite the register printing a receipt every time. I started keeping every one of those receipts in a folder just in case, dated and everything. After the eleventh stop in six weeks, I filed a formal complaint with corporate, receipts attached, timestamps and all. Before responding to me, corporate pulled the store's loss-prevention log to check his actual stop pattern, and it turned out I wasn't the only regular customer he'd been stopping for no reason, and the store's own shrink numbers, the ones his stops were supposed to explain, had been climbing the entire time he worked there. An internal audit found what the stops were covering for: he'd been walking product out the loading dock himself for over a year. He was gone within the week, and corporate mailed me a written apology along with a gift card for the trouble.",
+  "shots": [
+    {
+      "phrase": "stopping me at the exit every single visit",
+      "query": "store exit security check",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png"
+    },
+    {
+      "phrase": "the register printing a receipt every time",
+      "query": "cash register receipt",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
+    },
+    {
+      "phrase": "filed a formal complaint with corporate",
+      "query": "printed complaint letter",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+    },
+    {
+      "phrase": "pulled the store's loss-prevention log",
+      "query": "computer log screen",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+    },
+    {
+      "phrase": "An internal audit found what the stops were covering for",
+      "query": "security control room monitors",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+    },
+    {
+      "phrase": "walking product out the loading dock himself",
+      "query": "warehouse loading dock"
+    },
+    {
+      "phrase": "corporate mailed me a written apology",
+      "query": "mail envelope letter",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
+    }
+  ],
+  "punches": [
+    {"phrase": "the register printing a receipt every time", "text": "RECEIPT: PROOF", "color": "#50ff80"},
+    {"phrase": "filed a formal complaint with corporate", "text": "COMPLAINT FILED", "color": "#ffaa30"},
+    {"phrase": "An internal audit found what the stops were covering for", "text": "AUDIT TIME", "color": "#ff3030"},
+    {"phrase": "walking product out the loading dock himself", "text": "HE WAS STEALING", "color": "#ff3030"},
+    {"phrase": "corporate mailed me a written apology", "text": "SORRY + GIFT CARD", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "prorevenge",
+    "lossprevention",
+    "retail",
+    "karma",
+    "corporatelife",
+    "grocerystore",
+    "customerservice",
+    "reddit",
+    "workplacejustice",
+    "retailstories",
+    "storelife",
+    "shoplifting"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

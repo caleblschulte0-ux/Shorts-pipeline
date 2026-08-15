@@ -1,0 +1,20 @@
+{
+  "key": "microplastic_plaque_risk",
+  "title": "Risk of heart attack, stroke or death: with vs without microplastics in artery plaque",
+  "unit": "index",
+  "geography": "257-patient cohort, Italy",
+  "time_coverage": "34-month follow-up, published 2024",
+  "source": {
+    "name": "Microplastics and Nanoplastics in Atheromas and Cardiovascular Events",
+    "publisher": "New England Journal of Medicine (Marfella et al.)",
+    "url": "https://www.nejm.org/doi/10.1056/NEJMoa2309822",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Patients whose carotid artery plaque contained microplastics/nanoplastics had a 4.5-fold higher rate of the combined outcome of heart attack, stroke, or death over a mean 34-month follow-up, vs patients whose plaque had none. Baseline (no microplastics) set to 1.0x; index value, not a percent.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "No microplastics in plaque", "value": 1.0},
+    {"label": "Microplastics in plaque", "value": 4.5}
+  ]
+}
