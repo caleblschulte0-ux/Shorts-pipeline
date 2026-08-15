@@ -1,0 +1,24 @@
+{
+ "checked_at": "2026-08-15T12:58:00+00:00",
+ "date": "20260815",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260815/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-reply-all-chaos-s2-6c6e5362b64d.json",
+  "reddit-reply-all-chaos-s6-0fea0eba1793.json",
+  "reddit-reply-all-chaos-s7-becff40b5e6a.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 3 image(s)"
+}
