@@ -1,0 +1,20 @@
+{
+  "key": "world_65plus_share_trend",
+  "title": "Share of world population aged 65 and over (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1974-2024",
+  "source": {
+    "name": "World Population Prospects 2024",
+    "publisher": "United Nations Department of Economic and Social Affairs (UN DESA), Population Division",
+    "url": "https://www.un.org/en/global-issues/ageing",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Share of the global population aged 65+ almost doubled between 1974 and 2024, per UN World Population Prospects 2024; the UN projects it doubles again to 20.7% by 2074.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "1974", "value": 5.5, "period": "1974"},
+    {"label": "2024", "value": 10.3, "period": "2024"}
+  ]
+}

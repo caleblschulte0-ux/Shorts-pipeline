@@ -1,0 +1,21 @@
+{
+  "key": "diabetes_treatment_by_income",
+  "title": "Diabetes treatment coverage by country income level, 2022 (percent)",
+  "unit": "percent",
+  "geography": "World, by World Bank income group",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Worldwide trends in diabetes prevalence and treatment from 1990 to 2022 (NCD-RisC)",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), with WHO",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02317-1/fulltext",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "High-income countries reached roughly 53% age-standardized treatment coverage in 2022 vs roughly 37% in lower-middle-income countries; the study reports coverage below 10% in some sub-Saharan African countries (approximated here as 9%). Same 2024 Lancet/NCD-RisC analysis as the other two charts in this story.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "High-income countries", "value": 53},
+    {"label": "Lower-middle-income countries", "value": 37},
+    {"label": "Some low-income (Africa)", "value": 9}
+  ]
+}

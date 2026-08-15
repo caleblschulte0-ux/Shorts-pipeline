@@ -1,0 +1,20 @@
+{
+  "key": "debt_held_by_public_share",
+  "title": "Who the national debt is actually owed to (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Monthly Debt Update, August 2026",
+    "publisher": "U.S. Congress Joint Economic Committee (Republicans), citing U.S. Treasury data",
+    "url": "https://www.jec.senate.gov/public/index.cfm/republicans/2026/5/national-debt-reaches-38-91-trillion-increased-2-70-trillion-year-over-year-increased-10-75-trillion-in-five-years",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Of the $39.83 trillion gross national debt (Aug 2026), $32.10 trillion (80.6%) is debt held by the public (outside investors, foreign governments, funds), and $7.73 trillion (19.4%) is intragovernmental debt the government owes to its own trust funds (e.g. Social Security).",
+  "insight_type": "share",
+  "points": [
+    {"label": "Held by the public", "value": 80.6},
+    {"label": "Intragovernmental (owed to itself)", "value": 19.4}
+  ]
+}

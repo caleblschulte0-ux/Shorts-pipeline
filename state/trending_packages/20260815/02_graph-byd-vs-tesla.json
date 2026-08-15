@@ -1,0 +1,39 @@
+{
+  "format": "graph_race",
+  "slug": "graph-byd-vs-tesla",
+  "title": "BYD Just Overtook Tesla In EV Sales",
+  "hook": "Tesla just lost its EV crown.",
+  "y_label": "Battery-electric vehicles sold (millions)",
+  "duration": 13,
+  "source": "Tesla annual deliveries (company reports): 2019 0.3675M, 2020 0.4996M, 2021 0.9362M, 2022 1.3139M, 2023 1.8086M, 2024 1.7892M, 2025 1.6361M (BEV, down amid rising competition). BYD battery-electric-only sales (BYD/CnEVPost/InsideEVs/Statista reporting): 2023 ~1.6M, 2024 1.778M, 2025 2.2567M (surpassing Tesla for the first time, per CNBC/InsideEVs Jan 2026 reporting); 2019-2022 figures approximate, back-modeled from BYD's reported NEV sales mix before its BEV line scaled (2019 ~0.11M, 2020 ~0.11M, 2021 ~0.32M, 2022 ~0.91M). BYD figures exclude its separate plug-in-hybrid line.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "Tesla",
+      "color": "#e74c3c",
+      "icon": "Tesla",
+      "values": [0.3675, 0.4996, 0.9362, 1.3139, 1.8086, 1.7892, 1.6361]
+    },
+    {
+      "name": "BYD",
+      "color": "#2ecc71",
+      "icon": "BYD",
+      "values": [0.11, 0.11, 0.32, 0.91, 1.6, 1.778, 2.2567]
+    }
+  ],
+  "hashtags": [
+    "byd",
+    "tesla",
+    "ev",
+    "electricvehicles",
+    "elonmusk",
+    "china",
+    "evsales",
+    "automotive",
+    "evs",
+    "carindustry",
+    "evwar"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -657,12 +657,24 @@ def validate_package(pkg: dict) -> dict:
         keyword_only.append((s.get("phrase") or "?")[:50])
     n_shots = max(1, len(shots))
     illustrated = len(shots) - len(keyword_only)
+    # Same "nothing to cover" reasoning as the no-shots-needed branch above,
+    # one level down: a script with zero extracted entities (a genuinely
+    # anonymous reddit_story with no named person/place/brand — the format
+    # spec REQUIRES universal, un-named premises) divides 0 matched by 0
+    # possible. That is "nothing to cover", not "covered nothing", so it
+    # must not score 0%. Before this fix `max(1, len(visuals))` silently
+    # turned the zero-possible case into a 0/1 division, which flagged
+    # every honestly-illustrated, entity-free reddit_story as a coverage
+    # failure — the exact bug this docstring already diagnosed for
+    # graph_race/text_card, just left unfixed on this sibling path.
+    coverage_pct = 100.0 if not visuals else round(
+        100.0 * len(matched) / len(visuals), 1)
     return {
         "source": "llm" if used_llm else "regex",
         "total_visuals": len(visuals),
         "matched": matched,
         "uncovered": uncovered,
-        "coverage_pct": round(100.0 * len(matched) / max(1, len(visuals)), 1),
+        "coverage_pct": coverage_pct,
         "total_shots": len(shots),
         "keyword_only_shots": keyword_only,
         "illustration_pct": round(100.0 * illustrated / n_shots, 1),

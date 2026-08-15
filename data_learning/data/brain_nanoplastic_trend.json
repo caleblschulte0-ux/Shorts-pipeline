@@ -1,0 +1,20 @@
+{
+  "key": "brain_nanoplastic_trend",
+  "title": "Nanoplastic concentration in human brain tissue (micrograms per gram)",
+  "unit": "index",
+  "geography": "United States (Univ. of New Mexico decedent cohort)",
+  "time_coverage": "2016-2024",
+  "source": {
+    "name": "Bioaccumulation of microplastics in decedent human brains",
+    "publisher": "Nature Medicine (Nihart et al., Univ. of New Mexico)",
+    "url": "https://www.nature.com/articles/s41591-024-03453-1",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Median nanoplastic mass concentration measured in human frontal-cortex brain tissue from autopsy samples: about 3,300 micrograms per gram in 2016 vs about 4,900 micrograms per gram in 2024, roughly a 50% rise, per the peer-reviewed 2025 Nature Medicine study.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "2016", "value": 3300, "period": "2016"},
+    {"label": "2024", "value": 4900, "period": "2024"}
+  ]
+}

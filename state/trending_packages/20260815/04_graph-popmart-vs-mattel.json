@@ -1,0 +1,39 @@
+{
+  "format": "graph_race",
+  "slug": "graph-popmart-vs-mattel",
+  "title": "The Labubu Company's Revenue Just 8Xed",
+  "hook": "This toy startup is closing in.",
+  "y_label": "Annual revenue (RMB billions)",
+  "duration": 13,
+  "source": "Pop Mart annual results (company filings via PRNewswire/Yahoo Finance/HKEX disclosures): 2019 RMB 1.68B, 2020 RMB 2.51B, 2021 RMB 4.49B, 2022 RMB 4.62B, 2023 RMB 6.30B, 2024 RMB 13.04B (up 106.9% y/y, driven by Labubu demand). Mattel Inc. annual revenue (SEC filings), converted to RMB at an approximate 7.1 CNY/USD rate for comparison: 2019 $4.456B (~RMB31.6B), 2020 $4.038B (~RMB28.7B), 2021 $5.456B (~RMB38.7B), 2022 $5.442B (~RMB38.6B), 2023 $5.441B (~RMB38.6B), 2024 $5.150B (~RMB36.6B). Pop Mart has not yet caught Mattel on revenue, but by July 2025 its STOCK MARKET value had already passed Hasbro and Mattel combined (Sherwood News), which is the tension this chart sets up.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Pop Mart",
+      "color": "#ff6bd6",
+      "icon": "Pop Mart",
+      "values": [1.68, 2.51, 4.49, 4.62, 6.30, 13.04]
+    },
+    {
+      "name": "Mattel",
+      "color": "#2ecc71",
+      "icon": "Mattel",
+      "values": [31.6, 28.7, 38.7, 38.6, 38.6, 36.6]
+    }
+  ],
+  "hashtags": [
+    "popmart",
+    "labubu",
+    "mattel",
+    "toys",
+    "blindbox",
+    "barbie",
+    "collectibles",
+    "china",
+    "toyindustry",
+    "revenue",
+    "business"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

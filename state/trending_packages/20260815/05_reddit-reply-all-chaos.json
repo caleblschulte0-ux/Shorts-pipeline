@@ -1,0 +1,68 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-reply-all-chaos",
+  "title": "He Wanted Reply-All Confirmation. He Got It.",
+  "script": "Our new VP wanted proof that people actually read company emails, so he made a rule: reply-all, every single time, with the words \"confirmed read,\" no exceptions, on any message sent to the all-staff list, fine by me. The next memo went out to four hundred people. Four hundred replies landed in every inbox within six minutes, each one triggering someone's out-of-office auto-reply, which triggered another wave of confirmed reads, which triggered more auto-replies. By hour two the mail server was queuing eleven thousand messages and IT had shut off outbound email company-wide. The VP sent an urgent memo asking everyone to please stop replying all. I replied all: confirmed read. So did everyone else. IT shut down the entire distribution list by lunch, and the reply-all rule quietly disappeared from the handbook that same afternoon.",
+  "shots": [
+    {
+      "phrase": "Our new VP wanted proof",
+      "query": "corporate executive office"
+    },
+    {
+      "phrase": "reply-all, every single time",
+      "query": "email inbox screen",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
+    },
+    {
+      "phrase": "confirmed read",
+      "query": "typing keyboard closeup"
+    },
+    {
+      "phrase": "four hundred people",
+      "query": "office cubicles rows",
+      "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+    },
+    {
+      "phrase": "eleven thousand messages",
+      "query": "laptop screen overload",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+    },
+    {
+      "phrase": "shut off outbound email company-wide",
+      "query": "IT server room",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+    },
+    {
+      "phrase": "urgent memo asking everyone to please stop",
+      "query": "printed office memo",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
+    },
+    {
+      "phrase": "quietly disappeared from the handbook",
+      "query": "employee handbook binder",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Community_Insights_2024_User_conduct_policy_sentiments.png"
+    }
+  ],
+  "punches": [
+    {"phrase": "four hundred people", "text": "400 PEOPLE", "color": "#ffaa30"},
+    {"phrase": "eleven thousand messages", "text": "11,000 MSGS", "color": "#ffaa30"},
+    {"phrase": "shut off outbound email company-wide", "text": "EMAIL: DOWN", "color": "#ff3030"},
+    {"phrase": "quietly disappeared from the handbook", "text": "RULE: GONE", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "corporatelife",
+    "workplace",
+    "officepolicy",
+    "emailfail",
+    "replyallgate",
+    "9to5",
+    "reddit",
+    "worklife",
+    "itproblems",
+    "corporatestories",
+    "officelife"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

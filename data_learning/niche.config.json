@@ -20883,6 +20883,248 @@
           }
         }
       ]
+    },
+    {
+      "slug": "diabetes-quietly-doubled",
+      "title": "Diabetes Quietly Became A Global Epidemic",
+      "hook": "It quietly doubled worldwide. Nobody's talking about it.",
+      "closing": "Doubling a disease is easy. Treating it is not.",
+      "question": "Do you know your blood sugar numbers? Tell me below.",
+      "caption": "828 million adults now have diabetes — double the rate of just 30 years ago. More than half of them aren't even being treated, and in some countries it's under 1 in 10. Do you know your numbers? 👇",
+      "hashtags": [
+        "diabetes",
+        "globalhealth",
+        "publichealth",
+        "chronicillness",
+        "bloodsugar",
+        "insulin",
+        "healthcare",
+        "who",
+        "ncdrisc",
+        "wellness",
+        "medicine",
+        "dataviz",
+        "didyouknow",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "diabetes_prevalence_trend",
+          "params": {
+            "file": "diabetes_prevalence_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPREAD",
+          "topic": "diabetes among adults worldwide",
+          "say": "In 1990, just 7 percent of adults worldwide had diabetes. By 2022, that number doubled to 14 percent. It happened in a single generation."
+        },
+        {
+          "source": "offline",
+          "key": "diabetes_treatment_gap_2022",
+          "params": {
+            "file": "diabetes_treatment_gap_2022.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE GAP",
+          "topic": "diabetics who actually get treated",
+          "say": "So here's the catch: only 45.8 percent of those people are actually treated. The other 54.2 percent are managing a disease that can blind or kill them, with no treatment at all."
+        },
+        {
+          "source": "offline",
+          "key": "diabetes_treatment_by_income",
+          "params": {
+            "file": "diabetes_treatment_by_income.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE DIVIDE",
+          "topic": "treatment coverage by country income",
+          "say": "Where you live decides your odds. High-income countries treat 53 percent of cases. Poorer countries barely reach 37 percent — and in some low-income countries, it's under 9 percent."
+        }
+      ]
+    },
+    {
+      "slug": "two-speed-aging-world",
+      "title": "One Country's Median Age Is 15. Another's Is 50.",
+      "hook": "Some countries are basically all kids. Others aren't.",
+      "closing": "Growing old is optional. For some countries, mandatory.",
+      "question": "What's the median age where you live? Guess below.",
+      "caption": "The world's youngest country has a median age of 15. The world's oldest is pushing 50. And by 2050, some nations will have more retirees than workers. What's the median age where you live? 👇",
+      "hashtags": [
+        "demographics",
+        "aging",
+        "population",
+        "medianage",
+        "dependencyratio",
+        "oecd",
+        "unitednations",
+        "society",
+        "globalpopulation",
+        "worldfacts",
+        "dataviz",
+        "didyouknow",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "world_65plus_share_trend",
+          "params": {
+            "file": "world_65plus_share_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SHIFT",
+          "topic": "share of the world 65 or older",
+          "say": "In 1974, only 5.5 percent of the world was 65 or older. By 2024, that nearly doubled to 10.3 percent. The whole planet is quietly getting older."
+        },
+        {
+          "source": "offline",
+          "key": "median_age_extremes",
+          "params": {
+            "file": "median_age_extremes.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE SPLIT",
+          "topic": "median age, youngest vs oldest country",
+          "say": "But it's not even. Niger's median age is 15 — half the country is basically kids. Japan's median age is 49.9. Same planet, two completely different worlds."
+        },
+        {
+          "source": "offline",
+          "key": "old_age_dependency_2050",
+          "params": {
+            "file": "old_age_dependency_2050.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · WHO PAYS FOR IT",
+          "topic": "elderly per 100 workers by 2050",
+          "say": "So who supports all those retirees? By 2050, Japan will have 80.7 people over 65 for every 100 workers. South Korea, 75.6. There won't be enough workers left."
+        }
+      ]
+    },
+    {
+      "slug": "plastic-in-your-body",
+      "title": "Your Brain Is Quietly Filling With Plastic",
+      "hook": "Your brain has plastic in it. Right now.",
+      "closing": "You're not just what you eat. You're what you can't see.",
+      "question": "Does this freak you out, or just me? Tell me below.",
+      "caption": "Scientists found nanoplastics in human brain tissue — the amount jumped 50% between 2016 and 2024. It's not just your brain: it's in your blood, your placenta, even your arteries. Does this freak you out? 👇",
+      "hashtags": [
+        "microplastics",
+        "nanoplastics",
+        "plastic",
+        "health",
+        "science",
+        "brainhealth",
+        "heartdisease",
+        "pollution",
+        "environment",
+        "publichealth",
+        "dataviz",
+        "didyouknow",
+        "sciencefacts",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "brain_nanoplastic_trend",
+          "params": {
+            "file": "brain_nanoplastic_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE BUILDUP",
+          "topic": "plastic found in brain tissue",
+          "say": "In 2016, autopsy brains averaged 3,300 micrograms of plastic per gram of tissue. By 2024, that jumped to 4,900. Your brain is quietly accumulating plastic, and it's speeding up."
+        },
+        {
+          "source": "offline",
+          "key": "microplastics_found_in_body",
+          "params": {
+            "file": "microplastics_found_in_body.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · NOT JUST YOUR BRAIN",
+          "topic": "where plastic has been found in the body",
+          "say": "It's everywhere else too. Plastic showed up in 100 percent of placentas tested, 77 percent of blood samples, and 58 percent of people's artery plaque. Almost nowhere is off-limits."
+        },
+        {
+          "source": "offline",
+          "key": "microplastic_plaque_risk",
+          "params": {
+            "file": "microplastic_plaque_risk.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · WHY IT MATTERS",
+          "topic": "heart attack and stroke risk",
+          "say": "Here's why that's not just gross: people with plastic in their artery plaque had 4.5 times the risk of heart attack, stroke, or death within 3 years. It's doing something in there."
+        }
+      ]
+    },
+    {
+      "slug": "debt-per-american",
+      "title": "Every American Is Now $116,480 In Debt",
+      "hook": "You're personally in debt. You never signed for it.",
+      "closing": "That's not a bill. That's a birthright.",
+      "question": "Did you know you personally owed that much? React below.",
+      "caption": "Every American's personal share of the national debt just hit $116,480 — almost double what it was 10 years ago. And it's not free: interest on that debt now costs more than the entire Medicare program. Did you know you owed this much? 👇",
+      "hashtags": [
+        "nationaldebt",
+        "debt",
+        "government",
+        "finance",
+        "economy",
+        "interestrates",
+        "socialsecurity",
+        "medicare",
+        "budget",
+        "taxes",
+        "fiscalpolicy",
+        "dataviz",
+        "didyouknow",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "debt_per_person_trend",
+          "params": {
+            "file": "debt_per_person_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE BILL",
+          "topic": "national debt per person",
+          "say": "In 2016, your personal share of the national debt was about 60,570 dollars. By 2026, it's 116,480. It roughly doubled in exactly 10 years."
+        },
+        {
+          "source": "offline",
+          "key": "debt_held_by_public_share",
+          "params": {
+            "file": "debt_held_by_public_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 · WHO IT'S OWED TO",
+          "topic": "who actually holds the debt",
+          "say": "So who's it owed to? 80.6 percent is held by outside investors and other countries. Only 19.4 percent is money the government owes itself."
+        },
+        {
+          "source": "offline",
+          "key": "federal_budget_top_categories_2025",
+          "params": {
+            "file": "federal_budget_top_categories_2025.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE COST",
+          "topic": "biggest federal spending categories",
+          "say": "And that debt isn't free. In 2025, interest payments cost 1 trillion dollars — more than the entire 987 billion dollar Medicare program. Only Social Security, at 1.6 trillion, costs more."
+        }
+      ]
     }
   ],
   "videos": [
