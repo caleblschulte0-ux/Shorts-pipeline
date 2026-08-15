@@ -34,6 +34,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT))
 sys.path.append(str(ROOT / "scripts"))
 
+import run_trending_daily as rtd                        # noqa: E402
+
 DAILY = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
 
 
@@ -45,11 +47,60 @@ class TestRedVersusPaused(unittest.TestCase):
             "- name:", 1)[0]
 
     def test_the_run_still_goes_red_on_any_shortfall(self):
-        """ChatGPT's visibility rule survives the repair: the orchestrator
-        exits non-zero whenever production is incomplete."""
-        src = (ROOT / "scripts" / "run_trending_daily.py").read_text()
-        self.assertIn("if not complete:", src)
-        self.assertIn("repair/retry required", src)
+        """ChatGPT's visibility rule survives the repair: the real completion
+        decision (not just its source text) exits non-zero and records
+        repair_required whenever fewer videos uploaded than were expected —
+        including when the shortfall is entirely the showrunner correctly
+        holding weak videos, not a crash."""
+        results = [
+            {"ok": True, "video_url": "https://youtu.be/1"},
+            {"ok": False, "quarantined": False},   # showrunner held it
+            {"ok": False, "quarantined": True},    # QA quarantined it
+        ]
+        outcome, complete = rtd.compute_production_outcome(
+            results, prior_uploaded=0, expected=6, dry_run=False)
+        self.assertFalse(complete)
+        self.assertEqual(outcome["status"], "repair_required")
+        self.assertEqual(outcome["uploaded"], 1)
+        self.assertEqual(outcome["quarantined"], 1)
+        self.assertEqual(outcome["failed"], 1)
+
+    def test_a_full_slate_reports_complete(self):
+        """The same decision must say production_complete when uploaded
+        actually meets expected — the test must not just always fail."""
+        results = [{"ok": True, "video_url": f"https://youtu.be/{i}"}
+                   for i in range(6)]
+        outcome, complete = rtd.compute_production_outcome(
+            results, prior_uploaded=0, expected=6, dry_run=False)
+        self.assertTrue(complete)
+        self.assertEqual(outcome["status"], "production_complete")
+        self.assertEqual(outcome["uploaded"], 6)
+
+    def test_prior_uploads_count_toward_the_target(self):
+        """A backfill run picking up where an earlier attempt left off must
+        credit videos already posted today, not just this call's results."""
+        results = [{"ok": True, "video_url": "https://youtu.be/1"}]
+        outcome, complete = rtd.compute_production_outcome(
+            results, prior_uploaded=5, expected=6, dry_run=False)
+        self.assertTrue(complete)
+        self.assertEqual(outcome["uploaded"], 6)
+
+    def test_dry_run_never_reports_repair_required(self):
+        results = [{"ok": False, "quarantined": False}] * 6
+        outcome, complete = rtd.compute_production_outcome(
+            results, prior_uploaded=0, expected=6, dry_run=True)
+        self.assertTrue(complete)
+        self.assertEqual(outcome["status"], "dry_run")
+        self.assertEqual(outcome["uploaded"], 0)
+
+    def test_main_exits_non_zero_on_a_shortfall(self):
+        """End to end: drive main()'s own exit-code contract, not just the
+        decision helper, so a future refactor that stops calling
+        compute_production_outcome from main() still gets caught."""
+        import inspect
+        src = inspect.getsource(rtd.main)
+        self.assertIn("compute_production_outcome", src)
+        self.assertIn("return 1", src)
 
     def test_the_counter_reads_the_production_outcome(self):
         step = self.counter_step()
