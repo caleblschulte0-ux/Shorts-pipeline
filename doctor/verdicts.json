@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260814",
+  "updated": "20260815",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -87,10 +87,16 @@
       "commit": "1660dda"
     },
     "69a886343361": {
-      "verdict": "doing",
-      "date": "20260811",
-      "because": "Confirmed: TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall (tests/test_production_outcome.py:47-52) only does two assertIn() substring checks against the raw source text of run_trending_daily.py, never executes the branch. Queued to replace with a fixture-driven test on the real completion decision.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260815",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall (tests/test_production_outcome.py:47-52) only does two assertIn() substring checks against the raw source text of run_trending_daily.py, never executes the branch. Queued to replace with a fixture-driven test on the real completion decision."
+        }
+      ]
     },
     "a544d37c275e": {
       "verdict": "doing",
@@ -251,6 +257,31 @@
       "date": "20260814",
       "because": "Verified: response_index() never reads schema/date/status/contract, contract_problems() explicitly tolerates a missing contract by design (pinned by test_a_silent_response_is_tolerated), and ingest_authored.py consumes authored/explainer/curiosity sections with no envelope check. This is a real latent gap (no incident yet -- the Aug 13 bundle correctly declares the envelope) and genuinely spans 5 files needing a new typed validator plus a phased rollout so the live scheduled worker isn't broken by a hard requirement it doesn't yet emit. Agree long_term is the right horizon; queuing as doing so it's on the backlog, but it is not a one-session build -- a smaller first slice (require schema+date only, defer status/contract) would be the way to start it when picked up.",
       "history": []
+    },
+    "5ac409690185": {
+      "verdict": "doing",
+      "date": "20260815",
+      "because": "Confirmed: scripts/run_third.py:2209-2212 sources the synthesized fallback slate size from state/third_packages/default_clip.json's count field (4), never from channel_registry target_count('third') (6). Matches the 3/6 and 4/6 third-channel shapes in the 08-10..08-14 alarm history. Building this run.",
+      "history": []
+    },
+    "ec1665fbf9fa": {
+      "verdict": "doing",
+      "date": "20260815",
+      "because": "Confirmed: scripts/editorial_gate.py:157-164 only blocks on a literal verdict=='REJECT'; any other parsed object (including {}, malformed JSON, wrong keys) falls through to judge='llm-pass', which inverts the module's own documented fail-closed / default-to-reject design. Queued behind the third-channel fallback fix.",
+      "history": []
+    },
+    "9fe73cb62e3f": {
+      "verdict": "doing",
+      "date": "20260815",
+      "because": "Confirmed: data_learning/judge_policy.py load() overlays judge_policy config block values into the live policy dict with zero type/range/invariant validation (config path, not just the env-var path). A bad value crashes at int() conversion later, or a config could zero out development_min_overall/owner_review_min_overall and flip autonomous_publish with no safety floor check. No live exploit today since only Claude commits channel configs, but the missing validation is real and matches this repo's fail-closed doctrine. Queued behind items 1 and 2.",
+      "history": []
+    },
+    "ca6665bd598d": {
+      "verdict": "later",
+      "date": "20260815",
+      "because": "Confirmed real: judge_loop.run is unwired (scripts/produce.py only imports its lower-level helpers -- run_judges/combine/compare/next_escalation -- never .run itself), and it has drifted from produce.py's path in two ways: JudgingStore.open_attempt() hashes the artifact BEFORE render_fn runs, and a failed render is written to the store but never added to the verdicts dict decide() sees, so three passing required judges can yield advance=True even when render_fn returned ok=false. Real bug, but the actual fix is an architecture call (converge produce.py onto judge_loop.run vs. formally retire judge_loop.run and migrate its useful comparison/escalation logic) that deserves a dedicated session, not a rushed patch competing with today's one-item budget. Parking 30 days; revisit after items 1-3 land.",
+      "history": [],
+      "revisit_after": "20260914"
     }
   }
 }

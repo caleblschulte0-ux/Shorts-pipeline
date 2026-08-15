@@ -1129,6 +1129,33 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
           flush=True)
 
 
+def compute_production_outcome(results: list, *, prior_uploaded: int,
+                                expected: int, dry_run: bool) -> tuple:
+    """The real completion decision, isolated so it is executable in a test
+    instead of only greppable in source: a partial day (uploaded < expected)
+    must always report `complete=False` and status `repair_required`, never
+    silently pass as done. Returns (outcome_dict_for_disk, complete)."""
+    posted = [r for r in results if r["ok"]]
+    quarantined = [r for r in results if r.get("quarantined")]
+    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    uploaded_total = prior_uploaded + len(posted)
+    complete = (dry_run or uploaded_total == expected)
+    outcome = {
+        "schema": "production-channel-outcome/v1",
+        "expected": expected,
+        "previously_uploaded": prior_uploaded,
+        "rendered_or_attempted": len(results),
+        "uploaded": uploaded_total if not dry_run else 0,
+        "quarantined": len(quarantined),
+        "failed": len(failed),
+        "status": ("dry_run" if dry_run else
+                   "production_complete" if complete else "repair_required"),
+        "video_urls": [r.get("video_url") for r in posted
+                       if r.get("video_url")],
+    }
+    return outcome, complete
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", type=int, default=1,
@@ -1375,45 +1402,33 @@ def main() -> int:
     # machine-readable channel outcome and return RED until every requested
     # slot has a verified uploader result.  The production supervisor can
     # then repair/retry the exact failures instead of accepting a partial day.
-    posted = [r for r in results if r["ok"]]
-    quarantined = [r for r in results if r.get("quarantined")]
-    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
     expected = int(args.count)
-    uploaded_total = prior_uploaded + len(posted)
-    complete = (args.dry_run or uploaded_total == expected)
+    outcome, complete = compute_production_outcome(
+        results, prior_uploaded=prior_uploaded, expected=expected,
+        dry_run=args.dry_run)
     try:
         from shared.fsutil import atomic_write_json
         outcome_path = (STATE_DIR / "production_runs" /
                         now.strftime("%Y%m%d") / "trending.json")
         outcome_path.parent.mkdir(parents=True, exist_ok=True)
         atomic_write_json(outcome_path, {
-            "schema": "production-channel-outcome/v1",
             "date": now.strftime("%Y%m%d"),
             "channel": "trending",
-            "expected": expected,
-            "previously_uploaded": prior_uploaded,
-            "rendered_or_attempted": len(results),
-            "uploaded": uploaded_total if not args.dry_run else 0,
-            "quarantined": len(quarantined),
-            "failed": len(failed),
-            "status": "dry_run" if args.dry_run else
-                      "production_complete" if complete else "repair_required",
-            "video_urls": [r.get("video_url") for r in posted
-                           if r.get("video_url")],
+            **outcome,
         })
     except Exception as exc:  # noqa: BLE001
         print(f"::warning::could not write production outcome: {exc}",
               file=sys.stderr)
-    if quarantined:
-        print(f"[run_trending_daily] {len(quarantined)} package(s) "
+    if outcome["quarantined"]:
+        print(f"[run_trending_daily] {outcome['quarantined']} package(s) "
               f"quarantined for off-topic imagery (slate shipped without "
               f"them)", file=sys.stderr)
-    if failed:
-        print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
-              file=sys.stderr)
+    if outcome["failed"]:
+        print(f"[run_trending_daily] {outcome['failed']} of "
+              f"{len(results)} failed", file=sys.stderr)
     if not complete:
         print(f"[run_trending_daily] production incomplete: uploaded "
-              f"{uploaded_total}/{expected}; repair/retry required",
+              f"{outcome['uploaded']}/{expected}; repair/retry required",
               file=sys.stderr)
         return 1
     return 0
