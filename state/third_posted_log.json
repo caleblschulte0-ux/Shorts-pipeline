@@ -3735,13 +3735,36 @@
       "ts": "2026-08-16T12:35:06.158468+00:00"
     },
     "clip-20260816-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/GlamorousImpartialCodThunBeast-9i5200ZaerHich3g",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/tx9SigbwTm8",
       "title": "Lacy Gets Glitter Bombed And The Reaction Is Wild",
       "kind": "twitch_clip",
-      "ts": "2026-08-16T12:39:56.627077+00:00",
+      "ts": "2026-08-16T12:40:01.380185+00:00",
+      "uploaded_at": "2026-08-16T12:40:01.380202+00:00",
+      "publish_at": "2026-08-16T20:00:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/GlamorousImpartialCodThunBeast-9i5200ZaerHich3g",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "SHE JUST GOT GLITTER BOMBED",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2831,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 15.0
+      },
+      "director_cut": true
+    },
+    "clip-20260816-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/FairColdbloodedArtichokeM4xHeh-bR1ZDGhyF5DJ4THy",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Swears He Never Said He Wants To Kiss Her",
+      "kind": "twitch_clip",
+      "ts": "2026-08-16T12:46:37.045526+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
