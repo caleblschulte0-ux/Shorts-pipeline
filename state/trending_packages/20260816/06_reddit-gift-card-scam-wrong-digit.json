@@ -17,7 +17,11 @@
     {
       "phrase": "he stayed on the line for two hours",
       "query": "speakerphone desk phone",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+      "media_origin": "chatgpt",
+      "media_file_id": "1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+      "media_sha256": "08de2891e8cf3cecf7fa7b153cec5981ec215aa4810626aa8e4806bc7a7f6ee9",
+      "media_bytes": 1239215
     },
     {
       "phrase": "the aisle of a hardware store",
@@ -26,21 +30,39 @@
     },
     {
       "phrase": "Every code I read was wrong by one digit",
-      "query": "scratch card code"
+      "query": "scratch card code",
+      "image_url": "https://drive.google.com/uc?export=download&id=1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+      "media_origin": "chatgpt",
+      "media_file_id": "1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+      "media_sha256": "511f9473ea04e0eb38ac4ff42675661ac80bdcf81523660047b9dda5f63d085c",
+      "media_bytes": 1300117
     },
     {
       "phrase": "the real numbers at the register as I bought them",
       "query": "cashier checkout register",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+      "media_origin": "chatgpt",
+      "media_file_id": "1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+      "media_sha256": "56f90f3eccf2a7511be7282c292dd9a31f0b7ee53b589a499a0a3b47990288f7",
+      "media_bytes": 1073055
     },
     {
       "phrase": "They froze all eleven",
       "query": "laptop banking screen",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1TLr4WLWnLcD1BiItSb28p7qMJLctUtLr",
+      "media_origin": "chatgpt",
+      "media_file_id": "1TLr4WLWnLcD1BiItSb28p7qMJLctUtLr",
+      "media_sha256": "8867a825ce6e8e8c490a025278c9e9dda023eab3ee0bdf9ef0222673b56b0fab",
+      "media_bytes": 1657600
     },
     {
       "phrase": "He rang back nine times",
-      "query": "mobile phone missed calls"
+      "query": "mobile phone missed calls",
+      "image_url": "https://drive.google.com/uc?export=download&id=1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+      "media_origin": "chatgpt",
+      "media_file_id": "1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+      "media_sha256": "e185a9fbf834cb40bb2cb9dbc0b3b316913c4427f20f9ba3357221284061f630",
+      "media_bytes": 1174285
     }
   ],
   "punches": [

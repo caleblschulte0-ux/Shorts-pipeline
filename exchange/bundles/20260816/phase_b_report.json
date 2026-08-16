@@ -1,0 +1,93 @@
+{
+  "date": "20260816",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 9,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "required": true,
+    "checked": 9,
+    "ok": 9,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-break-room-company-property-s3-f2b4b63ffc1e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-break-room-company-property-s3-f2b4b63ffc1e.png"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s4-2c53d8c92513",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-break-room-company-property-s4-2c53d8c92513.png"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s5-a6c7eb173b25",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-break-room-company-property-s5-a6c7eb173b25.png"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s7-2b77c06eec2b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-break-room-company-property-s7-2b77c06eec2b.png"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d.png"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gift-card-scam-wrong-digit-s4-424727e7ced5.png"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2.png"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s6-185b8474b000",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gift-card-scam-wrong-digit-s6-185b8474b000.png"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e.png"
+    },
+    {
+      "slug": "reddit-break-room-company-property",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): compliance, who"
+      ]
+    },
+    {
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): scam, who"
+      ]
+    }
+  ]
+}
