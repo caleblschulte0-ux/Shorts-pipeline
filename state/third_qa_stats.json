@@ -3,43 +3,6 @@
     {
       "date": "20260729",
       "dry_run": false,
-      "ts": "2026-07-29T12:00:18+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 98,
-        "with_curve": 15,
-        "fetched_at": "2026-07-29T11:03:00.616676+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260729-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (friendly chat, no conflict or payoff)"
-        },
-        {
-          "slug": "clip-20260729-2",
-          "ok": false,
-          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit"
-        },
-        {
-          "slug": "clip-20260729-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        },
-        {
-          "slug": "clip-20260729-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        }
-      ]
-    },
-    {
-      "date": "20260729",
-      "dry_run": false,
       "ts": "2026-07-29T12:41:59+00:00",
       "feedback": {
         "snapshot": true,
@@ -5046,6 +5009,259 @@
             }
           },
           "took_s": 62.9
+        }
+      ]
+    },
+    {
+      "date": "20260816",
+      "dry_run": false,
+      "ts": "2026-08-16T12:46:42+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 112,
+        "with_retention": 91,
+        "with_curve": 15,
+        "fetched_at": "2026-08-16T08:56:49.593425+00:00"
+      },
+      "brain": {
+        "ok": 23,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260816-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "plaqueboymax/plaqueboymax-about-camera-2026w33",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "confused rant, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Summit1G Can't Believe His Teammate Thought 'Hut' Meant Give Me A Gun"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 1065.3
+        },
+        {
+          "slug": "clip-20260816-2",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "leak drama, but vague",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "accidentally leaks secret live, visible ",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.9,
+              "problems": []
+            }
+          },
+          "took_s": 256.6
+        },
+        {
+          "slug": "clip-20260816-3",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible prank/stunt payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "opening mail, no visible glitter payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Gets Glitter Bombed And The Reaction Is Wild"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 295.2
+        },
+        {
+          "slug": "clip-20260816-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "flirty red carpet almost-kiss tease",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rayasianboy Swears He Never Said He Wants To Kiss Her"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.87,
+              "problems": []
+            }
+          },
+          "took_s": 316.6
         }
       ]
     }
