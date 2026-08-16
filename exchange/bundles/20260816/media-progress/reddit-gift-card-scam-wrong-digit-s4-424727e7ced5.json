@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+  "safe_request_id": "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-gift-card-scam-wrong-digit",
+  "shot_index": 4,
+  "prompt_sha256": "cb067cb514926fabb92e0a6f591f8198f6f0b9e8ae957f452f44cc0bfa58224d",
+  "prompt_used": "An editorial illustration for a short-form video: scratch card code. It accompanies the narration: \"Every code I read was wrong by one digit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+    "filename": "20260816__reddit-gift-card-scam-wrong-digit-s4-424727e7ced5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1VsZRNG2YhzLOMhReve2auStH5vWFBgBL",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "511f9473ea04e0eb38ac4ff42675661ac80bdcf81523660047b9dda5f63d085c",
+    "bytes": 1300117,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:15Z",
+  "error": null,
+  "retryable": false
+}
