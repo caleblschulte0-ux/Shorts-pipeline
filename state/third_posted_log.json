@@ -3705,13 +3705,43 @@
       "director_cut": true
     },
     "clip-20260816-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/AbstruseSparklyWhaleTwitchRaid-pGUp0w4GBs810q8m",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/HbIEAuPJbH0",
       "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
       "kind": "twitch_clip",
-      "ts": "2026-08-16T12:33:41.031422+00:00",
+      "ts": "2026-08-16T12:33:45.394278+00:00",
+      "uploaded_at": "2026-08-16T12:33:45.394293+00:00",
+      "publish_at": "2026-08-16T18:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AbstruseSparklyWhaleTwitchRaid-pGUp0w4GBs810q8m",
+      "streamer": "jynxzi",
+      "series": "drama",
+      "hook": "HE WASN'T SUPPOSED TO SAY THAT",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 3642,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 24.3
+      },
+      "director_cut": true
+    },
+    "rejected-coyhilariousdugongpraiseit-kxug8dejth8-_7vb": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CoyHilariousDugongPraiseIt-KXUg8DeJTh8-_7vB",
+      "streamer": "jynxzi",
+      "title": "You do what to hivise?",
+      "qa_rejected": true,
+      "ts": "2026-08-16T12:35:06.158468+00:00"
+    },
+    "clip-20260816-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/GlamorousImpartialCodThunBeast-9i5200ZaerHich3g",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Gets Glitter Bombed And The Reaction Is Wild",
+      "kind": "twitch_clip",
+      "ts": "2026-08-16T12:39:56.627077+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
