@@ -14,9 +14,11 @@ the two things that only show up when the pieces run together:
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -630,6 +632,80 @@ class TestOnlyDoneTriggersPhaseB(unittest.TestCase):
                 self.assertNotIn("media-progress", stripped,
                                  f"{wf.name} references media-progress in a "
                                  f"trigger path")
+
+
+class TestDailyDoesNotRenderAnIncompletePhaseB(unittest.TestCase):
+    """The OTHER scheduled Phase B candidate (its window hasn't opened) can
+    still conclude the workflow as 'success' having applied nothing — every
+    step in that job exits 0 by design (see
+    TestOnlyDoneTriggersPhaseB.test_the_backstop_crons_bracket...). daily.yml
+    gated only on `conclusion == 'success'`, so in winter it could start
+    rendering an unfinished day an hour before the finalizer's window even
+    closed (doctor finding 612efa85efcb, 2026-08-16). This runs the actual
+    preflight shell script daily.yml executes — not just a text match — to
+    prove it independently checks for a real handoff before rendering."""
+
+    def _run_preflight(self, event_name: str, report_present: bool):
+        import yaml
+        wf = yaml.safe_load(
+            (ROOT / ".github" / "workflows" / "daily.yml").read_text())
+        step = next(s for s in wf["jobs"]["daily"]["steps"]
+                    if s.get("name") ==
+                    "Pre-flight — kill switch + failure counter")
+        script = step["run"].replace("${{ github.event_name }}", event_name)
+
+        with tempfile.TemporaryDirectory() as td:
+            tmp = Path(td)
+            today = subprocess.run(
+                ["date", "-u", "+%Y%m%d"], capture_output=True, text=True,
+                check=True).stdout.strip()
+            bundle_dir = tmp / "exchange" / "bundles" / today
+            bundle_dir.mkdir(parents=True)
+            if report_present:
+                (bundle_dir / "phase_b_report.json").write_text("{}")
+            out_file = tmp / "github_output"
+            out_file.write_text("")
+            proc = subprocess.run(
+                ["bash", "-c", script], cwd=tmp,
+                env={**os.environ, "GITHUB_OUTPUT": str(out_file)},
+                capture_output=True, text=True)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            return out_file.read_text(), proc.stdout
+
+    def test_the_other_candidates_no_op_is_not_treated_as_render_ready(self):
+        out, stdout = self._run_preflight("workflow_run", report_present=False)
+        self.assertIn("skip=phase_b_incomplete", out, out)
+        self.assertIn("does not exist yet", stdout)
+
+    def test_a_real_phase_b_application_still_renders(self):
+        out, _ = self._run_preflight("workflow_run", report_present=True)
+        self.assertNotIn("phase_b_incomplete", out, out)
+
+    def test_manual_and_dispatch_triggers_are_never_gated_by_phase_b(self):
+        # A direct trigger-file push or a manual dispatch is an explicit
+        # override — it must not be blocked just because today's
+        # phase_b_report.json happens to be absent (e.g. Phase A hasn't
+        # even run yet).
+        for event in ("push", "workflow_dispatch"):
+            out, _ = self._run_preflight(event, report_present=False)
+            self.assertNotIn("phase_b_incomplete", out, (event, out))
+
+    def test_skip_reason_stays_green_not_red(self):
+        """A benign 'the other candidate' skip must not fail the run — that
+        would page someone every winter morning for expected behaviour."""
+        wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
+        stop_step = wf.split("Stop here if skipped")[1]
+        self.assertIn('"phase_b_incomplete"', stop_step)
+        block = stop_step.split('"phase_b_incomplete"')[1].split("fi")[0]
+        self.assertIn("exit 0", block)
+        self.assertNotIn("exit 1", block)
+
+    def test_the_noisy_notify_step_skips_this_reason(self):
+        """It happens roughly daily for half the year — an issue comment +
+        ntfy ping every time trains people to ignore the channel."""
+        wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
+        notify = wf.split("Notify (skipped run)")[1].split("run: |")[0]
+        self.assertIn("phase_b_incomplete", notify)
 
 
 if __name__ == "__main__":

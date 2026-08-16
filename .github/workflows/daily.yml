@@ -84,6 +84,36 @@ jobs:
         id: preflight
         run: |
           set -e
+          # A COMPLETED PHASE B RUN IS NOT THE SAME THING AS A FINISHED DAY.
+          #
+          # exchange_phase_b.yml fires on TWO candidate UTC hours so the code
+          # can pick the one that lands at 08:30 America/Chicago in either
+          # DST half (see that workflow's header). The OTHER candidate hour
+          # is a deliberate no-op: `backstop_status()` says the finalizer's
+          # window hasn't opened yet, `exchange_phase_b.py --backstop`
+          # returns 0 having applied nothing, and every step in that job
+          # still exits clean — so the workflow's conclusion is `success`
+          # with nothing actually applied. This job's own `if:` only checks
+          # `github.event.workflow_run.conclusion == 'success'`, which
+          # cannot tell that benign no-op apart from a real completed
+          # handoff — so in winter (13:30 UTC = 07:30 CST, an hour before
+          # the finalizer's window even closes) it would start rendering an
+          # unfinished day: no self-fill, no punch-up, most media missing,
+          # every check green (doctor finding 612efa85efcb, 2026-08-16).
+          #
+          # `exchange/bundles/<date>/phase_b_report.json` is written ONLY at
+          # the tail of a real Phase B application (scripts/exchange_phase_b.py,
+          # after self-fill + punch-up + package writes) — never on the
+          # early no-op path. Its presence for TODAY is the actual "ready to
+          # render" fact; the upstream conclusion alone is not.
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            D=$(date -u +%Y%m%d)
+            if [ ! -f "exchange/bundles/$D/phase_b_report.json" ]; then
+              echo "skip=phase_b_incomplete" >> $GITHUB_OUTPUT
+              echo "Phase B's workflow completed but exchange/bundles/$D/phase_b_report.json does not exist yet — this was the OTHER scheduled candidate (its window hasn't opened / nothing applied), not a real handoff. Not rendering; the correct candidate or the DONE push will fire this properly."
+              exit 0
+            fi
+          fi
           # PAUSED = global kill switch (all channels). PAUSED_DAILY = pause
           # ONLY this trending channel (operator ruling 2026-07-11: keep
           # trending down for the distribution diagnosis while the other
@@ -139,7 +169,11 @@ jobs:
           fi
 
       - name: Notify (skipped run)
-        if: steps.preflight.outputs.skip != ''
+        # phase_b_incomplete is the OTHER scheduled Phase B candidate no-op'ing
+        # — expected roughly once a day for half of every year (see
+        # preflight), not a fault. Alerting on it daily is how people learn to
+        # ignore the channel.
+        if: steps.preflight.outputs.skip != '' && steps.preflight.outputs.skip != 'phase_b_incomplete'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -178,6 +212,10 @@ jobs:
           if [ "${{ steps.preflight.outputs.skip }}" = "auto" ]; then
             echo "::error::auto-paused — failing the run so it is not a green check on a dead channel"
             exit 1
+          fi
+          if [ "${{ steps.preflight.outputs.skip }}" = "phase_b_incomplete" ]; then
+            echo "::notice::Phase B's other scheduled candidate hasn't applied yet — staying green, not rendering"
+            exit 0
           fi
           echo "::notice::manually paused on purpose — staying green"
           exit 0
