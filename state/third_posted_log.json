@@ -3680,6 +3680,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (just talking about tournament bracket, n)",
       "ts": "2026-08-15T12:29:07.000266+00:00"
+    },
+    "clip-20260816-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/summit1g/clip/GleamingCredulousTofuHumbleLife-sX2reCnI-l32SaED",
+      "story_key": null,
+      "streamer": "summit1g",
+      "title": "Summit1G Can't Believe His Teammate Thought 'Hut' Meant Give Me A Gun",
+      "kind": "twitch_clip",
+      "ts": "2026-08-16T12:29:19.281933+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

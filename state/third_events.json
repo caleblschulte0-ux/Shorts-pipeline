@@ -787,10 +787,11 @@
       "known_claims": [],
       "candidate_sources": [
         "https://www.twitch.tv/plaqueboymax/clip/VibrantThankfulPterodactylDAESuppy-H4xuwKo4nSvWb3_n",
-        "https://www.twitch.tv/plaqueboymax/clip/ThoughtfulFriendlyFlamingoFeelsBadMan-sRSb5WnBX0CkxeZw"
+        "https://www.twitch.tv/plaqueboymax/clip/ThoughtfulFriendlyFlamingoFeelsBadMan-sRSb5WnBX0CkxeZw",
+        "https://www.twitch.tv/plaqueboymax/clip/ArtsyAlertBasenjiYouDontSay-dZKEU54y9wP7Iyhb"
       ],
       "published_versions": [],
-      "last_updated": "2026-08-15"
+      "last_updated": "2026-08-16"
     },
     "plaqueboymax-caption-couch-2026w33": {
       "event_id": "plaqueboymax-caption-couch-2026w33",
@@ -812,6 +813,27 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-15"
+    },
+    "plaqueboymax-about-budget-2026w33": {
+      "event_id": "plaqueboymax-about-budget-2026w33",
+      "people": [
+        "plaqueboymax"
+      ],
+      "actions": [
+        "about",
+        "budget",
+        "huda",
+        "plaqueboymax"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-16",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/plaqueboymax/clip/LuckyAgitatedEagleKeepo-11SA16Q96EelHONx",
+        "https://www.twitch.tv/plaqueboymax/clip/ArtsyAlertBasenjiYouDontSay-dZKEU54y9wP7Iyhb"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-16"
     }
   }
 }
