@@ -1224,22 +1224,23 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
-        # MEASURE WHAT SHIPS. This proxy used to overlay the build at a fixed
-        # 0:0, so it measured the raw build and not the composited scene —
-        # which meant the number it reported (and the repair loop chased) was
-        # not the number the whole-video gate produces. The camera float is
-        # part of the scene, so it is part of the proxy.
+        # MEASURE WHAT SHIPS. The proxy composites the build exactly the way
+        # the master does: layer at rest, then the whole-frame CAMERA BREATH
+        # (shared/camera_float.py) over the finished frame — measuring the
+        # raw build alone was how candidates scored fps 1.0 and shipped at
+        # 1.0, and measuring a per-layer float we no longer ship would be
+        # the same mistake with the sign flipped. Half-scale proxy, so the
+        # amplitude halves with it.
         _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
-        _fx, _fy = _cf.overlay_xy(-_A, -_A, amp=_A)
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
                  "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
                  "-framerate", "30", "-i", pat,
                  "-filter_complex",
-                 f"[1:v]scale={540 + 2 * _A}:-1,format=rgba[c];"
-                 f"[0:v][c]overlay=x='{_fx}':y='{_fy}':shortest=1,"
-                 f"format=yuv420p",
+                 f"[1:v]scale=540:-1,format=rgba[c];"
+                 f"[0:v][c]overlay=0:0:shortest=1,"
+                 f"{_cf.crop_vf(540, 960, amp=_A)},format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
             with _tf.TemporaryDirectory() as td:
                 ev = _temporal_evidence(mp4, Path(td))
@@ -1857,21 +1858,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             full = getattr(st.segments[i], "kind", "") in charts.FULLFRAME_RENDERERS
             vw, vh = (W, H) if full else (CHART_W, CHART_H)
             vx, vy = (0, 0) if full else (CHART_X, CHART_Y)
-            # CAMERA FLOAT — see shared/camera_float.py for the measurement.
-            # The build is stretched to fill the beat, so its per-frame motion
-            # is inversely proportional to the beat length: 60 frames measured
-            # 3.1 effective fps, 240 frames 0.0, 600 frames 0.0 with a
-            # duplicate_ratio of 1.00. segment_0 carries the hook lead and is
-            # therefore always the longest window, which is why it measured
-            # 0.8-1.4 fps in every story while segment_2 sat at 24.0. A cyclic
-            # float does not thin out with duration — measured 22.3 fps on a
-            # COMPLETELY STATIC chart held for 20 seconds. A full-frame layer
-            # is oversized first so the drift never exposes the background.
-            _A = _cf.FLOAT_A
-            _fx, _fy = _cf.overlay_xy(vx - (_A if full else 0),
-                                      vy - (_A if full else 0))
-            if full:
-                vw, vh = vw + 2 * _A, vh + 2 * _A
+            # NO per-layer float here any more. The card used to drift on its
+            # own (20px @ 4.6 rad/s) while the mascot jiggled at a different
+            # frequency on top — two independent oscillations, which the
+            # operator watched and called "a weird shaking motion". They were
+            # right: perceived shake is acceleration (amp*w^2), and layers
+            # oscillating out of phase multiply it. The gate's per-frame
+            # motion now comes from ONE slow whole-frame drift applied to the
+            # finished composite just before the captions burn in (see the
+            # CAMERA BREATH step below) — same measured pixels per frame,
+            # less than half the acceleration, one coherent camera.
             fc.append(
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
@@ -1879,7 +1875,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
                 f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
             fc.append(
-                f"[{prev}][g{i}]overlay=x='{_fx}':y='{_fy}':"
+                f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"
                 f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
             prev = f"b{i}"
         # Mascots — Data TRAVELS. He glides from his previous spot to this
@@ -1902,38 +1898,29 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # A data beat sweeps in from its own entry point (onto the datum);
             # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)
-            # IDLE AMPLITUDE IS A MEASUREMENT, NOT A TASTE CALL.
+            # THE IDLE IS A HOVER NOW, NOT THE GATE'S MOTION SOURCE.
             #
-            # This was `6*sin(1.3*t)` / `9*sin(2.1*t)`, written to keep Data
-            # "alive every frame". It does not. What the temporal grade
-            # measures is the change between CONSECUTIVE frames, and that
-            # idle moves him 6*1.3/30 = 0.26 px per frame — sub-pixel at full
-            # res, and ~0.05 px once the detector downscales to 192px. It is
-            # invisible to the metric and very nearly to the eye, so every
-            # chart beat read as a held frame: explainer measured 0.8-2.3
-            # effective fps against an 11.0 floor and posted NOTHING for the
-            # eleven days to 2026-08-10.
+            # History, because this line has been retuned twice and each
+            # tuning was right about one constraint and wrong about another.
+            # The original `6*sin(1.3*t)` moved 0.26 px/frame — invisible to
+            # the temporal grade, and the channel posted nothing for eleven
+            # days. The fix cranked it to `30*sin(6.0*t)`: 6 px/frame, gate
+            # satisfied — but 6.0 rad/s is 0.95 Hz at ~1080 px/s^2 of
+            # acceleration, a visible one-per-second jiggle stacked on a
+            # card float wobbling at a different frequency. The operator
+            # watched the shipped videos and called it "a weird shaking
+            # motion". Both tunings chased one number and shipped the other.
             #
-            # Calibrated against `showrunner_review._temporal_evidence` on
-            # synthetic explainer frames (dark bg + bars + labels + a 300px
-            # mascot), sweeping per-frame displacement:
-            #
-            #     0.26 px/frame (the old idle)  ->   0.0 fps   dup 1.00
-            #     2.3  px/frame                 ->   8.9 fps   dup 0.63
-            #     6.0  px/frame                 ->  20.0 fps   dup 0.17  PASS
-            #     6.7  px/frame                 ->  21.9 fps   dup 0.09  PASS
-            #
-            # Per-frame displacement is amplitude*coefficient/30, so these
-            # pairs are chosen to land at ~6 px/frame while keeping the
-            # motion a slow float rather than a jitter (under 1 Hz, and the
-            # two axes stay out of phase so he traces a lazy figure rather
-            # than a diagonal shake). Raise the AMPLITUDE, not the frequency,
-            # if this ever needs more — frequency is what would read as
-            # nervous.
+            # The gate's per-frame budget is now carried by the WHOLE-FRAME
+            # camera breath applied just before the captions (one slow
+            # coherent drift, measured in shared/camera_float.py), so the
+            # mascot idle only has to look alive: a gentle sub-0.2 Hz hover,
+            # ~15 px/s^2 — seventy times calmer than the jiggle. His glide
+            # between beats and his performed bits are unchanged.
             xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+30*sin(6.0*t)")
+                  f"+12*sin(1.1*t)")
             ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+34*sin(5.4*t)")
+                  f"+9*sin(0.9*t)")
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
@@ -1941,7 +1928,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
-        fc.append(f"[{prev}]ass='{ass_esc}'[v]")
+        # CAMERA BREATH — the one motion source the temporal gate can always
+        # see, applied ONCE to the finished composite. A slow Lissajous crop
+        # of an oversized frame: every layer (background, charts, mascot)
+        # drifts together like a breathing camera, so there is no per-layer
+        # wobble to read as shake, and a beat whose content goes fully still
+        # still measures ~16 effective fps (constants + the measured ladder:
+        # shared/camera_float.py). Applied BEFORE the subtitles so captions
+        # stay pinned and pixel-crisp while the frame moves under them.
+        fc.append(f"[{prev}]{_cf.crop_vf(W, H)}[flt]")
+        fc.append(f"[flt]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
                "-filter_complex", ";".join(fc),

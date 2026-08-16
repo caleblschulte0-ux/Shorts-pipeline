@@ -50,37 +50,58 @@ def idle_terms() -> list[tuple[float, float]]:
 
 class TestTheMascotIdleIsMeasurable(unittest.TestCase):
 
+    def test_the_breath_is_in_the_final_chain(self):
+        """RETUNED 2026-08-16: the per-frame budget moved OFF the mascot
+        idle and onto the whole-frame CAMERA BREATH. The first fix for the
+        11-day outage put ~6 px/frame on the idle — gate satisfied, but 6.0
+        rad/s is a 0.95 Hz jiggle at ~1080 px/s^2, stacked on a card float
+        at a different frequency, and the operator watched the result and
+        called it "this weird fucking shaking motion". Both constraints are
+        pinned now: the gate budget on the breath, an acceleration ceiling
+        on everything that oscillates."""
+        self.assertIn("_cf.crop_vf(W, H)", SRC,
+                      "the whole-frame camera breath is gone — with a calm "
+                      "idle, nothing else clears the temporal gate on a "
+                      "still beat")
+
+    def test_the_breath_clears_the_gate_budget(self):
+        from shared import camera_float as cf
+        self.assertGreaterEqual(
+            cf.px_per_frame(cf.FLOAT_A, cf.FLOAT_WX, FPS),
+            cf.MIN_PX_PER_FRAME)
+
     def test_there_is_still_an_idle_at_all(self):
         self.assertTrue(idle_terms(),
-                        "the mascot's continuous idle is gone — a parked host "
-                        "is what the temporal grade reads as a held frame")
+                        "the mascot's hover is gone — a frozen host reads "
+                        "as a sticker even while the frame drifts")
 
-    def test_every_idle_clears_the_per_frame_budget(self):
-        """A*C/30 is the displacement between consecutive frames. This is the
-        exact check that would have caught the 11-day outage on the day the
-        idle was written."""
+    def test_no_oscillating_layer_reads_as_shake(self):
+        """Acceleration = A*C^2 px/s^2 is what the eye objects to. The
+        jiggle the operator called out measured ~1080; the breath sits
+        under 200. Every sinusoid in this renderer stays an order of
+        magnitude below the jiggle — met by LOWERING FREQUENCY, never by
+        making the motion invisible (that is the other ditch, and it cost
+        eleven days of zero posts)."""
         for amp, coeff in idle_terms():
-            px = amp * coeff / FPS
-            self.assertGreaterEqual(
-                px, MIN_PX_PER_FRAME,
-                f"idle {amp}*sin({coeff}*t) moves {px:.2f} px/frame — under "
-                f"{MIN_PX_PER_FRAME}, which measured below the 11 fps floor. "
-                f"Raise the AMPLITUDE (frequency reads as nervous).")
+            accel = amp * coeff * coeff
+            self.assertLessEqual(
+                accel, 120,
+                f"{amp}*sin({coeff}*t) accelerates at {accel:.0f} px/s^2 — "
+                f"a visible jiggle; 'weird shaking' shipped the last time "
+                f"this crept up")
 
-    def test_the_old_broken_values_cannot_come_back(self):
-        """Named explicitly so a future 'that looks jittery, tone it down'
-        edit fails loudly instead of silently darkening the channel."""
-        for dead in ("+6*sin(1.3*t)", "+9*sin(2.1*t)"):
+    def test_the_jiggle_values_cannot_come_back(self):
+        for dead in ("+30*sin(6.0*t)", "+34*sin(5.4*t)"):
             self.assertNotIn(dead, SRC,
-                             f"{dead} is the idle that produced 0.26 px/frame "
-                             f"and eleven days of zero posts")
+                             f"{dead} is the 0.95 Hz idle the operator "
+                             f"called 'weird shaking'")
 
-    def test_the_idle_stays_a_float_not_a_jitter(self):
-        """The budget must be met with amplitude, not by spinning the
-        frequency up — that would pass the gate and look terrible."""
-        for _amp, coeff in idle_terms():
-            self.assertLess(coeff / (2 * 3.14159), 1.5,
-                            "idle frequency above ~1.5 Hz reads as a shake")
+    def test_the_invisible_values_cannot_come_back_either(self):
+        """The opposite ditch: the ORIGINAL idle moved 0.26 px/frame,
+        invisible to the detector, and the channel posted nothing for
+        eleven days."""
+        for dead in ("+6*sin(1.3*t)", "+9*sin(2.1*t)"):
+            self.assertNotIn(dead, SRC)
 
 
 class TestTheBuildWindowStaysBounded(unittest.TestCase):
