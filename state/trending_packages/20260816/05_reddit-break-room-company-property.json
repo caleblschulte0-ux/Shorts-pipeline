@@ -2,63 +2,45 @@
   "subreddit": "MaliciousCompliance",
   "slug": "reddit-break-room-company-property",
   "title": "The Break Room Is Company Property. So We Emptied It.",
-  "script": "Our office manager decided the break room was a liability, so she posted a memo: the fridge and the counter are company property, and any personal item left in them would be removed and binned. And that was fine by me. Every single thing in that break room was personal. The coffee maker was mine. The kettle belonged to a woman in accounts. The mugs, the toaster, the tin of decent teabags, the fruit bowl somebody restocked out of her own pocket \u2014 all personal property, all carried out to our cars in a laundry bag by 5 p.m., exactly as instructed. By day three, forty people were walking to the petrol station for coffee and the manager was drinking hot water from a paper cup. She emailed a second memo asking us to please bring our things back. We brought back one thing: an order form. The company has bought the coffee ever since.",
+  "script": "Our office manager decided the break room was a liability, so she posted a memo: the fridge and the counter are company property, and any personal item left in them would be removed and binned. And that was fine by me. Every single thing in that break room was personal. The coffee maker was mine. The kettle belonged to a woman in accounts. The mugs, the toaster, the tin of decent teabags, the fruit bowl somebody restocked out of her own pocket — all personal property, all carried out to our cars in a laundry bag by 5 p.m., exactly as instructed. By day three, forty people were walking to the petrol station for coffee and the manager was drinking hot water from a paper cup. She emailed a second memo asking us to please bring our things back. We brought back one thing: an order form. The company has bought the coffee ever since.",
   "shots": [
     {
       "phrase": "posted a memo",
       "query": "printed office memo",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg",
-      "pin_query": "memo",
-      "pin_context": "office document notice",
-      "news_query": "memo",
-      "news_angle": "The office manager posted a memo stating the fridge and counter are company property."
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg"
     },
     {
       "phrase": "the fridge and the counter are company property",
       "query": "office break room",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg",
-      "pin_query": "fridge",
-      "pin_context": "kitchen appliance",
-      "news_query": "fridge",
-      "news_angle": "The fridge in the break room was considered company property by the office manager."
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg"
     },
     {
       "phrase": "The coffee maker was mine",
       "query": "kitchen countertop appliance",
-      "pin_query": "coffee maker",
-      "pin_context": "kitchen appliance",
-      "news_query": "coffee maker",
-      "news_angle": "The coffee maker was removed from the break room as it was personal property.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Moka_Express_sideview.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Vitamix_Blender.jpg"
     },
     {
       "phrase": "the tin of decent teabags",
-      "query": "loose tea tin",
-      "pin_query": "tin of decent teabags",
-      "pin_context": "food beverage",
-      "news_query": "tin of decent teabags",
-      "news_angle": "The tin of decent teabags was removed from the break room as it was personal property."
+      "query": "loose tea tin"
     },
     {
       "phrase": "carried out to our cars in a laundry bag",
-      "query": "canvas bag handles"
+      "query": "canvas bag handles",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bag_containing_fabric_samples.jpg/1280px-Bag_containing_fabric_samples.jpg"
     },
     {
       "phrase": "by 5 p.m., exactly as instructed",
-      "query": "wall clock office"
+      "query": "wall clock office",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg"
     },
     {
       "phrase": "walking to the petrol station for coffee",
-      "query": "petrol station forecourt",
-      "pin_query": "petrol station",
-      "pin_context": "gas station convenience store",
-      "news_query": "petrol station",
-      "news_angle": "Employees started going to the petrol station for coffee after the break room was emptied.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mattoon_Service_Station_%28pre-fabricated%29%2C_angle_view%2C_National_%26_Washington_Boulevards%2C_Culver_City%2C_California_LOC_37555778230.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "query": "petrol station forecourt"
     },
     {
       "phrase": "She emailed a second memo",
-      "query": "email inbox icon"
+      "query": "email inbox icon",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png"
     }
   ],
   "punches": [

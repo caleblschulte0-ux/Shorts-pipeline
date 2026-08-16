@@ -1,16 +1,84 @@
 [
   {
-    "topic": "Japan Just Lapped South Korea In Tourism",
-    "title": "Japan Just Lapped South Korea In Tourism",
+    "topic": "The Panama Canal Just Passed The Suez",
+    "title": "The Panama Canal Just Passed The Suez",
     "format": "graph_race",
-    "publish_at": "2026-08-15T13:00:00Z",
+    "publish_at": "2026-08-16T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/14l6P7itp9o",
+    "video_url": "https://youtube.com/shorts/WzqbpSusTmU",
     "error": null,
-    "elapsed_seconds": 127.7,
-    "package_path": "state/trending_packages/20260815/01_graph-japan-korea-tourism.json",
+    "elapsed_seconds": 115.5,
+    "package_path": "state/trending_packages/20260816/01_graph-panama-passed-suez.json",
     "source": "brain",
-    "video_path": "output/daily_20260815-092958_japan_just_lapped_south_korea_in_tourism.mp4",
+    "video_path": "output/daily_20260816-094148_the_panama_canal_just_passed_the_suez.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Measles Is Back At 1992 Levels",
+    "title": "Measles Is Back At 1992 Levels",
+    "format": "graph_race",
+    "publish_at": "2026-08-16T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The record-line race pays off well at the end, but the middle third is a hairline on the axis floor inside a huge black void, with tick and series labels clipped off both edges.",
+    "elapsed_seconds": 118.4,
+    "package_path": "state/trending_packages/20260816/02_graph-measles-1992-levels.json",
+    "source": "brain",
+    "video_path": "output/daily_20260816-094344_measles_is_back_at_1992_levels.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The record-line race pays off well at the end, but the middle third is a hairline on the axis floor inside a huge black void, with tick and series labels clipped off both edges.",
+      "score": 66
+    },
+    "blocked": true
+  },
+  {
+    "topic": "One Company Out-Launches Every Country",
+    "title": "One Company Out-Launches Every Country",
+    "format": "graph_race",
+    "publish_at": "2026-08-16T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/wIxgdqle_W0",
+    "error": null,
+    "elapsed_seconds": 125.9,
+    "package_path": "state/trending_packages/20260816/03_graph-spacex-outlaunches-countries.json",
+    "source": "brain",
+    "video_path": "output/daily_20260816-094542_one_company_out_launches_every_country.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -34,51 +102,17 @@
     "channel": "default"
   },
   {
-    "topic": "BYD Just Overtook Tesla In EV Sales",
-    "title": "BYD Just Overtook Tesla In EV Sales",
+    "topic": "Summer Movies Clawed Back To $4 Billion",
+    "title": "Summer Movies Clawed Back To $4 Billion",
     "format": "graph_race",
-    "publish_at": "2026-08-15T14:30:00Z",
+    "publish_at": "2026-08-16T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/hugIYuTAQBA",
+    "video_url": "https://youtube.com/shorts/XGfjbr3lOLE",
     "error": null,
-    "elapsed_seconds": 118.1,
-    "package_path": "state/trending_packages/20260815/02_graph-byd-vs-tesla.json",
+    "elapsed_seconds": 126.4,
+    "package_path": "state/trending_packages/20260816/04_graph-summer-box-office-4-billion.json",
     "source": "brain",
-    "video_path": "output/daily_20260815-093206_byd_just_overtook_tesla_in_ev_sales.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Americans Now Bet $167 Billion A Year On Sports",
-    "title": "Americans Now Bet $167 Billion A Year On Sports",
-    "format": "graph_race",
-    "publish_at": "2026-08-15T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The data story is real and the growth curve lands, but the hook caption is smeared illegibly across the plot and the first half of the video is mostly empty black panel.",
-    "elapsed_seconds": 104.2,
-    "package_path": "state/trending_packages/20260815/03_graph-sports-betting-handle.json",
-    "source": "brain",
-    "video_path": "output/daily_20260815-093404_americans_now_bet__167_billion_a_year_on.mp4",
+    "video_path": "output/daily_20260816-094748_summer_movies_clawed_back_to__4_billion.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,27 +129,27 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The data story is real and the growth curve lands, but the hook caption is smeared illegibly across the plot and the first half of the video is mostly empty black panel.",
-      "score": 78
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "The Labubu Company's Revenue Just 8Xed",
-    "title": "The Labubu Company's Revenue Just 8Xed",
-    "format": "graph_race",
-    "publish_at": "2026-08-15T16:00:00Z",
+    "topic": "The Break Room Is Company Property. So We Emptied It.",
+    "title": "The Break Room Is Company Property. So We Emptied It.",
+    "format": "reddit",
+    "publish_at": "2026-08-16T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest two-line race that ends by crowning the wrong company \u2014 the payoff says '#1 Mattel' when the whole video promised Pop Mart's 8x climb.",
-    "elapsed_seconds": 112.8,
-    "package_path": "state/trending_packages/20260815/04_graph-popmart-vs-mattel.json",
+    "error": "showrunner_block: showrunner BLOCK: The story is legible but every illustration is unrelated archive junk \u2014 an Iraq war memo, a Singapore textile packet, and a Linux bug-tracker inbox held for the last 11 seconds.",
+    "elapsed_seconds": 194.0,
+    "package_path": "state/trending_packages/20260816/05_reddit-break-room-company-property.json",
     "source": "brain",
-    "video_path": "output/daily_20260815-093548_the_labubu_company_s_revenue_just_8xed.mp4",
+    "video_path": "output/daily_20260816-094958_the_break_room_is_company_property__so_w.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 14.375,
+      "duration": 48.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -126,69 +160,93 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.2
+      "loudness_lufs": -24.1
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest two-line race that ends by crowning the wrong company \u2014 the payoff says '#1 Mattel' when the whole video promised Pop Mart's 8x climb.",
+      "reason": "showrunner BLOCK: The story is legible but every illustration is unrelated archive junk \u2014 an Iraq war memo, a Singapore textile packet, and a Linux bug-tracker inbox held for the last 11 seconds.",
+      "score": 57
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The Scammer Wanted Gift Card Codes. He Got Codes.",
+    "title": "The Scammer Wanted Gift Card Codes. He Got Codes.",
+    "format": "reddit",
+    "publish_at": "2026-08-16T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The payback lands in the captions but the last ten seconds sit on a single garbled AI sign with fake lettering \u2014 the punchline is illustrated by junk.",
+    "elapsed_seconds": 213.3,
+    "package_path": "state/trending_packages/20260816/06_reddit-gift-card-scam-wrong-digit.json",
+    "source": "brain",
+    "video_path": "output/daily_20260816-095333_the_scammer_wanted_gift_card_codes__he_g.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 44.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.2
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The payback lands in the captions but the last ten seconds sit on a single garbled AI sign with fake lettering \u2014 the punchline is illustrated by junk.",
       "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "He Wanted Reply-All Confirmation. He Got It.",
-    "title": "He Wanted Reply-All Confirmation. He Got It.",
-    "format": "reddit",
-    "publish_at": "2026-08-15T16:00:00Z",
+    "topic": "The influencers getting bitten while chasing the perfect shark shot",
+    "angle": "Social media influencers are taking risks to get the perfect shark shot, but at what cost?",
+    "publish_at": "2026-08-16T17:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story beats are illustrated with a scanned Iraq-war invasion memo and a corporate retreat poster \u2014 imagery that has nothing to do with a reply-all email meltdown.",
-    "elapsed_seconds": 182.4,
-    "package_path": "state/trending_packages/20260815/05_reddit-reply-all-chaos.json",
-    "source": "brain",
-    "video_path": "output/daily_20260815-093744_he_wanted_reply_all_confirmation__he_got.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 48.467,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -26.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story beats are illustrated with a scanned Iraq-war invasion memo and a corporate retreat poster \u2014 imagery that has nothing to do with a reply-all email meltdown.",
-      "score": 57
-    },
-    "blocked": true
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 16.2,
+    "backfill": true
   },
   {
-    "topic": "He Stopped Me At The Exit Every Visit. Big Mistake.",
-    "title": "He Stopped Me At The Exit Every Visit. Big Mistake.",
-    "format": "reddit",
-    "publish_at": "2026-08-15T16:00:00Z",
+    "topic": "hurricanes",
+    "angle": "Hurricane Lala is battering Hawaii with strong winds and torrential rain, threatening the islands.",
+    "publish_at": "2026-08-16T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions carry, but three of five story beats sit under wholly unrelated stock scans (an Iraq war memo, a meeting-rules poster, a GNOME bug inbox) \u2014 the illustration track is junk and freezes for the final 12 seconds.",
-    "elapsed_seconds": 210.2,
-    "package_path": "state/trending_packages/20260815/06_reddit-loss-prevention-audit.json",
-    "source": "brain",
-    "video_path": "output/daily_20260815-094046_he_stopped_me_at_the_exit_every_visit__b.mp4",
+    "error": "HTTPError: HTTP Error 429: Too Many Requests",
+    "elapsed_seconds": 8.6,
+    "backfill": true
+  },
+  {
+    "topic": "Hurricane Lala lashes Hawaii with strong winds and torrential rain",
+    "angle": "Hurricane Lala is lashing Hawaii with strong winds and torrential rain, prompting evacuations and warnings.",
+    "publish_at": "2026-08-16T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Every top-panel visual is keyword-literal stock junk \u2014 a 1930s archival photo, scrabble tiles, a stranger's book cover and a gummy bear in a mousetrap \u2014 bolted onto a Reddit inheritance story it has nothing to do with.",
+    "elapsed_seconds": 456.4,
+    "title": "My Sister's Deceit",
+    "package_path": "state/trending_packages/20260816-095732_auto_hurricane_lala_lashes_hawaii_with_strong.json",
+    "video_path": "output/daily_20260816-095732_hurricane_lala_lashes_hawaii_with_strong.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.9,
+      "duration": 32.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +257,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.9
+      "loudness_lufs": -12.2
     },
     "qa": {
       "ok": true,
@@ -208,137 +266,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The gameplay and captions carry, but three of five story beats sit under wholly unrelated stock scans (an Iraq war memo, a meeting-rules poster, a GNOME bug inbox) \u2014 the illustration track is junk and freezes for the final 12 seconds.",
-      "score": 57
-    },
-    "blocked": true
-  },
-  {
-    "topic": "kick",
-    "angle": null,
-    "publish_at": "2026-08-15T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The visuals have nothing to do with the story \u2014 mugshots, arrest body-cam, and stock laptop ads over a narration about being kicked out by family.",
-    "elapsed_seconds": 590.9,
-    "title": "Kicked Out By My Own Family",
-    "package_path": "state/trending_packages/20260815-094430_auto_kick.json",
-    "video_path": "output/daily_20260815-094430_kick.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 35.767,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -14.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The visuals have nothing to do with the story \u2014 mugshots, arrest body-cam, and stock laptop ads over a narration about being kicked out by family.",
-      "score": 18
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "hurricane weather",
-    "angle": null,
-    "publish_at": "2026-08-15T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['family business', 'punched in the gut', 'lavish lifestyle', 'pay off her debts', 'lying to our faces', 'destroying our family']",
-    "elapsed_seconds": 27.6,
-    "title": "Family Deceit",
-    "package_path": "state/trending_packages/20260815-095423_auto_hurricane_weather.json",
-    "quarantined": true,
-    "backfill": true
-  },
-  {
-    "topic": "restaurants near me",
-    "angle": null,
-    "publish_at": "2026-08-15T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Unrelated stock media (a salad bowl, a random bar photo) is illustrating a diary-betrayal story, and half of several frames is dead black gameplay space.",
-    "elapsed_seconds": 646.5,
-    "title": "Fiance's Mom Exposed Me",
-    "package_path": "state/trending_packages/20260815-095449_auto_restaurants_near_me.json",
-    "video_path": "output/daily_20260815-095449_restaurants_near_me.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 38.467,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -12.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Unrelated stock media (a salad bowl, a random bar photo) is illustrating a diary-betrayal story, and half of several frames is dead black gameplay space.",
-      "score": 39
-    },
-    "blocked": true,
-    "backfill": true
-  },
-  {
-    "topic": "bighead carp",
-    "angle": null,
-    "publish_at": "2026-08-15T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Off-topic stock faces and a random frog break the visual chain of a story that already has real carp and river footage available.",
-    "elapsed_seconds": 692.2,
-    "title": "Family Secret Unleashed",
-    "package_path": "state/trending_packages/20260815-100538_auto_bighead_carp.json",
-    "video_path": "output/daily_20260815-100538_bighead_carp.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 42.633,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -11.9
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Off-topic stock faces and a random frog break the visual chain of a story that already has real carp and river footage available.",
-      "score": 43
+      "reason": "showrunner BLOCK: Every top-panel visual is keyword-literal stock junk \u2014 a 1930s archival photo, scrabble tiles, a stranger's book cover and a gummy bear in a mousetrap \u2014 bolted onto a Reddit inheritance story it has nothing to do with.",
+      "score": 26
     },
     "blocked": true,
     "backfill": true

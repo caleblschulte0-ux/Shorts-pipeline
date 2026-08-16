@@ -7,33 +7,22 @@
     {
       "phrase": "my bank account had been compromised",
       "query": "bank cards closeup",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg",
-      "pin_query": "bank account",
-      "pin_context": "financial institution online security",
-      "news_query": "bank account",
-      "news_angle": "The scammer claimed the bank account had been compromised to trick the victim into buying gift cards."
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg"
     },
     {
       "phrase": "buy gift cards",
       "query": "gift card rack",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/OSH_gift_card.jpg",
-      "pin_query": "gift cards",
-      "pin_context": "retail store purchase payment method",
-      "news_query": "gift cards",
-      "news_angle": "The scammer instructed the victim to buy gift cards to supposedly protect their savings."
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/OSH_gift_card.jpg"
     },
     {
       "phrase": "he stayed on the line for two hours",
-      "query": "speakerphone desk phone"
+      "query": "speakerphone desk phone",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/HuddleCamHD_Speaker_Phone.jpg/1280px-HuddleCamHD_Speaker_Phone.jpg"
     },
     {
       "phrase": "the aisle of a hardware store",
       "query": "hardware store aisle",
-      "pin_query": "hardware store",
-      "pin_context": "retail shopping location",
-      "news_query": "hardware store",
-      "news_angle": "The victim pretended to buy gift cards at a hardware store while reading codes to the scammer.",
-      "image_url": "https://live.staticflickr.com/5813/22801156720_f55efc48b5_b.jpg"
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hagebau.JPG"
     },
     {
       "phrase": "Every code I read was wrong by one digit",
@@ -41,11 +30,13 @@
     },
     {
       "phrase": "the real numbers at the register as I bought them",
-      "query": "cashier checkout register"
+      "query": "cashier checkout register",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
     },
     {
       "phrase": "They froze all eleven",
-      "query": "laptop banking screen"
+      "query": "laptop banking screen",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
     },
     {
       "phrase": "He rang back nine times",
