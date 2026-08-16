@@ -43,6 +43,32 @@ STATE_DIR = REPO / "state"
 LOG_PATH = STATE_DIR / "explainer_posted_log.json"
 
 
+def _recent_gate_blocks(hours: int = 20) -> set:
+    """Slugs the showrunner BLOCKED within the last `hours`, read from its
+    durable ledger. Used only to reorder the default queue — a blocked story
+    keeps its place in line, at the back. Any unreadable line or timestamp
+    is skipped: this must never be able to fail a posting run."""
+    out: set = set()
+    try:
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+        ledger = STATE_DIR / "showrunner_verdicts.jsonl"
+        for line in ledger.read_text().splitlines():
+            try:
+                row = json.loads(line)
+                if row.get("verdict") != "block" or not row.get("slug"):
+                    continue
+                ts = datetime.fromisoformat(str(row.get("ts")))
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=timezone.utc)
+                if ts >= cutoff:
+                    out.add(str(row["slug"]))
+            except Exception:  # noqa: BLE001 — one bad row is not a blocker
+                continue
+    except OSError:
+        pass
+    return out
+
+
 def _load_log(path: Path = LOG_PATH) -> dict:
     if path.exists():
         try:
@@ -162,6 +188,22 @@ def main() -> int:
     cfg = json.loads(args.config.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     slugs = args.slugs or list(stories)
+    # ROTATE PAST THE STICKY LOSERS. The default candidate list is config
+    # order, and --max-per-run renders only its first N unposted entries —
+    # THE SAME N EVERY RUN until one posts. On 2026-08-15 the four lead
+    # candidates scored 39-48, got re-rendered and re-blocked by three
+    # consecutive runs, and the channel posted NOTHING while ~40 untried
+    # stories waited behind them. A story the showrunner blocked in the
+    # last day is sent to the BACK of the queue — never skipped (the
+    # standing ruling: it goes through and tries again; if everything was
+    # recently blocked the order degrades to exactly the old behaviour),
+    # just no longer allowed to starve stories that have never had a turn.
+    if not args.slugs:
+        recently_blocked = _recent_gate_blocks(hours=20)
+        if recently_blocked:
+            slugs.sort(key=lambda s: s in recently_blocked)  # stable sort
+            print(f"[post_stories] {len(recently_blocked)} recently-blocked "
+                  f"stor(y/ies) rotated to the back of the queue", flush=True)
     unknown = [s for s in slugs if s not in stories]
     if unknown:
         print(f"unknown slugs: {unknown}\navailable: {list(stories)}",

@@ -64,13 +64,22 @@ class TestTheConstantsClearTheFloor(unittest.TestCase):
         for eleven days: 0.26 px/frame. The test has to catch it."""
         self.assertLess(cf.px_per_frame(6, 1.3, 30.0), cf.MIN_PX_PER_FRAME)
 
-    def test_amplitude_stays_inside_the_charts_own_margin(self):
-        """The explainer chart card has ~31px of transparent margin once
-        composited. Floating further than that clips real content — and the
-        showrunner already blocks videos for 'headline clipped off the right
-        edge'. If a future change wants a bigger float it must oversize the
-        layer first, as the full-frame branch does."""
-        self.assertLessEqual(cf.FLOAT_A, 26)
+    def test_the_motion_does_not_read_as_shake(self):
+        """The 2026-08-16 operator note, verbatim: "this weird fucking
+        shaking motion". The gate needs pixels per frame (amp*w/fps); the
+        eye objects to acceleration (amp*w^2). The first tuning satisfied
+        the gate at 423 px/s^2 and the mascot idle stacked ~1080 on top —
+        visible jiggle. Both axes now stay under 200 px/s^2, and this bound
+        is why "raise the amplitude, never the frequency" is a rule and not
+        advice."""
+        self.assertLessEqual(cf.FLOAT_A * cf.FLOAT_WX ** 2, 200)
+        self.assertLessEqual(cf.FLOAT_A * cf.FLOAT_WY ** 2, 200)
+
+    def test_the_crop_cost_stays_invisible(self):
+        """The whole-frame breath crops FLOAT_A px per side from an
+        oversized frame — that must stay a few percent of frame width, or
+        the 'camera' starts eating composition."""
+        self.assertLessEqual(cf.FLOAT_A / 1080, 0.05)
 
     def test_the_two_axes_use_different_frequencies(self):
         """Same frequency on both axes is a diagonal slide, which reads as
@@ -107,8 +116,12 @@ class TestBothChannelsUseTheOneDefinition(unittest.TestCase):
     explainer was gated — one policy, two implementations."""
 
     def test_the_explainer_composites_through_it(self):
+        """Via crop_vf on the WHOLE finished frame — the per-layer
+        overlay_xy float is deliberately gone (it was half of the shake:
+        card and mascot oscillating at different frequencies)."""
         self.assertIn("camera_float", STUDIO)
-        self.assertIn("_cf.overlay_xy(", STUDIO)
+        self.assertIn("_cf.crop_vf(", STUDIO)
+        self.assertNotIn("_cf.overlay_xy(", STUDIO)
 
     def test_graph_race_composites_through_it(self):
         self.assertIn("camera_float.crop_vf(", RACE)
@@ -129,24 +142,26 @@ class TestTheStaticChartCaseIsCovered(unittest.TestCase):
     """The float has to carry a scene whose build contributes NOTHING —
     that is the actual production case (600-frame builds measure 0.0)."""
 
-    def test_the_explainer_floats_the_chart_even_while_it_holds(self):
-        """The chart layer is tpad-held for the rest of the beat. The float
-        is applied at OVERLAY time, which is outside the hold, so the held
-        frames still move. If the float ever moves inside the tpad chain it
-        would freeze with the build."""
-        seg = STUDIO.split("Charts DRAW ON", 1)[1].split("Mascots", 1)[0]
-        self.assertIn("tpad=stop_mode=clone", seg)
-        i_tpad = seg.index("tpad=stop_mode=clone")
-        i_float = seg.index("_cf.overlay_xy(")
-        self.assertLess(i_float, i_tpad,
-                        "the float must be computed for the overlay, not "
-                        "baked into the padded source")
-        self.assertIn("overlay=x='{_fx}':y='{_fy}'", seg)
+    def test_the_breath_wraps_the_whole_composite(self):
+        """The CAMERA BREATH is applied to the finished frame — downstream
+        of every tpad hold, chart overlay and mascot — so a beat whose
+        content goes completely still STILL moves at the detector. Putting
+        it any earlier recreates one of two former bugs: inside a layer it
+        freezes with that layer's hold; on one layer only, layers drift
+        relative to each other, which is the shake."""
+        # anchor on the MASTER's call, not the half-scale proxy's
+        i_breath = STUDIO.index("_cf.crop_vf(W, H)")
+        self.assertLess(STUDIO.index("tpad=stop_mode=clone"), i_breath)
+        seg = STUDIO.split("CAMERA BREATH", 1)[1]
+        self.assertIn("_cf.crop_vf(W, H)", seg)
 
-    def test_a_full_frame_layer_is_oversized_so_nothing_shows_through(self):
-        seg = STUDIO.split("Charts DRAW ON", 1)[1].split("Mascots", 1)[0]
-        self.assertIn("vw + 2 * _A", seg)
-        self.assertIn("vh + 2 * _A", seg)
+    def test_captions_burn_in_after_the_breath(self):
+        """Subtitles ride on top of the drifting frame, pinned and crisp —
+        floating captions read as broken, and re-rasterising them through
+        the crop would soften them every frame."""
+        i_breath = STUDIO.index("_cf.crop_vf(W, H)")
+        i_ass = STUDIO.index("ass='{ass_esc}'")
+        self.assertLess(i_breath, i_ass)
 
 
 class TestTheSceneProxyMeasuresWhatShips(unittest.TestCase):
@@ -154,11 +169,14 @@ class TestTheSceneProxyMeasuresWhatShips(unittest.TestCase):
     reported the RAW BUILD's cadence — a number the shipped video never has.
     The repair loop then chased it."""
 
-    def test_the_proxy_includes_the_float(self):
+    def test_the_proxy_includes_the_breath(self):
+        """The layer sits at rest and the whole-frame breath goes over the
+        top — the same order as the shipped master. (`overlay=0:0` is now
+        CORRECT here: the motion comes after it, from crop_vf.)"""
         seg = STUDIO.split("def _scene_metrics", 1)[1].split(
             "\ndef ", 1)[0]
-        self.assertIn("_cf.overlay_xy(", seg)
-        self.assertNotIn('"[0:v][c]overlay=0:0:shortest=1', seg)
+        self.assertIn("_cf.crop_vf(540, 960, amp=_A)", seg)
+        self.assertNotIn("overlay_xy", seg)
 
     def test_the_metrics_sidecar_publishes_the_gate_and_the_fps(self):
         """scene_repair reads these two keys off disk; if they stop being
@@ -167,13 +185,14 @@ class TestTheSceneProxyMeasuresWhatShips(unittest.TestCase):
         self.assertIn('"gate": gate or "pass"', seg)
         self.assertIn('"effective_fps": ev.get("effective_fps")', seg)
 
-    def test_candidate_scoring_also_includes_the_float(self):
+    def test_candidate_scoring_also_includes_the_breath(self):
         """Candidates render at ~60 frames and ship at up to 1200. Scoring
         the raw build gave every candidate fps_score 1.0 while the shipped
-        scene measured 1.0 effective fps."""
+        scene measured 1.0 effective fps. The proxy composites like the
+        master: layer at rest, breath over the finished frame."""
         seg = REPAIR.split("def score_candidate", 1)[1].split("\ndef ", 1)[0]
         self.assertIn("camera_float", seg)
-        self.assertNotIn('"[0:v][c]overlay=0:0:shortest=1', seg)
+        self.assertIn("crop_vf(540, 960, amp=_A)", seg)
 
 
 if __name__ == "__main__":

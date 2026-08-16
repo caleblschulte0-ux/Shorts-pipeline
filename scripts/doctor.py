@@ -77,7 +77,14 @@ VERDICTS_ALLOWED = ("doing", "not_doing", "later", "in_progress", "done")
 UNRULED = "new"
 
 #: What ChatGPT is asked to produce. `horizon` is the plan bucket.
-HORIZONS = ("bug", "small_fix", "short_term", "long_term")
+#: `strategy` (added 2026-08-16, operator ruling: the doctor is the
+#: MANAGING EDITOR, not only a code reader) is a channel-level direction
+#: call argued from the PERFORMANCE evidence — format mix, cadence, topic
+#: direction, kill/scale decisions — that the triage builds as registry or
+#: doctrine changes through the normal PR path. The refusal list applies to
+#: strategy findings exactly as to code ones: "post more by weakening a
+#: gate" is refused no matter which bucket it arrives in.
+HORIZONS = ("bug", "small_fix", "short_term", "long_term", "strategy")
 SEVERITIES = ("critical", "high", "medium", "low")
 
 REQUIRED_FIELDS = ("title", "horizon", "severity", "area", "observation",
@@ -367,7 +374,11 @@ def rule(sig: str, verdict: str, *, because: str = "",
 
 #: Ranking for what a session should pick up first.
 _SEV_RANK = {"critical": 0, "high": 1, "medium": 2, "low": 3}
-_HOR_RANK = {"bug": 0, "small_fix": 1, "short_term": 2, "long_term": 3}
+# Strategy sits between the quick wins and the long-term plan: a direction
+# call backed by performance data usually beats speculative long_term work,
+# and never beats a live bug.
+_HOR_RANK = {"bug": 0, "small_fix": 1, "strategy": 2, "short_term": 3,
+             "long_term": 4}
 
 
 def backlog_view(state: str | None = None) -> list[dict]:
@@ -444,6 +455,55 @@ def evidence_pack() -> dict:
         pack["recent_commits"] = (out.stdout or "").strip().splitlines()
     except Exception:                                    # noqa: BLE001
         pack["recent_commits"] = []
+
+    # ---- THE MANAGING EDITOR'S DESK (operator ruling 2026-08-16) --------
+    # The doctor is not only a code reader: it is the channel's standing
+    # manager/editor, expected to argue direction from PERFORMANCE — and it
+    # cannot manage what it cannot see. Compact aggregates here; the full
+    # per-video analytics and retro briefs live at the listed paths, and the
+    # doctor reads the repo, so pointers are enough.
+    perf: dict = {}
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=14)).strftime(
+        "%Y-%m-%d")
+    for cid, logname in (("trending", "posted_log.json"),
+                         ("explainer", "explainer_posted_log.json"),
+                         ("third", "third_posted_log.json")):
+        posted = (_load(ROOT / "state" / logname, {}) or {}).get("posted")
+        rows = (list(posted.values()) if isinstance(posted, dict)
+                else posted or [])
+        days: dict = {}
+        for r in rows:
+            if not isinstance(r, dict):
+                continue
+            ts = str(r.get("at") or r.get("ts") or r.get("posted_at") or "")
+            if ts[:10] >= cutoff:
+                days[ts[:10]] = days.get(ts[:10], 0) + 1
+        perf[cid] = {"posted_by_day_14d": dict(sorted(days.items())),
+                     "total_posted": len(rows)}
+    for adir in sorted(ROOT.glob("state/analytics_*")):
+        latest = _load(adir / "latest.json", None)
+        vids = (latest or {}).get("videos") or []
+        if not vids:
+            continue
+        def _vph(v):
+            try:
+                return float(v.get("vph") or 0)
+            except (TypeError, ValueError):
+                return 0.0
+        ranked = sorted((v for v in vids if isinstance(v, dict)),
+                        key=_vph, reverse=True)
+        perf[adir.name] = {
+            "videos": len(vids),
+            "top_by_vph": [{"title": str(v.get("title", ""))[:70],
+                            "vph": _vph(v), "views": v.get("views")}
+                           for v in ranked[:5]],
+            "full_data": f"state/{adir.name}/latest.json"}
+    retro_dirs = sorted(d.name for d in (ROOT / "retro").iterdir()
+                        if d.is_dir() and d.name.isdigit()) \
+        if (ROOT / "retro").is_dir() else []
+    perf["retro_briefs"] = [f"retro/{d}/brief.json" for d in retro_dirs[-3:]]
+    perf["format_scoreboard"] = "python scripts/format_scoreboard.py"
+    pack["channel_performance"] = perf
 
     # What is already decided — so the doctor does not re-file it.
     pack["open_backlog"] = [

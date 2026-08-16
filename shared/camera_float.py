@@ -60,9 +60,32 @@ from __future__ import annotations
 # Amplitude in pixels at 1080x1920, and the two angular frequencies (rad/s).
 # Different frequencies on x and y so the layer traces a Lissajous figure
 # rather than sliding back and forth along one diagonal.
-FLOAT_A = 20
-FLOAT_WX = 4.6
-FLOAT_WY = 3.9
+#
+# RETUNED 2026-08-16 — the operator watched the shipped videos and called the
+# motion "a weird shaking". They were right, and it is arithmetic again:
+# what the GATE needs is pixels per frame (amp * w / fps), but what the EYE
+# objects to is acceleration (amp * w^2). At a fixed per-frame budget those
+# trade against each other linearly in w — so the first tuning (20px @ 4.6
+# rad/s, 0.73 Hz, 423 px/s^2) sat at the nervous end for no measured gain,
+# and it stacked on a mascot idle jiggling at 0.95 Hz / ~1080 px/s^2 in a
+# different phase. Two independent oscillations IS "weird shaking".
+#
+# The retune halves the frequency and doubles the amplitude: same pixels
+# per frame for the detector, less than half the acceleration for the eye,
+# and it is applied ONCE to the whole frame (a slow breathing camera)
+# instead of per-layer. Measured with the reviewer's own detector on a
+# WORST-CASE fully static frame held 20s:
+#
+#     A=20 w=4.6/3.9 (old)   16.7 fps  dup 0.31   PASS   423 px/s^2
+#     A=44 w=2.1/1.7 (new)   16.4 fps  dup 0.32   PASS   194 px/s^2
+#     A=50 w=1.9/1.5         16.1 fps  dup 0.33   PASS   (thinner margin)
+#     A=44 w=1.5/1.2         12.2 fps  dup 0.49   FAIL   <- the cliff
+#
+# 2.1/1.7 keeps real margin above the cliff. Raise AMPLITUDE, never
+# frequency, if this ever needs more — frequency is what reads as nervous.
+FLOAT_A = 44
+FLOAT_WX = 2.1
+FLOAT_WY = 1.7
 
 # The floor the temporal grade needs. Below ~2.3 px/frame the measurement
 # collapses (2.3 measured 8.9 fps against an 11.0 floor); 2.9 is the shipped
