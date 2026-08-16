@@ -1,0 +1,20 @@
+{
+  "key": "measles_immunity_needed_vs_actual",
+  "title": "Measles immunity: what's needed vs what we have (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024-25 school year",
+  "source": {
+    "name": "Vaccination Coverage and Exemptions among Kindergartners (SchoolVaxView), 2024-25 school year",
+    "publisher": "U.S. Centers for Disease Control and Prevention; herd-immunity threshold per CDC and WHO",
+    "url": "https://www.cdc.gov/schoolvaxview/data/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "CDC and WHO put the measles herd-immunity threshold at 95 percent, the highest of any routinely vaccinated disease - it follows from the herd-immunity formula (R0 minus 1) divided by R0 at the top of measles' R0 range of 12-18. US kindergarten MMR coverage was 92.5 percent in 2024-25, down from 95.2 percent in 2019-20; about 286,000 kindergartners started school without a documented complete MMR series, and the overall exemption rate hit a record 3.6 percent.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Immunity needed to stop measles", "value": 95.0},
+    {"label": "US kindergarten MMR coverage", "value": 92.5}
+  ]
+}

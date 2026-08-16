@@ -581,12 +581,18 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
         # Winner (j==0) carries the mascot gripping its TOP, so its big number
         # sits LOW inside the column (white) — clear of the top-gripping host.
+        # UNIT-AWARE label. This used to hardcode "%" on both columns, which is
+        # right for a percent comparison and a lie for every other unit — and
+        # _compose_story routes ANY two-item insight here, so a 2-row ranking in
+        # metres/dollars/counts rendered "10211%". _ulabel is what every other
+        # chart kind already uses.
         if j == 0:
-            t = ax.text(x, vmax * 0.16, _vfmt(p.value) + "%", ha="center",
+            t = ax.text(x, vmax * 0.16, _ulabel(p.value, insight.unit),
+                        ha="center",
                         va="center", fontsize=42, color="white",
                         fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
         else:
-            t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
+            t = ax.text(x, p.value + vmax * 0.06, _ulabel(p.value, insight.unit),
                         ha="center", fontsize=46, color=TEXT, fontweight="bold",
                         zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
@@ -600,7 +606,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         ax.plot([0.10, 0.90], [b, b], color=WARN, lw=2.5, ls=(0, (4, 3)),
                 zorder=2)
         ax.text(0.5, b + vmax * 0.04,
-                f"{insight.baseline.label} {_vfmt(b)}%", ha="center",
+                f"{insight.baseline.label} {_ulabel(b, insight.unit)}",
+                ha="center",
                 va="bottom", fontsize=19, color=WARN, fontweight="bold",
                 zorder=4)
     ax.set_xlim(0, 1)

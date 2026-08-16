@@ -1,0 +1,21 @@
+{
+  "key": "gps_clock_relativity_shift",
+  "title": "How much a GPS satellite clock drifts each day (microseconds per day)",
+  "unit": "microseconds per day",
+  "geography": "GPS constellation, 20,200 km orbit",
+  "time_coverage": "constant, since 1978",
+  "source": {
+    "name": "Real-World Relativity: The GPS Navigation System",
+    "publisher": "Ohio State University Department of Astronomy (Richard Pogge); corroborated by Penn State GEOG 862 'The Satellite Clock' and Neil Ashby, Relativity in the Global Positioning System, Living Reviews in Relativity",
+    "url": "https://www.astronomy.ohio-state.edu/pogge.1/Ast162/Unit5/gps.html",
+    "officiality": "reference",
+    "access_date": "2026-08-16"
+  },
+  "notes": "At 20,200 km altitude gravity is weaker, so general relativity makes a satellite clock run about 45 microseconds per day FASTER than an identical clock on the ground. Travelling at 3.874 km/s (about 14,000 km/h), special relativity makes it run about 7 microseconds per day SLOWER. The two do not cancel: the net effect is a gain of about 38 microseconds per day. Values plotted are magnitudes; the signs are stated in the narration.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Weaker gravity speeds it up", "value": 45},
+    {"label": "Net gain, every day", "value": 38},
+    {"label": "Orbital speed slows it down", "value": 7}
+  ]
+}

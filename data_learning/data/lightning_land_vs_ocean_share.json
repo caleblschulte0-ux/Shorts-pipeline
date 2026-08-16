@@ -1,0 +1,20 @@
+{
+  "key": "lightning_land_vs_ocean_share",
+  "title": "Where the world's lightning actually strikes (percent of flashes)",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "1995-2014 satellite climatology",
+  "source": {
+    "name": "Lightning Imaging Sensor / Optical Transient Detector (LIS-OTD) global lightning climatology",
+    "publisher": "NASA Global Hydrometeorology Resource Center",
+    "url": "https://ghrc.nsstc.nasa.gov/lightning/space-search-observations.html",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "NASA's LIS/OTD climatologies give a global mean land-to-ocean lightning flash ratio of about 10 to 1 - that is, roughly 90 percent of the world's lightning flashes happen over land and about 10 percent over ocean. Land heats quickly under the sun and drives strong convection; water warms slowly, so the air over it rises far less.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Over land", "value": 90},
+    {"label": "Over ocean", "value": 10}
+  ]
+}
