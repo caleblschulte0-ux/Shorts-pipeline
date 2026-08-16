@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-break-room-company-property-s4-2c53d8c92513",
+  "safe_request_id": "reddit-break-room-company-property-s4-2c53d8c92513",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-break-room-company-property",
+  "shot_index": 4,
+  "prompt_sha256": "16b49572af6d537b74289b95b25b9b029b681b7b4ad46ac3ad543774c77d532b",
+  "prompt_used": "An editorial illustration for a short-form video: canvas bag handles. It accompanies the narration: \"carried out to our cars in a laundry bag\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1P4Z9Tc_vN4-D0NVZeY35nKbR2-latNT7",
+    "filename": "20260816__reddit-break-room-company-property-s4-2c53d8c92513.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1P4Z9Tc_vN4-D0NVZeY35nKbR2-latNT7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6aa6b15cfad9f1a94a30f3da84e9288de3025a0d6721835e8569e13638d67311",
+    "bytes": 1351748,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:11Z",
+  "error": null,
+  "retryable": false
+}
