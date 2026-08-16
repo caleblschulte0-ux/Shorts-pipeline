@@ -1,0 +1,22 @@
+{
+  "key": "disease_contagiousness_r0",
+  "title": "People one sick person infects in an unprotected crowd (R0)",
+  "unit": "people infected per case",
+  "geography": "Global",
+  "time_coverage": "published estimates, current",
+  "source": {
+    "name": "The basic reproduction number (R0) of measles: a systematic review (Guerra et al., The Lancet Infectious Diseases, 2017) and published R0 reviews for the comparison diseases",
+    "publisher": "The Lancet Infectious Diseases / peer-reviewed R0 literature, as summarised by the U.S. CDC and WHO",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/28757186/",
+    "officiality": "reference",
+    "access_date": "2026-08-16"
+  },
+  "notes": "Values are midpoints of the published ranges: measles 12-18 (plotted 15), chickenpox 10-12 (plotted 11), polio 5-7 (plotted 6), seasonal influenza mean R0 about 1.33 (plotted 1.3). CDC states the same thing in plain terms: if one person has measles, up to 9 out of 10 unprotected people close to them will catch it.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Measles", "value": 15},
+    {"label": "Chickenpox", "value": 11},
+    {"label": "Polio", "value": 6},
+    {"label": "Seasonal flu", "value": 1.3}
+  ]
+}

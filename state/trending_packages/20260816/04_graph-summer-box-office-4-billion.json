@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-summer-box-office-4-billion",
+  "title": "Summer Movies Clawed Back To $4 Billion",
+  "hook": "$176 million to $4 billion.",
+  "y_label": "Summer domestic box office ($ millions)",
+  "duration": 13,
+  "source": "North American summer box office (first Friday in May through Labor Day), Comscore/Box Office Mojo totals as reported by Deadline, Variety and TheWrap: 2019 $4.33B; 2020 $0.176B (theatres shut for the pandemic); 2021 $1.74B; 2022 $3.40B; 2023 $4.095B; 2024 $3.68B; 2025 $3.67B, down 0.2% year over year and short of the hoped-for $4B; 2026 crossed $4.0B in mid-August with the season still running, the second $4B summer since the pandemic, driven by 'Spider-Man: Brand New Day' — a record $360M domestic opening and the biggest overall box-office weekend ever at $436.6M — plus 'The Odyssey'. The flat comparison line is summer 2013's $4.755B, still the all-time seasonal record. The 2026 figure is season-to-date and will finish higher.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Summer box office",
+      "color": "#ffaa30",
+      "icon": "US",
+      "values": [
+        4330,
+        176,
+        1740,
+        3400,
+        4095,
+        3680,
+        3670,
+        4000
+      ]
+    },
+    {
+      "name": "2013 record",
+      "color": "#8fa3b8",
+      "values": [
+        4755,
+        4755,
+        4755,
+        4755,
+        4755,
+        4755,
+        4755,
+        4755
+      ]
+    }
+  ],
+  "hashtags": [
+    "boxoffice",
+    "spiderman",
+    "brandnewday",
+    "summerboxoffice",
+    "theodyssey",
+    "movies",
+    "hollywood",
+    "cinema",
+    "moviemilestone",
+    "filmindustry",
+    "openingweekend",
+    "theaters"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

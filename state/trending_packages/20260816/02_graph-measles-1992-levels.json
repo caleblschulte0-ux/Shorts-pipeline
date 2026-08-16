@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-measles-1992-levels",
+  "title": "Measles Is Back At 1992 Levels",
+  "hook": "13 cases, then 2,566.",
+  "y_label": "Confirmed US measles cases",
+  "duration": 13,
+  "source": "U.S. CDC confirmed measles case counts by year: 2019 1,274 (outbreaks in New York); 2020 13; 2021 49; 2022 121; 2023 59; 2024 285; 2025 2,144 confirmed in CDC's final tally, the highest annual total since 1992 and enough to put US measles elimination status at risk. The 2026 figure, 2,566, is the year-to-date count CDC reported as of 13 August 2026 — it is a partial year and already exceeds the full 2025 total. The flat comparison line is the 1992 annual total of 2,126 confirmed cases, the record 2025 broke. CDC attributes the resurgence mainly to falling MMR coverage and rising vaccination exemptions; roughly 93% of 2025 cases were in people unvaccinated or of unknown status.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "US measles cases",
+      "color": "#ff3030",
+      "icon": "US",
+      "values": [
+        1274,
+        13,
+        49,
+        121,
+        59,
+        285,
+        2144,
+        2566
+      ]
+    },
+    {
+      "name": "1992 record",
+      "color": "#8fa3b8",
+      "values": [
+        2126,
+        2126,
+        2126,
+        2126,
+        2126,
+        2126,
+        2126,
+        2126
+      ]
+    }
+  ],
+  "hashtags": [
+    "measles",
+    "cdc",
+    "outbreak",
+    "mmr",
+    "vaccination",
+    "publichealth",
+    "elimination",
+    "vaccines",
+    "epidemiology",
+    "diseaseoutbreak",
+    "healthnews",
+    "immunization"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

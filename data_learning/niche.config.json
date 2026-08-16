@@ -21181,6 +21181,275 @@
           }
         }
       ]
+    },
+    {
+      "slug": "highest-point-illusion",
+      "title": "Everest Isn't the Highest Point on Earth",
+      "hook": "Everest wins on a technicality. Two, actually.",
+      "closing": "Turns out 'highest' just depends on where you start counting.",
+      "question": "Which mountain would you call the real winner? Tell me below.",
+      "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
+      "hashtags": [
+        "everest",
+        "chimborazo",
+        "maunakea",
+        "mountains",
+        "geography",
+        "earth",
+        "sealevel",
+        "equator",
+        "geology",
+        "didyouknow",
+        "science",
+        "mindblown",
+        "facts",
+        "dataviz"
+      ],
+      "keep_order": true,
+      "segments": [
+        {
+          "source": "offline",
+          "key": "peaks_above_sea_level",
+          "params": {
+            "file": "peaks_above_sea_level.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · THE LEADERBOARD",
+          "topic": "highest peaks above sea level",
+          "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses."
+        },
+        {
+          "source": "offline",
+          "key": "mountain_height_from_base",
+          "params": {
+            "file": "mountain_height_from_base.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · FROM THE BOTTOM",
+          "topic": "mountain height from its own base",
+          "say": "So start at each mountain's real base. Mauna Kea runs 10,211 meters from the Pacific floor to its peak - taller than Everest. Only 4,207 of it is above water.",
+          "scene": {
+            "mechanic": "waterline-mountain-pair",
+            "concept": "Two columns of rock standing in the Pacific: Mauna Kea rooted on the ocean floor with a sea-level line cutting across it, Everest starting AT that line. Mauna Kea is the taller mountain, Everest still has the higher peak - the whole argument in one picture.",
+            "code": "base_y = RBOT - 120\ncap = 520\nvmk = values[0]\nvev = values[1]\nvup = values[2]\nsea_y = int(base_y - cap * (vmk - vup) / vmk)\ntop_mk = int(base_y - cap * reveal)\ntop_ev = int(sea_y - cap * (vev / vmk) * reveal)\nxa = RX0 + 110\nxb = RX0 + 570\ncw = 300\npeak = subject_image('snow capped mountain summit')\nd.rectangle([RX0, sea_y, RX1, RBOT], fill=rgba('#1E3A8A', 110))\nd.line([RX0, sea_y, RX1, sea_y], fill=rgba('#7DD3FC', 230), width=5)\ntext('sea level', RX1 - 230, sea_y - 48, size=30, color='#7DD3FC')\nd.rounded_rectangle([xa, top_mk, xa + cw, base_y], radius=26, fill=rgba(HIGHLIGHT, 230))\nd.rounded_rectangle([xb, top_ev, xb + cw, sea_y], radius=26, fill=rgba(ACCENT, 230))\nif peak is not None:\n    paste(peak, xa, top_mk - 80, cw, 100)\n    paste(peak, xb, top_ev - 80, cw, 100)\ntext(str(int(vmk)) + ' m', xa + cw // 2, top_mk - 145, size=44, color=HIGHLIGHT, center=True)\ntext('Mauna Kea', xa + cw // 2, base_y + 24, size=30, color=TEXT, center=True)\ntext(str(int(vev)) + ' m', xb + cw // 2, top_ev - 145, size=44, color=ACCENT, center=True)\ntext('Everest', xb + cw // 2, base_y + 24, size=30, color=TEXT, center=True)\ntext('only ' + str(int(vup)) + ' m of it is above water', RX0 + 40, sea_y + 40, size=28, color=TEXT)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "summit_beyond_a_round_earth",
+          "params": {
+            "file": "summit_beyond_a_round_earth.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE REAL WINNER",
+          "topic": "distance from Earth's center",
+          "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
+          "viz": "comparison"
+        }
+      ]
+    },
+    {
+      "slug": "gps-einstein-fix",
+      "title": "Every GPS Satellite Is Set to the Wrong Time on Purpose",
+      "hook": "Every GPS satellite lies about the time. Deliberately.",
+      "closing": "Einstein's homework, running in your pocket, all day, every day.",
+      "question": "Did you know your phone runs on relativity? Tell me below.",
+      "caption": "A GPS satellite clock gains 38 microseconds a day on yours - weaker gravity speeds it up 45, orbital speed drags 7 back. Ignore that and your position slides about 10 kilometers off in a single day, so every satellite is launched running deliberately slow. That correction is why your blue dot lands within 4.9 meters. Did you know your phone runs on relativity? 👇",
+      "hashtags": [
+        "gps",
+        "relativity",
+        "einstein",
+        "satellites",
+        "physics",
+        "timedilation",
+        "spacetech",
+        "navigation",
+        "generalrelativity",
+        "science",
+        "howitworks",
+        "technology",
+        "didyouknow",
+        "dataviz"
+      ],
+      "keep_order": true,
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gps_clock_relativity_shift",
+          "params": {
+            "file": "gps_clock_relativity_shift.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · TWO CLOCKS, ONE ORBIT",
+          "topic": "how a satellite clock drifts",
+          "say": "20,200 kilometers up, gravity is weaker, so a satellite clock ticks 45 microseconds fast every day. Its 14,000 kilometer-per-hour speed drags 7 back. Net gain: 38 microseconds."
+        },
+        {
+          "source": "offline",
+          "key": "gps_position_error_growth",
+          "params": {
+            "file": "gps_position_error_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · WHERE IT GOES WRONG",
+          "topic": "GPS error without the fix",
+          "say": "Sounds like nothing. But light travels 300,000 kilometers a second, so a few millionths of a second is real distance. Left uncorrected, your position slides 10 kilometers off in a day.",
+          "scene": {
+            "mechanic": "pin-walks-off-the-map",
+            "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
+            "code": "pin = subject_image('map location pin marker')\ncx = RX0 + 130\ncy = RTOP + 190\nvlast = values[-1] or 1.0\nd.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=rgba(HIGHLIGHT))\ntext('you are here', cx + 46, cy - 26, size=32, color=HIGHLIGHT)\nfor i in range(n):\n    if reveal < (i + 0.4) / n:\n        continue\n    py = cy + 190 + i * 200\n    px = cx + int((RX1 - 250 - cx) * (values[i] / vlast))\n    d.line([cx, py, px, py], fill=rgba(WARN, 170), width=7)\n    if pin is not None:\n        paste(pin, px - 38, py - 96, 76, 96)\n    else:\n        d.ellipse([px - 24, py - 24, px + 24, py + 24], fill=rgba(WARN))\n    text(labels[i], RX0 + 20, py + 22, size=28, color=TEXT)\n    text(str(values[i]) + ' km off', px - 40, py - 148, size=32, color=WARN)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "gps_accuracy_with_and_without_fix",
+          "params": {
+            "file": "gps_accuracy_with_and_without_fix.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE FIX",
+          "topic": "GPS accuracy, corrected vs not",
+          "say": "So every satellite launches with its clock deliberately set slow. That one fix is why your phone puts you inside 4.9 meters instead of 10,000.",
+          "viz": "comparison"
+        }
+      ]
+    },
+    {
+      "slug": "lightning-lake-maracaibo",
+      "title": "One Lake Gets Lightning 297 Nights a Year",
+      "hook": "Lightning avoids water. Nobody told this lake.",
+      "closing": "That lake has basically forgotten how to switch the sky off.",
+      "question": "What's the wildest storm you've ever sat through? Tell me below.",
+      "caption": "About 90% of the world's lightning strikes land, not water - so the single most lightning-struck spot on Earth should not be a lake. It is. Lake Maracaibo in Venezuela takes 232.5 flashes per square kilometer every year and storms on 297 nights, because warm lake water meets cold air falling off the Andes after dark. What's the wildest storm you've sat through? 👇",
+      "hashtags": [
+        "lightning",
+        "maracaibo",
+        "catatumbo",
+        "venezuela",
+        "thunderstorm",
+        "weather",
+        "nasa",
+        "storms",
+        "meteorology",
+        "nature",
+        "science",
+        "didyouknow",
+        "mindblown",
+        "dataviz"
+      ],
+      "keep_order": true,
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lightning_land_vs_ocean_share",
+          "params": {
+            "file": "lightning_land_vs_ocean_share.json"
+          },
+          "insight_type": "share",
+          "viz": "share",
+          "role": "1 · LIGHTNING HATES WATER",
+          "topic": "where lightning actually strikes",
+          "say": "Lightning is a land thing. About 90 percent of the world's flashes hit land and only 10 percent hit ocean, because land heats fast and water barely warms at all.",
+          "scene": {
+            "mechanic": "globe-filled-to-land-share",
+            "concept": "A photo of Earth filling bottom-up to the share of the world's lightning that lands on land - the planet itself acting as the gauge, with the ocean's leftover sliver called out underneath.",
+            "code": "earth = subject_image('planet earth from space')\nfrac = clamp(values[0] / 100.0) * reveal\nbw = 700\nbx = (RX0 + RX1) // 2 - bw // 2\nby = RTOP + 230\nfill_image(earth, frac, bx, by, bw, bw, direction='up', color=HIGHLIGHT)\ntext(str(int(values[0])) + '%', RX0 + 50, RTOP + 70, size=104, color=HIGHLIGHT)\ntext('of all lightning hits LAND', RX0 + 50, RTOP + 180, size=34, color=TEXT)\ntext('only ' + str(int(values[1])) + '% over the ocean', bx, by + bw + 36, size=40, color=ACCENT)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "lightning_hotspots_world",
+          "params": {
+            "file": "lightning_hotspots_world.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · SO WHY IS NUMBER ONE A LAKE",
+          "topic": "Earth's lightning hotspots",
+          "say": "So Earth's number one lightning spot should be dry land. It's a lake. Lake Maracaibo takes 232.5 flashes per square kilometer every year, and nothing else comes close."
+        },
+        {
+          "source": "offline",
+          "key": "lightning_storm_nights_per_year",
+          "params": {
+            "file": "lightning_storm_nights_per_year.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE NIGHT ENGINE",
+          "topic": "thunderstorm nights per year",
+          "say": "Because the lake sits near 30 degrees Celsius all night while cold Andes air pours down onto it. Storms fire after dark 297 nights a year. Florida's stormiest region: 100.",
+          "viz": "comparison"
+        }
+      ]
+    },
+    {
+      "slug": "measles-ninety-five-rule",
+      "title": "Why Measles Needs 95% When Nothing Else Does",
+      "hook": "One number decides whether measles comes back.",
+      "closing": "Measles doesn't need many open doors. Three in forty will do.",
+      "question": "Do you know if you got both measles shots? Tell me below.",
+      "caption": "One measles case infects about 15 people - polio manages 6, seasonal flu 1.3. That's why measles is the only disease that needs 95% of people immune to stop, and US kindergarten MMR coverage is 92.5%. Cases went from 285 in 2024 to 2,566 so far this year, the worst since the US declared measles eliminated in 2000. Do you know if you got both shots? 👇",
+      "hashtags": [
+        "measles",
+        "vaccines",
+        "herdimmunity",
+        "mmr",
+        "publichealth",
+        "outbreak",
+        "cdc",
+        "epidemiology",
+        "r0",
+        "immunity",
+        "health",
+        "science",
+        "didyouknow",
+        "dataviz"
+      ],
+      "keep_order": true,
+      "segments": [
+        {
+          "source": "offline",
+          "key": "disease_contagiousness_r0",
+          "params": {
+            "file": "disease_contagiousness_r0.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · HOW FAST IT SPREADS",
+          "topic": "how many people one case infects",
+          "say": "One person with measles infects about 15 others in an unprotected crowd. Chickenpox does 11. Polio, 6. Seasonal flu barely manages 1.3. Measles is in its own league."
+        },
+        {
+          "source": "offline",
+          "key": "measles_immunity_needed_vs_actual",
+          "params": {
+            "file": "measles_immunity_needed_vs_actual.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE 95 PERCENT RULE",
+          "topic": "measles immunity needed vs actual",
+          "say": "That's why measles needs 95 percent of people immune before it stops spreading - the highest bar of any vaccine. American kindergartners are sitting at 92.5 percent.",
+          "scene": {
+            "mechanic": "forty-kids-three-gaps",
+            "concept": "Forty kindergartners in a grid. The covered ones light up one by one; the last few stay red. Measles only needs the red ones - and the bar it has to clear is one kid away.",
+            "code": "person = subject_image('child silhouette icon')\nneed = values[0]\nhave = values[1]\ncols = 8\nrows = 5\ntotal = cols * rows\niw = 100\nih = 148\nx0 = RX0 + 70\ny0 = RTOP + 230\nfilled = int(round(total * have / 100.0 * reveal))\nneed_n = int(round(total * need / 100.0))\nfor i in range(total):\n    r = i // cols\n    c = i % cols\n    x = x0 + c * (iw + 10)\n    y = y0 + r * (ih + 12)\n    col = HIGHLIGHT if i < filled else WARN\n    if person is not None:\n        paste(person, x, y, iw, ih)\n        d.rounded_rectangle([x, y + ih - 14, x + iw, y + ih], radius=6, fill=rgba(col, 235))\n    else:\n        d.rounded_rectangle([x, y, x + iw, y + ih], radius=16, fill=rgba(col, 225))\ntext(str(have) + '% covered  (' + str(filled) + ' of 40)', x0, y0 - 138, size=44, color=HIGHLIGHT)\ntext('measles needs ' + str(int(need)) + '%  (' + str(need_n) + ' of 40)', x0, y0 - 78, size=40, color=WARN)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "us_measles_cases_by_year",
+          "params": {
+            "file": "us_measles_cases_by_year.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · WHAT 2.5 POINTS COSTS",
+          "topic": "US measles cases per year",
+          "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000."
+        }
+      ]
     }
   ],
   "videos": [

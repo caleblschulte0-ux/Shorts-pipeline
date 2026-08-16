@@ -1,0 +1,21 @@
+{
+  "key": "mountain_height_from_base",
+  "title": "Mountain height measured from its own base (meters)",
+  "unit": "meters",
+  "geography": "Hawaii, United States and Nepal/China",
+  "time_coverage": "current",
+  "source": {
+    "name": "Mauna Kea volcano profile (Hawaiian Volcano Observatory)",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov/volcanoes/mauna-kea",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "USGS: Mauna Kea rises 4,207 m (13,803 ft) above sea level and extends about 6,000 m (19,700 ft) below it to the deep ocean floor, for a total base-to-summit height of nearly 10,211 m (33,500 ft). Guinness World Records certifies Mauna Kea as the tallest mountain measured base to tip (c. 10,205 m) against Everest's 8,849 m above sea level - the same comparison plotted here. Everest's figure is its sea-level elevation, per the 2020 joint Nepal-China survey.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Mauna Kea, ocean floor to summit", "value": 10211},
+    {"label": "Everest, sea level to summit", "value": 8849},
+    {"label": "Mauna Kea, the part above water", "value": 4207}
+  ]
+}

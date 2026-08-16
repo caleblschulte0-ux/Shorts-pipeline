@@ -1,0 +1,23 @@
+{
+  "key": "peaks_above_sea_level",
+  "title": "Highest peaks above sea level (meters)",
+  "unit": "meters",
+  "geography": "World (Himalaya and Karakoram)",
+  "time_coverage": "2020 survey, current",
+  "source": {
+    "name": "Joint Nepal-China re-survey of Mount Everest (Dec 8, 2020) and standard eight-thousander elevations",
+    "publisher": "Survey Department of Nepal and Ministry of Natural Resources of China (joint survey), as reported by The Kathmandu Post",
+    "url": "https://kathmandupost.com/national/2020/12/08/it-s-official-mount-everest-is-8-848-86-metres-tall",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "Everest's official height was agreed at 8,848.86 m by Nepal and China on 8 December 2020 (rounded to 8,849 m here so the spoken and on-chart numbers match). K2 8,611 m, Kangchenjunga 8,586 m, Lhotse 8,516 m, Makalu 8,485 m are the standard published elevations of the next four highest peaks. Every value is measured from MEAN SEA LEVEL, which is the point of this beat.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Everest", "value": 8849},
+    {"label": "K2", "value": 8611},
+    {"label": "Kangchenjunga", "value": 8586},
+    {"label": "Lhotse", "value": 8516},
+    {"label": "Makalu", "value": 8485}
+  ]
+}

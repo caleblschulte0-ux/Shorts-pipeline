@@ -1,0 +1,20 @@
+{
+  "key": "gps_accuracy_with_and_without_fix",
+  "title": "How far off your position is, with and without the relativity fix (meters)",
+  "unit": "meters",
+  "geography": "United States / global",
+  "time_coverage": "current",
+  "source": {
+    "name": "GPS Accuracy (GPS.gov) and Real-World Relativity: The GPS Navigation System",
+    "publisher": "U.S. Government National Coordination Office for Space-Based PNT (GPS.gov); Ohio State University Department of Astronomy",
+    "url": "https://www.gps.gov/systems/gps/performance/accuracy/",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "GPS.gov: GPS-enabled smartphones are typically accurate to within a 4.9 m (16 ft) radius under open sky. Without the relativistic correction, published estimates put the accumulated position error at roughly 10 km (10,000 m) after one day. To avoid the drift, each satellite clock is set to 10.22999999543 MHz before launch instead of the nominal 10.23 MHz.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "With the fix, typical phone", "value": 4.9},
+    {"label": "Without it, after one day", "value": 10000}
+  ]
+}

@@ -144,10 +144,37 @@ write and HOW MANY; those say HOW.
 2. **Pick 6** from the ranker output. Hard rules:
 
    **Rule 1 — Freshness.** Every package should be from the last 24-48 hours.
-   Each ranker line shows an age marker like `[2h ago]`. Anchor the package
-   to "happened today / this morning / just announced" or skip it.
+   Each ranker line shows an age marker like `[2h ago]`. Pick topics that
+   genuinely broke/updated in that window — but do NOT write that recency
+   into the package's title/script/hook/punch text as literal date-anchored
+   language ("today", "this morning", "just announced", "breaking", a
+   weekday name, "as of \<date\>"). `shared/package_schema.py:staleness_problems`
+   mechanically REJECTS all of those (a package authored at 09:19 UTC and
+   rendered hours later — or by ChatGPT during a multi-day takeover — reads
+   wrong with them). Put the freshness evidence in a `source` field or
+   similar metadata instead; the narrative itself should read as evergreen
+   as of the moment it airs.
 
-   **Rule 2 — Quirky-heavy slate (4 of 6 minimum).** Real channel analytics:
+   **Rule 2 does not structurally apply to the current mix — read this
+   before applying it.** Rule 2 (below) was written for the old single
+   stacked/quirky-news format. The live mix is 4x `graph_race` + 2x
+   `reddit_story` (`config/channel_registry.json`), and neither format is a
+   quirky-news pick: `graph_race` is a head-to-head numeric comparison gated
+   by `engines.chart_race.assess` (needs a real swing/crossover across
+   6-8+ years of two comparable series — pick topics that can clear THAT
+   gate, not the quirky bucket, and prefer a clean winner/loser shape over
+   an abstract valuation metric — see `state/analytics/latest.json` bias),
+   and `reddit_story` is an original first-person narrative per
+   `shared/authoring_brief.py:FORMAT_SPECS` (workplace/revenge/karma —
+   no news subject at all; pick genuinely surprising, non-generic
+   narratives). If a future registry change reintroduces a quirky-news
+   format, Rule 2 applies again to that format's picks; until then, don't
+   force-fit a quirky bucket that has nowhere to land — that was tried and
+   confirmed dead-ended on 2026-08-16 (see `docs/SYSTEM_AUDIT.md`).
+
+   **Rule 2 — Quirky-heavy slate (4 of 6 minimum) — applies only if the
+   mix ever includes a quirky-news-shaped format again.** Real channel
+   analytics:
    shark attack got 21 views, kangaroo named Hunter got 12, meteor over Rome
    got 10 — Nvidia / Apple / Foxconn / Broadcom earnings got 0. Serious tech
    news doesn't earn a slot here unless it has a niche named-entity angle.

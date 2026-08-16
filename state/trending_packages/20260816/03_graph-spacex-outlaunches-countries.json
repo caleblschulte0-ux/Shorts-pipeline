@@ -1,0 +1,78 @@
+{
+  "format": "graph_race",
+  "slug": "graph-spacex-outlaunches-countries",
+  "title": "One Company Out-Launches Every Country",
+  "hook": "13 launches, then 170.",
+  "y_label": "Orbital launches per year",
+  "duration": 13,
+  "source": "Orbital launch attempts per year, compiled from SpaceNews, Payload and Aviation Week launch tallies plus the annual 'in spaceflight' launch logs. SpaceX (Falcon 9 + Falcon Heavy + Starship): 2019 13; 2020 26; 2021 31; 2022 61; 2023 98; 2024 134; 2025 ~170 (165 Falcon missions plus Starship test flights). China (all state and commercial providers): 2019 34; 2020 39; 2021 55; 2022 64; 2023 67; 2024 68; 2025 92. Russia (Roscosmos, all vehicles): 2019 25; 2020 17; 2021 25; 2022 21; 2023 19; 2024 17; 2025 17. Global orbital launch attempts hit a record ~324 in 2025, with the US and China together accounting for about 88% of them; SpaceX alone flew more missions than the rest of the world combined. Counts vary by a launch or two between trackers depending on how partial failures and suborbital test flights are classified.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "SpaceX",
+      "color": "#50ff80",
+      "icon": "SpaceX",
+      "values": [
+        13,
+        26,
+        31,
+        61,
+        98,
+        134,
+        170
+      ]
+    },
+    {
+      "name": "China",
+      "color": "#ff4d6d",
+      "icon": "CN",
+      "values": [
+        34,
+        39,
+        55,
+        64,
+        67,
+        68,
+        92
+      ]
+    },
+    {
+      "name": "Russia",
+      "color": "#4a90e2",
+      "icon": "RU",
+      "values": [
+        25,
+        17,
+        25,
+        21,
+        19,
+        17,
+        17
+      ]
+    }
+  ],
+  "hashtags": [
+    "spacex",
+    "falcon9",
+    "starship",
+    "orbitallaunch",
+    "roscosmos",
+    "chinaspace",
+    "spacerace",
+    "rocketlaunch",
+    "capecanaveral",
+    "spaceflight",
+    "elonmusk",
+    "launchcadence"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

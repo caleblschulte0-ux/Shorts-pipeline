@@ -1,0 +1,20 @@
+{
+  "key": "lightning_storm_nights_per_year",
+  "title": "Nights with thunderstorms per year (days per year)",
+  "unit": "nights per year",
+  "geography": "Venezuela and Florida, United States",
+  "time_coverage": "long-term average",
+  "source": {
+    "name": "The Maracaibo Beacon (NASA Earthdata) and Florida thunderstorm climatology (NOAA National Weather Service, Tampa Bay)",
+    "publisher": "NASA Earthdata and NOAA National Weather Service",
+    "url": "https://www.earthdata.nasa.gov/news/feature-articles/maracaibo-beacon",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "Nocturnal thunderstorms occur over Lake Maracaibo on average about 297 days a year, firing up to 28 flashes a minute for up to nine or ten hours after dusk. NOAA's National Weather Service puts interior central Florida - the stormiest part of the United States - at close to 100 thunderstorm days a year (80 to 90 on the coasts). Lake water there holds near 28-31 degrees Celsius year-round while cool air drains off the Perija and Merida ranges of the Andes onto it at night, which is what fires the storms after dark.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Lake Maracaibo, Venezuela", "value": 297},
+    {"label": "Interior Florida, stormiest US area", "value": 100}
+  ]
+}

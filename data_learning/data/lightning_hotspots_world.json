@@ -1,0 +1,23 @@
+{
+  "key": "lightning_hotspots_world",
+  "title": "Earth's top lightning hotspots (flashes per square kilometer per year)",
+  "unit": "flashes per square kilometer per year",
+  "geography": "World",
+  "time_coverage": "1998-2013 (16 years of satellite observation)",
+  "source": {
+    "name": "Where Are the Lightning Hotspots on Earth? (Albrecht, Goodman, Buechler, Blakeslee and Christian, Bulletin of the American Meteorological Society, 2016)",
+    "publisher": "American Meteorological Society, using NASA Lightning Imaging Sensor data",
+    "url": "https://www.ametsoc.org/ams/about-ams/news/news-releases/scientists-locate-world-s-top-lightning-hotspot/",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "Albrecht et al. (2016) used 16 years of space-based Lightning Imaging Sensor data to rank Earth's lightning hotspots: Lake Maracaibo, Venezuela 232.52; Kabare, DR Congo 205.31; Kampene, DR Congo 176.71; Caceres, Colombia 172.29; Sake, DR Congo 143.21 flashes per square kilometre per year. Lake Maracaibo's record was subsequently certified by the WMO and Guinness World Records.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Lake Maracaibo, Venezuela", "value": 232.52},
+    {"label": "Kabare, DR Congo", "value": 205.31},
+    {"label": "Kampene, DR Congo", "value": 176.71},
+    {"label": "Caceres, Colombia", "value": 172.29},
+    {"label": "Sake, DR Congo", "value": 143.21}
+  ]
+}
