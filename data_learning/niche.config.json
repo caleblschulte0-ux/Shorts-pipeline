@@ -21217,7 +21217,12 @@
           "ascending": false,
           "role": "1 · THE LEADERBOARD",
           "topic": "highest peaks above sea level",
-          "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses."
+          "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses.",
+          "scene": {
+            "mechanic": "summit-ridge-tiebreak",
+            "concept": "five snow-peak photo columns rise to nearly the SAME height because the top five really are within 364m of each other - the leaderboard is basically a tie, and Everest's edge is tiny",
+            "code": "cols = n\ngap = 20\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 90\ntop_y = RTOP + 260\npeak = subject_image('snow capped mountain peak photo')\nfor i in range(n):\n    x0 = RX0 + i * (gw + gap)\n    cx = x0 + gw // 2\n    frac = clamp(values[i] / vmax) * reveal\n    h = int((base_y - top_y) * frac)\n    if peak is not None:\n        paste(peak, x0, base_y - h, gw, h)\n    else:\n        d.rectangle([x0, base_y - h, x0 + gw, base_y], fill=rgba(HIGHLIGHT, 210))\n    col = HIGHLIGHT if i == 0 else TEXT\n    text(str(int(values[i])) + 'm', cx, base_y - h - 44, size=22, color=col, center=True)\n    text(labels[i], cx, base_y + 18, size=18, color=TEXT, center=True)\nif reveal > 0.5:\n    text('only ' + str(int(values[0] - values[-1])) + 'm separates all five', (RX0 + RX1) // 2, RTOP + 90, size=30, color=WARN, center=True)\nd.line([RX0 + 20, base_y, RX1 - 20, base_y], fill=rgba(TEXT, 160), width=4)\n"
+          }
         },
         {
           "source": "offline",
@@ -21285,7 +21290,12 @@
           "ascending": false,
           "role": "1 · TWO CLOCKS, ONE ORBIT",
           "topic": "how a satellite clock drifts",
-          "say": "20,200 kilometers up, gravity is weaker, so a satellite clock ticks 45 microseconds fast every day. Its 14,000 kilometer-per-hour speed drags 7 back. Net gain: 38 microseconds."
+          "say": "20,200 kilometers up, gravity is weaker, so a satellite clock ticks 45 microseconds fast every day. Its 14,000 kilometer-per-hour speed drags 7 back. Net gain: 38 microseconds.",
+          "scene": {
+            "mechanic": "orbit-tug-of-war",
+            "concept": "a GPS satellite orbits Earth while two dial gauges show the two relativistic effects fighting each other - gravity speeding the clock up, orbital speed slowing it down - reconciling into the tiny net daily gain",
+            "code": "earth = subject_image('earth from space')\nsat = subject_image('gps satellite in orbit')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 300\ner = 150\nif earth is not None:\n    paste(earth, cx - er, cy - er, er * 2, er * 2)\norbit_r = 300\nang = reveal * 6.283 * 1.3\nsx = cx + int(orbit_r * math.cos(ang))\nsy = cy + int(orbit_r * 0.42 * math.sin(ang))\nd.ellipse([cx - orbit_r, cy - int(orbit_r * 0.42), cx + orbit_r, cy + int(orbit_r * 0.42)], outline=rgba(TEXT, 110), width=3)\nif sat is not None:\n    paste(sat, sx - 45, sy - 45, 90, 90)\nelse:\n    d.ellipse([sx - 14, sy - 14, sx + 14, sy + 14], fill=rgba(HIGHLIGHT, 240))\nr = 130\ncx1 = RX0 + 210\ncx2 = RX1 - 210\ncy2 = RBOT - 300\ngrav_v = values[0]\nspeed_v = values[2]\nnet_v = values[1]\nfor ccx, val, lab, col in ((cx1, grav_v, 'gravity speeds it up', HIGHLIGHT), (cx2, -speed_v, 'speed slows it down', WARN)):\n    d.ellipse([ccx - r, cy2 - r, ccx + r, cy2 + r], outline=rgba(TEXT, 190), width=6)\n    frac = clamp(abs(val) / 50.0) * reveal\n    ang2 = -90 + 360 * frac * (1 if val >= 0 else -1)\n    rad2 = ang2 * math.pi / 180\n    hx = ccx + int((r - 12) * math.cos(rad2))\n    hy = cy2 + int((r - 12) * math.sin(rad2))\n    d.line([ccx, cy2, hx, hy], fill=rgba(col, 255), width=8)\n    sign = '+' if val >= 0 else '-'\n    text(sign + str(abs(val)) + 'us', ccx, cy2 + r + 26, size=27, color=col, center=True)\n    text(lab, ccx, cy2 + r + 60, size=20, color=TEXT, center=True)\ntext('net: +' + str(net_v) + ' microseconds every day', cx, RBOT - 60, size=30, color=HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21369,7 +21379,12 @@
           "ascending": false,
           "role": "2 · SO WHY IS NUMBER ONE A LAKE",
           "topic": "Earth's lightning hotspots",
-          "say": "So Earth's number one lightning spot should be dry land. It's a lake. Lake Maracaibo takes 232.5 flashes per square kilometer every year, and nothing else comes close."
+          "say": "So Earth's number one lightning spot should be dry land. It's a lake. Lake Maracaibo takes 232.5 flashes per square kilometer every year, and nothing else comes close.",
+          "scene": {
+            "mechanic": "flash-density-columns",
+            "concept": "five hotspot photo tiles each topped by a rising stack of lightning-bolt icons scaled to flashes per km2 - the lake's column towers over every rainforest station",
+            "code": "cols = n\ngap = 16\ngw = int((RX1 - RX0 - gap * (cols - 1)) / cols)\nbase_y = RBOT - 90\nimg_h = 140\nbolt = subject_image('lightning bolt icon')\nlocs = ['storm clouds over Lake Maracaibo Venezuela', 'rainforest storm Congo',\n        'rainforest village storm Congo', 'stormy farmland Colombia',\n        'rainforest river storm Congo']\nfor i in range(n):\n    x0 = RX0 + i * (gw + gap)\n    cx = x0 + gw // 2\n    photo = subject_image(locs[i] if i < len(locs) else labels[i])\n    if photo is not None:\n        paste(photo, x0, base_y - img_h, gw, img_h)\n    else:\n        d.rectangle([x0, base_y - img_h, x0 + gw, base_y], fill=rgba(ACCENT, 160))\n    frac = clamp(values[i] / vmax) * reveal\n    bolt_n = max(1, int(9 * frac))\n    for k in range(bolt_n):\n        by = base_y - img_h - 24 - k * 34\n        if bolt is not None:\n            paste(bolt, cx - 15, by - 30, 30, 42)\n        else:\n            d.line([cx, by, cx, by - 20], fill=rgba(HIGHLIGHT, 220), width=5)\n    col = WARN if i == 0 else HIGHLIGHT\n    text(str(values[i]), cx, base_y - img_h - 24 - bolt_n * 34 - 30, size=20, color=col, center=True)\n    text(labels[i][:12], cx, base_y + 16, size=15, color=TEXT, center=True)\ntext('flashes per km2 per year', (RX0 + RX1) // 2, RTOP + 90, size=27, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21420,7 +21435,12 @@
           "ascending": false,
           "role": "1 · HOW FAST IT SPREADS",
           "topic": "how many people one case infects",
-          "say": "One person with measles infects about 15 others in an unprotected crowd. Chickenpox does 11. Polio, 6. Seasonal flu barely manages 1.3. Measles is in its own league."
+          "say": "One person with measles infects about 15 others in an unprotected crowd. Chickenpox does 11. Polio, 6. Seasonal flu barely manages 1.3. Measles is in its own league.",
+          "scene": {
+            "mechanic": "infection-chain-burst",
+            "concept": "one sick-person icon per disease bursts infection lines out to a ring of new cases, count scaled to how many people that disease infects per case - measles' ring dwarfs the rest",
+            "code": "cols = n\ngw = (RX1 - RX0) // cols\ncy = RTOP + 260\nsick = subject_image('sick person icon red')\nhealthy = subject_image('person silhouette icon')\nfor i in range(n):\n    cx = RX0 + gw * i + gw // 2\n    if sick is not None:\n        paste(sick, cx - 38, cy - 38, 76, 76)\n    else:\n        d.ellipse([cx - 38, cy - 38, cx + 38, cy + 38], fill=rgba(WARN, 230))\n    r0 = values[i]\n    cnt = max(1, round(r0))\n    shown = max(1, int(cnt * reveal))\n    rad = 150\n    for k in range(shown):\n        ang = (k / max(1, cnt)) * 6.283\n        px = cx + int(rad * math.cos(ang))\n        py = cy + 150 + int(rad * 0.75 * math.sin(ang))\n        d.line([cx, cy, px, py], fill=rgba(HIGHLIGHT, 170), width=3)\n        if healthy is not None:\n            paste(healthy, px - 20, py - 20, 40, 40)\n        else:\n            d.ellipse([px - 16, py - 16, px + 16, py + 16], fill=rgba(HIGHLIGHT, 220))\n    text(labels[i], cx, cy + 330, size=20, color=TEXT, center=True)\n    text(str(r0) + ' infected', cx, cy + 360, size=23, color=WARN if i == 0 else HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21447,7 +21467,12 @@
           "insight_type": "trend",
           "role": "3 · WHAT 2.5 POINTS COSTS",
           "topic": "US measles cases per year",
-          "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000."
+          "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000.",
+          "scene": {
+            "mechanic": "outbreak-map-flare",
+            "concept": "a US map accumulates red outbreak flares year by year, flare count log-scaled to case count, exploding across 2025-2026 - a timeline dot-strip tracks progress underneath",
+            "code": "usmap = subject_image('outline map of the United States')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 380\nmw = 780\nmh = 480\nif usmap is not None:\n    paste(usmap, cx - mw // 2, cy - mh // 2, mw, mh)\nraw = reveal * n\ni = min(n - 1, int(raw))\nfrac_next = clamp(raw - i)\nv_now = lerp(values[i], values[min(i + 1, n - 1)], frac_next)\ntext(labels[i], cx, RTOP + 40, size=32, color=TEXT, center=True)\ntext(str(int(v_now)) + ' cases', cx, RTOP + 84, size=42, color=WARN, center=True)\nflares = max(1, int(24 * clamp(math.log(v_now + 1) / math.log(vmax + 1))))\nfor k in range(flares):\n    fx = cx - mw // 2 + (k * 97) % mw\n    fy = cy - mh // 2 + (k * 53) % mh\n    r = 5 + (k % 3) * 4\n    d.ellipse([fx - r, fy - r, fx + r, fy + r], fill=rgba(WARN, 190))\ngap = (RX1 - RX0 - 80) // max(1, n - 1)\nfor j in range(n):\n    x = RX0 + 40 + j * gap\n    on = j <= i\n    d.ellipse([x - 8, RBOT - 30, x + 8, RBOT - 14], fill=rgba(WARN if on else TEXT, 220 if on else 90))\n"
+          }
         }
       ]
     }
