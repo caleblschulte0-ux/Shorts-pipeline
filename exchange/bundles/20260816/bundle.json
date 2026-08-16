@@ -298,14 +298,432 @@
   "response_path": "exchange/bundles/20260816/response.json",
   "done_marker": "exchange/bundles/20260816/DONE",
   "counts": {
-    "packages": 0,
-    "requests": 0,
+    "packages": 6,
+    "requests": 8,
     "animations": 0,
-    "to_author": 6,
-    "channels_needing_a_brain": 2
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
-  "packages": [],
-  "requests": [],
+  "packages": [
+    {
+      "slug": "graph-panama-passed-suez",
+      "title": "The Panama Canal Just Passed The Suez",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-measles-1992-levels",
+      "title": "Measles Is Back At 1992 Levels",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-spacex-outlaunches-countries",
+      "title": "One Company Out-Launches Every Country",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-summer-box-office-4-billion",
+      "title": "Summer Movies Clawed Back To $4 Billion",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-break-room-company-property",
+      "title": "The Break Room Is Company Property. So We Emptied It.",
+      "script": "Our office manager decided the break room was a liability, so she posted a memo: the fridge and the counter are company property, and any personal item left in them would be removed and binned. And that was fine by me. Every single thing in that break room was personal. The coffee maker was mine. The kettle belonged to a woman in accounts. The mugs, the toaster, the tin of decent teabags, the fruit bowl somebody restocked out of her own pocket \u2014 all personal property, all carried out to our cars in a laundry bag by 5 p.m., exactly as instructed. By day three, forty people were walking to the petrol station for coffee and the manager was drinking hot water from a paper cup. She emailed a second memo asking us to please bring our things back. We brought back one thing: an order form. The company has bought the coffee ever since.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "posted a memo",
+          "query": "printed office memo",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "the fridge and the counter are company property",
+          "query": "office break room",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "The coffee maker was mine",
+          "query": "kitchen countertop appliance",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "the tin of decent teabags",
+          "query": "loose tea tin",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "carried out to our cars in a laundry bag",
+          "query": "canvas bag handles",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "by 5 p.m., exactly as instructed",
+          "query": "wall clock office",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "walking to the petrol station for coffee",
+          "query": "petrol station forecourt",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "She emailed a second memo",
+          "query": "email inbox icon",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 5,
+        "weak": 0,
+        "missing": 3,
+        "unknown": 0
+      },
+      "strong_fraction": 0.625,
+      "requested": [
+        "reddit-break-room-company-property-s3-f2b4b63ffc1e",
+        "reddit-break-room-company-property-s4-2c53d8c92513",
+        "reddit-break-room-company-property-s5-a6c7eb173b25"
+      ]
+    },
+    {
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "title": "The Scammer Wanted Gift Card Codes. He Got Codes.",
+      "script": "The call said my bank account had been compromised and the only way to protect my savings was to buy gift cards, which is the point where a sensible person hangs up. I did not hang up. I told him I was seventy-one and frightened and that I would need help finding the right shop, so he stayed on the line for two hours, coaching me down the aisle of a hardware store while I read him the codes off eleven cards. Every code I read was wrong by one digit. Every failure made him buy me more time by insisting on another card. What he did not know is that my other phone had been open to the card issuer's fraud team the whole time, and I was passing them the real numbers at the register as I bought them. They froze all eleven and flagged the account redeeming them. He rang back nine times. The last voicemail threatened to report me.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "my bank account had been compromised",
+          "query": "bank cards closeup",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "buy gift cards",
+          "query": "gift card rack",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "he stayed on the line for two hours",
+          "query": "speakerphone desk phone",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "the aisle of a hardware store",
+          "query": "hardware store aisle",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "Every code I read was wrong by one digit",
+          "query": "scratch card code",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "the real numbers at the register as I bought them",
+          "query": "cashier checkout register",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "They froze all eleven",
+          "query": "laptop banking screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "He rang back nine times",
+          "query": "mobile phone missed calls",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 3,
+        "weak": 0,
+        "missing": 5,
+        "unknown": 0
+      },
+      "strong_fraction": 0.375,
+      "requested": [
+        "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+        "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+        "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+        "reddit-gift-card-scam-wrong-digit-s6-185b8474b000",
+        "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "reddit-break-room-company-property-s3-f2b4b63ffc1e",
+      "safe_request_id": "reddit-break-room-company-property-s3-f2b4b63ffc1e",
+      "drive_filename": "20260816__reddit-break-room-company-property-s3-f2b4b63ffc1e.png",
+      "prompt_sha256": "bd8b537b15d5b148361c4059aeb223ebade3a44cd8e89bcb2a2b16dc0e4d5118",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-break-room-company-property-s3-f2b4b63ffc1e.json",
+      "slug": "reddit-break-room-company-property",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: loose tea tin. It accompanies the narration: \"the tin of decent teabags\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s4-2c53d8c92513",
+      "safe_request_id": "reddit-break-room-company-property-s4-2c53d8c92513",
+      "drive_filename": "20260816__reddit-break-room-company-property-s4-2c53d8c92513.png",
+      "prompt_sha256": "16b49572af6d537b74289b95b25b9b029b681b7b4ad46ac3ad543774c77d532b",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-break-room-company-property-s4-2c53d8c92513.json",
+      "slug": "reddit-break-room-company-property",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: canvas bag handles. It accompanies the narration: \"carried out to our cars in a laundry bag\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s5-a6c7eb173b25",
+      "safe_request_id": "reddit-break-room-company-property-s5-a6c7eb173b25",
+      "drive_filename": "20260816__reddit-break-room-company-property-s5-a6c7eb173b25.png",
+      "prompt_sha256": "b6db1519ed27bd9ebecd11414b8e7e18ef4bfcdd502002a6e451813940f38a78",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-break-room-company-property-s5-a6c7eb173b25.json",
+      "slug": "reddit-break-room-company-property",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: wall clock office. It accompanies the narration: \"by 5 p.m., exactly as instructed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+      "safe_request_id": "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+      "drive_filename": "20260816__reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d.png",
+      "prompt_sha256": "fa0906e610176f8a685ed74f4fac46d221dcd3efc650f0edf06fb5a62664630a",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d.json",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: speakerphone desk phone. It accompanies the narration: \"he stayed on the line for two hours\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+      "safe_request_id": "reddit-gift-card-scam-wrong-digit-s4-424727e7ced5",
+      "drive_filename": "20260816__reddit-gift-card-scam-wrong-digit-s4-424727e7ced5.png",
+      "prompt_sha256": "cb067cb514926fabb92e0a6f591f8198f6f0b9e8ae957f452f44cc0bfa58224d",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-gift-card-scam-wrong-digit-s4-424727e7ced5.json",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: scratch card code. It accompanies the narration: \"Every code I read was wrong by one digit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+      "safe_request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+      "drive_filename": "20260816__reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2.png",
+      "prompt_sha256": "1f60f8df8a0cf9291c37ac881bc0d316034638be10520df8512ad0da3b3c42b4",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2.json",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: cashier checkout register. It accompanies the narration: \"the real numbers at the register as I bought them\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s6-185b8474b000",
+      "safe_request_id": "reddit-gift-card-scam-wrong-digit-s6-185b8474b000",
+      "drive_filename": "20260816__reddit-gift-card-scam-wrong-digit-s6-185b8474b000.png",
+      "prompt_sha256": "5e42f4469f51c50abfaf831233bcc04554f6cc488869e620c3a31dc826406f7c",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-gift-card-scam-wrong-digit-s6-185b8474b000.json",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: laptop banking screen. It accompanies the narration: \"They froze all eleven\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e",
+      "safe_request_id": "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e",
+      "drive_filename": "20260816__reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e.png",
+      "prompt_sha256": "20b32ae78cf530481a2e6636de8e4a168f536a9debd901d6e809bbec5eb95f83",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e.json",
+      "slug": "reddit-gift-card-scam-wrong-digit",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: mobile phone missed calls. It accompanies the narration: \"He rang back nine times\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
@@ -431,7 +849,7 @@
       "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
     },
     "two_jobs": [
-      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but explainer do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -474,238 +892,6 @@
     "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
   },
   "authoring_requests": {
-    "trending": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260816",
-      "channel": "trending",
-      "reason": "only 0 of 6 packages exist for 20260816: the Claude authoring Routine did not run",
-      "authored_already": 0,
-      "target": 6,
-      "registry_target": 6,
-      "write": 6,
-      "mix": {
-        "graph_race": 4,
-        "reddit_story": 2
-      },
-      "retired_formats": [
-        "text_card"
-      ],
-      "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-      "where": {
-        "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-        "alternative": "Or commit one file per package to exchange/bundles/20260816/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-        "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-      },
-      "formats": {
-        "graph_race": {
-          "how_to_signal": "set \"format\": \"graph_race\"",
-          "renderer": "make_graph_race.py",
-          "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "y_label",
-            "duration",
-            "source",
-            "years",
-            "series",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-            "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-            "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-            "Prefer a dramatic crossover or collapse mid-video.",
-            "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-            "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-          ],
-          "media": {
-            "shots": false,
-            "chatgpt_supplies_images": false,
-            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-          },
-          "target_today": 4
-        },
-        "reddit_story": {
-          "how_to_signal": "omit the `format` field, set `subreddit`",
-          "renderer": "make_reddit_story.py",
-          "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-          "required": [
-            "subreddit",
-            "slug",
-            "title",
-            "hashtags",
-            "script",
-            "shots",
-            "punches",
-            "music_vibe"
-          ],
-          "subreddit_options": [
-            "pettyrevenge",
-            "MaliciousCompliance",
-            "ProRevenge",
-            "entitledparents",
-            "TalesFromTheCustomer",
-            "IDontWorkHereLady"
-          ],
-          "rules": [
-            "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-            "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-            "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-            "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-            "Do not add the Data/Explainer mascot; Trending is a separate channel."
-          ],
-          "media": {
-            "shots": true,
-            "chatgpt_supplies_images": true,
-            "shots_min": 6,
-            "shots_max": 8,
-            "per_shot": [
-              "phrase",
-              "query"
-            ],
-            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-          },
-          "target_today": 2
-        }
-      },
-      "hard_rules": [
-        "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-        "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-        "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-        "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-        "TOS-safe: no slurs, no explicit content, no gore.",
-        "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-        "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-        "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-      ],
-      "do_not_repeat": [
-        "Japan Just Lapped South Korea In Tourism",
-        "BYD Just Overtook Tesla In EV Sales",
-        "Americans Now Bet $167 Billion A Year On Sports",
-        "The Labubu Company's Revenue Just 8Xed",
-        "He Wanted Reply-All Confirmation. He Got It.",
-        "He Stopped Me At The Exit Every Visit. Big Mistake.",
-        "Weight-Loss Drugs Just Crushed Bariatric Surgery",
-        "One WNBA Team Now Outdraws The Whole League",
-        "The Electric Truck Lead Just Flipped Twice",
-        "China's Humanoid Robots Went From Hundreds To 50,000",
-        "Badge In For Every Room. Even The Bathroom.",
-        "Wrong Price? It's Free. Every Single Time.",
-        "China Just Passed Japan In Car Exports",
-        "Streaming Just Beat Cable AND Broadcast",
-        "The Airport That Knocked Atlanta Off The Map",
-        "Vinyl Is Outselling CDs Again",
-        "He Said Email Everything. So I Did.",
-        "She Wouldn't Believe I Don't Work Here. So I Helped.",
-        "Lilly Just Overtook Novo In The Weight-Loss Drug War",
-        "The Race To A Billion AI Users",
-        "Wolves Came Back. The Elk Paid For It.",
-        "The Year US Debt Beat The Whole Economy",
-        "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
-        "My Gym Wouldn't Let Me Cancel. So I Read The Contract.",
-        "Waymo Won The Robotaxi War. Cruise Didn't.",
-        "The Detour That Broke The Suez Canal",
-        "Vaccine-Preventable Diseases Are Roaring Back",
-        "Eggs Now Cost More Than Milk. Seriously.",
-        "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
-        "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
-        "Pickleball Is Catching Tennis. For Real.",
-        "BYD Just Passed Tesla in EV Sales",
-        "Canada's Wildfires Dwarfed America's in 2023",
-        "Solar Just Overtook Wind Power Worldwide",
-        "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
-        "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job."
-      ],
-      "levity": {
-        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-        "moves": [
-          {
-            "name": "the flat undercut",
-            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-            "example": "The chase lasted two hours. Top speed: twelve."
-          },
-          {
-            "name": "the mundane detail",
-            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-            "example": "He fled on foot, still holding the salad."
-          },
-          {
-            "name": "the understatement",
-            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-            "example": "This did not go well for the bees."
-          },
-          {
-            "name": "the callback kicker",
-            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-          },
-          {
-            "name": "the deadpan attribution",
-            "how": "Quote officialese straight and let it sit. Do not mock it.",
-            "example": "The report calls this 'an unplanned pond entry'."
-          }
-        ],
-        "never": [
-          "puns and wordplay",
-          "setup-then-punchline structure",
-          "'wait for it', 'plot twist', 'you won't believe'",
-          "exclamation marks",
-          "telling the viewer it was funny ('hilariously', 'comedy gold')",
-          "emoji, 'lol', 'lmao'",
-          "sarcasm aimed at a person rather than a situation",
-          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-        ],
-        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-      },
-      "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-      "read_first": [
-        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-        "docs/FALLBACKS.md"
-      ],
-      "media_contract": {
-        "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-        "shape": {
-          "shots": [
-            {
-              "phrase": "...exact substring of your script...",
-              "query": "...what the shot shows...",
-              "media": {
-                "status": "fulfilled",
-                "drive": {
-                  "file_id": "1AbC...",
-                  "folder_id": "1FolderXyz...",
-                  "filename": "<date>__authored-<slug>-s0.png",
-                  "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                  "sharing": "anyone_with_link"
-                },
-                "image": {
-                  "sha256": "...64 hex of the exact bytes...",
-                  "bytes": 1554380,
-                  "format": "png",
-                  "width": 1080,
-                  "height": 1080
-                }
-              }
-            }
-          ]
-        },
-        "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-        "verified_on_arrival": [
-          "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-          "Full pixel decode \u2014 an undecodable file is refused.",
-          "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-          "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-        ],
-        "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-        "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-        "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-      }
-    },
     "explainer": {
       "schema": "chatgpt-authoring-request/v1",
       "date": "20260816",
@@ -762,236 +948,5 @@
       }
     }
   },
-  "authoring_request": {
-    "schema": "chatgpt-authoring-request/v1",
-    "date": "20260816",
-    "channel": "trending",
-    "reason": "only 0 of 6 packages exist for 20260816: the Claude authoring Routine did not run",
-    "authored_already": 0,
-    "target": 6,
-    "registry_target": 6,
-    "write": 6,
-    "mix": {
-      "graph_race": 4,
-      "reddit_story": 2
-    },
-    "retired_formats": [
-      "text_card"
-    ],
-    "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-    "where": {
-      "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-      "alternative": "Or commit one file per package to exchange/bundles/20260816/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-      "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-    },
-    "formats": {
-      "graph_race": {
-        "how_to_signal": "set \"format\": \"graph_race\"",
-        "renderer": "make_graph_race.py",
-        "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "y_label",
-          "duration",
-          "source",
-          "years",
-          "series",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-          "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-          "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-          "Prefer a dramatic crossover or collapse mid-video.",
-          "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-          "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-        ],
-        "media": {
-          "shots": false,
-          "chatgpt_supplies_images": false,
-          "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-        },
-        "target_today": 4
-      },
-      "reddit_story": {
-        "how_to_signal": "omit the `format` field, set `subreddit`",
-        "renderer": "make_reddit_story.py",
-        "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-        "required": [
-          "subreddit",
-          "slug",
-          "title",
-          "hashtags",
-          "script",
-          "shots",
-          "punches",
-          "music_vibe"
-        ],
-        "subreddit_options": [
-          "pettyrevenge",
-          "MaliciousCompliance",
-          "ProRevenge",
-          "entitledparents",
-          "TalesFromTheCustomer",
-          "IDontWorkHereLady"
-        ],
-        "rules": [
-          "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-          "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-          "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-          "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-          "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-          "Do not add the Data/Explainer mascot; Trending is a separate channel."
-        ],
-        "media": {
-          "shots": true,
-          "chatgpt_supplies_images": true,
-          "shots_min": 6,
-          "shots_max": 8,
-          "per_shot": [
-            "phrase",
-            "query"
-          ],
-          "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-        },
-        "target_today": 2
-      }
-    },
-    "hard_rules": [
-      "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-      "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-      "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-      "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-      "TOS-safe: no slurs, no explicit content, no gore.",
-      "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-      "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-      "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-    ],
-    "do_not_repeat": [
-      "Japan Just Lapped South Korea In Tourism",
-      "BYD Just Overtook Tesla In EV Sales",
-      "Americans Now Bet $167 Billion A Year On Sports",
-      "The Labubu Company's Revenue Just 8Xed",
-      "He Wanted Reply-All Confirmation. He Got It.",
-      "He Stopped Me At The Exit Every Visit. Big Mistake.",
-      "Weight-Loss Drugs Just Crushed Bariatric Surgery",
-      "One WNBA Team Now Outdraws The Whole League",
-      "The Electric Truck Lead Just Flipped Twice",
-      "China's Humanoid Robots Went From Hundreds To 50,000",
-      "Badge In For Every Room. Even The Bathroom.",
-      "Wrong Price? It's Free. Every Single Time.",
-      "China Just Passed Japan In Car Exports",
-      "Streaming Just Beat Cable AND Broadcast",
-      "The Airport That Knocked Atlanta Off The Map",
-      "Vinyl Is Outselling CDs Again",
-      "He Said Email Everything. So I Did.",
-      "She Wouldn't Believe I Don't Work Here. So I Helped.",
-      "Lilly Just Overtook Novo In The Weight-Loss Drug War",
-      "The Race To A Billion AI Users",
-      "Wolves Came Back. The Elk Paid For It.",
-      "The Year US Debt Beat The Whole Economy",
-      "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
-      "My Gym Wouldn't Let Me Cancel. So I Read The Contract.",
-      "Waymo Won The Robotaxi War. Cruise Didn't.",
-      "The Detour That Broke The Suez Canal",
-      "Vaccine-Preventable Diseases Are Roaring Back",
-      "Eggs Now Cost More Than Milk. Seriously.",
-      "She Fined Me Over A Garden Gnome. So I Read Every Bylaw.",
-      "She Waved A Rival Store's Coupon At Me. I Just Called The Number.",
-      "Pickleball Is Catching Tennis. For Real.",
-      "BYD Just Passed Tesla in EV Sales",
-      "Canada's Wildfires Dwarfed America's in 2023",
-      "Solar Just Overtook Wind Power Worldwide",
-      "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
-      "She Wouldn't Stop Ordering Me Around. So I Started Doing The Job."
-    ],
-    "levity": {
-      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-      "moves": [
-        {
-          "name": "the flat undercut",
-          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-          "example": "The chase lasted two hours. Top speed: twelve."
-        },
-        {
-          "name": "the mundane detail",
-          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-          "example": "He fled on foot, still holding the salad."
-        },
-        {
-          "name": "the understatement",
-          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-          "example": "This did not go well for the bees."
-        },
-        {
-          "name": "the callback kicker",
-          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-        },
-        {
-          "name": "the deadpan attribution",
-          "how": "Quote officialese straight and let it sit. Do not mock it.",
-          "example": "The report calls this 'an unplanned pond entry'."
-        }
-      ],
-      "never": [
-        "puns and wordplay",
-        "setup-then-punchline structure",
-        "'wait for it', 'plot twist', 'you won't believe'",
-        "exclamation marks",
-        "telling the viewer it was funny ('hilariously', 'comedy gold')",
-        "emoji, 'lol', 'lmao'",
-        "sarcasm aimed at a person rather than a situation",
-        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-      ],
-      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-    },
-    "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-    "read_first": [
-      "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-      "data_learning/SCHULTE_MEDIA_BRAIN.md",
-      "docs/FALLBACKS.md"
-    ],
-    "media_contract": {
-      "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-      "shape": {
-        "shots": [
-          {
-            "phrase": "...exact substring of your script...",
-            "query": "...what the shot shows...",
-            "media": {
-              "status": "fulfilled",
-              "drive": {
-                "file_id": "1AbC...",
-                "folder_id": "1FolderXyz...",
-                "filename": "<date>__authored-<slug>-s0.png",
-                "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                "sharing": "anyone_with_link"
-              },
-              "image": {
-                "sha256": "...64 hex of the exact bytes...",
-                "bytes": 1554380,
-                "format": "png",
-                "width": 1080,
-                "height": 1080
-              }
-            }
-          }
-        ]
-      },
-      "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-      "verified_on_arrival": [
-        "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-        "Full pixel decode \u2014 an undecodable file is refused.",
-        "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-        "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-      ],
-      "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-      "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-      "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-    }
-  }
+  "authoring_request": null
 }
