@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260815",
+  "updated": "20260816",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -282,6 +282,36 @@
       "because": "Confirmed real: judge_loop.run is unwired (scripts/produce.py only imports its lower-level helpers -- run_judges/combine/compare/next_escalation -- never .run itself), and it has drifted from produce.py's path in two ways: JudgingStore.open_attempt() hashes the artifact BEFORE render_fn runs, and a failed render is written to the store but never added to the verdicts dict decide() sees, so three passing required judges can yield advance=True even when render_fn returned ok=false. Real bug, but the actual fix is an architecture call (converge produce.py onto judge_loop.run vs. formally retire judge_loop.run and migrate its useful comparison/escalation logic) that deserves a dedicated session, not a rushed patch competing with today's one-item budget. Parking 30 days; revisit after items 1-3 land.",
       "history": [],
       "revisit_after": "20260914"
+    },
+    "612efa85efcb": {
+      "verdict": "in_progress",
+      "date": "20260816",
+      "because": "picked up \u2014 fix in daily.yml preflight (checks exchange/bundles/<date>/phase_b_report.json exists before rendering on a workflow_run trigger) + tests/test_split_worker.py, branch claude/doctor-20260816",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260816",
+          "because": "Confirmed: exchange_phase_b.py backstop_status() returns ready=false pre-08:30-Central but main() still returns 0 (line ~406), so the early candidate's workflow steps all exit clean and the job concludes success with nothing applied. daily.yml's workflow_run trigger gates only on conclusion=success (no readiness check), so it can fire off that no-op and render an unfinished day early in winter. Fixing this in this run: make the workflow only report a render-capable success when Phase B actually applied something."
+        }
+      ]
+    },
+    "09d56163c745": {
+      "verdict": "doing",
+      "date": "20260816",
+      "because": "Confirmed: chatgpt_watchdog.yml line 80 pipes ci_commit_state.sh failure into ::warning:: and the Fail step (line 85) only triggers on judge.rc!=0, so a commit/push race on a clean day leaves the workflow green with no verdict record. Real gap, but lower urgency than the Phase B early-render bug (which can ship an incomplete day live); queued for a future run rather than built in this same session so the Phase B fix gets full attention.",
+      "history": []
+    },
+    "51e40ccf5e7f": {
+      "verdict": "doing",
+      "date": "20260816",
+      "because": "Confirmed: CLAUDE.md lines 229, 251-256 and 264-269 give three different backstop times (06:15, 08:30 Central via 30/13+30/14, and 12:45 UTC) for the same schedule, and docs/FALLBACKS.md:86 still names the retired 12:45 UTC cron. Small, mechanical fix; queued behind the critical Phase B bug for this run but cheap enough to take next.",
+      "history": []
+    },
+    "825a41037aae": {
+      "verdict": "doing",
+      "date": "20260816",
+      "because": "Confirmed: docs/CHATGPT_MEDIA_HANDOFF.md still calls itself 'the only file a ChatGPT task needs to read' and hands out a media-dropbox scheduled-task prompt that nothing consumes, with no pointer to the live contract in doctor/PROMPTS.md sections 4-5. Accepting the narrow fix (mark it superseded, point to the live contract) rather than the full lifecycle-metadata proposal, which is more machinery than this one stale doc needs right now.",
+      "history": []
     }
   }
 }
