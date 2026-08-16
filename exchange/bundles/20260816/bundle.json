@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260816/DONE",
   "counts": {
     "packages": 6,
-    "requests": 8,
+    "requests": 9,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -419,21 +419,22 @@
           "shot_index": 7,
           "phrase": "She emailed a second memo",
           "query": "email inbox icon",
-          "has_media": true,
-          "verdict": "strong"
+          "has_media": false,
+          "verdict": "missing"
         }
       ],
       "media_health": {
-        "strong": 5,
+        "strong": 4,
         "weak": 0,
-        "missing": 3,
+        "missing": 4,
         "unknown": 0
       },
-      "strong_fraction": 0.625,
+      "strong_fraction": 0.5,
       "requested": [
         "reddit-break-room-company-property-s3-f2b4b63ffc1e",
         "reddit-break-room-company-property-s4-2c53d8c92513",
-        "reddit-break-room-company-property-s5-a6c7eb173b25"
+        "reddit-break-room-company-property-s5-a6c7eb173b25",
+        "reddit-break-room-company-property-s7-2b77c06eec2b"
       ]
     },
     {
@@ -577,6 +578,32 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: wall clock office. It accompanies the narration: \"by 5 p.m., exactly as instructed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-break-room-company-property-s7-2b77c06eec2b",
+      "safe_request_id": "reddit-break-room-company-property-s7-2b77c06eec2b",
+      "drive_filename": "20260816__reddit-break-room-company-property-s7-2b77c06eec2b.png",
+      "prompt_sha256": "1ca02eca638f87c7054ecb0b68dcf23be01d3ae4f939649b41802c3d17431d82",
+      "checkpoint_path": "exchange/bundles/20260816/media-progress/reddit-break-room-company-property-s7-2b77c06eec2b.json",
+      "slug": "reddit-break-room-company-property",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: email inbox icon. It accompanies the narration: \"She emailed a second memo\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
