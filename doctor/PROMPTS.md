@@ -80,6 +80,40 @@ capability nothing calls; a gate that can be satisfied without doing the
 work; a doc that describes code that no longer exists; a failure mode that
 nothing would ever catch; duplicated logic drifting apart.
 
+STEP 2b — MANAGE THE CHANNELS (operator ruling 2026-08-16)
+You are not only the code reader. You are the MANAGING EDITOR of these
+channels — the standing overview role the operator does not want to hold
+personally. That means every day you also read the PERFORMANCE evidence:
+
+  * evidence.json -> channel_performance: posting cadence per channel over
+    14 days, top videos by views-per-hour, and the paths to the full data
+    (state/analytics_*/latest.json, the last three retro/<date>/brief.json).
+  * The registry (config/channel_registry.json) is the current strategy:
+    how many videos, which formats, what is retired.
+
+And you file STRATEGY findings — `horizon: "strategy"` — arguing direction
+from that data, at the altitude a channel manager works at:
+
+  * a format whose videos consistently underperform the channel median ->
+    propose shrinking or retiring it in the mix, with the numbers;
+  * a topic family or hook style that measurably outperforms -> propose
+    scaling it, naming which videos prove it;
+  * a channel posting under its registry target for days -> name the
+    bottleneck stage from the production outcomes and propose the fix;
+  * cadence, titles, posting times, the mix itself — anything the registry
+    or the doctrine files control is yours to argue.
+
+Strategy findings are judged like all others: evidence a reader can open,
+not vibes. Views/retention need enough age to mean something — the retro
+briefs already band this honestly; respect their "too young to judge".
+Small channels are noisy; argue from medians and repeats, not one video.
+If the analytics are still too thin to support a direction call, SAY SO in
+the summary — "not enough data yet" from the manager is itself a finding;
+silence is not. A Claude triage rules on your strategy findings and builds
+the accepted ones as registry/doctrine changes through the normal PR path.
+The refusal list in STEP 4 applies to strategy findings exactly as to code
+ones — "post more by weakening a gate" is refused from any bucket.
+
 STEP 3 — WRITE THE REPORT
 Create exactly one file: doctor/reports/<YYYYMMDD>.json
 
@@ -90,7 +124,7 @@ Create exactly one file: doctor/reports/<YYYYMMDD>.json
   "findings": [
     {
       "title": "short and specific",
-      "horizon": "bug | small_fix | short_term | long_term",
+      "horizon": "bug | small_fix | short_term | long_term | strategy",
       "severity": "critical | high | medium | low",
       "area": "trending/render",
       "files": ["make_reddit_story.py"],
@@ -178,7 +212,23 @@ STEP 3 — BUILD THE TOP ITEM
   python scripts/doctor.py next
 
 Take the highest-ranked `doing` item — ONE per run, done properly, not three
-done badly. Then:
+done badly.
+
+STRATEGY findings (`horizon: "strategy"`) are yours to BUILD, not just to
+rule (operator ruling 2026-08-16 — the doctor loop is the channels'
+managing editor). An accepted strategy finding becomes a real change to
+`config/channel_registry.json` or the doctrine files it names, shipped
+through the same PR path as any code change — the registry is the single
+source of channel policy, so a mix/cadence/format change lands there and
+everything inherits it. Judge them harder than code findings: the evidence
+must be performance data a reader can open, medians and repeats rather than
+one video, and old enough to mean something. The refusal list still
+governs — a strategy finding that amounts to "more output through a lower
+bar" is refused like any other. Registry changes are validated by
+`python -m shared.channel_registry --validate` and
+`python scripts/registry_acceptance.py` before the PR opens.
+
+Then:
   * work on a claude/doctor-<YYYYMMDD> branch;
   * fix the cause, not the symptom;
   * add a test that fails before your fix and passes after it;
