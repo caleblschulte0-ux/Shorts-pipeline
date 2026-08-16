@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-panama-passed-suez",
+  "title": "The Panama Canal Just Passed The Suez",
+  "hook": "The Suez lost half its ships.",
+  "y_label": "Ship transits per year",
+  "duration": 13,
+  "source": "Suez Canal Authority annual navigation reports, calendar-year vessel transits: 2019 18,880; 2020 18,830; 2021 20,694; 2022 23,851; 2023 26,434 (all-time record); 2024 13,213 (a ~50% collapse after Houthi attacks on Red Sea shipping pushed carriers around the Cape of Good Hope); 2025 12,758. Panama Canal Authority (ACP) fiscal-year transits of deep-draft and small commercial vessels: FY2019 ~13,785; FY2020 ~13,369; FY2021 13,342; FY2022 ~14,239; FY2023 ~14,080; FY2024 11,240 (Gatun Lake drought forced booking-slot cuts); FY2025 ~13,400 (ACP reported over 13,400 transits, +19.3% year over year). The two series use different accounting years (Suez calendar, Panama Oct-Sep fiscal) and Panama's FY2019/FY2020 figures are rounded; the crossover in 2025 is the point and it is real in both datasets. Context: attacks on commercial vessels in the Red Sea and Gulf of Aden are continuing, with Yemen's Mokha port suspending operations after strikes reported by Reuters in mid-August 2026.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Suez Canal",
+      "color": "#ff4d6d",
+      "icon": "EG",
+      "values": [
+        18880,
+        18830,
+        20694,
+        23851,
+        26434,
+        13213,
+        12758
+      ]
+    },
+    {
+      "name": "Panama Canal",
+      "color": "#4a90e2",
+      "icon": "PA",
+      "values": [
+        13785,
+        13369,
+        13342,
+        14239,
+        14080,
+        11240,
+        13400
+      ]
+    }
+  ],
+  "hashtags": [
+    "suezcanal",
+    "panamacanal",
+    "redsea",
+    "shipping",
+    "houthi",
+    "supplychain",
+    "globaltrade",
+    "maritime",
+    "capeofgoodhope",
+    "logistics",
+    "containership",
+    "chokepoint"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

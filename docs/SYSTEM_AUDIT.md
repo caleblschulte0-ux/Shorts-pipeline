@@ -879,4 +879,45 @@ If the connector's write path is unavailable to those tasks, they will keep
 failing — but they will now fail **loudly, by name, within the hour**,
 instead of looking idle until the next morning.
 
+## Seventh pass, 2026-08-16: Rule 2's quirky bucket had nowhere left to land
+
+The morning Routine tried to author today's trending slate straight from
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` Rule 2 ("at least 4 of 6 picks from the
+Quirky/Animal/Disaster bucket") and it dead-ended on every attempt: the live
+mix is 4x `graph_race` + 2x `reddit_story` (set 2026-07-31), and neither
+format is a quirky-news pick. `graph_race` is a head-to-head numeric
+comparison gated by `engines.chart_race.assess` (needs a real swing/
+crossover across years of two comparable series) and `reddit_story` is an
+original first-person narrative per `authoring_brief.py:FORMAT_SPECS`
+(workplace/revenge/karma — no news subject at all). Four fresh disaster
+candidates (a wildfire, a river-crest record, a tanker spill, a drought)
+were tried and each failed `chart_race.assess` on swing size or on having
+only 2-3 defensible year values. Rule 2 is exactly the old single-format
+doctrine the 2026-07-31 ruling was supposed to retire everywhere, and it had
+been landing in `daily.yml`'s prompt only — `CLAUDE_ROUTINE_INSTRUCTIONS.md`
+itself still told every session to force-fit a bucket that structurally
+cannot exist in either current format.
+
+Separately, the same read surfaced Rule 1 telling authors to write literal
+date-anchored language ("happened today / this morning / just announced")
+into the package — which `shared/package_schema.py:staleness_problems`
+mechanically refuses. The instructions were telling authors to write
+exactly what the promotion gate quarantines.
+
+**Fixed in the same change**: `CLAUDE_ROUTINE_INSTRUCTIONS.md` Rule 1 now
+says to keep recency evidence out of the narrative text (title/script/hook/
+punches) and into metadata instead; Rule 2 is marked as applying only if a
+quirky-news-shaped format returns to the mix, with each live format's real
+topic-selection gate named explicitly (chart-race swing/crossover for
+`graph_race`, non-generic original narrative for `reddit_story`). Today's
+slate was authored against the real gates, not the stale bucket rule — see
+`state/trending_packages/20260816/`.
+
+**Not fixed here, deliberately**: whether the trending slate should regain
+some other topic-selection texture beyond "clears the format gate" (e.g. a
+preference among otherwise-eligible `graph_race` topics, or a tone/subject
+rule for `reddit_story`) is an editorial call the operator hasn't made for
+the new formats yet. This pass only removed doctrine that contradicted the
+code; it did not invent a replacement editorial policy.
+
 Suite: 938 → **962 tests**.
