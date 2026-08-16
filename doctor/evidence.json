@@ -1840,16 +1840,140 @@
     }
   ],
   "recent_commits": [
-    "0e5aa87 2026-08-15 doctor: findings for 20260815",
-    "2e33874 2026-08-15 retro: brief + triage for 20260815 [skip ci]"
+    "ef2c52f 2026-08-16 daily.yml: don't render on Phase B's benign no-op candidate (#281)",
+    "2c61cdd 2026-08-16 exchange: phase A bundle for 20260816 [skip ci]"
   ],
+  "channel_performance": {
+    "trending": {
+      "posted_by_day_14d": {
+        "2026-08-02": 5,
+        "2026-08-03": 2,
+        "2026-08-05": 1,
+        "2026-08-06": 2,
+        "2026-08-07": 2,
+        "2026-08-08": 1,
+        "2026-08-09": 1,
+        "2026-08-10": 2,
+        "2026-08-12": 2,
+        "2026-08-13": 1,
+        "2026-08-14": 1,
+        "2026-08-15": 2
+      },
+      "total_posted": 252
+    },
+    "explainer": {
+      "posted_by_day_14d": {
+        "2026-08-13": 1,
+        "2026-08-14": 2
+      },
+      "total_posted": 194
+    },
+    "third": {
+      "posted_by_day_14d": {
+        "2026-08-02": 4,
+        "2026-08-03": 3,
+        "2026-08-04": 6,
+        "2026-08-05": 8,
+        "2026-08-06": 8,
+        "2026-08-07": 4,
+        "2026-08-08": 7,
+        "2026-08-09": 5,
+        "2026-08-10": 8,
+        "2026-08-11": 9,
+        "2026-08-12": 6,
+        "2026-08-13": 8,
+        "2026-08-14": 6,
+        "2026-08-15": 8
+      },
+      "total_posted": 288
+    },
+    "analytics_curiosity": {
+      "videos": 1,
+      "top_by_vph": [
+        {
+          "title": "The Deepest Hole on Earth Is Welded Shut",
+          "vph": 0.0,
+          "views": 0
+        }
+      ],
+      "full_data": "state/analytics_curiosity/latest.json"
+    },
+    "analytics_explainer": {
+      "videos": 156,
+      "top_by_vph": [
+        {
+          "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
+          "vph": 0.0,
+          "views": 42
+        },
+        {
+          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
+          "vph": 0.0,
+          "views": 21
+        },
+        {
+          "title": "World Hunger Rose Back To 8.5% After 13 Years Of Falling",
+          "vph": 0.0,
+          "views": 28
+        },
+        {
+          "title": "Hottest Planets",
+          "vph": 0.0,
+          "views": 412
+        },
+        {
+          "title": "Probability In Everyday Life",
+          "vph": 0.0,
+          "views": 229
+        }
+      ],
+      "full_data": "state/analytics_explainer/latest.json"
+    },
+    "analytics_third": {
+      "videos": 111,
+      "top_by_vph": [
+        {
+          "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
+          "vph": 0.0,
+          "views": 236
+        },
+        {
+          "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
+          "vph": 0.0,
+          "views": 108
+        },
+        {
+          "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+          "vph": 0.0,
+          "views": 146
+        },
+        {
+          "title": "Plaqueboymax Warns Everyone He's About To Get Feisty",
+          "vph": 0.0,
+          "views": 95
+        },
+        {
+          "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous ",
+          "vph": 0.0,
+          "views": 614
+        }
+      ],
+      "full_data": "state/analytics_third/latest.json"
+    },
+    "retro_briefs": [
+      "retro/20260813/brief.json",
+      "retro/20260814/brief.json",
+      "retro/20260815/brief.json"
+    ],
+    "format_scoreboard": "python scripts/format_scoreboard.py"
+  },
   "open_backlog": [
     {
       "signature": "612efa85efcb",
       "title": "The early Phase B candidate still hands an unfinished day to Daily",
       "horizon": "bug",
       "severity": "critical",
-      "ruling": "new"
+      "ruling": "in_progress"
     },
     {
       "signature": "69a886343361",
@@ -1919,7 +2043,7 @@
       "title": "The watchdog can go green without preserving its verdict record",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
@@ -1940,7 +2064,7 @@
       "title": "Current runbooks still prescribe the removed Phase B schedule",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "e02d4cf673bd",
@@ -1975,7 +2099,7 @@
       "title": "Superseded task contracts remain publishable as current instructions",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
