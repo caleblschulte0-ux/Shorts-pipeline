@@ -21543,7 +21543,12 @@
           "insight_type": "comparison",
           "role": "3 · THE WHY",
           "topic": "gold buying, before vs after 2022",
-          "say": "Because in 2022, the West froze Russia's dollar reserves. Every other central bank watched, and started buying the one reserve nobody can freeze: 863 tonnes in 2025 alone."
+          "say": "Because in 2022, the West froze Russia's dollar reserves. Every other central bank watched, and started buying the one reserve nobody can freeze: 863 tonnes in 2025 alone.",
+          "scene": {
+            "mechanic": "frozen-vault-gold-surge",
+            "concept": "a frosted 'frozen reserves' stack of gold bars stays icy and short on the pre-2022 side while an unfrozen stack surges taller on the 2025 side as the frost visibly thaws off with reveal",
+            "code": "bar = subject_image('gold bar')\nv0 = values[0]; v1 = values[1]\nbase_y = RBOT - 100\nbw, bh = 200, 66\ncols = [(RX0 + 220, v0, labels[0], False), (RX1 - 220, v1, labels[1], True)]\nfor cx, v, lab, surge in cols:\n    frac = clamp(v / vmax) * reveal\n    stacks = max(1, int(frac * 10))\n    top_y = base_y\n    for s in range(stacks):\n        y1 = base_y - s * (bh - 8)\n        y0 = y1 - bh\n        top_y = min(top_y, y0)\n        if bar is not None:\n            paste(bar, cx - bw // 2, y0, bw, bh)\n        else:\n            d.rounded_rectangle([cx - bw // 2, y0, cx + bw // 2, y1], radius=10, fill=rgba(HIGHLIGHT, 220))\n    if not surge:\n        frost = int(120 * (1 - clamp(reveal * 1.4)))\n        if frost > 0:\n            d.rectangle([cx - bw // 2 - 14, top_y - 10, cx + bw // 2 + 14, top_y + frost], fill=rgba((170, 220, 255), 110))\n    text(str(int(v)) + ' t/yr', cx, base_y + 34, size=42, color=ACCENT if surge else TEXT, center=True)\n    text(lab, cx, base_y + 82, size=26, color=TEXT, center=True)\ntext('central bank gold purchases', RX0 + 20, RTOP + 70, size=32, color=TEXT)\n"
+          }
         }
       ]
     },
@@ -21598,7 +21603,12 @@
           "insight_type": "share",
           "role": "2 · THE SHARE",
           "topic": "cables vs satellites, share of internet traffic",
-          "say": "And it's not a backup plan. Ninety-five percent of the world's international internet traffic runs through those cables, not satellites."
+          "say": "And it's not a backup plan. Ninety-five percent of the world's international internet traffic runs through those cables, not satellites.",
+          "scene": {
+            "mechanic": "cable-vs-satellite-gauge-duel",
+            "concept": "two vertical gauges fill upward to their traffic share, a thick glowing cable cross-section towering full while a tiny satellite gauge barely rises off the floor",
+            "code": "cable = subject_image('fiber optic cable cross section')\nsat = subject_image('satellite')\nv0 = values[0]; v1 = values[1]\nbase_y = RBOT - 120\ngx0, gx1 = RX0 + 260, RX1 - 260\ngw, gh = 160, 760\nfor cx, v, img, lab, col in ((gx0, v0, cable, labels[0], ACCENT), (gx1, v1, sat, labels[1], WARN)):\n    x0 = cx - gw // 2\n    d.rounded_rectangle([x0, base_y - gh, x0 + gw, base_y], radius=24, outline=rgba(TEXT, 200), width=5)\n    frac = clamp(v / 100.0) * reveal\n    fh = int(gh * frac)\n    d.rounded_rectangle([x0, base_y - fh, x0 + gw, base_y], radius=24, fill=rgba(col, 200))\n    if img is not None:\n        paste(img, x0 - 20, base_y - fh - 140, gw + 40, 140)\n    text(str(int(v)) + '%', cx, base_y + 34, size=46, color=col, center=True)\n    text(lab, cx, base_y + 84, size=24, color=TEXT, center=True)\ntext('share of international internet traffic', RX0 + 20, RTOP + 70, size=30, color=TEXT)\n"
+          }
         },
         {
           "source": "offline",
@@ -21673,7 +21683,12 @@
           "insight_type": "comparison",
           "role": "2 · THE CLIFF",
           "topic": "muscle loss rate, before vs after 70",
-          "say": "And it doesn't stay steady. You lose about 4 percent a decade in your 30s, 40s and 50s -- then it jumps to 18 a decade after 70."
+          "say": "And it doesn't stay steady. You lose about 4 percent a decade in your 30s, 40s and 50s -- then it jumps to 18 a decade after 70.",
+          "scene": {
+            "mechanic": "muscle-cliff-drop",
+            "concept": "a muscular silhouette walks down a gentle ramp scaled to the 4%-per-decade slope through the 30s-50s, then the ramp breaks into a sheer cliff at 70 where the same figure plunges at the much steeper 18%-per-decade rate",
+            "code": "body = subject_image('muscular human silhouette')\nv0 = values[0]; v1 = values[1]\ngx0, gx1 = RX0 + 20, RX1 - 20\nmid_x = gx0 + int((gx1 - gx0) * 0.55)\ntop_y = RTOP + 140\nramp_end_y = top_y + int(180 * clamp(v0 / 20.0))\nprog = clamp(reveal)\ncliff_end_y = ramp_end_y + int(420 * clamp(v1 / 20.0) * clamp((prog - 0.4) / 0.6))\nd.line([gx0, top_y, mid_x, ramp_end_y], fill=rgba(TEXT, 210), width=8)\nif prog > 0.35:\n    d.line([mid_x, ramp_end_y, gx1, cliff_end_y], fill=rgba(WARN, 230), width=10)\nwalker_t = clamp(prog * 1.4)\nif walker_t <= 0.5:\n    wx = lerp(gx0, mid_x, walker_t / 0.5)\n    wy = lerp(top_y, ramp_end_y, walker_t / 0.5)\nelse:\n    wx = lerp(mid_x, gx1, (walker_t - 0.5) / 0.5)\n    wy = lerp(ramp_end_y, cliff_end_y, (walker_t - 0.5) / 0.5)\nif body is not None:\n    paste(body, int(wx) - 60, int(wy) - 150, 120, 150)\ntext(str(v0) + '%/decade  ages 30-70', gx0, top_y - 50, size=30, color=TEXT)\ntext(str(v1) + '%/decade  after 70', gx1 - 340, cliff_end_y + 40, size=32, color=WARN)\n"
+          }
         },
         {
           "source": "offline",
@@ -21684,7 +21699,12 @@
           "insight_type": "comparison",
           "role": "3 · THE FIX",
           "topic": "sarcopenia, before vs after resistance training",
-          "say": "Here's the part nobody tells you: one 12-week resistance training study took sarcopenia rates from 35 percent of the group down to zero."
+          "say": "Here's the part nobody tells you: one 12-week resistance training study took sarcopenia rates from 35 percent of the group down to zero.",
+          "scene": {
+            "mechanic": "rep-count-cure-grid",
+            "concept": "a 40-icon grid of people starts 35% shaded red for sarcopenia and clears to zero red as a pumping barbell counts up through 12 weeks of training",
+            "code": "person = subject_image('person silhouette')\nbarbell = subject_image('barbell')\nv0 = values[0]; v1 = values[1]\ncols, rows = 10, 4\ngx0, gy0 = RX0 + 40, RTOP + 140\ncw = (RX1 - RX0 - 80) // cols\nch = 90\ntotal = cols * rows\naffected0 = int(round(total * v0 / 100.0))\naffected_now = max(0, int(round(lerp(affected0, 0, reveal))))\nfor i in range(total):\n    cx = gx0 + (i % cols) * cw + cw // 2\n    cy = gy0 + (i // cols) * ch\n    red = i < affected_now\n    if person is not None:\n        paste(person, cx - 26, cy, 52, ch - 10)\n        if red:\n            d.rectangle([cx - 30, cy - 4, cx + 30, cy + ch - 6], fill=rgba(WARN, 70))\n    else:\n        d.ellipse([cx - 20, cy, cx + 20, cy + 40], fill=rgba(WARN if red else TEXT, 200))\nif barbell is not None:\n    bob = int(20 * math.sin(reveal * 6.283 * 4))\n    paste(barbell, RX0 + 60, RBOT - 220 + bob, 380, 100)\nweek = int(clamp(reveal) * 12)\ntext(str(week) + ' weeks of training', RX0 + 60, RBOT - 140, size=34, color=TEXT)\npct_now = round(v0 - (v0 - v1) * clamp(reveal), 1)\ntext(str(pct_now) + '% still sarcopenic', RX0 + 40, RTOP + 60, size=36, color=WARN if pct_now > 0.5 else HIGHLIGHT)\n"
+          }
         }
       ]
     },
@@ -21719,7 +21739,12 @@
           "insight_type": "comparison",
           "role": "1 · THE PRICE",
           "topic": "saffron vs black pepper, price per gram",
-          "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more."
+          "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more.",
+          "scene": {
+            "mechanic": "price-scale-tip",
+            "concept": "a balance beam scale with a pile of peppercorns on one pan and a pile of saffron threads on the other tips hard toward the saffron side as reveal builds, dramatizing the ~750x price gap",
+            "code": "pepper = subject_image('black peppercorns pile')\nsaffron = subject_image('saffron threads pile')\nv0 = values[0]; v1 = values[1]\ncx = (RX0 + RX1) // 2\nfulcrum_y = RTOP + 420\nbeam_len = 380\ntilt = lerp(0, 22, reveal)\nang = math.radians(tilt)\nlx = cx - int(beam_len * math.cos(ang)); ly = fulcrum_y - int(beam_len * math.sin(ang))\nrx = cx + int(beam_len * math.cos(ang)); ry = fulcrum_y + int(beam_len * math.sin(ang))\nd.polygon([(cx, fulcrum_y - 200), (cx - 30, fulcrum_y), (cx + 30, fulcrum_y)], fill=rgba(TEXT, 220))\nd.line([lx, ly, rx, ry], fill=rgba(TEXT, 230), width=10)\npan_w, pan_h = 220, 60\nif pepper is not None:\n    paste(pepper, lx - pan_w // 2, ly + 10, pan_w, pan_h)\nelse:\n    d.ellipse([lx - 60, ly, lx + 60, ly + 40], fill=rgba(TEXT, 200))\nif saffron is not None:\n    paste(saffron, rx - pan_w // 2, ry + 10, pan_w, pan_h)\nelse:\n    d.ellipse([rx - 60, ry, rx + 60, ry + 40], fill=rgba(WARN, 200))\ntext('$' + str(v0) + '/g', lx, ly + 90, size=30, color=TEXT, center=True)\ntext('$' + str(v1) + '/g', rx, ry + 90, size=34, color=WARN, center=True)\nmult = int(round(v1 / v0)) if v0 else 0\ntext(str(mult) + 'x more expensive', RX0 + 30, RTOP + 70, size=36, color=ACCENT)\n"
+          }
         },
         {
           "source": "offline",
@@ -21731,7 +21756,12 @@
           "ascending": false,
           "role": "2 · THE RANKING",
           "topic": "spices ranked by price per gram",
-          "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars."
+          "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars.",
+          "scene": {
+            "mechanic": "spice-price-ladder",
+            "concept": "five spice jars climb a log-scaled staircase of rising height, saffron alone lit by a spotlight beam at the peak",
+            "code": "jar = subject_image('spice jar')\ncols = n\ngx0 = RX0 + 20\ngw = (RX1 - RX0 - 40) // max(1, cols)\nbase_y = RBOT - 100\nmaxlog = math.log(max(values) + 1)\nfor i in range(cols):\n    v = values[i]\n    x = gx0 + i * gw\n    frac = clamp(math.log(v + 1) / maxlog) * reveal\n    h = int(760 * frac)\n    top_y = base_y - h\n    step_col = WARN if i == cols - 1 else TEXT\n    d.rounded_rectangle([x + 10, top_y, x + gw - 10, base_y], radius=14, fill=rgba(step_col, 90 if i != cols - 1 else 210))\n    if jar is not None:\n        paste(jar, x + gw // 2 - 45, top_y - 100, 90, 100)\n    text('$' + str(v), x + gw // 2, top_y - 116, size=24, color=step_col, center=True)\n    text(labels[i], x + gw // 2, base_y + 20, size=20, color=TEXT, center=True)\nif reveal > 0.7:\n    px = gx0 + (cols - 1) * gw + gw // 2\n    d.polygon([(px - 90, RTOP), (px + 90, RTOP), (px + 30, base_y - 760), (px - 30, base_y - 760)], fill=rgba(WARN, 40))\ntext('most expensive spices ($/gram)', RX0 + 20, RTOP + 40, size=28, color=TEXT)\n"
+          }
         },
         {
           "source": "offline",
@@ -21742,7 +21772,12 @@
           "insight_type": "comparison",
           "role": "3 · THE WHY",
           "topic": "hand-harvest labor per pound",
-          "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound."
+          "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound.",
+          "scene": {
+            "mechanic": "machine-vs-hand-harvest-split",
+            "concept": "a split screen: a fast machine strips pepper on the left barely filling an hours bar, a hand plucks a single saffron flower on the right while its hours bar climbs far higher",
+            "code": "machine = subject_image('spice harvesting machine')\nhand = subject_image('hand picking saffron flower')\nv0 = values[0]; v1 = values[1]\nmidx = (RX0 + RX1) // 2\nif machine is not None:\n    paste(machine, RX0 + 40, RTOP + 160, midx - RX0 - 80, 420)\nif hand is not None:\n    paste(hand, midx + 40, RTOP + 160, RX1 - midx - 80, 420)\nd.line([midx, RTOP + 40, midx, RBOT - 260], fill=rgba(TEXT, 160), width=4)\nhrs0 = round(lerp(0, v0, reveal), 1)\nhrs1 = round(lerp(0, v1, reveal), 1)\nbar_top = RTOP + 620\nbar_h = 140\nw0 = int((midx - RX0 - 80) * clamp(v0 / v1))\nw1 = midx - RX0 - 80\nd.rounded_rectangle([RX0 + 40, bar_top, RX0 + 40 + int(w0 * clamp(reveal)), bar_top + bar_h], radius=16, fill=rgba(HIGHLIGHT, 210))\nd.rounded_rectangle([midx + 40, bar_top, midx + 40 + int(w1 * clamp(reveal)), bar_top + bar_h], radius=16, fill=rgba(WARN, 220))\ntext(str(hrs0) + ' hrs/lb', RX0 + 50, bar_top + bar_h + 30, size=32, color=HIGHLIGHT)\ntext(str(hrs1) + ' hrs/lb', midx + 50, bar_top + bar_h + 30, size=34, color=WARN)\ntext(labels[0], RX0 + 40, RTOP + 100, size=26, color=TEXT)\ntext(labels[1], midx + 40, RTOP + 100, size=26, color=TEXT)\n"
+          }
         }
       ]
     }
