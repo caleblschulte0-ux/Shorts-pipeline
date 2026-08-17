@@ -166,3 +166,17 @@ class TestCutoutRetries(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestExplainerVerdictsSurviveTheRunner(unittest.TestCase):
+    """Found while verifying the rotation: explainer's persist step did not
+    include the showrunner ledger, so every explainer verdict died with the
+    runner. The rotation, repair distinctness and the doctor's evidence all
+    read that ledger — they were half-blind for exactly the channel that
+    needed them. (Trending was covered by daily.yml's blanket `state/`.)"""
+
+    def test_the_ledger_is_in_the_persist_list(self):
+        src = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
+        persist = src.split("explainer: update posted log", 1)[1].split(
+            "shell:", 1)[0]
+        self.assertIn("state/showrunner_verdicts.jsonl", persist)
