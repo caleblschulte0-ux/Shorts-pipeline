@@ -1,0 +1,83 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "reddit-quiet-hours-vacuum",
+  "title": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
+  "script": "My upstairs neighbor blasts music until 2 a.m. most nights. Our lease has one rule everyone signed: quiet hours, 10 p.m. to 8 a.m., no exceptions, building-wide. I work nights and sleep mornings, so I emailed management with timestamps and a recording. They sent her a warning. She played it louder the next night out of spite. So I read the lease more carefully. Quiet hours end at exactly 8 a.m. Not 8:01. At 7:59 the next morning, I set up my vacuum by her bedroom wall. At 8:00:00 I turned it on. Then I practiced trumpet. Then I ran the washing machine on the loudest cycle it has. Every morning, right on the second the rule allowed it, for two straight weeks. She filed a noise complaint. Management pulled up the same lease she'd been ignoring and pointed out I hadn't broken a single quiet hour. She started keeping her music down by 9:30, just to be safe. I still vacuum at 8 sharp. Old habits.",
+  "shots": [
+    {
+      "phrase": "upstairs neighbor blasts music until 2 a.m.",
+      "query": "apartment building night"
+    },
+    {
+      "phrase": "quiet hours, 10 p.m. to 8 a.m.",
+      "query": "lease agreement paper"
+    },
+    {
+      "phrase": "emailed management with timestamps and a recording",
+      "query": "smartphone voice recording"
+    },
+    {
+      "phrase": "played it louder the next night out of spite",
+      "query": "speaker loud music"
+    },
+    {
+      "phrase": "set up my vacuum by her bedroom wall",
+      "query": "vacuum cleaner"
+    },
+    {
+      "phrase": "Then I practiced trumpet",
+      "query": "trumpet instrument"
+    },
+    {
+      "phrase": "washing machine on the loudest cycle",
+      "query": "washing machine laundry"
+    },
+    {
+      "phrase": "She filed a noise complaint",
+      "query": "complaint form clipboard"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "10 p.m. to 8 a.m.",
+      "text": "10PM-8AM",
+      "color": "#ffffff"
+    },
+    {
+      "phrase": "played it louder the next night out of spite",
+      "text": "LOUDER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "At 8:00:00 I turned it on",
+      "text": "8:00:00",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She filed a noise complaint",
+      "text": "COMPLAINT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hadn't broken a single quiet hour",
+      "text": "ZERO VIOLATIONS",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "pettyrevenge",
+    "quiethours",
+    "apartmentliving",
+    "neighbors",
+    "lease",
+    "reddit",
+    "landlordtenant",
+    "noisecomplaint",
+    "revenge",
+    "apartmentlife",
+    "hoa",
+    "roommates"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

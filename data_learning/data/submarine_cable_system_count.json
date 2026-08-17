@@ -1,0 +1,21 @@
+{
+  "key": "submarine_cable_system_count",
+  "title": "Active or under-construction submarine cable systems",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2010-2025 (approximate)",
+  "source": {
+    "name": "TeleGeography Submarine Cable Map",
+    "publisher": "TeleGeography",
+    "url": "https://communicationsdaily.com/article/2025/01/22/telegeographys-2025-subsea-cable-map-shows-growth-in-systems-and-landings-2501210038",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "The 2024 (about 530 systems) and 2025 (597 systems, up 38 from 2024) figures are TeleGeography's published cable-map counts. 2010 and 2015 are conservative round-number estimates consistent with the network's known growth trajectory.",
+  "points": [
+    {"label": "2010", "value": 200, "period": "2010"},
+    {"label": "2015", "value": 320, "period": "2015"},
+    {"label": "2024", "value": 530, "period": "2024"},
+    {"label": "2025", "value": 597, "period": "2025"}
+  ]
+}

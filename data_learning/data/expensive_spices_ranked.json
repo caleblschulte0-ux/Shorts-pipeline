@@ -1,0 +1,22 @@
+{
+  "key": "expensive_spices_ranked",
+  "title": "Spices and specialty foods ranked by retail price (dollars per gram)",
+  "unit": "dollars",
+  "geography": "United States, retail",
+  "time_coverage": "2026 (current retail)",
+  "source": {
+    "name": "Retail spice and specialty-food pricing",
+    "publisher": "industry pricing guides cross-checked against typical US grocery/specialty pricing",
+    "url": "https://raihansaffron.com/blogs/journal/how-much-does-saffron-cost-in-2026-real-prices-per-gram-from-the-grocery-aisle-to-single-origin",
+    "officiality": "illustrative",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Black pepper and cinnamon are conservative round estimates from typical US grocery pricing. Whole vanilla beans (~$0.60/gram) and fresh black truffle (~$4/gram) are conservative estimates from typical specialty-retailer pricing. Saffron uses the $15/gram midpoint of its cited $10-30/gram 2026 retail range.",
+  "points": [
+    {"label": "Black pepper", "value": 0.02},
+    {"label": "Cinnamon", "value": 0.03},
+    {"label": "Vanilla beans", "value": 0.6},
+    {"label": "Black truffle", "value": 4},
+    {"label": "Saffron", "value": 15}
+  ]
+}

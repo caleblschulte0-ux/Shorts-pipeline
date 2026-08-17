@@ -1,0 +1,19 @@
+{
+  "key": "gold_buying_pre_post_2022",
+  "title": "Central bank gold buying: before vs after Russia's reserves were frozen (tonnes/year)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "Pre-2022 average vs 2025",
+  "source": {
+    "name": "Gold Demand Trends: Central Banks",
+    "publisher": "World Gold Council",
+    "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "World Gold Council reporting describes 863 tonnes purchased in 2025 as 'dramatically higher than the pre-2022 annual average of just 400-500 tonnes.' The pre-2022 point here uses the midpoint of that cited range.",
+  "points": [
+    {"label": "Pre-2022 average", "value": 450},
+    {"label": "2025", "value": 863}
+  ]
+}

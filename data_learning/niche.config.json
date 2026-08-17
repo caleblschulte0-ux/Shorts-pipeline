@@ -21471,6 +21471,280 @@
           "say": "Miss it by 2.5 points and this is what you get. 285 cases in 2024. 2,289 last year. 2,566 already this year - the worst run since 2000."
         }
       ]
+    },
+    {
+      "slug": "gold-central-bank-hoarding",
+      "title": "Central Banks Are Hoarding Gold Like It's 1967",
+      "hook": "Gold just hit $5,405 an ounce. Here's who's buying.",
+      "closing": "When trust breaks, everyone buys the one thing nobody controls.",
+      "question": "Would you rather hold gold or cash right now? Tell me below.",
+      "caption": "Gold just hit an all-time high of $5,405 an ounce -- more than 4x its 2015 price. The buyers aren't panicking retail investors, they're central banks, and they bought more gold in 2025 than almost any year on record. Here's why they started stockpiling it. 👇",
+      "hashtags": [
+        "gold",
+        "centralbanks",
+        "goldprice",
+        "economy",
+        "investing",
+        "finance",
+        "inflation",
+        "geopolitics",
+        "money",
+        "reserves",
+        "goldrush",
+        "worldgoldcouncil"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gold_price_per_ounce",
+          "params": {
+            "file": "gold_price_per_ounce.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE PRICE",
+          "topic": "gold price per ounce",
+          "say": "Gold cost 1,160 dollars an ounce in 2015. In January 2026 it hit 5,405 -- more than four times as much.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "central_bank_gold_buying",
+          "params": {
+            "file": "central_bank_gold_buying.json"
+          },
+          "insight_type": "trend",
+          "role": "2 · THE BUYER",
+          "topic": "central bank gold purchases",
+          "say": "So who's buying at that price? Central banks -- from under 500 tonnes a year to over 1,100 tonnes in a single year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "gold_buying_pre_post_2022",
+          "params": {
+            "file": "gold_buying_pre_post_2022.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE WHY",
+          "topic": "gold buying, before vs after 2022",
+          "say": "Because in 2022, the West froze Russia's dollar reserves. Every other central bank watched, and started buying the one reserve nobody can freeze: 863 tonnes in 2025 alone."
+        }
+      ]
+    },
+    {
+      "slug": "undersea-cables-carry-internet",
+      "title": "99% Of The Internet Runs Through The Ocean Floor",
+      "hook": "Satellites don't run the internet. This does.",
+      "closing": "The cloud isn't in the sky. It's under the sea.",
+      "question": "Did you know this was how the internet actually worked? Tell me below.",
+      "caption": "There's now 1.48 million kilometers of fiber-optic cable lying on the ocean floor -- enough to circle the Earth 37 times -- and it carries over 95% of the world's international internet traffic. Not satellites. Not Starlink. Cables. Here's why nobody's replaced them. 👇",
+      "hashtags": [
+        "internet",
+        "submarinecables",
+        "technology",
+        "infrastructure",
+        "data",
+        "howitworks",
+        "didyouknow",
+        "tech",
+        "engineering",
+        "telegeography",
+        "wifi",
+        "starlink"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "submarine_cable_length",
+          "params": {
+            "file": "submarine_cable_length.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE NETWORK",
+          "topic": "submarine cable length",
+          "say": "There's 1.48 million kilometers of cable on the ocean floor right now -- enough to circle the Earth 37 times.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "cable_vs_satellite_traffic_share",
+          "params": {
+            "file": "cable_vs_satellite_traffic_share.json"
+          },
+          "insight_type": "share",
+          "role": "2 · THE SHARE",
+          "topic": "cables vs satellites, share of internet traffic",
+          "say": "And it's not a backup plan. Ninety-five percent of the world's international internet traffic runs through those cables, not satellites."
+        },
+        {
+          "source": "offline",
+          "key": "submarine_cable_system_count",
+          "params": {
+            "file": "submarine_cable_system_count.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE BET",
+          "topic": "active submarine cable systems",
+          "say": "So even with Starlink in headlines, the world just keeps laying more cable -- 597 systems now, up 38 in a single year.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "muscle-loss-after-30",
+      "title": "You Start Losing Muscle Before You Turn 40",
+      "hook": "Your muscles started shrinking in your thirties.",
+      "closing": "The fix isn't complicated. It's just weights.",
+      "question": "How many days a week do you actually lift? Be honest below.",
+      "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
+      "hashtags": [
+        "sarcopenia",
+        "musclemass",
+        "aging",
+        "fitness",
+        "health",
+        "strengthtraining",
+        "wellness",
+        "healthyaging",
+        "resistancetraining",
+        "longevity",
+        "gym",
+        "over40"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "muscle_mass_retained_by_age",
+          "params": {
+            "file": "muscle_mass_retained_by_age.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DECLINE",
+          "topic": "muscle mass retained with age",
+          "say": "At 30 you're at your peak. By 60 you've lost 13 percent of it. By 80, 35 percent -- and most people never notice it happening.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "timeline_axis",
+                "region": "full"
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "muscle_loss_rate_before_after_70",
+          "params": {
+            "file": "muscle_loss_rate_before_after_70.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE CLIFF",
+          "topic": "muscle loss rate, before vs after 70",
+          "say": "And it doesn't stay steady. You lose about 4 percent a decade in your 30s, 40s and 50s -- then it jumps to 18 a decade after 70."
+        },
+        {
+          "source": "offline",
+          "key": "sarcopenia_training_intervention",
+          "params": {
+            "file": "sarcopenia_training_intervention.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE FIX",
+          "topic": "sarcopenia, before vs after resistance training",
+          "say": "Here's the part nobody tells you: one 12-week resistance training study took sarcopenia rates from 35 percent of the group down to zero."
+        }
+      ]
+    },
+    {
+      "slug": "saffron-red-gold-myth",
+      "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
+      "hook": "One spice costs more than steak, by a lot.",
+      "closing": "Turns out flavor is cheap. Hands aren't.",
+      "question": "Have you ever actually cooked with real saffron? Tell me below.",
+      "caption": "Saffron retails for $10 to $30 a gram -- making it the most expensive spice on Earth by a mile. It's not rare magic, it's rare LABOR: about 150 hand-picked crocus flowers per gram, and 40 to 70 hours of hand-harvesting for a single pound. Here's the real math behind the price tag. 👇",
+      "hashtags": [
+        "saffron",
+        "spices",
+        "food",
+        "agriculture",
+        "foodfacts",
+        "cooking",
+        "didyouknow",
+        "labor",
+        "farming",
+        "redgold",
+        "foodie",
+        "spicerack"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "saffron_vs_pepper_price",
+          "params": {
+            "file": "saffron_vs_pepper_price.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 · THE PRICE",
+          "topic": "saffron vs black pepper, price per gram",
+          "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more."
+        },
+        {
+          "source": "offline",
+          "key": "expensive_spices_ranked",
+          "params": {
+            "file": "expensive_spices_ranked.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · THE RANKING",
+          "topic": "spices ranked by price per gram",
+          "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars."
+        },
+        {
+          "source": "offline",
+          "key": "labor_hours_per_pound",
+          "params": {
+            "file": "labor_hours_per_pound.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE WHY",
+          "topic": "hand-harvest labor per pound",
+          "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound."
+        }
+      ]
     }
   ],
   "videos": [

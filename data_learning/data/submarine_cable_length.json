@@ -1,0 +1,21 @@
+{
+  "key": "submarine_cable_length",
+  "title": "Submarine fiber-optic cable in service (million km)",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2000-2024 (approximate)",
+  "source": {
+    "name": "Submarine cable map and FAQs",
+    "publisher": "TeleGeography",
+    "url": "https://www2.telegeography.com/submarine-cable-faqs-frequently-asked-questions",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "The 2024 figure (1.48 million km) is TeleGeography's published estimate. 2000, 2010 and 2018 are conservative round-number estimates consistent with the network's known buildout pace toward that total; only the 2024 point is a directly reported figure.",
+  "points": [
+    {"label": "2000", "value": 0.4, "period": "2000"},
+    {"label": "2010", "value": 0.9, "period": "2010"},
+    {"label": "2018", "value": 1.2, "period": "2018"},
+    {"label": "2024", "value": 1.48, "period": "2024"}
+  ]
+}
