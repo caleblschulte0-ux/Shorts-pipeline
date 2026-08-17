@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260817",
+  "bundle": {
+    "identity": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe"
+  },
+  "request_id": "reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f",
+  "safe_request_id": "reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f",
+  "worker": "media",
+  "worker_run_id": "media-20260817-105729z",
+  "created_at": "2026-08-17T10:59:17Z",
+  "expires_at": "2026-08-17T11:14:17Z",
+  "lease_seconds": 900
+}
