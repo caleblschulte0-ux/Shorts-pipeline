@@ -43,7 +43,7 @@ CAP_WHITE = "&HFFFFFF&"
 CAP_HILITE = "&H00E8FF&"    # bright gold-yellow
 
 
-def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
+def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
     """Materialise the verified per-shot images as 1080x960 panels.
 
     The media contract has always required an image for every Reddit beat,
@@ -54,15 +54,19 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
 
     Added by ChatGPT on 2026-08-02; corrected by ChatGPT on 2026-08-03 so the
     Data/Explainer mascot is never composited into the separate Trending
-    channel. Returning an empty list is deliberately safe: the caller keeps
+    channel. Returning an empty dict is deliberately safe: the caller keeps
     the prior full-screen-gameplay composition.
+
+    Keyed by shot index (not a plain list) so a skipped shot doesn't shift
+    every panel after it out of sync with its own narrated window — see
+    `_shot_windows`.
     """
     try:
         from PIL import Image, ImageOps
     except Exception:  # noqa: BLE001
-        return []
+        return {}
 
-    out: list[Path] = []
+    out: dict[int, Path] = {}
     cache = workdir / "shot_cache"
     for i, shot in enumerate(pkg.get("shots") or []):
         src = shot.get("image_url") or shot.get("image")
@@ -76,22 +80,75 @@ def _shot_panels(pkg: dict, workdir: Path) -> list[Path]:
 
             dest = workdir / f"shot_panel_{i:02d}.jpg"
             panel.save(dest, "JPEG", quality=92)
-            out.append(dest)
+            out[i] = dest
         except Exception as exc:  # noqa: BLE001
             print(f"      shot panel {i} skipped: {type(exc).__name__}: "
                   f"{str(exc)[:90]}", flush=True)
     return out
 
 
-def _visual_track(pkg: dict, duration: float, workdir: Path) -> Path | None:
-    """Build the top-half illustrated beat track; None preserves old layout."""
-    panels = _shot_panels(pkg, workdir)
-    if not panels or duration <= 0.1:
+def _shot_windows(shots: list[dict], words: list, title_end: float,
+                  total: float) -> list[dict]:
+    """Resolve each shot's on-screen window from its narrated phrase.
+
+    Every shot in a reddit_story package already carries a `phrase` that
+    `shared/package_schema.py` verifies is a real substring of the script,
+    so this reuses `make_explainer_stacked.find_phrase_start` — the same
+    cursor-based phrase-to-timestamp resolver that renderer has used for
+    years — instead of guessing. A shot whose phrase can't be located in
+    the transcript gets a 2.5s floor after the previous shot rather than
+    collapsing that window to nothing (mirrors find_phrase_start's own
+    caller in make_explainer_stacked). Windows are strictly ordered and
+    non-overlapping by construction: each start is a floor for the next.
+    """
+    starts: list[float] = []
+    hint = title_end
+    for shot in shots:
+        phrase = (shot or {}).get("phrase") or ""
+        t = base.find_phrase_start(words, phrase, hint_after=hint) \
+            if phrase else None
+        if t is None:
+            t = hint + 2.5 if starts else hint
+        t = max(t, hint)
+        starts.append(t)
+        hint = t + 0.1
+    windows = []
+    for i, start in enumerate(starts):
+        end = starts[i + 1] if i + 1 < len(starts) else total
+        windows.append({"shot_index": i, "start": start,
+                        "end": max(end, start + 0.35)})
+    return windows
+
+
+def _visual_track(pkg: dict, words: list, title_end: float, total: float,
+                  workdir: Path) -> list[dict] | None:
+    """Build one illustrated clip per shot with a resolved image, each sized
+    to that shot's own phrase-aligned window (not an equal share of the
+    total). Shots whose image never resolved get NO clip: the background
+    gameplay shows through unobstructed for that window instead of a
+    neighboring panel being stretched to cover it.
+
+    On 2026-08-11 the showrunner blocked two reddit stories for exactly the
+    old failure mode: the SAME image held from 10.71s through the payoff
+    while the narration advanced through multiple unrelated beats, because
+    equal division and list-compaction (dropped shots shifting everyone
+    after them) both threw away the shot-to-phrase correspondence the
+    package already carries.
+    """
+    if total <= title_end + 0.1:
         return None
-    per = max(0.35, duration / len(panels))
-    clips: list[Path] = []
-    for i, panel in enumerate(panels):
-        clip = workdir / f"shot_clip_{i:02d}.mp4"
+    panels = _shot_panels(pkg, workdir)
+    if not panels:
+        return None
+    shots = pkg.get("shots") or []
+    windows = _shot_windows(shots, words, title_end, total)
+    out: list[dict] = []
+    for w in windows:
+        panel = panels.get(w["shot_index"])
+        if panel is None:
+            continue
+        dur = w["end"] - w["start"]
+        clip = workdir / f"shot_clip_{w['shot_index']:02d}.mp4"
         # A still panel must never stop moving, for as long as it is on
         # screen. The old push was `min(zoom+0.0007,1.07)`: it reached the
         # cap after (1.07-1.00)/0.0007 = 100 frames = 3.3 s and then held a
@@ -119,10 +176,10 @@ def _visual_track(pkg: dict, duration: float, workdir: Path) -> Path | None:
         #     cyclic it stays constant no matter how long the panel lasts,
         #     which a pure pan cannot do (a pan slow enough to last 20 s is
         #     sub-pixel again). Under 1 Hz, so it reads as a gentle float.
-        _frames = max(1, int(round(per * FPS)))
+        _frames = max(1, int(round(dur * FPS)))
         _run([
             "ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
-            "-t", f"{per:.3f}", "-i", str(panel),
+            "-t", f"{dur:.3f}", "-i", str(panel),
             "-vf", (f"zoompan=z='min(1+0.10*on/{_frames},1.10)':"
                     f"x='iw/2-(iw/zoom/2)+22*sin(6.0*on/{FPS})':"
                     f"y='ih/2-(ih/zoom/2)+22*cos(5.2*on/{FPS})':"
@@ -130,15 +187,8 @@ def _visual_track(pkg: dict, duration: float, workdir: Path) -> Path | None:
             "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             str(clip),
         ])
-        clips.append(clip)
-    manifest = workdir / "shot_concat.txt"
-    manifest.write_text("".join(
-        f"file '{str(p.resolve()).replace(chr(39), chr(39) + chr(92) + chr(39) + chr(39))}'\n"
-        for p in clips))
-    out = workdir / "shot_track.mp4"
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-          "-i", str(manifest), "-c", "copy", str(out)])
-    return out
+        out.append({"start": w["start"], "end": w["end"], "clip": clip})
+    return out or None
 
 
 def _run(cmd: list[str]) -> None:
@@ -310,7 +360,7 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
             comments=str(cf["comments"]), avatar_seed=cf["avatar_seed"])
         caps = workdir / "caps.ass"
         _karaoke_ass(words, caps, title_end, total)
-        visual = _visual_track(pkg, max(0.0, total - title_end), workdir)
+        visual = _visual_track(pkg, words, title_end, total, workdir)
 
         print("[5/6] audio bed + SFX")
         music = workdir / "music.wav"
@@ -326,11 +376,24 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
         fade_st = max(0.3, title_end - 0.4)
         card_w = 980
         bg_chain = "[0:v]format=yuv420p[bg0];"
-        if visual is not None:
+        if visual:
+            # Each shot's clip is its own input, shifted to its own
+            # phrase-aligned window and enabled only for that window — so a
+            # missing panel leaves a genuine gap (gameplay shows through)
+            # instead of a neighboring panel silently covering it.
+            label = "bg0"
+            for j, seg in enumerate(visual):
+                idx = 5 + j
+                shifted = f"top{j}"
+                nxt = f"ov{j}"
+                bg_chain += (
+                    f"[{idx}:v]setpts=PTS+{seg['start']:.3f}/TB[{shifted}];"
+                    f"[{label}][{shifted}]overlay=0:0:"
+                    f"enable='between(t,{seg['start']:.3f},{seg['end']:.3f})'"
+                    f"[{nxt}];")
+                label = nxt
             bg_chain += (
-                f"[5:v]setpts=PTS+{title_end:.3f}/TB[top];"
-                f"[bg0][top]overlay=0:0:enable='gte(t,{title_end:.3f})',"
-                f"drawbox=x=0:y={H // 2 - 2}:w={W}:h=4:"
+                f"[{label}]drawbox=x=0:y={H // 2 - 2}:w={W}:h=4:"
                 f"color=white@0.28:t=fill[bg];")
         else:
             bg_chain += "[bg0]null[bg];"
@@ -353,8 +416,9 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
                     "-i", "anullsrc=r=44100:cl=stereo"]  # 2 (silent)
         cmd += ["-loop", "1", "-t", f"{title_end:.2f}", "-i", str(card)]  # 3
         cmd += ["-i", str(ding)]        # 4
-        if visual is not None:
-            cmd += ["-i", str(visual)]  # 5
+        if visual:
+            for seg in visual:          # 5, 6, 7, ... one per shot clip
+                cmd += ["-i", str(seg["clip"])]
 
         a_graph = (
             "[1:a]volume=1.0,adelay=0|0[vo];"

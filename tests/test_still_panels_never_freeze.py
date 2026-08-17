@@ -66,7 +66,7 @@ class TestThePushCannotCapEarly(unittest.TestCase):
                          "frame count, not a fixed increment with a cap")
 
     def test_the_frame_count_comes_from_the_panel_duration(self):
-        self.assertIn("_frames = max(1, int(round(per * FPS)))", SRC)
+        self.assertIn("_frames = max(1, int(round(dur * FPS)))", SRC)
 
 
 class TestTheDriftIsBigEnoughToSee(unittest.TestCase):
