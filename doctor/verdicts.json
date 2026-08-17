@@ -99,16 +99,27 @@
       ]
     },
     "a544d37c275e": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260817",
-      "because": "picked up in the 2026-08-17 triage: reused make_explainer_stacked.find_phrase_start (the resolver the explainer renderer already relies on) to give each reddit_story shot its own phrase-aligned on-screen window, keyed by shot index so a dropped image no longer donates its window to a neighbor. Added tests/test_reddit_story_timing.py (fails on old equal-division code, passes on the fix) and fixed the one renamed-variable string-match in tests/test_still_panels_never_freeze.py. Full suite green except 5 pre-existing unrelated errors.",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260811",
           "because": "Confirmed in make_reddit_story.py: _shot_panels() (line ~42-76) drops any shot whose image failed to resolve, and _visual_track() (line ~86) computes per = duration/len(panels), an equal split with no reference to shot phrase/word timing. This is a real renderer defect (matches the 2026-08-09 showrunner evidence of ~35s dead air on one stretched panel) but the fix is a nontrivial renderer change (phrase-aligned scheduling + a refusal/quarantine path for insufficient panel coverage) \u2014 queued, not attempted in this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260817",
+          "because": "picked up in the 2026-08-17 triage: reused make_explainer_stacked.find_phrase_start (the resolver the explainer renderer already relies on) to give each reddit_story shot its own phrase-aligned on-screen window, keyed by shot index so a dropped image no longer donates its window to a neighbor. Added tests/test_reddit_story_timing.py (fails on old equal-division code, passes on the fix) and fixed the one renamed-variable string-match in tests/test_still_panels_never_freeze.py. Full suite green except 5 pre-existing unrelated errors."
+        },
+        {
+          "verdict": "done",
+          "date": "20260817",
+          "because": ""
         }
-      ]
+      ],
+      "commit": "6c25c89"
     },
     "cf263a770061": {
       "verdict": "doing",
