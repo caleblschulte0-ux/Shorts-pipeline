@@ -6,7 +6,12 @@
   "shots": [
     {
       "phrase": "a new PTO policy",
-      "query": "office memo policy"
+      "query": "office memo policy",
+      "pin_query": "PTO",
+      "pin_context": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+      "news_query": "PTO",
+      "news_angle": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+      "image_url": "https://live.staticflickr.com/4794/40172418154_639e0917f3_b.jpg"
     },
     {
       "phrase": "sign-off from all five team leads",
@@ -30,7 +35,12 @@
     },
     {
       "phrase": "HR quietly reverted to one-manager approval",
-      "query": "HR office door"
+      "query": "HR office door",
+      "pin_query": "HR",
+      "pin_context": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+      "news_query": "HR",
+      "news_angle": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+      "image_url": "https://live.staticflickr.com/3244/2909813837_6375a89997_b.jpg"
     },
     {
       "phrase": "using them all in December",
