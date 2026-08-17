@@ -22,19 +22,38 @@
     },
     {
       "phrase": "set up my vacuum by her bedroom wall",
-      "query": "vacuum cleaner"
+      "query": "vacuum cleaner",
+      "pin_query": "vacuum cleaner",
+      "pin_context": "upright stick vacuum home appliance",
+      "news_query": "vacuum cleaner",
+      "news_angle": "The narrator used a vacuum cleaner to make noise at 8:00:00 AM.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Numatic_Henry_vacuum_cleaner_%283308986870%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "Then I practiced trumpet",
-      "query": "trumpet instrument"
+      "query": "trumpet instrument",
+      "pin_query": "trumpet",
+      "pin_context": "brass wind instrument music",
+      "news_query": "trumpet",
+      "news_angle": "The narrator practiced the trumpet to make noise after 8:00:00 AM.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Yamaha_Trumpet_YTR-8335LA_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "washing machine on the loudest cycle",
-      "query": "washing machine laundry"
+      "query": "washing machine laundry",
+      "pin_query": "washing machine",
+      "pin_context": "laundry appliance home washer",
+      "news_query": "washing machine",
+      "news_angle": "The narrator ran the washing machine on its loudest cycle to make noise after 8:00:00 AM.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/LG_%EB%93%9C%EB%9F%BC%EC%84%B8%ED%83%81%EA%B8%B0%EC%99%80_%EC%8B%9D%EA%B8%B0%EC%84%B8%EC%B2%99%EA%B8%B0%2C_%EC%98%81%EA%B5%AD%EC%84%9C_%EB%AC%BC%EC%82%AC%EC%9A%A9_%ED%9A%A8%EC%9C%A8_%EC%B5%9C%EC%9A%B0%EC%88%98_%EC%A0%9C%ED%92%88_%EC%88%98%EC%83%81.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "She filed a noise complaint",
-      "query": "complaint form clipboard"
+      "query": "complaint form clipboard",
+      "pin_query": "noise complaint",
+      "pin_context": "formal written document grievance legal",
+      "news_query": "noise complaint",
+      "news_angle": "The neighbor filed a noise complaint against the narrator for their morning noise."
     }
   ],
   "punches": [
