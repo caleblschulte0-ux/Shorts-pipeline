@@ -1,0 +1,83 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-vacation-approval-chain",
+  "title": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+  "script": "Our company rolled out a new PTO policy: every request now needs sign-off from all five team leads, not just your own manager, to improve coverage visibility. Fine. I run support tickets, and I had eleven vacation days saved up. I didn't book eleven days. I booked eleven separate one-day requests, one per email, each routed to all five leads for individual approval. The first request needed five signatures. So did the second. So did every single one after that, stretching three months out. The leads' inboxes filled with color-coded approval chains before 9 a.m. Two coworkers saw what I was doing and started doing the same thing. Within two weeks, one team lead was approving requests during her own commute. By the third week, coverage visibility had collapsed completely, because nobody could tell who was actually working without opening forty separate threads. HR quietly reverted to one-manager approval nine days later. My eleven days are still unbooked. I'm using them all in December, in one request.",
+  "shots": [
+    {
+      "phrase": "a new PTO policy",
+      "query": "office memo policy"
+    },
+    {
+      "phrase": "sign-off from all five team leads",
+      "query": "email approval chain"
+    },
+    {
+      "phrase": "eleven separate one-day requests",
+      "query": "calendar sticky notes"
+    },
+    {
+      "phrase": "inboxes filled with color-coded approval chains",
+      "query": "inbox unread emails"
+    },
+    {
+      "phrase": "approving requests during her own commute",
+      "query": "phone commuter train"
+    },
+    {
+      "phrase": "coverage visibility had collapsed completely",
+      "query": "empty office desks"
+    },
+    {
+      "phrase": "HR quietly reverted to one-manager approval",
+      "query": "HR office door"
+    },
+    {
+      "phrase": "using them all in December",
+      "query": "december calendar snow"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "all five team leads",
+      "text": "FIVE SIGNATURES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "eleven separate one-day requests",
+      "text": "ELEVEN REQUESTS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "The first request needed five signatures",
+      "text": "5 SIGNATURES",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "coverage visibility had collapsed completely",
+      "text": "COLLAPSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "nine days later",
+      "text": "9 DAYS",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "pto",
+    "vacationdays",
+    "hrpolicy",
+    "officelife",
+    "corporatelife",
+    "reddit",
+    "worklife",
+    "9to5",
+    "workplace",
+    "pettyrevenge",
+    "customerservice"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

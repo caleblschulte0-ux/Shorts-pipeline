@@ -1,0 +1,19 @@
+{
+  "key": "muscle_loss_rate_before_after_70",
+  "title": "Muscle mass lost per decade (percent)",
+  "unit": "percent",
+  "geography": "General population",
+  "time_coverage": "Illustrative, by life stage",
+  "source": {
+    "name": "Sarcopenia with aging",
+    "publisher": "U.S. Dept. of Health and Human Services / Office on Women's Health, citing NIH-backed research",
+    "url": "https://womenshealth.gov/sarcopenia",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Commonly cited ranges: 3-5% muscle mass lost per decade after age 30 (midpoint 4%), accelerating to 13-24% per decade after age 70 (midpoint 18%).",
+  "points": [
+    {"label": "Per decade, ages 30-70", "value": 4},
+    {"label": "Per decade, after 70", "value": 18}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": "gold_price_per_ounce",
+  "title": "Gold price (dollars per ounce)",
+  "unit": "dollars",
+  "geography": "Global",
+  "time_coverage": "2015-2026 (annual average, 2026 is January spot)",
+  "source": {
+    "name": "Gold spot price history",
+    "publisher": "World Gold Council / LBMA",
+    "url": "https://www.gold.org/goldhub/data/gold-prices",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Annual average London PM fix prices for 2015-2024; the 2026 point is the January 2026 record spot price of $5,405/oz reported across markets, not a full-year average.",
+  "points": [
+    {"label": "2015", "value": 1160, "period": "2015"},
+    {"label": "2018", "value": 1268, "period": "2018"},
+    {"label": "2020", "value": 1770, "period": "2020"},
+    {"label": "2022", "value": 1800, "period": "2022"},
+    {"label": "2024", "value": 2400, "period": "2024"},
+    {"label": "2026", "value": 5405, "period": "2026"}
+  ]
+}

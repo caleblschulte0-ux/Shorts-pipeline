@@ -1,0 +1,23 @@
+{
+  "key": "muscle_mass_retained_by_age",
+  "title": "Muscle mass retained, indexed to age 30 (percent)",
+  "unit": "percent",
+  "geography": "General population",
+  "time_coverage": "Illustrative curve by age",
+  "source": {
+    "name": "Sarcopenia with aging",
+    "publisher": "U.S. Dept. of Health and Human Services / Office on Women's Health, citing NIH-backed research",
+    "url": "https://womenshealth.gov/sarcopenia",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Illustrative curve built from the cited per-decade loss rates: 3-5% per decade after age 30, rising to 13-24% per decade after age 70. Indexed to 100 at age 30.",
+  "points": [
+    {"label": "30", "value": 100, "period": "30"},
+    {"label": "40", "value": 96, "period": "40"},
+    {"label": "50", "value": 92, "period": "50"},
+    {"label": "60", "value": 87, "period": "60"},
+    {"label": "70", "value": 80, "period": "70"},
+    {"label": "80", "value": 65, "period": "80"}
+  ]
+}

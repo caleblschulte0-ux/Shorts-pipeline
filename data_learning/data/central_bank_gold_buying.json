@@ -1,0 +1,23 @@
+{
+  "key": "central_bank_gold_buying",
+  "title": "Central bank net gold purchases (tonnes/year)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2010-2025 (annual)",
+  "source": {
+    "name": "Gold Demand Trends: Central Banks",
+    "publisher": "World Gold Council",
+    "url": "https://www.gold.org/goldhub/research/gold-demand-trends",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "2022 (1,136t) and 2025 (863t) are the World Gold Council's published annual totals. 2010, 2015 and 2018 are conservative round-number estimates consistent with the WGC's cited pre-2022 annual average of 400-500 tonnes; 2024 is a rough interpolation between the 2022 peak and the 2025 confirmed figure.",
+  "points": [
+    {"label": "2010", "value": 80, "period": "2010"},
+    {"label": "2015", "value": 480, "period": "2015"},
+    {"label": "2018", "value": 650, "period": "2018"},
+    {"label": "2022", "value": 1136, "period": "2022"},
+    {"label": "2024", "value": 700, "period": "2024"},
+    {"label": "2025", "value": 863, "period": "2025"}
+  ]
+}

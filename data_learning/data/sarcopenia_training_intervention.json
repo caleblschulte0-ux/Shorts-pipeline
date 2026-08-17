@@ -1,0 +1,19 @@
+{
+  "key": "sarcopenia_training_intervention",
+  "title": "Sarcopenia prevalence before/after a 12-week resistance training program (percent)",
+  "unit": "percent",
+  "geography": "Study cohort (older adults)",
+  "time_coverage": "12-week intervention",
+  "source": {
+    "name": "Resistance training and nutritional counseling intervention study",
+    "publisher": "peer-reviewed exercise/geriatrics research, via PMC",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12295157/",
+    "officiality": "reference",
+    "access_date": "2026-08-17"
+  },
+  "notes": "A 12-week resistance training plus nutritional counseling intervention reduced sarcopenia prevalence in the study cohort from 35.14% to 0%.",
+  "points": [
+    {"label": "Before 12 weeks", "value": 35.1},
+    {"label": "After 12 weeks", "value": 0}
+  ]
+}

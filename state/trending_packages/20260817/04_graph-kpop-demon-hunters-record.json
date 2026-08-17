@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-kpop-demon-hunters-record",
+  "title": "A Cartoon Just Became Netflix's Biggest Movie Ever",
+  "hook": "Red Notice held the record for 4 years.",
+  "y_label": "Netflix views (millions)",
+  "duration": 13,
+  "source": "Netflix official viewership figures and reporting by Variety, The Hollywood Reporter and What's on Netflix. Red Notice (2021) reached roughly 148M hours in its first 4 weeks and plateaued as Netflix's most-watched film ever at 230.9 million views (views = hours viewed / runtime), a record it held from late 2021 into 2025. KPop Demon Hunters (released June 2025) passed it within weeks, reaching 236 million views by late August 2025 and 266 million views within six months of release by early 2026 -- also surpassing Squid Game Season 1's six-month record of 265.2 million views -- while logging 15 straight weeks in Netflix's global Top 10.",
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Red Notice",
+      "color": "#4a90e2",
+      "icon": "Netflix",
+      "values": [
+        150,
+        210,
+        225,
+        231,
+        231,
+        231
+      ]
+    },
+    {
+      "name": "KPop Demon Hunters",
+      "color": "#ff3b81",
+      "icon": "Netflix",
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        236,
+        280
+      ]
+    }
+  ],
+  "hashtags": [
+    "kpopdemonhunters",
+    "netflix",
+    "rednotice",
+    "kpop",
+    "animatedmovie",
+    "streaming",
+    "boxoffice",
+    "netflixrecord",
+    "movies",
+    "squidgame",
+    "entertainment",
+    "animation"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
