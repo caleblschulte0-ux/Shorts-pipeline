@@ -1,51 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260729",
-      "dry_run": false,
-      "ts": "2026-07-29T12:41:59+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 104,
-        "with_retention": 98,
-        "with_curve": 15,
-        "fetched_at": "2026-07-29T11:03:00.616676+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260729-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260729-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260729-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260729-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        }
-      ]
-    },
-    {
       "date": "20260729b",
       "dry_run": false,
       "ts": "2026-07-29T15:57:13+00:00",
@@ -5262,6 +5217,246 @@
             }
           },
           "took_s": 316.6
+        }
+      ]
+    },
+    {
+      "date": "20260817",
+      "dry_run": false,
+      "ts": "2026-08-17T12:32:55+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 110,
+        "with_retention": 88,
+        "with_curve": 14,
+        "fetched_at": "2026-08-17T09:09:19.735912+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260817-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "funny reaction quote, unclear context",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "fired, screaming meltdown, visible confr",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lirik Gets Fired And This Is How He Responds"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.9,
+              "problems": []
+            }
+          },
+          "took_s": 148.5
+        },
+        {
+          "slug": "clip-20260817-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "wealth reveal, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "accidental earnings leak, real panic",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Panics After Accidentally Revealing His Last 30 Days"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 116.4
+        },
+        {
+          "slug": "clip-20260817-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (routine CS gameplay, no visible reaction)",
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "clear arc, humbling payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "routine CS gameplay, no visible reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 84.5
+        },
+        {
+          "slug": "clip-20260817-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "stableronaldo/stableronaldo-cinna-gestur-2026w33",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine funny surprised reaction moment",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 802.7
         }
       ]
     }

@@ -3877,14 +3877,27 @@
       "ts": "2026-08-17T12:19:32.763531+00:00"
     },
     "clip-20260817-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/GoldenMushyStapleNerfBlueBlaster-2YuodHeHgHdsBTmY",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/jcI2jNcvHYw",
       "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
       "kind": "twitch_clip",
-      "ts": "2026-08-17T12:32:48.610492+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-17T12:32:55.481015+00:00",
+      "uploaded_at": "2026-08-17T12:32:55.481034+00:00",
+      "publish_at": "2026-08-17T21:30:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/GoldenMushyStapleNerfBlueBlaster-2YuodHeHgHdsBTmY",
+      "streamer": "ohnepixel",
+      "series": "fail",
+      "hook": "DOES LAVA ON ICE MAKE WATER",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3189,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 16.35
+      },
+      "director_cut": true
     }
   }
 }
