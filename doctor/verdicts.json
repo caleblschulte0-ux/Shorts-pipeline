@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260816",
+  "updated": "20260817",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -99,10 +99,16 @@
       ]
     },
     "a544d37c275e": {
-      "verdict": "doing",
-      "date": "20260811",
-      "because": "Confirmed in make_reddit_story.py: _shot_panels() (line ~42-76) drops any shot whose image failed to resolve, and _visual_track() (line ~86) computes per = duration/len(panels), an equal split with no reference to shot phrase/word timing. This is a real renderer defect (matches the 2026-08-09 showrunner evidence of ~35s dead air on one stretched panel) but the fix is a nontrivial renderer change (phrase-aligned scheduling + a refusal/quarantine path for insufficient panel coverage) \u2014 queued, not attempted in this run.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260817",
+      "because": "picked up in the 2026-08-17 triage: reused make_explainer_stacked.find_phrase_start (the resolver the explainer renderer already relies on) to give each reddit_story shot its own phrase-aligned on-screen window, keyed by shot index so a dropped image no longer donates its window to a neighbor. Added tests/test_reddit_story_timing.py (fails on old equal-division code, passes on the fix) and fixed the one renamed-variable string-match in tests/test_still_panels_never_freeze.py. Full suite green except 5 pre-existing unrelated errors.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in make_reddit_story.py: _shot_panels() (line ~42-76) drops any shot whose image failed to resolve, and _visual_track() (line ~86) computes per = duration/len(panels), an equal split with no reference to shot phrase/word timing. This is a real renderer defect (matches the 2026-08-09 showrunner evidence of ~35s dead air on one stretched panel) but the fix is a nontrivial renderer change (phrase-aligned scheduling + a refusal/quarantine path for insufficient panel coverage) \u2014 queued, not attempted in this run."
+        }
+      ]
     },
     "cf263a770061": {
       "verdict": "doing",
@@ -311,6 +317,36 @@
       "verdict": "doing",
       "date": "20260816",
       "because": "Confirmed: docs/CHATGPT_MEDIA_HANDOFF.md still calls itself 'the only file a ChatGPT task needs to read' and hands out a media-dropbox scheduled-task prompt that nothing consumes, with no pointer to the live contract in doctor/PROMPTS.md sections 4-5. Accepting the narrow fix (mark it superseded, point to the live contract) rather than the full lifecycle-metadata proposal, which is more machinery than this one stale doc needs right now.",
+      "history": []
+    },
+    "a833d2f37a5c": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Confirmed live: scripts/doctor.py:474-482 counts every timestamped row in a channel's posted log as a post, while state/third_posted_log.json stores qa_rejected refusals and pending claims beside real uploads (daily_alarm.py already has the correct exclusion predicate at lines 99-114). The managing-editor desk is reporting fabricated cadence to itself and to the operator. Building this now.",
+      "history": []
+    },
+    "1eb84ce4609f": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Confirmed live: scripts/fetch_analytics.py writes views_per_hour but scripts/doctor.py:488-494 reads v.get('vph'), so every channel's top_by_vph list is silently all-zero and shows source-order rows as 'top performers'. Real fix, small diff. Queued behind the higher-ranked bug this run.",
+      "history": []
+    },
+    "fb2c88996071": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Confirmed live: 'python scripts/format_scoreboard.py' raises KeyError: reddit on current main because package_formats() labels subreddit packages 'reddit' while the registry bucket is 'reddit_story'. Doctor's own channel_performance pointer tells readers to run this command, so it's actively misleading. Queued behind higher-ranked items this run.",
+      "history": []
+    },
+    "c8ca85c0ce21": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Confirmed: scripts/fetch_analytics.py:296-301 drops format/experiment_arm/hook identity for every trending row, so all 62 live trending analytics rows are format=unknown and build_retro cannot compare graph_race vs reddit_story at any maturity band. Accepted as the long-term direction (versioned attribution record); it's the lowest-ranked open item so it will sit until the acute bugs above are cleared, which is appropriate for its horizon.",
+      "history": []
+    },
+    "66364106b455": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs).",
       "history": []
     }
   }
