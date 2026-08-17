@@ -667,4 +667,5 @@ jobs:
             state/forge_used.json \
             state/video_ledger.json state/brain_context.json \
             data_learning/niche.config.json data_learning/data \
-            data_learning/viz_mechanics.json
+            data_learning/viz_mechanics.json \
+            state/showrunner_verdicts.jsonl

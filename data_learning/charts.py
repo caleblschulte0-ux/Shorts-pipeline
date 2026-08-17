@@ -265,7 +265,11 @@ def _host_img(action: str, phase: float):
     (~1.2s = a stack of duplicate frames that aliased the effort reps and tanked
     effective_fps); 40 buckets keep the arc's pushes SMOOTH and the mascot moving
     nearly every frame, while still caching (≤40 rasterises per action)."""
-    key = (action, round(phase * 40) / 40)
+    # 80 buckets, raised from 40: `_perf_phase` folds six effort reps into
+    # the arc, so a full rep spans ~1/6 of phase — at 40 buckets that is ~7
+    # steps per rep, which staircases; 80 keeps reps smooth at ≤80 cached
+    # rasterises per action.
+    key = (action, round(phase * 80) / 80)
     if key in _HOST_IMG_CACHE:
         return _HOST_IMG_CACHE[key]
     val = None
@@ -292,6 +296,45 @@ def _host_img(action: str, phase: float):
     return val
 
 
+def _perf_phase(phase: float) -> float:
+    """Beat progress -> performance phase: the arc, plus EFFORT REPS.
+
+    Every action animator is a one-way ARC — setup at 0, climax at 1 — and
+    ``phase`` is beat progress, which crosses 0..1 ONCE. A beat is 10-18
+    seconds, so Data performed one shove spread over fifteen seconds: at any
+    human-scale window his limbs move a few pixels per SECOND, which is a
+    statue. The showrunner said it in three different videos on 2026-08-16 —
+    "the mascot is a sticker", "never does a bit" — and it was right; the
+    per-quarter-beat frame diffs looked healthy while the per-second ones
+    rounded to zero. (The phase-bucket comment in `_host_img` still talks
+    about "effort reps" — an earlier incarnation had them; the plumbing that
+    fed a cycling clock was lost when phase became raw reveal.)
+
+    So: six visible strain-and-heave reps ride ON the arc — the pose works
+    back and forth ±6% of arc around its forward progress, enveloped by
+    (1-t) so the reps die out as the climax approaches and phase 1.0 still
+    lands EXACTLY on the payoff pose (the clamp in `_host_img` that took a
+    separate bug to win stays meaningful). At a 15s beat that is a rep every
+    2.5s; at 6s, one per second — working tempo, not jiggle, and it is limb
+    motion inside the sprite, not sprite translation, so it cannot re-open
+    the "weird shaking" the camera-breath rework closed."""
+    t = min(1.0, max(0.0, float(phase)))
+    if t >= 0.8:
+        # THE FINALE: one committed, uninterrupted run of the whole arc over
+        # the beat's last fifth, landing phase 1.0 exactly on the payoff
+        # pose. ~3s at a 15s beat — the decisive push after the struggle.
+        return (t - 0.8) / 0.2
+    # THE STRUGGLE: four ping-pong reps (strain toward the climax, get
+    # pushed back, strain again) across the first 80% of the beat. Ping-pong
+    # rather than modulo because the arcs are not seamless loops — a %-wrap
+    # snaps the pose from climax back to setup in one frame, which reads as
+    # a glitch; the mirror reads as effort and release. Capped at 0.85 so
+    # the true climax is seen only once, in the finale.
+    u = (t / 0.8) * 4.0
+    frac = u - int(u)
+    return 0.85 * (1.0 - abs(1.0 - 2.0 * frac))
+
+
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
     pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
@@ -300,7 +343,7 @@ def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     object, not floating near it."""
     _ATTACH_FRAME.append({"action": action, "x": float(x), "y": float(y),
                           "phase": round(float(min(1.0, max(0.0, phase))), 3)})
-    img = _host_img(action, phase)
+    img = _host_img(action, _perf_phase(phase))
     if img is None:
         return
     from matplotlib.offsetbox import OffsetImage, AnnotationBbox

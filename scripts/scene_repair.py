@@ -355,6 +355,31 @@ def propose(slug: str, verdict: dict, frames: int = 60,
             survivors = sorted(results, key=lambda r: -r["score"])[:1]
             print("[scene_repair] no candidate passed the objective gate — "
                   "keeping the least-bad for diagnosis")
+        # STORY-LEVEL DISTINCTNESS. Repair sees one scene at a time, so on
+        # 2026-08-16 it converged three scenes of the same story onto
+        # rank+shoved_bar / rank+discover one repair at a time — and the
+        # showrunner blocked the result for exactly that: "three
+        # near-identical template charts". A candidate whose depiction is
+        # already on ANOTHER scene of this story only survives when nothing
+        # distinct passed the objective gate — the same rule the authoring
+        # director enforces, applied at the repair seam it could not see.
+        _elsewhere = {getattr(s.insight, "kind", "")
+                      for j, s in enumerate(segs)
+                      if j != idx and getattr(s, "insight", None)}
+        _pf_prev = PLANS_DIR / f"{slug}.json"
+        if _pf_prev.exists():
+            try:
+                for _k, _v in json.loads(_pf_prev.read_text()).items():
+                    if _k != str(idx) and isinstance(_v, dict):
+                        _elsewhere.add(_v.get("viz", ""))
+            except Exception:  # noqa: BLE001 — a junk plan is not a blocker
+                pass
+        _distinct = [r for r in survivors if r["viz"] not in _elsewhere]
+        if _distinct and len(_distinct) < len(survivors):
+            print(f"[scene_repair] dropped "
+                  f"{len(survivors) - len(_distinct)} candidate(s) whose "
+                  f"depiction is already used elsewhere in this story")
+            survivors = _distinct
         ranking = vision_rank(bdir, survivors, claim) if len(survivors) > 1 \
             else None
         if ranking:

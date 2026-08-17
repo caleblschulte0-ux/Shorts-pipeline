@@ -296,7 +296,24 @@ def subject_cutout(subject: str, slug: str, tag: str,
               "chroma key green background, bold flat vector illustration, "
               "vibrant, clean, no text, no border")
     seed = int(hashlib.sha1(prompt.encode()).hexdigest()[:8], 16)
-    img = _pollinations_raw(prompt, seed, size=576)   # smaller -> faster rembg
+    # RETRY WITH A DIFFERENT SEED, briefly. The 2026-08-16 explainer run
+    # logged ~110 "HTTP Error 500" one-shot failures from this generator —
+    # each one silently downgraded a scene to a plainer template, which is
+    # half of the "three near-identical template charts" the showrunner
+    # keeps blocking. The 500s are flaky per-request, and the seed is part
+    # of the request — same seed can mean the same broken shard, so each
+    # attempt jitters it. Three tries, short waits, then the existing
+    # real-photo/plain-chart fallback proceeds exactly as before: a missing
+    # cutout still never fails a render, it just no longer gives up on the
+    # first 500.
+    img = None
+    for attempt in range(3):
+        img = _pollinations_raw(prompt, seed + attempt * 7919, size=576)
+        if img is not None:
+            break
+        if attempt < 2:
+            import time as _t
+            _t.sleep(2 + 3 * attempt)
     if img is None:
         return None
     cut = _remove_bg(img)
