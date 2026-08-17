@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260816",
+  "updated": "20260817",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -602,6 +602,97 @@
       "signature": "825a41037aae",
       "last_seen": "20260816",
       "first_seen": "20260816"
+    },
+    "a833d2f37a5c": {
+      "title": "Managing-editor cadence counts rejected Third clips as posts",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "doctor/performance-cadence",
+      "files": [
+        "scripts/doctor.py",
+        "scripts/daily_alarm.py",
+        "tests/test_doctor_managing_editor.py",
+        "state/third_posted_log.json"
+      ],
+      "observation": "The editor desk counts every timestamped row in each channel ledger. Third deliberately stores QA refusals beside uploads, so the desk reports eight posts on August 15 even though six of those rows are qa_rejected and only two have YouTube URLs. The daily alarm already implements the correct upload predicate and reports 2/6. The new test suite uses only clean success-shaped rows and never includes a Third rejection or claim, so the false cadence passes.",
+      "proposal": "Use one shared posted-entry normalizer for the alarm, analytics, and editor desk: count only rows with a real upload URL after excluding rejected, skipped, and pending states. Preserve attempts and rejection counts as separate fields rather than laundering them into cadence. Add production-shaped fixtures containing two uploads, QA rejections, a pending claim, and mixed timestamp fields, and require the editor desk and alarm to return the same 2/6 result.",
+      "evidence": "scripts/doctor.py lines 468-482 converts dict values to rows and increments the day for every timestamp without checking qa_rejected, key prefix, status, pending, or URL. scripts/daily_alarm.py lines 99-114 explicitly excludes those non-uploads. state/third_posted_log.json has eight rows stamped 2026-08-15: six qa_rejected rows without upload URLs and two YouTube uploads. doctor/evidence.json channel_performance reports third=8 for 2026-08-15 while its alarm reports third=2/6. tests/test_doctor_managing_editor.py lines 72-110 seeds only successful rows and has no Third log fixture.",
+      "signature": "a833d2f37a5c",
+      "protected": [
+        "touches state/third_posted_log.json \u2014 posted logs are append-only dedupe state \u2014 losing an entry means a duplicate upload"
+      ],
+      "last_seen": "20260817",
+      "first_seen": "20260817"
+    },
+    "1eb84ce4609f": {
+      "title": "Managing-editor leaderboards read a metric the producer never emits",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "doctor/performance-ranking",
+      "files": [
+        "scripts/doctor.py",
+        "scripts/fetch_analytics.py",
+        "tests/test_doctor_managing_editor.py"
+      ],
+      "observation": "The analytics producer names the normalized metric views_per_hour, but the editor desk reads only vph. Every live video is therefore ranked as 0.0 VPH and the first five source-order rows are presented as top performers. The test fixture invents a vph field instead of using the producer's real schema, so it proves the consumer against a payload production never writes.",
+      "proposal": "Read the canonical views_per_hour field and expose that same name in the evidence pack; accept a legacy alias only through an explicit normalizer. Replace the hand-written analytics fixture with one emitted by the fetch_analytics schema and assert exact ordering, numeric coercion behavior, and that a missing metric is unranked rather than tied at zero with measured zero-performing videos.",
+      "evidence": "scripts/fetch_analytics.py lines 496-500 writes views_per_hour and sorts snapshots on that field. scripts/doctor.py lines 488-499 reads v.get('vph') only. doctor/evidence.json consequently shows vph=0.0 for every explainer and Third top result even though state/analytics_explainer/latest.json currently reports 0.91 and 0.67 views_per_hour for its first two recent videos and state/analytics_third/latest.json reports 2.88 and 1.24 for its leaders. tests/test_doctor_managing_editor.py lines 81-86 fabricates vph values, and lines 112-116 assert the incompatible fixture rather than the producer contract.",
+      "signature": "1eb84ce4609f",
+      "last_seen": "20260817",
+      "first_seen": "20260817"
+    },
+    "fb2c88996071": {
+      "title": "The advertised format scoreboard crashes on Reddit packages",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "tests/performance-tooling",
+      "files": [
+        "scripts/format_scoreboard.py",
+        "config/channel_registry.json",
+        "tests/test_retro.py"
+      ],
+      "observation": "The editor desk points readers to python scripts/format_scoreboard.py, but the command cannot complete on current main. The registry creates a reddit_story bucket, while package_formats labels any subreddit package as reddit; build then indexes rows['reddit'] and raises KeyError. There is no direct test for the scoreboard command or its package-to-registry normalization, and the retro tests consume a hand-written scoreboard object instead of building one.",
+      "proposal": "Resolve every package through the registry's format detector so Reddit lands in reddit_story and every observed label is either a registered bucket or an explicit unmatched record. Add a direct isolated test with graph_race, reddit_story, retired text_card, malformed package, and unknown format fixtures; require build and main to finish, preserve retired-format history, and report unmatched rows without crashing.",
+      "evidence": "scripts/format_scoreboard.py lines 23-40 derives FORMATS from the registry, whose config/channel_registry.json trending formats include reddit_story but not reddit. Lines 47-61 assign the literal reddit to packages with subreddit, and lines 72-82 index rows by that value. Running `python scripts/format_scoreboard.py` on current main raises KeyError: 'reddit'. Repository search finds no test that imports format_scoreboard; tests/test_retro.py only seeds state/format_scoreboard.json as already-built input.",
+      "signature": "fb2c88996071",
+      "last_seen": "20260817",
+      "first_seen": "20260817"
+    },
+    "c8ca85c0ce21": {
+      "title": "Trending analytics loses the format identity needed to manage its mix",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "analytics/content-attribution",
+      "files": [
+        "scripts/run_trending_daily.py",
+        "scripts/fetch_analytics.py",
+        "scripts/build_retro.py",
+        "state/analytics/latest.json"
+      ],
+      "observation": "Trending's upload ledger already records format on recent uploads, but fetch_analytics drops that field when normalizing list-shaped entries and emits no format in the snapshot. All 62 live trending analytics rows therefore have null catalog_id, experiment_arm, actual_structure, and hook, with no format field at all. build_retro consequently classifies every trending video as unknown and cannot compare graph_race against reddit_story at any maturity band, leaving the managing editor unable to evaluate the registry's core 4/2 mix.",
+      "proposal": "Define one versioned performance-attribution record at upload time carrying immutable video URL/id, channel, production date, package identity, registered format, experiment arm, hook version, and publish time. Preserve it losslessly through analytics and retro joins, with migrations for historical title-matched rows and end-to-end contract tests that start from a real uploader log entry and end in same-format maturity cohorts. Make attribution coverage itself visible so strategy changes stop when identity coverage falls below an explicit floor.",
+      "evidence": "Recent entries in state/posted_log.json contain format='graph_race', title, topic, publish_at, and video_url. scripts/fetch_analytics.py lines 296-301 copies only URL, catalog_id, posted_at, and title for the list-shaped trending log; lines 470-500 then emits the absent identity fields. A direct read of state/analytics/latest.json finds 62/62 videos with format absent and catalog_id, experiment_arm, actual_structure, and hook all null. scripts/build_retro.py lines 155-161 falls back to format='unknown', and retro/20260815/brief.json shows every trending maturity cohort under unknown with all A/B arm counts at zero.",
+      "signature": "c8ca85c0ce21",
+      "last_seen": "20260817",
+      "first_seen": "20260817"
+    },
+    "66364106b455": {
+      "title": "Run the existing Third story arm to a real sample before changing the mix",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/third-story-experiment",
+      "files": [
+        "state/third_packages/default_clip.json",
+        "scripts/run_third.py",
+        "state/analytics_third/latest.json",
+        "shared/experiments.py"
+      ],
+      "observation": "Third already assigns one daily slot to attempt a multi-clip story and safely falls back when no genuine arc exists. The current analytics show the mature clip baseline is meaningful at 64 samples and median 0.04 VPH, while story has only two mature outputs: median 0.10 VPH but 19 average views versus 26.8 for clips. That is an interesting signal, not a conclusion. The retro register still says zero experiments are running, so the existing arm has no declared window or mandatory readout and can drift indefinitely without a decision.",
+      "proposal": "Register the existing story-versus-clip arm as the channel's one live experiment without changing the six-post target or the sovereign quality gates. Keep one date-randomized story attempt per day, allow the current genuine-arc fallback, and judge only after at least 25 mature actual_structure=story uploads and 28 days. Primary metric: median views_per_hour at 24 hours versus the mature clip baseline; guardrails: average view percentage, director rejection rate, and no increase in short-slate days. Extend experiment scoping to actual_structure so fallback clips cannot be counted as story samples, then adopt, revert, or extend from the registered readout rather than the current two-video hint.",
+      "evidence": "state/third_packages/default_clip.json lines 2-3 sets story_count=1. scripts/run_third.py lines 2213-2234 date-randomizes that story slot and falls back to a normal clip when no genuine arc exists. state/analytics_third/latest.json summary.ab_experiment currently reports clip n_mature_24h=64, median_vph=0.04, avg_views=26.8; story n_mature_24h=2, median_vph=0.10, avg_views=19.0, explicitly below the 25-sample sufficiency rule. retro/20260815/brief.json reports experiments.total=0 and a must-do no_live_experiment obligation. shared/experiments.py lines 270-297 scopes samples only through format/_fmt, not actual_structure, so a story-arm registration needs that measurement boundary made explicit.",
+      "signature": "66364106b455",
+      "last_seen": "20260817",
+      "first_seen": "20260817"
     }
   }
 }
