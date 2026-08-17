@@ -3779,6 +3779,25 @@
         "end": 57.9
       },
       "director_cut": true
+    },
+    "rejected-charmingvibranthippokappapride-yzmwztiga-7ozg_k": {
+      "source_url": "https://www.twitch.tv/forsen/clip/CharmingVibrantHippoKappaPride-YzmwztIGa-7OzG_K",
+      "streamer": "forsen",
+      "title": "4K FORSEN",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (rambling talk, no visible event)",
+      "ts": "2026-08-17T11:38:34.013395+00:00"
+    },
+    "clip-20260817-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/ResoluteTenderMarrowDansGame-CGKmQescGAsD2tVE",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Gets Fired And This Is How He Responds",
+      "kind": "twitch_clip",
+      "ts": "2026-08-17T11:40:58.686002+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
