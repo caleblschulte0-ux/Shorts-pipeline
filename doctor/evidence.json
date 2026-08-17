@@ -1838,8 +1838,8 @@
     }
   ],
   "recent_commits": [
-    "4e5e782 2026-08-16 doctor: findings for 20260816",
-    "bd0e807 2026-08-16 retro: brief + triage for 20260816 [skip ci]"
+    "c055f48 2026-08-17 doctor: mark a544d37c275e done (PR #283 merged as 6c25c89) (#284)",
+    "c5cb5e1 2026-08-17 exchange: phase A bundle for 20260817 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -1981,13 +1981,6 @@
       "ruling": "in_progress"
     },
     {
-      "signature": "a544d37c275e",
-      "title": "Reddit illustrations ignore narrated beat timing",
-      "horizon": "bug",
-      "severity": "high",
-      "ruling": "doing"
-    },
-    {
       "signature": "5ac409690185",
       "title": "Third's fallback slate can never meet its registered target",
       "horizon": "bug",
@@ -1999,7 +1992,7 @@
       "title": "Managing-editor cadence counts rejected Third clips as posts",
       "horizon": "bug",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "2f7ee366fb9b",
@@ -2020,7 +2013,7 @@
       "title": "Managing-editor leaderboards read a metric the producer never emits",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "cf263a770061",
@@ -2083,7 +2076,7 @@
       "title": "Run the existing Third story arm to a real sample before changing the mix",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "e02d4cf673bd",
@@ -2104,7 +2097,7 @@
       "title": "The advertised format scoreboard crashes on Reddit packages",
       "horizon": "short_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2132,7 +2125,7 @@
       "title": "Trending analytics loses the format identity needed to manage its mix",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -2196,6 +2189,13 @@
       "signature": "653acb99b575",
       "verdict": "done",
       "date": "20260812",
+      "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "a544d37c275e",
+      "verdict": "done",
+      "date": "20260817",
       "because": "",
       "revisit_after": null
     },
