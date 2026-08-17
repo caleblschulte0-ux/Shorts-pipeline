@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260817",
+  "bundle": {
+    "identity": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe",
+    "path": "exchange/bundles/20260817/bundle.json"
+  },
+  "request_id": "reddit-vacation-approval-chain-s5-8c35344a9038",
+  "safe_request_id": "reddit-vacation-approval-chain-s5-8c35344a9038",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-vacation-approval-chain",
+  "shot_index": 5,
+  "prompt_sha256": "81f0a0ca6ea595ae1a5ee94f0a7c890a7518af220c7050e3293f18f35a54c437",
+  "prompt_used": "An editorial illustration for a short-form video: empty office desks. It accompanies the narration: \"coverage visibility had collapsed completely\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+    "filename": "20260817__reddit-vacation-approval-chain-s5-8c35344a9038.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9e4b1c13bc5e59a0fcd2f7d4f94de44f59f674ffec905a8e0926ccc7c7e30ae6",
+    "bytes": 1091835,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-17T11:06:49Z",
+  "error": null,
+  "retryable": false
+}
