@@ -1,0 +1,31 @@
+{
+ "checked_at": "2026-08-17T13:04:20+00:00",
+ "date": "20260817",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260817/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-quiet-hours-vacuum-s0-c7a1d5347ea1.json",
+  "reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f.json",
+  "reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a.json",
+  "reddit-quiet-hours-vacuum-s3-418b31ed7796.json",
+  "reddit-vacation-approval-chain-s1-e0db44f62b67.json",
+  "reddit-vacation-approval-chain-s2-34b0e2bf4812.json",
+  "reddit-vacation-approval-chain-s3-06f53758fe92.json",
+  "reddit-vacation-approval-chain-s4-e58553e64566.json",
+  "reddit-vacation-approval-chain-s5-8c35344a9038.json",
+  "reddit-vacation-approval-chain-s7-795c80d748b6.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 10 image(s)"
+}
