@@ -1,118 +1,16 @@
 [
   {
-    "topic": "The Panama Canal Just Passed The Suez",
-    "title": "The Panama Canal Just Passed The Suez",
+    "topic": "A 2-Year-Old App Just Passed Etsy",
+    "title": "A 2-Year-Old App Just Passed Etsy",
     "format": "graph_race",
-    "publish_at": "2026-08-16T13:00:00Z",
+    "publish_at": "2026-08-17T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/WzqbpSusTmU",
+    "video_url": "https://youtube.com/shorts/U2J2nQdOo-c",
     "error": null,
-    "elapsed_seconds": 115.5,
-    "package_path": "state/trending_packages/20260816/01_graph-panama-passed-suez.json",
+    "elapsed_seconds": 121.8,
+    "package_path": "state/trending_packages/20260817/01_graph-tiktok-shop-passed-etsy.json",
     "source": "brain",
-    "video_path": "output/daily_20260816-094148_the_panama_canal_just_passed_the_suez.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Measles Is Back At 1992 Levels",
-    "title": "Measles Is Back At 1992 Levels",
-    "format": "graph_race",
-    "publish_at": "2026-08-16T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The record-line race pays off well at the end, but the middle third is a hairline on the axis floor inside a huge black void, with tick and series labels clipped off both edges.",
-    "elapsed_seconds": 118.4,
-    "package_path": "state/trending_packages/20260816/02_graph-measles-1992-levels.json",
-    "source": "brain",
-    "video_path": "output/daily_20260816-094344_measles_is_back_at_1992_levels.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The record-line race pays off well at the end, but the middle third is a hairline on the axis floor inside a huge black void, with tick and series labels clipped off both edges.",
-      "score": 66
-    },
-    "blocked": true
-  },
-  {
-    "topic": "One Company Out-Launches Every Country",
-    "title": "One Company Out-Launches Every Country",
-    "format": "graph_race",
-    "publish_at": "2026-08-16T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/wIxgdqle_W0",
-    "error": null,
-    "elapsed_seconds": 125.9,
-    "package_path": "state/trending_packages/20260816/03_graph-spacex-outlaunches-countries.json",
-    "source": "brain",
-    "video_path": "output/daily_20260816-094542_one_company_out_launches_every_country.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Summer Movies Clawed Back To $4 Billion",
-    "title": "Summer Movies Clawed Back To $4 Billion",
-    "format": "graph_race",
-    "publish_at": "2026-08-16T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/XGfjbr3lOLE",
-    "error": null,
-    "elapsed_seconds": 126.4,
-    "package_path": "state/trending_packages/20260816/04_graph-summer-box-office-4-billion.json",
-    "source": "brain",
-    "video_path": "output/daily_20260816-094748_summer_movies_clawed_back_to__4_billion.mp4",
+    "video_path": "output/daily_20260817-093636_a_2_year_old_app_just_passed_etsy.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -131,25 +29,59 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
+      "score": 83
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "We've Now Found 40,000 Asteroids Near Earth",
+    "title": "We've Now Found 40,000 Asteroids Near Earth",
+    "format": "graph_race",
+    "publish_at": "2026-08-17T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/aZRAz0-u-JY",
+    "error": null,
+    "elapsed_seconds": 132.1,
+    "package_path": "state/trending_packages/20260817/02_graph-asteroids-catalogued.json",
+    "source": "brain",
+    "video_path": "output/daily_20260817-093838_we_ve_now_found_40_000_asteroids_near_ea.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
       "score": 70
     },
     "channel": "default"
   },
   {
-    "topic": "The Break Room Is Company Property. So We Emptied It.",
-    "title": "The Break Room Is Company Property. So We Emptied It.",
-    "format": "reddit",
-    "publish_at": "2026-08-16T17:30:00Z",
+    "topic": "Esports' Biggest Prize Ever Just Collapsed",
+    "title": "Esports' Biggest Prize Ever Just Collapsed",
+    "format": "graph_race",
+    "publish_at": "2026-08-17T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is legible but every illustration is unrelated archive junk \u2014 an Iraq war memo, a Singapore textile packet, and a Linux bug-tracker inbox held for the last 11 seconds.",
-    "elapsed_seconds": 194.0,
-    "package_path": "state/trending_packages/20260816/05_reddit-break-room-company-property.json",
+    "error": "showrunner_block: showrunner BLOCK: A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
+    "elapsed_seconds": 118.8,
+    "package_path": "state/trending_packages/20260817/03_graph-dota-prize-pool-collapse.json",
     "source": "brain",
-    "video_path": "output/daily_20260816-094958_the_break_room_is_company_property__so_w.mp4",
+    "video_path": "output/daily_20260817-094050_esports__biggest_prize_ever_just_collaps.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.567,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,93 +92,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "loudness_lufs": -22.8
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The story is legible but every illustration is unrelated archive junk \u2014 an Iraq war memo, a Singapore textile packet, and a Linux bug-tracker inbox held for the last 11 seconds.",
-      "score": 57
-    },
-    "blocked": true
-  },
-  {
-    "topic": "The Scammer Wanted Gift Card Codes. He Got Codes.",
-    "title": "The Scammer Wanted Gift Card Codes. He Got Codes.",
-    "format": "reddit",
-    "publish_at": "2026-08-16T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The payback lands in the captions but the last ten seconds sit on a single garbled AI sign with fake lettering \u2014 the punchline is illustrated by junk.",
-    "elapsed_seconds": 213.3,
-    "package_path": "state/trending_packages/20260816/06_reddit-gift-card-scam-wrong-digit.json",
-    "source": "brain",
-    "video_path": "output/daily_20260816-095333_the_scammer_wanted_gift_card_codes__he_g.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 44.533,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -26.2
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The payback lands in the captions but the last ten seconds sit on a single garbled AI sign with fake lettering \u2014 the punchline is illustrated by junk.",
+      "reason": "showrunner BLOCK: A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
       "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "The influencers getting bitten while chasing the perfect shark shot",
-    "angle": "Social media influencers are taking risks to get the perfect shark shot, but at what cost?",
-    "publish_at": "2026-08-16T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 16.2,
-    "backfill": true
-  },
-  {
-    "topic": "hurricanes",
-    "angle": "Hurricane Lala is battering Hawaii with strong winds and torrential rain, threatening the islands.",
-    "publish_at": "2026-08-16T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 429: Too Many Requests",
-    "elapsed_seconds": 8.6,
-    "backfill": true
-  },
-  {
-    "topic": "Hurricane Lala lashes Hawaii with strong winds and torrential rain",
-    "angle": "Hurricane Lala is lashing Hawaii with strong winds and torrential rain, prompting evacuations and warnings.",
-    "publish_at": "2026-08-16T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Every top-panel visual is keyword-literal stock junk \u2014 a 1930s archival photo, scrabble tiles, a stranger's book cover and a gummy bear in a mousetrap \u2014 bolted onto a Reddit inheritance story it has nothing to do with.",
-    "elapsed_seconds": 456.4,
-    "title": "My Sister's Deceit",
-    "package_path": "state/trending_packages/20260816-095732_auto_hurricane_lala_lashes_hawaii_with_strong.json",
-    "video_path": "output/daily_20260816-095732_hurricane_lala_lashes_hawaii_with_strong.mp4",
+    "topic": "A Cartoon Just Became Netflix's Biggest Movie Ever",
+    "title": "A Cartoon Just Became Netflix's Biggest Movie Ever",
+    "format": "graph_race",
+    "publish_at": "2026-08-17T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/gb_-hF0lyLE",
+    "error": null,
+    "elapsed_seconds": 129.3,
+    "package_path": "state/trending_packages/20260817/04_graph-kpop-demon-hunters-record.json",
+    "source": "brain",
+    "video_path": "output/daily_20260817-094249_a_cartoon_just_became_netflix_s_biggest_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 32.6,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -257,7 +126,80 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -12.2
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+    "title": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+    "format": "reddit",
+    "publish_at": "2026-08-17T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
+    "elapsed_seconds": 235.0,
+    "package_path": "state/trending_packages/20260817/05_reddit-vacation-approval-chain.json",
+    "source": "brain",
+    "video_path": "output/daily_20260817-094534_every_vacation_day_needed_five_signature.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 57.5,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "None"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
+      "score": 53
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
+    "title": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
+    "format": "reddit",
+    "publish_at": "2026-08-17T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/xvq7EkPdERI",
+    "error": null,
+    "elapsed_seconds": 266.0,
+    "package_path": "state/trending_packages/20260817/06_reddit-quiet-hours-vacuum.json",
+    "source": "brain",
+    "video_path": "output/daily_20260817-094936_she_blasted_music_at_2_am__i_found_the_q.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 58.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.5
     },
     "qa": {
       "ok": true,
@@ -265,11 +207,30 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Every top-panel visual is keyword-literal stock junk \u2014 a 1930s archival photo, scrabble tiles, a stranger's book cover and a gummy bear in a mousetrap \u2014 bolted onto a Reddit inheritance story it has nothing to do with.",
-      "score": 26
+      "blocked": false,
+      "reason": "",
+      "score": 74
     },
-    "blocked": true,
+    "channel": "default"
+  },
+  {
+    "topic": "pandemic",
+    "angle": null,
+    "publish_at": "2026-08-17T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 2.0,
+    "backfill": true
+  },
+  {
+    "topic": "johnny",
+    "angle": null,
+    "publish_at": "2026-08-17T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.3,
     "backfill": true
   }
 ]
