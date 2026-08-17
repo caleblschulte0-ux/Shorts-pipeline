@@ -3813,13 +3813,77 @@
       "director_cut": true
     },
     "clip-20260817-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/BoldCheerfulShallotPeanutButterJellyTime-emQzjoyy8wjn-ICb",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/Ifj9CbMCBIU",
       "title": "Stableronaldo Panics After Accidentally Revealing His Last 30 Days",
       "kind": "twitch_clip",
-      "ts": "2026-08-17T11:42:55.608330+00:00",
+      "ts": "2026-08-17T11:42:58.910131+00:00",
+      "uploaded_at": "2026-08-17T11:42:58.910175+00:00",
+      "publish_at": "2026-08-17T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/BoldCheerfulShallotPeanutButterJellyTime-emQzjoyy8wjn-ICb",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE DIDN'T MEAN TO SHOW THAT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3000,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 13.37
+      },
+      "director_cut": true
+    },
+    "rejected-handsomewealthykangaroowoofer-rxrs2by-90zuayda": {
+      "source_url": "https://www.twitch.tv/lirik/clip/HandsomeWealthyKangarooWoofer-RXrs2By-90zuAYdA",
+      "streamer": "lirik",
+      "title": "boss fight",
+      "qa_rejected": true,
+      "ts": "2026-08-17T11:43:17.326564+00:00"
+    },
+    "rejected-toughbetterhareripepperonis-japf0dadk9bxs_ee": {
+      "source_url": "https://www.twitch.tv/timthetatman/clip/ToughBetterHareRiPepperonis-JaPF0DaDk9BxS_eE",
+      "streamer": "timthetatman",
+      "title": "DAY LUL W",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (routine gameplay frustration, no real ev)",
+      "ts": "2026-08-17T11:44:33.704931+00:00"
+    },
+    "rejected-relentlesssweetmoonttours-lj364p4kw-qy2vsx": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/RelentlessSweetMoonTTours-lJ364p4kw-qy2VSx",
+      "streamer": "summit1g",
+      "title": "COCKY TO HUMBLED",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine CS gameplay, no visible reaction)",
+      "ts": "2026-08-17T11:45:58.142389+00:00"
+    },
+    "rejected-smokywealthybatpjsalt-ar2nnkttl--x01hw": {
+      "source_url": "https://www.twitch.tv/forsen/clip/SmokyWealthyBatPJSalt-aR2NNKTtl--X01hW",
+      "streamer": "forsen",
+      "title": "short",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine minecraft build tour)",
+      "ts": "2026-08-17T12:06:43.978299+00:00"
+    },
+    "rejected-observantfancypuppyheyguys--t8qeohk8uxpsmgq": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/ObservantFancyPuppyHeyGuys--t8qeOHk8UxPSmgQ",
+      "streamer": "sodapoppin",
+      "title": "vei is looking for a real man",
+      "qa_rejected": true,
+      "ts": "2026-08-17T12:19:32.763531+00:00"
+    },
+    "clip-20260817-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/GoldenMushyStapleNerfBlueBlaster-2YuodHeHgHdsBTmY",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
+      "kind": "twitch_clip",
+      "ts": "2026-08-17T12:32:48.610492+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
