@@ -6,56 +6,22 @@
   "y_label": "Championship game TV viewers (millions)",
   "duration": 13,
   "source": "NCAA basketball championship game TV audience, Nielsen-measured, as reported by ESPN/CBS/Sportico/Front Office Sports/Sports Media Watch. Women's Final: 2021 Stanford-Arizona 4.1M, 2022 South Carolina-UConn 4.9M, 2023 LSU-Iowa 9.9M, 2024 South Carolina-Iowa 18.9M (Nielsen record for a women's college basketball broadcast), 2025 UConn-South Carolina 8.5M, 2026 South Carolina-UCLA 9.9M. Men's Final: 2021 Baylor-Gonzaga 16.9M (CBS), 2022 Kansas-North Carolina 18.1M (cable record at the time), 2023 UConn-San Diego State 14.7M, 2024 UConn-Purdue 14.8M (CBS/TBS/TNT), 2025 Florida-Houston 18.1M (CBS), 2026 Michigan-UConn 18.3M (TBS/TNT/truTV/HBO Max). 2024 was the first time in NCAA history the women's final out-rated the men's; every other year on record, the men's game led.",
-  "years": [
-    2021,
-    2022,
-    2023,
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2021, 2022, 2023, 2024, 2025, 2026],
   "series": [
     {
       "name": "Women's Final",
       "color": "#ff2d95",
       "icon": "ESPN",
-      "values": [
-        4.1,
-        4.9,
-        9.9,
-        18.9,
-        8.5,
-        9.9
-      ]
+      "values": [4.1, 4.9, 9.9, 18.9, 8.5, 9.9]
     },
     {
       "name": "Men's Final",
       "color": "#1e6fff",
       "icon": "CBS",
-      "values": [
-        16.9,
-        18.1,
-        14.7,
-        14.8,
-        18.1,
-        18.3
-      ]
+      "values": [16.9, 18.1, 14.7, 14.8, 18.1, 18.3]
     }
   ],
-  "hashtags": [
-    "marchmadness",
-    "ncaa",
-    "womensbasketball",
-    "collegebasketball",
-    "sports",
-    "tvratings",
-    "caitlinclark",
-    "ncaab",
-    "sportsbusiness",
-    "basketball",
-    "media",
-    "sportsmedia"
-  ],
+  "hashtags": ["marchmadness", "ncaa", "womensbasketball", "collegebasketball", "sports", "tvratings", "caitlinclark", "ncaab", "sportsbusiness", "basketball", "media", "sportsmedia"],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
 }

@@ -6,51 +6,20 @@
   "y_label": "California condors (individual birds)",
   "duration": 13,
   "source": "U.S. Fish & Wildlife Service California Condor Recovery Program population records: 1987 -- the last 27 wild condors were trapped into captivity, leaving zero in the wild; 1992 -- first captive-bred birds released (about 2 wild, 25 captive); 2010 -- total population 370 (181 wild-flying, 189 captive), per FWS-sourced population chart (ResearchGate fig. 3); 2020 -- total 504 (329 wild, 175 captive), FWS year-end status report; 2025 -- total 607 (approximately 350 wild-flying, 257 captive), FWS '2025 California Condor Population Status Report' (published Feb 2026).",
-  "years": [
-    1987,
-    1992,
-    2010,
-    2020,
-    2025
-  ],
+  "years": [1987, 1992, 2010, 2020, 2025],
   "series": [
     {
       "name": "Wild-flying",
       "color": "#50ff80",
-      "values": [
-        0,
-        2,
-        181,
-        329,
-        350
-      ]
+      "values": [0, 2, 181, 329, 350]
     },
     {
       "name": "In captivity",
       "color": "#ffaa30",
-      "values": [
-        27,
-        25,
-        189,
-        175,
-        257
-      ]
+      "values": [27, 25, 189, 175, 257]
     }
   ],
-  "hashtags": [
-    "californiacondor",
-    "conservation",
-    "endangeredspecies",
-    "wildlife",
-    "wildlifeconservation",
-    "nature",
-    "birds",
-    "usfws",
-    "recovery",
-    "biodiversity",
-    "science",
-    "animals"
-  ],
+  "hashtags": ["californiacondor", "conservation", "endangeredspecies", "wildlife", "wildlifeconservation", "nature", "birds", "usfws", "recovery", "biodiversity", "science", "animals"],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }

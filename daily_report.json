@@ -1,16 +1,16 @@
 [
   {
-    "topic": "A 2-Year-Old App Just Passed Etsy",
-    "title": "A 2-Year-Old App Just Passed Etsy",
+    "topic": "Women's Soccer Expansion Fees Just Went Vertical",
+    "title": "Women's Soccer Expansion Fees Just Went Vertical",
     "format": "graph_race",
-    "publish_at": "2026-08-17T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/U2J2nQdOo-c",
-    "error": null,
-    "elapsed_seconds": 121.8,
-    "package_path": "state/trending_packages/20260817/01_graph-tiktok-shop-passed-etsy.json",
+    "publish_at": "2026-08-18T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A clean, honestly-sourced race that betrays its own headline \u2014 the ending crowns the men's league while the women's 2M-to-205M number is literally cropped off the screen.",
+    "elapsed_seconds": 124.7,
+    "package_path": "state/trending_packages/20260818/01_graph-nwsl-expansion-fees.json",
     "source": "brain",
-    "video_path": "output/daily_20260817-093636_a_2_year_old_app_just_passed_etsy.mp4",
+    "video_path": "output/daily_20260818-093103_women_s_soccer_expansion_fees_just_went_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -24,27 +24,27 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
+      "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
+      "blocked": true,
+      "reason": "showrunner BLOCK: A clean, honestly-sourced race that betrays its own headline \u2014 the ending crowns the men's league while the women's 2M-to-205M number is literally cropped off the screen.",
+      "score": 66
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "We've Now Found 40,000 Asteroids Near Earth",
-    "title": "We've Now Found 40,000 Asteroids Near Earth",
+    "topic": "More Condors Now Fly Free Than Live In Captivity",
+    "title": "More Condors Now Fly Free Than Live In Captivity",
     "format": "graph_race",
-    "publish_at": "2026-08-17T14:30:00Z",
+    "publish_at": "2026-08-18T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/aZRAz0-u-JY",
+    "video_url": "https://youtube.com/shorts/DiYe8MYtvTo",
     "error": null,
-    "elapsed_seconds": 132.1,
-    "package_path": "state/trending_packages/20260817/02_graph-asteroids-catalogued.json",
+    "elapsed_seconds": 131.7,
+    "package_path": "state/trending_packages/20260818/02_graph-condor-wild-vs-captive.json",
     "source": "brain",
-    "video_path": "output/daily_20260817-093838_we_ve_now_found_40_000_asteroids_near_ea.mp4",
+    "video_path": "output/daily_20260818-093308_more_condors_now_fly_free_than_live_in_c.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -63,22 +63,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 70
+      "score": 74
     },
     "channel": "default"
   },
   {
-    "topic": "Esports' Biggest Prize Ever Just Collapsed",
-    "title": "Esports' Biggest Prize Ever Just Collapsed",
+    "topic": "Solar Power Just Passed Coal In America",
+    "title": "Solar Power Just Passed Coal In America",
     "format": "graph_race",
-    "publish_at": "2026-08-17T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
-    "elapsed_seconds": 118.8,
-    "package_path": "state/trending_packages/20260817/03_graph-dota-prize-pool-collapse.json",
+    "publish_at": "2026-08-18T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/DJndnpqLzPg",
+    "error": null,
+    "elapsed_seconds": 121.0,
+    "package_path": "state/trending_packages/20260818/03_graph-solar-passed-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260817-094050_esports__biggest_prize_ever_just_collaps.mp4",
+    "video_path": "output/daily_20260818-093520_solar_power_just_passed_coal_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -92,27 +92,27 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
-      "score": 66
+      "blocked": false,
+      "reason": "",
+      "score": 78
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "A Cartoon Just Became Netflix's Biggest Movie Ever",
-    "title": "A Cartoon Just Became Netflix's Biggest Movie Ever",
+    "topic": "Women's March Madness Beat The Men's. Once.",
+    "title": "Women's March Madness Beat The Men's. Once.",
     "format": "graph_race",
-    "publish_at": "2026-08-17T16:00:00Z",
+    "publish_at": "2026-08-18T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/gb_-hF0lyLE",
+    "video_url": "https://youtube.com/shorts/scucsXw9lPY",
     "error": null,
-    "elapsed_seconds": 129.3,
-    "package_path": "state/trending_packages/20260817/04_graph-kpop-demon-hunters-record.json",
+    "elapsed_seconds": 119.9,
+    "package_path": "state/trending_packages/20260818/04_graph-march-madness-gender-gap.json",
     "source": "brain",
-    "video_path": "output/daily_20260817-094249_a_cartoon_just_became_netflix_s_biggest_.mp4",
+    "video_path": "output/daily_20260818-093721_women_s_march_madness_beat_the_men_s__on.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -136,59 +136,20 @@
     "channel": "default"
   },
   {
-    "topic": "Every Vacation Day Needed Five Signatures. So I Used Them.",
-    "title": "Every Vacation Day Needed Five Signatures. So I Used Them.",
+    "topic": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
+    "title": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
     "format": "reddit",
-    "publish_at": "2026-08-17T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
-    "elapsed_seconds": 235.0,
-    "package_path": "state/trending_packages/20260817/05_reddit-vacation-approval-chain.json",
-    "source": "brain",
-    "video_path": "output/daily_20260817-094534_every_vacation_day_needed_five_signature.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 57.5,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
-      "score": 53
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
-    "title": "She Blasted Music At 2 AM. I Found the Quiet Hours Rule.",
-    "format": "reddit",
-    "publish_at": "2026-08-17T17:30:00Z",
+    "publish_at": "2026-08-18T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/xvq7EkPdERI",
+    "video_url": "https://youtube.com/shorts/AvmvGJSO-l0",
     "error": null,
-    "elapsed_seconds": 266.0,
-    "package_path": "state/trending_packages/20260817/06_reddit-quiet-hours-vacuum.json",
+    "elapsed_seconds": 221.4,
+    "package_path": "state/trending_packages/20260818/05_reddit-snack-bag-clipboard.json",
     "source": "brain",
-    "video_path": "output/daily_20260817-094936_she_blasted_music_at_2_am__i_found_the_q.mp4",
+    "video_path": "output/daily_20260818-094007_she_let_her_kid_open_every_bag__so_i_sta.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 58.7,
+      "duration": 50.367,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +160,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.5
+      "loudness_lufs": -24.8
     },
     "qa": {
       "ok": true,
@@ -209,28 +170,41 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 74
+      "score": 70
     },
     "channel": "default"
   },
   {
-    "topic": "pandemic",
+    "topic": "She Wanted 50% Off From A Guy Who Didn't Work There.",
+    "title": "She Wanted 50% Off From A Guy Who Didn't Work There.",
+    "format": "reddit",
+    "publish_at": "2026-08-18T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['insisting my navy jacket meant I worked there', 'followed me down two aisles', 'walked her to the actual customer service desk', 'the real employee recognized her instantly', 'loss prevention pulled the footage from three loca', 'has her photo taped inside the register drawer', 'banned from four stores in the county']",
+    "elapsed_seconds": 44.2,
+    "package_path": "state/trending_packages/20260818/06_reddit-not-staff-microwave.json",
+    "source": "brain",
+    "quarantined": true
+  },
+  {
+    "topic": "queen camilla granddaughter eliza lopes",
     "angle": null,
-    "publish_at": "2026-08-17T19:00:00Z",
+    "publish_at": "2026-08-18T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 2.0,
+    "elapsed_seconds": 0.4,
     "backfill": true
   },
   {
-    "topic": "johnny",
+    "topic": "state farm dividend",
     "angle": null,
-    "publish_at": "2026-08-17T20:30:00Z",
+    "publish_at": "2026-08-18T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.3,
+    "elapsed_seconds": 0.8,
     "backfill": true
   }
 ]

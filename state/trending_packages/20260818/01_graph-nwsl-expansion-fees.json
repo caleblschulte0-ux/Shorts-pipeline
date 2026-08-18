@@ -6,53 +6,22 @@
   "y_label": "Expansion franchise fee ($ millions)",
   "duration": 13,
   "source": "NWSL expansion fees: roughly $2M for Angel City FC / San Diego Wave (2020-2022 rounds, per Sportico/Yahoo Sports reporting); Bay FC $53M (announced 2023, joined 2024, Just Women's Sports); Denver Summit FC $110M (announced Jan 2025, Sportico -- 'largest in the history of U.S. women's sports'); Columbus $205M (announced April 2026, Sportico/Forbes -- 'nearly double' Denver's fee, the current NWSL record). MLS expansion fees: FC Cincinnati $150M (2018-2019 round); Charlotte FC $325M (2019 announcement, joined 2022, per CBC/Wikipedia); San Diego FC $500M (announced May 2023, joined 2025, per Goal.com/NBC Sports/CBS Sports -- the MLS record, still the benchmark through the 2025-2026 cycle).",
-  "years": [
-    2020,
-    2022,
-    2023,
-    2025,
-    2026
-  ],
+  "years": [2020, 2022, 2023, 2025, 2026],
   "series": [
     {
       "name": "NWSL (women's)",
       "color": "#ff2d95",
       "icon": "NWSL",
-      "values": [
-        2,
-        2,
-        53,
-        110,
-        205
-      ]
+      "values": [2, 2, 53, 110, 205]
     },
     {
       "name": "MLS (men's)",
       "color": "#1e6fff",
       "icon": "MLS",
-      "values": [
-        150,
-        325,
-        500,
-        500,
-        500
-      ]
+      "values": [150, 325, 500, 500, 500]
     }
   ],
-  "hashtags": [
-    "nwsl",
-    "mls",
-    "soccer",
-    "womenssoccer",
-    "sportsbusiness",
-    "expansion",
-    "football",
-    "sportsfinance",
-    "businessofsport",
-    "womensoccer",
-    "soccernews",
-    "sports"
-  ],
+  "hashtags": ["nwsl", "mls", "soccer", "womenssoccer", "sportsbusiness", "expansion", "football", "sportsfinance", "businessofsport", "womensoccer", "soccernews", "sports"],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }
