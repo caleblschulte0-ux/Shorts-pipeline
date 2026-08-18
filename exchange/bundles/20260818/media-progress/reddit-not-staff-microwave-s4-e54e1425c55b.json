@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-not-staff-microwave-s4-e54e1425c55b",
+  "safe_request_id": "reddit-not-staff-microwave-s4-e54e1425c55b",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-not-staff-microwave",
+  "shot_index": 4,
+  "prompt_sha256": "7869a6f8fded75cebcdcdd722904a59aeab614991e05e21d700147955b579c82",
+  "prompt_used": "An editorial illustration for a short-form video: employee name tag. It accompanies the narration: \"the real employee recognized her instantly\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "16ZC3fWKcHPAJ8Xmj4YDKusgc6g-NE7S3",
+    "filename": "20260818__reddit-not-staff-microwave-s4-e54e1425c55b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=16ZC3fWKcHPAJ8Xmj4YDKusgc6g-NE7S3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7f275cce32f7e528f90b6c92f49adf5dc20b0ba2b5b7dab02509c4310fd800d5",
+    "bytes": 957101,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:11.000Z",
+  "error": null,
+  "retryable": false
+}
