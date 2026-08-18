@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-not-staff-microwave-s1-b99bdaa096d7",
+  "safe_request_id": "reddit-not-staff-microwave-s1-b99bdaa096d7",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-not-staff-microwave",
+  "shot_index": 1,
+  "prompt_sha256": "c545a46febbd4b5675468fc0f2d19de1af983825865f12eb0268e1639d0ac87f",
+  "prompt_used": "An editorial illustration for a short-form video: store employee vest. It accompanies the narration: \"insisting my navy jacket meant I worked there\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZRAicrEA6CtPo_69JjXSBRR7LdAxSYRx",
+    "filename": "20260818__reddit-not-staff-microwave-s1-b99bdaa096d7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZRAicrEA6CtPo_69JjXSBRR7LdAxSYRx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c4e8d924c758e473dd8198a7eb44d3e19ab1f5b1de587b4a26b9b2c8c253c766",
+    "bytes": 1366239,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:08.000Z",
+  "error": null,
+  "retryable": false
+}
