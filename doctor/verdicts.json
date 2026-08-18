@@ -276,16 +276,22 @@
       "history": []
     },
     "5ac409690185": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260818",
-      "because": "picked up in 2026-08-18 doctor triage",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260815",
           "because": "Confirmed: scripts/run_third.py:2209-2212 sources the synthesized fallback slate size from state/third_packages/default_clip.json's count field (4), never from channel_registry target_count('third') (6). Matches the 3/6 and 4/6 third-channel shapes in the 08-10..08-14 alarm history. Building this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260818",
+          "because": "picked up in 2026-08-18 doctor triage"
         }
-      ]
+      ],
+      "commit": "8b6f875"
     },
     "ec1665fbf9fa": {
       "verdict": "doing",
