@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-snack-bag-clipboard-s7-6198b148cad5",
+  "safe_request_id": "reddit-snack-bag-clipboard-s7-6198b148cad5",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-snack-bag-clipboard",
+  "shot_index": 7,
+  "prompt_sha256": "8a0f2983f5f924b0ea738dbc9ec8020a9aa7254eb6d9518c89214da5497e044b",
+  "prompt_used": "An editorial illustration for a short-form video: kid grocery cart. It accompanies the narration: \"hasn't let her son open so much as a straw wrapper\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 3,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1LWDaNhilfrxzZJIe1JSwD9XGdutHo9lr",
+    "filename": "20260818__reddit-snack-bag-clipboard-s7-6198b148cad5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1LWDaNhilfrxzZJIe1JSwD9XGdutHo9lr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0c1a80c2bb4dca58be86320198b7c53b85dfac5a7e5cea57950f74de7f7bb40a",
+    "bytes": 1528786,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T12:05:30.000Z",
+  "error": null,
+  "retryable": false
+}
