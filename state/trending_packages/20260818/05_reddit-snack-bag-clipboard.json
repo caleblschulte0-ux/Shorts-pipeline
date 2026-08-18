@@ -1,0 +1,26 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "reddit-snack-bag-clipboard",
+  "title": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
+  "script": "Every trip to my store, she let her son rip open snack bags to try them, then walked out without paying, telling me kids get a pass. I started keeping every opened bag behind the register with a sticky note: date, item, price. Three weeks in, I had forty-one dollars in unpaid snacks taped to a clipboard. Corporate policy says opened stock gets billed to the last customer who touched it, so I finally called it in. Loss prevention flagged her rewards account and froze it until the balance cleared. She showed up the next day for her free coffee redemption and got declined at the register, in front of the line, with the clipboard sitting right there. I slid it across the counter. Forty-one dollars, itemized, dated, signed off by three different cashiers. She paid in cash, counted out to the penny, and hasn't let her son open so much as a straw wrapper since.",
+  "shots": [
+    {"phrase": "let her son rip open snack bags", "query": "torn snack bag"},
+    {"phrase": "walked out without paying", "query": "store exit doors"},
+    {"phrase": "keeping every opened bag behind the register", "query": "convenience store register"},
+    {"phrase": "forty-one dollars in unpaid snacks", "query": "receipt pile clipboard"},
+    {"phrase": "Loss prevention flagged her rewards account", "query": "security camera monitor"},
+    {"phrase": "got declined at the register", "query": "card declined machine"},
+    {"phrase": "in front of the line", "query": "customers waiting line"},
+    {"phrase": "hasn't let her son open so much as a straw wrapper", "query": "kid grocery cart"}
+  ],
+  "punches": [
+    {"phrase": "forty-one dollars in unpaid snacks", "text": "$41 OWED", "color": "#ffaa30"},
+    {"phrase": "froze it until the balance cleared", "text": "ACCOUNT FROZEN", "color": "#ff3030"},
+    {"phrase": "got declined at the register", "text": "DECLINED", "color": "#ff3030"},
+    {"phrase": "signed off by three different cashiers", "text": "3 CASHIERS", "color": "#50ff80"},
+    {"phrase": "hasn't let her son open", "text": "NEVER AGAIN", "color": "#50ff80"}
+  ],
+  "hashtags": ["entitledparents", "retailkarma", "karma", "storeworker", "cashierlife", "customerservice", "pettyrevenge", "reddit", "redditstories", "workplacestory", "entitled", "retail", "storeproblems", "karmaisreal"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

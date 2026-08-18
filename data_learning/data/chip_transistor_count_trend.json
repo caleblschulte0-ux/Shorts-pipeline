@@ -1,0 +1,25 @@
+{
+  "key": "chip_transistor_count_trend",
+  "title": "Apple A-series iPhone chip transistor count (billions)",
+  "unit": "billion",
+  "geography": "Global (Apple iPhone flagship chips)",
+  "time_coverage": "2015-2023",
+  "source": {
+    "name": "Apple A-series chip transistor counts, as disclosed at Apple keynotes and product pages",
+    "publisher": "Apple Inc.",
+    "url": "https://www.apple.com/newsroom/",
+    "officiality": "official",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Figures as announced by Apple for each chip generation: A9 (iPhone 6s, 2015) ~2.0B, A10 Fusion (2016) ~3.3B, A11 Bionic (2017) 4.3B, A12 Bionic (2018) 6.9B, A13 Bionic (2019) 8.5B, A14 Bionic (2020) 11.8B, A16 Bionic (2022) 16B, A17 Pro (2023) 19B.",
+  "points": [
+    {"label": "2015", "value": 2.0, "period": "2015"},
+    {"label": "2016", "value": 3.3, "period": "2016"},
+    {"label": "2017", "value": 4.3, "period": "2017"},
+    {"label": "2018", "value": 6.9, "period": "2018"},
+    {"label": "2019", "value": 8.5, "period": "2019"},
+    {"label": "2020", "value": 11.8, "period": "2020"},
+    {"label": "2022", "value": 16, "period": "2022"},
+    {"label": "2023", "value": 19, "period": "2023"}
+  ]
+}

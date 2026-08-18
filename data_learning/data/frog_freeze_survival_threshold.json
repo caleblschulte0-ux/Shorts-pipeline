@@ -1,0 +1,20 @@
+{
+  "key": "frog_freeze_survival_threshold",
+  "title": "Body water frozen and survived (percent)",
+  "unit": "percent",
+  "geography": "North America",
+  "time_coverage": "Freeze-tolerance research, 1990s-2010s",
+  "source": {
+    "name": "Comparative freeze tolerance in vertebrates",
+    "publisher": "Costanzo & Lee freeze-tolerance research program (Journal of Experimental Biology / Journal of Comparative Physiology B); standard comparative cryobiology literature",
+    "url": "https://jeb.biologists.org/",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Most freeze-intolerant vertebrates die once roughly 10 percent or more of total body water freezes (ice crystals rupture cell membranes). Wood frogs (Rana sylvatica) are documented surviving up to roughly 65 percent of body water frozen solid, protected by a liver-driven glucose flood that keeps individual cells from bursting.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Most vertebrates (lethal)", "value": 10},
+    {"label": "Wood frog (survives)", "value": 65}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "ant_biomass_by_group",
+  "title": "Total dry biomass by animal group (megatons of carbon)",
+  "unit": "",
+  "geography": "Global (land)",
+  "time_coverage": "2022 synthesis (estimate)",
+  "source": {
+    "name": "The abundance, biomass, and distribution of ants on Earth",
+    "publisher": "Schultheiss et al., Proceedings of the National Academy of Sciences (PNAS), 2022",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2201550119",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Ant total dry biomass (~12 Mt carbon) from Schultheiss et al. 2022 (synthesis of 489 studies). Wild mammal and wild bird biomass (excluding humans and livestock) from Bar-On, Phillips & Milo, 'The biomass distribution on Earth', PNAS 2018 (wild mammals ~0.007 Gt C = 7 Mt C; wild birds ~0.002 Gt C = 2 Mt C).",
+  "points": [
+    {"label": "Ants", "value": 12},
+    {"label": "Wild mammals", "value": 7},
+    {"label": "Wild birds", "value": 2}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "frog_cold_tolerance_temp",
+  "title": "Coldest body temperature survived (degrees C below freezing)",
+  "unit": "",
+  "geography": "North America",
+  "time_coverage": "Freeze-tolerance research, 1990s-2010s",
+  "source": {
+    "name": "Cold-hardiness limits in freeze-tolerant vs freeze-intolerant frogs",
+    "publisher": "Costanzo & Lee freeze-tolerance research program",
+    "url": "https://jeb.biologists.org/",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Freeze-intolerant frog species generally die once their body temperature drops roughly 2 degrees C below freezing. Wood frogs have been documented surviving controlled cooling to roughly 16 degrees C below freezing.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Typical frog", "value": 2},
+    {"label": "Wood frog", "value": 16}
+  ]
+}

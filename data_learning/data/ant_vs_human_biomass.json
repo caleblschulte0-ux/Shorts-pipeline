@@ -1,0 +1,19 @@
+{
+  "key": "ant_vs_human_biomass",
+  "title": "Total dry biomass, ants vs. humans (megatons of carbon)",
+  "unit": "",
+  "geography": "Global",
+  "time_coverage": "2022 synthesis (estimate)",
+  "source": {
+    "name": "Ant biomass vs. human biomass",
+    "publisher": "Schultheiss et al., PNAS 2022; Bar-On, Phillips & Milo, 'The biomass distribution on Earth', PNAS 2018",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2201550119",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Schultheiss et al. 2022 report ant biomass at roughly 20 percent of total human biomass. Human biomass (~0.06 Gt C = 60 Mt C) from Bar-On et al. 2018.",
+  "points": [
+    {"label": "Ants", "value": 12},
+    {"label": "Humans", "value": 60}
+  ]
+}

@@ -21780,6 +21780,231 @@
           }
         }
       ]
+    },
+    {
+      "slug": "ants-outnumber-humans",
+      "title": "There Are 2.5 Million Ants For Every Person Alive",
+      "hook": "You are outnumbered. By ants.",
+      "closing": "Democracy would not go well for us.",
+      "question": "Does knowing that change how you feel about ants? Drop it below.",
+      "hashtags": [
+        "ants",
+        "insects",
+        "biology",
+        "nature",
+        "science",
+        "biomass",
+        "wildlife",
+        "didyouknow",
+        "entomology",
+        "earth",
+        "animals",
+        "sciencefacts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "ant_biomass_by_group",
+          "params": {
+            "file": "ant_biomass_by_group.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · HEAVIER THAN YOU'D THINK",
+          "topic": "ant biomass vs. wild mammals and birds",
+          "say": "Weigh every ant alive and it adds up to about 12 megatons of living tissue. That's already more than every wild mammal and every wild bird on Earth, combined."
+        },
+        {
+          "source": "offline",
+          "key": "ant_vs_human_biomass",
+          "params": {
+            "file": "ant_vs_human_biomass.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · STILL LIGHTER THAN US",
+          "topic": "ant biomass vs. human biomass",
+          "say": "Still, that's only about a fifth of humanity's total weight. All 8 billion of us outweigh all the ants on the planet, 5 to 1."
+        },
+        {
+          "source": "offline",
+          "key": "ant_vs_human_count",
+          "params": {
+            "file": "ant_vs_human_count.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · WHO'S OUTNUMBERED",
+          "topic": "ants per person alive",
+          "say": "But count heads instead of pounds and it flips completely. There are about 2.5 million ants alive for every single person on Earth."
+        }
+      ]
+    },
+    {
+      "slug": "chip-transistor-shrink-limit",
+      "title": "Your Phone's Chip Just Hit A Wall",
+      "hook": "Your phone's chip is running out of room to shrink.",
+      "closing": "Turns out atoms don't negotiate.",
+      "question": "Does your phone actually feel faster than it did 3 years ago? Tell me below.",
+      "hashtags": [
+        "technology",
+        "chips",
+        "semiconductors",
+        "mooreslaw",
+        "tech",
+        "science",
+        "engineering",
+        "iphone",
+        "apple",
+        "innovation",
+        "techfacts",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "chip_transistor_count_trend",
+          "params": {
+            "file": "chip_transistor_count_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · STILL GROWING",
+          "topic": "iPhone chip transistor count",
+          "say": "In 2015, Apple's iPhone chip packed 2 billion transistors. By 2023, that number hit 19 billion, nearly ten times more in under a decade."
+        },
+        {
+          "source": "offline",
+          "key": "chip_doubling_time",
+          "params": {
+            "file": "chip_doubling_time.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE SLOWDOWN",
+          "topic": "how fast that count used to double",
+          "say": "For decades, chipmakers doubled that count roughly every 2 years, the famous Moore's Law. Now it takes closer to 3, because transistors are running out of room to shrink."
+        },
+        {
+          "source": "offline",
+          "key": "chip_process_node_shrink",
+          "params": {
+            "file": "chip_process_node_shrink.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · THE ATOMIC WALL",
+          "topic": "transistor size, then vs. now",
+          "say": "The first commercial chip, in 1971, was built on a 10,000 nanometer process. Today's newest chips are near 2 nanometers, just a handful of silicon atoms wide."
+        }
+      ]
+    },
+    {
+      "slug": "frog-freezes-and-revives",
+      "title": "This Frog Freezes Solid Every Winter And Survives",
+      "hook": "This frog freezes solid. Then it's fine.",
+      "closing": "Best. Nap. Ever.",
+      "question": "Would you trust your own body to do that? Tell me below.",
+      "hashtags": [
+        "woodfrog",
+        "biology",
+        "wildlife",
+        "nature",
+        "science",
+        "animals",
+        "cryobiology",
+        "didyouknow",
+        "sciencefacts",
+        "coolfacts",
+        "frogs",
+        "survival"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "frog_freeze_survival_threshold",
+          "params": {
+            "file": "frog_freeze_survival_threshold.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 · IT SHOULDN'T WORK",
+          "topic": "body water frozen and survived",
+          "say": "Freeze about 10 percent of a normal animal's body water and it dies, the ice shreds its cells. Wood frogs survive up to 65 percent of their body frozen solid."
+        },
+        {
+          "source": "offline",
+          "key": "frog_cold_tolerance_temp",
+          "params": {
+            "file": "frog_cold_tolerance_temp.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 · THE TRICK",
+          "topic": "coldest survived body temperature",
+          "say": "Their liver floods their blood with glucose the moment ice touches their skin, protecting each cell from the inside. That lets them survive body temperatures 16 degrees below freezing."
+        },
+        {
+          "source": "offline",
+          "key": "frog_arctic_range",
+          "params": {
+            "file": "frog_arctic_range.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · HOW FAR IT TAKES THEM",
+          "topic": "northernmost range",
+          "say": "Most frogs top out around 45 degrees north. Wood frogs freeze and thaw every winter as far north as 68, the only frog found above the Arctic Circle."
+        }
+      ]
+    },
+    {
+      "slug": "betelgeuse-great-dimming",
+      "title": "The Star That Faked Its Own Death",
+      "hook": "A star faked its own death.",
+      "closing": "Still not the finale. Yet.",
+      "question": "Would you have believed the supernova headlines? Tell me below.",
+      "hashtags": [
+        "space",
+        "astronomy",
+        "betelgeuse",
+        "stars",
+        "science",
+        "supernova",
+        "nasa",
+        "universe",
+        "spacefacts",
+        "didyouknow",
+        "astrophysics",
+        "cosmos"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "betelgeuse_brightness_drop",
+          "params": {
+            "file": "betelgeuse_brightness_drop.json"
+          },
+          "insight_type": "comparison",
+          "role": "1 · THE FADE",
+          "topic": "Betelgeuse's brightness drop",
+          "say": "In late 2019, the star Betelgeuse started fading. By February 2020 it had dropped to about 36 percent of its normal brightness, the faintest astronomers had ever recorded it."
+        },
+        {
+          "source": "offline",
+          "key": "betelgeuse_dust_coverage",
+          "params": {
+            "file": "betelgeuse_dust_coverage.json"
+          },
+          "insight_type": "share",
+          "role": "2 · WHAT ACTUALLY HAPPENED",
+          "topic": "share of the star's disk obscured",
+          "say": "Telescope images explained why: a giant plume of gas had erupted from the surface and cooled into a dust cloud, blocking roughly half the star's visible disk from our point of view."
+        },
+        {
+          "source": "offline",
+          "key": "betelgeuse_timescale_comparison",
+          "params": {
+            "file": "betelgeuse_timescale_comparison.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 · NOT YET",
+          "topic": "the fake-out vs the real thing",
+          "say": "That fake-out lasted about 6 months before the star brightened back up. The real explosion is still roughly 100,000 years away, so no, Betelgeuse isn't dying yet."
+        }
+      ]
     }
   ],
   "videos": [
