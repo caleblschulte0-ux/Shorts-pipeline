@@ -3900,13 +3900,36 @@
       "director_cut": true
     },
     "clip-20260818-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/BadShyWatermelonVoHiYo-pjDiu6zn8qACJtzr",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/32OLg8FEOz8",
       "title": "Ohnepixel Gets Told 'What You Looking At Bud' In The Crowd",
       "kind": "twitch_clip",
-      "ts": "2026-08-18T11:41:04.506167+00:00",
+      "ts": "2026-08-18T11:41:08.681015+00:00",
+      "uploaded_at": "2026-08-18T11:41:08.681031+00:00",
+      "publish_at": "2026-08-18T17:00:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BadShyWatermelonVoHiYo-pjDiu6zn8qACJtzr",
+      "streamer": "ohnepixel",
+      "series": "chaos",
+      "hook": "WHAT YOU LOOKING AT BUD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 22900,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 11.8
+      },
+      "director_cut": true
+    },
+    "clip-20260818-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/northernlion/clip/CredulousAmericanFerretOSfrog-ALZ90BRhChEBVW7Q",
+      "story_key": null,
+      "streamer": "northernlion",
+      "title": "Chat Could Not Handle This Northernlion Moment",
+      "kind": "twitch_clip",
+      "ts": "2026-08-18T11:54:46.958707+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
