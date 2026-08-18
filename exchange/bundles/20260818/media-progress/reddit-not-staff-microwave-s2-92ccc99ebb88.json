@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-not-staff-microwave-s2-92ccc99ebb88",
+  "safe_request_id": "reddit-not-staff-microwave-s2-92ccc99ebb88",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-not-staff-microwave",
+  "shot_index": 2,
+  "prompt_sha256": "50206b51a3e2eb1187d0f0e5552632becd380333293ebc32a900ed2844cae52f",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle. It accompanies the narration: \"followed me down two aisles\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1EhT8oexPaLm6uHR7VFsveGVShprE2tyR",
+    "filename": "20260818__reddit-not-staff-microwave-s2-92ccc99ebb88.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1EhT8oexPaLm6uHR7VFsveGVShprE2tyR",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f3aaba79cb19ffdb4c667f019c955f8261fa882caaddcc3b6a2af7dbfb78be01",
+    "bytes": 1293688,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:09.000Z",
+  "error": null,
+  "retryable": false
+}
