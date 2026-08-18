@@ -113,15 +113,22 @@ def run_case(name, words, hook, series, work: Path,
 
 
 def _bad_fixture(path: Path, dur: int = 12) -> None:
-    """A deliberately DEFECTIVE source: pillarboxed picture (608px of
-    content inside a 1920x1080 frame — a vertical stream re-broadcast in
-    landscape) that ends in 0.8s of solid black (stream-end fade). Exactly
-    the 2026-07-29 reject class: 'tiny letterboxed rectangle' + 'last
-    frame is solid black'."""
+    """A deliberately DEFECTIVE source: pillarboxed picture (320px of
+    content inside a 1920x1080 frame, active_area_ratio ~0.167 — well under
+    render_qa's min_active_ratio=0.22) that ends in 0.8s of solid black
+    (stream-end fade). Exactly the 2026-07-29 reject class: 'tiny
+    letterboxed rectangle' + 'last frame is solid black'.
+
+    Width must stay under ~0.22 * 1920 =~ 422px: render_qa deliberately does
+    NOT flag a single honest 16:9 fit (~31.6% active area, e.g. 1080x607 in
+    a 1080x1920 canvas) as letterboxed — see engines/render_qa.py's
+    `_active_ratio` docstring. A 608px fixture (31.7%) sat just above that
+    intentional threshold and could never trigger the check it was written
+    to exercise."""
     subprocess.run(
         ["ffmpeg", "-y", "-v", "error",
          "-f", "lavfi", "-i",
-         f"testsrc2=s=608x1080:r=30:d={dur},"
+         f"testsrc2=s=320x1080:r=30:d={dur},"
          "pad=1920:1080:(ow-iw)/2:0:black",
          "-f", "lavfi", "-i", f"color=black:s=1920x1080:r=30:d=0.8",
          "-f", "lavfi", "-i", f"sine=frequency=300:duration={dur + 0.8}",
