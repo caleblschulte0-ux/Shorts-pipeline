@@ -1,0 +1,20 @@
+{
+  "key": "frog_arctic_range",
+  "title": "Northernmost range, degrees latitude",
+  "unit": "",
+  "geography": "North America",
+  "time_coverage": "Current range",
+  "source": {
+    "name": "Wood frog (Rana sylvatica) range vs. other North American frog species",
+    "publisher": "U.S. Geological Survey / National Park Service amphibian range data",
+    "url": "https://www.usgs.gov/",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Most North American frog species range no farther north than roughly 45 degrees N. Wood frogs are the only frog documented north of the Arctic Circle (66.5 N) in North America, with populations recorded to roughly 68 degrees N in Alaska.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Most frog species (limit)", "value": 45},
+    {"label": "Wood frog (Alaska)", "value": 68}
+  ]
+}

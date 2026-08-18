@@ -1,0 +1,20 @@
+{
+  "key": "chip_doubling_time",
+  "title": "Transistor count doubling time (years)",
+  "unit": "years",
+  "geography": "Global semiconductor industry",
+  "time_coverage": "1965-2000s vs 2010s-2020s",
+  "source": {
+    "name": "Moore's Law doubling cadence, original vs. recent",
+    "publisher": "Gordon E. Moore, 'Cramming more components onto integrated circuits' (Electronics, 1965); widely reported slowdown documented in industry/press analyses (e.g. IEEE Spectrum, Nature) through the 2010s-2020s",
+    "url": "https://en.wikipedia.org/wiki/Moore%27s_law",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Moore's original 1965 observation held a roughly 2-year doubling cadence through the late 20th century. Multiple industry and academic analyses of 2010s-2020s chip generations put the empirical doubling time closer to 3 years as transistors approach atomic-scale limits.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "1965-2000s", "value": 2},
+    {"label": "2010s-2020s", "value": 3}
+  ]
+}

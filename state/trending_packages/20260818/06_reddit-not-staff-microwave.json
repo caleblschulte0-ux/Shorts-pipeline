@@ -1,0 +1,26 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "reddit-not-staff-microwave",
+  "title": "She Wanted 50% Off From A Guy Who Didn't Work There.",
+  "script": "I was picking up paint for my own garage when a woman in a motorized cart cut me off and demanded fifty percent off a dented microwave box, insisting my navy jacket meant I worked there. I told her twice I didn't work there. She followed me down two aisles, cart squeaking, repeating that she wanted a manager. So I stopped fighting it and just walked her to the actual customer service desk, said she needs help with a price match, and left. Turns out the real employee recognized her instantly, she does this every few weeks, different store, same script, same dented box excuse. Corporate flagged her account after loss prevention pulled the footage from three locations in one month. Now every associate in that chain has her photo taped inside the register drawer. I still don't work there. I just paint my garage in peace, and apparently I'm the reason she got banned from four stores in the county.",
+  "shots": [
+    {"phrase": "demanded fifty percent off a dented microwave box", "query": "dented appliance box"},
+    {"phrase": "insisting my navy jacket meant I worked there", "query": "store employee vest"},
+    {"phrase": "followed me down two aisles", "query": "hardware store aisle"},
+    {"phrase": "walked her to the actual customer service desk", "query": "customer service desk"},
+    {"phrase": "the real employee recognized her instantly", "query": "employee name tag"},
+    {"phrase": "loss prevention pulled the footage from three locations", "query": "security camera footage"},
+    {"phrase": "has her photo taped inside the register drawer", "query": "cash register drawer"},
+    {"phrase": "banned from four stores in the county", "query": "store parking lot"}
+  ],
+  "punches": [
+    {"phrase": "fifty percent off a dented microwave box", "text": "50% OFF?", "color": "#ffaa30"},
+    {"phrase": "I didn't work there", "text": "NOT STAFF", "color": "#ffaa30"},
+    {"phrase": "three locations in one month", "text": "3 STORES", "color": "#ff3030"},
+    {"phrase": "banned from four stores", "text": "BANNED", "color": "#ff3030"},
+    {"phrase": "I'm the reason", "text": "CAUGHT", "color": "#50ff80"}
+  ],
+  "hashtags": ["idontworkherelady", "retailstory", "karma", "entitled", "retail", "pettyrevenge", "reddit", "redditstories", "storeworker", "mistakenidentity", "karmaisreal", "customerservice", "workplacestory", "truestory"],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
