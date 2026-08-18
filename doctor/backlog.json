@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260817",
+  "updated": "20260818",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -693,6 +693,94 @@
       "signature": "66364106b455",
       "last_seen": "20260817",
       "first_seen": "20260817"
+    },
+    "87d632368528": {
+      "title": "Reddit media reaches the renderer without a semantic or text-safety gate",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "trending/reddit-media-quality",
+      "files": [
+        "make_reddit_story.py",
+        "state/showrunner_verdicts.jsonl",
+        "state/trending_packages/20260816/05_reddit-break-room-company-property.json",
+        "state/trending_packages/20260816/06_reddit-gift-card-scam-wrong-digit.json"
+      ],
+      "observation": "The Reddit renderer treats any decodable shot image as verified: it downloads, crops, and composites the asset without checking that it depicts the narrated phrase or that visible text is legible. The August 16 ledger shows this is not hypothetical. The break-room story was illustrated with an Iraq-war memo, a textile wrapper, and a Bugzilla inbox; the gift-card story ended on a generated sign with nonsense lettering; and a replacement inheritance story used BETRAYAL Scrabble tiles, a commercial book cover, and a gummy-bear mousetrap. All three were correctly blocked by the showrunner, contributing to a 3/6 day after nine attempts.",
+      "proposal": "Add a pre-render shot-asset gate before composition that evaluates every panel against its shot phrase and rejects text-heavy or OCR-garbled imagery. Persist a per-shot pass/hold reason and send held assets through the existing replacement path; if six verified panels cannot be assembled, hold the candidate rather than spending a full render and vision review. Add fixtures for unrelated archival documents, keyword-literal props, commercial covers, and generated fake lettering. Preserve the current showrunner as the sovereign final gate.",
+      "evidence": "make_reddit_story.py lines 71-83 accepts an image after only `_fetch_image` and Pillow decode/crop. state/trending_packages/20260816/05_reddit-break-room-company-property.json maps `posted a memo` to Rumsfeld_Memo.jpg and carries several generated Drive images; 06_reddit-gift-card-scam-wrong-digit.json carries five generated Drive images. state/showrunner_verdicts.jsonl entries at 2026-08-16T09:53:08Z, 09:56:42Z, and 10:05:00Z enumerate the unrelated archive art, garbled lettering, book cover, Scrabble tiles, and mousetrap and block all three candidates. doctor/evidence.json records trending 20260816 as 3 uploaded, 6 failed after 9 attempts.",
+      "signature": "87d632368528",
+      "protected": [
+        "touches state/showrunner_verdicts.jsonl \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260818",
+      "first_seen": "20260818"
+    },
+    "8b6949ab0573": {
+      "title": "Reddit rendering ignores the media hashes already in its packages",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "trending/reddit-byte-attestation",
+      "files": [
+        "make_reddit_story.py",
+        "state/trending_packages/20260816/06_reddit-gift-card-scam-wrong-digit.json"
+      ],
+      "observation": "ChatGPT-supplied Reddit shots carry media_sha256 and media_bytes beside a mutable Google Drive download URL, but the renderer never reads either field. It hashes the URL only to choose a cache filename, downloads whatever bytes the URL currently serves, and accepts them when Pillow can decode them. The rendered asset is therefore not proven to be the asset Phase B verified, even though the package already contains the exact attestation needed to prove it.",
+      "proposal": "After downloading a shot image, require its byte length and SHA-256 to match media_bytes and media_sha256 whenever those fields are present, before Pillow conversion. Treat mismatch as an unresolved panel and a candidate hold under the existing media-completeness policy, record expected and actual digests in the audit, and add tests for matching bytes, replaced Drive content, truncated downloads, and legacy non-ChatGPT shots without attestations.",
+      "evidence": "state/trending_packages/20260816/06_reddit-gift-card-scam-wrong-digit.json includes media_sha256 and media_bytes on shots 2 and 4-7 alongside drive.google.com URLs. make_reddit_story.py lines 71-86 reads only image_url/image and never references either attestation field. make_explainer_stacked.py lines 463-529 hashes the URL for a cache filename and validates only response size/content type/decodability; repository search finds no media_sha256 use in either renderer.",
+      "signature": "8b6949ab0573",
+      "last_seen": "20260818",
+      "first_seen": "20260818"
+    },
+    "1207ec562569": {
+      "title": "Active gated engines have no adoption deadline",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "render/engine-lifecycle",
+      "files": [
+        "engines/__init__.py",
+        "tests/test_engine_registry_honesty.py"
+      ],
+      "observation": "The engine-honesty test correctly rejects an active ungated engine with no consumer and requires decision dates for experimental engines, but it exempts every gated active engine from both rules. Parallax is active, gated, and consumerless with no decision date; lookmatch has the same state. Both can therefore remain advertised as active production capabilities forever without a production trial, consumer, demotion, or explicit decision.",
+      "proposal": "Give every active gated engine an owner, a decision date, and a named production trial or demotion criterion. Extend the honesty test so consumerless gated engines must carry that lifecycle metadata and so an expired decision date fails. Trial parallax and lookmatch on a small renderer fixture set under the existing showrunner and mechanical gates; adopt only with measured parity or improvement, otherwise demote them to experimental/deferred rather than leaving them indefinitely active.",
+      "evidence": "engines/__init__.py lines 105-146 declares parallax status=active, gated=true, consumers=[], with no decision_date; lines 220-243 do the same for lookmatch. tests/test_engine_registry_honesty.py lines 84-93 skips all gated active engines when requiring consumers, while lines 128-143 requires decision_date only for status=experimental. `python -m unittest tests.test_engine_registry_honesty -v` passes all 10 tests on current main with both consumerless active entries.",
+      "signature": "1207ec562569",
+      "last_seen": "20260818",
+      "first_seen": "20260818"
+    },
+    "66d90578bc9b": {
+      "title": "Renderer randomness is not reproducible or attributable",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "render/reproducibility",
+      "files": [
+        "make_explainer_stacked.py",
+        "make_reddit_story.py",
+        "make_text_card.py"
+      ],
+      "observation": "The same package is not a reproducible render. Reddit randomly chooses a gameplay file and seek point; explainer randomly chooses gameplay, a motion window, and a seek; the retained text-card renderer does the same. None accepts or records a render seed. A rerun after a showrunner block can therefore change background footage independently of the intended repair, making A/B diagnosis, regression reproduction, and audit comparison ambiguous.",
+      "proposal": "Define a shared render-context contract carrying a deterministic seed derived from package identity plus an explicit attempt number. Route all renderer choices through a local seeded RNG, record the seed and chosen asset/time ranges in a versioned audit manifest, and let repairs increment the attempt deliberately. Add cross-renderer tests proving identical package+attempt inputs produce identical plans while a new attempt changes only declared stochastic choices.",
+      "evidence": "make_reddit_story.py lines 212-221 calls module-global random.choice and random.uniform. make_explainer_stacked.py lines 1775-1829 calls random.choice/uniform for gameplay and seek selection. make_text_card.py lines 203-220 calls the same global RNG. None of the three build entry points accepts a seed or RNG, and their audit sidecars do not record one.",
+      "signature": "66d90578bc9b",
+      "last_seen": "20260818",
+      "first_seen": "20260818"
+    },
+    "f6aa3e1f1c66": {
+      "title": "Test the existing superlative doctrine against the finance-heavy explainer queue",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/explainer-topic-mix",
+      "files": [
+        "config/channel_registry.json",
+        "data_learning/niche.config.json",
+        "state/analytics_explainer/latest.json",
+        "retro/20260816/brief.json"
+      ],
+      "observation": "Explainer's doctrine already says to favor science, nature, records, scale, and superlatives and avoid dry finance, yet the active story inventory opens with long runs of home prices, mortgage rates, grocery bills, debt, wages, rent, insurance, and retirement topics. In the latest analytics, the 34 retention-bearing titles containing a clear extreme/superlative cue such as largest, hottest, strongest, deepest, longest, or most have a 50.1% median average-view percentage; the other 97 retention-bearing titles have a 29.1% median. The family is broad and noisy, but the repeated median gap is large enough for a controlled slot-level test, not an immediate wholesale rewrite.",
+      "proposal": "Keep the registered four-per-day cadence and every quality bar unchanged, but register a 28-day explainer topic experiment: reserve one slot per viable production day for a sourced science/nature/scale/superlative story and compare it with the other data-story slots at the same 72-hour age band. Require at least 25 mature uploads in the treatment; primary metric median average-view percentage, guardrails editorial-block rate, factual-correction rate, and short-slate days. If the gap survives, promote that topic family and prune an equal number of unproduced finance-heavy queue entries; otherwise retain the broad mix.",
+      "evidence": "data_learning/niche.config.json lines 5-6 states the superlative/science doctrine, while its stories beginning at line 14 include repeated finance topics such as home prices (line 43), mortgage rates (63), grocery bills (205), credit-card debt (248), wages (331), rent (371), insurance (559), and retirement (725). A reproducible grouping of state/analytics_explainer/latest.json videos with numeric average_view_percentage yields n=34 and median=50.1 for titles matching largest|hottest|strongest|deadliest|oldest|loudest|longest|driest|fastest|deepest|biggest|most, versus n=97 and median=29.1 for the remainder. config/channel_registry.json lines 221-248 fixes cadence at four and identifies niche.config as the queue authority; retro/20260816/brief.json says Explainer's 72-hour cohort is too thin for a one-day call, which is why this proposal requires a prospective mature sample.",
+      "signature": "f6aa3e1f1c66",
+      "last_seen": "20260818",
+      "first_seen": "20260818"
     }
   }
 }

@@ -1,51 +1,69 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260817",
-  "judged_date": "20260816",
+  "date": "20260818",
+  "judged_date": "20260817",
   "alarm": {
-    "date": "20260816",
+    "date": "20260817",
     "ok": false,
     "alarms": [
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260816 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260816. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260817 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260817. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 4/6 posted for 20260816.",
+        "detail": "third: 3/6 posted for 20260817.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 3/6 posted for 20260816.",
+        "detail": "trending: 4/6 posted for 20260817.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260816: production outcome says 3/6 uploaded and repair never completed (0 quarantined, 6 failed).",
+        "detail": "trending 20260817: production outcome says 4/6 uploaded and repair never completed (0 quarantined, 4 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 3/6; 3 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 4/6; 2 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
       "chatgpt media: artifact present",
-      "exchange: 9/9 ChatGPT images pinned",
-      "doctor: findings current (20260816)"
+      "exchange: 10/10 ChatGPT images pinned",
+      "doctor: findings current (20260817)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260817",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 8,
+      "uploaded": 4,
+      "quarantined": 0,
+      "failed": 4,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/U2J2nQdOo-c",
+        "https://youtube.com/shorts/aZRAz0-u-JY",
+        "https://youtube.com/shorts/gb_-hF0lyLE",
+        "https://youtube.com/shorts/xvq7EkPdERI"
+      ]
+    },
     {
       "date": "20260816",
       "channel": "trending",
@@ -137,189 +155,9 @@
       "failed": 10,
       "status": "repair_required",
       "video_urls": []
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260810",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 0,
-      "failed": 8,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/x_Yz-kEfWOY",
-        "https://youtube.com/shorts/a1e6EnouGBs"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-10T09:32:37+00:00",
-      "slug": "byd_just_passed_tesla_in_ev_sales",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A genuinely good race with a real crossover payoff, sabotaged by a hook caption that is chopped off at both edges of the frame.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T09:34:43+00:00",
-      "slug": "canada_s_wildfires_dwarfed_america_s_in_",
-      "score": 65,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A genuinely good race \u2014 real lead change, honest axis rescale that makes the 18.2M spike land \u2014 sabotaged by a hook caption clipped off both edges of the frame and pasted over the chart.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T09:36:50+00:00",
-      "slug": "solar_just_overtook_wind_power_worldwide",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A genuinely good race with a real crossover and a landed #1 payoff, undercut by a hook caption that collides with the chart and fades to illegible over an almost-empty panel.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T09:40:56+00:00",
-      "slug": "she_threatened_a_bad_review_over_free_co",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "One frozen, AI-garbled barista still sits over the entire 36-second story \u2014 nothing is demonstrated, and the video ends mid-sentence with no payoff.",
-      "auto_fails": [
-        "junk_imagery: The AI barista image held from mid1 (t=11.07s) through payoff@-0.4 has garbled gibberish lettering across the apron ('FLI IG U') \u2014 visible AI slop frozen on screen for ~36s of a 47s video.",
-        "empty_void: mid2 (t=19.65s) lower panel is almost entirely black with one small blue gear near the top edge and a caption \u2014 the frame's space is wasted."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 142
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T09:44:13+00:00",
-      "slug": "she_wouldn_t_stop_ordering_me_around__so",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "One AI supermarket still is reused for the entire ~33-second story, so nothing in the narrative is actually shown \u2014 the gameplay half is the only thing moving.",
-      "auto_fails": [
-        "dead_air: The top story panel is the pixel-identical supermarket still at mid1 (10.33s), mid2 (18.17s), mid3 (26.00s), mid4 (33.83s), mid5 (41.67s) and both payoff frames \u2014 one illustration held ~33s across every body beat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 131
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T09:55:22+00:00",
-      "slug": "love_island_reunion_season_8",
-      "score": 22,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Narration is pasted over unrelated stock canyon footage, an AI woman, and an Illuminati-eye sunflower \u2014 zero data demonstration, zero mascot, and no visual that matches a single line of the script.",
-      "auto_fails": [
-        "junk_imagery: Top half is stock Bryce Canyon scenery through mid3 (t=23.18s) and an AI/CGI 'all-seeing eye sunflower' at mid5/payoff@-1.8/payoff@-0.4 \u2014 neither has any connection to a Love Island reunion; mid4 (t=30.07s) drops in an AI-looking woman in an orange dress with no sourcing.",
-        "decorative_mascot: No Data mascot appears in any frame; the only figure is a default Minecraft Steve running a parkour lane at payoff@-0.4 (t=38.57s), which is unrelated background gameplay, not a performer doing a bit."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 117
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-10T10:05:14+00:00",
       "slug": "airbus_a380",
@@ -1835,16 +1673,175 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:38:33+00:00",
+      "slug": "a_2_year_old_app_just_passed_etsy",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The race itself is genuinely good \u2014 the 2023 crossover and the leaderboard flip land \u2014 but text and axis labels are clipped off the frame edges from the first second, and it reads as an un-proofed export.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:40:46+00:00",
+      "slug": "we_ve_now_found_40_000_asteroids_near_ea",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Genuinely smooth 24fps growth race with an honest NASA-sourced exponential curve, but text is being cropped off both frame edges for most of the run, which reads as amateur layout.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:42:49+00:00",
+      "slug": "esports__biggest_prize_ever_just_collaps",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
+      "auto_fails": [
+        "empty_void: dark_fraction 1.0, and at hook@2.2 / mid0 the entire middle band of the frame between the red line (~22M) and the green line (~4M) is pure black with nothing in it \u2014 over half the plot area is wasted space."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:44:54+00:00",
+      "slug": "a_cartoon_just_became_netflix_s_biggest_",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real race with a genuine 2025 overtake and a landed #1 payoff, undercut by typography that runs off every edge of the frame.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:48:53+00:00",
+      "slug": "every_vacation_day_needed_five_signature",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
+      "auto_fails": [
+        "empty_void: mid4 (t=44.9s) is almost entirely black \u2014 the top half holds only a tiny arrow and gear outline and the bottom only one small grey/blue block above 'COLLAPSED COMPLETELY,' \u2014 consistent with dark_fraction 0.491."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.491,
+        "sampled": 173
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-17T09:53:12+00:00",
+      "slug": "she_blasted_music_at_2_am__i_found_the_q",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Clean, always-moving gameplay with sharp karaoke captions, but after the hook card there is not a single shot illustration \u2014 the cause/effect beats are told entirely by voice, and one beat (t=13.3s) renders with nothing on screen at all.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 176
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "c055f48 2026-08-17 doctor: mark a544d37c275e done (PR #283 merged as 6c25c89) (#284)",
-    "c5cb5e1 2026-08-17 exchange: phase A bundle for 20260817 [skip ci]"
+    "5aa02f4 2026-08-17 doctor: findings for 20260817",
+    "8672dc2 2026-08-18 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-03": 2,
         "2026-08-05": 1,
         "2026-08-06": 2,
         "2026-08-07": 2,
@@ -1855,9 +1852,10 @@
         "2026-08-13": 1,
         "2026-08-14": 1,
         "2026-08-15": 2,
-        "2026-08-16": 3
+        "2026-08-16": 3,
+        "2026-08-17": 4
       },
-      "total_posted": 255
+      "total_posted": 259
     },
     "explainer": {
       "posted_by_day_14d": {
@@ -1868,7 +1866,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-03": 3,
         "2026-08-04": 6,
         "2026-08-05": 8,
         "2026-08-06": 8,
@@ -1881,9 +1878,10 @@
         "2026-08-13": 8,
         "2026-08-14": 6,
         "2026-08-15": 8,
-        "2026-08-16": 5
+        "2026-08-16": 5,
+        "2026-08-17": 9
       },
-      "total_posted": 293
+      "total_posted": 302
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1915,25 +1913,30 @@
           "views": 412
         },
         {
-          "title": "World Hunger Rose Back To 8.5% After 13 Years Of Falling",
-          "vph": 0.0,
-          "views": 29
-        },
-        {
           "title": "Probability In Everyday Life",
           "vph": 0.0,
           "views": 229
+        },
+        {
+          "title": "World Hunger Rose Back To 8.5% After 13 Years Of Falling",
+          "vph": 0.0,
+          "views": 29
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 106,
+      "videos": 104,
       "top_by_vph": [
+        {
+          "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
+          "vph": 0.0,
+          "views": 110
+        },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
           "vph": 0.0,
-          "views": 264
+          "views": 278
         },
         {
           "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
@@ -1943,25 +1946,20 @@
         {
           "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous ",
           "vph": 0.0,
-          "views": 629
+          "views": 644
         },
         {
           "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
           "vph": 0.0,
-          "views": 149
-        },
-        {
-          "title": "Plaqueboymax Warns Everyone He's About To Get Feisty",
-          "vph": 0.0,
-          "views": 95
+          "views": 150
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260814/brief.json",
       "retro/20260815/brief.json",
-      "retro/20260816/brief.json"
+      "retro/20260816/brief.json",
+      "retro/20260817/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
@@ -1993,6 +1991,13 @@
       "horizon": "bug",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "87d632368528",
+      "title": "Reddit media reaches the renderer without a semantic or text-safety gate",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "2f7ee366fb9b",
@@ -2072,11 +2077,25 @@
       "ruling": "doing"
     },
     {
+      "signature": "8b6949ab0573",
+      "title": "Reddit rendering ignores the media hashes already in its packages",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
       "signature": "66364106b455",
       "title": "Run the existing Third story arm to a real sample before changing the mix",
       "horizon": "strategy",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "f6aa3e1f1c66",
+      "title": "Test the existing superlative doctrine against the finance-heavy explainer queue",
+      "horizon": "strategy",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "e02d4cf673bd",
@@ -2098,6 +2117,13 @@
       "horizon": "short_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "1207ec562569",
+      "title": "Active gated engines have no adoption deadline",
+      "horizon": "short_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2126,6 +2152,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "66d90578bc9b",
+      "title": "Renderer randomness is not reproducible or attributable",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
