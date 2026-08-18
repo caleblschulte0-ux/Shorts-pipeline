@@ -1836,8 +1836,8 @@
     }
   ],
   "recent_commits": [
-    "5aa02f4 2026-08-17 doctor: findings for 20260817",
-    "8672dc2 2026-08-18 explainer: update posted log + analytics [skip ci]"
+    "5f2da91 2026-08-18 fix third-smoke: pillarbox fixture sat above render_qa's own flag threshold (#289)",
+    "b6da873 2026-08-18 doctor: mark finding 5ac409690185 done (PR #287 merged) (#288)"
   ],
   "channel_performance": {
     "trending": {
@@ -1979,25 +1979,11 @@
       "ruling": "in_progress"
     },
     {
-      "signature": "5ac409690185",
-      "title": "Third's fallback slate can never meet its registered target",
-      "horizon": "bug",
-      "severity": "high",
-      "ruling": "doing"
-    },
-    {
       "signature": "a833d2f37a5c",
       "title": "Managing-editor cadence counts rejected Third clips as posts",
       "horizon": "bug",
       "severity": "high",
       "ruling": "doing"
-    },
-    {
-      "signature": "87d632368528",
-      "title": "Reddit media reaches the renderer without a semantic or text-safety gate",
-      "horizon": "bug",
-      "severity": "high",
-      "ruling": "new"
     },
     {
       "signature": "2f7ee366fb9b",
@@ -2081,7 +2067,7 @@
       "title": "Reddit rendering ignores the media hashes already in its packages",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "66364106b455",
@@ -2095,7 +2081,7 @@
       "title": "Test the existing superlative doctrine against the finance-heavy explainer queue",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "e02d4cf673bd",
@@ -2123,7 +2109,7 @@
       "title": "Active gated engines have no adoption deadline",
       "horizon": "short_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2158,7 +2144,7 @@
       "title": "Renderer randomness is not reproducible or attributable",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -2282,11 +2268,25 @@
       "revisit_after": null
     },
     {
+      "signature": "5ac409690185",
+      "verdict": "done",
+      "date": "20260818",
+      "because": "",
+      "revisit_after": null
+    },
+    {
       "signature": "ca6665bd598d",
       "verdict": "later",
       "date": "20260815",
       "because": "Confirmed real: judge_loop.run is unwired (scripts/produce.py only imports its lower-level helpers -- run_judges/combine/compare/next_escalation -- never .run itself), and it has drifted from produce.py's path in two ways: JudgingStore.open_attempt() hashes the artifact BEFORE render_fn runs, and a failed render is written to the store but never added to the verdicts dict decide() sees, so three passing required judges can yield advance=True even when render_fn returned ok=false. Real bug, but the actual fix is an architecture call (converge produce.py onto judge_loop.run vs. formally retire judge_loop.run and migrate its useful comparison/escalation logic) that deserves a dedicated session, not a rushed patch competing with today's one-item budget. Parking 30 days; revisit after items 1-3 land.",
       "revisit_after": "20260914"
+    },
+    {
+      "signature": "87d632368528",
+      "verdict": "later",
+      "date": "20260818",
+      "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan.",
+      "revisit_after": "20260917"
     }
   ]
 }
