@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260817",
+  "updated": "20260818",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -276,10 +276,16 @@
       "history": []
     },
     "5ac409690185": {
-      "verdict": "doing",
-      "date": "20260815",
-      "because": "Confirmed: scripts/run_third.py:2209-2212 sources the synthesized fallback slate size from state/third_packages/default_clip.json's count field (4), never from channel_registry target_count('third') (6). Matches the 3/6 and 4/6 third-channel shapes in the 08-10..08-14 alarm history. Building this run.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260818",
+      "because": "picked up in 2026-08-18 doctor triage",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260815",
+          "because": "Confirmed: scripts/run_third.py:2209-2212 sources the synthesized fallback slate size from state/third_packages/default_clip.json's count field (4), never from channel_registry target_count('third') (6). Matches the 3/6 and 4/6 third-channel shapes in the 08-10..08-14 alarm history. Building this run."
+        }
+      ]
     },
     "ec1665fbf9fa": {
       "verdict": "doing",
@@ -358,6 +364,37 @@
       "verdict": "doing",
       "date": "20260817",
       "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs).",
+      "history": []
+    },
+    "87d632368528": {
+      "verdict": "later",
+      "date": "20260818",
+      "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan.",
+      "history": [],
+      "revisit_after": "20260917"
+    },
+    "8b6949ab0573": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Confirmed: make_reddit_story.py never reads media_sha256/media_bytes even though ChatGPT already writes them into the package (verified in 20260816/06_reddit-gift-card-scam-wrong-digit.json shots 2,4-7). Self-contained, clearly-specified integrity check with existing attestation fields to check against -- building this now.",
+      "history": []
+    },
+    "f6aa3e1f1c66": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Verified the numbers independently against state/analytics_explainer/latest.json: n=34 superlative-titled videos median 50.1% AVP vs n=97 others median 29.1% AVP, matches the report exactly. Real signal worth acting on, but a formal 28-day cohort experiment with age-banded comparison is a bigger build than one triage session -- queuing for a dedicated build pass rather than rushing a shallow version.",
+      "history": []
+    },
+    "1207ec562569": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Confirmed against engines/__init__.py (parallax, lookmatch both status=active, gated=True, no decision_date) and tests/test_engine_registry_honesty.py (decision_date only required for status=experimental, gated actives exempt from consumers too). Small, well-scoped fix -- queued behind this session's top pick.",
+      "history": []
+    },
+    "66d90578bc9b": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Confirmed: make_reddit_story.py, make_explainer_stacked.py and make_text_card.py all call the global random module directly with no seed plumbed through the build entrypoints or audit sidecar. Agree with the direction as a long-term reproducibility investment; real scope (seeded RNG contract across 3 renderers + audit manifest + cross-renderer tests) is multi-session work, queued at long_term priority.",
       "history": []
     }
   }
