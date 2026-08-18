@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-not-staff-microwave-s5-ce65de39107d",
+  "safe_request_id": "reddit-not-staff-microwave-s5-ce65de39107d",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-not-staff-microwave",
+  "shot_index": 5,
+  "prompt_sha256": "55e2c294b4a1052b689b3834d30ca05aa3513f5ee6ef91bbaa0a072417e43b89",
+  "prompt_used": "An editorial illustration for a short-form video: security camera footage. It accompanies the narration: \"loss prevention pulled the footage from three locations\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qQqHc7MC8vcgKITj6pMM_Rbj6HoKZI9h",
+    "filename": "20260818__reddit-not-staff-microwave-s5-ce65de39107d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qQqHc7MC8vcgKITj6pMM_Rbj6HoKZI9h",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0fd29d50fdd9072580388ebfb8c919dd518724d9444ea2551e3b3d9d27c3c5b0",
+    "bytes": 1462547,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:12.000Z",
+  "error": null,
+  "retryable": false
+}
