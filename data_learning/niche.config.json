@@ -21812,7 +21812,12 @@
           "ascending": false,
           "role": "1 · HEAVIER THAN YOU'D THINK",
           "topic": "ant biomass vs. wild mammals and birds",
-          "say": "Weigh every ant alive and it adds up to about 12 megatons of living tissue. That's already more than every wild mammal and every wild bird on Earth, combined."
+          "say": "Weigh every ant alive and it adds up to about 12 megatons of living tissue. That's already more than every wild mammal and every wild bird on Earth, combined.",
+          "scene": {
+            "mechanic": "swarm-mound-pile",
+            "concept": "each group's own creature photo stacks into a rising pile, tallest wins by total living weight",
+            "code": "cols = [RX0 + 150, (RX0 + RX1) // 2, RX1 - 150]\nbase_y = 1080\nicon_w, icon_h = 170, 130\nfor i in range(n):\n    cx = cols[i] if i < len(cols) else cols[-1]\n    img = images.get(labels[i])\n    count = int(clamp(values[i] / vmax) * 7 * reveal) + 1\n    for k in range(count):\n        yy = base_y - k * 70\n        w = icon_w - k * 4\n        h = icon_h - k * 3\n        if img is not None:\n            paste(img, cx - w // 2, yy - h, w, h)\n        else:\n            d.ellipse([cx - w // 2, yy - h, cx + w // 2, yy], fill=rgba(ACCENT, 200))\n    text(labels[i], cx, base_y + 24, size=28, center=True)\n    text(str(int(values[i])) + ' Mt', cx, base_y - count * 70 - 60, size=38, color=HIGHLIGHT, center=True)\ntext('total living weight (megatons of carbon)', (RX0 + RX1) // 2, RTOP + 10, size=32, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21823,7 +21828,12 @@
           "insight_type": "comparison",
           "role": "2 · STILL LIGHTER THAN US",
           "topic": "ant biomass vs. human biomass",
-          "say": "Still, that's only about a fifth of humanity's total weight. All 8 billion of us outweigh all the ants on the planet, 5 to 1."
+          "say": "Still, that's only about a fifth of humanity's total weight. All 8 billion of us outweigh all the ants on the planet, 5 to 1.",
+          "scene": {
+            "mechanic": "biomass-seesaw-tilt",
+            "concept": "a balance beam of real photos tips toward whichever group actually weighs more",
+            "code": "cx, cy = (RX0 + RX1) // 2, 640\ntilt = clamp((values[1] - values[0]) / vmax) * 24 * reveal\nang = math.radians(tilt)\nbeam_len = 420\ndx = beam_len * math.cos(ang)\ndy = beam_len * math.sin(ang)\nlx, ly = cx - dx, cy - dy\nrxp, ry = cx + dx, cy + dy\nd.polygon([(cx - 30, cy + 40), (cx + 30, cy + 40), (cx, cy - 40)], fill=rgba(TEXT, 255))\nd.line([lx, ly, rxp, ry], fill=rgba(TEXT, 255), width=14)\npans = [(lx, ly + 30), (rxp, ry + 30)]\nfor i in range(2):\n    px, py = pans[i]\n    img = images.get(labels[i])\n    w = 210\n    h = 210\n    if img is not None:\n        paste(img, int(px - w / 2), int(py), w, h)\n    d.rounded_rectangle([px - 110, py + h, px + 110, py + h + 18], radius=8,\n                        fill=rgba(ACCENT if i == 0 else HIGHLIGHT, 220))\n    text(labels[i], px, py + h + 30, size=30, center=True)\n    text(str(int(values[i])) + ' Mt', px, py - 40, size=38, color=HIGHLIGHT, center=True)\ntext('who actually weighs more?', cx, RTOP + 10, size=34, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21834,7 +21844,12 @@
           "insight_type": "comparison",
           "role": "3 · WHO'S OUTNUMBERED",
           "topic": "ants per person alive",
-          "say": "But count heads instead of pounds and it flips completely. There are about 2.5 million ants alive for every single person on Earth."
+          "say": "But count heads instead of pounds and it flips completely. There are about 2.5 million ants alive for every single person on Earth.",
+          "scene": {
+            "mechanic": "human-swarmed-counter",
+            "concept": "a lone human figure gets swarmed by ants pouring in as the per-person ratio counts up",
+            "code": "cx, cy = (RX0 + RX1) // 2, 780\nhimg = images.get(labels[1])\nw = 260\nh = 520\nif himg is not None:\n    paste(himg, cx - w // 2, cy - h, w, h)\nelse:\n    d.rounded_rectangle([cx - w // 2, cy - h, cx + w // 2, cy], radius=40, fill=rgba(TEXT, 220))\naimg = images.get(labels[0])\nswarm = int(140 * reveal)\nfor k in range(swarm):\n    ang = (k * 2.399) % (2 * math.pi)\n    rad = 40 + (k % 38) * 11\n    ax = cx + rad * math.cos(ang)\n    ay = cy - h * 0.55 + rad * math.sin(ang) * 1.3\n    sz = 20\n    if aimg is not None:\n        paste(aimg, int(ax - sz / 2), int(ay - sz / 2), sz, sz)\n    else:\n        d.ellipse([ax - 6, ay - 6, ax + 6, ay + 6], fill=rgba(WARN, 220))\nratio = values[0] / max(values[1], 0.0001)\ntext('{:.1f} MILLION ants'.format(ratio / 1e6), cx, RTOP + 30, size=50, color=HIGHLIGHT, center=True)\ntext('for every single person', cx, RTOP + 90, size=32, center=True)\n"
+          }
         }
       ]
     },
@@ -21868,7 +21883,12 @@
           "insight_type": "trend",
           "role": "1 · STILL GROWING",
           "topic": "iPhone chip transistor count",
-          "say": "In 2015, Apple's iPhone chip packed 2 billion transistors. By 2023, that number hit 19 billion, nearly ten times more in under a decade."
+          "say": "In 2015, Apple's iPhone chip packed 2 billion transistors. By 2023, that number hit 19 billion, nearly ten times more in under a decade.",
+          "scene": {
+            "mechanic": "chip-die-density-swell",
+            "concept": "a real chip photo fills with a growing grid of glowing transistor dots as the years climb",
+            "code": "cx, cy = (RX0 + RX1) // 2, 560\nw = 640\nh = 440\nchip = subject_image('computer chip macro photo')\nif chip is not None:\n    paste(chip, cx - w // 2, cy - h // 2, w, h)\nelse:\n    d.rounded_rectangle([cx - w // 2, cy - h // 2, cx + w // 2, cy + h // 2], radius=24,\n                        fill=rgba('#111827', 255), outline=rgba(TEXT, 255), width=4)\nidx = clamp(reveal) * (n - 1)\nlo = int(idx)\nhi = min(lo + 1, n - 1)\nfrac = idx - lo\nval = lerp(values[lo], values[hi], frac)\nyr = labels[hi] if frac > 0.5 else labels[lo]\ndots = int(clamp(val / vmax) * 260) + 10\nfor k in range(dots):\n    gx = cx - w // 2 + 24 + (k % 26) * ((w - 48) // 26)\n    gy = cy - h // 2 + 24 + (k // 26) * 26\n    d.ellipse([gx - 4, gy - 4, gx + 4, gy + 4], fill=rgba(HIGHLIGHT, 230))\ntext('{:.1f}B transistors'.format(val), cx, cy - h // 2 - 70, size=44, color=HIGHLIGHT, center=True)\ntext(yr, cx, cy + h // 2 + 30, size=34, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21879,7 +21899,12 @@
           "insight_type": "comparison",
           "role": "2 · THE SLOWDOWN",
           "topic": "how fast that count used to double",
-          "say": "For decades, chipmakers doubled that count roughly every 2 years, the famous Moore's Law. Now it takes closer to 3, because transistors are running out of room to shrink."
+          "say": "For decades, chipmakers doubled that count roughly every 2 years, the famous Moore's Law. Now it takes closer to 3, because transistors are running out of room to shrink.",
+          "scene": {
+            "mechanic": "moores-law-metronome",
+            "concept": "two cadence tracks tick off doublings over the same 12 years, one visibly slower than the other",
+            "code": "cx1 = RX0 + 260\ncx2 = RX1 - 260\ncy = 260\nchip = images.get(labels[0])\nif chip is None:\n    chip = subject_image('microchip circuit macro')\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    period = values[i]\n    ticks = int(12 / period)\n    for k in range(ticks):\n        ty = cy + 140 + k * 100\n        active = reveal * ticks * 1.15 > k\n        d.line([cx - 90, ty, cx + 90, ty],\n               fill=rgba(HIGHLIGHT if active else TEXT, 230 if active else 60), width=6)\n        if active and chip is not None:\n            paste(chip, cx - 30, ty - 46, 60, 60)\n    text(labels[i], cx, cy - 40, size=28, center=True)\n    text(str(int(period)) + '-yr doubling', cx, cy, size=32, color=HIGHLIGHT, center=True)\ntext('same 12 years, fewer doublings now', (RX0 + RX1) // 2, RTOP + 10, size=32, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21890,7 +21915,12 @@
           "insight_type": "comparison",
           "role": "3 · THE ATOMIC WALL",
           "topic": "transistor size, then vs. now",
-          "say": "The first commercial chip, in 1971, was built on a 10,000 nanometer process. Today's newest chips are near 2 nanometers, just a handful of silicon atoms wide."
+          "say": "The first commercial chip, in 1971, was built on a 10,000 nanometer process. Today's newest chips are near 2 nanometers, just a handful of silicon atoms wide.",
+          "scene": {
+            "mechanic": "atom-scale-zoom",
+            "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
+            "code": "cx = (RX0 + RX1) // 2\ntop_y = 380\nbig = values[0]\nsmall = values[1]\nbig_s = 480\nsmall_s = max(18, big_s * (small / big) ** 0.35)\nbx = cx - 260\nsx = cx + 200\nimg = images.get(labels[0])\nif img is None:\n    img = subject_image('silicon chip die macro')\nbw = int(lerp(40, big_s, reveal))\nif img is not None:\n    paste(img, bx - bw // 2, top_y - bw // 2, bw, bw)\nelse:\n    d.rounded_rectangle([bx - bw // 2, top_y - bw // 2, bx + bw // 2, top_y + bw // 2], fill=rgba(ACCENT, 220))\ntext(labels[0], bx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(big)) + ' nm', bx, top_y - big_s // 2 - 40, size=36, color=HIGHLIGHT, center=True)\nsw = int(lerp(6, small_s, reveal))\nd.ellipse([sx - sw // 2, top_y - sw // 2, sx + sw // 2, top_y + sw // 2], fill=rgba(WARN, 230))\ntext(labels[1], sx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(small)) + ' nm', sx, top_y - big_s // 2 - 40, size=36, color=WARN, center=True)\nif reveal > 0.6:\n    text('a handful of atoms wide', cx, RTOP + 10, size=32, center=True)\n"
+          }
         }
       ]
     },
@@ -21924,7 +21954,12 @@
           "insight_type": "comparison",
           "role": "1 · IT SHOULDN'T WORK",
           "topic": "body water frozen and survived",
-          "say": "Freeze about 10 percent of a normal animal's body water and it dies, the ice shreds its cells. Wood frogs survive up to 65 percent of their body frozen solid."
+          "say": "Freeze about 10 percent of a normal animal's body water and it dies, the ice shreds its cells. Wood frogs survive up to 65 percent of their body frozen solid.",
+          "scene": {
+            "mechanic": "ice-fill-shatter-duel",
+            "concept": "two frog cutouts fill with ice to their survival threshold; one shatters, one holds and glows",
+            "code": "cx1 = RX0 + 260\ncx2 = RX1 - 260\ncy = 560\nw = 220\nh = 520\nfrog_a = images.get(labels[0])\nif frog_a is None:\n    frog_a = subject_image('frog silhouette')\nfrog_b = images.get(labels[1])\nif frog_b is None:\n    frog_b = subject_image('wood frog')\nfor i in range(2):\n    cx = cx1 if i == 0 else cx2\n    frac = clamp(values[i] / 100.0) * reveal\n    img = frog_a if i == 0 else frog_b\n    x0 = cx - w // 2\n    y0 = cy - h // 2\n    fill_image(img, frac, x0, y0, w, h, direction='up', color='#7DD3FC')\n    d.rounded_rectangle([x0, y0, x0 + w, y0 + h], outline=rgba(TEXT, 255), width=4, radius=30)\n    if i == 0 and reveal > 0.7:\n        for k in range(5):\n            cxk = x0 + 30 + k * 40\n            d.line([cxk, y0 + h - 30, cxk + 18, y0 + h - 140], fill=rgba(WARN, 230), width=5)\n        text('DIES', cx, y0 - 50, size=38, color=WARN, center=True)\n    if i == 1 and reveal > 0.7:\n        d.ellipse([x0 - 14, y0 - 14, x0 + w + 14, y0 + h + 14], outline=rgba(HIGHLIGHT, 200), width=8)\n        text('SURVIVES', cx, y0 - 50, size=34, color=HIGHLIGHT, center=True)\n    text(labels[i], cx, y0 + h + 24, size=26, center=True)\n    text(str(int(values[i])) + '%', cx, y0 - 90, size=40, color=HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21935,7 +21970,12 @@
           "insight_type": "comparison",
           "role": "2 · THE TRICK",
           "topic": "coldest survived body temperature",
-          "say": "Their liver floods their blood with glucose the moment ice touches their skin, protecting each cell from the inside. That lets them survive body temperatures 16 degrees below freezing."
+          "say": "Their liver floods their blood with glucose the moment ice touches their skin, protecting each cell from the inside. That lets them survive body temperatures 16 degrees below freezing.",
+          "scene": {
+            "mechanic": "frog-thermometer-plunge",
+            "concept": "a shared vertical scale where each frog plunges to the coldest body temperature it survives",
+            "code": "cx = (RX0 + RX1) // 2\ntop_y = 260\nbot_y = 1080\nd.line([cx, top_y, cx, bot_y], fill=rgba(TEXT, 200), width=6)\nvmax2 = max(values) if values else 1.0\nfor i in range(n):\n    depth = clamp(values[i] / vmax2) * reveal\n    y = top_y + (bot_y - top_y) * depth\n    img = images.get(labels[i])\n    if img is None:\n        img = subject_image('frog')\n    w = 150\n    h = 150\n    off = -170 if i == 0 else 170\n    if img is not None:\n        paste(img, cx + off - w // 2, int(y) - h // 2, w, h)\n    else:\n        d.ellipse([cx + off - w // 2, y - h // 2, cx + off + w // 2, y + h // 2], fill=rgba(ACCENT, 220))\n    d.line([cx, y, cx + off, y], fill=rgba(HIGHLIGHT, 200), width=4)\n    text('-' + str(int(values[i])) + ' C', cx + off, int(y) + h // 2 + 20, size=30, color=HIGHLIGHT, center=True)\n    text(labels[i], cx + off, int(y) - h // 2 - 30, size=24, center=True)\ntext('degrees below freezing, survived', cx, RTOP + 10, size=32, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21946,7 +21986,12 @@
           "insight_type": "comparison",
           "role": "3 · HOW FAR IT TAKES THEM",
           "topic": "northernmost range",
-          "say": "Most frogs top out around 45 degrees north. Wood frogs freeze and thaw every winter as far north as 68, the only frog found above the Arctic Circle."
+          "say": "Most frogs top out around 45 degrees north. Wood frogs freeze and thaw every winter as far north as 68, the only frog found above the Arctic Circle.",
+          "scene": {
+            "mechanic": "arctic-range-creep",
+            "concept": "frog photos climb a latitude ladder, most stopping well short of the Arctic Circle line",
+            "code": "cx = (RX0 + RX1) // 2\ntop_y = 220\nbot_y = 1080\nd.rounded_rectangle([cx - 140, top_y, cx + 140, bot_y], radius=30, outline=rgba(TEXT, 200), width=4)\narctic_frac = clamp(66.5 / 80)\narctic_y = bot_y - (bot_y - top_y) * arctic_frac\nd.line([cx - 160, arctic_y, cx + 160, arctic_y], fill=rgba(WARN, 220), width=5)\ntext('ARCTIC CIRCLE', cx + 170, arctic_y - 14, size=22, color=WARN)\nfor i in range(n):\n    lat = values[i]\n    frac = clamp(lat / 80.0) * reveal\n    y = bot_y - (bot_y - top_y) * frac\n    img = images.get(labels[i])\n    if img is None:\n        img = subject_image('frog')\n    w = 150\n    h = 120\n    if img is not None:\n        paste(img, cx - w // 2, int(y) - h // 2, w, h)\n    else:\n        d.ellipse([cx - w // 2, y - h // 2, cx + w // 2, y + h // 2], fill=rgba(ACCENT, 220))\n    text(labels[i], cx, int(y) + h // 2 + 24, size=24, center=True)\n    text(str(int(lat)) + ' N', cx, int(y) - h // 2 - 20, size=32, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
@@ -21980,7 +22025,12 @@
           "insight_type": "comparison",
           "role": "1 · THE FADE",
           "topic": "Betelgeuse's brightness drop",
-          "say": "In late 2019, the star Betelgeuse started fading. By February 2020 it had dropped to about 36 percent of its normal brightness, the faintest astronomers had ever recorded it."
+          "say": "In late 2019, the star Betelgeuse started fading. By February 2020 it had dropped to about 36 percent of its normal brightness, the faintest astronomers had ever recorded it.",
+          "scene": {
+            "mechanic": "star-dim-veil",
+            "concept": "a glowing star photo visibly dims under a rising dark veil as the brightness percentage falls",
+            "code": "cx, cy = (RX0 + RX1) // 2, 560\nr = 260\nstar = images.get(labels[0])\nif star is None:\n    star = subject_image('red supergiant star glowing orange')\nbrightness = lerp(100.0, 36.0, reveal)\nw = h = r * 2\nif star is not None:\n    paste(star, cx - r, cy - r, w, h)\nelse:\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba('#F97316', 230))\ndim_alpha = int((1.0 - brightness / 100.0) * 210)\nd.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba('#0B1220', dim_alpha))\nfor k in range(int(30 * reveal)):\n    ang = (k * 2.399) % (2 * math.pi)\n    rr = r * 0.3 + (k % 12) * 18\n    dx = cx + rr * math.cos(ang)\n    dy = cy + rr * math.sin(ang) * 0.6\n    d.ellipse([dx - 3, dy - 3, dx + 3, dy + 3], fill=rgba('#94A3B8', 150))\ntext(str(int(brightness)) + '% brightness', cx, cy - r - 70, size=46, color=HIGHLIGHT, center=True)\nlabel = labels[1] if reveal > 0.5 else labels[0]\ntext('Betelgeuse -- ' + label, cx, cy + r + 50, size=30, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -21991,7 +22041,12 @@
           "insight_type": "share",
           "role": "2 · WHAT ACTUALLY HAPPENED",
           "topic": "share of the star's disk obscured",
-          "say": "Telescope images explained why: a giant plume of gas had erupted from the surface and cooled into a dust cloud, blocking roughly half the star's visible disk from our point of view."
+          "say": "Telescope images explained why: a giant plume of gas had erupted from the surface and cooled into a dust cloud, blocking roughly half the star's visible disk from our point of view.",
+          "scene": {
+            "mechanic": "star-disc-dust-sweep",
+            "concept": "a dark dust wipe sweeps across the star's own photographed disk, stopping at the obscured share",
+            "code": "cx, cy = (RX0 + RX1) // 2, 560\nr = 280\nstar = images.get(labels[0])\nif star is None:\n    star = subject_image('red supergiant star surface texture')\nif star is not None:\n    fill_image(star, 1.0, cx - r, cy - r, r * 2, r * 2, direction='up')\nelse:\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba('#FB923C', 230))\nfrac = clamp(values[0] / 100.0) * reveal\nsweep_w = int(r * 2 * frac)\nmask_x0 = cx - r\nd.rectangle([mask_x0, cy - r, mask_x0 + sweep_w, cy + r], fill=rgba('#0B1220', 200))\nd.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 230), width=6)\nd.line([cx, cy - r, cx, cy + r], fill=rgba(TEXT, 160), width=3)\ntext(str(int(values[0])) + '% dust-obscured', cx - r // 2, cy - r - 70, size=30, color=WARN, center=True)\ntext(str(int(values[1])) + '% clear view', cx + r // 2, cy - r - 70, size=30, color=HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -22002,7 +22057,12 @@
           "insight_type": "comparison",
           "role": "3 · NOT YET",
           "topic": "the fake-out vs the real thing",
-          "say": "That fake-out lasted about 6 months before the star brightened back up. The real explosion is still roughly 100,000 years away, so no, Betelgeuse isn't dying yet."
+          "say": "That fake-out lasted about 6 months before the star brightened back up. The real explosion is still roughly 100,000 years away, so no, Betelgeuse isn't dying yet.",
+          "scene": {
+            "mechanic": "cosmic-timeline-zoom-out",
+            "concept": "the star's dimming episode sits as a tiny blip on a timeline that pulls back to the real supernova estimate",
+            "code": "cx = (RX0 + RX1) // 2\ny = 620\naxis_w = int(lerp(140, 900, reveal))\nx0 = cx - axis_w // 2\nx1 = cx + axis_w // 2\nd.line([x0, y, x1, y], fill=rgba(TEXT, 220), width=6)\nstar = images.get(labels[0])\nif star is None:\n    star = subject_image('red supergiant star glowing')\nsw = 90\nif star is not None:\n    paste(star, x0 - sw // 2, y - sw // 2, sw, sw)\nblip_frac = 0.03\nblip_x = x0 + axis_w * blip_frac\nd.ellipse([blip_x - 8, y - 8, blip_x + 8, y + 8], fill=rgba(HIGHLIGHT, 230))\nif reveal > 0.3:\n    text(labels[0], blip_x, y - 60, size=24, color=HIGHLIGHT, center=True)\n    text(str(values[0]) + ' yr', blip_x, y + 30, size=24, color=HIGHLIGHT, center=True)\nif reveal > 0.6:\n    d.ellipse([x1 - 10, y - 10, x1 + 10, y + 10], fill=rgba(WARN, 230))\n    text(labels[1], x1, y - 60, size=24, color=WARN, center=True)\n    text('~' + str(int(values[1])) + ' yrs', x1, y + 30, size=24, color=WARN, center=True)\nif reveal > 0.85:\n    text('the fade was a blink', cx, RTOP + 10, size=32, center=True)\n"
+          }
         }
       ]
     }
