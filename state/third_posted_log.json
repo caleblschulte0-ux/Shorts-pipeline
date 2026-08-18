@@ -3923,14 +3923,22 @@
       "director_cut": true
     },
     "clip-20260818-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/northernlion/clip/CredulousAmericanFerretOSfrog-ALZ90BRhChEBVW7Q",
-      "story_key": null,
-      "streamer": "northernlion",
+      "url": "https://youtube.com/shorts/rTfq-IL3asM",
       "title": "Chat Could Not Handle This Northernlion Moment",
       "kind": "twitch_clip",
-      "ts": "2026-08-18T11:54:46.958707+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-18T11:54:55.204288+00:00",
+      "uploaded_at": "2026-08-18T11:54:55.204307+00:00",
+      "publish_at": "2026-08-18T18:30:00Z",
+      "source_url": "https://www.twitch.tv/northernlion/clip/CredulousAmericanFerretOSfrog-ALZ90BRhChEBVW7Q",
+      "streamer": "northernlion",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4506,
+      "banger": 0.5
     }
   }
 }
