@@ -1,0 +1,129 @@
+{
+  "date": "20260818",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-snack-bag-clipboard-s0-28860a98a186",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s0-28860a98a186.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s1-d5c572abf71f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s1-d5c572abf71f.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s2-8b0cf610dee0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s2-8b0cf610dee0.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s3-92cb77b0f069",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s3-92cb77b0f069.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s4-fe966f1f45dc",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s4-fe966f1f45dc.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s5-cd5889bc86bf",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s5-cd5889bc86bf.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s6-40acbb42854c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s6-40acbb42854c.png"
+    },
+    {
+      "request_id": "reddit-snack-bag-clipboard-s7-6198b148cad5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-snack-bag-clipboard-s7-6198b148cad5.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s0-df7cebf8d2b6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s0-df7cebf8d2b6.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s1-b99bdaa096d7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s1-b99bdaa096d7.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s2-92ccc99ebb88",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s2-92ccc99ebb88.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s3-00611ccf179b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s3-00611ccf179b.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s4-e54e1425c55b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s4-e54e1425c55b.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s5-ce65de39107d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s5-ce65de39107d.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s6-bdbf3ff2458f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s6-bdbf3ff2458f.png"
+    },
+    {
+      "request_id": "reddit-not-staff-microwave-s7-f4363b068d18",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-not-staff-microwave-s7-f4363b068d18.png"
+    },
+    {
+      "slug": "reddit-snack-bag-clipboard",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): forty",
+        "INVENTED named entity(ies): very"
+      ]
+    },
+    {
+      "slug": "reddit-not-staff-microwave",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): discount"
+      ]
+    }
+  ]
+}
