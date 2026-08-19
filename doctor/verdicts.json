@@ -355,40 +355,58 @@
       "history": []
     },
     "a833d2f37a5c": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260819",
-      "because": "Building now (session picked this up after correctly ranking it #1 in doctor.py next -- it was ruled doing on 08-17 and left unbuilt for two days). Extracted the exclusion predicate daily_alarm.py already had right into a public is_real_upload()/real_uploads() pair, and pointed scripts/doctor.py's channel_performance cadence rollup at it instead of raw row counts. Preserved attempted/rejected_or_pending as separate fields per the proposal rather than just dropping the excluded rows. Regression test in tests/test_doctor_managing_editor.py (production-shaped third-channel fixture: 2 uploads, 4 refusals/pending) proves the desk now agrees with daily_alarm._posted_on's 2/6, and fails against the pre-fix code.",
+      "because": "Merged in PR #291 (7363095). scripts/doctor.py's channel_performance cadence now uses daily_alarm.real_uploads()/is_real_upload() instead of raw row counts, preserving attempted/rejected_or_pending as separate fields. tests/test_doctor_managing_editor.py's production-shaped third-channel fixture (2 uploads, 4 refusals/pending) proves the desk agrees with the alarm's 2/6.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260817",
           "because": "Confirmed live: scripts/doctor.py:474-482 counts every timestamped row in a channel's posted log as a post, while state/third_posted_log.json stores qa_rejected refusals and pending claims beside real uploads (daily_alarm.py already has the correct exclusion predicate at lines 99-114). The managing-editor desk is reporting fabricated cadence to itself and to the operator. Building this now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Building now (session picked this up after correctly ranking it #1 in doctor.py next -- it was ruled doing on 08-17 and left unbuilt for two days). Extracted the exclusion predicate daily_alarm.py already had right into a public is_real_upload()/real_uploads() pair, and pointed scripts/doctor.py's channel_performance cadence rollup at it instead of raw row counts. Preserved attempted/rejected_or_pending as separate fields per the proposal rather than just dropping the excluded rows. Regression test in tests/test_doctor_managing_editor.py (production-shaped third-channel fixture: 2 uploads, 4 refusals/pending) proves the desk now agrees with daily_alarm._posted_on's 2/6, and fails against the pre-fix code."
         }
-      ]
+      ],
+      "commit": "7363095"
     },
     "1eb84ce4609f": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260819",
-      "because": "Built in the same change as a833d2f37a5c -- it is the immediately adjacent lines in the same evidence_pack() function (scripts/doctor.py channel_performance block) and touching one without the other would leave a known-bad top_by_vph ranking in code already being edited. Fixed _vph() to read the producer's real field (views_per_hour from scripts/fetch_analytics.py) first, falling back to the legacy 'vph' alias only if that's absent. Regression test in tests/test_doctor_managing_editor.py proves ranking now uses views_per_hour and fails pre-fix.",
+      "because": "Merged in PR #291 (7363095) alongside a833d2f37a5c. top_by_vph now reads views_per_hour (the analytics producer's real field) first, falling back to the legacy vph alias only if absent.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260817",
           "because": "Confirmed live: scripts/fetch_analytics.py writes views_per_hour but scripts/doctor.py:488-494 reads v.get('vph'), so every channel's top_by_vph list is silently all-zero and shows source-order rows as 'top performers'. Real fix, small diff. Queued behind the higher-ranked bug this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Built in the same change as a833d2f37a5c -- it is the immediately adjacent lines in the same evidence_pack() function (scripts/doctor.py channel_performance block) and touching one without the other would leave a known-bad top_by_vph ranking in code already being edited. Fixed _vph() to read the producer's real field (views_per_hour from scripts/fetch_analytics.py) first, falling back to the legacy 'vph' alias only if that's absent. Regression test in tests/test_doctor_managing_editor.py proves ranking now uses views_per_hour and fails pre-fix."
         }
-      ]
+      ],
+      "commit": "7363095"
     },
     "fb2c88996071": {
       "verdict": "done",
       "date": "20260819",
-      "because": "Confirmed this is exactly the crash I independently hit while investigating strategy finding 33ccbcdc479b (format_scoreboard.py KeyError: 'reddit'). Fixed properly per the proposal: package_formats() now resolves through shared/channel_registry.py's own classify() detector instead of a second hand-rolled guess, so any future registry format change stays in sync automatically. Also caught and fixed a second, worse bug the classify()-based fix would otherwise have introduced silently: the script had no sys.path.insert(0, ROOT), so running it the way daily.yml actually does (python3 scripts/format_scoreboard.py, not as a module) put scripts/ on sys.path[0] and 'from shared import channel_registry' failed silently inside a bare except -- every reddit_story package would have been mis-bucketed as 'explainer' with NO crash and NO warning, which is worse than the KeyError it replaced. tests/test_format_scoreboard.py covers registry-driven classification, an unknown-format rollup to unmatched, and a subprocess test that runs the real 'python3 scripts/format_scoreboard.py' invocation from repo root to pin this exact import-context failure mode. All 4 new tests fail against the pre-fix code and pass after.",
+      "because": "Merged in PR #291 (7363095) -- adding the commit sha to the earlier done ruling. package_formats() now resolves through shared/channel_registry.classify(); the script also gained the missing sys.path.insert(0, ROOT) that a live CI invocation needs, which a subprocess test (test_the_script_finds_reddit_story_when_run_directly) pins directly.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260817",
           "because": "Confirmed live: 'python scripts/format_scoreboard.py' raises KeyError: reddit on current main because package_formats() labels subreddit packages 'reddit' while the registry bucket is 'reddit_story'. Doctor's own channel_performance pointer tells readers to run this command, so it's actively misleading. Queued behind higher-ranked items this run."
+        },
+        {
+          "verdict": "done",
+          "date": "20260819",
+          "because": "Confirmed this is exactly the crash I independently hit while investigating strategy finding 33ccbcdc479b (format_scoreboard.py KeyError: 'reddit'). Fixed properly per the proposal: package_formats() now resolves through shared/channel_registry.py's own classify() detector instead of a second hand-rolled guess, so any future registry format change stays in sync automatically. Also caught and fixed a second, worse bug the classify()-based fix would otherwise have introduced silently: the script had no sys.path.insert(0, ROOT), so running it the way daily.yml actually does (python3 scripts/format_scoreboard.py, not as a module) put scripts/ on sys.path[0] and 'from shared import channel_registry' failed silently inside a bare except -- every reddit_story package would have been mis-bucketed as 'explainer' with NO crash and NO warning, which is worse than the KeyError it replaced. tests/test_format_scoreboard.py covers registry-driven classification, an unknown-format rollup to unmatched, and a subprocess test that runs the real 'python3 scripts/format_scoreboard.py' invocation from repo root to pin this exact import-context failure mode. All 4 new tests fail against the pre-fix code and pass after."
         }
-      ]
+      ],
+      "commit": "7363095"
     },
     "c8ca85c0ce21": {
       "verdict": "doing",
@@ -434,10 +452,17 @@
       "history": []
     },
     "d79703f6f53b": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260819",
-      "because": "Confirmed real: ask_fingerprint only hashed requests+contract, not package scripts/shot phrasing/authoring briefs. Building the fix now: extend the fingerprint with an editorial signature (scripts, shot phrase/query, authoring_request/authoring_requests) while keeping media_health/verdict/has_media/strong_fraction/requested as noise, per the existing cosmetic-rewrite test's contract.",
-      "history": []
+      "because": "Merged in PR #291 (7363095). ask_fingerprint() now hashes an editorial signature (package scripts, shot phrasing, authoring_request/authoring_requests) alongside the request/contract fields it already covered; tests/test_media_checkpoint.py proves script/phrase/brief rewrites move the identity while media-derived fields (verdict, has_media, media_health, strong_fraction, requested) still do not.",
+      "history": [
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Confirmed real: ask_fingerprint only hashed requests+contract, not package scripts/shot phrasing/authoring briefs. Building the fix now: extend the fingerprint with an editorial signature (scripts, shot phrase/query, authoring_request/authoring_requests) while keeping media_health/verdict/has_media/strong_fraction/requested as noise, per the existing cosmetic-rewrite test's contract."
+        }
+      ],
+      "commit": "7363095"
     },
     "5a7b4694a767": {
       "verdict": "doing",
