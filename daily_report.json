@@ -1,50 +1,16 @@
 [
   {
-    "topic": "Women's Soccer Expansion Fees Just Went Vertical",
-    "title": "Women's Soccer Expansion Fees Just Went Vertical",
+    "topic": "Nokia Ruled Smartphones. Then Apple Ended It",
+    "title": "Nokia Ruled Smartphones. Then Apple Ended It",
     "format": "graph_race",
-    "publish_at": "2026-08-18T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honestly-sourced race that betrays its own headline \u2014 the ending crowns the men's league while the women's 2M-to-205M number is literally cropped off the screen.",
-    "elapsed_seconds": 124.7,
-    "package_path": "state/trending_packages/20260818/01_graph-nwsl-expansion-fees.json",
-    "source": "brain",
-    "video_path": "output/daily_20260818-093103_women_s_soccer_expansion_fees_just_went_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honestly-sourced race that betrays its own headline \u2014 the ending crowns the men's league while the women's 2M-to-205M number is literally cropped off the screen.",
-      "score": 66
-    },
-    "blocked": true
-  },
-  {
-    "topic": "More Condors Now Fly Free Than Live In Captivity",
-    "title": "More Condors Now Fly Free Than Live In Captivity",
-    "format": "graph_race",
-    "publish_at": "2026-08-18T13:00:00Z",
+    "publish_at": "2026-08-19T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/DiYe8MYtvTo",
+    "video_url": "https://youtube.com/shorts/HSfoZk3r8S8",
     "error": null,
-    "elapsed_seconds": 131.7,
-    "package_path": "state/trending_packages/20260818/02_graph-condor-wild-vs-captive.json",
+    "elapsed_seconds": 122.2,
+    "package_path": "state/trending_packages/20260819/01_graph-nokia-vs-iphone.json",
     "source": "brain",
-    "video_path": "output/daily_20260818-093308_more_condors_now_fly_free_than_live_in_c.mp4",
+    "video_path": "output/daily_20260819-093737_nokia_ruled_smartphones__then_apple_ende.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -63,56 +29,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 74
+      "score": 79
     },
     "channel": "default"
   },
   {
-    "topic": "Solar Power Just Passed Coal In America",
-    "title": "Solar Power Just Passed Coal In America",
+    "topic": "Uber Passed NYC's Yellow Cabs In 4 Years",
+    "title": "Uber Passed NYC's Yellow Cabs In 4 Years",
     "format": "graph_race",
-    "publish_at": "2026-08-18T14:30:00Z",
+    "publish_at": "2026-08-19T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/DJndnpqLzPg",
+    "video_url": "https://youtube.com/shorts/2XHHzEicIS0",
     "error": null,
-    "elapsed_seconds": 121.0,
-    "package_path": "state/trending_packages/20260818/03_graph-solar-passed-coal.json",
+    "elapsed_seconds": 126.9,
+    "package_path": "state/trending_packages/20260819/02_graph-yellow-cab-vs-uber.json",
     "source": "brain",
-    "video_path": "output/daily_20260818-093520_solar_power_just_passed_coal_in_america.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Women's March Madness Beat The Men's. Once.",
-    "title": "Women's March Madness Beat The Men's. Once.",
-    "format": "graph_race",
-    "publish_at": "2026-08-18T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/scucsXw9lPY",
-    "error": null,
-    "elapsed_seconds": 119.9,
-    "package_path": "state/trending_packages/20260818/04_graph-march-madness-gender-gap.json",
-    "source": "brain",
-    "video_path": "output/daily_20260818-093721_women_s_march_madness_beat_the_men_s__on.mp4",
+    "video_path": "output/daily_20260819-093940_uber_passed_nyc_s_yellow_cabs_in_4_years.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -131,25 +63,25 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 74
+      "score": 83
     },
     "channel": "default"
   },
   {
-    "topic": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
-    "title": "She Let Her Kid Open Every Bag. So I Started A Clipboard.",
-    "format": "reddit",
-    "publish_at": "2026-08-18T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/AvmvGJSO-l0",
-    "error": null,
-    "elapsed_seconds": 221.4,
-    "package_path": "state/trending_packages/20260818/05_reddit-snack-bag-clipboard.json",
+    "topic": "More Than 3 In 4 US Homes Cut The Landline",
+    "title": "More Than 3 In 4 US Homes Cut The Landline",
+    "format": "graph_race",
+    "publish_at": "2026-08-19T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' \u2014 irrelevant grabbed brand imagery riding the whole video.",
+    "elapsed_seconds": 186.3,
+    "package_path": "state/trending_packages/20260819/03_graph-mobile-only-landline.json",
     "source": "brain",
-    "video_path": "output/daily_20260818-094007_she_let_her_kid_open_every_bag__so_i_sta.mp4",
+    "video_path": "output/daily_20260819-094147_more_than_3_in_4_us_homes_cut_the_landli.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.367,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +92,75 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.8
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' \u2014 irrelevant grabbed brand imagery riding the whole video.",
+      "score": 66
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Boeing Had A Record Year. Then It Collapsed",
+    "title": "Boeing Had A Record Year. Then It Collapsed",
+    "format": "graph_race",
+    "publish_at": "2026-08-19T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.",
+    "elapsed_seconds": 116.8,
+    "package_path": "state/trending_packages/20260819/04_graph-boeing-vs-airbus.json",
+    "source": "brain",
+    "video_path": "output/daily_20260819-094453_boeing_had_a_record_year__then_it_collap.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.",
+      "score": 70
+    },
+    "blocked": true
+  },
+  {
+    "topic": "No Personal Calls On The Floor. So I Logged Every Call.",
+    "title": "No Personal Calls On The Floor. So I Logged Every Call.",
+    "format": "reddit",
+    "publish_at": "2026-08-19T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations \u2014 the story is never visually demonstrated.",
+    "elapsed_seconds": 205.9,
+    "package_path": "state/trending_packages/20260819/05_reddit-logged-every-call.json",
+    "source": "brain",
+    "video_path": "output/daily_20260819-094728_no_personal_calls_on_the_floor__so_i_log.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.6,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.0
     },
     "qa": {
       "ok": true,
@@ -168,29 +168,55 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
+      "blocked": true,
+      "reason": "showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations \u2014 the story is never visually demonstrated.",
+      "score": 57
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "She Wanted 50% Off From A Guy Who Didn't Work There.",
-    "title": "She Wanted 50% Off From A Guy Who Didn't Work There.",
+    "topic": "He Faked Damage To Keep My Deposit. I Had Photos.",
+    "title": "He Faked Damage To Keep My Deposit. I Had Photos.",
     "format": "reddit",
-    "publish_at": "2026-08-18T19:00:00Z",
+    "publish_at": "2026-08-19T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['insisting my navy jacket meant I worked there', 'followed me down two aisles', 'walked her to the actual customer service desk', 'the real employee recognized her instantly', 'loss prevention pulled the footage from three loca', 'has her photo taped inside the register drawer', 'banned from four stores in the county']",
-    "elapsed_seconds": 44.2,
-    "package_path": "state/trending_packages/20260818/06_reddit-not-staff-microwave.json",
+    "error": "showrunner_block: showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay \u2014 zero shot illustrations, and the payoff ends caption-free on nothing.",
+    "elapsed_seconds": 285.7,
+    "package_path": "state/trending_packages/20260819/06_reddit-landlord-deposit-audit.json",
     "source": "brain",
-    "quarantined": true
+    "video_path": "output/daily_20260819-095058_he_faked_damage_to_keep_my_deposit__i_ha.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay \u2014 zero shot illustrations, and the payoff ends caption-free on nothing.",
+      "score": 65
+    },
+    "blocked": true
   },
   {
-    "topic": "queen camilla granddaughter eliza lopes",
+    "topic": "phoebe gates",
     "angle": null,
-    "publish_at": "2026-08-18T19:00:00Z",
+    "publish_at": "2026-08-19T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
@@ -198,9 +224,29 @@
     "backfill": true
   },
   {
-    "topic": "state farm dividend",
+    "topic": "auto accident attorney",
     "angle": null,
-    "publish_at": "2026-08-18T20:30:00Z",
+    "publish_at": "2026-08-19T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.6,
+    "backfill": true
+  },
+  {
+    "topic": "carlos baleba",
+    "angle": null,
+    "publish_at": "2026-08-19T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.8,
+    "backfill": true
+  },
+  {
+    "topic": "nick kyrgios",
+    "angle": null,
+    "publish_at": "2026-08-19T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",

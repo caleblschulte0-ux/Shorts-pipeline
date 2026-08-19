@@ -6,41 +6,17 @@
   "y_label": "Share of US adults (%)",
   "duration": 13,
   "source": "CDC/National Center for Health Statistics, National Health Interview Survey (NHIS) Wireless Substitution early-release reports, 2003-2024. Share of US adults in households with wireless phone service only rose from about 3% in 2003 to 76% by the second half of 2023 (CDC NHIS, released June 2024); adults in a home with a landline fell from near-universal in 2003 to roughly a quarter by 2023. Wireless-only households became a majority of US adults for the first time around 2016 (CDC, widely reported May 2016). Intermediate-year figures are approximate readings from the NHIS early-release series.",
-  "years": [
-    2003,
-    2007,
-    2010,
-    2014,
-    2016,
-    2020,
-    2023
-  ],
+  "years": [2003, 2007, 2010, 2014, 2016, 2020, 2023],
   "series": [
     {
       "name": "Mobile-Only",
       "color": "#2ecc71",
-      "values": [
-        3,
-        14,
-        26.6,
-        44.1,
-        50.8,
-        64.4,
-        76
-      ]
+      "values": [3, 14, 26.6, 44.1, 50.8, 64.4, 76]
     },
     {
       "name": "Has Landline",
       "color": "#888888",
-      "values": [
-        97,
-        84,
-        72,
-        53,
-        47,
-        34,
-        24
-      ]
+      "values": [97, 84, 72, 53, 47, 34, 24]
     }
   ],
   "hashtags": [

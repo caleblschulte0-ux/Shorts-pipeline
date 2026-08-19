@@ -1,43 +1,39 @@
-# Daily Trending Shorts — 2026-08-18
+# Daily Trending Shorts — 2026-08-19
 
-> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **8**
-- succeeded: **4**
-- quarantined (off-topic imagery): **1**
-- failed: **3**
+- queued: **10**
+- succeeded: **2**
+- quarantined (off-topic imagery): **0**
+- failed: **8**
 
 ## Posted
-- **More Condors Now Fly Free Than Live In Captivity**
-  - topic: More Condors Now Fly Free Than Live In Captivity
-  - publishes: `2026-08-18T13:00:00Z`
-  - https://youtube.com/shorts/DiYe8MYtvTo
-  - took: 131.7s
-- **Solar Power Just Passed Coal In America**
-  - topic: Solar Power Just Passed Coal In America
-  - publishes: `2026-08-18T14:30:00Z`
-  - https://youtube.com/shorts/DJndnpqLzPg
-  - took: 121.0s
-- **Women's March Madness Beat The Men's. Once.**
-  - topic: Women's March Madness Beat The Men's. Once.
-  - publishes: `2026-08-18T16:00:00Z`
-  - https://youtube.com/shorts/scucsXw9lPY
-  - took: 119.9s
-- **She Let Her Kid Open Every Bag. So I Started A Clipboard.**
-  - topic: She Let Her Kid Open Every Bag. So I Started A Clipboard.
-  - publishes: `2026-08-18T17:30:00Z`
-  - https://youtube.com/shorts/AvmvGJSO-l0
-  - took: 221.4s
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **She Wanted 50% Off From A Guy Who Didn't Work There.**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['insisting my navy jacket meant I worked there', 'followed me down two aisles', 'walked her to the actual customer service desk', 'the real employee recognized her instantly', 'loss prevention pulled the footage from three loca', 'has her photo taped inside the register drawer', 'banned from four stores in the county']
+- **Nokia Ruled Smartphones. Then Apple Ended It**
+  - topic: Nokia Ruled Smartphones. Then Apple Ended It
+  - publishes: `2026-08-19T13:00:00Z`
+  - https://youtube.com/shorts/HSfoZk3r8S8
+  - took: 122.2s
+- **Uber Passed NYC's Yellow Cabs In 4 Years**
+  - topic: Uber Passed NYC's Yellow Cabs In 4 Years
+  - publishes: `2026-08-19T14:30:00Z`
+  - https://youtube.com/shorts/2XHHzEicIS0
+  - took: 126.9s
 
 ## Failed
-- **Women's Soccer Expansion Fees Just Went Vertical**
-  - error: `showrunner_block: showrunner BLOCK: A clean, honestly-sourced race that betrays its own headline — the ending crowns the men's league while the women's 2M-to-205M number is literally cropped off the screen.`
-- **queen camilla granddaughter eliza lopes**
+- **More Than 3 In 4 US Homes Cut The Landline**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' — irrelevant grabbed brand imagery riding the whole video.`
+- **Boeing Had A Record Year. Then It Collapsed**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.`
+- **No Personal Calls On The Floor. So I Logged Every Call.**
+  - error: `showrunner_block: showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations — the story is never visually demonstrated.`
+- **He Faked Damage To Keep My Deposit. I Had Photos.**
+  - error: `showrunner_block: showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay — zero shot illustrations, and the payoff ends caption-free on nothing.`
+- **phoebe gates**
   - error: `HTTPError: HTTP Error 404: Not Found`
-- **state farm dividend**
+- **auto accident attorney**
+  - error: `HTTPError: HTTP Error 404: Not Found`
+- **carlos baleba**
+  - error: `HTTPError: HTTP Error 404: Not Found`
+- **nick kyrgios**
   - error: `HTTPError: HTTP Error 404: Not Found`
 

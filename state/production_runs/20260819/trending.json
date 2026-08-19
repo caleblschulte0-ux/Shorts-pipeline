@@ -1,0 +1,16 @@
+{
+  "date": "20260819",
+  "channel": "trending",
+  "schema": "production-channel-outcome/v1",
+  "expected": 6,
+  "previously_uploaded": 0,
+  "rendered_or_attempted": 10,
+  "uploaded": 2,
+  "quarantined": 0,
+  "failed": 8,
+  "status": "repair_required",
+  "video_urls": [
+    "https://youtube.com/shorts/HSfoZk3r8S8",
+    "https://youtube.com/shorts/2XHHzEicIS0"
+  ]
+}
