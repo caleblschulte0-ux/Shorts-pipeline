@@ -6,7 +6,9 @@
   "shots": [
     {
       "phrase": "no personal calls on the floor",
-      "query": "office phone desk"
+      "query": "office phone desk",
+      "image_url": "https://pixabay.com/get/g5910c8527d02fa9d151b2bd7c0f65bfed4c2a71db8f564216cac2557ca27ef22e4b0f098217505c0ead09f63673b01a27ea31fd599e0a905c54eef68a5a32f41_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "logged in the visitor binder",
@@ -19,15 +21,21 @@
     },
     {
       "phrase": "went in that binder: time, caller, duration, reason",
-      "query": "handwritten log entries"
+      "query": "handwritten log entries",
+      "image_url": "https://images.pexels.com/photos/12983110/pexels-photo-12983110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the binder was thicker than the schedule board",
-      "query": "thick binder stack"
+      "query": "thick binder stack",
+      "image_url": "https://pixabay.com/get/ga6c034e4a44678dd521c75f87e1c6237417bebe048557057841bb5d7221ba99edea487710f79238e16dbd591a437a5dd22cd1a2a0a6254f5c5424b69ef48cbc8_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "taking two personal calls an hour from the same number",
-      "query": "phone call ringing"
+      "query": "phone call ringing",
+      "image_url": "https://live.staticflickr.com/765/21886785298_0579769d21_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Corporate did a policy audit",
@@ -40,11 +48,15 @@
     },
     {
       "phrase": "written up for the exact rule he wrote",
-      "query": "disciplinary paperwork desk"
+      "query": "disciplinary paperwork desk",
+      "image_url": "https://pixabay.com/get/g59ce2d6f205f8c1c5e67be3971ddea55d08410a9f53025ea347d28bf18905343ffe943111bb8036b3cbde868d1c8c7646b9b6f09983efaaa59e4838bbf1f71b3_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the personal calls stopped completely",
-      "query": "quiet empty office"
+      "query": "quiet empty office",
+      "image_url": "https://pixabay.com/get/gc1f3bf6a502810ae86115f6011c05cfbc5ff7e251662cf4794841c1470e7fc0962a4f5c0d308e481731624ecc3d63e27f988800bd61cd8f1c219b4d57e00acfc_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
