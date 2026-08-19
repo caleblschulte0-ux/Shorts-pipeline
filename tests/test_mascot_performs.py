@@ -147,21 +147,71 @@ class TestRepairCannotConvergeTheStory(unittest.TestCase):
         self.assertIn("if _distinct", body)
 
 
-class TestCutoutRetries(unittest.TestCase):
-    """~110 one-shot HTTP 500s in a single run, each silently downgrading a
-    scene toward the plain templates the judge blocks."""
+class TestCutoutRetriesAreCircuitBroken(unittest.TestCase):
+    """The retry exists for the 08-16 failure mode (~110 fast flaky 500s,
+    each silently downgrading a scene toward the plain templates the judge
+    blocks). Its FIRST version then met the other failure mode — a hanging
+    service — and 3 attempts x 90s x ~110 asks pushed every run past the 5h
+    job timeout: each explainer cron from 08-17 to 08-19 cancelled its
+    queued predecessor, zero completed runs, three silent days. Retries are
+    a privilege the generator earns by mostly working."""
 
-    SRC = (ROOT / "data_learning" / "scene_media.py").read_text()
+    def setUp(self):
+        import importlib
+        import data_learning.scene_media as sm
+        importlib.reload(sm)
+        self.sm = sm
+        self.calls = {"n": 0}
+        sm._pollinations_raw = (lambda p, s, size=576:
+                                (self.calls.__setitem__(
+                                    "n", self.calls["n"] + 1) or None))
+        import time as _t
+        self._sleep, _t.sleep = _t.sleep, lambda s: None
+        self._t = _t
+        import tempfile
+        self.td = Path(tempfile.mkdtemp(prefix="cutout-"))
 
-    def test_three_attempts_with_seed_jitter(self):
-        body = self.SRC.split("RETRY WITH A DIFFERENT SEED", 1)[1]
-        self.assertIn("range(3)", body)
-        self.assertIn("seed + attempt * 7919", body)
+    def tearDown(self):
+        self._t.sleep = self._sleep
+        import importlib
+        importlib.reload(self.sm)
+
+    def ask(self, i):
+        before = self.calls["n"]
+        self.sm.subject_cutout(f"subject {i}", "slug", f"tag{i}",
+                               cache_dir=self.td)
+        return self.calls["n"] - before
+
+    def test_the_breaker_ladder(self):
+        """3 tries while healthy-ish, 1 try after six dead asks, OFF after
+        twelve — measured 24 network attempts across 15 dead asks where the
+        unbreakered loop made 45 (and, hanging, ate the whole runner)."""
+        per = [self.ask(i) for i in range(15)]
+        self.assertEqual(per[0], 3)
+        self.assertEqual(per[6], 1)
+        self.assertEqual(per[12:], [0, 0, 0])
+        self.assertLessEqual(sum(per), 24)
+
+    def test_one_success_resets_the_streak(self):
+        from PIL import Image
+        for i in range(7):
+            self.ask(i)
+        self.sm._pollinations_raw = (lambda p, s, size=576:
+                                     Image.new("RGB", (64, 64), (0, 255, 0)))
+        self.sm._remove_bg = lambda img: None
+        self.sm.subject_cutout("ok", "slug", "tagok", cache_dir=self.td)
+        self.assertEqual(self.sm._GEN_DEAD_STREAK, 0)
+
+    def test_the_timeout_is_bounded(self):
+        """90s was the accomplice: a hang costs at most 30s per attempt."""
+        src = (ROOT / "data_learning" / "scene_media.py").read_text()
+        body = src.split("def _pollinations_raw", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("timeout=30", body)
+        self.assertNotIn("timeout=90", body)
 
     def test_failure_is_still_non_fatal(self):
-        body = self.SRC.split("RETRY WITH A DIFFERENT SEED", 1)[1].split(
-            "def ", 1)[0]
-        self.assertIn("return None", body)
+        self.assertIsNone(
+            self.sm.subject_cutout("s", "slug", "t0", cache_dir=self.td))
 
 
 if __name__ == "__main__":
