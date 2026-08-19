@@ -1,0 +1,85 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-logged-every-call",
+  "title": "No Personal Calls On The Floor. So I Logged Every Call.",
+  "script": "My manager rolled out a new rule: no personal calls on the floor, every call has to go through the front desk phone and get logged in the visitor binder, no exceptions. I said fine, and I meant it literally. Every call, mine and everyone else's, went in that binder: time, caller, duration, reason. Two weeks in, the binder was thicker than the schedule board, and half the entries said manager's cell, personal, twelve minutes. Turns out our manager was taking two personal calls an hour from the same number, on the clock, off the log, every single day. Corporate did a policy audit after a complaint about staffing gaps, pulled the binder as evidence, and the log did the rest. My manager got written up for the exact rule he wrote, in front of the district supervisor, off a binder he never thought anyone would actually use. Now the binder just says front desk only, and somehow the personal calls stopped completely.",
+  "shots": [
+    {
+      "phrase": "no personal calls on the floor",
+      "query": "office phone desk"
+    },
+    {
+      "phrase": "logged in the visitor binder",
+      "query": "logbook binder pen"
+    },
+    {
+      "phrase": "went in that binder: time, caller, duration, reason",
+      "query": "handwritten log entries"
+    },
+    {
+      "phrase": "the binder was thicker than the schedule board",
+      "query": "thick binder stack"
+    },
+    {
+      "phrase": "taking two personal calls an hour from the same number",
+      "query": "phone call ringing"
+    },
+    {
+      "phrase": "Corporate did a policy audit",
+      "query": "office audit meeting"
+    },
+    {
+      "phrase": "written up for the exact rule he wrote",
+      "query": "disciplinary paperwork desk"
+    },
+    {
+      "phrase": "the personal calls stopped completely",
+      "query": "quiet empty office"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no personal calls on the floor",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "manager's cell, personal, twelve minutes",
+      "text": "LOGGED HIM TOO",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "policy audit",
+      "text": "AUDITED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "written up for the exact rule he wrote",
+      "text": "WRITTEN UP",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "personal calls stopped completely",
+      "text": "RULE ENFORCED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplacestory",
+    "corporatelife",
+    "karma",
+    "pettyrevenge",
+    "reddit",
+    "redditstories",
+    "officepolitics",
+    "boss",
+    "management",
+    "worklife",
+    "karmaisreal",
+    "9to5",
+    "truestory"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

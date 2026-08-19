@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-yellow-cab-vs-uber",
+  "title": "Uber Passed NYC's Yellow Cabs In 4 Years",
+  "hook": "173 million rides. Then this.",
+  "y_label": "NYC trips per year (millions)",
+  "duration": 13,
+  "source": "NYC Taxi & Limousine Commission (TLC) monthly trip-record data, aggregated to annual totals, and contemporaneous reporting (Reuters/BBC/Time, 2015-2017) on ride-hail growth. Yellow-cab annual trips fell from roughly 173 million in 2013 to about 25 million in 2021 during the pandemic before partially recovering. TLC data showed Uber's average daily NYC trips overtook yellow cabs' in 2017 (Uber ~289,000 rides/day vs yellow cabs ~277,000/day, July 2017); Uber's own NYC trip count was about 36 million in 2015 per TLC figures. Figures are approximate, rounded annual estimates built from TLC monthly aggregates.",
+  "years": [2013, 2015, 2017, 2019, 2021, 2023],
+  "series": [
+    {
+      "name": "Yellow Cab",
+      "color": "#f4c430",
+      "values": [173, 144, 101, 84, 25, 38]
+    },
+    {
+      "name": "Uber",
+      "color": "#276ef1",
+      "icon": "Uber",
+      "values": [2, 36, 103, 175, 95, 180]
+    }
+  ],
+  "hashtags": [
+    "uber",
+    "nyctaxi",
+    "yellowcab",
+    "rideshare",
+    "nyc",
+    "gigeconomy",
+    "tlcdata",
+    "taxiindustry",
+    "ridesharing",
+    "nycdata",
+    "transportation",
+    "appeconomy",
+    "cityliving",
+    "sharingeconomy"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

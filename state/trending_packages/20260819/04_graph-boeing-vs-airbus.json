@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-boeing-vs-airbus",
+  "title": "Boeing Had A Record Year. Then It Collapsed",
+  "hook": "806 planes. Then 157.",
+  "y_label": "Aircraft delivered per year",
+  "duration": 13,
+  "source": "Boeing and Airbus annual commercial-aircraft delivery totals, from company press releases compiled by Flight Global, Statista and Cirium industry tracking, 2010-2024. Boeing delivered a company-record 806 jets in 2018, then collapsed to 380 in 2019 after the 737 MAX was grounded worldwide (March 2019) and to just 157 in 2020 as COVID-19 hit travel demand. Airbus delivered a record 863 aircraft in 2019 and has out-delivered Boeing every year since 2019, reaching 766 deliveries in 2024 versus Boeing's 348. Figures are the manufacturers' own reported annual delivery counts.",
+  "years": [2010, 2015, 2018, 2019, 2020, 2022, 2024],
+  "series": [
+    {
+      "name": "Boeing",
+      "color": "#0033a0",
+      "icon": "Boeing",
+      "values": [462, 762, 806, 380, 157, 480, 348]
+    },
+    {
+      "name": "Airbus",
+      "color": "#e4002b",
+      "icon": "Airbus",
+      "values": [491, 635, 800, 863, 566, 661, 766]
+    }
+  ],
+  "hashtags": [
+    "boeing",
+    "airbus",
+    "aviation",
+    "aircraft",
+    "737max",
+    "commercialaviation",
+    "aerospace",
+    "airlineindustry",
+    "boeingcrisis",
+    "deliveries",
+    "planespotting",
+    "aviationnews",
+    "aviationgeek"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

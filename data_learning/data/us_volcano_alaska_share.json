@@ -1,0 +1,20 @@
+{
+  "key": "us_volcano_alaska_share",
+  "title": "Where the US's 165 volcanoes actually are",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "Current Smithsonian / USGS catalogue",
+  "source": {
+    "name": "Alaska Volcano Observatory volcano count vs Global Volcanism Program US total",
+    "publisher": "U.S. Geological Survey / Smithsonian Institution",
+    "url": "https://www.usgs.gov/observatories/avo",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "USGS's Alaska Volcano Observatory catalogues over 130 volcanoes and volcanic fields active in Alaska (mostly along the Aleutian arc); the Smithsonian GVP lists 165 Holocene volcanoes for the US overall, so roughly 35 sit outside Alaska (Hawaii, Cascades, CNMI, etc.).",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Alaska", "value": 130},
+    {"label": "Rest of the US", "value": 35}
+  ]
+}

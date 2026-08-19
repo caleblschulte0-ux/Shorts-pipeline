@@ -1,0 +1,20 @@
+{
+  "key": "chess_platform_vs_world_players",
+  "title": "Chess.com accounts (2025) vs estimated regular chess players worldwide (2012)",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2012 survey vs 2025 platform total",
+  "source": {
+    "name": "YouGov chess-player survey (commissioned by AGON, 2012) and Chess.com 200-million-member announcement (Apr 2025)",
+    "publisher": "YouGov / Chess.com",
+    "url": "https://www.chess.com/news/view/chesscom-reaches-200-million-members",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "The two figures are 13 years apart and not a live comparison: a 2012 YouGov survey estimated 605 million adults worldwide play chess regularly; Chess.com reported 200 million registered accounts in April 2025. Used to illustrate scale, not a precise ratio.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Chess.com accounts (2025)", "value": 200},
+    {"label": "Est. regular players worldwide (2012 survey)", "value": 605}
+  ]
+}
