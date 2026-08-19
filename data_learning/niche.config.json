@@ -22065,6 +22065,246 @@
           }
         }
       ]
+    },
+    {
+      "slug": "pet-obesity-epidemic",
+      "title": "Why 6 In 10 US Pets Are Now Overweight",
+      "hook": "Your dog's not just chubby. It's the norm now.",
+      "closing": "Skip the extra treat. Add a walk instead.",
+      "question": "Is your pet a little overweight? Tell me below.",
+      "caption": "59% of US dogs and 61% of cats are now overweight or obese, per the Association for Pet Obesity Prevention. It's not a few chubby pets anymore — it's most of them, and a landmark feeding study found the extra weight can cost a dog nearly two years of life. Is your pet a little overweight? Tell me below 🐶",
+      "hashtags": [
+        "petobesity",
+        "dogs",
+        "cats",
+        "pethealth",
+        "vetmed",
+        "overweight",
+        "pets",
+        "dogsofinstagram",
+        "catsofinstagram",
+        "animalhealth",
+        "petcare",
+        "didyouknow",
+        "science"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "dog_obesity_rate_trend",
+          "params": {
+            "file": "dog_obesity_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "US dog obesity rate",
+          "say": "In 2012, 52.5% of US dogs were overweight. By 2022, that hit 59% — most dogs now, not a few chubby pups."
+        },
+        {
+          "source": "offline",
+          "key": "pet_obesity_dogs_vs_cats_2022",
+          "params": {
+            "file": "pet_obesity_dogs_vs_cats_2022.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "dogs vs cats",
+          "say": "Cats have it worse: 61% overweight vs 59% of dogs. The average pet is now more likely overweight than not."
+        },
+        {
+          "source": "offline",
+          "key": "dog_lifespan_lean_vs_overweight",
+          "params": {
+            "file": "dog_lifespan_lean_vs_overweight.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · CONSEQUENCE",
+          "topic": "years of life at stake",
+          "say": "Which is why it matters: lean dogs lived a median 13 years, versus 11.2 for overweight littermates. Almost two years, gone."
+        }
+      ]
+    },
+    {
+      "slug": "chess-online-boom",
+      "title": "How A Netflix Show Turned Chess Into A 200-Million-Person Habit",
+      "hook": "A Netflix show broke the internet's chess habit.",
+      "closing": "Turns out watching chess is a sport too.",
+      "question": "Do you know how to play chess? Tell me below.",
+      "caption": "Chess.com had 30 million members when the pandemic began. Then The Queen's Gambit dropped on Netflix, and by 2025 membership hit 200 million — nearly seven times bigger in five years. Do you know how to play chess? Tell me below ♟️",
+      "hashtags": [
+        "chess",
+        "chesscom",
+        "queensgambit",
+        "onlinechess",
+        "boardgames",
+        "netflix",
+        "pandemic",
+        "gaming",
+        "strategy",
+        "didyouknow",
+        "culture",
+        "internet"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "chess_members_growth",
+          "params": {
+            "file": "chess_members_growth.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "Chess.com members",
+          "say": "In March 2020, Chess.com had 30 million members. By 2025, that hit 200 million — nearly seven times bigger in five years."
+        },
+        {
+          "source": "offline",
+          "key": "chess_signups_before_after_queens_gambit",
+          "params": {
+            "file": "chess_signups_before_after_queens_gambit.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "the Queen's Gambit spike",
+          "say": "The site was adding 1 million members a month during lockdown — until The Queen's Gambit hit, and that jumped to 2.8 million."
+        },
+        {
+          "source": "offline",
+          "key": "chess_platform_vs_world_players",
+          "params": {
+            "file": "chess_platform_vs_world_players.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · CONSEQUENCE",
+          "topic": "share of the world's chess players",
+          "say": "A 2012 survey counted 605 million regular chess players worldwide. Chess.com alone now claims 200 million accounts — one website, a third of them."
+        }
+      ]
+    },
+    {
+      "slug": "volcano-country-ranking",
+      "title": "You'd Guess Indonesia. The Data Says Otherwise.",
+      "hook": "Bet you can't guess who has the most volcanoes.",
+      "closing": "Alaska: quietly winning at volcanoes since forever.",
+      "question": "Ever seen a volcano in person? Tell me where.",
+      "caption": "The United States has more active volcanoes than any other country on Earth — 165, mostly hiding along Alaska's coastline. It's not a coincidence: the US, Japan, Russia, and Indonesia all sit on the same fault line, the Ring of Fire, which holds 75% of Earth's active volcanoes. Ever seen a volcano in person? Tell me where 🌋",
+      "hashtags": [
+        "volcanoes",
+        "ringoffire",
+        "alaska",
+        "geology",
+        "earthscience",
+        "indonesia",
+        "japan",
+        "russia",
+        "science",
+        "nature",
+        "didyouknow",
+        "earth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "volcano_count_by_country",
+          "params": {
+            "file": "volcano_count_by_country.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "1 · SETUP",
+          "topic": "volcanoes by country",
+          "say": "The US has 165 volcanoes active in the last 11,700 years — more than Japan's 118, Russia's 107, or Indonesia's 101."
+        },
+        {
+          "source": "offline",
+          "key": "us_volcano_alaska_share",
+          "params": {
+            "file": "us_volcano_alaska_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "where the US total actually sits",
+          "say": "That's because 130 of those 165 sit in Alaska alone. Take Alaska away, and the rest of the country barely registers."
+        },
+        {
+          "source": "offline",
+          "key": "ring_of_fire_share",
+          "params": {
+            "file": "ring_of_fire_share.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · CONSEQUENCE",
+          "topic": "the Ring of Fire",
+          "say": "Which is why: the US, Japan, Russia, and Indonesia all sit on one fault line — the Ring of Fire, holding 75% of Earth's volcanoes."
+        }
+      ]
+    },
+    {
+      "slug": "bnpl-checkout-takeover",
+      "title": "Buy Now Pay Later Is Eating The Checkout Button",
+      "hook": "That split-into-4 button didn't show up by accident.",
+      "closing": "Four payments now, buyer's remorse later.",
+      "question": "Have you ever used a pay-in-4 button? Tell me below.",
+      "caption": "Buy Now Pay Later lending exploded from $2 billion to $24.2 billion in just two years, per the CFPB. It's not just bigger purchases — loan count jumped from 16.8 million to 180 million over the same stretch, which is why that split-into-4 button is suddenly everywhere. Have you ever used a pay-in-4 button? Tell me below 👇",
+      "hashtags": [
+        "bnpl",
+        "buynowpaylater",
+        "klarna",
+        "affirm",
+        "afterpay",
+        "fintech",
+        "personalfinance",
+        "checkout",
+        "onlineshopping",
+        "debt",
+        "money",
+        "economics",
+        "consumerdebt"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "bnpl_holiday_spending_trend",
+          "params": {
+            "file": "bnpl_holiday_spending_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "BNPL holiday spending",
+          "say": "In the 2021 holiday season, shoppers put $14.5 billion on Buy Now Pay Later. By 2025, that hit $20 billion."
+        },
+        {
+          "source": "offline",
+          "key": "bnpl_loan_dollar_volume_2019_2021",
+          "params": {
+            "file": "bnpl_loan_dollar_volume_2019_2021.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "the lending behind it",
+          "say": "Behind that, the lending exploded even faster: from $2 billion in 2019 to $24.2 billion in 2021 — a twelve-fold jump."
+        },
+        {
+          "source": "offline",
+          "key": "bnpl_loan_count_2019_2021",
+          "params": {
+            "file": "bnpl_loan_count_2019_2021.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · CONSEQUENCE",
+          "topic": "how many loans, not just how much",
+          "say": "And it wasn't just bigger loans — it was more of them: 16.8 million in 2019, 180 million by 2021. Which is why it's everywhere now."
+        }
+      ]
     }
   ],
   "videos": [

@@ -1,0 +1,20 @@
+{
+  "key": "bnpl_loan_dollar_volume_2019_2021",
+  "title": "Buy Now Pay Later loan dollar volume, 2019 vs 2021",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2019 vs 2021",
+  "source": {
+    "name": "Buy Now, Pay Later: Market Trends and Consumer Impacts",
+    "publisher": "Consumer Financial Protection Bureau (CFPB)",
+    "url": "https://files.consumerfinance.gov/f/documents/cfpb_buy-now-pay-later-market-trends-consumer-impacts_report_2022-09.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "CFPB's five surveyed BNPL lenders originated $2 billion in loans in 2019, growing to $24.2 billion in 2021 -- a 1,092% increase in two years.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "2019", "value": 2.0},
+    {"label": "2021", "value": 24.2}
+  ]
+}

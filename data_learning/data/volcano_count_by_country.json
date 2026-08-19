@@ -1,0 +1,24 @@
+{
+  "key": "volcano_count_by_country",
+  "title": "Holocene (last ~11,700 years) volcanoes by country",
+  "unit": "count",
+  "geography": "World (top countries)",
+  "time_coverage": "Current Smithsonian catalogue",
+  "source": {
+    "name": "Global Volcanism Program volcano database",
+    "publisher": "Smithsonian Institution",
+    "url": "https://volcano.si.edu/volcanolist_countries.cfm",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Count of volcanoes with eruptions in the Holocene (roughly the last 11,700 years) catalogued per country by the Smithsonian's Global Volcanism Program. The US total is driven mostly by Alaska's Aleutian arc.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "United States", "value": 165},
+    {"label": "Japan", "value": 118},
+    {"label": "Russia", "value": 107},
+    {"label": "Indonesia", "value": 101},
+    {"label": "Chile", "value": 90}
+  ]
+}

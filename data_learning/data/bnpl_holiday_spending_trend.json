@@ -1,0 +1,20 @@
+{
+  "key": "bnpl_holiday_spending_trend",
+  "title": "US online holiday-season Buy Now Pay Later spending",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2021-2025 (Nov 1 - Dec 31 holiday season)",
+  "source": {
+    "name": "Adobe Analytics holiday shopping reports",
+    "publisher": "Adobe",
+    "url": "https://business.adobe.com/resources/holiday-shopping-report.html",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Adobe Analytics tracks trillions of online transactions. Holiday-season (Nov 1-Dec 31) BNPL spend: $14.5B in 2021, $18.2B in 2023, $20B in 2025 (up 9.8% year-over-year, per Adobe's 2025 holiday recap).",
+  "points": [
+    {"label": "2021", "value": 14.5, "period": "2021"},
+    {"label": "2023", "value": 18.2, "period": "2023"},
+    {"label": "2025", "value": 20.0, "period": "2025"}
+  ]
+}

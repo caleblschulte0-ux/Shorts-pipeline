@@ -1,0 +1,20 @@
+{
+  "key": "dog_lifespan_lean_vs_overweight",
+  "title": "Median lifespan: lean-fed vs overweight-prone dogs (years)",
+  "unit": "years",
+  "geography": "United States (Labrador Retriever lifetime cohort)",
+  "time_coverage": "1987-2001 lifetime feeding study",
+  "source": {
+    "name": "Effects of Diet Restriction on Life Span and Age-Related Changes in Dogs (Kealy et al., JAVMA 2002)",
+    "publisher": "Purina Institute",
+    "url": "https://www.purinainstitute.com/science-of-nutrition/extending-healthy-life/life-span-study-in-dogs",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Landmark 48-dog lifetime study: lean-fed Labradors had a median lifespan of 13.0 years vs 11.2 years for full/control-fed littermates -- a 1.8-year gap.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Lean-fed dogs", "value": 13.0},
+    {"label": "Overweight-prone (control-fed) dogs", "value": 11.2}
+  ]
+}

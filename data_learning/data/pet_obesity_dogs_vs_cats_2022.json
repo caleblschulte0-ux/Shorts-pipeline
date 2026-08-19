@@ -1,0 +1,20 @@
+{
+  "key": "pet_obesity_dogs_vs_cats_2022",
+  "title": "Dogs vs cats classified overweight or obese, 2022",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "2022 U.S. Pet Obesity Survey",
+    "publisher": "Association for Pet Obesity Prevention (APOP)",
+    "url": "https://www.petobesityprevention.org/2022",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Body-condition-score assessments by veterinary clinics nationwide, APOP's 2022 annual survey.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Dogs", "value": 59},
+    {"label": "Cats", "value": 61}
+  ]
+}

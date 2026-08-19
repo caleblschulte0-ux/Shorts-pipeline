@@ -1,0 +1,85 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "reddit-landlord-deposit-audit",
+  "title": "He Faked Damage To Keep My Deposit. I Had Photos.",
+  "script": "My landlord claimed a laundry list of damage to keep my entire security deposit: scuffed floors, a broken blind, stains that weren't there when I moved in. I had photographed every room the day I got the keys and the day I left, timestamped, floor by floor. I sent the photos once, politely, and he ignored the email. So I filed in small claims, attached the timestamped set side by side with his move-out invoice, and let the judge do the reading. Turns out the blind was already broken in my move-in photos, and the stains matched the same rug pattern from his own listing photos. The judge didn't just order the deposit back, he added the statutory penalty for withholding it in bad faith, plus my filing fee. My landlord walked out owing triple what he tried to keep, and the courthouse clerk told me later he's been sued by two other former tenants using the exact same trick.",
+  "shots": [
+    {
+      "phrase": "claimed a laundry list of damage",
+      "query": "damage inspection clipboard"
+    },
+    {
+      "phrase": "keep my entire security deposit",
+      "query": "cash envelope withheld"
+    },
+    {
+      "phrase": "photographed every room the day I got the keys",
+      "query": "empty apartment photos"
+    },
+    {
+      "phrase": "I sent the photos once, politely, and he ignored the email",
+      "query": "unread email inbox"
+    },
+    {
+      "phrase": "filed in small claims",
+      "query": "courthouse filing desk"
+    },
+    {
+      "phrase": "the blind was already broken in my move-in photos",
+      "query": "broken window blind"
+    },
+    {
+      "phrase": "The judge didn't just order the deposit back",
+      "query": "courtroom judge gavel"
+    },
+    {
+      "phrase": "owing triple what he tried to keep",
+      "query": "stack of cash"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "keep my entire security deposit",
+      "text": "DEPOSIT STOLEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "timestamped, floor by floor",
+      "text": "TIMESTAMPED PROOF",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "filed in small claims",
+      "text": "SMALL CLAIMS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "statutory penalty for withholding it in bad faith",
+      "text": "BAD FAITH PENALTY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "owing triple what he tried to keep",
+      "text": "TRIPLE PAYOUT",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "prorevenge",
+    "landlordstory",
+    "tenantrights",
+    "karma",
+    "smallclaimscourt",
+    "reddit",
+    "redditstories",
+    "renterlife",
+    "landlordproblems",
+    "karmaisreal",
+    "apartmentliving",
+    "revenge",
+    "truestory",
+    "justiceserved"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
