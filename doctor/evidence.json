@@ -1,33 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260818",
-  "judged_date": "20260817",
+  "date": "20260819",
+  "judged_date": "20260818",
   "alarm": {
-    "date": "20260817",
+    "date": "20260818",
     "ok": false,
     "alarms": [
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260817 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260817. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260818 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260818. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 3/6 posted for 20260817.",
+        "detail": "third: 2/6 posted for 20260818.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 4/6 posted for 20260817.",
+        "detail": "trending: 4/6 posted for 20260818.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260817: production outcome says 4/6 uploaded and repair never completed (0 quarantined, 4 failed).",
+        "detail": "trending 20260818: production outcome says 4/6 uploaded and repair never completed (1 quarantined, 3 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
@@ -40,12 +40,30 @@
     "notes": [
       "chatgpt finalizer: artifact present",
       "chatgpt media: artifact present",
-      "exchange: 10/10 ChatGPT images pinned",
-      "doctor: findings current (20260817)"
+      "exchange: 16/16 ChatGPT images pinned",
+      "doctor: findings current (20260818)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260818",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 8,
+      "uploaded": 4,
+      "quarantined": 1,
+      "failed": 3,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/DiYe8MYtvTo",
+        "https://youtube.com/shorts/DJndnpqLzPg",
+        "https://youtube.com/shorts/scucsXw9lPY",
+        "https://youtube.com/shorts/AvmvGJSO-l0"
+      ]
+    },
     {
       "date": "20260817",
       "channel": "trending",
@@ -142,19 +160,6 @@
         "https://youtube.com/shorts/qN9JgZQFgaY",
         "https://youtube.com/shorts/YssTXROufD4"
       ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260811",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 0,
-      "quarantined": 0,
-      "failed": 10,
-      "status": "repair_required",
-      "video_urls": []
     }
   ],
   "showrunner_recent": [
@@ -1836,8 +1841,8 @@
     }
   ],
   "recent_commits": [
-    "5f2da91 2026-08-18 fix third-smoke: pillarbox fixture sat above render_qa's own flag threshold (#289)",
-    "b6da873 2026-08-18 doctor: mark finding 5ac409690185 done (PR #287 merged) (#288)"
+    "14e4a04 2026-08-18 doctor: findings for 20260818",
+    "4672e63 2026-08-19 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -1853,9 +1858,10 @@
         "2026-08-14": 1,
         "2026-08-15": 2,
         "2026-08-16": 3,
-        "2026-08-17": 4
+        "2026-08-17": 4,
+        "2026-08-18": 4
       },
-      "total_posted": 259
+      "total_posted": 263
     },
     "explainer": {
       "posted_by_day_14d": {
@@ -1866,7 +1872,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-04": 6,
         "2026-08-05": 8,
         "2026-08-06": 8,
         "2026-08-07": 4,
@@ -1879,9 +1884,10 @@
         "2026-08-14": 6,
         "2026-08-15": 8,
         "2026-08-16": 5,
-        "2026-08-17": 9
+        "2026-08-17": 9,
+        "2026-08-18": 2
       },
-      "total_posted": 302
+      "total_posted": 304
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1903,14 +1909,14 @@
           "views": 53
         },
         {
-          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
-          "vph": 0.0,
-          "views": 34
-        },
-        {
           "title": "Hottest Planets",
           "vph": 0.0,
           "views": 412
+        },
+        {
+          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
+          "vph": 0.0,
+          "views": 34
         },
         {
           "title": "Probability In Everyday Life",
@@ -1918,48 +1924,48 @@
           "views": 229
         },
         {
-          "title": "World Hunger Rose Back To 8.5% After 13 Years Of Falling",
+          "title": "Why Chocolate Is About to Get Much More Expensive",
           "vph": 0.0,
-          "views": 29
+          "views": 347
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 104,
+      "videos": 105,
       "top_by_vph": [
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
           "vph": 0.0,
-          "views": 110
+          "views": 149
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
           "vph": 0.0,
-          "views": 278
+          "views": 291
         },
         {
-          "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
+          "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
           "vph": 0.0,
-          "views": 110
+          "views": 18
         },
         {
           "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous ",
           "vph": 0.0,
-          "views": 644
+          "views": 659
         },
         {
-          "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+          "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
           "vph": 0.0,
-          "views": 150
+          "views": 111
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260815/brief.json",
       "retro/20260816/brief.json",
-      "retro/20260817/brief.json"
+      "retro/20260817/brief.json",
+      "retro/20260818/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
@@ -1986,6 +1992,13 @@
       "ruling": "doing"
     },
     {
+      "signature": "d79703f6f53b",
+      "title": "The frozen exchange identity omits scripts and takeover briefs",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "2f7ee366fb9b",
       "title": "Malformed DONE payloads count as completed Finalizer runs",
       "horizon": "small_fix",
@@ -2005,6 +2018,20 @@
       "horizon": "small_fix",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "5a7b4694a767",
+      "title": "Phase B exits green after losing package or audit writes",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "33ccbcdc479b",
+      "title": "Hold the trending mix until reliability and attribution are measurable",
+      "horizon": "strategy",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "cf263a770061",
@@ -2112,6 +2139,13 @@
       "ruling": "doing"
     },
     {
+      "signature": "ee3bb63e4024",
+      "title": "Authored-shot checkpoints cannot recover a missing response pointer",
+      "horizon": "short_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
       "signature": "8dc00d1eadd0",
       "title": "Showrunner memory drops the scene diagnosis needed to detect recurrences",
       "horizon": "long_term",
@@ -2145,6 +2179,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "589a78eabb84",
+      "title": "Trending takeover has two serialized sources of truth",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
