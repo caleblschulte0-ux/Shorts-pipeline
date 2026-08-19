@@ -3973,13 +3973,45 @@
       "ts": "2026-08-19T12:45:37.112032+00:00"
     },
     "clip-20260819-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/AdorableInventivePenguinKippa-Dwtkd0VyNYluPeF7",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/ftIRCwXgeKU",
       "title": "Lirik Threatens A Cop Then Randomly Confesses To This",
       "kind": "twitch_clip",
-      "ts": "2026-08-19T12:49:30.678139+00:00",
+      "ts": "2026-08-19T12:49:33.663401+00:00",
+      "uploaded_at": "2026-08-19T12:49:33.663416+00:00",
+      "publish_at": "2026-08-19T18:30:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/AdorableInventivePenguinKippa-Dwtkd0VyNYluPeF7",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "LIRIK GOES FULL INTERROGATION MODE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5832,
+      "banger": 0.5,
+      "cut": {
+        "start": 2.8,
+        "end": 28.2
+      },
+      "director_cut": true
+    },
+    "rejected-blazingmoistfloofhumblelife-h3jjti_b8pj2mvjt": {
+      "source_url": "https://www.twitch.tv/xqc/clip/BlazingMoistFloofHumbleLife-H3JJTi_b8Pj2MVJt",
+      "streamer": "xqc",
+      "title": "C-san",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (tier-list ranking talk, no event)",
+      "ts": "2026-08-19T12:53:07.326991+00:00"
+    },
+    "clip-20260819-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/IncredulousProtectiveWoodpeckerYouDontSay-b7Ty43bIa_s4gYtT",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Nutmegged Klay Thompson And Turned Up About It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-19T12:57:38.255031+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
