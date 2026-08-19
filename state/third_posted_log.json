@@ -4037,14 +4037,36 @@
       "ts": "2026-08-19T13:00:40.302768+00:00"
     },
     "clip-20260819-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/EasyFunDillNononoCat-wAZ6i4HLkbuLb0hl",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/5TTIro2PXZY",
       "title": "Ludwig Hits An Ace And Completely Loses His Mind",
       "kind": "twitch_clip",
-      "ts": "2026-08-19T13:04:58.976602+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-19T13:05:03.701287+00:00",
+      "uploaded_at": "2026-08-19T13:05:03.701301+00:00",
+      "publish_at": "2026-08-19T23:00:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/EasyFunDillNononoCat-wAZ6i4HLkbuLb0hl",
+      "streamer": "ludwig",
+      "series": "win",
+      "hook": "HE JUST HIT A HOLE IN ONE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4018,
+      "banger": 0.45,
+      "cut": {
+        "start": 32.8,
+        "end": 56.68
+      },
+      "director_cut": true
+    },
+    "rejected-spunkyzealousgrouseampenergycherry-mphvnnjfdl24tui6": {
+      "source_url": "https://www.twitch.tv/emiru/clip/SpunkyZealousGrouseAMPEnergyCherry-MpHVnnjfDL24tuI6",
+      "streamer": "emiru",
+      "title": "nice",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (intro chatter, no real event)",
+      "ts": "2026-08-19T13:28:14.780942+00:00"
     }
   }
 }
