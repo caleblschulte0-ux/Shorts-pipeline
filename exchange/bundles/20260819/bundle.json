@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260819/DONE",
   "counts": {
     "packages": 6,
-    "requests": 15,
+    "requests": 14,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -405,8 +405,8 @@
           "shot_index": 5,
           "phrase": "Corporate did a policy audit",
           "query": "office audit meeting",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
@@ -424,18 +424,17 @@
         }
       ],
       "media_health": {
-        "strong": 1,
+        "strong": 2,
         "weak": 0,
-        "missing": 7,
+        "missing": 6,
         "unknown": 0
       },
-      "strong_fraction": 0.125,
+      "strong_fraction": 0.25,
       "requested": [
         "reddit-logged-every-call-s0-888a4b84b93c",
         "reddit-logged-every-call-s2-53627320fd7f",
         "reddit-logged-every-call-s3-a90dd4ffde33",
         "reddit-logged-every-call-s4-783badccb9bf",
-        "reddit-logged-every-call-s5-1ec0ce1d4a69",
         "reddit-logged-every-call-s6-fa9b7fe16d38",
         "reddit-logged-every-call-s7-93d86d1baae3"
       ]
@@ -610,32 +609,6 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: phone call ringing. It accompanies the narration: \"taking two personal calls an hour from the same number\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s5-1ec0ce1d4a69",
-      "safe_request_id": "reddit-logged-every-call-s5-1ec0ce1d4a69",
-      "drive_filename": "20260819__reddit-logged-every-call-s5-1ec0ce1d4a69.png",
-      "prompt_sha256": "200e31d7595bb6c4f52f049e12bd9e198caa35c7713bd7fcfef64971dd53d808",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s5-1ec0ce1d4a69.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office audit meeting. It accompanies the narration: \"Corporate did a policy audit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

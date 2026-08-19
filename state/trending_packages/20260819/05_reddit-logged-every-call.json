@@ -10,7 +10,12 @@
     },
     {
       "phrase": "logged in the visitor binder",
-      "query": "logbook binder pen"
+      "query": "logbook binder pen",
+      "pin_query": "Visitor Binder",
+      "pin_context": "office front desk call log book register",
+      "news_query": "Visitor Binder",
+      "news_angle": "The visitor binder was meticulously used to log every call, revealing the manager's frequent personal calls.",
+      "image_url": "https://live.staticflickr.com/31/47785944_4e75a34a47_b.jpg"
     },
     {
       "phrase": "went in that binder: time, caller, duration, reason",
@@ -26,7 +31,12 @@
     },
     {
       "phrase": "Corporate did a policy audit",
-      "query": "office audit meeting"
+      "query": "office audit meeting",
+      "pin_query": "Corporate Office",
+      "pin_context": "company headquarters administration policy audit",
+      "news_query": "Corporate Office",
+      "news_angle": "Corporate conducted a policy audit using the visitor binder as evidence to write up the manager.",
+      "image_url": "https://live.staticflickr.com/4010/4650354197_c4fa2c40d9_b.jpg"
     },
     {
       "phrase": "written up for the exact rule he wrote",
