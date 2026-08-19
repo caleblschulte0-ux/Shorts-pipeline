@@ -3941,13 +3941,45 @@
       "banger": 0.5
     },
     "clip-20260819-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/ConcernedBovineBeanM4xHeh-gHXQ48IxdpeSPskn",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/3RjmrLMxnOU",
       "title": "Xqc Can't Believe This Dog Owner Won't Even Let It Inside",
       "kind": "twitch_clip",
-      "ts": "2026-08-19T12:43:48.455461+00:00",
+      "ts": "2026-08-19T12:43:51.753423+00:00",
+      "uploaded_at": "2026-08-19T12:43:51.753443+00:00",
+      "publish_at": "2026-08-19T17:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/ConcernedBovineBeanM4xHeh-gHXQ48IxdpeSPskn",
+      "streamer": "xqc",
+      "series": "rage",
+      "hook": "HE WON'T EVEN LET HIS DOG INSIDE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 22173,
+      "banger": 0.7,
+      "cut": {
+        "start": 7.1,
+        "end": 27.0
+      },
+      "director_cut": true
+    },
+    "rejected-lovelynaivegrasshopperripepperonis-3nks2sdxphtkndkk": {
+      "source_url": "https://www.twitch.tv/xqc/clip/LovelyNaiveGrasshopperRiPepperonis-3nkS2sDXpHTKnDkK",
+      "streamer": "xqc",
+      "title": "dog",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just talking, no visible event)",
+      "ts": "2026-08-19T12:45:37.112032+00:00"
+    },
+    "clip-20260819-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/AdorableInventivePenguinKippa-Dwtkd0VyNYluPeF7",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Threatens A Cop Then Randomly Confesses To This",
+      "kind": "twitch_clip",
+      "ts": "2026-08-19T12:49:30.678139+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
