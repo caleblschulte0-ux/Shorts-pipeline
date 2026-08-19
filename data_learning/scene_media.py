@@ -153,6 +153,11 @@ def scene_image(subject: str, slug: str, tag: str, *, context: str = "",
 
 CUTOUT_DIR = REPO / "state" / "cutouts"
 
+#: Consecutive all-attempts-failed cutout asks. See the circuit breaker at
+#: the retry loop: >=6 degrades to single attempts, >=12 declares the
+#: generator down for the rest of this process. Reset by any success.
+_GEN_DEAD_STREAK = 0
+
 
 def _pollinations_raw(prompt: str, seed: int, size: int = 768):
     """Return a PIL RGB image from Pollinations, or None."""
@@ -166,7 +171,14 @@ def _pollinations_raw(prompt: str, seed: int, size: int = 768):
                + f"?width={size}&height={size}&nologo=true&model=flux&seed={seed}")
         ctx = ssl.create_default_context()
         req = urllib.request.Request(url, headers={"User-Agent": "shorts-pipeline/1.0"})
-        with urllib.request.urlopen(req, timeout=90, context=ctx) as r:
+        # 30s, down from 90. The generator has two failure modes: a fast 500
+        # and a HANG. At 90s, the 08-17 retry change (3 attempts per cutout)
+        # turned a hanging service into up to 4.5 minutes PER CUTOUT — a run
+        # with ~110 cutout asks stopped fitting inside the 5h job timeout,
+        # and every explainer run from 08-17 to 08-19 was cancelled by the
+        # next cron before it could finish. A generator that has not started
+        # answering in 30s is not going to.
+        with urllib.request.urlopen(req, timeout=30, context=ctx) as r:
             data = r.read()
         if len(data) < 4096:
             return None
@@ -296,26 +308,43 @@ def subject_cutout(subject: str, slug: str, tag: str,
               "chroma key green background, bold flat vector illustration, "
               "vibrant, clean, no text, no border")
     seed = int(hashlib.sha1(prompt.encode()).hexdigest()[:8], 16)
-    # RETRY WITH A DIFFERENT SEED, briefly. The 2026-08-16 explainer run
-    # logged ~110 "HTTP Error 500" one-shot failures from this generator —
-    # each one silently downgraded a scene to a plainer template, which is
-    # half of the "three near-identical template charts" the showrunner
-    # keeps blocking. The 500s are flaky per-request, and the seed is part
-    # of the request — same seed can mean the same broken shard, so each
-    # attempt jitters it. Three tries, short waits, then the existing
-    # real-photo/plain-chart fallback proceeds exactly as before: a missing
-    # cutout still never fails a render, it just no longer gives up on the
-    # first 500.
+    # RETRY WITH A DIFFERENT SEED, briefly — behind a CIRCUIT BREAKER.
+    #
+    # The first version of this retry had no breaker and nearly cost three
+    # days: it was written against the 08-16 failure mode (fast, flaky
+    # 500s, where a seed-jittered retry genuinely helps) and then met the
+    # OTHER failure mode, a hanging service. Three attempts x a 90s timeout
+    # x ~110 cutout asks pushed every run past the 5h job timeout, and each
+    # explainer cron from 08-17 to 08-19 cancelled its queued predecessor —
+    # zero completed runs, which is a worse outcome than the plain templates
+    # the retry was meant to prevent.
+    #
+    # So: retries are a privilege the generator earns by mostly working.
+    # After 6 consecutive dead asks it drops to one attempt each; after 12
+    # the generator is declared down for the REST OF THIS PROCESS and the
+    # real-photo/plain-chart fallbacks take over immediately. Any success
+    # resets the streak. Worst case is now bounded at minutes per run, not
+    # hours, and a healthy generator behaves exactly as the retry intended.
+    global _GEN_DEAD_STREAK
+    if _GEN_DEAD_STREAK >= 12:
+        return None
     img = None
-    for attempt in range(3):
+    tries = 1 if _GEN_DEAD_STREAK >= 6 else 3
+    for attempt in range(tries):
         img = _pollinations_raw(prompt, seed + attempt * 7919, size=576)
         if img is not None:
             break
-        if attempt < 2:
+        if attempt < tries - 1:
             import time as _t
             _t.sleep(2 + 3 * attempt)
     if img is None:
+        _GEN_DEAD_STREAK += 1
+        if _GEN_DEAD_STREAK == 12:
+            print("[scene] cutout generator declared DOWN for this run "
+                  "(12 consecutive failures) — real-media fallbacks only",
+                  flush=True)
         return None
+    _GEN_DEAD_STREAK = 0
     cut = _remove_bg(img)
     if cut is None:
         return None
