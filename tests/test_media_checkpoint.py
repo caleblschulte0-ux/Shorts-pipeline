@@ -269,6 +269,73 @@ class TestBundleIdentity(_TempBundles):
         changed["requests"][0]["prompt_sha256"] = "different"
         self.assertNotEqual(base, mc.ask_fingerprint(changed))
 
+    def test_a_package_script_rewrite_moves_the_identity(self):
+        """A rerun that rewrites a package's script (a re-author, a manual
+        fix) is a changed ask exactly like a changed prompt — a worker who
+        already claimed the old script must not have that ground moved
+        underneath it silently."""
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "original script",
+                          "shots": [{"shot_index": 0, "phrase": "p",
+                                     "query": "q"}]}]
+        base = mc.ask_fingerprint(b)
+        rewritten = json.loads(json.dumps(b))
+        rewritten["packages"][0]["script"] = "a materially different script"
+        self.assertNotEqual(base, mc.ask_fingerprint(rewritten))
+
+    def test_a_shot_phrase_rewrite_moves_the_identity(self):
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "s",
+                          "shots": [{"shot_index": 0, "phrase": "original",
+                                     "query": "q"}]}]
+        base = mc.ask_fingerprint(b)
+        rewritten = json.loads(json.dumps(b))
+        rewritten["packages"][0]["shots"][0]["phrase"] = "different phrase"
+        self.assertNotEqual(base, mc.ask_fingerprint(rewritten))
+
+    def test_an_authoring_brief_rewrite_moves_the_identity(self):
+        """The takeover work order — `authoring_request` /
+        `authoring_requests` — is as editorially load-bearing as a script.
+        Changing the mix or instructions mid-flight must not read as the
+        same ask."""
+        b = self._bundle("r1")
+        b["authoring_request"] = {"channel": "trending", "write": 6,
+                                  "mix": {"reddit_story": 2, "graph_race": 4}}
+        base = mc.ask_fingerprint(b)
+        changed = json.loads(json.dumps(b))
+        changed["authoring_request"]["mix"] = {"reddit_story": 6}
+        self.assertNotEqual(base, mc.ask_fingerprint(changed))
+
+        b2 = self._bundle("r1")
+        b2["authoring_requests"] = {"explainer": {"write": 1}}
+        base2 = mc.ask_fingerprint(b2)
+        changed2 = json.loads(json.dumps(b2))
+        changed2["authoring_requests"]["explainer"]["write"] = 3
+        self.assertNotEqual(base2, mc.ask_fingerprint(changed2))
+
+    def test_media_health_and_verdict_still_do_NOT_move_it(self):
+        """Only the editorial fields matter — the per-shot media-derived
+        fields Phase A recomputes on every re-judge must stay noise, exactly
+        like the plain cosmetic-rewrite case above."""
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "s",
+                          "shots": [{"shot_index": 0, "phrase": "p",
+                                     "query": "q", "has_media": False,
+                                     "verdict": "missing"}],
+                          "media_health": {"strong": 0},
+                          "strong_fraction": 0.0, "requested": []}]
+        base = mc.ask_fingerprint(b)
+        rejudged = json.loads(json.dumps(b))
+        rejudged["packages"][0]["shots"][0]["has_media"] = True
+        rejudged["packages"][0]["shots"][0]["verdict"] = "strong"
+        rejudged["packages"][0]["media_health"] = {"strong": 1}
+        rejudged["packages"][0]["strong_fraction"] = 1.0
+        rejudged["packages"][0]["requested"] = ["r1"]
+        self.assertEqual(base, mc.ask_fingerprint(rejudged))
+
     def test_the_sidecar_is_what_readers_get(self):
         b = self._bundle("r1")
         ident = mc.write_bundle_identity(DATE, b)

@@ -284,6 +284,38 @@ def identity_of_bytes(blob: bytes) -> str:
 IDENTITY_FILE = "BUNDLE_ID"
 
 
+def _editorial_signature_of(bundle) -> str:
+    """Canonical snapshot of the EDITORIAL content a worker acts on: each
+    package's script and shot phrasing/queries, plus every channel's
+    authoring brief (the takeover work order).
+
+    Deliberately excludes anything Phase A derives from media availability
+    on a re-judge — `media_health`, `verdict`, `has_media`,
+    `strong_fraction`, `requested` — those change on every run and are
+    exactly the noise this identity must NOT react to (see the 2026-08-01
+    incident this function's sibling docstring describes). A script
+    rewrite, a shot phrase edit, or a changed authoring brief is not that
+    noise: it silently reassigns what a worker already claimed against the
+    same bundle identity, so it must move the fingerprint."""
+    pkgs = []
+    for pkg in bundle.get("packages") or []:
+        if not isinstance(pkg, dict) or not pkg.get("slug"):
+            # No slug means nothing downstream can attribute this entry to a
+            # real package either — same as absent, never a false "changed".
+            continue
+        shots = [
+            {"phrase": s.get("phrase"), "query": s.get("query")}
+            for s in (pkg.get("shots") or []) if isinstance(s, dict)
+        ]
+        pkgs.append({"slug": pkg.get("slug"), "title": pkg.get("title"),
+                     "script": pkg.get("script"), "shots": shots})
+    pkgs.sort(key=lambda p: str(p.get("slug") or ""))
+    briefs = {"authoring_request": bundle.get("authoring_request") or None,
+              "authoring_requests": bundle.get("authoring_requests") or None}
+    return json.dumps({"packages": pkgs, "briefs": briefs},
+                      sort_keys=True, default=str)
+
+
 def ask_fingerprint(bundle) -> str:
     """Hash of WHAT WE ASKED FOR, not of the file that carries it.
 
@@ -296,10 +328,16 @@ def ask_fingerprint(bundle) -> str:
     17 verified images would have been refused.
 
     The fix is to hash the ASK: request ids, their prompts, their agreed
-    filenames, plus the registry snapshot the day is contracted to. A
-    re-judge that changes nothing a worker acts on leaves this untouched, so
-    the checkpoints survive. Change a prompt, add a request, or migrate the
-    contract and it moves — which is exactly when they should die."""
+    filenames, the registry snapshot the day is contracted to, AND the
+    editorial content a worker actually acts on (package scripts, shot
+    phrasing, authoring briefs — see `_editorial_signature_of`). Without
+    that last piece a rerun that changes package scripts or a takeover brief
+    read as "unchanged" and rewrote bundle.json underneath a worker already
+    acting on the prior editorial assignment. A re-judge that changes
+    nothing a worker acts on leaves this untouched, so the checkpoints
+    survive. Change a prompt, a script, a shot phrase, an authoring brief,
+    add a request, or migrate the contract and it moves — which is exactly
+    when they should die."""
     if not isinstance(bundle, dict):
         return ""
     reqs = []
@@ -316,6 +354,7 @@ def ask_fingerprint(bundle) -> str:
         f"revision={contract.get('registry_revision') or ''}",
         f"commit={contract.get('source_commit') or ''}",
         "requests=" + "\n".join(sorted(reqs)),
+        "editorial=" + _editorial_signature_of(bundle),
     ]
     return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()
 

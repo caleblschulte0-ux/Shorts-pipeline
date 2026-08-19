@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260818",
+  "updated": "20260819",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -87,16 +87,22 @@
       "commit": "1660dda"
     },
     "69a886343361": {
-      "verdict": "in_progress",
-      "date": "20260815",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Retroactively closing a bookkeeping gap found while triaging: marked in_progress on 2026-08-15 ('picked up') and never closed out. Verified the fix is live on main: tests/test_production_outcome.py:TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall now drives the real rtd.compute_production_outcome() completion decision with a fixture (showrunner-held + QA-quarantined results), not the old assertIn() substring check against raw source text. Full test class passes (21/21) on current main tip 3693f74; could not pin the exact originating commit through the shallow history, so citing the verified-present tip instead.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260811",
           "because": "Confirmed: TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall (tests/test_production_outcome.py:47-52) only does two assertIn() substring checks against the raw source text of run_trending_daily.py, never executes the branch. Queued to replace with a fixture-driven test on the real completion decision."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260815",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "3693f74"
     },
     "a544d37c275e": {
       "verdict": "done",
@@ -313,16 +319,22 @@
       "revisit_after": "20260914"
     },
     "612efa85efcb": {
-      "verdict": "in_progress",
-      "date": "20260816",
-      "because": "picked up \u2014 fix in daily.yml preflight (checks exchange/bundles/<date>/phase_b_report.json exists before rendering on a workflow_run trigger) + tests/test_split_worker.py, branch claude/doctor-20260816",
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Retroactively closing a bookkeeping gap found while triaging: this was marked in_progress on 2026-08-16 ('picked up ... branch claude/doctor-20260816') and never closed out. Verified the fix is live on main: .github/workflows/daily.yml:104-113 checks exchange/bundles/<date>/phase_b_report.json exists before rendering, exactly as the ruling described, landed in ef2c52f ('daily.yml: dont render on Phase Bs benign no-op candidate (#281)'). tests/test_split_worker.py passes (its own PIL-dependent tests aside, which is an unrelated sandbox gap, not this fix).",
       "history": [
         {
           "verdict": "doing",
           "date": "20260816",
           "because": "Confirmed: exchange_phase_b.py backstop_status() returns ready=false pre-08:30-Central but main() still returns 0 (line ~406), so the early candidate's workflow steps all exit clean and the job concludes success with nothing applied. daily.yml's workflow_run trigger gates only on conclusion=success (no readiness check), so it can fire off that no-op and render an unfinished day early in winter. Fixing this in this run: make the workflow only report a render-capable success when Phase B actually applied something."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260816",
+          "because": "picked up \u2014 fix in daily.yml preflight (checks exchange/bundles/<date>/phase_b_report.json exists before rendering on a workflow_run trigger) + tests/test_split_worker.py, branch claude/doctor-20260816"
         }
-      ]
+      ],
+      "commit": "ef2c52f"
     },
     "09d56163c745": {
       "verdict": "doing",
@@ -343,22 +355,40 @@
       "history": []
     },
     "a833d2f37a5c": {
-      "verdict": "doing",
-      "date": "20260817",
-      "because": "Confirmed live: scripts/doctor.py:474-482 counts every timestamped row in a channel's posted log as a post, while state/third_posted_log.json stores qa_rejected refusals and pending claims beside real uploads (daily_alarm.py already has the correct exclusion predicate at lines 99-114). The managing-editor desk is reporting fabricated cadence to itself and to the operator. Building this now.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260819",
+      "because": "Building now (session picked this up after correctly ranking it #1 in doctor.py next -- it was ruled doing on 08-17 and left unbuilt for two days). Extracted the exclusion predicate daily_alarm.py already had right into a public is_real_upload()/real_uploads() pair, and pointed scripts/doctor.py's channel_performance cadence rollup at it instead of raw row counts. Preserved attempted/rejected_or_pending as separate fields per the proposal rather than just dropping the excluded rows. Regression test in tests/test_doctor_managing_editor.py (production-shaped third-channel fixture: 2 uploads, 4 refusals/pending) proves the desk now agrees with daily_alarm._posted_on's 2/6, and fails against the pre-fix code.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: scripts/doctor.py:474-482 counts every timestamped row in a channel's posted log as a post, while state/third_posted_log.json stores qa_rejected refusals and pending claims beside real uploads (daily_alarm.py already has the correct exclusion predicate at lines 99-114). The managing-editor desk is reporting fabricated cadence to itself and to the operator. Building this now."
+        }
+      ]
     },
     "1eb84ce4609f": {
-      "verdict": "doing",
-      "date": "20260817",
-      "because": "Confirmed live: scripts/fetch_analytics.py writes views_per_hour but scripts/doctor.py:488-494 reads v.get('vph'), so every channel's top_by_vph list is silently all-zero and shows source-order rows as 'top performers'. Real fix, small diff. Queued behind the higher-ranked bug this run.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260819",
+      "because": "Built in the same change as a833d2f37a5c -- it is the immediately adjacent lines in the same evidence_pack() function (scripts/doctor.py channel_performance block) and touching one without the other would leave a known-bad top_by_vph ranking in code already being edited. Fixed _vph() to read the producer's real field (views_per_hour from scripts/fetch_analytics.py) first, falling back to the legacy 'vph' alias only if that's absent. Regression test in tests/test_doctor_managing_editor.py proves ranking now uses views_per_hour and fails pre-fix.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: scripts/fetch_analytics.py writes views_per_hour but scripts/doctor.py:488-494 reads v.get('vph'), so every channel's top_by_vph list is silently all-zero and shows source-order rows as 'top performers'. Real fix, small diff. Queued behind the higher-ranked bug this run."
+        }
+      ]
     },
     "fb2c88996071": {
-      "verdict": "doing",
-      "date": "20260817",
-      "because": "Confirmed live: 'python scripts/format_scoreboard.py' raises KeyError: reddit on current main because package_formats() labels subreddit packages 'reddit' while the registry bucket is 'reddit_story'. Doctor's own channel_performance pointer tells readers to run this command, so it's actively misleading. Queued behind higher-ranked items this run.",
-      "history": []
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Confirmed this is exactly the crash I independently hit while investigating strategy finding 33ccbcdc479b (format_scoreboard.py KeyError: 'reddit'). Fixed properly per the proposal: package_formats() now resolves through shared/channel_registry.py's own classify() detector instead of a second hand-rolled guess, so any future registry format change stays in sync automatically. Also caught and fixed a second, worse bug the classify()-based fix would otherwise have introduced silently: the script had no sys.path.insert(0, ROOT), so running it the way daily.yml actually does (python3 scripts/format_scoreboard.py, not as a module) put scripts/ on sys.path[0] and 'from shared import channel_registry' failed silently inside a bare except -- every reddit_story package would have been mis-bucketed as 'explainer' with NO crash and NO warning, which is worse than the KeyError it replaced. tests/test_format_scoreboard.py covers registry-driven classification, an unknown-format rollup to unmatched, and a subprocess test that runs the real 'python3 scripts/format_scoreboard.py' invocation from repo root to pin this exact import-context failure mode. All 4 new tests fail against the pre-fix code and pass after.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: 'python scripts/format_scoreboard.py' raises KeyError: reddit on current main because package_formats() labels subreddit packages 'reddit' while the registry bucket is 'reddit_story'. Doctor's own channel_performance pointer tells readers to run this command, so it's actively misleading. Queued behind higher-ranked items this run."
+        }
+      ]
     },
     "c8ca85c0ce21": {
       "verdict": "doing",
@@ -402,6 +432,37 @@
       "date": "20260818",
       "because": "Confirmed: make_reddit_story.py, make_explainer_stacked.py and make_text_card.py all call the global random module directly with no seed plumbed through the build entrypoints or audit sidecar. Agree with the direction as a long-term reproducibility investment; real scope (seeded RNG contract across 3 renderers + audit manifest + cross-renderer tests) is multi-session work, queued at long_term priority.",
       "history": []
+    },
+    "d79703f6f53b": {
+      "verdict": "in_progress",
+      "date": "20260819",
+      "because": "Confirmed real: ask_fingerprint only hashed requests+contract, not package scripts/shot phrasing/authoring briefs. Building the fix now: extend the fingerprint with an editorial signature (scripts, shot phrase/query, authoring_request/authoring_requests) while keeping media_health/verdict/has_media/strong_fraction/requested as noise, per the existing cosmetic-rewrite test's contract.",
+      "history": []
+    },
+    "5a7b4694a767": {
+      "verdict": "doing",
+      "date": "20260819",
+      "because": "Confirmed real by reading scripts/exchange_phase_b.py:783-799: per-package atomic_write_json failures are caught and only printed as WARN, and phase_b_report.json write failures are silently swallowed by a bare except/pass -- the function still returns 0 either way, so the workflow reads 'ready to render' with lost package writes or no audit trail. This is a bigger blast-radius fail-open than the fingerprint bug (it can lose verified media/punch-up edits AND the record of having lost them) but ranks second because the top-ranked bug beats it on horizon tiebreak; queued for the next session unless picked up sooner.",
+      "history": []
+    },
+    "33ccbcdc479b": {
+      "verdict": "doing",
+      "date": "20260819",
+      "because": "Accepted as filed: hold the six-slot 4/2 mix, do not shift it off two weeks of thin/noisy data (trending's own retro brief marks n=2-3 at every maturity window as not-enough-to-judge). While investigating this I found the concrete blocker to 'repaired format attribution' the proposal calls for: scripts/format_scoreboard.py's title-to-format fallback bucketed every reddit_story package as the string 'reddit', which is not a registry format id (the real one is reddit_story), so build() raised KeyError on any real reddit_story video. It runs in daily.yml behind '|| exit 0', so it has been silently failing to produce the format-level report this exact strategy finding needs. Fixed in this same change (scripts/format_scoreboard.py, tests/test_format_scoreboard.py) alongside the fingerprint fix. The broader reliability-tracking (attempted/rendered/held/replaced counters by stage) is real work but larger than one session -- leaving that part open for a future pass; posting-cadence data already in doctor/evidence.json channel_performance shows trending trending upward (3, 4, 4 uploads on the last three days) which the next triage should factor in before deciding if more instrumentation is still needed.",
+      "history": []
+    },
+    "ee3bb63e4024": {
+      "verdict": "doing",
+      "date": "20260819",
+      "because": "Confirmed real by reading shared/media_checkpoint.py:1345-1385 and scripts/exchange_phase_b.py: recovered_media() correctly rebuilds authored_shot checkpoints into idx.media, but the freshly-authored-package loop (cover_authored) only ever reads shot.pop('media') from the response and never consults idx.media/recovered pointers, while the bundle.requests loop that DOES read idx.media never covers freshly-authored packages (they are not in bundle.requests). A verified authored-shot checkpoint whose response omits shot.media is real work invisibly discarded. Queued -- next in line by rank after the two 'high' severity items above.",
+      "history": []
+    },
+    "589a78eabb84": {
+      "verdict": "later",
+      "date": "20260819",
+      "because": "Confirmed the two fields exist (shared/exchange_bundle.py:373-421: authoring_requests['trending'] and authoring_request are set from the SAME object at write time, so they cannot disagree at the moment the bundle is produced), and confirmed scripts/exchange_phase_b.py:589-602 still falls back to the singular alias for promotion target. The risk described (a future producer change or manual repair diverging the two) is real but currently latent -- there is no live incident, and target resolution already prefers contract.channels[channel].target_count first, only falling back to the alias when that's absent. This is genuinely a 'ways out' architectural cleanup (version the contract around one map + shared accessor), not urgent against three higher-severity items filed the same day. Revisit if a future finding shows the two fields actually diverging in production.",
+      "history": [],
+      "revisit_after": "20260918"
     }
   }
 }

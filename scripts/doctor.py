@@ -416,9 +416,11 @@ def evidence_pack() -> dict:
     yesterday = (datetime.now(timezone.utc) - timedelta(days=1)).strftime(
         "%Y%m%d")
     pack["judged_date"] = yesterday
+    sys.path.insert(0, str(ROOT / "scripts"))
+    daily_alarm = None
     try:
-        sys.path.insert(0, str(ROOT / "scripts"))
-        import daily_alarm
+        import daily_alarm as _daily_alarm
+        daily_alarm = _daily_alarm
         pack["alarm"] = daily_alarm.check(yesterday)
     except Exception as exc:                             # noqa: BLE001
         pack["alarm"] = {"error": f"{type(exc).__name__}: {exc}"}
@@ -468,26 +470,56 @@ def evidence_pack() -> dict:
     for cid, logname in (("trending", "posted_log.json"),
                          ("explainer", "explainer_posted_log.json"),
                          ("third", "third_posted_log.json")):
-        posted = (_load(ROOT / "state" / logname, {}) or {}).get("posted")
-        rows = (list(posted.values()) if isinstance(posted, dict)
-                else posted or [])
-        days: dict = {}
-        for r in rows:
-            if not isinstance(r, dict):
-                continue
-            ts = str(r.get("at") or r.get("ts") or r.get("posted_at") or "")
-            if ts[:10] >= cutoff:
-                days[ts[:10]] = days.get(ts[:10], 0) + 1
-        perf[cid] = {"posted_by_day_14d": dict(sorted(days.items())),
-                     "total_posted": len(rows)}
+        log_path = ROOT / "state" / logname
+        if daily_alarm is not None:
+            # A POST IS A REAL UPLOAD, NOT A LOGGED ROW. third's log also
+            # records the clips it REFUSED (`qa_rejected`, `rejected-*`
+            # keys) and slot claims made before an upload finished — on
+            # 2026-08-15 that was 6 refusals against 2 real uploads, and a
+            # raw row count reported the desk a fabricated 8-post day while
+            # the alarm already knew it was 2/6. Reuse the alarm's own
+            # exclusion rules rather than a second copy that can drift.
+            attempted, days = 0, {}
+            for stamp, _e in daily_alarm.real_uploads(log_path):
+                attempted += 1
+                if stamp and stamp >= cutoff:
+                    days[stamp] = days.get(stamp, 0) + 1
+            items, _keyed = daily_alarm._posted_items(log_path)
+            perf[cid] = {"posted_by_day_14d": dict(sorted(days.items())),
+                         "total_posted": attempted,
+                         "attempted": len(items),
+                         "rejected_or_pending": len(items) - attempted}
+        else:
+            # daily_alarm unavailable — degrade to the raw row count rather
+            # than lose the desk entirely, same as before this fix.
+            posted = (_load(log_path, {}) or {}).get("posted")
+            rows = (list(posted.values()) if isinstance(posted, dict)
+                    else posted or [])
+            days = {}
+            for r in rows:
+                if not isinstance(r, dict):
+                    continue
+                ts = str(r.get("at") or r.get("ts") or r.get("posted_at")
+                        or "")
+                if ts[:10] >= cutoff:
+                    days[ts[:10]] = days.get(ts[:10], 0) + 1
+            perf[cid] = {"posted_by_day_14d": dict(sorted(days.items())),
+                         "total_posted": len(rows)}
     for adir in sorted(ROOT.glob("state/analytics_*")):
         latest = _load(adir / "latest.json", None)
         vids = (latest or {}).get("videos") or []
         if not vids:
             continue
         def _vph(v):
+            # The producer (scripts/fetch_analytics.py) writes the
+            # normalized metric as `views_per_hour`; `vph` was never its
+            # field name, so reading it left every leaderboard 0.0 and
+            # ranked in source order. Accept the legacy alias too, in case
+            # an older snapshot on disk still uses it.
             try:
-                return float(v.get("vph") or 0)
+                return float(v.get("views_per_hour")
+                            if v.get("views_per_hour") is not None
+                            else (v.get("vph") or 0))
             except (TypeError, ValueError):
                 return 0.0
         ranked = sorted((v for v in vids if isinstance(v, dict)),
