@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260819/DONE",
   "counts": {
     "packages": 6,
-    "requests": 14,
+    "requests": 1,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -370,8 +370,8 @@
           "shot_index": 0,
           "phrase": "no personal calls on the floor",
           "query": "office phone desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
@@ -384,22 +384,22 @@
           "shot_index": 2,
           "phrase": "went in that binder: time, caller, duration, reason",
           "query": "handwritten log entries",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
           "phrase": "the binder was thicker than the schedule board",
           "query": "thick binder stack",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
           "phrase": "taking two personal calls an hour from the same number",
           "query": "phone call ringing",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
@@ -412,32 +412,25 @@
           "shot_index": 6,
           "phrase": "written up for the exact rule he wrote",
           "query": "disciplinary paperwork desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
           "phrase": "the personal calls stopped completely",
           "query": "quiet empty office",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 2,
+        "strong": 8,
         "weak": 0,
-        "missing": 6,
+        "missing": 0,
         "unknown": 0
       },
-      "strong_fraction": 0.25,
-      "requested": [
-        "reddit-logged-every-call-s0-888a4b84b93c",
-        "reddit-logged-every-call-s2-53627320fd7f",
-        "reddit-logged-every-call-s3-a90dd4ffde33",
-        "reddit-logged-every-call-s4-783badccb9bf",
-        "reddit-logged-every-call-s6-fa9b7fe16d38",
-        "reddit-logged-every-call-s7-93d86d1baae3"
-      ]
+      "strong_fraction": 1.0,
+      "requested": []
     },
     {
       "slug": "reddit-landlord-deposit-audit",
@@ -448,8 +441,8 @@
           "shot_index": 0,
           "phrase": "claimed a laundry list of damage",
           "query": "damage inspection clipboard",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 1,
@@ -462,247 +455,58 @@
           "shot_index": 2,
           "phrase": "photographed every room the day I got the keys",
           "query": "empty apartment photos",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 3,
           "phrase": "I sent the photos once, politely, and he ignored the email",
           "query": "unread email inbox",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 4,
           "phrase": "filed in small claims",
           "query": "courthouse filing desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 5,
           "phrase": "the blind was already broken in my move-in photos",
           "query": "broken window blind",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 6,
           "phrase": "The judge didn't just order the deposit back",
           "query": "courtroom judge gavel",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 7,
           "phrase": "owing triple what he tried to keep",
           "query": "stack of cash",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         }
       ],
       "media_health": {
-        "strong": 0,
+        "strong": 7,
         "weak": 0,
-        "missing": 8,
+        "missing": 1,
         "unknown": 0
       },
-      "strong_fraction": 0.0,
+      "strong_fraction": 0.875,
       "requested": [
-        "reddit-landlord-deposit-audit-s0-98727ba4574e",
-        "reddit-landlord-deposit-audit-s1-c5f0a8deb102",
-        "reddit-landlord-deposit-audit-s2-d0573ab32de0",
-        "reddit-landlord-deposit-audit-s3-13d4722dc752",
-        "reddit-landlord-deposit-audit-s4-822970c6126a",
-        "reddit-landlord-deposit-audit-s5-5b0b9e7e45be",
-        "reddit-landlord-deposit-audit-s6-78bf0bedc03d",
-        "reddit-landlord-deposit-audit-s7-df30091155fa"
+        "reddit-landlord-deposit-audit-s1-c5f0a8deb102"
       ]
     }
   ],
   "requests": [
-    {
-      "request_id": "reddit-logged-every-call-s0-888a4b84b93c",
-      "safe_request_id": "reddit-logged-every-call-s0-888a4b84b93c",
-      "drive_filename": "20260819__reddit-logged-every-call-s0-888a4b84b93c.png",
-      "prompt_sha256": "62d29841d8a887cf7c5296fe3bdf162331cf261011454cb40e9dcad4bbe55c34",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s0-888a4b84b93c.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office phone desk. It accompanies the narration: \"no personal calls on the floor\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s2-53627320fd7f",
-      "safe_request_id": "reddit-logged-every-call-s2-53627320fd7f",
-      "drive_filename": "20260819__reddit-logged-every-call-s2-53627320fd7f.png",
-      "prompt_sha256": "e3a7eeee799fccbce4a0fd42921e635019ffb5a6c274c62a8e6445805d2fd29c",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s2-53627320fd7f.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: handwritten log entries. It accompanies the narration: \"went in that binder: time, caller, duration, reason\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s3-a90dd4ffde33",
-      "safe_request_id": "reddit-logged-every-call-s3-a90dd4ffde33",
-      "drive_filename": "20260819__reddit-logged-every-call-s3-a90dd4ffde33.png",
-      "prompt_sha256": "a2bce6b7bf47ace669c7d827102f0bb1e674d9da690da38923db42449b6ab8f6",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s3-a90dd4ffde33.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: thick binder stack. It accompanies the narration: \"the binder was thicker than the schedule board\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s4-783badccb9bf",
-      "safe_request_id": "reddit-logged-every-call-s4-783badccb9bf",
-      "drive_filename": "20260819__reddit-logged-every-call-s4-783badccb9bf.png",
-      "prompt_sha256": "a6c2958f33cd658c1fb3b9c6b11503b25ed5c7773d41cfbd677f101ca789b99e",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s4-783badccb9bf.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone call ringing. It accompanies the narration: \"taking two personal calls an hour from the same number\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s6-fa9b7fe16d38",
-      "safe_request_id": "reddit-logged-every-call-s6-fa9b7fe16d38",
-      "drive_filename": "20260819__reddit-logged-every-call-s6-fa9b7fe16d38.png",
-      "prompt_sha256": "bbacd40737a350893e138da474caaa270c8d41d5d1510a6cf5878ef1ced5bc20",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s6-fa9b7fe16d38.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: disciplinary paperwork desk. It accompanies the narration: \"written up for the exact rule he wrote\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-logged-every-call-s7-93d86d1baae3",
-      "safe_request_id": "reddit-logged-every-call-s7-93d86d1baae3",
-      "drive_filename": "20260819__reddit-logged-every-call-s7-93d86d1baae3.png",
-      "prompt_sha256": "03e5f1c971f3bc3f711866b8da34108ff6df600b177049df9cc3ba9578017819",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-logged-every-call-s7-93d86d1baae3.json",
-      "slug": "reddit-logged-every-call",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: quiet empty office. It accompanies the narration: \"the personal calls stopped completely\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s0-98727ba4574e",
-      "safe_request_id": "reddit-landlord-deposit-audit-s0-98727ba4574e",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s0-98727ba4574e.png",
-      "prompt_sha256": "4e197be96fc5791b6579dd3658ffbda173f646c382e249361f04eaf91c339ca1",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s0-98727ba4574e.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: damage inspection clipboard. It accompanies the narration: \"claimed a laundry list of damage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "reddit-landlord-deposit-audit-s1-c5f0a8deb102",
       "safe_request_id": "reddit-landlord-deposit-audit-s1-c5f0a8deb102",
@@ -713,162 +517,6 @@
       "shot_index": 1,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: cash envelope withheld. It accompanies the narration: \"keep my entire security deposit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s2-d0573ab32de0",
-      "safe_request_id": "reddit-landlord-deposit-audit-s2-d0573ab32de0",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s2-d0573ab32de0.png",
-      "prompt_sha256": "c1c2957bf6879ebc9178e646f77c10ad3e0a338721680f4f50b75b645a9528d2",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s2-d0573ab32de0.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: empty apartment photos. It accompanies the narration: \"photographed every room the day I got the keys\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s3-13d4722dc752",
-      "safe_request_id": "reddit-landlord-deposit-audit-s3-13d4722dc752",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s3-13d4722dc752.png",
-      "prompt_sha256": "7207a702c98b21e164fa325a783730aeffcc40082c4b675674eb0e32ba5fd777",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s3-13d4722dc752.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: unread email inbox. It accompanies the narration: \"I sent the photos once, politely, and he ignored the email\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s4-822970c6126a",
-      "safe_request_id": "reddit-landlord-deposit-audit-s4-822970c6126a",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s4-822970c6126a.png",
-      "prompt_sha256": "ca0c16d13c0d6ea1678f0d711dc550df4825e59a295589eaee0ab7c122eb8138",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s4-822970c6126a.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: courthouse filing desk. It accompanies the narration: \"filed in small claims\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s5-5b0b9e7e45be",
-      "safe_request_id": "reddit-landlord-deposit-audit-s5-5b0b9e7e45be",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s5-5b0b9e7e45be.png",
-      "prompt_sha256": "dec4913d3ef5b5872e887362e448fdfbf88a8ad67fd5cad540aa28c35a554dff",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s5-5b0b9e7e45be.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: broken window blind. It accompanies the narration: \"the blind was already broken in my move-in photos\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s6-78bf0bedc03d",
-      "safe_request_id": "reddit-landlord-deposit-audit-s6-78bf0bedc03d",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s6-78bf0bedc03d.png",
-      "prompt_sha256": "f15c9d8b2ff1b28f5a20a27860df937011b0c02ce11da3949ad3bbc39fb4fa47",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s6-78bf0bedc03d.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom judge gavel. It accompanies the narration: \"The judge didn't just order the deposit back\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-landlord-deposit-audit-s7-df30091155fa",
-      "safe_request_id": "reddit-landlord-deposit-audit-s7-df30091155fa",
-      "drive_filename": "20260819__reddit-landlord-deposit-audit-s7-df30091155fa.png",
-      "prompt_sha256": "ce00e5975a983864f5bbf952968bd1f0f3097dc0523153ec4fc51888c4309802",
-      "checkpoint_path": "exchange/bundles/20260819/media-progress/reddit-landlord-deposit-audit-s7-df30091155fa.json",
-      "slug": "reddit-landlord-deposit-audit",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: stack of cash. It accompanies the narration: \"owing triple what he tried to keep\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
