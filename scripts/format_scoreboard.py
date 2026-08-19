@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 PKG_ROOT = ROOT / "state" / "trending_packages"
 ANALYTICS = ROOT / "state" / "analytics" / "latest.json"
 OUT_JSON = ROOT / "state" / "format_scoreboard.json"
@@ -45,7 +46,18 @@ def _norm(t: str) -> str:
 
 
 def package_formats() -> dict[str, str]:
-    """Map normalized title -> format for every authored package."""
+    """Map normalized title -> format for every authored package.
+
+    Resolved through the registry's OWN format detector (`classify`) rather
+    than a second, hand-rolled guess at its rules — a package with no
+    explicit `format` field (reddit_story's own convention: absent `format`,
+    present `subreddit`) used to get a made-up bucket name here ("reddit")
+    that did not exist in `rows`, and `build()` raised KeyError on every
+    real reddit_story video."""
+    try:
+        from shared import channel_registry as _reg
+    except Exception:                                # noqa: BLE001
+        _reg = None
     out: dict[str, str] = {}
     if not PKG_ROOT.exists():
         return out
@@ -54,8 +66,14 @@ def package_formats() -> dict[str, str]:
             pkg = json.loads(p.read_text())
         except Exception:  # noqa: BLE001
             continue
-        fmt = pkg.get("format") or (
-            "reddit" if pkg.get("subreddit") else "explainer")
+        fmt = pkg.get("format")
+        if not fmt and _reg is not None:
+            try:
+                fmt = _reg.classify(pkg, cid="trending")
+            except Exception:                        # noqa: BLE001
+                fmt = None
+        if not fmt:
+            fmt = "explainer"
         title = pkg.get("title") or pkg.get("topic") or ""
         if title:
             out[_norm(title)] = fmt
@@ -76,10 +94,14 @@ def build() -> dict:
     unmatched = 0
     for v in videos:
         fmt = fmt_by_title.get(_norm(v.get("title", "")))
-        if fmt is None:
+        r = rows.get(fmt) if fmt is not None else None
+        if r is None:
+            # Unknown-format packages must not take the whole report down —
+            # they roll up as unmatched exactly like a title with no
+            # matching package, which is the bar this file already set for
+            # every other "we could not attribute this video" case.
             unmatched += 1
             continue
-        r = rows[fmt]
         r["videos"] += 1
         r["views"] += v.get("views") or 0
         r["engaged_views"] += v.get("engaged_views") or 0

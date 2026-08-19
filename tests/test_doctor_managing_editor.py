@@ -38,6 +38,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.append(str(ROOT / "scripts"))
 
 import doctor  # noqa: E402
+import daily_alarm  # noqa: E402
 
 PROMPTS = (ROOT / "doctor" / "PROMPTS.md").read_text()
 
@@ -124,6 +125,91 @@ class TestTheEvidencePackCarriesTheDesk(unittest.TestCase):
         shutil.rmtree(self.tmp / "state")
         (self.tmp / "state").mkdir()
         self.assertIsInstance(self.pack(), dict)
+
+
+class TestCadenceMatchesTheAlarmNotRawRows(unittest.TestCase):
+    """The 2026-08-15 bug, pinned: third's log carries QA refusals and
+    pending claims beside real uploads, and the desk used to count every
+    row. This is the production-shaped fixture the doctor finding asked
+    for — two real uploads, four refusals, and a pending claim, all with
+    the mixed timestamp fields third's log actually uses — and it requires
+    the desk to land on the exact same count the alarm already gets right."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="mgr-cadence-"))
+        self._root = doctor.ROOT
+        doctor.ROOT = self.tmp
+        (self.tmp / "state").mkdir()
+        (self.tmp / "state" / "third_posted_log.json").write_text(
+            json.dumps({"posted": {
+                "clip-20260815-1": {"ts": "2026-08-15T09:00:00Z",
+                                    "url": "https://youtu.be/a"},
+                "clip-20260815-2": {"posted_at": "2026-08-15T11:00:00Z",
+                                    "url": "https://youtu.be/b"},
+                "rejected-clip-20260815-3": {"ts": "2026-08-15T08:00:00Z",
+                                             "qa_rejected": True},
+                "clip-20260815-4": {"ts": "2026-08-15T08:30:00Z",
+                                    "qa_rejected": True},
+                "clip-20260815-5": {"ts": "2026-08-15T08:45:00Z",
+                                    "status": "rejected: low quality"},
+                "clip-20260815-6": {"ts": "2026-08-15T08:50:00Z"},  # pending
+            }}))
+        (self.tmp / "state" / "posted_log.json").write_text(
+            json.dumps({"posted": []}))
+        (self.tmp / "state" / "explainer_posted_log.json").write_text(
+            json.dumps({"posted": {}}))
+
+    def tearDown(self):
+        doctor.ROOT = self._root
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_the_desk_and_the_alarm_agree_on_2_of_6(self):
+        perf = doctor.evidence_pack()["channel_performance"]["third"]
+        self.assertEqual(perf["posted_by_day_14d"].get("2026-08-15"), 2)
+        self.assertEqual(perf["total_posted"], 2)
+
+        alarm_count = len(daily_alarm._posted_on(
+            self.tmp / "state" / "third_posted_log.json", "20260815"))
+        self.assertEqual(alarm_count, 2)
+        self.assertEqual(perf["posted_by_day_14d"]["2026-08-15"],
+                         alarm_count)
+
+    def test_attempted_and_excluded_are_preserved_not_laundered(self):
+        """The fix must not just DROP the refusals — it must say how many
+        there were, so a manager can still see a day with a rough shoot."""
+        perf = doctor.evidence_pack()["channel_performance"]["third"]
+        self.assertEqual(perf["attempted"], 6)
+        self.assertEqual(perf["rejected_or_pending"], 4)
+
+
+class TestTopByVphReadsTheProducersRealField(unittest.TestCase):
+    """scripts/fetch_analytics.py writes `views_per_hour`; the desk used to
+    read only `vph`, which the producer never emits, so every leaderboard
+    was 0.0 ranked in source order."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="mgr-vph-"))
+        self._root = doctor.ROOT
+        doctor.ROOT = self.tmp
+        (self.tmp / "state").mkdir()
+        for name in ("posted_log.json", "explainer_posted_log.json",
+                    "third_posted_log.json"):
+            (self.tmp / "state" / name).write_text(json.dumps({"posted": []}))
+        adir = self.tmp / "state" / "analytics_explainer"
+        adir.mkdir()
+        (adir / "latest.json").write_text(json.dumps({"videos": [
+            {"title": "Low", "views_per_hour": 0.5, "views": 34},
+            {"title": "High", "views_per_hour": 2.1, "views": 412},
+        ]}))
+
+    def tearDown(self):
+        doctor.ROOT = self._root
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_ranking_uses_the_real_producer_field(self):
+        a = doctor.evidence_pack()["channel_performance"]["analytics_explainer"]
+        self.assertEqual(a["top_by_vph"][0]["title"], "High")
+        self.assertEqual(a["top_by_vph"][0]["vph"], 2.1)
 
 
 class TestTheContractSaysItOutLoud(unittest.TestCase):

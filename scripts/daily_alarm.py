@@ -60,8 +60,41 @@ def _load(path: Path, default=None):
 _STAMP_FIELDS = ("posted_at", "publish_at", "ts", "uploaded_at", "at")
 
 
-def _posted_on(log_path: Path, date: str) -> list[dict]:
-    """Entries in a posted log stamped with this production date.
+def is_real_upload(key: str, e: dict, keyed: bool) -> bool:
+    """True when a posted-log row is an actual upload, not a QA refusal or
+    a slot claim written before the upload finished.
+
+    AN ENTRY IS NOT AN UPLOAD JUST BECAUSE IT IS IN THE LOG.
+    third's log also records the clips it REFUSED (`rejected-*` keys,
+    `qa_rejected`) and slot CLAIMS written before an upload finishes. On
+    2026-08-05 that was 5 refusals against 3 real uploads — so counting rows
+    would have reported a full 8/3 slate on a day the channel shipped 3.
+    Overcounting hides a short slate exactly as effectively as undercounting
+    invents an outage.
+
+    Shared by every reader of these logs (the alarm's date-scoped
+    `_posted_on`, and the managing-editor cadence rollup in
+    `scripts/doctor.py`) — a second, drifted copy of this predicate is how
+    the editor desk reported a full 8-post day for third on 2026-08-15 when
+    six of those rows were refusals and the alarm itself already knew it was
+    2/6."""
+    if not isinstance(e, dict):
+        return False
+    if str(key).startswith("rejected-") or e.get("qa_rejected"):
+        return False
+    if "rejected" in str(e.get("status", "")).lower():
+        return False
+    # A post is a post when it has a URL. Entries that carry no url and
+    # no explicit title are claims, not uploads. Only the dict-keyed shape
+    # (third) parks pending claims this way — the list shape never has.
+    if keyed and not (e.get("url") or e.get("video_url")):
+        return False
+    return True
+
+
+def _posted_items(log_path: Path) -> tuple[list[tuple[str, dict]], bool]:
+    """Every (key, entry) pair in a posted log, plus whether it is the
+    dict-keyed shape (third) or the list shape (trending/explainer).
 
     THE LOGS ARE NOT ALL THE SAME SHAPE, and assuming they were made this
     function silently blind to an entire channel:
@@ -75,44 +108,42 @@ def _posted_on(log_path: Path, date: str) -> list[dict]:
     on the floor and the alarm reported `no_posts_third` as CRITICAL on days
     third had posted its full slate. A false critical every morning is worse
     than no alarm: it is precisely how people learn to ignore the real one,
-    which this file's own docstring warns about.
-
-    So: accept both shapes, and accept any of the stamp fields in use.
-    """
+    which this file's own docstring warns about."""
     log = _load(log_path, {})
     entries = log.get("posted") if isinstance(log, dict) else log
     keyed = isinstance(entries, dict)
     items = (list(entries.items()) if keyed
              else [("", e) for e in (entries or [])])
-    want = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+    return items, keyed
+
+
+def _stamp_of(e: dict) -> str:
+    for field in _STAMP_FIELDS:
+        if e.get(field):
+            return str(e[field])
+    return ""
+
+
+def real_uploads(log_path: Path) -> list[tuple[str, dict]]:
+    """Every (yyyy-mm-dd stamp, entry) pair in a posted log that is an
+    actual upload — refusals and pending claims excluded. Unscoped by date,
+    so a caller doing its own multi-day rollup (the editor desk) does not
+    have to re-derive the exclusion rules `_posted_on` already got right."""
+    items, keyed = _posted_items(log_path)
     out = []
     for key, e in items:
-        if not isinstance(e, dict):
+        if not is_real_upload(key, e, keyed):
             continue
-        stamp = ""
-        for field in _STAMP_FIELDS:
-            if e.get(field):
-                stamp = str(e[field])
-                break
-        if not stamp.startswith(want):
-            continue
-        # AN ENTRY IS NOT AN UPLOAD JUST BECAUSE IT IS IN THE LOG.
-        # third's log also records the clips it REFUSED (`rejected-*` keys,
-        # `qa_rejected`) and slot CLAIMS written before an upload finishes.
-        # On 2026-08-05 that was 5 refusals against 3 real uploads — so
-        # counting rows would have reported a full 8/3 slate on a day the
-        # channel shipped 3. Overcounting hides a short slate exactly as
-        # effectively as undercounting invents an outage.
-        if str(key).startswith("rejected-") or e.get("qa_rejected"):
-            continue
-        if "rejected" in str(e.get("status", "")).lower():
-            continue
-        # A post is a post when it has a URL. Entries that carry no url and
-        # no explicit title are claims, not uploads.
-        if keyed and not (e.get("url") or e.get("video_url")):
-            continue
-        out.append(e)
+        out.append((_stamp_of(e)[:10], e))
     return out
+
+
+def _posted_on(log_path: Path, date: str) -> list[dict]:
+    """Entries in a posted log that are real uploads stamped with this
+    production date. See `real_uploads` / `is_real_upload` for the shape and
+    exclusion rules; this just adds the date scope."""
+    want = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+    return [e for stamp, e in real_uploads(log_path) if stamp == want]
 
 
 def _too_early(date: str, now=None) -> bool:
