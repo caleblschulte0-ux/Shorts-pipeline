@@ -4005,13 +4005,45 @@
       "ts": "2026-08-19T12:53:07.326991+00:00"
     },
     "clip-20260819-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/IncredulousProtectiveWoodpeckerYouDontSay-b7Ty43bIa_s4gYtT",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/-YQ2xCgsHmE",
       "title": "Plaqueboymax Nutmegged Klay Thompson And Turned Up About It",
       "kind": "twitch_clip",
-      "ts": "2026-08-19T12:57:38.255031+00:00",
+      "ts": "2026-08-19T12:57:41.327581+00:00",
+      "uploaded_at": "2026-08-19T12:57:41.327593+00:00",
+      "publish_at": "2026-08-19T21:30:00Z",
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/IncredulousProtectiveWoodpeckerYouDontSay-b7Ty43bIa_s4gYtT",
+      "streamer": "plaqueboymax",
+      "series": "win",
+      "hook": "HE FAKE RELOADED THEN NUTMEGGED HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2567,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.0,
+        "end": 22.9
+      },
+      "director_cut": true
+    },
+    "rejected-prettyimpossibleweaselleeroyjenkins-bv6tjp9vjrsz87xt": {
+      "source_url": "https://www.twitch.tv/lirik/clip/PrettyImpossibleWeaselLeeroyJenkins-bV6TJp9VJRSZ87XT",
+      "streamer": "lirik",
+      "title": "boss fight in mortal shell 2",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay walk, no payoff)",
+      "ts": "2026-08-19T13:00:40.302768+00:00"
+    },
+    "clip-20260819-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/EasyFunDillNononoCat-wAZ6i4HLkbuLb0hl",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig Hits An Ace And Completely Loses His Mind",
+      "kind": "twitch_clip",
+      "ts": "2026-08-19T13:04:58.976602+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
