@@ -243,3 +243,98 @@ class TestTheContractSaysItOutLoud(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAReportCannotWalkPastACritical(unittest.TestCase):
+    """The operator's question, verbatim: "why did the doctor not flag that
+    the explainer channel wasn't posting?" The answer found in the record:
+    from 08-15 to 08-18 the evidence pack said `no_posts_explainer:
+    critical` every morning, the cadence table showed the channel dead
+    since 08-14 — and four reports in a row filed the weekday reading rota
+    instead. The contract's "a real failure beats a scheduled reading
+    order" was an advisory sentence, and an advisory sentence loses to a
+    routine every time. Now the validator refuses the report itself."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="crit-"))
+        self._saved = (doctor.VERDICTS, doctor.EVIDENCE)
+        doctor.VERDICTS = self.tmp / "verdicts.json"
+        doctor.EVIDENCE = self.tmp / "evidence.json"
+        doctor.EVIDENCE.write_text(json.dumps({"alarm": {"alarms": [
+            {"code": "no_posts_explainer", "severity": "critical"},
+            {"code": "short_slate_third", "severity": "warning"},
+        ]}}))
+
+    def tearDown(self):
+        doctor.VERDICTS, doctor.EVIDENCE = self._saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def finding(self, title, observation, files=("scripts/doctor.py",)):
+        return {"title": title, "horizon": "bug", "severity": "high",
+                "area": "explainer/posting", "files": list(files),
+                "observation": observation,
+                "proposal": "fix it",
+                "evidence": "scripts/doctor.py line 1, run 123456"}
+
+    def report(self, findings, **extra):
+        return {"schema": doctor.SCHEMA, "date": "20260819",
+                "summary": "s", "findings": findings, **extra}
+
+    def test_the_exact_0815_report_shape_is_now_refused(self):
+        """A well-formed report about something else entirely — the weekday
+        rota essay — is rejected while the critical stands unaddressed."""
+        out = doctor.validate_report(self.report(
+            [self.finding("trending media boundary drift",
+                          "renderer checks decode only")]))
+        self.assertFalse(out["ok"])
+        self.assertEqual(out["unaddressed_criticals"],
+                         ["no_posts_explainer"])
+        probs = json.dumps(out["rejected"])
+        self.assertIn("no_posts_explainer", probs)
+        self.assertIn("alarm_ack", probs)
+
+    def test_a_finding_naming_the_code_satisfies_it(self):
+        out = doctor.validate_report(self.report(
+            [self.finding("explainer has posted nothing for four days",
+                          "alarm no_posts_explainer is critical; runs are "
+                          "cancelled by the next cron before completing")]))
+        self.assertTrue(out["ok"])
+        self.assertEqual(out["unaddressed_criticals"], [])
+
+    def test_an_explicit_ack_satisfies_it_without_a_refile(self):
+        """The dedupe rules still stand — when the cause is already filed
+        and ruled, the reviewer acknowledges instead of re-filing."""
+        out = doctor.validate_report(self.report(
+            [self.finding("something else", "unrelated")],
+            alarm_ack={"no_posts_explainer":
+                       "already filed as 3f2a1b9c, ruled in_progress"}))
+        self.assertTrue(out["ok"])
+
+    def test_warnings_do_not_gate_the_report(self):
+        """Only criticals carry the obligation — gating on warnings would
+        make every report a compliance form and teach the reviewer to
+        write acks instead of findings."""
+        out = doctor.validate_report(self.report(
+            [self.finding("explainer down",
+                          "no_posts_explainer critical")]))
+        self.assertTrue(out["ok"])
+        self.assertNotIn("short_slate_third",
+                         json.dumps(out.get("rejected")))
+
+    def test_a_junk_ack_does_not_slip_through(self):
+        out = doctor.validate_report(self.report(
+            [self.finding("something else", "unrelated")],
+            alarm_ack="no_posts_explainer"))
+        self.assertFalse(out["ok"])
+
+    def test_no_evidence_pack_means_no_obligation(self):
+        """A missing pack is the evidence job's failure, not the
+        reviewer's — the report must not be refused for it."""
+        doctor.EVIDENCE.unlink()
+        out = doctor.validate_report(self.report(
+            [self.finding("anything", "whatever")]))
+        self.assertTrue(out["ok"])
+
+    def test_the_contract_states_the_enforced_rule(self):
+        self.assertIn("CRITICALS FIRST — THIS IS ENFORCED", PROMPTS)
+        self.assertIn("alarm_ack", PROMPTS)

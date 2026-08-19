@@ -71,8 +71,20 @@ deep focus by weekday so that over a week the whole repository is covered:
              about the code (docs/*.md, CLAUDE.md vs what the code does)
   Sunday     tests/ — what has no coverage, and what tests nothing real
 
-Whatever the day, ALSO follow up anything the alarm flagged in
-evidence.json. A real failure beats a scheduled reading order.
+CRITICALS FIRST — THIS IS ENFORCED, NOT ADVICE. Before any scheduled
+reading: for EVERY alarm in evidence.json with severity "critical", your
+report MUST either (a) contain a finding that names the alarm code and
+addresses the outage, or (b) list the code in a top-level `alarm_ack`
+map — {"<code>": "why no new finding is needed"} — for example when the
+cause is already filed and ruled, naming the backlog signature. The
+validator REFUSES the whole report otherwise, so silence about a down
+channel is no longer a report you are able to file. This rule exists
+because from 08-15 to 08-18 the pack said `no_posts_explainer: critical`
+every morning and four reports in a row followed the weekday rota instead
+— the operator's question, verbatim: "why did the doctor not flag that the
+explainer channel wasn't posting?" A down channel outranks everything on
+the reading schedule. You are the managing editor; the manager who files
+an essay about code style while a channel is dark has missed the job.
 
 What you are looking for is what a senior engineer would flag on a first
 read: two files that both claim to be the authority on the same thing; a
@@ -121,6 +133,8 @@ Create exactly one file: doctor/reports/<YYYYMMDD>.json
   "schema": "shorts-doctor-report/v1",
   "date": "<YYYYMMDD>",
   "summary": "one paragraph: the shape of this repo right now",
+  "alarm_ack": {"<critical alarm code>": "why no new finding is needed
+                (name the backlog signature that already covers it)"},
   "findings": [
     {
       "title": "short and specific",

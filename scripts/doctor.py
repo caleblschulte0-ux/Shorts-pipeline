@@ -302,6 +302,49 @@ def validate_report(report: dict) -> dict:
         else:
             out["accepted"].append({**entry, "item": {**item,
                                                       "signature": sig}})
+    # CRITICALS FIRST — enforced, not advised. From 08-15 to 08-18 the
+    # evidence pack said `no_posts_explainer: critical` every single morning,
+    # the cadence table showed the channel dead since 08-14, and the reviewer
+    # filed its weekday reading rota instead: a Monday essay on the trending
+    # media boundary, a Tuesday essay on the exchange protocol. The contract
+    # SAID "a real failure beats a scheduled reading order" — but that was an
+    # advisory sentence, and an advisory sentence loses to a routine every
+    # time. The operator's question that produced this rule, verbatim: "why
+    # did the doctor not flag that the explainer channel wasn't posting?"
+    #
+    # So a report is now REFUSED unless every critical alarm in the evidence
+    # pack it was written against is either (a) addressed by a finding that
+    # names the alarm code, or (b) explicitly acknowledged in a top-level
+    # `alarm_ack` map — {code: why no new finding is needed}, e.g. "already
+    # filed as 3f2a…, ruled in_progress". Acknowledging is always available,
+    # so this never forces a duplicate re-file past the dedupe; what it
+    # forbids is SILENCE about a channel that is down. The rejection message
+    # doctor.yml comments back teaches the reviewer exactly what did not fly.
+    out["unaddressed_criticals"] = []
+    crits = [str(a.get("code") or "") for a in
+             ((_load(EVIDENCE, {}) or {}).get("alarm") or {}).get("alarms", [])
+             if isinstance(a, dict) and a.get("severity") == "critical"]
+    if crits:
+        blob = json.dumps(report.get("findings") or []).lower()
+        acks = {}
+        if isinstance(report.get("alarm_ack"), dict):
+            acks = {str(k).lower(): str(v)
+                    for k, v in report["alarm_ack"].items()}
+        for code in crits:
+            if code and code.lower() not in blob \
+                    and code.lower() not in acks:
+                out["unaddressed_criticals"].append(code)
+        for code in out["unaddressed_criticals"]:
+            out["rejected"].append({
+                "signature": f"critical:{code}",
+                "title": f"(unaddressed critical alarm: {code})",
+                "problems": [
+                    f"the evidence pack carries CRITICAL alarm `{code}` and "
+                    f"this report neither contains a finding naming it nor "
+                    f"acknowledges it in `alarm_ack`. A channel that is down "
+                    f"outranks the weekday reading order — file the finding, "
+                    f"or add alarm_ack: {{\"{code}\": \"<why it is already "
+                    f"covered, naming the backlog signature>\"}}"]})
     out["counts"] = {"accepted": len(out["accepted"]),
                      "rejected": len(out["rejected"])}
     out["ok"] = bool(out["accepted"]) and not out["rejected"]
