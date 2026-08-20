@@ -4210,13 +4210,61 @@
       "ts": "2026-08-20T12:27:29.274494+00:00"
     },
     "clip-20260820-5": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-15c9b73181f70ac2",
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/VBidNlOcNNk",
       "title": "He Begged Chat Not To Clip This... Then Did It Again",
       "kind": "story",
-      "ts": "2026-08-20T12:41:39.491609+00:00",
+      "ts": "2026-08-20T12:41:46.125145+00:00",
+      "uploaded_at": "2026-08-20T12:41:46.125158+00:00",
+      "publish_at": "2026-08-20T23:00:00Z",
+      "story_key": "story-15c9b73181f70ac2",
+      "member_keys": [
+        "https://www.twitch.tv/stableronaldo/clip/CrazyCrunchyPancakePartyTime-HjoJsnSJQx-OrqK-",
+        "https://www.twitch.tv/stableronaldo/clip/CrazyCrunchyPancakePartyTime-HjoJsnSJQx-OrqK-",
+        "https://www.twitch.tv/stableronaldo/clip/CrazyCrunchyPancakePartyTime-HjoJsnSJQx-OrqK-",
+        "https://www.twitch.tv/stableronaldo/clip/BoldCheerfulShallotPeanutButterJellyTime-emQzjoyy8wjn-ICb"
+      ],
+      "streamer": "stableronaldo",
+      "who": [
+        "stableronaldo"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 35.3,
+      "narrative_score": 79,
+      "revision_count": 0,
+      "used_vod_expansion": false,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-placidboredmagpiealiens-xuurzpmiv-jcu2ku": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/PlacidBoredMagpieAliens-XUuRZPMIv-JCu2Ku",
+      "streamer": "ludwig",
+      "title": "Ludwig's viewpoint about what NL's niche is.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (opinion monologue, no event)",
+      "ts": "2026-08-20T12:43:01.191728+00:00"
+    },
+    "rejected-differentastutesandwichtbtacoright-gs7wuewerf4yqdti": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/DifferentAstuteSandwichTBTacoRight-gs7WuEwerF4YqDTI",
+      "streamer": "caseoh_",
+      "title": "Caseoh Gets His Phone Wet And Says His Career Is Over",
+      "qa_rejected": true,
+      "ts": "2026-08-20T12:48:27.157411+00:00"
+    },
+    "clip-20260820-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PoorHelpfulBillPJSugar-tELo2ii_T5qMSO3I",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Asks Nikki If Her Dad Really Has Cancer And She Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-20T12:52:47.383179+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
