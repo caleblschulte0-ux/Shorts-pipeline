@@ -4258,14 +4258,27 @@
       "ts": "2026-08-20T12:48:27.157411+00:00"
     },
     "clip-20260820-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/PoorHelpfulBillPJSugar-tELo2ii_T5qMSO3I",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/ct7uFDQyi68",
       "title": "Kaicenat: Kai Cenat Asks Nikki If Her Dad Really Has Cancer And She Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-08-20T12:52:47.383179+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-20T12:52:51.246085+00:00",
+      "uploaded_at": "2026-08-20T12:52:51.246101+00:00",
+      "publish_at": "2026-08-21T00:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PoorHelpfulBillPJSugar-tELo2ii_T5qMSO3I",
+      "streamer": "kaicenat",
+      "series": "drama",
+      "hook": "DOES YOUR DAD REALLY HAVE CANCER",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2280,
+      "banger": 0.5,
+      "cut": {
+        "start": 3.0,
+        "end": 58.7
+      },
+      "director_cut": true
     }
   }
 }

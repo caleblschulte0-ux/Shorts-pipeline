@@ -1,49 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260730",
-      "dry_run": false,
-      "ts": "2026-07-30T15:31:19+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 108,
-        "with_retention": 98,
-        "with_curve": 14,
-        "fetched_at": "2026-07-30T10:38:17.779630+00:00"
-      },
-      "clips": [
-        {
-          "slug": "clip-20260730-1",
-          "ok": false,
-          "error": "RuntimeError: preflight: source only 5.0s \u2014 too short to edit; source too dark (avg luma 17/255) \u2014 unwatchable IRL/night footage; source has 5.0s of black frames \u2014 dropped feed / hard fade"
-        },
-        {
-          "slug": "clip-20260730-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260730-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        },
-        {
-          "slug": "clip-20260730-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false
-        }
-      ]
-    },
-    {
       "date": "20260731",
       "dry_run": false,
       "ts": "2026-07-31T13:01:51+00:00",
@@ -5746,6 +5703,280 @@
             }
           },
           "took_s": 124.0
+        }
+      ]
+    },
+    {
+      "date": "20260820",
+      "dry_run": false,
+      "ts": "2026-08-20T12:52:51+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 102,
+        "with_retention": 80,
+        "with_curve": 15,
+        "fetched_at": "2026-08-20T09:05:55.800981+00:00"
+      },
+      "brain": {
+        "ok": 46,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260820-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction, unclear cause",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "static scene, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 97.4
+        },
+        {
+          "slug": "clip-20260820-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "relationship drama, visible fallout",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "streamer bragging, no real payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "brief black/skull-emoji beat at 3.5-4.5s has no visible subject in the sharp band (reads as the deadair effect, not a br"
+              ]
+            }
+          },
+          "took_s": 178.3
+        },
+        {
+          "slug": "clip-20260820-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (vague reaction, no visible event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.25,
+              "why": "emote inside joke, no event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "vague reaction, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 45.0
+        },
+        {
+          "slug": "clip-20260820-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "genuine ace celebration, visible excited",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Gets An Ace And Chat Spells Out STOMPN"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.9,
+              "problems": []
+            }
+          },
+          "took_s": 269.5
+        },
+        {
+          "slug": "clip-20260820-5",
+          "ok": true,
+          "took_s": 856.9
+        },
+        {
+          "slug": "clip-20260820-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "movie dub reaction, tiny facecam",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Asks Nikki If Her Dad Really Has Cancer And She Loses It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.9,
+              "problems": []
+            }
+          },
+          "took_s": 264.1
         }
       ]
     }
