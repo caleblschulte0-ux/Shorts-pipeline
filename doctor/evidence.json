@@ -1,51 +1,82 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260819",
-  "judged_date": "20260818",
+  "date": "20260820",
+  "judged_date": "20260819",
   "alarm": {
-    "date": "20260818",
+    "date": "20260819",
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_finalizer",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260819 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260819/response.json, exchange/bundles/20260819/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
+        "code": "chatgpt_task_failed_media",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260819 (the bundle asks for 14 image(s)).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260819/media-progress/STARTED.json, \u2026/<safe_request_id>.json, \u2026/FAILED-<id>.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260818 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260818. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20260819 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260819. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 2/6 posted for 20260818.",
+        "detail": "third: 4/6 posted for 20260819.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 4/6 posted for 20260818.",
+        "detail": "trending: 2/6 posted for 20260819.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260818: production outcome says 4/6 uploaded and repair never completed (1 quarantined, 3 failed).",
+        "detail": "trending 20260819: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "chatgpt_exchange_silent",
+        "severity": "note",
+        "detail": "ChatGPT answered NOTHING for 20260819 \u2014 1 image request(s) published, zero checkpoints, no response, no DONE (day 1 of silence).",
+        "fix": "The days still ship via self-fill (Policy A), but weak stock is what the showrunner keeps blocking. Check the 6:00/7:00 ChatGPT scheduled tasks in the ChatGPT app \u2014 the repo side is verified and waiting."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 4/6; 2 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 2/6; 4 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "exchange: 16/16 ChatGPT images pinned",
       "doctor: findings current (20260818)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260819",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 10,
+      "uploaded": 2,
+      "quarantined": 0,
+      "failed": 8,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/HSfoZk3r8S8",
+        "https://youtube.com/shorts/2XHHzEicIS0"
+      ]
+    },
     {
       "date": "20260818",
       "channel": "trending",
@@ -143,22 +174,6 @@
       "status": "repair_required",
       "video_urls": [
         "https://youtube.com/shorts/68qpwmWkouY"
-      ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260812",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 4,
-      "failed": 4,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/qN9JgZQFgaY",
-        "https://youtube.com/shorts/YssTXROufD4"
       ]
     }
   ],
@@ -1841,13 +1856,12 @@
     }
   ],
   "recent_commits": [
-    "6490394 2026-08-19 doctor: record merge commit for PR #291's closed findings (#292)",
-    "621551c 2026-08-19 exchange: phase A bundle for 20260819 [skip ci]"
+    "1bcd40b 2026-08-20 exchange: phase A bundle for 20260820 [skip ci]",
+    "f345cd6 2026-08-20 exchange: DONE marker with a blank/missing date no longer fires any date (#295)"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-05": 1,
         "2026-08-06": 2,
         "2026-08-07": 2,
         "2026-08-08": 1,
@@ -1859,10 +1873,11 @@
         "2026-08-15": 2,
         "2026-08-16": 3,
         "2026-08-17": 4,
-        "2026-08-18": 4
+        "2026-08-18": 4,
+        "2026-08-19": 2
       },
-      "total_posted": 263,
-      "attempted": 263,
+      "total_posted": 265,
+      "attempted": 265,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -1876,7 +1891,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-05": 3,
         "2026-08-06": 4,
         "2026-08-07": 4,
         "2026-08-08": 4,
@@ -1889,11 +1903,12 @@
         "2026-08-15": 2,
         "2026-08-16": 4,
         "2026-08-17": 3,
-        "2026-08-18": 2
+        "2026-08-18": 2,
+        "2026-08-19": 4
       },
-      "total_posted": 179,
-      "attempted": 304,
-      "rejected_or_pending": 125
+      "total_posted": 183,
+      "attempted": 312,
+      "rejected_or_pending": 129
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1907,11 +1922,11 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 156,
+      "videos": 155,
       "top_by_vph": [
         {
           "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
-          "vph": 0.49,
+          "vph": 0.41,
           "views": 53
         },
         {
@@ -1920,58 +1935,58 @@
           "views": 412
         },
         {
-          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
-          "vph": 0.34,
-          "views": 34
-        },
-        {
           "title": "Probability In Everyday Life",
-          "vph": 0.29,
+          "vph": 0.28,
           "views": 229
         },
         {
+          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
+          "vph": 0.28,
+          "views": 34
+        },
+        {
           "title": "Why Chocolate Is About to Get Much More Expensive",
-          "vph": 0.27,
+          "vph": 0.26,
           "views": 347
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 105,
+      "videos": 98,
       "top_by_vph": [
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 3.59,
-          "views": 149
+          "vph": 2.8,
+          "views": 188
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 2.09,
-          "views": 291
+          "vph": 1.87,
+          "views": 308
         },
         {
           "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
-          "vph": 1.24,
-          "views": 18
-        },
-        {
-          "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous ",
-          "vph": 0.96,
-          "views": 659
+          "vph": 0.82,
+          "views": 33
         },
         {
           "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
-          "vph": 0.82,
+          "vph": 0.69,
           "views": 111
+        },
+        {
+          "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+          "vph": 0.66,
+          "views": 154
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260816/brief.json",
       "retro/20260817/brief.json",
-      "retro/20260818/brief.json"
+      "retro/20260818/brief.json",
+      "retro/20260819/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
@@ -1981,7 +1996,7 @@
       "title": "Malformed DONE payloads count as completed Finalizer runs",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "ec1665fbf9fa",
