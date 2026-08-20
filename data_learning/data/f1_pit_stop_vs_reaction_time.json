@@ -14,14 +14,14 @@
   "notes": "Human Benchmark's aggregate reaction-time test data (millions of attempts) puts the median human visual reaction time at 273 milliseconds (~0.27s). McLaren's 2023 F1 pit stop record (jack up, four wheels off and on, jack down, release), per Guinness World Records, was 1.80 seconds -- under seven of those reaction times.",
   "insight_type": "comparison",
   "use_baseline": true,
-  "baseline": {
-    "label": "Human reaction time",
-    "value": 0.27
-  },
   "points": [
     {
       "label": "Pit stop record",
       "value": 1.8
+    },
+    {
+      "label": "Human reaction time",
+      "value": 0.27
     }
   ]
 }
