@@ -1,0 +1,32 @@
+{
+  "key": "top_airlines_bag_fee_revenue_2024",
+  "title": "Top US airlines by checked-bag fee revenue, 2024",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Air Carrier Financial Reports (Schedule P-1.2), as compiled and reported",
+    "publisher": "Bureau of Transportation Statistics (BTS), U.S. DOT",
+    "url": "https://www.bts.gov/newsroom/us-airlines-gain-78-billion-2023-increase-over-2022",
+    "officiality": "official",
+    "access_date": "2026-08-20"
+  },
+  "notes": "BTS-reported 2024 checked-bag fee revenue by carrier, as compiled by Forbes and CBS News from DOT filings: American Airlines $1.50B, United Airlines $1.35B, Delta Air Lines $1.06B.",
+  "insight_type": "rank",
+  "ascending": false,
+  "use_baseline": false,
+  "points": [
+    {
+      "label": "American",
+      "value": 1.5
+    },
+    {
+      "label": "United",
+      "value": 1.35
+    },
+    {
+      "label": "Delta",
+      "value": 1.06
+    }
+  ]
+}

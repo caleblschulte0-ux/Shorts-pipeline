@@ -1,0 +1,27 @@
+{
+  "key": "f1_pit_stop_vs_reaction_time",
+  "title": "F1 pit stop record vs average human reaction time",
+  "unit": "seconds",
+  "geography": "World",
+  "time_coverage": "2023 vs aggregate benchmark",
+  "source": {
+    "name": "Reaction Time Test aggregate statistics",
+    "publisher": "Human Benchmark",
+    "url": "https://humanbenchmark.com/tests/reactiontime/statistics",
+    "officiality": "primary",
+    "access_date": "2026-08-20"
+  },
+  "notes": "Human Benchmark's aggregate reaction-time test data (millions of attempts) puts the median human visual reaction time at 273 milliseconds (~0.27s). McLaren's 2023 F1 pit stop record (jack up, four wheels off and on, jack down, release), per Guinness World Records, was 1.80 seconds -- under seven of those reaction times.",
+  "insight_type": "comparison",
+  "use_baseline": true,
+  "baseline": {
+    "label": "Human reaction time",
+    "value": 0.27
+  },
+  "points": [
+    {
+      "label": "Pit stop record",
+      "value": 1.8
+    }
+  ]
+}

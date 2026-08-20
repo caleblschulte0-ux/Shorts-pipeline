@@ -1,0 +1,74 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-ticket-everything",
+  "title": "He Said Log Everything. So I Logged Everything.",
+  "script": "Our helpdesk manager had one rule: if it's not in the ticket system, it didn't happen \u2014 no ticket, no credit, no problem solved. He said it to shut down complaints about our workload. Fine. So I logged everything. Every hallway question got a ticket. Every quick favor got a ticket. When he stopped me in the break room to ask about the printer, I opened my laptop and filed a ticket right there, category: Miscellaneous, priority: Low. Three other techs saw what I was doing and started doing the same thing. Within a week, our team's ticket volume tripled \u2014 not because more broke, but because everything now existed. His own director pulled the numbers and asked why one small team was drowning in requests nobody else even logged. He couldn't say it was because he told us to write down everything, because that was literally his rule. The policy quietly vanished a month later. I still have four hundred tickets marked resolved.",
+  "shots": [
+    {
+      "phrase": "if it's not in the ticket system, it didn't happen",
+      "query": "computer help desk screen"
+    },
+    {
+      "phrase": "So I logged everything",
+      "query": "typing keyboard closeup"
+    },
+    {
+      "phrase": "Every hallway question got a ticket",
+      "query": "office hallway employees"
+    },
+    {
+      "phrase": "opened my laptop and filed a ticket right there",
+      "query": "laptop open office desk"
+    },
+    {
+      "phrase": "our team's ticket volume tripled",
+      "query": "spreadsheet numbers screen"
+    },
+    {
+      "phrase": "His own director pulled the numbers",
+      "query": "manager reviewing report"
+    },
+    {
+      "phrase": "The policy quietly vanished a month later",
+      "query": "empty office desk"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "logged everything",
+      "text": "EVERYTHING",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "filed a ticket right there",
+      "text": "RIGHT THERE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "ticket volume tripled",
+      "text": "TRIPLED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "quietly vanished a month later",
+      "text": "GONE",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "reddit",
+    "workplace",
+    "itlife",
+    "helpdesk",
+    "revenge",
+    "karma",
+    "officelife",
+    "storytime",
+    "shorts",
+    "viral",
+    "satisfying"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,38 @@
+{
+  "key": "f1_pit_stop_time_trend",
+  "title": "Average/record Formula 1 pit stop time by era",
+  "unit": "seconds",
+  "geography": "World (Formula 1)",
+  "time_coverage": "1950s-2023",
+  "source": {
+    "name": "F1 pit stop history",
+    "publisher": "Guinness World Records / FIA race data",
+    "url": "https://www.guinnessworldrecords.com/news/2024/3/the-record-breaking-evolution-of-the-formula-1-pit-stop-766434",
+    "officiality": "secondary",
+    "access_date": "2026-08-20"
+  },
+  "notes": "1950s pit stops averaged around a minute, with drivers sometimes helping change tires themselves. The 1994-2009 refueling era saw stops average 8-11 seconds (fuel-limited). Mark Webber's 2013 Malaysian GP stop of 1.92s was the first official sub-2-second stop. McLaren set the current record, 1.80s, at the 2023 Qatar GP with Lando Norris.",
+  "insight_type": "trend",
+  "points": [
+    {
+      "label": "1950s",
+      "value": 60,
+      "period": "1955"
+    },
+    {
+      "label": "Refueling era",
+      "value": 9,
+      "period": "1994"
+    },
+    {
+      "label": "First sub-2s",
+      "value": 1.92,
+      "period": "2013"
+    },
+    {
+      "label": "Current record",
+      "value": 1.8,
+      "period": "2023"
+    }
+  ]
+}
