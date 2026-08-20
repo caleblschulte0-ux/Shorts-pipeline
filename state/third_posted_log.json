@@ -4110,13 +4110,72 @@
       "ts": "2026-08-20T11:45:01.655177+00:00"
     },
     "clip-20260820-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/BigHomelyAubergineKappaRoss-3llEfbeXZtgUDo9I",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/XA0-e7ro_80",
       "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-08-20T11:47:55.989858+00:00",
+      "ts": "2026-08-20T11:47:59.910771+00:00",
+      "uploaded_at": "2026-08-20T11:47:59.910784+00:00",
+      "publish_at": "2026-08-20T18:30:00Z",
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/BigHomelyAubergineKappaRoss-3llEfbeXZtgUDo9I",
+      "streamer": "rayasianboy",
+      "series": "drama",
+      "hook": "HE ACTUALLY LET HER GO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2751,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 14.8
+      },
+      "director_cut": true
+    },
+    "rejected-creativearbitraryparrotnotatk-nujxghbkft8f8hny": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/CreativeArbitraryParrotNotATK-nUjXGhbkft8F8hNy",
+      "streamer": "jasontheween",
+      "title": "LEAKED GEEG",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (slur talk, no real event)",
+      "ts": "2026-08-20T11:48:51.356559+00:00"
+    },
+    "rejected-repletetubulargaragevoteyea-mt15gy7bnij__3ll": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RepleteTubularGarageVoteYea-mt15Gy7BNiJ__3lL",
+      "streamer": "jynxzi",
+      "title": "aura",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (streamer talking, no visible event)",
+      "ts": "2026-08-20T11:49:50.270475+00:00"
+    },
+    "rejected-toughuglydonkeyresidentsleeper-5xxcykbtzkad4hpu": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ToughUglyDonkeyResidentSleeper-5xXCyKBtzkAD4HpU",
+      "streamer": "forsen",
+      "title": "forsenLevitating TeaTime",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague reaction, no visible event)",
+      "ts": "2026-08-20T11:50:35.269061+00:00"
+    },
+    "rejected-athleticdeafmetalpanicbasket-oytigwwh3qthodwx": {
+      "source_url": "https://www.twitch.tv/lacy/clip/AthleticDeafMetalPanicBasket-oytIGwWh3QthoDwX",
+      "streamer": "lacy",
+      "title": "ayo pub leak",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (rambling drug talk, no visible event)",
+      "ts": "2026-08-20T11:52:06.252640+00:00"
+    },
+    "clip-20260820-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LaconicTenderAlligatorJonCarnage-Iw9Li9qerJlgojIN",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Gets An Ace And Chat Spells Out STOMPN",
+      "kind": "twitch_clip",
+      "ts": "2026-08-20T11:56:32.160579+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
