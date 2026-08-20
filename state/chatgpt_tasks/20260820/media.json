@@ -1,0 +1,35 @@
+{
+ "checked_at": "2026-08-20T13:10:09+00:00",
+ "date": "20260820",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260820/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-cart-cop-boxed-in-s0-01ffe3f9faf6.json",
+  "reddit-cart-cop-boxed-in-s1-091fcd357847.json",
+  "reddit-cart-cop-boxed-in-s2-8d54af7301e5.json",
+  "reddit-cart-cop-boxed-in-s3-460cff16365c.json",
+  "reddit-cart-cop-boxed-in-s4-c4ca852c88b0.json",
+  "reddit-cart-cop-boxed-in-s5-26072c22b121.json",
+  "reddit-cart-cop-boxed-in-s6-ed77a0b90f4b.json",
+  "reddit-ticket-everything-s0-705486d73a16.json",
+  "reddit-ticket-everything-s1-7ba6c39aa6c9.json",
+  "reddit-ticket-everything-s2-b719f8ec24b9.json",
+  "reddit-ticket-everything-s3-cc69c287b8f1.json",
+  "reddit-ticket-everything-s4-fe5306a51e7c.json",
+  "reddit-ticket-everything-s5-70c1b20a0613.json",
+  "reddit-ticket-everything-s6-dd6bbeae655d.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 14 image(s)"
+}
