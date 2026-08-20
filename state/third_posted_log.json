@@ -4169,13 +4169,54 @@
       "ts": "2026-08-20T11:52:06.252640+00:00"
     },
     "clip-20260820-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/LaconicTenderAlligatorJonCarnage-Iw9Li9qerJlgojIN",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/9mMjBlxwmIA",
       "title": "Jynxzi Gets An Ace And Chat Spells Out STOMPN",
       "kind": "twitch_clip",
-      "ts": "2026-08-20T11:56:32.160579+00:00",
+      "ts": "2026-08-20T11:56:35.716449+00:00",
+      "uploaded_at": "2026-08-20T11:56:35.716461+00:00",
+      "publish_at": "2026-08-20T21:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LaconicTenderAlligatorJonCarnage-Iw9Li9qerJlgojIN",
+      "streamer": "jynxzi",
+      "series": "win",
+      "hook": "CHAT SPELLS OUT STOMPN AFTER THIS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2984,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 29.8
+      },
+      "director_cut": true
+    },
+    "rejected-belovedlazykudutwitchrpg-8adnupvkdgzyrmsj": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BelovedLazyKuduTwitchRPG-8AdnUpVkdGzyRmSJ",
+      "streamer": "ohnepixel",
+      "title": "OHNE CAUGHT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (passive reaction watch, no visible event)",
+      "ts": "2026-08-20T12:15:07.602345+00:00"
+    },
+    "rejected-clumsywanderingaxeoptimizeprime--rdswnqdxj9cjbxe": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ClumsyWanderingAxeOptimizePrime--RDsWnqDXj9cjbxE",
+      "streamer": "forsen",
+      "title": "Controversial forsen egg take Okayeg",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just egg opinion rant, no event)",
+      "ts": "2026-08-20T12:27:29.274494+00:00"
+    },
+    "clip-20260820-5": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-15c9b73181f70ac2",
+      "streamer": "stableronaldo",
+      "title": "He Begged Chat Not To Clip This... Then Did It Again",
+      "kind": "story",
+      "ts": "2026-08-20T12:41:39.491609+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
