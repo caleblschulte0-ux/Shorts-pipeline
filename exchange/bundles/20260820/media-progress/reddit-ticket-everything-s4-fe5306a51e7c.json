@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260820",
+  "bundle": {
+    "identity": "a08d7c1fde06635c6e31ee703ece773fff29c92dc17b56f5ed1096591c41ac52",
+    "path": "exchange/bundles/20260820/bundle.json"
+  },
+  "request_id": "reddit-ticket-everything-s4-fe5306a51e7c",
+  "safe_request_id": "reddit-ticket-everything-s4-fe5306a51e7c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c530b7fabb6744d080e3112322937e8cef0cb645f0f1f7060cbaafab53943498",
+  "prompt_used": "An editorial illustration for a short-form video: spreadsheet numbers screen. It accompanies the narration: \"our team's ticket volume tripled\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "15iS-o1vowXs0q8oJ96j7NiJwPXZ5Eofu",
+    "filename": "20260820__reddit-ticket-everything-s4-fe5306a51e7c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=15iS-o1vowXs0q8oJ96j7NiJwPXZ5Eofu",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f3a08a8acfeacb37e80be11dc5593e343c87b8c6df3bf9394b0b4155a8b86e97",
+    "bytes": 1131445,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-20T11:28:34.432Z",
+  "error": null,
+  "retryable": false
+}
