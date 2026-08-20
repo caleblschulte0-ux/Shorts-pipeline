@@ -2582,6 +2582,146 @@
           "detail": "receipt-swarm-flood: 16.8M loans (2019) vs 180M (2021)"
         }
       ]
+    },
+    {
+      "slug": "password-length-beats-complexity",
+      "directed_at": "2026-08-20",
+      "video_id": null,
+      "topic_category": "tech",
+      "hook_type": "shock_stat",
+      "hook_text": "132 years. Or two weeks. Same password.",
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:padlock-timer-crumble",
+        "mechanic:siege-hammer-duel",
+        "mechanic:combination-wheel-stack"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Follow the Money",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). padlock-timer-crumble drains and cracks a padlock's shell as GPU crack-time collapses from 225 to 132 years, siege-hammer-duel batters a lowercase-only padlock to shards in seconds while a mixed-rule padlock only dents, combination-wheel-stack spins a bigger denser dial for a 12-char lowercase password than an 8-char mixed one despite fewer rule types.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'132 years. Or two weeks. Same password.'"
+        },
+        {
+          "t": 13,
+          "event": "visual_swap",
+          "detail": "siege-hammer-duel: mixed-rule ~6,887 weeks vs lowercase-only ~2 weeks"
+        },
+        {
+          "t": 26,
+          "event": "payoff",
+          "detail": "combination-wheel-stack: 12-char lowercase beats 8-char mixed, combinations and all"
+        }
+      ]
+    },
+    {
+      "slug": "f1-pit-stop-vanishing-act",
+      "directed_at": "2026-08-20",
+      "video_id": null,
+      "topic_category": "records",
+      "hook_type": "inversion",
+      "hook_text": "A pit stop used to take a minute.",
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:pit-stop-timer-collapse",
+        "mechanic:reaction-blink-race",
+        "mechanic:pit-crew-swarm-count"
+      ],
+      "ending_type": "escalation",
+      "franchise": "Bet You Can't Guess",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). pit-stop-timer-collapse shrinks a stopwatch arc era by era from a full lap to a blink, reaction-blink-race fills a strip of human-reaction-time blinks to show the modern stop fits under seven of them, pit-crew-swarm-count spirals mechanics from a sparse 1950s handful into a full 20-person swarm.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'A pit stop used to take a minute.'"
+        },
+        {
+          "t": 12,
+          "event": "visual_swap",
+          "detail": "reaction-blink-race: modern stop < 7 human reaction-time blinks (0.27s each)"
+        },
+        {
+          "t": 25,
+          "event": "payoff",
+          "detail": "pit-crew-swarm-count: ~20 crew now vs a handful in the 1950s"
+        }
+      ]
+    },
+    {
+      "slug": "voyager-signal-delay-growing",
+      "directed_at": "2026-08-20",
+      "video_id": null,
+      "topic_category": "space",
+      "hook_type": "shock_stat",
+      "hook_text": "22 hours, one-way. Every single message.",
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:signal-echo-stretch",
+        "mechanic:roundtrip-clock-double",
+        "mechanic:power-core-fade-out"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Viral by the Numbers",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). signal-echo-stretch pings a radio pulse between an ever-receding Voyager and Earth as the travel-time counter climbs each era, roundtrip-clock-double fills a ring once per leg to show round-trip time as double the one-way delay, power-core-fade-out dims Voyager's glowing power core and blinks its instruments dark one by one to match the falling wattage.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'22 hours, one-way. Every single message.'"
+        },
+        {
+          "t": 13,
+          "event": "visual_swap",
+          "detail": "roundtrip-clock-double: a command + reply is nearly two full days round trip"
+        },
+        {
+          "t": 27,
+          "event": "payoff",
+          "detail": "power-core-fade-out: 470W at launch down to ~230W now"
+        }
+      ]
+    },
+    {
+      "slug": "airline-bag-fee-unbundling",
+      "directed_at": "2026-08-20",
+      "video_id": null,
+      "topic_category": "economics",
+      "hook_type": "inversion",
+      "hook_text": "That $49 fare isn't $49.",
+      "words_first_10s": 5,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:suitcase-cash-stuff",
+        "mechanic:fuselage-cash-flood",
+        "mechanic:runway-cash-trail-lineup"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Follow the Money",
+      "notes": "Directed this pass \u2014 all 3 segments were undirected (NONE). suitcase-cash-stuff swells a suitcase and strains its zipper as it fills with cash bundles from $464M (2007) to $7.1B (2023), fuselage-cash-flood floods cash up inside a fuselage cutaway to show bag fees as a small slice of $117.9B global ancillary revenue, runway-cash-trail-lineup grows three airline planes' cash-exhaust trails sized to their 2024 bag-fee hauls.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'That $49 fare isn't $49.'"
+        },
+        {
+          "t": 13,
+          "event": "visual_swap",
+          "detail": "fuselage-cash-flood: bag fees are a sliver of $117.9B in global ancillary revenue"
+        },
+        {
+          "t": 26,
+          "event": "payoff",
+          "detail": "runway-cash-trail-lineup: American $1.5B, three airlines $3.9B combined, just from bags"
+        }
+      ]
     }
   ]
 }

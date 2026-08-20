@@ -32,34 +32,6 @@
     "starred": true
   },
   {
-    "mechanic": "narrowing-odds-gates",
-    "topic": "Probability \u2014 Coin Flip",
-    "concept": "three real coins squeeze through narrowing goalpost gates sized to each odds value -- the gap (and the coin) shrinks from a wide 50% gate to a sliver at 1%",
-    "code": "gap_max = 260.0\ngap_min = 26.0\ncols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\ntop = RTOP + 150\nbot = RBOT - 170\ncoin = subject_image(\"gold coin\")\nd.line([(RX0, top - 40), (RX1, top - 40)], fill=rgba(TEXT, 60), width=2)\nfor i in range(n):\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    cx = RX0 + col_w * (i + 0.5)\n    frac = clamp(values[i] / vmax, 0.0, 1.0)\n    gap = lerp(gap_min, gap_max, frac) * stage\n    post_top = top\n    post_bot = lerp(top, bot, stage)\n    d.rounded_rectangle([cx - gap / 2 - 14, post_top, cx - gap / 2, post_bot],\n                         radius=8, fill=rgba(ACCENT, 220))\n    d.rounded_rectangle([cx + gap / 2, post_top, cx + gap / 2 + 14, post_bot],\n                         radius=8, fill=rgba(ACCENT, 220))\n    mid_y = lerp(post_top, post_bot, 0.42)\n    size = clamp(gap - 16, 30, 170) * stage\n    if coin is not None:\n        paste(coin, cx - size / 2, mid_y - size / 2, size, size)\n    else:\n        d.ellipse([cx - size / 2, mid_y - size / 2, cx + size / 2, mid_y + size / 2],\n                   fill=rgba(HIGHLIGHT, 230))\n    text(f\"{values[i]:.0f}%\", cx, post_bot + 14, size=46, color=HIGHLIGHT, center=True)\n    text(labels[i].upper(), cx, post_bot + 66, size=24, color=TEXT, center=True)",
-    "starred": false
-  },
-  {
-    "mechanic": "dice-probability-tower",
-    "topic": "Probability \u2014 Rolling Dice",
-    "concept": "real dice photos stack into three towers, tower height = probability -- a tall stack for the common sum-7, two short matching stacks for the rare 2 and 12",
-    "code": "cols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\nbase_y = RBOT - 70\ndie_size = 96\ndie = subject_image(\"red dice\")\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    count = max(1, int(round(values[i] / 2)))\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    shown = int(round(count * stage))\n    for k in range(shown):\n        wob = 10 * math.sin(k * 1.4 + reveal * 3)\n        y = base_y - k * (die_size * 0.82)\n        x = cx - die_size / 2 + wob\n        if die is not None:\n            paste(die, x, y - die_size, die_size, die_size)\n        else:\n            d.rounded_rectangle([x, y - die_size, x + die_size, y], radius=14,\n                                 fill=rgba(ACCENT, 220))\n    d.rounded_rectangle([cx - col_w * 0.42, base_y, cx + col_w * 0.42, base_y + 10],\n                         radius=4, fill=rgba(TEXT, 60))\n    text(f\"{values[i]:.0f}%\", cx, base_y + 26, size=46, color=HIGHLIGHT, center=True)\n    text(labels[i].upper(), cx, base_y + 80, size=24, color=TEXT, center=True)",
-    "starred": false
-  },
-  {
-    "mechanic": "shrinking-deck-fan",
-    "topic": "Probability \u2014 Card Draws",
-    "concept": "a fanned arc of real card-back photos shrinks by one card per draw, the glowing target card highlighted in the fan, odds ticking up as the deck thins",
-    "code": "cx = (RX0 + RX1) / 2\nrow_h = (RBOT - RTOP - 220) / max(n, 1)\ncard = subject_image(\"playing card back\")\nfor i in range(n):\n    cy = RTOP + 220 + row_h * i\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    count = max(6, 14 - i)\n    shown = max(1, int(round(count * stage)))\n    radius = 250.0\n    spread = math.radians(150)\n    start = -spread / 2\n    card_w, card_h = 58, 84\n    target_k = shown // 2\n    for k in range(shown):\n        ang = start + spread * (k / max(1, count - 1))\n        x = cx + radius * math.sin(ang)\n        y = cy - radius * math.cos(ang) * 0.5\n        is_target = (k == target_k)\n        w = card_w * (1.35 if is_target else 1.0)\n        h = card_h * (1.35 if is_target else 1.0)\n        if is_target:\n            d.ellipse([x - w, y - h, x + w, y + h], fill=rgba(HIGHLIGHT, 90))\n        if card is not None:\n            paste(card, x - w / 2, y - h / 2, w, h)\n        else:\n            d.rounded_rectangle([x - w / 2, y - h / 2, x + w / 2, y + h / 2], radius=8,\n                                 fill=rgba(HIGHLIGHT if is_target else ACCENT, 230))\n    text(f\"{values[i]:.1f}%\", cx, cy + row_h * 0.36, size=46, color=HIGHLIGHT, center=True)\n    text(f\"{labels[i].upper()} \u00b7 {count} LEFT\", cx, cy + row_h * 0.36 + 54, size=24,\n         color=TEXT, center=True)",
-    "starred": false
-  },
-  {
-    "mechanic": "growth-line-photo",
-    "topic": "Probability \u2014 Real-Life Applications Trend",
-    "concept": "a rising line connects three years, a real seedling photo growing at the line's tip as the probability-and-stats application index climbs",
-    "code": "pts_x = [RX0 + 120 + i * (RX1 - RX0 - 240) / max(n - 1, 1) for i in range(n)]\nvmin = min(values) if values else 0.0\nvspan = max(vmax - vmin, 1e-6)\npts_y = [lerp(RBOT - 200, RTOP + 240, (v - vmin) / vspan) for v in values]\nstage_total = clamp(reveal * (n + 1), 0.0, float(n + 1))\nd.line([(RX0, RBOT - 200), (RX1, RBOT - 200)], fill=rgba(TEXT, 55), width=2)\nicon = subject_image(\"growing plant seedling\")\nfor i in range(n - 1):\n    seg_stage = clamp(stage_total - i, 0.0, 1.0)\n    if seg_stage <= 0.0:\n        continue\n    x0, y0 = pts_x[i], pts_y[i]\n    x1 = lerp(x0, pts_x[i + 1], seg_stage)\n    y1 = lerp(y0, pts_y[i + 1], seg_stage)\n    d.line([(x0, y0), (x1, y1)], fill=rgba(ACCENT, 230), width=10)\nfor i in range(n):\n    node_stage = clamp(stage_total - i, 0.0, 1.0)\n    if node_stage <= 0.0:\n        continue\n    x, y = pts_x[i], pts_y[i]\n    r = 10 + 8 * node_stage\n    d.ellipse([x - r, y - r, x + r, y + r], fill=rgba(HIGHLIGHT, 240))\n    text(f\"{values[i]:.1f}%\", x, y - 56, size=34, color=TEXT, center=True)\n    text(labels[i], x, y + 20, size=24, color=TEXT, center=True)\ntip_stage = clamp(stage_total - (n - 1), 0.0, 1.0)\nif tip_stage > 0.0 and icon is not None:\n    size = 90 + 46 * tip_stage\n    paste(icon, pts_x[-1] - size / 2, pts_y[-1] - size - 24, size, size)",
-    "starred": false
-  },
-  {
     "mechanic": "urgency-dials",
     "topic": "Language Extinction \u2014 Death Rate",
     "concept": "three urgency dials sweep to their own value -- an hourglass for the 14-day death clock, a warning flag for the 43% endangered, a megaphone for the top-5 languages dominating half of humanity",
@@ -448,6 +420,34 @@
     "concept": "a landing-station hub with a real cable-coil icon radiates more cable spokes outward year by year, each spoke ending in a lit node, until the web fills the frame",
     "code": "cable_icon = subject_image('undersea fiber optic cable coil')\ncx, cy = (RX0 + RX1) // 2, (RTOP + RBOT) // 2 - 30\nhub_r = 70\nd.ellipse([cx - hub_r, cy - hub_r, cx + hub_r, cy + hub_r], fill=rgba(ACCENT, 220))\nif cable_icon is not None:\n    paste(cable_icon, cx - 60, cy - 60, 120, 120)\nn_shown = max(1, int(n * clamp(reveal * 1.2)))\nfor i in range(n_shown):\n    v = values[i]\n    frac = clamp(v / vmax)\n    ang = -math.pi / 2 + i * (2 * math.pi / max(n, 1))\n    length = 120 + frac * 420\n    ex = cx + length * math.cos(ang)\n    ey = cy + length * math.sin(ang)\n    local_reveal = clamp(reveal * 1.2 * n - i)\n    lx = lerp(cx, ex, local_reveal)\n    ly = lerp(cy, ey, local_reveal)\n    d.line([cx, cy, lx, ly], fill=rgba(HIGHLIGHT, 200), width=10)\n    d.ellipse([lx - 14, ly - 14, lx + 14, ly + 14], fill=rgba(WARN, 230))\n    text(labels[i], lx, ly - 40, size=26, color=TEXT, center=True)\n    text(str(int(v)), lx, ly + 30, size=30, color=ACCENT, center=True)\ntext('active submarine cable systems', RX0 + 20, RTOP + 60, size=32, color=TEXT)\ntext(str(int(values[-1])) + ' systems -- up 38 in a year', RX0 + 20, RBOT - 40, size=32, color=HIGHLIGHT)\n",
     "topic": "active submarine cable systems by year",
+    "starred": false
+  },
+  {
+    "mechanic": "reaction-blink-race",
+    "concept": "one pit stop's duration divides into a strip of human-reaction-time blinks, filling one by one to show how many blinks fit inside the stop",
+    "code": "reaction = 0.27\npit = values[0]\ncount = pit / reaction\ncx = (RX0 + RX1) // 2\nbar_x0 = RX0 + 60\nbar_w = RX1 - RX0 - 120\nbar_y = RTOP + 220\nd.rounded_rectangle([bar_x0, bar_y, bar_x0 + bar_w, bar_y + 74], radius=20, outline=rgba(TEXT, 180), width=4)\nseg_w = bar_w / count\nfull_segs = int(clamp(reveal) * count)\neye = subject_image('blinking eye icon')\nfor k in range(full_segs):\n    sx = bar_x0 + k * seg_w\n    d.rectangle([sx, bar_y, sx + seg_w - 4, bar_y + 74], fill=rgba(HIGHLIGHT if k % 2 == 0 else ACCENT, 190))\n    ex = sx + seg_w / 2\n    if eye is not None:\n        paste(eye, ex - 18, bar_y + 84, 36, 24)\npartial = clamp(reveal) * count - full_segs\nif partial > 0 and full_segs < count:\n    sx = bar_x0 + full_segs * seg_w\n    d.rectangle([sx, bar_y, sx + seg_w * partial - 4, bar_y + 74], fill=rgba(WARN, 190))\ntext('one pit stop', cx, bar_y - 60, size=34, color=TEXT, center=True)\ntext(f'{pit:.2f}s = {count:.1f} human reaction times', cx, bar_y + 170, size=28, color=WARN, center=True)\ncrew = subject_image('F1 pit crew changing tire')\ncw = 280\nch = 180\nif crew is not None:\n    paste(crew, cx - cw // 2, bar_y + 230, cw, ch)",
+    "topic": "records",
+    "starred": false
+  },
+  {
+    "mechanic": "pin-walks-off-the-map",
+    "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
+    "code": "pin = subject_image('map location pin marker')\ncx = RX0 + 130\ncy = RTOP + 190\nvlast = values[-1] or 1.0\nd.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=rgba(HIGHLIGHT))\ntext('you are here', cx + 46, cy - 26, size=32, color=HIGHLIGHT)\nfor i in range(n):\n    if reveal < (i + 0.4) / n:\n        continue\n    py = cy + 190 + i * 200\n    px = cx + int((RX1 - 250 - cx) * (values[i] / vlast))\n    d.line([cx, py, px, py], fill=rgba(WARN, 170), width=7)\n    if pin is not None:\n        paste(pin, px - 38, py - 96, 76, 96)\n    else:\n        d.ellipse([px - 24, py - 24, px + 24, py + 24], fill=rgba(WARN))\n    text(labels[i], RX0 + 20, py + 22, size=28, color=TEXT)\n    text(str(values[i]) + ' km off', px - 40, py - 148, size=32, color=WARN)",
+    "topic": "science",
+    "starred": false
+  },
+  {
+    "mechanic": "photo-avalanche-clock",
+    "concept": "a stopwatch marking 2 minutes while a cascade of photo thumbnails rains down at the millions-per-2-minutes rate, next to one small tidy vintage photo stack representing the entire 1800s",
+    "code": "cx = (RX0 + RX1) // 2\nwatch = subject_image('stopwatch icon')\nwx = RX0 + 140\nwy = RTOP + 100\nif watch is not None:\n    paste(watch, wx - 70, wy, 140, 140)\ntext('2 MINUTES', wx, wy + 150, size=25, color=ACCENT, center=True)\nphoto = subject_image('polaroid photo stack')\ncascade_n = int(26 * reveal)\nfor i in range(cascade_n):\n    px = RX0 + 300 + (i * 53) % 460\n    py = RTOP + 160 + (i * 97) % 780\n    if photo is not None:\n        paste(photo, px, py, 60, 60)\ntext(str(values[0]) + 'M photos', RX0 + 260, RTOP + 40, size=33, color=HIGHLIGHT)\nold = subject_image('vintage sepia photograph 1800s')\nox = RX1 - 220\noy = RBOT - 260\nif old is not None:\n    paste(old, ox, oy, 180, 180)\ntext(str(values[1]) + 'M total', ox + 90, oy + 190, size=27, color=WARN, center=True)\ntext('all of the 1800s', ox + 90, oy + 222, size=21, color=TEXT, center=True)\n",
+    "topic": "tech",
+    "starred": false
+  },
+  {
+    "mechanic": "atom-scale-zoom",
+    "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
+    "code": "cx = (RX0 + RX1) // 2\ntop_y = 380\nbig = values[0]\nsmall = values[1]\nbig_s = 480\nsmall_s = max(18, big_s * (small / big) ** 0.35)\nbx = cx - 260\nsx = cx + 200\nimg = images.get(labels[0])\nif img is None:\n    img = subject_image('silicon chip die macro')\nbw = int(lerp(40, big_s, reveal))\nif img is not None:\n    paste(img, bx - bw // 2, top_y - bw // 2, bw, bw)\nelse:\n    d.rounded_rectangle([bx - bw // 2, top_y - bw // 2, bx + bw // 2, top_y + bw // 2], fill=rgba(ACCENT, 220))\ntext(labels[0], bx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(big)) + ' nm', bx, top_y - big_s // 2 - 40, size=36, color=HIGHLIGHT, center=True)\nsw = int(lerp(6, small_s, reveal))\nd.ellipse([sx - sw // 2, top_y - sw // 2, sx + sw // 2, top_y + sw // 2], fill=rgba(WARN, 230))\ntext(labels[1], sx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(small)) + ' nm', sx, top_y - big_s // 2 - 40, size=36, color=WARN, center=True)\nif reveal > 0.6:\n    text('a handful of atoms wide', cx, RTOP + 10, size=32, center=True)\n",
+    "topic": "tech",
     "starred": false
   }
 ]
