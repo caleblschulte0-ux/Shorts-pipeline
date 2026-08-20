@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260820",
+  "bundle": {
+    "identity": "a08d7c1fde06635c6e31ee703ece773fff29c92dc17b56f5ed1096591c41ac52"
+  },
+  "request_id": "reddit-cart-cop-boxed-in-s5-26072c22b121",
+  "safe_request_id": "reddit-cart-cop-boxed-in-s5-26072c22b121",
+  "worker": "media",
+  "worker_run_id": "media-20260820-110338z",
+  "created_at": "2026-08-20T11:05:12.000Z",
+  "expires_at": "2026-08-20T11:20:12.000Z",
+  "lease_seconds": 900
+}
