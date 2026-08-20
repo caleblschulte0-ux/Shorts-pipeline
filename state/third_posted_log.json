@@ -4067,6 +4067,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.15 < 0.35 (intro chatter, no real event)",
       "ts": "2026-08-19T13:28:14.780942+00:00"
+    },
+    "rejected-abstemioussillypuppybcouch-x_zvhj6yc6uvuvuu": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AbstemiousSillyPuppyBCouch-x_zVHj6Yc6UvUVuu",
+      "streamer": "xqc",
+      "title": "Me on stream",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (no event, just self-intro chatter)",
+      "ts": "2026-08-20T11:41:04.311186+00:00"
+    },
+    "clip-20260820-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/EntertainingObedientPonySuperVinlin-tGZV_tsRnS2N-Wci",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
+      "kind": "twitch_clip",
+      "ts": "2026-08-20T11:42:38.141311+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
