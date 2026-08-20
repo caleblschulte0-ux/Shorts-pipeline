@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Nokia Ruled Smartphones. Then Apple Ended It",
-    "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+    "topic": "Cremation Just Passed Burial In America",
+    "title": "Cremation Just Passed Burial In America",
     "format": "graph_race",
-    "publish_at": "2026-08-19T13:00:00Z",
+    "publish_at": "2026-08-20T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/HSfoZk3r8S8",
+    "video_url": "https://youtube.com/shorts/fAvkc5jS2G0",
     "error": null,
-    "elapsed_seconds": 122.2,
-    "package_path": "state/trending_packages/20260819/01_graph-nokia-vs-iphone.json",
+    "elapsed_seconds": 129.5,
+    "package_path": "state/trending_packages/20260820/01_graph-cremation-passed-burial.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-093737_nokia_ruled_smartphones__then_apple_ende.mp4",
+    "video_path": "output/daily_20260820-093304_cremation_just_passed_burial_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -29,22 +29,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 79
+      "score": 74
     },
     "channel": "default"
   },
   {
-    "topic": "Uber Passed NYC's Yellow Cabs In 4 Years",
-    "title": "Uber Passed NYC's Yellow Cabs In 4 Years",
+    "topic": "Amazon Passed Walmart. Then Kept Going.",
+    "title": "Amazon Passed Walmart. Then Kept Going.",
     "format": "graph_race",
-    "publish_at": "2026-08-19T14:30:00Z",
+    "publish_at": "2026-08-20T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/2XHHzEicIS0",
+    "video_url": "https://youtube.com/shorts/_byFwjXWagg",
     "error": null,
-    "elapsed_seconds": 126.9,
-    "package_path": "state/trending_packages/20260819/02_graph-yellow-cab-vs-uber.json",
+    "elapsed_seconds": 120.7,
+    "package_path": "state/trending_packages/20260820/02_graph-amazon-passed-walmart.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-093940_uber_passed_nyc_s_yellow_cabs_in_4_years.mp4",
+    "video_path": "output/daily_20260820-093514_amazon_passed_walmart__then_kept_going_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -68,17 +68,17 @@
     "channel": "default"
   },
   {
-    "topic": "More Than 3 In 4 US Homes Cut The Landline",
-    "title": "More Than 3 In 4 US Homes Cut The Landline",
+    "topic": "Natural Gas Buried Coal In America",
+    "title": "Natural Gas Buried Coal In America",
     "format": "graph_race",
-    "publish_at": "2026-08-19T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' \u2014 irrelevant grabbed brand imagery riding the whole video.",
-    "elapsed_seconds": 186.3,
-    "package_path": "state/trending_packages/20260819/03_graph-mobile-only-landline.json",
+    "publish_at": "2026-08-20T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/3l7VD1QGtkA",
+    "error": null,
+    "elapsed_seconds": 114.8,
+    "package_path": "state/trending_packages/20260820/03_graph-natural-gas-buried-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-094147_more_than_3_in_4_us_homes_cut_the_landli.mp4",
+    "video_path": "output/daily_20260820-093715_natural_gas_buried_coal_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,24 +95,24 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' \u2014 irrelevant grabbed brand imagery riding the whole video.",
-      "score": 66
+      "blocked": false,
+      "reason": "",
+      "score": 78
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "Boeing Had A Record Year. Then It Collapsed",
-    "title": "Boeing Had A Record Year. Then It Collapsed",
+    "topic": "America Out-Drilled Saudi Arabia",
+    "title": "America Out-Drilled Saudi Arabia",
     "format": "graph_race",
-    "publish_at": "2026-08-19T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.",
-    "elapsed_seconds": 116.8,
-    "package_path": "state/trending_packages/20260819/04_graph-boeing-vs-airbus.json",
+    "publish_at": "2026-08-20T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/D8AY9QvF6GU",
+    "error": null,
+    "elapsed_seconds": 120.0,
+    "package_path": "state/trending_packages/20260820/04_graph-us-outdrilled-saudi-arabia.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-094453_boeing_had_a_record_year__then_it_collap.mp4",
+    "video_path": "output/daily_20260820-093909_america_out_drilled_saudi_arabia.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -126,127 +126,55 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.",
-      "score": 70
+      "blocked": false,
+      "reason": "",
+      "score": 83
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "No Personal Calls On The Floor. So I Logged Every Call.",
-    "title": "No Personal Calls On The Floor. So I Logged Every Call.",
+    "topic": "He Said Log Everything. So I Logged Everything.",
+    "title": "He Said Log Everything. So I Logged Everything.",
     "format": "reddit",
-    "publish_at": "2026-08-19T16:00:00Z",
+    "publish_at": "2026-08-20T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations \u2014 the story is never visually demonstrated.",
-    "elapsed_seconds": 205.9,
-    "package_path": "state/trending_packages/20260819/05_reddit-logged-every-call.json",
+    "error": "quarantined: illustration coverage 14.3% < 20.0% \u2014 6 shot(s) have no real image and would fall to off-topic keyword stock: ['So I logged everything', 'Every hallway question got a ticket', 'opened my laptop and filed a ticket right there', \"our team's ticket volume tripled\", 'His own director pulled the numbers', 'The policy quietly vanished a month later']",
+    "elapsed_seconds": 36.7,
+    "package_path": "state/trending_packages/20260820/05_reddit-ticket-everything.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-094728_no_personal_calls_on_the_floor__so_i_log.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 50.6,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations \u2014 the story is never visually demonstrated.",
-      "score": 57
-    },
-    "blocked": true
+    "quarantined": true
   },
   {
-    "topic": "He Faked Damage To Keep My Deposit. I Had Photos.",
-    "title": "He Faked Damage To Keep My Deposit. I Had Photos.",
+    "topic": "He Policed My Cart Return. I Policed His Parking.",
+    "title": "He Policed My Cart Return. I Policed His Parking.",
     "format": "reddit",
-    "publish_at": "2026-08-19T16:00:00Z",
+    "publish_at": "2026-08-20T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay \u2014 zero shot illustrations, and the payoff ends caption-free on nothing.",
-    "elapsed_seconds": 285.7,
-    "package_path": "state/trending_packages/20260819/06_reddit-landlord-deposit-audit.json",
+    "error": "quarantined: illustration coverage 0.0% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['policed the cart return like it was his personal m', 'chase you down in the lot to lecture you', 'parked crooked across two spots', 'rounded up eleven stray carts', 'pushed every single one into the open space', 'a wall of shopping carts four deep', \"in the rain, while the stranger he'd just lectured\"]",
+    "elapsed_seconds": 13.1,
+    "package_path": "state/trending_packages/20260820/06_reddit-cart-cop-boxed-in.json",
     "source": "brain",
-    "video_path": "output/daily_20260819-095058_he_faked_damage_to_keep_my_deposit__i_ha.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 54.633,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay \u2014 zero shot illustrations, and the payoff ends caption-free on nothing.",
-      "score": 65
-    },
-    "blocked": true
+    "quarantined": true
   },
   {
-    "topic": "phoebe gates",
+    "topic": "motley fool",
     "angle": null,
-    "publish_at": "2026-08-19T16:00:00Z",
+    "publish_at": "2026-08-20T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.4,
+    "elapsed_seconds": 1.0,
     "backfill": true
   },
   {
-    "topic": "auto accident attorney",
+    "topic": "xrp news",
     "angle": null,
-    "publish_at": "2026-08-19T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.6,
-    "backfill": true
-  },
-  {
-    "topic": "carlos baleba",
-    "angle": null,
-    "publish_at": "2026-08-19T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.8,
-    "backfill": true
-  },
-  {
-    "topic": "nick kyrgios",
-    "angle": null,
-    "publish_at": "2026-08-19T20:30:00Z",
+    "publish_at": "2026-08-20T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",

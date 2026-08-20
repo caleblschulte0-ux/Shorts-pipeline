@@ -1,39 +1,43 @@
-# Daily Trending Shorts — 2026-08-19
+# Daily Trending Shorts — 2026-08-20
 
-> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **10**
-- succeeded: **2**
-- quarantined (off-topic imagery): **0**
-- failed: **8**
+- queued: **8**
+- succeeded: **4**
+- quarantined (off-topic imagery): **2**
+- failed: **2**
 
 ## Posted
-- **Nokia Ruled Smartphones. Then Apple Ended It**
-  - topic: Nokia Ruled Smartphones. Then Apple Ended It
-  - publishes: `2026-08-19T13:00:00Z`
-  - https://youtube.com/shorts/HSfoZk3r8S8
-  - took: 122.2s
-- **Uber Passed NYC's Yellow Cabs In 4 Years**
-  - topic: Uber Passed NYC's Yellow Cabs In 4 Years
-  - publishes: `2026-08-19T14:30:00Z`
-  - https://youtube.com/shorts/2XHHzEicIS0
-  - took: 126.9s
+- **Cremation Just Passed Burial In America**
+  - topic: Cremation Just Passed Burial In America
+  - publishes: `2026-08-20T13:00:00Z`
+  - https://youtube.com/shorts/fAvkc5jS2G0
+  - took: 129.5s
+- **Amazon Passed Walmart. Then Kept Going.**
+  - topic: Amazon Passed Walmart. Then Kept Going.
+  - publishes: `2026-08-20T14:30:00Z`
+  - https://youtube.com/shorts/_byFwjXWagg
+  - took: 120.7s
+- **Natural Gas Buried Coal In America**
+  - topic: Natural Gas Buried Coal In America
+  - publishes: `2026-08-20T16:00:00Z`
+  - https://youtube.com/shorts/3l7VD1QGtkA
+  - took: 114.8s
+- **America Out-Drilled Saudi Arabia**
+  - topic: America Out-Drilled Saudi Arabia
+  - publishes: `2026-08-20T17:30:00Z`
+  - https://youtube.com/shorts/D8AY9QvF6GU
+  - took: 120.0s
+
+## Quarantined (off-topic imagery — fix & re-author)
+- **He Said Log Everything. So I Logged Everything.**
+  - quarantined: illustration coverage 14.3% < 20.0% — 6 shot(s) have no real image and would fall to off-topic keyword stock: ['So I logged everything', 'Every hallway question got a ticket', 'opened my laptop and filed a ticket right there', "our team's ticket volume tripled", 'His own director pulled the numbers', 'The policy quietly vanished a month later']
+- **He Policed My Cart Return. I Policed His Parking.**
+  - quarantined: illustration coverage 0.0% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['policed the cart return like it was his personal m', 'chase you down in the lot to lecture you', 'parked crooked across two spots', 'rounded up eleven stray carts', 'pushed every single one into the open space', 'a wall of shopping carts four deep', "in the rain, while the stranger he'd just lectured"]
 
 ## Failed
-- **More Than 3 In 4 US Homes Cut The Landline**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good crossover dataset is sunk by a TRUMP MOBILE logo used as the series marker for 'Mobile-Only' — irrelevant grabbed brand imagery riding the whole video.`
-- **Boeing Had A Record Year. Then It Collapsed**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good two-series delivery race with a real collapse to land, wrecked by a camera zoom that clips axis labels off-frame and a hook caption that fades into illegibility over the lines.`
-- **No Personal Calls On The Floor. So I Logged Every Call.**
-  - error: `showrunner_block: showrunner BLOCK: After the 2.5s post card the video becomes captions over near-black gameplay with zero shot illustrations — the story is never visually demonstrated.`
-- **He Faked Damage To Keep My Deposit. I Had Photos.**
-  - error: `showrunner_block: showrunner BLOCK: Strong Reddit hook and flawless motion, but the whole story is told by captions over generic gameplay — zero shot illustrations, and the payoff ends caption-free on nothing.`
-- **phoebe gates**
+- **motley fool**
   - error: `HTTPError: HTTP Error 404: Not Found`
-- **auto accident attorney**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **carlos baleba**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **nick kyrgios**
+- **xrp news**
   - error: `HTTPError: HTTP Error 404: Not Found`
 
