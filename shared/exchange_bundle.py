@@ -474,7 +474,8 @@ def mark_ready(date: str) -> Path | None:
 
 def is_done(date: str) -> bool:
     """True once ChatGPT has written the DONE marker for THIS date. A marker
-    for another day never fires this day's render."""
+    for another day — or with no date recorded at all — never fires this
+    day's render."""
     try:
         p = bundle_dir(date) / "DONE"
         if not p.exists():
@@ -484,7 +485,7 @@ def is_done(date: str) -> bool:
         except Exception:                                # noqa: BLE001
             return True          # marker present but unparseable — honor it
         stamped = str(payload.get("date") or "").strip()
-        return (not stamped) or stamped == str(date)
+        return bool(stamped) and stamped == str(date)
     except Exception:                                    # noqa: BLE001
         return False
 

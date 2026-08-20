@@ -143,6 +143,41 @@ class TestBundle(unittest.TestCase):
             finally:
                 xb.BUNDLE_ROOT = orig
 
+    def test_done_marker_blank_date_never_matches(self):
+        # A marker with no recorded date proves nothing about THIS date and
+        # must not be honored for it — only an unparseable marker (below)
+        # gets the fail-strict "honor it" treatment.
+        with tempfile.TemporaryDirectory() as td:
+            orig = xb.BUNDLE_ROOT
+            xb.BUNDLE_ROOT = Path(td)
+            try:
+                d = xb.bundle_dir("20260730")
+                d.mkdir(parents=True)
+                (d / "DONE").write_text(json.dumps({}))
+                self.assertFalse(xb.is_done("20260730"))
+                (d / "DONE").write_text(json.dumps({"date": ""}))
+                self.assertFalse(xb.is_done("20260730"))
+                (d / "DONE").write_text(json.dumps({"date": "   "}))
+                self.assertFalse(xb.is_done("20260730"))
+            finally:
+                xb.BUNDLE_ROOT = orig
+
+    def test_done_marker_unparseable_is_honored(self):
+        # Present but not JSON is the intentional fail-strict path: it is
+        # ChatGPT's marker, just malformed, and Phase B is meant to treat
+        # that as "done, but broken" rather than silently falling back to
+        # the lenient no-DONE emergency backstop.
+        with tempfile.TemporaryDirectory() as td:
+            orig = xb.BUNDLE_ROOT
+            xb.BUNDLE_ROOT = Path(td)
+            try:
+                d = xb.bundle_dir("20260730")
+                d.mkdir(parents=True)
+                (d / "DONE").write_text("not json")
+                self.assertTrue(xb.is_done("20260730"))
+            finally:
+                xb.BUNDLE_ROOT = orig
+
     def test_response_index(self):
         idx = xb.response_index({"media": [{"request_id": "r1"}],
                                  "packages": [{"slug": "s1"}]})
