@@ -22357,6 +22357,244 @@
           }
         }
       ]
+    },
+    {
+      "slug": "password-length-beats-complexity",
+      "title": "Why Password Length Beats Every Trick You Know",
+      "hook": "132 years. Or two weeks. Same password.",
+      "closing": "Twelve boring characters beat eight clever ones.",
+      "question": "How long is your longest password, honestly? Tell me below.",
+      "caption": "A 'strong' 8-character password with symbols now falls in 132 years to a rented GPU rig -- down from 225 years just two editions ago. A plain 12-character password with zero symbols can already beat that. Length beats cleverness, every time. How long is your longest password, honestly? Tell me below 🔐",
+      "hashtags": [
+        "password",
+        "cybersecurity",
+        "hacking",
+        "passwordsecurity",
+        "infosec",
+        "tech",
+        "privacy",
+        "hackers",
+        "security",
+        "techtips",
+        "didyouknow",
+        "dataprivacy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "password_8char_crack_time_trend",
+          "params": {
+            "file": "password_8char_crack_time_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "8-char password crack time",
+          "say": "In 2024, a strong eight-character password held up for 225 years against a rented GPU rig. Two editions later, that same password falls in 132 years."
+        },
+        {
+          "source": "offline",
+          "key": "password_8char_complexity_gap",
+          "params": {
+            "file": "password_8char_complexity_gap.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "complexity's effect",
+          "say": "Same eight characters, different rules. Add numbers, symbols and mixed case: about 6,887 weeks. Use lowercase letters only: about 2 weeks."
+        },
+        {
+          "source": "offline",
+          "key": "password_length_vs_complexity_math",
+          "params": {
+            "file": "password_length_vs_complexity_math.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · PAYOFF",
+          "topic": "length vs complexity",
+          "say": "But add four plain characters instead of symbols, and the math flips: a 12-letter lowercase password already beats that 8-character mix, combinations and all."
+        }
+      ]
+    },
+    {
+      "slug": "f1-pit-stop-vanishing-act",
+      "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
+      "hook": "A pit stop used to take a minute.",
+      "closing": "Blink. You'll miss the whole pit stop.",
+      "question": "Did you know pit stops got this fast? Tell me below.",
+      "caption": "F1 pit stops averaged about a minute in the 1950s, with drivers sometimes swapping their own tires. In 2023, McLaren changed all four wheels and sent the car back out in 1.80 seconds -- under seven human reaction-times. Did you know pit stops got this fast? Tell me below 🏎️",
+      "hashtags": [
+        "f1",
+        "formula1",
+        "pitstop",
+        "motorsport",
+        "racing",
+        "mclaren",
+        "f1memes",
+        "racecar",
+        "speed",
+        "sports",
+        "didyouknow",
+        "engineering"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "f1_pit_stop_time_trend",
+          "params": {
+            "file": "f1_pit_stop_time_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "F1 pit stop time",
+          "say": "In the 1950s, an F1 pit stop took about a minute, drivers sometimes swapping their own tires. By 2023, McLaren did the whole stop in 1.80 seconds."
+        },
+        {
+          "source": "offline",
+          "key": "f1_pit_stop_vs_reaction_time",
+          "params": {
+            "file": "f1_pit_stop_vs_reaction_time.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · TURN",
+          "topic": "how fast that really is",
+          "say": "An average human reaction time is about 0.27 seconds. The entire modern pit stop -- jack, four wheels, drop, gone -- takes under seven of those."
+        },
+        {
+          "source": "offline",
+          "key": "f1_pit_crew_size",
+          "params": {
+            "file": "f1_pit_crew_size.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · PAYOFF",
+          "topic": "the crew behind it",
+          "say": "That's not one mechanic getting faster. It's roughly twenty crew members now, versus a handful in the 1950s, each doing one exact job at once."
+        }
+      ]
+    },
+    {
+      "slug": "voyager-signal-delay-growing",
+      "title": "Why NASA Waits Almost Two Days For One Reply",
+      "hook": "22 hours, one-way. Every single message.",
+      "closing": "Somewhere out there, your 'hello' is still traveling.",
+      "question": "Could you wait two days for a text back? Tell me below.",
+      "caption": "Voyager 1 is so far away that a radio signal now takes over 22 hours just one-way to reach it -- and the same to get a reply back. It's also slowly running out of power, which is why NASA keeps switching its instruments off. Could you wait two days for a text back? Tell me below 🛰️",
+      "hashtags": [
+        "voyager",
+        "nasa",
+        "space",
+        "spacecraft",
+        "interstellarspace",
+        "astronomy",
+        "science",
+        "spaceexploration",
+        "didyouknow",
+        "universe",
+        "physics",
+        "jpl"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "voyager1_signal_delay_trend",
+          "params": {
+            "file": "voyager1_signal_delay_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "Voyager 1's growing signal delay",
+          "say": "Voyager 1 launched in 1977. By 1990, its last photo of Earth took five and a half hours to arrive. A message today takes more than twenty-two."
+        },
+        {
+          "source": "offline",
+          "key": "voyager1_oneway_vs_roundtrip",
+          "params": {
+            "file": "voyager1_oneway_vs_roundtrip.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "one-way vs round trip",
+          "say": "That's one-way. A command and Voyager's reply is a round trip -- nearly two full days before Mission Control even knows it landed."
+        },
+        {
+          "source": "offline",
+          "key": "voyager1_power_decline",
+          "params": {
+            "file": "voyager1_power_decline.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · PAYOFF",
+          "topic": "why it's fading",
+          "say": "The same aging nuclear battery also feeds its radio. It launched putting out 470 watts. It's down to about 230 -- which is why instruments keep getting switched off, just to keep the signal alive."
+        }
+      ]
+    },
+    {
+      "slug": "airline-bag-fee-unbundling",
+      "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
+      "hook": "That $49 fare isn't $49.",
+      "closing": "The sticker price was never the real price.",
+      "question": "Ever gotten hit with a surprise bag fee? Tell me below.",
+      "caption": "US airlines collected $464 million in checked-bag fees in 2007. By 2023, that number was $7.1 billion -- and bag fees are just one line item in a $117.9 billion global add-on business. Ever gotten hit with a surprise bag fee? Tell me below 🧳",
+      "hashtags": [
+        "airlines",
+        "travel",
+        "flying",
+        "baggagefees",
+        "airfare",
+        "flightdeals",
+        "travelhacks",
+        "aviation",
+        "consumer",
+        "money",
+        "didyouknow",
+        "flighttips"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_airline_bag_fee_revenue_trend",
+          "params": {
+            "file": "us_airline_bag_fee_revenue_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "US bag fee revenue",
+          "say": "In 2007, checked bags were basically free -- airlines made $464 million total. By 2023, that same fee alone brought in $7.1 billion."
+        },
+        {
+          "source": "offline",
+          "key": "bag_fees_vs_global_ancillary_revenue",
+          "params": {
+            "file": "bag_fees_vs_global_ancillary_revenue.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · TURN",
+          "topic": "the bigger picture",
+          "say": "And bags are the small piece. That same year, airlines worldwide pulled in $117.9 billion from seats, fees and other add-ons combined."
+        },
+        {
+          "source": "offline",
+          "key": "top_airlines_bag_fee_revenue_2024",
+          "params": {
+            "file": "top_airlines_bag_fee_revenue_2024.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · PAYOFF",
+          "topic": "who collects the most",
+          "say": "American led the pack at $1.5 billion in bag fees alone in 2024. United and Delta weren't far behind -- three airlines, over $3.9 billion, just from bags."
+        }
+      ]
     }
   ],
   "videos": [

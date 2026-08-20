@@ -1,0 +1,67 @@
+{
+  "format": "graph_race",
+  "slug": "graph-natural-gas-buried-coal",
+  "title": "Natural Gas Buried Coal In America",
+  "hook": "Coal's reign just ended.",
+  "y_label": "US electricity generation (billion kWh)",
+  "duration": 13,
+  "source": "U.S. Energy Information Administration (EIA), net electricity generation by fuel. Coal generation peaked at 2,016 billion kWh in 2007 and has declined almost every year since, to 774 billion kWh in 2020. Natural gas rose from roughly 897 billion kWh in 2007 to about 1,780 billion kWh in 2024, overtaking coal as the top source of US electricity in 2016. Intermediate-year figures (2011, 2015, 2018, 2022, 2024) are EIA Electric Power Annual / Today in Energy series figures, approximate for years not directly quoted above.",
+  "years": [
+    2007,
+    2011,
+    2015,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Coal",
+      "color": "#4a4a4a",
+      "icon": "",
+      "values": [
+        2016,
+        1733,
+        1352,
+        1240,
+        1146,
+        774,
+        831,
+        672
+      ]
+    },
+    {
+      "name": "Natural Gas",
+      "color": "#3ddc84",
+      "icon": "",
+      "values": [
+        897,
+        1013,
+        1335,
+        1378,
+        1468,
+        1617,
+        1689,
+        1780
+      ]
+    }
+  ],
+  "hashtags": [
+    "naturalgas",
+    "coal",
+    "energy",
+    "electricity",
+    "eia",
+    "climate",
+    "powerplant",
+    "usenergy",
+    "data",
+    "statistics",
+    "science",
+    "shorts"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

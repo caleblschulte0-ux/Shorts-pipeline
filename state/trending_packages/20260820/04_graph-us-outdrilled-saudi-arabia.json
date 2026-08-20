@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-us-outdrilled-saudi-arabia",
+  "title": "America Out-Drilled Saudi Arabia",
+  "hook": "The US became the top driller.",
+  "y_label": "Crude oil production (million barrels/day)",
+  "duration": 13,
+  "source": "U.S. Energy Information Administration (EIA): US crude oil production bottomed at 5.0 million barrels/day in 2008, then nearly tripled to 13.2 million barrels/day in 2024 on the shale boom, making the US the world's largest crude producer since 2018. Saudi Arabia's production (EIA / OPEC data) peaked near 12.2 million barrels/day in 2018, fell to about 9.2 million during 2020's OPEC+ cuts, and stood at roughly 10.7 million barrels/day in 2024. 2014 figures for both countries are approximate, consistent with EIA's published trend.",
+  "years": [
+    2008,
+    2014,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Saudi Arabia",
+      "color": "#0b7a3b",
+      "icon": "SA",
+      "values": [
+        10.8,
+        9.7,
+        12.2,
+        9.2,
+        10.8,
+        10.7
+      ]
+    },
+    {
+      "name": "United States",
+      "color": "#3d5ba9",
+      "icon": "US",
+      "values": [
+        5.0,
+        8.7,
+        11.0,
+        11.3,
+        11.9,
+        13.2
+      ]
+    }
+  ],
+  "hashtags": [
+    "oil",
+    "energy",
+    "saudiarabia",
+    "unitedstates",
+    "shaleoil",
+    "eia",
+    "geopolitics",
+    "economics",
+    "crudeoil",
+    "data",
+    "statistics",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

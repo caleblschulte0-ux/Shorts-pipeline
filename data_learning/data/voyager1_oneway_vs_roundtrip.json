@@ -1,0 +1,27 @@
+{
+  "key": "voyager1_oneway_vs_roundtrip",
+  "title": "Voyager 1 signal delay: one-way vs round trip",
+  "unit": "hours",
+  "geography": "Interstellar space (Voyager 1)",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Voyager mission distance/light-time tracking",
+    "publisher": "NASA / JPL",
+    "url": "https://science.nasa.gov/mission/voyager/voyager-1/",
+    "officiality": "official",
+    "access_date": "2026-08-20"
+  },
+  "notes": "A one-way signal to Voyager 1 currently takes about 22.5 hours. A command and its confirmation back at Mission Control is a round trip -- roughly 45 hours, nearly two full days.",
+  "insight_type": "comparison",
+  "use_baseline": false,
+  "points": [
+    {
+      "label": "One-way",
+      "value": 22.5
+    },
+    {
+      "label": "Round trip",
+      "value": 45
+    }
+  ]
+}
