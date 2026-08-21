@@ -2,82 +2,24 @@
   "subreddit": "IDontWorkHereLady",
   "slug": "reddit-blender-serial-number-security",
   "title": "She Wouldn't Believe I Didn't Work There",
-  "script": "I was on my day off in sweatpants, holding a basket of protein bars, when a woman grabbed my arm in the electronics aisle and demanded to know why the store would not take her opened blender back without a box. I told her three times I did not work there, and she waved it off like I was the slowest employee she had ever met. So I stopped arguing and helped. I walked her straight to the actual return counter, loudly told the real employee behind it that she needed a manager override because she was very insistent, and stepped back to watch. The employee pulled up the blender's serial number and recognized it instantly \u2014 it matched one reported stolen from the store two towns over the week before. Security was already walking over before she finished explaining her gift receipt story. I put my protein bars down, picked a different checkout line, and never once told her I worked there.",
+  "script": "I was on my day off in sweatpants, holding a basket of protein bars, when a woman grabbed my arm in the electronics aisle and demanded to know why the store would not take her opened blender back without a box. I told her three times I did not work there, and she waved it off like I was the slowest employee she had ever met. So I stopped arguing and helped. I walked her straight to the actual return counter, loudly told the real employee behind it that she needed a manager override because she was very insistent, and stepped back to watch. The employee pulled up the blender's serial number and recognized it instantly — it matched one reported stolen from the store two towns over the week before. Security was already walking over before she finished explaining her gift receipt story. I put my protein bars down, picked a different checkout line, and never once told her I worked there.",
   "shots": [
-    {
-      "phrase": "grabbed my arm in the electronics aisle",
-      "query": "electronics store aisle"
-    },
-    {
-      "phrase": "opened blender back without a box",
-      "query": "kitchen blender box"
-    },
-    {
-      "phrase": "I did not work there",
-      "query": "person shrugging store"
-    },
-    {
-      "phrase": "walked her straight to the actual return counter",
-      "query": "customer service counter"
-    },
-    {
-      "phrase": "manager override because she was very insistent",
-      "query": "cashier register store"
-    },
-    {
-      "phrase": "blender's serial number",
-      "query": "barcode scanner product"
-    },
-    {
-      "phrase": "reported stolen from the store two towns over",
-      "query": "security guard retail"
-    },
-    {
-      "phrase": "Security was already walking over",
-      "query": "security guard walking",
-      "pin_query": "Security",
-      "pin_context": "She Wouldn't Believe I Didn't Work There",
-      "news_query": "Security",
-      "news_angle": "She Wouldn't Believe I Didn't Work There",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    }
+    {"phrase": "grabbed my arm in the electronics aisle", "query": "electronics store aisle"},
+    {"phrase": "opened blender back without a box", "query": "kitchen blender box"},
+    {"phrase": "I did not work there", "query": "person shrugging store"},
+    {"phrase": "walked her straight to the actual return counter", "query": "customer service counter"},
+    {"phrase": "manager override because she was very insistent", "query": "cashier register store"},
+    {"phrase": "blender's serial number", "query": "barcode scanner product"},
+    {"phrase": "reported stolen from the store two towns over", "query": "security guard retail"},
+    {"phrase": "Security was already walking over", "query": "security guard walking"}
   ],
   "punches": [
-    {
-      "phrase": "did not work there",
-      "text": "NOT STAFF",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "manager override",
-      "text": "OVERRIDE",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "reported stolen",
-      "text": "STOLEN",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "never once told her",
-      "text": "NEVER TOLD HER",
-      "color": "#50ff80"
-    }
+    {"phrase": "did not work there", "text": "NOT STAFF", "color": "#ffaa30"},
+    {"phrase": "manager override", "text": "OVERRIDE", "color": "#50ff80"},
+    {"phrase": "reported stolen", "text": "STOLEN", "color": "#ff3030"},
+    {"phrase": "never once told her", "text": "NEVER TOLD HER", "color": "#50ff80"}
   ],
-  "hashtags": [
-    "idontworkherelady",
-    "reddit",
-    "retail",
-    "storytime",
-    "karma",
-    "revenge",
-    "customerservice",
-    "shorts",
-    "viral",
-    "satisfying",
-    "shopping",
-    "pettyjustice"
-  ],
+  "hashtags": ["idontworkherelady", "reddit", "retail", "storytime", "karma", "revenge", "customerservice", "shorts", "viral", "satisfying", "shopping", "pettyjustice"],
   "music_vibe": "dark",
   "bottom_theme": "auto"
 }

@@ -4,77 +4,22 @@
   "title": "He Called It Voluntary. The Labor Board Didn't.",
   "script": "My manager scheduled us for unpaid weekend inventory counts and called it \"voluntary team spirit,\" even though skipping one got you cut from the good shifts for a month. I stayed quiet and started saving everything: every text where he told us to come in on a day off, every pay stub showing zero overtime for it. After four months I had four weekends documented with timestamps, texts, and my badge scan records from the building system. I mailed the whole packet to our state labor board as a wage complaint, not just for me but naming the entire inventory team. Two weeks later an investigator called the store directly, and our district manager showed up unannounced with a stack of printed labor code sections. My manager had to explain, in front of his own boss, why six employees had unpaid overtime going back four months. The company cut checks to every person on that weekend list within the month, backdated with interest.",
   "shots": [
-    {
-      "phrase": "unpaid weekend inventory counts",
-      "query": "warehouse inventory shelves"
-    },
-    {
-      "phrase": "voluntary team spirit",
-      "query": "office team meeting"
-    },
-    {
-      "phrase": "started saving everything",
-      "query": "person taking notes desk"
-    },
-    {
-      "phrase": "badge scan records from the building system",
-      "query": "keycard scanner office door"
-    },
-    {
-      "phrase": "state labor board as a wage complaint",
-      "query": "envelope mailing documents"
-    },
-    {
-      "phrase": "district manager showed up unannounced",
-      "query": "man entering office hallway"
-    },
-    {
-      "phrase": "unpaid overtime going back four months",
-      "query": "office clock overtime"
-    },
-    {
-      "phrase": "cut checks to every person on that weekend list",
-      "query": "paycheck stack desk"
-    }
+    {"phrase": "unpaid weekend inventory counts", "query": "warehouse inventory shelves"},
+    {"phrase": "voluntary team spirit", "query": "office team meeting"},
+    {"phrase": "started saving everything", "query": "person taking notes desk"},
+    {"phrase": "badge scan records from the building system", "query": "keycard scanner office door"},
+    {"phrase": "state labor board as a wage complaint", "query": "envelope mailing documents"},
+    {"phrase": "district manager showed up unannounced", "query": "man entering office hallway"},
+    {"phrase": "unpaid overtime going back four months", "query": "office clock overtime"},
+    {"phrase": "cut checks to every person on that weekend list", "query": "paycheck stack desk"}
   ],
   "punches": [
-    {
-      "phrase": "voluntary team spirit",
-      "text": "\"VOLUNTARY\"",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "state labor board",
-      "text": "LABOR BOARD",
-      "color": "#50ff80"
-    },
-    {
-      "phrase": "unannounced",
-      "text": "UNANNOUNCED",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "backdated with interest",
-      "text": "WITH INTEREST",
-      "color": "#50ff80"
-    }
+    {"phrase": "voluntary team spirit", "text": "\"VOLUNTARY\"", "color": "#ffaa30"},
+    {"phrase": "state labor board", "text": "LABOR BOARD", "color": "#50ff80"},
+    {"phrase": "unannounced", "text": "UNANNOUNCED", "color": "#ff3030"},
+    {"phrase": "backdated with interest", "text": "WITH INTEREST", "color": "#50ff80"}
   ],
-  "hashtags": [
-    "prorevenge",
-    "reddit",
-    "workplace",
-    "laborlaws",
-    "overtime",
-    "karma",
-    "revenge",
-    "storytime",
-    "worklife",
-    "shorts",
-    "viral",
-    "satisfying",
-    "corporate",
-    "paycheck"
-  ],
+  "hashtags": ["prorevenge", "reddit", "workplace", "laborlaws", "overtime", "karma", "revenge", "storytime", "worklife", "shorts", "viral", "satisfying", "corporate", "paycheck"],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }
