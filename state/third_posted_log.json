@@ -4359,13 +4359,36 @@
       "director_cut": true
     },
     "clip-20260821-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/ApatheticBlatantDragonflyChefFrank-z_4teJY6GZGqcDBw",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/H5jBkN9xiYU",
       "title": "Ludwig Gets Shot Practicing CS Peeks IRL And Instantly Regrets It",
       "kind": "twitch_clip",
-      "ts": "2026-08-21T12:17:58.148494+00:00",
+      "ts": "2026-08-21T12:18:06.138601+00:00",
+      "uploaded_at": "2026-08-21T12:18:06.138617+00:00",
+      "publish_at": "2026-08-21T21:30:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/ApatheticBlatantDragonflyChefFrank-z_4teJY6GZGqcDBw",
+      "streamer": "ludwig",
+      "series": "chaos",
+      "hook": "THIS HURTS WAY MORE THAN EXPECTED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5088,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.0,
+        "end": 59.7
+      },
+      "director_cut": true
+    },
+    "clip-20260821-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/CarelessInexpensiveCobraEleGiggle-m-psvc_spBRfD9AY",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Guapo Moment Turns Into Total Chaos",
+      "kind": "twitch_clip",
+      "ts": "2026-08-21T12:22:15.267069+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
