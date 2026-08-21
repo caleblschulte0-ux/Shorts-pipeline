@@ -3,102 +3,6 @@
     {
       "date": "20260731",
       "dry_run": false,
-      "ts": "2026-07-31T13:01:51+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 13,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 111,
-        "with_retention": 98,
-        "with_curve": 14,
-        "fetched_at": "2026-07-31T11:06:18.299992+00:00"
-      },
-      "brain": {
-        "ok": 19,
-        "fail": 0
-      },
-      "clips": [
-        {
-          "slug": "clip-20260731-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.85,
-              "why": "injury/shock, visible consequence",
-              "blind": false
-            },
-            "content": {
-              "score": 0.85,
-              "why": "injury reveal, real pain reaction",
-              "floor": 0.7,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween: Jason Has To Throw The Towel In Kick Boxing And It Goes Wrong"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.62,
-              "problems": [
-                "large dark/blurred padding bands above and below the gameplay footage reduce how much of the frame the subject occupies",
-                "several timestamps (5.7s-8.9s, 15.4s-18.6s) show mostly blurred/empty content with the subject small or barely visible"
-              ]
-            }
-          }
-        },
-        {
-          "slug": "clip-20260731-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.7 (rambling bit, no clear payoff)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no context",
-              "blind": false
-            },
-            "content": {
-              "score": 0.25,
-              "why": "rambling bit, no clear payoff",
-              "floor": 0.7,
-              "verdict": "reject"
-            }
-          }
-        },
-        {
-          "slug": "clip-20260731-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud"
-        },
-        {
-          "slug": "clip-20260731-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.45 < 0.5 across 8 candidates \u2014 posting fewer, not a dud",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "kaicenat/kaicenat-about-cenat-2026w31",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "date": "20260731",
-      "dry_run": false,
       "ts": "2026-07-31T14:19:19+00:00",
       "feedback": {
         "snapshot": true,
@@ -5977,6 +5881,338 @@
             }
           },
           "took_s": 264.1
+        }
+      ]
+    },
+    {
+      "date": "20260821",
+      "dry_run": false,
+      "ts": "2026-08-21T12:25:40+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 92,
+        "with_retention": 68,
+        "with_curve": 12,
+        "fetched_at": "2026-08-21T09:07:33.785891+00:00"
+      },
+      "brain": {
+        "ok": 39,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260821-1",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible slapstick physical comedy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "blindfold game, visible physical slap mo",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rayasianboy: Masa Slapped Geo's Ass And Geo's Reaction Says It All"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 214.0
+        },
+        {
+          "slug": "clip-20260821-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "visible gross-out moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague reaction, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "8.4s sharp band briefly has no visible subject (just pond/geese b-roll) but it's a single frame in a 10.6s clip",
+                "title emoji is \ud83e\udd22 but on-screen hook uses skull emojis instead"
+              ]
+            }
+          },
+          "took_s": 166.4
+        },
+        {
+          "slug": "clip-20260821-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "close-up face inspection, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Can't Believe The Eye Gap Of Doom"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 290.8
+        },
+        {
+          "slug": "clip-20260821-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "jynxzi/jynxzi-about-bant-2026w34",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "routine IRL gameplay practice",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "CS peeking drill, real hit, visible pain",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ludwig Gets Shot Practicing CS Peeks IRL And Instantly Regrets It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "frame at 42.0s sharp band is heavily motion-blurred, subject barely discernible"
+              ]
+            }
+          },
+          "took_s": 1504.5
+        },
+        {
+          "slug": "clip-20260821-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "crowd shouting, guy tossed in pool",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky Guapo Moment Turns Into Total Chaos"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 164.8
+        },
+        {
+          "slug": "clip-20260821-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "kiss reaction visible, no real stakes",
+              "blind": false
+            },
+            "content": {
+              "score": 0.78,
+              "why": "accidental kiss, visible mortified react",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Accidentally Kisses Chat And Instantly Regrets It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 160.1
         }
       ]
     }
