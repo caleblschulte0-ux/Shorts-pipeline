@@ -1,0 +1,17 @@
+{
+  "format": "graph_race",
+  "slug": "graph-opioid-deaths-vs-car-crashes",
+  "title": "Opioid Deaths Overtook Car Crash Deaths",
+  "hook": "The Deadlier Road",
+  "y_label": "US deaths per year",
+  "duration": 13,
+  "source": "CDC/NCHS and NIDA opioid-involved overdose deaths (CDC WONDER) vs NHTSA/FARS motor vehicle traffic fatalities: opioid deaths 21,089 (2010), 33,091 (2015), 42,249 (2016), 47,600 (2017), 49,860 (2019), 80,411 (2021); motor vehicle deaths 32,999 (2010), 35,092 (2015), 37,806 (2016), 37,473 (2017), 36,096 (2019), 42,915 (2021). Opioid deaths overtook motor vehicle deaths in 2016; the National Safety Council has since reported higher odds of dying from opioid overdose than a car crash.",
+  "years": [2010, 2015, 2016, 2017, 2019, 2021],
+  "series": [
+    {"name": "Opioid overdoses", "color": "#B91C1C", "values": [21089, 33091, 42249, 47600, 49860, 80411]},
+    {"name": "Car crashes", "color": "#64748B", "values": [32999, 35092, 37806, 37473, 36096, 42915]}
+  ],
+  "hashtags": ["opioidcrisis", "overdosedeaths", "fentanyl", "publichealth", "cdc", "nhtsa", "cardeaths", "trafficsafety", "drugcrisis", "healthdata", "addiction", "opioids", "publichealthcrisis", "statistics", "dataviz"],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

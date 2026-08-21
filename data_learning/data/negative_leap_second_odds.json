@@ -1,0 +1,19 @@
+{
+  "key": "negative_leap_second_odds",
+  "title": "Estimated odds of a first-ever negative leap second by 2035",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2026-2035 (forecast)",
+  "source": {
+    "name": "Negative leap second forecasting, discussed via timeanddate.com",
+    "publisher": "timeanddate.com, citing IERS/USNO rotation-rate forecasts",
+    "url": "https://www.timeanddate.com/time/negative-leap-second-maybe.html",
+    "officiality": "secondary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Because Earth's rotation has been speeding up since 2020, timekeeping researchers estimate roughly a 40% probability that a negative leap second (subtracting a second from UTC -- something never done before) will be required by 2035, with some forecasts suggesting it could come as soon as 2029 if the rotation trend continues.",
+  "points": [
+    {"label": "Chance of a negative leap second by 2035", "value": 40},
+    {"label": "Chance it still isn't needed", "value": 60}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "peanut_allergy_before_after_guidelines",
+  "title": "Peanut allergy diagnoses in US kids under 3, before vs. after early-introduction guidelines",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "pre-2015 vs. through early 2020",
+  "source": {
+    "name": "Reduction in Food Allergies Found After Guideline-Directed Early Peanut Exposure (Pediatrics, 2025)",
+    "publisher": "Children's Hospital of Philadelphia (CHOP)",
+    "url": "https://www.chop.edu/news/childrens-hospital-philadelphia-researchers-observe-significant-reduction-diagnosis-food",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "CHOP researchers analyzed electronic health records for more than 120,000 children (through early 2020) and found peanut-allergy diagnoses in kids under 3 fell from 0.79% to 0.45% -- a 43% relative decline -- after the 2015 LEAP findings drove new early-introduction guidelines (2017 NIAID addendum, broadened by the 2021 consensus guidance). Overall food-allergy diagnoses fell about 36% over the same shift. Published in Pediatrics, 2025.",
+  "points": [
+    {"label": "Before early-introduction guidelines", "value": 0.79},
+    {"label": "After early-introduction guidelines", "value": 0.45}
+  ]
+}
