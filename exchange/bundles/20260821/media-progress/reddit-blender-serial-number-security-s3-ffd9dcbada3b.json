@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-blender-serial-number-security-s3-ffd9dcbada3b",
+  "safe_request_id": "reddit-blender-serial-number-security-s3-ffd9dcbada3b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "68780a40a9971348add1d2501e89c4276609408d90a7c604f65673b1083d5d0f",
+  "prompt_used": "An editorial illustration for a short-form video: customer service counter. It accompanies the narration: \"walked her straight to the actual return counter\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+    "filename": "20260821__reddit-blender-serial-number-security-s3-ffd9dcbada3b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "59cc4f03eda4da982e1028e3acf9cb759027b49ebf37aa15bf2c0188be3b1b31",
+    "bytes": 1155752,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:29.769Z",
+  "error": null,
+  "retryable": false
+}
