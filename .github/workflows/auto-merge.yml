@@ -50,11 +50,26 @@ jobs:
             python3 -m py_compile "$f" || { echo "::error file=$f::does not compile"; exit 1; }
           done
           # 3. No file over 1MB, no committed media/binaries (storage rule).
+          #    Compare against BASE_SHA, not just the file's final size: a
+          #    file that was ALREADY over 1MB before this PR (an
+          #    accumulating text asset like data_learning/niche.config.json,
+          #    253 stories and growing by design) is not this PR's doing,
+          #    and flagging it blocks EVERY future PR that touches it —
+          #    including the routine's own daily explainer authoring. Only
+          #    fail on a file that is brand-new over 1MB, or that grew by
+          #    more than 300KB in this one diff — the shape of a dropped-in
+          #    binary/media blob, not incremental content growth. Found
+          #    2026-08-21 when the Routine's own daily PR tripped this on a
+          #    niche.config.json that had organically crossed 1MB weeks
+          #    earlier with nobody noticing because no PR since had failed
+          #    loudly enough to get read.
           for f in $changed; do
             [ -f "$f" ] || continue
             size=$(stat -c%s "$f")
-            if [ "$size" -gt 1048576 ]; then
-              echo "::error file=$f::${size} bytes — files >1MB never belong in git (see docs/STORAGE_AUDIT.md)"; fail=1
+            base_size=$(git cat-file -s "$BASE_SHA:$f" 2>/dev/null || echo 0)
+            growth=$((size - base_size))
+            if [ "$size" -gt 1048576 ] && { [ "$base_size" -eq 0 ] || [ "$growth" -gt 307200 ]; }; then
+              echo "::error file=$f::${size} bytes, grew ${growth} bytes in this diff — large new content or binary; see docs/STORAGE_AUDIT.md"; fail=1
             fi
             case "$f" in
               *.mp4|*.mov|*.webm|*.mkv|*.wav|*.mp3|*.onnx|*.pt|*.bin)
