@@ -1,0 +1,128 @@
+{
+  "date": "20260821",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s1-82f45bb4608b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s1-82f45bb4608b.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s2-ac7918c69348",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s2-ac7918c69348.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s3-34855d4c80e7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s3-34855d4c80e7.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s4-11a3b59f334a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s4-11a3b59f334a.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s6-17b69a701f4a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s6-17b69a701f4a.png"
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s7-94bb214c2003",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-voluntary-overtime-labor-board-s7-94bb214c2003.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s0-b98bbd3e8e0b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s0-b98bbd3e8e0b.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s1-42b370728a44",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s1-42b370728a44.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s2-043314068d0d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s2-043314068d0d.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s3-ffd9dcbada3b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s3-ffd9dcbada3b.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s4-f0231707f79f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s4-f0231707f79f.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s5-b0ca345b2040",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s5-b0ca345b2040.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s6-e2238c2f71d1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s6-e2238c2f71d1.png"
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s7-e3c1d44af3c4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-blender-serial-number-security-s7-e3c1d44af3c4.png"
+    },
+    {
+      "slug": "reddit-voluntary-overtime-labor-board",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): skip, very"
+      ]
+    },
+    {
+      "slug": "reddit-blender-serial-number-security",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): who"
+      ]
+    }
+  ]
+}

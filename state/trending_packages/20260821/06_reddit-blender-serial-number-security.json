@@ -6,31 +6,66 @@
   "shots": [
     {
       "phrase": "grabbed my arm in the electronics aisle",
-      "query": "electronics store aisle"
+      "query": "electronics store aisle",
+      "image_url": "https://drive.google.com/uc?export=download&id=1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+      "media_origin": "chatgpt",
+      "media_file_id": "1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+      "media_sha256": "f990963dc71ae55e7d6a9b48c75054d47411cd1fd1c68bb282390bb97fb2b274",
+      "media_bytes": 1363456
     },
     {
       "phrase": "opened blender back without a box",
-      "query": "kitchen blender box"
+      "query": "kitchen blender box",
+      "image_url": "https://drive.google.com/uc?export=download&id=15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+      "media_origin": "chatgpt",
+      "media_file_id": "15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+      "media_sha256": "0465c951a7956651d228da7172d559e46731dd29658df380e5e76405f7e4e8b7",
+      "media_bytes": 1285258
     },
     {
       "phrase": "I did not work there",
-      "query": "person shrugging store"
+      "query": "person shrugging store",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+      "media_sha256": "076378e56df53c4645f3b3a3680d84265f2adafd9981a5796afd53c0fe8cc4ee",
+      "media_bytes": 1503942
     },
     {
       "phrase": "walked her straight to the actual return counter",
-      "query": "customer service counter"
+      "query": "customer service counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+      "media_sha256": "59cc4f03eda4da982e1028e3acf9cb759027b49ebf37aa15bf2c0188be3b1b31",
+      "media_bytes": 1155752
     },
     {
       "phrase": "manager override because she was very insistent",
-      "query": "cashier register store"
+      "query": "cashier register store",
+      "image_url": "https://drive.google.com/uc?export=download&id=1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+      "media_origin": "chatgpt",
+      "media_file_id": "1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+      "media_sha256": "d366373f60b06899484c923bdac3dd426bacf78ea097882d442188a7c85d24bd",
+      "media_bytes": 1327635
     },
     {
       "phrase": "blender's serial number",
-      "query": "barcode scanner product"
+      "query": "barcode scanner product",
+      "image_url": "https://drive.google.com/uc?export=download&id=1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+      "media_origin": "chatgpt",
+      "media_file_id": "1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+      "media_sha256": "98c0bdf2b8f5d4040cd907b0ae23a47c8cd3c8997c090a51ef3449134b494f36",
+      "media_bytes": 863848
     },
     {
       "phrase": "reported stolen from the store two towns over",
-      "query": "security guard retail"
+      "query": "security guard retail",
+      "image_url": "https://drive.google.com/uc?export=download&id=1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+      "media_origin": "chatgpt",
+      "media_file_id": "1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+      "media_sha256": "082bc4d98c2b81afe9392c3e8c20aa0b1adeacd7d898d38d5a0f526c4c035a03",
+      "media_bytes": 1158649
     },
     {
       "phrase": "Security was already walking over",
@@ -39,7 +74,11 @@
       "pin_context": "She Wouldn't Believe I Didn't Work There",
       "news_query": "Security",
       "news_angle": "She Wouldn't Believe I Didn't Work There",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://drive.google.com/uc?export=download&id=1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+      "media_origin": "chatgpt",
+      "media_file_id": "1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+      "media_sha256": "ac60f87c1276fc94d007b30a671c3ad8d99f41255584ec71f89fcf0e82b1d019",
+      "media_bytes": 1066240
     }
   ],
   "punches": [
