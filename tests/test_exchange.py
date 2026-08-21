@@ -85,6 +85,51 @@ class TestMediaJudge(unittest.TestCase):
                          "missing")
         self.assertEqual(media_judge.judge_package({})["shot_count"], 0)
 
+    def test_pinned_url_cannot_self_certify(self):
+        """A shot with only image_url (no separately-verified candidate
+        record) is the ONLY path every real caller exercises — judge_package
+        is always called with media_by_shot=None. It must not score
+        `strong` just because judge_package used to copy the shot's own
+        phrase/query into the candidate's title/query, guaranteeing overlap
+        with itself regardless of what the URL actually shows."""
+        pkg = {
+            "slug": "self-cert",
+            "title": PKG["title"],
+            "script": PKG["script"],
+            "shots": [{**PKG["shots"][0],
+                       "image_url": "https://example.com/unrelated.jpg"}],
+        }
+        rep = media_judge.judge_package(pkg, None)
+        v = rep["verdicts"][0]
+        self.assertNotEqual(v["verdict"], "strong", v["reasons"])
+        self.assertIn(v, rep["gaps"])
+
+    def test_unknown_dimensions_get_no_free_resolution_credit(self):
+        """Absent width/height must not score as if the image were verified
+        large — that let an unverified pinned URL cross the strong
+        threshold on baseline + missing-resolution-data credit alone."""
+        media = {"url": "https://x/starship.jpg",
+                 "title": "SpaceX Starship booster catch at Starbase",
+                 "source_class": "open_or_licensed"}          # no width/height
+        v = media_judge.judge_shot(PKG["shots"][0], media, script=PKG["script"])
+        self.assertNotEqual(v["verdict"], "strong", v["reasons"])
+        self.assertTrue(any("resolution unverified" in r
+                            for r in v["reasons"]), v["reasons"])
+
+    def test_unknown_verdict_counts_as_a_gap(self):
+        """A judge failure must never silently pass as 'fine' — it has to
+        surface as a gap so a stronger replacement gets requested."""
+        pkg = {"slug": "boom", "title": "t", "script": "s",
+              "shots": [{"phrase": "x", "query": "y"}]}
+        # int("bad width") raises inside judge_shot's resolution check,
+        # landing in the except branch — verdict should be "unknown".
+        rep = media_judge.judge_package(
+            pkg, {0: {"url": "https://x/a.jpg", "width": "bad"}})
+        v = rep["verdicts"][0]
+        self.assertEqual(v["verdict"], "unknown")
+        self.assertIn("ai_prompt", v)
+        self.assertIn(v, rep["gaps"])
+
 
 class TestBundle(unittest.TestCase):
     def test_build_bundle_shape(self):

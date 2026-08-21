@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260820",
+  "updated": "20260821",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -494,6 +494,42 @@
       "because": "Confirmed the two fields exist (shared/exchange_bundle.py:373-421: authoring_requests['trending'] and authoring_request are set from the SAME object at write time, so they cannot disagree at the moment the bundle is produced), and confirmed scripts/exchange_phase_b.py:589-602 still falls back to the singular alias for promotion target. The risk described (a future producer change or manual repair diverging the two) is real but currently latent -- there is no live incident, and target resolution already prefers contract.channels[channel].target_count first, only falling back to the alias when that's absent. This is genuinely a 'ways out' architectural cleanup (version the contract around one map + shared accessor), not urgent against three higher-severity items filed the same day. Revisit if a future finding shows the two fields actually diverging in production.",
       "history": [],
       "revisit_after": "20260918"
+    },
+    "5b8318ee7172": {
+      "verdict": "in_progress",
+      "date": "20260821",
+      "because": "picked up this run",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in funnel/media_judge.py:199-207 \u2014 judge_package synthesizes candidate title/query FROM the shot's own phrase/query when a shot only has a pinned image_url, so judge_shot then scores that media against text copied from itself. A completely unrelated URL earns full semantic overlap and an unknown-dimension pass. This defeats the exchange's whole purpose of catching weak media and requesting AI replacements. Building this now: highest-ranked critical/bug, well-scoped, matches rule zero."
+        }
+      ]
+    },
+    "aaeb12de3ebd": {
+      "verdict": "doing",
+      "date": "20260821",
+      "because": "Verified against doctor/evidence.json channel_performance.explainer: posted_by_day_14d shows only 1 (08-13), 2 (08-14), 1 (08-20) against a registry target of 4/day -- meaning zero posts on 08-15 through 08-19, and no explainer entry exists in production_runs to localize the stage. This matches CLAUDE.md's own description of explainer as the load-bearing, fail-closed channel, so a silent multi-day delivery collapse there is serious. Accepted: hold interpretation of the topic experiment and build production-outcome instrumentation (attempted/showrunner-held/render-failed/upload-failed/uploaded) for explainer mirroring trending's, before touching the mix. Queued behind today's critical bug fix -- this needs its own session to diagnose root cause properly, not a rushed same-session patch.",
+      "history": []
+    },
+    "86ad3ba9d045": {
+      "verdict": "doing",
+      "date": "20260821",
+      "because": "Verified in shared/experiments.py: conclude() (line 175) never calls readout_ready() (line 150), so any caller holding an experiment dict can mutate status to adopted/reverted/inconclusive with zero elapsed days or zero samples, contradicting the module's own docstring promise that early conclusions are 'structurally impossible'. Currently latent in production -- grep shows only tests/test_retro.py and tests/test_retro_loop.py call conclude() directly; scripts/retro_reply.py only calls register(), scripts/advance_experiments.py only calls advance()/stale()/summary(). Still a real foot-gun for the next caller (e.g. a future retro_reply readout path) and the fix is small and well-scoped: make conclude() reload the canonical experiment and refuse via readout_ready(). Accepted, queued.",
+      "history": []
+    },
+    "d65eddf69fba": {
+      "verdict": "doing",
+      "date": "20260821",
+      "because": "Verified in shared/fsutil.py: load_json() (and the ad hoc loaders in scripts/render_cinematic.py, scripts/build_longform.py) collapse missing-file and corrupt-file into the same empty default, which the module's own header calls dedupe-blind/duplicate-upload risk for posted ledgers. Real architectural gap, but this is a multi-file migration (typed authoritative loader + backup/recovery path + per-ledger risk migration + new corruption tests) that deserves a dedicated session, not a same-run patch alongside today's other fixes. Accepted as long-term direction, queued.",
+      "history": []
+    },
+    "ab128687aaf7": {
+      "verdict": "doing",
+      "date": "20260821",
+      "because": "Verified in funnel/media_funnel.py:1401 -- required_word not in title_l is a raw substring test, so entity='Elon Musk' keeps candidate titles like 'Muskox herd expands' and 'Muskrat population grows'. Genuine disambiguation bug, but small and low-risk (whole-token comparison instead of substring, a few table-driven test cases). Accepted, queued for a quick pickup -- not built this run to keep this session's one build (the critical media_judge bug) done properly rather than spreading across multiple changes.",
+      "history": []
     }
   }
 }
