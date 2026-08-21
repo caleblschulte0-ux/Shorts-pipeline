@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d",
+  "safe_request_id": "reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2dffb4199b26cfd06c424cdb259594042898d870814a365297a2992f8c289e9c",
+  "prompt_used": "An editorial illustration for a short-form video: warehouse inventory shelves. It accompanies the narration: \"unpaid weekend inventory counts\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+    "filename": "20260821__reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "848c89eff0fbd015fa3d9688c2f5cbfab946740bc9c4f0dca425871bd30c201a",
+    "bytes": 1489752,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:17.865Z",
+  "error": null,
+  "retryable": false
+}
