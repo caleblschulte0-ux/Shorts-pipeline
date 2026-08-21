@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260819",
+  "updated": "20260821",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -873,6 +873,92 @@
       ],
       "last_seen": "20260819",
       "first_seen": "20260819"
+    },
+    "5b8318ee7172": {
+      "title": "Pinned image URLs certify themselves as on-topic",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "funnel/media-judging",
+      "files": [
+        "funnel/media_judge.py",
+        "exchange/bundles/20260819/bundle.json",
+        "exchange/bundles/20260819/phase_b_report.json",
+        "tests/test_exchange.py"
+      ],
+      "observation": "When judge_package receives a shot that already has image_url but no separate candidate record, it invents candidate title and query from that same shot. judge_shot then measures the shot phrase against those copied fields, so an unrelated URL earns full semantic overlap; absent dimensions are also awarded the resolution component. The exchange therefore suppresses AI requests for media it has not actually verified as relevant.",
+      "proposal": "Make a bare pinned URL fail closed as semantically unverified: never synthesize candidate metadata from the narration or search ask, carry the resolver's real title/query/dimensions/provenance into the judge, and classify missing metadata or an unknown judge result as a gap that requests a stronger replacement. Add an adversarial test proving an unrelated URL cannot become strong merely because its shot has a phrase and query.",
+      "evidence": "funnel/media_judge.py:72-76 defines candidate evidence, but lines 199-207 create title=shot.phrase and query=shot.query for a pinned URL; lines 102-130 then score that self-supplied text and award unknown dimensions as not-small. In exchange/bundles/20260819/bundle.json, reddit-logged-every-call is recorded strong_fraction 1.0 and reddit-landlord-deposit-audit 0.875, yielding only one request, while exchange/bundles/20260819/phase_b_report.json records 13 self_filled and one unfilled image after the ChatGPT no-show. Directly judging phrase 'the binder was thicker than the schedule board' with https://example.com/completely-unrelated.jpg through this fallback returns strong, score 0.933.",
+      "signature": "5b8318ee7172",
+      "last_seen": "20260821",
+      "first_seen": "20260821"
+    },
+    "ab128687aaf7": {
+      "title": "Entity title filtering accepts substring lookalikes",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "funnel/entity-disambiguation",
+      "files": [
+        "funnel/media_funnel.py",
+        "tests/test_media_funnel_cache.py"
+      ],
+      "observation": "The media prefilter says it requires the entity's final distinctive word in an article title, but implements that requirement as a raw substring. A search for Elon Musk therefore keeps titles about Muskox or Muskrat, allowing an explicitly wrong subject into the scored candidate set.",
+      "proposal": "Compare the required entity word against normalized whole title tokens (preserving apostrophe and hyphen handling) rather than a substring, and add table-driven cases for Musk/Muskox, Ann/annual, possessives, and punctuation so recall for real surname headlines remains intact.",
+      "evidence": "funnel/media_funnel.py:1373-1402 documents an entity-name filter, extracts required_word, then checks `required_word not in title_l`. Calling _prefilter with entity='Elon Musk' keeps Candidate titles 'Muskox herd expands' and 'Muskrat population grows' as well as 'Musk announces launch'; tests/test_media_funnel_cache.py has no boundary-disambiguation fixture.",
+      "signature": "ab128687aaf7",
+      "last_seen": "20260821",
+      "first_seen": "20260821"
+    },
+    "86ad3ba9d045": {
+      "title": "Experiment conclusions bypass their age and sample floor",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "shared/experiment-governance",
+      "files": [
+        "shared/experiments.py",
+        "tests/test_retro.py"
+      ],
+      "observation": "The experiment register advertises that early conclusions are structurally impossible and implements readout_ready with both day and sample thresholds, but conclude never calls it. Any caller holding an experiment dict can immediately persist adopted, reverted, or inconclusive with zero samples, bypassing the register's central safety property.",
+      "proposal": "Make conclude reload the canonical experiment, require running/readout_due status, call readout_ready using the persisted sample count and conclusion time, and refuse with the exact readiness reason unless both floors pass. Add tests that direct conclusions at day zero and with zero samples cannot mutate the register, plus a positive test after both floors pass.",
+      "evidence": "shared/experiments.py:1-23 says early conclusions are structurally impossible; lines 150-164 implement the two-floor readiness check; lines 175-217 calculate and persist a verdict without invoking that check. tests/test_retro.py:362-410 exercises conclusion outcomes but its helper ages experiments eight days and never proves conclude itself rejects an under-age or under-sampled experiment.",
+      "signature": "86ad3ba9d045",
+      "last_seen": "20260821",
+      "first_seen": "20260821"
+    },
+    "d65eddf69fba": {
+      "title": "Authoritative state cannot distinguish corruption from absence",
+      "horizon": "long_term",
+      "severity": "high",
+      "area": "shared/state-integrity",
+      "files": [
+        "shared/fsutil.py",
+        "scripts/render_cinematic.py",
+        "scripts/build_longform.py",
+        "tests/test_fsutil_writes.py"
+      ],
+      "observation": "The shared JSON reader returns the caller's empty default for both a missing file and any parse/read failure. That policy is acceptable for expendable caches but unsafe for authoritative posted ledgers: a corrupt dedupe log becomes an empty log, and upload code proceeds as if nothing has shipped. The module header itself identifies corrupt posted state as duplicate-upload risk, yet the read API erases the distinction.",
+      "proposal": "Separate optional cache reads from authoritative-state reads. Give authoritative ledgers a typed/schema-checked loader that fails closed on corruption, preserves the bad bytes, and can recover from a verified backup or git copy before publishing; keep default-on-error only for explicitly expendable caches. Migrate posting and permission ledgers by risk, and test missing, corrupt, wrong-shape, and recoverable states independently.",
+      "evidence": "shared/fsutil.py:1-8 calls corrupt posted logs fatal, while lines 71-80 catch every exception and return default. scripts/render_cinematic.py:251-259 uses that loader with an empty explainer posted map before upload and lines 272-281 uses it again after upload; scripts/build_longform.py:149-153 likewise defaults its posted ledger to empty. tests/test_fsutil_writes.py covers atomic/no-op writes but has no authoritative-read corruption case.",
+      "signature": "d65eddf69fba",
+      "last_seen": "20260821",
+      "first_seen": "20260821"
+    },
+    "aaeb12de3ebd": {
+      "title": "Restore explainer delivery before interpreting its topic test",
+      "horizon": "strategy",
+      "severity": "critical",
+      "area": "explainer/channel-operations",
+      "files": [
+        "doctor/evidence.json",
+        "config/channel_registry.json",
+        "retro/20260819/brief.json",
+        ".github/workflows/explainer.yml"
+      ],
+      "observation": "Explainer is enabled at four posts per day but posted only three videos in the last fourteen days, all on August 13-14, and zero on August 19. The channel has mature winners, but the latest retro has no videos in its 24-hour, 72-hour, or 7-day maturity windows, so the standing superlative-vs-finance topic experiment cannot accumulate a valid current sample. The observable bottleneck is before posted-log append; unlike trending, evidence has no per-run explainer production outcome to localize which internal stage stopped.",
+      "proposal": "Keep the four-per-day quality target and the already-filed topic experiment unchanged, but make delivery recovery the channel's first objective: dispatch and supervise the registered schedule path, record an explainer production outcome with attempted, showrunner-held, render-failed, upload-failed, and uploaded counts, and require a short run of complete 4/4 days before interpreting or changing the topic mix. Preserve every current showrunner and quality hold unchanged while raising cadence.",
+      "evidence": "doctor/evidence.json channel_performance.explainer shows only 1 post on 2026-08-13 and 2 on 2026-08-14 out of a registry target of 4/day, and alarm.no_posts_explainer records 0/4 on 2026-08-19; production_runs contains only trending outcomes. config/channel_registry.json channels.explainer sets target_count=4 and fails closed on publish. retro/20260819/brief.json channels.explainer shows last_7d videos=3 but n=0 in every maturity window. .github/workflows/explainer.yml:589-595 is the guarded schedule path and lines 655-671 persist the posted log, but no channel production outcome is written.",
+      "signature": "aaeb12de3ebd",
+      "last_seen": "20260821",
+      "first_seen": "20260821"
     }
   }
 }

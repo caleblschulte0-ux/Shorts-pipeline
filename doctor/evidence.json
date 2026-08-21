@@ -1,66 +1,69 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260820",
-  "judged_date": "20260819",
+  "date": "20260821",
+  "judged_date": "20260820",
   "alarm": {
-    "date": "20260819",
+    "date": "20260820",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_finalizer",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260819 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260819/response.json, exchange/bundles/20260819/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
-        "code": "chatgpt_task_failed_media",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260819 (the bundle asks for 14 image(s)).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260819/media-progress/STARTED.json, \u2026/<safe_request_id>.json, \u2026/FAILED-<id>.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
-        "code": "no_posts_explainer",
-        "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260819 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260819. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 1/4 posted for 20260820.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 4/6 posted for 20260819.",
+        "detail": "third: 4/6 posted for 20260820.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/6 posted for 20260819.",
+        "detail": "trending: 4/6 posted for 20260820.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260819: production outcome says 2/6 uploaded and repair never completed (0 quarantined, 8 failed).",
+        "detail": "trending 20260820: production outcome says 4/6 uploaded and repair never completed (2 quarantined, 2 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
-      },
-      {
-        "code": "chatgpt_exchange_silent",
-        "severity": "note",
-        "detail": "ChatGPT answered NOTHING for 20260819 \u2014 1 image request(s) published, zero checkpoints, no response, no DONE (day 1 of silence).",
-        "fix": "The days still ship via self-fill (Policy A), but weak stock is what the showrunner keeps blocking. Check the 6:00/7:00 ChatGPT scheduled tasks in the ChatGPT app \u2014 the repo side is verified and waiting."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 2/6; 4 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 4/6; 2 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
-      "doctor: findings current (20260818)"
+      "chatgpt finalizer: artifact present",
+      "chatgpt media: artifact present",
+      "exchange: 14/14 ChatGPT images pinned",
+      "doctor: findings current (20260820)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260820",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 8,
+      "uploaded": 4,
+      "quarantined": 2,
+      "failed": 2,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/fAvkc5jS2G0",
+        "https://youtube.com/shorts/_byFwjXWagg",
+        "https://youtube.com/shorts/3l7VD1QGtkA",
+        "https://youtube.com/shorts/D8AY9QvF6GU"
+      ]
+    },
     {
       "date": "20260819",
       "channel": "trending",
@@ -160,923 +163,9 @@
       "video_urls": [
         "https://youtube.com/shorts/XHDB8RIQHTM"
       ]
-    },
-    {
-      "schema": "production-channel-outcome/v1",
-      "date": "20260813",
-      "channel": "trending",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 1,
-      "quarantined": 1,
-      "failed": 8,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/68qpwmWkouY"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-10T10:05:14+00:00",
-      "slug": "airbus_a380",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Every visual is unrelated stock \u2014 a sepia 1900s photo, small children, and a politician at a podium \u2014 sitting over an adult wedding-betrayal narration, with no mascot, no data demonstration, and an ending mid-sentence.",
-      "auto_fails": [
-        "junk_imagery: mid0 (t=2.50s) shows a news photo of a man in a suit at a podium behind narration about a wedding betrayal; hook@0.3-0.8 uses a sepia ~1900s photo of two children on porch steps over 'I'D BEEN PLANNING MY WEDDING FOR MONTHS' \u2014 none of the imagery matches the story, and mid1/mid2/mid3 are generic stock photos of children while the narration is about an adult sister and a fiance.",
-        "decorative_mascot: The mascot Data does not appear in a single frame from hook@0.3 through payoff@-0.4 \u2014 there is no performer at all, let alone a setup->action->payoff bit."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 165
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T10:17:19+00:00",
-      "slug": "rey_fenix",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Two beats cut to wholly unrelated archival imagery (a Georgian courtroom engraving and a silent-film interior), and the video ends mid-sentence on 'LUXURY' with no payoff.",
-      "auto_fails": [
-        "junk_imagery: mid4 (t=24.26s) shows a black-and-white silent-film clip of a man in a room with easels and a horse painting under the caption 'BUT WHAT HAPPENED NEXT', and mid3 (t=18.82s) is an 18th-century engraving of a British courtroom under 'YOU'RE GONNA PAY ME BACK' \u2014 neither belongs in a modern story about a sister misusing a credit card."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 95
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-10T10:24:35+00:00",
-      "slug": "alaska_airlines_flight",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Clean captions and constant gameplay motion, but the story is illustrated by photos that don't match it \u2014 a snake close-up carries the entire ending of a hijack story.",
-      "auto_fails": [
-        "junk_imagery: mid5 (t=39.53s) and both payoff frames fill the top panel with a macro photo of a snake's head in moss for an Alaska Airlines hijack story; mid4 (t=32.13s) is an unrelated smiling police officer snapshot in an office."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 125
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:32:22+00:00",
-      "slug": "waymo_won_the_robotaxi_war__cruise_didn_",
-      "score": 78,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "The Waymo-vs-Cruise divergence lands hard once the axis rescales, but the first six seconds are a near-black frame with two invisible lines pinned to the baseline.",
-      "auto_fails": [
-        "empty_void: hook@0.3\u2013mid2 (t=0.30\u20136.45s) leave roughly the top 75% of the 60K-scaled plot as empty black while both lines crawl in a thin strip along the zero axis."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:33:22+00:00",
-      "slug": "the_detour_that_broke_the_suez_canal",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:34:24+00:00",
-      "slug": "vaccine_preventable_diseases_are_roaring",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:35:26+00:00",
-      "slug": "eggs_now_cost_more_than_milk__seriously_",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:39:00+00:00",
-      "slug": "she_fined_me_over_a_garden_gnome__so_i_r",
-      "score": 49,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "One frozen AI still carries ~50 seconds of story over a half-black gameplay panel \u2014 the beats are narrated but never shown.",
-      "auto_fails": [
-        "dead_air: The top illustration panel is pixel-identical across mid1 (12.78s), mid2 (23.06s), mid3 (33.34s), mid4 (43.62s), mid5 (53.90s) and both payoff frames \u2014 ~50s of consecutive beats sharing one frozen shot, even though the gameplay underlay keeps the measured static run at 0.0s.",
-        "empty_void: Lower gameplay half is a near-black void with one small arrow at mid3 (33.34s) and mid5 (53.90s), and hook@2.2/mid0 (2.5s) are almost entirely black under the post card; the 0.006 dark_fraction reads pure-black pixels only and misses these near-black navy fills."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.006,
-        "sampled": 168
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:42:30+00:00",
-      "slug": "she_waved_a_rival_store_s_coupon_at_me__",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "One garbled, off-subject AI photo sits frozen over the entire 34-second story \u2014 there is no visual storytelling here, just a caption crawl on stock gameplay.",
-      "auto_fails": [
-        "junk_imagery: mid1\u2013payoff@-0.4 all carry the same AI photo of a young girl in a store aisle with garbled sign text ('Rrou'/'notu') \u2014 it does not depict an adult customer waving a rival coupon at a cashier.",
-        "dead_air: The top illustration panel is pixel-identical across mid1 (10.63s), mid2, mid3, mid4, mid5 and payoff@-0.4 (44.73s) \u2014 ~34s of one frozen shot; only the gameplay half moves, so the story half is identical beat to beat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 135
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T09:51:37+00:00",
-      "slug": "young_girl_finds_whale_stranded_on_austr",
-      "score": 22,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "This is a keyword-matched stock reel: the beats meant to show a stranded whale show a cyclone satellite image and a night city skyline, there is no data demonstration and no mascot at all, and the video ends mid-sentence with no payoff.",
-      "auto_fails": [
-        "junk_imagery: mid0 (t=2.50s) top panel is a grayscale cyclone satellite image (\"Himawari-9 | AHI | Visible (Band 3)\") under the caption \"MASSIVE HUMPBACK WHALE\", and mid5/payoff@-1.8 show a night city skyline over \"WHEN I WITNESSED A REAL MIRACLE DAY\" \u2014 neither has anything to do with a stranded whale; mid4 also carries a visible \"RELAX\" stock watermark.",
-        "decorative_mascot: Data never appears in any sampled frame (hook@0.3 through payoff@-0.4) \u2014 the mascot is not merely decorative, he is entirely absent, so there is no setup\u2192action\u2192payoff bit anywhere."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 132
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T10:05:47+00:00",
-      "slug": "watch__moment_powerful_earthquake_shakes",
-      "score": 22,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "This is not a data video at all: it is a Reddit-style narration slideshowed over keyword-matched stock photos and unrelated Minecraft parkour, with no data demonstration and no mascot anywhere.",
-      "auto_fails": [
-        "junk_imagery: mid3 (t=23.08s) shows a construction-fence photo of a European brick building under 'WARNING' and mid5/payoff (t=36.80-38.40s) a boat on a dock under 'DANGER' \u2014 neither has any connection to a family reunion inheritance story; hook@0.3 uses a 19th-century oil painting of a crone and baby for 'family reunion'.",
-        "decorative_mascot: No mascot exists at all; the only character is a generic Minecraft parkour avatar in mid4/payoff@-0.4 running a course entirely unrelated to the narration \u2014 pure filler, no bit, no setup->action->payoff."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 116
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:11:55+00:00",
-      "slug": "waymo_won_the_robotaxi_war__cruise_didn_",
-      "score": 74,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "The 2023 overtake and the 500K finish land hard, but the first four seconds are two flat lines hugging the bottom of a mostly-black 60K axis \u2014 the race has no visible stakes until it is half over.",
-      "auto_fails": [
-        "empty_void: hook@0.3 through mid1 (t=4.47s) keep both lines pinned under 10K on a 60K axis, leaving roughly the top 80% of the plot as pure black with nothing in it; dark_fraction=1.0."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:12:55+00:00",
-      "slug": "the_detour_that_broke_the_suez_canal",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:13:57+00:00",
-      "slug": "vaccine_preventable_diseases_are_roaring",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:14:58+00:00",
-      "slug": "eggs_now_cost_more_than_milk__seriously_",
-      "score": 0,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 0
-      },
-      "one_line": "blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:19:02+00:00",
-      "slug": "she_fined_me_over_a_garden_gnome__so_i_r",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Solid topical shots for the first half, but the last ~11s freezes on one repeated clock still and the captions collide at seg4 \u2014 the punchline lands on a stale frame.",
-      "auto_fails": [
-        "dead_air: Two consecutive beats are visually identical up top \u2014 the same council-meeting clock still fills the top panel unchanged at mid4 (t=38.55), mid5 (t=47.57), payoff@-1.8 and payoff@-0.4, ~11s of one frozen illustration.",
-        "empty_void: The bottom gameplay panel is near-black wasted space at mid2 (t=20.53) and mid3 (t=29.54) \u2014 an almost entirely black half-frame carrying only a caption line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 149
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-11T12:23:16+00:00",
-      "slug": "she_waved_a_rival_store_s_coupon_at_me__",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The story's climax is served by one dark wallet still frozen for the last ten seconds, and the final caption is garbled \u2014 the payoff never lands.",
-      "auto_fails": [
-        "dead_air: The top illustration panel is the IDENTICAL wallet shot at mid4 (35.67s), mid5 (43.97s), payoff@-1.8 (44.17s) and payoff@-0.4 (45.57s) \u2014 the same still held through the entire final ~10s, four sampled beats with zero change.",
-        "empty_void: mid4/mid5/payoff frames: the upper half is a large dark near-black stone field with one small wallet and nothing else happening, wasting half the frame for the climax."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 138
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-12T09:28:55+00:00",
-      "slug": "lilly_just_overtook_novo_in_the_weight_l",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely well-built two-line race that lands the overtake and the '#1 Eli Lilly' payoff, held back by a hook that promises a flip while showing the opposite and a right edge that clips its own labels.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-12T09:31:01+00:00",
-      "slug": "the_race_to_a_billion_ai_users",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuine photo-finish race with a real payoff, undercut by an opening 2.5 seconds of empty black grid and labels clipping off the right edge.",
-      "auto_fails": [
-        "empty_void: dark_fraction=1.0, and from hook@0.3 through mid0 (t=2.5s) the y-axis is pinned at 120M while both series sit under 5M, leaving roughly 95% of the plot area as flat black with a hairline at the baseline."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-12T09:33:03+00:00",
-      "slug": "wolves_came_back__the_elk_paid_for_it_",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A real, sourced elk-decline chart wrecked by a scraped 'Elk Grove' town-crest logo, a blank white wolf swatch, and a half-empty black frame where the wolf line sits invisible at zero.",
-      "auto_fails": [
-        "junk_imagery: Every frame (hook@0.3 through payoff@-0.4) tags 'Northern range elk' with a scraped 'ELK GROVE' municipal/village crest logo \u2014 an irrelevant name-match graphic \u2014 and tags 'Gray wolves' with a blank white rectangle, a broken/missing-image placeholder.",
-        "empty_void: dark_fraction 1.0 and, from mid1 (t=4.47s) onward, the entire right-and-centre plot area above the elk line is unbroken black; the 'Gray wolves' series (31\u2013108) is pinned flat on the 0 line of a 20K axis, so half the frame carries nothing."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-12T09:35:06+00:00",
-      "slug": "the_year_us_debt_beat_the_whole_economy",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuine two-line race with a real 2015 crossover and a leaderboard flip, undercut by clipped axis labels in every frame and a hook caption that ghosts illegibly over an empty chart.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-12T09:39:52+00:00",
-      "slug": "he_banned_early_clock_ins__so_i_stopped_",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The bottom gameplay is alive but the story half is one frozen, out-of-focus alarm clock held for the entire 40-second body \u2014 the beats are narrated, never shown.",
-      "auto_fails": [
-        "dead_air: The top illustration panel is the identical out-of-focus alarm clock, hands frozen at ~10:10, at mid1 (12.11s), mid2 (21.71s), mid3 (31.32s), mid4 (40.93s), mid5 (50.53s) and payoff@-0.4 (52.13s) \u2014 the content-bearing half of the frame never changes for ~40s across every story beat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 158
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:27:55+00:00",
-      "slug": "china_just_passed_japan_in_car_exports",
-      "score": 78,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, honest, correctly-branded graph race whose crossover payoff lands \u2014 but it opens on a static 2018 chart under an opaque caption box, and the mid-race frames waste half the screen on empty black.",
-      "auto_fails": [
-        "empty_void: mid1 (t=4.47s) and mid2 (t=6.45s): the entire 1M\u20134.7M band, roughly half the frame, is flat black with only two thin flat lines; dark_fraction=1.0."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:30:00+00:00",
-      "slug": "streaming_just_beat_cable_and_broadcast",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The race itself is clean and the 2025 crossover genuinely lands, but the first second is an obscured static grid and label collisions dog the whole run.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:32:15+00:00",
-      "slug": "the_airport_that_knocked_atlanta_off_the",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "The chart never shows the lead change the title and hook sell \u2014 Atlanta stays #1 in the leaderboard from frame one to the '#1 Atlanta' end card, so the video disproves its own premise.",
-      "auto_fails": [
-        "empty_void: The whole 0\u201340M band of the plot is flat black in every frame (hook@1.5, mid3 t=8.43s), dark_fraction 1.0, and at hook@0.3\u20132.2 the entire right half of the plot is empty before the lines arrive."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:34:41+00:00",
-      "slug": "vinyl_is_outselling_cds_again",
-      "score": 75,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely good race \u2014 real crossover, moving tips, reordering leaderboard \u2014 sabotaged by irrelevant scraped brand logos (a SEGA logo standing in for CDs) riding on every data point.",
-      "auto_fails": [
-        "junk_imagery: Every frame from hook@0.3 to payoff@-0.4 uses a scraped SEGA game-company logo as the marker for 'CDs' and a random 'Vinyl Cache' retailer logo for 'Vinyl' \u2014 neither has anything to do with RIAA album revenue, and both are squashed into unreadable smears that sit on top of the line tips (mid2 t=6.45s, mid4 t=10.40s)."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:38:12+00:00",
-      "slug": "he_said_email_everything__so_i_did_",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "One frozen cubicle photo carries 39 of the 51 seconds \u2014 the story is narrated, never shown.",
-      "auto_fails": [
-        "empty_void: mid1 bottom half is near-solid black with nothing but the caption 'FIND BY ME.' and a sliver of the cube at the far left; mid5 repeats the same near-black lower half around 'ONCE SAID A'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 152
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:42:50+00:00",
-      "slug": "she_wouldn_t_believe_i_don_t_work_here__",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "One garbled AI store-aisle still is frozen on the top half for the last 34 seconds while the narration moves through four different beats \u2014 the story is never visually demonstrated.",
-      "auto_fails": [
-        "junk_imagery: mid1/mid2/mid3 top half: AI-generated store-aisle worker with a smeared, featureless face and melted, fingerless hands \u2014 a visibly garbled cutout.",
-        "dead_air: The illustration track is a single frozen still: mid1 (10.47s), mid2 (18.45s), mid3 (26.42s), mid4 (34.39s), mid5 (42.37s), payoff@-1.8 and payoff@-0.4 are pixel-identical in the top half \u2014 ~34s with no change while captions move through four different story beats."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 133
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-13T09:50:09+00:00",
-      "slug": "hi",
-      "score": 22,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "This is a generic two-panel Reddit-story/Minecraft cut with mismatched stock photos and zero data demonstration or mascot performance \u2014 it does not meet this channel's bar at all.",
-      "auto_fails": [
-        "junk_imagery: mid5/payoff@-1.8 and payoff@-0.4 show an unrelated stock portrait of a woman at a restaurant table while the narration is 'on the text\u2026 ago'; mid4 (t=33.97) is a black-and-white thumb/coin stock clip with no connection to the wedding story.",
-        "decorative_mascot: No mascot appears in any frame (hook@0.3 through payoff@-0.4) \u2014 Data performs no bit at all.",
-        "empty_void: mid1 (t=10.37) top half is a small letterboxed image floating in a large flat navy field, and mid4 (t=33.97) wastes most of the top panel on flat grey; the pillarboxed navy bars persist through mid2/mid3/payoff frames."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 132
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-14T09:37:54+00:00",
-      "slug": "weight_loss_drugs_just_crushed_bariatric",
-      "score": 83,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely great data story \u2014 245K surgeries flat while GLP-1 goes 354K \u2192 40M \u2014 undercut by an opening that spends its first two seconds as a title card over an empty grid.",
-      "auto_fails": [
-        "empty_void: Through the entire first half the plot area is near-empty black \u2014 at hook@2.2 and mid0 (t=2.50s) both lines are crushed into the bottom ~10% of a 4M-tall axis, leaving roughly two-thirds of the frame unused black."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-14T09:39:38+00:00",
-      "slug": "one_wnba_team_now_outdraws_the_whole_lea",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A clean, honest graph race with a real crossover and a legible leaderboard reorder \u2014 held back by a flat title-card hook and labels that run off the right edge.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-14T09:41:35+00:00",
-      "slug": "the_electric_truck_lead_just_flipped_twi",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The double lead-flip genuinely lands on the leaderboard, but the first half of the video is a mostly black frame with two hairlines in it, and the craft blemishes (ghosted caption fade, clipped axis label, constantly rescaling y-axis) make it read as an unfinished chart export rather than a designed short.",
-      "auto_fails": [
-        "empty_void: dark_fraction 1.00 \u2014 at hook@0.3 and hook@2.2 the entire plot area below 15K is black with one near-invisible gray Tesla stub, and at mid0 (t=2.50s) roughly the bottom two-thirds plus the right margin is dead black; the frame's space is unused until ~8s."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-14T09:42:55+00:00",
       "slug": "china_s_humanoid_robots_went_from_hundre",
@@ -1853,16 +942,928 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T09:58:41+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 35,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "Three near-identical bar-race charts and a dot grid that never shows the 1.36% the title promises, with the mascot parked in the same spot for the whole runtime.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers in the identical spot over the 1972/1983 bars from hook@0.3 to seg1:end and then just perches on the 1972 bubble from seg3:start to payoff@-0.4 \u2014 no setup->action->payoff tied to any stat.",
+        "bare_number_card: seg3:mid and seg3:end are five plain purple discs printing 2.6 / 2.8 / 2.2 / 2.3 / 2.1 on empty background \u2014 the discs are barely size-differentiated, so it is numbers on blobs, not a demonstration.",
+        "empty_void: seg3:start wastes the top ~40% of the frame on flat black under the title while five tiny dots sit in the middle; seg4:start/seg4:end leave the entire lower third dead below the 2004/2014 discs."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 239
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:12:07+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The headline stat \u2014 urban growth falling to 1.36% \u2014 is never actually shown: the final segment is five static number-blobs in a half-empty frame, with 2025 missing entirely.",
+      "auto_fails": [
+        "decorative_mascot: Data is perched on the 1972 bar in essentially the same spot from hook@0.3 to payoff@-0.4 (seg1:mid, seg2:mid, seg3:end all show him riding the top-left bar/bubble with only limb wiggle) \u2014 no setup\u2192action\u2192payoff bit tied to the slowdown.",
+        "bare_number_card: seg2:mid and seg3:start are five plain purple circles labelled 2.6 / 2.8 / 2.2 / 2.3 / 2.1 on flat background \u2014 numbers on blobs, no fill, race, shrink or physical metaphor for a decaying growth rate.",
+        "empty_void: seg2:start wastes the lower ~45% of the frame \u2014 five small dots clustered in the upper third, the 1983-2014 row floating with nothing below it down to the source line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.013,
+        "sampled": 239
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:19:26+00:00",
+      "slug": "world-hydropower-fell-below-its-1990-level",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent bar-race open ruined by a truncated title and a closing bubble beat that is five same-size number blobs floating in half a black frame.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers over the bar tips doing nothing consequential in seg0:start\u2192seg1:end, then floats in empty space above the bubbles in seg3:start/seg3:mid/seg4:end \u2014 no setup\u2192action\u2192payoff tied to any stat, and he occludes the 1990 bar he is parked on.",
+        "bare_number_card: seg3:mid and seg3:end are five near-identical green circles printing '8.8 / 9.7 / 9.5 / 9.1 / 9.6' \u2014 the bubbles barely differ in size, so it is numbers on blobs, not a demonstration of the 8.82%\u219216.5% jump the narration describes.",
+        "empty_void: seg3:start leaves the entire lower ~45% of the frame black with five pinprick dots and a barely-legible dim '8.82% of energy' caption; the same dead band persists through seg3:end and payoff@-0.4."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.046,
+        "sampled": 152
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:27:47+00:00",
+      "slug": "world-hydropower-fell-below-its-1990-level",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The bar-race half works, but seg3 collapses into equal-sized circles with numbers typed inside \u2014 the biggest stat in the script is the one thing never demonstrated.",
+      "auto_fails": [
+        "bare_number_card: seg3:mid and seg3:end are five identical-sized green circles printing 8.8 / 9.7 / 9.5 / 9.1 / 9.6 \u2014 the circles never scale with the value, so the numbers are typed on blobs with no demonstration at all."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.058,
+        "sampled": 155
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:35:04+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three interchangeable auto-generated bar/bubble charts with Data parked on top as a sticker \u2014 the numbers are printed, never demonstrated, and the chart subtitles are flatly wrong ('1972 PULLS AHEAD' on a chart where 1972 is the smallest bar).",
+      "auto_fails": [
+        "decorative_mascot: Data does nothing but stand/slide on top of the bars \u2014 hook@0.3 through seg1:end he is parked mid-frame over the 1972/1982 bars, and seg3:start\u2013payoff@-0.4 he just stands on the 11.1 bubble; no setup->action->payoff tied to the catch number anywhere.",
+        "bare_number_card: seg3:end and seg4:mid are five flat pink circles with '11.1 / 12.1 / 14.1 / 14.8 / 14.9' printed inside them, all drawn at essentially identical size \u2014 the number is the visual, nothing demonstrates it.",
+        "empty_void: seg3:start (t=26.09s) is a near-black frame with five tiny 20px dots and an empty band from the subtitle down to mid-frame; the top third and bottom third carry nothing."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.017,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:43:20+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Two competing bar races and a bubble grid animate correctly but nothing is directed: the hook is a slow chart build, the mascot just rides the top bar, labels clip off the right edge, and seg3 opens on a near-empty frame.",
+      "auto_fails": [
+        "decorative_mascot: He perches on the leading bar and never does a bit: same top-left perch from hook@0.3 to seg1:end, then simply sits on the 2013 bubble from seg3:start to payoff@-0.4 \u2014 no setup->action->payoff tied to any stat.",
+        "empty_void: seg3:start (t=25.99s) is almost entirely bare: five pinhead dots and year labels floating in a dark field with an empty top third and an empty bottom third; the same wasted lower third persists through seg4:mid."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.025,
+        "sampled": 121
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:49:06+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent bar-race template, but Data is a sticker riding the bar tips and the spending scene wastes most of the frame.",
+      "auto_fails": [
+        "decorative_mascot: Data merely perches on the bar tip and slides with it \u2014 identical standing pose at hook@0.8, seg1:mid, seg2:end and seg4:mid, with no setup->action->payoff tied to any stat.",
+        "empty_void: seg3:start is ~60% empty navy \u2014 five micro-bubbles and a thumbnail-sized mascot in the upper-left, the entire lower half unused."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.035,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T10:55:35+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Honest, well-sourced charts, but Data is a floating sticker for the entire 38s and the spending act is an unreadable bubble scatter with the mascot in a corner.",
+      "auto_fails": [
+        "decorative_mascot: Data merely drifts across the bars with no bit tied to any stat \u2014 he slides over the 1972/1982 bars in hook@0.3 through seg0:end, perches over the header in seg2:start, and floats aimlessly beside the bubbles in seg3:start\u2192seg4:end; no setup\u2192action\u2192payoff anywhere."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.017,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T14:42:13+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent bar-race motion, but the mascot is a floating sticker, the cereal beat's value labels render as garbled raw integers, and the map beat is half-empty dots in a void.",
+      "auto_fails": [
+        "decorative_mascot: Data merely hovers over the bars (seg0:mid, seg1:start) and later stands parked over the source line at the bottom of the map (seg3:start, seg3:mid, seg3:end, seg4:mid) with no setup->action->payoff tied to any stat.",
+        "empty_void: seg3:start and seg3:mid waste the whole right two-thirds: a small map pinned left, five unlabeled colored dots floating in empty navy, and the mascot shrunk into the footer."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.038,
+        "sampled": 157
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T14:55:34+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The map section is a mostly empty frame with an unlabeled dot column for eight seconds, and the cereal beat prints raw unformatted digits that clash with the narration.",
+      "auto_fails": [
+        "decorative_mascot: Data only rides the bar tip and then parks bottom-left on top of the source credit for the whole map section (seg3:start, seg3:mid, seg3:end, seg4:mid) \u2014 no setup\u2192action\u2192payoff tied to any stat.",
+        "empty_void: seg3:start/mid/end waste roughly the right two-thirds of the frame on five unlabeled 8-px dots with the world map shrunk into the far-left edge and nothing else in the space."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.018,
+        "sampled": 165
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:09:02+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The map half of the video (seg3) narrates a five-country ranking over an empty frame of unlabeled dots, and the hook opens on a slow bar build instead of an event.",
+      "auto_fails": [
+        "empty_void: seg3:start/mid/end \u2014 the entire right half holds five tiny unlabeled dots with no country names or values, the bottom third is bare, and the map is a small dim band on the left."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.03,
+        "sampled": 169
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:18:22+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The bars say the number fell while the voiceover says it tripled \u2014 the star demonstration contradicts the headline, and Data is a sticker sliding over the values.",
+      "auto_fails": [
+        "decorative_mascot: Data merely slides along the bar ends with no bit tied to the stat: he perches on the 1990/1997 bars at seg0:mid, glides to the 1998 bar at seg2:start, and hovers beside the 903.8 bubble from seg3:mid to payoff@-0.4 \u2014 no setup, action, or payoff, and at seg1:end he actually occludes the '10.2' value."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.065,
+        "sampled": 153
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:29:03+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent, readable bar races with real World Bank numbers, but Data is a bar-tip passenger for all 53 seconds and the methane scene wastes the frame while covering its own label.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same arms-out lab-coat pose glued to the leading bar tip from hook@0.3 through seg2:end and is still doing it over the bubbles at seg3:mid and payoff@-0.4 \u2014 he tracks the bar edge but never performs a setup->action->payoff bit tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.062,
+        "sampled": 160
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:39:16+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Real sourced data animated cleanly, but Data is a sticker in the same corner for 52 seconds and the charts keep colliding with their own labels.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked on the top-left leading bar/bubble in all 21 frames (hook@0.3, seg1:mid, seg2:end, seg3:mid, payoff@-0.4) with only pose jitter \u2014 no setup->action->payoff tied to the tripling stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.057,
+        "sampled": 158
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:48:06+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "It is a competent auto-generated bar/bubble chart, not a performance \u2014 the mascot decorates it and seg3's growth scene leaves half the frame empty.",
+      "auto_fails": [
+        "decorative_mascot: Data merely perches/slides on the bar ends with the same arms-up idle from seg0:mid to seg1:end, and at seg2:start he is parked on top of the title 'Population in the largest city' with no setup->action->payoff tied to any stat.",
+        "empty_void: seg3:start and seg3:mid leave the entire top third and bottom half of the 9:16 frame flat navy with five small bubbles clustered in the middle band; seg4 frames add a second duplicated source line stranded in the black under the card."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.047,
+        "sampled": 148
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T15:57:23+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent, legible chart animation, but the mascot is wallpaper for 40 straight seconds and seg2 spends twelve of them on five bars that look identical.",
+      "auto_fails": [
+        "decorative_mascot: From seg1:start through payoff@-0.4 Data is parked on top of the 1972 bar/bubble in the same upper-left spot \u2014 seg1:mid, seg2:mid and seg4:mid are the same perch with only a limb twitch; no setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.035,
+        "sampled": 144
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T16:06:20+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three back-to-back bar builds with the mascot parked as a title-blocking sticker for the first half \u2014 the data barely performs and neither does he.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 through seg2:end the mascot just hovers at the top of the frame overlapping the title (seg1:start, seg1:mid, seg2:mid) with no setup->action->payoff tied to any stat; only at seg3:mid does he finally ride the stacked blocks."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 144
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T16:20:33+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent bar-race motion, but the fertilizer beat is a near-empty map with a legend instead of a demonstration, and the video never shows the 2024 collapse its own title and closing line promise.",
+      "auto_fails": [
+        "decorative_mascot: Data drifts arms-out across the chart with no bit tied to any stat \u2014 hook@0.3 through seg1:end he just slides over the bars, and by seg3:mid/seg3:end (f14/f15) he is parked on top of the title where only his ears remain visible at seg4:start (f16); no setup->action->payoff.",
+        "empty_void: seg2:start (f10) wastes the frame \u2014 the top ~40% is bare dark blue, the world map is a dim postage stamp on the left, and the entire right column is five unlabeled 8px dots with a thumbnail-sized mascot below."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 207
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T16:37:38+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three generic bar/map builds with the mascot parked on top of the data \u2014 the fertilizer map beat is a mostly-empty frame and the payoff's numbers run off the right edge.",
+      "auto_fails": [
+        "decorative_mascot: Data changes pose but never performs a bit: at seg2:start (t=24.06s) and seg2:mid (t=30.57s) he simply stands at the bottom of the map with no setup->action->payoff tied to the 101,756% stat; in hook@0.8-seg0:end he merely drifts over the bars, occluding the 1972/1982 labels.",
+        "empty_void: seg2:start (t=24.06s): the world basemap is nearly invisible against the navy background and the upper half plus left-center of the 9:16 frame is empty dark space with five tiny unlabeled dots in a column."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 217
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T16:51:57+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three near-identical bar-chart screens with a mascot floating aimlessly over them, one near-empty map scene, and numbers clipped off the right edge \u2014 it demonstrates nothing the chart wouldn't show on its own.",
+      "auto_fails": [
+        "decorative_mascot: Data drifts across the same mid-frame spot in hook@0.3 through seg1:end and just stands at the bottom of the map in seg2:start/seg2:mid \u2014 no setup->action->payoff tied to any stat.",
+        "empty_void: seg2:start is a near-black frame: a tiny dim world map, five unlabeled dots on the right and the whole lower-left third empty; seg2:mid adds only one hoop."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 193
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T18:14:16+00:00",
+      "slug": "hospital-beds-per-person-are-higher-now-than-in-1975",
+      "score": 44,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The first ten seconds are a dim, half-empty title card whose heading contradicts the voiceover, and the mascot only starts performing two-thirds of the way in.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 through seg1:end the mascot is a thumbnail-sized figure parked at the bottom center, overlapping the source credit, doing no bit tied to the forest/fish stat; he only becomes a performer at seg3:mid where he climbs the line.",
+        "empty_void: hook@1.5 and seg0:mid: the entire upper-right and mid-right two-thirds of the 9:16 frame is flat dark navy holding only a column of five unlabeled grey dots, with the map crushed into the left edge and half of North America cropped off-frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.032,
+        "sampled": 186
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T18:25:10+00:00",
+      "slug": "hospital-beds-per-person-are-higher-now-than-in-1975",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three unrelated World Bank charts animate competently, but the title stat's own scene is mislabeled and stops five years short of the number the video is named after.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 179
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T18:36:17+00:00",
+      "slug": "hospital-beds-per-person-are-higher-now-than-in-1975",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The title's own claim is rendered backwards \u2014 seg2 labels 1975 the winner and omits the 2021 figure the video is built on.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 183
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T18:46:05+00:00",
+      "slug": "foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three generic World Bank bar/bubble builds with the mascot stapled over the title \u2014 the hook is exactly the slow chart build the rubric forbids, and seg3 opens on a near-empty frame.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked at the top edge overlapping the title in hook@0.3 through seg2:end and merely drifts left/right; at seg3:mid and seg4:start he stands beside the 1990 bubble doing nothing tied to the number \u2014 no setup/action/payoff anywhere.",
+        "empty_void: seg3:start (t=35.19s) wastes the top ~35% and bottom ~20% of the card on flat navy with five pinhead-sized dots; seg3:mid still leaves the whole upper half and lower-right quadrant empty."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.087,
+        "sampled": 173
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T18:56:38+00:00",
+      "slug": "foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 35,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 0,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three sourced World Bank charts animate honestly, but the layout is broken \u2014 titles truncated mid-word, the mascot sitting on top of the headline, and a closing card stacked over the scene title \u2014 and Data never does a bit.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 through seg1:end Data just perches on the tip of the top bar and slides right with it, and in seg3:start\u2013seg4:end he is parked on the 1990 bubble \u2014 no setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.081,
+        "sampled": 173
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T19:07:04+00:00",
+      "slug": "foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 35,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The energy-use scene degenerates into five equal-size number bubbles in a half-empty frame, and Data spends the whole video perched on a bar instead of performing.",
+      "auto_fails": [
+        "decorative_mascot: Data is perched on the 2000 bar in hook@0.3 through seg1:end and just rides it as it grows; at seg3:start/seg3:mid/seg4:end he stands beside the 1626 bubble doing the same clipboard idle \u2014 no setup->action->payoff tied to any stat.",
+        "bare_number_card: seg3:mid and seg3:end show 1626 / 1585 / 1636 / 1798 / 1786 inside five identical-size circles \u2014 the circle sizes never encode the values, so it is five numbers on plain blobs, not a demonstration.",
+        "empty_void: seg3:start (t=36.07) is ~60% empty navy \u2014 five tiny unlabeled dots in the middle band, blank top third under the title and blank bottom third above the source line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.082,
+        "sampled": 171
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T19:17:36+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A stock bar-race template run three times with text colliding everywhere, and the charts show land RISING while the title and narration claim it shrank.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked on the bar tip in seg0:start/seg1:mid and hovers over the 20.8 bubble in seg3:mid\u2013seg4:end with no setup->action->payoff; he only slides along with whatever bar is filling.",
+        "bare_number_card: seg1:start drops a giant green '104,217,084' slab across the bottom fifth of the frame \u2014 a raw number on a dark band, no demonstration attached.",
+        "empty_void: seg3:start is ~70% empty dark canvas \u2014 five tiny dots and two labels, the entire mid and lower-right of the frame unused; seg3:mid still leaves the band between the 25.6 row and the 93.9 bubble dead."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 183
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T19:28:40+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A competent bar-race build let down by a static perched mascot and captions/labels that collide with and overflow the frame \u2014 it never demonstrates anything, it just animates a chart.",
+      "auto_fails": [
+        "decorative_mascot: Data perches on the 1972 bar in the identical top-left spot from hook@0.3 to seg1:end and again on the 1972 bubble from seg3:start to payoff@-0.4 \u2014 he bobs but never performs a setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 184
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T19:40:20+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Data is a sticker parked on the top bar for all 66 seconds, and the final 9 seconds freeze under a closing card that overprints the chart title.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked on the leading edge of the top bar in all 21 frames \u2014 hook@0.3, seg0:mid, seg1:end, seg2:mid, seg3:end, payoff@-0.4 \u2014 arms out, sliding with the bar tip; no setup->action->payoff tied to any stat.",
+        "empty_void: seg2:start (t=37.35s) wastes over half the frame: the 1972/1982/1991 bubbles are near-invisible dots, the band from the header to the bubble row is bare, and the whole bottom third below '2001/2010' is empty."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 199
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T19:51:52+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The back half is a genuinely good animated-chart short, but the first eight seconds are an empty, motionless map with no number on screen, and the irrigation stat resolves to a bare list.",
+      "auto_fails": [
+        "bare_number_card: seg1:end resolves the whole irrigation stat as a plain text list \u2014 'Bangladesh 89 / Suriname 74.4 / Pakistan 54.2 / India 44.4 / Bahrain 40.9' \u2014 with dots that don't encode magnitude and a map that is never shaded by value.",
+        "dead_air: hook@0.3 through seg1:start (~0.3s\u20138.5s) is the same faint map, same five unlabeled dots and same tiny bobbing mascot \u2014 only the karaoke word changes for ~8s; the code detector's 0.0s longest_static misses it because caption text churns.",
+        "empty_void: seg1:start is almost entirely flat navy: a barely-legible map at 20% opacity, five tiny colorless dots in a right-hand column, and a mascot ~8% of frame height buried in the source credit \u2014 the whole upper-middle and lower third carry nothing."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 154
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T20:01:35+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Solid honest chart motion and a mascot who actually climbs the data, wrecked by text stacked on text \u2014 the hook caption sits on the mascot and the bar labels, and the payoff callout buries the title while Data walks off the right edge.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 152
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-20T20:11:42+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The charts are honest and the line-climb bit is genuinely good, but it opens on a slow, half-empty bar build with the mascot sitting on top of the data, and the closing callout box buries the title for the last six seconds.",
+      "auto_fails": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 156
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "1bcd40b 2026-08-20 exchange: phase A bundle for 20260820 [skip ci]",
-    "f345cd6 2026-08-20 exchange: DONE marker with a blank/missing date no longer fires any date (#295)"
+    "5fd4780 2026-08-20 doctor: findings for 20260820",
+    "458ca3a 2026-08-20 retro: brief + triage for 20260820 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-06": 2,
         "2026-08-07": 2,
         "2026-08-08": 1,
         "2026-08-09": 1,
@@ -1874,24 +1875,25 @@
         "2026-08-16": 3,
         "2026-08-17": 4,
         "2026-08-18": 4,
-        "2026-08-19": 2
+        "2026-08-19": 2,
+        "2026-08-20": 4
       },
-      "total_posted": 265,
-      "attempted": 265,
+      "total_posted": 269,
+      "attempted": 269,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
         "2026-08-13": 1,
-        "2026-08-14": 2
+        "2026-08-14": 2,
+        "2026-08-20": 1
       },
-      "total_posted": 194,
-      "attempted": 194,
+      "total_posted": 195,
+      "attempted": 195,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-06": 4,
         "2026-08-07": 4,
         "2026-08-08": 4,
         "2026-08-09": 4,
@@ -1904,11 +1906,13 @@
         "2026-08-16": 4,
         "2026-08-17": 3,
         "2026-08-18": 2,
-        "2026-08-19": 4
+        "2026-08-19": 4,
+        "2026-08-20": 4,
+        "2026-08-21": 1
       },
-      "total_posted": 183,
-      "attempted": 312,
-      "rejected_or_pending": 129
+      "total_posted": 188,
+      "attempted": 327,
+      "rejected_or_pending": 139
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1922,17 +1926,17 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 155,
+      "videos": 156,
       "top_by_vph": [
         {
-          "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
-          "vph": 0.41,
-          "views": 53
+          "title": "Hottest Planets",
+          "vph": 0.39,
+          "views": 412
         },
         {
-          "title": "Hottest Planets",
-          "vph": 0.4,
-          "views": 412
+          "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
+          "vph": 0.35,
+          "views": 53
         },
         {
           "title": "Probability In Everyday Life",
@@ -1940,14 +1944,14 @@
           "views": 229
         },
         {
-          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
-          "vph": 0.28,
-          "views": 34
-        },
-        {
           "title": "Why Chocolate Is About to Get Much More Expensive",
           "vph": 0.26,
           "views": 347
+        },
+        {
+          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
+          "vph": 0.24,
+          "views": 34
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -1957,40 +1961,54 @@
       "top_by_vph": [
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 2.8,
-          "views": 188
+          "vph": 2.25,
+          "views": 203
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 1.87,
-          "views": 308
+          "vph": 1.72,
+          "views": 324
         },
         {
-          "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
-          "vph": 0.82,
-          "views": 33
-        },
-        {
-          "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
-          "vph": 0.69,
-          "views": 111
+          "title": "Ohnepixel Gets Told 'What You Looking At Bud' In The Crowd",
+          "vph": 0.64,
+          "views": 28
         },
         {
           "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
-          "vph": 0.66,
-          "views": 154
+          "vph": 0.61,
+          "views": 157
+        },
+        {
+          "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
+          "vph": 0.61,
+          "views": 112
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260817/brief.json",
       "retro/20260818/brief.json",
-      "retro/20260819/brief.json"
+      "retro/20260819/brief.json",
+      "retro/20260820/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
   "open_backlog": [
+    {
+      "signature": "5b8318ee7172",
+      "title": "Pinned image URLs certify themselves as on-topic",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "new"
+    },
+    {
+      "signature": "aaeb12de3ebd",
+      "title": "Restore explainer delivery before interpreting its topic test",
+      "horizon": "strategy",
+      "severity": "critical",
+      "ruling": "new"
+    },
     {
       "signature": "2f7ee366fb9b",
       "title": "Malformed DONE payloads count as completed Finalizer runs",
@@ -2055,6 +2073,20 @@
       "ruling": "doing"
     },
     {
+      "signature": "86ad3ba9d045",
+      "title": "Experiment conclusions bypass their age and sample floor",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "d65eddf69fba",
+      "title": "Authoritative state cannot distinguish corruption from absence",
+      "horizon": "long_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "d64b063a21bd",
       "title": "Nonnumeric chart values pass structural validation",
       "horizon": "small_fix",
@@ -2081,6 +2113,13 @@
       "horizon": "small_fix",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "ab128687aaf7",
+      "title": "Entity title filtering accepts substring lookalikes",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "66364106b455",
