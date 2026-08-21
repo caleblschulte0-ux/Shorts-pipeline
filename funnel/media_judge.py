@@ -112,10 +112,15 @@ def judge_shot(shot: dict, media: dict | None, *,
         #    standing in for a named subject.
         missing_propers = sorted(propers - mtok) if propers else []
 
-        # 3. Resolution against the render target.
+        # 3. Resolution against the render target. Unknown dimensions are
+        #    NOT the same as "big enough" — a candidate with no reported
+        #    width/height is unverified, not verified-large, so it earns
+        #    neither the small-image penalty nor the big-image credit.
         w = int(media.get("width") or 0)
         h = int(media.get("height") or 0)
-        small = bool(w and h and min(w, h) < TARGET_MIN_EDGE)
+        has_dims = bool(w and h)
+        small = bool(has_dims and min(w, h) < TARGET_MIN_EDGE)
+        res_verified_ok = has_dims and not small
 
         # 4. Provenance.
         cls = str(media.get("source_class") or "unverified")
@@ -124,7 +129,7 @@ def judge_shot(shot: dict, media: dict | None, *,
         score = 0.0
         score += 0.45 * overlap
         score += 0.20 * (0.0 if missing_propers else 1.0)
-        score += 0.15 * (0.0 if small else 1.0)
+        score += 0.15 * (1.0 if res_verified_ok else 0.0)
         score += 0.10 * (cls_rank / 3.0)
         score += 0.10                      # baseline for having anything real
         score -= max(0.0, float(usage_penalty))
@@ -139,6 +144,8 @@ def judge_shot(shot: dict, media: dict | None, *,
         if small:
             reasons.append(f"low resolution {w}x{h} (target min edge "
                            f"{TARGET_MIN_EDGE})")
+        elif not has_dims:
+            reasons.append("resolution unverified (no width/height reported)")
         if cls_rank <= 1:
             reasons.append(f"unverified provenance ({cls})")
         if usage_penalty > 0:
@@ -158,9 +165,15 @@ def judge_shot(shot: dict, media: dict | None, *,
             out["wants"] = "image"
         return out
     except Exception:                                    # noqa: BLE001
-        return {"verdict": "unknown", "score": 0.0,
-                "reasons": ["judge failed"], "phrase": str(shot.get("phrase")
-                                                           or "")}
+        out = {"verdict": "unknown", "score": 0.0,
+               "reasons": ["judge failed"],
+               "phrase": str(shot.get("phrase") or "")}
+        try:
+            out["ai_prompt"] = ai_prompt(shot, script=script, title=title)
+            out["wants"] = "image"
+        except Exception:                                # noqa: BLE001
+            pass
+        return out
 
 
 def ai_prompt(shot: dict, *, script: str = "", title: str = "") -> str:
@@ -201,10 +214,20 @@ def judge_package(pkg: dict, media_by_shot: dict | list | None = None, *,
                 return media_by_shot.get(i) or media_by_shot.get(str(i))
             if isinstance(media_by_shot, list) and i < len(media_by_shot):
                 return media_by_shot[i]
-            # Fall back to whatever the package already pinned.
+            # Fall back to whatever the package already pinned. This is the
+            # ONLY path every real caller exercises (media_by_shot is always
+            # None in production — exchange_phase_a.py, registry_acceptance,
+            # exchange_dry_run all call judge_package(pkg, None)), so a bare
+            # pinned URL is the common case, not an edge case.
+            #
+            # Never synthesize title/query from the shot's own phrase or
+            # search query: judge_shot scores the candidate's text against
+            # that same phrase, so copying the phrase into the candidate's
+            # "title" guarantees ~100% overlap with itself regardless of
+            # what the URL actually shows. A bare pinned URL is genuinely
+            # unverified — pass only the URL and let it judge as such.
             if shot.get("image_url"):
-                return {"url": shot["image_url"], "query": shot.get("query"),
-                        "title": shot.get("phrase")}
+                return {"url": shot["image_url"]}
             return None
 
         verdicts = []
@@ -218,7 +241,10 @@ def judge_package(pkg: dict, media_by_shot: dict | list | None = None, *,
         counts = {"strong": 0, "weak": 0, "missing": 0, "unknown": 0}
         for v in verdicts:
             counts[v["verdict"]] = counts.get(v["verdict"], 0) + 1
-        gaps = [v for v in verdicts if v["verdict"] in ("weak", "missing")]
+        # "unknown" (the judge itself failed) is a gap too — it must never
+        # silently pass as fine just because it isn't "weak" or "missing".
+        gaps = [v for v in verdicts if v["verdict"] in
+               ("weak", "missing", "unknown")]
         n = max(1, len(verdicts))
         return {
             "slug": pkg.get("slug"),
