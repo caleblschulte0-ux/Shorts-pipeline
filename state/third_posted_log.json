@@ -4281,13 +4281,45 @@
       "director_cut": true
     },
     "clip-20260821-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/ConfidentDeterminedAnteaterDatSheffy-ZOH6uJfQhrMMgueR",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/igYeT670yI0",
       "title": "Rayasianboy: Masa Slapped Geo's Ass And Geo's Reaction Says It All",
       "kind": "twitch_clip",
-      "ts": "2026-08-21T11:41:19.028600+00:00",
+      "ts": "2026-08-21T11:41:22.954278+00:00",
+      "uploaded_at": "2026-08-21T11:41:22.954295+00:00",
+      "publish_at": "2026-08-21T17:00:00Z",
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/ConfidentDeterminedAnteaterDatSheffy-ZOH6uJfQhrMMgueR",
+      "streamer": "rayasianboy",
+      "series": "chaos",
+      "hook": "MASA JUST SLAPPED GEO'S ASS",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2830,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 10.48
+      },
+      "director_cut": true
+    },
+    "rejected-laconicdirtytrianglesaltbae-yvxaeazmj-h_gieq": {
+      "source_url": "https://www.twitch.tv/brucedropemoff/clip/LaconicDirtyTriangleSaltBae-yVXaeaZmj-h_gIEQ",
+      "streamer": "brucedropemoff",
+      "title": "\ud83c\udf5f",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static gameplay, aimless rambling, no ev)",
+      "ts": "2026-08-21T11:43:41.189717+00:00"
+    },
+    "clip-20260821-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/RespectfulFilthyBatteryDansGame-bsmJNwdP0myFFOyW",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22",
+      "kind": "twitch_clip",
+      "ts": "2026-08-21T11:46:23.610892+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
