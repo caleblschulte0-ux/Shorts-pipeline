@@ -496,16 +496,22 @@
       "revisit_after": "20260918"
     },
     "5b8318ee7172": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260821",
-      "because": "picked up this run",
+      "because": "Merged in PR #297 (commit 268f49b): judge_package no longer synthesizes candidate title/query from the shot's own phrase/search query for a bare pinned image_url, unknown width/height no longer earns free resolution credit, and an 'unknown' judge verdict now counts as a gap. 990 tests pass (3 new adversarial tests added), registry_acceptance 7/7.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260821",
           "because": "Verified in funnel/media_judge.py:199-207 \u2014 judge_package synthesizes candidate title/query FROM the shot's own phrase/query when a shot only has a pinned image_url, so judge_shot then scores that media against text copied from itself. A completely unrelated URL earns full semantic overlap and an unknown-dimension pass. This defeats the exchange's whole purpose of catching weak media and requesting AI replacements. Building this now: highest-ranked critical/bug, well-scoped, matches rule zero."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260821",
+          "because": "picked up this run"
         }
-      ]
+      ],
+      "commit": "268f49b"
     },
     "aaeb12de3ebd": {
       "verdict": "doing",
