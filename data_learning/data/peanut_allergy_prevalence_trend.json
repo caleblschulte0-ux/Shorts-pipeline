@@ -1,0 +1,20 @@
+{
+  "key": "peanut_allergy_prevalence_trend",
+  "title": "Peanut allergy prevalence among US children",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1997-2008",
+  "source": {
+    "name": "Addendum Guidelines for the Prevention of Peanut Allergy in the United States",
+    "publisher": "National Institute of Allergy and Infectious Diseases (NIAID)",
+    "url": "https://www.niaid.nih.gov/sites/default/files/addendum-peanut-allergy-prevention-guidelines.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-21"
+  },
+  "notes": "US childhood peanut-allergy prevalence roughly tripled between 1997 and 2008 (0.4% to 1.4%), per the serial cross-sectional prevalence surveys cited in NIAID's 2017 Addendum Guidelines for the Prevention of Peanut Allergy -- the rising-prevalence data that helped motivate the guideline reversal described in leap_study_avoidance_vs_consumption and peanut_allergy_before_after_guidelines.",
+  "points": [
+    {"label": "1997", "value": 0.4, "period": "1997"},
+    {"label": "2002", "value": 0.8, "period": "2002"},
+    {"label": "2008", "value": 1.4, "period": "2008"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "leap_study_avoidance_vs_consumption",
+  "title": "Peanut allergy rate by age 5: avoidance vs. early consumption",
+  "unit": "percent",
+  "geography": "United Kingdom (trial cohort)",
+  "time_coverage": "2015",
+  "source": {
+    "name": "Randomized Trial of Peanut Consumption in Infants at Risk for Peanut Allergy (the LEAP study)",
+    "publisher": "New England Journal of Medicine (Du Toit et al., 2015)",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4685572/",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Learning Early About Peanut Allergy (LEAP) randomized trial: among high-risk infants (severe eczema and/or egg allergy) with a negative baseline peanut skin-prick test, 13.7% of the peanut-avoidance group had developed peanut allergy by 60 months of age, versus 1.9% of the early-consumption group -- an 81% relative risk reduction, the finding that flipped US infant-feeding guidance.",
+  "points": [
+    {"label": "Avoided peanut in infancy", "value": 13.7},
+    {"label": "Ate peanut early (LEAP protocol)", "value": 1.9}
+  ]
+}

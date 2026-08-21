@@ -22656,6 +22656,254 @@
           }
         }
       ]
+    },
+    {
+      "slug": "great-wealth-transfer-2048",
+      "title": "$124 Trillion Is About To Change Hands",
+      "hook": "The biggest inheritance in history starts now.",
+      "closing": "Check your family group chat. Just in case.",
+      "question": "Are you getting an inheritance, or leaving one? Tell me below.",
+      "caption": "$124 trillion is projected to move between generations in America by 2048 -- the largest wealth transfer in history. $105 trillion goes to heirs, but here's the catch: just 2% of households will hand down $62 trillion of it, more than everyone else combined. Are you expecting an inheritance, or writing one? \ud83d\udc47",
+      "hashtags": [
+        "wealthtransfer",
+        "inheritance",
+        "greatwealthtransfer",
+        "millennials",
+        "genz",
+        "genx",
+        "boomers",
+        "money",
+        "finance",
+        "personalfinance",
+        "economy",
+        "wealth",
+        "data",
+        "estateplanning",
+        "networth"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wealth_transfer_heirs_vs_charity",
+          "params": {
+            "file": "wealth_transfer_heirs_vs_charity.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 \u00b7 THE TOTAL",
+          "topic": "the $124 trillion transfer",
+          "say": "By 2048, $124 trillion is set to change hands in America's biggest wealth transfer ever -- $105 trillion of it goes to heirs, just $18 trillion to charity."
+        },
+        {
+          "source": "offline",
+          "key": "wealth_transfer_by_generation",
+          "params": {
+            "file": "wealth_transfer_by_generation.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 WHO GETS IT",
+          "topic": "who inherits it",
+          "say": "So who's catching it? Millennials get the biggest slice at $46 trillion, Gen X gets $39 trillion, and Gen Z -- still in their twenties -- already has $15 trillion coming."
+        },
+        {
+          "source": "offline",
+          "key": "wealth_transfer_concentration",
+          "params": {
+            "file": "wealth_transfer_concentration.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 \u00b7 THE CATCH",
+          "topic": "who actually gets the windfall",
+          "say": "But don't bank on your share: just 2% of households will hand down $62 trillion of that, more than everyone else combined. For most families, the windfall is a lot smaller than the headline."
+        }
+      ]
+    },
+    {
+      "slug": "earth-rotation-speeding-up",
+      "title": "Earth Is Spinning Faster And Nobody Knows Why",
+      "hook": "Earth just broke its own speed record. Twice.",
+      "closing": "Data doesn't lie: your day is shrinking.",
+      "question": "Does the day ever feel like it's moving faster? Tell me below.",
+      "caption": "Since 2020, Earth has been spinning faster than ever recorded, resetting the 'shortest day' record three times -- 2020, 2022, and 2024. For 50 years every leap-second fix ran one direction (add a second); now scientists put 40% odds on the first-ever NEGATIVE leap second by 2035. Does your day ever feel like it's moving faster? \ud83d\udc47",
+      "hashtags": [
+        "earthrotation",
+        "leapsecond",
+        "science",
+        "physics",
+        "astronomy",
+        "spacefacts",
+        "iers",
+        "timekeeping",
+        "gps",
+        "didyouknow",
+        "earthscience",
+        "atomicclock",
+        "universe",
+        "dataviz",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "earth_shortest_day_record",
+          "params": {
+            "file": "earth_shortest_day_record.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 SETUP",
+          "topic": "Earth's shortest-day record",
+          "say": "Earth's spin used to only slow down. Then in 2020 it flipped -- the 'shortest day ever' record kept resetting: 1.47 milliseconds short in 2020, 1.59 in 2022, 1.66 in 2024."
+        },
+        {
+          "source": "offline",
+          "key": "leap_seconds_added_vs_removed",
+          "params": {
+            "file": "leap_seconds_added_vs_removed.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE TURN",
+          "topic": "why a millisecond matters",
+          "say": "So why does a millisecond matter? Because for 50 years the fix only ever ran one direction -- 27 leap seconds added since 1972, and exactly zero ever subtracted."
+        },
+        {
+          "source": "offline",
+          "key": "negative_leap_second_odds",
+          "params": {
+            "file": "negative_leap_second_odds.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE CONSEQUENCE",
+          "topic": "the first-ever negative leap second",
+          "say": "Now Earth might force a first: timekeepers put the odds of a negative leap second by 2035 at 40%. Something atomic clocks have never once had to do."
+        }
+      ]
+    },
+    {
+      "slug": "peanut-allergy-guideline-flip",
+      "title": "Doctors Had Peanut Allergies Backwards For Decades",
+      "hook": "The peanut allergy advice was backwards the whole time.",
+      "closing": "Sometimes the cure is just... eating the thing.",
+      "question": "Did your family avoid peanuts when you were little? Comment below.",
+      "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? \ud83d\udc47",
+      "hashtags": [
+        "peanutallergy",
+        "foodallergy",
+        "allergy",
+        "parenting",
+        "pediatrics",
+        "momsoftiktok",
+        "dadsoftiktok",
+        "publichealth",
+        "health",
+        "kids",
+        "babyfeeding",
+        "science",
+        "didyouknow",
+        "allergyawareness",
+        "nutrition"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "peanut_allergy_prevalence_trend",
+          "params": {
+            "file": "peanut_allergy_prevalence_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 SETUP",
+          "topic": "peanut allergy in American kids",
+          "say": "Peanut allergies in American kids tripled in about a decade -- 0.4% in 1997, 0.8% in 2002, 1.4% by 2008. And doctors' advice made total sense: keep babies away from peanuts as long as possible."
+        },
+        {
+          "source": "offline",
+          "key": "leap_study_avoidance_vs_consumption",
+          "params": {
+            "file": "leap_study_avoidance_vs_consumption.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 \u00b7 THE TURN",
+          "topic": "the trial that flipped the advice",
+          "say": "Then one trial flipped it. Infants told to avoid peanut hit a 13.7% allergy rate by age 5. Infants fed peanut early? Just 1.9%. Avoidance was the actual trigger."
+        },
+        {
+          "source": "offline",
+          "key": "peanut_allergy_before_after_guidelines",
+          "params": {
+            "file": "peanut_allergy_before_after_guidelines.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 CONSEQUENCE",
+          "topic": "what happened after guidelines flipped",
+          "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban."
+        }
+      ]
+    },
+    {
+      "slug": "landline-death-robocall-boom",
+      "title": "America Basically Killed The Landline",
+      "hook": "Nobody has a landline anymore. Here's why that matters.",
+      "closing": "Unknown number? Straight to voicemail. Every time.",
+      "question": "Do you still answer numbers you don't recognize? Tell me below.",
+      "caption": "By 2024, 76% of US adults had cut the landline completely, up from just 25% in 2010. That swap came with a price: 52.8 billion robocalls hit Americans that year -- nearly 200 for every adult, almost double 2016's total. Do you still answer unknown numbers? \ud83d\udc47",
+      "hashtags": [
+        "landline",
+        "robocalls",
+        "scamcalls",
+        "phonescams",
+        "telecom",
+        "spamcalls",
+        "cordcutting",
+        "tech",
+        "didyouknow",
+        "dataviz",
+        "phonefacts",
+        "cellphone",
+        "technology",
+        "consumertech",
+        "digitallife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wireless_only_adults_trend",
+          "params": {
+            "file": "wireless_only_adults_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 SETUP",
+          "topic": "the death of the landline",
+          "say": "By 2024, 76% of US adults lived without a landline at all -- up from just 25% in 2010. Your phone number isn't tied to an address anymore. It's just... you."
+        },
+        {
+          "source": "offline",
+          "key": "robocall_type_breakdown_2024",
+          "params": {
+            "file": "robocall_type_breakdown_2024.json"
+          },
+          "insight_type": "share",
+          "role": "2 \u00b7 THE TURN",
+          "topic": "what filled the vacuum",
+          "say": "Which means anyone can flash any number on your screen. Of the 52.8 billion robocalls Americans got in 2024, 36% were telemarketing and 22% were straight-up scams."
+        },
+        {
+          "source": "offline",
+          "key": "robocall_volume_2016_vs_2024",
+          "params": {
+            "file": "robocall_volume_2016_vs_2024.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 CONSEQUENCE",
+          "topic": "how big robocalling got",
+          "say": "That's nearly 200 robocalls for every adult in the country, almost double 2016's 29.3 billion. Which is exactly why you let unknown numbers go straight to voicemail now."
+        }
+      ]
     }
   ],
   "videos": [

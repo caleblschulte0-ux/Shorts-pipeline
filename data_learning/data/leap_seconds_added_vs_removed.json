@@ -1,0 +1,19 @@
+{
+  "key": "leap_seconds_added_vs_removed",
+  "title": "Leap seconds added to UTC vs. removed, 1972-2016",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "1972-2016",
+  "source": {
+    "name": "Historical list of leap seconds",
+    "publisher": "International Earth Rotation and Reference Systems Service (IERS), via timeanddate.com",
+    "url": "https://www.timeanddate.com/time/leapseconds.html",
+    "officiality": "secondary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "27 positive leap seconds have been added to UTC since the first in June 1972, most recently on December 31 2016; none have ever been removed, because a negative leap second has never yet been needed -- until the recent rotation speed-up made one a live possibility for the first time (see negative_leap_second_odds).",
+  "points": [
+    {"label": "Leap seconds added, 1972-2016", "value": 27},
+    {"label": "Leap seconds subtracted, ever", "value": 0}
+  ]
+}
