@@ -67,13 +67,6 @@
     "topic": "Growth Limit"
   },
   {
-    "sig": "a8bf6ec390cf",
-    "mechanic": "eco-flames",
-    "concept": "two flames rise in tandem with the values, with the subject images of a factory and a house placed at the base of each flame",
-    "code": "\nfor i in range(n):\n    v = values[i]\n    cxs = RX0 + 250 if i == 0 else RX1 - 250\n    cy = RBOT\n    r = 50\n    col = HIGHLIGHT if i == 0 else ACCENT\n    d.rectangle([cxs - r, cy - int(600 * clamp(v / vmax) * reveal), cxs + r, cy], fill=rgba(col, 128))\n    img = subject_image('factory' if i == 0 else 'house')\n    if img is not None:\n        asp = img.width / img.height\n        w = 200\n        h = int(w / asp)\n        paste(img, cxs - w // 2, cy - h - 20, w, h)\n    text(labels[i], cxs, cy - h - 100, size=40, color=col, center=True)\n    text(str(int(v)), cxs, cy - 400, size=60, color=TEXT, center=True)\n    if i == 0:\n        text('2010', cxs, cy - 500, size=40, color=TEXT, center=True)\n    else:\n        text('2020', cxs, cy - 500, size=40, color=TEXT, center=True)\n",
-    "topic": "Energy Efficiency"
-  },
-  {
     "sig": "f0ba0042702f",
     "mechanic": "root-system",
     "concept": "A tree's roots grow in size and spread as the reveal progresses, with each data point displayed as a labeled and sized root segment",
@@ -81,11 +74,20 @@
     "topic": "Root System Size"
   },
   {
-    "sig": "27dcbc8316f0",
-    "mechanic": "seed-vault",
-    "concept": "a vault fills with seeds as the reveal progresses, with each data point represented by a seed of varying size and label",
-    "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nn = len(values)\nfor i in range(n):\n    v = values[i]\n    r = 20 + 50 * (v / vmax)\n    x = cx + (i - (n - 1) // 2) * 120\n    y = cy + (1 - reveal) * 400\n    d.ellipse([x - r, y - r, x + r, y + r], fill=rgba(ACCENT, 128))\n    if reveal > 0.5:\n        text(labels[i], x, y + r + 30, size=32, color=TEXT, center=True)\n        text(str(int(v)) + ' years', x, y + r + 70, size=32, color=TEXT, center=True)\nimg = subject_image('seed')\nif img is not None:\n    asp = img.width / img.height\n    w = 80\n    h = int(w / asp)\n    if h > 80:\n        h = 80\n        w = int(h * asp)\n    paste(img, cx - w // 2, cy - h // 2, w, h)\n",
-    "topic": "Seed Longevity"
+    "sig": "inheritance-fork-v1",
+    "mechanic": "inheritance-fork",
+    "concept": "a trunk of cash forks into a wide heirs channel and a thin charity channel, dollar-bill stacks flowing down each so a 6:1 split reads as two rivers of unequal width",
+    "code": "cx = (RX0 + RX1) // 2\ntop_y = RTOP + 120\nfork_y = RTOP + 340\ncash = subject_image('stack of cash dollar bills photo')\nheirs = values[0]; charity = values[1] if n > 1 else values[0] * 0.17\ntotal = max(heirs + charity, 1.0)\ntrunk_w = 140\nd.rectangle([cx - trunk_w // 2, top_y, cx + trunk_w // 2, fork_y], fill=rgba(ACCENT, 220))\nif cash is not None:\n    paste(cash, cx - trunk_w // 2, top_y, trunk_w, fork_y - top_y)\nheir_w = int(60 + 380 * clamp(heirs / total))\ncharity_w = int(30 + 380 * clamp(charity / total))\nheir_cx = RX0 + 260\ncharity_cx = RX1 - 200\nbase_y = RBOT - 80\nfrac = clamp(reveal)\nfor cxp, w, v, col, lbl in ((heir_cx, heir_w, heirs, HIGHLIGHT, 'TO HEIRS'),\n                             (charity_cx, charity_w, charity, ACCENT, 'TO CHARITY')):\n    h = int((base_y - fork_y) * frac)\n    d.polygon([(cx - trunk_w // 2, fork_y), (cx + trunk_w // 2, fork_y),\n               (cxp + w // 2, fork_y + h), (cxp - w // 2, fork_y + h)], fill=rgba(col, 90))\n    if cash is not None and h > 10:\n        paste(cash, cxp - w // 2, fork_y + h - 60, w, 70)\n    text(lbl, cxp, fork_y + h + 30, size=30, color=col, center=True)\n    text(f'${v:.0f}T', cxp, fork_y + h + 70, size=44, color=col, center=True)\n",
+    "topic": "great-wealth-transfer-2048",
+    "starred": true
+  },
+  {
+    "sig": "spin-blur-earth-v1",
+    "mechanic": "spin-blur-earth",
+    "concept": "Earth spins visibly faster with each record year, motion-streak arcs thickening as the shortest-day record keeps resetting",
+    "code": "earth = subject_image('earth from space photo')\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 - 40\new = 480; eh = 480\nraw = clamp(reveal) * (n - 1)\ni = min(n - 1, int(raw))\nt = raw - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t)\nspeed = clamp(cur / vmax)\nstreaks = 2 + int(8 * speed)\nfor k in range(streaks):\n    ang = (k / streaks) * 360 + reveal * 200\n    a = int(160 * (1 - k / (streaks + 2)))\n    r0 = ew // 2 + 10\n    r1 = r0 + int(30 + 60 * speed)\n    rad = ang * math.pi / 180.0\n    x0 = cx + int(r0 * math.cos(rad)); y0 = cy + int(r0 * math.sin(rad)) \n    x1 = cx + int(r1 * math.cos(rad)); y1 = cy + int(r1 * math.sin(rad))\n    d.line([x0, y0, x1, y1], fill=rgba(HIGHLIGHT, a), width=6)\nif earth is not None:\n    paste(earth, cx - ew // 2, cy - eh // 2, ew, eh)\nelse:\n    d.ellipse([cx - ew // 2, cy - eh // 2, cx + ew // 2, cy + eh // 2], fill=rgba(ACCENT, 210))\ntext(labels[i], cx, cy + eh // 2 + 60, size=38, color=WARN, center=True)\ntext(f'-{cur:.2f} ms', cx, cy + eh // 2 + 104, size=44, color=HIGHLIGHT, center=True)\n",
+    "topic": "earth-rotation-speeding-up",
+    "starred": true
   },
   {
     "sig": "cc88eb36b72d",
