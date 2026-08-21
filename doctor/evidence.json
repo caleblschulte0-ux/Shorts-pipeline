@@ -1858,8 +1858,8 @@
     }
   ],
   "recent_commits": [
-    "5fd4780 2026-08-20 doctor: findings for 20260820",
-    "458ca3a 2026-08-20 retro: brief + triage for 20260820 [skip ci]"
+    "b647ce5 2026-08-21 doctor: mark 5b8318ee7172 done (merged in #297) (#298)",
+    "d7a29a8 2026-08-21 exchange: phase A bundle for 20260821 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -1996,18 +1996,11 @@
   },
   "open_backlog": [
     {
-      "signature": "5b8318ee7172",
-      "title": "Pinned image URLs certify themselves as on-topic",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
-    },
-    {
       "signature": "aaeb12de3ebd",
       "title": "Restore explainer delivery before interpreting its topic test",
       "horizon": "strategy",
       "severity": "critical",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "2f7ee366fb9b",
@@ -2077,14 +2070,14 @@
       "title": "Experiment conclusions bypass their age and sample floor",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d65eddf69fba",
       "title": "Authoritative state cannot distinguish corruption from absence",
       "horizon": "long_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
@@ -2119,7 +2112,7 @@
       "title": "Entity title filtering accepts substring lookalikes",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "66364106b455",
@@ -2388,6 +2381,13 @@
       "date": "20260819",
       "because": "Confirmed the two fields exist (shared/exchange_bundle.py:373-421: authoring_requests['trending'] and authoring_request are set from the SAME object at write time, so they cannot disagree at the moment the bundle is produced), and confirmed scripts/exchange_phase_b.py:589-602 still falls back to the singular alias for promotion target. The risk described (a future producer change or manual repair diverging the two) is real but currently latent -- there is no live incident, and target resolution already prefers contract.channels[channel].target_count first, only falling back to the alias when that's absent. This is genuinely a 'ways out' architectural cleanup (version the contract around one map + shared accessor), not urgent against three higher-severity items filed the same day. Revisit if a future finding shows the two fields actually diverging in production.",
       "revisit_after": "20260918"
+    },
+    {
+      "signature": "5b8318ee7172",
+      "verdict": "done",
+      "date": "20260821",
+      "because": "Merged in PR #297 (commit 268f49b): judge_package no longer synthesizes candidate title/query from the shot's own phrase/search query for a bare pinned image_url, unknown width/height no longer earns free resolution credit, and an 'unknown' judge verdict now counts as a gap. 990 tests pass (3 new adversarial tests added), registry_acceptance 7/7.",
+      "revisit_after": null
     }
   ]
 }
