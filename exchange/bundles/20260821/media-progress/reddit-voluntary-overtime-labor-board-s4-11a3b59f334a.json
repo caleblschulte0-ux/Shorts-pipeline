@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-voluntary-overtime-labor-board-s4-11a3b59f334a",
+  "safe_request_id": "reddit-voluntary-overtime-labor-board-s4-11a3b59f334a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e0cec51415e5324680235cac7b99897477d2880ca3c1e571e681ddeb450333cf",
+  "prompt_used": "An editorial illustration for a short-form video: envelope mailing documents. It accompanies the narration: \"state labor board as a wage complaint\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+    "filename": "20260821__reddit-voluntary-overtime-labor-board-s4-11a3b59f334a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "05def1d1d6e301ff2a4ebc789f1c8d39bb35f0a332ad567bb55f63abc8ce5279",
+    "bytes": 991197,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:21.989Z",
+  "error": null,
+  "retryable": false
+}
