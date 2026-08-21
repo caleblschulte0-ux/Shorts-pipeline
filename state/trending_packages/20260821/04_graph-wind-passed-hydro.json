@@ -6,12 +6,60 @@
   "y_label": "US electricity generation (billion kWh)",
   "duration": 13,
   "source": "U.S. Energy Information Administration (EIA) Electric Power Annual net generation by energy source: wind ~95 (2010), ~168 (2013), ~227 (2016), ~300 (2019), ~380 (2021), ~425 (2023), ~430 (2024) billion kWh; conventional hydroelectric ~260 (2010), ~269 (2013), ~267 (2016), ~274 (2019), ~252 (2021), ~239 (2023), ~241 (2024) billion kWh. EIA reported wind generation first exceeded hydroelectric generation on an annual basis in 2019.",
-  "years": [2010, 2013, 2016, 2019, 2021, 2023, 2024],
-  "series": [
-    {"name": "Wind", "color": "#38BDF8", "values": [95, 168, 227, 300, 380, 425, 430]},
-    {"name": "Hydro", "color": "#1D4ED8", "values": [260, 269, 267, 274, 252, 239, 241]}
+  "years": [
+    2010,
+    2013,
+    2016,
+    2019,
+    2021,
+    2023,
+    2024
   ],
-  "hashtags": ["windpower", "windenergy", "hydropower", "renewableenergy", "eia", "cleanenergy", "electricity", "energytransition", "powergrid", "usenergy", "climate", "energydata", "turbines", "sustainability", "dataviz"],
+  "series": [
+    {
+      "name": "Wind",
+      "color": "#38BDF8",
+      "values": [
+        95,
+        168,
+        227,
+        300,
+        380,
+        425,
+        430
+      ]
+    },
+    {
+      "name": "Hydro",
+      "color": "#1D4ED8",
+      "values": [
+        260,
+        269,
+        267,
+        274,
+        252,
+        239,
+        241
+      ]
+    }
+  ],
+  "hashtags": [
+    "windpower",
+    "windenergy",
+    "hydropower",
+    "renewableenergy",
+    "eia",
+    "cleanenergy",
+    "electricity",
+    "energytransition",
+    "powergrid",
+    "usenergy",
+    "climate",
+    "energydata",
+    "turbines",
+    "sustainability",
+    "dataviz"
+  ],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }
