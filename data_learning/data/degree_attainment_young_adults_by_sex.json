@@ -1,0 +1,19 @@
+{
+  "key": "degree_attainment_young_adults_by_sex",
+  "title": "Bachelor's degree attainment, ages 25-34, by sex (2024)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "U.S. women are outpacing men in college completion",
+    "publisher": "Pew Research Center (analysis of Census Bureau data)",
+    "url": "https://www.pewresearch.org/short-reads/2024/11/18/us-women-are-outpacing-men-in-college-completion-including-in-every-major-racial-and-ethnic-group/",
+    "officiality": "secondary",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published Pew Research/Census figure formatted for narration. Among 25-34 year-olds in 2024, 47% of women had a bachelor's degree versus 37% of men.",
+  "points": [
+    {"label": "Women", "value": 47},
+    {"label": "Men", "value": 37}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "monarch_population_decline_by_route",
+  "title": "Monarch population decline since peak, by migration route",
+  "unit": "percent",
+  "geography": "United States / Mexico",
+  "time_coverage": "Eastern since 1990s; Western since 1980s",
+  "source": {
+    "name": "Monarch population status assessments",
+    "publisher": "Xerces Society for Invertebrate Conservation",
+    "url": "https://xerces.org/monarchs/conservation-efforts",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published decline estimates formatted for narration. Eastern (Mexico-wintering) population down more than 80% since the 1990s; Western (California-wintering) population down more than 95% since the 1980s.",
+  "points": [
+    {"label": "Eastern route (since 1990s)", "value": 80},
+    {"label": "Western route (since 1980s)", "value": 95}
+  ]
+}

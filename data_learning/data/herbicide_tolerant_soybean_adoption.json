@@ -1,0 +1,19 @@
+{
+  "key": "herbicide_tolerant_soybean_adoption",
+  "title": "US soybean acres planted with herbicide-tolerant seed",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1997 vs 2014",
+  "source": {
+    "name": "Adoption of Genetically Engineered Crops in the U.S.",
+    "publisher": "USDA Economic Research Service",
+    "url": "https://www.ers.usda.gov/data-products/adoption-of-genetically-engineered-crops-in-the-u-s",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published USDA ERS adoption-rate figures for herbicide-tolerant soybeans, formatted for narration. The spread of glyphosate-resistant crops let farmers spray broad-spectrum herbicide across nearly every field, which also wiped out milkweed growing between the rows -- monarchs' only host plant.",
+  "points": [
+    {"label": "1997", "value": 17},
+    {"label": "2014", "value": 94}
+  ]
+}
