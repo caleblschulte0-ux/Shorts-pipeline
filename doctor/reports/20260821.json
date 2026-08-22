@@ -1,0 +1,76 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260821",
+  "summary": "The August 20 alarm is still red even though both ChatGPT exchange jobs completed and all 14 requested images were pinned: trending shipped 4/6, explainer 1/4, and Third 4/6. Friday's deep read of data_learning and third_capture found three independent fail-open paths beneath that operational picture: explainer fact QA ignores unsupported integers below 1,000, its legacy direct-publish command writes QA failures into the live slate, and Third accepts valid-looking JSON from a failed Claude process. Third's single posted map also carries uploads, rejections, and unresolved claims, which has grown the apparent attempt population to 327 against 188 posts. The mature performance sample argues for a controlled move away from the oversized chaos bucket toward repeated fail and wholesome challengers, but only after unknown model labels stop being silently counted as chaos; the already-filed story-arm experiment remains unchanged.",
+  "findings": [
+    {
+      "title": "Explainer fact QA ignores unsupported small integers",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "explainer/factual-qa",
+      "files": [
+        "data_learning/qa.py",
+        "data_learning/tests/test_pipeline.py"
+      ],
+      "observation": "The explainer validator says every spoken number must trace to the attached fact table, but an unmatched token is reported only when it contains a decimal point or is at least 1,000. Unsupported counts, ranks, percentages, ages, and durations from 0 through 999 therefore pass the final package QA despite the stated factual contract.",
+      "proposal": "Validate every spoken numeric token against normalized fact values, with explicit typed exemptions for genuine period labels rather than a magnitude shortcut. Add adversarial tests for unsupported 12, 99, and 999 values, plus positive coverage for supported small values and legitimate years, so strengthening the check does not reject sourced narration.",
+      "evidence": "data_learning/qa.py:47-58 promises sourced numbers and every number spoken; lines 65-75 skip year-like labels but append an error for an unmatched value only when the token has a decimal or n >= 1000. A direct call to qa.validate with a valid-length script saying '999 cases' and a sole attached fact value of 10 returns an empty error list. data_learning/tests/test_pipeline.py contains the pipeline QA coverage but does not exercise unsupported sub-1000 integers."
+    },
+    {
+      "title": "Failed Claude processes can return successful Third authoring",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "third/brain-contract",
+      "files": [
+        "third_capture/author.py",
+        "tests/test_third_fallback_count.py"
+      ],
+      "observation": "Third's Claude wrapper only treats a nonzero process exit as failure when the output matches its usage-limit regex. If a failed CLI invocation emitted a complete or embedded JSON object before exiting, the wrapper returns that object as a successful brain answer, so partial or stale output can drive ranking, scene judgment, or metadata while health accounting reports success.",
+      "proposal": "Require returncode zero before accepting any JSON from Claude. On every other exit, preserve the usage-limit breaker when applicable and otherwise raise a diagnostic containing bounded stderr/stdout; then add mocked coverage for nonzero-with-valid-JSON, nonzero-with-limit-text, and zero-with-valid-JSON so callers reliably fall back and count the failure.",
+      "evidence": "third_capture/author.py:538-542 handles a nonzero return only when _LIMIT_PAT matches, then lines 548-552 and 554-575 parse and return stdout without another returncode guard. With subprocess.run mocked to return returncode=1, stdout containing a JSON title of partial, and stderr='fatal transport error', _call_claude returns that parsed object. The Third tests have no assertion for this process-result contract."
+    },
+    {
+      "title": "Legacy explainer publish writes packages before QA passes",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "explainer/legacy-publish-path",
+      "files": [
+        "data_learning/generate.py",
+        "data_learning/tests/test_pipeline.py"
+      ],
+      "observation": "The legacy data-learning entrypoint advertises --publish as a direct route into the daily production package directory, but it serializes each package before acting on qa.validate errors. QA failures remain in the live slate, and the command still exits zero unless the operator separately remembered --strict, so the gate can be visibly red while downstream rendering sees the rejected artifact.",
+      "proposal": "Retire the direct-publish side door if the active explainer workflow no longer needs it; otherwise make publish intrinsically strict and stage the full batch outside production, promoting only QA-passing packages atomically after validation. Add an integration test proving a failed package creates no file under state/trending_packages and makes a publish invocation return nonzero without an extra flag.",
+      "evidence": "data_learning/generate.py:12-20 documents --publish as writing straight to state/trending_packages; lines 102-110 make --publish and --strict independent flags; lines 143-151 call qa.validate but write out_path before branching on errors; lines 157-160 return failure only when args.strict is set. data_learning/tests/test_pipeline.py does not pin the publish-side effect ordering."
+    },
+    {
+      "title": "Split Third attempts from the authoritative posted ledger",
+      "horizon": "long_term",
+      "severity": "high",
+      "area": "third/content-lifecycle",
+      "files": [
+        "scripts/run_third.py",
+        "state/third_posted_log.json",
+        "doctor/evidence.json",
+        "state/third_events.json"
+      ],
+      "observation": "Third uses one posted dictionary as the durable home for three different lifecycle states: confirmed uploads, rejected blocklist entries, and in-flight upload claims. Every reader must rediscover which entries are real posts through key prefixes and flags, while reporting consequently shows 327 attempts, 188 posts, and 139 rejected-or-pending records. This overloaded projection is both dedupe-critical state and analytics input, so a new writer or forgotten filter can mistake a rejection for a post or a pending claim for a completed upload.",
+      "proposal": "Move Third to an append-only, typed attempt ledger with explicit discovered, rejected, upload_claimed, uploaded, and reconciled events, then derive a schema-checked posted projection used only for dedupe and channel counts. Migrate readers behind one shared projection API, preserve every rejection and pending claim during conversion, and add invariant tests that only uploaded events count as posts while all terminal source keys remain blocked from reuse.",
+      "evidence": "scripts/run_third.py:171-185 filters rejected keys out of a posted-log audit; lines 449-464 persist rejected-* records inside log['posted']; lines 2045-2072 put pending claims in that same map; lines 2428-2435 save both together. state/third_posted_log.json currently contains 334 entries: 139 rejected/qa_rejected, one pending, and 194 entries with upload URLs. doctor/evidence.json reports the resulting public distinction as attempted=327, total_posted=188, rejected_or_pending=139, demonstrating that consumers already need separate interpretations of the same file."
+    },
+    {
+      "title": "Challenge Third's oversized chaos bucket with proven alternatives",
+      "horizon": "strategy",
+      "severity": "high",
+      "area": "third/content-mix",
+      "files": [
+        "state/analytics_third/latest.json",
+        "third_capture/author.py",
+        "docs/THIRD_INTERNET_PLAYBOOK.md",
+        "retro/20260820/brief.json"
+      ],
+      "observation": "Among Third videos mature for at least 72 hours, chaos is by far the largest labeled series at 35 videos but has median VPH 0.02. Repeated alternatives are stronger: fail has 12 videos and wholesome has eight, both at median VPH 0.04; jumpscare is also promising at 0.09 but has only four. The taxonomy is not yet clean enough for a hard allocation because the author silently maps every missing series label to chaos, but the current slate is spending its largest sample on its weakest repeated cohort while the channel continues to miss its six-per-day target.",
+      "proposal": "Keep the six-per-day target and every quality gate, but run a bounded mix challenger: first label missing/invalid series as unknown instead of chaos and audit the mature cohort, then reserve discovery/ranking attention for qualified fail and wholesome candidates while capping confirmed chaos candidates at their current baseline. Compare mature VPH and retention after a predeclared minimum sample before adopting the shift; do not force a weak clip to fill a bucket. Leave the already-filed story-arm experiment untouched rather than double-counting its tiny two-video sample.",
+      "evidence": "state/analytics_third/latest.json has 80 videos aged at least 72 hours; grouping them by series gives chaos n=35 median VPH 0.02, fail n=12 median 0.04, wholesome n=8 median 0.04, and jumpscare n=4 median 0.09. third_capture/author.py:355 cleans any model series string but lines 427-428 accept it without an allowlist and turn an empty label into chaos. docs/THIRD_INTERNET_PLAYBOOK.md:93-104 calls for a diversified mix and explicitly says never force weak clips. retro/20260820/brief.json reports Third's last-seven-day median VPH at 0.0992 across 22 videos, while doctor/evidence.json records only 4/6 posts on 2026-08-20."
+    }
+  ]
+}
