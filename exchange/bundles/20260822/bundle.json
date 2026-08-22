@@ -478,8 +478,8 @@
           "shot_index": 4,
           "phrase": "attorney general's consumer protection division",
           "query": "government building exterior",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -505,8 +505,8 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 1,
+        "missing": 7,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -515,10 +515,10 @@
         "reddit-gym-tuesday-cancellation-s1-20746d02edc1",
         "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae",
         "reddit-gym-tuesday-cancellation-s3-168dae713010",
-        "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
         "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
         "reddit-gym-tuesday-cancellation-s6-b37ba8c8d333",
-        "reddit-gym-tuesday-cancellation-s7-3aba312dd033"
+        "reddit-gym-tuesday-cancellation-s7-3aba312dd033",
+        "reddit-gym-tuesday-cancellation-s4-7687515b2fe7"
       ]
     }
   ],
@@ -838,32 +838,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
-      "safe_request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
-      "drive_filename": "20260822__reddit-gym-tuesday-cancellation-s4-7687515b2fe7.png",
-      "prompt_sha256": "81f4f32e476e4f30e9cf6e8d9c3f94d7b46b6728b2bdc2d62d2dd46e8f4d4479",
-      "checkpoint_path": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s4-7687515b2fe7.json",
-      "slug": "reddit-gym-tuesday-cancellation",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: government building exterior. It accompanies the narration: \"attorney general's consumer protection division\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
       "safe_request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
       "drive_filename": "20260822__reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.png",
@@ -940,6 +914,34 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
+      "safe_request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
+      "drive_filename": "20260822__reddit-gym-tuesday-cancellation-s4-7687515b2fe7.png",
+      "prompt_sha256": "81f4f32e476e4f30e9cf6e8d9c3f94d7b46b6728b2bdc2d62d2dd46e8f4d4479",
+      "checkpoint_path": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s4-7687515b2fe7.json",
+      "slug": "reddit-gym-tuesday-cancellation",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: government building exterior. It accompanies the narration: \"attorney general's consumer protection division\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
