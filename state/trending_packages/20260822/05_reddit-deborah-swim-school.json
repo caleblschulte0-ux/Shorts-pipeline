@@ -4,82 +4,22 @@
   "title": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
   "script": "A regular at our swim school cornered me at the front desk and said her son needed to skip the six month waitlist for private lessons because she was close personal friends with the owner, someone named Deborah. I told her the waitlist doesn't move for anyone, but I would pass her message to management. She said fine, she would just call Deborah herself. There was one problem. Our owner's name is Patricia, and she happened to be twelve feet away restocking towels the entire conversation. Patricia walked over, introduced herself, and asked exactly who Deborah was supposed to be. The woman went pale and mumbled something about mixing up schools. Patricia explained, calmly, that inventing a friendship with ownership to cut a swim safety line full of children was the fastest way onto our permanent do not fast track list. The son stayed at position forty one. Two weeks later the woman's membership got flagged for a background review nobody on staff had actually requested.",
   "shots": [
-    {
-      "phrase": "front desk",
-      "query": "reception desk lobby"
-    },
-    {
-      "phrase": "six month waitlist",
-      "query": "clipboard waiting list"
-    },
-    {
-      "phrase": "restocking towels",
-      "query": "folded pool towels stack"
-    },
-    {
-      "phrase": "Patricia walked over",
-      "query": "woman walking confidently",
-      "pin_query": "Patricia",
-      "pin_context": "swim school owner",
-      "news_query": "Patricia",
-      "news_angle": "Patricia is the real owner of the swim school who confronted a woman inventing a friendship to cut a waitlist.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Livia_statue.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
-    },
-    {
-      "phrase": "went pale and mumbled",
-      "query": "embarrassed woman looking down"
-    },
-    {
-      "phrase": "swim safety line full of children",
-      "query": "kids swim lesson pool"
-    },
-    {
-      "phrase": "position forty one",
-      "query": "numbered list paper"
-    },
-    {
-      "phrase": "background review",
-      "query": "office folder documents"
-    }
+    {"phrase": "front desk", "query": "reception desk lobby"},
+    {"phrase": "six month waitlist", "query": "clipboard waiting list"},
+    {"phrase": "restocking towels", "query": "folded pool towels stack"},
+    {"phrase": "Patricia walked over", "query": "woman walking confidently"},
+    {"phrase": "went pale and mumbled", "query": "embarrassed woman looking down"},
+    {"phrase": "swim safety line full of children", "query": "kids swim lesson pool"},
+    {"phrase": "position forty one", "query": "numbered list paper"},
+    {"phrase": "background review", "query": "office folder documents"}
   ],
   "punches": [
-    {
-      "phrase": "someone named Deborah",
-      "text": "WHO'S DEBORAH?",
-      "color": "#ffaa30"
-    },
-    {
-      "phrase": "went pale",
-      "text": "BUSTED",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "do not fast track list",
-      "text": "BANNED",
-      "color": "#ff3030"
-    },
-    {
-      "phrase": "flagged for a background review",
-      "text": "FLAGGED",
-      "color": "#50ff80"
-    }
+    {"phrase": "someone named Deborah", "text": "WHO'S DEBORAH?", "color": "#ffaa30"},
+    {"phrase": "went pale", "text": "BUSTED", "color": "#ff3030"},
+    {"phrase": "do not fast track list", "text": "BANNED", "color": "#ff3030"},
+    {"phrase": "flagged for a background review", "text": "FLAGGED", "color": "#50ff80"}
   ],
-  "hashtags": [
-    "entitledparents",
-    "entitledparent",
-    "karma",
-    "swimschool",
-    "frontdesk",
-    "waitlist",
-    "customerservice",
-    "workplace",
-    "storytime",
-    "reddit",
-    "satisfying",
-    "shorts",
-    "viral",
-    "karmaisreal"
-  ],
+  "hashtags": ["entitledparents", "entitledparent", "karma", "swimschool", "frontdesk", "waitlist", "customerservice", "workplace", "storytime", "reddit", "satisfying", "shorts", "viral", "karmaisreal"],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }

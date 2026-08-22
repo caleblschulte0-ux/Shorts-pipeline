@@ -1,50 +1,16 @@
 [
   {
-    "topic": "China Overtook Japan In The Car Export Race",
-    "title": "China Overtook Japan In The Car Export Race",
+    "topic": "Airbus Overtook Boeing After The 737 MAX Crisis",
+    "title": "Airbus Overtook Boeing After The 737 MAX Crisis",
     "format": "graph_race",
-    "publish_at": "2026-08-21T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, genuinely well-paced race that lands its crossover \u2014 but the first ~2.5 seconds are a mostly-black pre-scaled grid with two flat stubs and a hook banner that sits unreadably on top of the Japan line.",
-    "elapsed_seconds": 96.0,
-    "package_path": "state/trending_packages/20260821/01_graph-china-japan-car-exports.json",
-    "source": "brain",
-    "video_path": "output/daily_20260821-093406_china_overtook_japan_in_the_car_export_r.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A clean, genuinely well-paced race that lands its crossover \u2014 but the first ~2.5 seconds are a mostly-black pre-scaled grid with two flat stubs and a hook banner that sits unreadably on top of the Japan line.",
-      "score": 87
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Vinyl Buried CDs After 34 Years On Top",
-    "title": "Vinyl Buried CDs After 34 Years On Top",
-    "format": "graph_race",
-    "publish_at": "2026-08-21T13:00:00Z",
+    "publish_at": "2026-08-22T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/-HmdYzPhrZs",
+    "video_url": "https://youtube.com/shorts/mIx9MUcLo0c",
     "error": null,
-    "elapsed_seconds": 121.1,
-    "package_path": "state/trending_packages/20260821/02_graph-vinyl-buried-cd.json",
+    "elapsed_seconds": 132.5,
+    "package_path": "state/trending_packages/20260822/01_graph-airbus-overtakes-boeing.json",
     "source": "brain",
-    "video_path": "output/daily_20260821-093542_vinyl_buried_cds_after_34_years_on_top.mp4",
+    "video_path": "output/daily_20260822-092633_airbus_overtook_boeing_after_the_737_max.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -68,51 +34,17 @@
     "channel": "default"
   },
   {
-    "topic": "Opioid Deaths Overtook Car Crash Deaths",
-    "title": "Opioid Deaths Overtook Car Crash Deaths",
+    "topic": "Shopify Overtook eBay In Total Sales",
+    "title": "Shopify Overtook eBay In Total Sales",
     "format": "graph_race",
-    "publish_at": "2026-08-21T14:30:00Z",
+    "publish_at": "2026-08-22T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/YytE9uNvMeI",
+    "video_url": "https://youtube.com/shorts/mlZ6julPK5E",
     "error": null,
-    "elapsed_seconds": 124.0,
-    "package_path": "state/trending_packages/20260821/03_graph-opioid-deaths-vs-car-crashes.json",
+    "elapsed_seconds": 117.3,
+    "package_path": "state/trending_packages/20260822/02_graph-shopify-overtakes-ebay.json",
     "source": "brain",
-    "video_path": "output/daily_20260821-093744_opioid_deaths_overtook_car_crash_deaths.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Wind Power Just Passed Hydro In America",
-    "title": "Wind Power Just Passed Hydro In America",
-    "format": "graph_race",
-    "publish_at": "2026-08-21T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/HZp5jhotzBY",
-    "error": null,
-    "elapsed_seconds": 126.7,
-    "package_path": "state/trending_packages/20260821/04_graph-wind-passed-hydro.json",
-    "source": "brain",
-    "video_path": "output/daily_20260821-093948_wind_power_just_passed_hydro_in_america.mp4",
+    "video_path": "output/daily_20260822-092846_shopify_overtook_ebay_in_total_sales.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -131,38 +63,25 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 70
+      "score": 79
     },
     "channel": "default"
   },
   {
-    "topic": "He Called It Voluntary. The Labor Board Didn't.",
-    "title": "He Called It Voluntary. The Labor Board Didn't.",
-    "format": "reddit",
-    "publish_at": "2026-08-21T17:30:00Z",
+    "topic": "Modelo Just Dethroned Bud Light As America's #1",
+    "title": "Modelo Just Dethroned Bud Light As America's #1",
+    "format": "graph_race",
+    "publish_at": "2026-08-22T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: illustration coverage 12.5% < 20.0% \u2014 7 shot(s) have no real image and would fall to off-topic keyword stock: ['voluntary team spirit', 'started saving everything', 'badge scan records from the building system', 'state labor board as a wage complaint', 'district manager showed up unannounced', 'unpaid overtime going back four months', 'cut checks to every person on that weekend list']",
-    "elapsed_seconds": 45.1,
-    "package_path": "state/trending_packages/20260821/05_reddit-voluntary-overtime-labor-board.json",
+    "error": "showrunner_block: showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.",
+    "elapsed_seconds": 105.4,
+    "package_path": "state/trending_packages/20260822/03_graph-modelo-overtakes-budlight.json",
     "source": "brain",
-    "quarantined": true
-  },
-  {
-    "topic": "She Wouldn't Believe I Didn't Work There",
-    "title": "She Wouldn't Believe I Didn't Work There",
-    "format": "reddit",
-    "publish_at": "2026-08-21T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Fifty-two seconds of raw Subway-Surfers gameplay with captions and exactly one illustration \u2014 and that illustration is a melted-hand AI fake.",
-    "elapsed_seconds": 305.1,
-    "package_path": "state/trending_packages/20260821/06_reddit-blender-serial-number-security.json",
-    "source": "brain",
-    "video_path": "output/daily_20260821-094423_she_wouldn_t_believe_i_didn_t_work_there.mp4",
+    "video_path": "output/daily_20260822-093043_modelo_just_dethroned_bud_light_as_ameri.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.333,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -173,7 +92,75 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.6
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.",
+      "score": 74
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Netflix Just Passed Cable In Total Subscribers",
+    "title": "Netflix Just Passed Cable In Total Subscribers",
+    "format": "graph_race",
+    "publish_at": "2026-08-22T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/CDaAHFbdRWk",
+    "error": null,
+    "elapsed_seconds": 119.8,
+    "package_path": "state/trending_packages/20260822/04_graph-netflix-overtakes-cable.json",
+    "source": "brain",
+    "video_path": "output/daily_20260822-093228_netflix_just_passed_cable_in_total_subsc.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
+    "title": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
+    "format": "reddit",
+    "publish_at": "2026-08-22T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/3xjKJE76n38",
+    "error": null,
+    "elapsed_seconds": 247.5,
+    "package_path": "state/trending_packages/20260822/05_reddit-deborah-swim-school.json",
+    "source": "brain",
+    "video_path": "output/daily_20260822-093505_she_name_dropped_the_owner__the_owner_wa.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 56.633,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.9
     },
     "qa": {
       "ok": true,
@@ -181,40 +168,64 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Fifty-two seconds of raw Subway-Surfers gameplay with captions and exactly one illustration \u2014 and that illustration is a melted-hand AI fake.",
-      "score": 61
+      "blocked": false,
+      "reason": "",
+      "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "why is crypto going up today",
+    "topic": "The Only Manager Who Could Cancel My Gym Never Showed.",
+    "title": "The Only Manager Who Could Cancel My Gym Never Showed.",
+    "format": "reddit",
+    "publish_at": "2026-08-22T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co",
+    "elapsed_seconds": 175.1,
+    "package_path": "state/trending_packages/20260822/06_reddit-gym-tuesday-cancellation.json",
+    "source": "brain",
+    "video_path": "output/daily_20260822-093914_the_only_manager_who_could_cancel_my_gym.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 55.533,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.1
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co"
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "d",
     "angle": null,
-    "publish_at": "2026-08-21T17:30:00Z",
+    "publish_at": "2026-08-22T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 1.9,
+    "elapsed_seconds": 0.2,
     "backfill": true
   },
   {
-    "topic": "fidelity bitcoin",
+    "topic": "npb",
     "angle": null,
-    "publish_at": "2026-08-21T19:00:00Z",
+    "publish_at": "2026-08-22T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.4,
-    "backfill": true
-  },
-  {
-    "topic": "stock market news today",
-    "angle": null,
-    "publish_at": "2026-08-21T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.7,
+    "elapsed_seconds": 1.1,
     "backfill": true
   }
 ]

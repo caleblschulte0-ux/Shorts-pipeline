@@ -1,42 +1,43 @@
-# Daily Trending Shorts — 2026-08-21
+# Daily Trending Shorts — 2026-08-22
 
-> **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **9**
-- succeeded: **3**
+- queued: **8**
+- succeeded: **4**
 - quarantined (off-topic imagery): **1**
-- failed: **5**
+- failed: **3**
 
 ## Posted
-- **Vinyl Buried CDs After 34 Years On Top**
-  - topic: Vinyl Buried CDs After 34 Years On Top
-  - publishes: `2026-08-21T13:00:00Z`
-  - https://youtube.com/shorts/-HmdYzPhrZs
-  - took: 121.1s
-- **Opioid Deaths Overtook Car Crash Deaths**
-  - topic: Opioid Deaths Overtook Car Crash Deaths
-  - publishes: `2026-08-21T14:30:00Z`
-  - https://youtube.com/shorts/YytE9uNvMeI
-  - took: 124.0s
-- **Wind Power Just Passed Hydro In America**
-  - topic: Wind Power Just Passed Hydro In America
-  - publishes: `2026-08-21T16:00:00Z`
-  - https://youtube.com/shorts/HZp5jhotzBY
-  - took: 126.7s
+- **Airbus Overtook Boeing After The 737 MAX Crisis**
+  - topic: Airbus Overtook Boeing After The 737 MAX Crisis
+  - publishes: `2026-08-22T13:00:00Z`
+  - https://youtube.com/shorts/mIx9MUcLo0c
+  - took: 132.5s
+- **Shopify Overtook eBay In Total Sales**
+  - topic: Shopify Overtook eBay In Total Sales
+  - publishes: `2026-08-22T14:30:00Z`
+  - https://youtube.com/shorts/mlZ6julPK5E
+  - took: 117.3s
+- **Netflix Just Passed Cable In Total Subscribers**
+  - topic: Netflix Just Passed Cable In Total Subscribers
+  - publishes: `2026-08-22T16:00:00Z`
+  - https://youtube.com/shorts/CDaAHFbdRWk
+  - took: 119.8s
+- **She Name-Dropped The Owner. The Owner Was Twelve Feet Away.**
+  - topic: She Name-Dropped The Owner. The Owner Was Twelve Feet Away.
+  - publishes: `2026-08-22T17:30:00Z`
+  - https://youtube.com/shorts/3xjKJE76n38
+  - took: 247.5s
 
 ## Quarantined (off-topic imagery — fix & re-author)
-- **He Called It Voluntary. The Labor Board Didn't.**
-  - quarantined: illustration coverage 12.5% < 20.0% — 7 shot(s) have no real image and would fall to off-topic keyword stock: ['voluntary team spirit', 'started saving everything', 'badge scan records from the building system', 'state labor board as a wage complaint', 'district manager showed up unannounced', 'unpaid overtime going back four months', 'cut checks to every person on that weekend list']
+- **The Only Manager Who Could Cancel My Gym Never Showed.**
+  - quarantined: vision QA: broken — Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co
 
 ## Failed
-- **China Overtook Japan In The Car Export Race**
-  - error: `showrunner_block: showrunner BLOCK: A clean, genuinely well-paced race that lands its crossover — but the first ~2.5 seconds are a mostly-black pre-scaled grid with two flat stubs and a hook banner that sits unreadably on top of the Japan line.`
-- **She Wouldn't Believe I Didn't Work There**
-  - error: `showrunner_block: showrunner BLOCK: Fifty-two seconds of raw Subway-Surfers gameplay with captions and exactly one illustration — and that illustration is a melted-hand AI fake.`
-- **why is crypto going up today**
+- **Modelo Just Dethroned Bud Light As America's #1**
+  - error: `showrunner_block: showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.`
+- **d**
   - error: `HTTPError: HTTP Error 404: Not Found`
-- **fidelity bitcoin**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **stock market news today**
+- **npb**
   - error: `HTTPError: HTTP Error 404: Not Found`
 
