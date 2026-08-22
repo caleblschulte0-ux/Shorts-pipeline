@@ -70,9 +70,7 @@ def validate(pkg: dict, *, source_allowlist: list[str] | None = None) -> list[st
         if "." not in tok and 1900 <= n <= 2100:
             continue
         if not any(_close(n, fv) for fv in fact_values):
-            # Only flag things that look like a metric (decimal or large).
-            if "." in tok or n >= 1000:
-                errors.append(f"script number {tok!r} not in fact table")
+            errors.append(f"script number {tok!r} not in fact table")
 
     # 6. Source allowlist (if the niche pins approved publishers/domains).
     if source_allowlist:

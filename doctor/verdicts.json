@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260821",
+  "updated": "20260822",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -535,6 +535,42 @@
       "verdict": "doing",
       "date": "20260821",
       "because": "Verified in funnel/media_funnel.py:1401 -- required_word not in title_l is a raw substring test, so entity='Elon Musk' keeps candidate titles like 'Muskox herd expands' and 'Muskrat population grows'. Genuine disambiguation bug, but small and low-risk (whole-token comparison instead of substring, a few table-driven test cases). Accepted, queued for a quick pickup -- not built this run to keep this session's one build (the critical media_judge bug) done properly rather than spreading across multiple changes.",
+      "history": []
+    },
+    "8bb141fe6f49": {
+      "verdict": "in_progress",
+      "date": "20260822",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed: qa.py only flagged unmatched numbers with a decimal point or >=1000, so sourced-looking small integers (counts/ranks/percentages under 1000) shipped unchecked. Fixed in this run: removed the magnitude shortcut so every unmatched non-year numeric token is flagged; verified the generator's numbers are all fact-derived (packager._num traces every spoken figure to a Fact) so no false positives on real packages; added adversarial (12/99/999) + positive (small value + year) regression tests in data_learning/tests/test_pipeline.py. Full suite unaffected (same pre-existing PIL/matplotlib-only failures before and after)."
+        }
+      ]
+    },
+    "3445b0aecae4": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Confirmed at third_capture/author.py:538-575 -- _call_claude only checks returncode against the usage-limit regex; a nonzero-exit CLI call whose stdout happens to be well-formed JSON is parsed and returned as a successful brain answer, so a crashed/partial run can silently drive ranking/authoring/scene judgment. Real bug, worth fixing: require returncode==0 before accepting JSON (preserving the limit-breaker check on any nonzero exit), with mocked coverage for nonzero+valid-JSON, nonzero+limit-text, and zero+valid-JSON. Queued as the next small_fix -- not built this run, one item per run and the critical explainer QA bug took priority.",
+      "history": []
+    },
+    "2127c6395c2c": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Verified against a fresh pull of state/analytics_third/latest.json: chaos is by far the largest mature (72h+) series bucket (n=35) with a weak median VPH (~0.02) while fail/wholesome/jumpscare show better median VPH on much smaller samples -- exact numbers drift slightly as analytics refresh but the shape holds. Also confirmed third_capture/author.py folds every missing/invalid series label into chaos via 'series or \"chaos\"', which is exactly the mechanism the finding names. Legitimate strategy direction under the 2026-08-16 managing-editor mandate; the proposal (label unknown separately, audit, cap chaos at baseline, do not force weak fills) does not lower any bar. Queued to build as a registry/doctrine change in a future run -- the audit plus registry_acceptance.py validation deserves its own dedicated session rather than a rushed pass alongside four other rulings.",
+      "history": []
+    },
+    "5171aa14cc8d": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Confirmed at data_learning/generate.py:143-160 -- out_path.write_text() runs unconditionally before the QA-errors branch, and --publish without --strict exits 0 even when packages failed QA, leaving the rejected package sitting in state/trending_packages/<date>/ for the daily renderer to pick up. Confirmed this path is not wired into any workflow today (it appears only in data_learning/README.md's manual examples), so it is a real but currently-manual footgun rather than an active production hole. Queued as the next short_term item: make publish intrinsically strict, or stage the batch and promote only QA-passing packages atomically.",
+      "history": []
+    },
+    "347e2440278c": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run.",
       "history": []
     }
   }
