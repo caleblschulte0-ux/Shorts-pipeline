@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-08-22T12:59:30+00:00",
+ "date": "20260822",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260822/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-deborah-swim-school-s0-7aba38055ff0.json",
+  "reddit-deborah-swim-school-s1-2dacb57a4bb1.json",
+  "reddit-deborah-swim-school-s2-800b38d816fb.json",
+  "reddit-deborah-swim-school-s3-29d10843c2bb.json",
+  "reddit-deborah-swim-school-s4-eccfdcafbca1.json",
+  "reddit-deborah-swim-school-s5-618bdf27c9aa.json",
+  "reddit-deborah-swim-school-s6-f3190e01ecb3.json",
+  "reddit-deborah-swim-school-s7-d96c58f05202.json",
+  "reddit-gym-tuesday-cancellation-s0-33da710f84cb.json",
+  "reddit-gym-tuesday-cancellation-s1-20746d02edc1.json",
+  "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae.json",
+  "reddit-gym-tuesday-cancellation-s3-168dae713010.json",
+  "reddit-gym-tuesday-cancellation-s4-7687515b2fe7.json",
+  "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.json",
+  "reddit-gym-tuesday-cancellation-s6-b37ba8c8d333.json",
+  "reddit-gym-tuesday-cancellation-s7-3aba312dd033.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
