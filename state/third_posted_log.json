@@ -4565,14 +4565,27 @@
       "director_cut": true
     },
     "clip-20260822-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/NastyCoweringTurnipDBstyle-vQVQ0p5LbCVr8eHe",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/pWDv-4MyDnU",
       "title": "Cinna Gets Arrested Live On Stream And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-08-22T12:24:11.875876+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-22T12:24:15.248494+00:00",
+      "uploaded_at": "2026-08-22T12:24:15.248512+00:00",
+      "publish_at": "2026-08-23T00:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/NastyCoweringTurnipDBstyle-vQVQ0p5LbCVr8eHe",
+      "streamer": "cinna",
+      "series": "chaos",
+      "hook": "POLICE SHOW UP WITH A WARRANT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2601,
+      "banger": 0.85,
+      "cut": {
+        "start": 0.0,
+        "end": 19.7
+      },
+      "director_cut": true
     }
   }
 }
