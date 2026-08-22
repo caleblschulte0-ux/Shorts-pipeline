@@ -4464,13 +4464,36 @@
       "ts": "2026-08-22T11:37:01.729427+00:00"
     },
     "clip-20260822-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/PlacidCrepuscularGiraffeBrainSlug-c44lBW0U-CB8uS3v",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/9iEf3cc1v70",
       "title": "Kaicenat: Kai Cenat Says He's Smacking Duke Dennis Next Time He Sees Him",
       "kind": "twitch_clip",
-      "ts": "2026-08-22T11:39:49.113349+00:00",
+      "ts": "2026-08-22T11:39:53.712173+00:00",
+      "uploaded_at": "2026-08-22T11:39:53.712193+00:00",
+      "publish_at": "2026-08-22T18:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PlacidCrepuscularGiraffeBrainSlug-c44lBW0U-CB8uS3v",
+      "streamer": "kaicenat",
+      "series": "beef",
+      "hook": "HE'S SMACKING DUKE DENNIS NEXT TIME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2821,
+      "banger": 0.6,
+      "cut": {
+        "start": 2.5,
+        "end": 27.8
+      },
+      "director_cut": true
+    },
+    "clip-20260822-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HedonisticInterestingOwlOhMyDog-XS_7PuHTVBO5MOIB",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Has A Close Call And Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-22T11:43:10.804546+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
