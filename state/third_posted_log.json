@@ -4426,6 +4426,52 @@
         "end": 24.4
       },
       "director_cut": true
+    },
+    "rejected-creativelovelyphonedatsheffy-tvcukyiap-hn3ati": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CreativeLovelyPhoneDatSheffy-TVcukyIAP-Hn3AtI",
+      "streamer": "xqc",
+      "title": "take take",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static talking-head reading text, no eve)",
+      "ts": "2026-08-22T11:32:51.150152+00:00"
+    },
+    "rejected-blueexpensivezucchininononocat-wwnoaqzdnsrctx3l": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BlueExpensiveZucchiniNononoCat-wwnOaqzdnSrCTX3L",
+      "streamer": "caseoh_",
+      "title": "the fall",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (routine Roblox gameplay, no real event)",
+      "ts": "2026-08-22T11:33:47.587076+00:00"
+    },
+    "rejected-supercourteousrabbitkappawealth-w0f2pdtoctqzgmus": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/SuperCourteousRabbitKappaWealth-w0F2PDToCtQZGmus",
+      "streamer": "ludwig",
+      "title": "Vent Session",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (yoga talk, no clear event)",
+      "ts": "2026-08-22T11:36:00.185945+00:00"
+    },
+    "rejected-powerfuldifferentdotterelvohiyo-0paaxpc_ufurlcdc": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PowerfulDifferentDotterelVoHiYo-0paaxPc_ufurlCdc",
+      "streamer": "jynxzi",
+      "title": "a real champ wouldn't complain",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (rambling talk, no real event)",
+      "ts": "2026-08-22T11:37:01.729427+00:00"
+    },
+    "clip-20260822-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/PlacidCrepuscularGiraffeBrainSlug-c44lBW0U-CB8uS3v",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Says He's Smacking Duke Dennis Next Time He Sees Him",
+      "kind": "twitch_clip",
+      "ts": "2026-08-22T11:39:49.113349+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
