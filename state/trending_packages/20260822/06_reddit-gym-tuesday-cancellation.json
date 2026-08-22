@@ -1,0 +1,25 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-gym-tuesday-cancellation",
+  "title": "The Only Manager Who Could Cancel My Gym Never Showed.",
+  "script": "My gym's contract said monthly memberships could be cancelled in person with thirty days notice. When I finally showed up to cancel, the front desk said cancellations were only processed by one manager who worked a single two hour window each week, and only with a specific form kept in a locked drawer. I came back during that exact window the following week. The manager was not there. He was not there the week after that either. Instead of coming back a third time, I mailed a certified letter citing my contract's actual cancellation terms and filed a complaint with the state attorney general's consumer protection division, attaching photos of the front desk sign advertising the mystery hours. Three weeks later a corporate compliance officer called to apologize personally, refunded four months of membership fees charged after my cancellation date, and confirmed the location's entire cancellation policy was being rewritten chain wide. That two hour cancellation window quietly disappeared from every location by the following month.",
+  "shots": [
+    {"phrase": "front desk", "query": "gym front desk"},
+    {"phrase": "locked drawer", "query": "locked file cabinet drawer"},
+    {"phrase": "during that exact window", "query": "empty office morning"},
+    {"phrase": "certified letter", "query": "certified mail envelope"},
+    {"phrase": "attorney general's consumer protection division", "query": "government building exterior"},
+    {"phrase": "compliance officer", "query": "businessperson on phone call"},
+    {"phrase": "refunded four months", "query": "refund receipt paper"},
+    {"phrase": "cancellation policy was being rewritten", "query": "gym membership sign"}
+  ],
+  "punches": [
+    {"phrase": "locked drawer", "text": "LOCKED DRAWER", "color": "#ffaa30"},
+    {"phrase": "was not there", "text": "NO SHOW", "color": "#ff3030"},
+    {"phrase": "refunded four months", "text": "REFUNDED", "color": "#50ff80"},
+    {"phrase": "rewritten chain wide", "text": "POLICY REWRITTEN", "color": "#50ff80"}
+  ],
+  "hashtags": ["talesfromthecustomer", "karma", "gymmembership", "consumerrights", "customerservice", "scam", "refund", "storytime", "reddit", "satisfying", "shorts", "viral", "karmaisreal", "corporateaccountability"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
