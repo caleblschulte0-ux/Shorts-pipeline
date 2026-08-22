@@ -1,0 +1,114 @@
+{
+  "date": "20260822",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-deborah-swim-school-s0-7aba38055ff0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s0-7aba38055ff0.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s1-2dacb57a4bb1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s1-2dacb57a4bb1.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s2-800b38d816fb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s2-800b38d816fb.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s4-eccfdcafbca1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s4-eccfdcafbca1.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s5-618bdf27c9aa",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s5-618bdf27c9aa.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s6-f3190e01ecb3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s6-f3190e01ecb3.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s7-d96c58f05202",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s7-d96c58f05202.png"
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s3-29d10843c2bb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-deborah-swim-school-s3-29d10843c2bb.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s0-33da710f84cb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s0-33da710f84cb.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s1-20746d02edc1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s1-20746d02edc1.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s2-5a93de8c1cae.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s3-168dae713010",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s3-168dae713010.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s6-b37ba8c8d333",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s6-b37ba8c8d333.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s7-3aba312dd033",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s7-3aba312dd033.png"
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-gym-tuesday-cancellation-s4-7687515b2fe7.png"
+    }
+  ]
+}
