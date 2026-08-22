@@ -4542,13 +4542,36 @@
       "director_cut": true
     },
     "clip-20260822-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/AttractiveEsteemedNikudonPartyTime-BffiYx-OsOxSdSTN",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/0wJzAC1RXrc",
       "title": "Kaicenat: Kai Cenat Gets Called Out For Wearing A Fake Chain",
       "kind": "twitch_clip",
-      "ts": "2026-08-22T12:20:06.195426+00:00",
+      "ts": "2026-08-22T12:20:10.420776+00:00",
+      "uploaded_at": "2026-08-22T12:20:10.420796+00:00",
+      "publish_at": "2026-08-22T23:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AttractiveEsteemedNikudonPartyTime-BffiYx-OsOxSdSTN",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "THEY SAID HIS CHAIN WAS FAKE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2693,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260822-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/NastyCoweringTurnipDBstyle-vQVQ0p5LbCVr8eHe",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Gets Arrested Live On Stream And Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-22T12:24:11.875876+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
