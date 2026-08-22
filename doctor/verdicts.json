@@ -538,16 +538,22 @@
       "history": []
     },
     "8bb141fe6f49": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260822",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260822",
           "because": "Confirmed: qa.py only flagged unmatched numbers with a decimal point or >=1000, so sourced-looking small integers (counts/ranks/percentages under 1000) shipped unchecked. Fixed in this run: removed the magnitude shortcut so every unmatched non-year numeric token is flagged; verified the generator's numbers are all fact-derived (packager._num traces every spoken figure to a Fact) so no false positives on real packages; added adversarial (12/99/999) + positive (small value + year) regression tests in data_learning/tests/test_pipeline.py. Full suite unaffected (same pre-existing PIL/matplotlib-only failures before and after)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260822",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "403778e"
     },
     "3445b0aecae4": {
       "verdict": "doing",
