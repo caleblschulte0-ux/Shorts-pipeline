@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-deborah-swim-school-s7-d96c58f05202",
+  "safe_request_id": "reddit-deborah-swim-school-s7-d96c58f05202",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2fb707c274eb0f9948778360b0a56fedf07314ef8de94187b39a688c3d94d11e",
+  "prompt_used": "An editorial illustration for a short-form video: office folder documents. It accompanies the narration: \"background review\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+    "filename": "20260822__reddit-deborah-swim-school-s7-d96c58f05202.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "50907f2ba5ce03834d3b83794dee09fe4abfe5824c97f2811a43eabed3a24650",
+    "bytes": 1019555,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:38.114Z",
+  "error": null,
+  "retryable": false
+}
