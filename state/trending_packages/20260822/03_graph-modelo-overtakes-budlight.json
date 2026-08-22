@@ -6,19 +6,46 @@
   "y_label": "Share of US beer dollar sales (%)",
   "duration": 13,
   "source": "Nielsen/NIQ US retail dollar sales share of the beer category, as reported by CNBC and Bump Williams Consulting analysis, Beer Marketer's Insights, and Sherwood News on Modelo Especial's rise and Bud Light's post-boycott decline; Constellation Brands SEC filings on Modelo's annual depletion (volume) growth. Approximate annual share of US beer dollar sales (%) - Bud Light: ~9.6 (2016) declining to ~7.0 (2023, after the April 2023 boycott); Modelo Especial: ~3.3 (2016) rising to ~8.7 (2023). Modelo overtook Bud Light as the top-selling beer brand by US retail dollar sales in mid-2023, ending Bud Light's roughly two-decade run atop the category.",
-  "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
   "series": [
     {
       "name": "Bud Light",
       "color": "#1B3E8C",
       "icon": "Bud Light",
-      "values": [9.6, 9.4, 9.2, 9.0, 8.9, 8.7, 8.5, 7.0]
+      "values": [
+        9.6,
+        9.4,
+        9.2,
+        9.0,
+        8.9,
+        8.7,
+        8.5,
+        7.0
+      ]
     },
     {
       "name": "Modelo Especial",
       "color": "#FFB81C",
       "icon": "Modelo",
-      "values": [3.3, 3.9, 4.4, 5.0, 5.8, 6.5, 7.1, 8.7]
+      "values": [
+        3.3,
+        3.9,
+        4.4,
+        5.0,
+        5.8,
+        6.5,
+        7.1,
+        8.7
+      ]
     }
   ],
   "hashtags": [
