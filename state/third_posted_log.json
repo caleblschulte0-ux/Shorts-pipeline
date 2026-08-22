@@ -4519,13 +4519,36 @@
       "ts": "2026-08-22T12:00:09.050663+00:00"
     },
     "clip-20260822-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/ArborealStrangeClipsmomWow-qB6PcQ2QhmI6dVDl",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/YT34xycZlFM",
       "title": "Cinna Can't Believe What Sara Just Did",
       "kind": "twitch_clip",
-      "ts": "2026-08-22T12:14:16.528691+00:00",
+      "ts": "2026-08-22T12:14:23.807190+00:00",
+      "uploaded_at": "2026-08-22T12:14:23.807213+00:00",
+      "publish_at": "2026-08-22T21:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/ArborealStrangeClipsmomWow-qB6PcQ2QhmI6dVDl",
+      "streamer": "cinna",
+      "series": "chaos",
+      "hook": "SHE JUMPED ON HIM AND WOULDN'T STOP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3246,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 20.3
+      },
+      "director_cut": true
+    },
+    "clip-20260822-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AttractiveEsteemedNikudonPartyTime-BffiYx-OsOxSdSTN",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Called Out For Wearing A Fake Chain",
+      "kind": "twitch_clip",
+      "ts": "2026-08-22T12:20:06.195426+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
