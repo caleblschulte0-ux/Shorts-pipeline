@@ -1,0 +1,21 @@
+{
+  "key": "womens_bachelor_degree_share_trend",
+  "title": "Share of US bachelor's degrees earned by women",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1970-2022",
+  "source": {
+    "name": "Degrees conferred by postsecondary institutions, by sex of student",
+    "publisher": "National Center for Education Statistics (NCES)",
+    "url": "https://nces.ed.gov/programs/digest/",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published NCES figures formatted for narration. Women earned a minority of bachelor's degrees in 1970, crossed 50% around 1981-82, and now earn a clear majority.",
+  "points": [
+    {"label": "1970", "value": 43, "period": "1970"},
+    {"label": "1980", "value": 49, "period": "1980"},
+    {"label": "2000", "value": 57, "period": "2000"},
+    {"label": "2022", "value": 58, "period": "2022"}
+  ]
+}

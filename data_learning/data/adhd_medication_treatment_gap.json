@@ -1,0 +1,19 @@
+{
+  "key": "adhd_medication_treatment_gap",
+  "title": "Diagnosed children currently taking ADHD medication",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "National Survey of Children's Health",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/adhd/data/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published 2022 NSCH figure formatted for narration. Among children currently diagnosed with ADHD, 53.6% were taking medication for it, leaving the rest untreated by medication.",
+  "points": [
+    {"label": "Taking ADHD medication", "value": 53.6},
+    {"label": "Not taking medication", "value": 46.4}
+  ]
+}

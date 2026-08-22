@@ -22952,6 +22952,257 @@
           }
         }
       ]
+    },
+    {
+      "slug": "monarch-butterfly-collapse",
+      "title": "The Monarch Butterfly Is Running Out of Forest",
+      "hook": "One bug species is vanishing in plain sight.",
+      "closing": "No milkweed, no monarchs. It's really that simple.",
+      "question": "When did you last actually see a monarch? Tell me below.",
+      "caption": "Monarch colonies in Mexico shrank from 18 hectares in 1996 to just 0.9 today. The culprit: herbicide-resistant crops wiped out the milkweed monarchs need to breed, and both US migration routes are now down 80-95% from their peak. When did you last see one? 👇",
+      "hashtags": [
+        "monarch",
+        "butterflies",
+        "monarchbutterfly",
+        "pollinators",
+        "wildlife",
+        "conservation",
+        "biodiversity",
+        "nature",
+        "insects",
+        "milkweed",
+        "ecology",
+        "science",
+        "endangeredspecies",
+        "naturefacts",
+        "climate"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "monarch_overwintering_hectares",
+          "params": {
+            "file": "monarch_overwintering_hectares.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "monarch colony forest area",
+          "say": "In 1996, monarch colonies covered 18 hectares of Mexican forest. By 2024, that shrank to just 0.9 hectares -- barely two football fields."
+        },
+        {
+          "source": "offline",
+          "key": "herbicide_tolerant_soybean_adoption",
+          "params": {
+            "file": "herbicide_tolerant_soybean_adoption.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE CAUSE",
+          "topic": "herbicide-resistant crops",
+          "say": "Here's why: herbicide-resistant soybeans went from 17 percent of US fields in 1997 to 94 percent by 2014. The spray that clears weeds also wipes out the milkweed monarchs need to lay eggs on."
+        },
+        {
+          "source": "offline",
+          "key": "monarch_population_decline_by_route",
+          "params": {
+            "file": "monarch_population_decline_by_route.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · THE COST",
+          "topic": "population lost, by migration route",
+          "say": "The result: the eastern migration is down 80 percent since the 1990s. The western migration is down 95 percent. Both of America's monarch routes are collapsing at once."
+        }
+      ]
+    },
+    {
+      "slug": "adhd-diagnosis-surge",
+      "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "hook": "Way more kids have ADHD now. Here's why.",
+      "closing": "More labels. Still not enough help.",
+      "question": "Were you diagnosed as a kid, or later? Tell me below.",
+      "caption": "In 2003, 7.8% of US kids had an ADHD diagnosis. By 2022 it was 11.4% -- nearly 1 in 9. Girls are finally being caught almost as often as boys, but still only about half of diagnosed kids get medication for it. Were you diagnosed as a kid, or later? 👇",
+      "hashtags": [
+        "adhd",
+        "adhdawareness",
+        "mentalhealth",
+        "kids",
+        "children",
+        "cdc",
+        "publichealth",
+        "neurodivergent",
+        "parenting",
+        "healthdata",
+        "diagnosis",
+        "psychology",
+        "science",
+        "medicine",
+        "wellness"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "adhd_diagnosis_trend",
+          "params": {
+            "file": "adhd_diagnosis_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "ADHD diagnosis rate",
+          "say": "In 2003, 7.8 percent of US kids had ever been diagnosed with ADHD. By 2022 it was 11.4 percent -- nearly 1 in 9 children."
+        },
+        {
+          "source": "offline",
+          "key": "adhd_diagnosis_by_sex",
+          "params": {
+            "file": "adhd_diagnosis_by_sex.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE SHIFT",
+          "topic": "who's newly being caught",
+          "say": "Boys are still diagnosed more often -- 15 percent versus 8 percent for girls. But that gap used to be more than double. Girls are finally getting identified too."
+        },
+        {
+          "source": "offline",
+          "key": "adhd_medication_treatment_gap",
+          "params": {
+            "file": "adhd_medication_treatment_gap.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · THE GAP",
+          "topic": "who actually gets treated",
+          "say": "Yet only 53.6 percent of diagnosed kids are actually on medication for it. More diagnoses didn't mean more kids getting help."
+        }
+      ]
+    },
+    {
+      "slug": "parker-solar-probe-speed-record",
+      "title": "Humans Just Built the Fastest Thing Ever Made",
+      "hook": "We built something faster than anything on Earth.",
+      "closing": "And right now, it's diving straight into the sun.",
+      "question": "Would you ride something that fast? Tell me below.",
+      "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
+      "hashtags": [
+        "parkersolarprobe",
+        "nasa",
+        "space",
+        "spacefacts",
+        "astronomy",
+        "science",
+        "spaceexploration",
+        "fastest",
+        "apollo10",
+        "sciencefacts",
+        "didyouknow",
+        "spacex",
+        "cosmos",
+        "physics",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "parker_speed_progression",
+          "params": {
+            "file": "parker_speed_progression.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "spacecraft speed record",
+          "say": "In 2018, Parker Solar Probe hit 153 thousand miles an hour. By December 2024 it hit 430 thousand miles an hour -- the fastest anything built by humans has ever moved."
+        },
+        {
+          "source": "offline",
+          "key": "parker_vs_human_speed_record",
+          "params": {
+            "file": "parker_vs_human_speed_record.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE GAP",
+          "topic": "vs. the fastest a human has gone",
+          "say": "That's 17 times faster than Apollo 10 -- the fastest speed any human has ever personally traveled, set back in 1969."
+        },
+        {
+          "source": "offline",
+          "key": "parker_speed_travel_times",
+          "params": {
+            "file": "parker_speed_travel_times.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": false,
+          "role": "3 · THE PAYOFF",
+          "topic": "what that speed actually means",
+          "say": "At that speed, New York to Tokyo takes 56 seconds. You could circle the entire planet in 208 seconds -- under 4 minutes."
+        }
+      ]
+    },
+    {
+      "slug": "college-gender-gap",
+      "title": "The College Gender Gap Nobody Saw Coming",
+      "hook": "Men used to dominate college. Not anymore.",
+      "closing": "The flip happened. And it's still speeding up.",
+      "question": "Did you finish college? Tell me below.",
+      "caption": "In 1970, women earned just 43% of US college degrees. Today it's 58% -- and the gap between young men and women is still widening, not closing. Among 25-34 year-olds, 47% of women now hold a bachelor's degree versus 37% of men. Did you finish college? 👇",
+      "hashtags": [
+        "college",
+        "education",
+        "gender",
+        "genderdata",
+        "demographics",
+        "university",
+        "degrees",
+        "womeneducation",
+        "dataviz",
+        "statistics",
+        "society",
+        "genz",
+        "millennials",
+        "highereducation",
+        "didyouknow"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "womens_bachelor_degree_share_trend",
+          "params": {
+            "file": "womens_bachelor_degree_share_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · SETUP",
+          "topic": "women's share of college degrees",
+          "say": "In 1970, women earned just 43 percent of college degrees. By 1980 it was 49 percent. Today it's 58 percent -- women now earn most degrees, not men."
+        },
+        {
+          "source": "offline",
+          "key": "degree_gain_since_1995_by_sex",
+          "params": {
+            "file": "degree_gain_since_1995_by_sex.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE TURN",
+          "topic": "the gap is still widening",
+          "say": "And it's not leveling off. Since 1995, young women's degree rate jumped 22 points. Young men's only rose 12 points. The gap keeps growing."
+        },
+        {
+          "source": "offline",
+          "key": "degree_attainment_young_adults_by_sex",
+          "params": {
+            "file": "degree_attainment_young_adults_by_sex.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "3 · TODAY",
+          "topic": "who actually has a degree today",
+          "say": "So today, 47 percent of women ages 25 to 34 have a bachelor's degree. Only 37 percent of men do."
+        }
+      ]
     }
   ],
   "videos": [

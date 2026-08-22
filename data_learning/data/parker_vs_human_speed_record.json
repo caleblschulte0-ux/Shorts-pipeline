@@ -1,0 +1,19 @@
+{
+  "key": "parker_vs_human_speed_record",
+  "title": "Fastest object vs. fastest a human has ever traveled (mph)",
+  "unit": "mph",
+  "geography": "N/A (spaceflight records)",
+  "time_coverage": "1969 vs 2024",
+  "source": {
+    "name": "Spaceflight speed records: Apollo 10 and Parker Solar Probe",
+    "publisher": "NASA",
+    "url": "https://science.nasa.gov/mission/parker-solar-probe/",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published NASA figures formatted for narration. Apollo 10's 1969 reentry speed of 24,791 mph remains the fastest speed any human has personally traveled; Parker Solar Probe's December 2024 record of 430,000 mph is roughly 17x faster.",
+  "points": [
+    {"label": "Parker Solar Probe (2024)", "value": 430000},
+    {"label": "Apollo 10 -- fastest humans ever traveled (1969)", "value": 24791}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "key": "adhd_diagnosis_trend",
+  "title": "US children ever diagnosed with ADHD",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2003-2022",
+  "source": {
+    "name": "National Survey of Children's Health",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/adhd/data/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published CDC/NSCH figures (share of children ages 4-17 ever diagnosed with ADHD by a health care provider), formatted for narration.",
+  "points": [
+    {"label": "2003", "value": 7.8, "period": "2003"},
+    {"label": "2007", "value": 9.5, "period": "2007"},
+    {"label": "2011", "value": 11.0, "period": "2011"},
+    {"label": "2022", "value": 11.4, "period": "2022"}
+  ]
+}
