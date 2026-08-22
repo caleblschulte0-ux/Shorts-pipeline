@@ -1880,8 +1880,8 @@
     }
   ],
   "recent_commits": [
-    "779fc39 2026-08-21 doctor: findings for 20260821",
-    "842f676 2026-08-21 retro: brief + triage for 20260821 [skip ci]"
+    "8bb3af7 2026-08-22 doctor: mark explainer QA small-integer fix done (#301)",
+    "d582cf7 2026-08-22 exchange: phase A bundle for 20260822 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2019,13 +2019,6 @@
   },
   "open_backlog": [
     {
-      "signature": "8bb141fe6f49",
-      "title": "Explainer fact QA ignores unsupported small integers",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "new"
-    },
-    {
       "signature": "aaeb12de3ebd",
       "title": "Restore explainer delivery before interpreting its topic test",
       "horizon": "strategy",
@@ -2058,7 +2051,7 @@
       "title": "Failed Claude processes can return successful Third authoring",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "33ccbcdc479b",
@@ -2072,7 +2065,7 @@
       "title": "Challenge Third's oversized chaos bucket with proven alternatives",
       "horizon": "strategy",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "cf263a770061",
@@ -2121,7 +2114,7 @@
       "title": "Legacy explainer publish writes packages before QA passes",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d65eddf69fba",
@@ -2135,7 +2128,7 @@
       "title": "Split Third attempts from the authoritative posted ledger",
       "horizon": "long_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d64b063a21bd",
@@ -2445,6 +2438,13 @@
       "verdict": "done",
       "date": "20260821",
       "because": "Merged in PR #297 (commit 268f49b): judge_package no longer synthesizes candidate title/query from the shot's own phrase/search query for a bare pinned image_url, unknown width/height no longer earns free resolution credit, and an 'unknown' judge verdict now counts as a gap. 990 tests pass (3 new adversarial tests added), registry_acceptance 7/7.",
+      "revisit_after": null
+    },
+    {
+      "signature": "8bb141fe6f49",
+      "verdict": "done",
+      "date": "20260822",
+      "because": "",
       "revisit_after": null
     }
   ]
