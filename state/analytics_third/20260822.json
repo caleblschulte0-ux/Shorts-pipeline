@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-08-22T08:57:28.010563+00:00",
+  "fetched_at": "2026-08-22T12:24:23.404144+00:00",
   "videos": [
     {
       "video_id": "zrddn18piKY",
@@ -19,549 +19,14 @@
       "n_beats": null,
       "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
       "published_at": "2026-08-20T17:00:32Z",
-      "age_hours": 39.9,
-      "views": 150,
-      "engaged_views": 150,
+      "age_hours": 43.4,
+      "views": 153,
+      "engaged_views": 153,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.75
-    },
-    {
-      "video_id": "HbIEAuPJbH0",
-      "url": "https://youtube.com/shorts/HbIEAuPJbH0",
-      "catalog_id": "clip-20260816-2",
-      "streamer": "jynxzi",
-      "series": "drama",
-      "experiment_arm": "clip",
-      "actual_structure": "simple_fallback",
-      "hook": "HE WASN'T SUPPOSED TO SAY THAT",
-      "source_views": 3642,
-      "banger": 0.55,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-      "published_at": "2026-08-16T18:30:04Z",
-      "age_hours": 134.5,
-      "views": 202,
-      "engaged_views": 86,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 1.5,
-      "average_view_percentage": 74.6,
-      "average_view_duration_s": 18.0,
-      "estimated_minutes_watched": 28.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.488,
-          0.619
-        ],
-        [
-          0.02,
-          1.488,
-          0.602
-        ],
-        [
-          0.03,
-          1.465,
-          0.585
-        ],
-        [
-          0.04,
-          1.407,
-          0.568
-        ],
-        [
-          0.05,
-          1.326,
-          0.552
-        ],
-        [
-          0.06,
-          1.233,
-          0.537
-        ],
-        [
-          0.07,
-          1.209,
-          0.523
-        ],
-        [
-          0.08,
-          1.198,
-          0.511
-        ],
-        [
-          0.09,
-          1.151,
-          0.5
-        ],
-        [
-          0.1,
-          1.139,
-          0.49
-        ],
-        [
-          0.11,
-          1.139,
-          0.482
-        ],
-        [
-          0.12,
-          1.128,
-          0.474
-        ],
-        [
-          0.13,
-          1.105,
-          0.467
-        ],
-        [
-          0.14,
-          1.058,
-          0.461
-        ],
-        [
-          0.15,
-          1.035,
-          0.455
-        ],
-        [
-          0.16,
-          1.023,
-          0.449
-        ],
-        [
-          0.17,
-          1.0,
-          0.444
-        ],
-        [
-          0.18,
-          0.988,
-          0.44
-        ],
-        [
-          0.19,
-          0.965,
-          0.436
-        ],
-        [
-          0.2,
-          0.942,
-          0.433
-        ],
-        [
-          0.21,
-          0.919,
-          0.43
-        ],
-        [
-          0.22,
-          0.907,
-          0.428
-        ],
-        [
-          0.23,
-          0.907,
-          0.426
-        ],
-        [
-          0.24,
-          0.907,
-          0.426
-        ],
-        [
-          0.25,
-          0.884,
-          0.425
-        ],
-        [
-          0.26,
-          0.872,
-          0.425
-        ],
-        [
-          0.27,
-          0.849,
-          0.426
-        ],
-        [
-          0.28,
-          0.849,
-          0.427
-        ],
-        [
-          0.29,
-          0.837,
-          0.429
-        ],
-        [
-          0.3,
-          0.814,
-          0.432
-        ],
-        [
-          0.31,
-          0.802,
-          0.435
-        ],
-        [
-          0.32,
-          0.802,
-          0.438
-        ],
-        [
-          0.33,
-          0.802,
-          0.442
-        ],
-        [
-          0.34,
-          0.779,
-          0.447
-        ],
-        [
-          0.35,
-          0.779,
-          0.452
-        ],
-        [
-          0.36,
-          0.779,
-          0.458
-        ],
-        [
-          0.37,
-          0.756,
-          0.464
-        ],
-        [
-          0.38,
-          0.733,
-          0.471
-        ],
-        [
-          0.39,
-          0.709,
-          0.478
-        ],
-        [
-          0.4,
-          0.698,
-          0.486
-        ],
-        [
-          0.41,
-          0.686,
-          0.495
-        ],
-        [
-          0.42,
-          0.686,
-          0.504
-        ],
-        [
-          0.43,
-          0.674,
-          0.513
-        ],
-        [
-          0.44,
-          0.674,
-          0.524
-        ],
-        [
-          0.45,
-          0.674,
-          0.534
-        ],
-        [
-          0.46,
-          0.674,
-          0.545
-        ],
-        [
-          0.47,
-          0.674,
-          0.557
-        ],
-        [
-          0.48,
-          0.674,
-          0.569
-        ],
-        [
-          0.49,
-          0.674,
-          0.581
-        ],
-        [
-          0.5,
-          0.674,
-          0.593
-        ],
-        [
-          0.51,
-          0.674,
-          0.605
-        ],
-        [
-          0.52,
-          0.663,
-          0.618
-        ],
-        [
-          0.53,
-          0.663,
-          0.63
-        ],
-        [
-          0.54,
-          0.663,
-          0.641
-        ],
-        [
-          0.55,
-          0.663,
-          0.653
-        ],
-        [
-          0.56,
-          0.663,
-          0.664
-        ],
-        [
-          0.57,
-          0.651,
-          0.675
-        ],
-        [
-          0.58,
-          0.651,
-          0.685
-        ],
-        [
-          0.59,
-          0.651,
-          0.695
-        ],
-        [
-          0.6,
-          0.651,
-          0.704
-        ],
-        [
-          0.61,
-          0.651,
-          0.713
-        ],
-        [
-          0.62,
-          0.64,
-          0.722
-        ],
-        [
-          0.63,
-          0.64,
-          0.73
-        ],
-        [
-          0.64,
-          0.64,
-          0.737
-        ],
-        [
-          0.65,
-          0.64,
-          0.745
-        ],
-        [
-          0.66,
-          0.64,
-          0.752
-        ],
-        [
-          0.67,
-          0.651,
-          0.758
-        ],
-        [
-          0.68,
-          0.651,
-          0.764
-        ],
-        [
-          0.69,
-          0.651,
-          0.77
-        ],
-        [
-          0.7,
-          0.651,
-          0.775
-        ],
-        [
-          0.71,
-          0.64,
-          0.78
-        ],
-        [
-          0.72,
-          0.64,
-          0.785
-        ],
-        [
-          0.73,
-          0.64,
-          0.789
-        ],
-        [
-          0.74,
-          0.64,
-          0.793
-        ],
-        [
-          0.75,
-          0.64,
-          0.796
-        ],
-        [
-          0.76,
-          0.64,
-          0.799
-        ],
-        [
-          0.77,
-          0.628,
-          0.802
-        ],
-        [
-          0.78,
-          0.628,
-          0.805
-        ],
-        [
-          0.79,
-          0.616,
-          0.807
-        ],
-        [
-          0.8,
-          0.605,
-          0.809
-        ],
-        [
-          0.81,
-          0.605,
-          0.811
-        ],
-        [
-          0.82,
-          0.593,
-          0.812
-        ],
-        [
-          0.83,
-          0.57,
-          0.814
-        ],
-        [
-          0.84,
-          0.57,
-          0.816
-        ],
-        [
-          0.85,
-          0.558,
-          0.818
-        ],
-        [
-          0.86,
-          0.546,
-          0.82
-        ],
-        [
-          0.87,
-          0.546,
-          0.822
-        ],
-        [
-          0.88,
-          0.546,
-          0.824
-        ],
-        [
-          0.89,
-          0.523,
-          0.827
-        ],
-        [
-          0.9,
-          0.512,
-          0.83
-        ],
-        [
-          0.91,
-          0.488,
-          0.833
-        ],
-        [
-          0.92,
-          0.488,
-          0.837
-        ],
-        [
-          0.93,
-          0.488,
-          0.841
-        ],
-        [
-          0.94,
-          0.488,
-          0.845
-        ],
-        [
-          0.95,
-          0.488,
-          0.849
-        ],
-        [
-          0.96,
-          0.488,
-          0.853
-        ],
-        [
-          0.97,
-          0.488,
-          0.857
-        ],
-        [
-          0.98,
-          0.488,
-          0.861
-        ],
-        [
-          0.99,
-          0.488,
-          0.865
-        ],
-        [
-          1.0,
-          0.488,
-          0.868
-        ]
-      ],
-      "early_retention": 0.758
+      "views_per_hour": 3.53
     },
     {
       "video_id": "ZrLb6MhOXAE",
@@ -581,14 +46,14 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
       "published_at": "2026-08-12T17:00:02Z",
-      "age_hours": 232.0,
-      "views": 344,
+      "age_hours": 235.4,
+      "views": 345,
       "engaged_views": 215,
       "likes": 4,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.48,
+      "views_per_hour": 1.47,
       "average_view_percentage": 65.4,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 48.0,
@@ -1099,6 +564,541 @@
       "early_retention": 0.827
     },
     {
+      "video_id": "HbIEAuPJbH0",
+      "url": "https://youtube.com/shorts/HbIEAuPJbH0",
+      "catalog_id": "clip-20260816-2",
+      "streamer": "jynxzi",
+      "series": "drama",
+      "experiment_arm": "clip",
+      "actual_structure": "simple_fallback",
+      "hook": "HE WASN'T SUPPOSED TO SAY THAT",
+      "source_views": 3642,
+      "banger": 0.55,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
+      "published_at": "2026-08-16T18:30:04Z",
+      "age_hours": 137.9,
+      "views": 202,
+      "engaged_views": 86,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 1.46,
+      "average_view_percentage": 74.6,
+      "average_view_duration_s": 18.0,
+      "estimated_minutes_watched": 28.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_curve": [
+        [
+          0.01,
+          1.488,
+          0.619
+        ],
+        [
+          0.02,
+          1.488,
+          0.602
+        ],
+        [
+          0.03,
+          1.465,
+          0.585
+        ],
+        [
+          0.04,
+          1.407,
+          0.568
+        ],
+        [
+          0.05,
+          1.326,
+          0.552
+        ],
+        [
+          0.06,
+          1.233,
+          0.537
+        ],
+        [
+          0.07,
+          1.209,
+          0.523
+        ],
+        [
+          0.08,
+          1.198,
+          0.511
+        ],
+        [
+          0.09,
+          1.151,
+          0.5
+        ],
+        [
+          0.1,
+          1.139,
+          0.49
+        ],
+        [
+          0.11,
+          1.139,
+          0.482
+        ],
+        [
+          0.12,
+          1.128,
+          0.474
+        ],
+        [
+          0.13,
+          1.105,
+          0.467
+        ],
+        [
+          0.14,
+          1.058,
+          0.461
+        ],
+        [
+          0.15,
+          1.035,
+          0.455
+        ],
+        [
+          0.16,
+          1.023,
+          0.449
+        ],
+        [
+          0.17,
+          1.0,
+          0.444
+        ],
+        [
+          0.18,
+          0.988,
+          0.44
+        ],
+        [
+          0.19,
+          0.965,
+          0.436
+        ],
+        [
+          0.2,
+          0.942,
+          0.433
+        ],
+        [
+          0.21,
+          0.919,
+          0.43
+        ],
+        [
+          0.22,
+          0.907,
+          0.428
+        ],
+        [
+          0.23,
+          0.907,
+          0.426
+        ],
+        [
+          0.24,
+          0.907,
+          0.426
+        ],
+        [
+          0.25,
+          0.884,
+          0.425
+        ],
+        [
+          0.26,
+          0.872,
+          0.425
+        ],
+        [
+          0.27,
+          0.849,
+          0.426
+        ],
+        [
+          0.28,
+          0.849,
+          0.427
+        ],
+        [
+          0.29,
+          0.837,
+          0.429
+        ],
+        [
+          0.3,
+          0.814,
+          0.432
+        ],
+        [
+          0.31,
+          0.802,
+          0.435
+        ],
+        [
+          0.32,
+          0.802,
+          0.438
+        ],
+        [
+          0.33,
+          0.802,
+          0.442
+        ],
+        [
+          0.34,
+          0.779,
+          0.447
+        ],
+        [
+          0.35,
+          0.779,
+          0.452
+        ],
+        [
+          0.36,
+          0.779,
+          0.458
+        ],
+        [
+          0.37,
+          0.756,
+          0.464
+        ],
+        [
+          0.38,
+          0.733,
+          0.471
+        ],
+        [
+          0.39,
+          0.709,
+          0.478
+        ],
+        [
+          0.4,
+          0.698,
+          0.486
+        ],
+        [
+          0.41,
+          0.686,
+          0.495
+        ],
+        [
+          0.42,
+          0.686,
+          0.504
+        ],
+        [
+          0.43,
+          0.674,
+          0.513
+        ],
+        [
+          0.44,
+          0.674,
+          0.524
+        ],
+        [
+          0.45,
+          0.674,
+          0.534
+        ],
+        [
+          0.46,
+          0.674,
+          0.545
+        ],
+        [
+          0.47,
+          0.674,
+          0.557
+        ],
+        [
+          0.48,
+          0.674,
+          0.569
+        ],
+        [
+          0.49,
+          0.674,
+          0.581
+        ],
+        [
+          0.5,
+          0.674,
+          0.593
+        ],
+        [
+          0.51,
+          0.674,
+          0.605
+        ],
+        [
+          0.52,
+          0.663,
+          0.618
+        ],
+        [
+          0.53,
+          0.663,
+          0.63
+        ],
+        [
+          0.54,
+          0.663,
+          0.641
+        ],
+        [
+          0.55,
+          0.663,
+          0.653
+        ],
+        [
+          0.56,
+          0.663,
+          0.664
+        ],
+        [
+          0.57,
+          0.651,
+          0.675
+        ],
+        [
+          0.58,
+          0.651,
+          0.685
+        ],
+        [
+          0.59,
+          0.651,
+          0.695
+        ],
+        [
+          0.6,
+          0.651,
+          0.704
+        ],
+        [
+          0.61,
+          0.651,
+          0.713
+        ],
+        [
+          0.62,
+          0.64,
+          0.722
+        ],
+        [
+          0.63,
+          0.64,
+          0.73
+        ],
+        [
+          0.64,
+          0.64,
+          0.737
+        ],
+        [
+          0.65,
+          0.64,
+          0.745
+        ],
+        [
+          0.66,
+          0.64,
+          0.752
+        ],
+        [
+          0.67,
+          0.651,
+          0.758
+        ],
+        [
+          0.68,
+          0.651,
+          0.764
+        ],
+        [
+          0.69,
+          0.651,
+          0.77
+        ],
+        [
+          0.7,
+          0.651,
+          0.775
+        ],
+        [
+          0.71,
+          0.64,
+          0.78
+        ],
+        [
+          0.72,
+          0.64,
+          0.785
+        ],
+        [
+          0.73,
+          0.64,
+          0.789
+        ],
+        [
+          0.74,
+          0.64,
+          0.793
+        ],
+        [
+          0.75,
+          0.64,
+          0.796
+        ],
+        [
+          0.76,
+          0.64,
+          0.799
+        ],
+        [
+          0.77,
+          0.628,
+          0.802
+        ],
+        [
+          0.78,
+          0.628,
+          0.805
+        ],
+        [
+          0.79,
+          0.616,
+          0.807
+        ],
+        [
+          0.8,
+          0.605,
+          0.809
+        ],
+        [
+          0.81,
+          0.605,
+          0.811
+        ],
+        [
+          0.82,
+          0.593,
+          0.812
+        ],
+        [
+          0.83,
+          0.57,
+          0.814
+        ],
+        [
+          0.84,
+          0.57,
+          0.816
+        ],
+        [
+          0.85,
+          0.558,
+          0.818
+        ],
+        [
+          0.86,
+          0.546,
+          0.82
+        ],
+        [
+          0.87,
+          0.546,
+          0.822
+        ],
+        [
+          0.88,
+          0.546,
+          0.824
+        ],
+        [
+          0.89,
+          0.523,
+          0.827
+        ],
+        [
+          0.9,
+          0.512,
+          0.83
+        ],
+        [
+          0.91,
+          0.488,
+          0.833
+        ],
+        [
+          0.92,
+          0.488,
+          0.837
+        ],
+        [
+          0.93,
+          0.488,
+          0.841
+        ],
+        [
+          0.94,
+          0.488,
+          0.845
+        ],
+        [
+          0.95,
+          0.488,
+          0.849
+        ],
+        [
+          0.96,
+          0.488,
+          0.853
+        ],
+        [
+          0.97,
+          0.488,
+          0.857
+        ],
+        [
+          0.98,
+          0.488,
+          0.861
+        ],
+        [
+          0.99,
+          0.488,
+          0.865
+        ],
+        [
+          1.0,
+          0.488,
+          0.868
+        ]
+      ],
+      "early_retention": 0.758
+    },
+    {
       "video_id": "XA0-e7ro_80",
       "url": "https://youtube.com/shorts/XA0-e7ro_80",
       "catalog_id": "clip-20260820-2",
@@ -1116,14 +1116,14 @@
       "n_beats": null,
       "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It",
       "published_at": "2026-08-20T18:30:37Z",
-      "age_hours": 38.4,
-      "views": 51,
-      "engaged_views": 51,
+      "age_hours": 41.9,
+      "views": 52,
+      "engaged_views": 52,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.33
+      "views_per_hour": 1.24
     },
     {
       "video_id": "aBGNeS5dRhE",
@@ -1143,68 +1143,14 @@
       "n_beats": null,
       "title": "Silky Guapo Moment Turns Into Total Chaos",
       "published_at": "2026-08-21T23:00:15Z",
-      "age_hours": 10.0,
-      "views": 12,
-      "engaged_views": 12,
+      "age_hours": 13.4,
+      "views": 14,
+      "engaged_views": 14,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 1.21
-    },
-    {
-      "video_id": "h2uvq_jKBZg",
-      "url": "https://youtube.com/shorts/h2uvq_jKBZg",
-      "catalog_id": "clip-20260821-2",
-      "streamer": "lacy",
-      "series": "chaos",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "RUS GETS CAUGHT PICKING HIS NOSE",
-      "source_views": 3102,
-      "banger": 0.6,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22",
-      "published_at": "2026-08-21T18:30:24Z",
-      "age_hours": 14.5,
-      "views": 17,
-      "engaged_views": 17,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 1.18
-    },
-    {
-      "video_id": "9mMjBlxwmIA",
-      "url": "https://youtube.com/shorts/9mMjBlxwmIA",
-      "catalog_id": "clip-20260820-4",
-      "streamer": "jynxzi",
-      "series": "win",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "CHAT SPELLS OUT STOMPN AFTER THIS",
-      "source_views": 2984,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Jynxzi Gets An Ace And Chat Spells Out STOMPN",
-      "published_at": "2026-08-20T21:30:23Z",
-      "age_hours": 35.5,
-      "views": 36,
-      "engaged_views": 36,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 1.02
+      "views_per_hour": 1.04
     },
     {
       "video_id": "ct7uFDQyi68",
@@ -1224,14 +1170,68 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Asks Nikki If Her Dad Really Has Cancer And She Loses It",
       "published_at": "2026-08-21T00:30:29Z",
-      "age_hours": 32.4,
-      "views": 33,
-      "engaged_views": 33,
+      "age_hours": 35.9,
+      "views": 34,
+      "engaged_views": 34,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 1.02
+      "views_per_hour": 0.95
+    },
+    {
+      "video_id": "h2uvq_jKBZg",
+      "url": "https://youtube.com/shorts/h2uvq_jKBZg",
+      "catalog_id": "clip-20260821-2",
+      "streamer": "lacy",
+      "series": "chaos",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "RUS GETS CAUGHT PICKING HIS NOSE",
+      "source_views": 3102,
+      "banger": 0.6,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Lacy Catches Rus Picking His Nose Live On Cam \ud83e\udd22",
+      "published_at": "2026-08-21T18:30:24Z",
+      "age_hours": 17.9,
+      "views": 17,
+      "engaged_views": 17,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.95
+    },
+    {
+      "video_id": "9mMjBlxwmIA",
+      "url": "https://youtube.com/shorts/9mMjBlxwmIA",
+      "catalog_id": "clip-20260820-4",
+      "streamer": "jynxzi",
+      "series": "win",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "CHAT SPELLS OUT STOMPN AFTER THIS",
+      "source_views": 2984,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Jynxzi Gets An Ace And Chat Spells Out STOMPN",
+      "published_at": "2026-08-20T21:30:23Z",
+      "age_hours": 38.9,
+      "views": 36,
+      "engaged_views": 36,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.93
     },
     {
       "video_id": "fSM5Jbb8cnU",
@@ -1251,7 +1251,7 @@
       "n_beats": null,
       "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
       "published_at": "2026-08-09T21:30:29Z",
-      "age_hours": 299.4,
+      "age_hours": 302.9,
       "views": 157,
       "engaged_views": 85,
       "likes": 4,
@@ -1786,14 +1786,14 @@
       "n_beats": null,
       "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
       "published_at": "2026-08-07T21:30:22Z",
-      "age_hours": 347.5,
+      "age_hours": 350.9,
       "views": 176,
       "engaged_views": 103,
       "likes": 4,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.51,
+      "views_per_hour": 0.5,
       "average_view_percentage": 63.0,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 29.0,
@@ -2321,14 +2321,14 @@
       "n_beats": null,
       "title": "Plaqueboymax Tells Huda 'No Budget' On This Shopping Spree",
       "published_at": "2026-08-12T20:00:10Z",
-      "age_hours": 229.0,
+      "age_hours": 232.4,
       "views": 112,
       "engaged_views": 53,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.49,
+      "views_per_hour": 0.48,
       "average_view_percentage": 90.1,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 12.0,
@@ -2856,14 +2856,14 @@
       "n_beats": null,
       "title": "Ludwig Gets Shot Practicing CS Peeks IRL And Instantly Regrets It",
       "published_at": "2026-08-21T21:30:18Z",
-      "age_hours": 11.5,
-      "views": 5,
-      "engaged_views": 5,
+      "age_hours": 14.9,
+      "views": 7,
+      "engaged_views": 7,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.44
+      "views_per_hour": 0.47
     },
     {
       "video_id": "32OLg8FEOz8",
@@ -2883,14 +2883,14 @@
       "n_beats": null,
       "title": "Ohnepixel Gets Told 'What You Looking At Bud' In The Crowd",
       "published_at": "2026-08-18T17:00:29Z",
-      "age_hours": 87.9,
+      "age_hours": 91.4,
       "views": 37,
       "engaged_views": 17,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.42,
+      "views_per_hour": 0.4,
       "average_view_percentage": 78.8,
       "average_view_duration_s": 12.0,
       "estimated_minutes_watched": 3.0,
@@ -2916,14 +2916,14 @@
       "n_beats": null,
       "title": "Plaqueboymax Warns Everyone He's About To Get Feisty",
       "published_at": "2026-08-11T17:00:02Z",
-      "age_hours": 256.0,
+      "age_hours": 259.4,
       "views": 99,
       "engaged_views": 51,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.39,
+      "views_per_hour": 0.38,
       "average_view_percentage": 93.6,
       "average_view_duration_s": 8.0,
       "estimated_minutes_watched": 7.0,
@@ -3451,7 +3451,7 @@
       "n_beats": null,
       "title": "Plaqueboymax Can't Stop Saying He Loves This Five Gifted",
       "published_at": "2026-07-29T21:30:35Z",
-      "age_hours": 563.4,
+      "age_hours": 566.9,
       "views": 208,
       "engaged_views": 116,
       "likes": 0,
@@ -3986,14 +3986,14 @@
       "n_beats": null,
       "title": "Lacy Gets Glitter Bombed And The Reaction Is Wild",
       "published_at": "2026-08-16T20:00:32Z",
-      "age_hours": 132.9,
+      "age_hours": 136.4,
       "views": 49,
       "engaged_views": 27,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.37,
+      "views_per_hour": 0.36,
       "average_view_percentage": 55.6,
       "average_view_duration_s": 17.0,
       "estimated_minutes_watched": 8.0,
@@ -4019,50 +4019,17 @@
       "n_beats": null,
       "title": "Ohnepixel Rookie Mistake: Does Lava On Ice Make Water?",
       "published_at": "2026-08-17T21:30:24Z",
-      "age_hours": 107.5,
+      "age_hours": 110.9,
       "views": 38,
       "engaged_views": 14,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.35,
+      "views_per_hour": 0.34,
       "average_view_percentage": 110.9,
       "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 3.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "-YQ2xCgsHmE",
-      "url": "https://youtube.com/shorts/-YQ2xCgsHmE",
-      "catalog_id": "clip-20260819-4",
-      "streamer": "plaqueboymax",
-      "series": "win",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "HE FAKE RELOADED THEN NUTMEGGED HIM",
-      "source_views": 2567,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Plaqueboymax Nutmegged Klay Thompson And Turned Up About It",
-      "published_at": "2026-08-19T21:30:33Z",
-      "age_hours": 59.4,
-      "views": 14,
-      "engaged_views": 0,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.24,
-      "average_view_percentage": 0.0,
-      "average_view_duration_s": 0.0,
-      "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -4085,7 +4052,7 @@
       "n_beats": null,
       "title": "Sodapoppin Vei Just Saved Chance From A Neck Injury",
       "published_at": "2026-08-07T17:00:34Z",
-      "age_hours": 351.9,
+      "age_hours": 355.4,
       "views": 81,
       "engaged_views": 48,
       "likes": 0,
@@ -4603,6 +4570,39 @@
       "early_retention": 0.701
     },
     {
+      "video_id": "-YQ2xCgsHmE",
+      "url": "https://youtube.com/shorts/-YQ2xCgsHmE",
+      "catalog_id": "clip-20260819-4",
+      "streamer": "plaqueboymax",
+      "series": "win",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "HE FAKE RELOADED THEN NUTMEGGED HIM",
+      "source_views": 2567,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Plaqueboymax Nutmegged Klay Thompson And Turned Up About It",
+      "published_at": "2026-08-19T21:30:33Z",
+      "age_hours": 62.9,
+      "views": 14,
+      "engaged_views": 0,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.22,
+      "average_view_percentage": 0.0,
+      "average_view_duration_s": 0.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
       "video_id": "n9PcMJW1L6E",
       "url": "https://youtube.com/shorts/n9PcMJW1L6E",
       "catalog_id": "clip-20260813-3",
@@ -4620,7 +4620,7 @@
       "n_beats": null,
       "title": "Ludwig Reaction Was Just 'Dude....'",
       "published_at": "2026-08-13T20:00:15Z",
-      "age_hours": 205.0,
+      "age_hours": 208.4,
       "views": 44,
       "engaged_views": 23,
       "likes": 0,
@@ -4631,39 +4631,6 @@
       "average_view_percentage": 58.1,
       "average_view_duration_s": 19.0,
       "estimated_minutes_watched": 7.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "rTfq-IL3asM",
-      "url": "https://youtube.com/shorts/rTfq-IL3asM",
-      "catalog_id": "clip-20260818-2",
-      "streamer": "northernlion",
-      "series": "chaos",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "",
-      "source_views": 4506,
-      "banger": 0.5,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Chat Could Not Handle This Northernlion Moment",
-      "published_at": "2026-08-18T18:30:30Z",
-      "age_hours": 86.4,
-      "views": 18,
-      "engaged_views": 5,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.21,
-      "average_view_percentage": 56.4,
-      "average_view_duration_s": 25.0,
-      "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -4686,7 +4653,7 @@
       "n_beats": null,
       "title": "Caseoh Gets Chills Seeing Who's Still Standing There \u2620\ufe0f",
       "published_at": "2026-08-10T17:00:07Z",
-      "age_hours": 280.0,
+      "age_hours": 283.4,
       "views": 57,
       "engaged_views": 20,
       "likes": 1,
@@ -5204,6 +5171,39 @@
       "early_retention": 0.833
     },
     {
+      "video_id": "rTfq-IL3asM",
+      "url": "https://youtube.com/shorts/rTfq-IL3asM",
+      "catalog_id": "clip-20260818-2",
+      "streamer": "northernlion",
+      "series": "chaos",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "",
+      "source_views": 4506,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Chat Could Not Handle This Northernlion Moment",
+      "published_at": "2026-08-18T18:30:30Z",
+      "age_hours": 89.9,
+      "views": 18,
+      "engaged_views": 5,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.2,
+      "average_view_percentage": 56.4,
+      "average_view_duration_s": 25.0,
+      "estimated_minutes_watched": 2.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
       "video_id": "Pj6xiBNvuRY",
       "url": "https://youtube.com/shorts/Pj6xiBNvuRY",
       "catalog_id": "clip-20260803-1",
@@ -5221,7 +5221,7 @@
       "n_beats": null,
       "title": "Agent00 Makes 2 Insane Catches",
       "published_at": "2026-08-03T17:00:08Z",
-      "age_hours": 448.0,
+      "age_hours": 451.4,
       "views": 57,
       "engaged_views": 23,
       "likes": 0,
@@ -5756,7 +5756,7 @@
       "n_beats": null,
       "title": "Silky Did Not See That Coming",
       "published_at": "2026-07-30T20:00:13Z",
-      "age_hours": 541.0,
+      "age_hours": 544.4,
       "views": 63,
       "engaged_views": 32,
       "likes": 0,
@@ -6274,39 +6274,6 @@
       "early_retention": 0.772
     },
     {
-      "video_id": "5TTIro2PXZY",
-      "url": "https://youtube.com/shorts/5TTIro2PXZY",
-      "catalog_id": "clip-20260819-5",
-      "streamer": "ludwig",
-      "series": "win",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "HE JUST HIT A HOLE IN ONE",
-      "source_views": 4018,
-      "banger": 0.45,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Ludwig Hits An Ace And Completely Loses His Mind",
-      "published_at": "2026-08-19T23:00:10Z",
-      "age_hours": 58.0,
-      "views": 7,
-      "engaged_views": 2,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.12,
-      "average_view_percentage": 70.7,
-      "average_view_duration_s": 17.0,
-      "estimated_minutes_watched": 0.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
       "video_id": "nkz4DMPVekQ",
       "url": "https://youtube.com/shorts/nkz4DMPVekQ",
       "catalog_id": "clip-20260801-4",
@@ -6324,7 +6291,7 @@
       "n_beats": null,
       "title": "Lacy Admits She Purposely Threw Her Fortnite Qualifier",
       "published_at": "2026-08-01T23:00:17Z",
-      "age_hours": 490.0,
+      "age_hours": 493.4,
       "views": 54,
       "engaged_views": 37,
       "likes": 0,
@@ -6842,6 +6809,39 @@
       "early_retention": 0.911
     },
     {
+      "video_id": "5TTIro2PXZY",
+      "url": "https://youtube.com/shorts/5TTIro2PXZY",
+      "catalog_id": "clip-20260819-5",
+      "streamer": "ludwig",
+      "series": "win",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "HE JUST HIT A HOLE IN ONE",
+      "source_views": 4018,
+      "banger": 0.45,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Ludwig Hits An Ace And Completely Loses His Mind",
+      "published_at": "2026-08-19T23:00:10Z",
+      "age_hours": 61.4,
+      "views": 7,
+      "engaged_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.11,
+      "average_view_percentage": 70.7,
+      "average_view_duration_s": 17.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
       "video_id": "Fgzykp-SuEI",
       "url": "https://youtube.com/shorts/Fgzykp-SuEI",
       "catalog_id": "clip-20260801-2",
@@ -6859,7 +6859,7 @@
       "n_beats": 5,
       "title": "His 'Viral' Drive-Thru Bit Almost Got His Friend In Trouble",
       "published_at": "2026-08-01T18:30:24Z",
-      "age_hours": 494.5,
+      "age_hours": 497.9,
       "views": 50,
       "engaged_views": 29,
       "likes": 0,
@@ -7394,50 +7394,17 @@
       "n_beats": null,
       "title": "Ohnepixel Can't Believe What He Just Saw During This Solar Eclipse",
       "published_at": "2026-08-15T20:00:20Z",
-      "age_hours": 157.0,
+      "age_hours": 160.4,
       "views": 15,
       "engaged_views": 7,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.1,
+      "views_per_hour": 0.09,
       "average_view_percentage": 62.8,
       "average_view_duration_s": 14.0,
       "estimated_minutes_watched": 1.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "i8pU37qAcis",
-      "url": "https://youtube.com/shorts/i8pU37qAcis",
-      "catalog_id": "clip-20260808-1",
-      "streamer": "ohnepixel",
-      "series": "win",
-      "experiment_arm": "clip",
-      "actual_structure": "clip",
-      "hook": "HIS $50K SKIN IS FINALLY IN ACTION",
-      "source_views": 13931,
-      "banger": 0.55,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "title": "Ohnepixel $50K Skin In Action Has The Crowd Screaming",
-      "published_at": "2026-08-08T17:00:31Z",
-      "age_hours": 327.9,
-      "views": 28,
-      "engaged_views": 15,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.09,
-      "average_view_percentage": 46.4,
-      "average_view_duration_s": 10.0,
-      "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -7460,7 +7427,7 @@
       "n_beats": null,
       "title": "Jasontheween Asks For Water And His Coach Says This Instead \ud83d\ude2d",
       "published_at": "2026-08-05T20:00:17Z",
-      "age_hours": 397.0,
+      "age_hours": 400.4,
       "views": 31,
       "engaged_views": 12,
       "likes": 0,
@@ -7476,34 +7443,34 @@
       "retention_insufficient_data": true
     },
     {
-      "video_id": "z4Bs8c6gk7E",
-      "url": "https://youtube.com/shorts/z4Bs8c6gk7E",
-      "catalog_id": "clip-20260816-1",
-      "streamer": "summit1g",
-      "series": "chaos",
+      "video_id": "i8pU37qAcis",
+      "url": "https://youtube.com/shorts/i8pU37qAcis",
+      "catalog_id": "clip-20260808-1",
+      "streamer": "ohnepixel",
+      "series": "win",
       "experiment_arm": "clip",
       "actual_structure": "clip",
-      "hook": "TEAMMATE THOUGHT HUT MEANT GUN",
-      "source_views": 4319,
-      "banger": 0.5,
+      "hook": "HIS $50K SKIN IS FINALLY IN ACTION",
+      "source_views": 13931,
+      "banger": 0.55,
       "story_structure": null,
       "narrative_score": null,
       "revision_count": null,
       "used_vod_expansion": null,
       "n_beats": null,
-      "title": "Summit1G Can't Believe His Teammate Thought 'Hut' Meant Give Me A Gun",
-      "published_at": "2026-08-16T17:00:34Z",
-      "age_hours": 135.9,
-      "views": 9,
-      "engaged_views": 4,
+      "title": "Ohnepixel $50K Skin In Action Has The Crowd Screaming",
+      "published_at": "2026-08-08T17:00:31Z",
+      "age_hours": 331.4,
+      "views": 28,
+      "engaged_views": 15,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.07,
-      "average_view_percentage": 71.4,
-      "average_view_duration_s": 23.0,
-      "estimated_minutes_watched": 1.0,
+      "views_per_hour": 0.08,
+      "average_view_percentage": 46.4,
+      "average_view_duration_s": 10.0,
+      "estimated_minutes_watched": 2.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -7526,7 +7493,7 @@
       "n_beats": null,
       "title": "Jynxzi is very good at volleyball....",
       "published_at": "2026-08-02T21:30:25Z",
-      "age_hours": 467.5,
+      "age_hours": 470.9,
       "views": 26,
       "engaged_views": 8,
       "likes": 0,
@@ -7559,7 +7526,7 @@
       "n_beats": null,
       "title": "Cinna Finds Scary Diddy Character",
       "published_at": "2026-08-04T17:00:39Z",
-      "age_hours": 423.9,
+      "age_hours": 427.4,
       "views": 26,
       "engaged_views": 11,
       "likes": 0,
@@ -7592,7 +7559,7 @@
       "n_beats": null,
       "title": "Ludwig: QT Wins A T-Shirt And Everyone Starts Chanting Her Name",
       "published_at": "2026-08-05T18:30:14Z",
-      "age_hours": 398.5,
+      "age_hours": 401.9,
       "views": 25,
       "engaged_views": 13,
       "likes": 0,
@@ -7625,7 +7592,7 @@
       "n_beats": null,
       "title": "Stableronaldo Panics After Accidentally Showing His Revenue",
       "published_at": "2026-08-14T18:30:34Z",
-      "age_hours": 182.4,
+      "age_hours": 185.9,
       "views": 11,
       "engaged_views": 5,
       "likes": 0,
@@ -7635,6 +7602,39 @@
       "views_per_hour": 0.06,
       "average_view_percentage": 44.5,
       "average_view_duration_s": 14.0,
+      "estimated_minutes_watched": 1.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "z4Bs8c6gk7E",
+      "url": "https://youtube.com/shorts/z4Bs8c6gk7E",
+      "catalog_id": "clip-20260816-1",
+      "streamer": "summit1g",
+      "series": "chaos",
+      "experiment_arm": "clip",
+      "actual_structure": "clip",
+      "hook": "TEAMMATE THOUGHT HUT MEANT GUN",
+      "source_views": 4319,
+      "banger": 0.5,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "title": "Summit1G Can't Believe His Teammate Thought 'Hut' Meant Give Me A Gun",
+      "published_at": "2026-08-16T17:00:34Z",
+      "age_hours": 139.4,
+      "views": 9,
+      "engaged_views": 4,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.06,
+      "average_view_percentage": 71.4,
+      "average_view_duration_s": 23.0,
       "estimated_minutes_watched": 1.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -7658,7 +7658,7 @@
       "n_beats": null,
       "title": "Stableronaldo Panics After Accidentally Revealing His Last 30 Days",
       "published_at": "2026-08-17T18:30:17Z",
-      "age_hours": 110.5,
+      "age_hours": 113.9,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -7691,7 +7691,7 @@
       "n_beats": null,
       "title": "Random Guy tried to ruin Streamer Games",
       "published_at": "2026-08-02T17:00:18Z",
-      "age_hours": 472.0,
+      "age_hours": 475.4,
       "views": 23,
       "engaged_views": 9,
       "likes": 0,
@@ -7724,7 +7724,7 @@
       "n_beats": null,
       "title": "Stableronaldo Demands A Replay Then Gets Exposed By It",
       "published_at": "2026-08-06T21:30:02Z",
-      "age_hours": 371.5,
+      "age_hours": 374.9,
       "views": 20,
       "engaged_views": 13,
       "likes": 0,
@@ -7757,7 +7757,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Panics When He Can't See What's Right In Front Of Him",
       "published_at": "2026-08-11T21:30:00Z",
-      "age_hours": 251.5,
+      "age_hours": 254.9,
       "views": 12,
       "engaged_views": 2,
       "likes": 0,
@@ -7790,7 +7790,7 @@
       "n_beats": null,
       "title": "Lirik Gets Fired And This Is How He Responds",
       "published_at": "2026-08-17T17:00:14Z",
-      "age_hours": 112.0,
+      "age_hours": 115.4,
       "views": 6,
       "engaged_views": 4,
       "likes": 0,
@@ -7823,7 +7823,7 @@
       "n_beats": null,
       "title": "Plaqueboymax Reveals The One Kind Of Hate That Actually Hurts Him",
       "published_at": "2026-07-23T21:30:08Z",
-      "age_hours": 707.5,
+      "age_hours": 710.9,
       "views": 27,
       "engaged_views": 15,
       "likes": 0,
@@ -7856,7 +7856,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Can't Believe He Actually Got The Warden Down",
       "published_at": "2026-08-13T17:00:06Z",
-      "age_hours": 208.0,
+      "age_hours": 211.4,
       "views": 8,
       "engaged_views": 3,
       "likes": 0,
@@ -7889,7 +7889,7 @@
       "n_beats": null,
       "title": "Xqc Finds Out He's '102% African' And Loses It",
       "published_at": "2026-08-15T17:00:20Z",
-      "age_hours": 160.0,
+      "age_hours": 163.4,
       "views": 7,
       "engaged_views": 2,
       "likes": 0,
@@ -7922,7 +7922,7 @@
       "n_beats": null,
       "title": "Stableronaldo Can't Believe What Aloki Just Did",
       "published_at": "2026-07-29T20:00:20Z",
-      "age_hours": 565.0,
+      "age_hours": 568.4,
       "views": 19,
       "engaged_views": 9,
       "likes": 0,
@@ -7955,7 +7955,7 @@
       "n_beats": null,
       "title": "Ludwig Wins 2026 Streamer Games",
       "published_at": "2026-08-04T20:00:38Z",
-      "age_hours": 420.9,
+      "age_hours": 424.4,
       "views": 14,
       "engaged_views": 9,
       "likes": 0,
@@ -7988,7 +7988,7 @@
       "n_beats": null,
       "title": "Agent00 Falls",
       "published_at": "2026-08-04T21:30:03Z",
-      "age_hours": 419.5,
+      "age_hours": 422.9,
       "views": 11,
       "engaged_views": 6,
       "likes": 0,
@@ -8021,7 +8021,7 @@
       "n_beats": null,
       "title": "Sodapoppin Killed Myth And Then Caught Him In A Lie",
       "published_at": "2026-08-06T18:30:18Z",
-      "age_hours": 374.5,
+      "age_hours": 377.9,
       "views": 13,
       "engaged_views": 7,
       "likes": 0,
@@ -8054,7 +8054,7 @@
       "n_beats": null,
       "title": "Xqc Defends The Guy His Whole Friend Group Turned On",
       "published_at": "2026-08-07T18:30:39Z",
-      "age_hours": 350.4,
+      "age_hours": 353.9,
       "views": 11,
       "engaged_views": 6,
       "likes": 0,
@@ -8087,7 +8087,7 @@
       "n_beats": null,
       "title": "Summit1G Clutches A 1v4 And Can't Believe It Himself",
       "published_at": "2026-08-07T20:00:37Z",
-      "age_hours": 348.9,
+      "age_hours": 352.4,
       "views": 12,
       "engaged_views": 5,
       "likes": 0,
@@ -8120,7 +8120,7 @@
       "n_beats": null,
       "title": "Silky Falls While His Team Fights For The Lead",
       "published_at": "2026-08-08T23:00:18Z",
-      "age_hours": 322.0,
+      "age_hours": 325.4,
       "views": 11,
       "engaged_views": 8,
       "likes": 0,
@@ -8153,7 +8153,7 @@
       "n_beats": null,
       "title": "Jynxzi Won't Stop Screaming 'Ferox I Love You'",
       "published_at": "2026-08-12T18:30:38Z",
-      "age_hours": 230.4,
+      "age_hours": 233.9,
       "views": 8,
       "engaged_views": 4,
       "likes": 0,
@@ -8186,7 +8186,7 @@
       "n_beats": null,
       "title": "Xqc Loses It And Says",
       "published_at": "2026-08-14T20:00:23Z",
-      "age_hours": 181.0,
+      "age_hours": 184.4,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -8219,7 +8219,7 @@
       "n_beats": null,
       "title": "Xqc Can't Believe This Dog Owner Won't Even Let It Inside",
       "published_at": "2026-08-19T17:00:31Z",
-      "age_hours": 63.9,
+      "age_hours": 67.4,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -8252,7 +8252,7 @@
       "n_beats": 4,
       "title": "He Begged Chat Not To Clip This... Then Did It Again",
       "published_at": "2026-08-20T23:00:10Z",
-      "age_hours": 34.0,
+      "age_hours": 37.4,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -8279,7 +8279,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Gives Out The First Detention In Stream History",
       "published_at": "2026-07-23T17:00:01Z",
-      "age_hours": 712.0,
+      "age_hours": 715.4,
       "views": 14,
       "engaged_views": 8,
       "likes": 0,
@@ -8312,7 +8312,7 @@
       "n_beats": null,
       "title": "Fanum Already WARNING Everyone Before Alumni Day",
       "published_at": "2026-07-23T20:00:04Z",
-      "age_hours": 709.0,
+      "age_hours": 712.4,
       "views": 17,
       "engaged_views": 10,
       "likes": 0,
@@ -8345,7 +8345,7 @@
       "n_beats": null,
       "title": "Caseoh Had To Handle Business And The Whole Stream Erupted",
       "published_at": "2026-07-24T21:30:15Z",
-      "age_hours": 683.5,
+      "age_hours": 686.9,
       "views": 11,
       "engaged_views": 3,
       "likes": 0,
@@ -8378,7 +8378,7 @@
       "n_beats": null,
       "title": "Lacy Retires Fortnite",
       "published_at": "2026-07-30T21:30:12Z",
-      "age_hours": 539.5,
+      "age_hours": 542.9,
       "views": 9,
       "engaged_views": 5,
       "likes": 0,
@@ -8411,7 +8411,7 @@
       "n_beats": null,
       "title": "Jasontheween: Jason Has To Throw The Towel In Kick Boxing And It Goes Wrong",
       "published_at": "2026-07-31T17:00:36Z",
-      "age_hours": 519.9,
+      "age_hours": 523.4,
       "views": 9,
       "engaged_views": 5,
       "likes": 0,
@@ -8444,7 +8444,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Panics After Speed Goes Down On Stream",
       "published_at": "2026-08-09T18:30:14Z",
-      "age_hours": 302.5,
+      "age_hours": 305.9,
       "views": 5,
       "engaged_views": 2,
       "likes": 0,
@@ -8477,7 +8477,7 @@
       "n_beats": null,
       "title": "Silky Crowd Went Absolutely Wild",
       "published_at": "2026-08-10T18:30:30Z",
-      "age_hours": 278.4,
+      "age_hours": 281.9,
       "views": 6,
       "engaged_views": 4,
       "likes": 0,
@@ -8510,7 +8510,7 @@
       "n_beats": null,
       "title": "Stableronaldo And Cudi Finally Make Up During This Hug",
       "published_at": "2026-07-23T18:30:31Z",
-      "age_hours": 710.4,
+      "age_hours": 713.9,
       "views": 9,
       "engaged_views": 3,
       "likes": 0,
@@ -8543,7 +8543,7 @@
       "n_beats": null,
       "title": "jasons camera ,an gets pass code to his room",
       "published_at": "2026-07-29T18:30:16Z",
-      "age_hours": 566.5,
+      "age_hours": 569.9,
       "views": 4,
       "engaged_views": 3,
       "likes": 0,
@@ -8576,7 +8576,7 @@
       "n_beats": null,
       "title": "\"Lets see what Yugi's on\"",
       "published_at": "2026-07-30T18:30:33Z",
-      "age_hours": 542.4,
+      "age_hours": 545.9,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -8609,7 +8609,7 @@
       "n_beats": null,
       "title": "man runs in front of archers",
       "published_at": "2026-08-02T20:00:38Z",
-      "age_hours": 468.9,
+      "age_hours": 472.4,
       "views": 7,
       "engaged_views": 4,
       "likes": 0,
@@ -8642,7 +8642,7 @@
       "n_beats": null,
       "title": "Ludwig Watches Maya Win",
       "published_at": "2026-08-04T18:30:17Z",
-      "age_hours": 422.5,
+      "age_hours": 425.9,
       "views": 6,
       "engaged_views": 3,
       "likes": 0,
@@ -8675,7 +8675,7 @@
       "n_beats": null,
       "title": "Cinna Finds Out Zoil Already Pulled This Off Before",
       "published_at": "2026-08-11T18:30:26Z",
-      "age_hours": 254.5,
+      "age_hours": 257.9,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -8708,7 +8708,7 @@
       "n_beats": null,
       "title": "Lacy Can't Believe What's Inside This Burger",
       "published_at": "2026-08-14T21:30:01Z",
-      "age_hours": 179.5,
+      "age_hours": 182.9,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -8741,7 +8741,7 @@
       "n_beats": 5,
       "title": "Argentina's Final Unravels",
       "published_at": "2026-07-24T18:30:08Z",
-      "age_hours": 686.5,
+      "age_hours": 689.9,
       "views": 3,
       "engaged_views": 3,
       "likes": 0,
@@ -8774,7 +8774,7 @@
       "n_beats": null,
       "title": "Xqc Just Hit The Biggest Win In This Game's History",
       "published_at": "2026-07-24T20:00:32Z",
-      "age_hours": 684.9,
+      "age_hours": 688.4,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -8807,7 +8807,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Can't Believe This Is Actually Happening",
       "published_at": "2026-07-29T17:00:01Z",
-      "age_hours": 568.0,
+      "age_hours": 571.4,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -8840,7 +8840,7 @@
       "n_beats": null,
       "title": "Deshaefrost Asks For A Hug And Ends Up On The Bed",
       "published_at": "2026-08-01T21:30:28Z",
-      "age_hours": 491.5,
+      "age_hours": 494.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8867,7 +8867,7 @@
       "n_beats": null,
       "title": "Agent and Tyler1's Hairline",
       "published_at": "2026-08-02T18:30:26Z",
-      "age_hours": 470.5,
+      "age_hours": 473.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8894,7 +8894,7 @@
       "n_beats": null,
       "title": "Stableronaldo Sees Summits' Move",
       "published_at": "2026-08-03T18:30:12Z",
-      "age_hours": 446.5,
+      "age_hours": 449.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8921,7 +8921,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Gets Roasted By Agent Over His Old Clips",
       "published_at": "2026-08-05T21:30:04Z",
-      "age_hours": 395.5,
+      "age_hours": 398.9,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -8954,7 +8954,7 @@
       "n_beats": null,
       "title": "Stableronaldo Gets Sold Out By His Own Teammate And Eliminated",
       "published_at": "2026-08-06T17:00:17Z",
-      "age_hours": 376.0,
+      "age_hours": 379.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -8981,7 +8981,7 @@
       "n_beats": null,
       "title": "Jasontheween Isn't Sure If This Throw Even Counted",
       "published_at": "2026-08-06T20:00:28Z",
-      "age_hours": 373.0,
+      "age_hours": 376.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9008,7 +9008,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Loses It Screaming At Him Not To Die",
       "published_at": "2026-08-08T18:30:18Z",
-      "age_hours": 326.5,
+      "age_hours": 329.9,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9041,7 +9041,7 @@
       "n_beats": null,
       "title": "Plaqueboymax Gets Caught Lookin' And It's Instant Chaos",
       "published_at": "2026-08-08T21:30:34Z",
-      "age_hours": 323.4,
+      "age_hours": 326.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9068,7 +9068,7 @@
       "n_beats": null,
       "title": "Kaicenat: Kai Cenat Can't Believe It After Speed Dies",
       "published_at": "2026-08-09T17:00:09Z",
-      "age_hours": 304.0,
+      "age_hours": 307.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9095,7 +9095,7 @@
       "n_beats": null,
       "title": "Lacy Whole Body Went Numb... Except One Place",
       "published_at": "2026-08-09T20:00:02Z",
-      "age_hours": 301.0,
+      "age_hours": 304.4,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9122,7 +9122,7 @@
       "n_beats": null,
       "title": "Jynxzi Can't Believe His Dad Actually Sent Him This",
       "published_at": "2026-08-10T20:00:09Z",
-      "age_hours": 277.0,
+      "age_hours": 280.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9149,7 +9149,7 @@
       "n_beats": null,
       "title": "Sodapoppin Gets Corrected On This Streamer's Real Name",
       "published_at": "2026-08-13T21:30:19Z",
-      "age_hours": 203.5,
+      "age_hours": 206.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9176,7 +9176,7 @@
       "n_beats": null,
       "title": "Xqc Reads The Most Savage Roast Text Out Loud",
       "published_at": "2026-08-14T17:00:33Z",
-      "age_hours": 183.9,
+      "age_hours": 187.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9203,7 +9203,7 @@
       "n_beats": null,
       "title": "Rayasianboy Swears He Never Said He Wants To Kiss Her",
       "published_at": "2026-08-16T21:30:39Z",
-      "age_hours": 131.4,
+      "age_hours": 134.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9236,7 +9236,7 @@
       "n_beats": null,
       "title": "Lirik Threatens A Cop Then Randomly Confesses To This",
       "published_at": "2026-08-19T18:30:24Z",
-      "age_hours": 62.5,
+      "age_hours": 65.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9263,7 +9263,7 @@
       "n_beats": null,
       "title": "Rayasianboy: Masa Slapped Geo's Ass And Geo's Reaction Says It All",
       "published_at": "2026-08-21T17:00:00Z",
-      "age_hours": 16.0,
+      "age_hours": 19.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9290,7 +9290,7 @@
       "n_beats": null,
       "title": "Jasontheween Can't Believe The Eye Gap Of Doom",
       "published_at": "2026-08-21T20:00:21Z",
-      "age_hours": 13.0,
+      "age_hours": 16.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9317,7 +9317,7 @@
       "n_beats": null,
       "title": "Cinna Accidentally Kisses Chat And Instantly Regrets It",
       "published_at": "2026-08-22T00:30:34Z",
-      "age_hours": 8.4,
+      "age_hours": 11.9,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -9327,46 +9327,87 @@
       "views_per_hour": 0.0
     }
   ],
-  "pending_videos": [],
+  "pending_videos": [
+    {
+      "video_id": "9iEf3cc1v70",
+      "url": "https://youtube.com/shorts/9iEf3cc1v70",
+      "streamer": "kaicenat",
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-08-22T18:30:00Z",
+      "experiment_arm": "clip"
+    },
+    {
+      "video_id": "sWqlCHZmt0c",
+      "url": "https://youtube.com/shorts/sWqlCHZmt0c",
+      "streamer": "stableronaldo",
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-08-22T20:00:00Z",
+      "experiment_arm": "clip"
+    },
+    {
+      "video_id": "YT34xycZlFM",
+      "url": "https://youtube.com/shorts/YT34xycZlFM",
+      "streamer": "cinna",
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-08-22T21:30:00Z",
+      "experiment_arm": "clip"
+    },
+    {
+      "video_id": "0wJzAC1RXrc",
+      "url": "https://youtube.com/shorts/0wJzAC1RXrc",
+      "streamer": "kaicenat",
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-08-22T23:00:00Z",
+      "experiment_arm": "clip"
+    },
+    {
+      "video_id": "pWDv-4MyDnU",
+      "url": "https://youtube.com/shorts/pWDv-4MyDnU",
+      "streamer": "cinna",
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-08-23T00:30:00Z",
+      "experiment_arm": "clip"
+    }
+  ],
   "summary": {
     "total_videos": 89,
-    "total_views": 2678,
-    "avg_views_per_video": 30.1,
+    "total_views": 2688,
+    "avg_views_per_video": 30.2,
     "median_views_per_hour": 0.03,
     "top_5_by_vph": [
       {
         "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-        "views_per_hour": 3.75,
-        "views": 150,
-        "age_hours": 39.9,
+        "views_per_hour": 3.53,
+        "views": 153,
+        "age_hours": 43.4,
         "url": "https://youtube.com/shorts/zrddn18piKY"
       },
       {
-        "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-        "views_per_hour": 1.5,
-        "views": 202,
-        "age_hours": 134.5,
-        "url": "https://youtube.com/shorts/HbIEAuPJbH0"
-      },
-      {
         "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-        "views_per_hour": 1.48,
-        "views": 344,
-        "age_hours": 232.0,
+        "views_per_hour": 1.47,
+        "views": 345,
+        "age_hours": 235.4,
         "url": "https://youtube.com/shorts/ZrLb6MhOXAE"
       },
       {
+        "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
+        "views_per_hour": 1.46,
+        "views": 202,
+        "age_hours": 137.9,
+        "url": "https://youtube.com/shorts/HbIEAuPJbH0"
+      },
+      {
         "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It",
-        "views_per_hour": 1.33,
-        "views": 51,
-        "age_hours": 38.4,
+        "views_per_hour": 1.24,
+        "views": 52,
+        "age_hours": 41.9,
         "url": "https://youtube.com/shorts/XA0-e7ro_80"
       },
       {
         "title": "Silky Guapo Moment Turns Into Total Chaos",
-        "views_per_hour": 1.21,
-        "views": 12,
-        "age_hours": 10.0,
+        "views_per_hour": 1.04,
+        "views": 14,
+        "age_hours": 13.4,
         "url": "https://youtube.com/shorts/aBGNeS5dRhE"
       }
     ],
@@ -9375,35 +9416,35 @@
         "title": "Cinna Accidentally Kisses Chat And Instantly Regrets It",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 8.4,
+        "age_hours": 11.9,
         "url": "https://youtube.com/shorts/UDHYsiMV3JQ"
       },
       {
         "title": "Jasontheween Can't Believe The Eye Gap Of Doom",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 13.0,
+        "age_hours": 16.4,
         "url": "https://youtube.com/shorts/ErJPD3s3ybg"
       },
       {
         "title": "Rayasianboy: Masa Slapped Geo's Ass And Geo's Reaction Says It All",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 16.0,
+        "age_hours": 19.4,
         "url": "https://youtube.com/shorts/igYeT670yI0"
       },
       {
         "title": "Lirik Threatens A Cop Then Randomly Confesses To This",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 62.5,
+        "age_hours": 65.9,
         "url": "https://youtube.com/shorts/ftIRCwXgeKU"
       },
       {
         "title": "Rayasianboy Swears He Never Said He Wants To Kiss Her",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 131.4,
+        "age_hours": 134.9,
         "url": "https://youtube.com/shorts/aDDKsiHlbk4"
       }
     ],
@@ -9485,7 +9526,7 @@
         "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
         "average_view_percentage": 65.4,
         "average_view_duration_s": 13.0,
-        "views": 344,
+        "views": 345,
         "url": "https://youtube.com/shorts/ZrLb6MhOXAE"
       }
     ],
@@ -9501,7 +9542,7 @@
         "n": 76,
         "n_mature_24h": 71,
         "median_vph": 0.03,
-        "avg_views": 29.5,
+        "avg_views": 29.6,
         "enough_data": true
       },
       "story": {
@@ -9538,7 +9579,7 @@
       "n_mature_total": 3,
       "enough_data": false
     },
-    "pending_scheduled": 0
+    "pending_scheduled": 5
   },
   "traffic_sources": {
     "YT_SEARCH": 3168,
