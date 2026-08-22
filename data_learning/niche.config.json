@@ -22987,7 +22987,12 @@
           "insight_type": "trend",
           "role": "1 · SETUP",
           "topic": "monarch colony forest area",
-          "say": "In 1996, monarch colonies covered 18 hectares of Mexican forest. By 2024, that shrank to just 0.9 hectares -- barely two football fields."
+          "say": "In 1996, monarch colonies covered 18 hectares of Mexican forest. By 2024, that shrank to just 0.9 hectares -- barely two football fields.",
+          "scene": {
+            "mechanic": "monarch-cluster-collapse",
+            "concept": "a branch thick with clustered monarch butterflies thins out year by year as overwintering forest area collapses from 18 to 0.9 hectares",
+            "code": "branch = subject_image('pine tree branch')\nif branch is not None:\n    paste(branch, RX0 - 40, RTOP + 40, (RX1 - RX0) + 80, 140)\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ncx = (RX0 + RX1) // 2\ncy = RTOP + 420\nmaxr = 340\nr = maxr * math.sqrt(clamp(v / vmax))\nmono = subject_image('monarch butterfly')\ncnt = max(3, int(28 * clamp(v / vmax)))\nfor k in range(cnt):\n    ang = (k * 2.399) % (2 * math.pi)\n    rad = r * math.sqrt((k + 1) / cnt)\n    bx = cx + rad * math.cos(ang) - 30\n    by = cy + rad * math.sin(ang) * 0.6 - 24\n    if mono is not None:\n        paste(mono, bx, by, 60, 48)\nd.ellipse([cx - r, cy - r * 0.6, cx + r, cy + r * 0.6], outline=rgba(WARN, 90), width=3)\ntext(lbl, cx, RTOP + 40, size=42, color=HIGHLIGHT, center=True)\ntext(f'{v:.1f} ha', cx, cy + maxr * 0.6 + 40, size=40, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -22999,7 +23004,12 @@
           "use_baseline": false,
           "role": "2 · THE CAUSE",
           "topic": "herbicide-resistant crops",
-          "say": "Here's why: herbicide-resistant soybeans went from 17 percent of US fields in 1997 to 94 percent by 2014. The spray that clears weeds also wipes out the milkweed monarchs need to lay eggs on."
+          "say": "Here's why: herbicide-resistant soybeans went from 17 percent of US fields in 1997 to 94 percent by 2014. The spray that clears weeds also wipes out the milkweed monarchs need to lay eggs on.",
+          "scene": {
+            "mechanic": "field-erasure-sweep",
+            "concept": "a bare-dirt sweep advances across a soybean field as herbicide-resistant adoption climbs from 17% to 94%, erasing milkweed flowers as it goes",
+            "code": "field = subject_image('soybean field aerial')\nbare = subject_image('bare tilled dirt field')\nmilk = subject_image('milkweed flower')\nw = RX1 - RX0; h = 520\nx = RX0; y = RTOP + 140\nif field is not None:\n    paste(field, x, y, w, h)\nv0 = values[0] / 100.0; v1 = values[-1] / 100.0\nfrac = lerp(v0, v1, clamp(reveal))\nsweep_w = int(w * frac)\nif bare is not None and sweep_w > 4:\n    fill_image(bare, 1.0, x, y, sweep_w, h)\nmn = 6\nfor k in range(mn):\n    mx = x + 60 + k * ((w - 140) / (mn - 1))\n    if milk is not None and mx > x + sweep_w:\n        paste(milk, mx, y + h - 90, 70, 70)\nd.line([x + sweep_w, y, x + sweep_w, y + h], fill=rgba(WARN, 220), width=8)\ntext(f'{int(round(frac * 100))}% herbicide-resistant', (RX0 + RX1) // 2, y - 50, size=34, color=WARN, center=True)\ntext(labels[0] if reveal < 0.5 else labels[-1], (RX0 + RX1) // 2, y + h + 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23012,7 +23022,12 @@
           "use_baseline": false,
           "role": "3 · THE COST",
           "topic": "population lost, by migration route",
-          "say": "The result: the eastern migration is down 80 percent since the 1990s. The western migration is down 95 percent. Both of America's monarch routes are collapsing at once."
+          "say": "The result: the eastern migration is down 80 percent since the 1990s. The western migration is down 95 percent. Both of America's monarch routes are collapsing at once.",
+          "scene": {
+            "mechanic": "twin-migration-path-fade",
+            "concept": "two migration flight paths thin out as butterflies vanish along each route, eastern down 80%, western down 95%",
+            "code": "mono = subject_image('monarch butterfly')\npaths = [(RX0 + 120, RBOT - 140, RX0 + 420, RTOP + 200, WARN),\n         (RX1 - 120, RBOT - 140, RX1 - 420, RTOP + 200, HIGHLIGHT)]\ntotal_n = 10\nfor i in range(2):\n    sx, sy, ex, ey, col = paths[i]\n    d.line([sx, sy, ex, ey], fill=rgba(col, 90), width=6)\n    remain = clamp(1.0 - values[i] / 100.0)\n    alive_n = max(1, int(round(total_n * remain)))\n    cnt_now = max(1, int(total_n * clamp(reveal)))\n    for k in range(cnt_now):\n        t = (k + 1) / (total_n + 1)\n        px = lerp(sx, ex, t)\n        py = lerp(sy, ey, t)\n        if k < alive_n and mono is not None:\n            paste(mono, px - 24, py - 20, 48, 40)\n    text(labels[i], (sx + ex) // 2, ey - 70, size=24, color=col, center=True)\n    text(f'-{int(values[i])}%', (sx + ex) // 2, ey - 110, size=42, color=col, center=True)\n"
+          }
         }
       ]
     },
@@ -23050,7 +23065,12 @@
           "insight_type": "trend",
           "role": "1 · SETUP",
           "topic": "ADHD diagnosis rate",
-          "say": "In 2003, 7.8 percent of US kids had ever been diagnosed with ADHD. By 2022 it was 11.4 percent -- nearly 1 in 9 children."
+          "say": "In 2003, 7.8 percent of US kids had ever been diagnosed with ADHD. By 2022 it was 11.4 percent -- nearly 1 in 9 children.",
+          "scene": {
+            "mechanic": "classroom-glow-grid",
+            "concept": "a 100-kid classroom grid where the diagnosed share glows, growing from 7.8 to 11.4 out of 100 as the years advance",
+            "code": "kid = subject_image('kid silhouette icon')\ncols, rows = 10, 10\ngw, gh, gap = 46, 46, 8\ngx0 = RX0 + 100; gy0 = RTOP + 220\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\nlit = int(round(v))\nfor idx in range(cols * rows):\n    row = idx // cols; col = idx % cols\n    gx = gx0 + col * (gw + gap); gy = gy0 + row * (gh + gap)\n    if kid is not None:\n        paste(kid, gx, gy, gw, gh)\n    if idx < lit:\n        d.ellipse([gx - 4, gy - 4, gx + gw + 4, gy + gh + 4], outline=rgba(HIGHLIGHT, 220), width=4)\ntext(f'{v:.1f} in 100 kids diagnosed', (RX0 + RX1) // 2, gy0 - 80, size=34, color=HIGHLIGHT, center=True)\ntext(lbl, (RX0 + RX1) // 2, gy0 + rows * (gh + gap) + 30, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23062,7 +23082,12 @@
           "use_baseline": false,
           "role": "2 · THE SHIFT",
           "topic": "who's newly being caught",
-          "say": "Boys are still diagnosed more often -- 15 percent versus 8 percent for girls. But that gap used to be more than double. Girls are finally getting identified too."
+          "say": "Boys are still diagnosed more often -- 15 percent versus 8 percent for girls. But that gap used to be more than double. Girls are finally getting identified too.",
+          "scene": {
+            "mechanic": "diagnosis-gate-lanes",
+            "concept": "two lanes of kid silhouettes descend past a diagnosis gate, boys' lane lighting up far more often than girls'",
+            "code": "boy = subject_image('boy silhouette icon')\ngirl = subject_image('girl silhouette icon')\nlanes = [(RX0 + 220, boy, values[0], WARN, labels[0]),\n         (RX1 - 220, girl, values[1], HIGHLIGHT, labels[1])]\ngate_y = RTOP + 560\ntotal_n = 8\nfor lx, img, val, col, lbl in lanes:\n    d.line([lx, RTOP + 160, lx, RBOT - 100], fill=rgba(TEXT, 60), width=3)\n    d.rounded_rectangle([lx - 100, gate_y - 10, lx + 100, gate_y + 10], radius=10, fill=rgba(col, 200))\n    lit_n = max(1, int(round(total_n * (val / 100.0))))\n    cnt_now = max(1, int(total_n * clamp(reveal)))\n    for k in range(cnt_now):\n        fy = lerp(RTOP + 180, RBOT - 120, (k + 0.5) / total_n)\n        if img is not None:\n            paste(img, lx - 24, fy - 30, 60, 60)\n        if k < lit_n and fy > gate_y:\n            d.ellipse([lx - 34, fy - 36, lx + 34, fy + 36], outline=rgba(col, 220), width=4)\n    text(lbl, lx, RTOP + 110, size=30, color=col, center=True)\n    text(f'{val:.0f}%', lx, gate_y + 46, size=42, color=col, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23074,7 +23099,12 @@
           "use_baseline": false,
           "role": "3 · THE GAP",
           "topic": "who actually gets treated",
-          "say": "Yet only 53.6 percent of diagnosed kids are actually on medication for it. More diagnoses didn't mean more kids getting help."
+          "say": "Yet only 53.6 percent of diagnosed kids are actually on medication for it. More diagnoses didn't mean more kids getting help.",
+          "scene": {
+            "mechanic": "pill-bottle-half-fill",
+            "concept": "a real pill bottle fills to the 53.6% of kids on medication while a row of kid silhouettes shows the 46.4% still untreated",
+            "code": "bottle = subject_image('orange pill bottle')\nkid = subject_image('kid silhouette icon')\ncx = (RX0 + RX1) // 2 - 140\nbw, bh = 260, 420\nbx, by = cx - bw // 2, RTOP + 220\nfrac = clamp(values[0] / 100.0) * clamp(reveal)\nif bottle is not None:\n    fill_image(bottle, frac, bx, by, bw, bh, direction='up', color=HIGHLIGHT)\nd.rounded_rectangle([bx, by, bx + bw, by + bh], radius=20, outline=rgba(TEXT, 160), width=5)\ntext(f'{values[0]:.1f}%', bx + bw // 2, by + bh + 40, size=42, color=HIGHLIGHT, center=True)\ntext('on medication', bx + bw // 2, by + bh + 88, size=26, color=TEXT, center=True)\ngx = RX1 - 300; gy = RTOP + 260; cols = 4\nuntreated_n = max(1, int(round(8 * values[1] / 100.0)))\nshow_n = max(1, int(8 * clamp(reveal)))\nfor k in range(show_n):\n    row = k // cols; col = k % cols\n    kx = gx + col * 62; ky = gy + row * 74\n    if kid is not None:\n        paste(kid, kx, ky, 52, 62)\n    if k < untreated_n:\n        d.line([kx, ky + 31, kx + 52, ky + 31], fill=rgba(WARN, 210), width=5)\ntext(f'{values[1]:.1f}% untreated', gx + 100, gy - 40, size=26, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -23112,7 +23142,12 @@
           "insight_type": "trend",
           "role": "1 · SETUP",
           "topic": "spacecraft speed record",
-          "say": "In 2018, Parker Solar Probe hit 153 thousand miles an hour. By December 2024 it hit 430 thousand miles an hour -- the fastest anything built by humans has ever moved."
+          "say": "In 2018, Parker Solar Probe hit 153 thousand miles an hour. By December 2024 it hit 430 thousand miles an hour -- the fastest anything built by humans has ever moved.",
+          "scene": {
+            "mechanic": "probe-speed-trail-streak",
+            "concept": "Parker Solar Probe races toward the sun leaving a motion streak that lengthens as its speed record climbs from 153,000 to 430,000 mph",
+            "code": "probe = subject_image('spacecraft solar probe')\nsun = subject_image('the sun')\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ny = RTOP + 560\nfrac = clamp(v / vmax)\npx = RX0 + 80 + frac * (RX1 - RX0 - 300)\nfor k in range(14):\n    a = int(200 * (1 - k / 14) * frac)\n    tx = px - k * 18\n    d.line([tx, y, tx - 16, y], fill=rgba(HIGHLIGHT, a), width=10)\nif sun is not None:\n    paste(sun, RX1 - 240, y - 90, 200, 200)\nif probe is not None:\n    paste(probe, px, y - 40, 140, 80)\ntext(lbl, RX0 + 60, RTOP + 140, size=40, color=ACCENT)\ntext(f'{int(v):,} mph', RX0 + 60, RTOP + 200, size=46, color=HIGHLIGHT)\n"
+          }
         },
         {
           "source": "offline",
@@ -23124,7 +23159,12 @@
           "use_baseline": false,
           "role": "2 · THE GAP",
           "topic": "vs. the fastest a human has gone",
-          "say": "That's 17 times faster than Apollo 10 -- the fastest speed any human has ever personally traveled, set back in 1969."
+          "say": "That's 17 times faster than Apollo 10 -- the fastest speed any human has ever personally traveled, set back in 1969.",
+          "scene": {
+            "mechanic": "rocket-vs-probe-race-lane",
+            "concept": "two lanes race side by side: Parker Solar Probe streaks to the far edge while Apollo 10's capsule, the fastest a human has ever traveled, barely inches forward",
+            "code": "probe = subject_image('spacecraft solar probe')\napollo = subject_image('apollo command module capsule')\nlane_w = RX1 - RX0 - 160\nx0 = RX0 + 80\ny_probe = RTOP + 260\ny_apollo = RTOP + 520\nd.line([x0, y_probe, x0 + lane_w, y_probe], fill=rgba(TEXT, 60), width=3)\nd.line([x0, y_apollo, x0 + lane_w, y_apollo], fill=rgba(TEXT, 60), width=3)\nfrac_probe = clamp(reveal)\nfrac_apollo = clamp(reveal) * (values[1] / values[0])\npx = x0 + lane_w * frac_probe\nax = x0 + lane_w * frac_apollo\nif probe is not None:\n    paste(probe, px - 70, y_probe - 40, 140, 80)\nif apollo is not None:\n    paste(apollo, ax - 50, y_apollo - 40, 100, 80)\ntext(labels[0], x0, y_probe - 90, size=28, color=HIGHLIGHT)\ntext(f'{int(values[0]):,} mph', x0, y_probe - 130, size=36, color=HIGHLIGHT)\ntext(labels[1], x0, y_apollo + 60, size=24, color=WARN)\ntext(f'{int(values[1]):,} mph', x0, y_apollo + 96, size=30, color=WARN)\ntext('17x faster', (x0 + x0 + lane_w) // 2, RTOP + 400, size=42, color=ACCENT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23137,7 +23177,12 @@
           "use_baseline": false,
           "role": "3 · THE PAYOFF",
           "topic": "what that speed actually means",
-          "say": "At that speed, New York to Tokyo takes 56 seconds. You could circle the entire planet in 208 seconds -- under 4 minutes."
+          "say": "At that speed, New York to Tokyo takes 56 seconds. You could circle the entire planet in 208 seconds -- under 4 minutes.",
+          "scene": {
+            "mechanic": "world-globe-orbit-timer",
+            "concept": "the probe circles a real Earth globe, one lit arc completing at 56 seconds (New York to Tokyo) and a full lap completing at 208 seconds (around the planet)",
+            "code": "globe = subject_image('earth globe from space')\nprobe = subject_image('spacecraft solar probe')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 460\nr = 260\nif globe is not None:\n    paste(globe, cx - r, cy - r, r * 2, r * 2)\nfrac1 = values[0] / values[-1]\nsweep = clamp(reveal) * 2 * math.pi\nsweep_deg = math.degrees(sweep)\nd.arc([cx - r - 20, cy - r - 20, cx + r + 20, cy + r + 20], -90, -90 + sweep_deg, fill=rgba(HIGHLIGHT, 230), width=14)\nmark_ang = math.radians(-90 + frac1 * 360)\nmx = cx + (r + 20) * math.cos(mark_ang)\nmy = cy + (r + 20) * math.sin(mark_ang)\nif sweep >= frac1 * 2 * math.pi:\n    d.ellipse([mx - 14, my - 14, mx + 14, my + 14], fill=rgba(WARN, 255))\nif probe is not None:\n    eang = math.radians(-90) + sweep\n    ex = cx + (r + 20) * math.cos(eang)\n    ey = cy + (r + 20) * math.sin(eang)\n    paste(probe, ex - 50, ey - 30, 100, 60)\ntext(f'{int(values[0])}s: {labels[0]}', cx, RTOP + 100, size=28, color=WARN, center=True)\ntext(f'{int(values[-1])}s: {labels[-1]}', cx, cy + r + 70, size=28, color=HIGHLIGHT, center=True)\n"
+          }
         }
       ]
     },
@@ -23175,7 +23220,12 @@
           "insight_type": "trend",
           "role": "1 · SETUP",
           "topic": "women's share of college degrees",
-          "say": "In 1970, women earned just 43 percent of college degrees. By 1980 it was 49 percent. Today it's 58 percent -- women now earn most degrees, not men."
+          "say": "In 1970, women earned just 43 percent of college degrees. By 1980 it was 49 percent. Today it's 58 percent -- women now earn most degrees, not men.",
+          "scene": {
+            "mechanic": "lecture-hall-seat-flip",
+            "concept": "a lecture-hall grid of graduation caps flips from mostly-men to majority-women colored seats as the share climbs from 43% in 1970 to 58% today",
+            "code": "cap = subject_image('graduation cap icon')\ncols, rows = 10, 8\ngw, gh, gap = 40, 40, 10\ngx0 = RX0 + 120; gy0 = RTOP + 260\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ntotal = cols * rows\nflipped = int(round(total * (v / 100.0)))\nfor idx in range(total):\n    row = idx // cols; col = idx % cols\n    gx = gx0 + col * (gw + gap); gy = gy0 + row * (gh + gap)\n    is_w = idx < flipped\n    col_c = HIGHLIGHT if is_w else ACCENT\n    d.rounded_rectangle([gx, gy, gx + gw, gy + gh], radius=8, fill=rgba(col_c, 210))\n    if cap is not None and is_w:\n        paste(cap, gx + 4, gy + 4, gw - 8, gh - 8)\ntext(f'{v:.0f}% of degrees are women\\'s', gx0, gy0 - 90, size=32, color=HIGHLIGHT)\ntext(lbl, gx0, gy0 - 130, size=28, color=TEXT)\n"
+          }
         },
         {
           "source": "offline",
@@ -23187,7 +23237,12 @@
           "use_baseline": false,
           "role": "2 · THE TURN",
           "topic": "the gap is still widening",
-          "say": "And it's not leveling off. Since 1995, young women's degree rate jumped 22 points. Young men's only rose 12 points. The gap keeps growing."
+          "say": "And it's not leveling off. Since 1995, young women's degree rate jumped 22 points. Young men's only rose 12 points. The gap keeps growing.",
+          "scene": {
+            "mechanic": "twin-staircase-climb",
+            "concept": "two staircases of stacked diplomas climb since 1995, women's staircase reaching 22 steps while men's tops out at 12",
+            "code": "grad = subject_image('graduate student cutout')\nsw, sh = 90, 40\nx0 = RX0 + 140\nx1 = RX1 - 140 - sw\nbase_y = RBOT - 100\npairs = ((x0, values[0], HIGHLIGHT, labels[0]), (x1, values[1], WARN, labels[1]))\nfor x, val, col, lbl in pairs:\n    max_h = clamp(val / vmax) * 6\n    steps_now = clamp(reveal) * max_h\n    full_steps = int(steps_now)\n    for s in range(full_steps + 1):\n        frac = clamp(steps_now - s)\n        if frac <= 0:\n            continue\n        sy = base_y - s * sh\n        d.rounded_rectangle([x, sy - sh, x + sw, sy], radius=10, fill=rgba(col, int(255 * min(1, frac + 0.3))))\n    top_y = base_y - steps_now * sh\n    if grad is not None:\n        paste(grad, x - 10, top_y - 70, sw + 20, 70)\n    text(f'+{val:.0f} pts', x + sw // 2, top_y - 100, size=32, color=col, center=True)\n    text(lbl, x + sw // 2, base_y + 20, size=26, color=col, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23200,7 +23255,12 @@
           "use_baseline": false,
           "role": "3 · TODAY",
           "topic": "who actually has a degree today",
-          "say": "So today, 47 percent of women ages 25 to 34 have a bachelor's degree. Only 37 percent of men do."
+          "say": "So today, 47 percent of women ages 25 to 34 have a bachelor's degree. Only 37 percent of men do.",
+          "scene": {
+            "mechanic": "grad-photo-column-fill",
+            "concept": "two vertical graduation-cap columns fill up side by side, women's reaching 47% versus men's at 37%",
+            "code": "cap = subject_image('graduation cap and gown')\ncw, ch = 220, 520\nx0 = RX0 + 140\nx1 = RX1 - 140 - cw\ny = RTOP + 220\npairs = ((x0, values[0], HIGHLIGHT, labels[0]), (x1, values[1], WARN, labels[1]))\nfor x, val, col, lbl in pairs:\n    frac = clamp(val / 100.0) * clamp(reveal)\n    d.rounded_rectangle([x, y, x + cw, y + ch], radius=20, outline=rgba(TEXT, 150), width=4)\n    if cap is not None:\n        fill_image(cap, frac, x, y, cw, ch, direction='up', color=col)\n    text(f'{val:.0f}%', x + cw // 2, y + ch + 40, size=44, color=col, center=True)\n    text(lbl, x + cw // 2, y + ch + 90, size=28, color=col, center=True)\n"
+          }
         }
       ]
     }
