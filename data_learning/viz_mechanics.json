@@ -122,22 +122,6 @@
     "starred": true
   },
   {
-    "sig": "48f6cf6f8c5b",
-    "mechanic": "anxiety-pulse-spike",
-    "concept": "an anxious phone-holder photo sits under a heart-monitor line whose spike height is set by the call-avoidance rate, sharper for 16-29s than all adults",
-    "code": "cx = (RX0 + RX1) // 2\nyoung = values[0]; allad = values[1] if n > 1 else values[0]\ny0 = RTOP + 300\nperson = subject_image('young person staring anxiously at ringing phone')\npw = 320; ph = 420\nif person is not None:\n    paste(person, cx - pw // 2, y0, pw, ph)\nline_y = y0 - 70\namp = int((young / 60.0) * 170 * reveal)\npts = [(cx - 170, line_y), (cx - 90, line_y), (cx - 60, line_y - amp),\n       (cx - 20, line_y + amp // 2), (cx + 10, line_y), (cx + 90, line_y),\n       (cx + 170, line_y)]\nd.line(pts, fill=rgba(WARN, 235), width=6, joint='curve')\nd.ellipse([cx - 66, line_y - amp - 6, cx - 54, line_y - amp + 6], fill=rgba(WARN, 255))\ntext(labels[0] + f': {young:.0f}% avoid calls', cx, line_y - 210, size=27, color=WARN, center=True)\namp2 = int((allad / 60.0) * 60 * reveal)\nbase2 = y0 + ph + 60\npts2 = [(cx - 140, base2), (cx - 60, base2), (cx - 30, base2 - amp2),\n        (cx, base2), (cx + 60, base2), (cx + 140, base2)]\nd.line(pts2, fill=rgba(TEXT, 200), width=5, joint='curve')\ntext((labels[1] if n > 1 else 'All adults') + f': {allad:.0f}%', cx, base2 + 20, size=24,\n     color=TEXT, center=True)\n",
-    "topic": "Phone Call Anxiety",
-    "starred": false
-  },
-  {
-    "sig": "6565b101ffb9",
-    "mechanic": "voice-waveform-duel",
-    "concept": "two voice-memo microphones each broadcast a bar waveform sized to how much that age group prefers voice notes - a lively 37% wave next to a nearly flat 1% line",
-    "code": "cx0 = RX0 + 260; cx1 = RX1 - 260\nmic = subject_image('microphone voice memo recording icon')\ny0 = RTOP + 320\nif mic is not None:\n    paste(mic, cx0 - 70, y0 - 170, 140, 140)\n    paste(mic, cx1 - 70, y0 - 170, 140, 140)\nbars = 9; bw = 15\ngroups = [(cx0, values[0], HIGHLIGHT, labels[0]),\n          (cx1, values[1] if n > 1 else values[0], TEXT, labels[1] if n > 1 else labels[0])]\nfor cx, v, color, lab in groups:\n    amp_scale = clamp(v / 40.0) * reveal\n    for i in range(bars):\n        h = int((20 + 90 * abs(math.sin(i * 1.4))) * amp_scale) + 6\n        bx = cx - (bars * bw) // 2 + i * bw\n        d.rounded_rectangle([bx, y0 - h // 2, bx + bw - 4, y0 + h // 2], radius=4,\n                             fill=rgba(color, 220))\n    text(lab, cx, y0 + 90, size=22, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, y0 + 124, size=32, color=color, center=True)\n",
-    "topic": "Voice Note Preference",
-    "starred": false
-  },
-  {
     "sig": "7366938af769",
     "mechanic": "blood-vial-rack",
     "concept": "eight blood-sample vials stand in a lab rack, each filled to its share of the US population, O+ towering over a nearly-empty AB- vial",
@@ -450,6 +434,22 @@
     "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
     "code": "cx = (RX0 + RX1) // 2\ntop_y = 380\nbig = values[0]\nsmall = values[1]\nbig_s = 480\nsmall_s = max(18, big_s * (small / big) ** 0.35)\nbx = cx - 260\nsx = cx + 200\nimg = images.get(labels[0])\nif img is None:\n    img = subject_image('silicon chip die macro')\nbw = int(lerp(40, big_s, reveal))\nif img is not None:\n    paste(img, bx - bw // 2, top_y - bw // 2, bw, bw)\nelse:\n    d.rounded_rectangle([bx - bw // 2, top_y - bw // 2, bx + bw // 2, top_y + bw // 2], fill=rgba(ACCENT, 220))\ntext(labels[0], bx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(big)) + ' nm', bx, top_y - big_s // 2 - 40, size=36, color=HIGHLIGHT, center=True)\nsw = int(lerp(6, small_s, reveal))\nd.ellipse([sx - sw // 2, top_y - sw // 2, sx + sw // 2, top_y + sw // 2], fill=rgba(WARN, 230))\ntext(labels[1], sx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(small)) + ' nm', sx, top_y - big_s // 2 - 40, size=36, color=WARN, center=True)\nif reveal > 0.6:\n    text('a handful of atoms wide', cx, RTOP + 10, size=32, center=True)\n",
     "topic": "tech",
+    "starred": false
+  },
+  {
+    "sig": "0215cbc17623",
+    "mechanic": "monarch-cluster-collapse",
+    "concept": "a branch thick with clustered monarch butterflies thins out year by year as overwintering forest area collapses from 18 to 0.9 hectares",
+    "code": "branch = subject_image('pine tree branch')\nif branch is not None:\n    paste(branch, RX0 - 40, RTOP + 40, (RX1 - RX0) + 80, 140)\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ncx = (RX0 + RX1) // 2\ncy = RTOP + 420\nmaxr = 340\nr = maxr * math.sqrt(clamp(v / vmax))\nmono = subject_image('monarch butterfly')\ncnt = max(3, int(28 * clamp(v / vmax)))\nfor k in range(cnt):\n    ang = (k * 2.399) % (2 * math.pi)\n    rad = r * math.sqrt((k + 1) / cnt)\n    bx = cx + rad * math.cos(ang) - 30\n    by = cy + rad * math.sin(ang) * 0.6 - 24\n    if mono is not None:\n        paste(mono, bx, by, 60, 48)\nd.ellipse([cx - r, cy - r * 0.6, cx + r, cy + r * 0.6], outline=rgba(WARN, 90), width=3)\ntext(lbl, cx, RTOP + 40, size=42, color=HIGHLIGHT, center=True)\ntext(f'{v:.1f} ha', cx, cy + maxr * 0.6 + 40, size=40, color=WARN, center=True)\n",
+    "topic": "monarch-butterfly-collapse",
+    "starred": false
+  },
+  {
+    "sig": "79c5a24a8678",
+    "mechanic": "world-globe-orbit-timer",
+    "concept": "the probe circles a real Earth globe, one lit arc completing at 56 seconds (New York to Tokyo) and a full lap completing at 208 seconds (around the planet)",
+    "code": "globe = subject_image('earth globe from space')\nprobe = subject_image('spacecraft solar probe')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 460\nr = 260\nif globe is not None:\n    paste(globe, cx - r, cy - r, r * 2, r * 2)\nfrac1 = values[0] / values[-1]\nsweep = clamp(reveal) * 2 * math.pi\nsweep_deg = math.degrees(sweep)\nd.arc([cx - r - 20, cy - r - 20, cx + r + 20, cy + r + 20], -90, -90 + sweep_deg, fill=rgba(HIGHLIGHT, 230), width=14)\nmark_ang = math.radians(-90 + frac1 * 360)\nmx = cx + (r + 20) * math.cos(mark_ang)\nmy = cy + (r + 20) * math.sin(mark_ang)\nif sweep >= frac1 * 2 * math.pi:\n    d.ellipse([mx - 14, my - 14, mx + 14, my + 14], fill=rgba(WARN, 255))\nif probe is not None:\n    eang = math.radians(-90) + sweep\n    ex = cx + (r + 20) * math.cos(eang)\n    ey = cy + (r + 20) * math.sin(eang)\n    paste(probe, ex - 50, ey - 30, 100, 60)\ntext(f'{int(values[0])}s: {labels[0]}', cx, RTOP + 100, size=28, color=WARN, center=True)\ntext(f'{int(values[-1])}s: {labels[-1]}', cx, cy + r + 70, size=28, color=HIGHLIGHT, center=True)\n",
+    "topic": "parker-solar-probe-speed-record",
     "starred": false
   }
 ]
