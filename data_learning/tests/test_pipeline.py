@@ -82,6 +82,48 @@ def test_qa_catches_unsourced_number():
     assert any("99.9" in e for e in errors), errors
 
 
+def test_qa_catches_unsourced_small_integers():
+    """A magnitude shortcut used to let sub-1000, non-decimal integers
+    through the fact-table check unchecked (only tokens with a decimal
+    point or >= 1000 were flagged)."""
+    base = {
+        "script": "placeholder",
+        "shots": [],
+        "punches": [],
+        "title": "Title",
+        "_data_learning": {
+            "source_footer": "Source: Example (example.gov)",
+            "facts": [{"id": "F1", "value": 10, "unit": "percent"}],
+        },
+    }
+    for bad in ("12", "99", "999"):
+        pkg = dict(base)
+        pkg["script"] = f"The real figure is {bad} percent of the total, not ten."
+        errors = qa.validate(pkg)
+        assert any(bad in e for e in errors), (bad, errors)
+
+
+def test_qa_passes_supported_small_values_and_years():
+    """Sourced small integers and year-like labels must still pass clean."""
+    script = (
+        "In 2024 the reported figure was 10 percent of the total, "
+        "matching the ten cases recorded that year across every region "
+        "in the underlying dataset used for this comparison overall today."
+    )
+    pkg = {
+        "title": "Ten Percent Holds Steady",
+        "script": script,
+        "shots": [{"phrase": "In 2024 the reported figure", "query": "x"}],
+        "punches": [],
+        "_data_learning": {
+            "source_footer": "Source: Example (example.gov)",
+            "facts": [{"id": "F1", "value": 10, "unit": "percent"}],
+        },
+    }
+    errors = qa.validate(pkg)
+    assert errors == [], errors
+
+
 def test_qa_catches_non_substring_phrase():
     pkg = _pkg("cpi_components", "cpi_components_2026_04.json",
                "comparison", use_baseline=True)
