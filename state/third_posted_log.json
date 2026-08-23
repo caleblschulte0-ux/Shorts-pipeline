@@ -4604,13 +4604,36 @@
       "ts": "2026-08-23T11:32:48.493809+00:00"
     },
     "clip-20260823-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/AthleticTalentedCodStrawBeary-MSKKbw6UP5CplDmu",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/Z-JrWLc9M2w",
       "title": "Ohnepixel Reacts To The Weirdest Double Kill Ever",
       "kind": "twitch_clip",
-      "ts": "2026-08-23T11:36:23.548510+00:00",
+      "ts": "2026-08-23T11:36:26.881341+00:00",
+      "uploaded_at": "2026-08-23T11:36:26.881362+00:00",
+      "publish_at": "2026-08-23T17:00:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AthleticTalentedCodStrawBeary-MSKKbw6UP5CplDmu",
+      "streamer": "ohnepixel",
+      "series": "chaos",
+      "hook": "THE WEIRDEST DOUBLE KILL EVER",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 3402,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 9.55
+      },
+      "director_cut": true
+    },
+    "clip-20260823-2": {
+      "pending": true,
+      "source_url": "https://kick.com/adinross/clips/clip_01M0Q5N2X18K9TGGRA0182EE8W",
+      "story_key": null,
+      "streamer": "adinross",
+      "title": "Adinross: Adin Ross Loses It When This Pro Gets Folded AGAIN",
+      "kind": "twitch_clip",
+      "ts": "2026-08-23T12:00:51.376453+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
