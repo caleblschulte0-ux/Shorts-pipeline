@@ -23299,11 +23299,7 @@
           "role": "1 · THE RISE",
           "topic": "Americans who've hit 100",
           "say": "In 1990, there were just 37,306 Americans who'd hit 100. By 2024, that number had nearly tripled to 101,000. This is now the fastest-growing age group in the country.",
-          "scene": {
-            "mechanic": "century-candle-climb",
-            "concept": "four birthday cakes rise in height across 1990->2024, each topped by a flickering '100' candle-flame; taller cake = more Americans who reached 100",
-            "code": "cake = subject_image('birthday cake with lit candles photo')\nbase_y = RBOT - 60\ntop_y = RTOP + 160\ntrack_h = base_y - top_y\ncols = n\ncw = (RX1 - RX0) / cols\nfor i in range(cols):\n    v = values[i]\n    frac = clamp(v / vmax)\n    local_reveal = clamp(reveal * cols - i)\n    h = max(1, int(frac * track_h * local_reveal))\n    x0 = RX0 + i * cw\n    cx = x0 + cw / 2\n    cw_img = cw - 20\n    if cake is not None:\n        paste(cake, int(cx - cw_img / 2), base_y - h, int(cw_img), h)\n    else:\n        d.rounded_rectangle([x0 + 10, base_y - h, x0 + cw - 10, base_y], radius=10, fill=rgba(HIGHLIGHT, 210))\n    flicker = int(8 + 6 * math.sin(reveal * 40 + i))\n    d.ellipse([cx - flicker, base_y - h - 30 - flicker, cx + flicker, base_y - h - 30 + flicker], fill=rgba(WARN, 220))\n    text(labels[i], cx, base_y + 26, size=24, color=TEXT, center=True)\n    col = ACCENT if i == cols - 1 else TEXT\n    text(f'{int(v):,}', cx, base_y - h - 60, size=26, color=col, center=True)\ntext('Americans who reached 100', (RX0 + RX1) // 2, RTOP + 70, size=30, color=TEXT, center=True)"
-          }
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -23317,9 +23313,9 @@
           "topic": "US vs Japan",
           "say": "Japan has about 77 centenarians for every 100,000 people. The US has 30. Same modern medicine, same wealth -- Japan's diet and healthcare system just keep people alive longer.",
           "scene": {
-            "mechanic": "longevity-tower-duel",
-            "concept": "two towers of stacked real elderly-portrait photos rise, height set by centenarians-per-100k, Japan towering over the US",
-            "code": "person = subject_image('elderly person portrait photo')\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\nbase_y = RBOT - 90\ntop_y = RTOP + 160\nmaxh = base_y - top_y\ngw = (RX1 - RX0) // 2\nmx = max(v0, v1) or 1.0\nfor i, v in enumerate([v0, v1]):\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / mx) * clamp(reveal)\n    h = int(maxh * frac)\n    w = int(gw * 0.42)\n    tiles = max(1, int(1 + frac * 7))\n    th = h // tiles if tiles else h\n    for k in range(tiles):\n        ty = base_y - (k + 1) * th\n        if person is not None:\n            paste(person, cx - w // 2, ty, w, th)\n        else:\n            d.rounded_rectangle([cx - w // 2, ty, cx + w // 2, ty + th - 4], radius=8, fill=rgba(HIGHLIGHT, 200))\n    text(labels[i], cx, base_y + 20, size=26, color=TEXT, center=True)\n    text(f'{v:.0f} per 100k', cx, base_y - h - 40, size=28, color=WARN if i == 1 else TEXT, center=True)\nif reveal > 0.6:\n    text('same medicine. same wealth.', (RX0 + RX1) // 2, RTOP + 60, size=26, color=TEXT, center=True)"
+            "mechanic": "birthday-candle-duel",
+            "concept": "two birthday cakes face off, each sprouting a row of lit candles that climbs to its country's centenarian rate per 100,000 people",
+            "code": "cake = subject_image('birthday cake with candles')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / vmax, 0.0, 1.0) * stage\n    cw, ch = 340, 200\n    cy = 760\n    if cake is not None:\n        paste(cake, cx - cw // 2, cy, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy, cx + cw // 2, cy + ch], radius=16, fill=rgba(col, 210))\n    count = 3 + int(frac * 13)\n    for k in range(count):\n        kx = cx - cw // 2 + 26 + (k % 6) * ((cw - 52) / 5.0)\n        ky = cy - 20 - (k // 6) * 58\n        d.line([kx, ky, kx, ky - 36], fill=rgba(col, 230), width=6)\n        d.ellipse([kx - 9, ky - 50, kx + 9, ky - 32], fill=rgba(WARN, 235))\n    text(f'{v:.0f}', cx, cy - 140, size=64, color=col, center=True)\n    text(labels[i].upper(), cx, cy + ch + 40, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('CENTENARIANS PER 100,000 PEOPLE', (RX0 + RX1) // 2, RTOP + 50, size=30, color=TEXT, center=True)\n"
           }
         },
         {
@@ -23334,8 +23330,8 @@
           "say": "The Census Bureau projects 422,000 American centenarians by 2054 -- over four times today's number. Turning 100 is going from a headline to just another Tuesday.",
           "scene": {
             "mechanic": "future-crowd-surge",
-            "concept": "a plaza of real elderly-portrait cutouts multiplies from a small 2024 cluster into a packed 2054 crowd as a calendar ticks forward",
-            "code": "person = subject_image('elderly person portrait photo')\ncalendar = subject_image('calendar page photo')\nv0 = values[0]; v1 = values[-1]\nfrac = clamp(reveal)\ncur = lerp(v0, v1, frac)\ncols, rows = 12, 9\ntotal = cols * rows\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 200\nshown = max(1, int(clamp(cur / v1) * total))\nfor k in range(shown):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    if person is not None:\n        paste(person, x + 2, y + 2, cell - 4, cell - 4)\n    else:\n        d.ellipse([x + 4, y + 4, x + cell - 4, y + cell - 4], fill=rgba(HIGHLIGHT, 200))\nif calendar is not None:\n    paste(calendar, RX0 + 20, RTOP + 40, 140, 140)\nyr = labels[0] if frac < 0.5 else labels[-1]\ntext(yr, RX0 + 180, RTOP + 100, size=40, color=ACCENT)\ntext(f'{int(cur):,} centenarians', (RX0 + RX1) // 2, RBOT - 40, size=30, color=WARN, center=True)"
+            "concept": "a grid of smiling elderly portraits fills in from today's count toward 2054's projected count, the crowd visibly swelling as the camera holds",
+            "code": "img = subject_image('smiling elderly person portrait')\ncx = (RX0 + RX1) // 2\nstage = clamp(reveal, 0.0, 1.0)\nv0, v1 = values[0], values[1]\nfrac = lerp(v0 / v1, 1.0, stage)\ncols, rows = 8, 9\ntotal = int(frac * cols * rows)\ncell_w = (RX1 - RX0) / cols\ncell_h = 68.0\ntop = RTOP + 140\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 4, y, cell_w - 8, cell_h - 6)\n    else:\n        d.ellipse([x + 10, y + 6, x + cell_w - 10, y + cell_h - 6], fill=rgba(ACCENT, 220))\ntext(f'{lerp(v0, v1, stage):,.0f}', cx, RTOP + 70, size=76, color=HIGHLIGHT, center=True)\nlabel = labels[0] if stage < 0.5 else labels[1]\ntext(label.upper(), cx, RTOP + 150, size=30, color=TEXT, center=True)\n"
           }
         }
       ]
@@ -23376,9 +23372,9 @@
           "topic": "Lake Chad's surface area",
           "say": "In 1963, Lake Chad covered 25,000 square kilometers -- roughly the size of Israel. After a brutal regional drought, it crashed to just 2,000 by 1987, and kept shrinking from there.",
           "scene": {
-            "mechanic": "evaporating-lake-basin",
-            "concept": "a real lake-water photo shrinks radially over a cracked-lakebed backdrop as the years advance from 1963 to 2001, tracking the collapsing surface area",
-            "code": "water = subject_image('lake water aerial photo')\ncracked = subject_image('cracked dry lakebed aerial photo')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 420\nidx = clamp(reveal) * (n - 1)\ni = int(idx)\nt = idx - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t)\nfrac = clamp(cur / vmax)\nmaxr = 420\nr = max(30, int(maxr * (frac ** 0.5)))\nif cracked is not None:\n    paste(cracked, cx - maxr, cy - maxr // 2, maxr * 2, maxr)\nif water is not None:\n    paste(water, cx - r, cy - r // 2, r * 2, r)\nelse:\n    d.ellipse([cx - r, cy - r // 2, cx + r, cy + r // 2], fill=rgba(ACCENT, 210))\nlab = labels[i] if t < 0.5 else labels[min(i + 1, n - 1)]\ntext(lab, cx, RTOP + 80, size=44, color=TEXT, center=True)\ntext(f'{int(cur):,} km2', cx, cy + maxr // 2 + 60, size=34, color=WARN, center=True)"
+            "mechanic": "lake-shoreline-recede",
+            "concept": "a real aerial lake photo sits in a dark dried-out basin outline; the visible water shrinks toward the center as the four year markers advance",
+            "code": "lake = subject_image('aerial lake with water and shoreline')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 480\nmaxw, maxh = 760, 560\nd.rounded_rectangle([cx - maxw // 2, cy - maxh // 2, cx + maxw // 2, cy + maxh // 2], radius=24, fill=rgba((22, 26, 20), 220))\nidx = min(int(reveal * n), n - 1)\nfrac = clamp(values[idx] / vmax, 0.0, 1.0)\nscale = 0.16 + 0.84 * frac\nww = maxw * scale\nhh = maxh * scale\nif lake is not None:\n    paste(lake, cx - ww / 2, cy - hh / 2, ww, hh)\nelse:\n    d.ellipse([cx - ww / 2, cy - hh / 2, cx + ww / 2, cy + hh / 2], fill=rgba(HIGHLIGHT, 220))\nd.ellipse([cx - ww / 2, cy - hh / 2, cx + ww / 2, cy + hh / 2], outline=rgba(HIGHLIGHT, 235), width=6)\ntext(f'{labels[idx]}: {values[idx]:,.0f} km2', cx, cy + maxh // 2 + 60, size=34, color=TEXT, center=True)\ntext('LAKE CHAD SURFACE AREA', cx, RTOP + 40, size=28, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -23393,9 +23389,18 @@
           "topic": "how much is left",
           "say": "Do the math and Lake Chad has lost about 95 percent of its surface since 1963. What used to be a small sea is now barely a large pond on a map of Africa.",
           "scene": {
-            "mechanic": "waterline-tile-crumble",
-            "concept": "a 10x10 grid of lake-water tiles crumbles into cracked-earth tiles until only the surviving percentage still shows water, a pictogram of the lake drying tile by tile",
-            "code": "water = subject_image('lake water texture photo')\ncracked = subject_image('cracked dry lakebed texture photo')\npct = values[-1]\ncols, rows = 10, 10\ntotal = cols * rows\ncell = (RX1 - RX0) // cols\ngx0 = RX0\ngy0 = RTOP + 180\nkeep = max(1, int(total * pct / 100.0))\nconverted = int(clamp(reveal) * (total - keep))\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    is_dry = k < converted\n    img = cracked if is_dry else water\n    if img is not None:\n        paste(img, x + 2, y + 2, cell - 4, cell - 4)\n    else:\n        col = WARN if is_dry else ACCENT\n        d.rectangle([x + 3, y + 3, x + cell - 3, y + cell - 3], fill=rgba(col, 200))\ntext('1963: a full lake', (RX0 + RX1) // 2, RTOP + 70, size=30, color=TEXT, center=True)\ntext(f'today: {pct:.0f}% left', (RX0 + RX1) // 2, gy0 + rows * cell + 50, size=34, color=WARN, center=True)"
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "aerial lake with water and shoreline",
+                "data": {
+                  "value_from": "item:1"
+                },
+                "anim": "fill"
+              }
+            ]
           }
         },
         {
@@ -23410,9 +23415,9 @@
           "topic": "demand vs supply",
           "say": "Meanwhile the demand only grew. Chad's population went from 3.3 million people in 1963 to 19 million today -- six times the mouths, a fraction of the water.",
           "scene": {
-            "mechanic": "thirsty-crowd-surge",
-            "concept": "a crowd of real portrait cutouts multiplies around a shrunken lake puddle, showing demand for water outgrowing the vanishing supply",
-            "code": "person = subject_image('village person portrait photo')\nwater = subject_image('small lake puddle photo')\nv0 = values[0]; v1 = values[-1]\ncur = lerp(v0, v1, clamp(reveal))\ncx = (RX0 + RX1) // 2\ncy = RTOP + 700\nif water is not None:\n    paste(water, cx - 140, cy - 60, 280, 120)\ncols = 14\ncell = 62\ntotal = int(clamp(cur / v1) * 120)\ngx0 = RX0 + 20\ngy0 = RTOP + 140\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = gx0 + c * cell\n    y = gy0 + r * cell\n    if y > cy - 90:\n        continue\n    if person is not None:\n        paste(person, x, y, cell - 6, cell - 6)\n    else:\n        d.ellipse([x, y, x + cell - 8, y + cell - 8], fill=rgba(WARN, 200))\nlab = labels[0] if reveal < 0.5 else labels[-1]\ntext(lab, RX0 + 20, RTOP + 60, size=34, color=TEXT)\ntext(f'{cur:.1f}M people', cx, RBOT - 60, size=32, color=WARN, center=True)"
+            "mechanic": "population-swell-grid",
+            "concept": "a grid of villager portraits fills in from 1963's population toward today's, dramatizing six times the demand on the same shrunken lake",
+            "code": "img = subject_image('crowd of african villagers')\ncx = (RX0 + RX1) // 2\nstage = clamp(reveal, 0.0, 1.0)\nv0, v1 = values[0], values[1]\nfrac = lerp(v0 / v1, 1.0, stage)\ncols, rows = 8, 8\ntotal = int(frac * cols * rows)\ncell_w = (RX1 - RX0) / cols\ncell_h = 66.0\ntop = RTOP + 190\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 4, y, cell_w - 8, cell_h - 6)\n    else:\n        d.ellipse([x + 12, y + 8, x + cell_w - 12, y + cell_h - 8], fill=rgba(WARN, 220))\ntext(f'{lerp(v0, v1, stage):.1f}M PEOPLE', cx, RTOP + 90, size=54, color=HIGHLIGHT, center=True)\nlabel = labels[0] if stage < 0.5 else labels[1]\ntext(label.upper(), cx, RTOP + 150, size=28, color=TEXT, center=True)\ntext('SAME LAKE, SIX TIMES THE DEMAND', cx, RTOP + 30, size=24, color=ACCENT, center=True)\n"
           }
         }
       ]
@@ -23453,9 +23458,9 @@
           "topic": "16-year-olds licensed",
           "say": "In 1983, 46 percent of American 16-year-olds had a driver's license. By 2014 that had cratered to 24 percent. It's basically flipped from the norm to the minority.",
           "scene": {
-            "mechanic": "ignition-key-dial",
-            "concept": "a speedometer-style gauge behind a real car-ignition-key photo sweeps down across 1983->2021, tracking the share of 16-year-olds licensed to drive",
-            "code": "key = subject_image('car ignition key photo')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 420\nradius = 320\nidx = clamp(reveal) * (n - 1)\ni = int(idx)\nt = idx - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t)\nfrac = clamp(cur / vmax)\nstart_ang = 180\nend_ang = 360\nang = start_ang + frac * (end_ang - start_ang)\nd.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, end_ang, fill=rgba(TEXT, 120), width=26)\nd.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, ang, fill=rgba(WARN, 230), width=26)\nneedle_ang = math.radians(ang)\nnx = cx + int(radius * 0.85 * math.cos(needle_ang))\nny = cy + int(radius * 0.85 * math.sin(needle_ang))\nd.line([cx, cy, nx, ny], fill=rgba(ACCENT, 240), width=10)\nif key is not None:\n    paste(key, cx - 90, cy - 90, 180, 180)\nlab = labels[i] if t < 0.5 else labels[min(i + 1, n - 1)]\ntext(lab, cx, cy + int(radius * 0.4), size=36, color=TEXT, center=True)\ntext(f'{cur:.0f}% licensed at 16', cx, RTOP + 60, size=30, color=WARN, center=True)"
+            "mechanic": "license-pictograph-thin",
+            "concept": "100 teenager portraits arranged in a grid, only the licensed share left bright while the rest darken under a translucent wash as the year advances",
+            "code": "img = subject_image('teenager portrait face')\ncx = (RX0 + RX1) // 2\nidx = min(int(reveal * n), n - 1)\nv = values[idx]\ncols, rows = 10, 10\ntop = RTOP + 150\ncell_w = (RX1 - RX0) / cols\ncell_h = (RBOT - top - 140) / rows\nlit = int(clamp(v / 100.0, 0.0, 1.0) * 100)\nfor k in range(100):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 3, y, cell_w - 6, cell_h - 4)\n    else:\n        d.ellipse([x + 6, y + 4, x + cell_w - 6, y + cell_h - 4], fill=rgba(ACCENT, 220))\n    if k >= lit:\n        d.rectangle([x, y, x + cell_w, y + cell_h], fill=rgba((10, 10, 14), 190))\ntext(f'{v:.0f}% LICENSED', cx, RBOT - 110, size=48, color=HIGHLIGHT, center=True)\ntext(f'AGE 16, {labels[idx]}', cx, RBOT - 55, size=28, color=TEXT, center=True)\n"
           }
         },
         {
@@ -23470,9 +23475,9 @@
           "topic": "18-year-olds licensed",
           "say": "It's not just 16-year-olds. In 1983, 80 percent of 18-year-olds were licensed. Today it's 62 percent -- a legal adult, and still more likely to be a passenger.",
           "scene": {
-            "mechanic": "parking-lot-fill",
-            "concept": "two ten-space parking lots fill with real parked-car photos, 1983's lot nearly full and 2018's lot half-empty, spaces lit proportional to the license rate",
-            "code": "car = subject_image('car parked top-down photo')\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\ncols = 10\ncell = (RX1 - RX0) // cols\ngy0 = RTOP + 220\nrow_h = 260\nfor i, v in enumerate([v0, v1]):\n    y = gy0 + i * (row_h + 60)\n    filled = int(clamp(v / 100.0) * cols * clamp(reveal))\n    for c in range(cols):\n        x = RX0 + c * cell\n        d.rectangle([x + 4, y, x + cell - 4, y + row_h], outline=rgba(TEXT, 140), width=3)\n        if c < filled and car is not None:\n            paste(car, x + 8, y + 20, cell - 16, row_h - 40)\n    text(labels[i], RX0 + 10, y - 34, size=28, color=TEXT)\n    text(f'{v:.0f}% licensed', RX1 - 240, y - 34, size=28, color=WARN if i == 1 else TEXT)"
+            "mechanic": "license-card-fill-duel",
+            "concept": "two driver's license cards side by side, each washed with a rising color fill to its own year's licensed percentage",
+            "code": "card = subject_image('driver license id card')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / 100.0, 0.0, 1.0) * stage\n    cw, ch = 340, 220\n    cy = 620\n    if card is not None:\n        paste(card, cx - cw // 2, cy - ch // 2, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy - ch // 2, cx + cw // 2, cy + ch // 2], radius=18, fill=rgba(TEXT, 60))\n    fh = ch * frac\n    d.rectangle([cx - cw // 2, cy + ch // 2 - fh, cx + cw // 2, cy + ch // 2], fill=rgba(col, 130))\n    text(f'{v:.0f}%', cx, cy - ch // 2 - 60, size=58, color=col, center=True)\n    text(labels[i], cx, cy + ch // 2 + 50, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('18-YEAR-OLDS LICENSED', (RX0 + RX1) // 2, RTOP + 50, size=28, color=TEXT, center=True)\n"
           }
         },
         {
@@ -23485,11 +23490,7 @@
           "role": "3 · THE TWIST",
           "topic": "20-24-year-olds licensed",
           "say": "But look at 20 to 24-year-olds: 91.8 percent in 1983, down to 76.7 by 2014 -- then climbing back to 81 by 2021. They didn't quit driving. They just showed up years late.",
-          "scene": {
-            "mechanic": "road-trip-rate-curve",
-            "concept": "a real car photo drives a winding road whose height tracks the 20-24 license rate across 1983->2014->2021, diving then partly climbing back",
-            "code": "car = subject_image('car driving photo')\ncols = n\ngx = []\ngy = []\nfor i in range(cols):\n    gx.append(RX0 + 120 + int((RX1 - RX0 - 240) * (i / (cols - 1))))\n    gy.append(RTOP + 700 - int(480 * clamp(values[i] / 100.0)))\nfor i in range(cols - 1):\n    seg_reveal = clamp(reveal * (cols - 1) - i)\n    if seg_reveal <= 0:\n        continue\n    x0, y0 = gx[i], gy[i]\n    x1 = lerp(x0, gx[i + 1], seg_reveal)\n    y1 = lerp(y0, gy[i + 1], seg_reveal)\n    d.line([x0, y0, x1, y1], fill=rgba(ACCENT, 220), width=8)\nidx = clamp(reveal) * (cols - 1)\ni = int(idx)\nt = idx - i\ncx = lerp(gx[i], gx[min(i + 1, cols - 1)], t)\ncy = lerp(gy[i], gy[min(i + 1, cols - 1)], t)\nif car is not None:\n    paste(car, int(cx - 90), int(cy - 50), 180, 100)\nelse:\n    d.ellipse([cx - 20, cy - 20, cx + 20, cy + 20], fill=rgba(WARN, 220))\nfor k in range(cols):\n    d.ellipse([gx[k] - 8, gy[k] - 8, gx[k] + 8, gy[k] + 8], fill=rgba(TEXT, 200))\n    text(labels[k], gx[k] - 20, gy[k] + 20, size=22, color=TEXT)\ntext(f'{values[i]:.0f}% and climbing back', (RX0 + RX1) // 2, RTOP + 60, size=28, color=WARN, center=True)"
-          }
+          "viz": "trend"
         }
       ]
     },
@@ -23529,9 +23530,9 @@
           "topic": "S&P 500 buybacks by year",
           "say": "S&P 500 companies spent 589 billion dollars buying back their own stock in 2007. By 2018 that hit 806 billion, and by 2025 it topped 1 trillion dollars for the first time ever.",
           "scene": {
-            "mechanic": "buyback-cash-silo-climb",
-            "concept": "columns of stacked real hundred-dollar-bill photos rise year by year in front of a stock-ticker board, the tallest topping $1 trillion in 2025",
-            "code": "cash = subject_image('stack of hundred dollar bills photo')\nboard = subject_image('stock market ticker board photo')\nbase_y = RBOT - 90\ncols = n\ncw = (RX1 - RX0) / cols\nif board is not None:\n    paste(board, RX0, RTOP + 20, RX1 - RX0, 140)\nfor i in range(cols):\n    v = values[i]\n    frac = clamp(v / vmax)\n    local_reveal = clamp(reveal * cols - i)\n    h = max(1, int(frac * 560 * local_reveal))\n    x0 = RX0 + i * cw\n    cx = x0 + cw / 2\n    if cash is not None:\n        paste(cash, int(x0 + 6), base_y - h, int(cw - 12), h)\n    else:\n        d.rounded_rectangle([x0 + 6, base_y - h, x0 + cw - 6, base_y], radius=8, fill=rgba(HIGHLIGHT, 210))\n    text(labels[i], cx, base_y + 26, size=22, color=TEXT, center=True)\n    col = ACCENT if i == cols - 1 else TEXT\n    text(f'${v:.0f}B', cx, base_y - h - 30, size=24, color=col, center=True)\ntext('S&P 500 stock buybacks', (RX0 + RX1) // 2, RTOP + 190, size=28, color=TEXT, center=True)"
+            "mechanic": "cash-tower-climb",
+            "concept": "a tower of stacked hundred-dollar-bill photos rises brick by brick as the year advances, topping out at the trillion-dollar 2025 mark",
+            "code": "cash = subject_image('stack of hundred dollar bills')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nidx = min(int(reveal * n), n - 1)\nfrac = clamp(values[idx] / vmax, 0.0, 1.0)\ncount = 2 + int(frac * 10)\nbw, bh = 220, 70\nfor k in range(count):\n    y = base_y - k * (bh - 18)\n    if cash is not None:\n        paste(cash, cx - bw // 2, y - bh, bw, bh)\n    else:\n        d.rounded_rectangle([cx - bw // 2, y - bh, cx + bw // 2, y], radius=10, fill=rgba(ACCENT, 220))\ntext(f'${values[idx]:,.0f}B', cx, RTOP + 80, size=68, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RTOP + 150, size=32, color=TEXT, center=True)\ntext('S&P 500 STOCK BUYBACKS', cx, RTOP + 30, size=24, color=ACCENT, center=True)\n"
           }
         },
         {
@@ -23545,11 +23546,7 @@
           "role": "2 · THE GAP OPENS",
           "topic": "buybacks vs dividends, 2018",
           "say": "In 2018 alone, companies spent 806 billion dollars on buybacks and only 456 billion on dividends -- nearly double, going to whoever happened to be holding shares that quarter.",
-          "scene": {
-            "mechanic": "certificate-vs-check-scale",
-            "concept": "a balance scale tips toward a pile of real stock-certificate photos over a pile of dividend checks, weighted by the 2018 dollar totals",
-            "code": "cert = subject_image('stock certificate photo')\ncheck = subject_image('dividend check photo')\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\ncx = (RX0 + RX1) // 2\nfulcrum_y = RTOP + 380\nbeam_len = 360\ntilt = lerp(0, 14 if v0 >= v1 else -14, clamp(reveal))\nang = math.radians(tilt)\nlx = cx - int(beam_len * math.cos(ang)); ly = fulcrum_y - int(beam_len * math.sin(ang))\nrx = cx + int(beam_len * math.cos(ang)); ry = fulcrum_y + int(beam_len * math.sin(ang))\nd.polygon([(cx, fulcrum_y - 170), (cx - 26, fulcrum_y), (cx + 26, fulcrum_y)], fill=rgba(TEXT, 220))\nd.line([lx, ly, rx, ry], fill=rgba(TEXT, 230), width=9)\npw, ph = 190, 150\nif cert is not None:\n    paste(cert, lx - pw // 2, ly + 10, pw, ph)\nif check is not None:\n    paste(check, rx - pw // 2, ry + 10, pw, ph)\ntext(labels[0], lx, ly + ph + 34, size=26, color=WARN, center=True)\ntext(f'${v0:.0f}B', lx, ly + ph + 66, size=32, color=WARN, center=True)\nlab1 = labels[1] if n > 1 else 'Dividends'\ntext(lab1, rx, ry + ph + 34, size=26, color=TEXT, center=True)\ntext(f'${v1:.0f}B', rx, ry + ph + 66, size=32, color=TEXT, center=True)\ntext('2018: who gets paid?', cx, RTOP + 60, size=28, color=TEXT, center=True)"
-          }
+          "viz": "comparison"
         },
         {
           "source": "offline",
@@ -23563,9 +23560,9 @@
           "topic": "buybacks vs dividends, 2021",
           "say": "By 2021 it was 882 billion in buybacks against 511 billion in dividends. Buybacks pump the stock price instead of cutting a check -- great if you're already a shareholder.",
           "scene": {
-            "mechanic": "pocket-fill-duel",
-            "concept": "two open-wallet photos fill upward with cash to their 2021 dollar totals, the buybacks wallet overflowing past the dividends wallet",
-            "code": "wallet_a = subject_image('open wallet full of cash photo')\nwallet_b = subject_image('open wallet photo')\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\nbase_y = RBOT - 100\ntop_y = RTOP + 200\nmaxh = base_y - top_y\ngw = (RX1 - RX0) // 2\nmx = max(v0, v1) or 1.0\nfor i, v in enumerate([v0, v1]):\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / mx) * clamp(reveal)\n    h = int(maxh * frac)\n    w = int(gw * 0.55)\n    img = wallet_a if i == 0 else wallet_b\n    if img is not None:\n        paste(img, cx - w // 2, base_y - h, w, h)\n    else:\n        d.rounded_rectangle([cx - w // 2, base_y - h, cx + w // 2, base_y], radius=14, fill=rgba(HIGHLIGHT, 210))\n    text(labels[i], cx, base_y + 20, size=26, color=TEXT, center=True)\n    text(f'${v:.0f}B', cx, base_y - h - 40, size=30, color=WARN if i == 0 else TEXT, center=True)\ntext('2021: the gap widens', (RX0 + RX1) // 2, RTOP + 70, size=28, color=TEXT, center=True)"
+            "mechanic": "cash-vs-check-duel",
+            "concept": "a rising column of cash for buybacks faces a shorter column of a dividend check for dividends, both climbing to their own 2021 dollar total",
+            "code": "bag1 = subject_image('stack of hundred dollar bills')\nbag2 = subject_image('bank check dividend payment')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / vmax, 0.0, 1.0) * stage\n    img = bag1 if i == 0 else bag2\n    cw = 300\n    ch = 300 * frac + 40\n    cy = RBOT - 80\n    if img is not None:\n        paste(img, cx - cw // 2, cy - ch, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy - ch, cx + cw // 2, cy], radius=14, fill=rgba(col, 210))\n    text(f'${v:,.0f}B', cx, cy - ch - 50, size=54, color=col, center=True)\n    text(labels[i], cx, cy + 40, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('2021: WHO GOT PAID', (RX0 + RX1) // 2, RTOP + 60, size=28, color=TEXT, center=True)\n"
           }
         }
       ]
