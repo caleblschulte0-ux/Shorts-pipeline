@@ -1,0 +1,38 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-lounge-flagged-account",
+  "title": "Her Corporate Lounge Account Was Flagged. Guess Why.",
+  "script": "I work the front desk at an airport lounge. A woman in a business blazer swiped an expired day-pass, it declined, and she said she has a corporate account and I should just let it slide. I scanned the account number right there while she watched. The account existed, flagged, cancelled six months ago after the company itself complained about someone smuggling four extra guests past a desk agent on one pass. I read the note out loud: guest attempted to reuse an expired credential, security notified. She went quiet, because turns out she was that guest. The system remembered her name even if she'd hoped nobody would. Security walked her out past the free mimosas while her flight started boarding without her. She landed in economy, seat 34E, no lounge required, no elite status, just a very long memory in a database she forgot existed.",
+  "shots": [
+    {"phrase": "front desk at an airport lounge", "query": "airport lounge reception desk"},
+    {"phrase": "swiped an expired day-pass", "query": "boarding pass scanner airport"},
+    {"phrase": "scanned the account number", "query": "check in desk computer screen"},
+    {"phrase": "flagged, cancelled six months ago", "query": "red warning alert screen"},
+    {"phrase": "smuggling four extra guests", "query": "crowded airport lounge seating"},
+    {"phrase": "Security walked her out", "query": "airport security guard walking"},
+    {"phrase": "past the free mimosas", "query": "mimosa champagne airport lounge"},
+    {"phrase": "seat 34E", "query": "airplane economy seat row"}
+  ],
+  "punches": [
+    {"phrase": "just let it slide", "text": "SLIDE?", "color": "#ffaa30"},
+    {"phrase": "flagged, cancelled six months ago", "text": "FLAGGED", "color": "#ff3030"},
+    {"phrase": "turns out she was that guest", "text": "IT WAS HER", "color": "#ff3030"},
+    {"phrase": "Security walked her out", "text": "ESCORTED OUT", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "talesfromthecustomer",
+    "entitled",
+    "airportlounge",
+    "karma",
+    "customerservice",
+    "reddit",
+    "storytime",
+    "travel",
+    "airline",
+    "satisfying",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

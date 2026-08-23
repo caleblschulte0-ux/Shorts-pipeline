@@ -1,0 +1,22 @@
+{
+  "key": "sp500_buybacks_trend",
+  "title": "S&P 500 stock buybacks",
+  "unit": "billion dollars",
+  "geography": "United States (S&P 500 companies)",
+  "time_coverage": "2007-2025",
+  "source": {
+    "name": "S&P 500 Buybacks quarterly report",
+    "publisher": "S&P Dow Jones Indices",
+    "url": "https://www.spglobal.com/spdji/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "2025 figure is the trailing 12-month total through Q3 2025, the first time buybacks topped $1 trillion in a 12-month period.",
+  "points": [
+    {"label": "2007", "value": 589.1, "period": "2007"},
+    {"label": "2017", "value": 519.4, "period": "2017"},
+    {"label": "2018", "value": 806.4, "period": "2018"},
+    {"label": "2021", "value": 881.7, "period": "2021"},
+    {"label": "2025", "value": 1000, "period": "2025"}
+  ]
+}

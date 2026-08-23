@@ -1,0 +1,19 @@
+{
+  "key": "buybacks_vs_dividends_2018",
+  "title": "S&P 500 buybacks vs dividends, 2018",
+  "unit": "billion dollars",
+  "geography": "United States (S&P 500 companies)",
+  "time_coverage": "2018",
+  "source": {
+    "name": "S&P 500 Buybacks and Dividends quarterly reports",
+    "publisher": "S&P Dow Jones Indices",
+    "url": "https://www.spglobal.com/spdji/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "2018 buybacks set a then-record after the Tax Cuts and Jobs Act repatriation boosted corporate cash.",
+  "points": [
+    {"label": "Buybacks", "value": 806.4},
+    {"label": "Dividends", "value": 456.3}
+  ]
+}

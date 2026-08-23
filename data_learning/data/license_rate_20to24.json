@@ -1,0 +1,20 @@
+{
+  "key": "license_rate_20to24",
+  "title": "20-24-year-olds with a driver's license",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1983-2021",
+  "source": {
+    "name": "Driver licensing rates by age",
+    "publisher": "University of Michigan Transportation Research Institute (UMTRI), Sivak & Schoettle",
+    "url": "https://deepblue.lib.umich.edu",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "20-24-year-old licensing fell from 91.8% (1983) to 76.7% (2014), then partly rebounded to 81.0% by 2021 -- unlike 16-year-olds, this age group is catching back up.",
+  "points": [
+    {"label": "1983", "value": 91.8, "period": "1983"},
+    {"label": "2014", "value": 76.7, "period": "2014"},
+    {"label": "2021", "value": 81.0, "period": "2021"}
+  ]
+}

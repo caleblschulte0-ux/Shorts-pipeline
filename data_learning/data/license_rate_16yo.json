@@ -1,0 +1,20 @@
+{
+  "key": "license_rate_16yo",
+  "title": "16-year-olds with a driver's license",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1983-2021",
+  "source": {
+    "name": "Driver licensing rates by age",
+    "publisher": "University of Michigan Transportation Research Institute (UMTRI), Sivak & Schoettle",
+    "url": "https://deepblue.lib.umich.edu",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "UMTRI's long-running licensing study; 16-year-old licensing fell sharply from 1983 to 2014 and has only partly stabilized since.",
+  "points": [
+    {"label": "1983", "value": 46, "period": "1983"},
+    {"label": "2014", "value": 24, "period": "2014"},
+    {"label": "2021", "value": 26, "period": "2021"}
+  ]
+}

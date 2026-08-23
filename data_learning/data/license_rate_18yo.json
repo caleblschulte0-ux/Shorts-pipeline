@@ -1,0 +1,19 @@
+{
+  "key": "license_rate_18yo",
+  "title": "18-year-olds with a driver's license",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1983 vs 2018",
+  "source": {
+    "name": "Driver licensing rates by age",
+    "publisher": "University of Michigan Transportation Research Institute (UMTRI), Sivak & Schoettle",
+    "url": "https://deepblue.lib.umich.edu",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "18-year-old licensing fell from over 80% in 1983 to about 62% in 2018.",
+  "points": [
+    {"label": "1983", "value": 80},
+    {"label": "2018", "value": 62}
+  ]
+}
