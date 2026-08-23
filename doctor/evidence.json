@@ -1,46 +1,69 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260822",
-  "judged_date": "20260821",
+  "date": "20260823",
+  "judged_date": "20260822",
   "alarm": {
-    "date": "20260821",
+    "date": "20260822",
     "ok": false,
     "alarms": [
       {
-        "code": "short_slate_explainer",
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20260822 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20260822. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "short_slate_third",
         "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20260821.",
+        "detail": "third: 5/6 posted for 20260822.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 3/6 posted for 20260821.",
+        "detail": "trending: 4/6 posted for 20260822.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260821: production outcome says 3/6 uploaded and repair never completed (1 quarantined, 5 failed).",
+        "detail": "trending 20260822: production outcome says 4/6 uploaded and repair never completed (1 quarantined, 3 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 3/6; 3 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 4/6; 2 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
       "chatgpt media: artifact present",
-      "third: 6/6 posted",
       "exchange: 16/16 ChatGPT images pinned",
-      "doctor: findings current (20260821)"
+      "doctor: findings current (20260822)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260822",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 8,
+      "uploaded": 4,
+      "quarantined": 1,
+      "failed": 3,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/mIx9MUcLo0c",
+        "https://youtube.com/shorts/mlZ6julPK5E",
+        "https://youtube.com/shorts/CDaAHFbdRWk",
+        "https://youtube.com/shorts/3xjKJE76n38"
+      ]
+    },
     {
       "date": "20260821",
       "channel": "trending",
@@ -144,535 +167,9 @@
         "https://youtube.com/shorts/wIxgdqle_W0",
         "https://youtube.com/shorts/XGfjbr3lOLE"
       ]
-    },
-    {
-      "date": "20260815",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 10,
-      "uploaded": 2,
-      "quarantined": 1,
-      "failed": 7,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/14l6P7itp9o",
-        "https://youtube.com/shorts/hugIYuTAQBA"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-16T09:56:42+00:00",
-      "slug": "the_scammer_wanted_gift_card_codes__he_g",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The payback lands in the captions but the last ten seconds sit on a single garbled AI sign with fake lettering \u2014 the punchline is illustrated by junk.",
-      "auto_fails": [
-        "junk_imagery: mid4/mid5/payoff@-1.8/payoff@-0.4 all show the same AI-garbled photo of hands holding a sign with nonsense lettering ('GaCiOtB', 'Voros ciii') over a washed-out black appliance \u2014 unreadable fake text, belongs to nothing in the story",
-        "dead_air: The top illustration track is frozen on one identical garbled image from mid4 (t=34.5s) through payoff@-0.4 (t=44.1s) \u2014 ~10s and four consecutive beats with no change in the storytelling half of the frame"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 134
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-16T10:05:00+00:00",
-      "slug": "hurricane_lala_lashes_hawaii_with_strong",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Every top-panel visual is keyword-literal stock junk \u2014 a 1930s archival photo, scrabble tiles, a stranger's book cover and a gummy bear in a mousetrap \u2014 bolted onto a Reddit inheritance story it has nothing to do with.",
-      "auto_fails": [
-        "junk_imagery: Repeated keyword-literal junk: a 1930s B/W archival man at a desk for 'hurricane of betrayal' (hook@0.3\u20130.8, mid1), scrabble tiles spelling BETRAYAL (mid2), a commercial BOOK COVER 'My Sister's Betrayal' by Roberta Kagan (mid4), and a gummy bear in a mousetrap for 'HEARTBROKEN/DESTROYED' (mid5, payoff@-1.8, payoff@-0.4) \u2014 none depict the story.",
-        "empty_void: mid5 and both payoff frames give the entire top half to a blank white background with one tiny mousetrap prop; hook@0.3 also letterboxes the B/W still with black bars top and bottom."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 98
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:38:33+00:00",
-      "slug": "a_2_year_old_app_just_passed_etsy",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The race itself is genuinely good \u2014 the 2023 crossover and the leaderboard flip land \u2014 but text and axis labels are clipped off the frame edges from the first second, and it reads as an un-proofed export.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:40:46+00:00",
-      "slug": "we_ve_now_found_40_000_asteroids_near_ea",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Genuinely smooth 24fps growth race with an honest NASA-sourced exponential curve, but text is being cropped off both frame edges for most of the run, which reads as amateur layout.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:42:49+00:00",
-      "slug": "esports__biggest_prize_ever_just_collaps",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A genuinely dramatic dataset \u2014 $40M to $2.9M \u2014 sabotaged by text that is clipped off the frame edges at the hook, at the legend, and again in the closing banner.",
-      "auto_fails": [
-        "empty_void: dark_fraction 1.0, and at hook@2.2 / mid0 the entire middle band of the frame between the red line (~22M) and the green line (~4M) is pure black with nothing in it \u2014 over half the plot area is wasted space."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:44:54+00:00",
-      "slug": "a_cartoon_just_became_netflix_s_biggest_",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A real race with a genuine 2025 overtake and a landed #1 payoff, undercut by typography that runs off every edge of the frame.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:48:53+00:00",
-      "slug": "every_vacation_day_needed_five_signature",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Continuous gameplay and clean captions, but the story is never SHOWN \u2014 zero shot illustrations across all eight beats, a 2.5s static post card for a hook, a black void on the biggest turn, and a garbled overlapping caption at mid5.",
-      "auto_fails": [
-        "empty_void: mid4 (t=44.9s) is almost entirely black \u2014 the top half holds only a tiny arrow and gear outline and the bottom only one small grey/blue block above 'COLLAPSED COMPLETELY,' \u2014 consistent with dark_fraction 0.491."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.491,
-        "sampled": 173
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-17T09:53:12+00:00",
-      "slug": "she_blasted_music_at_2_am__i_found_the_q",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Clean, always-moving gameplay with sharp karaoke captions, but after the hook card there is not a single shot illustration \u2014 the cause/effect beats are told entirely by voice, and one beat (t=13.3s) renders with nothing on screen at all.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 176
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T09:58:41+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Three near-identical bar-race charts and a dot grid that never shows the 1.36% the title promises, with the mascot parked in the same spot for the whole runtime.",
-      "auto_fails": [
-        "decorative_mascot: Data hovers in the identical spot over the 1972/1983 bars from hook@0.3 to seg1:end and then just perches on the 1972 bubble from seg3:start to payoff@-0.4 \u2014 no setup->action->payoff tied to any stat.",
-        "bare_number_card: seg3:mid and seg3:end are five plain purple discs printing 2.6 / 2.8 / 2.2 / 2.3 / 2.1 on empty background \u2014 the discs are barely size-differentiated, so it is numbers on blobs, not a demonstration.",
-        "empty_void: seg3:start wastes the top ~40% of the frame on flat black under the title while five tiny dots sit in the middle; seg4:start/seg4:end leave the entire lower third dead below the 2004/2014 discs."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 239
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:12:07+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The headline stat \u2014 urban growth falling to 1.36% \u2014 is never actually shown: the final segment is five static number-blobs in a half-empty frame, with 2025 missing entirely.",
-      "auto_fails": [
-        "decorative_mascot: Data is perched on the 1972 bar in essentially the same spot from hook@0.3 to payoff@-0.4 (seg1:mid, seg2:mid, seg3:end all show him riding the top-left bar/bubble with only limb wiggle) \u2014 no setup\u2192action\u2192payoff bit tied to the slowdown.",
-        "bare_number_card: seg2:mid and seg3:start are five plain purple circles labelled 2.6 / 2.8 / 2.2 / 2.3 / 2.1 on flat background \u2014 numbers on blobs, no fill, race, shrink or physical metaphor for a decaying growth rate.",
-        "empty_void: seg2:start wastes the lower ~45% of the frame \u2014 five small dots clustered in the upper third, the 1983-2014 row floating with nothing below it down to the source line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.013,
-        "sampled": 239
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:19:26+00:00",
-      "slug": "world-hydropower-fell-below-its-1990-level",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Competent bar-race open ruined by a truncated title and a closing bubble beat that is five same-size number blobs floating in half a black frame.",
-      "auto_fails": [
-        "decorative_mascot: Data hovers over the bar tips doing nothing consequential in seg0:start\u2192seg1:end, then floats in empty space above the bubbles in seg3:start/seg3:mid/seg4:end \u2014 no setup\u2192action\u2192payoff tied to any stat, and he occludes the 1990 bar he is parked on.",
-        "bare_number_card: seg3:mid and seg3:end are five near-identical green circles printing '8.8 / 9.7 / 9.5 / 9.1 / 9.6' \u2014 the bubbles barely differ in size, so it is numbers on blobs, not a demonstration of the 8.82%\u219216.5% jump the narration describes.",
-        "empty_void: seg3:start leaves the entire lower ~45% of the frame black with five pinprick dots and a barely-legible dim '8.82% of energy' caption; the same dead band persists through seg3:end and payoff@-0.4."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.046,
-        "sampled": 152
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:27:47+00:00",
-      "slug": "world-hydropower-fell-below-its-1990-level",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The bar-race half works, but seg3 collapses into equal-sized circles with numbers typed inside \u2014 the biggest stat in the script is the one thing never demonstrated.",
-      "auto_fails": [
-        "bare_number_card: seg3:mid and seg3:end are five identical-sized green circles printing 8.8 / 9.7 / 9.5 / 9.1 / 9.6 \u2014 the circles never scale with the value, so the numbers are typed on blobs with no demonstration at all."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.058,
-        "sampled": 155
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:35:04+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three interchangeable auto-generated bar/bubble charts with Data parked on top as a sticker \u2014 the numbers are printed, never demonstrated, and the chart subtitles are flatly wrong ('1972 PULLS AHEAD' on a chart where 1972 is the smallest bar).",
-      "auto_fails": [
-        "decorative_mascot: Data does nothing but stand/slide on top of the bars \u2014 hook@0.3 through seg1:end he is parked mid-frame over the 1972/1982 bars, and seg3:start\u2013payoff@-0.4 he just stands on the 11.1 bubble; no setup->action->payoff tied to the catch number anywhere.",
-        "bare_number_card: seg3:end and seg4:mid are five flat pink circles with '11.1 / 12.1 / 14.1 / 14.8 / 14.9' printed inside them, all drawn at essentially identical size \u2014 the number is the visual, nothing demonstrates it.",
-        "empty_void: seg3:start (t=26.09s) is a near-black frame with five tiny 20px dots and an empty band from the subtitle down to mid-frame; the top third and bottom third carry nothing."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.017,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:43:20+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Two competing bar races and a bubble grid animate correctly but nothing is directed: the hook is a slow chart build, the mascot just rides the top bar, labels clip off the right edge, and seg3 opens on a near-empty frame.",
-      "auto_fails": [
-        "decorative_mascot: He perches on the leading bar and never does a bit: same top-left perch from hook@0.3 to seg1:end, then simply sits on the 2013 bubble from seg3:start to payoff@-0.4 \u2014 no setup->action->payoff tied to any stat.",
-        "empty_void: seg3:start (t=25.99s) is almost entirely bare: five pinhead dots and year labels floating in a dark field with an empty top third and an empty bottom third; the same wasted lower third persists through seg4:mid."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.025,
-        "sampled": 121
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:49:06+00:00",
-      "slug": "global-health-spending-exceeds-1300-per-person",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Competent bar-race template, but Data is a sticker riding the bar tips and the spending scene wastes most of the frame.",
-      "auto_fails": [
-        "decorative_mascot: Data merely perches on the bar tip and slides with it \u2014 identical standing pose at hook@0.8, seg1:mid, seg2:end and seg4:mid, with no setup->action->payoff tied to any stat.",
-        "empty_void: seg3:start is ~60% empty navy \u2014 five micro-bubbles and a thumbnail-sized mascot in the upper-left, the entire lower half unused."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.035,
-        "sampled": 115
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T10:55:35+00:00",
-      "slug": "global-health-spending-exceeds-1300-per-person",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Honest, well-sourced charts, but Data is a floating sticker for the entire 38s and the spending act is an unreadable bubble scatter with the mascot in a corner.",
-      "auto_fails": [
-        "decorative_mascot: Data merely drifts across the bars with no bit tied to any stat \u2014 he slides over the 1972/1982 bars in hook@0.3 through seg0:end, perches over the header in seg2:start, and floats aimlessly beside the bubbles in seg3:start\u2192seg4:end; no setup\u2192action\u2192payoff anywhere."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.017,
-        "sampled": 115
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T14:42:13+00:00",
-      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Competent bar-race motion, but the mascot is a floating sticker, the cereal beat's value labels render as garbled raw integers, and the map beat is half-empty dots in a void.",
-      "auto_fails": [
-        "decorative_mascot: Data merely hovers over the bars (seg0:mid, seg1:start) and later stands parked over the source line at the bottom of the map (seg3:start, seg3:mid, seg3:end, seg4:mid) with no setup->action->payoff tied to any stat.",
-        "empty_void: seg3:start and seg3:mid waste the whole right two-thirds: a small map pinned left, five unlabeled colored dots floating in empty navy, and the mascot shrunk into the footer."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.038,
-        "sampled": 157
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T14:55:34+00:00",
-      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The map section is a mostly empty frame with an unlabeled dot column for eight seconds, and the cereal beat prints raw unformatted digits that clash with the narration.",
-      "auto_fails": [
-        "decorative_mascot: Data only rides the bar tip and then parks bottom-left on top of the source credit for the whole map section (seg3:start, seg3:mid, seg3:end, seg4:mid) \u2014 no setup\u2192action\u2192payoff tied to any stat.",
-        "empty_void: seg3:start/mid/end waste roughly the right two-thirds of the frame on five unlabeled 8-px dots with the world map shrunk into the far-left edge and nothing else in the space."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.018,
-        "sampled": 165
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-20T15:09:02+00:00",
       "slug": "cereal-production-is-1-5x-higher-than-in-1972",
@@ -1877,16 +1374,532 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T13:20:48+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The bar-race scenes are competent but the urban-growth payoff \u2014 the entire premise of the title \u2014 is five undifferentiated number bubbles in a half-empty frame that never even shows 1.36.",
+      "auto_fails": [
+        "decorative_mascot: At hook@0.8, seg1:mid and seg3:end Data does the same idle stroll/perch across the bars and bubbles \u2014 no setup->action->payoff tied to any number; at seg2:start he is simply parked on the 1972 bubble.",
+        "bare_number_card: seg2:mid / seg3:mid present 2.6, 2.8, 2.2, 2.3, 2.1 as five near-identical purple discs \u2014 the disc for 2.8 is barely larger than the one for 2.1, so the figures are printed, not demonstrated; seg1:end shows raw unformatted '2420179640' inside a bar.",
+        "dead_air: seg3:start (60.38s) through seg3:end (68.32s) is the same five-bubble composition with only mascot idle drift changing; seg4:mid, seg4:end and payoff@-0.4 repeat that identical frame again with only the closing card added.",
+        "empty_void: seg2:start and seg3:mid leave the entire upper third (below '1972 TOPS THE LIST') and the whole lower third below the 2004/2014 row empty, with five small discs floating in the middle of a near-black panel."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 236
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T13:36:07+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three different datasets rendered as the exact same purple bar race with Data parked over the title as a sticker \u2014 competent motion, zero demonstration or performance.",
+      "auto_fails": [
+        "decorative_mascot: Data perches at the same spot beside the top bar in literally every scene (seg0:mid, seg1:end, seg2:start, seg3:mid, seg4:end) \u2014 no setup->action->payoff tied to any stat, and at seg4:end/payoff@-0.4 he is half cropped off the right frame edge."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 266
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T13:43:03+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Two identical bar-race scenes and then a near-empty bubble grid of bare numbers, with Data sliding along as a decoration instead of performing a bit.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 to seg2:end the mascot just slides rightward along the bar stack (seg0:mid, seg1:start, seg1:end) and in seg3/seg4 he perches on the 2013 bubble (seg3:end, payoff@-0.4) \u2014 no setup->action->payoff tied to the fish-catch ceiling.",
+        "bare_number_card: seg3:end and seg4:start are five plain pink circles with '11.1 / 12.1 / 14.1 / 14.8 / 14.9' printed inside them \u2014 numbers on shapes, no demonstration of what the percentage means.",
+        "empty_void: seg3:start (t=25.18s) is ~60% empty dark canvas with five pinhead dots floating in it, and the bottom third stays empty through seg3:end and seg4:end."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.017,
+        "sampled": 115
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T13:52:19+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A competent bar race let down by a mascot who only rides the top bar and a final bubble scene that is half empty frame with numbers clipped out of their circles.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked astride the top bar in the exact same lab-coat lean from hook@0.3 through seg1:end and again on the 2013 bubble at seg3:end/payoff@-0.4 \u2014 he slides with the bar tip but never performs a setup->action->payoff tied to the 94.4M-ton ceiling.",
+        "empty_void: seg3:start leaves the entire upper third and lower quarter blank with five ~20px dots floating mid-frame; seg3:mid is still mostly empty navy with clipped labels '1.' '2.' '4.' inside undersized circles."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.017,
+        "sampled": 117
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T14:05:38+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three near-identical bar-race screens then a half-empty unlabeled map \u2014 the data is listed, never demonstrated, and Data is a sticker floating over the top bar.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers in the same small pose above the top bar from hook@0.3 through seg2:end, then parks over the source line at seg3:start\u2013seg4:end; no setup->action->payoff tied to cereal tonnage or farmland.",
+        "empty_void: seg3:start/mid/end \u2014 the top ~40% and the entire right column are empty navy, the world map is squeezed off the left edge (US and Brazil cropped), and the five ranking dots sit unlabeled in dead space for ~14s until values finally appear at seg4:mid."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.034,
+        "sampled": 174
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T14:19:09+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The map act is a half-empty frame narrating five country totals it never puts on screen, and Data rides the bars as a sticker instead of performing.",
+      "auto_fails": [
+        "decorative_mascot: Data simply rides the top bar's tip from hook@0.3 through seg1:end and is then parked motionless at the bottom of the frame for the whole map section (seg3:start, seg3:mid, seg3:end, seg4:end) \u2014 no setup->action->payoff tied to any stat.",
+        "empty_void: seg3:start/seg3:mid/seg3:end are ~70% empty navy \u2014 the map is shrunk into the left edge (Asia clipped at frame center), the entire top third under the title is blank, and the right column holds five unlabeled 8px dots with no country names or values until seg4."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 166
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T19:52:01+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The bars and bubbles animate honestly, but Data is a sticker hovering over them for the entire 39 seconds and the hook opens on a slow chart build instead of an event.",
+      "auto_fails": [
+        "decorative_mascot: Data is parked in the identical hover pose over the 1972/1982 bars from hook@0.3 to seg1:end, then perched on the title in seg2:start-seg2:end, then standing idle at frame-left through seg3 and seg4 \u2014 no setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.034,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:00:08+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three competent but identical bar races with a mascot parked on top of them \u2014 clean data, no hook, no performance.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same standing/perched pose atop the top bar in hook@0.8, seg0:mid, seg1:start, seg2:mid, seg3:mid and payoff@-0.4 \u2014 he never sets up, acts on, or pays off any stat; he just rides the bar and occludes the title in seg2:start."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:07:58+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three consecutive identical pink bar races with a static perched mascot and captions colliding with the titles \u2014 competent motion, no showmanship.",
+      "auto_fails": [
+        "decorative_mascot: Data is perched on the tip of the top bar in the identical arms-out pose in hook@0.3, seg0:end, seg1:end, seg2:mid, seg3:mid and seg4:start \u2014 he only slides along with the bar, never a setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:18:37+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent, always-moving chart animation, but the hook is a slow bar build and Data is a sticker riding the bar tip for the whole video instead of performing.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same arms-down standing pose while merely riding the leading bar tip from hook@0.3 to seg2:end, then perches beside the 1972 bubble in seg3:start-seg4:end \u2014 no setup->action->payoff bit is ever tied to 'tripled since 1990'."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.06,
+        "sampled": 168
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:29:37+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three identical bar races with the mascot stuck to the leading bar tip \u2014 the template is doing all the work and nothing is actually demonstrated.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 to payoff@-0.4 Data only perches on the tip of the top bar and slides right with it (seg0:mid, seg1:mid, seg2:mid, seg3:mid all show the identical straddle pose) \u2014 no setup->action->payoff bit tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 168
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:40:27+00:00",
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three different indicators rendered as the exact same bar-race template with the mascot parked in the same spot on top of the bars \u2014 competent motion, zero demonstration ideas.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same clinging/standing pose on the leading bar tip in every segment \u2014 hook@0.8, seg1:mid, seg2:mid, seg3:mid, seg4:mid are the same perch with no setup->action->payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 168
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:49:19+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three interchangeable bar-race scenes with a mascot who only floats over them: the data is displayed, never demonstrated.",
+      "auto_fails": [
+        "decorative_mascot: Data is the same standing lab-coat figure drifting over the bars from seg0:start to seg2:end and perched on the headline at seg2:mid \u2014 no setup/action/payoff tied to any stat.",
+        "empty_void: seg3:start leaves the top third and bottom half of the frame blank around five tiny dots, with only a caption strip below."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.04,
+        "sampled": 149
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T20:58:52+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "One generic bar-race template is reused for all five beats with Data parked on the bar tip like a sticker, so nothing is demonstrated and nobody performs.",
+      "auto_fails": [
+        "decorative_mascot: Data is perched on the tip of the 1972 bar in essentially every frame (hook@0.8, seg0:end, seg1:mid, seg2:start, seg3:mid, seg4:end) in the same standing pose, sliding rightward only because the bar grows under him \u2014 no setup, action or payoff tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 149
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T21:08:36+00:00",
+      "slug": "population-growth-fell-54-since-1972",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean but wholly templated bar race run three times over, with Data as a standing sticker riding the bar tip and occluding the titles \u2014 no demonstration and no performance, so it fails the mascot auto-fail outright.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same upright standing pose parked at the leading bar's tip for the entire runtime \u2014 hook@0.3, seg0:end, seg1:start (t=22.22s, straddling the title), seg2:end and payoff@-0.4 are the identical figure translated a few pixels; there is no setup-action-payoff bit tied to any stat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 149
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T21:22:30+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three scenes of the same generic bar-race with a mascot floating aimlessly over them, and a fertilizer map beat that is mostly empty black for 13 seconds.",
+      "auto_fails": [
+        "decorative_mascot: Data merely drifts across the bar field with no bit tied to any stat \u2014 hook@0.3 he hovers over the 1972 bar, seg1:mid he slides right over the same bars, seg2:start he stands idle at the bottom of the map doing nothing, seg3:start he is parked on top of the title text.",
+        "empty_void: seg2:start and seg2:mid waste the top ~55% of the frame on flat dark space \u2014 a nearly invisible grey world map bottom-left, five 10px dots in a vertical line, no labels until seg2:end, and the mascot alone in the lower void."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.005,
+        "sampled": 202
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T21:37:12+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The fertilizer beat is a near-empty dark frame that resolves into a plain number list, and Data bobs decoratively over every chart without ever doing a bit tied to a stat.",
+      "auto_fails": [
+        "decorative_mascot: Data bobs over the bars in identical arms-up poses at hook@0.3, seg0:mid, seg1:mid and seg3:mid, and in seg2:start/mid he just stands in the empty bottom-left corner of the map \u2014 no setup->action->payoff tied to any stat.",
+        "bare_number_card: seg2:end is a barely-visible flat map plus a right-hand column of raw numbers (Slovenia 101756, Malawi 59978, Costa Rica 23435...) with no physical demonstration of the quantity.",
+        "empty_void: seg2:start is ~60% dead navy space \u2014 five tiny unlabeled dots stacked in a column, a near-black world map with no highlighted country, and a small mascot at the bottom edge."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.005,
+        "sampled": 202
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-22T21:53:19+00:00",
+      "slug": "world-cereal-land-just-sank-below-its-1972-level",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A competent bar-race spoiled by a hollow, unreadable map beat and a mascot who only floats \u2014 plus a hook that shows a livestock chart while the voiceover promises shrinking cropland.",
+      "auto_fails": [
+        "decorative_mascot: Data merely glides over the bars and never acts on a stat: he floats mid-caption at hook@0.8, drifts right by seg1:end, stands idle at bottom-left of the map for the entire fertilizer beat (seg2:start through seg2:end), then perches above the 1972 bar at seg3:start \u2014 no setup->action->payoff.",
+        "empty_void: seg2:start (t=24.34s) is ~70% dead navy: the world map is nearly invisible at bottom-left, five unlabeled 8px dots hang in a black column on the right, and the mascot is a tiny idle figure at bottom-left \u2014 the top third and right half hold nothing at all."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.005,
+        "sampled": 202
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "8bb3af7 2026-08-22 doctor: mark explainer QA small-integer fix done (#301)",
-    "d582cf7 2026-08-22 exchange: phase A bundle for 20260822 [skip ci]"
+    "2e09d61 2026-08-22 doctor: findings for 20260822",
+    "5887406 2026-08-22 retro: brief + triage for 20260822 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-08": 1,
         "2026-08-09": 1,
         "2026-08-10": 2,
         "2026-08-12": 2,
@@ -1898,10 +1911,11 @@
         "2026-08-18": 4,
         "2026-08-19": 2,
         "2026-08-20": 4,
-        "2026-08-21": 3
+        "2026-08-21": 3,
+        "2026-08-22": 4
       },
-      "total_posted": 272,
-      "attempted": 272,
+      "total_posted": 276,
+      "attempted": 276,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -1917,7 +1931,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-08": 4,
         "2026-08-09": 4,
         "2026-08-10": 3,
         "2026-08-11": 3,
@@ -1931,11 +1944,12 @@
         "2026-08-19": 4,
         "2026-08-20": 4,
         "2026-08-21": 6,
-        "2026-08-22": 1
+        "2026-08-22": 5,
+        "2026-08-23": 1
       },
-      "total_posted": 194,
-      "attempted": 334,
-      "rejected_or_pending": 140
+      "total_posted": 199,
+      "attempted": 344,
+      "rejected_or_pending": 145
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1949,75 +1963,82 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 154,
+      "videos": 153,
       "top_by_vph": [
         {
           "title": "Hottest Planets",
-          "vph": 0.38,
+          "vph": 0.37,
           "views": 412
         },
         {
           "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
-          "vph": 0.31,
+          "vph": 0.27,
           "views": 54
         },
         {
           "title": "Probability In Everyday Life",
-          "vph": 0.27,
+          "vph": 0.26,
           "views": 229
         },
         {
           "title": "Why Chocolate Is About to Get Much More Expensive",
-          "vph": 0.26,
+          "vph": 0.25,
           "views": 347
         },
         {
-          "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
-          "vph": 0.21,
-          "views": 35
+          "title": "Driest Places on Earth",
+          "vph": 0.19,
+          "views": 128
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 91,
+      "videos": 89,
       "top_by_vph": [
         {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 5.41,
-          "views": 105
-        },
-        {
-          "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 1.78,
-          "views": 203
+          "vph": 3.53,
+          "views": 153
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 1.6,
-          "views": 338
+          "vph": 1.47,
+          "views": 345
+        },
+        {
+          "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
+          "vph": 1.46,
+          "views": 202
         },
         {
           "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It",
-          "vph": 1.28,
-          "views": 23
+          "vph": 1.24,
+          "views": 52
         },
         {
-          "title": "Kaicenat: Kai Cenat Asks Nikki If Her Dad Really Has Cancer And She Lo",
-          "vph": 1.26,
-          "views": 15
+          "title": "Silky Guapo Moment Turns Into Total Chaos",
+          "vph": 1.04,
+          "views": 14
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260819/brief.json",
       "retro/20260820/brief.json",
-      "retro/20260821/brief.json"
+      "retro/20260821/brief.json",
+      "retro/20260822/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
   "open_backlog": [
+    {
+      "signature": "e524811347c4",
+      "title": "Auto-merge renders before the exchange handoff",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "new"
+    },
     {
       "signature": "aaeb12de3ebd",
       "title": "Restore explainer delivery before interpreting its topic test",
@@ -2054,6 +2075,13 @@
       "ruling": "doing"
     },
     {
+      "signature": "e752c2bc148f",
+      "title": "Every auto-merge completion re-runs Phase A",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "33ccbcdc479b",
       "title": "Hold the trending mix until reliability and attribution are measurable",
       "horizon": "strategy",
@@ -2066,6 +2094,13 @@
       "horizon": "strategy",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "2b0e2fafca9b",
+      "title": "Decouple trending measurement from a perfect 6/6 day",
+      "horizon": "strategy",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "cf263a770061",
@@ -2115,6 +2150,13 @@
       "horizon": "short_term",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "bc0647fe9257",
+      "title": "Doctor intake hides wholly unusable reports",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "d65eddf69fba",
@@ -2241,6 +2283,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "212a57534cee",
+      "title": "Put every publisher under registry authority",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
