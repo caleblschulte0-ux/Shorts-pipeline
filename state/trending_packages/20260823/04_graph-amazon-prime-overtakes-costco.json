@@ -6,19 +6,40 @@
   "y_label": "Paid members worldwide (million)",
   "duration": 13,
   "source": "Costco paid household members from Costco investor filings and annual reports; Amazon Prime members from Amazon investor disclosures as compiled by CNBC, Backlinko and CapitalOneShopping coverage. Costco: 35.4M (2013), 39.3M (2015), 47.3M (2017), 53.9M (2019), 60.6M (2021), 81.0M (2025). Amazon Prime: 20M (2013), 50M (2015), 80M (2017), 120M (2019), 200M (2021), 220M (2025). Amazon Prime overtook Costco's membership base by the mid-2010s and has more than doubled it since.",
-  "years": [2013, 2015, 2017, 2019, 2021, 2025],
+  "years": [
+    2013,
+    2015,
+    2017,
+    2019,
+    2021,
+    2025
+  ],
   "series": [
     {
       "name": "Costco",
       "color": "#005DAA",
       "icon": "Costco",
-      "values": [35.4, 39.3, 47.3, 53.9, 60.6, 81.0]
+      "values": [
+        35.4,
+        39.3,
+        47.3,
+        53.9,
+        60.6,
+        81.0
+      ]
     },
     {
       "name": "Amazon Prime",
       "color": "#FF9900",
       "icon": "Amazon",
-      "values": [20, 50, 80, 120, 200, 220]
+      "values": [
+        20,
+        50,
+        80,
+        120,
+        200,
+        220
+      ]
     }
   ],
   "hashtags": [
