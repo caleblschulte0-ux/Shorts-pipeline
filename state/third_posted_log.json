@@ -4586,6 +4586,32 @@
         "end": 19.7
       },
       "director_cut": true
+    },
+    "rejected-exquisiteesteemedseahorseohmydog-dsaejq_2dprn2grt": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ExquisiteEsteemedSeahorseOhMyDog-DsAejQ_2Dprn2gRT",
+      "streamer": "forsen",
+      "title": "Non-degen links",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (streamer browses links, nothing happens)",
+      "ts": "2026-08-23T11:32:33.943258+00:00"
+    },
+    "rejected-preciousmistyburritonomnom-ay6fhc-mnmibnxyh": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/PreciousMistyBurritoNomNom-Ay6fHC-mNMIBnXYh",
+      "streamer": "loltyler1",
+      "title": "\"I'm not afraid to beat some children....\"",
+      "qa_rejected": true,
+      "ts": "2026-08-23T11:32:48.493809+00:00"
+    },
+    "clip-20260823-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/AthleticTalentedCodStrawBeary-MSKKbw6UP5CplDmu",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Reacts To The Weirdest Double Kill Ever",
+      "kind": "twitch_clip",
+      "ts": "2026-08-23T11:36:23.548510+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
