@@ -1,0 +1,430 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260823",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "e9a8284b7657aaf9f838ef1f8b3c52c1e38b6e52",
+    "production_date": "20260823",
+    "bundle_sha256": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679"
+  },
+  "media": [
+    {
+      "request_id": "reddit-lounge-flagged-account-s0-1c15bd3dcd59",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+        "filename": "20260823__reddit-lounge-flagged-account-s0-1c15bd3dcd59.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1fe6023c4fefa830df95e9455e08bd6a5b2003b80d039534a3cf431e1ecabefd",
+        "bytes": 1192890,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s0-1c15bd3dcd59.json",
+        "verified_at": "2026-08-23T11:13:41.103Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s1-a1b4d42a11d2",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+        "filename": "20260823__reddit-lounge-flagged-account-s1-a1b4d42a11d2.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5f39f61ecdf04d9362588620c264ec594ebdbd1d2372347a75e9b85d01580813",
+        "bytes": 1129692,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s1-a1b4d42a11d2.json",
+        "verified_at": "2026-08-23T11:13:47.711Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s2-5129c3f28e34",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+        "filename": "20260823__reddit-lounge-flagged-account-s2-5129c3f28e34.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5703ddd35de232c93c0b2721988a442f3d847c3de273a1ba4a635ee826b3bdde",
+        "bytes": 1161587,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s2-5129c3f28e34.json",
+        "verified_at": "2026-08-23T11:13:53.844Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s3-d480d8ff6996",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+        "filename": "20260823__reddit-lounge-flagged-account-s3-d480d8ff6996.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "628c76890063c9f2c86543d34fd1004eba7968342c56716be5b59360a3022d1b",
+        "bytes": 1076572,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s3-d480d8ff6996.json",
+        "verified_at": "2026-08-23T11:14:00.271Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s4-7a2fa640b346",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+        "filename": "20260823__reddit-lounge-flagged-account-s4-7a2fa640b346.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c3ab4541eda3a02cfac929ca904000c3c929e4273ae23af1a40508726bdb3c9b",
+        "bytes": 1457644,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s4-7a2fa640b346.json",
+        "verified_at": "2026-08-23T11:14:06.897Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s6-896c00deb4c6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+        "filename": "20260823__reddit-lounge-flagged-account-s6-896c00deb4c6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5a7951e3ce181871b137e3e66276531e6794752b93d0eff479d4290029efa247",
+        "bytes": 972333,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s6-896c00deb4c6.json",
+        "verified_at": "2026-08-23T11:14:13.546Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s7-065f5511b89b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+        "filename": "20260823__reddit-lounge-flagged-account-s7-065f5511b89b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d75d18ad834fa9ed1f95feb4877ce7ad0d9160d280b82dfe88548104764bc58f",
+        "bytes": 1242433,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s7-065f5511b89b.json",
+        "verified_at": "2026-08-23T11:14:19.401Z"
+      }
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s5-d596f0150317",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+        "filename": "20260823__reddit-lounge-flagged-account-s5-d596f0150317.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0ea766fd7715ddddd56e1fe4d77220baee5642d465ab127e138c74d7a02e746c",
+        "bytes": 1076255,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-lounge-flagged-account-s5-d596f0150317.json",
+        "verified_at": "2026-08-23T11:14:25.826Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s0-4d6604db1491",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+        "filename": "20260823__reddit-fifteen-minute-sign-s0-4d6604db1491.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "76f9648c4d6fa6d0e37a3dab7dcfa2a81325f59add0884a171ffcf437214e2fb",
+        "bytes": 1086659,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s0-4d6604db1491.json",
+        "verified_at": "2026-08-23T11:16:01.651Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s1-f723d83118ae",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+        "filename": "20260823__reddit-fifteen-minute-sign-s1-f723d83118ae.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "607eb6fa24e431fbcfedeccf8da9dbe94eca09dc2a1b53fd6540953ced707d18",
+        "bytes": 1110429,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s1-f723d83118ae.json",
+        "verified_at": "2026-08-23T11:14:41.369Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s2-6eecf6d2842f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+        "filename": "20260823__reddit-fifteen-minute-sign-s2-6eecf6d2842f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a202831ef1e138a70a3601257f95dfb27221f0604066e71b82c960376d29f30b",
+        "bytes": 1462389,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s2-6eecf6d2842f.json",
+        "verified_at": "2026-08-23T11:14:48.422Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s3-35f68aace885",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+        "filename": "20260823__reddit-fifteen-minute-sign-s3-35f68aace885.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e557976b6dbe84c53330539fd6f724e80a3ec5b2bf260a905c62e834758e9fc1",
+        "bytes": 1331763,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s3-35f68aace885.json",
+        "verified_at": "2026-08-23T11:14:54.357Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s4-8c4f34ea4a83",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+        "filename": "20260823__reddit-fifteen-minute-sign-s4-8c4f34ea4a83.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6dd281065a7580e268083e6c8ef6638219497675eb571cf2b317e8d9b3959d70",
+        "bytes": 1669048,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s4-8c4f34ea4a83.json",
+        "verified_at": "2026-08-23T11:15:01.177Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s6-1d38584eb1a5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+        "filename": "20260823__reddit-fifteen-minute-sign-s6-1d38584eb1a5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "74a6ab92164bbfe3b6a04361c39c7b997f50a780bb16f735b93020de1bedc72a",
+        "bytes": 1376800,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s6-1d38584eb1a5.json",
+        "verified_at": "2026-08-23T11:15:08.988Z"
+      }
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s5-22a56ca069dd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+        "filename": "20260823__reddit-fifteen-minute-sign-s5-22a56ca069dd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e9621257972eabf2c360960601635ddfb9f2c7b46b955d45f5312af82ec987f4",
+        "bytes": 1306778,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260823/media-progress/reddit-fifteen-minute-sign-s5-22a56ca069dd.json",
+        "verified_at": "2026-08-23T11:15:14.810Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-tsmc-overtakes-intel",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names Intel's long dominance and TSMC's specific crossover."
+    },
+    {
+      "slug": "graph-doordash-overtakes-grubhub",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames DoorDash overtaking Grubhub in food delivery."
+    },
+    {
+      "slug": "graph-mobile-gaming-overtakes-console",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly promises the phone-versus-console crossover."
+    },
+    {
+      "slug": "graph-amazon-prime-overtakes-costco",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title specifically frames Amazon passing Costco's membership model."
+    },
+    {
+      "slug": "reddit-lounge-flagged-account",
+      "script": "Expired means expired? I work the front desk at an airport lounge. A woman in a business blazer swiped an expired day-pass, it declined, then said her corporate account meant I should let it slide. I scanned the account number. It existed—flagged, cancelled six months ago—because the company itself complained about someone smuggling four extra guests past a desk agent on one pass. Efficient networking. I read the note aloud: guest attempted to reuse an expired credential, security notified. She went quiet. She was that guest. The system remembered her name. Security walked her out past the free mimosas while her flight started boarding without her. She landed in economy, seat 34E: no lounge, no elite status, just a database with a better memory. How did seat 34E feel?",
+      "editor_note": "Punched up to a three-word question hook, compressed the flagged-account reveal, added one dry aside, and landed on seat 34E while preserving every fact, number, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-fifteen-minute-sign",
+      "script": "Free food after fifteen? The diner posted: any table that waits over fifteen minutes for food eats free, no questions asked. Management put it up years ago as marketing; nobody timed anything. I got hired. I time everything. First week, I comped four meals in one shift because the kitchen averaged twenty-two minutes a ticket, not the fifteen promised. My manager said I was being too literal about a sign that was just for show. Apparently, punctuation was optional. I said the sign didn't say for show; it said fifteen minutes. Corporate started asking why one location was comping so much food. On paper, the kitchen caused it, not me. They didn't fix the kitchen. They took the sign down instead. The wait never got shorter. Which cost more: free meals or admitting fifteen minutes was fiction?",
+      "editor_note": "Punched up to a four-word question hook, tightened the sign-versus-kitchen escalation, added one dry punctuation aside, and landed on the fifteen-minute fiction while preserving every fact, number, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The actual numbers went the other direction.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
