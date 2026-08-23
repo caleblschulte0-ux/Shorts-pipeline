@@ -6,23 +6,48 @@
   "shots": [
     {
       "phrase": "any table that waits over fifteen minutes",
-      "query": "restaurant table waiting food"
+      "query": "restaurant table waiting food",
+      "image_url": "https://drive.google.com/uc?export=download&id=1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+      "media_origin": "chatgpt",
+      "media_file_id": "1-je28MwxtIIzqNWooqQnxvIxr37AN69h",
+      "media_sha256": "76f9648c4d6fa6d0e37a3dab7dcfa2a81325f59add0884a171ffcf437214e2fb",
+      "media_bytes": 1086659
     },
     {
       "phrase": "I time everything",
-      "query": "kitchen timer stopwatch"
+      "query": "kitchen timer stopwatch",
+      "image_url": "https://drive.google.com/uc?export=download&id=10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+      "media_origin": "chatgpt",
+      "media_file_id": "10xf8566OrhcKROq3qKgZ85sRtf691Q-_",
+      "media_sha256": "607eb6fa24e431fbcfedeccf8da9dbe94eca09dc2a1b53fd6540953ced707d18",
+      "media_bytes": 1110429
     },
     {
       "phrase": "comped four meals in one shift",
-      "query": "free meal receipt restaurant"
+      "query": "free meal receipt restaurant",
+      "image_url": "https://drive.google.com/uc?export=download&id=1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+      "media_origin": "chatgpt",
+      "media_file_id": "1awtKE6h2X7LLomIYTAX90nXWv4RuMx4D",
+      "media_sha256": "a202831ef1e138a70a3601257f95dfb27221f0604066e71b82c960376d29f30b",
+      "media_bytes": 1462389
     },
     {
       "phrase": "twenty-two minutes a ticket",
-      "query": "restaurant kitchen order tickets"
+      "query": "restaurant kitchen order tickets",
+      "image_url": "https://drive.google.com/uc?export=download&id=1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+      "media_origin": "chatgpt",
+      "media_file_id": "1xafwMYX1qhdn-YHbe_kikfs-yVu0x4_V",
+      "media_sha256": "e557976b6dbe84c53330539fd6f724e80a3ec5b2bf260a905c62e834758e9fc1",
+      "media_bytes": 1331763
     },
     {
       "phrase": "too literal about a sign",
-      "query": "restaurant sign on wall"
+      "query": "restaurant sign on wall",
+      "image_url": "https://drive.google.com/uc?export=download&id=1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+      "media_origin": "chatgpt",
+      "media_file_id": "1ERgCu1neJB74e41B4fmCTws6f_Y3Do5C",
+      "media_sha256": "6dd281065a7580e268083e6c8ef6638219497675eb571cf2b317e8d9b3959d70",
+      "media_bytes": 1669048
     },
     {
       "phrase": "Corporate started asking",
@@ -31,11 +56,20 @@
       "pin_context": "The Sign Promised 15 Minutes Or Free. I Timed It.",
       "news_query": "Corporate",
       "news_angle": "The Sign Promised 15 Minutes Or Free. I Timed It.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/New_McDonald%27s_restaurant_in_Mount_Pleasant%2C_Iowa.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://drive.google.com/uc?export=download&id=1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+      "media_origin": "chatgpt",
+      "media_file_id": "1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+      "media_sha256": "e9621257972eabf2c360960601635ddfb9f2c7b46b955d45f5312af82ec987f4",
+      "media_bytes": 1306778
     },
     {
       "phrase": "took the sign down instead",
-      "query": "removing sign from wall"
+      "query": "removing sign from wall",
+      "image_url": "https://drive.google.com/uc?export=download&id=1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+      "media_origin": "chatgpt",
+      "media_file_id": "1dkeHVIaaHjSdQKkRV5uLnFpJIsAZLbfN",
+      "media_sha256": "74a6ab92164bbfe3b6a04361c39c7b997f50a780bb16f735b93020de1bedc72a",
+      "media_bytes": 1376800
     }
   ],
   "punches": [

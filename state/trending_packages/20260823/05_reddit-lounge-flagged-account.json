@@ -6,23 +6,48 @@
   "shots": [
     {
       "phrase": "front desk at an airport lounge",
-      "query": "airport lounge reception desk"
+      "query": "airport lounge reception desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+      "media_origin": "chatgpt",
+      "media_file_id": "1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+      "media_sha256": "1fe6023c4fefa830df95e9455e08bd6a5b2003b80d039534a3cf431e1ecabefd",
+      "media_bytes": 1192890
     },
     {
       "phrase": "swiped an expired day-pass",
-      "query": "boarding pass scanner airport"
+      "query": "boarding pass scanner airport",
+      "image_url": "https://drive.google.com/uc?export=download&id=1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+      "media_origin": "chatgpt",
+      "media_file_id": "1UwdBQhq7DFD4MT1IVV3XFVLkqktHrmIr",
+      "media_sha256": "5f39f61ecdf04d9362588620c264ec594ebdbd1d2372347a75e9b85d01580813",
+      "media_bytes": 1129692
     },
     {
       "phrase": "scanned the account number",
-      "query": "check in desk computer screen"
+      "query": "check in desk computer screen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+      "media_origin": "chatgpt",
+      "media_file_id": "1U0JuD7UBcjw3AInq679qk9JKXi1XvcsT",
+      "media_sha256": "5703ddd35de232c93c0b2721988a442f3d847c3de273a1ba4a635ee826b3bdde",
+      "media_bytes": 1161587
     },
     {
       "phrase": "flagged, cancelled six months ago",
-      "query": "red warning alert screen"
+      "query": "red warning alert screen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+      "media_origin": "chatgpt",
+      "media_file_id": "1FY8WUKyj-G6UOW6HuVQ3BwIrUCOLC5UT",
+      "media_sha256": "628c76890063c9f2c86543d34fd1004eba7968342c56716be5b59360a3022d1b",
+      "media_bytes": 1076572
     },
     {
       "phrase": "smuggling four extra guests",
-      "query": "crowded airport lounge seating"
+      "query": "crowded airport lounge seating",
+      "image_url": "https://drive.google.com/uc?export=download&id=1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+      "media_origin": "chatgpt",
+      "media_file_id": "1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+      "media_sha256": "c3ab4541eda3a02cfac929ca904000c3c929e4273ae23af1a40508726bdb3c9b",
+      "media_bytes": 1457644
     },
     {
       "phrase": "Security walked her out",
@@ -31,15 +56,29 @@
       "pin_context": "Her Corporate Lounge Account Was Flagged. Guess Why.",
       "news_query": "Security",
       "news_angle": "Her Corporate Lounge Account Was Flagged. Guess Why.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://drive.google.com/uc?export=download&id=1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+      "media_origin": "chatgpt",
+      "media_file_id": "1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+      "media_sha256": "0ea766fd7715ddddd56e1fe4d77220baee5642d465ab127e138c74d7a02e746c",
+      "media_bytes": 1076255
     },
     {
       "phrase": "past the free mimosas",
-      "query": "mimosa champagne airport lounge"
+      "query": "mimosa champagne airport lounge",
+      "image_url": "https://drive.google.com/uc?export=download&id=1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+      "media_origin": "chatgpt",
+      "media_file_id": "1rS6sPBmSMV9C0PekaJRYX2bm6RAXhUYK",
+      "media_sha256": "5a7951e3ce181871b137e3e66276531e6794752b93d0eff479d4290029efa247",
+      "media_bytes": 972333
     },
     {
       "phrase": "seat 34E",
-      "query": "airplane economy seat row"
+      "query": "airplane economy seat row",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Q_WoWihT1RnbPkv_-n_qZPPpmU7t3sjV",
+      "media_sha256": "d75d18ad834fa9ed1f95feb4877ce7ad0d9160d280b82dfe88548104764bc58f",
+      "media_bytes": 1242433
     }
   ],
   "punches": [
