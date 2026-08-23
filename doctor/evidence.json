@@ -1894,8 +1894,8 @@
     }
   ],
   "recent_commits": [
-    "2e09d61 2026-08-22 doctor: findings for 20260822",
-    "5887406 2026-08-22 retro: brief + triage for 20260822 [skip ci]"
+    "db31d84 2026-08-23 exchange: phase A bundle for 20260823 [skip ci]",
+    "e9a8284 2026-08-23 fix: stop auto-merge from dispatching daily.yml around the exchange (#303)"
   ],
   "channel_performance": {
     "trending": {
@@ -2037,7 +2037,7 @@
       "title": "Auto-merge renders before the exchange handoff",
       "horizon": "bug",
       "severity": "critical",
-      "ruling": "new"
+      "ruling": "in_progress"
     },
     {
       "signature": "aaeb12de3ebd",
@@ -2075,13 +2075,6 @@
       "ruling": "doing"
     },
     {
-      "signature": "e752c2bc148f",
-      "title": "Every auto-merge completion re-runs Phase A",
-      "horizon": "small_fix",
-      "severity": "high",
-      "ruling": "new"
-    },
-    {
       "signature": "33ccbcdc479b",
       "title": "Hold the trending mix until reliability and attribution are measurable",
       "horizon": "strategy",
@@ -2094,13 +2087,6 @@
       "horizon": "strategy",
       "severity": "high",
       "ruling": "doing"
-    },
-    {
-      "signature": "2b0e2fafca9b",
-      "title": "Decouple trending measurement from a perfect 6/6 day",
-      "horizon": "strategy",
-      "severity": "high",
-      "ruling": "new"
     },
     {
       "signature": "cf263a770061",
@@ -2156,7 +2142,7 @@
       "title": "Doctor intake hides wholly unusable reports",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "d65eddf69fba",
@@ -2283,13 +2269,6 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
-    },
-    {
-      "signature": "212a57534cee",
-      "title": "Put every publisher under registry authority",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
@@ -2494,6 +2473,27 @@
       "verdict": "done",
       "date": "20260822",
       "because": "",
+      "revisit_after": null
+    },
+    {
+      "signature": "e752c2bc148f",
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Real and worth doing but smaller/lower-severity than e524811347c4 which is the same trigger-chain area and is being fixed in this run -- want to see how removing the direct daily.yml dispatch changes Phase A's actual rerun frequency before adding a conclusion/changed-files filter on top of it, to avoid two overlapping fixes in one PR. Verified the observation: exchange_phase_a.yml's workflow_run trigger has no conclusion check and no changed-path check. Revisit within 30 days; if e524811347c4's fix alone doesn't reduce redundant Phase A runs, build this.",
+      "revisit_after": "20260922"
+    },
+    {
+      "signature": "2b0e2fafca9b",
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Legitimate strategy finding -- analytics collection gated on steps.run.outcome=='success' in daily.yml does leave the snapshot stale on any partial day, and trending has been missing 6/6 for a week per its own evidence. But the specific proposal (best-effort collection after any upload, or an independent scheduled workflow) needs a full session to design and test properly, not a same-day bolt-on, and per house rules the top doing item this run is the critical orchestration bug (e524811347c4) which may itself reduce partial-day frequency. Parking 30 days; revisit with fresh evidence.json numbers once the daily.yml fix has had a few days to change the partial-day rate.",
+      "revisit_after": "20260922"
+    },
+    {
+      "signature": "212a57534cee",
+      "verdict": "not_doing",
+      "date": "20260823",
+      "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
       "revisit_after": null
     }
   ]
