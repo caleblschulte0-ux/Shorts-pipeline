@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260823",
+  "bundle": {
+    "identity": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679",
+    "path": "exchange/bundles/20260823/bundle.json"
+  },
+  "request_id": "reddit-fifteen-minute-sign-s5-22a56ca069dd",
+  "safe_request_id": "reddit-fifteen-minute-sign-s5-22a56ca069dd",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6ca46208d5adcc78b5503345c8bfc80dd208c40cf1de18223de440c8b310c1f6",
+  "prompt_used": "An editorial illustration for a short-form video: corporate office phone call. It accompanies the narration: \"Corporate started asking\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+    "filename": "20260823__reddit-fifteen-minute-sign-s5-22a56ca069dd.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JvlqfVuorAr7iMdSR0Nid7yumSKFEqAg",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e9621257972eabf2c360960601635ddfb9f2c7b46b955d45f5312af82ec987f4",
+    "bytes": 1306778,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-23T11:15:14.810Z",
+  "error": null,
+  "retryable": false
+}
