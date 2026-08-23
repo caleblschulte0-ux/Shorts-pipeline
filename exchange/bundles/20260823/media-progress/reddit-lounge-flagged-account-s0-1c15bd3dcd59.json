@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260823",
+  "bundle": {
+    "identity": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679",
+    "path": "exchange/bundles/20260823/bundle.json"
+  },
+  "request_id": "reddit-lounge-flagged-account-s0-1c15bd3dcd59",
+  "safe_request_id": "reddit-lounge-flagged-account-s0-1c15bd3dcd59",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5235465d858840eb4c80295a033b3ce34d8f87e030d5f9bf40040e2254a8db3a",
+  "prompt_used": "An editorial illustration for a short-form video: airport lounge reception desk. It accompanies the narration: \"front desk at an airport lounge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+    "filename": "20260823__reddit-lounge-flagged-account-s0-1c15bd3dcd59.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1aZew8GTj5IN9feTEbppUdYuUCPwbyqdV",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1fe6023c4fefa830df95e9455e08bd6a5b2003b80d039534a3cf431e1ecabefd",
+    "bytes": 1192890,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-23T11:13:41.103Z",
+  "error": null,
+  "retryable": false
+}
