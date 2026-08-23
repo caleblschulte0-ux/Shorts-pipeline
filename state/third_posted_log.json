@@ -4659,13 +4659,36 @@
       "ts": "2026-08-23T12:02:30.628598+00:00"
     },
     "clip-20260823-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/BreakableSquareCatKreygasm-c2nHPmDWTbheV2Tj",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/r-JvHI-WZ0w",
       "title": "Ohnepixel Can't Stop Saying NO After This",
       "kind": "twitch_clip",
-      "ts": "2026-08-23T12:07:42.176578+00:00",
+      "ts": "2026-08-23T12:07:48.147364+00:00",
+      "uploaded_at": "2026-08-23T12:07:48.147384+00:00",
+      "publish_at": "2026-08-23T20:00:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BreakableSquareCatKreygasm-c2nHPmDWTbheV2Tj",
+      "streamer": "ohnepixel",
+      "series": "chaos",
+      "hook": "HE JUST KEPT SAYING NO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 13914,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 22.5
+      },
+      "director_cut": true
+    },
+    "clip-20260823-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/forsen/clip/ResourcefulArtisticHamburgerRalpherZ-SGeWk_fvKX08Xl9e",
+      "story_key": null,
+      "streamer": "forsen",
+      "title": "Forsen Picture Gets Rated An A",
+      "kind": "twitch_clip",
+      "ts": "2026-08-23T12:13:35.170941+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
