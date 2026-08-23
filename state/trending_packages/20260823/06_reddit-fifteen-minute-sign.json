@@ -1,0 +1,37 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-fifteen-minute-sign",
+  "title": "The Sign Promised 15 Minutes Or Free. I Timed It.",
+  "script": "Our diner has a sign by the register: any table that waits over fifteen minutes for food eats free, no questions asked. Management put it up years ago as a marketing gimmick and nobody ever actually timed anything. I got hired, and I time everything. First week, I comped four meals in one shift because the kitchen was averaging twenty-two minutes a ticket, not the fifteen the sign promised. My manager pulled me aside and said I was being too literal about a sign that was just for show. I told him the sign didn't say for show, it said fifteen minutes. Corporate started asking why one location was comping so much food, and the answer on paper was the kitchen, not me. They didn't fix the kitchen. They took the sign down instead. So no, the wait never got shorter. The sign just stopped admitting it existed.",
+  "shots": [
+    {"phrase": "any table that waits over fifteen minutes", "query": "restaurant table waiting food"},
+    {"phrase": "I time everything", "query": "kitchen timer stopwatch"},
+    {"phrase": "comped four meals in one shift", "query": "free meal receipt restaurant"},
+    {"phrase": "twenty-two minutes a ticket", "query": "restaurant kitchen order tickets"},
+    {"phrase": "too literal about a sign", "query": "restaurant sign on wall"},
+    {"phrase": "Corporate started asking", "query": "corporate office phone call"},
+    {"phrase": "took the sign down instead", "query": "removing sign from wall"}
+  ],
+  "punches": [
+    {"phrase": "eats free, no questions asked", "text": "FREE MEAL", "color": "#50ff80"},
+    {"phrase": "twenty-two minutes a ticket", "text": "22 MINUTES", "color": "#ffaa30"},
+    {"phrase": "too literal", "text": "TOO LITERAL?", "color": "#ffaa30"},
+    {"phrase": "took the sign down instead", "text": "SIGN REMOVED", "color": "#ff3030"}
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "restaurant",
+    "server",
+    "workplace",
+    "karma",
+    "reddit",
+    "storytime",
+    "customerservice",
+    "food",
+    "satisfying",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,19 @@
+{
+  "key": "chad_population_growth",
+  "title": "Chad's population",
+  "unit": "million",
+  "geography": "Chad",
+  "time_coverage": "1963 vs 2024",
+  "source": {
+    "name": "World Population Prospects",
+    "publisher": "United Nations Department of Economic and Social Affairs (UN DESA)",
+    "url": "https://population.un.org/wpp/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "Chad's population grew roughly six-fold since 1963, while the lake it borders shrank to about 5% of its former size.",
+  "points": [
+    {"label": "1963", "value": 3.3},
+    {"label": "2024", "value": 19}
+  ]
+}

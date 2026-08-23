@@ -1,0 +1,19 @@
+{
+  "key": "buybacks_vs_dividends_2021",
+  "title": "S&P 500 buybacks vs dividends, 2021",
+  "unit": "billion dollars",
+  "geography": "United States (S&P 500 companies)",
+  "time_coverage": "2021",
+  "source": {
+    "name": "S&P 500 Buybacks and Dividends quarterly reports",
+    "publisher": "S&P Dow Jones Indices",
+    "url": "https://www.spglobal.com/spdji/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "2021 buybacks were a then-record $881.7 billion, up 69.6% from 2020; dividends were a record $511.2 billion.",
+  "points": [
+    {"label": "Buybacks", "value": 881.7},
+    {"label": "Dividends", "value": 511.2}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "key": "lake_chad_surface_area",
+  "title": "Lake Chad's surface area",
+  "unit": "square kilometers",
+  "geography": "Chad / Niger / Nigeria / Cameroon border",
+  "time_coverage": "1963-2001",
+  "source": {
+    "name": "Lake Chad satellite imagery case study",
+    "publisher": "NASA Earth Observatory / USGS EROS \"Earthshots\"",
+    "url": "https://science.nasa.gov/earth/earth-observatory/africas-disappearing-lake-chad-1240/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "Benchmark years match the USGS EROS/NASA satellite comparison series for Lake Chad. The lake collapsed from roughly 25,000 sq km in 1963 to under 1,500 sq km today after a severe regional drought and heavy irrigation withdrawal.",
+  "points": [
+    {"label": "1963", "value": 25000, "period": "1963"},
+    {"label": "1973", "value": 20000, "period": "1973"},
+    {"label": "1987", "value": 2000, "period": "1987"},
+    {"label": "2001", "value": 1350, "period": "2001"}
+  ]
+}

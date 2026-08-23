@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tsmc-overtakes-intel",
+  "title": "Intel Ruled Chips For Decades. Then TSMC Passed It.",
+  "hook": "Intel's 50-Year Lead Just Ended",
+  "y_label": "Annual revenue (billion USD)",
+  "duration": 13,
+  "source": "Intel and TSMC annual revenue from company 10-K/annual filings, as compiled by Reuters, The Register and Motley Fool coverage of the 2022 crossover. Intel: $59.4B (2016), $62.8B (2017), $70.8B (2018), $72.0B (2019), $77.9B (2020), $79.0B (2021), $63.1B (2022), $54.2B (2023). TSMC: $29.4B (2016), $32.9B (2017), $34.2B (2018), $34.6B (2019), $47.5B (2020), $56.8B (2021), $75.9B (2022), $69.3B (2023). TSMC's growth was driven by advanced-node chip demand (Apple, Nvidia, AMD); Intel's collapse followed manufacturing delays and a slump in PC demand.",
+  "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {
+      "name": "Intel",
+      "color": "#0068B5",
+      "icon": "Intel",
+      "values": [59.4, 62.8, 70.8, 72.0, 77.9, 79.0, 63.1, 54.2]
+    },
+    {
+      "name": "TSMC",
+      "color": "#02458A",
+      "icon": "TSMC",
+      "values": [29.4, 32.9, 34.2, 34.6, 47.5, 56.8, 75.9, 69.3]
+    }
+  ],
+  "hashtags": [
+    "tsmc",
+    "intel",
+    "semiconductors",
+    "chips",
+    "chipwar",
+    "microchips",
+    "nvidia",
+    "apple",
+    "manufacturing",
+    "silicon",
+    "tech",
+    "technology",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

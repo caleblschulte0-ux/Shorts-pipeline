@@ -23263,6 +23263,252 @@
           }
         }
       ]
+    },
+    {
+      "slug": "centenarian-explosion",
+      "title": "Why 100th Birthdays Are About To Get Normal (3 Charts)",
+      "hook": "Turning 100 is about to stop being rare.",
+      "closing": "Cake's about to need a lot more birthdays to cover.",
+      "question": "How old do you actually want to live to? Drop it below.",
+      "caption": "Only 37,306 Americans had hit 100 in 1990. Now it's 101,000 -- and the Census Bureau says 422,000 is coming by 2054. Japan already has more than double the US rate per capita. Why do some countries produce so many more centenarians? 👇",
+      "hashtags": [
+        "centenarians",
+        "aging",
+        "longevity",
+        "agingpopulation",
+        "demographics",
+        "census",
+        "japan",
+        "healthyaging",
+        "retirement",
+        "statistics",
+        "dataviz",
+        "didyouknow",
+        "science",
+        "wellness",
+        "lifeexpectancy"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_centenarians_trend",
+          "params": {
+            "file": "us_centenarians_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RISE",
+          "topic": "Americans who've hit 100",
+          "say": "In 1990, there were just 37,306 Americans who'd hit 100. By 2024, that number had nearly tripled to 101,000. This is now the fastest-growing age group in the country."
+        },
+        {
+          "source": "offline",
+          "key": "centenarians_per_100k_japan_us",
+          "params": {
+            "file": "centenarians_per_100k_japan_us.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · NOT EVERYWHERE EQUAL",
+          "topic": "US vs Japan",
+          "say": "Japan has about 77 centenarians for every 100,000 people. The US has 30. Same modern medicine, same wealth -- Japan's diet and healthcare system just keep people alive longer."
+        },
+        {
+          "source": "offline",
+          "key": "us_centenarians_2054_projection",
+          "params": {
+            "file": "us_centenarians_2054_projection.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · WHAT'S COMING",
+          "topic": "by 2054",
+          "say": "The Census Bureau projects 422,000 American centenarians by 2054 -- over four times today's number. Turning 100 is going from a headline to just another Tuesday."
+        }
+      ]
+    },
+    {
+      "slug": "lake-chad-vanishing",
+      "title": "The Lake That Basically Disappeared (3 Charts)",
+      "hook": "This lake was once the size of Israel.",
+      "closing": "Even lakes can just... give up.",
+      "question": "Have you ever watched a lake actually shrink? Tell me below.",
+      "caption": "Lake Chad used to cover 25,000 square kilometers -- roughly the size of Israel. Today it's down to about 5% of that, while the population depending on it grew six-fold. Why did nobody stop this? 👇",
+      "hashtags": [
+        "lakechad",
+        "africa",
+        "climatechange",
+        "geography",
+        "environment",
+        "drought",
+        "water",
+        "waterscarcity",
+        "sahel",
+        "naturefacts",
+        "dataviz",
+        "didyouknow",
+        "science",
+        "earthscience",
+        "chad"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "lake_chad_surface_area",
+          "params": {
+            "file": "lake_chad_surface_area.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE COLLAPSE",
+          "topic": "Lake Chad's surface area",
+          "say": "In 1963, Lake Chad covered 25,000 square kilometers -- roughly the size of Israel. After a brutal regional drought, it crashed to just 2,000 by 1987, and kept shrinking from there."
+        },
+        {
+          "source": "offline",
+          "key": "lake_chad_percent_remaining",
+          "params": {
+            "file": "lake_chad_percent_remaining.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · DO THE MATH",
+          "topic": "how much is left",
+          "say": "Do the math and Lake Chad has lost about 95 percent of its surface since 1963. What used to be a small sea is now barely a large pond on a map of Africa."
+        },
+        {
+          "source": "offline",
+          "key": "chad_population_growth",
+          "params": {
+            "file": "chad_population_growth.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · MEANWHILE",
+          "topic": "demand vs supply",
+          "say": "Meanwhile the demand only grew. Chad's population went from 3.3 million people in 1963 to 19 million today -- six times the mouths, a fraction of the water."
+        }
+      ]
+    },
+    {
+      "slug": "teen-license-delay",
+      "title": "Why Teens Aren't Getting Their License Anymore (3 Charts)",
+      "hook": "Teens stopped driving. Except they didn't.",
+      "closing": "The DMV just runs on a longer delay now.",
+      "question": "How old were you when you got your license? Drop it below.",
+      "caption": "In 1983, 46% of American 16-year-olds had a driver's license. Today it's 26%. But look at 20-somethings and the story flips -- they didn't quit driving, they just showed up years late. What's actually going on? 👇",
+      "hashtags": [
+        "driverslicense",
+        "genz",
+        "teens",
+        "driving",
+        "cars",
+        "generations",
+        "demographics",
+        "dmv",
+        "growingup",
+        "millennials",
+        "dataviz",
+        "didyouknow",
+        "statistics",
+        "society",
+        "carculture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "license_rate_16yo",
+          "params": {
+            "file": "license_rate_16yo.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE DROP",
+          "topic": "16-year-olds licensed",
+          "say": "In 1983, 46 percent of American 16-year-olds had a driver's license. By 2014 that had cratered to 24 percent. It's basically flipped from the norm to the minority."
+        },
+        {
+          "source": "offline",
+          "key": "license_rate_18yo",
+          "params": {
+            "file": "license_rate_18yo.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · NOT JUST 16",
+          "topic": "18-year-olds licensed",
+          "say": "It's not just 16-year-olds. In 1983, 80 percent of 18-year-olds were licensed. Today it's 62 percent -- a legal adult, and still more likely to be a passenger."
+        },
+        {
+          "source": "offline",
+          "key": "license_rate_20to24",
+          "params": {
+            "file": "license_rate_20to24.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · THE TWIST",
+          "topic": "20-24-year-olds licensed",
+          "say": "But look at 20 to 24-year-olds: 91.8 percent in 1983, down to 76.7 by 2014 -- then climbing back to 81 by 2021. They didn't quit driving. They just showed up years late."
+        }
+      ]
+    },
+    {
+      "slug": "buybacks-beat-dividends",
+      "title": "How Buybacks Quietly Beat Dividends (3 Charts)",
+      "hook": "Dividends used to be the payout. Not anymore.",
+      "closing": "Shareholders got a bigger slice. Everyone else, less so.",
+      "question": "Would you rather get a dividend check or a higher stock price? Tell me below.",
+      "caption": "S&P 500 companies spent over $1 trillion buying back their own stock in the last year -- nearly double what they paid out in dividends. When did buybacks quietly become the bigger payout? 👇",
+      "hashtags": [
+        "stockbuybacks",
+        "dividends",
+        "stockmarket",
+        "wallstreet",
+        "investing",
+        "sp500",
+        "corporatefinance",
+        "shareholders",
+        "finance",
+        "economy",
+        "dataviz",
+        "didyouknow",
+        "money",
+        "stocks",
+        "businessnews"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sp500_buybacks_trend",
+          "params": {
+            "file": "sp500_buybacks_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "S&P 500 buybacks by year",
+          "say": "S&P 500 companies spent 589 billion dollars buying back their own stock in 2007. By 2018 that hit 806 billion, and by 2025 it topped 1 trillion dollars for the first time ever."
+        },
+        {
+          "source": "offline",
+          "key": "buybacks_vs_dividends_2018",
+          "params": {
+            "file": "buybacks_vs_dividends_2018.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE GAP OPENS",
+          "topic": "buybacks vs dividends, 2018",
+          "say": "In 2018 alone, companies spent 806 billion dollars on buybacks and only 456 billion on dividends -- nearly double, going to whoever happened to be holding shares that quarter."
+        },
+        {
+          "source": "offline",
+          "key": "buybacks_vs_dividends_2021",
+          "params": {
+            "file": "buybacks_vs_dividends_2021.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · THE NEW NORMAL",
+          "topic": "buybacks vs dividends, 2021",
+          "say": "By 2021 it was 882 billion in buybacks against 511 billion in dividends. Buybacks pump the stock price instead of cutting a check -- great if you're already a shareholder."
+        }
+      ]
     }
   ],
   "videos": [
