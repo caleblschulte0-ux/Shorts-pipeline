@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260822",
+  "updated": "20260823",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -577,6 +577,44 @@
       "verdict": "doing",
       "date": "20260822",
       "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run.",
+      "history": []
+    },
+    "e524811347c4": {
+      "verdict": "in_progress",
+      "date": "20260823",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260823",
+          "because": "Confirmed real and critical: auto-merge.yml's 'Trigger daily.yml if the PR added today's packages' step calls gh workflow run daily.yml (a workflow_dispatch event), which daily.yml's Phase B guard does not gate -- that guard only applies to workflow_run events (test_manual_and_dispatch_triggers_are_never_gated_by_phase_b documents dispatch as an intentional human-override escape hatch). Verified against the 2026-08-21 timeline in state/production_runs/20260821/trending.json (3/6 uploaded, matches the finding) and confirmed exchange_phase_a.yml already re-fires unconditionally on every Auto-merge claude PRs completion, so the direct dispatch was pure leftover from before the exchange chain existed. Fixed in this same run: removed the step and the now-unused actions:write permission from auto-merge.yml, added tests/test_split_worker.py::TestAutoMergeNeverDispatchesDailyDirectly to guard against regrowth."
+        }
+      ]
+    },
+    "e752c2bc148f": {
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Real and worth doing but smaller/lower-severity than e524811347c4 which is the same trigger-chain area and is being fixed in this run -- want to see how removing the direct daily.yml dispatch changes Phase A's actual rerun frequency before adding a conclusion/changed-files filter on top of it, to avoid two overlapping fixes in one PR. Verified the observation: exchange_phase_a.yml's workflow_run trigger has no conclusion check and no changed-path check. Revisit within 30 days; if e524811347c4's fix alone doesn't reduce redundant Phase A runs, build this.",
+      "history": [],
+      "revisit_after": "20260922"
+    },
+    "2b0e2fafca9b": {
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Legitimate strategy finding -- analytics collection gated on steps.run.outcome=='success' in daily.yml does leave the snapshot stale on any partial day, and trending has been missing 6/6 for a week per its own evidence. But the specific proposal (best-effort collection after any upload, or an independent scheduled workflow) needs a full session to design and test properly, not a same-day bolt-on, and per house rules the top doing item this run is the critical orchestration bug (e524811347c4) which may itself reduce partial-day frequency. Parking 30 days; revisit with fresh evidence.json numbers once the daily.yml fix has had a few days to change the partial-day rate.",
+      "history": [],
+      "revisit_after": "20260922"
+    },
+    "bc0647fe9257": {
+      "verdict": "doing",
+      "date": "20260823",
+      "because": "Confirmed: .github/workflows/doctor.yml sets +e around report ingestion, captures steps.ingest.outputs.status, but no later step checks it before the unconditional evidence-regeneration step -- a malformed or wholly-rejected report can commit and stay green. This is a real silent-failure gap in the same family as the ChatGPT-no-show class of bugs this repo has been bitten by before. Queued for a future build session (not this run's top item -- see e524811347c4 above).",
+      "history": []
+    },
+    "212a57534cee": {
+      "verdict": "not_doing",
+      "date": "20260823",
+      "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
       "history": []
     }
   }

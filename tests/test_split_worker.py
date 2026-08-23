@@ -634,6 +634,41 @@ class TestOnlyDoneTriggersPhaseB(unittest.TestCase):
                                  f"trigger path")
 
 
+class TestAutoMergeNeverDispatchesDailyDirectly(unittest.TestCase):
+    """Doctor finding e524811347c4 (2026-08-23): auto-merge.yml used to
+    `gh workflow run daily.yml` directly whenever the merged PR touched
+    today's trending_packages/. That is a workflow_dispatch event, which
+    daily.yml's Phase B guard does NOT gate (see
+    test_manual_and_dispatch_triggers_are_never_gated_by_phase_b above —
+    dispatch is an intentional human-override escape hatch). A package
+    merge reaching daily.yml through it therefore skipped the exchange
+    entirely. On 2026-08-21 the merge landed at 09:31:56 UTC, Daily
+    rendered by 09:48:07 UTC, and the exchange did not finish applying
+    ChatGPT's media until 14:06:59 UTC — trending shipped 3/6 with both
+    Reddit packages blocked for media the exchange had by then supplied.
+    Phase A already re-fires on every "Auto-merge claude PRs" completion
+    (exchange_phase_a.yml's workflow_run trigger), so the direct dispatch
+    was pure leftover from before the exchange chain existed, not a
+    needed path."""
+
+    def setUp(self):
+        self.wf = (ROOT / ".github" / "workflows" /
+                   "auto-merge.yml").read_text()
+
+    def test_no_workflow_dispatch_of_daily(self):
+        self.assertNotIn("gh workflow run daily.yml", self.wf)
+
+    def test_automerge_job_has_no_actions_write(self):
+        import yaml
+        parsed = yaml.safe_load(self.wf)
+        top_perms = parsed.get("permissions", {}) or {}
+        job_perms = parsed["jobs"]["automerge"].get("permissions", {}) or {}
+        self.assertNotEqual(top_perms.get("actions"), "write",
+                            "actions:write was only needed to `gh workflow "
+                            "run daily.yml` — no step needs it now")
+        self.assertNotEqual(job_perms.get("actions"), "write")
+
+
 class TestDailyDoesNotRenderAnIncompletePhaseB(unittest.TestCase):
     """The OTHER scheduled Phase B candidate (its window hasn't opened) can
     still conclude the workflow as 'success' having applied nothing — every
