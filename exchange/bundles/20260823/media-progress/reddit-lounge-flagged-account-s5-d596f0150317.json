@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260823",
+  "bundle": {
+    "identity": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679",
+    "path": "exchange/bundles/20260823/bundle.json"
+  },
+  "request_id": "reddit-lounge-flagged-account-s5-d596f0150317",
+  "safe_request_id": "reddit-lounge-flagged-account-s5-d596f0150317",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "97295f11cf18cb9c73a98c01477bcb3cc6c75e2922dce518a32f803c262eb28c",
+  "prompt_used": "An editorial illustration for a short-form video: airport security guard walking. It accompanies the narration: \"Security walked her out\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+    "filename": "20260823__reddit-lounge-flagged-account-s5-d596f0150317.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1P05KLCcKMkpTtfsMIZXb6I-uFwziDtM4",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0ea766fd7715ddddd56e1fe4d77220baee5642d465ab127e138c74d7a02e746c",
+    "bytes": 1076255,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-23T11:14:25.826Z",
+  "error": null,
+  "retryable": false
+}
