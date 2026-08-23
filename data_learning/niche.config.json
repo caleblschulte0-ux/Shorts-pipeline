@@ -23298,7 +23298,8 @@
           "insight_type": "trend",
           "role": "1 · THE RISE",
           "topic": "Americans who've hit 100",
-          "say": "In 1990, there were just 37,306 Americans who'd hit 100. By 2024, that number had nearly tripled to 101,000. This is now the fastest-growing age group in the country."
+          "say": "In 1990, there were just 37,306 Americans who'd hit 100. By 2024, that number had nearly tripled to 101,000. This is now the fastest-growing age group in the country.",
+          "viz": "trend"
         },
         {
           "source": "offline",
@@ -23310,7 +23311,12 @@
           "use_baseline": false,
           "role": "2 · NOT EVERYWHERE EQUAL",
           "topic": "US vs Japan",
-          "say": "Japan has about 77 centenarians for every 100,000 people. The US has 30. Same modern medicine, same wealth -- Japan's diet and healthcare system just keep people alive longer."
+          "say": "Japan has about 77 centenarians for every 100,000 people. The US has 30. Same modern medicine, same wealth -- Japan's diet and healthcare system just keep people alive longer.",
+          "scene": {
+            "mechanic": "birthday-candle-duel",
+            "concept": "two birthday cakes face off, each sprouting a row of lit candles that climbs to its country's centenarian rate per 100,000 people",
+            "code": "cake = subject_image('birthday cake with candles')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / vmax, 0.0, 1.0) * stage\n    cw, ch = 340, 200\n    cy = 760\n    if cake is not None:\n        paste(cake, cx - cw // 2, cy, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy, cx + cw // 2, cy + ch], radius=16, fill=rgba(col, 210))\n    count = 3 + int(frac * 13)\n    for k in range(count):\n        kx = cx - cw // 2 + 26 + (k % 6) * ((cw - 52) / 5.0)\n        ky = cy - 20 - (k // 6) * 58\n        d.line([kx, ky, kx, ky - 36], fill=rgba(col, 230), width=6)\n        d.ellipse([kx - 9, ky - 50, kx + 9, ky - 32], fill=rgba(WARN, 235))\n    text(f'{v:.0f}', cx, cy - 140, size=64, color=col, center=True)\n    text(labels[i].upper(), cx, cy + ch + 40, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('CENTENARIANS PER 100,000 PEOPLE', (RX0 + RX1) // 2, RTOP + 50, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23321,7 +23327,12 @@
           "insight_type": "trend",
           "role": "3 · WHAT'S COMING",
           "topic": "by 2054",
-          "say": "The Census Bureau projects 422,000 American centenarians by 2054 -- over four times today's number. Turning 100 is going from a headline to just another Tuesday."
+          "say": "The Census Bureau projects 422,000 American centenarians by 2054 -- over four times today's number. Turning 100 is going from a headline to just another Tuesday.",
+          "scene": {
+            "mechanic": "future-crowd-surge",
+            "concept": "a grid of smiling elderly portraits fills in from today's count toward 2054's projected count, the crowd visibly swelling as the camera holds",
+            "code": "img = subject_image('smiling elderly person portrait')\ncx = (RX0 + RX1) // 2\nstage = clamp(reveal, 0.0, 1.0)\nv0, v1 = values[0], values[1]\nfrac = lerp(v0 / v1, 1.0, stage)\ncols, rows = 8, 9\ntotal = int(frac * cols * rows)\ncell_w = (RX1 - RX0) / cols\ncell_h = 68.0\ntop = RTOP + 140\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 4, y, cell_w - 8, cell_h - 6)\n    else:\n        d.ellipse([x + 10, y + 6, x + cell_w - 10, y + cell_h - 6], fill=rgba(ACCENT, 220))\ntext(f'{lerp(v0, v1, stage):,.0f}', cx, RTOP + 70, size=76, color=HIGHLIGHT, center=True)\nlabel = labels[0] if stage < 0.5 else labels[1]\ntext(label.upper(), cx, RTOP + 150, size=30, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
@@ -23359,7 +23370,12 @@
           "insight_type": "trend",
           "role": "1 · THE COLLAPSE",
           "topic": "Lake Chad's surface area",
-          "say": "In 1963, Lake Chad covered 25,000 square kilometers -- roughly the size of Israel. After a brutal regional drought, it crashed to just 2,000 by 1987, and kept shrinking from there."
+          "say": "In 1963, Lake Chad covered 25,000 square kilometers -- roughly the size of Israel. After a brutal regional drought, it crashed to just 2,000 by 1987, and kept shrinking from there.",
+          "scene": {
+            "mechanic": "lake-shoreline-recede",
+            "concept": "a real aerial lake photo sits in a dark dried-out basin outline; the visible water shrinks toward the center as the four year markers advance",
+            "code": "lake = subject_image('aerial lake with water and shoreline')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 480\nmaxw, maxh = 760, 560\nd.rounded_rectangle([cx - maxw // 2, cy - maxh // 2, cx + maxw // 2, cy + maxh // 2], radius=24, fill=rgba((22, 26, 20), 220))\nidx = min(int(reveal * n), n - 1)\nfrac = clamp(values[idx] / vmax, 0.0, 1.0)\nscale = 0.16 + 0.84 * frac\nww = maxw * scale\nhh = maxh * scale\nif lake is not None:\n    paste(lake, cx - ww / 2, cy - hh / 2, ww, hh)\nelse:\n    d.ellipse([cx - ww / 2, cy - hh / 2, cx + ww / 2, cy + hh / 2], fill=rgba(HIGHLIGHT, 220))\nd.ellipse([cx - ww / 2, cy - hh / 2, cx + ww / 2, cy + hh / 2], outline=rgba(HIGHLIGHT, 235), width=6)\ntext(f'{labels[idx]}: {values[idx]:,.0f} km2', cx, cy + maxh // 2 + 60, size=34, color=TEXT, center=True)\ntext('LAKE CHAD SURFACE AREA', cx, RTOP + 40, size=28, color=ACCENT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23371,7 +23387,21 @@
           "use_baseline": false,
           "role": "2 · DO THE MATH",
           "topic": "how much is left",
-          "say": "Do the math and Lake Chad has lost about 95 percent of its surface since 1963. What used to be a small sea is now barely a large pond on a map of Africa."
+          "say": "Do the math and Lake Chad has lost about 95 percent of its surface since 1963. What used to be a small sea is now barely a large pond on a map of Africa.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "fill_object",
+                "region": "center",
+                "subject": "aerial lake with water and shoreline",
+                "data": {
+                  "value_from": "item:1"
+                },
+                "anim": "fill"
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -23383,7 +23413,12 @@
           "use_baseline": false,
           "role": "3 · MEANWHILE",
           "topic": "demand vs supply",
-          "say": "Meanwhile the demand only grew. Chad's population went from 3.3 million people in 1963 to 19 million today -- six times the mouths, a fraction of the water."
+          "say": "Meanwhile the demand only grew. Chad's population went from 3.3 million people in 1963 to 19 million today -- six times the mouths, a fraction of the water.",
+          "scene": {
+            "mechanic": "population-swell-grid",
+            "concept": "a grid of villager portraits fills in from 1963's population toward today's, dramatizing six times the demand on the same shrunken lake",
+            "code": "img = subject_image('crowd of african villagers')\ncx = (RX0 + RX1) // 2\nstage = clamp(reveal, 0.0, 1.0)\nv0, v1 = values[0], values[1]\nfrac = lerp(v0 / v1, 1.0, stage)\ncols, rows = 8, 8\ntotal = int(frac * cols * rows)\ncell_w = (RX1 - RX0) / cols\ncell_h = 66.0\ntop = RTOP + 190\nfor k in range(total):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 4, y, cell_w - 8, cell_h - 6)\n    else:\n        d.ellipse([x + 12, y + 8, x + cell_w - 12, y + cell_h - 8], fill=rgba(WARN, 220))\ntext(f'{lerp(v0, v1, stage):.1f}M PEOPLE', cx, RTOP + 90, size=54, color=HIGHLIGHT, center=True)\nlabel = labels[0] if stage < 0.5 else labels[1]\ntext(label.upper(), cx, RTOP + 150, size=28, color=TEXT, center=True)\ntext('SAME LAKE, SIX TIMES THE DEMAND', cx, RTOP + 30, size=24, color=ACCENT, center=True)\n"
+          }
         }
       ]
     },
@@ -23421,7 +23456,12 @@
           "insight_type": "trend",
           "role": "1 · THE DROP",
           "topic": "16-year-olds licensed",
-          "say": "In 1983, 46 percent of American 16-year-olds had a driver's license. By 2014 that had cratered to 24 percent. It's basically flipped from the norm to the minority."
+          "say": "In 1983, 46 percent of American 16-year-olds had a driver's license. By 2014 that had cratered to 24 percent. It's basically flipped from the norm to the minority.",
+          "scene": {
+            "mechanic": "license-pictograph-thin",
+            "concept": "100 teenager portraits arranged in a grid, only the licensed share left bright while the rest darken under a translucent wash as the year advances",
+            "code": "img = subject_image('teenager portrait face')\ncx = (RX0 + RX1) // 2\nidx = min(int(reveal * n), n - 1)\nv = values[idx]\ncols, rows = 10, 10\ntop = RTOP + 150\ncell_w = (RX1 - RX0) / cols\ncell_h = (RBOT - top - 140) / rows\nlit = int(clamp(v / 100.0, 0.0, 1.0) * 100)\nfor k in range(100):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cell_w\n    y = top + r * cell_h\n    if img is not None:\n        paste(img, x + 3, y, cell_w - 6, cell_h - 4)\n    else:\n        d.ellipse([x + 6, y + 4, x + cell_w - 6, y + cell_h - 4], fill=rgba(ACCENT, 220))\n    if k >= lit:\n        d.rectangle([x, y, x + cell_w, y + cell_h], fill=rgba((10, 10, 14), 190))\ntext(f'{v:.0f}% LICENSED', cx, RBOT - 110, size=48, color=HIGHLIGHT, center=True)\ntext(f'AGE 16, {labels[idx]}', cx, RBOT - 55, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23433,7 +23473,12 @@
           "use_baseline": false,
           "role": "2 · NOT JUST 16",
           "topic": "18-year-olds licensed",
-          "say": "It's not just 16-year-olds. In 1983, 80 percent of 18-year-olds were licensed. Today it's 62 percent -- a legal adult, and still more likely to be a passenger."
+          "say": "It's not just 16-year-olds. In 1983, 80 percent of 18-year-olds were licensed. Today it's 62 percent -- a legal adult, and still more likely to be a passenger.",
+          "scene": {
+            "mechanic": "license-card-fill-duel",
+            "concept": "two driver's license cards side by side, each washed with a rising color fill to its own year's licensed percentage",
+            "code": "card = subject_image('driver license id card')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / 100.0, 0.0, 1.0) * stage\n    cw, ch = 340, 220\n    cy = 620\n    if card is not None:\n        paste(card, cx - cw // 2, cy - ch // 2, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy - ch // 2, cx + cw // 2, cy + ch // 2], radius=18, fill=rgba(TEXT, 60))\n    fh = ch * frac\n    d.rectangle([cx - cw // 2, cy + ch // 2 - fh, cx + cw // 2, cy + ch // 2], fill=rgba(col, 130))\n    text(f'{v:.0f}%', cx, cy - ch // 2 - 60, size=58, color=col, center=True)\n    text(labels[i], cx, cy + ch // 2 + 50, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('18-YEAR-OLDS LICENSED', (RX0 + RX1) // 2, RTOP + 50, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23444,7 +23489,8 @@
           "insight_type": "trend",
           "role": "3 · THE TWIST",
           "topic": "20-24-year-olds licensed",
-          "say": "But look at 20 to 24-year-olds: 91.8 percent in 1983, down to 76.7 by 2014 -- then climbing back to 81 by 2021. They didn't quit driving. They just showed up years late."
+          "say": "But look at 20 to 24-year-olds: 91.8 percent in 1983, down to 76.7 by 2014 -- then climbing back to 81 by 2021. They didn't quit driving. They just showed up years late.",
+          "viz": "trend"
         }
       ]
     },
@@ -23482,7 +23528,12 @@
           "insight_type": "trend",
           "role": "1 · THE CLIMB",
           "topic": "S&P 500 buybacks by year",
-          "say": "S&P 500 companies spent 589 billion dollars buying back their own stock in 2007. By 2018 that hit 806 billion, and by 2025 it topped 1 trillion dollars for the first time ever."
+          "say": "S&P 500 companies spent 589 billion dollars buying back their own stock in 2007. By 2018 that hit 806 billion, and by 2025 it topped 1 trillion dollars for the first time ever.",
+          "scene": {
+            "mechanic": "cash-tower-climb",
+            "concept": "a tower of stacked hundred-dollar-bill photos rises brick by brick as the year advances, topping out at the trillion-dollar 2025 mark",
+            "code": "cash = subject_image('stack of hundred dollar bills')\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nidx = min(int(reveal * n), n - 1)\nfrac = clamp(values[idx] / vmax, 0.0, 1.0)\ncount = 2 + int(frac * 10)\nbw, bh = 220, 70\nfor k in range(count):\n    y = base_y - k * (bh - 18)\n    if cash is not None:\n        paste(cash, cx - bw // 2, y - bh, bw, bh)\n    else:\n        d.rounded_rectangle([cx - bw // 2, y - bh, cx + bw // 2, y], radius=10, fill=rgba(ACCENT, 220))\ntext(f'${values[idx]:,.0f}B', cx, RTOP + 80, size=68, color=HIGHLIGHT, center=True)\ntext(labels[idx], cx, RTOP + 150, size=32, color=TEXT, center=True)\ntext('S&P 500 STOCK BUYBACKS', cx, RTOP + 30, size=24, color=ACCENT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -23494,7 +23545,8 @@
           "use_baseline": false,
           "role": "2 · THE GAP OPENS",
           "topic": "buybacks vs dividends, 2018",
-          "say": "In 2018 alone, companies spent 806 billion dollars on buybacks and only 456 billion on dividends -- nearly double, going to whoever happened to be holding shares that quarter."
+          "say": "In 2018 alone, companies spent 806 billion dollars on buybacks and only 456 billion on dividends -- nearly double, going to whoever happened to be holding shares that quarter.",
+          "viz": "comparison"
         },
         {
           "source": "offline",
@@ -23506,7 +23558,12 @@
           "use_baseline": false,
           "role": "3 · THE NEW NORMAL",
           "topic": "buybacks vs dividends, 2021",
-          "say": "By 2021 it was 882 billion in buybacks against 511 billion in dividends. Buybacks pump the stock price instead of cutting a check -- great if you're already a shareholder."
+          "say": "By 2021 it was 882 billion in buybacks against 511 billion in dividends. Buybacks pump the stock price instead of cutting a check -- great if you're already a shareholder.",
+          "scene": {
+            "mechanic": "cash-vs-check-duel",
+            "concept": "a rising column of cash for buybacks faces a shorter column of a dividend check for dividends, both climbing to their own 2021 dollar total",
+            "code": "bag1 = subject_image('stack of hundred dollar bills')\nbag2 = subject_image('bank check dividend payment')\nfor i in range(2):\n    v = values[i]\n    cx = RX0 + 260 if i == 0 else RX1 - 260\n    col = HIGHLIGHT if i == 0 else ACCENT\n    stage = clamp(reveal * 2 - i, 0.0, 1.0)\n    frac = clamp(v / vmax, 0.0, 1.0) * stage\n    img = bag1 if i == 0 else bag2\n    cw = 300\n    ch = 300 * frac + 40\n    cy = RBOT - 80\n    if img is not None:\n        paste(img, cx - cw // 2, cy - ch, cw, ch)\n    else:\n        d.rounded_rectangle([cx - cw // 2, cy - ch, cx + cw // 2, cy], radius=14, fill=rgba(col, 210))\n    text(f'${v:,.0f}B', cx, cy - ch - 50, size=54, color=col, center=True)\n    text(labels[i], cx, cy + 40, size=32, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('2021: WHO GOT PAID', (RX0 + RX1) // 2, RTOP + 60, size=28, color=TEXT, center=True)\n"
+          }
         }
       ]
     }
