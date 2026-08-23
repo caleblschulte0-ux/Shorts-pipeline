@@ -14,7 +14,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write   # needed for `gh workflow run` to dispatch daily.yml
 
 jobs:
   sanity:
@@ -166,29 +165,25 @@ jobs:
             --repo "${{ github.repository }}" \
             --squash --delete-branch
 
-      # If the PR touched today's package directory, manually kick off
-      # daily.yml. We can't rely on the workflow_run cascade or the
-      # push-paths trigger — both are dead-ended by GitHub's "workflows
-      # can't trigger other workflows from GITHUB_TOKEN" anti-recursion
-      # rule. workflow_dispatch is the explicitly-allowed exception:
-      # it's the one event GITHUB_TOKEN CAN fire.
-      - name: Trigger daily.yml if the PR added today's packages
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # List files the PR changed.
-          files=$(gh pr view "${{ github.event.pull_request.number }}" \
-            --repo "${{ github.repository }}" \
-            --json files --jq '.files[].path')
-          echo "Changed files:"
-          printf '  %s\n' $files
-          today=$(date -u +%Y%m%d)
-          if echo "$files" | grep -q "^state/trending_packages/${today}/"; then
-            echo "Today's packages were touched — firing daily.yml."
-            gh workflow run daily.yml \
-              --repo "${{ github.repository }}" \
-              --ref main
-          else
-            echo "No package changes for today (${today}); skipping daily dispatch."
-          fi
+      # daily.yml is NEVER dispatched from here (doctor finding
+      # e524811347c4, 2026-08-23). Before the 2026-07-30 exchange chain,
+      # this job used to dispatch daily.yml directly (`gh workflow run`)
+      # whenever the PR touched today's trending_packages/ — the note
+      # above explained why (GITHUB_TOKEN can't fire workflow_run,
+      # workflow_dispatch is the allowed exception). That step survived
+      # the exchange migration by accident: exchange_phase_a.yml's own
+      # workflow_run trigger on "Auto-merge claude PRs" already covers
+      # "kick off the chain after a package merge", and daily.yml itself
+      # now only renders on Phase B completing successfully (or an
+      # explicit human override). Leaving the old step in place meant a
+      # package merge could reach daily.yml via workflow_dispatch — which
+      # is NOT gated on Phase B — hours before ChatGPT's media/editorial
+      # pass ever ran. That is exactly what happened on 2026-08-21: the
+      # package merge landed at 09:31:56 UTC, Daily rendered by 09:48:07
+      # UTC, and the exchange (media worker 11:02:13, finalizer 12:08:53,
+      # Phase B applied 14:06:59) did not finish until hours later —
+      # trending shipped 3/6 with both Reddit packages blocked for
+      # inadequate media, media the exchange had by then fully supplied.
+      # See CLAUDE.md's EXCHANGE PIPELINE section and
+      # docs/EXCHANGE_PIPELINE.md for the intended order:
+      # Phase A -> ChatGPT -> DONE -> Phase B -> daily.yml.
