@@ -10,7 +10,12 @@
     },
     {
       "phrase": "hottest ghost pepper sauce",
-      "query": "hot sauce bottle spicy"
+      "query": "hot sauce bottle spicy",
+      "pin_query": "ghost pepper sauce",
+      "pin_context": "spicy hot pepper condiment food",
+      "news_query": "ghost pepper sauce",
+      "news_angle": "Ghost pepper sauce is secretly layered into a turkey sandwich to catch an office lunch thief.",
+      "image_url": "https://live.staticflickr.com/3669/9707131320_582a21f795_b.jpg"
     },
     {
       "phrase": "layered it inside a turkey sandwich",
