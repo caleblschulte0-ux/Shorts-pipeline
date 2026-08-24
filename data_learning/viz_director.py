@@ -465,16 +465,26 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     # this mode; production opts in via env.
     strict = os.environ.get("STRICT_CONTACT", "0") == "1"
 
-    def _take(i: int, kind: str) -> bool:
+    def _take(i: int, kind: str, no_repeat: bool = False) -> bool:
         if strict and kind not in _CONTACT_OK:
             return False
         nonlocal images
         meta = KINDS.get(kind, {})
-        # place/trend/real-photo depictions may repeat (all good); the lazy shape
-        # depictions must stay distinct within a video.
-        if not (meta.get("place") or meta.get("time") or meta.get("repeatable")) \
-                and kind in used:
-            return False
+        # place/trend/real-photo depictions may repeat; the lazy shape
+        # depictions must stay distinct within a video. `no_repeat` tightens
+        # that to EVERY kind — the variety-first round below — because "may
+        # repeat" quietly became "does repeat": a story of three *_trend
+        # segments rendered the same line card three times and the 2026-08-24
+        # verdicts read it back verbatim ("three near-identical chart layouts
+        # stretched over 96 seconds", scores 26-52). Same doctrine as
+        # scene_repair's story-level distinctness: a duplicate is a LAST
+        # RESORT, not a default.
+        if kind in used:
+            if no_repeat:
+                return False
+            if not (meta.get("place") or meta.get("time")
+                    or meta.get("repeatable")):
+                return False
         if meta.get("image"):
             if images >= image_budget:
                 return False
@@ -544,12 +554,23 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             _take(i, av)
 
     # Pass 2 — fill the rest with the best renderable, non-repeating candidate.
+    # VARIETY FIRST: try every candidate with repeats forbidden outright (the
+    # terminal "bubbles" guarantee excluded — bubbles-for-variety is worse
+    # than an honest repeat), and only when nothing distinct fits fall back to
+    # the old rules, where place/time/repeatable kinds may recur. A 3-trend
+    # story now lands trend / timeline / pictorial_race instead of the same
+    # card thrice; a 3-region geo story still maps every segment.
     for i in order:
         if chosen[i]:
             continue
-        for cand in _candidates(inss[i], feats[i]):
-            if _take(i, cand):
+        cands = _candidates(inss[i], feats[i])
+        for cand in cands:
+            if cand != "bubbles" and _take(i, cand, no_repeat=True):
                 break
+        if not chosen[i]:
+            for cand in cands:
+                if _take(i, cand):
+                    break
         if not chosen[i]:
             chosen[i] = "bubbles"        # absolute last resort (still depicts)
 
@@ -604,8 +625,14 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
                 m = KINDS.get(c, {})
                 return (m.get("place") or m.get("repeatable")
                         or c not in used)
+            # "bubbles" is the terminal guarantee, never a variety move —
+            # without this exclusion the pass bought a bare dot chart to
+            # avoid a second line chart, which is the exact trade its own
+            # comment above forbids ("a mis-shaped render is worth less
+            # than a repeat"). Nothing else fitting => keep the repeat.
             alt = next((c for c in _candidates(inss[i], feats[i])
-                        if c != _lim and c not in ("trend", "timeline")
+                        if c != _lim and c not in ("trend", "timeline",
+                                                   "bubbles")
                         and renderable(c) and _free(c)
                         and not (KINDS.get(c, {}).get("image")
                                  and images >= image_budget)), None)
@@ -635,7 +662,8 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             spec = _md.performance_for(
                 ins.kind, getattr(ins, "main_insight", "") or "",
                 (ins.items[0].label if getattr(ins, "items", None) else ""),
-                used_families=used_families, seed=seed + j)
+                used_families=used_families, seed=seed + j,
+                require_contact=True)
             ins.perf_override = spec["action"]
             ins.perf_spec = spec
             used_families.add(spec.get("family", spec["action"]))

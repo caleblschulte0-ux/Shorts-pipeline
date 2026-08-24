@@ -86,7 +86,8 @@ def semantic_candidates(insight, shape: str) -> list[dict]:
                                  "direction": intent["direction"]}})
     for j, viz in enumerate(KIND_OPTIONS.get(shape, KIND_OPTIONS["ranking"])):
         spec = md.performance_for(viz, claim, target,
-                                  used_families=used, seed=j)
+                                  used_families=used, seed=j,
+                                  require_contact=True)
         # SEMANTIC GATE: the selected performance must genuinely support this
         # shape (performance_for enforces it) — record the declaration.
         used.add(spec.get("family", spec["action"]))

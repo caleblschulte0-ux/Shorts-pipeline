@@ -251,7 +251,8 @@ def _perf_action(insight: Insight, kind: str) -> str:
         if insight.items:
             star = (insight.items[-1].label if kind in ("trend", "timeline")
                     else insight.items[0].label)
-        spec = _md.performance_for(kind, insight.main_insight or "", star)
+        spec = _md.performance_for(kind, insight.main_insight or "", star,
+                                   require_contact=True)
         _LAST_PERF = spec
         return spec["action"]
     except Exception:  # noqa: BLE001 — never lose a render over direction
