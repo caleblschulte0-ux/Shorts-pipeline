@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-heat-wave-dress-code-s3-1f94874785db",
+  "safe_request_id": "reddit-heat-wave-dress-code-s3-1f94874785db",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0198c852d0ce982674994d4fee78f84c29b54a2c3cfd020ff8282b9000f9e613",
+  "prompt_used": "An editorial illustration for a short-form video: wool blazer closet rack. It accompanies the narration: \"wool blazer nobody had worn\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+    "filename": "20260824__reddit-heat-wave-dress-code-s3-1f94874785db.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b5f0c44c00f8a83f9666246099f40c1dd5a41ab0ee4aeb42db5675faf139ecfb",
+    "bytes": 1768497,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:19:13.044Z",
+  "error": null,
+  "retryable": false
+}
