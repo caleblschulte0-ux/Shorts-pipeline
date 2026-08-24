@@ -61,7 +61,11 @@ HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
 # robust regardless of when the host_baked flag propagates.
 BAKED_CHART_KINDS = frozenset({
     "trend", "timeline", "pictorial_race", "rank", "comparison", "bars",
-    "waffle_grid", "share", "pictograph", "stack"})
+    "waffle_grid", "share", "pictograph", "stack",
+    # geo beats bake the host too (winning bar tip / winning pin) — before
+    # 2026-08-24 they relied on the host_baked flag alone, and geo_city had
+    # no bake at all, so the travelling overlay drifted over the map.
+    "geo_us", "geo_world", "geo_city"})
 
 
 def _seg_is_baked(seg) -> bool:

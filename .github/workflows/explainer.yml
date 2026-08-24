@@ -661,6 +661,13 @@ jobs:
           # restore of the full artifact set on a push race, and a UNION-
           # MERGE of the posted-log so no entry from either side is lost
           # (a lost entry = a duplicate upload next run).
+          # state/scene_plans is the repair loop's output — the depiction
+          # re-plans that made a blocked slug's score climb 39->43->48
+          # within a run. Until 2026-08-24 it was never persisted, so every
+          # day re-rendered the identical unrepaired baseline and the climb
+          # restarted from scratch (the 08-22/23 churn: same four slugs,
+          # ~18 renders, zero ships). studio_render already applies a
+          # persisted plan; this line is what lets it ever see one.
           bash scripts/ci_commit_state.sh \
             "explainer: update posted log + analytics [skip ci]" \
             state/explainer_posted_log.json state/analytics_explainer \
@@ -668,4 +675,5 @@ jobs:
             state/video_ledger.json state/brain_context.json \
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json \
-            state/showrunner_verdicts.jsonl
+            state/showrunner_verdicts.jsonl \
+            state/scene_plans

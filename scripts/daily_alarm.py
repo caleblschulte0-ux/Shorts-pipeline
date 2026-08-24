@@ -259,6 +259,48 @@ def check(date: str, now=None) -> dict:
         else:
             notes.append(f"{cid}: {len(posted)}/{target} posted")
 
+    # ---- 1b. IS THE GATE REFUSING EVERYTHING WE RENDER? -----------------
+    # 08-22 and 08-23: the pipeline rendered and judged 18 videos a day,
+    # the showrunner blocked every one, and the only alarm was the same
+    # no_posts_* that fires for ANY dead day — nothing distinguished "the
+    # runs are broken" from "the runs work and the videos aren't good
+    # enough", which have opposite fixes. This reads the gate's own ledger:
+    # many verdicts with zero ships is a QUALITY crisis (fix the renders,
+    # never the gate), and repeated same-slug blocks mean the queue is
+    # churning on stories that will keep failing unchanged.
+    if not early:
+        try:
+            _rows = []
+            for _ln in (ROOT / "state" /
+                        "showrunner_verdicts.jsonl").read_text().splitlines():
+                try:
+                    _r = json.loads(_ln)
+                    _d = str(_r.get("ts", ""))[:10].replace("-", "")
+                    if _d == date:
+                        _rows.append(_r)
+                except Exception:  # noqa: BLE001
+                    continue
+            _blocks = [r for r in _rows
+                       if str(r.get("verdict", "")).lower() == "block"]
+            _ships = [r for r in _rows
+                      if str(r.get("verdict", "")).lower() == "ship"]
+            if len(_blocks) >= 6 and not _ships:
+                from collections import Counter as _Counter
+                _per = _Counter(str(r.get("slug", "?")) for r in _blocks)
+                _rep = [f"{s} x{n}" for s, n in _per.most_common(4) if n >= 2]
+                alarm("showrunner_starving_the_slate", "critical",
+                      f"the showrunner judged {len(_blocks)} renders on "
+                      f"{date} and shipped NONE"
+                      + (f" — repeat offenders: {', '.join(_rep)}" if _rep
+                         else "") + ".",
+                      "This is a render-quality crisis, not a gate problem: "
+                      "the runs complete and every video fails the bar. Read "
+                      "the ledger's auto_fails/problems for the pattern and "
+                      "fix the RENDER. Weakening the gate is not on the "
+                      "table.")
+        except OSError:
+            pass
+
     # ---- 1a. IS THE CHANNEL EVEN ALLOWED TO RUN? ------------------------
     # This is checked FIRST and unconditionally, because a paused channel
     # explains every other symptom below and none of them explain it.

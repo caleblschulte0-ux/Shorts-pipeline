@@ -43,9 +43,15 @@ PLANS_DIR = REPO / "state" / "scene_plans"
 # different scenes: different depiction × different performance family, all
 # compatible with the scene's meaning.
 KIND_OPTIONS = {
-    "part_to_whole": ["stack", "stack", "pictorial_race"],
+    # A duplicated kind is NOT a wasted slot (the perf rotates per slot), but
+    # it cannot answer the judge's actual 08-22/23 complaint — "three
+    # identical bar races" is STRUCTURAL sameness. Where a genuinely
+    # different renderer exists for the shape, offer it: waffle_grid and
+    # bubbles render under a locked plan (plan_locked skips the auto-route
+    # that would fold them back into stack/race).
+    "part_to_whole": ["stack", "waffle_grid", "pictorial_race"],
     "two_value": ["comparison", "stack", "pictorial_race"],
-    "ranking": ["pictorial_race", "rank", "stack"],
+    "ranking": ["pictorial_race", "rank", "bubbles"],
     "trend": ["trend", "trend", "pictorial_race"],
 }
 
