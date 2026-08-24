@@ -4721,6 +4721,23 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (confused rambling, nothing visibly happe)",
       "ts": "2026-08-23T12:18:50.916350+00:00"
+    },
+    "rejected-triumphantbombasticbubbleteachocolaterain-o_0-851_n0lg8icf": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TriumphantBombasticBubbleteaChocolateRain-o_0-851_n0Lg8ICF",
+      "streamer": "kaicenat",
+      "title": "LEEKED",
+      "qa_rejected": true,
+      "ts": "2026-08-24T11:40:01.895276+00:00"
+    },
+    "clip-20260824-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TallFunPandaDAESuppy-fzBTU9Q97KP8ut0Z",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Reacts To This INSANE Standoff Scene",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T11:44:06.112313+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
