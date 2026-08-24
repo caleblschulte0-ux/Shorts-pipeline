@@ -118,7 +118,13 @@ jobs:
           # numpy: data_learning/scenes.py (scripts/test_scene_dispatch.py)
           # ffmpeg: the lookmatch engine self-test refuses to run without it,
           #         which is correct — it measures real video.
-          pip install -q pillow pyyaml requests numpy
+          # matplotlib: nine tests/ files import it at module level (chart
+          #         compositors, fit_title, hook charts). They had been
+          #         ERRORING in CI on every run since they were written —
+          #         invisibly, because the suite's exit code died in the
+          #         tail pipe this gate used to run under (03ed6ae9f195).
+          #         The first run with pipefail surfaced all 11 errors.
+          pip install -q pillow pyyaml requests numpy matplotlib
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
       # PIPEFAIL OR THE GATE IS DECORATION (doctor 03ed6ae9f195, 2026-08-24).
       # GitHub's default `run:` shell on Linux is `bash -e {0}` — NO pipefail —
