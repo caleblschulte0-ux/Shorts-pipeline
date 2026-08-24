@@ -108,16 +108,28 @@ def main():
     assert d["advance"] and not d["autonomous_publish_allowed"], d
     print("ok 11. a perfect score does not enable autonomous publishing")
 
-    # 12. policy is configurable, and env overrides apply
-    os.environ["CURIOSITY_JUDGE_DEVELOPMENT_MIN_OVERALL"] = "5.0"
+    # 12. policy is configurable — but only in the STRICTER direction for
+    #     the safety floors. Raising a floor via env applies; LOWERING one
+    #     is bar-removal and is refused with the default kept (doctor
+    #     finding 9fe73cb62e3f — the old behavior let env set the
+    #     development floor to 5.0 and advance a 6.0/10 film).
+    os.environ["CURIOSITY_JUDGE_DEVELOPMENT_MIN_OVERALL"] = "8.8"
     try:
-        loose = jp.load()
-        assert loose["development_min_overall"] == 5.0
-        assert jp.decide(combined(6.0, 4), loose)["advance"]
-        assert not jp.decide(combined(6.0, 4), pol)["advance"]
+        strict = jp.load()
+        assert strict["development_min_overall"] == 8.8
+        assert not jp.decide(combined(8.5, 4), strict)["advance"]
+        assert jp.decide(combined(8.5, 4), pol)["advance"]
     finally:
         del os.environ["CURIOSITY_JUDGE_DEVELOPMENT_MIN_OVERALL"]
-    print("ok 12. thresholds are configurable and the default stays strict")
+    os.environ["CURIOSITY_JUDGE_DEVELOPMENT_MIN_OVERALL"] = "5.0"
+    try:
+        floor = jp.load()
+        assert floor["development_min_overall"] == \
+            jp.DEFAULT_POLICY["development_min_overall"], floor
+        assert not jp.decide(combined(6.0, 4), floor)["advance"]
+    finally:
+        del os.environ["CURIOSITY_JUDGE_DEVELOPMENT_MIN_OVERALL"]
+    print("ok 12. floors can be raised via env; lowering one is refused")
 
     # 13. personality still has a floor (it just isn't sufficient any more)
     d = jp.decide(combined(9.8, 1), pol)

@@ -248,5 +248,58 @@ class TestTodaysRealPackagesAreJudgedCorrectly(unittest.TestCase):
         self.assertFalse(got["ok"])
 
 
+class TestAssessRefusesUnjudgeableData(unittest.TestCase):
+    """Doctor d64b063a21bd: string values used to CRASH assess with a
+    TypeError, and the structural gate's blanket except read every crash as
+    'engine absent' and passed the package. assess now refuses garbage with
+    named reasons — a refusal, never a raise."""
+
+    def test_string_values_are_refused_not_crashed(self):
+        v = spec([("a", ["1", "2", "3", "4"]), ("b", ["4", "3", "2", "1"])])
+        got = cr.assess(v)
+        self.assertFalse(got["ok"])
+        self.assertTrue(any("finite" in r for r in got["reasons"]),
+                        got["reasons"])
+
+    def test_nan_and_inf_are_refused(self):
+        for poison in (float("nan"), float("inf")):
+            v = spec([("a", [100, poison, 4000, 17000]),
+                      ("b", [90, 200, 300, 500])])
+            got = cr.assess(v)
+            self.assertFalse(got["ok"], poison)
+            self.assertTrue(any("finite" in r for r in got["reasons"]))
+
+    def test_string_years_are_refused(self):
+        v = spec([("a", [100, 900, 4000, 17000]),
+                  ("b", [90, 200, 300, 500])],
+                 years=["2018", "2019", "2020", "2021"])
+        self.assertFalse(cr.assess(v)["ok"])
+
+    def test_unsorted_years_are_refused(self):
+        v = spec([("a", [100, 900, 4000, 17000]),
+                  ("b", [90, 200, 300, 500])],
+                 years=[2018, 2020, 2019, 2021])
+        got = cr.assess(v)
+        self.assertFalse(got["ok"])
+        self.assertTrue(any("increasing" in r for r in got["reasons"]))
+
+    def test_length_mismatch_is_refused_not_crashed(self):
+        v = spec([("a", [100, 900, 4000]),           # 3 values, 4 years
+                  ("b", [90, 200, 300, 500])],
+                 years=[2018, 2019, 2020, 2021])
+        got = cr.assess(v)
+        self.assertFalse(got["ok"])
+        self.assertTrue(any("values for" in r for r in got["reasons"]))
+
+    def test_bools_are_not_data(self):
+        v = spec([("a", [True, True, False, True]),
+                  ("b", [90, 200, 300, 500])])
+        self.assertFalse(cr.assess(v)["ok"])
+
+    def test_clean_numeric_data_is_untouched_by_the_new_checks(self):
+        v = spec([("a", [100, 900, 4000, 17000]), ("b", [90, 200, 300, 500])])
+        self.assertTrue(cr.assess(v)["ok"])
+
+
 if __name__ == "__main__":
     unittest.main()

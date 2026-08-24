@@ -474,8 +474,17 @@ def mark_ready(date: str) -> Path | None:
 
 def is_done(date: str) -> bool:
     """True once ChatGPT has written the DONE marker for THIS date. A marker
-    for another day — or with no date recorded at all — never fires this
-    day's render."""
+    that parses but is for another day — or has no date at all — never fires
+    this day's render. A PRESENT-BUT-UNPARSEABLE marker (non-JSON text, or
+    JSON that is not an object) is deliberately honored as done: DONE=True
+    routes Phase B into the STRICTER branch (checkpoints required for every
+    piece of media), while "not done" falls to the lenient no-DONE emergency
+    backstop that may accept media without checkpoints. Treating a malformed
+    marker as absent would let a garbled handoff DOWNGRADE media validation
+    — the opposite of failing closed. (Doctor finding 2f7ee366fb9b asked for
+    strict date proof, built here; its unparseable clause was refused on the
+    grounds above — the test pinning this is
+    tests/test_exchange.py::test_done_marker_unparseable_is_honored.)"""
     try:
         p = bundle_dir(date) / "DONE"
         if not p.exists():
@@ -483,9 +492,22 @@ def is_done(date: str) -> bool:
         try:
             payload = json.loads(p.read_text())
         except Exception:                                # noqa: BLE001
+            print(f"[exchange] DONE for {date} present but not JSON — "
+                  f"honoring as done (strict branch), but the Finalizer "
+                  f"broke its contract", flush=True)
             return True          # marker present but unparseable — honor it
+        if not isinstance(payload, dict):
+            print(f"[exchange] DONE for {date} is JSON but not an object "
+                  f"({type(payload).__name__}) — honoring as done (strict "
+                  f"branch), but the Finalizer broke its contract",
+                  flush=True)
+            return True
         stamped = str(payload.get("date") or "").strip()
-        return bool(stamped) and stamped == str(date)
+        if stamped != str(date):
+            print(f"[exchange] DONE date {stamped!r} does not match {date} "
+                  f"— treating as NOT done", flush=True)
+            return False
+        return True
     except Exception:                                    # noqa: BLE001
         return False
 

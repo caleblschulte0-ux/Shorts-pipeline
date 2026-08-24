@@ -220,6 +220,12 @@ class TestBundle(unittest.TestCase):
                 d.mkdir(parents=True)
                 (d / "DONE").write_text("not json")
                 self.assertTrue(xb.is_done("20260730"))
+                # JSON-but-not-an-object is the same malformed-marker case;
+                # it used to fall through an AttributeError to False, which
+                # silently routed the day to the LENIENT no-DONE backstop —
+                # the one downgrade a garbled marker must never buy.
+                (d / "DONE").write_text(json.dumps(["done"]))
+                self.assertTrue(xb.is_done("20260730"))
             finally:
                 xb.BUNDLE_ROOT = orig
 

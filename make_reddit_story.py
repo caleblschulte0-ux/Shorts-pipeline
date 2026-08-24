@@ -43,6 +43,38 @@ CAP_WHITE = "&HFFFFFF&"
 CAP_HILITE = "&H00E8FF&"    # bright gold-yellow
 
 
+def _verify_shot_attestation(shot: dict, local: Path, i: int) -> None:
+    """Prove the downloaded bytes are the bytes Phase B verified, when the
+    shot carries an attestation (media_sha256 / media_bytes). Raises
+    ValueError on mismatch, AFTER logging expected vs actual in full — the
+    caller's generic skip line truncates its message, and a digest cut at 90
+    chars is useless for diagnosing WHICH asset the Drive URL now serves.
+
+    Both fields are checked when both are present: a length check is not
+    subsumed by the hash (it is the cheap first-line diagnostic that
+    distinguishes 'truncated download' from 'replaced content'), and a hash
+    mismatch with matching length is precisely the swapped-asset case."""
+    expected_sha = str(shot.get("media_sha256") or "").strip().lower()
+    expected_bytes = shot.get("media_bytes")
+    if not expected_sha and expected_bytes is None:
+        return                       # no attestation — legacy shot, old path
+    data = local.read_bytes()
+    if expected_bytes is not None and len(data) != int(expected_bytes):
+        print(f"      shot {i} ATTESTATION MISMATCH: media_bytes expected "
+              f"{int(expected_bytes)}, got {len(data)} "
+              f"({shot.get('image_url') or shot.get('image')})", flush=True)
+        raise ValueError("media_bytes attestation mismatch")
+    if expected_sha:
+        import hashlib
+        actual = hashlib.sha256(data).hexdigest()
+        if actual != expected_sha:
+            print(f"      shot {i} ATTESTATION MISMATCH: media_sha256 "
+                  f"expected {expected_sha}, got {actual} "
+                  f"({shot.get('image_url') or shot.get('image')})",
+                  flush=True)
+            raise ValueError("media_sha256 attestation mismatch")
+
+
 def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
     """Materialise the verified per-shot images as 1080x960 panels.
 
@@ -74,6 +106,19 @@ def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
             continue
         try:
             local = base._fetch_image(str(src), cache)  # verified upstream
+            # Byte attestation BEFORE any decode (doctor finding
+            # 8b6949ab0573): ChatGPT-supplied shots carry media_sha256 /
+            # media_bytes beside a MUTABLE Drive URL, recorded when Phase B
+            # verified the asset. The renderer used to ignore both fields
+            # and ship whatever the URL serves today, so the rendered image
+            # was never proven to be the one that was verified. A mismatch
+            # raises into the except below — the same path an unreachable
+            # image takes — so the panel is UNRESOLVED under the existing
+            # media-completeness policy (no panel, gameplay shows through,
+            # `_visual_track` leaves the gap) rather than silently swapped.
+            # Shots without the fields (legacy / self-filled media) keep the
+            # old behavior: absent attestation is absent, not failing.
+            _verify_shot_attestation(shot, local, i)
             with Image.open(local) as im:
                 panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
                                      method=Image.Resampling.LANCZOS)

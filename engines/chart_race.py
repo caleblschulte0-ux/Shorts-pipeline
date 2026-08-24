@@ -286,15 +286,57 @@ def credit_line(source: str) -> str:
     return f"Source: {head}" if head else ""
 
 
+def _spec_data_problems(spec: dict) -> list[str]:
+    """Data defects that make DRAMA unjudgeable: non-numeric / non-finite
+    values, unsorted years, length mismatches. Checked BEFORE `normalize`
+    (which multiplies values) — until 2026-08-24 a spec whose values were
+    strings crashed `assess` with a TypeError, and the one caller that
+    gates on it (shared/package_schema) swallowed that crash as "engine
+    absent" and passed the package (doctor d64b063a21bd). A spec assess
+    cannot do arithmetic on is a refusal with named reasons, not a crash
+    for callers to misread."""
+    years = spec.get("years") or []
+    series = spec.get("series") or []
+
+    def _num(v) -> bool:
+        # bool excluded on purpose: True is an int in Python, not data.
+        return (isinstance(v, (int, float)) and not isinstance(v, bool)
+                and math.isfinite(v))
+
+    bad: list[str] = []
+    non_num = [y for y in years if not _num(y)]
+    if non_num:
+        bad.append(f"years are not all finite numbers: {non_num[:4]!r}")
+    elif any(b <= a for a, b in zip(years, years[1:])):
+        bad.append(f"years are not strictly increasing: {years!r}")
+    for s in series:
+        vals = (s or {}).get("values") or []
+        non_num = [v for v in vals if not _num(v)]
+        if non_num:
+            bad.append(f"series {(s or {}).get('name')!r} values are not "
+                       f"all finite numbers: {non_num[:4]!r}")
+        elif len(vals) != len(years):
+            bad.append(f"series {(s or {}).get('name')!r} has {len(vals)} "
+                       f"values for {len(years)} years")
+    return bad
+
+
 def assess(spec: dict) -> dict:
     """Score a spec's DATA DRAMA (after unit normalization). Returns
     {ok, peak, swing, crossovers, reasons[]}. `ok` is False when the
-    numbers are too trivial or too flat to carry a video."""
-    spec = normalize(spec)
+    numbers are too trivial or too flat to carry a video — or when the
+    data is not judgeable at all (non-numeric, unsorted, mismatched; see
+    `_spec_data_problems`), which is a refusal, never a raise."""
     series = spec.get("series") or []
     if not series or not spec.get("years"):
         return {"ok": False, "peak": 0.0, "swing": 0.0, "crossovers": 0,
                 "reasons": ["no series/years"]}
+    data_bad = _spec_data_problems(spec)
+    if data_bad:
+        return {"ok": False, "peak": 0.0, "swing": 0.0, "crossovers": 0,
+                "reasons": data_bad}
+    spec = normalize(spec)
+    series = spec.get("series") or []
 
     reasons: list[str] = []
     # A single line is not a race — there is nobody to beat, so there is no

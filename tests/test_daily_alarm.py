@@ -369,6 +369,80 @@ class TestAPausedChannelSaysSo(AlarmCase):
         self.assertIn("channel_auto_paused", self.criticals(r))
 
 
+class TestSlotFillReportIsDateScoped(AlarmCase):
+    """Doctor finding 06e600e3ecaa: daily_report.json is one root file the
+    render run overwrites daily, with no report_date. The slot-fill section
+    used to read it unscoped, so check('20260811') built
+    trending_short_after_retries from August 12's rows while the dated
+    production outcome in the same result correctly said 0/6 — a
+    contradictory evidence pack pointing repair work at the wrong day.
+    Rows are now dated from their own package_path/publish_at, and a report
+    whose rows all belong to another date is treated as absent."""
+
+    OTHER = "29991216"      # the day AFTER the DATE the alarm is judging
+
+    def _report(self, rows):
+        (self.tmp / "daily_report.json").write_text(json.dumps(rows))
+
+    def _row(self, date, ok=False, backfill=False, via="package_path"):
+        r = {"title": "t", "ok": ok, "backfill": backfill}
+        if via in ("package_path", "both"):
+            r["package_path"] = (f"state/trending_packages/{date}/"
+                                 f"01_pkg.json")
+        if via in ("publish_at", "both"):
+            r["publish_at"] = (f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+                               f"T13:00:00Z")
+        return r
+
+    def test_another_days_rows_cannot_raise_this_days_alarm(self):
+        # The literal incident: the file holds only the NEXT day's short
+        # slate; judging the previous day must not inherit it.
+        self._report([self._row(self.OTHER, ok=(i < 2), backfill=(i >= 2),
+                                via="both") for i in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
+        self.assertTrue(any("none belong to" in n for n in r["notes"]),
+                        r["notes"])
+
+    def test_matching_rows_still_raise_the_alarm(self):
+        self._report([self._row(DATE, ok=(i < 2), backfill=(i >= 2))
+                      for i in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("trending_short_after_retries", self.codes(r))
+        a = next(x for x in r["alarms"]
+                 if x["code"] == "trending_short_after_retries")
+        self.assertIn("2/6", a["detail"])
+
+    def test_mixed_dates_count_only_the_requested_day(self):
+        # 2 shipped rows for DATE + 6 shipped rows for the other day: only
+        # DATE's own rows may be counted, so the day still reads short.
+        rows = ([self._row(DATE, ok=True) for _ in range(2)]
+                + [self._row(self.OTHER, ok=True) for _ in range(6)])
+        self._report(rows)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"]
+                 if x["code"] == "trending_short_after_retries")
+        self.assertIn("2/6", a["detail"])
+
+    def test_publish_at_alone_is_enough_to_date_a_row(self):
+        self._report([self._row(DATE, ok=False, via="publish_at")
+                      for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("trending_short_after_retries", self.codes(r))
+
+    def test_undatable_rows_are_not_evidence(self):
+        # No package_path, no publish_at: the row cannot be attributed to
+        # any date, so it must never be counted for THIS one.
+        self._report([{"title": "t", "ok": False} for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
+
+    def test_a_full_matching_day_stays_quiet(self):
+        self._report([self._row(DATE, ok=True) for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
+
+
 class TestAnUnusableRegistryIsTheLoudestThing(AlarmCase):
     def test_it_reports_and_stops(self):
         from tests.registry_fixture import broken_registry

@@ -157,11 +157,27 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
         raw = _call_llm(sysmsg, user)
         m = re.search(r"\{.*\}", raw, re.S)
         data = json.loads(m.group(0)) if m else {}
-        if str(data.get("verdict", "")).upper() == "REJECT":
+        # ONLY the two exact tokens the prompt asked for count as evidence.
+        # This used to be `if verdict == REJECT ... else: llm-pass`, which
+        # turned every malformed answer — `{}`, a misspelled verdict, a
+        # non-string, an unrelated JSON object — into an affirmative
+        # "the brain approved this" label (doctor finding ec1665fbf9fa,
+        # 2026-08-15). A judge told to default to REJECT when unsure must
+        # never have its garbage read as a PASS. Anything that is not an
+        # exact PASS/REJECT is UNAVAILABLE evidence: the deterministic floor
+        # above already passed (we only reach here when `reasons` is empty),
+        # so it stands, exactly as it does when no brain is reachable — but
+        # labeled honestly, never as an LLM pass.
+        v = data.get("verdict") if isinstance(data, dict) else None
+        v = v.strip().upper() if isinstance(v, str) else None
+        if v == "REJECT":
             reasons.append("brain: " + str(data.get("reason", "weak premise")))
             verdict = {"ok": False, "reasons": reasons, "judge": "llm"}
-        else:
+        elif v == "PASS":
             verdict["judge"] = "llm-pass"
+        else:
+            verdict["judge"] = ("deterministic (llm verdict unusable: "
+                                f"{str(data)[:60]!r})")
     except Exception as e:  # noqa: BLE001 — brain optional; floor already held
         verdict["judge"] = f"deterministic (llm unavailable: {str(e)[:80]})"
     return verdict

@@ -186,6 +186,65 @@ class TestEligibility(SchemaTestCase):
         self.assertFalse(ok)
         self.assertIn("values for", " ".join(why))
 
+    # -- graph data must be NUMBERS (doctor d64b063a21bd). Length checks
+    # alone let two series of strings through with an empty problem list,
+    # straight into a renderer that divides and interpolates them.
+
+    def test_graph_string_values_refused(self):
+        pkg = graph_pkg()
+        pkg["series"][0]["values"] = [str(v) for v in
+                                      pkg["series"][0]["values"]]
+        ok, why = buf.eligible(pkg)
+        self.assertFalse(ok)
+        self.assertIn("non-numeric", " ".join(why))
+
+    def test_graph_nan_and_inf_refused(self):
+        for poison in (float("nan"), float("inf")):
+            pkg = graph_pkg()
+            pkg["series"][1]["values"][2] = poison
+            ok, why = buf.eligible(pkg)
+            self.assertFalse(ok, poison)
+            self.assertIn("non-finite", " ".join(why))
+
+    def test_graph_string_years_refused(self):
+        pkg = graph_pkg()
+        pkg["years"] = [str(y) for y in pkg["years"]]
+        ok, why = buf.eligible(pkg)
+        self.assertFalse(ok)
+        self.assertIn("years", " ".join(why))
+
+    def test_graph_unsorted_years_refused(self):
+        pkg = graph_pkg()
+        pkg["years"] = list(reversed(pkg["years"]))
+        ok, why = buf.eligible(pkg)
+        self.assertFalse(ok)
+        self.assertIn("strictly increasing", " ".join(why))
+
+    def test_a_crashing_drama_gate_refuses_the_package(self):
+        """The old blanket `except: pass` read every assess() crash as
+        'engine absent' and validated the package. An unjudged graph is
+        unproven — the crash must refuse it and be named."""
+        from unittest import mock
+        from engines import chart_race
+        pkg = graph_pkg()
+        with mock.patch.object(chart_race, "assess",
+                               side_effect=RuntimeError("boom")):
+            ok, why = buf.eligible(pkg)
+        self.assertFalse(ok)
+        self.assertIn("CRASHED", " ".join(why))
+
+    def test_a_missing_engine_refuses_the_package(self):
+        """Engine absence is named apart from a crash, and also refuses —
+        a fail-closed gate with no judge holds everything (CLAUDE.md)."""
+        import sys as _sys
+        from unittest import mock
+        pkg = graph_pkg()
+        with mock.patch.dict(_sys.modules, {"engines": None,
+                                            "engines.chart_race": None}):
+            ok, why = buf.eligible(pkg)
+        self.assertFalse(ok)
+        self.assertIn("unavailable", " ".join(why))
+
     def test_all_problems_reported_at_once(self):
         pkg = reddit_pkg()
         pkg["script"] = "Yesterday it happened."      # stale AND too short

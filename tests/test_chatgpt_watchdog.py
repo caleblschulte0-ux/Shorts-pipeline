@@ -283,5 +283,154 @@ class TestTheAlarmReportsIt(unittest.TestCase):
         self.assertNotEqual(codes.get("chatgpt_exchange_silent"), "critical")
 
 
+class TestTheWorkflowDoesNotSwallowThePersist(unittest.TestCase):
+    """Doctor finding 09d56163c745: the persist step appended
+    `|| echo ::warning::` to ci_commit_state.sh, so on an all-green day
+    (judge rc=0) a rejected push left NO durable verdict and the workflow
+    still concluded green — but the committed record is this workflow's
+    entire purpose. Text-level pins on the yml, since a GitHub step's
+    exit-code plumbing cannot be executed here."""
+
+    WF = (ROOT / ".github" / "workflows" / "chatgpt_watchdog.yml").read_text()
+
+    def _persist_block(self):
+        start = self.WF.index("Persist the verdicts")
+        return self.WF[start:self.WF.index("- name:", start)]
+
+    def test_the_persist_step_still_calls_the_one_commit_path(self):
+        self.assertIn("ci_commit_state.sh", self._persist_block())
+        self.assertIn("state/chatgpt_tasks", self._persist_block())
+
+    def test_a_persist_failure_is_not_reduced_to_a_warning(self):
+        block = self._persist_block()
+        self.assertNotIn("||", block,
+                         "the persist exit code is being swallowed again")
+        self.assertNotIn("::warning::", block,
+                         "a failed verdict commit must fail the step, "
+                         "not warn")
+
+    def test_a_missing_artifact_is_still_reported_after_a_persist_failure(self):
+        """Both failures must be visible — the artifact verdict cannot be
+        skipped just because the commit step failed first."""
+        self.assertIn("always() && steps.judge.outputs.rc != '0'", self.WF)
+
+
+class TestPersistExitCodesAreHonest(unittest.TestCase):
+    """The other half of finding 09d56163c745: fault-injection on
+    scripts/ci_commit_state.sh itself, run against a real local bare
+    remote. The contract every caller (this watchdog, the alarms, the
+    doctor) relies on: exit 0 ONLY when the state is durable on the remote
+    (pushed, or genuinely nothing to commit); exit nonzero for a failed
+    commit or a push that never landed. Before the fix, a `git commit`
+    failure fell through to the push loop, which happily pushed the
+    unchanged HEAD and reported success — state lost, exit 0."""
+
+    SCRIPT = ROOT / "scripts" / "ci_commit_state.sh"
+
+    def setUp(self):
+        import subprocess
+        import tempfile
+        self.sp = subprocess
+        self.tmp = Path(tempfile.mkdtemp(prefix="persist-"))
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.origin = self.tmp / "origin.git"
+        self.work = self.tmp / "work"
+        self._git(["init", "--bare", "-b", "main", str(self.origin)],
+                  cwd=self.tmp)
+        self._git(["clone", str(self.origin), str(self.work)], cwd=self.tmp)
+        self._git(["config", "user.name", "t"], cwd=self.work)
+        self._git(["config", "user.email", "t@t"], cwd=self.work)
+        (self.work / "seed.txt").write_text("seed")
+        self._git(["add", "seed.txt"], cwd=self.work)
+        self._git(["commit", "-m", "seed"], cwd=self.work)
+        self._git(["push", "origin", "HEAD:main"], cwd=self.work)
+
+    def _git(self, args, cwd):
+        r = self.sp.run(["git", *args], cwd=cwd, capture_output=True,
+                        text=True)
+        self.assertEqual(r.returncode, 0, f"git {args}: {r.stderr}")
+        return r
+
+    def _persist(self, *paths, msg="persist test [skip ci]"):
+        import os
+        return self.sp.run(
+            ["bash", str(self.SCRIPT), msg, *paths], cwd=self.work,
+            capture_output=True, text=True,
+            env={**os.environ, "CI_COMMIT_BRANCH": "main"})
+
+    def _remote_has(self, relpath):
+        r = self.sp.run(["git", "--git-dir", str(self.origin), "cat-file",
+                         "-e", f"main:{relpath}"], capture_output=True)
+        return r.returncode == 0
+
+    def test_a_clean_no_change_stays_exit_zero(self):
+        r = self._persist("state/nothing")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("nothing to commit", r.stdout)
+
+    def test_a_real_change_is_pushed_and_exit_zero(self):
+        d = self.work / "state" / "chatgpt_tasks" / "20260812"
+        d.mkdir(parents=True)
+        (d / "media.json").write_text("{}")
+        r = self._persist("state/chatgpt_tasks")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertTrue(self._remote_has("state/chatgpt_tasks/20260812/"
+                                         "media.json"),
+                        "exit 0 but the verdict never reached the remote")
+
+    def test_a_commit_failure_with_staged_changes_is_exit_nonzero(self):
+        """The swallowed shape: commit fails (here via a pre-commit hook),
+        the push loop pushes the unchanged HEAD 'successfully', and the
+        old script exited 0 with the verdict lost."""
+        hook = self.work / ".git" / "hooks" / "pre-commit"
+        hook.write_text("#!/bin/sh\nexit 1\n")
+        hook.chmod(0o755)
+        d = self.work / "state" / "chatgpt_tasks" / "20260812"
+        d.mkdir(parents=True)
+        (d / "media.json").write_text("{}")
+        r = self._persist("state/chatgpt_tasks")
+        self.assertNotEqual(r.returncode, 0,
+                            "a failed commit exited 0 — the verdict was "
+                            "silently lost")
+        self.assertIn("commit failed", r.stdout + r.stderr)
+        self.assertFalse(self._remote_has("state/chatgpt_tasks/20260812/"
+                                          "media.json"))
+
+    def test_a_push_race_is_union_merged_and_still_lands(self):
+        """The retry loop must survive the commit-guard: a non-fast-forward
+        race is recovered, both sides land, exit 0."""
+        other = self.tmp / "other"
+        self._git(["clone", str(self.origin), str(other)], cwd=self.tmp)
+        self._git(["config", "user.name", "o"], cwd=other)
+        self._git(["config", "user.email", "o@o"], cwd=other)
+        (other / "theirs.txt").write_text("theirs")
+        self._git(["add", "theirs.txt"], cwd=other)
+        self._git(["commit", "-m", "theirs"], cwd=other)
+        self._git(["push", "origin", "HEAD:main"], cwd=other)
+
+        d = self.work / "state" / "chatgpt_tasks" / "20260812"
+        d.mkdir(parents=True)
+        (d / "media.json").write_text("{}")
+        r = self._persist("state/chatgpt_tasks")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertTrue(self._remote_has("state/chatgpt_tasks/20260812/"
+                                         "media.json"))
+        self.assertTrue(self._remote_has("theirs.txt"),
+                        "the race recovery lost the other side's commit")
+
+    def test_a_persistently_rejected_push_is_exit_nonzero(self):
+        """5 attempts, then an honest failure — never a green lie."""
+        hook = self.origin / "hooks" / "pre-receive"
+        hook.write_text("#!/bin/sh\necho rejected >&2\nexit 1\n")
+        hook.chmod(0o755)
+        d = self.work / "state" / "chatgpt_tasks" / "20260812"
+        d.mkdir(parents=True)
+        (d / "media.json").write_text("{}")
+        r = self._persist("state/chatgpt_tasks")
+        self.assertNotEqual(r.returncode, 0,
+                            "a push that never landed exited 0")
+        self.assertIn("failed to push", r.stdout + r.stderr)
+
+
 if __name__ == "__main__":
     unittest.main()

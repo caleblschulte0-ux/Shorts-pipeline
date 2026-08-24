@@ -16,6 +16,8 @@ Three properties keep this useful rather than becoming a file nobody opens:
 """
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import re
 import shutil
@@ -23,6 +25,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
@@ -435,6 +438,136 @@ class TestThePromptsMatchTheCode(DoctorCase):
 
     def test_it_forbids_editing_code(self):
         self.assertIn("NEVER edit", self.TEXT)
+
+
+class TestReportLevelOutcome(DoctorCase):
+    """Doctor finding bc0647fe9257: doctor.yml captured the ingest exit
+    status under `set +e` and nothing ever consumed it, so a wholly
+    unusable report — unreadable JSON, wrong schema, zero ingestible
+    findings — sat committed on main contributing nothing while the
+    workflow stayed green. `report_level` is the structured verdict the
+    workflow now consumes: per-finding editorial rejection is the gate
+    working (ok); report-level failure is red."""
+
+    def test_a_fully_accepted_report_is_ok(self):
+        lvl = doctor.report_level(doctor.validate_report(report(finding())))
+        self.assertEqual(lvl, {"status": "ok", "why": []})
+
+    def test_editorial_trimming_beside_acceptances_stays_ok(self):
+        # one accepted + its in-report duplicate rejected — the gate working
+        res = doctor.validate_report(report(finding(), finding()))
+        self.assertEqual(res["counts"]["rejected"], 1)
+        self.assertEqual(doctor.report_level(res)["status"], "ok")
+
+    def test_the_mandated_empty_report_is_ok(self):
+        """PROMPTS.md tells ChatGPT to file even with nothing new, because
+        a missing report is ambiguous — that must never read as failure."""
+        res = doctor.validate_report({"schema": doctor.SCHEMA,
+                                      "date": "20260824",
+                                      "summary": "nothing new",
+                                      "findings": []})
+        self.assertEqual(doctor.report_level(res)["status"], "ok")
+
+    def test_findings_present_but_none_ingestible_is_failed(self):
+        lvl = doctor.report_level(
+            doctor.validate_report(report(finding(evidence="thin"))))
+        self.assertEqual(lvl["status"], "failed")
+        self.assertTrue(lvl["why"], "a failure with no reason teaches "
+                                    "nothing")
+
+    def test_a_wrong_top_level_schema_is_failed(self):
+        res = doctor.validate_report(report(finding(), schema="bogus/v9"))
+        self.assertEqual(doctor.report_level(res)["status"], "failed")
+
+    def test_junk_input_is_failed_not_a_crash(self):
+        for junk in (None, [], "string"):
+            self.assertEqual(
+                doctor.report_level(doctor.validate_report(junk))["status"],
+                "failed", repr(junk))
+
+    def test_an_unaddressed_critical_fails_the_report_level_too(self):
+        """The enforced editorial refusal (see validate_report and
+        tests/test_doctor_managing_editor.py) is DELIBERATELY red: the
+        operator has to see, the same day, that the reviewer walked past a
+        channel that is down. It fails the run only after the evidence and
+        comment steps — the yml ordering test below pins that."""
+        doctor.EVIDENCE.write_text(json.dumps({"alarm": {"alarms": [
+            {"code": "no_posts_explainer", "severity": "critical"}]}}))
+        res = doctor.validate_report(report(finding()))
+        lvl = doctor.report_level(res)
+        self.assertEqual(lvl["status"], "failed")
+        self.assertIn("no_posts_explainer", " ".join(lvl["why"]))
+
+    def test_an_acknowledged_critical_does_not_fail_it(self):
+        doctor.EVIDENCE.write_text(json.dumps({"alarm": {"alarms": [
+            {"code": "no_posts_explainer", "severity": "critical"}]}}))
+        res = doctor.validate_report(
+            {**report(finding()),
+             "alarm_ack": {"no_posts_explainer":
+                           "already filed as 3f2a1b9c, ruled in_progress"}})
+        self.assertEqual(doctor.report_level(res)["status"], "ok")
+
+    # ---- the CLI carries the verdict as its exit code -------------------
+    def _cli(self, argv):
+        with mock.patch.object(sys, "argv", ["doctor.py", *argv]), \
+                contextlib.redirect_stdout(io.StringIO()) as buf:
+            rc = doctor.main()
+        return rc, buf.getvalue()
+
+    def test_unreadable_json_exits_nonzero_and_says_so(self):
+        bad = self.tmp / "bad.json"
+        bad.write_text("{this is not json")
+        rc, out = self._cli(["ingest", str(bad)])
+        self.assertEqual(rc, 1)
+        self.assertIn("unreadable JSON", out)
+
+    def test_the_cli_exit_code_matches_the_report_level(self):
+        good = self.tmp / "good.json"
+        good.write_text(json.dumps(report(finding())))
+        rc, out = self._cli(["ingest", str(good)])
+        self.assertEqual(rc, 0, out)
+        self.assertIn("report-level: OK", out)
+
+        allrej = self.tmp / "allrej.json"
+        allrej.write_text(json.dumps(report(finding(evidence="thin"))))
+        rc, out = self._cli(["ingest", str(allrej)])
+        self.assertEqual(rc, 1, out)
+        self.assertIn("report-level: FAILED", out)
+
+
+class TestTheWorkflowConsumesTheIntakeStatus(unittest.TestCase):
+    """The yml half of bc0647fe9257, pinned at text level (the repo's
+    established style for workflow contracts — see test_retro.py)."""
+
+    WF = (ROOT / ".github" / "workflows" / "doctor.yml").read_text()
+
+    def test_the_captured_status_is_real_not_tees(self):
+        """`python … | tee …; echo status=$?` without pipefail records
+        tee's exit code — always 0. The status output was fiction."""
+        ingest = self.WF[self.WF.index("Validate and ingest it"):
+                         self.WF.index("Write the evidence pack")]
+        self.assertIn("pipefail", ingest)
+        self.assertIn('echo "status=$?"', ingest)
+
+    def test_a_report_level_failure_fails_the_run(self):
+        idx = self.WF.index("Fail the run on a report-level intake failure")
+        tail = self.WF[idx:]
+        self.assertIn("exit 1", tail)
+        # gated on the ingest status, and only when a report landed
+        step_if = self.WF[self.WF.rindex("if:", 0, idx + 200):idx + 400]
+        self.assertIn("steps.ingest.outputs.status != '0'", self.WF)
+        self.assertIn("steps.find.outputs.report != ''", step_if)
+
+    def test_the_verdict_step_runs_last_so_feedback_still_goes_out(self):
+        """A failing report must not stop the evidence pack, the persist,
+        or the teaching comment — the day goes red AFTER the reviewer has
+        been told why."""
+        fail_at = self.WF.index("Fail the run on a report-level")
+        for earlier in ("Write the evidence pack", "Persist run output",
+                        "Nudge the tracking issue"):
+            self.assertLess(self.WF.index(earlier), fail_at,
+                            f"'{earlier}' must run before the intake "
+                            f"verdict fails the job")
 
 
 class TestNothingIsEverApplied(unittest.TestCase):
