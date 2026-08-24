@@ -127,12 +127,14 @@ def _publish_slots() -> list[tuple[int, int]]:
 
 
 def load_log() -> dict:
-    if LOG_PATH.exists():
-        try:
-            return json.loads(LOG_PATH.read_text())
-        except json.JSONDecodeError:
-            pass
-    return {"posted": []}
+    # FAIL CLOSED on corruption. This used to swallow JSONDecodeError and
+    # return the empty default, so a truncated/mis-merged posted log read as
+    # "nothing ever posted": posted_titles() stops guarding, every slot
+    # re-uploads, and save_log() then writes today's handful OVER the whole
+    # history. A missing file is a first run and stays fine; a corrupt file
+    # raises CorruptStateError naming the file and the repair.
+    from shared.fsutil import load_state_json
+    return load_state_json(LOG_PATH, {"posted": []}, expect_type=dict)
 
 
 def save_log(log: dict) -> None:
@@ -715,10 +717,12 @@ def posted_titles() -> set[str]:
     gap that fallback serves day one's slate 24h later, straight past the
     6-hour window, and re-uploads every video. This is the title-level guard
     that makes the stale-slate path safe."""
-    try:
-        log = load_log()
-    except Exception:                                # noqa: BLE001
-        return set()
+    # No try/except here on purpose: load_log() fails CLOSED on a corrupt
+    # file, and that refusal must propagate. This function IS the re-upload
+    # guard, so "couldn't read the log" can never be allowed to mean
+    # "nothing was ever posted" — that was the old swallow, and it turned a
+    # corrupt ledger into a full catalogue re-upload.
+    log = load_log()
     out = set()
     for e in log.get("posted", []) or []:
         for key in ("title", "topic"):

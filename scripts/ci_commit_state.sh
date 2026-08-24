@@ -64,10 +64,23 @@ for attempt in 1 2 3 4 5; do
     rel="${rel#./}"
     THEIRS=$(mktemp)
     git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '{}' > "$THEIRS"
+    # A merge failure means a side is CORRUPT (merge_posted_log fails
+    # closed on unparseable input). The old fallback here — cp OURS over
+    # the merge target — was exactly the silent mass-drop the union exists
+    # to prevent, and when OUR copy was the corrupt side it pushed garbage
+    # over the good remote ledger. Flag and refuse instead; the while runs
+    # in a pipeline subshell, so a plain `exit` would never reach the
+    # caller — hence the flag file.
     python3 scripts/merge_posted_log.py "$THEIRS" "$SAVE/$rel" "$rel" \
-      || cp "$SAVE/$rel" "$rel"
+      || { echo "::error::[persist] union-merge failed for $rel — refusing to overwrite either side" >&2
+           touch "$SAVE/.merge_failed"; }
     rm -f "$THEIRS"
   done
+  if [ -e "$SAVE/.merge_failed" ]; then
+    rm -rf "$SAVE"
+    echo "::error::[persist] a dedupe ledger could not be union-merged; state NOT pushed. Repair the corrupt side (git history has the last good copy) and re-run." >&2
+    exit 1
+  fi
   rm -rf "$SAVE"
   for p in "$@"; do
     git add -- "$p" 2>/dev/null || true

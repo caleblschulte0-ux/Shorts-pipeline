@@ -176,10 +176,16 @@
       ]
     },
     "9943424b8251": {
-      "verdict": "doing",
-      "date": "20260811",
-      "because": "Confirmed: tests/test_production_outcome.py's counter_step()/stop_step() helpers slice daily.yml as text and assert substrings, proving wording survives but not that the YAML is valid or the branch conditions actually bind. Overlaps with 69a886343361 (same file) \u2014 worth doing together in one future pass that moves the policy into testable functions.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the daily failure-counter policy extracted verbatim to scripts/daily_failure_counter.sh (RUN_OUTCOME env-wired) and tests/test_production_outcome.py now EXECUTES the counter, stop and preflight-backoff policies against fixture state instead of pinning tokens; preflight/stop stay inline because test_split_worker executes their inline text directly \u2014 same doctor ask, different seam. In this session's PR.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: tests/test_production_outcome.py's counter_step()/stop_step() helpers slice daily.yml as text and assert substrings, proving wording survives but not that the YAML is valid or the branch conditions actually bind. Overlaps with 69a886343361 (same file) \u2014 worth doing together in one future pass that moves the policy into testable functions."
+        }
+      ]
     },
     "75af24a46374": {
       "verdict": "doing",
@@ -627,10 +633,16 @@
       ]
     },
     "d65eddf69fba": {
-      "verdict": "doing",
-      "date": "20260821",
-      "because": "Verified in shared/fsutil.py: load_json() (and the ad hoc loaders in scripts/render_cinematic.py, scripts/build_longform.py) collapse missing-file and corrupt-file into the same empty default, which the module's own header calls dedupe-blind/duplicate-upload risk for posted ledgers. Real architectural gap, but this is a multi-file migration (typed authoritative loader + backup/recovery path + per-ledger risk migration + new corruption tests) that deserves a dedicated session, not a same-run patch alongside today's other fixes. Accepted as long-term direction, queued.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: shared/fsutil.load_state_json fails CLOSED on corruption (preserves .corrupt sidecar, names the repair) while absence still returns the default; six authoritative posted-log/ledger readers routed through it; merge_posted_log and ci_commit_state.sh no longer clobber on a failed union; rollup_state keeps unreadable originals. Pinned-fail-open test flipped to fail-closed. In this session's PR.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in shared/fsutil.py: load_json() (and the ad hoc loaders in scripts/render_cinematic.py, scripts/build_longform.py) collapse missing-file and corrupt-file into the same empty default, which the module's own header calls dedupe-blind/duplicate-upload risk for posted ledgers. Real architectural gap, but this is a multi-file migration (typed authoritative loader + backup/recovery path + per-ledger risk migration + new corruption tests) that deserves a dedicated session, not a same-run patch alongside today's other fixes. Accepted as long-term direction, queued."
+        }
+      ]
     },
     "ab128687aaf7": {
       "verdict": "done",
@@ -746,6 +758,38 @@
       "date": "20260823",
       "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
       "history": []
+    },
+    "03ed6ae9f195": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Confirmed live: no shell: in auto-merge.yml so the default bash -e (no pipefail) let 'unittest | tail -40' return tail's zero. Fixing in this session: pipefail on the step + tests/test_automerge_gate.py executes a failing producer through the exact pipe shape.",
+      "history": []
+    },
+    "abfb291b5f65": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: unittest discovery collects 0 tests from test_viz_director.py/test_viz_scene.py (free functions, no TestCase). Convert + wire into the preflight next build batch.",
+      "history": []
+    },
+    "808fcf2f9b8e": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: expression-tests.yml is not a dependency of the squash merge and its PR paths omit pro_render.py. Wire as a required pre-merge job in a coming batch.",
+      "history": []
+    },
+    "268b809a2bbb": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Right direction (four incompatible test topologies) but it rides on abfb291b5f65 and the runner inventory design; revisit after the orphan modules are wired.",
+      "history": [],
+      "revisit_after": "20260923"
+    },
+    "a703af75ca3d": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
+      "history": [],
+      "revisit_after": "20260923"
     }
   }
 }

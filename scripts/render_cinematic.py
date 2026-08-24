@@ -249,11 +249,14 @@ def main():
     ap.add_argument("--publish-at",default=""); ap.add_argument("--channel",default="explainer")
     a=ap.parse_args()
     # Dedupe against the explainer posted-log BEFORE rendering: a re-dispatch
-    # of the workflow must not upload the same story twice.
-    from shared.fsutil import atomic_write_json, load_json
+    # of the workflow must not upload the same story twice. load_state_json,
+    # not load_json: a corrupt log must REFUSE the run (CorruptStateError),
+    # because read-as-empty here means the dedupe check passes vacuously and
+    # the write below replaces the whole history. Missing = first run = fine.
+    from shared.fsutil import atomic_write_json, load_state_json
     log_path=ROOT/"state"/"explainer_posted_log.json"
     if a.upload:
-        log=load_json(log_path, {"posted": {}})
+        log=load_state_json(log_path, {"posted": {}}, expect_type=dict)
         if a.story in log.get("posted", {}):
             print(f"[cine] {a.story} already in posted log — skipping")
             return 0
@@ -271,7 +274,9 @@ def main():
         print(f"[cine] uploaded: {res}")
         # Record the upload immediately — an upload that isn't logged is a
         # duplicate waiting to happen. The workflow persists this file.
-        log=load_json(log_path, {"posted": {}})
+        # Strict re-read for the same reason as above: appending to a
+        # corrupt-read-as-empty log would WRITE that empty log back.
+        log=load_state_json(log_path, {"posted": {}}, expect_type=dict)
         log.setdefault("posted", {})[a.story]={
             "url": getattr(res, "url", None) or str(res),
             "title": meta["title"],

@@ -24,6 +24,33 @@ from data_learning import charts as C                       # noqa: E402
 from data_learning.insights import (Insight, DataPoint,     # noqa: E402
                                     Source)
 
+# These tests pin GEOMETRY — the clamp's arithmetic and where the host is
+# baked — against what matplotlib actually draws. They must not also depend
+# on the SVG rasterizer: the auto-merge tests job has neither cairosvg nor
+# a Playwright chromium, so there `_host_img` returns None, `_bake_host`
+# silently bakes nothing, and the geo assertions fail for a reason that has
+# nothing to do with the contract under test (first seen the day pipefail
+# made this job's failures visible at all). A fixed 300x300 opaque raster
+# exercises the identical placement arithmetic deterministically in any
+# environment; REAL rasterization is proven by preview_explainer.yml's
+# mascot primitive gate and every preview render.
+_REAL_HOST_IMG = None
+
+
+def setUpModule():
+    global _REAL_HOST_IMG
+    import numpy as np
+    _REAL_HOST_IMG = C._host_img
+    stub = np.zeros((300, 300, 4), dtype=float)
+    stub[..., 3] = 1.0
+    C._host_img = lambda action, phase: stub
+    C._HOST_IMG_CACHE.clear()
+
+
+def tearDownModule():
+    C._host_img = _REAL_HOST_IMG
+    C._HOST_IMG_CACHE.clear()
+
 SRC = Source(name="WDI", publisher="World Bank", url="u")
 RANKED = [("Slovenia", 101756.0), ("Malawi", 59978.0), ("Costa Rica", 23435.0),
           ("Iceland", 20897.0), ("Estonia", 20163.0)]
