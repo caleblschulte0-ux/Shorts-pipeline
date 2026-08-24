@@ -6,7 +6,12 @@
   "shots": [
     {
       "phrase": "stealing my lunch from the shared fridge",
-      "query": "office fridge shared kitchen"
+      "query": "office fridge shared kitchen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+      "media_origin": "chatgpt",
+      "media_file_id": "1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+      "media_sha256": "9d5d379c2c9c3c0e46626857e6ab595b2ed81770f9bfb6a906d10fd1ec6f8e8b",
+      "media_bytes": 1231466
     },
     {
       "phrase": "hottest ghost pepper sauce",
@@ -15,31 +20,65 @@
       "pin_context": "spicy hot pepper condiment food",
       "news_query": "ghost pepper sauce",
       "news_angle": "Ghost pepper sauce is secretly layered into a turkey sandwich to catch an office lunch thief.",
-      "image_url": "https://live.staticflickr.com/3669/9707131320_582a21f795_b.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+      "media_origin": "chatgpt",
+      "media_file_id": "1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+      "media_sha256": "467cdd2c9e64cb3f9c7ab2899c1d3ec8376cb4bac825c5a5d875be9dc397f2f1",
+      "media_bytes": 1133272
     },
     {
       "phrase": "layered it inside a turkey sandwich",
-      "query": "sandwich making kitchen counter"
+      "query": "sandwich making kitchen counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+      "media_origin": "chatgpt",
+      "media_file_id": "1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+      "media_sha256": "0cfe90aa417457de543064c3e2be61697a37138afc8c3ea179391e34d51249a3",
+      "media_bytes": 1455685
     },
     {
       "phrase": "wrote my name on the bag",
-      "query": "marker writing paper bag"
+      "query": "marker writing paper bag",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+      "media_sha256": "81636c7103ef63116510fdef6231b57bddfb444db7a5c6e85e6e7f0f34db7ce2",
+      "media_bytes": 1391480
     },
     {
       "phrase": "coughing violently in the break room",
-      "query": "person coughing office break room"
+      "query": "person coughing office break room",
+      "image_url": "https://drive.google.com/uc?export=download&id=11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+      "media_origin": "chatgpt",
+      "media_file_id": "11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+      "media_sha256": "6b2da448ccdad09ab1caa79f4aae8773ecea16136ef8adde327b3e1563d3ef3e",
+      "media_bytes": 1268518
     },
     {
       "phrase": "chugging every cup of water",
-      "query": "water cooler office drinking"
+      "query": "water cooler office drinking",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+      "media_sha256": "72638b78227acc5de236464e2cf1eb160cc518f57569a1261022f4bbe527a368",
+      "media_bytes": 1363957
     },
     {
       "phrase": "red-faced, eyes streaming",
-      "query": "flustered woman office face"
+      "query": "flustered woman office face",
+      "image_url": "https://drive.google.com/uc?export=download&id=1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+      "media_origin": "chatgpt",
+      "media_file_id": "1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+      "media_sha256": "c0343463328371e4516916547edbc898e02338016a59bd2084416f99d3a44e48",
+      "media_bytes": 1327073
     },
     {
       "phrase": "handwritten sign above the fridge",
-      "query": "warning sign office fridge"
+      "query": "warning sign office fridge",
+      "image_url": "https://drive.google.com/uc?export=download&id=1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+      "media_origin": "chatgpt",
+      "media_file_id": "1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+      "media_sha256": "34d3fd3da7331b3084b5ee9d1db7b00212cca4862c2b0fa6380242e2bd373fdf",
+      "media_bytes": 926430
     }
   ],
   "punches": [
