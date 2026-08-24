@@ -4771,14 +4771,27 @@
       "ts": "2026-08-24T11:46:01.745638+00:00"
     },
     "clip-20260824-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/F-kLtcLZ3Jc",
       "title": "Ludwig Grinds 100 Hours Just To Gain Two Elo",
       "kind": "twitch_clip",
-      "ts": "2026-08-24T11:50:55.507911+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-24T11:51:00.161769+00:00",
+      "uploaded_at": "2026-08-24T11:51:00.161799+00:00",
+      "publish_at": "2026-08-24T18:30:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
+      "streamer": "ludwig",
+      "series": "fail",
+      "hook": "100 HOURS FOR JUST TWO ELO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 24989,
+      "banger": 0.4,
+      "cut": {
+        "start": 2.6,
+        "end": 23.3
+      },
+      "director_cut": true
     },
     "rejected-wealthyobliviousreindeerninjagrumpy-14yyxsgmzrrx_ujm": {
       "source_url": "https://www.twitch.tv/kaicenat/clip/WealthyObliviousReindeerNinjaGrumpy-14yYXsgMzrRx_ujm",
@@ -4836,13 +4849,36 @@
       "director_cut": true
     },
     "clip-20260824-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/RockySuaveJayVoteNay-N3CPsPCu_SKJH7uK",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/xgUJqRY6YTw",
       "title": "Rayasianboy Loses It Then Cancels The Whole Meetup",
       "kind": "twitch_clip",
-      "ts": "2026-08-24T12:12:46.340121+00:00",
+      "ts": "2026-08-24T12:12:52.788958+00:00",
+      "uploaded_at": "2026-08-24T12:12:52.788978+00:00",
+      "publish_at": "2026-08-24T23:00:00Z",
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/RockySuaveJayVoteNay-N3CPsPCu_SKJH7uK",
+      "streamer": "rayasianboy",
+      "series": "chaos",
+      "hook": "HE JUST CANCELED THE MEETUP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1991,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260824-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RealSmokyWasabiStoneLightning-jHuAlQ9OIQFQYZ0Z",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Watches Joel Get Killed In This Scene",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:40:11.212693+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
