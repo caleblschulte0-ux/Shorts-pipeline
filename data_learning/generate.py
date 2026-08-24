@@ -142,14 +142,26 @@ def main() -> int:
 
         errors = qa.validate(pkg, source_allowlist=allowlist)
         out_path = out_dir / f"{i:02d}_{slug}.json"
-        out_path.write_text(json.dumps(pkg, indent=2) + "\n")
 
         if errors:
+            # QUARANTINE, don't publish (doctor finding 5171aa14cc8d: this
+            # used to write the package into out_dir BEFORE looking at the
+            # QA result, so a failing package sat beside the passing ones
+            # where any downstream glob would render it). The evidence is
+            # kept — same filename, one directory down — the consumable
+            # directory only ever holds packages QA passed.
+            qdir = out_dir / "quarantine"
+            qdir.mkdir(parents=True, exist_ok=True)
+            (qdir / out_path.name).write_text(
+                json.dumps({"qa_errors": errors, "package": pkg},
+                           indent=2) + "\n")
             n_fail += 1
-            print(f"[{slug}] QA FAIL ({len(errors)}):", file=sys.stderr)
+            print(f"[{slug}] QA FAIL ({len(errors)}) — quarantined:",
+                  file=sys.stderr)
             for e in errors:
                 print(f"    - {e}", file=sys.stderr)
         else:
+            out_path.write_text(json.dumps(pkg, indent=2) + "\n")
             n_ok += 1
             chart_note = "with chart" if pkg["shots"][1].get("image_url") else "no chart"
             print(f"[{slug}] ok ({chart_note}) -> {out_path.relative_to(REPO)}")
