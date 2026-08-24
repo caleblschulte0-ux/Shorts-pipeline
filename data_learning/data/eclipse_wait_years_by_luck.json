@@ -1,0 +1,20 @@
+{
+  "key": "eclipse_wait_years_by_luck",
+  "title": "Years between total eclipses at the same spot, by luck",
+  "unit": "years",
+  "geography": "Global (with a US example)",
+  "time_coverage": "2017-2024 example vs long-run average",
+  "source": {
+    "name": "Eclipse path recurrence data",
+    "publisher": "Great American Eclipse / NASA Eclipse Website",
+    "url": "https://www.greatamericaneclipse.com",
+    "officiality": "reference",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Carbondale/Makanda, Illinois sat in the path of totality for BOTH the Aug 21, 2017 and Apr 8, 2024 total solar eclipses -- just 7 years apart, which Southern Illinois University event staff called 'literally unheard of.' The global average wait for any one spot is about 375 years (Jean Meeus 1982 / NASA eclipse catalog); some unlucky locations wait over 1,000 years between totalities.",
+  "points": [
+    {"label": "Carbondale, IL (2017 & 2024)", "value": 7},
+    {"label": "Global average", "value": 375},
+    {"label": "Unluckiest spots", "value": 1000}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "organ_waitlist_by_organ",
+  "title": "US organ transplant waiting list, by organ needed (count)",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2026 (current)",
+  "source": {
+    "name": "OPTN national transplant waiting list",
+    "publisher": "Organ Procurement and Transplantation Network (OPTN) / UNOS",
+    "url": "https://www.organdonor.gov/learn/organ-donation-statistics",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Total waiting list is 109,817 people; kidneys alone account for 95,492 of them (nearly 9 in 10). Remaining organs shown combined for scale. Breakdown as of the OPTN's most recent 2026 reporting.",
+  "points": [
+    {"label": "Kidney", "value": 95492},
+    {"label": "All other organs", "value": 14325}
+  ]
+}

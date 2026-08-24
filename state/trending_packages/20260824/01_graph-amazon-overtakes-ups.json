@@ -1,0 +1,46 @@
+{
+  "format": "graph_race",
+  "slug": "graph-amazon-overtakes-ups",
+  "title": "Amazon Built Its Own Delivery Army. Then It Won.",
+  "hook": "The Delivery Giant Nobody Saw",
+  "y_label": "US parcels delivered per year (billions)",
+  "duration": 13,
+  "source": "Pitney Bowes Parcel Shipping Index annual reports (as covered by Supply Chain Dive, Retail Dive and Modern Shipper/FreightWaves) tracking US parcel volume by carrier. Amazon Logistics (in-house last-mile delivery): 1.9B (2019), 4.2B (2020), 4.8B (2021), 4.8B (2022), 5.9B (2023), 6.3B (2024). UPS US parcel volume: 4.7B (2019), 4.9B (2020), 5.3B (2021), 5.2B (2022), 4.6B (2023), 4.7B (2024). FedEx US parcel volume: 3.0B (2019), 3.7B (2020), 4.2B (2021), 4.1B (2022), 3.9B (2023), 3.7B (2024). Amazon Logistics passed FedEx in 2020 and passed UPS in 2023 to become the largest single US parcel carrier by volume (behind only USPS).",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Amazon Logistics",
+      "color": "#FF9900",
+      "icon": "Amazon",
+      "values": [1.9, 4.2, 4.8, 4.8, 5.9, 6.3]
+    },
+    {
+      "name": "UPS",
+      "color": "#351C15",
+      "icon": "UPS",
+      "values": [4.7, 4.9, 5.3, 5.2, 4.6, 4.7]
+    },
+    {
+      "name": "FedEx",
+      "color": "#4D148C",
+      "icon": "FedEx",
+      "values": [3.0, 3.7, 4.2, 4.1, 3.9, 3.7]
+    }
+  ],
+  "hashtags": [
+    "amazon",
+    "amazonlogistics",
+    "ups",
+    "fedex",
+    "delivery",
+    "logistics",
+    "ecommerce",
+    "shipping",
+    "supplychain",
+    "packages",
+    "business",
+    "dataviz"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

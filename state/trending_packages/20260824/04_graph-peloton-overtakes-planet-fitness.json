@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-peloton-overtakes-planet-fitness",
+  "title": "Peloton Passed Planet Fitness And Stayed Ahead",
+  "hook": "The Bike That Out-Earned The Gym",
+  "y_label": "Annual revenue (billion USD)",
+  "duration": 13,
+  "source": "Peloton Interactive annual revenue from company 10-K/SEC filings, fiscal year: $0.219B (2017), $0.435B (2018), $0.915B (2019), $1.83B (2020), $4.02B (2021), $3.58B (2022), $2.80B (2023), $2.70B (2024). Planet Fitness Inc annual revenue from company 10-K/SEC filings: $0.430B (2017), $0.573B (2018), $0.689B (2019), $0.407B (2020, pandemic gym closures), $0.587B (2021), $0.937B (2022), $1.07B (2023), $1.18B (2024). Peloton's at-home fitness boom pushed its revenue past Planet Fitness's in 2019, a year before the pandemic supercharged it further; even after its post-pandemic crash, Peloton's revenue never fell back below Planet Fitness's.",
+  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Peloton",
+      "color": "#181A1D",
+      "icon": "Peloton",
+      "values": [0.219, 0.435, 0.915, 1.83, 4.02, 3.58, 2.80, 2.70]
+    },
+    {
+      "name": "Planet Fitness",
+      "color": "#7B2D8E",
+      "icon": "Planet Fitness",
+      "values": [0.430, 0.573, 0.689, 0.407, 0.587, 0.937, 1.07, 1.18]
+    }
+  ],
+  "hashtags": [
+    "peloton",
+    "planetfitness",
+    "fitness",
+    "gym",
+    "workout",
+    "homefitness",
+    "startup",
+    "business",
+    "money",
+    "pandemic",
+    "stocks",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

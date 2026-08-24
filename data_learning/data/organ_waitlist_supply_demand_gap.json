@@ -1,0 +1,19 @@
+{
+  "key": "organ_waitlist_supply_demand_gap",
+  "title": "Transplants performed vs new people added to the waitlist (count, per year)",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2025 (transplants) vs derived annual rate (waitlist additions)",
+  "source": {
+    "name": "Organ Donation Statistics",
+    "publisher": "Health Resources & Services Administration (HRSA) - organdonor.gov",
+    "url": "https://www.organdonor.gov/learn/organ-donation-statistics",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "'New people added to the waitlist' is calculated from HRSA/organdonor.gov's widely cited rate of one new person added to the national transplant waiting list every 7 minutes (525,600 minutes/year / 7 ~= 75,086/year, rounded here to 75,086). 'Transplants performed' is UNOS's actual 2025 total (49,064). The gap is why the list can't shrink even in a record year.",
+  "points": [
+    {"label": "Transplants performed (2025)", "value": 49064},
+    {"label": "New people added to waitlist (per year)", "value": 75086}
+  ]
+}

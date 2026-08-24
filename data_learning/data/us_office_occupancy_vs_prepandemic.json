@@ -1,0 +1,19 @@
+{
+  "key": "us_office_occupancy_vs_prepandemic",
+  "title": "US office attendance vs pre-pandemic levels (percent)",
+  "unit": "percent",
+  "geography": "United States (10-city barometer)",
+  "time_coverage": "Week of Dec 8, 2025",
+  "source": {
+    "name": "Back to Work Barometer",
+    "publisher": "Kastle Systems",
+    "url": "https://www.kastle.com/safety-wellness/getting-america-back-to-work/",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Kastle's barometer tracks keycard/fob swipe data across ~2,600 office buildings and 41,000 businesses in major US metros. The week of Dec 8, 2025 reading (56.3%) was the highest weekly average recorded since early 2020 -- and still barely more than half of pre-pandemic (100%) attendance.",
+  "points": [
+    {"label": "Office attendance today", "value": 56.3},
+    {"label": "Pre-pandemic baseline", "value": 100}
+  ]
+}
