@@ -1,0 +1,80 @@
+{
+  "score": 52,
+  "verdict": "block",
+  "dimensions": {
+    "hook": 2,
+    "data_demo": 2,
+    "mascot": 2,
+    "craft": 1,
+    "pace": 2,
+    "payoff": 1,
+    "temporal_craft": 2
+  },
+  "auto_fails": [
+    "decorative_mascot: From hook@0.3 to seg2:end (t=64s, ~2/3 of the runtime) Data just hovers/slides in the same spot above the 1972-1983 bars with no setup->action->payoff; only at seg4:end/payoff@-0.4 does he finally ride the falling line down to 1.4."
+  ],
+  "checks": {
+    "junk_imagery": {
+      "present": false,
+      "evidence": "No photos or AI cutouts anywhere \u2014 every beat is a native vector chart (hook@0.3 through payoff@-0.4); only the mascot rig and World Bank bars/area are on screen."
+    },
+    "decorative_mascot": {
+      "present": true,
+      "evidence": "From hook@0.3 to seg2:end (t=64s, ~2/3 of the runtime) Data just hovers/slides in the same spot above the 1972-1983 bars with no setup->action->payoff; only at seg4:end/payoff@-0.4 does he finally ride the falling line down to 1.4."
+    },
+    "bare_number_card": {
+      "present": false,
+      "evidence": "Every stat beat is a chart, not a number on a blob \u2014 seg1:end shows 5.4/5.8/6.3/7.2/8.1 inside racing bars and seg3:mid shows the 2.82 peak on a plotted line."
+    },
+    "dead_air": {
+      "present": false,
+      "evidence": "Measured longest_static_s=0.0 and max_dup_run=5 frames (~0.2s at 24fps); bars visibly lengthen between seg2:start, seg2:mid and seg2:end."
+    },
+    "empty_void": {
+      "present": false,
+      "evidence": "dark_fraction=0.0; the card fills the frame, though seg3:start has a noticeably empty upper third above the 2.8 gridline."
+    }
+  },
+  "motion": {
+    "longest_static_s": 0.0,
+    "static_at_s": null,
+    "dark_fraction": 0.0,
+    "sampled": 288
+  },
+  "temporal": {
+    "sample_fps": 24,
+    "duplicate_ratio": 0.023,
+    "effective_fps": 23.4,
+    "max_dup_run": 5,
+    "max_dup_at_s": 35.04,
+    "duration_s": 96.0
+  },
+  "judge": "headless-claude",
+  "weakest_scene": {
+    "id": "seg2",
+    "index": 2,
+    "failure_class": "unreadable_data_demo_and_repeated_layout",
+    "visible_evidence": "seg2:end renders raw 10-digit values inside the bars ('2420179648', '2783042387', '3131290264') with no thousands separators or unit scaling, and the 1972 label is clipped by the bar cap; the beat is also a third consecutive identical horizontal bar-race after seg0 and seg1, and the kicker still reads '1972 PULLS AHEAD' while 1972 is the shortest bar.",
+    "root_cause": "The rural-population series feeds unformatted absolute integers straight into the bar value labels, and the scene plan reuses the same bar_race template as the two preceding beats instead of a distinct demonstration.",
+    "repair_goal": "Re-cut seg2 as a visually different demonstration of the +1.04B rural gain \u2014 scaled labels ('2.42B' -> '3.46B') that fit inside the bar, a filling/stacking metaphor rather than a third bar race, a truthful kicker, and one Data bit (setup->action->payoff) physically tied to the growth."
+  },
+  "one_line": "Three near-identical bar races carry the first two thirds while Data hovers as a sticker, and the rural beat prints raw 10-digit numbers that overflow their bars \u2014 only the closing line-ride earns its place.",
+  "problems": [
+    "Hook (hook@0.3-hook@2.2) is a slow chart build under a plain title card: the first 2.2s are bars creeping right with the mascot drifting, no immediate 'something happened'.",
+    "Topic mismatch: the title promises urban growth but seg0/seg1 are 'Population ages 65 and above' and seg2 is 'Rural population' \u2014 the actual 1.36% story doesn't appear until seg3 at t=74s, ~77% of the way in.",
+    "seg2:end prints unformatted integers ('2420179648') inside the bars, clipping against the bar cap and the 1972 row label.",
+    "The kicker '1972 PULLS AHEAD' (hook@0.3 through seg2:end) contradicts the chart \u2014 1972 is the smallest bar in every one of the three bar beats.",
+    "Data is decorative for 65 of 96 seconds: he slides above the top two bars in seg0, seg1 and seg2 with no bit tied to the numbers.",
+    "Craft defects in the payoff: the closing callout box covers the 'Urban population growth' headline (seg4:start, payoff@-1.8, payoff@-0.4), a ghost '2.8' label floats detached above the axis (seg4:mid onward), and the source credit is duplicated at both the card footer and the frame bottom.",
+    "96s is far too long for this much repetition \u2014 two of the five beats are the same aging-share chart (seg0 and seg1 differ only in bar length)."
+  ],
+  "fixes": [
+    "Open cold on the urban-growth collapse: start seg3's line already plunging toward 1.4 with Data hanging off it, then flash back \u2014 do not open on a bar chart mid-build.",
+    "Cut seg0/seg1 down to one aging beat and give the recovered time to the urban-growth payoff so the headline stat isn't stranded at t=74s.",
+    "Format all absolute-population labels through the scaled formatter ('2.42B', '3.46B') and clamp label width to the bar so nothing overflows or collides with the year label.",
+    "Replace the '1972 PULLS AHEAD' kicker with a truthful leader read (e.g. '2025 PULLS AHEAD' or drop the kicker on non-race charts).",
+    "Re-cut seg2 with a non-bar metaphor (rural silhouettes filling a field, or a block that grows by the +1.04B delta) so three consecutive beats don't share one layout.",
+    "Give Data a real bit in each of seg0-seg2: have him push a bar to its end cap, get carried by the growing bar, or brace against the 1993 stall \u2014 setup, action, payoff.",
+    "Reflow the closing callout below the headline (or shrink it to two lines), delete the orphaned '2.8' label, and remove the duplicated source strip at the frame bottom."
+  ]
+}

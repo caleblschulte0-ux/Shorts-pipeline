@@ -1,0 +1,236 @@
+[
+  {
+    "topic": "Amazon Built Its Own Delivery Army. Then It Won.",
+    "title": "Amazon Built Its Own Delivery Army. Then It Won.",
+    "format": "graph_race",
+    "publish_at": "2026-08-24T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/C0RfI_vWiL0",
+    "error": null,
+    "elapsed_seconds": 128.1,
+    "package_path": "state/trending_packages/20260824/01_graph-amazon-overtakes-ups.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-120840_amazon_built_its_own_delivery_army__then.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Sports Betting Just Passed The Lottery",
+    "title": "Sports Betting Just Passed The Lottery",
+    "format": "graph_race",
+    "publish_at": "2026-08-24T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/pmSklvwN07E",
+    "error": null,
+    "elapsed_seconds": 109.9,
+    "package_path": "state/trending_packages/20260824/02_graph-betting-overtakes-lottery.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-121048_sports_betting_just_passed_the_lottery.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 82
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Subway Was America's Sandwich King. Chipotle Passed It.",
+    "title": "Subway Was America's Sandwich King. Chipotle Passed It.",
+    "format": "graph_race",
+    "publish_at": "2026-08-24T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video \u2014 a wrong-brand image that cannot ship.",
+    "elapsed_seconds": 113.2,
+    "package_path": "state/trending_packages/20260824/03_graph-chipotle-overtakes-subway.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-121238_subway_was_america_s_sandwich_king__chip.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video \u2014 a wrong-brand image that cannot ship.",
+      "score": 70
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Peloton Passed Planet Fitness And Stayed Ahead",
+    "title": "Peloton Passed Planet Fitness And Stayed Ahead",
+    "format": "graph_race",
+    "publish_at": "2026-08-24T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/4iuQHzdn4pY",
+    "error": null,
+    "elapsed_seconds": 123.6,
+    "package_path": "state/trending_packages/20260824/04_graph-peloton-overtakes-planet-fitness.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-121431_peloton_passed_planet_fitness_and_stayed.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 75
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Boss Enforced Dress Code, Employee Followed It Exactly",
+    "title": "Boss Enforced Dress Code, Employee Followed It Exactly",
+    "format": "reddit",
+    "publish_at": "2026-08-24T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/43VaNWDtQpA",
+    "error": null,
+    "elapsed_seconds": 251.6,
+    "package_path": "state/trending_packages/20260824/05_reddit-heat-wave-dress-code.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-121656_boss_enforced_dress_code__employee_follo.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.8,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 83
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Lunch Thief Finally Picked The Wrong Sandwich",
+    "title": "Lunch Thief Finally Picked The Wrong Sandwich",
+    "format": "reddit",
+    "publish_at": "2026-08-24T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Strong reddit-story shell \u2014 punchy post card, real illustrations, tight captions \u2014 but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.",
+    "elapsed_seconds": 233.0,
+    "package_path": "state/trending_packages/20260824/06_reddit-lunch-thief-ghost-pepper.json",
+    "source": "brain",
+    "video_path": "output/daily_20260824-122106_lunch_thief_finally_picked_the_wrong_san.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 54.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Strong reddit-story shell \u2014 punchy post card, real illustrations, tight captions \u2014 but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.",
+      "score": 75
+    },
+    "blocked": true
+  },
+  {
+    "topic": "taylor swift travis kelce wedding leak",
+    "angle": null,
+    "publish_at": "2026-08-24T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.5,
+    "backfill": true
+  },
+  {
+    "topic": "dario amodei",
+    "angle": null,
+    "publish_at": "2026-08-24T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.9,
+    "backfill": true
+  }
+]
