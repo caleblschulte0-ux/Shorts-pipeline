@@ -4730,13 +4730,54 @@
       "ts": "2026-08-24T11:40:01.895276+00:00"
     },
     "clip-20260824-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/TallFunPandaDAESuppy-fzBTU9Q97KP8ut0Z",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/WBtzd7Z2HA8",
       "title": "Jynxzi Reacts To This INSANE Standoff Scene",
       "kind": "twitch_clip",
-      "ts": "2026-08-24T11:44:06.112313+00:00",
+      "ts": "2026-08-24T11:44:12.256423+00:00",
+      "uploaded_at": "2026-08-24T11:44:12.256451+00:00",
+      "publish_at": "2026-08-24T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TallFunPandaDAESuppy-fzBTU9Q97KP8ut0Z",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "THIS SCENE HAD JYNXZI SHOOK",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3281,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 26.5
+      },
+      "director_cut": true
+    },
+    "rejected-muddyfunyogurtnotlikethis-dcyp3wdyjhovsmke": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/MuddyFunYogurtNotLikeThis-DcYP3WDYjhOvsMKE",
+      "streamer": "stableronaldo",
+      "title": "laiys almost beats bep's ass for tryna take his job",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (title exaggerates, frames show nothing h)",
+      "ts": "2026-08-24T11:44:57.670140+00:00"
+    },
+    "rejected-wimpyrenownednarwhalbabyrage-qu6ivsniw4fcwate": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WimpyRenownedNarwhalBabyRage-qU6IVsNiW4fcWAte",
+      "streamer": "xqc",
+      "title": "forsen",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (small talk about streamer, nothing happe)",
+      "ts": "2026-08-24T11:46:01.745638+00:00"
+    },
+    "clip-20260824-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
+      "story_key": null,
+      "streamer": "ludwig",
+      "title": "Ludwig Grinds 100 Hours Just To Gain Two Elo",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T11:50:55.507911+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
