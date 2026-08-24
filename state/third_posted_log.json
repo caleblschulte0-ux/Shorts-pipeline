@@ -4826,13 +4826,36 @@
       "ts": "2026-08-24T12:04:20.522720+00:00"
     },
     "clip-20260824-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/agent00/clip/AffluentPreciousJackalRuleFive-BKxho37D7VzcAItR",
-      "story_key": null,
-      "streamer": "agent00",
+      "url": "https://youtube.com/shorts/_Q7SSGp_WgI",
       "title": "Agent00 Can't Believe What Happened To His Chair",
       "kind": "twitch_clip",
-      "ts": "2026-08-24T12:07:06.547169+00:00",
+      "ts": "2026-08-24T12:07:15.049414+00:00",
+      "uploaded_at": "2026-08-24T12:07:15.049437+00:00",
+      "publish_at": "2026-08-24T21:30:00Z",
+      "source_url": "https://www.twitch.tv/agent00/clip/AffluentPreciousJackalRuleFive-BKxho37D7VzcAItR",
+      "streamer": "agent00",
+      "series": "chaos",
+      "hook": "WHAT HAPPENED TO HIS CHAIR",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7324,
+      "banger": 0.35,
+      "cut": {
+        "start": 0.0,
+        "end": 9.15
+      },
+      "director_cut": true
+    },
+    "clip-20260824-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/RockySuaveJayVoteNay-N3CPsPCu_SKJH7uK",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Loses It Then Cancels The Whole Meetup",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:12:46.340121+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
