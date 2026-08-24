@@ -511,10 +511,16 @@
       "history": []
     },
     "1207ec562569": {
-      "verdict": "doing",
-      "date": "20260818",
-      "because": "Confirmed against engines/__init__.py (parallax, lookmatch both status=active, gated=True, no decision_date) and tests/test_engine_registry_honesty.py (decision_date only required for status=experimental, gated actives exempt from consumers too). Small, well-scoped fix -- queued behind this session's top pick.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: parallax and lookmatch each carry a decision_date (2026-09-15) and a named trial with an adopt-or-demote criterion; tests/test_engine_registry_honesty.py now requires lifecycle metadata on every consumerless gated-active engine AND fails the suite the day after any decision date passes \u2014 expiry is deliberately loud, so the waiting room cannot become a residence.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260818",
+          "because": "Confirmed against engines/__init__.py (parallax, lookmatch both status=active, gated=True, no decision_date) and tests/test_engine_registry_honesty.py (decision_date only required for status=experimental, gated actives exempt from consumers too). Small, well-scoped fix -- queued behind this session's top pick."
+        }
+      ]
     },
     "66d90578bc9b": {
       "verdict": "doing",
@@ -585,10 +591,16 @@
       "commit": "268f49b"
     },
     "aaeb12de3ebd": {
-      "verdict": "doing",
-      "date": "20260821",
-      "because": "Verified against doctor/evidence.json channel_performance.explainer: posted_by_day_14d shows only 1 (08-13), 2 (08-14), 1 (08-20) against a registry target of 4/day -- meaning zero posts on 08-15 through 08-19, and no explainer entry exists in production_runs to localize the stage. This matches CLAUDE.md's own description of explainer as the load-bearing, fail-closed channel, so a silent multi-day delivery collapse there is serious. Accepted: hold interpretation of the topic experiment and build production-outcome instrumentation (attempted/showrunner-held/render-failed/upload-failed/uploaded) for explainer mirroring trending's, before touching the mix. Queued behind today's critical bug fix -- this needs its own session to diagnose root cause properly, not a rushed same-session patch.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260824",
+      "because": "The delivery restoration is built and merging: PR #294 fixed the run-completion cascade (cutout circuit breaker), PR #305 fixed what the showrunner blocks (mascot anchoring clamp, geo scene as a real demonstration, churn joints: 48h rotation window, persisted scene_plans, ledger problems/fixes, showrunner_starving_the_slate alarm), PR #306 wires the exemplar/reject library and failure census into production. A proving render of the most-blocked slug is running now; the topic-test readout stays frozen until the channel posts on cadence again.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified against doctor/evidence.json channel_performance.explainer: posted_by_day_14d shows only 1 (08-13), 2 (08-14), 1 (08-20) against a registry target of 4/day -- meaning zero posts on 08-15 through 08-19, and no explainer entry exists in production_runs to localize the stage. This matches CLAUDE.md's own description of explainer as the load-bearing, fail-closed channel, so a silent multi-day delivery collapse there is serious. Accepted: hold interpretation of the topic experiment and build production-outcome instrumentation (attempted/showrunner-held/render-failed/upload-failed/uploaded) for explainer mirroring trending's, before touching the mix. Queued behind today's critical bug fix -- this needs its own session to diagnose root cause properly, not a rushed same-session patch."
+        }
+      ]
     },
     "86ad3ba9d045": {
       "verdict": "done",
@@ -657,10 +669,16 @@
       "history": []
     },
     "5171aa14cc8d": {
-      "verdict": "doing",
-      "date": "20260822",
-      "because": "Confirmed at data_learning/generate.py:143-160 -- out_path.write_text() runs unconditionally before the QA-errors branch, and --publish without --strict exits 0 even when packages failed QA, leaving the rejected package sitting in state/trending_packages/<date>/ for the daily renderer to pick up. Confirmed this path is not wired into any workflow today (it appears only in data_learning/README.md's manual examples), so it is a real but currently-manual footgun rather than an active production hole. Queued as the next short_term item: make publish intrinsically strict, or stage the batch and promote only QA-passing packages atomically.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: generate.py consults QA BEFORE writing \u2014 a passing package publishes to out_dir as before, a failing one is quarantined at out_dir/quarantine/<name> with its qa_errors attached, out of reach of any downstream glob. tests/test_generate_quarantine.py pins the write into the passing branch.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed at data_learning/generate.py:143-160 -- out_path.write_text() runs unconditionally before the QA-errors branch, and --publish without --strict exits 0 even when packages failed QA, leaving the rejected package sitting in state/trending_packages/<date>/ for the daily renderer to pick up. Confirmed this path is not wired into any workflow today (it appears only in data_learning/README.md's manual examples), so it is a real but currently-manual footgun rather than an active production hole. Queued as the next short_term item: make publish intrinsically strict, or stage the batch and promote only QA-passing packages atomically."
+        }
+      ]
     },
     "347e2440278c": {
       "verdict": "doing",
