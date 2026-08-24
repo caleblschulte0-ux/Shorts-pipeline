@@ -18,17 +18,39 @@ The 2026-08-05 repair keeps the visibility and fixes the counter:
 These tests hold both halves, plus the alarm's use of the outcome file and
 the vision-QA/showrunner mascot separation.
 
+HOW the workflow policy is held changed on 2026-08-24 (doctor finding
+9943424b8251). This file used to slice daily.yml as TEXT and assert that
+tokens like `exit 1` or `"$UPLOADED" -gt 0` existed — which pinned the
+wording while a refactor that kept the words but broke the wiring would
+have passed. Now the policy EXECUTES:
+
+  * the failure-counter policy was extracted VERBATIM into
+    scripts/daily_failure_counter.sh (daily.yml calls it); the tests run
+    that script against fixture state and assert what it writes and says;
+  * the pre-flight and stop-if-skipped steps CANNOT move out of daily.yml —
+    tests/test_split_worker.py both executes the preflight's inline `run:`
+    text in a bare temp dir and pins the stop step's inline text — so for
+    those two the tests parse the workflow YAML and run the steps' actual
+    shell with each scenario's inputs, asserting real exit codes and state;
+  * a thin structural layer still pins the wiring itself: the YAML parses,
+    the steps bind to the right `if:` conditions, and the counter step
+    really invokes the extracted script.
+
     python -m unittest tests.test_production_outcome -v
 """
 from __future__ import annotations
 
 import json
+import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT))
@@ -37,14 +59,67 @@ sys.path.append(str(ROOT / "scripts"))
 import run_trending_daily as rtd                        # noqa: E402
 
 DAILY = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
+COUNTER_SH = ROOT / "scripts" / "daily_failure_counter.sh"
+
+PREFLIGHT_STEP = "Pre-flight — kill switch + failure counter"
+STOP_STEP = "Stop here if skipped"
+COUNTER_STEP = "Update failure counter"
+RUN_STEP = "Run daily orchestrator"
 
 
-class TestRedVersusPaused(unittest.TestCase):
-    """The workflow's counter step IS the policy — pin its shape."""
+def daily_steps() -> dict:
+    """The workflow's steps by name, from a real YAML parse — so a daily.yml
+    that stops parsing, or a renamed/vanished step, fails loudly here rather
+    than making a text split silently match the wrong region."""
+    wf = yaml.safe_load(DAILY)
+    return {s.get("name"): s for s in wf["jobs"]["daily"]["steps"]}
 
-    def counter_step(self) -> str:
-        return DAILY.split("Update failure counter", 1)[1].split(
-            "- name:", 1)[0]
+
+class WorkflowShellCase(unittest.TestCase):
+    """Fixture: a throwaway repo root in which the workflow's policy shell —
+    the extracted script, or an inline step's parsed `run:` text — actually
+    executes, with GITHUB_OUTPUT captured and the git-commit helper stubbed
+    out so the tests exercise the POLICY, never git."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="prodpolicy-"))
+        (self.tmp / "state").mkdir()
+        self.gh_out = self.tmp / "github_output"
+        self.gh_out.write_text("")
+        (self.tmp / "scripts").mkdir()
+        (self.tmp / "scripts" / "ci_commit_state.sh").write_text(
+            '#!/usr/bin/env bash\necho "$@" >> ci_commit_calls.txt\n')
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def bash(self, script: str, **env):
+        """Run shell text the way an Actions `run:` step does (bash -e)."""
+        full_env = {**os.environ, "GITHUB_OUTPUT": str(self.gh_out)}
+        full_env.update({k: str(v) for k, v in env.items()})
+        return subprocess.run(["bash", "-e", "-c", script], cwd=self.tmp,
+                              env=full_env, capture_output=True, text=True)
+
+    def skip_output(self):
+        """The step's `skip` output — last `skip=` line wins, exactly as
+        GITHUB_OUTPUT resolves repeated writes."""
+        val = None
+        for line in self.gh_out.read_text().splitlines():
+            if line.startswith("skip="):
+                val = line[len("skip="):]
+        return val
+
+    @staticmethod
+    def today() -> str:
+        return datetime.now(timezone.utc).strftime("%Y%m%d")
+
+
+class TestRedVersusPaused(WorkflowShellCase):
+    """The failure-counter policy is scripts/daily_failure_counter.sh — these
+    tests RUN it, they don't grep it. (The orchestrator-side half of the
+    contract, compute_production_outcome, is executed directly below.)"""
+
+    # ---- the orchestrator's completion decision (pure function) ----------
 
     def test_the_run_still_goes_red_on_any_shortfall(self):
         """ChatGPT's visibility rule survives the repair: the real completion
@@ -102,68 +177,222 @@ class TestRedVersusPaused(unittest.TestCase):
         self.assertIn("compute_production_outcome", src)
         self.assertIn("return 1", src)
 
+    # ---- the workflow's counter policy (extracted script, executed) ------
+
+    def counter(self, run_outcome: str):
+        return self.bash(f"bash {COUNTER_SH}", RUN_OUTCOME=run_outcome)
+
+    def write_outcome(self, uploaded: int):
+        d = self.tmp / "state" / "production_runs" / self.today()
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "trending.json").write_text(json.dumps({
+            "schema": "production-channel-outcome/v1", "channel": "trending",
+            "uploaded": uploaded}))
+
+    def fc(self):
+        p = self.tmp / "state" / "failure_count.txt"
+        return p.read_text().strip() if p.exists() else None
+
     def test_the_counter_reads_the_production_outcome(self):
-        step = self.counter_step()
-        self.assertIn("production_runs", step)
-        self.assertIn("uploaded", step)
+        """Same red run, opposite counter behavior depending only on what the
+        outcome file says — proof the script reads it, not proof the string
+        'production_runs' appears somewhere."""
+        (self.tmp / "state" / "failure_count.txt").write_text("0\n")
+        self.write_outcome(uploaded=4)
+        self.counter("failure")
+        self.assertEqual(self.fc(), "0", "4 uploads must not bump")
+        self.write_outcome(uploaded=0)
+        self.counter("failure")
+        self.assertEqual(self.fc(), "1", "0 uploads must bump")
 
     def test_a_partial_day_does_NOT_bump_the_counter(self):
-        step = self.counter_step()
-        self.assertIn('"$UPLOADED" -gt 0', step)
-        self.assertIn("Counter NOT bumped", step)
+        """A held/quarantined video is the gate working, not an outage."""
+        (self.tmp / "state" / "failure_count.txt").write_text("1\n")
+        self.write_outcome(uploaded=2)
+        proc = self.counter("failure")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.fc(), "1")
+        self.assertIn("Counter NOT bumped", proc.stdout)
 
     def test_a_zero_upload_day_still_bumps_it(self):
-        step = self.counter_step()
-        self.assertIn("Zero uploads", step)
-        self.assertIn("auto-pause at 2", step)
+        self.write_outcome(uploaded=0)
+        proc = self.counter("failure")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.fc(), "1")
+        proc = self.counter("failure")
+        self.assertEqual(self.fc(), "2")
+        self.assertIn("auto-pause at 2", proc.stdout)
+
+    def test_a_missing_outcome_file_counts_as_an_outage(self):
+        """No outcome file on a failed run means the orchestrator died before
+        writing anything — that is the outage shape, and it must bump; a
+        junk/missing file must never read as 'probably fine'."""
+        proc = self.counter("failure")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.fc(), "1")
 
     def test_a_green_run_still_resets_it(self):
-        self.assertIn('echo "0" > state/failure_count.txt',
-                      self.counter_step())
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        proc = self.counter("success")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.fc(), "0")
+        self.assertIn("counter reset", proc.stdout)
 
     def test_the_policy_says_why_out_loud(self):
-        """The comment is load-bearing: the next person to touch this step
-        must meet the argument, not just the bash."""
-        step = self.counter_step()
-        self.assertIn("punishes the gate", step)
-        self.assertIn("lower bar", step)
+        """The comment is load-bearing: the next person to touch this policy
+        must meet the argument, not just the bash. It moved with the code
+        into the script."""
+        src = COUNTER_SH.read_text()
+        self.assertIn("punishes the gate", src)
+        self.assertIn("lower bar", src)
 
 
-class TestAPausedRunIsNotAGreenRun(unittest.TestCase):
+class TestTheWorkflowWiresThePolicy(unittest.TestCase):
+    """The thin structural layer: the policy executes elsewhere in this file,
+    but the WIRING — which step runs when, and that the counter step really
+    calls the extracted script — stays pinned against the parsed YAML, not
+    against string fragments in unparsed text."""
+
+    def test_daily_yml_parses_and_the_policy_steps_exist(self):
+        steps = daily_steps()
+        for name in (PREFLIGHT_STEP, STOP_STEP, COUNTER_STEP, RUN_STEP):
+            self.assertIn(name, steps)
+
+    def test_the_counter_step_invokes_the_extracted_script(self):
+        step = daily_steps()[COUNTER_STEP]
+        self.assertIn("scripts/daily_failure_counter.sh", step["run"])
+        self.assertEqual(step.get("env", {}).get("RUN_OUTCOME"),
+                         "${{ steps.run.outcome }}",
+                         "the script judges the orchestrator outcome — it "
+                         "must be wired in as env")
+
+    def test_the_steps_bind_to_the_intended_conditions(self):
+        """The if: conditions ARE the pause machinery — a skip that stops
+        gating the orchestrator, or a counter that stops running on failure
+        (`always()`), breaks the policy with every token still present."""
+        steps = daily_steps()
+        self.assertEqual(steps[COUNTER_STEP].get("if"),
+                         "always() && steps.preflight.outputs.skip == ''")
+        self.assertEqual(steps[STOP_STEP].get("if"),
+                         "steps.preflight.outputs.skip != ''")
+        self.assertEqual(steps[RUN_STEP].get("if"),
+                         "steps.preflight.outputs.skip == ''")
+        self.assertEqual(steps[PREFLIGHT_STEP].get("id"), "preflight")
+        self.assertEqual(steps[RUN_STEP].get("id"), "run")
+
+
+class TestAPausedRunIsNotAGreenRun(WorkflowShellCase):
     """2026-08-03..05. The auto-pause tripped, daily.yml skipped the
     orchestrator, and the job reported SUCCESS for three days while trending
     shipped nothing. A green check on a dead channel is the failure shape
-    this repo keeps re-learning."""
+    this repo keeps re-learning.
 
-    def stop_step(self) -> str:
-        return DAILY.split("Stop here if skipped", 1)[1].split(
-            "- name:", 1)[0]
+    The stop step stays INLINE in daily.yml — tests/test_split_worker.py
+    pins its inline text (the phase_b_incomplete branch specifically), so
+    extracting it would break a suite outside this file's remit. Instead
+    these tests run the step's own `run:` shell, parsed from the workflow,
+    with each skip reason — the exit code is the assertion."""
+
+    def stop(self, skip: str):
+        step = daily_steps()[STOP_STEP]
+        script = step["run"].replace(
+            "${{ steps.preflight.outputs.skip }}", skip)
+        return self.bash(script)
 
     def test_an_auto_pause_fails_the_run(self):
-        step = self.stop_step()
-        self.assertIn('= "auto"', step)
-        self.assertIn("exit 1", step)
+        proc = self.stop("auto")
+        self.assertEqual(proc.returncode, 1, proc.stdout + proc.stderr)
+        self.assertIn("::error::", proc.stdout)
 
     def test_a_deliberate_manual_pause_stays_green(self):
         """Being told off daily for a decision you made on purpose is how
         people learn to ignore red."""
-        step = self.stop_step()
-        self.assertIn("exit 0", step)
-        self.assertIn("on purpose", step)
+        proc = self.stop("manual")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("on purpose", proc.stdout)
 
-    def test_the_preflight_retries_itself_and_says_so(self):
+    def test_the_other_phase_b_candidate_stays_green(self):
+        """The benign twice-daily Phase B no-op (see the preflight) must not
+        page anyone — green, and explicitly not rendering."""
+        proc = self.stop("phase_b_incomplete")
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("not rendering", proc.stdout)
+
+
+class TestPreflightBackoffExecutes(WorkflowShellCase):
+    """Auto-pause is a BACKOFF, not a latch: two zero-upload days sit the
+    channel out ONE day, then it retries itself (standing ruling: 'if
+    something doesn't run properly, it goes through and tries again').
+
+    The preflight also stays INLINE in daily.yml — tests/test_split_worker.py
+    executes its `run:` text in a bare temp dir to prove the Phase B
+    handoff gate, and an extraction would strand that suite. These tests
+    reuse the same parse-and-execute pattern for the pause/backoff half, so
+    every branch of the decision is driven for real."""
+
+    def preflight(self, event: str = "workflow_dispatch"):
+        step = daily_steps()[PREFLIGHT_STEP]
+        script = step["run"].replace("${{ github.event_name }}", event)
+        return self.bash(script)
+
+    def test_a_healthy_day_proceeds(self):
+        proc = self.preflight()
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.skip_output(), "")
+
+    def test_manual_pause_files_skip_the_day_as_manual(self):
+        for flag in ("PAUSED", "PAUSED_DAILY"):
+            (self.tmp / flag).write_text("")
+            proc = self.preflight()
+            self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+            self.assertEqual(self.skip_output(), "manual", flag)
+            (self.tmp / flag).unlink()
+
+    def test_two_zero_upload_days_pause_and_record_the_sit_out_day(self):
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        proc = self.preflight()
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.skip_output(), "auto")
+        day = self.tmp / "state" / "auto_pause_day.txt"
+        self.assertEqual(day.read_text().strip(), self.today())
+        # the honesty the old text test pinned, now read off a real run:
+        # it says it retries itself, and still prints the sooner-than-
+        # tomorrow escape hatch
+        self.assertIn("retry ITSELF tomorrow", proc.stdout)
+        self.assertIn("echo 0 > state/failure_count.txt", proc.stdout)
+
+    def test_a_refire_on_the_paused_day_stays_paused(self):
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        (self.tmp / "state" / "auto_pause_day.txt").write_text(self.today())
+        proc = self.preflight()
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.skip_output(), "auto")
+        # still sitting out the same day: nothing reset, nothing re-recorded
+        self.assertEqual(
+            (self.tmp / "state" / "failure_count.txt").read_text().strip(),
+            "2")
+
+    def test_after_a_full_day_off_it_retries_itself(self):
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        (self.tmp / "state" / "auto_pause_day.txt").write_text("19990101")
+        proc = self.preflight()
+        self.assertEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertEqual(self.skip_output(), "",
+                         "a sat-out day must resume, not skip again")
+        self.assertEqual(
+            (self.tmp / "state" / "failure_count.txt").read_text().strip(),
+            "1", "resume keeps one strike: another zero day re-pauses")
+        self.assertFalse(
+            (self.tmp / "state" / "auto_pause_day.txt").exists())
+        self.assertIn("AUTO-RESUME", proc.stdout)
+
+    def test_the_pause_never_becomes_a_latch_again(self):
         """This used to pin the opposite: the pause 'CANNOT clear itself'
         and printed the manual reset command. Changed 2026-08-06 under the
-        standing ruling ('if something doesn't run properly, it goes through
-        and tries again'): auto-pause is now a one-day BACKOFF that resumes
-        on its own. What must stay pinned is that it says so honestly, and
-        that the sooner-than-tomorrow escape hatch is still printed."""
-        pre = DAILY.split("Pre-flight — kill switch", 1)[1].split(
-            "- name:", 1)[0]
-        self.assertIn("failure_count.txt", pre)
-        self.assertIn("auto_pause_day", pre)
-        self.assertIn("retry ITSELF tomorrow", pre)
-        self.assertNotIn("CANNOT clear itself", pre)
+        standing ruling. The behavior is executed above; this guards the
+        step against the old latch wording sneaking back in."""
+        self.assertNotIn("CANNOT clear itself",
+                         daily_steps()[PREFLIGHT_STEP]["run"])
 
 
 class TestTheOrchestratorWritesTheOutcome(unittest.TestCase):

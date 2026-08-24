@@ -42,20 +42,6 @@ ATTRIBUTION = ("Music by Kevin MacLeod (incompetech.com), licensed under "
                "(creativecommons.org/licenses/by/4.0/)")
 
 
-def _load_log() -> dict:
-    if LOG_PATH.exists():
-        try:
-            return json.loads(LOG_PATH.read_text())
-        except json.JSONDecodeError:
-            pass
-    return {"posted": {}}
-
-
-def _save_log(log: dict) -> None:
-    from shared.fsutil import atomic_write_json
-    atomic_write_json(LOG_PATH, log)
-
-
 def _tags(sc: dict) -> list[str]:
     seen, out = set(), []
     for t in list(sc.get("hashtags", [])) + BASE_HASHTAGS:
@@ -252,8 +238,14 @@ def main() -> int:
               file=sys.stderr)
         return 2
 
-    log = json.loads(args.log.read_text()) if args.log.exists() else \
-        {"posted": {}}
+    # Missing log = first run = empty; a CORRUPT log fails CLOSED
+    # (fsutil.CorruptStateError) — it is this channel's only dedupe state,
+    # and reading it as empty would re-upload every slug and then overwrite
+    # the real history at the atomic_write_json below. (The dead _load_log
+    # helper that used to sit above main() swallowed JSONDecodeError the
+    # same way; it was unwired and is deleted rather than left as bait.)
+    from shared.fsutil import load_state_json
+    log = load_state_json(args.log, {"posted": {}}, expect_type=dict)
     log.setdefault("posted", {})
     results, uploader, posted_this_run = [], None, 0
 

@@ -28,7 +28,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from shared.fsutil import atomic_write_json, load_json  # noqa: E402
+from shared.fsutil import atomic_write_json, load_json, load_state_json  # noqa: E402
+
+# Sentinel so an unparseable file can be told apart from one that parses to
+# null/None — load_json collapses "missing", "corrupt" and "null" into the
+# default, and this script DELETES originals after folding them, so that
+# collapse would silently destroy the only copy of an unreadable file.
+_UNREADABLE = object()
 
 _DATE_FILE = re.compile(r"^(\d{8})\.json$")
 _DATE_DIR = re.compile(r"^(\d{8})$")
@@ -48,12 +54,21 @@ def rollup_analytics(adir: Path, cutoff: str, dry: bool) -> int:
             continue
         date = m.group(1)
         month = date[:6]
-        snap = load_json(f, None)
-        if snap is None:
+        snap = load_json(f, _UNREADABLE)
+        if snap is _UNREADABLE or snap is None:
+            # Unparseable (or vacuously null) snapshot: leave it on disk and
+            # say so — never fold-and-delete what could not be read.
+            print(f"  SKIP {adir.name}/{f.name}: unreadable — left in place")
             continue
         roll_path = adir / "rollup" / f"{month}.json"
-        roll = monthly.setdefault(month, load_json(
-            roll_path, {"month": month, "days": {}, "videos": {}}))
+        # Strict load of the fold TARGET: a corrupt monthly rollup read as
+        # empty would be rewritten below with only this batch's days, and
+        # every previously-folded day in that month (whose dailies were
+        # already deleted) would be gone for good. Missing = first fold of
+        # the month = honest default.
+        roll = monthly.setdefault(month, load_state_json(
+            roll_path, {"month": month, "days": {}, "videos": {}},
+            expect_type=dict))
         roll["days"][date] = snap.get("summary", {})
         # Later days overwrite earlier ones -> each video keeps its final
         # (most complete) metrics for the month.
@@ -80,11 +95,29 @@ def archive_packages(pdir: Path, cutoff: str, dry: bool) -> int:
         if not m or not d.is_dir() or d.name >= cutoff:
             continue
         month = d.name[:6]
-        arch_path = pdir / "archive" / f"{month}.json"
-        arch = monthly.setdefault(month, load_json(arch_path, {}))
-        day = arch.setdefault(d.name, {})
+        # Read the whole day BEFORE touching the archive: if any file in
+        # the dir is unparseable, the old code archived it as `null` and
+        # then rmtree'd the dir — destroying the only copy of the bytes.
+        # An unreadable day stays on disk, un-archived, and says so.
+        day: dict = {}
+        bad: list[str] = []
         for f in sorted(d.glob("*.json")):
-            day[f.name] = load_json(f, None)
+            val = load_json(f, _UNREADABLE)
+            if val is _UNREADABLE:
+                bad.append(f.name)
+            else:
+                day[f.name] = val
+        if bad:
+            print(f"  SKIP {pdir.name}/{d.name}/: unreadable "
+                  f"{', '.join(bad)} — left in place, not archived")
+            continue
+        arch_path = pdir / "archive" / f"{month}.json"
+        # Strict load of the archive TARGET, same reason as the analytics
+        # rollup: corrupt-read-as-empty + rewrite = every already-archived
+        # (and already-deleted) day in the month lost.
+        arch = monthly.setdefault(month, load_state_json(arch_path, {},
+                                                         expect_type=dict))
+        arch.setdefault(d.name, {}).update(day)
         folded += 1
         if not dry:
             shutil.rmtree(d)

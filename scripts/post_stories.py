@@ -78,12 +78,13 @@ def _recent_gate_blocks(hours: int = 48) -> set:
 
 
 def _load_log(path: Path = LOG_PATH) -> dict:
-    if path.exists():
-        try:
-            return json.loads(path.read_text())
-        except json.JSONDecodeError:
-            pass
-    return {"posted": {}}
+    # FAIL CLOSED on corruption (fsutil.CorruptStateError): this dict is the
+    # explainer channel's only dedupe state, and the old JSONDecodeError
+    # swallow meant a truncated file read as "nothing posted" — every slug
+    # re-uploads and _save_log then overwrites the real history. Missing
+    # file = first run = honest empty default, unchanged.
+    from shared.fsutil import load_state_json
+    return load_state_json(path, {"posted": {}}, expect_type=dict)
 
 
 def _save_log(log: dict, path: Path = LOG_PATH) -> None:

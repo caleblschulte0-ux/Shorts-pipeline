@@ -117,10 +117,25 @@ class TestNoDuplicateUploads(GapTestCase):
         d, pkgs = rtd.load_prewritten_packages()
         self.assertEqual(len(pkgs), 1)
 
-    def test_corrupt_posted_log_fails_open_not_shut(self):
-        """A broken log must not wedge the channel — but it also must not
-        pretend the log is empty when it can be read."""
+    def test_corrupt_posted_log_fails_CLOSED(self):
+        """Doctor finding d65eddf69fba flipped this test's old contract.
+
+        It used to assert the opposite ("a broken log must not wedge the
+        channel" -> posted_titles() == set()), which is precisely the bug:
+        a corrupt log read as empty means posted_titles() guards nothing,
+        the stale slate re-uploads wholesale, and save_log() then replaces
+        the real history. A wedged channel loses a day; a vacuous dedupe
+        guard loses the ledger. So: corruption refuses, naming the file."""
+        from shared.fsutil import CorruptStateError
         rtd.LOG_PATH.write_text("{not json")
+        with self.assertRaises(CorruptStateError) as ctx:
+            rtd.posted_titles()
+        self.assertIn(str(rtd.LOG_PATH), str(ctx.exception))
+
+    def test_missing_posted_log_is_still_a_first_run(self):
+        """Fail-closed is for CORRUPTION only — a log that has never been
+        written is a first run and must not block anything."""
+        self.assertFalse(rtd.LOG_PATH.exists())
         self.assertEqual(rtd.posted_titles(), set())
 
 
