@@ -1,43 +1,41 @@
-# Daily Trending Shorts — 2026-08-22
+# Daily Trending Shorts — 2026-08-24
 
 > **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **8**
 - succeeded: **4**
-- quarantined (off-topic imagery): **1**
-- failed: **3**
+- quarantined (off-topic imagery): **0**
+- failed: **4**
 
 ## Posted
-- **Airbus Overtook Boeing After The 737 MAX Crisis**
-  - topic: Airbus Overtook Boeing After The 737 MAX Crisis
-  - publishes: `2026-08-22T13:00:00Z`
-  - https://youtube.com/shorts/mIx9MUcLo0c
-  - took: 132.5s
-- **Shopify Overtook eBay In Total Sales**
-  - topic: Shopify Overtook eBay In Total Sales
-  - publishes: `2026-08-22T14:30:00Z`
-  - https://youtube.com/shorts/mlZ6julPK5E
-  - took: 117.3s
-- **Netflix Just Passed Cable In Total Subscribers**
-  - topic: Netflix Just Passed Cable In Total Subscribers
-  - publishes: `2026-08-22T16:00:00Z`
-  - https://youtube.com/shorts/CDaAHFbdRWk
-  - took: 119.8s
-- **She Name-Dropped The Owner. The Owner Was Twelve Feet Away.**
-  - topic: She Name-Dropped The Owner. The Owner Was Twelve Feet Away.
-  - publishes: `2026-08-22T17:30:00Z`
-  - https://youtube.com/shorts/3xjKJE76n38
-  - took: 247.5s
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **The Only Manager Who Could Cancel My Gym Never Showed.**
-  - quarantined: vision QA: broken — Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co
+- **Amazon Built Its Own Delivery Army. Then It Won.**
+  - topic: Amazon Built Its Own Delivery Army. Then It Won.
+  - publishes: `2026-08-24T13:00:00Z`
+  - https://youtube.com/shorts/C0RfI_vWiL0
+  - took: 128.1s
+- **Sports Betting Just Passed The Lottery**
+  - topic: Sports Betting Just Passed The Lottery
+  - publishes: `2026-08-24T14:30:00Z`
+  - https://youtube.com/shorts/pmSklvwN07E
+  - took: 109.9s
+- **Peloton Passed Planet Fitness And Stayed Ahead**
+  - topic: Peloton Passed Planet Fitness And Stayed Ahead
+  - publishes: `2026-08-24T16:00:00Z`
+  - https://youtube.com/shorts/4iuQHzdn4pY
+  - took: 123.6s
+- **Boss Enforced Dress Code, Employee Followed It Exactly**
+  - topic: Boss Enforced Dress Code, Employee Followed It Exactly
+  - publishes: `2026-08-24T17:30:00Z`
+  - https://youtube.com/shorts/43VaNWDtQpA
+  - took: 251.6s
 
 ## Failed
-- **Modelo Just Dethroned Bud Light As America's #1**
-  - error: `showrunner_block: showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.`
-- **d**
+- **Subway Was America's Sandwich King. Chipotle Passed It.**
+  - error: `showrunner_block: showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video — a wrong-brand image that cannot ship.`
+- **Lunch Thief Finally Picked The Wrong Sandwich**
+  - error: `showrunner_block: showrunner BLOCK: Strong reddit-story shell — punchy post card, real illustrations, tight captions — but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.`
+- **taylor swift travis kelce wedding leak**
   - error: `HTTPError: HTTP Error 404: Not Found`
-- **npb**
+- **dario amodei**
   - error: `HTTPError: HTTP Error 404: Not Found`
 
