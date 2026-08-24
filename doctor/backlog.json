@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260823",
+  "updated": "20260824",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -1135,6 +1135,90 @@
       "signature": "2b0e2fafca9b",
       "last_seen": "20260823",
       "first_seen": "20260823"
+    },
+    "03ed6ae9f195": {
+      "title": "The full unit gate discards unittest failures",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "ci/merge-gate-exit-status",
+      "files": [
+        ".github/workflows/auto-merge.yml"
+      ],
+      "observation": "The auto-merge job runs the full tests/ suite as `python -m unittest ... 2>&1 | tail -40` without enabling pipefail or checking PIPESTATUS. Bash therefore returns tail's zero status when unittest fails, the following steps continue, and the automerge job may squash-merge a branch whose unit suite is red. Replacing unittest with a process that exits 7 reproduces a pipeline status of zero under the same command shape.",
+      "proposal": "Enable pipefail for the step or capture the unittest output and explicitly propagate the test process status before printing its tail. Add a workflow-contract test that executes a deliberately failing producer through the exact reporting wrapper and requires the wrapper to return nonzero, so future log-format changes cannot reopen the bypass.",
+      "evidence": ".github/workflows/auto-merge.yml lines 123-124 define the required Full unit suite step as `python -m unittest discover -s tests -v 2>&1 | tail -40` with no `set -o pipefail`; the job's scripts-suite step at lines 135-152 demonstrates the correct pattern by capturing each subprocess and explicitly setting `fail=1`. Running `bash -c 'python -c \"raise SystemExit(7)\" 2>&1 | tail -40'` on main returns status 0.",
+      "signature": "03ed6ae9f195",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "abfb291b5f65": {
+      "title": "Two explainer guardrail modules execute zero tests",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "explainer/viz-test-collection",
+      "files": [
+        "data_learning/tests/test_viz_director.py",
+        "data_learning/tests/test_viz_scene.py",
+        ".github/workflows/preview_explainer.yml"
+      ],
+      "observation": "The viz-director and viz-scene files contain free-function tests for no-bare-number selection, depiction fallbacks, unsafe mechanic rejection, and real frame rendering, but neither has unittest classes nor a script main. The repository's required suite discovers only tests/, while preview_explainer.yml invokes three other data_learning test files by name. Consequently unittest discovery under data_learning/tests collects zero tests from these modules, and `python -m` imports each module and exits successfully without executing a single assertion.",
+      "proposal": "Convert both modules to unittest-compatible cases or give them an explicit runner, then invoke them from the required explainer preflight. Add a collection-count assertion for the data_learning suite so a zero-test success is itself a failure.",
+      "evidence": "data_learning/tests/test_viz_director.py and data_learning/tests/test_viz_scene.py define only `test_*` functions and have no `if __name__ == '__main__'` runner; .github/workflows/preview_explainer.yml lines 53-60 runs showrunner scoring, repair loop, and mascot primitives but not either viz module. On current main, `python -m unittest discover -s data_learning/tests -p 'test_viz*.py' -v` reports `Ran 0 tests`, while both `PYTHONPATH=. python -m data_learning.tests.test_viz_director` and the equivalent viz_scene command exit 0 with no output.",
+      "signature": "abfb291b5f65",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "808fcf2f9b8e": {
+      "title": "Expression visual proof is not a pre-merge renderer gate",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "explainer/expression-ci-order",
+      "files": [
+        ".github/workflows/expression-tests.yml",
+        "data_learning/pro_render.py",
+        "scripts/test_expressions.py",
+        "scripts/test_expressions_render.py"
+      ],
+      "observation": "The heavy expression tests are deliberately excluded from the auto-merge scripts suite and delegated to Expression Tests, but that separate workflow is not an upstream dependency of the squash merge. Its pull_request paths also omit data_learning/pro_render.py and scripts/test_expressions_render.py even though the push paths and comments identify the production renderer and render tests as part of this contract. A PR changing pro_render can therefore merge before any measured expression render runs; the visual proof starts only after the change has reached main.",
+      "proposal": "Make the expression suite a reusable required workflow called by the merge gate, or add a required pre-merge job that the automerge job explicitly needs. Align pull-request paths with the full push path set, including pro_render.py and test_expressions_render.py, and retain artifact upload for diagnosis after the status has been made merge-blocking.",
+      "evidence": ".github/workflows/expression-tests.yml lines 20-35 include data_learning/pro_render.py in push paths but omit it from pull_request paths, and likewise omit scripts/test_expressions_render.py from both PR coverage and the declared commands. Lines 53-66 contain the actual render and measured-pixel proof. scripts/test_expressions.py and scripts/test_expressions_render.py are explicitly skipped by the main scripts-suite loop documented in .github/workflows/auto-merge.yml lines 130-142, leaving the separate workflow as their only intended gate.",
+      "signature": "808fcf2f9b8e",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "268b809a2bbb": {
+      "title": "Govern every test file with an executable owner",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "testing/suite-ownership",
+      "files": [
+        "tests/test_repo_layout.py",
+        "data_learning/tests/test_pipeline.py",
+        "scripts/test_pipeline_health.py",
+        "experiments/curiosity_nextgen/tests/test_autonomous_core.py"
+      ],
+      "observation": "The repository now has four incompatible test topologies: 63 unittest files under tests/, 41 standalone scripts/test_*.py programs, five data_learning test modules with mixed custom-main and pytest-style conventions, and eleven curiosity-nextgen modules discovered only by a channel-specific workflow. There is no repository-level assertion that every test-shaped file belongs to a runner or that its runner collected at least one test. The two currently orphaned viz modules are the concrete consequence: they look like tests in review but buy no protection.",
+      "proposal": "Define a declarative test-suite inventory that maps every test directory or file to its runner, dependency class, and required workflow. Extend the repository-layout gate to fail on an unowned test file, and make every runner emit and validate a nonzero collection count. Migrate incrementally toward one invocation convention while keeping expensive render suites as named shards rather than silently skipping them.",
+      "evidence": "tests/test_repo_layout.py checks Python placement and imports but has no test-owner inventory; data_learning/tests/test_pipeline.py implements its own `_main` collector, scripts/test_pipeline_health.py is a directly executed standalone test program, and experiments/curiosity_nextgen/tests/test_autonomous_core.py relies on a separate unittest-discovery command in curiosity-ci.yml. A filesystem count on current main finds 63 tests/test_*.py files, 41 scripts/test_*.py files, five data_learning/tests/test_*.py files, and eleven experiments/curiosity_nextgen/tests/test_*.py files, while no file records ownership across those runners.",
+      "signature": "268b809a2bbb",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "a703af75ca3d": {
+      "title": "Give Plaqueboymax a bounded second-slot test",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/third-creator-allocation",
+      "files": [
+        "state/analytics_third/latest.json",
+        "docs/THIRD_INTERNET_PLAYBOOK.md"
+      ],
+      "observation": "Third's August 23 analytics contain one creator with a repeated signal that clears the playbook's learning floor: three Plaqueboymax clips are each older than 24 hours, have 99-208 views and 51-116 engaged views, and retain 90.1%-93.7% on average. Their median velocity is 0.35 views per hour versus the channel's 0.04 all-video median. Other current top creators have only one clip each that meets all three maturity thresholds, so they are promising examples but not yet repeat evidence.",
+      "proposal": "For a bounded next-sample experiment, allow a second Plaqueboymax post on days with two genuinely separate events while preserving the existing six-slot target, one-creator default, novelty checks, and every quality gate. Tag the allocation decision, stop after five additional mature qualifying clips, and compare creator-level median velocity and retention before making any permanent source-priority change.",
+      "evidence": "state/analytics_third/latest.json was fetched at 2026-08-23T12:18:57Z and records the three qualifying Plaqueboymax videos: `No Budget` at 117 views/53 engaged/90.1% retention/0.46 VPH, `Five Gifted` at 208/116/93.7%/0.35, and `Get Feisty` at 99/51/93.6%/0.35; the same snapshot reports a channel median of 0.04 VPH. docs/THIRD_INTERNET_PLAYBOOK.md lines 230-238 permit a second same-streamer post for a separate major event, and lines 265-274 require at least 24 hours, 50 views, and 25 engaged views before learning from a video.",
+      "signature": "a703af75ca3d",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
     }
   }
 }
