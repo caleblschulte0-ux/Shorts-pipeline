@@ -15,6 +15,7 @@ source of truth.
 from __future__ import annotations
 
 import json
+import os
 import sys
 import unittest
 from pathlib import Path
@@ -92,6 +93,98 @@ class ThirdFallbackSlateSizeTest(unittest.TestCase):
                 side_effect=channel_registry.RegistryError("boom")):
             with self.assertRaises(channel_registry.RegistryError):
                 run_third._synthesize_fallback_packages("20260819")
+
+
+class ThirdBrainProcessContractTest(unittest.TestCase):
+    """Doctor finding 3445b0aecae4, ruled `doing`: `_call_claude` only
+    treated a nonzero CLI exit as failure when the output matched the
+    usage-limit regex — any OTHER failed process that had emitted a JSON
+    object before dying (partial reply, stale buffer) was parsed and
+    returned as a successful brain answer, so ranking / scene judgment ran
+    on garbage while health accounting recorded an `ok`. The contract now:
+    rc=0 before any stdout is trusted; the usage-limit breaker keeps its
+    regex path; every other nonzero exit raises a bounded diagnostic that
+    the callers already catch and count via `_brain_note(False)`.
+
+        python -m unittest tests.test_third_fallback_count -v
+    """
+
+    def setUp(self):
+        from third_capture import author
+        self.author = author
+        # snapshot the module-level breaker + health counters so these
+        # tests cannot leak an armed limit into another test's run
+        self._limit = dict(author._LIMIT_HIT)
+        self._brain = dict(author._BRAIN)
+        author._LIMIT_HIT.update(at="", detail="")
+        env = mock.patch.dict(os.environ,
+                              {"CLAUDE_CODE_OAUTH_TOKEN": "test-token"})
+        env.start()
+        self.addCleanup(env.stop)
+        # _call_claude imports shutil/subprocess inside the function, so the
+        # patches go on the modules themselves, not on author.*
+        which = mock.patch("shutil.which", return_value="/usr/bin/claude")
+        which.start()
+        self.addCleanup(which.stop)
+
+    def tearDown(self):
+        self.author._LIMIT_HIT.clear()
+        self.author._LIMIT_HIT.update(self._limit)
+        self.author._BRAIN.clear()
+        self.author._BRAIN.update(self._brain)
+
+    def _completed(self, rc, stdout="", stderr=""):
+        import subprocess
+        return subprocess.CompletedProcess(
+            args=["claude"], returncode=rc, stdout=stdout, stderr=stderr)
+
+    def test_nonzero_exit_with_valid_json_is_a_failure_not_an_answer(self):
+        """The exact shape from the finding's evidence: rc=1, a complete
+        JSON object on stdout, a transport error on stderr."""
+        with mock.patch("subprocess.run", return_value=self._completed(
+                1, stdout='{"title": "partial"}',
+                stderr="fatal transport error")):
+            with self.assertRaises(RuntimeError) as ctx:
+                self.author._call_claude("hi")
+        msg = str(ctx.exception)
+        self.assertIn("rc=1", msg)
+        self.assertIn("fatal transport error", msg,
+                      "the diagnostic must carry the CLI's own message")
+        self.assertFalse(self.author.brain_limited()["at"],
+                         "a plain failure must not arm the usage-limit "
+                         "breaker")
+
+    def test_nonzero_exit_with_limit_text_takes_the_breaker_path(self):
+        with mock.patch("subprocess.run", return_value=self._completed(
+                1, stderr="You have hit your usage limit — resets at 5pm")):
+            self.assertIsNone(self.author._call_claude("hi"))
+        self.assertTrue(self.author.brain_limited()["at"],
+                        "a limit-shaped failure must arm the breaker, "
+                        "not raise")
+
+    def test_zero_exit_with_valid_json_is_accepted(self):
+        with mock.patch("subprocess.run", return_value=self._completed(
+                0, stdout='{"title": "good"}')):
+            self.assertEqual(self.author._call_claude("hi"),
+                             {"title": "good"})
+
+    def test_the_caller_counts_the_failure_not_a_success(self):
+        """The health accounting is why this matters: `rank_clips` must
+        record a failed brain task (and fall back), never an `ok` built
+        from a dead process's stdout."""
+        before = dict(self.author._BRAIN)
+        with mock.patch("subprocess.run", return_value=self._completed(
+                1, stdout='{"scores": [{"i": 0, "banger": 0.9}]}',
+                stderr="fatal transport error")), \
+                mock.patch.object(self.author, "_call_groq",
+                                  return_value=None):
+            out = self.author.rank_clips([{"channel": "x", "views": 1,
+                                           "vph": 1.0, "title": "t",
+                                           "url": "u"}])
+        self.assertEqual(out, {}, "a failed process produced a ranking")
+        self.assertEqual(self.author._BRAIN["ok"], before["ok"],
+                         "a failed call was counted as a healthy brain")
+        self.assertEqual(self.author._BRAIN["fail"], before["fail"] + 1)
 
 
 if __name__ == "__main__":

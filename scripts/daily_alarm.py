@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -144,6 +145,32 @@ def _posted_on(log_path: Path, date: str) -> list[dict]:
     exclusion rules; this just adds the date scope."""
     want = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
     return [e for stamp, e in real_uploads(log_path) if stamp == want]
+
+
+def _report_row_date(row: dict) -> str:
+    """Which production date (YYYYMMDD) a daily_report.json row belongs to,
+    or "" when the row carries no evidence of one.
+
+    The root daily_report.json is overwritten every render run and has no
+    report_date field, so the DATE LIVES IN THE ROWS: `package_path` embeds
+    the package folder (state/trending_packages/<YYYYMMDD>/...) and
+    `publish_at` is the slot's ISO timestamp. The package path wins when both
+    are present — a slot can publish a few minutes past midnight UTC while
+    still belonging to the previous production date, and the package folder
+    is the production date by construction. A row with neither field cannot
+    be attributed to any date and must never be counted: an unattributable
+    row is missing evidence, and this alarm does not fabricate evidence.
+
+    This is the transitional shape from doctor finding 06e600e3ecaa; the
+    durable fix is a date-keyed report path, at which point this derivation
+    becomes a cross-check rather than the only source of truth."""
+    m = re.search(r"(?:^|/)(\d{8})(?:/|$)", str(row.get("package_path") or ""))
+    if m:
+        return m.group(1)
+    pub = str(row.get("publish_at") or "")
+    if re.match(r"^\d{4}-\d{2}-\d{2}", pub):
+        return pub[:10].replace("-", "")
+    return ""
 
 
 def _too_early(date: str, now=None) -> bool:
@@ -492,8 +519,31 @@ def check(date: str, now=None) -> dict:
     # 2026-08-05). The question a shelf was answering — "is there cover for a
     # bad day" — is now answered by whether bad days actually recover, which
     # is a fact about last night rather than a guess about tomorrow.
+    #
+    # daily_report.json is a SINGLE root file that the render run overwrites
+    # each day — it carries no report_date of its own. Every other section
+    # here reads date-keyed evidence, but this one used to read whatever the
+    # file held and attribute it to the requested date: check('20260811')
+    # emitted trending_short_after_retries built from August 12's rows while
+    # the dated production outcome in the SAME alarm correctly said 0/6 for
+    # the 11th — a contradictory evidence pack that sends repair work at the
+    # wrong day's packages. So each row is dated from its own fields
+    # (package_path carries state/trending_packages/<date>/, publish_at is an
+    # ISO timestamp) and only rows that belong to the requested date count.
+    # A report whose rows all belong to some other date is treated as ABSENT
+    # for this date — a stale file is not evidence, and this alarm never
+    # fires on a claim it cannot evidence.
     try:
         rows = json.loads((ROOT / "daily_report.json").read_text())
+        if isinstance(rows, list) and rows:
+            dated = [r for r in rows if isinstance(r, dict)
+                     and _report_row_date(r) == date]
+            if not dated:
+                notes.append(
+                    f"slot fill not checked: daily_report.json has "
+                    f"{len(rows)} row(s) and none belong to {date} — "
+                    f"treating the report as absent for this date")
+            rows = dated
         if isinstance(rows, list) and rows:
             shipped = sum(1 for r in rows if r.get("ok"))
             want = int(reg.channel("trending").get("target_count") or 0)

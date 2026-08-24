@@ -81,6 +81,19 @@ class TestRepairProgressSurvivesTheRunner(unittest.TestCase):
         persist = src.split("Persist posted log + analytics", 1)[1]
         self.assertIn("state/scene_plans", persist)
 
+    def test_the_exemplar_library_is_harvested_and_persisted(self):
+        """scene_repair retrieves-before-inventing from quality/, but
+        production never ran harvest and never committed the directory —
+        so bad_pairs was {} on every real run and repair re-attempted
+        pairs the judge had already hard-failed."""
+        src = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
+        self.assertIn("exemplar_store.py harvest", src)
+        persist = src.split("Persist posted log + analytics", 1)[1]
+        self.assertIn("quality", persist)
+        # harvest runs BEFORE persist, or the bank never reaches the repo
+        self.assertLess(src.index("exemplar_store.py harvest"),
+                        src.index("Persist posted log + analytics"))
+
 
 class TestTheLedgerKeepsTheDiagnosis(unittest.TestCase):
 
@@ -173,6 +186,20 @@ class TestChurnRaisesItsOwnAlarm(unittest.TestCase):
         hit = [a for a in out["alarms"]
                if a["code"] == "showrunner_starving_the_slate"][0]
         self.assertIn("Weakening the gate is not on the table", hit["fix"])
+
+
+class TestTheCensusIsFreshWhenTheBriefReadsIt(unittest.TestCase):
+
+    def test_retro_refreshes_the_census_before_the_brief(self):
+        """failure_census ran only in the preview workflow, so the brief
+        embedded whatever stale census a long-ago preview left in state/."""
+        src = (ROOT / ".github" / "workflows" / "retro.yml").read_text()
+        self.assertIn("failure_census.py state/showrunner_verdicts.jsonl",
+                      src)
+        self.assertLess(src.index("failure_census.py"),
+                        src.index("build_retro.py"))
+        self.assertIn("state/failure_census.json",
+                      src.split("retro: brief + triage", 1)[1])
 
 
 class TestRetroCountsRealBlocks(unittest.TestCase):

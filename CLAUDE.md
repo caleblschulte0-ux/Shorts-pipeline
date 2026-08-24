@@ -226,8 +226,8 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
 
 - **Pollinations is retired as the AI-image path** — all AI images come from
   ChatGPT; gaps it misses get filled with real media by the self-fill pass.
-- **Policy A**: a ChatGPT no-show never costs the day (self-fill + a 06:15
-  backstop cron). A weaker shot beats no video.
+- **Policy A**: a ChatGPT no-show never costs the day (self-fill + Phase B's
+  08:30-Central backstop crons). A weaker shot beats no video.
 - `shared/punchup_guard.py` is not advisory: a rewrite that changes any
   number/date/entity or the beat structure is rejected and the original ships.
 - **ChatGPT is TWO workers now** (2026-07-31): a **06:00 Central MEDIA worker**
@@ -262,11 +262,16 @@ self-fill for anything unfulfilled, guarded punch-up, then render.
   Phase B completing (or a manual `.github/triggers/daily` touch).
 - Never dispatch `daily.yml` as the step after authoring — it is the LAST step.
 - Clock: Routine ~09:19 UTC -> Phase A (auto, 09:45 cron backstop) -> ChatGPT
-  6:00 AM Central -> Phase B (auto on DONE, 12:45 UTC backstop) -> render.
+  6:00 AM Central -> Phase B (auto on DONE, 08:30-Central backstop) -> render.
   Posts land 8:00/9:30/11:00/12:30/2:00/3:30 Central. Phase B's backstop is
-  DELIBERATELY late (12:45 UTC): ChatGPT's task is local-time and shifts an
-  hour at DST while these crons do not, so an earlier backstop would render
-  pre-ChatGPT media for half the year with everything green.
+  DELIBERATELY late (08:30 Central, held by the in-code zoneinfo gate no
+  matter which of the two UTC crons fires): ChatGPT's task is local-time and
+  shifts an hour at DST while crons do not, so a UTC-anchored backstop would
+  render pre-ChatGPT media for half the year with everything green. (This
+  paragraph once said "12:45 UTC" and an earlier one said "06:15" — both
+  were stale copies of retired schedules; the doctor caught the drift on
+  2026-08-22. The crons are `30 13` and `30 14` in exchange_phase_b.yml and
+  the hour lives in `FINALIZER_HOUR_CENTRAL`, nowhere else.)
 - A Phase A that finds no packages exits 0 — so this bug class is INVISIBLE in
   the Actions tab. To confirm the exchange ran, check for
   `exchange/bundles/<date>/bundle.json`, not a green checkmark.

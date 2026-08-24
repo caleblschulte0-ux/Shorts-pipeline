@@ -73,16 +73,29 @@ jobs:
 
       # The record is the point — it is what the alarm reads and what proves
       # WHEN we checked. Committed even (especially) on a failure.
+      #
+      # NO WARNING-SWALLOW HERE. The durable verdict is this workflow's
+      # entire purpose, so a failed commit/push must fail the step — a
+      # `|| echo ::warning::` here once meant that on an all-artifacts-green
+      # day (judge rc=0) a rejected push left NO record anywhere and the run
+      # still concluded green. ci_commit_state.sh already distinguishes the
+      # two honest outcomes: exit 0 for "pushed" or "nothing to commit"
+      # (both fine), exit 1 for a commit or final push failure — and this
+      # step inherits that exit code as-is. The alarm still answers on a
+      # missing record (it evaluates live), so failing loudly here costs
+      # nothing and hides nothing.
       - name: Persist the verdicts
         run: |
           bash scripts/ci_commit_state.sh \
             "watchdog: chatgpt task verdicts ${{ steps.judge.outputs.date }} [skip ci]" \
-            state/chatgpt_tasks || echo "::warning::verdict commit failed"
+            state/chatgpt_tasks
 
       # RED means a task fired and left nothing. That is a FAILED run, not an
-      # idle day, and the workflow must say so out loud.
+      # idle day, and the workflow must say so out loud. `always()` so a
+      # persist failure above cannot skip this verdict either — both
+      # failures must be visible, not whichever happened first.
       - name: Fail the run when an artifact is missing
-        if: steps.judge.outputs.rc != '0'
+        if: always() && steps.judge.outputs.rc != '0'
         run: |
           echo "::error::CHATGPT TASK FAILED / NO ARTIFACT for ${{ steps.judge.outputs.date }} — see state/chatgpt_tasks/${{ steps.judge.outputs.date }}/"
           exit 1

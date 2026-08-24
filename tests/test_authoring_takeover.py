@@ -516,3 +516,82 @@ class TestAuthoredMediaVerification(unittest.TestCase):
         for shot in pkg["shots"]:
             self.assertTrue(shot.get("image_url"),
                             "a verified ChatGPT image was erased")
+
+
+class TestPhaseBPersistFailuresAreLoud(unittest.TestCase):
+    """Doctor finding 5a7b4694a767, ruled `doing`: Phase B's exit 0 IS the
+    "ready to render" signal (module docstring), yet a per-package
+    `atomic_write_json` failure was a ::warning:: and a lost
+    phase_b_report.json was silently discarded — so daily.yml rendered the
+    STALE pre-Phase-B packages with no audit record and everything green.
+    These are fault-injection tests: the write layer is made to fail and
+    the exit code has to tell the truth.
+
+    Same real-subprocess-shaped setup as TestSubscriptionIsFullyDead (the
+    no-bundle rescue path), but run in-process so `atomic_write_json` can
+    be monkeypatched per test."""
+
+    DATE = "29991229"
+
+    def setUp(self):
+        import exchange_phase_b as pb
+        self.pb = pb
+        self.bundle = ROOT / "exchange" / "bundles" / self.DATE
+        self.day = ROOT / "state" / "trending_packages" / self.DATE
+        self._clean()
+        self.bundle.mkdir(parents=True)
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug="persist-alpha"),
+                          text_card_pkg(slug="persist-bravo")]}))
+
+    def tearDown(self):
+        self._clean()
+
+    def _clean(self):
+        shutil.rmtree(self.bundle, ignore_errors=True)
+        shutil.rmtree(self.day, ignore_errors=True)
+
+    def _run(self, fail_when=None):
+        """Run Phase B in-process. `fail_when(Path) -> bool` injects an
+        OSError into exactly the writes it matches; everything else uses
+        the real atomic_write_json."""
+        import contextlib
+        import io
+        from unittest import mock
+        real = self.pb.atomic_write_json
+
+        def wrapped(path, obj):
+            if fail_when is not None and fail_when(Path(path)):
+                raise OSError("disk full (injected by test)")
+            return real(path, obj)
+
+        argv = ["exchange_phase_b.py", "--date", self.DATE,
+                "--no-self-fill", "--no-punchup"]
+        with mock.patch.object(self.pb, "atomic_write_json", wrapped), \
+                mock.patch.object(sys, "argv", argv), \
+                contextlib.redirect_stdout(io.StringIO()) as buf:
+            rc = self.pb.main()
+        return rc, buf.getvalue()
+
+    def test_all_writes_landing_is_exit_zero_and_ready(self):
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("— ready to render", out)
+        self.assertTrue((self.bundle / "phase_b_report.json").exists(),
+                        "the audit record must exist on a green exit")
+
+    def test_one_failed_package_write_is_nonzero_and_names_the_path(self):
+        rc, out = self._run(fail_when=lambda p: "persist-alpha" in p.name)
+        self.assertNotEqual(rc, 0, "a lost package write exited green")
+        self.assertIn("persist-alpha", out,
+                      "the failed path must be named, not summarized")
+        self.assertIn("NOT ready to render", out)
+        self.assertNotIn("— ready to render", out,
+                         "the success banner printed on a failed persist")
+
+    def test_a_lost_audit_record_is_nonzero(self):
+        rc, out = self._run(
+            fail_when=lambda p: p.name == "phase_b_report.json")
+        self.assertNotEqual(rc, 0, "a lost phase_b_report.json exited green")
+        self.assertIn("phase_b_report.json", out)
+        self.assertIn("NOT ready to render", out)

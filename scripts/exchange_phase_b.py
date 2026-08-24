@@ -780,6 +780,18 @@ def main() -> int:
         print("[phase-b] dry run — packages not written")
         return 0
 
+    # ---- persist: every write must LAND before "ready to render" ---------
+    # Exit 0 IS the contract ("Exit 0 = ready to render", module docstring):
+    # daily.yml renders whatever is on disk the moment this returns. A
+    # package write that failed here used to be a ::warning:: and a report
+    # write that failed was silently discarded — so the renderer picked up
+    # the STALE pre-Phase-B package (no verified media, no punch-up) and the
+    # day shipped with no audit record, green the whole way. So: track every
+    # intended write, and any failure flips the exit code and names the
+    # path. The successful writes are left in place — they are individually
+    # atomic and correct — but the phase as a whole refuses to call itself
+    # ready.
+    failed_writes: list[str] = []
     for slug, pkg in packages.items():
         path = pkg.pop("_path", None)
         if not path:
@@ -787,15 +799,29 @@ def main() -> int:
         try:
             atomic_write_json(Path(path), pkg)
         except Exception as exc:                     # noqa: BLE001
-            print(f"[phase-b] WARN could not write {slug}: {exc}")
+            print(f"::error::[phase-b] could not write package "
+                  f"{slug} ({path}): {exc}")
+            failed_writes.append(str(path))
 
     out = xb.bundle_dir(args.date) / "phase_b_report.json"
     try:
         out.parent.mkdir(parents=True, exist_ok=True)
         atomic_write_json(out, report)
-        print(f"[phase-b] wrote {out.relative_to(ROOT)} — ready to render")
-    except Exception:                                # noqa: BLE001
-        pass
+    except Exception as exc:                         # noqa: BLE001
+        # The report is the phase's only durable evidence of WHAT it did —
+        # which pointers were refused, what self-filled, what the punch-up
+        # guard rejected. Losing it silently is how a bad day becomes an
+        # unexplainable day.
+        print(f"::error::[phase-b] could not write audit record "
+              f"{out}: {exc}")
+        failed_writes.append(str(out))
+
+    if failed_writes:
+        print("::error::[phase-b] NOT ready to render — "
+              f"{len(failed_writes)} write(s) failed: "
+              + ", ".join(failed_writes))
+        return 1
+    print(f"[phase-b] wrote {out.relative_to(ROOT)} — ready to render")
     return 0
 
 

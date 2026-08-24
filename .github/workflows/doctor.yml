@@ -84,7 +84,13 @@ jobs:
         id: ingest
         if: steps.find.outputs.report != ''
         run: |
-          set +e
+          # `set +e` keeps a refused report from aborting the job here —
+          # the evidence pack and the teaching comment below must still go
+          # out. `pipefail` is what makes the captured status REAL: without
+          # it `$?` after the pipe is tee's exit code, which is always 0,
+          # so the recorded status was fiction. The final step of this job
+          # consumes it.
+          set +e -o pipefail
           python scripts/doctor.py ingest "${{ steps.find.outputs.report }}" \
             | tee "$RUNNER_TEMP/ingest.txt"
           echo "status=$?" >> "$GITHUB_OUTPUT"
@@ -127,3 +133,20 @@ jobs:
             --repo "${{ github.repository }}" \
             --body-file "$RUNNER_TEMP/comment.md" \
             || echo "::warning::could not comment on issue $REPORT_ISSUE_NUMBER"
+
+      # ---- the intake verdict, LAST on purpose ------------------------
+      # `scripts/doctor.py ingest` exits 0 when the report did its job
+      # (including per-finding editorial rejections — that is the gate
+      # working) and nonzero only on a REPORT-level failure: unreadable
+      # JSON, a wrong schema, findings present but none ingestible, or an
+      # unaddressed CRITICAL alarm (the enforced editorial refusal — see
+      # report_level() in scripts/doctor.py for why that one turns the day
+      # red on purpose). This step sits after the evidence pack, the
+      # persist, and the issue comment so a failing report never stops the
+      # loop's plumbing or the feedback that teaches the re-file — the run
+      # goes red, everything else already happened.
+      - name: Fail the run on a report-level intake failure
+        if: steps.find.outputs.report != '' && steps.ingest.outputs.status != '0'
+        run: |
+          echo "::error::doctor intake FAILED at the report level for ${{ steps.find.outputs.report }} — see the ingest step's log; the evidence pack, persist, and comment steps still ran."
+          exit 1

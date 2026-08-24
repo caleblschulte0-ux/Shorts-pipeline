@@ -32,6 +32,7 @@ in one ChatGPT writes during a multi-day takeover.
 """
 from __future__ import annotations
 
+import math
 import re
 from pathlib import Path
 
@@ -118,6 +119,40 @@ def _substrings_ok(haystack: str, needles, label: str) -> list[str]:
             for n in needles if n and n not in haystack]
 
 
+def _finite_number(v) -> bool:
+    """A REAL, finite number. bool is excluded (True is an int in Python,
+    but a chart of Trues is not data), and so are NaN/inf — the renderer
+    divides, interpolates and takes maxima over these values, so anything
+    else here is a crash or a nonsense frame waiting for render time."""
+    return (isinstance(v, (int, float)) and not isinstance(v, bool)
+            and math.isfinite(v))
+
+
+def _graph_data_problems(years: list, series: list) -> list[str]:
+    """Every NUMERIC defect in a graph_race's data, before any gate that
+    does arithmetic on it. Until 2026-08-24 the validator checked only
+    LENGTHS (doctor finding d64b063a21bd): two series of strings sailed
+    through with an empty problem list, because the drama gate's TypeError
+    was swallowed by a blanket `except: pass` that read every crash as
+    "engine absent". The one structural gate cannot wave through data the
+    renderer will choke on."""
+    bad: list[str] = []
+    non_num = [y for y in years if not _finite_number(y)]
+    if non_num:
+        bad.append(f"years contain non-numeric/non-finite entries: "
+                   f"{non_num[:4]!r}")
+    elif any(b <= a for a, b in zip(years, years[1:])):
+        bad.append(f"years are not strictly increasing: {years!r} — the "
+                   f"race timeline would run backwards or fold on itself")
+    for s in series:
+        vals = (s or {}).get("values") or []
+        non_num = [v for v in vals if not _finite_number(v)]
+        if non_num:
+            bad.append(f"series {(s or {}).get('name')!r} has non-numeric/"
+                       f"non-finite values: {non_num[:4]!r}")
+    return bad
+
+
 def structural_problems(pkg: dict) -> list[str]:
     """The same hard rules the Routine is told to self-verify. A package
     that fails these would fail at render time too."""
@@ -166,24 +201,47 @@ def structural_problems(pkg: dict) -> list[str]:
     elif fmt == "graph_race":
         years = pkg.get("years") or []
         series = pkg.get("series") or []
+        graph_bad: list[str] = []
         if len(years) < 4:
-            bad.append(f"only {len(years)} years")
+            graph_bad.append(f"only {len(years)} years")
         if len(series) < 2:
-            bad.append(f"only {len(series)} series")
+            graph_bad.append(f"only {len(series)} series")
         for s in series:
             vals = (s or {}).get("values") or []
             if len(vals) != len(years):
-                bad.append(f"series {(s or {}).get('name')!r} has "
-                           f"{len(vals)} values for {len(years)} years")
-        # The renderer's own drama gate, if the engine is importable.
-        try:
-            from engines import chart_race          # noqa: PLC0415
-            verdict = chart_race.assess(pkg)
-            ok = verdict.get("ok") if isinstance(verdict, dict) else verdict
-            if not ok:
-                bad.append(f"fails the graph drama gate: {verdict}")
-        except Exception:                            # noqa: BLE001
-            pass                                     # engine absent: skip
+                graph_bad.append(f"series {(s or {}).get('name')!r} has "
+                                 f"{len(vals)} values for {len(years)} years")
+        graph_bad += _graph_data_problems(years, series)
+        bad += graph_bad
+        # The renderer's drama gate — but only on data the shape/numeric
+        # checks above accepted (running arithmetic over known-garbage
+        # would just crash the gate on the defect already reported). The
+        # gate itself FAILS CLOSED now: this used to be one blanket
+        # `except: pass` meaning "engine absent, skip", which also ate
+        # every CRASH — a TypeError over string values, an IndexError over
+        # short series — so a package the renderer could not survive
+        # validated clean (doctor d64b063a21bd). Absence and a crash are
+        # named apart, and both refuse: a graph the gate never judged is
+        # unproven, not passed.
+        if not graph_bad:
+            try:
+                from engines import chart_race       # noqa: PLC0415
+            except Exception as e:                   # noqa: BLE001
+                bad.append(f"graph drama gate could not run — chart_race "
+                           f"engine unavailable ({type(e).__name__}: "
+                           f"{str(e)[:80]})")
+            else:
+                try:
+                    verdict = chart_race.assess(pkg)
+                except Exception as e:               # noqa: BLE001
+                    bad.append(f"graph drama gate CRASHED "
+                               f"({type(e).__name__}: {str(e)[:80]}) — an "
+                               f"unjudged package is unproven, not passed")
+                else:
+                    ok = (verdict.get("ok") if isinstance(verdict, dict)
+                          else verdict)
+                    if not ok:
+                        bad.append(f"fails the graph drama gate: {verdict}")
     return bad
 
 

@@ -652,6 +652,26 @@ jobs:
           fi
           exit 0
 
+      # Bank what this run learned BEFORE the runner dies: the 90-club
+      # exemplars and the reject library that scene_repair's retrieve-
+      # before-inventing pass reads. Until 2026-08-24 harvest ran only in
+      # the preview workflow, and even there its output left the runner as
+      # a 14-day artifact — so quality/ was empty on every production run,
+      # bad_pairs was always {}, and repair happily re-attempted pairs the
+      # judge had already hard-failed. Non-fatal (a harvest bug must not
+      # eat a posted day) but loud on failure.
+      - name: Harvest exemplars + rejects from this run's verdicts
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        continue-on-error: true
+        run: |
+          set +e
+          OUT=$(python3 scripts/exemplar_store.py harvest 2>&1)
+          RC=$?
+          set -e
+          echo "$OUT" | tail -20
+          [ $RC -ne 0 ] && echo "::warning title=exemplar-harvest-failed::rc=$RC"
+          exit 0
+
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |
@@ -676,4 +696,4 @@ jobs:
             data_learning/niche.config.json data_learning/data \
             data_learning/viz_mechanics.json \
             state/showrunner_verdicts.jsonl \
-            state/scene_plans
+            state/scene_plans quality

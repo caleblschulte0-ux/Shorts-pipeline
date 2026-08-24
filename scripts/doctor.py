@@ -388,6 +388,40 @@ def ingest(report: dict, *, date: str | None = None) -> dict:
     return res
 
 
+def report_level(res: dict) -> dict:
+    """REPORT-level verdict over a validate/ingest result, for the intake
+    plumbing (doctor.yml). Pure — no reads, no writes.
+
+    The distinction it draws, which the workflow used to blur into one
+    always-green outcome:
+
+      * per-finding rejection alongside acceptances is the GATE WORKING
+        (a re-file of something settled, a bar-lowering proposal, an
+        imaginary file) — ``ok``, the day stays green;
+      * the mandated empty report ("nothing new today") is ``ok`` too — a
+        missing report is ambiguous, so filing one must never be punished;
+      * findings were present and NONE survived (which also covers a wrong
+        top-level schema and junk input) — ``failed``: the report as a
+        whole produced nothing, and a green day here is how an unusable
+        report sits committed on main contributing nothing, forever;
+      * an unaddressed CRITICAL alarm — ``failed``, deliberately. This is
+        the enforced editorial refusal (see validate_report): the reviewer
+        walked past a channel that is down. It is a *refusal*, not an
+        infra error, but the operator has to SEE it the same day, so it
+        turns the run red — doctor.yml fails on it only AFTER the evidence
+        pack and the teaching comment have gone out, so the loop keeps
+        running while the day shows red.
+    """
+    why: list[str] = []
+    if res.get("unaddressed_criticals"):
+        why.append("unaddressed critical alarm(s): "
+                   + ", ".join(res["unaddressed_criticals"]))
+    counts = res.get("counts") or {}
+    if not counts.get("accepted") and res.get("rejected"):
+        why.append("findings were present but none were ingestible")
+    return {"status": "failed" if why else "ok", "why": why}
+
+
 # ---------------------------------------------------------------------------
 # Ruling — Claude's half.
 # ---------------------------------------------------------------------------
@@ -657,7 +691,15 @@ def main() -> int:                                       # noqa: C901
     if args.cmd in ("validate", "ingest"):
         text = sys.stdin.read() if args.report == "-" else \
             Path(args.report).read_text()
-        report = json.loads(text)
+        try:
+            report = json.loads(text)
+        except ValueError as exc:
+            # Unreadable JSON is the purest report-level failure there is —
+            # it used to escape as a traceback, which doctor.yml's `set +e`
+            # then reduced to an unread status output. Say it in the same
+            # vocabulary the workflow now consumes.
+            print(f"report-level: FAILED — unreadable JSON: {exc}")
+            return 1
         res = ingest(report) if args.cmd == "ingest" else \
             validate_report(report)
         if args.json:
@@ -674,9 +716,16 @@ def main() -> int:                                       # noqa: C901
                 print(f"{len(res['added'])} new, "
                       f"{len(res['refreshed'])} refreshed, "
                       f"{len(res['awaiting_ruling'])} awaiting your ruling")
-        # Rejections are the gate doing its job on a partial report; only a
-        # report with NOTHING usable is a failure.
-        return 0 if res["counts"]["accepted"] or not res["rejected"] else 1
+        # Rejections are the gate doing its job on a partial report; the
+        # exit code answers only the REPORT-level question — did this
+        # report, as a whole, do its job? — so doctor.yml can stay green on
+        # editorial trimming and go red on a report that produced nothing
+        # usable or walked past a critical alarm. `report_level` documents
+        # each case.
+        lvl = report_level(res)
+        print(f"report-level: {lvl['status'].upper()}"
+              + (f" — {'; '.join(lvl['why'])}" if lvl["why"] else ""))
+        return 0 if lvl["status"] == "ok" else 1
 
     if args.cmd == "backlog":
         rows = backlog_view(args.state)
