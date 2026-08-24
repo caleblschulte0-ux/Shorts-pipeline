@@ -86,10 +86,23 @@ def renderable(kind: str) -> bool:
 
 # Depictions whose renderer BAKES a mechanically-coupled host (charts._bake_host
 # with an attachment record): the contact-verified set. Kinds that auto-route to
-# one of these (waffle_grid/share -> stack, pictograph -> race, timeline ->
-# trend) count too.
+# one of these inside `_compose_story` (waffle_grid/share -> stack, pictograph
+# -> pictorial_race) count too — that routing happens BEFORE any drawing.
+#
+# `timeline` was in this set and did not belong (removed 2026-08-24). It is a
+# FULL-FRAME renderer: `charts.render_series` dispatches to `_render_timeline`,
+# which authors its own 1080x1920 sequence and never calls `_bake_host`, so a
+# timeline beat records ZERO grip frames. The `timeline -> trend` mapping the
+# old comment cited is `charts.FALLBACK` — the degrade path taken only when
+# the full-frame renderer FAILS, not a routing. The claim sat dormant because
+# `pictorial_race` always won the slot ahead of it; the moment the variety
+# pass started reaching for `timeline`, grocery-squeeze rendered a beat with
+# no mascot at all and the benchmark's contact gate caught it pre-render.
+# Same doctrine as the engine registry: a capability list that does not tell
+# the truth is worse than no list. Anything added here must actually bake —
+# tests/test_contact_set_is_honest.py checks both directions.
 _CONTACT_OK = frozenset({
-    "trend", "timeline", "pictorial_race", "rank", "bars", "comparison",
+    "trend", "pictorial_race", "rank", "bars", "comparison",
     "stack", "share", "waffle_grid", "pictograph", "bubbles",
     "geo_us", "geo_world"})
 
