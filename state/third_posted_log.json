@@ -4771,13 +4771,68 @@
       "ts": "2026-08-24T11:46:01.745638+00:00"
     },
     "clip-20260824-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/F-kLtcLZ3Jc",
       "title": "Ludwig Grinds 100 Hours Just To Gain Two Elo",
       "kind": "twitch_clip",
-      "ts": "2026-08-24T11:50:55.507911+00:00",
+      "ts": "2026-08-24T11:51:00.161769+00:00",
+      "uploaded_at": "2026-08-24T11:51:00.161799+00:00",
+      "publish_at": "2026-08-24T18:30:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
+      "streamer": "ludwig",
+      "series": "fail",
+      "hook": "100 HOURS FOR JUST TWO ELO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 24989,
+      "banger": 0.4,
+      "cut": {
+        "start": 2.6,
+        "end": 23.3
+      },
+      "director_cut": true
+    },
+    "rejected-wealthyobliviousreindeerninjagrumpy-14yyxsgmzrrx_ujm": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/WealthyObliviousReindeerNinjaGrumpy-14yYXsgMzrRx_ujm",
+      "streamer": "kaicenat",
+      "title": "Kai enjoying the outdoors \ud83d\ude04",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static game NPC, nothing happens)",
+      "ts": "2026-08-24T11:51:56.060972+00:00"
+    },
+    "rejected-artsyanimatedoryxbrainslug-loyvpgnzexj6abk-": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ArtsyAnimatedOryxBrainSlug-LOyVpgNzEXj6ABK-",
+      "streamer": "forsen",
+      "title": "GANK",
+      "qa_rejected": true,
+      "ts": "2026-08-24T11:52:09.764424+00:00"
+    },
+    "rejected-strangeuglycockroachsobayed-wfvkyts59zqavkwr": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/StrangeUglyCockroachSoBayed-wFvkyTs59zQaVKwr",
+      "streamer": "caseoh_",
+      "title": "Heinous Hasbrowns",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just setup/measuring talk)",
+      "ts": "2026-08-24T11:53:18.631878+00:00"
+    },
+    "rejected-superperfecthamsteryouwhy-wkaazllnfpj2lde_": {
+      "source_url": "https://www.twitch.tv/cinna/clip/SuperPerfectHamsterYouWHY-WKaAzllNFpj2Lde_",
+      "streamer": "cinna",
+      "title": "Cinna Reacts To A Freaky PC Prank And Instantly Knows Who Did It",
+      "qa_rejected": true,
+      "ts": "2026-08-24T12:04:20.522720+00:00"
+    },
+    "clip-20260824-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/agent00/clip/AffluentPreciousJackalRuleFive-BKxho37D7VzcAItR",
+      "story_key": null,
+      "streamer": "agent00",
+      "title": "Agent00 Can't Believe What Happened To His Chair",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:07:06.547169+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
