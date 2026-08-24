@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6bea2b9c303feb7e5678794fa4b1638762898c532e86b02a0c577093ed27dd5c",
+  "prompt_used": "An editorial illustration for a short-form video: sandwich making kitchen counter. It accompanies the narration: \"layered it inside a turkey sandwich\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0cfe90aa417457de543064c3e2be61697a37138afc8c3ea179391e34d51249a3",
+    "bytes": 1455685,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:20:40.133Z",
+  "error": null,
+  "retryable": false
+}
