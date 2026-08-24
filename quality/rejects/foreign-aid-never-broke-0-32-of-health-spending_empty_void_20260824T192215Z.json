@@ -1,0 +1,37 @@
+{
+ "slug": "foreign-aid-never-broke-0-32-of-health-spending",
+ "ts": "20260824T192215Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start is ~60% empty navy \u2014 a blank band under 'Energy use' and an empty lower third, with five tiny 12px dots as the only content.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "text_collision_unreadable_overlay",
+  "visible_evidence": "At seg4:start, seg4:mid, seg4:end and payoff@-0.4 the closing sentence renders both INSIDE a teal-bordered callout and overflowing above/below it, printing 'Foreign aid barely registers, nuclear power just clawed back...' straight across the chart title (only 'E' and '19' survive at seg4:start) and over the bubble grid; a second unreadable 3px source line is stacked under 'COMMENT BELOW' at payoff@-0.4.",
+  "root_cause": "The closing callout is sized to a box smaller than its wrapped text and is composited at the top of the still-live energy-use scene without clearing or dimming the underlying title/subtitle layer, and a duplicate global source strip is drawn below the per-scene source line.",
+  "repair_goal": "Give the closing its own clean full-frame card: fit the copy inside the callout (shrink font / widen box) with no overflow, hide or fade the underlying chart title and subtitle behind it, drop the duplicate micro source strip, and move the mascot off the 1626 bubble so no number is occluded."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "overwhelmed"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  }
+ ]
+}
