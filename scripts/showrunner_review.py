@@ -733,6 +733,15 @@ def append_ledger(slug: str, verdict: dict) -> None:
                "dimensions": verdict.get("dimensions"),
                "one_line": verdict.get("one_line"),
                "auto_fails": verdict.get("auto_fails", []),
+               # The judge's specific diagnosis and prescriptions. These were
+               # dropped from the durable record until 2026-08-24, so the only
+               # cross-run trace of WHY a video failed was one_line — a
+               # re-planner (or a human reading the ledger) had nothing to act
+               # on. Bounded so a chatty verdict can't bloat the ledger.
+               "problems": [str(p)[:300] for p in
+                            (verdict.get("problems") or [])[:6]],
+               "fixes": [str(f)[:300] for f in
+                         (verdict.get("fixes") or [])[:6]],
                "motion": verdict.get("motion"),
                "judge": verdict.get("judge", "unknown"),   # ACTUAL backend used
                "model": os.environ.get("SHOWRUNNER_MODEL", "opus"),

@@ -43,11 +43,19 @@ STATE_DIR = REPO / "state"
 LOG_PATH = STATE_DIR / "explainer_posted_log.json"
 
 
-def _recent_gate_blocks(hours: int = 20) -> set:
+def _recent_gate_blocks(hours: int = 48) -> set:
     """Slugs the showrunner BLOCKED within the last `hours`, read from its
     durable ledger. Used only to reorder the default queue — a blocked story
     keeps its place in line, at the back. Any unreadable line or timestamp
-    is skipped: this must never be able to fail a posting run."""
+    is skipped: this must never be able to fail a posting run.
+
+    The window MUST exceed the gap between same-slot runs (~24h cron), or
+    the rotation never fires for the run that needs it: at 20h, the 08-22
+    evening blocks (19:52-21:53Z) had all expired by the 08-23 evening run
+    (cutoff 23:49Z the day before), so the two daily slots each promoted
+    the other's freshly-blocked slugs to the front — the same four stories
+    re-rendered and re-blocked ~18 times over two days while ~40 untried
+    stories waited. 48h covers both slots seeing both days' blocks."""
     out: set = set()
     try:
         cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
@@ -199,7 +207,7 @@ def main() -> int:
     # recently blocked the order degrades to exactly the old behaviour),
     # just no longer allowed to starve stories that have never had a turn.
     if not args.slugs:
-        recently_blocked = _recent_gate_blocks(hours=20)
+        recently_blocked = _recent_gate_blocks()
         if recently_blocked:
             slugs.sort(key=lambda s: s in recently_blocked)  # stable sort
             print(f"[post_stories] {len(recently_blocked)} recently-blocked "

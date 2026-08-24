@@ -383,7 +383,10 @@ def pipeline_health(today: str) -> dict:
                  if l.strip()][-40:]
         out["showrunner"] = {
             "recent": len(lines),
-            "blocks": sum(1 for v in lines if v.get("verdict") == "BLOCK"),
+            # case-insensitive: the ledger writes lowercase "block"; the old
+            # uppercase-only match counted 0 blocks on real data forever.
+            "blocks": sum(1 for v in lines
+                          if str(v.get("verdict", "")).lower() == "block"),
             "avg_score": round(statistics.mean(
                 [float(v.get("score") or 0) for v in lines]), 1) if lines else None,
         }
