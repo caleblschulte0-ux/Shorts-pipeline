@@ -140,10 +140,16 @@
       ]
     },
     "d17724dfb1c0": {
-      "verdict": "doing",
-      "date": "20260811",
-      "because": "Confirmed shape: engines/chart_race.py's assess() (data-drama gate) has no visibility into the renderer's fixed full-year x-axis span or the 12%-of-global-max y-floor, so a package can pass preflight and still open as a near-empty plot. Real August 9 evidence (two empty-void blocks, one 1.7fps block) backs this. Queued \u2014 needs a cheap composition/motion preflight derived from the same axis math, larger than a one-line fix, not attempted this run.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built inside assess() so every existing caller (run_trending_daily's pre-render quarantine, package_schema's structural gate) inherits it: opening painted-area and leader screen-travel are derived from the renderer's own axis math (fixed year span, 12%-of-max camera floor). A hockey-stick parked at zero for its first fifth and a line that never climbs the frame are both refused with named reasons BEFORE a slot is spent, and the quarantine reason already feeds the replacement path. Verdict now reports open_area and travel for calibration. Real authored-package corpus still passes; 4 new tests.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed shape: engines/chart_race.py's assess() (data-drama gate) has no visibility into the renderer's fixed full-year x-axis span or the 12%-of-global-max y-floor, so a package can pass preflight and still open as a near-empty plot. Real August 9 evidence (two empty-void blocks, one 1.7fps block) backs this. Queued \u2014 needs a cheap composition/motion preflight derived from the same axis math, larger than a one-line fix, not attempted this run."
+        }
+      ]
     },
     "d64b063a21bd": {
       "verdict": "done",
@@ -560,10 +566,16 @@
       "history": []
     },
     "ee3bb63e4024": {
-      "verdict": "doing",
-      "date": "20260819",
-      "because": "Confirmed real by reading shared/media_checkpoint.py:1345-1385 and scripts/exchange_phase_b.py: recovered_media() correctly rebuilds authored_shot checkpoints into idx.media, but the freshly-authored-package loop (cover_authored) only ever reads shot.pop('media') from the response and never consults idx.media/recovered pointers, while the bundle.requests loop that DOES read idx.media never covers freshly-authored packages (they are not in bundle.requests). A verified authored-shot checkpoint whose response omits shot.media is real work invisibly discarded. Queued -- next in line by rank after the two 'high' severity items above.",
-      "history": []
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built type-aware recovery: recovered_media now serves only the bundle-request lane, and new recovered_authored_media returns authored-shot pointers keyed (package_id, shot_index) \u2014 validated with the FULL checkpoint contract plus request_kind and package/shot identity agreement (a mismatch refuses, never guesses). Phase B attaches recovered pointers only onto takeover-authored packages, only where the response was silent, before cover_authored, which pins them with origin chatgpt_authored_recovered so the audit trail names the lane. End-to-end tests prove a checkpoint alone fills the bare shot, identity mismatches never attach, and a response pointer is never overridden. 14 new tests; 1233-test suite green.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260819",
+          "because": "Confirmed real by reading shared/media_checkpoint.py:1345-1385 and scripts/exchange_phase_b.py: recovered_media() correctly rebuilds authored_shot checkpoints into idx.media, but the freshly-authored-package loop (cover_authored) only ever reads shot.pop('media') from the response and never consults idx.media/recovered pointers, while the bundle.requests loop that DOES read idx.media never covers freshly-authored packages (they are not in bundle.requests). A verified authored-shot checkpoint whose response omits shot.media is real work invisibly discarded. Queued -- next in line by rank after the two 'high' severity items above."
+        }
+      ]
     },
     "589a78eabb84": {
       "verdict": "later",

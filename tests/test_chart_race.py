@@ -303,3 +303,51 @@ class TestAssessRefusesUnjudgeableData(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTheOpeningIsNotAnEmptyFrame(unittest.TestCase):
+    """Doctor d17724dfb1c0: the drama numbers are timeline-wide but the
+    renderer's axes are not — full year span from frame one, y-camera
+    floored at 12% of the global max. Two races were blocked on 2026-08-09
+    for mostly-empty openings AFTER passing preflight. assess() now derives
+    the opening's painted area and the leader's screen travel from the same
+    axis math the renderer uses, and refuses before a slot is spent."""
+
+    def test_a_hockey_stick_parked_at_zero_is_refused(self):
+        # ten flat near-zero years, then the spike: peak and swing look
+        # great, the first fifth of the video is an empty black plot.
+        vals = [1, 1, 1, 1, 1, 1, 1, 1, 2, 5, 4000, 17000]
+        v = spec([("a", vals), ("b", [1] * 10 + [300, 900])],
+                 years=list(range(2010, 2022)))
+        got = cr.assess(v)
+        self.assertFalse(got["ok"])
+        self.assertTrue(any("opening paints" in r for r in got["reasons"]),
+                        got["reasons"])
+        self.assertLess(got["open_area"], cr.OPEN_AREA_MIN)
+
+    def test_a_race_already_moving_at_the_open_passes(self):
+        v = spec([("a", [1500, 2400, 5200, 9000, 17000]),
+                  ("b", [1400, 1800, 2500, 3200, 4200])],
+                 years=[2018, 2019, 2020, 2021, 2022])
+        got = cr.assess(v)
+        self.assertTrue(got["ok"], got["reasons"])
+        self.assertGreaterEqual(got["open_area"], cr.OPEN_AREA_MIN)
+
+    def test_a_line_that_never_climbs_the_frame_is_refused(self):
+        # crossovers grant the lenient 1.6x swing bar, but 60->100 against
+        # a 100 camera is ~40% travel shared across wiggles — build one
+        # that stays under the travel floor while keeping its crossover.
+        v = spec([("a", [80, 84, 88, 86, 90]),
+                  ("b", [82, 80, 86, 89, 88])],
+                 years=[2018, 2019, 2020, 2021, 2022])
+        got = cr.assess(v)
+        self.assertFalse(got["ok"])
+        self.assertTrue(any("screen travel" in r for r in got["reasons"]),
+                        got["reasons"])
+
+    def test_the_verdict_reports_both_measurements(self):
+        v = spec([("a", [1500, 2400, 5200, 9000, 17000]),
+                  ("b", [1400, 1800, 2500, 3200, 4200])])
+        got = cr.assess(v)
+        self.assertIn("open_area", got)
+        self.assertIn("travel", got)

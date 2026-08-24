@@ -204,6 +204,119 @@ class TestRecoveryIsNotASideDoor(unittest.TestCase):
         self.assertEqual(set(got), {"req-1"})
 
 
+def authored_checkpoint(pkg="kangaroo-court", idx=2, **over):
+    """A checkpoint for a shot inside a package ChatGPT authored itself."""
+    rid = mc.authored_shot_request_id(pkg, idx)
+    cp = checkpoint(rid, request_kind="authored_shot", package_id=pkg,
+                    shot_index=idx)
+    cp["drive"]["filename"] = f"20260810__{rid}.png"
+    cp.update(over)
+    return cp
+
+
+class TestAuthoredShotRecoveryIsTypeAware(unittest.TestCase):
+    """Doctor ee3bb63e4024: recovered_media rebuilt authored-shot checkpoints
+    into the flat request-id map, but that map's only consumer walks
+    bundle.requests — where an authored shot never appears — while
+    cover_authored reads only the media riding on a response-authored shot.
+    The verified image was recovered into memory nothing read. Recovery is
+    now TYPE-AWARE: bundle requests stay in `recovered_media`, authored
+    shots come back from `recovered_authored_media` keyed by
+    (package_id, shot_index) — the address their consumer actually uses."""
+
+    def setUp(self):
+        import tempfile
+        self.tmp = Path(tempfile.mkdtemp(prefix="cprec-auth-"))
+        self._saved_dir = mc.progress_dir
+        d = self.tmp / "media-progress"
+        d.mkdir(parents=True)
+        mc.progress_dir = lambda date: d                  # noqa: ARG005
+        self.dir = d
+
+    def tearDown(self):
+        import shutil
+        mc.progress_dir = self._saved_dir
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def write(self, cp):
+        import json
+        (self.dir / f"{mc.safe_request_id(cp['request_id'])}.json").write_text(
+            json.dumps(cp))
+
+    def test_each_lane_returns_only_its_own_kind(self):
+        self.write(checkpoint("req-1"))
+        self.write(authored_checkpoint())
+        self.assertEqual(set(mc.recovered_media("20260810")), {"req-1"},
+                         "an authored-shot checkpoint in the bundle-request "
+                         "lane is memory no consumer reads")
+        self.assertEqual(set(mc.recovered_authored_media("20260810")),
+                         {("kangaroo-court", 2)})
+
+    def test_a_valid_authored_checkpoint_becomes_a_keyed_pointer(self):
+        self.write(authored_checkpoint())
+        got = mc.recovered_authored_media("20260810")
+        ptr = got[("kangaroo-court", 2)]
+        self.assertEqual(ptr["drive"]["file_id"], "1abcFILEID")
+        self.assertEqual(ptr["image"]["sha256"], "a" * 64)
+        self.assertTrue(ptr["recovered_from_checkpoint"],
+                        "the audit trail must say this came from recovery")
+
+    def test_package_identity_mismatch_is_a_refusal(self):
+        """The checkpoint's declared package must agree with the one its own
+        request_id encodes — a mismatch is never resolved by guessing."""
+        self.write(authored_checkpoint(package_id="somebody-else"))
+        refused: dict = {}
+        got = mc.recovered_authored_media("20260810", refused_out=refused)
+        self.assertEqual(got, {})
+        rid = mc.authored_shot_request_id("kangaroo-court", 2)
+        self.assertIn(rid, refused)
+        self.assertTrue(any("identity mismatch" in p for p in refused[rid]))
+
+    def test_shot_index_mismatch_is_a_refusal(self):
+        self.write(authored_checkpoint(shot_index=7))
+        refused: dict = {}
+        self.assertEqual(
+            mc.recovered_authored_media("20260810", refused_out=refused), {})
+        self.assertTrue(refused)
+
+    def test_a_bundle_request_checkpoint_cannot_cross_lanes(self):
+        """Same rule `media_entry_problems` enforces for explicit pointers:
+        request_kind must be authored_shot, in BOTH directions."""
+        self.write(authored_checkpoint(request_kind="bundle_request"))
+        refused: dict = {}
+        self.assertEqual(
+            mc.recovered_authored_media("20260810", refused_out=refused), {})
+        self.assertTrue(refused)
+        # ...and the bundle lane refuses it right back: an authored-shaped
+        # request_id has no bundle request to answer.
+        self.assertEqual(mc.recovered_media("20260810"), {})
+
+    def test_the_full_checkpoint_contract_still_applies(self):
+        """Never fewer checks than the normal pointer validation: a stale
+        bundle identity refuses recovery exactly as it would refuse an
+        explicit pointer's checkpoint."""
+        self.write(authored_checkpoint(
+            bundle={"identity": "not-the-current-bundle"}))
+        refused: dict = {}
+        got = mc.recovered_authored_media(
+            "20260810", bundle_id="the-real-current-bundle",
+            refused_out=refused)
+        self.assertEqual(got, {})
+        self.assertTrue(refused)
+
+    def test_an_unverified_authored_checkpoint_is_skipped(self):
+        self.write(authored_checkpoint(status="in_progress"))
+        self.assertEqual(mc.recovered_authored_media("20260810"), {})
+
+    def test_have_wins_recovery_fills_silence_only(self):
+        self.write(authored_checkpoint())
+        got = mc.recovered_authored_media("20260810",
+                                          have={("kangaroo-court", 2)})
+        self.assertEqual(got, {},
+                         "a shot the response answered must not be "
+                         "overridden by a checkpoint")
+
+
 class TestPhaseBActuallyUsesIt(unittest.TestCase):
     """Wiring, pinned: the module can be perfect and still be dead code."""
 
@@ -234,6 +347,27 @@ class TestPhaseBActuallyUsesIt(unittest.TestCase):
                         self.SRC.index("mc.recovered_media(") + 400]
         self.assertIn("bundle_id=bundle_id", call)
         self.assertIn("bundle=bundle", call)
+
+    def test_phase_b_recovers_authored_shots_too(self):
+        """Doctor ee3bb63e4024: without this lane, an authored-shot
+        checkpoint is recovered into idx["media"] — a map only the
+        bundle.requests loop reads — and the shot self-fills with stock
+        while its verified image sits on Drive."""
+        self.assertIn("recovered_authored_media", self.SRC)
+
+    def test_authored_recovery_happens_BEFORE_cover_authored(self):
+        """The attach must land on the shot before cover_authored consumes
+        shot.media, so a recovered pointer takes the identical byte-level
+        fetch (sha256 + decode + placeholder) an explicit one does."""
+        i_rec = self.SRC.index("mc.recovered_authored_media(")
+        self.assertLess(i_rec, self.SRC.index("cover_authored(pkg, report"),
+                        "authored-shot recovery must precede cover_authored, "
+                        "or the recovered pointer is never consumed")
+
+    def test_authored_recovery_is_passed_the_current_identity(self):
+        call = self.SRC[self.SRC.index("mc.recovered_authored_media("):
+                        self.SRC.index("mc.recovered_authored_media(") + 300]
+        self.assertIn("bundle_id=bundle_id", call)
 
 
 if __name__ == "__main__":

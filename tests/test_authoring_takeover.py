@@ -595,3 +595,161 @@ class TestPhaseBPersistFailuresAreLoud(unittest.TestCase):
         self.assertNotEqual(rc, 0, "a lost phase_b_report.json exited green")
         self.assertIn("phase_b_report.json", out)
         self.assertIn("NOT ready to render", out)
+
+
+class TestAuthoredShotCheckpointRecovery(unittest.TestCase):
+    """Doctor finding ee3bb63e4024, ruled `doing`: the media worker
+    checkpoints a verified image for a shot inside a package ChatGPT
+    authored, and the finalizer's response then omits that shot's `media`
+    pointer. The old recovery rebuilt the pointer into idx["media"] — a map
+    only the bundle.requests loop reads, where an authored shot never
+    appears — so the verified image was ignored and the shot fell to stock
+    self-fill. End-to-end, through the real Phase B main(): the checkpoint
+    alone must be enough to fill the shot, through the identical byte-level
+    fetch, and the audit trail must say it came from recovery.
+
+    Same in-process shape as TestPhaseBPersistFailuresAreLoud, plus a real
+    PNG served over file:// so the sha256/decode/placeholder gates
+    genuinely run."""
+
+    DATE = "29991230"
+    SLUG = "recovered-lunch-thief"
+    IDENTITY = "ab" * 32          # the BUNDLE_ID sidecar Phase A would write
+
+    def setUp(self):
+        import exchange_phase_b as pb
+        from shared import media_checkpoint as mc
+        self.pb, self.mc = pb, mc
+        self.bundle = ROOT / "exchange" / "bundles" / self.DATE
+        self.day = ROOT / "state" / "trending_packages" / self.DATE
+        self.tmp = Path(tempfile.mkdtemp(prefix="authrec-"))
+        self._saved_cache = pb.MEDIA_CACHE
+        pb.MEDIA_CACHE = self.tmp / "cache"
+        self._clean()
+        (self.bundle / "media-progress").mkdir(parents=True)
+        # A minimal bundle + its identity sidecar: recovery must be held to
+        # the current bundle identity, so the fixture provides one.
+        (self.bundle / "bundle.json").write_text(json.dumps(
+            {"schema": "x", "date": self.DATE, "mode": "author",
+             "packages": [], "requests": []}))
+        (self.bundle / "BUNDLE_ID").write_text(self.IDENTITY + "\n")
+        # The finalizer authored the package but OMITTED shot.media — the
+        # exact silence this recovery exists for.
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug=self.SLUG)]}))
+
+    def tearDown(self):
+        self.pb.MEDIA_CACHE = self._saved_cache
+        self._clean()
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _clean(self):
+        shutil.rmtree(self.bundle, ignore_errors=True)
+        shutil.rmtree(self.day, ignore_errors=True)
+
+    def _png(self) -> tuple[str, str, int]:
+        """A real, colorful PNG on disk: (file:// url, sha256, bytes)."""
+        import hashlib
+        from PIL import Image
+        im = Image.new("RGB", (64, 64))
+        im.putdata([(x * 3 % 256, y * 5 % 256, (x + y) % 256)
+                    for y in range(64) for x in range(64)])
+        path = self.tmp / "recovered.png"
+        im.save(path)
+        blob = path.read_bytes()
+        return f"file://{path}", hashlib.sha256(blob).hexdigest(), len(blob)
+
+    def _write_checkpoint(self, shot_index=0, **over):
+        mc = self.mc
+        url, sha, nbytes = self._png()
+        rid = mc.authored_shot_request_id(self.SLUG, shot_index)
+        cp = {
+            "schema": mc.SCHEMA, "schema_version": mc.SCHEMA_VERSION,
+            "date": self.DATE, "bundle": {"identity": self.IDENTITY},
+            "request_id": rid, "safe_request_id": mc.safe_request_id(rid),
+            "request_kind": "authored_shot", "package_id": self.SLUG,
+            "shot_index": shot_index, "status": "verified",
+            "drive": {"file_id": "1recoveredFILE", "folder_id": "1folder",
+                      "filename": mc.deterministic_filename(self.DATE, rid),
+                      "download_url": url, "sharing": "anyone_with_link"},
+            "image": {"sha256": sha, "bytes": nbytes, "format": "png",
+                      "width": 64, "height": 64},
+        }
+        cp.update(over)
+        (self.bundle / "media-progress"
+         / f"{mc.safe_request_id(rid)}.json").write_text(json.dumps(cp))
+        return url, sha
+
+    def _run(self):
+        import contextlib
+        import io
+        from unittest import mock
+        argv = ["exchange_phase_b.py", "--date", self.DATE,
+                "--no-self-fill", "--no-punchup"]
+        with mock.patch.object(sys, "argv", argv), \
+                contextlib.redirect_stdout(io.StringIO()) as buf:
+            rc = self.pb.main()
+        return rc, buf.getvalue()
+
+    def _promoted(self) -> dict:
+        files = sorted(self.day.glob("*.json"))
+        self.assertEqual(len(files), 1, files)
+        return json.loads(files[0].read_text())
+
+    def test_a_checkpoint_alone_fills_the_shot_the_response_left_bare(self):
+        url, sha = self._write_checkpoint()
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("recovered 1 authored-shot pointer(s)", out)
+        shot = self._promoted()["shots"][0]
+        self.assertEqual(shot.get("image_url"), url,
+                         "the verified image never reached the shot — "
+                         "recovered into a map no consumer reads")
+        self.assertEqual(shot.get("media_sha256"), sha)
+        self.assertEqual(shot.get("media_origin"),
+                         "chatgpt_authored_recovered",
+                         "the audit trail must say this came from "
+                         "checkpoint recovery, not from the response")
+        self.assertNotIn("media", shot,
+                         "the transport pointer must be consumed, exactly "
+                         "as an explicit one is")
+
+    def test_a_package_or_shot_identity_mismatch_never_attaches(self):
+        """A checkpoint claiming the wrong package is a refusal, not a
+        guess — the shot stays bare rather than wearing someone else's
+        picture."""
+        _, sha = self._write_checkpoint(package_id="a-different-package")
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("REFUSED recovered authored-shot checkpoint", out)
+        shot = self._promoted()["shots"][0]
+        self.assertNotEqual(shot.get("media_sha256"), sha,
+                            "mismatched-identity media reached the shot")
+        self.assertNotEqual(shot.get("media_origin"),
+                            "chatgpt_authored_recovered")
+
+    def test_a_response_pointer_is_never_overridden_by_a_checkpoint(self):
+        """Recovery fills silence only. Where the finalizer DID answer, its
+        pointer is the one consumed — even when a checkpoint also exists."""
+        url, sha = self._write_checkpoint()
+        pkg = reddit_pkg(slug=self.SLUG)
+        pkg["shots"][0]["media"] = {
+            "status": "fulfilled",
+            "drive": {"file_id": "1recoveredFILE", "folder_id": "1folder",
+                      "filename": self.mc.deterministic_filename(
+                          self.DATE,
+                          self.mc.authored_shot_request_id(self.SLUG, 0)),
+                      "download_url": url, "sharing": "anyone_with_link"},
+            "image": {"sha256": sha, "bytes": (self.tmp / "recovered.png"
+                                               ).stat().st_size,
+                      "format": "png", "width": 64, "height": 64}}
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [pkg]}))
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("recovered 0 authored-shot pointer(s)", out,
+                      "recovery attached over a shot the response answered")
+        shot = self._promoted()["shots"][0]
+        self.assertEqual(shot.get("media_origin"), "chatgpt_authored",
+                         "the response's own pointer must win, and be "
+                         "labelled as declared, not recovered")

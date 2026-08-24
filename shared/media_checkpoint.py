@@ -1411,6 +1411,17 @@ def recovered_media(date, *, have: set | None = None, bundle: dict | None = None
     for rid, cp in all_checkpoints(date).items():
         if rid in have:
             continue
+        # TYPE-AWARE: this is the BUNDLE-REQUEST lane. An authored-shot
+        # checkpoint recovered here used to be memory no consumer read
+        # (doctor ee3bb63e4024): Phase B merges this map into idx["media"],
+        # which only the bundle.requests loop walks — and there is no bundle
+        # request for a package ChatGPT invented, so the pointer sat in the
+        # map while the shot self-filled with stock. Authored-shot
+        # checkpoints belong to `recovered_authored_media` below, keyed the
+        # way their consumer (cover_authored) actually addresses shots.
+        if (str((cp or {}).get("request_kind") or "") == "authored_shot"
+                or is_authored_shot_request(rid)):
+            continue
         ptr = pointer_from_checkpoint(cp)
         if not ptr:
             continue
@@ -1421,4 +1432,89 @@ def recovered_media(date, *, have: set | None = None, bundle: dict | None = None
                 refused_out[rid] = problems
             continue
         out[rid] = ptr
+    return out
+
+
+def recovered_authored_media(date, *, have: set | None = None,
+                             bundle_id: str | None = None,
+                             refused_out: dict[str, list[str]] | None = None,
+                             ) -> dict[tuple[str, int], dict]:
+    """Authored-shot pointers rebuilt from the day's checkpoints, keyed by
+    `(package_id, shot_index)` — the address their consumer actually uses.
+
+    The second half of the recovery story `recovered_media` tells: a media
+    worker on a takeover day checkpoints images for shots inside packages
+    ChatGPT authored itself, and if the finalizer then omits the matching
+    `shot.media` pointer from its response, that verified work must still
+    reach the shot instead of falling to stock self-fill (doctor
+    ee3bb63e4024 — the durable memory existed, was verified, and was then
+    ignored for want of an envelope).
+
+    Recovery grants NO extra trust — never fewer checks than an explicit
+    authored pointer's checkpoint gets inside `validate_response_media`:
+
+      * the full `checkpoint_problems` contract (schema, date, bundle
+        identity, verified status, sharing, deterministic filename, image
+        fields), with `prompt=None` exactly as `media_entry_problems` uses
+        for authored shots;
+      * `request_kind` must be `authored_shot` — a bundle-request checkpoint
+        cannot back an authored shot, and vice versa;
+      * package/shot IDENTITY: the checkpoint's declared `package_id` and
+        `shot_index` must agree with the ones its own request_id encodes.
+        A mismatch is a refusal, never a guess about which one is right.
+
+    `have` is a set of `(package_id, shot_index)` keys the response already
+    covered — the response always wins where it spoke; recovery fills
+    silence. Refused candidates land in `refused_out` (rid -> problems)
+    when the caller passes a dict, purely for logging."""
+    have = have or set()
+    out: dict[tuple[str, int], dict] = {}
+    for rid, cp in all_checkpoints(date).items():
+        if not isinstance(cp, dict):
+            continue
+        parsed = parse_authored_shot_request_id(rid)
+        kind = str(cp.get("request_kind") or "")
+        if parsed is None and kind != "authored_shot":
+            continue                    # the bundle-request lane's business
+        if parsed is not None and parsed in have:
+            continue                    # the response spoke — it wins
+        problems: list[str] = []
+        if parsed is None:
+            problems.append(
+                "request_kind is 'authored_shot' but the request_id is not "
+                "the authored-<slug>-s<index> shape — cannot tell which "
+                "package/shot this claims to back")
+        elif kind != "authored_shot":
+            problems.append(
+                f"request_id names an authored shot but request_kind is "
+                f"{kind!r} — a bundle-request checkpoint cannot back an "
+                f"authored shot")
+        else:
+            pkg_id, idx = parsed
+            got_pkg = str(cp.get("package_id") or "")
+            if got_pkg != pkg_id:
+                problems.append(
+                    f"checkpoint declares package {got_pkg!r} but its "
+                    f"request_id encodes {pkg_id!r} — identity mismatch, "
+                    f"refusing rather than guessing which is right")
+            try:
+                if int(cp.get("shot_index")) != idx:
+                    problems.append(
+                        f"checkpoint declares shot {cp.get('shot_index')} "
+                        f"but its request_id encodes shot {idx}")
+            except Exception:                            # noqa: BLE001
+                problems.append(
+                    f"checkpoint has no usable shot_index (its request_id "
+                    f"encodes shot {idx})")
+        ptr = pointer_from_checkpoint(cp)
+        if ptr is None:
+            problems.append("checkpoint is not a usable pointer (not "
+                            "verified, or missing file_id/sha256)")
+        problems += checkpoint_problems(cp, date=date, bundle_id=bundle_id,
+                                        request_id=rid, prompt=None)
+        if problems:
+            if refused_out is not None:
+                refused_out[rid] = problems
+            continue
+        out[parsed] = ptr
     return out

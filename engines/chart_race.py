@@ -112,6 +112,19 @@ SWING_CAP = 999.0        # a series touching 0 is an infinite ratio
 # that, and must be held to the full MIN_SWING.
 FLAT_SERIES_TOL = 0.02
 
+# ---- composition floors (doctor finding d17724dfb1c0) ---------------------
+# The drama numbers above are TIMELINE-WIDE; the renderer's axes are not:
+# the full year span is exposed from frame one and the y-camera floors at
+# `global_max * 0.12`. A package whose values sit near zero for the first
+# fifth therefore passes peak/swing while OPENING as a tiny lower-left stub
+# in a mostly empty plot — two chart races were blocked for exactly that on
+# 2026-08-09, after preflight had said ok. These floors are derived from
+# the SAME axis math the renderer uses (see `render`: xlim = full span,
+# cam_top = max(tips * 1.22, global_max * 0.12)) — no render needed.
+OPEN_FRAC = 0.20         # "the opening" = the first fifth of the timeline
+OPEN_AREA_MIN = 0.05     # painted fraction of the plot at the OPEN_FRAC mark
+TRAVEL_MIN = 0.30        # top moving line's total |Δ| relative to global max
+
 # Multipliers detected in y_label/title (or set explicitly via
 # spec["unit_scale"]). Longest match wins, so "billion" beats "bn".
 _UNIT_WORDS = [
@@ -381,8 +394,50 @@ def assess(spec: dict) -> dict:
                    f"not a race")
         reasons.append(f"biggest swing {swing:.1f}x < {need:g}x — the lines "
                        f"barely move{why}")
+
+    # ---- composition floors: what the OPENING actually paints -----------
+    # See the OPEN_FRAC block up top. w = how far into the fixed year axis
+    # the reveal has reached at the first-fifth mark; h = the tallest tip so
+    # far against the camera the renderer would actually show (which floors
+    # at 12% of the global max — the exact reason a near-zero opening reads
+    # as an empty black frame instead of a zoomed-in one).
+    years = spec["years"]
+    span = float(years[-1] - years[0]) or 1.0
+    k = max(1, int(round(OPEN_FRAC * (len(years) - 1))))
+    w_open = (years[k] - years[0]) / span
+    tip_open = max(max(s["values"][:k + 1]) for s in series)
+    cam_open = max(tip_open * 1.22, peak * 0.12)
+    h_open = (tip_open / cam_open) if cam_open > 0 else 0.0
+    area_open = w_open * h_open
+    if area_open < OPEN_AREA_MIN:
+        reasons.append(
+            f"opening paints ~{area_open:.0%} of the plot (first "
+            f"{OPEN_FRAC:.0%} of the timeline is a stub against the "
+            f"12%-of-max camera floor) < {OPEN_AREA_MIN:.0%} — trim the "
+            f"flat early years or pick a window where the story has "
+            f"already started")
+    # Expected on-screen travel: total |Δ| of the tallest MOVING line,
+    # relative to the global max. A ratio-shaped swing can pass while the
+    # line barely climbs the frame (the 08-09 case that passed preflight
+    # and then measured almost no effective motion).
+    moving_series = [s for s, m in zip(series, moving) if m]
+    if moving_series:
+        top = max(moving_series, key=lambda s: max(s["values"]))
+        travel = sum(abs(b - a)
+                     for a, b in zip(top["values"], top["values"][1:]))
+        travel_frac = (travel / peak) if peak > 0 else 0.0
+    else:
+        travel_frac = 0.0
+    if travel_frac < TRAVEL_MIN:
+        reasons.append(
+            f"expected screen travel ~{travel_frac:.0%} of the frame < "
+            f"{TRAVEL_MIN:.0%} — the leading line never really climbs; "
+            f"this renders as a near-static plot however good the ratio "
+            f"looks")
     return {"ok": not reasons, "peak": peak, "swing": round(swing, 2),
-            "crossovers": crossovers, "reasons": reasons}
+            "crossovers": crossovers, "reasons": reasons,
+            "open_area": round(area_open, 3),
+            "travel": round(travel_frac, 3)}
 
 
 def _fmt_compact(v: float) -> str:
