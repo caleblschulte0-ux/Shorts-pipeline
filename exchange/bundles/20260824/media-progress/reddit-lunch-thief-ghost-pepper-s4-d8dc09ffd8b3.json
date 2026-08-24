@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "605466ae48c50c8dec47297f59c93808c8c0fd8e10997bd71537e414fa6bd0c5",
+  "prompt_used": "An editorial illustration for a short-form video: person coughing office break room. It accompanies the narration: \"coughing violently in the break room\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6b2da448ccdad09ab1caa79f4aae8773ecea16136ef8adde327b3e1563d3ef3e",
+    "bytes": 1268518,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:21:41.141Z",
+  "error": null,
+  "retryable": false
+}
