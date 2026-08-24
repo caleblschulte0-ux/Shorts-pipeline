@@ -1,0 +1,19 @@
+{
+  "key": "gulf_dead_zone_vs_2035_goal",
+  "title": "Gulf dead zone: current 5-year average vs 2035 reduction goal (square miles)",
+  "unit": "square miles",
+  "geography": "Gulf of Mexico (off Louisiana/Texas)",
+  "time_coverage": "Current 5-year average vs 2035 target",
+  "source": {
+    "name": "Hypoxia Task Force Action Plan / Coastal Goal",
+    "publisher": "US EPA / Mississippi River-Gulf of Mexico Watershed Hypoxia Task Force",
+    "url": "https://www.epa.gov/ms-htf/hypoxia-task-force-action-plans-and-goal-framework",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "The Task Force's Coastal Goal (adopted 2015) is to shrink the five-year running-average hypoxic zone to under 5,000 sq km (~1,900 sq mi) by 2035. The current five-year average, 3,745 sq mi, is nearly double that target.",
+  "points": [
+    {"label": "5-year average (current)", "value": 3745},
+    {"label": "2035 reduction goal", "value": 1900}
+  ]
+}

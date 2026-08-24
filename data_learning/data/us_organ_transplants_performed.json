@@ -1,0 +1,21 @@
+{
+  "key": "us_organ_transplants_performed",
+  "title": "US organ transplants performed per year (count)",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2020-2025 (annual)",
+  "source": {
+    "name": "OPTN/UNOS national transplant data",
+    "publisher": "United Network for Organ Sharing (UNOS)",
+    "url": "https://unos.org/media-resources/releases/u-s-surpasses-49000-organ-transplants-while-deceased-organ-donations-dip/",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "2025 was the fifth consecutive record year for US organ transplants (49,064), up from 39,025 in 2020 (a pandemic-depressed year) -- a 23% rise driven mainly by a 15-year run of increasing deceased-donor recovery.",
+  "points": [
+    {"label": "2020", "value": 39025, "period": "2020"},
+    {"label": "2021", "value": 41354, "period": "2021"},
+    {"label": "2023", "value": 46632, "period": "2023"},
+    {"label": "2025", "value": 49064, "period": "2025"}
+  ]
+}

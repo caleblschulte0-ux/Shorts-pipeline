@@ -23566,6 +23566,254 @@
           }
         }
       ]
+    },
+    {
+      "slug": "eclipse-recurrence-rarity",
+      "title": "One Town Saw Two Total Eclipses In 7 Years (3 Charts)",
+      "hook": "A total eclipse hit the same town twice.",
+      "closing": "Start planning your 2045 road trip now.",
+      "question": "Have you ever seen a total solar eclipse? Tell me below.",
+      "caption": "A total solar eclipse hits the same spot on Earth only once every 375 years on average. One lucky town in Illinois got hit twice in just 7 years -- 2017 and 2024. The next one to cross the US isn't until 2044, then 2045. Have you ever seen one? Tell me below 👇",
+      "hashtags": [
+        "solareclipse",
+        "totaleclipse",
+        "eclipse2024",
+        "eclipse2045",
+        "eclipsechasers",
+        "nasa",
+        "astronomy",
+        "space",
+        "spacefacts",
+        "science",
+        "sciencefacts",
+        "didyouknow",
+        "stargazing",
+        "cosmos",
+        "eclipsepath"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "eclipse_global_vs_single_spot_frequency",
+          "params": {
+            "file": "eclipse_global_vs_single_spot_frequency.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 · THE PARADOX",
+          "topic": "how often total eclipses happen, globally vs one spot",
+          "say": "Somewhere on Earth, a total eclipse happens every 1.5 years. But for one exact spot, the average wait is 375 years."
+        },
+        {
+          "source": "offline",
+          "key": "eclipse_wait_years_by_luck",
+          "params": {
+            "file": "eclipse_wait_years_by_luck.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "role": "2 · THE FLUKE",
+          "topic": "years between total eclipses at the same spot, by luck",
+          "say": "One town in Illinois got hit twice in just 7 years. The global average is 375. Unlucky spots wait over 1,000."
+        },
+        {
+          "source": "offline",
+          "key": "us_total_eclipse_crossing_gaps",
+          "params": {
+            "file": "us_total_eclipse_crossing_gaps.json"
+          },
+          "insight_type": "trend",
+          "role": "3 · WHY CHASERS TRAVEL",
+          "topic": "years between total eclipses crossing the US",
+          "say": "That's why chasers follow it around the globe. The US waited 38 years, then just 7, now 20 more until 2044, then 2045 right after."
+        }
+      ]
+    },
+    {
+      "slug": "office-vacancy-structural-shift",
+      "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
+      "hook": "They stopped building offices. It got worse anyway.",
+      "closing": "Nobody's coming back. The buildings just don't know it yet.",
+      "question": "Have you gone back to the office full-time? Tell me below.",
+      "caption": "US office vacancy just hit 21 percent, a record that beats even the 1980s real-estate bust. Builders almost completely stopped building new office space, yet vacancy kept climbing anyway. The real reason: office attendance is still stuck at just 56.3 percent of pre-pandemic levels. Have you gone back to the office full-time? Tell me below 👇",
+      "hashtags": [
+        "officevacancy",
+        "commercialrealestate",
+        "remotework",
+        "returntooffice",
+        "cre",
+        "realestate",
+        "moodysanalytics",
+        "hybridwork",
+        "downtown",
+        "economy",
+        "businessnews",
+        "finance",
+        "workfromhome",
+        "cities",
+        "dataviz"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_office_vacancy_rate_trend",
+          "params": {
+            "file": "us_office_vacancy_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE CLIMB",
+          "topic": "US office vacancy rate",
+          "say": "US office vacancy was 16.8 percent in 2019. By 2026 it hit 21 percent, already above the record set back in the 1980s."
+        },
+        {
+          "source": "offline",
+          "key": "us_office_construction_starts_collapse",
+          "params": {
+            "file": "us_office_construction_starts_collapse.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · NOT A SUPPLY PROBLEM",
+          "topic": "new office construction starts, 2019 vs 2024",
+          "say": "Normally builders just stop building until it fixes itself. New construction starts crashed from 83 million square feet to just 9.8 million. Vacancy rose anyway."
+        },
+        {
+          "source": "offline",
+          "key": "us_office_occupancy_vs_prepandemic",
+          "params": {
+            "file": "us_office_occupancy_vs_prepandemic.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · IT'S DEMAND, NOT SUPPLY",
+          "topic": "office attendance vs pre-pandemic levels",
+          "say": "That's because people simply aren't showing up. Office attendance is still only 56.3 percent of pre-pandemic levels. This isn't a cycle, it's a permanent shift."
+        }
+      ]
+    },
+    {
+      "slug": "gulf-dead-zone-growth",
+      "title": "The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)",
+      "hook": "Part of the ocean dies every single summer.",
+      "closing": "One river, one dead zone, every single year.",
+      "question": "Did you know the Gulf has a dead zone? Tell me below.",
+      "caption": "Every summer, a patch of the Gulf of Mexico roughly the size of New Jersey loses so much oxygen that fish and shrimp can't survive there. It's fed by fertilizer runoff funneled down the Mississippi River from 41 percent of the continental US. Even in a good year it's nearly double the size regulators are aiming for by 2035. Did you know the Gulf has a dead zone? Tell me below 👇",
+      "hashtags": [
+        "deadzone",
+        "gulfofmexico",
+        "noaa",
+        "oceanhealth",
+        "hypoxia",
+        "nutrientpollution",
+        "marinebiology",
+        "environment",
+        "climatechange",
+        "agriculture",
+        "fertilizer",
+        "mississippiriver",
+        "sciencefacts",
+        "didyouknow",
+        "ecology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "gulf_dead_zone_annual_size",
+          "params": {
+            "file": "gulf_dead_zone_annual_size.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SWING",
+          "topic": "size of the Gulf of Mexico dead zone",
+          "say": "Every summer part of the Gulf loses so much oxygen nothing can live there. In 2017 it hit 8,776 square miles. By 2024 it was still 6,705."
+        },
+        {
+          "source": "offline",
+          "key": "gulf_dead_zone_vs_2035_goal",
+          "params": {
+            "file": "gulf_dead_zone_vs_2035_goal.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · STILL FAR FROM THE GOAL",
+          "topic": "current dead zone average vs the 2035 target",
+          "say": "Even the 5-year average, 3,745 square miles, is almost double the 1,900 square mile goal regulators set for 2035."
+        },
+        {
+          "source": "offline",
+          "key": "mississippi_nitrogen_load_index",
+          "params": {
+            "file": "mississippi_nitrogen_load_index.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · WHY IT WON'T SHRINK",
+          "topic": "nitrogen load in the Mississippi watershed vs the 1950s",
+          "say": "That's because 41 percent of the entire US drains into one river, and the fertilizer it carries has roughly tripled since the 1950s."
+        }
+      ]
+    },
+    {
+      "slug": "organ-transplant-waitlist-gap",
+      "title": "Organ Transplants Hit A Record. The Waitlist Still Didn't Shrink (3 Charts)",
+      "hook": "Record transplants happen every year. It's still not enough.",
+      "closing": "Sign up as a donor. The list is real.",
+      "question": "Are you registered as an organ donor? Tell me below.",
+      "caption": "Doctors performed a record 49,064 organ transplants last year, and the waiting list still didn't shrink. Someone new joins it every 7 minutes, faster than transplants can keep up, and 95,492 of the 109,817 people waiting need just one organ: a kidney. Are you registered as an organ donor? Tell me below 👇",
+      "hashtags": [
+        "organdonation",
+        "transplant",
+        "kidneydisease",
+        "unos",
+        "organdonor",
+        "healthcare",
+        "publichealth",
+        "medicine",
+        "healthdata",
+        "didyouknow",
+        "science",
+        "waitlist",
+        "donatelife",
+        "healthfacts",
+        "savealife"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_organ_transplants_performed",
+          "params": {
+            "file": "us_organ_transplants_performed.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RECORD",
+          "topic": "US organ transplants performed per year",
+          "say": "Organ transplants keep hitting record highs every year, 39,025 in 2020, now 49,064. You'd think that's finally enough."
+        },
+        {
+          "source": "offline",
+          "key": "organ_waitlist_supply_demand_gap",
+          "params": {
+            "file": "organ_waitlist_supply_demand_gap.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE CATCH",
+          "topic": "transplants performed vs new people added to the waitlist",
+          "say": "It's not. Someone new joins the transplant list every 7 minutes, about 75,086 people a year. Transplants only cover 49,064 of them."
+        },
+        {
+          "source": "offline",
+          "key": "organ_waitlist_by_organ",
+          "params": {
+            "file": "organ_waitlist_by_organ.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "3 · THE LIST TODAY",
+          "topic": "the waiting list, by organ needed",
+          "say": "So today's list is still 109,817 people deep. Nearly 9 in 10 of them, 95,492 people, are waiting on just one organ: a kidney."
+        }
+      ]
     }
   ],
   "videos": [
