@@ -746,6 +746,38 @@
       "date": "20260823",
       "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
       "history": []
+    },
+    "03ed6ae9f195": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Confirmed live: no shell: in auto-merge.yml so the default bash -e (no pipefail) let 'unittest | tail -40' return tail's zero. Fixing in this session: pipefail on the step + tests/test_automerge_gate.py executes a failing producer through the exact pipe shape.",
+      "history": []
+    },
+    "abfb291b5f65": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: unittest discovery collects 0 tests from test_viz_director.py/test_viz_scene.py (free functions, no TestCase). Convert + wire into the preflight next build batch.",
+      "history": []
+    },
+    "808fcf2f9b8e": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: expression-tests.yml is not a dependency of the squash merge and its PR paths omit pro_render.py. Wire as a required pre-merge job in a coming batch.",
+      "history": []
+    },
+    "268b809a2bbb": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Right direction (four incompatible test topologies) but it rides on abfb291b5f65 and the runner inventory design; revisit after the orphan modules are wired.",
+      "history": [],
+      "revisit_after": "20260923"
+    },
+    "a703af75ca3d": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
+      "history": [],
+      "revisit_after": "20260923"
     }
   }
 }

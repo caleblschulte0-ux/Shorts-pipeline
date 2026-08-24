@@ -120,8 +120,17 @@ jobs:
           #         which is correct — it measures real video.
           pip install -q pillow pyyaml requests numpy
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      # PIPEFAIL OR THE GATE IS DECORATION (doctor 03ed6ae9f195, 2026-08-24).
+      # GitHub's default `run:` shell on Linux is `bash -e {0}` — NO pipefail —
+      # so `unittest | tail` returned tail's zero and a red suite still
+      # squash-merged. The doctor reproduced it: a producer exiting 7 through
+      # this exact pipe shape yields step status 0. tests/test_automerge_gate.py
+      # now executes a failing producer through this wrapper and requires the
+      # nonzero to survive the pipe.
       - name: Full unit suite
-        run: python -m unittest discover -s tests -v 2>&1 | tail -40
+        run: |
+          set -o pipefail
+          python -m unittest discover -s tests -v 2>&1 | tail -40
       - name: Split-worker dry run (offline, no Drive, no ChatGPT)
         run: python scripts/exchange_dry_run.py
       - name: Channel-contract acceptance (registry propagation)
