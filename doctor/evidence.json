@@ -1,46 +1,69 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260824",
-  "judged_date": "20260823",
+  "date": "20260825",
+  "judged_date": "20260824",
   "alarm": {
-    "date": "20260823",
+    "date": "20260824",
     "ok": false,
     "alarms": [
       {
-        "code": "no_posts_explainer",
-        "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20260823 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20260823. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 1/4 posted for 20260824.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 5/6 posted for 20260823.",
+        "detail": "third: 4/6 posted for 20260824.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "no_posts_trending",
-        "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20260823 (registry wants 6).",
-        "fix": "Check the trending workflow run for 20260823. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 4/6 posted for 20260824.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "showrunner_starving_the_slate",
+        "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "the showrunner judged 18 renders on 20260823 and shipped NONE \u2014 repeat offenders: global-health-spending-exceeds-1300-per-person x3, combustible-renewables-and-waste-is-3-0x-higher-than-in-1990 x3, population-growth-fell-54-since-1972 x3, world-cereal-land-just-sank-below-its-1972-level x3.",
-        "fix": "This is a render-quality crisis, not a gate problem: the runs complete and every video fails the bar. Read the ledger's auto_fails/problems for the pattern and fix the RENDER. Weakening the gate is not on the table."
+        "detail": "trending 20260824: production outcome says 4/6 uploaded and repair never completed (0 quarantined, 4 failed).",
+        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "trending_short_after_retries",
+        "severity": "warning",
+        "detail": "trending shipped 4/6; 2 re-authored replacement(s) also failed to fill it.",
+        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
       "chatgpt media: artifact present",
-      "exchange: 15/15 ChatGPT images pinned",
-      "slot fill not checked: daily_report.json has 8 row(s) and none belong to 20260823 \u2014 treating the report as absent for this date",
-      "doctor: findings current (20260823)"
+      "exchange: 16/16 ChatGPT images pinned",
+      "doctor: findings current (20260824)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260824",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 0,
+      "rendered_or_attempted": 8,
+      "uploaded": 4,
+      "quarantined": 0,
+      "failed": 4,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/C0RfI_vWiL0",
+        "https://youtube.com/shorts/pmSklvwN07E",
+        "https://youtube.com/shorts/4iuQHzdn4pY",
+        "https://youtube.com/shorts/43VaNWDtQpA"
+      ]
+    },
     {
       "date": "20260822",
       "channel": "trending",
@@ -145,693 +168,9 @@
         "https://youtube.com/shorts/gb_-hF0lyLE",
         "https://youtube.com/shorts/xvq7EkPdERI"
       ]
-    },
-    {
-      "date": "20260816",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 9,
-      "uploaded": 3,
-      "quarantined": 0,
-      "failed": 6,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/WzqbpSusTmU",
-        "https://youtube.com/shorts/wIxgdqle_W0",
-        "https://youtube.com/shorts/XGfjbr3lOLE"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-20T19:40:20+00:00",
-      "slug": "the-world-has-less-land-than-it-did-in-2013",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Data is a sticker parked on the top bar for all 66 seconds, and the final 9 seconds freeze under a closing card that overprints the chart title.",
-      "auto_fails": [
-        "decorative_mascot: Data is parked on the leading edge of the top bar in all 21 frames \u2014 hook@0.3, seg0:mid, seg1:end, seg2:mid, seg3:end, payoff@-0.4 \u2014 arms out, sliding with the bar tip; no setup->action->payoff tied to any stat.",
-        "empty_void: seg2:start (t=37.35s) wastes over half the frame: the 1972/1982/1991 bubbles are near-invisible dots, the band from the header to the bubble row is bare, and the whole bottom third below '2001/2010' is empty."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 199
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T19:51:52+00:00",
-      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The back half is a genuinely good animated-chart short, but the first eight seconds are an empty, motionless map with no number on screen, and the irrigation stat resolves to a bare list.",
-      "auto_fails": [
-        "bare_number_card: seg1:end resolves the whole irrigation stat as a plain text list \u2014 'Bangladesh 89 / Suriname 74.4 / Pakistan 54.2 / India 44.4 / Bahrain 40.9' \u2014 with dots that don't encode magnitude and a map that is never shaded by value.",
-        "dead_air: hook@0.3 through seg1:start (~0.3s\u20138.5s) is the same faint map, same five unlabeled dots and same tiny bobbing mascot \u2014 only the karaoke word changes for ~8s; the code detector's 0.0s longest_static misses it because caption text churns.",
-        "empty_void: seg1:start is almost entirely flat navy: a barely-legible map at 20% opacity, five tiny colorless dots in a right-hand column, and a mascot ~8% of frame height buried in the source credit \u2014 the whole upper-middle and lower third carry nothing."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.006,
-        "sampled": 154
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T20:01:35+00:00",
-      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Solid honest chart motion and a mascot who actually climbs the data, wrecked by text stacked on text \u2014 the hook caption sits on the mascot and the bar labels, and the payoff callout buries the title while Data walks off the right edge.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 152
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-20T20:11:42+00:00",
-      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The charts are honest and the line-climb bit is genuinely good, but it opens on a slow, half-empty bar build with the mascot sitting on top of the data, and the closing callout box buries the title for the last six seconds.",
-      "auto_fails": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 156
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T13:22:55+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three chart panels that print numbers instead of demonstrating them, with the headline 1.36% never rendered on screen and Data used as a sticker that occludes the labels.",
-      "auto_fails": [
-        "decorative_mascot: seg3:mid and seg3:end show Data merely leaning/perching on the '2.6' bubble with no setup->action->payoff tied to the 1.36% collapse; at seg0:mid and seg1:mid he simply hovers over the 1972/1983 bars occluding their labels.",
-        "bare_number_card: seg3:mid and seg4:start are just five plain purple circles reading 2.6 / 2.8 / 2.2 / 2.3 / 2.1 on a dark background \u2014 the numbers are printed, never demonstrated (no shrinking, racing, or filling).",
-        "empty_void: seg3:start has five tiny dots in the upper third with the entire lower half of the 9:16 frame black and empty; seg4:mid keeps ~40% of the frame dead below the '2004/2014' row."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 240
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T13:37:25+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The video narrates a 50-year low it never shows - seg3/seg4's bubble chart omits 2025's 1.36 entirely and floats five near-identical circles in a mostly empty frame while Data rides along in one reused pose.",
-      "auto_fails": [
-        "decorative_mascot: Data wears the identical lab-coat pose with only minor arm jitter in all 21 frames (hook@0.3, seg1:mid, seg2:end, seg4:end), sliding along the top bar's tip and later perching on the 1972 bubble with no setup-action-payoff bit tied to any stat.",
-        "empty_void: seg3:start is five tiny dots on a black field with the entire top third and bottom third empty; seg3:mid and seg3:end keep a large dead band above the bubbles and between the 2014 row and the source line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 251
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T13:46:34+00:00",
-      "slug": "world-hydropower-fell-below-its-1990-level",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A competent but generic bar-fill template with a truncated headline, captions stamped over the mascot's face, and a closing bubble-chart beat whose numbers are printed on identical blobs while the 16.5% punchline never appears on screen.",
-      "auto_fails": [
-        "decorative_mascot: seg3:start/mid/end (t=32.6-40.8s) park Data small in the upper-left doing a generic idle wave while the bubbles inflate on their own \u2014 no setup->action->payoff tied to the 8.82%->16.5% claim; in seg0 he simply rides the bar tip.",
-        "bare_number_card: seg3:mid/end (t=36.7-40.8s) is five near-identical green blobs with 8.8 / 9.7 / 9.5 / 9.1 / 9.6 printed inside \u2014 the sizes are visually indistinguishable, so it reads as numbers on plain circles, not a demonstration."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.026,
-        "sampled": 151
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T13:56:25+00:00",
-      "slug": "world-hydropower-fell-below-its-1990-level",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The bar-race scenes are competent but the show opens on a slow chart build and ends on a static numbers-in-circles grid with a parked mascot and a dead lower third.",
-      "auto_fails": [
-        "decorative_mascot: At seg3:start/mid/end (t=33.8-41.8s) and seg4 he is a small figure parked at upper-left of the bubble grid, arms idling, doing nothing tied to the 8.82%\u219216.5% claim \u2014 no setup, action or payoff.",
-        "bare_number_card: seg3:mid/end (t=37.8/41.8s) is five flat circles containing '8.8 9.7 9.5 9.1 9.6' \u2014 the numbers ARE the graphic, nothing stacks, fills, races or shrinks.",
-        "empty_void: seg3:start (t=33.77s) leaves the entire lower ~40% of the 9:16 frame empty navy below the '2010/2017' row, with only two small bubbles floating in the middle band."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.046,
-        "sampled": 151
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T14:03:14+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A competent bar race that opens on a slow chart build instead of a hook, then collapses into a near-empty bubble field of bare percentages with Data as a sticker riding along.",
-      "auto_fails": [
-        "decorative_mascot: Data slides across the bar tops from hook@0.3 to seg1:end and just perches beside the 2013 bubble in seg3:start/seg4:end with no setup->action->payoff tied to the catch stat.",
-        "bare_number_card: seg3:end and seg4:mid are five plain pink circles printing 11.1 / 12.1 / 14.1 / 14.8 / 14.9 on empty background - numbers on blobs, no demonstration of what the percent means.",
-        "empty_void: seg3:start leaves the entire upper third and lower quarter of the frame empty navy with five tiny dots floating mid-frame; seg4:end wastes the whole lower half below the 2020/2023 row."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.027,
-        "sampled": 113
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T14:11:04+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The bar race in the first half is watchable, but the video ends on a frozen grid of bare numbers with the mascot doing nothing and half the frame empty.",
-      "auto_fails": [
-        "decorative_mascot: Data holds the same lean-on-the-first-bar pose parked at the top-left in seg0:start, seg1:mid, seg2:end and all of seg3/seg4 \u2014 no setup->action->payoff tied to the fish-catch ceiling.",
-        "bare_number_card: seg3:end and seg4:start are a static grid of five plain pink circles reading 11.1 / 12.1 / 14.1 / 14.8 / 14.9 with no growth, fill or comparison \u2014 numbers on blobs.",
-        "dead_air: seg4:start (32.93s), seg4:mid (34.93s), payoff@-1.8, seg4:end and payoff@-0.4 are the same frozen bubble grid + speech bubble for ~4.5s; only the mascot's idle sway and the caption change.",
-        "empty_void: seg3:start leaves the entire top third and bottom third empty with five tiny dim dots floating in the middle; the same vacant lower half persists through seg4:end."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.018,
-        "sampled": 113
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T14:20:10+00:00",
-      "slug": "global-health-spending-exceeds-1300-per-person",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Honest data and clean motion, but the mascot is a sticker riding bar tips and the money scene scatters clipped bubbles instead of demonstrating the tripling.",
-      "auto_fails": [
-        "decorative_mascot: Data does nothing but ride the moving bar tip (seg0:mid, seg1:end) then perch on top of a bubble (seg2:start, seg3:mid) \u2014 no setup->action->payoff tied to any stat."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.034,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T14:28:12+00:00",
-      "slug": "global-health-spending-exceeds-1300-per-person",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Honest, clean data motion, but Data is a floating sticker for all 40 seconds and the chart never earns a 'whoa' \u2014 the tripling deserves a physical bit, not five circles.",
-      "auto_fails": [
-        "decorative_mascot: Data never does a bit tied to a stat \u2014 he perches on the 1972 bar at hook@0.3/seg0:mid, slides to the top-right at seg1:start, and merely drifts/tilts beside the bubbles at seg3:mid and payoff@-0.4; no setup->action->payoff in any segment."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.017,
-        "sampled": 120
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T19:57:44+00:00",
-      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The map beat plays for eight seconds as mostly black frame with unlabeled dots, and the cereal bars print raw 10-digit numbers that contradict the narration.",
-      "auto_fails": [
-        "decorative_mascot: Data rides the top of the 1985 bar from hook@0.3 through seg0:end and then just stands in the map's empty bottom-left for all of seg3:start/mid/end and seg4 \u2014 no setup->action->payoff tied to any stat.",
-        "empty_void: seg3:start/mid/end \u2014 the entire right half and top third of the frame is flat near-black holding only five unlabeled 6px dots, map shoved to the left edge, mascot shrunk into the bottom corner."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.018,
-        "sampled": 165
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T20:10:54+00:00",
-      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The title stat is illegible \u2014 seg2's bars carry overlapping raw 10-digit tonnage strings while the voiceover says '1083.7 million metric tons'.",
-      "auto_fails": [
-        "decorative_mascot: Data only rides the tip of the top bar (hook@0.3, seg1:mid) and then stands idle over the source line for all of seg3 (seg3:start/mid/end) \u2014 no setup->action->payoff tied to any stat.",
-        "empty_void: seg3:start through seg3:end: the entire right half and lower third are flat navy with five tiny unlabeled dots and a shrunken map hugging the left edge."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.018,
-        "sampled": 169
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T20:24:13+00:00",
-      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The bar halves are competent but generic, and the 19-second map half is a cropped map plus five unlabeled dots in a mostly empty frame with the mascot idling at the bottom.",
-      "auto_fails": [
-        "decorative_mascot: seg3:start/seg3:mid/seg3:end \u2014 Data is a tiny figure parked at the bottom of the frame straddling the source line, doing nothing tied to farmland for the entire ~19s map half (also seg4:mid).",
-        "empty_void: seg3:start and seg3:mid \u2014 the map is cropped off the left edge, the entire upper-right two-thirds is empty navy, and the right column is five unlabeled dots with no values for ~10s."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.023,
-        "sampled": 171
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T20:33:39+00:00",
-      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The charts never demonstrate the claims \u2014 seg0's bars sit flat at 10.2/10.4/9.2/9.0/9.1 under a '1990 PULLS AHEAD' banner while the narration says it tripled, and seg3 degrades into clipped numbers in equal circles.",
-      "auto_fails": [
-        "decorative_mascot: Data does the same standing/gliding pose beside the bars in hook@0.8, seg0:mid, seg1:mid and seg3:end \u2014 he never sets up, acts on, or pays off a single stat; at seg2:start he is simply parked over the title text.",
-        "bare_number_card: seg3:end and seg4:mid are five near-identical pink circles with numbers typed inside (903.8 / 1058 / 1202 / 1288 / 1551) \u2014 a number-in-a-blob grid with no demonstration; the 1.8x growth is not encoded in any visible way.",
-        "empty_void: seg3:start wastes the top third and bottom third of the frame entirely \u2014 five tiny dots float in a dark field, and seg3:mid still leaves a large empty band above the bubbles and below the 2003/2014 row."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.064,
-        "sampled": 157
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T20:43:52+00:00",
-      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The two bar-race scenes work, but seg3 collapses into big numbers on identical pink discs and Data spends the whole second half parked on one bubble covering its label.",
-      "auto_fails": [
-        "decorative_mascot: From seg3:start (t=34.65) to payoff@-0.4 (t=52.13) Data is perched on the same 1972 bubble in every frame with only pose jitter and no setup->action->payoff tied to the methane stat.",
-        "bare_number_card: seg3:end shows 903.8 / 1058 / 1202 / 1288 / 1551 as numbers inside near-identical pink discs \u2014 a 1.8x value change produces almost no size change, so nothing is demonstrated."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.063,
-        "sampled": 158
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T20:54:33+00:00",
-      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Competent, honest chart motion that never becomes a performance \u2014 Data is a sticker riding the leading bar, and the methane scene opens as a near-empty field of pinheads.",
-      "auto_fails": [
-        "decorative_mascot: At hook@0.8, seg1:mid, seg2:mid and seg3:mid Data is parked at the same spot on the leading bar/bubble holding a clipboard \u2014 he shifts position with the bar tip but performs no setup->action->payoff tied to the 3.0x figure.",
-        "empty_void: seg3:start is a near-empty navy field with five pinhead dots \u2014 the entire lower third below the 2003/2014 row and the band under the title are dead space, and seg3:mid/seg3:end never fill it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.055,
-        "sampled": 164
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T21:03:10+00:00",
-      "slug": "population-growth-fell-54-since-1972",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The data is real and the bars race cleanly, but the mascot is wallpaper and the whole back half is a tiny dot-cluster floating in an empty card.",
-      "auto_fails": [
-        "decorative_mascot: Data hovers in the same upper-left region on top of the bars/title in hook@0.3, seg1:mid (t=12.33s) where he covers the words 'in the largest city', and seg3:mid \u2014 he never sets up, acts on, or pays off a single stat; he just floats over the chart.",
-        "empty_void: seg3:start (t=32.76s) is a near-black card with five tiny dots and the entire top third and bottom 40% empty; the void persists through seg3:end (t=39.42s) and seg4:mid (t=45.94s), where the lower half of the frame carries nothing."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.04,
-        "sampled": 149
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T21:12:09+00:00",
-      "slug": "population-growth-fell-54-since-1972",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three near-identical stock bar-race builds plus a blob-number grid: the data is real and sourced, but nothing is demonstrated and Data is a sticker riding the bars.",
-      "auto_fails": [
-        "decorative_mascot: Data perches on the top bar at seg0:mid and seg1:mid, slides onto the '2' bubble at seg3:mid and seg4:mid, and never performs a setup->action->payoff tied to any stat.",
-        "bare_number_card: seg3:mid and seg3:end are '2 / 1.8 / 1.6 / 1.3 / 1.2' printed inside plain purple blobs with only faint size difference - numbers on shapes, not a demonstration.",
-        "empty_void: seg3:start through seg3:end leave the entire top ~40% of the frame black and empty above five small circles clustered low-center."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.034,
-        "sampled": 145
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T21:21:43+00:00",
-      "slug": "population-growth-fell-54-since-1972",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A competent bar/bubble race undone by an overlapping title-card hook, captions colliding with the chart, and a mascot who only rides the leading bar.",
-      "auto_fails": [
-        "decorative_mascot: Data is perched on the leading bar/bubble in the same top-center spot in every frame (hook@0.8, seg1:mid, seg2:end, seg3:end, seg4:end) \u2014 he rides the leader and never performs a setup\u2192action\u2192payoff tied to the stat.",
-        "empty_void: seg3:start (t=34.92s) is ~60% empty dark card \u2014 the top third below the title is blank and the bubbles are five tiny dots; seg3:end still leaves the entire upper third and lower third unused."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.059,
-        "sampled": 153
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T21:35:28+00:00",
-      "slug": "world-cereal-land-just-sank-below-its-1972-level",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Real World Bank data, but it is delivered as three near-identical generic bar-race screens plus one near-empty map, with the mascot floating decoratively over the title instead of performing.",
-      "auto_fails": [
-        "decorative_mascot: Data merely drifts and stands: bottom-left idle in seg1:start (t=24.49s), then parked over the title in seg3:start/mid/end (t=45.77\u201357.51s) with no setup->action->payoff tied to any stat.",
-        "bare_number_card: seg1:mid (t=31.05s) drops a giant '59,978' as raw text under a near-blank map, and seg1:end (t=37.60s) is just a right-hand list of five bare numbers with no size, fill, race or metaphor.",
-        "empty_void: seg1:start (t=24.49s) is ~60% flat dark navy \u2014 a barely-visible grey world map bottom-left, five unlabeled 6px dots on a vertical line, and nothing occupying the center of the frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 201
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-21T21:47:26+00:00",
-      "slug": "world-cereal-land-just-sank-below-its-1972-level",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The headline collapse is narrated but never shown \u2014 three near-identical rising bar races with a floating mascot, and the final callout box covers the title and the 1972 row.",
-      "auto_fails": [
-        "decorative_mascot: Data hangs in the same mid-upper spot with arms out at hook@0.8, seg1:mid (t=13.5s), seg2:mid (t=30.3s) and seg3:mid (t=50.6s) \u2014 he never performs a setup->action->payoff tied to any stat, and by seg4:start only his antennae are visible above the callout box."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 197
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-21T21:58:58+00:00",
       "slug": "world-cereal-land-just-sank-below-its-1972-level",
@@ -1894,16 +1233,1005 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:00:04+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three near-identical chart layouts stretched over 96 seconds with the mascot parked beside the top bar the entire time \u2014 the urban-slowdown payoff is printed as numbers on circles instead of demonstrated.",
+      "auto_fails": [
+        "decorative_mascot: In every frame from hook@0.3 to payoff@-0.4 Data just hovers beside the 1972/1983 bars in the same spot \u2014 no setup->action->payoff tied to any number; at seg3:start he stands next to a bubble he never interacts with.",
+        "bare_number_card: seg3:mid and seg3:end are plain purple circles with '2.6 / 2.8 / 2.2 / 2.3 / 2.1' printed on them, near-uniform in size \u2014 numbers on blobs, not a demonstration of the slowdown.",
+        "empty_void: seg3:start leaves the bottom ~40% of the frame and a wide band under the title completely empty with five tiny dots floating mid-frame; seg3:end and seg4:end keep that same dead lower third."
+      ],
+      "problems": [
+        "Hook (hook@0.3\u2013hook@2.2) opens on an already-half-built 'Population ages 65 and above' bar chart while the voiceover says cities are exploding \u2014 the visual contradicts the hook line and nothing happens in the first second.",
+        "Caption text lands on top of the mascot: 'Everyone assumes' at hook@0.3 and 'cities are' at hook@0.8 cut straight through Data's head, and 'than ever' at hook@1.5/2.2 hides his face.",
+        "Mascot is decorative for the full 96s \u2014 same position beside the 1972/1983 bars from hook@0.3 to payoff@-0.4, no act tied to any statistic.",
+        "seg2:end crams raw unformatted digits inside the bars ('242017964' clipped, '2783042387') \u2014 unreadable and inconsistent with the comma-formatted narration.",
+        "seg3 is a bare-number bubble cluster with almost no size differentiation and a large empty lower third; the 2025 value of 1.36 never appears as a mark.",
+        "Closing callout at seg4:start\u2013payoff@-0.4 covers the scene title ('Urban population growth' is sliced in half) and stacks a second, duplicate source line at the very bottom."
+      ],
+      "fixes": [
+        "Open on motion that matches the claim: start seg3-style urban-growth marks collapsing from 2.62 to 1.36 in the first ~1s, then cut to the 65+ context \u2014 do not open mid-build on an off-topic chart.",
+        "Move captions to a reserved lower band (as in seg1:start onward) for the hook too, so text never overlaps the mascot rig.",
+        "Give Data a per-beat act tied to the number: push the 1972 bar forward, get squeezed as the rural bars overtake, then ride the shrinking urban mark down at the finale.",
+        "Format large values with thousands separators and shrink-to-fit inside the bar, or move the label outside the bar when it overflows (seg2:end).",
+        "Rebuild seg3 with strongly value-scaled marks that fill the frame vertically and include the 2025 = 1.36 endpoint so the deceleration is seen, not read.",
+        "Anchor the closing callout below the title safe-area and render exactly one source line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.003,
+        "sampled": 288
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:16:33+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 26,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 0,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "The headline stat 1.36% is never actually shown or demonstrated \u2014 the closing scenes are equal-size number bubbles frozen for the last 16 seconds while Data slides through in one unchanging pose.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 to payoff@-0.4 Data holds the same arms-out lean and simply slides along the left/top of the chart \u2014 at seg1:mid, seg2:mid and seg4:mid he is in the identical pose over the same 1972 row, never touching, stacking, pushing or reacting to a single number.",
+        "bare_number_card: seg2:mid and seg2:end are five plain purple circles with '2.6 / 2.8 / 2.2 / 2.3 / 2.1' typed inside them on a flat background \u2014 the circles are all the same size, so the number is the only information and nothing is demonstrated.",
+        "dead_air: seg3:mid (79.9s) through payoff@-0.4 (95.6s) are the same frozen bubble layout with the same values; only the caption line swaps, so roughly 16s of a 96s video repeats one identical beat.",
+        "empty_void: seg2:start (40.1s) is an almost entirely dark panel with five tiny valueless dots and a wholly empty lower half; seg3:start\u2013seg4:end keep that bottom third dead."
+      ],
+      "problems": [
+        "seg2/seg3/seg4 present urban growth as identical-diameter circles with numbers typed inside \u2014 no size, fill, race or shrink encodes the decline.",
+        "The title's number, 1.36% for 2025, appears in no frame; the bubbles stop at 2.1 (2014), so the payoff the hook promises is never landed.",
+        "Data is decoration: same arms-out lean and same left-of-chart position from hook@0.3 to payoff@-0.4, with no bit tied to any stat.",
+        "seg3:mid through payoff@-0.4 hold one identical bubble layout for ~16s; only the caption text changes.",
+        "The closing callout box is dropped straight over the 'Urban population growth' headline (seg3:start, seg4:end), blanking the title.",
+        "Chart kicker reads '1972 PULLS AHEAD' on the 65-and-above chart where 1972 is the smallest value (5.37%) \u2014 the label contradicts the data."
+      ],
+      "fixes": [
+        "Rebuild seg2 so bubble area (or a filling/draining column) is proportional to the growth rate, and animate 1972\u21922025 so the shrink to 1.36 is the visible event.",
+        "Add the 2025 datapoint to the urban-growth scene and make 1.36 the final on-screen beat before the closing card.",
+        "Give Data a per-scene bit: have him physically brace against the 1972 mark, then get carried down as each later mark shrinks \u2014 setup, action, payoff, different act per segment.",
+        "Split the last ~20s: either cut the closing hold to ~4s or animate the final beat (marks collapsing, 1.36 slamming in) so no layout repeats for more than a couple of seconds.",
+        "Reposition the closing callout below the headline (or fade the headline out first) so the title is never covered.",
+        "Fix the chart kicker to describe the actual leader \u2014 on a rising 65+ series it should read the latest/largest year, not '1972 PULLS AHEAD'."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.003,
+        "sampled": 288
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:24:05+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three near-identical auto-charts with a sticker mascot pasted over them: the hook is a slow bar build, the bars print raw unformatted digits (51915952) that contradict the narrated 'million metric tons', and the closing bubble scene is numbers-in-circles floating in a void.",
+      "auto_fails": [
+        "decorative_mascot: Data drifts across the bars in an identical standing/striding sticker pose from hook@0.3 to seg2:end and merely leans on the 2013 bubble at seg3:mid\u2013payoff@-0.4 \u2014 no setup->action->payoff tied to fish catch or protected area.",
+        "bare_number_card: seg3:end and seg4:start present 11.1 / 12.1 / 14.1 / 14.8 / 14.9 as numbers inside plain pink circles whose diameters barely differ, so the shape demonstrates nothing the digits don't.",
+        "empty_void: seg3:start and seg3:mid leave the entire upper third below the title empty and the lower quarter empty, with five small circles floating in dark navy; seg2:end also leaves a wide empty band under the 2023 bar."
+      ],
+      "problems": [
+        "hook@0.3\u2013hook@2.2 is exactly the disallowed slow chart build: bars creep out one at a time while word-by-word captions ('The world', 'eats more', 'fish than') sit on top \u2014 nothing happens in the first two seconds to earn a stop.",
+        "seg0:end and seg1:mid label bars with raw digits (51915952, 62548125, 88788151) while the caption says 'million metric tons' \u2014 the on-screen number is off by a factor of a million from the spoken one.",
+        "seg2 claims 'to 17.5 percent' at seg2:end while the chart's top bar reads 13.7 for 2023, so the visual contradicts the narration.",
+        "Data is the same standing sticker in every scene (hook@0.8, seg0:mid, seg1:end, seg2:start), and he repeatedly occludes the bars and collides with the caption text ('eats more', 'fish than', 'budged in' all run through his head).",
+        "seg0 and seg1 are the same bar-race template with only the title and years swapped \u2014 two of five beats look identical.",
+        "seg3 wastes most of the frame (empty upper third and lower quarter) and encodes an 11.1\u201314.9 range as circles of visibly the same size."
+      ],
+      "fixes": [
+        "Open on a completed, dramatic state \u2014 e.g. the 1972 and 2014 bars already drawn and visibly the same length, with Data slamming a ceiling plate down on the flatline \u2014 instead of building bars from zero under the first caption.",
+        "Format bar value labels as '51.9M' / '88.8M' / '94.4M' so the digits match the narrated 'million metric tons'; fix seg2's caption or data so 17.5% and the 2023 bar agree.",
+        "Give Data one bit per scene tied to the stat: hauling a net that stops filling in seg0/seg1, roping off a widening patch of ocean in seg2, staking flags across the map in seg3 \u2014 setup, action, payoff, with a position change.",
+        "Reserve a mascot lane outside the bar/caption area so he never overlaps the value labels or the burned-in text.",
+        "Differentiate seg1 from seg0 visually (different chart form or camera framing) so two consecutive beats do not read as the same shot.",
+        "Replace seg3's bubbles with a full-frame area fill of Earth's surface where the protected share visibly grows 11% -> 17%, filling the currently empty top third."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.025,
+        "sampled": 119
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:32:17+00:00",
+      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Clean bar-race craft and continuous motion, but seg3 collapses into a half-empty bubble grid with indistinguishable circles, and Data is a passenger for the whole run rather than a performer.",
+      "auto_fails": [
+        "decorative_mascot: From seg3:start (t=26.52) to payoff@-0.4 (t=39.40) Data is parked on the same 2013 bubble doing a generic lean/kick, and in seg0-seg1 he merely slides alongside the bars (seg1:mid t=10.86) \u2014 no setup->action->payoff tied to the fish-catch ceiling.",
+        "empty_void: seg3:start (t=26.52) leaves the entire upper third and lower third of the panel dead navy with five pinhead dots floating mid-frame; still hollow at seg3:mid (t=29.23) where the bottom ~40% of the panel is empty."
+      ],
+      "problems": [
+        "seg3:start (t=26.52) is a near-empty frame: five pinhead dots on a blank navy panel, top third and bottom 40% wasted.",
+        "seg3 bubbles (11.1, 12.1, 14.1, 14.8, 14.9) are visually identical in size, so the '11% to 17%' growth the narration claims is not demonstrated at all.",
+        "Mascot never performs a bit: he slides beside the bars in seg0-seg2 and then stands on the 2013 bubble from t=26.52 to the end with no setup->action->payoff.",
+        "Mascot occludes data: he covers the 2013 bar value in seg1:mid (t=10.86) and hides the '11.1' label from seg3:end (t=31.94) through payoff@-0.4 (t=39.40).",
+        "Hook is a slow chart build with a plain header \u2014 hook@0.3 (t=0.30) opens on a title plus barely-started bars, and the caption 'The world' sits on top of the mascot.",
+        "Chart title is clipped by the closing speech bubble at seg4:start (t=34.95) and payoff@-1.8 (t=38.00), leaving a stray 's' at the top right."
+      ],
+      "fixes": [
+        "Rebuild seg3 as a full-frame growth demonstration (bar fill, filling globe, or rising water line) instead of a sparse bubble grid; anchor elements to the panel edges so no third of the frame is empty.",
+        "Rescale seg3's encoding (non-zero baseline or explicit before/after pair) so 11.1% and 14.9% are unmistakably different sizes.",
+        "Give Data one real bit per segment tied to the stat \u2014 e.g. hauling a net that stops dead at the 1993 bar, then getting hit by a hard 'ceiling' bar at the payoff \u2014 and make him change position and pose between segments.",
+        "Add a collision/occlusion offset so the mascot is never drawn over a bar value or bubble label (2013 in seg1:mid, 11.1 in seg3:end onward).",
+        "Open on motion, not a title: start the hook mid-race with bars already sweeping and the mascot reacting, and move the caption off the mascot's body.",
+        "Lay the closing speech bubble below the chart title, or fade the title out before the bubble enters, so nothing is clipped at seg4:start."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.025,
+        "sampled": 119
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:40:57+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Honest, well-sourced data, but the mascot is a sticker parked on top of the bars for the whole run and the title stat's scene is a sparse bubble grid with clipped labels and no performance.",
+      "auto_fails": [
+        "decorative_mascot: Data stands in the same idle lab-coat pose parked over the 1972/1982 bars from hook@0.3 to seg1:end, then re-parks top-left of the bubble grid for all of seg3:start\u2013seg4:end (f13\u2013f20) with no setup->action->payoff tied to any stat."
+      ],
+      "problems": [
+        "Data never performs: identical idle pose over the 1972/1982 bars from hook@0.3 to seg1:end, then identical idle pose at top-left of the bubble grid from seg3:start to payoff@-0.4 \u2014 no bit is tied to any number.",
+        "The mascot occludes the data he's standing on: at hook@0.8 through seg0:end and again at seg2:mid/seg2:end (f11, f12) his body covers the leading edge and value of the top two bars.",
+        "Caption text collides with the chart at hook@1.5 and hook@2.2 \u2014 'toughest health' sits directly over the '1972' row label, making both unreadable.",
+        "Hook is exactly what the rubric forbids: a slow bar build from zero under a plain title card ('Adolescent fertility rate / 1972 PULLS AHEAD') with no immediate event.",
+        "seg3:start and seg3:mid render bubble values clipped by their own circles ('5', '9', '75.6', '863.') \u2014 the numbers are unreadable for most of the beat.",
+        "Caption placement is inconsistent \u2014 burned over the chart in the hook/seg0, then dropped to a bottom strip from seg1:start onward."
+      ],
+      "fixes": [
+        "Block a real bit per beat via author_performance: e.g. Data physically pushing the 1972 bar down as it shrinks in seg0, catching the falling 12.5 -> 9.13 marker in seg2, and being dwarfed/knocked back by the inflating spending bubble in seg3.",
+        "Move the mascot out of the bar track \u2014 anchor him to the empty right gutter or the row below the last bar so he never covers a bar tip or its value.",
+        "Fit bubble labels to the circle at every animation frame (scale font with radius, or hold the label outside until the circle is large enough) so seg3 never shows '5' or '863.'.",
+        "Open on motion instead of a title build: start the hook mid-race with bars already flying and the title lower-thirded, or lead with the $1,317 shock before the two falling stats.",
+        "Pin captions to one safe zone (the bottom strip used from seg1 onward) for the entire video, including the hook.",
+        "Differentiate seg2 from seg0/seg1 \u2014 vary the chart form or camera so three consecutive bar races don't read as one repeated visual."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.034,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T10:49:10+00:00",
+      "slug": "global-health-spending-exceeds-1300-per-person",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three slow chart-builds in a row with the mascot parked on top of the data \u2014 the spending beat, the one the title promises, is just numbers in blobs.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers in the same upper-left slot over the 1972/1982 bars from hook@0.3 through seg1:end and merely stands beside the bubbles at seg3:start/mid/end \u2014 no setup\u2192action\u2192payoff tied to any stat, and he occludes the top two bar values while doing it.",
+        "bare_number_card: seg3:mid/seg3:end present $475.6\u2192$1,067 as numerals inside plain pink blobs whose areas barely differ (863.3 vs 1016 read as the same size), and the numerals overflow the blob edges \u2014 a number on a shape, not a demonstration.",
+        "empty_void: seg3:start wastes the entire upper third of the card (blank between the subtitle and the first dot row) plus a deep blank band under the 2014/2018 row, leaving five tiny dots floating in dead panel space."
+      ],
+      "problems": [
+        "Hook (hook@0.3\u2013hook@2.2) is a slow bar-chart build behind an overlapping caption \u2014 the exact opening the rubric forbids; nothing happens in the first second.",
+        "Data sits on top of the 1972/1982 bars from hook@0.3 to seg1:end, hiding their values (85 and 79 are only readable at seg1:mid once he drifts right) \u2014 the mascot is actively damaging the data read.",
+        "seg3 spending bubbles are near-identical in size (863.3 vs 1016 vs 1067) so the 'nearly tripled' claim is not visible; the numerals overflow the circles and $475.6 is clipped by the card edge at seg3:mid.",
+        "Caption text collides with the chart title and the mascot at hook@0.8, hook@1.5, seg0:end \u2014 'toughest health' sits across the 1972 row.",
+        "The whole card jitters/reframes between beats (hook@0.3 vs hook@1.5 vs seg0:mid) \u2014 reads as instability, not intentional camera move.",
+        "Payoff (seg4:start\u2013payoff@-0.4) stacks a speech bubble over the chart title and prints the source line twice, once as an illegible smear under the CTA."
+      ],
+      "fixes": [
+        "Open on the last 0.5s of the spending explosion or on Data physically bracing against a growing bar \u2014 motion and a question in frame 1, not a chart initializing.",
+        "Move Data out of the plot area: give him a floor/ledge on the right margin and let him react to the bars rather than stand on them; never let him overlap a value label.",
+        "Rebuild seg3 per the weakest-scene repair goal \u2014 a growing stack/pile that visibly triples in height, labels outside the shapes, no clipping.",
+        "Reserve a dedicated caption band below the chart card (as used at seg1:start) for ALL beats so no caption ever crosses the title or the mascot.",
+        "Lock the card frame \u2014 remove the per-beat drift so motion comes only from the data.",
+        "Deduplicate the source credit on the end card and drop the speech bubble below the title so nothing overlaps."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.034,
+        "sampled": 118
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T11:02:22+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Two of the three stats are the identical blue bar-race template and the mascot just hovers over the bar ends for all 52 seconds \u2014 nothing here is a demonstration a stranger stops for.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers over the bar ends in the same mid-frame spot from hook@0.3 through seg4:end (seg1:start, seg2:mid, seg3:end) \u2014 arms wiggle but there is no setup->action->payoff tied to any stat; he never pushes, measures, stacks or reacts to a bar."
+      ],
+      "problems": [
+        "hook@0.3\u2013hook@2.2 is a slow chart build behind a plain title card: bars creep, no event, no reason to stay in the first 2s.",
+        "seg0 and seg1 are the SAME chart with the same title 'Progression to secondary school' and 'ONE PULLS AHEAD' subtitle for ~13s combined \u2014 the viewer sees one visual idea twice.",
+        "seg2:end value labels are garbled and illegible: '1083\u25cb68408' cut by the bar cap, '149323\u25cb79' half-faded, and the raw counts don't match the narrated 'million metric tons'.",
+        "Data is decorative throughout \u2014 same hover position over the bar ends in hook, seg0, seg1, seg2, seg3 and seg4, with no bit tied to any number.",
+        "Caption text collides with the mascot (hook@0.8 'the world' printed across his head; seg0:mid 'food -' rendered over his torso).",
+        "payoff@-1.8/seg4:mid closing card is slapped over the live 'Agricultural land' title and the map, so two layers fight (title reads 'Agricultur...land' behind the box)."
+      ],
+      "fixes": [
+        "Open cold on the 1970s famine prediction as a visual event (a shrinking grain pile or a countdown that stalls) in frame 1, and delay the chart build until after ~1.5s.",
+        "Give seg1 a different mechanic from seg0 \u2014 or merge them: if both are the same indicator, show one chart and spend the reclaimed seconds on the cereal metaphor.",
+        "In seg2, format labels to the narrated units with separators, place them outside the bar end, and fade them in only after the bar settles.",
+        "Replace the cereal bar-race with a physical demonstration: silo/grain-pile stacking 1083.7 -> 1644.1 so the 1.5x is SEEN as volume, not read as a number.",
+        "Give Data one real bit per scene with setup->action->payoff \u2014 e.g. he braces against the 1972 bar, gets shoved backwards as the 2024 bar overtakes it, and lands on top of the taller one.",
+        "Move captions to a reserved lower-third band and keep the mascot out of that band so no word is printed over him."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 158
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T11:12:39+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three consecutive runs of the same static bar-race template with a mascot who never performs \u2014 competent chart, not a short anyone stops for.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers beside the top bar in the same arms-out pose from hook@0.3 to seg4:end (seg1:mid, seg2:mid, seg3:mid all show him parked at the leading bar) \u2014 he never acts on a stat, no setup/action/payoff."
+      ],
+      "problems": [
+        "Hook (hook@0.3\u20132.2) is a plain title + slow bar build with the mascot floating over the caption \u2014 no event in the first two seconds, exactly the opening the rubric forbids.",
+        "seg1, seg2 and seg3 are visually interchangeable: same headline block, same five stacked bars, same mascot position, only the labels change.",
+        "Data is decoration in every frame from hook@0.3 to seg4:end \u2014 arms-out idle beside the leading bar, no setup\u2192action\u2192payoff tied to any number.",
+        "seg2:end shows value labels colliding with the bar caps and the tracker dot ('1083\u25ef8408', '149323\u25ef79') \u2014 illegible at phone size.",
+        "Raw unformatted integers ship on screen (payoff@-1.8: '5204150', '2822286611') while the narration says '5.2 million square kilometers' and '1083.7 million metric tons' \u2014 the frame contradicts the script.",
+        "seg3:start crops the headline 'Agricultural land' off the left edge and clips row labels to 'an Federation' / 'ussian Federation'."
+      ],
+      "fixes": [
+        "Open on a motion event instead of a chart build: a food-scarcity headline or grain silo filling that Data physically reacts to, with the first bar already in flight by 0.5s.",
+        "Give each segment its own visual grammar \u2014 bar race for the school stat, a filling/stacking metaphor for cereal tonnage, a proportional area/map treatment for farmland \u2014 so no two beats share a layout.",
+        "Author a distinct per-beat performance for Data: lifting the 1985 bar to 2017, being buried by the growing grain pile, pacing off China's farmland against the US bar.",
+        "Humanize all on-screen values ('1,083.7 Mt', '5.2M km\u00b2') and place them inside or outside the bar with collision detection against the tracker dot.",
+        "Fit-check the headline and category labels to the safe area (auto-shrink or wrap) so nothing is cropped at the frame edge in seg3/seg4.",
+        "Animate the closing card: type or pop the punchline in, move Data into a reaction, and clear the headline instead of covering it for the final 6 seconds."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 158
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:10:44+00:00",
+      "slug": "amazon_built_its_own_delivery_army__then",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, honest, genuinely readable delivery-parcel race that lands its overtake and its #1 payoff \u2014 held back by a cold-start title-card hook and labels clipping off the right edge.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u20131.5: opens as a static title card over a chart at its starting values; the hook banner then ghost-fades across the plot area at hook@2.2 instead of exiting.",
+        "mid3 (t=8.43s): the 'amazon prime' tip marker is cut by the right frame edge; same clipping recurs at mid5, payoff@-1.8 ('FedEx 3.7B' truncated) and payoff@-0.4 ('amazon pr...' sliced off) \u2014 the winner's own marker leaves the frame at the moment of victory.",
+        "The 0\u20132B band of the plot is empty black for the entire runtime (mid1 onward), so roughly the bottom third of the chart area does no work and the race is compressed into the upper half.",
+        "The lead change is the whole story but it passes without emphasis \u2014 at mid3 Amazon crosses UPS with no flash, pulse, or callout; the leaderboard reorder is the only signal."
+      ],
+      "fixes": [
+        "Start the hook mid-motion: begin the year sweep ~0.5s before the first visible frame (or flash the 2024 end state, then rewind) so hook@0.3 already shows lines climbing, and slide the hook banner out rather than cross-fading it over the plot.",
+        "Reserve right-edge padding (or flip labels to the inside of the tip when x > ~85% of the plot width) so the leading series' logo and value stay fully on-frame through payoff@-0.4.",
+        "Tighten the y-axis to roughly 1.5B\u20137B so the racing lines fill the plot instead of leaving the bottom third of the chart empty.",
+        "Punch the overtake at ~8.4s: a brief highlight on the crossing point, a leaderboard row-swap animation, or a '#1' badge snapping onto the Amazon tip so the moment reads as the payoff it is."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:12:35+00:00",
+      "slug": "sports_betting_just_passed_the_lottery",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A clean, genuinely readable graph race with a real crossover payoff, undercut by a crop that slices the title and y-axis off the frame for most of the video.",
+      "auto_fails": [],
+      "problems": [
+        "Header title is cut off at one or both edges in 8 of 12 frames (hook@0.3 'ports Betting...', mid1/mid3 '...The Lotter').",
+        "Y-axis tick labels are clipped to '0B'/'80B' fragments in hook@0.3, hook@0.8, mid2, mid5 and payoff@-1.8, so the scale is unreadable at exactly the beats where the gap matters.",
+        "The hook opens on the flat 2019 baseline \u2014 two static dots on black \u2014 so the first ~0.8s has no visible race.",
+        "At mid5/payoff@-1.8 the 'Sports Betting 145.3B' tip label runs into the right edge and the axis label column is gone entirely."
+      ],
+      "fixes": [
+        "Clamp the chart+header render to the 1080x1920 safe area (or reduce the zoom factor) so no title character or axis tick is ever outside the frame.",
+        "Reserve a right-hand margin wide enough for the longest tip label ('Sports Betting 145.3B') so the value never touches the edge.",
+        "Start the race one to two years in, or pre-roll the first growth segment during the title card, so motion is visible in frame 1.",
+        "Keep the 'Amount wagered per year (USD)' axis title and tick labels pinned and legible for the full duration instead of drifting off-canvas."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:14:31+00:00",
+      "slug": "subway_was_america_s_sandwich_king__chip",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video \u2014 a wrong-brand image that cannot ship.",
+      "auto_fails": [
+        "junk_imagery: Every 'Chipotle' series marker is a QDOBA logo \u2014 wrong restaurant brand \u2014 from hook@0.3 through payoff@-0.4 ('Chipotle 11.3B' pinned to a QDOBA badge).",
+        "empty_void: dark_fraction 1.0 and the entire 0\u20134B lower half of the plot stays empty black for the whole run (mid3 t=8.43s, payoff@-1.8) with only two thin lines occupying the frame."
+      ],
+      "problems": [
+        "Chipotle's series logo is QDOBA's logo in the leaderboard and on the line tip in every frame, including the '#1 Chipotle' payoff (hook@0.3 \u2192 payoff@-0.4).",
+        "Hook text 'The Sandwich King Just Fell' is laid over the Subway line and is nearly unreadable as it fades at hook@0.8 and hook@1.5.",
+        "Y-axis labels are clipped by the left frame edge ('12B' shows as '2B' at hook@0.3, mid2) and tip labels are cut off at the right edge (mid3 'Subway 9.', payoff@-1.8 'QDOB').",
+        "The bottom 40% of the plot (0\u20134B) is empty black for the whole video; dark_fraction 1.0 makes the composition feel like a void around two thin lines.",
+        "Lower third carries only a year counter and a truncated source line \u2014 a lot of frame doing no work."
+      ],
+      "fixes": [
+        "Replace the Chipotle series logo with the verified Chipotle mark; if no verified logo exists, render a colored text chip with the brand name rather than any other chain's logo.",
+        "Move the hook lozenge into the empty 0\u20134B band with a solid backing plate and hold full opacity through ~2s so it reads over the chart.",
+        "Add horizontal safe-area padding to the plot transform so axis ticks and moving tip labels never cross the frame edges.",
+        "Tighten the y-axis range or scale the plot to fill the frame so the dead lower band is used, and give the lower third a live element (delta callout or gap-in-billions readout) instead of empty black."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:16:31+00:00",
+      "slug": "peloton_passed_planet_fitness_and_stayed",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real graph race with a genuine lead change, wrecked by text that runs off the frame \u2014 the hook line is clipped at both edges and the tip labels overrun the right margin.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u20130.8: hook banner clipped at the left edge ('he Bike That Out-Earned The Gym') and overlapping the Planet Fitness tip label.",
+        "hook@1.5: the faded hook text lingers as a dark smear across the plot instead of clearing cleanly.",
+        "hook@0.3\u20130.8: y-axis tick labels are cut off at the left edge ('00M' instead of '600M'); same clipping recurs at mid5 and payoff@-0.4.",
+        "mid5/payoff@-1.8/payoff@-0.4: the Peloton and Planet Fitness tip labels run off the right edge ('PELOT\u2026', badge half out of frame) exactly at the moment the final values should read cleanly.",
+        "mid0 (t=2.50s): the two tip badges collide and stack on top of each other at the crossover, making both values unreadable at the most important instant of the race.",
+        "payoff: the '#1 Peloton' resolve is rendered in near-black low-contrast type under the year counter and barely registers; the visible ending is a falling line, so the 'stayed ahead' claim lands weakly."
+      ],
+      "fixes": [
+        "Auto-fit the hook line to the safe width (wrap to two lines if needed) and render it in a reserved band above the plot, not over it; clear it fully by 1.2s.",
+        "Add right/left margin padding to the plot so tip labels and axis ticks always render inside the frame \u2014 clamp the label to flip to the left of the tip when the series is near the right edge.",
+        "Add vertical collision offset for tip badges so the two series separate at the crossover instead of stacking.",
+        "Punch up the payoff: hold the final frame with a high-contrast '#1 PELOTON \u2014 2.7B vs 1.2B' resolve card over the chart, so the reversal is stated, not whispered in near-black text.",
+        "Start the chart mid-build (or add an immediate tip-motion burst) so the first 0.5s has both lines already moving instead of two stubs on an empty axis.",
+        "Tighten the y-axis top margin so the plot fills the frame instead of leaving a dead black band above the highest line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:20:41+00:00",
+      "slug": "boss_enforced_dress_code__employee_follo",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Shot progression genuinely tracks the story beats and nothing ever stalls, but the ending resolves on one generic technician still so the punchline lands flat.",
+      "auto_fails": [],
+      "problems": [
+        "payoff (t=51.8-53.4): the same AI HVAC-technician portrait holds across mid5 and both payoff frames, so the final 'WORTH 11 DAYS?' punchline has no new image to land on.",
+        "mid5 (t=51.80): no caption on screen and the bottom panel's lower third is a flat empty blue plane \u2014 the frame's space is wasted at the most important moment.",
+        "mid3 (t=32.08): bottom gameplay half is near-black with only sparse teal geometry and no caption; the split-screen reads as half-dead.",
+        "mid1 (t=12.36): the broken A/C sitting in an orange desert is tonally off for an office malicious-compliance story \u2014 relevant object, wrong world.",
+        "mid2 (t=22.22): the suit shot is cropped through the neck, an awkward stock framing that draws the eye to the missing head.",
+        "hook (0.3-2.2s): the opening is the default post-card-over-gameplay with no top illustration; it relies entirely on the title text for the stop-scroll."
+      ],
+      "fixes": [
+        "Cut mid5/payoff to a real payoff visual: the handbook open to page 40, then the boss sweating at his desk, with a push-in on the last line instead of a held portrait.",
+        "Keep burned-in captions running through mid5 \u2014 every beat that speaks should show its words.",
+        "Re-time or re-pick the gameplay under mid3 and mid5 so the bottom panel always has bright, active level geometry rather than a black or flat-blue stretch.",
+        "Swap the mid1 desert A/C for an office-window or ceiling-vent A/C unit so the setting matches the story.",
+        "Reframe mid2 to show the full dress-code subject (memo, tie rack, or a waist-up figure) rather than a headless suit crop.",
+        "Give the hook a top-panel illustration in the first second \u2014 a shot of the memo or the packed suit \u2014 so frame 1 carries an image, not just a title card."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.031,
+        "sampled": 161
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T12:24:40+00:00",
+      "slug": "lunch_thief_finally_picked_the_wrong_san",
+      "score": 75,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong reddit-story shell \u2014 punchy post card, real illustrations, tight captions \u2014 but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.",
+      "auto_fails": [
+        "dead_air: mid3 (t=32.32s) and mid4 (t=42.26s) carry the IDENTICAL crying-woman still in the top panel \u2014 the story-illustration channel is frozen across a ~10s stretch while narration advances."
+      ],
+      "problems": [
+        "mid3 and mid4 reuse the identical crying-woman plate across roughly 10 seconds; the illustration track stalls while narration keeps moving.",
+        "mid4's gameplay panel is an extreme close-up of track geometry with the runner off-screen \u2014 the eye has nothing to follow in either half of the frame.",
+        "The crying-woman image has the plastic, over-smoothed look of an AI portrait; it is topical but is the weakest-quality plate in the cut and it is the one held longest.",
+        "payoff@-0.4 (t=53.80s) drops the caption entirely and ends on a static fridge plus the runner heading away \u2014 the punchline is not landed on screen.",
+        "Story beats are illustrated but not escalated: the hot sauce (mid1) and the signed bag (mid2) set up a trap that no later shot visibly pays off."
+      ],
+      "fixes": [
+        "Cap any single illustration at one beat: swap mid4 to a distinct shot (thief mid-bite / fridge door swinging open / coworkers reacting) so the top panel changes every beat.",
+        "Replace or regrade the AI crying-face plate \u2014 prefer a real reaction shot, and if it stays, use it once and briefly.",
+        "Re-frame mid4's gameplay crop to keep the runner in the lower third; reject crops where the character is not visible.",
+        "Hold the final caption through the last ~1.5s so the punchline reads on screen at payoff@-0.4 instead of cutting to a silent fridge.",
+        "Land the setup: after the signed bag and the hot sauce, cut to a visible consequence shot so the trap pays off rather than ending on an untouched fridge."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T22:54:46+00:00",
+      "slug": "foreign-aid-never-broke-0-32-of-health-spending",
+      "score": 61,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Solid honest chart animation with a genuinely performing mascot, but the layout is clipped \u2014 a truncated title, off-canvas axis labels, and a closing wall-of-text dumped on top of the header make it read amateur.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u20132.2: the open is a slow bar-chart build with the caption printed straight across the mascot's face \u2014 nothing happens in the first second that earns a stop-scroll.",
+        "seg2:start/mid/end: header truncated to 'Electricity production from nuclear sour' at the right edge.",
+        "seg2:mid: mascot is planted on the descending line, occluding the 1997\u21922017 decline the narration is describing.",
+        "seg3:mid and payoff@-0.4: composition pushed off the safe area \u2014 '1725.5' clipped to '725.5', '1866' sliced by the right edge, 'Energy use' title cut to 'E'.",
+        "seg4:start onward: the 30-word closing card is dropped over the chart title and held for the entire tail, colliding with the header and the pointer callout.",
+        "seg0/seg1: 0.15%\u20130.32% bars are normalized to fill most of the track width, so the visual says 'huge' while the script says 'never broke a third of one percent' \u2014 the demonstration fights the point."
+      ],
+      "fixes": [
+        "Open on the 2014 peak bar snapping in with an impact beat (or Data hauling the tiny aid bar against a full-width 'world health spending' track), and offset the caption below the mascot so neither covers the other.",
+        "Auto-fit/wrap scene titles to panel width \u2014 no scene may ship a truncated header.",
+        "Clamp the camera push to the safe area so axis labels and endpoint values stay on-canvas in seg3/seg4.",
+        "Add mascot\u2013series collision avoidance: place Data beside or below the plotted line, never on it, in seg2.",
+        "Cut the closing card to one short line and place it in the empty upper band instead of over the title, or reveal it only in the final ~2s.",
+        "Scale the aid bars against a visible 100%-of-health-spending track so the 0.32% ceiling reads as the sliver it is."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 175
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:03:50+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Two-thirds of this is a generic bar race with the mascot floating over it as a sticker, and the charts contradict the hook - the bars grow from 104M to 129M under a title claiming land shrank, sub-headed '1972 PULLS AHEAD' when 1972 is the shortest bar.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 to seg1:end (t=0.3-24.0s, roughly the first 40% of the video) Data holds the same arms-out standing pose and merely drifts across the bar stack (hook@1.5, seg0:mid, seg1:mid, seg1:end) with no setup->action->payoff tied to any number; only at seg3:mid does he finally touch the line."
+      ],
+      "problems": [
+        "hook@0.3-2.2: opens on a near-empty chart slowly filling behind a title-card caption - the exact slow-chart-build the rubric forbids, and Data's body hides the '1972' row label.",
+        "seg0/seg1 are the same bar-race template twice in a row with only the dataset swapped; nothing about the visual tells the two indicators apart.",
+        "seg0:start-seg0:end: the sub-head reads '1972 PULLS AHEAD' while the 1972 bar is visibly the shortest, and the bars rise across the beat - directly contradicting the title/hook claim that land shrank.",
+        "hook through seg1:end: Data stands in one arms-out pose sliding across the frame, occluding bar ends and year labels (hook@0.3 hides '1972', seg0:end hides the row label behind 'to 129,763,686').",
+        "seg1:start-seg1:mid: bars animate with no values on them, so ~10s of growth is unreadable; numbers only appear at seg1:end.",
+        "seg4:start-payoff@-0.4: the closing quote box is stacked directly on top of the 'Crop production index' title, producing a garbled double-printed headline (seg4:mid, seg4:end)."
+      ],
+      "fixes": [
+        "Replace the hook with a pre-loaded chart and an immediate physical event in frame 1 (Data yanking the 2023 bar backwards as the land figure ticks down) instead of bars filling from zero behind a title.",
+        "Author a distinct per-beat performance for seg0, seg1 and seg2 so no two beats reuse the arms-out standing pose - each bit must have setup, action and payoff attached to that beat's specific number.",
+        "Fix the sub-head generator: either label the actually-leading row or drop the 'X PULLS AHEAD' line - '1972 PULLS AHEAD' is false against the rendered bars.",
+        "Reconcile the script with the data or re-cut the visual: the hook promises a shrink and seg0 renders a 25-year climb; show the 2013->2023 downtick explicitly as the demonstrated moment.",
+        "Reveal each bar's value as the bar lands rather than only at the end of the beat, and keep Data's bounding box out of the bar-end and year-label zones (offset him to the right gutter or scale him down).",
+        "Move the closing quote card to a clean lower-third or fade the section title before it appears, so seg4 never double-prints the headline."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 179
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:12:51+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Real sourced data and a genuinely animated race, but it opens on a slow chart build with the mascot and captions sitting on top of the bars, and the closing card collides with the chart title.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u20132.2: slow bar build from zero, no event in the first two seconds; mascot's body covers the 1972 row label and the caption sits across the bar he stands on.",
+        "seg0:start\u2013seg1:mid: the mascot is parked center-frame over the 1972/1982 bars with no bit tied to land area, and he occludes the bar tips and value labels that are the whole point of the race.",
+        "seg1:end: values 104217084 vs 104215245 vs 125847588 render as near-identical bar lengths, so the 'leapt' and 'slipped' beats read visually the same \u2014 the shrink the title promises is never shown as a shrink.",
+        "seg4:start\u2013seg4:end and payoff@-0.4: the closing callout box overprints the 'Crop production index' title into an unreadable glyph pile-up, and payoff@-1.8 stacks callout + caption + 'COMMENT BELOW' + source line in the lower frame at once.",
+        "seg3:start: the top third of the frame is blank navy above the chart while the mascot and the action sit low-left."
+      ],
+      "fixes": [
+        "Start the hook with bars already extended and diverging (or cut in on the 2013\u21922023 drop) so motion and a reason to stay exist at frame 1.",
+        "Constrain the mascot to the right gutter during the bar-race scenes (seg0\u2013seg2) so row labels and bar tips are never covered, and give him a land-specific bit \u2014 e.g. shoving a bar backwards as the 2023 value slips.",
+        "Rescale the land-area bars against a non-zero baseline (or show delta bars) so 104M vs 129M vs the 2023 dip are visibly different lengths.",
+        "Hold the closing callout until the chart title has cleared the frame, or drop the title on the closing beat \u2014 never render both in the same band; and suppress the narration caption while 'COMMENT BELOW' is on screen.",
+        "Raise the crop-index chart into the empty upper third of seg3 so the frame's space is used."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 179
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:21:22+00:00",
+      "slug": "the-world-has-less-land-than-it-did-in-2013",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Clean, honest bar-race data work undone by a mascot who never performs and a closing beat where the callout text overprints the chart title.",
+      "auto_fails": [
+        "decorative_mascot: Data hovers in the same mid-right spot with identical arm-out pose across seg0:start, seg1:mid, seg2:end and seg3:mid \u2014 he never sets up or pays off any bit tied to a stat; at seg3:start he holds a flat teal slab near 20.8 that reads as a prop with no action.",
+        "empty_void: seg3:start/seg3:mid leave the entire top half (y\u2248150\u2013380) blank navy above the flat 20.8 line, and the bar-race frames (seg2:start) leave wide empty gutters right of every unfilled track."
+      ],
+      "problems": [
+        "seg4: closing callout overlaps and obliterates the 'Crop production index' title; axis labels clipped to 'C'/'19' and the '100' endpoint runs off the right edge.",
+        "Data is decorative for the entire runtime \u2014 same hovering arm-out pose at seg0:start, seg1:mid, seg2:end, seg3:mid; no setup\u2192action\u2192payoff tied to any number.",
+        "Hook (hook@0.3\u20132.2) is a slow bar-race build with the caption text sitting on top of the mascot and the 1972 bar; nothing surprising happens in the first 2s.",
+        "seg3:start/seg3:mid waste the top half of the frame on empty navy while the line sits flat at 20.8 in the lower third.",
+        "seg0/seg1 bar tracks show large unfilled grey gutters (seg2:start) \u2014 the frame's width is not used.",
+        "The subtitle burn-in collides with chart elements repeatedly (hook@1.5 'Earth's total' covers the 1972 bar; seg1:end caption sits over the source line)."
+      ],
+      "fixes": [
+        "Move the closing callout below the header band or cross-fade the scene title out before it renders, and clamp the endpoint value label inside a right safe margin.",
+        "Give Data one concrete bit per segment tied to the stat: shove the 1972 bar forward in seg0, get flattened by the 2018 dip in seg2, ride the 1991\u21922001 cliff up in seg3.",
+        "Open on the surprise: start the hook mid-race with the 2023 bar snapping backwards, or a land-mass chunk falling away, before any title settles.",
+        "Scale the seg3 area chart to fill the frame vertically so the flat 20.8 stretch is not floating under a half-frame of empty navy.",
+        "Trim the bar tracks to the max value plus a small pad so the race fills the frame width instead of leaving grey gutters.",
+        "Reserve a caption safe-zone that excludes the chart body so subtitles stop landing on top of bars, the mascot, and the source credit."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 179
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:31:23+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three unrelated World Bank charts stapled under a renewables title, opened on a slow irrigation bar build while the hook talks about green energy.",
+      "auto_fails": [
+        "decorative_mascot: Data holds the same walking/reaching pose and merely slides along the bar tip or line \u2014 identical silhouette at hook@0.3, seg0:mid, seg1:end, seg2:start, seg2:end, seg3:mid and payoff@-0.4 \u2014 never a setup->action->payoff tied to a number."
+      ],
+      "problems": [
+        "hook@0.3\u2013hook@2.2: plain title card plus near-empty bars; the promised renewables subject is absent for the first ~30s.",
+        "seg0/seg1 (irrigation) and seg2 (broadband) have nothing to do with the title 'World Renewable Power Was Still Only 19.7%' \u2014 the payoff line at payoff@-0.4 lands on a claim two-thirds of the video never argued.",
+        "seg1:end: value labels are occluded by their own bars \u2014 Suriname reads '4.4', Pakistan '4.2', India '4.4', Bahrain '0.9' instead of 74.4 / 54.2 / 44.4 / 40.9.",
+        "seg4:start\u2013payoff@-0.4: the closing caption box sits on top of the chart title, cutting 'Renewable electricity output' in half and hiding the '1990 \u2192 2021' subtitle.",
+        "payoff@-1.8 and seg4:end: the '27.8' end-value label is clipped by the right frame edge.",
+        "Mascot is the same pose in every scene, riding the bar tip or the line \u2014 decoration that tracks a value rather than a performer with a bit."
+      ],
+      "fixes": [
+        "Reorder so the renewables line chart is scene 1 and opens mid-motion on the 1990\u21922009 flatline; demote or cut the irrigation and broadband beats, or rewrite the hook/title to the 'three numbers that barely moved' framing the closing actually pays off.",
+        "Give Data one distinct act per scene: straining to drag the flat 1990\u20132009 line upward and failing, then getting carried by the 2015\u20132021 climb \u2014 setup, action, payoff.",
+        "Move bar value labels outside the bar (or to the track) once fill width exceeds the label width, so 74.4 / 54.2 / 44.4 / 40.9 read fully at seg1:end.",
+        "Anchor the closing caption box to the lower third instead of over the header, and inset the end-value label so '27.8' clears the right safe margin.",
+        "Fill seg3's upper band: raise the plot area or park the title/stat callout there so the frame is used top to bottom."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:39:57+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Real chart demonstrations and a mascot who actually performs, wrecked by a closing card that sits on top of the headline and a title-card hook that gives a scroller nothing in the first two seconds.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u2013hook@2.2: the opening is a plain title card ('Agricultural irrigated land / BANGLADESH TOPS THE LIST') with five pinhead dots slowly inflating \u2014 a slow chart build, exactly the opening the rubric forbids; nothing happens for the first ~2s.",
+        "seg4:start\u2013payoff@-0.4: closing callout overlays and truncates the chart headline ('...ut', then 'R'), its text spills past its own border, and it duplicates the source credit line at the bottom.",
+        "seg2 (seg2:start\u2013seg2:end): the kicker reads '2005 PULLS AHEAD' while the bars plainly show 2005 as the SHORTEST (3.4) and 2021 the longest (16.7) \u2014 the label contradicts the picture.",
+        "seg1:end (16.95s): caption says 'and Bahrain' while the emphasized green number is '54.2' (Pakistan), not Bahrain's 40.9 \u2014 the highlighted number is out of sync with the spoken words.",
+        "seg2:start: bar values are hidden behind the mascot/empty until seg2:end, so for most of the beat the bars are unlabelled shapes.",
+        "The title promises renewable power at 19.7%, but the first 17s (hook through seg1:end) are about irrigated farmland \u2014 the payoff stat arrives more than halfway in."
+      ],
+      "fixes": [
+        "Move the closing callout into the empty band between the axis labels and the source line, auto-shrink its text to fit inside the border, and never let it cover the chart headline; render the source strip once.",
+        "Animate the final 6s: have Data haul the 2021 endpoint up to 27.8 while a ghost marker holds at 19.3/19.7 so the 'two decades, barely moved' point is SHOWN, not just narrated.",
+        "Open on motion that belongs to the headline stat \u2014 e.g. the renewable line flatlining across the frame for two decades then the mascot stomping on it \u2014 instead of a title card with dots inflating.",
+        "Derive the bar-race kicker from the current leader ('2021 PULLS AHEAD') or drop it; never label the shortest bar as ahead.",
+        "Bind the highlighted number to the word being spoken so 'Bahrain' lights 40.9, not 54.2.",
+        "Show each bar's value on the bar from the moment it grows, and keep the mascot off the value labels."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-24T23:48:34+00:00",
+      "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Solid animated chart work in the middle, but the first two seconds are an empty title card whose words promise green energy while the screen shows irrigated farmland.",
+      "auto_fails": [
+        "empty_void: hook@0.3 and hook@0.8 are ~70% empty navy with five 6px dots and a thumbnail-size mascot; seg3:start\u2013seg3:end leave a tall dead band between the subtitle and the 27.8 gridline."
+      ],
+      "problems": [
+        "hook@0.3/hook@0.8: title-card opening over an empty field of five sub-pixel dots \u2014 no motion worth staying for, and the mascot is thumbnail-sized.",
+        "hook: narration says 'green energy took off' while the on-screen chart and title are 'Agricultural irrigated land' \u2014 the hook sells a stat that arrives 33s later.",
+        "seg2:start/seg2:mid: subtitle reads '2005 PULLS AHEAD' on a chart where 2005 is the smallest bar (3.4) and 2021 the largest (16.7) \u2014 the kicker states the opposite of the data.",
+        "seg4:start\u2013payoff@-0.4: the orange closing callout box sits on top of the scene title for the last ~7s, clipping 'Renewable electricity output' and the '1990 \u2192 2021' subtitle.",
+        "seg1:start/seg1:end: burned-in captions ('farmland, Suriname 74.4,' / '44.4, and Bahrain') fall outside the card and across the red divider into the letterbox strip.",
+        "seg4:start onward: two stacked source footers \u2014 the per-scene credit plus a three-source line in the bottom letterbox at 6px, unreadable and cluttering the payoff."
+      ],
+      "fixes": [
+        "Rebuild the hook as live motion: enter on the bubbles already inflating (or the renewable curve flat-lining) at full frame scale, kill the static title card, and up the mascot to at least 2x so he reads at 0.3s.",
+        "Re-cut the hook line to name the stat that is actually on screen at t=0 (irrigation), or reorder so the renewable-power scene opens the video and matches 'green energy'.",
+        "Fix the seg2 subtitle to describe the real trend ('2005 STARTS AT 3.4' or '2021 PULLS AHEAD') \u2014 it currently contradicts its own bars.",
+        "Move the closing callout to the lower third or fade the scene title before it lands so nothing overlaps in seg4/payoff.",
+        "Clamp caption baselines inside the card's safe area so seg1 lines stop bleeding over the divider.",
+        "Drop the duplicated aggregate source strip in the letterbox \u2014 keep the single per-scene credit."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 163
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-25T00:01:04+00:00",
+      "slug": "the-us-still-has-148-553-km-of-rail-more-than-china",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Competent chart work with one genuinely good mascot bit at the end, but it opens on a plain title card over empty bars and spends its first 25 seconds on a dataset the title never mentions.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3\u2013hook@0.8: plain title card, all five bars empty, no demonstration for the first ~2.3s \u2014 the rubric's explicit anti-pattern.",
+        "Hook line says 'China built the world's biggest railroad' while hook@0.3 through seg1:end show mobile subscriptions; the rail stat that titles the video doesn't appear until seg2:start (t=26s).",
+        "Craft, seg0:start\u2013seg1:mid: the mascot sits on top of the rank labels, truncating '1. China' to '1. Chi...' in hook@0.8 and seg0:start.",
+        "Craft, seg1:mid and seg2:start: three text layers stack at once \u2014 subtitle line, giant green numeral, and the source strip \u2014 plus a stray cyan ellipse floating over the bars with no referent.",
+        "payoff@-1.8 to payoff@-0.4: the closing card 'Infrastructure headlines don't always match the numbers' sits over the METHANE chart, covering its title; the rail reveal it refers to is 20 seconds behind.",
+        "seg0\u2013seg2: the mascot's only action is riding the tip of the growing bar \u2014 motion without a bit; the real performance doesn't start until seg3."
+      ],
+      "fixes": [
+        "Re-cut the segment order so the rail comparison (seg2) is first, directly under the rail hook line, and open with the bars already racing rather than empty.",
+        "Give the first 2 seconds a physical beat: mascot shoving/stretching the US rail bar past China's, landing on the 148,553 vs 109,767 gap as the opening image.",
+        "Offset the mascot's anchor so he never overlaps the rank labels \u2014 park him right of the bar tip or above the plot, not on the label column.",
+        "Drop either the giant green numeral or the subtitle line during seg1:mid/seg2:start; one number treatment per beat.",
+        "Remove the unexplained cyan ellipse in seg1:mid and seg2:start, or bind it to the value it is meant to circle.",
+        "Move the closing card so it lands over the rail chart (or re-show the rail bars behind it) and stop it covering the chart title."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 164
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-25T00:11:53+00:00",
+      "slug": "the-us-still-has-148-553-km-of-rail-more-than-china",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three unrelated stats stapled together, ending on a methane chart while the closing line and CTA talk about railroads \u2014 and the mascot keeps standing in front of the labels he is supposed to be pointing at.",
+      "auto_fails": [],
+      "problems": [
+        "The hook narration says 'China built the world's biggest railroad \u2014 it hasn't' while hook@0.3 through hook@2.2 show a mobile-subscriptions bar chart; the promised topic and the visible topic disagree for the entire opening.",
+        "Persistent occlusion: caption text lands on Data's face at hook@0.3 ('You've probably'), and Data's body covers the '1. United States o\u2026' label at seg2:start and eats the leading digit of '148553' at seg2:end and '1151356612' at seg1:end.",
+        "seg4's closing bubble covers the chart title \u2014 seg4:mid shows only 'Me\u2026' and '197\u2026' of 'Methane (CH4) emissions from Agriculture / 1972 \u2192 2024'.",
+        "Editorial incoherence: seg3's methane stat belongs to neither the title nor the closing question, and the CTA at payoff@-1.8 offers only 'phones or the railroads' while methane fills the frame.",
+        "seg3:start wastes the top third of the frame as blank navy above the 4334 gridline while the chart is squeezed into the lower half.",
+        "At seg1:start the caption 'mobile subscriptions, more' overlaps the source credit line at the panel's bottom edge."
+      ],
+      "fixes": [
+        "Reorder so the rail comparison opens the video: put the US vs China rail bars under the hook line so 'it hasn't' is proved by the visible bar at ~1s, and demote mobile subscriptions to a later beat.",
+        "Add a mascot/label collision constraint \u2014 offset Data's x-position (or the bar's value label) whenever his bounding box overlaps a bar label or value, so seg1:end and seg2:end read at a glance.",
+        "Anchor the closing bubble to the empty upper band instead of the panel top edge so the chart title stays legible through seg4.",
+        "Rebuild seg4 as a dedicated payoff frame on the rail data that the CTA names, with Data planting a flag at the end of the longer US bar rather than idling on a leftover methane curve.",
+        "Either cut the methane segment or rewrite the closing question to cover all three stats, so the CTA is not asking about content the last 15 seconds never showed.",
+        "Raise the seg3 chart plot area to fill the blank upper third, or move the '1972 \u2192 2024' range label and a callout into that space."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 164
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "747775c 2026-08-24 doctor: evidence pack + backlog 2026-08-24 [skip ci]",
-    "60051f8 2026-08-23 doctor: findings for 20260823"
+    "c2d5dab 2026-08-24 doctor: findings for 20260824",
+    "8563ee5 2026-08-25 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-10": 2,
         "2026-08-12": 2,
         "2026-08-13": 1,
         "2026-08-14": 1,
@@ -1914,10 +2242,11 @@
         "2026-08-19": 2,
         "2026-08-20": 4,
         "2026-08-21": 3,
-        "2026-08-22": 4
+        "2026-08-22": 4,
+        "2026-08-24": 4
       },
-      "total_posted": 276,
-      "attempted": 276,
+      "total_posted": 280,
+      "attempted": 280,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -1925,15 +2254,16 @@
         "2026-08-13": 1,
         "2026-08-14": 2,
         "2026-08-20": 1,
-        "2026-08-21": 1
+        "2026-08-21": 1,
+        "2026-08-24": 1,
+        "2026-08-25": 1
       },
-      "total_posted": 196,
-      "attempted": 196,
+      "total_posted": 198,
+      "attempted": 198,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-10": 3,
         "2026-08-11": 3,
         "2026-08-12": 3,
         "2026-08-13": 3,
@@ -1946,11 +2276,13 @@
         "2026-08-20": 4,
         "2026-08-21": 6,
         "2026-08-22": 5,
-        "2026-08-23": 5
+        "2026-08-23": 5,
+        "2026-08-24": 4,
+        "2026-08-25": 1
       },
-      "total_posted": 203,
-      "attempted": 353,
-      "rejected_or_pending": 150
+      "total_posted": 208,
+      "attempted": 365,
+      "rejected_or_pending": 157
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -1964,17 +2296,12 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 148,
+      "videos": 146,
       "top_by_vph": [
         {
           "title": "Hottest Planets",
-          "vph": 0.36,
+          "vph": 0.35,
           "views": 412
-        },
-        {
-          "title": "Why Chocolate Is About to Get Much More Expensive",
-          "vph": 0.25,
-          "views": 347
         },
         {
           "title": "Probability In Everyday Life",
@@ -1982,8 +2309,13 @@
           "views": 229
         },
         {
-          "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
+          "title": "Why Chocolate Is About to Get Much More Expensive",
           "vph": 0.24,
+          "views": 347
+        },
+        {
+          "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
+          "vph": 0.21,
           "views": 54
         },
         {
@@ -1995,40 +2327,40 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 90,
+      "videos": 91,
       "top_by_vph": [
         {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 2.72,
-          "views": 183
+          "vph": 2.06,
+          "views": 189
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 1.37,
-          "views": 354
+          "vph": 1.29,
+          "views": 366
+        },
+        {
+          "title": "Silky Guapo Moment Turns Into Total Chaos",
+          "vph": 1.1,
+          "views": 68
         },
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 1.25,
+          "vph": 1.09,
           "views": 202
-        },
-        {
-          "title": "Rayasianboy Let Her Go And Chat Couldn't Believe It",
-          "vph": 1.05,
-          "views": 69
         },
         {
           "title": "Cinna Gets Arrested Live On Stream And Can't Believe It",
           "vph": 1.02,
-          "views": 12
+          "views": 37
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20260821/brief.json",
       "retro/20260822/brief.json",
-      "retro/20260823/brief.json"
+      "retro/20260823/brief.json",
+      "retro/20260824/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py"
   },
@@ -2036,6 +2368,13 @@
     {
       "signature": "03ed6ae9f195",
       "title": "The full unit gate discards unittest failures",
+      "horizon": "bug",
+      "severity": "critical",
+      "ruling": "doing"
+    },
+    {
+      "signature": "2fc5cbb21cca",
+      "title": "Phase B can finish without creating the Daily render",
       "horizon": "bug",
       "severity": "critical",
       "ruling": "new"
@@ -2050,6 +2389,13 @@
     {
       "signature": "abfb291b5f65",
       "title": "Two explainer guardrail modules execute zero tests",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "doing"
+    },
+    {
+      "signature": "47afe3adb739",
+      "title": "Camera float crops chart text beyond the renderer safe area",
       "horizon": "small_fix",
       "severity": "high",
       "ruling": "new"
@@ -2073,14 +2419,14 @@
       "title": "Expression visual proof is not a pre-merge renderer gate",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
-      "signature": "d65eddf69fba",
-      "title": "Authoritative state cannot distinguish corruption from absence",
-      "horizon": "long_term",
+      "signature": "8d1b5d1e1f69",
+      "title": "Explainer gate proves facts but not a coherent story",
+      "horizon": "short_term",
       "severity": "high",
-      "ruling": "doing"
+      "ruling": "new"
     },
     {
       "signature": "347e2440278c",
@@ -2104,18 +2450,11 @@
       "ruling": "doing"
     },
     {
-      "signature": "a703af75ca3d",
-      "title": "Give Plaqueboymax a bounded second-slot test",
+      "signature": "9d5a03472328",
+      "title": "Test explicit rivalry titles on truthful graph crossovers",
       "horizon": "strategy",
       "severity": "medium",
       "ruling": "new"
-    },
-    {
-      "signature": "9943424b8251",
-      "title": "Workflow policy tests pin text tokens instead of executable behavior",
-      "horizon": "short_term",
-      "severity": "medium",
-      "ruling": "doing"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2153,8 +2492,8 @@
       "ruling": "doing"
     },
     {
-      "signature": "268b809a2bbb",
-      "title": "Govern every test file with an executable owner",
+      "signature": "9f547a4372a9",
+      "title": "Renderer audits cannot locate the element the reviewer saw fail",
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "new"
@@ -2264,6 +2603,13 @@
       "verdict": "done",
       "date": "20260824",
       "because": "Built: search() records a total per-provider outcome ledger (completed/failed/cancelled/timed_out) finalized after the shutdown call, published to LAST_SEARCH_OUTCOMES with one log line flagging that timed-out providers may still write quota in the background; the 15s window is unchanged. Tests prove totality over fast/failed/slow providers.",
+      "revisit_after": null
+    },
+    {
+      "signature": "9943424b8251",
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the daily failure-counter policy extracted verbatim to scripts/daily_failure_counter.sh (RUN_OUTCOME env-wired) and tests/test_production_outcome.py now EXECUTES the counter, stop and preflight-backoff policies against fixture state instead of pinning tokens; preflight/stop stay inline because test_split_worker executes their inline text directly \u2014 same doctor ask, different seam. In this session's PR.",
       "revisit_after": null
     },
     {
@@ -2470,6 +2816,13 @@
       "revisit_after": null
     },
     {
+      "signature": "d65eddf69fba",
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: shared/fsutil.load_state_json fails CLOSED on corruption (preserves .corrupt sidecar, names the repair) while absence still returns the default; six authoritative posted-log/ledger readers routed through it; merge_posted_log and ci_commit_state.sh no longer clobber on a failed union; rollup_state keeps unreadable originals. Pinned-fail-open test flipped to fail-closed. In this session's PR.",
+      "revisit_after": null
+    },
+    {
       "signature": "ab128687aaf7",
       "verdict": "done",
       "date": "20260824",
@@ -2531,6 +2884,20 @@
       "date": "20260823",
       "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
       "revisit_after": null
+    },
+    {
+      "signature": "268b809a2bbb",
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Right direction (four incompatible test topologies) but it rides on abfb291b5f65 and the runner inventory design; revisit after the orphan modules are wired.",
+      "revisit_after": "20260923"
+    },
+    {
+      "signature": "a703af75ca3d",
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
+      "revisit_after": "20260923"
     }
   ]
 }
