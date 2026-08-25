@@ -4957,13 +4957,54 @@
       "director_cut": true
     },
     "clip-20260825-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousSparklyLardUncleNox-kRwL0i4Taa9CB8-J",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/KMDC4LcQyfE",
       "title": "Stableronaldo Confession Has Chat Losing It",
       "kind": "twitch_clip",
-      "ts": "2026-08-25T11:57:39.869426+00:00",
+      "ts": "2026-08-25T11:57:43.668050+00:00",
+      "uploaded_at": "2026-08-25T11:57:43.668068+00:00",
+      "publish_at": "2026-08-25T21:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousSparklyLardUncleNox-kRwL0i4Taa9CB8-J",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE JUST ADMITTED THIS LIVE",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 15709,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 6.47
+      },
+      "director_cut": true
+    },
+    "rejected-speedybraveratvotenay-ubcmpse1vrtnwwsl": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SpeedyBraveRatVoteNay-UbCmpSE1VrtNWwSl",
+      "streamer": "jynxzi",
+      "title": "Sasageyo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (anime dub reaction, no real event)",
+      "ts": "2026-08-25T12:00:52.613210+00:00"
+    },
+    "rejected-coldbloodedcoldbloodedcard4head--imtunwnjjzwvmep": {
+      "source_url": "https://www.twitch.tv/timthetatman/clip/ColdbloodedColdbloodedCard4Head--imTUnwnjjzWvMeP",
+      "streamer": "timthetatman",
+      "title": "W PLAY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay navigation, no event)",
+      "ts": "2026-08-25T12:19:55.710742+00:00"
+    },
+    "clip-20260825-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/OptimisticBlatantSageMcaT-Y1O_f1OFa7kurE5_",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Sets A Rule For wrap \u2014 He Breaks It Instantly",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T12:51:35.240748+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

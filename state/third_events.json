@@ -918,7 +918,7 @@
         "https://www.twitch.tv/stableronaldo/clip/BoldCheerfulShallotPeanutButterJellyTime-emQzjoyy8wjn-ICb"
       ],
       "published_versions": [],
-      "last_updated": "2026-08-20"
+      "last_updated": "2026-08-25"
     },
     "stableronaldo-accidentally-days-2026w34": {
       "event_id": "stableronaldo-accidentally-days-2026w34",
@@ -1071,6 +1071,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-24"
+    },
+    "kaicenat-asks-canc-2026w34": {
+      "event_id": "kaicenat-asks-canc-2026w34",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "asks",
+        "canc",
+        "cenat",
+        "kaicenat"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/JollyMoistEyeballTwitchRPG-W3vc0Sy7lCqCN_tu",
+        "https://www.twitch.tv/kaicenat/clip/PoorHelpfulBillPJSugar-tELo2ii_T5qMSO3I"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-25"
+    },
+    "stableronaldo-camera-close-2026w35": {
+      "event_id": "stableronaldo-camera-close-2026w35",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "camera",
+        "close",
+        "near",
+        "park"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/HedonisticInterestingOwlOhMyDog-XS_7PuHTVBO5MOIB",
+        "https://www.twitch.tv/stableronaldo/clip/MuddyFunYogurtNotLikeThis-DcYP3WDYjhOvsMKE"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-25"
     }
   }
 }
