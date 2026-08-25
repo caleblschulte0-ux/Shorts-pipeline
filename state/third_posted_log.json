@@ -4893,6 +4893,32 @@
         "end": 58.4
       },
       "director_cut": true
+    },
+    "rejected-crackypunchyhumanpeanutbutterjellytime-hn33ohk3q5cu8gkn": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/CrackyPunchyHumanPeanutButterJellyTime-hN33Ohk3Q5CU8gkN",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Makes A Big Announcement! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just talking, announcing tryouts, no eve)",
+      "ts": "2026-08-25T11:41:52.534467+00:00"
+    },
+    "rejected-crazygracefulmosquitocoolcat-7kzgakprfm30wqk9": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/CrazyGracefulMosquitoCoolCat-7kzgaKprFm30wqk9",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Can't Believe Timmy Got Called This In Class",
+      "qa_rejected": true,
+      "ts": "2026-08-25T11:45:39.102932+00:00"
+    },
+    "clip-20260825-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/TallSuccessfulPotatoNononoCat-SOMFZIIggI4Mz1ZH",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T11:48:33.484012+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
