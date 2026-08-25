@@ -23894,6 +23894,254 @@
      }
     }
    ]
+  },
+  {
+   "slug": "moon-drifting-away",
+   "title": "The Moon Is Slowly Leaving Us (3 Charts)",
+   "hook": "Every total eclipse you'll ever see is numbered.",
+   "closing": "The Moon's leaving. Slowly. Rudely. On its own schedule.",
+   "question": "Does it freak you out that the Moon is leaving? Tell me below.",
+   "caption": "The Moon drifts 3.8 centimeters farther from Earth every single year, and it's been doing that since before dinosaurs existed. Keep that pace going and in 600 million years, the Moon will finally be too far away for a total solar eclipse to ever happen again. Does it freak you out that the Moon is leaving? Tell me below 👇",
+   "hashtags": [
+    "moon",
+    "lunar",
+    "earthmoon",
+    "totalsolareclipse",
+    "nasa",
+    "astronomy",
+    "space",
+    "spacefacts",
+    "science",
+    "tidalforces",
+    "didyouknow",
+    "mindblown",
+    "dataviz",
+    "universe",
+    "stem"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "moon_recession_cumulative",
+     "params": {
+      "file": "moon_recession_cumulative.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DRIFT",
+     "topic": "the Moon drifting away from Earth",
+     "say": "Every year, the Moon drifts 3.8 centimeters farther from Earth. Since Apollo 11 planted mirrors up there in 1969, that's already added up to more than 2 meters."
+    },
+    {
+     "source": "offline",
+     "key": "moon_day_length_comparison",
+     "params": {
+      "file": "moon_day_length_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE MECHANISM",
+     "topic": "Earth-Moon distance across deep time",
+     "say": "Here's why: ocean tides drag on the Moon's orbit and steal Earth's spin energy. 1.4 billion years ago it sat just 340,900 kilometers away, today it's 384,400."
+    },
+    {
+     "source": "offline",
+     "key": "moon_eclipse_timescale",
+     "params": {
+      "file": "moon_eclipse_timescale.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE PAYOFF",
+     "topic": "how far off the last total eclipse really is",
+     "say": "Run that forward and in 600 million years, total solar eclipses stop forever, the Moon will be too far away. That's longer than the 230 million years dinosaurs have existed."
+    }
+   ]
+  },
+  {
+   "slug": "cesarean-rate-surge",
+   "title": "Why 1 In 3 US Babies Are Born By Surgery (3 Charts)",
+   "hook": "One surgery quietly became a coin flip at birth.",
+   "closing": "Once is rarely once. That's the whole mechanism.",
+   "question": "Did you or anyone close to you have a C-section? Tell me below.",
+   "caption": "Only 1 in 20 US babies were born by C-section in 1970. Today it's nearly 1 in 3, and the reason it never falls back down is brutally simple: once you have one, doctors almost never let you try for a vaginal birth again. Did you or anyone close to you have a C-section? Tell me below 👇",
+   "hashtags": [
+    "csection",
+    "cesarean",
+    "childbirth",
+    "pregnancy",
+    "vbac",
+    "maternalhealth",
+    "obgyn",
+    "birth",
+    "hospital",
+    "healthdata",
+    "publichealth",
+    "didyouknow",
+    "science",
+    "womenshealth",
+    "cdc"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cesarean_rate_trend",
+     "params": {
+      "file": "cesarean_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RISE",
+     "topic": "US cesarean delivery rate",
+     "say": "In 1970, only 5.5 percent of US births were C-sections. By 1988 it was 24.7 percent, and today it's stuck near a record 32.4 percent."
+    },
+    {
+     "source": "offline",
+     "key": "cesarean_vbac_comparison",
+     "params": {
+      "file": "cesarean_vbac_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE MECHANISM",
+     "topic": "what happens after your first C-section",
+     "say": "Here's why it never really drops: once you've had one C-section, 84.5 percent of the time you get another. Only 15.5 percent of moms deliver vaginally after that."
+    },
+    {
+     "source": "offline",
+     "key": "cesarean_rate_by_state",
+     "params": {
+      "file": "cesarean_rate_by_state.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "3 · THE PROOF",
+     "topic": "cesarean rate by state",
+     "say": "So it comes down to where you deliver. Mississippi runs 37.9 percent, Alaska just 24 percent. Same country, same medicine, completely different odds."
+    }
+   ]
+  },
+  {
+   "slug": "seabed-mining-rush",
+   "title": "The Race To Mine A Place No One Owns (3 Charts)",
+   "hook": "There's a gold rush happening 4 kilometers underwater.",
+   "closing": "Nobody owns the seafloor. Everyone suddenly wants a piece.",
+   "question": "Should anyone be allowed to mine the ocean floor? Tell me below.",
+   "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
+   "hashtags": [
+    "deepseamining",
+    "seabedmining",
+    "ocean",
+    "cobalt",
+    "criticalminerals",
+    "evbatteries",
+    "climate",
+    "oceanconservation",
+    "internationalwaters",
+    "science",
+    "didyouknow",
+    "dataviz",
+    "environment",
+    "geopolitics",
+    "sustainability"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "seabed_mining_contracts",
+     "params": {
+      "file": "seabed_mining_contracts.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RUSH",
+     "topic": "deep-sea mining exploration contracts",
+     "say": "Companies have filed 31 international contracts to mine the ocean floor, up from just 8 back in 2001. Nobody owns this seabed, so it's first come, first claimed."
+    },
+    {
+     "source": "offline",
+     "key": "seabed_cobalt_comparison",
+     "params": {
+      "file": "seabed_cobalt_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE MECHANISM",
+     "topic": "cobalt on the seafloor vs on land",
+     "say": "Here's why: the seafloor holds 44 million tonnes of cobalt for batteries, more than the 11 million tonnes left in every land mine on Earth combined."
+    },
+    {
+     "source": "offline",
+     "key": "seabed_moratorium_countries",
+     "params": {
+      "file": "seabed_moratorium_countries.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE CATCH",
+     "topic": "countries demanding a pause on seabed mining",
+     "say": "But the rulebook isn't finished. 24 countries called for a pause in 2024; by 2025 that jumped to 37, all while the claims keep getting filed anyway."
+    }
+   ]
+  },
+  {
+   "slug": "mail-volume-collapse",
+   "title": "Letters Are Dying. Packages Are Thriving. (3 Charts)",
+   "hook": "Your mailbox is being quietly replaced.",
+   "closing": "The mailbox didn't die. It just changed jobs.",
+   "question": "When's the last time you actually got a letter? Tell me below.",
+   "caption": "US mail volume has been cut nearly in half since 2006, from 213 billion pieces down to 109 billion. Packages tried to save the day, more than doubling since 2008, but letters alone still crashed 50 percent on their own. When's the last time you actually got a letter? Tell me below 👇",
+   "hashtags": [
+    "usps",
+    "postoffice",
+    "mail",
+    "ecommerce",
+    "packages",
+    "shipping",
+    "snailmail",
+    "dataviz",
+    "didyouknow",
+    "logistics",
+    "onlineshopping",
+    "economy",
+    "infrastructure",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "mail_volume_trend",
+     "params": {
+      "file": "mail_volume_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COLLAPSE",
+     "topic": "total US mail volume",
+     "say": "US mail volume peaked at 213 billion pieces in 2006. Today it's 109 billion, nearly cut in half in under twenty years."
+    },
+    {
+     "source": "offline",
+     "key": "mail_package_volume_comparison",
+     "params": {
+      "file": "mail_package_volume_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE PIVOT",
+     "topic": "USPS package volume, 2008 vs 2020",
+     "say": "So USPS leaned into shipping instead. Package volume more than doubled, from 3.3 billion pieces in 2008 to 7.3 billion by 2020."
+    },
+    {
+     "source": "offline",
+     "key": "mail_firstclass_comparison",
+     "params": {
+      "file": "mail_firstclass_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE CATCH",
+     "topic": "First-Class letter volume, 2008 vs 2023",
+     "say": "But packages didn't fix the core business. First-Class letters alone still fell 50 percent, from 92 billion pieces in 2008 to just 46 billion."
+    }
+   ]
   }
  ],
  "videos": [

@@ -1,0 +1,21 @@
+{
+  "key": "mail_volume_trend",
+  "title": "Total US mail volume (billion pieces)",
+  "unit": "billion",
+  "geography": "United States",
+  "time_coverage": "2006-2025 (fiscal year)",
+  "source": {
+    "name": "USPS annual and year-end financial results",
+    "publisher": "United States Postal Service (USPS)",
+    "url": "https://facts.usps.com/table-facts/",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "USPS total mail volume peaked at 213 billion pieces in FY2006, fell to 129.2 billion by FY2020, and continued down to 112.5 billion in FY2024 (-3.2% year over year) and 109 billion in FY2025 -- a decline of nearly half from the peak.",
+  "points": [
+    {"label": "2006", "value": 213, "period": "2006"},
+    {"label": "2020", "value": 129.2, "period": "2020"},
+    {"label": "2024", "value": 112.5, "period": "2024"},
+    {"label": "2025", "value": 109, "period": "2025"}
+  ]
+}

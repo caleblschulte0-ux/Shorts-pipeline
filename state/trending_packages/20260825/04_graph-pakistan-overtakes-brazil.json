@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-pakistan-overtakes-brazil",
+  "title": "Pakistan Quietly Passed Brazil in Population",
+  "hook": "A New 5th-Biggest Country?",
+  "y_label": "Population (millions)",
+  "duration": 13,
+  "source": "United Nations World Population Prospects estimates and national census figures (Pakistan's 2017 census: 207.7 million). Pakistan overtook Brazil around 2020 to become the world's 5th most populous country, a milestone widely reported at the time; figures are UN mid-year estimates, approximate for earlier years.",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2017,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Brazil",
+      "color": "#009C3B",
+      "icon": "BR",
+      "values": [
+        174.7,
+        186.8,
+        196.4,
+        204.5,
+        207.8,
+        213.2,
+        216.4
+      ]
+    },
+    {
+      "name": "Pakistan",
+      "color": "#01411C",
+      "icon": "PK",
+      "values": [
+        142.0,
+        160.0,
+        179.4,
+        199.0,
+        207.7,
+        220.1,
+        240.5
+      ]
+    }
+  ],
+  "hashtags": [
+    "pakistan",
+    "brazil",
+    "population",
+    "demographics",
+    "worldpopulation",
+    "geography",
+    "dataviz",
+    "worldnews",
+    "southasia",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

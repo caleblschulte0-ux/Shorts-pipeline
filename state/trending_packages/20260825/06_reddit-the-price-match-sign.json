@@ -1,0 +1,84 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-the-price-match-sign",
+  "title": "The Sign Said Beat Any Price. So I Did.",
+  "script": "Beat any price? I took that literally. Our price-match guarantee promised to beat any competitor's price by ten percent, no exceptions \u2014 mostly an ignored marketing line. I enforced it. A customer brought a screenshot from a liquidation site selling laptops for eighty dollars, and I matched it, minus ten percent. Then someone found a typo listing a television at nineteen dollars. I matched that too. Within three weeks my register had processed forty thousand dollars in matched sales at a loss so steep the regional manager flew in. He asked why I kept approving obvious errors. I pointed at the laminated sign by the register \u2014 his own name signed on the bottom. He took the sign down before lunch. Corporate rewrote the policy that week: matches now require manager approval. Who approved the sign in the first place?",
+  "shots": [
+    {
+      "phrase": "price-match guarantee promised to beat any competitor's price",
+      "query": "price match sign store",
+      "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
+    },
+    {
+      "phrase": "a screenshot from a liquidation site selling laptops",
+      "query": "laptop computer store shelf",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+    },
+    {
+      "phrase": "a typo listing a television at nineteen dollars",
+      "query": "flat screen television display"
+    },
+    {
+      "phrase": "forty thousand dollars in matched sales at a loss",
+      "query": "cash register receipt tape",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg"
+    },
+    {
+      "phrase": "the regional manager flew in",
+      "query": "businessman walking airport terminal",
+      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_airport_aerial.jpg"
+    },
+    {
+      "phrase": "the laminated sign by the register",
+      "query": "laminated sign checkout counter",
+      "image_url": "https://pixabay.com/get/gd778cfa7411de206857d60d0c4668906df0f308f8b0f43fb279ef5ce803460b88cda3df398b9e8eecc2f9d922e1f140a045a44b32c13a0d402060c7a364dc22e_1280.jpg"
+    },
+    {
+      "phrase": "He took the sign down before lunch",
+      "query": "removing sign from wall"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "beat any competitor's price by ten percent",
+      "text": "10% GUARANTEE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "laptops for eighty dollars",
+      "text": "$80 LAPTOP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a television at nineteen dollars",
+      "text": "$19 TV",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "forty thousand dollars in matched sales",
+      "text": "$40,000 LOST",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He took the sign down before lunch",
+      "text": "SIGN REMOVED",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "workplace",
+    "corporate",
+    "customerservice",
+    "karma",
+    "pricematch",
+    "reddit",
+    "storytime",
+    "jobstory",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}
