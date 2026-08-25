@@ -33,7 +33,12 @@
     },
     {
       "phrase": "the laminated sign by the register",
-      "query": "laminated sign checkout counter"
+      "query": "laminated sign checkout counter",
+      "pin_query": "laminated sign",
+      "pin_context": "store register price match policy",
+      "news_query": "laminated sign",
+      "news_angle": "The laminated sign by the register that promised to beat any competitor's price by ten percent, leading to significant financial losses for the store.",
+      "image_url": "https://live.staticflickr.com/3077/2761039999_ca94af4dce.jpg"
     },
     {
       "phrase": "He took the sign down before lunch",
