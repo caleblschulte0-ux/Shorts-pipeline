@@ -6,7 +6,9 @@
   "shots": [
     {
       "phrase": "installed a badge scanner",
-      "query": "employee badge scanner door"
+      "query": "employee badge scanner door",
+      "image_url": "https://pixabay.com/get/g2564092284c346d1a398bcc918bf74b0aae180a0c9c674011f5883da79a4bb90277185432a0a4e6a1e81613d5733f54a0363f6b874b528da2a5a8a9914687998_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "clocking out even sixty seconds early was theft",
@@ -16,29 +18,38 @@
     {
       "phrase": "Mid-swipe on a customer's credit card",
       "query": "credit card swipe register",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Credit-cards.jpg/1280px-Credit-cards.jpg"
+      "image_url": "https://pixabay.com/get/ga147cb73de3cf7a570c778a0a6944a6dbcc0427d25c4942e4978f2f30f24448372632f20027973bd8c9f1f154198c935d480031f994eaea0edbd7e2c164c0847_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Mid-sentence on a phone call",
-      "query": "office phone handset"
+      "query": "office phone handset",
+      "image_url": "https://pixabay.com/get/g6224d7e39b4be4ecb8cdb3e6b92b4412e8a14c88ac809059bb6f88a2a0ada67d37464ca596e694764312b7a743cc724cff3f18861b7ddbe6c8b76fbb2eb58682_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "walk to the break room",
-      "query": "empty employee break room"
+      "query": "empty employee break room",
+      "image_url": "https://pixabay.com/get/gfc973f2be7f9cfe495ea54f8b2e77dcbc1314a2056a208a119bd0f79d41def0e169907555e82dc26814c46a92f3f333fb42020fe153174eeac2b2c81ad6a758f_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a customer stuck on hold for eleven minutes",
       "query": "phone on hold customer",
-      "image_url": "https://live.staticflickr.com/2326/2046228644_05507000b3.jpg"
+      "image_url": "https://live.staticflickr.com/30/65516946_8a6151c6b9.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "I read his own write-up policy back to him",
       "query": "manager employee conversation",
-      "image_url": "https://live.staticflickr.com/5/8559258_93307987d7.jpg"
+      "image_url": "https://pixabay.com/get/gfde0c598e985ae4e78fdb9918290f56fcf2a8118c9503723eb16efd43b40f218cdb6b0cc7d906ab3ed54114793f5712096a74d52e445fe77ae5794c6547d33ca_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Corporate added one line to the handbook",
-      "query": "employee handbook binder"
+      "query": "employee handbook binder",
+      "image_url": "https://pixabay.com/get/ge926599cc7c3f2e3a1863de17507d52dd59f99eba382d63776555a3f8458a26bcd2eb9af7cee94cea36fecf6644d7b66d0710b353cf6947774607659a2bcd484_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

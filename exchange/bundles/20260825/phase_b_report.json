@@ -1,0 +1,107 @@
+{
+  "date": "20260825",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 14,
+    "unfilled": 1,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "fadf322786ec05124e5889ed5359892ab5d92116d6562976ce6c989309a86a60",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-the-clock-out-rule-s0-70e6fc95c691",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g2564092284c346d1a398bcc918bf74b0aae180a0c9c674011f5883da79a4bb90277185432a0a4e6a1e81613d5733f54a0363f6b874b528da2a5a8a9914687998_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s3-f9a3db17be21",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g6224d7e39b4be4ecb8cdb3e6b92b4412e8a14c88ac809059bb6f88a2a0ada67d37464ca596e694764312b7a743cc724cff3f18861b7ddbe6c8b76fbb2eb58682_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s4-8e027d02f273",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfc973f2be7f9cfe495ea54f8b2e77dcbc1314a2056a208a119bd0f79d41def0e169907555e82dc26814c46a92f3f333fb42020fe153174eeac2b2c81ad6a758f_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s7-076326a90f14",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ge926599cc7c3f2e3a1863de17507d52dd59f99eba382d63776555a3f8458a26bcd2eb9af7cee94cea36fecf6644d7b66d0710b353cf6947774607659a2bcd484_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s1-2d1669bb1d8b",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s2-d370169d2388",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga147cb73de3cf7a570c778a0a6944a6dbcc0427d25c4942e4978f2f30f24448372632f20027973bd8c9f1f154198c935d480031f994eaea0edbd7e2c164c0847_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s5-819237c368e3",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/30/65516946_8a6151c6b9.jpg"
+    },
+    {
+      "request_id": "reddit-the-clock-out-rule-s6-0cd60b9e90da",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfde0c598e985ae4e78fdb9918290f56fcf2a8118c9503723eb16efd43b40f218cdb6b0cc7d906ab3ed54114793f5712096a74d52e445fe77ae5794c6547d33ca_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s2-2586f23df477",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g329f791fd6110d9d016664ad0bee9fbe8a07e9681e54965769ae61696231cffb9bf1882cdff4f17ca63f290c2622077e9edd7dc68e99b0e149ec7b333fed9a4f_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s4-524a7e46ff8d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfd7cb275a1a73abee329b6a21a54f8affaee6876ff88629018d78f39d59ba4d58479b52aea9a349360e0d29e38acfcf3a14104a1546487ab05625dd87bb61c00_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s6-45d479e43c33",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8b3d35d5c971d7c1ef44673d7e1e6a0f032b020ae3bdcc5e63a09185ea73aaac858b6f9800c2ed7d03c5f6a7c3ce2e1323a1b5cdbf66ab84d900566fa5a0b9f1_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s0-ad32bb169076",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g24074098ae2564fabafa9deec1fdf14ca79331e9e2c51f98c6d999c44db73216f75827948dcb3162a14a7058c079e58577a46b52def53cf3a364e147ecdcedaa_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s1-65970060e738",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g19cc3ff29eacd6d841b1057b282a6e85942d613fa6aba199413c175dc43842d0e326d2ae7c367512329ff2ef4a81c575d1ae70513c7870bf320fd3ee4dd1f56c_1280.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s3-532753c2a3b2",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/7160/6685111361_6e6750d92d_b.jpg"
+    },
+    {
+      "request_id": "reddit-the-price-match-sign-s5-a00c45f3ad6f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gcb970df2a3795c477e33cce68d943b661ec790a1ff954eb48a1b9f03e9bcebe4de29aba421a049eab2b9f1b51ba95cb25849b839a27ac140d8894f083adba241_1280.jpg"
+    }
+  ]
+}
