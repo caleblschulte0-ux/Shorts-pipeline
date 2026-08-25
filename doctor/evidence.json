@@ -2226,8 +2226,8 @@
     }
   ],
   "recent_commits": [
-    "c2d5dab 2026-08-24 doctor: findings for 20260824",
-    "8563ee5 2026-08-25 explainer: update posted log + analytics [skip ci]"
+    "06dd1a0 2026-08-25 exchange: phase A bundle for 20260825 [skip ci]",
+    "ea4cdbf 2026-08-25 exchange: verify the Phase B -> Daily Shorts render handoff (doctor 2fc5cbb21cca) (#313)"
   ],
   "channel_performance": {
     "trending": {
@@ -2366,18 +2366,11 @@
   },
   "open_backlog": [
     {
-      "signature": "03ed6ae9f195",
-      "title": "The full unit gate discards unittest failures",
-      "horizon": "bug",
-      "severity": "critical",
-      "ruling": "doing"
-    },
-    {
       "signature": "2fc5cbb21cca",
       "title": "Phase B can finish without creating the Daily render",
       "horizon": "bug",
       "severity": "critical",
-      "ruling": "new"
+      "ruling": "in_progress"
     },
     {
       "signature": "aaeb12de3ebd",
@@ -2398,7 +2391,7 @@
       "title": "Camera float crops chart text beyond the renderer safe area",
       "horizon": "small_fix",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "33ccbcdc479b",
@@ -2426,7 +2419,7 @@
       "title": "Explainer gate proves facts but not a coherent story",
       "horizon": "short_term",
       "severity": "high",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "347e2440278c",
@@ -2454,7 +2447,7 @@
       "title": "Test explicit rivalry titles on truthful graph crossovers",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2490,13 +2483,6 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
-    },
-    {
-      "signature": "9f547a4372a9",
-      "title": "Renderer audits cannot locate the element the reviewer saw fail",
-      "horizon": "long_term",
-      "severity": "medium",
-      "ruling": "new"
     },
     {
       "signature": "75af24a46374",
@@ -2886,6 +2872,13 @@
       "revisit_after": null
     },
     {
+      "signature": "03ed6ae9f195",
+      "verdict": "done",
+      "date": "20260825",
+      "because": "",
+      "revisit_after": null
+    },
+    {
       "signature": "268b809a2bbb",
       "verdict": "later",
       "date": "20260824",
@@ -2898,6 +2891,13 @@
       "date": "20260824",
       "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
       "revisit_after": "20260923"
+    },
+    {
+      "signature": "9f547a4372a9",
+      "verdict": "later",
+      "date": "20260825",
+      "because": "Verified: make_graph_race.py's audit.json (lines ~77-82) writes only out/format/engine/series and swallows every write error with a bare except/pass, matching the finding. The direction is right and worth building eventually, but a versioned render-manifest contract spanning three renderer families plus the showrunner/repair loop is a multi-session design effort, not a single build -- it needs a scoped design (element ID scheme, what claims/bounds each renderer can cheaply emit, migration order) before implementation starts. Parking 30 days; revisit starting with graph-race labels only, the narrowest slice named in the proposal, once 2fc5cbb21cca and the higher-severity items in this backlog are clear.",
+      "revisit_after": "20260924"
     }
   ]
 }
