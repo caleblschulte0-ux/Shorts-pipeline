@@ -72,6 +72,15 @@ on:
 
 permissions:
   contents: write
+  # actions: write — needed to explicitly dispatch Daily Shorts below. The
+  # implicit workflow_run event daily.yml listens for is NOT a verified
+  # handoff (doctor finding 2fc5cbb21cca, 2026-08-25): on 2026-08-23 this
+  # workflow completed successfully twice (run 32643778540 applied the real
+  # handoff, run 32646462573 was the other candidate's no-op) and daily.yml
+  # never ran at all — zero workflow_run-triggered runs that day, not even a
+  # skipped one. Trending shipped zero. workflow_run stays wired as a
+  # fallback, but a real apply no longer depends on it alone.
+  actions: write
 
 env:
   PYTHON_VERSION: '3.11'
@@ -190,14 +199,38 @@ jobs:
 
       - name: Hand off to render
         if: ${{ steps.guard.outputs.skip != 'true' && inputs.dry_run != true }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -e
           D="${{ steps.which.outputs.date }}"
           echo "::notice::Packages for $D now carry final scripts + media."
-          echo "::notice::daily.yml renders automatically on this workflow"
-          echo "::notice::completing (workflow_run) — nothing to dispatch."
           # The ingest step above already logs ::notice/::warning per package;
           # this just surfaces the takeover in the job summary.
           if [ -f "exchange/bundles/$D/authored_report.json" ]; then
             echo "::notice::AUTHORING TAKEOVER ran for $D — see"
             echo "::notice::exchange/bundles/$D/authored_report.json"
           fi
+          # DO NOT TRUST THE IMPLICIT workflow_run EVENT ALONE. daily.yml
+          # listens for this workflow's completion, but on 2026-08-23 that
+          # event silently failed to fire even once across two successful
+          # completions of this job — a full zero-render day with every
+          # check green (doctor finding 2fc5cbb21cca). This is a REAL,
+          # non-skipped apply (guard.outputs.skip != 'true'), so dispatch
+          # Daily Shorts explicitly and PROVE GitHub accepted it. daily.yml's
+          # workflow_run trigger + its phase_b_report.json preflight stay in
+          # place as an idempotent fallback — run_trending_daily's own
+          # posted-today dedupe makes a double-fire a safe no-op, exactly as
+          # it already does for the belt-and-suspenders push trigger.
+          HTTP=$(curl -sS -o /tmp/dispatch_resp.txt -w '%{http_code}' \
+            -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/daily.yml/dispatches" \
+            -d '{"ref":"main"}')
+          if [ "$HTTP" != "204" ]; then
+            echo "::error::Daily Shorts dispatch FAILED for $D (HTTP $HTTP): $(cat /tmp/dispatch_resp.txt)"
+            echo "::error::Phase B applied for $D but the render handoff was never accepted — dispatch daily.yml manually: gh workflow run daily.yml --ref main"
+            exit 1
+          fi
+          echo "::notice::Daily Shorts explicitly dispatched for $D (HTTP 204 accepted)."
