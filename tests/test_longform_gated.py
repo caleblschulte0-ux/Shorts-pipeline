@@ -184,3 +184,68 @@ class TestTheGateIsNotOptional(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTheDoctorCanSeeLongForm(unittest.TestCase):
+    """The operator asked for the doctor to work on long-form. It reads the
+    evidence pack and its brief — a mandate that reaches neither is a
+    sentence nobody acts on."""
+
+    def setUp(self):
+        import doctor
+        self.doctor = doctor
+        self.tmp = Path(tempfile.mkdtemp(prefix="lf-doc-"))
+        self._root = doctor.ROOT
+        doctor.ROOT = self.tmp
+        (self.tmp / "state").mkdir()
+        for n in ("posted_log.json", "explainer_posted_log.json",
+                  "third_posted_log.json"):
+            (self.tmp / "state" / n).write_text(json.dumps({"posted": []}))
+        (self.tmp / "state" / "longform_log.json").write_text(json.dumps(
+            {"posted": [
+                {"at": "2026-08-02T00:00:00+00:00", "title": "old concat",
+                 "url": "u1", "slugs": ["a", "b"]},
+                {"at": "2026-08-30T00:00:00+00:00", "title": "real 16:9",
+                 "url": "u2", "slug": "c", "format": "long_form_16x9",
+                 "duration_s": 372.0, "showrunner_score": 78}]}))
+
+    def tearDown(self):
+        self.doctor.ROOT = self._root
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_the_pack_carries_long_form(self):
+        lf = self.doctor.evidence_pack()["channel_performance"]["longform"]
+        self.assertEqual(lf["total_posted"], 2)
+        self.assertEqual(lf["recent"][-1]["showrunner_score"], 78)
+        self.assertEqual(lf["recent"][-1]["duration_s"], 372.0)
+
+    def test_it_points_at_the_code_not_just_the_numbers(self):
+        lf = self.doctor.evidence_pack()["channel_performance"]["longform"]
+        for key in ("renderer", "builder", "workflow", "gate", "verdicts"):
+            self.assertTrue(lf.get(key), key)
+
+    def test_the_retired_format_is_labelled_not_averaged_in(self):
+        """The pre-08-25 entries measure a different product; a reviewer
+        reasoning from their numbers would draw the wrong conclusion."""
+        lf = self.doctor.evidence_pack()["channel_performance"]["longform"]
+        self.assertEqual(lf["recent"][0]["format"], "legacy_vertical_concat")
+        self.assertIn("NOT comparable", lf["note"])
+
+    def test_a_missing_log_does_not_crash_the_pack(self):
+        (self.tmp / "state" / "longform_log.json").unlink()
+        lf = self.doctor.evidence_pack()["channel_performance"]["longform"]
+        self.assertEqual(lf["total_posted"], 0)
+
+    def test_the_brief_gives_the_reviewer_the_assignment(self):
+        p = (ROOT / "doctor" / "PROMPTS.md").read_text()
+        self.assertIn("LONG-FORM IS A STANDING ASSIGNMENT", p)
+        self.assertIn("channel_performance.longform", p)
+        self.assertIn("longform:<slug>", p)
+
+    def test_the_brief_refuses_the_obvious_shortcut(self):
+        """'Post more long-form by loosening its gate' is the one proposal
+        this whole change exists to make unavailable."""
+        p = (ROOT / "doctor" / "PROMPTS.md").read_text()
+        seg = p.split("LONG-FORM IS A STANDING ASSIGNMENT", 1)[1][:2200]
+        self.assertIn("loosening the long-form gate", seg)
+        self.assertIn("unjudged", seg)
