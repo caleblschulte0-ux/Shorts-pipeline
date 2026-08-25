@@ -1,41 +1,39 @@
-# Daily Trending Shorts — 2026-08-24
+# Daily Trending Shorts — 2026-08-25
 
-> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **8**
-- succeeded: **4**
+- queued: **10**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **4**
+- failed: **8**
 
 ## Posted
-- **Amazon Built Its Own Delivery Army. Then It Won.**
-  - topic: Amazon Built Its Own Delivery Army. Then It Won.
-  - publishes: `2026-08-24T13:00:00Z`
-  - https://youtube.com/shorts/C0RfI_vWiL0
-  - took: 128.1s
-- **Sports Betting Just Passed The Lottery**
-  - topic: Sports Betting Just Passed The Lottery
-  - publishes: `2026-08-24T14:30:00Z`
-  - https://youtube.com/shorts/pmSklvwN07E
-  - took: 109.9s
-- **Peloton Passed Planet Fitness And Stayed Ahead**
-  - topic: Peloton Passed Planet Fitness And Stayed Ahead
-  - publishes: `2026-08-24T16:00:00Z`
-  - https://youtube.com/shorts/4iuQHzdn4pY
-  - took: 123.6s
-- **Boss Enforced Dress Code, Employee Followed It Exactly**
-  - topic: Boss Enforced Dress Code, Employee Followed It Exactly
-  - publishes: `2026-08-24T17:30:00Z`
-  - https://youtube.com/shorts/43VaNWDtQpA
-  - took: 251.6s
+- **Electric Cars Just Outsold Diesel Worldwide**
+  - topic: Electric Cars Just Outsold Diesel Worldwide
+  - publishes: `2026-08-25T16:00:00Z`
+  - https://youtube.com/shorts/92oPCwUqf8U
+  - took: 107.7s
+- **He Wrote The Rule. I Just Followed It.**
+  - topic: He Wrote The Rule. I Just Followed It.
+  - publishes: `2026-08-25T17:30:00Z`
+  - https://youtube.com/shorts/cJ5MD_LCtBs
+  - took: 195.4s
 
 ## Failed
-- **Subway Was America's Sandwich King. Chipotle Passed It.**
-  - error: `showrunner_block: showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video — a wrong-brand image that cannot ship.`
-- **Lunch Thief Finally Picked The Wrong Sandwich**
-  - error: `showrunner_block: showrunner BLOCK: Strong reddit-story shell — punchy post card, real illustrations, tight captions — but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.`
-- **taylor swift travis kelce wedding leak**
+- **Dubai's Airport Quietly Buried Heathrow**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — real overtake, COVID crash, recovery, clean #1 payoff — sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.`
+- **MSC Just Ended Maersk's 25-Year Reign**
+  - error: `showrunner_block: showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.`
+- **Pakistan Quietly Passed Brazil in Population**
+  - error: `showrunner_block: showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.`
+- **The Sign Said Beat Any Price. So I Did.**
+  - error: `showrunner_block: showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor — the shot selection isn't matching the story it's supposed to illustrate.`
+- **military aircraft**
   - error: `HTTPError: HTTP Error 404: Not Found`
-- **dario amodei**
+- **executive privilege**
+  - error: `HTTPError: HTTP Error 404: Not Found`
+- **aura farming**
+  - error: `HTTPError: HTTP Error 404: Not Found`
+- **john f kennedy center for the performing arts**
   - error: `HTTPError: HTTP Error 404: Not Found`
 

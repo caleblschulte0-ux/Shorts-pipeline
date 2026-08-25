@@ -1,16 +1,84 @@
 [
   {
-    "topic": "Amazon Built Its Own Delivery Army. Then It Won.",
-    "title": "Amazon Built Its Own Delivery Army. Then It Won.",
+    "topic": "Electric Cars Just Outsold Diesel Worldwide",
+    "title": "Electric Cars Just Outsold Diesel Worldwide",
     "format": "graph_race",
-    "publish_at": "2026-08-24T13:00:00Z",
+    "publish_at": "2026-08-25T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/C0RfI_vWiL0",
+    "video_url": "https://youtube.com/shorts/92oPCwUqf8U",
     "error": null,
-    "elapsed_seconds": 128.1,
-    "package_path": "state/trending_packages/20260824/01_graph-amazon-overtakes-ups.json",
+    "elapsed_seconds": 107.7,
+    "package_path": "state/trending_packages/20260825/01_graph-ev-sales-passed-diesel.json",
     "source": "brain",
-    "video_path": "output/daily_20260824-120840_amazon_built_its_own_delivery_army__then.mp4",
+    "video_path": "output/daily_20260825-142717_electric_cars_just_outsold_diesel_worldw.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Dubai's Airport Quietly Buried Heathrow",
+    "title": "Dubai's Airport Quietly Buried Heathrow",
+    "format": "graph_race",
+    "publish_at": "2026-08-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 real overtake, COVID crash, recovery, clean #1 payoff \u2014 sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.",
+    "elapsed_seconds": 104.3,
+    "package_path": "state/trending_packages/20260825/02_graph-dubai-overtakes-heathrow.json",
+    "source": "brain",
+    "video_path": "output/daily_20260825-142905_dubai_s_airport_quietly_buried_heathrow.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good race \u2014 real overtake, COVID crash, recovery, clean #1 payoff \u2014 sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.",
+      "score": 69
+    },
+    "blocked": true
+  },
+  {
+    "topic": "MSC Just Ended Maersk's 25-Year Reign",
+    "title": "MSC Just Ended Maersk's 25-Year Reign",
+    "format": "graph_race",
+    "publish_at": "2026-08-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.",
+    "elapsed_seconds": 107.8,
+    "package_path": "state/trending_packages/20260825/03_graph-msc-overtakes-maersk.json",
+    "source": "brain",
+    "video_path": "output/daily_20260825-143049_msc_just_ended_maersk_s_25_year_reign.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +95,24 @@
       "loudness_lufs": -25.0
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
+      "blocked": true,
+      "reason": "showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.",
+      "score": 65
     },
-    "channel": "default"
+    "blocked": true
   },
   {
-    "topic": "Sports Betting Just Passed The Lottery",
-    "title": "Sports Betting Just Passed The Lottery",
+    "topic": "Pakistan Quietly Passed Brazil in Population",
+    "title": "Pakistan Quietly Passed Brazil in Population",
     "format": "graph_race",
-    "publish_at": "2026-08-24T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/pmSklvwN07E",
-    "error": null,
-    "elapsed_seconds": 109.9,
-    "package_path": "state/trending_packages/20260824/02_graph-betting-overtakes-lottery.json",
+    "publish_at": "2026-08-25T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.",
+    "elapsed_seconds": 108.1,
+    "package_path": "state/trending_packages/20260825/04_graph-pakistan-overtakes-brazil.json",
     "source": "brain",
-    "video_path": "output/daily_20260824-121048_sports_betting_just_passed_the_lottery.mp4",
+    "video_path": "output/daily_20260825-143237_pakistan_quietly_passed_brazil_in_popula.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -61,134 +129,27 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Subway Was America's Sandwich King. Chipotle Passed It.",
-    "title": "Subway Was America's Sandwich King. Chipotle Passed It.",
-    "format": "graph_race",
-    "publish_at": "2026-08-24T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video \u2014 a wrong-brand image that cannot ship.",
-    "elapsed_seconds": 113.2,
-    "package_path": "state/trending_packages/20260824/03_graph-chipotle-overtakes-subway.json",
-    "source": "brain",
-    "video_path": "output/daily_20260824-121238_subway_was_america_s_sandwich_king__chip.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The race itself reads well and the overtake lands, but the Chipotle line is branded with a QDOBA logo for the entire video \u2014 a wrong-brand image that cannot ship.",
+      "reason": "showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.",
       "score": 70
     },
     "blocked": true
   },
   {
-    "topic": "Peloton Passed Planet Fitness And Stayed Ahead",
-    "title": "Peloton Passed Planet Fitness And Stayed Ahead",
-    "format": "graph_race",
-    "publish_at": "2026-08-24T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/4iuQHzdn4pY",
-    "error": null,
-    "elapsed_seconds": 123.6,
-    "package_path": "state/trending_packages/20260824/04_graph-peloton-overtakes-planet-fitness.json",
-    "source": "brain",
-    "video_path": "output/daily_20260824-121431_peloton_passed_planet_fitness_and_stayed.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 75
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Boss Enforced Dress Code, Employee Followed It Exactly",
-    "title": "Boss Enforced Dress Code, Employee Followed It Exactly",
+    "topic": "He Wrote The Rule. I Just Followed It.",
+    "title": "He Wrote The Rule. I Just Followed It.",
     "format": "reddit",
-    "publish_at": "2026-08-24T17:30:00Z",
+    "publish_at": "2026-08-25T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/43VaNWDtQpA",
+    "video_url": "https://youtube.com/shorts/cJ5MD_LCtBs",
     "error": null,
-    "elapsed_seconds": 251.6,
-    "package_path": "state/trending_packages/20260824/05_reddit-heat-wave-dress-code.json",
+    "elapsed_seconds": 195.4,
+    "package_path": "state/trending_packages/20260825/05_reddit-the-clock-out-rule.json",
     "source": "brain",
-    "video_path": "output/daily_20260824-121656_boss_enforced_dress_code__employee_follo.mp4",
+    "video_path": "output/daily_20260825-143442_he_wrote_the_rule__i_just_followed_it_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Lunch Thief Finally Picked The Wrong Sandwich",
-    "title": "Lunch Thief Finally Picked The Wrong Sandwich",
-    "format": "reddit",
-    "publish_at": "2026-08-24T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Strong reddit-story shell \u2014 punchy post card, real illustrations, tight captions \u2014 but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.",
-    "elapsed_seconds": 233.0,
-    "package_path": "state/trending_packages/20260824/06_reddit-lunch-thief-ghost-pepper.json",
-    "source": "brain",
-    "video_path": "output/daily_20260824-122106_lunch_thief_finally_picked_the_wrong_san.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 54.2,
+      "duration": 43.333,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -204,33 +165,92 @@
     "qa": {
       "ok": true,
       "verdict": "ok",
-      "reason": ""
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Sign Said Beat Any Price. So I Did.",
+    "title": "The Sign Said Beat Any Price. So I Did.",
+    "format": "reddit",
+    "publish_at": "2026-08-25T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor \u2014 the shot selection isn't matching the story it's supposed to illustrate.",
+    "elapsed_seconds": 185.7,
+    "package_path": "state/trending_packages/20260825/06_reddit-the-price-match-sign.json",
+    "source": "brain",
+    "video_path": "output/daily_20260825-143751_the_sign_said_beat_any_price__so_i_did_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 48.7,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Strong reddit-story shell \u2014 punchy post card, real illustrations, tight captions \u2014 but one AI crying-face still is held across two beats (~10s) and the mid4 gameplay crop loses the runner entirely.",
-      "score": 75
+      "reason": "showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor \u2014 the shot selection isn't matching the story it's supposed to illustrate.",
+      "score": 66
     },
     "blocked": true
   },
   {
-    "topic": "taylor swift travis kelce wedding leak",
+    "topic": "military aircraft",
     "angle": null,
-    "publish_at": "2026-08-24T19:00:00Z",
+    "publish_at": "2026-08-25T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.5,
+    "elapsed_seconds": 0.2,
     "backfill": true
   },
   {
-    "topic": "dario amodei",
+    "topic": "executive privilege",
     "angle": null,
-    "publish_at": "2026-08-24T20:30:00Z",
+    "publish_at": "2026-08-25T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.9,
+    "elapsed_seconds": 0.4,
+    "backfill": true
+  },
+  {
+    "topic": "aura farming",
+    "angle": null,
+    "publish_at": "2026-08-26T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 0.3,
+    "backfill": true
+  },
+  {
+    "topic": "john f kennedy center for the performing arts",
+    "angle": null,
+    "publish_at": "2026-08-26T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 404: Not Found",
+    "elapsed_seconds": 25.8,
     "backfill": true
   }
 ]
