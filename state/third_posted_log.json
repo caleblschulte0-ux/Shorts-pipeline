@@ -4934,13 +4934,36 @@
       "director_cut": true
     },
     "clip-20260825-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sypherpk/clip/SquareAdorableTireMikeHogu-Iq9bMsE97eeIeC_Y",
-      "story_key": null,
-      "streamer": "sypherpk",
+      "url": "https://youtube.com/shorts/0U0hAgmJ97E",
       "title": "Sypherpk 'Me Rolling Out Of Bed' Bit Has Chat Losing It",
       "kind": "twitch_clip",
-      "ts": "2026-08-25T11:52:23.368151+00:00",
+      "ts": "2026-08-25T11:52:27.965576+00:00",
+      "uploaded_at": "2026-08-25T11:52:27.965597+00:00",
+      "publish_at": "2026-08-25T20:00:00Z",
+      "source_url": "https://www.twitch.tv/sypherpk/clip/SquareAdorableTireMikeHogu-Iq9bMsE97eeIeC_Y",
+      "streamer": "sypherpk",
+      "series": "chaos",
+      "hook": "SYPHERPK ROLLING OUT OF BED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2671,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 16.03
+      },
+      "director_cut": true
+    },
+    "clip-20260825-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousSparklyLardUncleNox-kRwL0i4Taa9CB8-J",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Confession Has Chat Losing It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T11:57:39.869426+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
