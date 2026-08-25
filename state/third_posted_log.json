@@ -4998,14 +4998,27 @@
       "ts": "2026-08-25T12:19:55.710742+00:00"
     },
     "clip-20260825-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/OptimisticBlatantSageMcaT-Y1O_f1OFa7kurE5_",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/ZxmO29gcCKM",
       "title": "Lacy Sets A Rule For wrap \u2014 He Breaks It Instantly",
       "kind": "twitch_clip",
-      "ts": "2026-08-25T12:51:35.240748+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-25T12:51:38.907461+00:00",
+      "uploaded_at": "2026-08-25T12:51:38.907481+00:00",
+      "publish_at": "2026-08-26T00:30:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/OptimisticBlatantSageMcaT-Y1O_f1OFa7kurE5_",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "HE WASN'T SUPPOSED TO SHOOT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2033,
+      "banger": 0.5,
+      "cut": {
+        "start": 5.9,
+        "end": 27.1
+      },
+      "director_cut": true
     }
   }
 }
