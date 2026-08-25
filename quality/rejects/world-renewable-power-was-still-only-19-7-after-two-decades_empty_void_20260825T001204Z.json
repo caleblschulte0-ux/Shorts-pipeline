@@ -1,0 +1,41 @@
+{
+ "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+ "ts": "20260825T001204Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 and hook@0.8 are ~70% empty navy with five 6px dots and a thumbnail-size mascot; seg3:start\u2013seg3:end leave a tall dead band between the subtitle and the 27.8 gridline.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "empty_void_weak_hook",
+  "visible_evidence": "At hook@0.3 the frame is a static title card ('Agricultural irrigated land / BANGLADESH TOPS THE LIST') over near-black space with five near-zero-radius dots and a small mascot at 25% height; the karaoke line reads 'You'd think / green energy / took off' while the visual on screen is farmland irrigation \u2014 words and picture disagree for the entire first 2s.",
+  "root_cause": "The hook is rendered as the bubble scene's pre-animation frame (radii still at ~0, labels not yet faded in) with the topic title card on top, so the opening two seconds show the chart's empty state instead of a demonstration, and the hook copy was written for the renewable-power stat that does not appear until seg3 at 33.9s.",
+  "repair_goal": "Open on motion that fills the frame and matches the words: start the bubbles already inflating (or cold-open the renewable curve slumping flat) so that by t=0.3s something large is visibly changing, drop the plain title card, and scale the opening element to fill the lower two-thirds instead of leaving it empty."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "shoved_bar"
+  },
+  "2": {
+   "viz": "trend",
+   "perf": "shoved_bar"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "bubbles",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "race_sprint"
+  }
+ ]
+}

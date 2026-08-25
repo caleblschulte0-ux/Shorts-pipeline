@@ -1,0 +1,41 @@
+{
+ "slug": "the-world-has-less-land-than-it-did-in-2013",
+ "ts": "20260825T001204Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data hovers in the same mid-right spot with identical arm-out pose across seg0:start, seg1:mid, seg2:end and seg3:mid \u2014 he never sets up or pays off any bit tied to a stat; at seg3:start he holds a flat teal slab near 20.8 that reads as a prop with no action.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "craft_collision_and_flat_payoff",
+  "visible_evidence": "At seg4:start/seg4:mid/payoff@-1.8 the closing callout box 'The ground under your feet is measured every year\u2026' is stamped directly over the 'Crop production index' title \u2014 the two strings overprint into unreadable mush (seg4:mid, payoff@-0.4), the left axis label is clipped to 'C' and '19', and the '100' endpoint label is cut off at the right frame edge. The final beat is a static chart plus an overlapping text slab, so the video ends on a legibility failure instead of a landed punchline.",
+  "root_cause": "The closing-callout overlay is positioned/z-ordered without reserving or clearing the header band, and the chart's right-edge value label extends past the safe area, so the payoff scene composites text-on-text and clips the very number it is calling out.",
+  "repair_goal": "Reflow the closing beat: pull the callout box down below the title band (or fade the title out before it appears), keep the '100' endpoint label inside the safe margin, and give Data a real terminal action on the payoff (e.g. climbing/planting on the 100 endpoint) so the last 6 seconds land a beat instead of holding a collided frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "shoved_bar"
+  }
+ ]
+}
