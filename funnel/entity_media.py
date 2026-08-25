@@ -219,9 +219,17 @@ _LLM_SKIP_LOGGED = False
 
 def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
     """Ask the LLM for {entity, context, phrase} triples. Returns None
-    when the LLM path is unavailable (no API key, network failure,
+    ONLY when the LLM path is unavailable (no API key, network failure,
     malformed response) so the caller can fall back to the regex
-    extractor. Never raises."""
+    extractor. Returns `[]` (a real, distinct answer, NOT None) when the
+    LLM ran fine and correctly found zero named, photographable entities —
+    the expected result for a deliberately anonymous, universal
+    reddit_story (the format spec bans named people/places/brands). A
+    caller must not collapse that into "unavailable": doing so silently
+    hands the noisy regex fallback a script it will misread (sentence-
+    initial capitals like "Corporate" or "He'd" look like proper nouns to
+    a regex), producing bogus "entities" and, in `enrich_package`, real
+    off-topic image searches for them. Never raises."""
     global _LLM_SKIP_LOGGED
     if not script.strip():
         return None
@@ -269,7 +277,10 @@ def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
             "entity": entity, "context": context, "phrase": phrase,
             "story_angle": story_angle,
         })
-    return out or None
+    # `out` (possibly `[]`) is the real answer; only genuine failure
+    # paths above return None. See the docstring — this used to be
+    # `return out or None`, which threw away a correct empty answer.
+    return out
 
 
 # ---------- Cache ----------
@@ -527,8 +538,11 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
 
     visuals = extract_visuals_llm(script, title=title)
     used_llm = visuals is not None
-    if not visuals:
-        # Fallback: regex extractor, with title as context.
+    if visuals is None:
+        # LLM path genuinely unavailable — fall back to the regex
+        # extractor, with title as context. A real `[]` from the LLM
+        # (a correctly entity-free anonymous story) is trusted as-is,
+        # not routed through here (see extract_visuals_llm's docstring).
         nouns = extract_proper_nouns(script)
         visuals = [{"entity": n, "context": title, "phrase": n} for n in nouns]
 
@@ -626,7 +640,11 @@ def validate_package(pkg: dict) -> dict:
     shots = pkg.get("shots") or []
     visuals = extract_visuals_llm(script, title=pkg.get("title", ""))
     used_llm = visuals is not None
-    if not visuals:
+    if visuals is None:
+        # Genuinely unavailable (no key / network / bad JSON) — regex
+        # fallback. A real `[]` (LLM ran, found nothing to illustrate) is
+        # trusted as-is; see extract_visuals_llm's docstring for why this
+        # distinction matters for an intentionally anonymous reddit_story.
         nouns = extract_proper_nouns(script)
         visuals = [{"entity": n, "context": pkg.get("title", ""),
                     "phrase": n} for n in nouns]
