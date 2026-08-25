@@ -7,7 +7,11 @@
     {
       "phrase": "price-match guarantee promised to beat any competitor's price",
       "query": "price match sign store",
-      "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
+      "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg",
+      "pin_query": "Beat",
+      "pin_context": "The Sign Said Beat Any Price. So I Did.",
+      "news_query": "Beat",
+      "news_angle": "The Sign Said Beat Any Price. So I Did."
     },
     {
       "phrase": "a screenshot from a liquidation site selling laptops",
@@ -25,13 +29,11 @@
     },
     {
       "phrase": "the regional manager flew in",
-      "query": "businessman walking airport terminal",
-      "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wellington_airport_aerial.jpg"
+      "query": "businessman walking airport terminal"
     },
     {
       "phrase": "the laminated sign by the register",
-      "query": "laminated sign checkout counter",
-      "image_url": "https://pixabay.com/get/gd778cfa7411de206857d60d0c4668906df0f308f8b0f43fb279ef5ce803460b88cda3df398b9e8eecc2f9d922e1f140a045a44b32c13a0d402060c7a364dc22e_1280.jpg"
+      "query": "laminated sign checkout counter"
     },
     {
       "phrase": "He took the sign down before lunch",
