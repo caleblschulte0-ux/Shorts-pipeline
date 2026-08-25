@@ -220,6 +220,73 @@ _ATTACH_FRAME: list = []           # grips recorded while drawing ONE frame
 _LAST_PERF: dict = {}              # the performance spec chosen for this build
 
 
+# ---- THE TOUR: where Data is, once the chart has finished drawing ---------
+# The anchor every compositor bakes to is derived from `reveal`, and `reveal`
+# saturates at `full_by` and then sits at 1.0 for the rest of the beat. So the
+# host travels while the chart builds and is PINNED for everything after —
+# which is what the 2026-08-24/25 verdicts kept describing in the same words:
+# "Data just hovers/slides in the same spot above the 1972-1983 bars with no
+# setup->action->payoff ... only at seg4:end does he finally ride the falling
+# line down". The grip act was right by then; the anchor was standing still.
+#
+# `_TOUR` is beat progress (0..1), set per frame by `render_story_build` and
+# INDEPENDENT of reveal. A ranked compositor uses it to choose WHICH datum he
+# is working on, so he walks the ranking — shoving each bar in turn — instead
+# of parking on the winner's tip for two-thirds of the runtime. The last fifth
+# is reserved for the winner so the payoff still lands where the narration
+# says it does (and so it agrees with `_perf_phase`'s finale window).
+_TOUR: float = 1.0
+TOUR_FINALE = 0.8          # from here on he is on the winner, committing
+
+
+TOUR_WORK = 0.72           # of each step spent working the bar; rest is transit
+
+
+def _tour_index(n: int, tour: float | None = None) -> float:
+    """Where Data is on the ranking at this point in the beat, as a FLOAT
+    item index (0 = the winner).
+
+    He works his way from the BOTTOM of the field up and arrives at the
+    winner for the finale — so he ends on the answer the narration lands on
+    rather than starting there and wandering off it.
+
+    The index is fractional ON PURPOSE. Snapping bar-to-bar every few
+    seconds trades "hovers in one spot" for "teleports", which is the same
+    note in a different costume. Each step is `TOUR_WORK` held on one bar
+    (he struggles against it — that is what `_perf_phase` is animating) and
+    the remainder TRANSIT, interpolated, so he visibly climbs from one bar
+    to the next. Callers that need a real row round it; the y coordinate
+    takes the float and lets him ride between rows while moving.
+    """
+    if n <= 1:
+        return 0.0
+    t = _TOUR if tour is None else tour
+    t = min(1.0, max(0.0, float(t)))
+    if t >= TOUR_FINALE:
+        return 0.0
+    step = TOUR_FINALE / n
+    k, frac = divmod(t, step)
+    k = int(k)
+    within = frac / step                       # 0..1 inside this step
+    # held on bar (n-1-k), then transit toward (n-1-k-1)
+    move = 0.0 if within <= TOUR_WORK else (within - TOUR_WORK) / (1.0 - TOUR_WORK)
+    pos = (n - 1 - k) - move
+    return max(0.0, min(float(n - 1), pos))
+
+
+def _tour_tip(values, pos: float, floor: float = 0.0) -> float:
+    """The tip value at a fractional tour position — interpolated between the
+    two bars he is moving between, so the transit is a diagonal climb across
+    the chart rather than a horizontal jump followed by a vertical one."""
+    if not values:
+        return floor
+    n = len(values)
+    lo = max(0, min(n - 1, int(pos)))
+    hi = max(0, min(n - 1, lo + 1))
+    f = max(0.0, min(1.0, float(pos) - lo))
+    return float(values[lo]) * (1.0 - f) + float(values[hi]) * f
+
+
 def _perf_align(action: str, default: tuple) -> tuple:
     """Attachment alignment for the selected action (falls back to the chart
     site's default when the action has no registered contact geometry)."""
@@ -644,9 +711,14 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     # growing tip — a full setup->action->payoff arc across the beat. Without
     # this a rank/bars beat (kind is in BAKED_CHART_KINDS, overlay suppressed)
     # would show NO mascot at all.
-    _wtip = max(values[0] * max(0.0, min(1.0, reveal)), vmax * 0.02)
+    # THE TOUR (see `_tour_index`): he works his way UP the ranking as the
+    # beat runs and lands on the winner for the finale, instead of standing
+    # on the winner's tip from the moment the build finishes.
+    _row = _tour_index(len(values))
+    _wtip = max(_tour_tip(values, _row) * max(0.0, min(1.0, reveal)),
+                vmax * 0.02)
     _act_b = _perf_action(insight, "rank")
-    _bake_host(ax, _wtip, 0, _act_b, reveal,
+    _bake_host(ax, _wtip, _row, _act_b, reveal,
                zoom=0.9, align=_perf_align(_act_b, (0.28, 0.5)))
     insight.host_baked = True
     return ax, arts
@@ -1383,12 +1455,17 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
         s.set_visible(False)
     # BAKE THE HOST: Data braces against the WINNING bar's growing tip, shoving
     # it out — he moves right WITH the bar as it grows (top row = highest value).
-    _ttip = max(max(values) * t, vmax * 0.02)
-    # COUPLE THE HOST: Data braces against the winning bar's advancing right face
+    # THE TOUR (see `_tour_index`): which bar he is shoving right now. Rows are
+    # drawn y = n-1-i, so item `_row` sits at that y. He works up the field and
+    # arrives at the winner for the finale instead of standing on the leader's
+    # tip from the moment the race finishes drawing.
+    _row = _tour_index(n)
+    _ttip = max(_tour_tip(values, _row) * t, vmax * 0.02)
+    # COUPLE THE HOST: Data braces against the bar's advancing right face
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
     _act_r = _perf_action(insight, "pictorial_race")
-    _bake_host(ax, _ttip, n - 1, _act_r, reveal,
+    _bake_host(ax, _ttip, n - 1 - _row, _act_r, reveal,
                zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)))
     insight.host_baked = True
     return ax, specs
@@ -2621,6 +2698,12 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
         if f == frames:
             r = 1.0                         # final frame == static chart
+        # THE TOUR is BEAT PROGRESS, not reveal — that is the whole point.
+        # `r` saturates at `full_by` and then sits at 1.0, so anything derived
+        # from it stops moving for the rest of the beat; `_TOUR` keeps running
+        # to 1.0 so the host still has somewhere to be at second twelve.
+        global _TOUR
+        _TOUR = f / max(1, frames)
         _ATTACH_FRAME.clear()
         fig, plt = _card_base()
         ax, specs = _compose_story(fig, plt, insight, r)

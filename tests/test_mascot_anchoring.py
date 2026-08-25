@@ -191,3 +191,103 @@ class TestGeoIsADemonstrationNow(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTheAnchorTravelsAcrossTheBeat(unittest.TestCase):
+    """The last cause the verdicts kept naming after grip acts landed.
+
+    2026-08-24/25, verbatim: "Data just hovers/slides in the same spot above
+    the 1972-1983 bars with no setup->action->payoff ... only at seg4:end
+    does he finally ride the falling line down". The act was right by then;
+    the ANCHOR was standing still — every compositor derives it from
+    `reveal`, and `reveal` saturates at `full_by` and sits at 1.0 for the
+    rest of the beat. `_TOUR` is beat progress instead, so he still has
+    somewhere to be at second twelve.
+    """
+
+    def test_reveal_saturates_but_the_tour_does_not(self):
+        """The bug in one assertion: the quantity the anchor used to follow
+        stops moving well before the beat ends."""
+        frames, full_by = 30, 0.6
+        reveal = [min(1.0, (f / frames) / full_by) for f in range(1, frames + 1)]
+        self.assertEqual(reveal[-1], reveal[int(frames * full_by) + 1])
+        tour = [f / frames for f in range(1, frames + 1)]
+        self.assertGreater(tour[-1], tour[int(frames * full_by) + 1])
+
+    def test_he_works_up_the_field_and_ends_on_the_winner(self):
+        n = 5
+        self.assertAlmostEqual(C._tour_index(n, 0.0), n - 1)
+        self.assertEqual(C._tour_index(n, 1.0), 0.0)
+        self.assertEqual(C._tour_index(n, C.TOUR_FINALE), 0.0)
+
+    def test_the_position_never_runs_backwards(self):
+        seq = [C._tour_index(5, i / 200) for i in range(201)]
+        for a, b in zip(seq, seq[1:]):
+            self.assertLessEqual(b, a + 1e-9, "the tour must not backtrack")
+
+    def test_he_is_never_parked_for_most_of_the_beat(self):
+        """The actual regression guard: across the first TOUR_FINALE of the
+        beat he must not sit at one anchor for a long stretch."""
+        step = C.TOUR_FINALE / 5
+        moved = sum(1 for i in range(160)
+                    if abs(C._tour_index(5, (i + 1) / 200)
+                           - C._tour_index(5, i / 200)) > 1e-9)
+        self.assertGreater(moved, 20, "the anchor barely moves — that is the "
+                                      "'hovers in the same spot' note again")
+        self.assertGreater(step, 0)
+
+    def test_transit_is_interpolated_not_a_teleport(self):
+        """Snapping bar-to-bar trades 'hovers' for 'teleports' — the same
+        note in a different costume. Steps must be small."""
+        seq = [C._tour_index(5, i / 400) for i in range(401)]
+        self.assertLess(max(abs(b - a) for a, b in zip(seq, seq[1:])), 0.35)
+
+    def test_the_tip_is_interpolated_between_the_two_bars(self):
+        vals = [100.0, 80.0, 60.0, 40.0, 20.0]
+        self.assertAlmostEqual(C._tour_tip(vals, 4.0), 20.0)
+        self.assertAlmostEqual(C._tour_tip(vals, 0.0), 100.0)
+        mid = C._tour_tip(vals, 3.5)
+        self.assertGreater(mid, 20.0)
+        self.assertLess(mid, 40.0)
+
+    def test_a_single_value_chart_is_untouched(self):
+        for t in (0.0, 0.5, 1.0):
+            self.assertEqual(C._tour_index(1, t), 0.0)
+        self.assertAlmostEqual(C._tour_tip([42.0], 0.0), 42.0)
+
+    def test_an_empty_series_does_not_crash(self):
+        self.assertEqual(C._tour_tip([], 0.0), 0.0)
+
+    def test_both_ranked_compositors_use_the_tour(self):
+        src = (ROOT / "data_learning" / "charts.py").read_text()
+        for fn in ("_story_bars", "_story_pictorial_race"):
+            body = src.split(f"def {fn}(", 1)[1].split("\ndef ", 1)[0]
+            self.assertIn("_tour_index", body, fn)
+            self.assertIn("_tour_tip", body, fn)
+
+    def test_the_build_loop_advances_the_tour_by_beat_progress(self):
+        src = (ROOT / "data_learning" / "charts.py").read_text()
+        body = src.split("def render_story_build(", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("_TOUR = f / max(1, frames)", body)
+
+    def test_the_host_actually_moves_in_a_rendered_beat(self):
+        """End to end on the real compositor: bake the same chart at three
+        points in the beat and require the host's drawn position to differ."""
+        pts = [DataPoint(l, v, "kg") for l, v in RANKED]
+        ins = Insight(kind="rank", topic="T", main_insight="Slovenia leads",
+                      items=pts, source=SRC, unit="kg",
+                      highlight_label=pts[0].label)
+        seen = []
+        for tour in (0.05, 0.45, 0.95):
+            C._TOUR = tour
+            fig, plt = C._card_base()
+            C._story_bars(fig, plt, ins, "sub", 1.0)
+            boxes = _host_extents(fig)
+            self.assertTrue(boxes, f"no host baked at tour {tour}")
+            seen.append(boxes[0])
+            plt.close(fig)
+        C._TOUR = 1.0
+        self.assertNotAlmostEqual(seen[0][2], seen[1][2], places=3,
+                                  msg="host did not move between beats")
+        self.assertNotAlmostEqual(seen[1][2], seen[2][2], places=3,
+                                  msg="host did not move between beats")
