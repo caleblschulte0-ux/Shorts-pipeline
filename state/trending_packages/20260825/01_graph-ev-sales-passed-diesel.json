@@ -1,0 +1,65 @@
+{
+  "format": "graph_race",
+  "slug": "graph-ev-sales-passed-diesel",
+  "title": "Electric Cars Just Outsold Diesel Worldwide",
+  "hook": "The Diesel Era Just Ended",
+  "y_label": "Global new car sales per year (millions)",
+  "duration": 13,
+  "source": "IEA Global EV Outlook annual reports (battery-electric + plug-in hybrid car sales, 2016-2023) alongside industry estimates of global diesel passenger-car sales compiled from JATO Dynamics, ACEA and ICCT reporting on diesel's collapsing share of new-car sales (from over 50% of Europe's market in 2015 to single digits by 2023). Approximate, order-of-magnitude figures; EVs overtook diesel car sales worldwide around 2021-2022.",
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Electric Cars",
+      "color": "#2ecc71",
+      "values": [
+        0.8,
+        1.2,
+        2.1,
+        2.3,
+        3.2,
+        6.6,
+        10.5,
+        14.2
+      ]
+    },
+    {
+      "name": "Diesel Cars",
+      "color": "#4a4a4a",
+      "values": [
+        11.5,
+        10.5,
+        9.0,
+        7.5,
+        6.0,
+        5.0,
+        4.2,
+        3.5
+      ]
+    }
+  ],
+  "hashtags": [
+    "electriccars",
+    "ev",
+    "diesel",
+    "evsales",
+    "automotive",
+    "cars",
+    "climate",
+    "evrevolution",
+    "sustainability",
+    "dataviz",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

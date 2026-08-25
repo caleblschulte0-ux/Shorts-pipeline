@@ -1,0 +1,83 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-the-clock-out-rule",
+  "title": "He Wrote The Rule. I Just Followed It.",
+  "script": "Late by one second? Our new manager installed a badge scanner and declared that clocking out even sixty seconds early was theft \u2014 one write-up, zero exceptions. So I got literal. The moment my shift hit five o'clock, I stopped. Mid-swipe on a customer's credit card. Mid-sentence on a phone call. I'd just say my shift's over and walk to the break room. Three write-ups later, corporate called about four abandoned transactions and a customer stuck on hold for eleven minutes. My manager pulled me aside and told me to use common sense. I read his own write-up policy back to him, word for word. He'd signed it himself. Corporate added one line to the handbook: finish the transaction, then clock out. Was sixty seconds ever really the problem?",
+  "shots": [
+    {
+      "phrase": "installed a badge scanner",
+      "query": "employee badge scanner door"
+    },
+    {
+      "phrase": "clocking out even sixty seconds early was theft",
+      "query": "wall clock five oclock"
+    },
+    {
+      "phrase": "Mid-swipe on a customer's credit card",
+      "query": "credit card swipe register"
+    },
+    {
+      "phrase": "Mid-sentence on a phone call",
+      "query": "office phone handset"
+    },
+    {
+      "phrase": "walk to the break room",
+      "query": "empty employee break room"
+    },
+    {
+      "phrase": "a customer stuck on hold for eleven minutes",
+      "query": "phone on hold customer"
+    },
+    {
+      "phrase": "I read his own write-up policy back to him",
+      "query": "manager employee conversation"
+    },
+    {
+      "phrase": "Corporate added one line to the handbook",
+      "query": "employee handbook binder"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "one write-up, zero exceptions",
+      "text": "ZERO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "clocking out even sixty seconds early was theft",
+      "text": "\"THEFT\"?",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "four abandoned transactions",
+      "text": "4 ABANDONED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "stuck on hold for eleven minutes",
+      "text": "11 MIN ON HOLD",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "added one line to the handbook",
+      "text": "RULE CHANGED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "retail",
+    "corporate",
+    "boss",
+    "jobstory",
+    "karma",
+    "reddit",
+    "storytime",
+    "worklife",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

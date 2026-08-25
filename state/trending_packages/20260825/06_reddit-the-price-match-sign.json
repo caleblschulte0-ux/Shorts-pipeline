@@ -1,0 +1,79 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-the-price-match-sign",
+  "title": "The Sign Said Beat Any Price. So I Did.",
+  "script": "Beat any price? I took that literally. Our price-match guarantee promised to beat any competitor's price by ten percent, no exceptions \u2014 mostly an ignored marketing line. I enforced it. A customer brought a screenshot from a liquidation site selling laptops for eighty dollars, and I matched it, minus ten percent. Then someone found a typo listing a television at nineteen dollars. I matched that too. Within three weeks my register had processed forty thousand dollars in matched sales at a loss so steep the regional manager flew in. He asked why I kept approving obvious errors. I pointed at the laminated sign by the register \u2014 his own name signed on the bottom. He took the sign down before lunch. Corporate rewrote the policy that week: matches now require manager approval. Who approved the sign in the first place?",
+  "shots": [
+    {
+      "phrase": "price-match guarantee promised to beat any competitor's price",
+      "query": "price match sign store"
+    },
+    {
+      "phrase": "a screenshot from a liquidation site selling laptops",
+      "query": "laptop computer store shelf"
+    },
+    {
+      "phrase": "a typo listing a television at nineteen dollars",
+      "query": "flat screen television display"
+    },
+    {
+      "phrase": "forty thousand dollars in matched sales at a loss",
+      "query": "cash register receipt tape"
+    },
+    {
+      "phrase": "the regional manager flew in",
+      "query": "businessman walking airport terminal"
+    },
+    {
+      "phrase": "the laminated sign by the register",
+      "query": "laminated sign checkout counter"
+    },
+    {
+      "phrase": "He took the sign down before lunch",
+      "query": "removing sign from wall"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "beat any competitor's price by ten percent",
+      "text": "10% GUARANTEE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "laptops for eighty dollars",
+      "text": "$80 LAPTOP",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a television at nineteen dollars",
+      "text": "$19 TV",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "forty thousand dollars in matched sales",
+      "text": "$40,000 LOST",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He took the sign down before lunch",
+      "text": "SIGN REMOVED",
+      "color": "#ff3030"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "workplace",
+    "corporate",
+    "customerservice",
+    "karma",
+    "pricematch",
+    "reddit",
+    "storytime",
+    "jobstory",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

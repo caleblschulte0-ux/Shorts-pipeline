@@ -1,0 +1,22 @@
+{
+  "key": "cesarean_rate_trend",
+  "title": "US cesarean delivery rate (% of all births)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1970-2024 (annual)",
+  "source": {
+    "name": "National Vital Statistics System -- births by method of delivery",
+    "publisher": "CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/data/databriefs/db535.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "1970 (5.5%) and 1988 (24.7%) are from NCHS's historical cesarean-rate research (National Hospital Discharge Survey era). 2009 (32.9%) and 2024 (32.4%, the highest since 2013) are from NCHS Data Brief No. 535 (July 2025) and related NVSR releases; the rate dipped to a recent low near 31.7% in 2019 before climbing again through 2024.",
+  "points": [
+    {"label": "1970", "value": 5.5, "period": "1970"},
+    {"label": "1988", "value": 24.7, "period": "1988"},
+    {"label": "2009", "value": 32.9, "period": "2009"},
+    {"label": "2019", "value": 31.7, "period": "2019"},
+    {"label": "2024", "value": 32.4, "period": "2024"}
+  ]
+}

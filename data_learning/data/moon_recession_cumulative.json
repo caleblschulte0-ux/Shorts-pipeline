@@ -1,0 +1,24 @@
+{
+  "key": "moon_recession_cumulative",
+  "title": "Cumulative Moon recession since Apollo 11 (meters)",
+  "unit": "meters",
+  "geography": "Earth-Moon system",
+  "time_coverage": "1969-2026 (calculated from measured annual rate)",
+  "source": {
+    "name": "Lunar Laser Ranging -- Moon's measured recession rate",
+    "publisher": "NASA (Goddard Space Flight Center / NASA Science)",
+    "url": "https://science.nasa.gov/moon/facts/",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "NASA's officially measured recession rate is 3.8 cm/year, tracked since Apollo 11 and 14 astronauts placed laser retroreflectors on the Moon in 1969-1971 (confirmed via lunar laser ranging, e.g. https://eclipse.gsfc.nasa.gov/SEhelp/ApolloLaser.html). The cumulative totals below are calculated by multiplying that official rate by elapsed years since 1969 -- illustrative arithmetic on a real, sourced constant, not an invented series.",
+  "points": [
+    {"label": "1969", "value": 0, "period": "1969"},
+    {"label": "1979", "value": 0.38, "period": "1979"},
+    {"label": "1989", "value": 0.76, "period": "1989"},
+    {"label": "1999", "value": 1.14, "period": "1999"},
+    {"label": "2009", "value": 1.52, "period": "2009"},
+    {"label": "2019", "value": 1.9, "period": "2019"},
+    {"label": "2026", "value": 2.17, "period": "2026"}
+  ]
+}
