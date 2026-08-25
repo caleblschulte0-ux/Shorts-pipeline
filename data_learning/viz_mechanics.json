@@ -32,48 +32,6 @@
   "starred": true
  },
  {
-  "mechanic": "urgency-dials",
-  "topic": "Language Extinction — Death Rate",
-  "concept": "three urgency dials sweep to their own value -- an hourglass for the 14-day death clock, a warning flag for the 43% endangered, a megaphone for the top-5 languages dominating half of humanity",
-  "code": "icon_names = [\"hourglass\", \"warning flag\", \"megaphone\"]\ncols = max(n, 1)\ncol_w = (RX1 - RX0) / cols\ncy = RTOP + 330\nradius = 150.0\nfor i in range(n):\n    cx = RX0 + col_w * (i + 0.5)\n    stage = clamp(reveal * n - i, 0.0, 1.0)\n    if stage <= 0.0:\n        continue\n    frac = clamp(values[i] / vmax, 0.0, 1.0) * stage\n    start_ang, end_ang = -210.0, 30.0\n    sweep = start_ang + (end_ang - start_ang) * frac\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, end_ang,\n          fill=rgba(TEXT, 50), width=18)\n    d.arc([cx - radius, cy - radius, cx + radius, cy + radius], start_ang, sweep,\n          fill=rgba(WARN if values[i] >= vmax * 0.6 else HIGHLIGHT, 240), width=18)\n    icon = subject_image(icon_names[i % len(icon_names)])\n    isize = 128 * stage\n    if icon is not None:\n        paste(icon, cx - isize / 2, cy - isize / 2, isize, isize)\n    else:\n        d.ellipse([cx - isize / 2, cy - isize / 2, cx + isize / 2, cy + isize / 2],\n                   fill=rgba(ACCENT, 200))\n    text(f\"{values[i]:.0f}\", cx, cy + radius + 26, size=50, color=TEXT, center=True)\n    text(labels[i].upper(), cx, cy + radius + 84, size=22, color=TEXT, center=True)",
-  "starred": false
- },
- {
-  "mechanic": "digital-silence-globe",
-  "topic": "Language Extinction — Online Presence",
-  "concept": "a real Earth photo is lit at the bottom only 10% up, the rest washed dark with fading dots -- pulsing signal rings mark the sliver of languages with an online voice",
-  "code": "cx = (RX0 + RX1) / 2\ngw, gh = 520.0, 520.0\ngx, gy = cx - gw / 2, RTOP + 150\nglobe = subject_image(\"planet earth from space\")\nfrac_lit = clamp(values[0] / 100.0, 0.0, 1.0) * clamp(reveal * 1.6, 0.0, 1.0)\nif globe is not None:\n    paste(globe, gx, gy, gw, gh)\nelse:\n    d.ellipse([gx, gy, gx + gw, gy + gh], fill=rgba(ACCENT, 200))\ndark_h = gh * (1.0 - frac_lit)\nd.rectangle([gx, gy, gx + gw, gy + dark_h], fill=rgba((8, 10, 18), 175))\nfor k in range(9):\n    kx = gx + gw * (0.12 + 0.11 * k)\n    ky = gy + dark_h * (0.2 + 0.6 * ((k * 37) % 10) / 10.0)\n    dstage = clamp(reveal * 9 - k, 0.0, 1.0)\n    r = 5 * dstage\n    if dstage > 0.0 and ky < gy + dark_h - 6:\n        d.ellipse([kx - r, ky - r, kx + r, ky + r], fill=rgba(TEXT, 130))\nring_cy = gy + gh - 6\nfor ring in range(3):\n    rp = clamp(reveal - ring * 0.15, 0.0, 1.0)\n    if rp <= 0.0:\n        continue\n    rr = 20 + rp * 140\n    alpha = int(160 * (1 - rp))\n    d.ellipse([cx - rr, ring_cy - rr * 0.35, cx + rr, ring_cy + rr * 0.35],\n              outline=rgba(HIGHLIGHT, alpha), width=6)\ntext(f\"{values[0]:.0f}%\", cx, gy + gh - 90, size=54, color=HIGHLIGHT, center=True)\ntext(labels[0].upper(), cx, gy + gh - 40, size=24, color=TEXT, center=True)\ntext(f\"{values[1]:.0f}%\", cx, gy + 40, size=46, color=WARN, center=True)\ntext(labels[1].upper(), cx, gy + 88, size=22, color=TEXT, center=True)",
-  "starred": false
- },
- {
-  "mechanic": "seedling-revival-meter",
-  "topic": "Language Extinction — Revitalization",
-  "concept": "a revival dial sweeps to the 20% of languages pulled back from the brink, a real seedling glowing at its center, while real leaf photos sprout one by one showing the 15%-a-year rise in learners",
-  "code": "cx1 = RX0 + (RX1 - RX0) * 0.28\ncy = RTOP + 330\nradius = 160.0\nfrac = clamp(values[0] / 100.0, 0.0, 1.0) * clamp(reveal * 1.4, 0.0, 1.0)\nstart_ang, end_ang = -220.0, 40.0\nsweep = start_ang + (end_ang - start_ang) * frac\nd.arc([cx1 - radius, cy - radius, cx1 + radius, cy + radius], start_ang, end_ang,\n      fill=rgba(TEXT, 50), width=20)\nd.arc([cx1 - radius, cy - radius, cx1 + radius, cy + radius], start_ang, sweep,\n      fill=rgba(HIGHLIGHT, 240), width=20)\nplant = subject_image(\"seedling sprout in soil\")\npsize = 190.0\nif plant is not None:\n    paste(plant, cx1 - psize / 2, cy - psize / 2, psize, psize)\ntext(f\"{values[0]:.0f}%\", cx1, cy + radius + 26, size=48, color=TEXT, center=True)\ntext(labels[0].upper(), cx1, cy + radius + 80, size=22, color=TEXT, center=True)\n\ncx2 = RX0 + (RX1 - RX0) * 0.74\nleaf_count = max(1, int(round(values[1] / 3)))\nleaf = subject_image(\"green leaf\")\ntop_y = RTOP + 220\nfor k in range(leaf_count):\n    lstage = clamp(reveal * leaf_count - k, 0.0, 1.0)\n    if lstage <= 0.0:\n        continue\n    ly = top_y + k * 60\n    lx = cx2 + 46 * math.sin(k * 1.7)\n    lsize = 68 * lstage\n    if leaf is not None:\n        paste(leaf, lx - lsize / 2, ly - lsize / 2, lsize, lsize)\n    else:\n        d.ellipse([lx - lsize / 2, ly - lsize / 2, lx + lsize / 2, ly + lsize / 2],\n                   fill=rgba(HIGHLIGHT, 220))\ntext(f\"+{values[1]:.0f}%/YR\", cx2, top_y + leaf_count * 60 + 36, size=40,\n     color=HIGHLIGHT, center=True)\ntext(labels[1].upper(), cx2, top_y + leaf_count * 60 + 84, size=22, color=TEXT, center=True)",
-  "starred": false
- },
- {
-  "sig": "172f69baf686",
-  "mechanic": "petalometer",
-  "concept": "a stylized flower blooms in sync with the data, each petal representing a research paper, with the center filling to show the proportion of plant-based medicines",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    col = HIGHLIGHT if i == 0 else ACCENT\n    cx = RX0 + 200 if i == 0 else RX1 - 200\n    cy = RTOP + 500\n    r = 150\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 90), width=4)\n    sweep = 150.0 + 240.0 * clamp(v / vmax) * reveal\n    d.arc([cx - r, cy - r, cx + r, cy + r], 150, int(sweep), fill=rgba(col, 255), width=16)\n    img = subject_image('plant cell')\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        paste(img, cx - w // 2, cy - h // 2, w, h)\n    text(labels[i], cx, cy - r - 100, size=38, color=col, center=True)\n    text(str(int(v)) + ' ' + 'percent' if i == 0 else 'percent', cx, cy + r + 100, size=38, color=col, center=True)\nmid = clamp((reveal - 0.4) / 0.6)\nif mid > 0:\n    fill_image(subject_image('flower'), mid, RX0 + 500, RTOP + 200, 400, 600, 'up', ACCENT)\n    text('Plant Toxin Research', RX0 + 500, RTOP + 50, size=46, color=TEXT, center=True)\n",
-  "topic": "Plant Toxin Research"
- },
- {
-  "sig": "d9333911a1fc",
-  "mechanic": "growth-vessels",
-  "concept": "two glass vessels fill with a liquid to represent growth, each containing a subject image and labelled with its value",
-  "code": "\nfor i in range(n):\n    v = values[i]\n    vx = RX0 + 250 if i == 0 else RX1 - 250\n    vy = RTOP + 200\n    d.rectangle([vx - 50, vy - 300, vx + 50, vy + 50], fill=rgba(TEXT, 90))\n    fill_h = int(250.0 * clamp(v / vmax) * reveal)\n    d.rectangle([vx - 40, vy - fill_h, vx + 40, vy], fill=rgba(HIGHLIGHT if i == 0 else ACCENT, 255))\n    img = subject_image(labels[i])\n    if img is not None:\n        asp = img.width / img.height\n        w = 80\n        h = int(w / asp)\n        if h > 120:\n            h = 120\n            w = int(h * asp)\n        paste(img, vx - w // 2, vy - 140, w, h)\n    text(str(int(v)), vx, vy + 60, size=48, color=HIGHLIGHT if i == 0 else ACCENT, center=True)\n    text(labels[i], vx, vy - 250, size=38, center=True)\n",
-  "topic": "Growth Limit"
- },
- {
-  "sig": "f0ba0042702f",
-  "mechanic": "root-system",
-  "concept": "A tree's roots grow in size and spread as the reveal progresses, with each data point displayed as a labeled and sized root segment",
-  "code": "\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\nn = len(values)\nfor i in range(n):\n    v = values[i]\n    ang = 2 * math.pi * i / n\n    r = 200 * clamp(v / vmax)\n    rx = cx + int(r * reveal * math.cos(ang))\n    ry = cy + int(r * reveal * math.sin(ang))\n    d.line([cx, cy, rx, ry], fill=rgba(HIGHLIGHT, 255), width=8)\n    text(labels[i], rx, ry, size=32, color=TEXT, center=True)\n    text(str(int(v)), rx, ry + 40, size=38, color=TEXT, center=True)\n    img = subject_image('tree root')\n    if img is not None:\n        asp = img.width / img.height\n        w = 100\n        h = int(w / asp)\n        paste(img, rx - w // 2, ry - h // 2, w, h)\ntrunk = subject_image('tree trunk')\nif trunk is not None:\n    asp = trunk.width / trunk.height\n    w = 80\n    h = int(w / asp)\n    paste(trunk, cx - w // 2, cy - h // 2, w, h)\n",
-  "topic": "Root System Size"
- },
- {
   "sig": "inheritance-fork-v1",
   "mechanic": "inheritance-fork",
   "concept": "a trunk of cash forks into a wide heirs channel and a thin charity channel, dollar-bill stacks flowing down each so a 6:1 split reads as two rivers of unequal width",
@@ -90,28 +48,12 @@
   "starred": true
  },
  {
-  "sig": "cc88eb36b72d",
-  "mechanic": "sand-mound-buildup",
-  "concept": "three sand-pile photo mounds rise left to right, taller each year, an excavator standing over the tallest 2020 pile",
-  "code": "n_pts = min(n, 3)\npile = subject_image('pile of sand mound photo')\nexcavator = subject_image('excavator digging sand')\nbase_y = RBOT - 60\ngw = (RX1 - RX0) // n_pts\nmaxh = base_y - (RTOP + 220)\nfor i in range(n_pts):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / vmax) * reveal\n    h = int(maxh * frac)\n    w = int(gw * 0.72)\n    if pile is not None:\n        paste(pile, cx - w // 2, base_y - h, w, h)\n    else:\n        d.polygon([(cx - w // 2, base_y), (cx, base_y - h), (cx + w // 2, base_y)],\n                  fill=rgba(WARN, 210))\n    text(labels[i], cx, base_y + 18, size=24, color=TEXT, center=True)\n    text(f'{v:.0f}B t', cx, base_y - h - 34, size=28,\n         color=HIGHLIGHT if i == n_pts - 1 else TEXT, center=True)\nif excavator is not None and reveal > 0.5:\n    ew = 220\n    paste(excavator, RX1 - ew - 10, base_y - maxh - 140, ew, 160)\n",
-  "topic": "Sand Extraction Growth",
-  "starred": false
- },
- {
   "sig": "98535ec5a4fa",
   "mechanic": "hourglass-overflow",
   "concept": "an hourglass whose sand trickles through the neck at nature's replenishment rate while a mound below overflows the glass entirely for the mined volume -- the mismatch reads as spilled sand on the ground, not two numbers",
   "code": "mined = values[0]; replen = values[1] if n > 1 else values[0] * 0.26\ncx = (RX0 + RX1) // 2\nneck_y = RTOP + 300\nglass_top = RTOP + 120\nd.polygon([(cx - 150, glass_top), (cx + 150, glass_top), (cx + 20, neck_y), (cx - 20, neck_y)],\n          outline=rgba(TEXT, 220), width=6)\nsand = subject_image('sand grains texture close up')\ntop_frac = clamp(replen / mined) * reveal\nth = int((neck_y - glass_top) * top_frac)\nif sand is not None and th > 4:\n    paste(sand, cx - 140, neck_y - th, 280, th)\nbot_h = 280\nd.polygon([(cx - 20, neck_y), (cx + 20, neck_y), (cx + 160, neck_y + bot_h), (cx - 160, neck_y + bot_h)],\n          outline=rgba(TEXT, 220), width=6)\nmound = subject_image('large sand pile mound photo')\nmfrac = reveal\nmh = int(bot_h * mfrac)\nif mound is not None:\n    paste(mound, cx - 160, neck_y + bot_h - mh, 320, mh)\noverflow_frac = clamp((mined - replen) / mined) * reveal\now = int(220 * overflow_frac)\nif mound is not None and ow > 10:\n    paste(mound, cx - 160 - ow, neck_y + bot_h - 60, ow + 40, 80)\n    paste(mound, cx + 160 - 40, neck_y + bot_h - 60, ow + 40, 80)\ntext('REPLENISHED', cx, glass_top - 46, size=25, color=HIGHLIGHT, center=True)\ntext(f'{replen:.0f}B t/yr', cx, glass_top - 12, size=30, color=HIGHLIGHT, center=True)\ntext('MINED', cx, neck_y + bot_h + 44, size=25, color=WARN, center=True)\ntext(f'{mined:.0f}B t/yr', cx, neck_y + bot_h + 78, size=34, color=WARN, center=True)\n",
   "topic": "Extraction vs Replenishment",
   "starred": true
- },
- {
-  "sig": "8328b4e3e6b8",
-  "mechanic": "concrete-pour-skyline",
-  "concept": "five under-construction buildings fill with wet concrete texture bottom-up to each country's share of world cement, a crane standing over China's",
-  "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 70\ntop_y = RTOP + 200\nconcrete = subject_image('wet concrete pour texture')\ncrane = subject_image('construction crane silhouette')\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    bw = int(gw * 0.68)\n    frac = clamp(v / 100.0) * reveal\n    bh = int((base_y - top_y) * frac)\n    d.rectangle([cx - bw // 2, base_y - bh, cx + bw // 2, base_y],\n                outline=rgba(TEXT, 200), width=4)\n    if concrete is not None and bh > 4:\n        paste(concrete, cx - bw // 2, base_y - bh, bw, bh)\n    text(labels[i], cx, base_y + 16, size=17, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - bh - 30, size=25,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\nif crane is not None:\n    cw = 170\n    paste(crane, RX0 + gw // 2 - cw // 2, top_y - 150, cw, 170)\n",
-  "topic": "Cement Production Share",
-  "starred": false
  },
  {
   "sig": "66e1776b1da4",
@@ -122,36 +64,12 @@
   "starred": true
  },
  {
-  "sig": "7366938af769",
-  "mechanic": "blood-vial-rack",
-  "concept": "eight blood-sample vials stand in a lab rack, each filled to its share of the US population, O+ towering over a nearly-empty AB- vial",
-  "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 70\ntop_y = RTOP + 200\nvial = subject_image('blood sample vial tube photo')\nmaxh = base_y - top_y\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    frac = clamp(v / vmax) * reveal\n    h = int(maxh * frac)\n    vw = int(gw * 0.5)\n    if vial is not None and h > 4:\n        paste(vial, cx - vw // 2, base_y - h - 16, vw, h + 16)\n    else:\n        d.rounded_rectangle([cx - vw // 2, base_y - h, cx + vw // 2, base_y], radius=14,\n                             fill=rgba(WARN, 200))\n    text(labels[i], cx, base_y + 14, size=16, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - h - 42, size=19,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\n",
-  "topic": "Blood Type Distribution",
-  "starred": false
- },
- {
   "sig": "5cc4a070b9f8",
   "mechanic": "rh-genetic-drop",
   "concept": "a single giant blood-drop shape fills from the bottom to the Rh-positive line, leaving the negative share as visible empty space inside the same drop",
   "code": "cx = (RX0 + RX1) // 2\ndrop = subject_image('red blood drop shape icon')\ndw = 420; dh = 560\ndy = RTOP + 220\npos = values[0]; neg = values[1] if n > 1 else 100 - values[0]\nfrac = clamp(pos / 100.0) * reveal\nif drop is not None:\n    fill_image(drop, frac, cx - dw // 2, dy, dw, dh, direction='up', color=WARN)\nelse:\n    fh = int(dh * frac)\n    d.rounded_rectangle([cx - dw // 2, dy + dh - fh, cx + dw // 2, dy + dh], radius=40,\n                         fill=rgba(WARN, 210))\ntext('Rh+', cx, dy + dh - int(dh * frac) - 46, size=32, color=WARN, center=True)\ntext(f'{pos:.0f}%', cx, dy + dh - int(dh * frac) - 86, size=42, color=WARN, center=True)\ntext('Rh-', cx, dy - 42, size=28, color=TEXT, center=True)\ntext(f'{neg:.0f}%', cx, dy - 82, size=34, color=TEXT, center=True)\ngene = subject_image('DNA double helix icon')\nif gene is not None and reveal > 0.4:\n    gw2 = 150\n    paste(gene, cx - gw2 // 2, dy - 230, gw2, 150)\n",
   "topic": "Rh Factor Share",
   "starred": true
- },
- {
-  "sig": "ae3dbdba0a80",
-  "mechanic": "donor-meter-lineup",
-  "concept": "four blood-donor photos stand over their own filling meter, height set by how common O-positive is in that ethnic background",
-  "code": "cols = n\ngw = (RX1 - RX0) // cols\nbase_y = RBOT - 90\ntop_y = RTOP + 220\nperson = subject_image('blood donor giving blood photo')\nmeter_h = 240\nfor i in range(cols):\n    v = values[i]\n    cx = RX0 + gw * i + gw // 2\n    pw = int(gw * 0.6); ph2 = 250\n    if person is not None:\n        paste(person, cx - pw // 2, top_y, pw, ph2)\n    frac = clamp(v / 100.0) * reveal\n    mh = int(meter_h * frac)\n    d.rounded_rectangle([cx - 30, base_y - meter_h, cx + 30, base_y], radius=16,\n                         outline=rgba(TEXT, 200), width=4)\n    d.rounded_rectangle([cx - 30, base_y - mh, cx + 30, base_y], radius=16,\n                         fill=rgba(WARN, 210))\n    text(labels[i], cx, base_y + 18, size=16, color=TEXT, center=True)\n    text(f'{v:.0f}%', cx, base_y - meter_h - 30, size=22,\n         color=HIGHLIGHT if i == 0 else TEXT, center=True)\n",
-  "topic": "O Positive by Ethnicity",
-  "starred": false
- },
- {
-  "sig": "fe557392aeb5",
-  "mechanic": "porch-crowd-timeline",
-  "concept": "young adults stack up on a house's front porch across five year-checkpoints, the crowd swelling to 1940 and 2020's highs and thinning at 1960's low",
-  "code": "house = subject_image('house front porch photo')\ncx = (RX0 + RX1) // 2\nhw = 700; hh = 380\nhy = RTOP + 100\nif house is not None:\n    paste(house, cx - hw // 2, hy, hw, hh)\nperson = subject_image('young adult standing silhouette')\npts = min(n, 5)\ngw = (RX1 - RX0) // pts\nbase_y = RBOT - 40\nfor i in range(pts):\n    v = values[i]\n    px = RX0 + gw * i + gw // 2\n    frac = clamp(v / 100.0) * reveal\n    count = max(1, int(frac * 8))\n    for k in range(count):\n        if person is not None:\n            paste(person, px - 18 + (k % 2) * 12, base_y - 40 - (k // 2) * 42, 36, 42)\n        else:\n            d.ellipse([px - 10, base_y - 40 - k * 20, px + 10, base_y - 20 - k * 20],\n                      fill=rgba(HIGHLIGHT, 220))\n    text(labels[i], px, base_y + 14, size=15, color=TEXT, center=True)\n    text(f'{v:.0f}%', px, hy + hh + 14, size=17,\n         color=HIGHLIGHT if i == pts - 1 else TEXT, center=True)\n",
-  "topic": "Living With Parents Over Time",
-  "starred": false
  },
  {
   "sig": "968de092c5c1",
@@ -449,6 +367,83 @@
   "concept": "two lanes race toward the same finish -- transplants performed vs new people joining the list -- the second runner is always ahead",
   "code": "v0 = values[0]; v1 = values[-1]\nrunner_img = subject_image('hospital surgical team at work')\nlane1_y = RTOP + 280\nlane2_y = RTOP + 560\nx0 = RX0 + 60; x1 = RX1 - 220\nfrac0 = clamp(v0 / vmax) * reveal\nfrac1 = clamp(v1 / vmax) * reveal\npx0 = x0 + int((x1 - x0) * frac0)\npx1 = x0 + int((x1 - x0) * frac1)\nd.line([x0, lane1_y, x1, lane1_y], fill=rgba(TEXT, 90), width=6)\nd.line([x0, lane2_y, x1, lane2_y], fill=rgba(TEXT, 90), width=6)\nif runner_img is not None:\n    paste(runner_img, px0 - 60, lane1_y - 130, 120, 120)\n    paste(runner_img, px1 - 60, lane2_y - 130, 120, 120)\nelse:\n    d.ellipse([px0 - 30, lane1_y - 30, px0 + 30, lane1_y + 30], fill=rgba(HIGHLIGHT, 220))\n    d.ellipse([px1 - 30, lane2_y - 30, px1 + 30, lane2_y + 30], fill=rgba(WARN, 220))\ntext(f'{int(v0):,} transplants', x0, lane1_y + 40, size=30, color=HIGHLIGHT)\ntext(f'{int(v1):,} join the list', x0, lane2_y + 40, size=30, color=WARN)\ntext('THE LIST GROWS FASTER THAN IT SHRINKS', (RX0 + RX1) // 2, RTOP + 60, size=27, color=TEXT, center=True)\n",
   "topic": "Organ transplants performed vs new people joining the transplant waitlist",
+  "starred": false
+ },
+ {
+  "mechanic": "earth-moon-tape-stretch",
+  "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
+  "code": "earth = subject_image('planet Earth')\nmoon = subject_image('the Moon')\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ney = RTOP + 300\nex = RX0 + 110\nmx = RX1 - 150\nif earth is not None:\n    paste(earth, ex - 70, ey - 70, 140, 140)\ngap = (mx - ex - 170) * clamp(v / vmax if vmax else 1)\nmoon_x = ex + 170 + gap\nif moon is not None:\n    paste(moon, moon_x, ey - 45, 90, 90)\nd.line([ex + 70, ey, moon_x, ey], fill=rgba(ACCENT, 210), width=6)\nticks = 8\nfor k in range(ticks):\n    tx = ex + 70 + (moon_x - ex - 70) * (k / (ticks - 1))\n    d.line([tx, ey - 14, tx, ey + 14], fill=rgba(ACCENT, 150), width=3)\ntext(lbl, (RX0 + RX1) // 2, ey - 160, size=44, color=HIGHLIGHT, center=True)\ntext(f'+{v:.2f} m of drift', (RX0 + RX1) // 2, ey + 90, size=38, color=WARN, center=True)\n",
+  "topic": "moon-drifting-away",
+  "starred": true
+ },
+ {
+  "mechanic": "tidal-drag-orbit-widen",
+  "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
+  "code": "earth = subject_image('planet Earth')\nmoon = subject_image('the Moon')\ncx0 = RX0 + (RX1 - RX0) // 4\ncx1 = RX0 + 3 * (RX1 - RX0) // 4\ncy = RTOP + 440\nmaxr = 300.0\nfor i in range(2):\n    cx = cx0 if i == 0 else cx1\n    frac = clamp(values[i] / vmax)\n    r = (90 + maxr * frac) * clamp(reveal)\n    d.ellipse([cx - r, cy - r * 0.55, cx + r, cy + r * 0.55], outline=rgba(ACCENT, 160), width=4)\n    if earth is not None:\n        paste(earth, cx - 55, cy - 55, 110, 110)\n    ang = reveal * 2 * math.pi * 2 + i * math.pi\n    mxp = cx + r * math.cos(ang)\n    myp = cy + r * 0.55 * math.sin(ang)\n    if moon is not None:\n        paste(moon, mxp - 24, myp - 24, 48, 48)\n    text(labels[i], cx, RTOP + 70, size=28, color=TEXT, center=True)\n    text(f'{int(values[i]):,} km', cx, cy + maxr * 0.6 + 60, size=32, color=HIGHLIGHT, center=True)\n",
+  "topic": "moon-drifting-away",
+  "starred": false
+ },
+ {
+  "mechanic": "eclipse-deep-time-ruler",
+  "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
+  "code": "sun = subject_image('the Sun')\nmoon = subject_image('the Moon')\nrex = subject_image('T rex dinosaur skeleton')\nx0 = RX0 + 40\nx1 = RX1 - 40\ny = RTOP + 560\nd.line([x0, y, x1, y], fill=rgba(TEXT, 120), width=6)\nvmax_local = max(values) if values else 1\ncnt_now = max(1, int(round(n * clamp(reveal))) )\nfor i in range(min(cnt_now, n)):\n    frac = clamp(values[i] / vmax_local)\n    px = x0 + (x1 - x0) * frac\n    d.ellipse([px - 10, y - 10, px + 10, y + 10], fill=rgba(WARN, 220))\n    text(labels[i], px, y + 40, size=20, color=TEXT, center=True)\n    text(f'{int(values[i])}M yrs', px, y - 60, size=26, color=HIGHLIGHT, center=True)\n    lbl_lower = labels[i].lower()\n    if 'eclipse' in lbl_lower:\n        if sun is not None:\n            paste(sun, px - 70, y - 320, 140, 140)\n        if moon is not None:\n            paste(moon, px - 30 + 60 * clamp(reveal), y - 280, 70, 70)\n    elif rex is not None:\n        paste(rex, px - 55, y - 260, 110, 170)\n",
+  "topic": "moon-drifting-away",
+  "starred": true
+ },
+ {
+  "mechanic": "bassinet-row-surgical-fill",
+  "concept": "a row of ten hospital bassinets where a growing fraction gets a surgical mask laid over the baby as the C-section rate climbs decade by decade",
+  "code": "crib = subject_image('hospital bassinet with newborn baby')\nmask = subject_image('blue surgical mask')\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ntotal = 10\ncols = 5\ncw = (RX1 - RX0) // cols\ncovered = int(round(total * clamp(v / 100.0)))\nfor k in range(total):\n    row = k // cols\n    col = k % cols\n    cx = RX0 + col * cw + cw // 2\n    cy = RTOP + 280 + row * 260\n    if crib is not None:\n        paste(crib, cx - 60, cy - 60, 120, 120)\n    if k < covered and mask is not None:\n        paste(mask, cx - 30, cy - 20, 60, 50)\ntext(lbl, (RX0 + RX1) // 2, RTOP + 60, size=44, color=HIGHLIGHT, center=True)\ntext(f'{v:.1f}% by C-section', (RX0 + RX1) // 2, RTOP + 820, size=36, color=WARN, center=True)\n",
+  "topic": "cesarean-rate-surge",
+  "starred": false
+ },
+ {
+  "mechanic": "hospital-corridor-fork",
+  "concept": "a corridor forking to two delivery-room doors, a stream of patient icons splitting toward each door in proportion to what actually happens after a first C-section",
+  "code": "patient = subject_image('hospital patient icon figure')\ndoor_a = subject_image('operating room door')\ndoor_b = subject_image('delivery room door')\ncy_top = RTOP + 100\nax = RX0 + 200\nbx = RX1 - 200\nif door_a is not None:\n    paste(door_a, ax - 70, cy_top, 140, 200)\nif door_b is not None:\n    paste(door_b, bx - 70, cy_top, 140, 200)\ntext(labels[0], ax, cy_top - 40, size=22, color=WARN, center=True)\ntext(labels[1], bx, cy_top - 40, size=22, color=HIGHLIGHT, center=True)\nstart_x = (RX0 + RX1) // 2\nstart_y = RBOT - 120\ntotal = 20\ncount_a = int(round(total * values[0] / 100.0))\ncnt_now = max(1, int(total * clamp(reveal)))\nfor k in range(cnt_now):\n    target_x = ax if k < count_a else bx\n    tfrac = clamp(reveal)\n    px = lerp(start_x, target_x, tfrac)\n    py = lerp(start_y, cy_top + 220, tfrac)\n    if patient is not None:\n        paste(patient, px - 16 + (k % 5) * 6, py - 16, 32, 32)\ntext(f'{values[0]:.1f}%', ax, cy_top + 240, size=34, color=WARN, center=True)\ntext(f'{values[1]:.1f}%', bx, cy_top + 240, size=34, color=HIGHLIGHT, center=True)\n",
+  "topic": "cesarean-rate-surge",
+  "starred": true
+ },
+ {
+  "mechanic": "seafloor-claim-flags-plant",
+  "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
+  "code": "floor = subject_image('dark ocean seafloor texture')\nflag = subject_image('small survey claim flag')\nif floor is not None:\n    paste(floor, RX0, RTOP + 140, RX1 - RX0, 580)\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ncnt = max(1, int(round(v)))\ncols = 8\nfor k in range(cnt):\n    row = k // cols\n    col = k % cols\n    fx = RX0 + 60 + col * ((RX1 - RX0 - 120) / (cols - 1))\n    fy = RTOP + 220 + row * 130\n    if flag is not None:\n        paste(flag, fx - 18, fy - 40, 36, 60)\ntext(lbl, (RX0 + RX1) // 2, RTOP + 60, size=44, color=HIGHLIGHT, center=True)\ntext(f'{int(round(v))} claims filed', (RX0 + RX1) // 2, RTOP + 780, size=36, color=WARN, center=True)\n",
+  "topic": "seabed-mining-rush",
+  "starred": false
+ },
+ {
+  "mechanic": "nodule-pile-vs-landpile",
+  "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
+  "code": "nodule = subject_image('polymetallic cobalt nodule rock')\ncx0 = RX0 + (RX1 - RX0) // 4\ncx1 = RX0 + 3 * (RX1 - RX0) // 4\nbase_y = RBOT - 90\nmaxh = 700.0\nfor i in range(2):\n    cx = cx0 if i == 0 else cx1\n    frac = clamp(values[i] / vmax)\n    h = maxh * frac * clamp(reveal)\n    rows = max(1, int(h // 40))\n    for r in range(rows):\n        ny = base_y - r * 40\n        spread = 3 if r < rows - 2 else 1\n        for s in range(spread):\n            nx = cx - 60 + s * 60 + (r % 2) * 20\n            if nodule is not None:\n                paste(nodule, nx - 25, ny - 25, 50, 50)\n    text(labels[i], cx, base_y + 50, size=20, color=TEXT, center=True)\n    text(f'{int(values[i])}M tonnes', cx, base_y - h - 50, size=34, color=HIGHLIGHT, center=True)\n",
+  "topic": "seabed-mining-rush",
+  "starred": true
+ },
+ {
+  "mechanic": "world-pause-flag-spread",
+  "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
+  "code": "globe = subject_image('flat world map')\nflag = subject_image('small red pause sign flag')\nif globe is not None:\n    paste(globe, RX0, RTOP + 180, RX1 - RX0, 600)\nt = clamp(reveal)\nv = lerp(values[0], values[1], t)\nlbl = labels[0] if t < 0.5 else labels[1]\ncnt = max(1, int(round(v)))\nseed = 7\npositions = []\nfor k in range(45):\n    seed = (seed * 1103515245 + 12345) % 2147483648\n    fx = RX0 + 40 + (seed % 900) * (RX1 - RX0 - 80) / 900\n    seed = (seed * 1103515245 + 12345) % 2147483648\n    fy = RTOP + 220 + (seed % 500) * 540 / 500\n    positions.append((fx, fy))\nfor k in range(min(cnt, len(positions))):\n    fx, fy = positions[k]\n    if flag is not None:\n        paste(flag, fx - 14, fy - 14, 28, 28)\ntext(lbl, (RX0 + RX1) // 2, RTOP + 70, size=44, color=HIGHLIGHT, center=True)\ntext(f'{int(round(v))} countries', (RX0 + RX1) // 2, RTOP + 840, size=36, color=WARN, center=True)\n",
+  "topic": "seabed-mining-rush",
+  "starred": false
+ },
+ {
+  "mechanic": "mailbox-envelope-drain",
+  "concept": "a stuffed mailbox drains down to a thin stack of envelopes as annual volume falls from 213 to 109 billion pieces",
+  "code": "mailbox = subject_image('US mailbox')\nenvelope = subject_image('letter envelope')\nt = clamp(reveal) * (n - 1)\ni0 = int(t); i1 = min(i0 + 1, n - 1); f = t - i0\nv = lerp(values[i0], values[i1], f)\nlbl = labels[i0] if f < 0.5 else labels[i1]\ncx = (RX0 + RX1) // 2\ntop_y = RTOP + 180\nif mailbox is not None:\n    paste(mailbox, cx - 160, top_y, 320, 340)\nfrac = clamp(v / vmax)\nrows = max(1, int(10 * frac))\nfor r in range(rows):\n    ey = top_y + 300 - r * 30\n    if envelope is not None:\n        paste(envelope, cx - 90, ey, 180, 50)\ntext(lbl, cx, top_y - 60, size=44, color=HIGHLIGHT, center=True)\ntext(f'{v:.0f}B pieces', cx, top_y + 420, size=38, color=WARN, center=True)\n",
+  "topic": "mail-volume-collapse",
+  "starred": false
+ },
+ {
+  "mechanic": "delivery-truck-box-stack-grow",
+  "concept": "two USPS trucks each stacking a tower of shipping boxes behind them, the 2020 tower more than double the 2008 one",
+  "code": "truck = subject_image('USPS delivery truck')\nbox = subject_image('cardboard shipping box')\ncx0 = RX0 + (RX1 - RX0) // 4\ncx1 = RX0 + 3 * (RX1 - RX0) // 4\nbase_y = RBOT - 110\nfor i in range(2):\n    cx = cx0 if i == 0 else cx1\n    if truck is not None:\n        paste(truck, cx - 100, base_y - 120, 200, 120)\n    frac = clamp(values[i] / vmax)\n    h = 500.0 * frac * clamp(reveal)\n    rows = max(1, int(h // 60))\n    for r in range(rows):\n        by = base_y - 130 - r * 60\n        if box is not None:\n            paste(box, cx - 40, by - 50, 80, 55)\n    text(labels[i], cx, base_y + 30, size=24, color=TEXT, center=True)\n    text(f'{values[i]:.1f}B pkgs', cx, base_y - 150 - h, size=32, color=HIGHLIGHT, center=True)\n",
+  "topic": "mail-volume-collapse",
+  "starred": false
+ },
+ {
+  "mechanic": "letter-stack-thin-shrink",
+  "concept": "a tall stack of stamped letters below a mail slot thins to roughly half height as First-Class volume falls from 92 to 46 billion pieces",
+  "code": "letter = subject_image('stamped letter envelope')\nslot = subject_image('brass mail slot')\ncx = (RX0 + RX1) // 2\ntop_y = RTOP + 160\nif slot is not None:\n    paste(slot, cx - 140, top_y, 280, 60)\nfrac = lerp(values[0] / vmax, values[1] / vmax, clamp(reveal))\nh = 800.0 * frac\nrows = max(1, int(h // 26))\nfor r in range(rows):\n    ly = top_y + 90 + r * 26\n    if letter is not None:\n        paste(letter, cx - 100, ly, 200, 24)\nlbl = labels[0] if reveal < 0.5 else labels[1]\nv = lerp(values[0], values[1], clamp(reveal))\ntext(lbl, cx, top_y - 60, size=40, color=HIGHLIGHT, center=True)\ntext(f'{v:.0f}B letters', cx, top_y + 90 + h + 40, size=34, color=WARN, center=True)\n",
+  "topic": "mail-volume-collapse",
   "starred": false
  }
 ]

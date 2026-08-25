@@ -1,0 +1,37 @@
+{
+ "slug": "global-health-spending-exceeds-1300-per-person",
+ "ts": "20260825T141213Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: For the first ~23s (hook@0.8, seg0:mid, seg1:start, seg2:start/mid) Data just stands arms-out in the middle of the bar track and slides sideways with no setup->action->payoff tied to any stat; only at seg3:end/seg4 does he ride the line down to 9.1.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "occluded_undemonstrated_headline_stat",
+  "visible_evidence": "seg2:start/seg2:mid - Data stands dead-centre over the 2000 and 2005 bars, covering their tips and value labels; at seg2:end the values 475.6 / 679.5 / 863.3 / 1016 / 1067 are rendered in dark grey inside the pink fills and are barely legible, and the headline claim 'nearly tripled' is never shown as a tripling - just five bars that get longer. The caption 'climbing? Health spending' also collides with the source line at the panel's bottom edge.",
+  "root_cause": "The mascot is anchored to the chart's centre rather than to a free margin, and the bar-race template reuses in-bar value labels with insufficient contrast; the scene plan gives the beat no comparative device for the 3x multiple.",
+  "repair_goal": "Move Data out of the bar track (right margin / lower third, below the last bar) so no bar tip or value label is covered, raise value-label contrast to white-on-pink or place labels outside the bar ends, and stage the tripling explicitly - e.g. hold the 2000 bar as a ghost and stack three copies of it against the 2018 bar so $476 -> $1,317 is demonstrated, not just labelled."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "pull_down_win"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "catch_fall"
+  }
+ ]
+}

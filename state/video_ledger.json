@@ -3522,6 +3522,82 @@
      "detail": "Are you registered as an organ donor? Tell me below."
     }
    ]
+  },
+  {
+   "slug": "moon-drifting-away",
+   "directed_at": "2026-08-25",
+   "video_id": null,
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "Every total eclipse you'll ever see is numbered.",
+   "words_first_10s": 24,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:earth-moon-tape-stretch",
+    "mechanic:tidal-drag-orbit-widen",
+    "mechanic:eclipse-deep-time-ruler"
+   ],
+   "ending_type": "consequence",
+   "franchise": "3 Charts",
+   "notes": "no prior analytics; bet is a literal measuring-tape stretch for the drift, twin orbit diagrams for the tidal mechanism, then a deep-time ruler sliding the eclipse disc off into 600M years for the payoff -- all Earth/Moon/Sun imagery, never a bare number.",
+   "timeline": []
+  },
+  {
+   "slug": "cesarean-rate-surge",
+   "directed_at": "2026-08-25",
+   "video_id": null,
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "One surgery quietly became a coin flip at birth.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:bassinet-row-surgical-fill",
+    "mechanic:hospital-corridor-fork",
+    "viz:geo_us"
+   ],
+   "ending_type": "consequence",
+   "franchise": "3 Charts",
+   "notes": "no prior analytics; bassinet row makes the rate concrete as a fraction of real babies, corridor-fork dramatizes the VBAC lock-in mechanism, geo_us map lands the state-level proof visually instead of a table.",
+   "timeline": []
+  },
+  {
+   "slug": "seabed-mining-rush",
+   "directed_at": "2026-08-25",
+   "video_id": null,
+   "topic_category": "records",
+   "hook_type": "shock_stat",
+   "hook_text": "There's a gold rush happening 4 kilometers underwater.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:seafloor-claim-flags-plant",
+    "mechanic:nodule-pile-vs-landpile",
+    "mechanic:world-pause-flag-spread"
+   ],
+   "ending_type": "question",
+   "franchise": "3 Charts",
+   "notes": "no prior analytics; claim flags planting across a seafloor for the rush, twin nodule mounds for the cobalt mismatch, world map lighting up with pause flags for the unresolved rulebook -- escalating tension across all three beats.",
+   "timeline": []
+  },
+  {
+   "slug": "mail-volume-collapse",
+   "directed_at": "2026-08-25",
+   "video_id": null,
+   "topic_category": "records",
+   "hook_type": "shock_stat",
+   "hook_text": "Your mailbox is being quietly replaced.",
+   "words_first_10s": 17,
+   "scene_changes_before_5s": 3,
+   "depictions": [
+    "mechanic:mailbox-envelope-drain",
+    "mechanic:delivery-truck-box-stack-grow",
+    "mechanic:letter-stack-thin-shrink"
+   ],
+   "ending_type": "consequence",
+   "franchise": "3 Charts",
+   "notes": "no prior analytics; mailbox draining for the collapse, twin truck box-stacks for the package pivot, thinning letter stack at the mail slot for the catch -- same physical object (mail) staged three different ways.",
+   "timeline": []
   }
  ]
 }

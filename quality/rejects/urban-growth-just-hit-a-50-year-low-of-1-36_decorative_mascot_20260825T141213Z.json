@@ -1,0 +1,41 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260825T141213Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the identical arms-out hover pose beside the leading bar at seg0:mid (t=4.82s), seg1:start (14.05s), seg1:end (26.74s) and seg2:mid (52.28s), then simply stands still on the plot at seg3:mid (79.86s) and seg4:end (94.82s) \u2014 no setup, action or payoff tied to any stat.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "Across seg2:start (40.08s), seg2:mid (52.28s) and seg2:end (64.48s) Data hovers in the same arms-out pose at the tip of the 1972 bar and drifts right without doing anything; at seg2:end he also overlaps the 1972/1983 bars, whose labels read as raw unformatted digits '2420179648' and '2783042387' crammed inside the bars, while the subtitle still says '1972 PULLS AHEAD' even though the 2014 bar is visibly the longest.",
+  "root_cause": "The mascot is parked on the leader-bar with a generic hover loop instead of an authored per-beat performance, and the rural bar labels print raw integers with a stale 'PULLS AHEAD' subtitle inherited from the bar-race template.",
+  "repair_goal": "Give Data a real setup\u2192action\u2192payoff on this beat \u2014 e.g. he shoves/props up the shrinking rural bar and gets pushed back as the later bars overtake it \u2014 move him off the bar labels, format the values as 2.42B \u2192 3.46B, and fix the subtitle so it names the actual movement."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "catch_fall"
+  }
+ ]
+}
