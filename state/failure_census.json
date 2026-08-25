@@ -2,134 +2,80 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 15,
+   "count": 7,
    "stories": {
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 1,
-    "fish-catch-has-barely-grown-since-1993-with-94403126-metric-": 2,
-    "global-health-spending-exceeds-1300-per-person": 2,
-    "cereal-production-is-1-5x-higher-than-in-1972": 2,
-    "foreign-aid-never-broke-0-32-of-health-spending": 5,
-    "the-world-has-less-land-than-it-did-in-2013": 3
+    "the-world-has-less-land-than-it-did-in-2013": 2,
+    "world-renewable-power-was-still-only-19-7-after-two-decades": 2,
+    "urban-growth-just-hit-a-50-year-low-of-1-36": 2,
+    "global-health-spending-exceeds-1300-per-person": 1
    },
    "timestamps": [
-    "2026-08-24T10:16:33+00:00",
-    "2026-08-24T10:24:05+00:00",
-    "2026-08-24T10:32:17+00:00",
-    "2026-08-24T10:40:57+00:00",
-    "2026-08-24T10:49:10+00:00",
-    "2026-08-24T11:02:22+00:00",
-    "2026-08-24T11:12:39+00:00",
-    "2026-08-24T18:09:18+00:00",
-    "2026-08-24T18:09:18+00:00",
-    "2026-08-24T18:21:19+00:00",
-    "2026-08-24T18:21:19+00:00",
-    "2026-08-24T18:31:55+00:00",
-    "2026-08-24T18:42:40+00:00",
-    "2026-08-24T18:53:35+00:00",
-    "2026-08-24T19:04:27+00:00"
+    "2026-08-24T23:03:50+00:00",
+    "2026-08-24T23:21:22+00:00",
+    "2026-08-24T23:31:23+00:00",
+    "2026-08-24T23:48:34+00:00",
+    "2026-08-25T13:39:33+00:00",
+    "2026-08-25T13:56:12+00:00",
+    "2026-08-25T14:12:00+00:00"
    ],
    "examples": [
-    "decorative_mascot: From hook@0.3 to payoff@-0.4 Data holds the same arms-out lean and simply slides along the left/top of the chart \u2014 at seg1:mid, seg2:mid and seg4:mid he is in the identical pose ove",
-    "decorative_mascot: Data drifts across the bars in an identical standing/striding sticker pose from hook@0.3 to seg2:end and merely leans on the 2013 bubble at seg3:mid\u2013payoff@-0.4 \u2014 no setup->action->",
-    "decorative_mascot: From seg3:start (t=26.52) to payoff@-0.4 (t=39.40) Data is parked on the same 2013 bubble doing a generic lean/kick, and in seg0-seg1 he merely slides alongside the bars (seg1:mid t"
+    "decorative_mascot: From hook@0.3 to seg1:end (t=0.3-24.0s, roughly the first 40% of the video) Data holds the same arms-out standing pose and merely drifts across the bar stack (hook@1.5, seg0:mid, se",
+    "decorative_mascot: Data hovers in the same mid-right spot with identical arm-out pose across seg0:start, seg1:mid, seg2:end and seg3:mid \u2014 he never sets up or pays off any bit tied to a stat; at seg3:",
+    "decorative_mascot: Data holds the same walking/reaching pose and merely slides along the bar tip or line \u2014 identical silhouette at hook@0.3, seg0:mid, seg1:end, seg2:start, seg2:end, seg3:mid and payo"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 8,
+   "count": 5,
    "stories": {
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 1,
-    "fish-catch-has-barely-grown-since-1993-with-94403126-metric-": 2,
-    "global-health-spending-exceeds-1300-per-person": 1,
-    "subway_was_america_s_sandwich_king__chip": 1,
-    "foreign-aid-never-broke-0-32-of-health-spending": 1,
-    "the-world-has-less-land-than-it-did-in-2013": 2
+    "the-world-has-less-land-than-it-did-in-2013": 1,
+    "dubai_s_airport_quietly_buried_heathrow": 1,
+    "msc_just_ended_maersk_s_25_year_reign": 1,
+    "pakistan_quietly_passed_brazil_in_popula": 1,
+    "the_sign_said_beat_any_price__so_i_did_": 1
    },
    "timestamps": [
-    "2026-08-24T10:16:33+00:00",
-    "2026-08-24T10:24:05+00:00",
-    "2026-08-24T10:32:17+00:00",
-    "2026-08-24T10:49:10+00:00",
-    "2026-08-24T12:14:31+00:00",
-    "2026-08-24T18:31:55+00:00",
-    "2026-08-24T18:42:40+00:00",
-    "2026-08-24T19:04:27+00:00"
+    "2026-08-24T23:21:22+00:00",
+    "2026-08-25T14:30:49+00:00",
+    "2026-08-25T14:32:37+00:00",
+    "2026-08-25T14:34:25+00:00",
+    "2026-08-25T14:40:46+00:00"
    ],
    "examples": [
-    "empty_void: seg2:start (40.1s) is an almost entirely dark panel with five tiny valueless dots and a wholly empty lower half; seg3:start\u2013seg4:end keep that bottom third dead.",
-    "empty_void: seg3:start and seg3:mid leave the entire upper third below the title empty and the lower quarter empty, with five small circles floating in dark navy; seg2:end also leaves a wide empty ban",
-    "empty_void: seg3:start (t=26.52) leaves the entire upper third and lower third of the panel dead navy with five pinhead dots floating mid-frame; still hollow at seg3:mid (t=29.23) where the bottom ~40"
-   ],
-   "recurred_after_fix": false
-  },
-  "bare_number": {
-   "count": 4,
-   "stories": {
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 1,
-    "fish-catch-has-barely-grown-since-1993-with-94403126-metric-": 1,
-    "global-health-spending-exceeds-1300-per-person": 1,
-    "foreign-aid-never-broke-0-32-of-health-spending": 1
-   },
-   "timestamps": [
-    "2026-08-24T10:16:33+00:00",
-    "2026-08-24T10:24:05+00:00",
-    "2026-08-24T10:49:10+00:00",
-    "2026-08-24T18:31:55+00:00"
-   ],
-   "examples": [
-    "bare_number_card: seg2:mid and seg2:end are five plain purple circles with '2.6 / 2.8 / 2.2 / 2.3 / 2.1' typed inside them on a flat background \u2014 the circles are all the same size, so the number is th",
-    "bare_number_card: seg3:end and seg4:start present 11.1 / 12.1 / 14.1 / 14.8 / 14.9 as numbers inside plain pink circles whose diameters barely differ, so the shape demonstrates nothing the digits don'",
-    "bare_number_card: seg3:mid/seg3:end present $475.6\u2192$1,067 as numerals inside plain pink blobs whose areas barely differ (863.3 vs 1016 read as the same size), and the numerals overflow the blob edges "
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 3,
-   "stories": {
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 1,
-    "lunch_thief_finally_picked_the_wrong_san": 1,
-    "foreign-aid-never-broke-0-32-of-health-spending": 1
-   },
-   "timestamps": [
-    "2026-08-24T10:16:33+00:00",
-    "2026-08-24T12:24:40+00:00",
-    "2026-08-24T18:21:19+00:00"
-   ],
-   "examples": [
-    "dead_air: seg3:mid (79.9s) through payoff@-0.4 (95.6s) are the same frozen bubble layout with the same values; only the caption line swaps, so roughly 16s of a 96s video repeats one identical beat.",
-    "dead_air: mid3 (t=32.32s) and mid4 (t=42.26s) carry the IDENTICAL crying-woman still in the top panel \u2014 the story-illustration channel is frozen across a ~10s stretch while narration advances.",
-    "dead_air: seg3:end (t=43.87) and seg4:start/mid/end (t=49.03-56.55) are the same five-bubble frame with identical numbers \u2014 the chart is frozen for ~14s while only a text box is added; the beats are d"
+    "empty_void: seg3:start/seg3:mid leave the entire top half (y\u2248150\u2013380) blank navy above the flat 20.8 line, and the bar-race frames (seg2:start) leave wide empty gutters right of every unfilled track.",
+    "empty_void: hook@0.3 and hook@0.8 are almost entirely black \u2014 one ~1cm red stub near the top-left is the only mark in the plot area, gridlines invisible, and the whole lower two-thirds of the frame is",
+    "empty_void: hook@0.3 and hook@0.8 are ~90% black \u2014 two ~1cm line stubs pinned to the top-left with the entire 0\u20132.5M plot region empty; that lower ~60% of the plot stays dead black through mid5 (t=12."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
    "count": 1,
    "stories": {
-    "subway_was_america_s_sandwich_king__chip": 1
+    "the_sign_said_beat_any_price__so_i_did_": 1
    },
    "timestamps": [
-    "2026-08-24T12:14:31+00:00"
+    "2026-08-25T14:40:46+00:00"
    ],
    "examples": [
-    "junk_imagery: Every 'Chipotle' series marker is a QDOBA logo \u2014 wrong restaurant brand \u2014 from hook@0.3 through payoff@-0.4 ('Chipotle 11.3B' pinned to a QDOBA badge)."
+    "junk_imagery: mid5/payoff@-1.8/payoff@-0.4 hold a German-language decorative wall plaque reading 'Auf ist, wenn auf ist.' over an English price-match story, and mid2 is a blank black ECCO monitor scre"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 1,
-   "min": 1,
-   "max": 3
-  },
-  "data_demo": {
    "median": 2,
    "min": 1,
+   "max": 2
+  },
+  "data_demo": {
+   "median": 3,
+   "min": 2,
    "max": 4
   },
   "mascot": {
-   "median": 1,
-   "min": 0,
+   "median": 2,
+   "min": 1,
    "max": 4
   },
   "craft": {
@@ -144,7 +90,7 @@
   },
   "payoff": {
    "median": 1,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "temporal_craft": {
@@ -154,25 +100,25 @@
   }
  },
  "scores": [
-  26,
+  61,
   43,
   52,
+  52,
   43,
+  53,
+  52,
+  48,
+  57,
   39,
   43,
-  39,
-  78,
-  82,
+  61,
+  61,
+  74,
+  69,
+  65,
   70,
-  75,
-  83,
-  75,
-  44,
-  39,
-  43,
-  44,
-  43,
-  39,
-  52
+  74,
+  66,
+  56
  ]
 }
