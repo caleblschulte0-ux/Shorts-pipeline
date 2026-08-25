@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260824",
+  "updated": "20260825",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -760,10 +760,17 @@
       "history": []
     },
     "03ed6ae9f195": {
-      "verdict": "doing",
-      "date": "20260824",
-      "because": "Confirmed live: no shell: in auto-merge.yml so the default bash -e (no pipefail) let 'unittest | tail -40' return tail's zero. Fixing in this session: pipefail on the step + tests/test_automerge_gate.py executes a failing producer through the exact pipe shape.",
-      "history": []
+      "verdict": "done",
+      "date": "20260825",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260824",
+          "because": "Confirmed live: no shell: in auto-merge.yml so the default bash -e (no pipefail) let 'unittest | tail -40' return tail's zero. Fixing in this session: pipefail on the step + tests/test_automerge_gate.py executes a failing producer through the exact pipe shape."
+        }
+      ],
+      "commit": "668d03f4edecbc032aa7ac70e83899df6837c365"
     },
     "abfb291b5f65": {
       "verdict": "doing",
@@ -790,6 +797,43 @@
       "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
       "history": [],
       "revisit_after": "20260923"
+    },
+    "2fc5cbb21cca": {
+      "verdict": "in_progress",
+      "date": "20260825",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260825",
+          "because": "Confirmed live: Actions history shows zero daily.yml runs (workflow_run or otherwise) for 2026-08-23 despite exchange_phase_b run 32643778540 (schedule trigger) completing successfully and writing exchange/bundles/20260823/phase_b_report.json, and a second candidate run 32646462573 also completing successfully. Relying solely on the implicit workflow_run event with no verification that GitHub actually dispatched a downstream run is the root cause of a silent zero-render day. Building now: making a real (non-skipped) Phase B apply explicitly dispatch Daily Shorts and verify the dispatch was accepted, failing loudly if not, while keeping workflow_run as an idempotent fallback."
+        }
+      ]
+    },
+    "47afe3adb739": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Verified in shared/camera_float.py: FLOAT_A was retuned 20->44 on 2026-08-16 (crop cost 44px/8.1% per side, not the 20px/1.9% both that file's docstring and engines/chart_race.py line 827 still claim), while engines/chart_race.py still fits titles/axes to the old margin. The math checks out (crop.x ranges 0..88 against content laid out for a ~43px margin) and matches the cited showrunner clipping verdicts. Real bug, but not this run's build \u2014 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds exactly one item. Queued for the next doctor build; the fix is small (recompute the title/axis safe box from camera_float's actual worst-case inset, or refresh the stale comments) and should not require lowering the float amplitude.",
+      "history": []
+    },
+    "8d1b5d1e1f69": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Verified in scripts/editorial_gate.py: pre_render_verdict() (lines 189-197) combines only data_provenance() (per-segment source check) and premise_ok() (title+hook only) -- there genuinely is no check that segments cohere with the headline or with each other, confirming the gap. This is a real feature (a coherence gate + intake-side rejection), not a quick fix, and is queued rather than built this run since 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds one item. Whoever picks this up next should design it as an addition ON TOP of the existing two checks, never replacing them, and keep the refusal-list rule that a weak/incoherent story goes back through authoring rather than spending renders on repair.",
+      "history": []
+    },
+    "9d5a03472328": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Spot-checked state/analytics/latest.json directly: filtering videos by the cited rivalry/crossover cue words reproduces the finding's named examples (Switch Buried the PS5 at 0.19 VPH, Starlink Outnumbers at 0.13, Lottery Mega Millions vs Powerball at 0.11) and the general pattern of higher velocity on explicit-rivalry titles. Proposal only changes title wording on stories where the data already contains a genuine crossover, keeps the registered mix/cadence untouched, and stays inside the refusal list. Note for whoever builds it: fetched_at in that file is 2026-08-13 -- pull a fresh analytics snapshot before running the actual ten-video test so the control group is current.",
+      "history": []
+    },
+    "9f547a4372a9": {
+      "verdict": "later",
+      "date": "20260825",
+      "because": "Verified: make_graph_race.py's audit.json (lines ~77-82) writes only out/format/engine/series and swallows every write error with a bare except/pass, matching the finding. The direction is right and worth building eventually, but a versioned render-manifest contract spanning three renderer families plus the showrunner/repair loop is a multi-session design effort, not a single build -- it needs a scoped design (element ID scheme, what claims/bounds each renderer can cheaply emit, migration order) before implementation starts. Parking 30 days; revisit starting with graph-race labels only, the narrowest slice named in the proposal, once 2fc5cbb21cca and the higher-severity items in this backlog are clear.",
+      "history": [],
+      "revisit_after": "20260924"
     }
   }
 }

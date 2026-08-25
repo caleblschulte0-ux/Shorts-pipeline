@@ -36,6 +36,16 @@ on:
   # scripts and media. workflow_run (not push) because Phase B commits with
   # GITHUB_TOKEN and GitHub blocks those pushes from firing other workflows.
   # run_trending_daily's 6-hour dedupe guard makes a double-fire a safe no-op.
+  #
+  # THIS TRIGGER IS A FALLBACK, NOT THE ONLY ROUTE (2026-08-25, doctor
+  # finding 2fc5cbb21cca). On 2026-08-23 exchange_phase_b.yml completed a
+  # real, non-skipped apply and this workflow_run event never fired at all —
+  # zero daily.yml runs that day, not even a skipped one. Phase B's own
+  # "Hand off to render" step now explicitly dispatches this workflow
+  # (workflow_dispatch) the moment a real apply commits, and fails its own
+  # job loudly if GitHub does not accept that dispatch. Keep this
+  # workflow_run trigger wired anyway — it is still a legitimate second path
+  # in, and the phase_b_report.json preflight below makes either route safe.
   workflow_run:
     workflows:
       - "Exchange Phase B (consume ChatGPT, self-fill, ready to render)"
