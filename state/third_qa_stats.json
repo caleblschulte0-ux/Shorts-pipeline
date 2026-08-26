@@ -3,158 +3,6 @@
     {
       "date": "20260801",
       "dry_run": false,
-      "ts": "2026-08-01T13:14:53+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 112,
-        "with_retention": 102,
-        "with_curve": 15,
-        "fetched_at": "2026-08-01T10:16:28.138557+00:00"
-      },
-      "brain": {
-        "ok": 27,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260801-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.7 (repetitive gameplay bit, no clear payoff)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague, unclear conflict",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "repetitive gameplay bit, no clear payoff",
-              "floor": 0.7,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 85.7
-        },
-        {
-          "slug": "clip-20260801-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260801-3",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.55 < 0.7 (genuine laughing reaction, unclear story)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "unclear, no stated conflict",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "genuine laughing reaction, unclear story",
-              "floor": 0.7,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 98.1
-        },
-        {
-          "slug": "clip-20260801-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.7 (just plans stream, no payoff)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague crossover title, unclear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.15,
-              "why": "just plans stream, no payoff",
-              "floor": 0.7,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 48.5
-        }
-      ]
-    },
-    {
-      "date": "20260801",
-      "dry_run": false,
       "ts": "2026-08-01T14:01:51+00:00",
       "feedback": {
         "snapshot": true,
@@ -6992,6 +6840,284 @@
             }
           },
           "took_s": 984.5
+        }
+      ]
+    },
+    {
+      "date": "20260826",
+      "dry_run": false,
+      "ts": "2026-08-26T12:57:27+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 100,
+        "with_retention": 76,
+        "with_curve": 15,
+        "fetched_at": "2026-08-26T09:12:17.268632+00:00"
+      },
+      "brain": {
+        "ok": 46,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:lospollostv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260826-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reversal, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "cute dog gag, low stakes",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Alinity Swaps Places And Makes Someone Else The Streamer"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 154.9
+        },
+        {
+          "slug": "clip-20260826-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (static gameplay walk, no visible chase)",
+          "judges": {
+            "banger": {
+              "score": 0.8,
+              "why": "caught with peace, visible drama",
+              "blind": false
+            },
+            "content": {
+              "score": 0.25,
+              "why": "static gameplay walk, no visible chase",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 59.1
+        },
+        {
+          "slug": "clip-20260826-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (spilled drink, no clear payoff)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "spilled drink, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 92.9
+        },
+        {
+          "slug": "clip-20260826-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "kaicenat/kaicenat-call-cenat-2026w34",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "no title, no info",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "roast about backup plan, chat reacts har",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Deshaefrost Reveals Her Wild Backup Plan If Streaming Fails \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.78,
+              "problems": []
+            }
+          },
+          "took_s": 1101.4
+        },
+        {
+          "slug": "clip-20260826-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (routine gameplay walk, no event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "routine gameplay walk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 78.3
+        },
+        {
+          "slug": "clip-20260826-6",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible knockout, real payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.85,
+              "why": "real knockout, streamer's shocked reacti",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Can't Believe This Knockout Just Happened"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 444.7
         }
       ]
     }

@@ -5166,14 +5166,27 @@
       "ts": "2026-08-26T12:50:02.517918+00:00"
     },
     "clip-20260826-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/HungryVibrantNewtItsBoshyTime-OrZDvvPD74UFfJCJ",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/mtol7rC9poQ",
       "title": "Stableronaldo Can't Believe This Knockout Just Happened",
       "kind": "twitch_clip",
-      "ts": "2026-08-26T12:57:23.776452+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-26T12:57:27.245549+00:00",
+      "uploaded_at": "2026-08-26T12:57:27.245570+00:00",
+      "publish_at": "2026-08-27T00:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HungryVibrantNewtItsBoshyTime-OrZDvvPD74UFfJCJ",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "HE GOT KNOCKED OUT COLD",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 1521,
+      "banger": 0.65,
+      "cut": {
+        "start": 21.5,
+        "end": 53.7
+      },
+      "director_cut": true
     }
   }
 }
