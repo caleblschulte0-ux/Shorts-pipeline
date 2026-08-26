@@ -1113,6 +1113,69 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-25"
+    },
+    "stableronaldo-about-camera-2026w35": {
+      "event_id": "stableronaldo-about-camera-2026w35",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "about",
+        "camera",
+        "close",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-26",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/StormyAmusedCroissantHumbleLife-MvC9Aef9KQNqXDNS",
+        "https://www.twitch.tv/stableronaldo/clip/MuddyFunYogurtNotLikeThis-DcYP3WDYjhOvsMKE"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-26"
+    },
+    "stableronaldo-call-charact-2026w34": {
+      "event_id": "stableronaldo-call-charact-2026w34",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "call",
+        "charact",
+        "chop",
+        "someone"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-26",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/PiliableBombasticMuleJKanStyle-DGiVm3sRW7iuiJiF",
+        "https://www.twitch.tv/stableronaldo/clip/LongClearAirGuitarTebowing-eaThKvIacFCA-IBx"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-26"
+    },
+    "kaicenat-call-cenat-2026w34": {
+      "event_id": "kaicenat-call-cenat-2026w34",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "call",
+        "cenat",
+        "chain",
+        "fake"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-26",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/AttractiveEsteemedNikudonPartyTime-BffiYx-OsOxSdSTN",
+        "https://www.twitch.tv/kaicenat/clip/NurturingColorfulCrabsPeanutButterJellyTime-pKpKnJYyLC31iwYb"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-26"
     }
   }
 }
