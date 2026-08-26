@@ -6,12 +6,47 @@
   "y_label": "Fertility rate (births per woman)",
   "duration": 13,
   "source": "UN World Population Prospects / World Bank fertility-rate series for Japan and South Korea, 1995-2023. Approximate, order-of-magnitude figures; South Korea's rate fell below Japan's around the early 2000s and has kept declining to the lowest fertility rate of any country on record by 2023.",
-  "years": [1995, 1999, 2003, 2007, 2011, 2015, 2019, 2023],
+  "years": [
+    1995,
+    1999,
+    2003,
+    2007,
+    2011,
+    2015,
+    2019,
+    2023
+  ],
   "series": [
-    {"name": "Japan", "color": "#4a90e2", "icon": "JP",
-     "values": [1.42, 1.34, 1.29, 1.34, 1.39, 1.45, 1.36, 1.20]},
-    {"name": "South Korea", "color": "#e74c3c", "icon": "KR",
-     "values": [1.65, 1.42, 1.19, 1.25, 1.24, 1.24, 0.92, 0.72]}
+    {
+      "name": "Japan",
+      "color": "#4a90e2",
+      "icon": "JP",
+      "values": [
+        1.42,
+        1.34,
+        1.29,
+        1.34,
+        1.39,
+        1.45,
+        1.36,
+        1.2
+      ]
+    },
+    {
+      "name": "South Korea",
+      "color": "#e74c3c",
+      "icon": "KR",
+      "values": [
+        1.65,
+        1.42,
+        1.19,
+        1.25,
+        1.24,
+        1.24,
+        0.92,
+        0.72
+      ]
+    }
   ],
   "hashtags": [
     "southkorea",
