@@ -1,0 +1,41 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260826T142258Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:mid and seg1:end show Data simply standing/hovering beside the bars with no bit; at seg2:mid, seg3:end and seg4:end he is parked next to the line doing nothing but idle \u2014 no setup->action->payoff anywhere.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "repeated_layout_unreadable_data",
+  "visible_evidence": "seg1:start/mid/end reuse seg0's exact bar-race layout and the same stale '1972 PULLS AHEAD' kicker, only the title text changes; at seg1:end the bar labels read as raw 10-digit strings '2420179648', '2783042387', '3131290264' with no separators or units, and the mascot hangs motionless at the right edge overlapping the 1972 bar.",
+  "root_cause": "The rural-population beat is rendered by the same generic bar-race template as the 65+ beat with no value formatting (no thousands separators / no billions scaling) and no per-scene subtitle refresh, so the second data point looks like a re-run of the first and its numbers are illegible at phone size.",
+  "repair_goal": "Differentiate seg1 visually from seg0 and make its magnitude readable: format the values as '2.42B / 2.78B / 3.13B / 3.32B / 3.39B' (or use a filling/stacking metaphor rather than the same horizontal bars), update the kicker to state what seg1 actually shows, and give Data a real bit tied to the stat \u2014 e.g. he climbs onto the growing 2025 bar and gets barely lifted, showing the rural line has flattened."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "catch_fall"
+  }
+ ]
+}
