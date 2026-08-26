@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260825",
+  "updated": "20260826",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -834,6 +834,42 @@
       "because": "Verified: make_graph_race.py's audit.json (lines ~77-82) writes only out/format/engine/series and swallows every write error with a bare except/pass, matching the finding. The direction is right and worth building eventually, but a versioned render-manifest contract spanning three renderer families plus the showrunner/repair loop is a multi-session design effort, not a single build -- it needs a scoped design (element ID scheme, what claims/bounds each renderer can cheaply emit, migration order) before implementation starts. Parking 30 days; revisit starting with graph-race labels only, the narrowest slice named in the proposal, once 2fc5cbb21cca and the higher-severity items in this backlog are clear.",
       "history": [],
       "revisit_after": "20260924"
+    },
+    "7414ad03de3e": {
+      "verdict": "in_progress",
+      "date": "20260826",
+      "because": "picked up this run",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260826",
+          "because": "Verified in scripts/exchange_phase_b.py fetch_media(): the disk-cache check (lines 138-141) returns any non-empty cache/exchange/<request_id> file before entry.status/drive/sha are inspected, and request_key/authored_shot_request_id (shared/exchange_bundle.py, shared/media_checkpoint.py) omit the date, so a stale file from an earlier day satisfies today's lookup while pin_verified_media still stamps the CURRENT entry's Drive URL/hash onto the package as if it verified. Real correctness bug in the media-trust chain, in scope to fix now."
+        }
+      ]
+    },
+    "7f087a105388": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Verified: scripts/exchange_phase_a.py _PACKAGE_MARKERS (script/text/series/shots/subreddit/broll_query/segments) does not include source_url, while config/channel_registry.json revision 5 defines third's active clip format by source_url presence with required_fields [slug, source_url], and a real recipe on disk (state/third_packages/20260707/11_clip.json) carries none of the current markers. is_package() silently drops every genuine Third package. Small, scoped fix.",
+      "history": []
+    },
+    "34e98321286f": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Verified: scripts/exchange_phase_b.py already computes authored['other_channels'] (line ~630) and collects _recovered_refused/_auth_refused (checkpoint recovery), but the final report dict (line ~723) reconstructs 'authored' from only promoted/rejected counts and never persists other_channels or the recovery refusal detail into report/report['checkpoints']. The durable audit record silently omits real structured outcomes it already has in hand. Scoped fix: wire the existing data into the report schema.",
+      "history": []
+    },
+    "363113a0188b": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Confirmed architecturally: every Phase B run overwrites the same exchange/bundles/<date>/phase_b_report.json via atomic_write_json, so a later repair erases the record of an earlier refusal/self-fill/partial promotion, and nothing but git history can recover it. Real long-term gap worth an append-only attempt-history design, but it's a bigger schema change (new artifact shape, retro/alarm consumers) than one session should rush alongside the higher-ranked bug fixes above -- leaving it in the backlog for a dedicated session rather than building it this run.",
+      "history": []
+    },
+    "0aa9d12e55a8": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Evidence is real and checkable (state/analytics_third/latest.json: YT_SEARCH=2977 vs SHORTS=264, named search terms tied to specific low/high performers) and the proposal is appropriately bounded (title-only, no cadence/selection change, matched control arm). Accepting the direction; the actual 24-clip experiment runs over multiple days of production and is an editorial/authoring change to third_capture/author.py + docs/THIRD_INTERNET_PLAYBOOK.md titling guidance, not a same-session code fix.",
+      "history": []
     }
   }
 }
