@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260825",
+  "updated": "20260826",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -1306,6 +1306,88 @@
       "signature": "9d5a03472328",
       "last_seen": "20260825",
       "first_seen": "20260825"
+    },
+    "7414ad03de3e": {
+      "title": "Phase B cache hits bypass current Drive-byte verification",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/media-cache-attestation",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/exchange_bundle.py",
+        "shared/media_checkpoint.py"
+      ],
+      "observation": "fetch_media returns the first non-empty cache/exchange/<request_id> file before it inspects the current response entry, claimed SHA-256, format, pixel decode, or Drive bytes. Bundle request IDs are content-addressed from slug, shot index, and prompt but intentionally omit the production date, so an identical ask on a later date reuses the same cache path; authored-shot IDs are even broader, using only normalized package slug and shot index. After this early return, pin_verified_media writes the current response entry's Drive URL and hash into the package. The old cache file is therefore used as proof that a different current Drive object verified, even though the current object was never downloaded. Checkpoint agreement does not close this gap because it proves that the response and checkpoint make the same claim, not that the mutable Drive object still contains those bytes at Phase B time.",
+      "proposal": "Make every cache hit pass the same attestation as a download. Key cached files by date plus claimed SHA-256, or store a sidecar containing request ID, date, file ID, byte count, format, dimensions, and SHA-256; on lookup, hash and decode the cached bytes and require exact agreement with the current pointer before returning. If any field differs, discard only that cache candidate and fetch the current Drive object. Add tests for an identical request ID on two dates with different file IDs/hashes, a corrupt non-empty cache file, and a Drive object whose bytes no longer match its checkpoint claim.",
+      "evidence": "scripts/exchange_phase_b.py fetch_media checks MEDIA_CACHE/<request_id>.<ext> and returns any non-empty file before reading entry.status, drive.file_id, or image.sha256; its download branch performs SHA-256, HTML, decode, and placeholder checks only after that early return. The same file's pin_verified_media then persists metadata from the current entry rather than the cached file. shared/exchange_bundle.py request_key hashes slug|shot_index|prompt without date, and shared/media_checkpoint.py authored_shot_request_id uses only package ID plus shot index. The cache is global at cache/exchange rather than date-scoped.",
+      "signature": "7414ad03de3e",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "7f087a105388": {
+      "title": "Phase A filters out every registry-shaped Third package",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "exchange/third-package-discovery",
+      "files": [
+        "scripts/exchange_phase_a.py",
+        "config/channel_registry.json"
+      ],
+      "observation": "Phase A explicitly accepts --channel third and maps it to state/third_packages, but its is_package predicate recognizes only script, text, series, shots, subreddit, broll_query, or segments. The live registry defines Third's active clip format by source_url presence and requires only slug plus source_url. A valid Third capture recipe can therefore be read successfully and still be logged as a non-package, leaving the Third branch with an empty slate even though canonical packages exist.",
+      "proposal": "Add source_url to the package markers and pin the contract with focused tests: a registry-valid {slug, source_url} Third package must load, report/config files must remain excluded, and a malformed source_url-free object must not count. Prefer deriving the test fixture from the registry's active clip required_fields so the detector cannot silently drift again.",
+      "evidence": "scripts/exchange_phase_a.py exposes third in PACKAGE_DIRS and the argparse channel choices, but _PACKAGE_MARKERS omits source_url and load_packages discards any object for which is_package is false. config/channel_registry.json revision 5 declares third.formats.clip.detect as source_url present and required_fields as slug and source_url. Repository search returned no source_url coverage around is_package.",
+      "signature": "7f087a105388",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "34e98321286f": {
+      "title": "Phase B's durable report omits cross-channel and recovery outcomes",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "exchange/phase-b-audit-completeness",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/media_checkpoint.py"
+      ],
+      "observation": "Phase B computes applied/rejected results for explainer and curiosity and stores them temporarily under authored['other_channels'], but the final report reconstructs authored with only trending promoted/rejected counts and drops that field. Checkpoints refused during recovered_media and recovered_authored_media are likewise printed to workflow logs but never added to report.checkpoints.rejected_detail or report.details. The durable phase_b_report can therefore claim a clean trending exchange while providing no record that another channel rewrite was rejected or that a recovery candidate failed its contract.",
+      "proposal": "Define and validate a complete phase_b_report schema before the report is considered ready to render. Persist per-channel applied/rejected counts and reasons, explicit-versus-recovered pointer origin, every recovered checkpoint refusal, and totals that reconcile to the bundle plus authored shots. Make the console output a rendering of that structure instead of a separate evidence channel, and add a test that deletes workflow logs and can still reconstruct every Phase B decision from the report alone.",
+      "evidence": "scripts/exchange_phase_b.py assigns authored['other_channels'] after ingest_explainer and ingest_curiosity, then builds report['authored'] from only len(authored.promoted) and len(authored.rejected). The _recovered_refused and _auth_refused loops emit warnings but do not append those problems to report; report.checkpoints is populated only from validate_response_media. shared/media_checkpoint.py recovered_media and recovered_authored_media deliberately expose refused_out, confirming these are structured outcomes available to persist rather than unstructured exceptions.",
+      "signature": "34e98321286f",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "363113a0188b": {
+      "title": "Repeated Phase B runs overwrite the exchange's only decision history",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/reconciliation-history",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "Phase B is intentionally repeatable through DONE-triggered, scheduled-backstop, and manual repair paths, but every application writes the same exchange/bundles/<date>/phase_b_report.json. A later successful repair atomically replaces the report that recorded an earlier refusal, self-fill, or partial promotion. The package files also represent only the latest state. Git history can sometimes recover the overwritten report, but it is not a first-class execution identity and is unavailable to runtime consumers such as the retro, alarm, and repair logic. This makes idempotent recovery operationally useful while making its causal history hard to audit.",
+      "proposal": "Introduce immutable Phase B attempt records under exchange/bundles/<date>/phase-b-runs/<run_identity>.json and keep phase_b_report.json as a validated latest pointer/summary. Bind each attempt to the bundle identity, response/DONE hashes, trigger kind, input checkpoint set, prior-attempt identity, output package hashes, and decision totals. Preserve idempotency by allowing a no-change attempt to reference the prior result without duplicating package writes, and teach retros/alarms to consume the ordered attempt chain.",
+      "evidence": "scripts/exchange_phase_b.py documents multiple entry modes (--backstop, --require-done, manual dry/run) and always writes xb.bundle_dir(date)/phase_b_report.json with atomic_write_json. shared/exchange_bundle.py exposes a single per-date directory and has no Phase B run-identity or append-only attempt primitive. The August 22-24 retro briefs read only one exchange summary per date, so they cannot distinguish the first application from a later repair using repository state alone.",
+      "signature": "363113a0188b",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "0aa9d12e55a8": {
+      "title": "Test concrete search-intent titles on Third clips",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/third-search-title-doctrine",
+      "files": [
+        "state/analytics_third/latest.json",
+        "docs/THIRD_INTERNET_PLAYBOOK.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "Third's current analytics show that discovery is search-led rather than Shorts-feed-led: YT_SEARCH accounts for 2,977 attributed views versus 264 from SHORTS, an 11.3-to-1 ratio. The leading search terms are concrete names and moments, including caternado, bad bitch boat, Kai Cenat bad bitch boat, Rayasianboy, Plaqueboymax, and Sodapoppin chiropractor. Several current low performers use vague pronoun-heavy titles such as 'can't believe what happened' or 'what she just did,' which preserve surprise but contribute little searchable context. The registered six-clip cadence and the existing story-arm/reliability experiments should remain unchanged while this metadata question is isolated.",
+      "proposal": "Run a bounded 24-mature-clip title experiment without changing selection, edit, cadence, or upload slots. For twelve eligible clips, require a truthful title containing the streamer plus the concrete searchable action, object, or named moment; use twelve matched controls under current title doctrine. Tag the arm in package/analytics metadata and compare 72-hour search views, total VPH, and retention so search gains cannot hide a weaker opening. Adopt the pattern only if search lift repeats without lowering retention or triggering sensational wording.",
+      "evidence": "state/analytics_third/latest.json fetched 2026-08-25 reports traffic_sources YT_SEARCH=2977 and SHORTS=264, and its search_terms are dominated by named streamers and specific moments. The same snapshot contains 96 public videos, enough for matched metadata analysis, while its story arm has only two mature examples and remains too thin for a format ruling. config/channel_registry.json revision 5 keeps Third at six clip packages per day, so this proposal changes title metadata only and does not overlap the active story-arm or cadence backlog.",
+      "signature": "0aa9d12e55a8",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
     }
   }
 }
