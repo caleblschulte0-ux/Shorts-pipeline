@@ -404,12 +404,25 @@ caleblschulte0-ux/Shorts-pipeline. The repository is the only shared
 memory. Never infer completion from conversation context.
 
 STEP 0 — RESOLVE THE FIRING
-Determine the current date and hour in America/Chicago, then select exactly
-one primary contract:
+Determine the current date and wall-clock hour with the IANA timezone
+America/Chicago, then select exactly one primary contract:
 
   * 22:00 through 05:59 -> execute section 1, Shorts Doctor.
   * 06:00 through 06:59 -> execute section 4, Media Worker.
   * 07:00 through 21:59 -> execute section 5, Finalizer.
+
+DO NOT convert from UTC with a hard-coded subtraction. America/Chicago is
+UTC-5 during daylight saving time (CDT) and UTC-6 during standard time
+(CST). Use the timezone name so the offset changes automatically. The
+2026-08-26 06:00 firing was misrouted to Doctor after a manual UTC-6
+conversion during CDT; this rule exists to prevent that exact recurrence.
+
+Before executing Doctor, perform one fail-closed sanity check: if the
+America/Chicago wall clock is 06:00 or later, Doctor is forbidden. At
+06:00-06:59 Media is the only permitted role; at 07:00 or later Finalizer
+is the only permitted role. If the clock cannot be resolved confidently,
+write no role-owned artifact and report the time-resolution failure instead
+of guessing.
 
 The wider Doctor window allows a delayed 11:00 PM firing to finish after
 midnight. The wider Finalizer window allows a delayed 7:00 AM firing to
