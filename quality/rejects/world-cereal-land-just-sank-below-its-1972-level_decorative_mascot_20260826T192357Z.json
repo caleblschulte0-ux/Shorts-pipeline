@@ -1,0 +1,37 @@
+{
+ "slug": "world-cereal-land-just-sank-below-its-1972-level",
+ "ts": "20260826T192357Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data is parked in the same spot hovering over the top two bar rows in hook@0.3, seg0:mid, seg1:start, seg1:mid, seg1:end and seg4:mid \u2014 only seg3:start/seg3:mid give him a real bit (a hoop tossed at the 2014 bar), so for most of the runtime he is a floating sticker, not a performe",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_contradicts_chart_and_occludes_frame",
+  "visible_evidence": "At seg4:start the yellow callout 'The land shrank. Somehow the grain didn't.' is pasted over the top of the chart and completely hides the 1972 row; at seg4:mid the 1972 bar is sliced in half ('554738' clipped) and Data is decapitated \u2014 payoff@-1.8, seg4:end and payoff@-0.4 show only his legs and coat hem below the bubble. Worse, the chart under the line is still growing: 1982 589,208,772 \u2192 2014 724,692,671, the largest bar on screen, while the narration claims a collapse. The 415,702,088 figure from the script is never drawn.",
+  "root_cause": "The closing callout is composited at a fixed top-of-frame position over the live chart layer with no reserved lane or bar-row offset, and the cereal series ends at its 2014 peak \u2014 the 2024 collapse value is absent from the rendered frames, so the final image asserts the opposite of the closing line.",
+  "repair_goal": "Extend the cereal series through 2024 so the final bar visibly retracts to 415,702,088 (the shrink should be the motion the payoff lands on), and reposition/resize the closing callout into clear space so it occludes neither the 1972 row nor Data's head \u2014 end on the mascot fully visible reacting to the bar pulling back."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}

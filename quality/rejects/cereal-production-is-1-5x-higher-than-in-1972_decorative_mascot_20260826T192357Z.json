@@ -1,0 +1,41 @@
+{
+ "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+ "ts": "20260826T192357Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data is perched on the tip of the top bar in the same lab-coat stance at hook@0.3, seg0:end, seg1:mid, seg2:mid and seg3:end \u2014 he slides along with the bar but never performs a setup->action->payoff tied to any stat.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "layout_occlusion_and_number_overflow",
+  "visible_evidence": "From seg4:start (46.29s) to payoff@-0.4 (52.13s) a closing balloon sits over the chart, clipping the 'Cereal production' title and the '1972 TOPS THE LIST' subhead and burying Data so only his legs show; the value labels are raw unformatted digit strings (1493231379, 2093026046) and '2822286...' runs off the right edge of the frame, while a duplicate source credit prints twice at the bottom.",
+  "root_cause": "The closing/CTA overlay is composited on top of the live seg3 chart instead of on its own cleared card, and the seg4 value labels bypass the unit formatting used earlier (seg3:mid renders '1644.1 million metric tons' correctly) so full-precision integers are laid out past the safe area.",
+  "repair_goal": "Give the closing its own composed frame: clear or dim the chart behind the balloon so the title is not sliced, keep Data fully visible and doing one final beat-tied action, format seg4 values in the same 'million metric tons' units used at seg3 so every label fits inside the safe area, and print the source credit once."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "race_sprint"
+  }
+ ]
+}

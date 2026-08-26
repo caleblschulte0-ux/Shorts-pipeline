@@ -1,0 +1,32 @@
+{
+ "slug": "population-growth-fell-54-since-1972",
+ "ts": "20260826T192357Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg2:end (t=0.3-29.6s, ~60% of runtime) Data holds the identical standing/leaning pose and merely slides along the leading bar tip (f02, f05, f07, f10, f12 are the same figure translated); only in seg3/seg4 does he grip the falling line and point at 0.9.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "non-demonstration",
+  "visible_evidence": "seg2:start/mid/end (t=22.2-29.6s, 'Population in the largest city'): the five bars read 18.2 / 17.7 / 17.2 / 16.2 / 15.8 and are visually the same length \u2014 at seg2:end the 1972 and 2014 bars differ by a few pixels, so the 'race' shows nothing happening. The caption 'city was 18.2' at seg2:start is also dim gray and clipped below the card edge, and Data just perches on the bar tips in the same pose as seg0/seg1.",
+  "root_cause": "A near-flat series (18.2% -> 16.2%, the script itself says 'barely moved') was rendered with the same full-scale bar-race template as the strongly-moving rural series, so the visual delta is below perception and there is no beat for the mascot to perform against.",
+  "repair_goal": "Make 'barely moved' the point instead of hiding it: hold both endpoint values on screen together on a zoomed/relative axis (or a fixed-width track), and give Data a real setup->action->payoff \u2014 he braces and hauls on the 2025 bar, it refuses to budge, he shrugs at a 2-point gap \u2014 so the flatness is demonstrated rather than raced. Also lift the caption inside the card so it is not clipped."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "pull_down_win"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "shoved_bar"
+  }
+ ]
+}
