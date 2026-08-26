@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd",
+  "safe_request_id": "reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4323b996bbb341154a7f43317bfbe6e7351c672cfbde10aed927a66dce859011",
+  "prompt_used": "An editorial illustration for a short-form video: law book open desk. It accompanies the narration: \"Federal fair-housing law makes disability modifications exempt\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1gjZZ0EAdoISoDS4kl7wbnpzCyk1t1reP",
+    "filename": "20260826__reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1gjZZ0EAdoISoDS4kl7wbnpzCyk1t1reP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "75eccc2c9b6cf3f85e0ee6bf329b36f31048ac36d60d8faead1683ea474e5593",
+    "bytes": 1145243,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:26.457Z",
+  "error": null,
+  "retryable": false
+}
