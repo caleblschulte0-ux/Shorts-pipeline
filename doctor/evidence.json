@@ -51,7 +51,7 @@
     ],
     "notes": [
       "explainer: 5/4 posted",
-      "doctor: findings current (20260825)"
+      "doctor: findings current (20260826)"
     ],
     "deferred": false
   },
@@ -2385,8 +2385,8 @@
     }
   ],
   "recent_commits": [
-    "2cc9fe4 2026-08-26 doctor: mark 7414ad03de3e done [skip ci]",
-    "532ab59 2026-08-26 exchange: phase A bundle for 20260826 [skip ci]"
+    "a25072f 2026-08-26 doctor: findings for 20260826",
+    "2ea3284 2026-08-26 exchange: phase A bundle for 20260826 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2487,32 +2487,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 96,
+      "videos": 100,
       "top_by_vph": [
         {
+          "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
+          "vph": 2.24,
+          "views": 33
+        },
+        {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 1.62,
+          "vph": 1.38,
           "views": 188
         },
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 1.2,
-          "views": 369
-        },
-        {
-          "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 0.96,
-          "views": 202
-        },
-        {
-          "title": "Silky Guapo Moment Turns Into Total Chaos",
-          "vph": 0.93,
-          "views": 80
+          "vph": 1.13,
+          "views": 370
         },
         {
           "title": "Agent00 Can't Believe What Happened To His Chair",
-          "vph": 0.85,
-          "views": 13
+          "vph": 0.92,
+          "views": 33
+        },
+        {
+          "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
+          "vph": 0.88,
+          "views": 202
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2540,6 +2540,13 @@
       "ruling": "in_progress"
     },
     {
+      "signature": "4754c87f0f7e",
+      "title": "Finished-video QA drops defects that continue through EOF",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "abfb291b5f65",
       "title": "Two explainer guardrail modules execute zero tests",
       "horizon": "small_fix",
@@ -2552,6 +2559,13 @@
       "horizon": "small_fix",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "0bf9780d6272",
+      "title": "Punch-up title and hook claims are not validated",
+      "horizon": "small_fix",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "33ccbcdc479b",
@@ -2580,6 +2594,13 @@
       "horizon": "short_term",
       "severity": "high",
       "ruling": "doing"
+    },
+    {
+      "signature": "3de32f29a8e4",
+      "title": "Cadence probe failures become neutral publish evidence",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
     },
     {
       "signature": "347e2440278c",
@@ -2622,6 +2643,13 @@
       "horizon": "strategy",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "90428377a85b",
+      "title": "Test a sub-40-second explainer cut without changing cadence",
+      "horizon": "strategy",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "34e98321286f",
@@ -2671,6 +2699,13 @@
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "4490f7560fed",
+      "title": "Quality gates need one versioned measurement contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "75af24a46374",

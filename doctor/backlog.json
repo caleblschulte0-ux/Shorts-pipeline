@@ -1388,6 +1388,109 @@
       "signature": "0aa9d12e55a8",
       "last_seen": "20260826",
       "first_seen": "20260826"
+    },
+    "4754c87f0f7e": {
+      "title": "Finished-video QA drops defects that continue through EOF",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "quality/video-qa-tail-spans",
+      "files": [
+        "shared/video_qa.py"
+      ],
+      "observation": "The ffmpeg span parser appends a black, freeze, or silence interval only when it sees the matching *_end token. If a defect begins near the end and continues through the final frame, ffmpeg can emit the start without an end, leaving the parser's local start value set when the loop exits. _collect_spans then returns without closing it. qa_report consequently reports a zero or understated fraction, and passes can approve a video whose entire payoff is black, frozen, or silent.",
+      "proposal": "Pass the probed media duration into _collect_spans and close any still-open start at duration, clamped to [0, duration]. Add focused fixtures for black_start, freeze_start, and silence_start without matching end tokens, plus a normal closed interval and malformed ordering. Keep passes fail-closed and make the new tests assert that a tail defect can cross the existing fraction thresholds and hold upload.",
+      "evidence": "shared/video_qa.py _collect_spans initializes spans and start, appends only in the `which == end and start is not None` branch, and returns spans without inspecting a remaining start. qa_report already knows the ffprobe duration but calls _collect_spans(err, kind) without it, then derives black_frac, freeze_frac, and silence_frac solely from those returned pairs. Repository test inventory in retro/20260825/brief.json contains no dedicated test_video_qa.py; test_clip_qa_fail_closed.py covers caller failure semantics rather than EOF span parsing.",
+      "signature": "4754c87f0f7e",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "0bf9780d6272": {
+      "title": "Punch-up title and hook claims are not validated",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "exchange/punchup-title-hook-claims",
+      "files": [
+        "shared/punchup_guard.py",
+        "config/channel_registry.json",
+        "tests/test_punchup_multiplicity.py"
+      ],
+      "observation": "The registry allows ChatGPT to mutate title and hook while declaring numbers, percentages, money, dates, years, and named entities protected. punchup_guard.check compares numeric claims and proper nouns only between original.script and rewritten.script. apply then copies rewritten title and hook through PUNCHUP_FIELDS without checking either field. A rewrite can therefore preserve the script perfectly while adding an unsupported number or entity to the title or hook, and the guard marks it punched_up.",
+      "proposal": "Validate every allowed claim-bearing mutation before merge. Compare title-to-title and hook-to-hook numeric/entity counters in addition to script-to-script, preserving field boundaries so a dropped title claim cannot be hidden by adding it to the script. Add tests where an unchanged script accompanies an unsupported title percentage, a dropped hook entity, and a valid wording-only title change. Continue failing closed to the original package on any mismatch.",
+      "evidence": "shared/punchup_guard.py check assigns o_script and r_script and performs both numeric_claims and proper_nouns comparisons only on those strings. PUNCHUP_FIELDS includes script, title, hook, hashtags, and punches, and apply copies every truthy rewritten value after check succeeds. config/channel_registry.json revision 5 lists title and hook among allowed editorial mutations while its trending and explainer protected_fields include quantitative claims and named entities. tests/test_punchup_multiplicity.py exercises repeated claims in script only and constructs fixtures with no title or hook.",
+      "signature": "0bf9780d6272",
+      "protected": [
+        "touches shared/punchup_guard.py \u2014 it stops rewrites inventing facts"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "3de32f29a8e4": {
+      "title": "Cadence probe failures become neutral publish evidence",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "quality/showrunner-temporal-evidence",
+      "files": [
+        "scripts/showrunner_review.py",
+        "shared/showrunner_gate.py",
+        "tests/test_showrunner_gate.py",
+        "tests/test_render_motion_floor.py"
+      ],
+      "observation": "showrunner_review catches every cadence-analysis exception inside _temporal_evidence and returns a dictionary with effective_fps and duplicate_ratio still None. temporal_hard_fail explicitly returns no failure for that unknown state, and temporal_grade awards a neutral 2. The vision judge can then return an explicit ship score, which shared.showrunner_gate correctly accepts because no exception escaped the reviewer. The outer gate is fail-closed on reviewer failure, but the inner measurement failure has already been converted into apparently valid evidence.",
+      "proposal": "Make temporal evidence carry an explicit analyzable/valid flag and require it on publish. If frame extraction, PIL decoding, milestone loading, or cadence calculation fails, return a structured temporal block before the vision call; preview runs may retain their documented fail-open iteration behavior through showrunner_gate. Add tests for ffmpeg failure, too-few frames, milestone import failure, and a normal measured pass, and assert that only the publish path blocks unknown cadence.",
+      "evidence": "scripts/showrunner_review.py _temporal_evidence initializes cadence fields to None, catches Exception into ev.error, and returns. temporal_hard_fail says unknown evidence returns None and also returns None if active_phase loading fails; temporal_grade maps None to 2. review_video still calls the vision judge and can return ship. shared/showrunner_gate.py sees a complete verdict rather than an error and permits a literal ship with a bounded score. tests/test_showrunner_gate.py covers exceptions that escape review_video, and tests/test_render_motion_floor.py covers measured motion thresholds, but neither covers a swallowed subprobe failure.",
+      "signature": "3de32f29a8e4",
+      "protected": [
+        "touches scripts/showrunner_review.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches scripts/showrunner_review.py \u2014 the showrunner's BLOCK is sovereign",
+        "touches shared/showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches tests/test_showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "4490f7560fed": {
+      "title": "Quality gates need one versioned measurement contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "quality/unified-evidence-contract",
+      "files": [
+        "shared/video_qa.py",
+        "scripts/showrunner_review.py",
+        "shared/showrunner_gate.py",
+        "data_learning/quality_milestones.py"
+      ],
+      "observation": "Finished-video QA and the showrunner both measure black or empty frames, frozen or static intervals, audio or cadence, and runtime, but they expose different shapes and different unknown-evidence rules. video_qa returns None and its caller fails closed, while showrunner motion and temporal helpers swallow errors into partial dictionaries; threshold ownership is split between DEFAULT_POLICY, constants in showrunner_review, and the active quality milestone. The August 23, 24, and 25 retro briefs repeatedly report empty_void, decorative_mascot, and dead_air failures, yet there is no durable measurement identity proving which detector version and thresholds produced each verdict.",
+      "proposal": "Define a versioned quality-evidence record generated once per render and consumed by technical QA, showrunner scoring, repair, alarm, and retro. Include media hash, duration, detector versions, threshold-set identity, analyzability for every measurement, raw spans, cadence facts, and explicit unknown reasons. Make all publish consumers fail closed on required unknowns, store the record beside the verdict, and derive human summaries from it. Migrate incrementally by adapting current helpers to the shared record without changing any existing block threshold until parity tests pass.",
+      "evidence": "shared/video_qa.py owns DEFAULT_POLICY and black/freezing/silence ffmpeg parsing; scripts/showrunner_review.py separately owns BLOCK_MOTION_THRESH, motion sampling, cadence sampling, and milestone-dependent temporal thresholds; shared/showrunner_gate.py persists the reviewer's verdict but not a technical detector contract; data_learning/quality_milestones.py supplies another threshold identity. retro/20260823/brief.json, retro/20260824/brief.json, and retro/20260825/brief.json show recurring empty_void/dead_air/decorative_mascot classes across separate runs, demonstrating that this evidence is operationally consumed over time.",
+      "signature": "4490f7560fed",
+      "protected": [
+        "touches scripts/showrunner_review.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches scripts/showrunner_review.py \u2014 the showrunner's BLOCK is sovereign",
+        "touches shared/showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "90428377a85b": {
+      "title": "Test a sub-40-second explainer cut without changing cadence",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/explainer-duration",
+      "files": [
+        "state/analytics_explainer/latest.json",
+        "data_learning/niche.config.json",
+        "docs/DIRECTOR.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "The latest explainer snapshot has 34 videos mature enough for retention. Estimating runtime as average_view_duration divided by average_view_percentage, the 16 videos at or below 40 seconds have 47.7% median retention; the 18 above 40 seconds have 29.2%. Median views are similar at 86 versus 91, so the retention gap is not just a views-volume artifact. The strongest short examples include Hottest Planets at about 27 seconds and 117.2% retention, Largest Star Ever Found at about 17 seconds and 110.8%, and The Largest Living Thing at about 39 seconds and 89.3%. This is enough for a bounded duration test, not enough to change the four-per-day registry cadence.",
+      "proposal": "Run a 24-mature-video matched experiment: twelve eligible explainers cut to 28-40 seconds and twelve controls under current duration doctrine, matched by topic family, segment count, and publish slot. Keep the registered four-per-day cadence, quality thresholds, and factual payload unchanged. Tag the arm in story and analytics metadata; judge at 72 hours on retention, average view duration, VPH, and quality-block rate. Adopt a shorter default only if retention improves without reducing absolute watch time or factual legibility.",
+      "evidence": "state/analytics_explainer/latest.json fetched 2026-08-25 contains 34 usable_for_retention videos. Computing estimated runtime from its average_view_duration_s and average_view_percentage yields n=16 at <=40 seconds with median retention 47.7% and median views 86, versus n=18 above 40 seconds with median retention 29.2% and median views 91. The same snapshot's top short examples are Hottest Planets, Largest Star Ever Found, and The Largest Living Thing. config/channel_registry.json revision 5 keeps explainer at four data stories per day; the proposal isolates duration rather than changing volume or format mix.",
+      "signature": "90428377a85b",
+      "protected": [
+        "touches docs/DIRECTOR.md \u2014 the rubric the showrunner judges against"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
     }
   }
 }
