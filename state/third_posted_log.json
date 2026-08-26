@@ -5116,13 +5116,63 @@
       "ts": "2026-08-26T12:28:04.195595+00:00"
     },
     "clip-20260826-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/deshaefrost/clip/AgileDaintyAuberginePhilosoraptor-LPmCJMEFYKV4qNDC",
-      "story_key": null,
-      "streamer": "deshaefrost",
+      "url": "https://youtube.com/shorts/HbB6xlzHgxo",
       "title": "Deshaefrost Reveals Her Wild Backup Plan If Streaming Fails \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-08-26T12:46:19.262984+00:00",
+      "ts": "2026-08-26T12:46:25.550810+00:00",
+      "uploaded_at": "2026-08-26T12:46:25.550830+00:00",
+      "publish_at": "2026-08-26T21:30:00Z",
+      "source_url": "https://www.twitch.tv/deshaefrost/clip/AgileDaintyAuberginePhilosoraptor-LPmCJMEFYKV4qNDC",
+      "streamer": "deshaefrost",
+      "series": "chaos",
+      "hook": "HER BACKUP PLAN IS WILD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2020,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.3,
+        "end": 22.0
+      },
+      "director_cut": true
+    },
+    "rejected-piliablebombasticmulejkanstyle-dgivm3srw7iuijif": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PiliableBombasticMuleJKanStyle-DGiVm3sRW7iuiJiF",
+      "streamer": "stableronaldo",
+      "title": "chop",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine GTA RP, no event)",
+      "ts": "2026-08-26T12:47:18.605979+00:00"
+    },
+    "rejected-animatedtolerantopossumcoolcat-zgrctnmqm1-ufar9": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AnimatedTolerantOpossumCoolCat-zGrcTnMQm1-UfAR9",
+      "streamer": "caseoh_",
+      "title": "goober",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static gameplay, no visible event)",
+      "ts": "2026-08-26T12:48:44.200208+00:00"
+    },
+    "rejected-optimisticsucculenttrufflevohiyo-p9tpzzhh7nrgbcss": {
+      "source_url": "https://www.twitch.tv/lirik/clip/OptimisticSucculentTruffleVoHiYo-P9TPZzhh7nrgbcSs",
+      "streamer": "lirik",
+      "title": "Damn bro...",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay walk, no event)",
+      "ts": "2026-08-26T12:50:02.517918+00:00"
+    },
+    "clip-20260826-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HungryVibrantNewtItsBoshyTime-OrZDvvPD74UFfJCJ",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Can't Believe This Knockout Just Happened",
+      "kind": "twitch_clip",
+      "ts": "2026-08-26T12:57:23.776452+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
