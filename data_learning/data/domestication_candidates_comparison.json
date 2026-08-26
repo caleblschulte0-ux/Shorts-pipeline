@@ -1,0 +1,19 @@
+{
+  "key": "domestication_candidates_comparison",
+  "title": "Candidate large wild mammals vs species ever domesticated",
+  "unit": "species",
+  "geography": "Worldwide",
+  "time_coverage": "cumulative, all of human history",
+  "source": {
+    "name": "Domestication candidate-species synthesis (the 'Major Postulate')",
+    "publisher": "Peer-reviewed archaeology/anthropology literature",
+    "url": "https://en.wikipedia.org/wiki/Domestication_of_animals",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, widely cited figures; of roughly 148 candidate large wild mammal species (over about 45kg / 100lbs), only about 14 were ever fully domesticated.",
+  "points": [
+    {"label": "Candidate Wild Species", "value": 148},
+    {"label": "Actually Domesticated", "value": 14}
+  ]
+}

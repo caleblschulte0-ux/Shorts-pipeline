@@ -1,0 +1,23 @@
+{
+  "key": "twin_birth_rate_trend",
+  "title": "US twin birth rate (per 1,000 total births)",
+  "unit": "rate",
+  "geography": "United States",
+  "time_coverage": "1980-2022",
+  "source": {
+    "name": "National Vital Statistics System — twin birth rates",
+    "publisher": "CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/products/databriefs/db387.htm",
+    "officiality": "official",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate figures; NCHS reports the US twin birth rate roughly climbing from the 1980s through a mid-2010s peak, then edging down.",
+  "points": [
+    {"label": "1980", "value": 18.9, "period": "1980"},
+    {"label": "1990", "value": 22.6, "period": "1990"},
+    {"label": "2000", "value": 29.3, "period": "2000"},
+    {"label": "2009", "value": 33.2, "period": "2009"},
+    {"label": "2014", "value": 33.9, "period": "2014"},
+    {"label": "2022", "value": 31.2, "period": "2022"}
+  ]
+}

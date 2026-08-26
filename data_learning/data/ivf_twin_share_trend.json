@@ -1,0 +1,22 @@
+{
+  "key": "ivf_twin_share_trend",
+  "title": "Share of US IVF births that were twins (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1997-2022",
+  "source": {
+    "name": "Assisted Reproductive Technology (ART) Surveillance data",
+    "publisher": "CDC / Society for Assisted Reproductive Technology (SART)",
+    "url": "https://www.cdc.gov/art/artdata/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; the twin share of IVF births has fallen sharply as clinics shifted toward transferring a single embryo per cycle.",
+  "points": [
+    {"label": "1997", "value": 28, "period": "1997"},
+    {"label": "2007", "value": 26, "period": "2007"},
+    {"label": "2012", "value": 15, "period": "2012"},
+    {"label": "2017", "value": 7, "period": "2017"},
+    {"label": "2022", "value": 2, "period": "2022"}
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-airport-bag-sizer",
+  "title": "The Bag Sizer Doesn't Know Who You Are",
+  "script": "Corporate's new rule: every carry-on gets the metal sizer, zero exceptions, or it gets checked and charged. My supervisor drilled it into us the whole week, no exceptions, she said, three times. Then a man in a suit walked up, bag clearly too big, and dropped his boss's name like it was a boarding pass. My supervisor started waving him through. I stepped in and said the rule was zero exceptions, and asked her to confirm that in front of him, since she'd told us that morning. She couldn't say no without contradicting herself, so the bag went to the sizer, didn't fit, and got checked and charged like everyone else's. He missed his connection complaining to a manager about it for twenty minutes. Corporate pulled the boarding footage after his complaint, saw my supervisor waving other bags through all week, and the exceptions stopped that day for real, for everyone, sizer and all.",
+  "shots": [
+    {"phrase": "the metal sizer", "query": "airport bag size checker frame"},
+    {"phrase": "My supervisor drilled it into us", "query": "airport gate staff briefing"},
+    {"phrase": "dropped his boss's name", "query": "businessman suit airport terminal"},
+    {"phrase": "started waving him through", "query": "airport gate agent waving"},
+    {"phrase": "the bag went to the sizer", "query": "carry on bag metal frame"},
+    {"phrase": "missed his connection", "query": "departure board airport terminal"},
+    {"phrase": "pulled the boarding footage", "query": "security camera airport monitor"},
+    {"phrase": "the exceptions stopped that day", "query": "airport gate line boarding"}
+  ],
+  "punches": [
+    {"phrase": "zero exceptions", "text": "ZERO EXCEPTIONS", "color": "#ffaa30"},
+    {"phrase": "dropped his boss's name", "text": "NAME DROP", "color": "#ff3030"},
+    {"phrase": "didn't fit, and got checked and charged", "text": "DIDN'T FIT", "color": "#ff3030"},
+    {"phrase": "missed his connection", "text": "MISSED HIS FLIGHT", "color": "#ff3030"},
+    {"phrase": "the exceptions stopped that day", "text": "RULE ENFORCED", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "airport",
+    "airline",
+    "travel",
+    "gateagent",
+    "karma",
+    "reddit",
+    "storytime",
+    "worklife",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
