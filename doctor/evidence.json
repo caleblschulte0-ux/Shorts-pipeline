@@ -2385,8 +2385,8 @@
     }
   ],
   "recent_commits": [
-    "62579a6 2026-08-25 doctor: findings for 20260825",
-    "97917f0 2026-08-25 retro: brief + triage for 20260825 [skip ci]"
+    "2cc9fe4 2026-08-26 doctor: mark 7414ad03de3e done [skip ci]",
+    "532ab59 2026-08-26 exchange: phase A bundle for 20260826 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -2540,13 +2540,6 @@
       "ruling": "in_progress"
     },
     {
-      "signature": "7414ad03de3e",
-      "title": "Phase B cache hits bypass current Drive-byte verification",
-      "horizon": "bug",
-      "severity": "high",
-      "ruling": "new"
-    },
-    {
       "signature": "abfb291b5f65",
       "title": "Two explainer guardrail modules execute zero tests",
       "horizon": "small_fix",
@@ -2600,7 +2593,7 @@
       "title": "Phase A filters out every registry-shaped Third package",
       "horizon": "small_fix",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "66364106b455",
@@ -2628,14 +2621,14 @@
       "title": "Test concrete search-intent titles on Third clips",
       "horizon": "strategy",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "34e98321286f",
       "title": "Phase B's durable report omits cross-channel and recovery outcomes",
       "horizon": "short_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "8dc00d1eadd0",
@@ -2677,7 +2670,7 @@
       "title": "Repeated Phase B runs overwrite the exchange's only decision history",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "new"
+      "ruling": "doing"
     },
     {
       "signature": "75af24a46374",
@@ -3093,6 +3086,13 @@
       "date": "20260825",
       "because": "Verified: make_graph_race.py's audit.json (lines ~77-82) writes only out/format/engine/series and swallows every write error with a bare except/pass, matching the finding. The direction is right and worth building eventually, but a versioned render-manifest contract spanning three renderer families plus the showrunner/repair loop is a multi-session design effort, not a single build -- it needs a scoped design (element ID scheme, what claims/bounds each renderer can cheaply emit, migration order) before implementation starts. Parking 30 days; revisit starting with graph-race labels only, the narrowest slice named in the proposal, once 2fc5cbb21cca and the higher-severity items in this backlog are clear.",
       "revisit_after": "20260924"
+    },
+    {
+      "signature": "7414ad03de3e",
+      "verdict": "done",
+      "date": "20260826",
+      "because": "Merged: PR #317 (commit 4fb5f08). Cache hits now require a sha256 match against the current entry's claim; regression test tests/test_media_cache_attestation.py added.",
+      "revisit_after": null
     }
   ]
 }
