@@ -1,39 +1,42 @@
-# Daily Trending Shorts — 2026-08-25
+# Daily Trending Shorts — 2026-08-26
 
-> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **1 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **10**
-- succeeded: **2**
+- queued: **7**
+- succeeded: **5**
 - quarantined (off-topic imagery): **0**
-- failed: **8**
+- failed: **2**
 
 ## Posted
-- **Electric Cars Just Outsold Diesel Worldwide**
-  - topic: Electric Cars Just Outsold Diesel Worldwide
-  - publishes: `2026-08-25T16:00:00Z`
-  - https://youtube.com/shorts/92oPCwUqf8U
-  - took: 107.7s
-- **He Wrote The Rule. I Just Followed It.**
-  - topic: He Wrote The Rule. I Just Followed It.
-  - publishes: `2026-08-25T17:30:00Z`
-  - https://youtube.com/shorts/cJ5MD_LCtBs
-  - took: 195.4s
+- **The US Just Became The World's #1 Gas Exporter**
+  - topic: The US Just Became The World's #1 Gas Exporter
+  - publishes: `2026-08-26T14:30:00Z`
+  - https://youtube.com/shorts/4a3MhKRuJOI
+  - took: 123.4s
+- **Samsung Ruled Phones For 12 Years. Then Apple Passed It.**
+  - topic: Samsung Ruled Phones For 12 Years. Then Apple Passed It.
+  - publishes: `2026-08-26T16:00:00Z`
+  - https://youtube.com/shorts/5-018LU1Vkg
+  - took: 132.6s
+- **The World Now Has More Obese Adults Than Underweight Ones**
+  - topic: The World Now Has More Obese Adults Than Underweight Ones
+  - publishes: `2026-08-26T17:30:00Z`
+  - https://youtube.com/shorts/ottLbq41wIs
+  - took: 125.6s
+- **The HOA Fined A Wheelchair Ramp. I Had The Paperwork.**
+  - topic: The HOA Fined A Wheelchair Ramp. I Had The Paperwork.
+  - publishes: `2026-08-26T19:00:00Z`
+  - https://youtube.com/shorts/cx-0yyr7jIw
+  - took: 222.6s
+- **The Bag Sizer Doesn't Know Who You Are**
+  - topic: The Bag Sizer Doesn't Know Who You Are
+  - publishes: `2026-08-26T20:30:00Z`
+  - https://youtube.com/shorts/lktKLxF2EXQ
+  - took: 216.3s
 
 ## Failed
-- **Dubai's Airport Quietly Buried Heathrow**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — real overtake, COVID crash, recovery, clean #1 payoff — sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.`
-- **MSC Just Ended Maersk's 25-Year Reign**
-  - error: `showrunner_block: showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.`
-- **Pakistan Quietly Passed Brazil in Population**
-  - error: `showrunner_block: showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.`
-- **The Sign Said Beat Any Price. So I Did.**
-  - error: `showrunner_block: showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor — the shot selection isn't matching the story it's supposed to illustrate.`
-- **military aircraft**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **executive privilege**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **aura farming**
-  - error: `HTTPError: HTTP Error 404: Not Found`
-- **john f kennedy center for the performing arts**
+- **South Korea's Birth Rate Fell Below Japan's**
+  - error: `showrunner_block: showrunner BLOCK: A real, correctly-sourced race chart whose numbers are rounded to integers, so both countries read '1' for most of the video and the whole comparison is unreadable.`
+- **meta stock**
   - error: `HTTPError: HTTP Error 404: Not Found`
 

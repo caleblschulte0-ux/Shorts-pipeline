@@ -1,16 +1,50 @@
 [
   {
-    "topic": "Electric Cars Just Outsold Diesel Worldwide",
-    "title": "Electric Cars Just Outsold Diesel Worldwide",
+    "topic": "South Korea's Birth Rate Fell Below Japan's",
+    "title": "South Korea's Birth Rate Fell Below Japan's",
     "format": "graph_race",
-    "publish_at": "2026-08-25T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/92oPCwUqf8U",
-    "error": null,
-    "elapsed_seconds": 107.7,
-    "package_path": "state/trending_packages/20260825/01_graph-ev-sales-passed-diesel.json",
+    "publish_at": "2026-08-26T14:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A real, correctly-sourced race chart whose numbers are rounded to integers, so both countries read '1' for most of the video and the whole comparison is unreadable.",
+    "elapsed_seconds": 132.8,
+    "package_path": "state/trending_packages/20260826/01_graph-korea-birthrate-below-japan.json",
     "source": "brain",
-    "video_path": "output/daily_20260825-142717_electric_cars_just_outsold_diesel_worldw.mp4",
+    "video_path": "output/daily_20260826-141443_south_korea_s_birth_rate_fell_below_japa.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A real, correctly-sourced race chart whose numbers are rounded to integers, so both countries read '1' for most of the video and the whole comparison is unreadable.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "The US Just Became The World's #1 Gas Exporter",
+    "title": "The US Just Became The World's #1 Gas Exporter",
+    "format": "graph_race",
+    "publish_at": "2026-08-26T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/4a3MhKRuJOI",
+    "error": null,
+    "elapsed_seconds": 123.4,
+    "package_path": "state/trending_packages/20260826/02_graph-us-lng-passes-qatar.json",
+    "source": "brain",
+    "video_path": "output/daily_20260826-141656_the_us_just_became_the_world_s__1_gas_ex.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -34,17 +68,17 @@
     "channel": "default"
   },
   {
-    "topic": "Dubai's Airport Quietly Buried Heathrow",
-    "title": "Dubai's Airport Quietly Buried Heathrow",
+    "topic": "Samsung Ruled Phones For 12 Years. Then Apple Passed It.",
+    "title": "Samsung Ruled Phones For 12 Years. Then Apple Passed It.",
     "format": "graph_race",
-    "publish_at": "2026-08-25T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 real overtake, COVID crash, recovery, clean #1 payoff \u2014 sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.",
-    "elapsed_seconds": 104.3,
-    "package_path": "state/trending_packages/20260825/02_graph-dubai-overtakes-heathrow.json",
+    "publish_at": "2026-08-26T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/5-018LU1Vkg",
+    "error": null,
+    "elapsed_seconds": 132.6,
+    "package_path": "state/trending_packages/20260826/03_graph-apple-passes-samsung.json",
     "source": "brain",
-    "video_path": "output/daily_20260825-142905_dubai_s_airport_quietly_buried_heathrow.mp4",
+    "video_path": "output/daily_20260826-141859_samsung_ruled_phones_for_12_years__then_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -61,24 +95,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good race \u2014 real overtake, COVID crash, recovery, clean #1 payoff \u2014 sabotaged by a near-empty black opening and a camera that clips the hook text and both axis label gutters.",
-      "score": 69
+      "blocked": false,
+      "reason": "",
+      "score": 74
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "MSC Just Ended Maersk's 25-Year Reign",
-    "title": "MSC Just Ended Maersk's 25-Year Reign",
+    "topic": "The World Now Has More Obese Adults Than Underweight Ones",
+    "title": "The World Now Has More Obese Adults Than Underweight Ones",
     "format": "graph_race",
-    "publish_at": "2026-08-25T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.",
-    "elapsed_seconds": 107.8,
-    "package_path": "state/trending_packages/20260825/03_graph-msc-overtakes-maersk.json",
+    "publish_at": "2026-08-26T17:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ottLbq41wIs",
+    "error": null,
+    "elapsed_seconds": 125.6,
+    "package_path": "state/trending_packages/20260826/04_graph-obesity-passes-underweight.json",
     "source": "brain",
-    "video_path": "output/daily_20260825-143049_msc_just_ended_maersk_s_25_year_reign.mp4",
+    "video_path": "output/daily_20260826-142112_the_world_now_has_more_obese_adults_than.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -92,30 +126,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
+      "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The race itself is legible and the 2022 lead change lands, but the first 1.5s is an empty black grid with a hook banner smeared over the leaderboard, and the punchline number is cropped at the frame edge.",
-      "score": 65
+      "blocked": false,
+      "reason": "",
+      "score": 74
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "Pakistan Quietly Passed Brazil in Population",
-    "title": "Pakistan Quietly Passed Brazil in Population",
-    "format": "graph_race",
-    "publish_at": "2026-08-25T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.",
-    "elapsed_seconds": 108.1,
-    "package_path": "state/trending_packages/20260825/04_graph-pakistan-overtakes-brazil.json",
+    "topic": "The HOA Fined A Wheelchair Ramp. I Had The Paperwork.",
+    "title": "The HOA Fined A Wheelchair Ramp. I Had The Paperwork.",
+    "format": "reddit",
+    "publish_at": "2026-08-26T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/cx-0yyr7jIw",
+    "error": null,
+    "elapsed_seconds": 222.6,
+    "package_path": "state/trending_packages/20260826/05_reddit-hoa-wheelchair-ramp.json",
     "source": "brain",
-    "video_path": "output/daily_20260825-143237_pakistan_quietly_passed_brazil_in_popula.mp4",
+    "video_path": "output/daily_20260826-142339_the_hoa_fined_a_wheelchair_ramp__i_had_t.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 14.375,
+      "duration": 47.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -126,30 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -27.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The race itself reads and the 2018 crossover lands, but half the frame is dead black, the winner's flag and number are clipped off the right edge, and the '#1 Pakistan' payoff is nearly invisible dark green on black.",
+      "blocked": false,
+      "reason": "",
       "score": 70
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "He Wrote The Rule. I Just Followed It.",
-    "title": "He Wrote The Rule. I Just Followed It.",
+    "topic": "The Bag Sizer Doesn't Know Who You Are",
+    "title": "The Bag Sizer Doesn't Know Who You Are",
     "format": "reddit",
-    "publish_at": "2026-08-25T17:30:00Z",
+    "publish_at": "2026-08-26T20:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/cJ5MD_LCtBs",
+    "video_url": "https://youtube.com/shorts/lktKLxF2EXQ",
     "error": null,
-    "elapsed_seconds": 195.4,
-    "package_path": "state/trending_packages/20260825/05_reddit-the-clock-out-rule.json",
+    "elapsed_seconds": 216.3,
+    "package_path": "state/trending_packages/20260826/06_reddit-airport-bag-sizer.json",
     "source": "brain",
-    "video_path": "output/daily_20260825-143442_he_wrote_the_rule__i_just_followed_it_.mp4",
+    "video_path": "output/daily_20260826-142712_the_bag_sizer_doesn_t_know_who_you_are.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 43.333,
+      "duration": 49.167,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +199,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.6
+      "loudness_lufs": -24.2
     },
     "qa": {
       "ok": true,
@@ -170,87 +209,18 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 74
+      "score": 79
     },
     "channel": "default"
   },
   {
-    "topic": "The Sign Said Beat Any Price. So I Did.",
-    "title": "The Sign Said Beat Any Price. So I Did.",
-    "format": "reddit",
-    "publish_at": "2026-08-25T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor \u2014 the shot selection isn't matching the story it's supposed to illustrate.",
-    "elapsed_seconds": 185.7,
-    "package_path": "state/trending_packages/20260825/06_reddit-the-price-match-sign.json",
-    "source": "brain",
-    "video_path": "output/daily_20260825-143751_the_sign_said_beat_any_price__so_i_did_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 48.7,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The ending is carried by an irrelevant German decorative plaque and a mid-video shot is a blank black monitor \u2014 the shot selection isn't matching the story it's supposed to illustrate.",
-      "score": 66
-    },
-    "blocked": true
-  },
-  {
-    "topic": "military aircraft",
+    "topic": "meta stock",
     "angle": null,
-    "publish_at": "2026-08-25T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.2,
-    "backfill": true
-  },
-  {
-    "topic": "executive privilege",
-    "angle": null,
-    "publish_at": "2026-08-25T20:30:00Z",
+    "publish_at": "2026-08-27T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 404: Not Found",
     "elapsed_seconds": 0.4,
-    "backfill": true
-  },
-  {
-    "topic": "aura farming",
-    "angle": null,
-    "publish_at": "2026-08-26T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.3,
-    "backfill": true
-  },
-  {
-    "topic": "john f kennedy center for the performing arts",
-    "angle": null,
-    "publish_at": "2026-08-26T14:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 25.8,
     "backfill": true
   }
 ]
