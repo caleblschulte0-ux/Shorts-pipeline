@@ -948,10 +948,12 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         # story from the title alone. Pull the actual article text first.
         _research(topic)
 
-        # 1. Groq writes the script package (with validation + retry).
+        # 1. The configured LLM chain writes the script package. Do not pin
+        # Groq here: a retired/rate-limited Groq model must fall through to
+        # Gemini or Anthropic instead of taking down the whole repair batch.
         print(f"[{topic.query!r}] generating script...", flush=True)
         pkg = script_generator.generate(
-            topic.query, topic.headlines, topic.snippets, backend="groq",
+            topic.query, topic.headlines, topic.snippets,
         )
 
         # Save the package alongside so we can re-render or audit later.
