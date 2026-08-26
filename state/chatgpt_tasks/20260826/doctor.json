@@ -1,13 +1,13 @@
 {
  "checked_at": "2026-08-26T13:15:15+00:00",
- "date": "20260825",
+ "date": "20260826",
  "deadline_central": 23,
- "deadline_passed": true,
+ "deadline_passed": false,
  "expected": [
-  "doctor/reports/20260825.json"
+  "doctor/reports/20260826.json"
  ],
  "found": [
-  "20260825.json"
+  "20260826.json"
  ],
  "headline": "doctor: ok",
  "ok": true,
