@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+  "safe_request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a60537a4e233c404b809d2c5efcd65a0b389c9a1e7c92662cbe0ffa1b641e30d",
+  "prompt_used": "An editorial illustration for a short-form video: security camera airport monitor. It accompanies the narration: \"pulled the boarding footage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ia-hGTiOJqJ5FSCx0UdCUbtN6b9uF1dX",
+    "filename": "20260826__reddit-airport-bag-sizer-s6-3b2e2fbe03ef.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ia-hGTiOJqJ5FSCx0UdCUbtN6b9uF1dX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b715a16605816faae424c9828c2ea497439081de631f238b5b781da043eacff5",
+    "bytes": 688128,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:34.533Z",
+  "error": null,
+  "retryable": false
+}
