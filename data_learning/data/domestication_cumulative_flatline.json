@@ -1,0 +1,23 @@
+{
+  "key": "domestication_cumulative_flatline",
+  "title": "Cumulative large domesticated mammal species over time",
+  "unit": "species",
+  "geography": "Worldwide",
+  "time_coverage": "~15,000 years ago to today",
+  "source": {
+    "name": "Domestication candidate-species synthesis",
+    "publisher": "Peer-reviewed archaeology/anthropology literature",
+    "url": "https://en.wikipedia.org/wiki/Domestication_of_animals",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; the running count of major domesticated large-mammal species by roughly how long ago, showing growth concentrated before about 3,000-4,000 years ago and essentially flat since.",
+  "points": [
+    {"label": "15,000 yrs ago", "value": 1, "period": "-15000"},
+    {"label": "10,500 yrs ago", "value": 5, "period": "-10500"},
+    {"label": "8,000 yrs ago", "value": 7, "period": "-8000"},
+    {"label": "5,500 yrs ago", "value": 9, "period": "-5500"},
+    {"label": "4,000 yrs ago", "value": 13, "period": "-4000"},
+    {"label": "Today", "value": 14, "period": "0"}
+  ]
+}

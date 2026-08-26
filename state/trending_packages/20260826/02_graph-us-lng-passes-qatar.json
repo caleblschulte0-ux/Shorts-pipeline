@@ -1,0 +1,31 @@
+{
+  "format": "graph_race",
+  "slug": "graph-us-lng-passes-qatar",
+  "title": "The US Just Became The World's #1 Gas Exporter",
+  "hook": "Qatar Held That Title For Decades",
+  "y_label": "LNG exports (million tonnes per year)",
+  "duration": 13,
+  "source": "U.S. Energy Information Administration and International Gas Union LNG trade reports, 2016-2023. Approximate, order-of-magnitude figures; the US overtook Qatar (and Australia) as the world's largest liquefied natural gas exporter in 2023 after a decade-long export buildout.",
+  "years": [2016, 2018, 2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {"name": "United States", "color": "#2ecc71", "icon": "US",
+     "values": [4, 20, 34, 44, 67, 76, 86]},
+    {"name": "Qatar", "color": "#f5c518", "icon": "QA",
+     "values": [77, 78, 77, 77, 78, 79, 80]}
+  ],
+  "hashtags": [
+    "naturalgas",
+    "lng",
+    "energy",
+    "qatar",
+    "unitedstates",
+    "exports",
+    "oilandgas",
+    "energymarket",
+    "dataviz",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -24198,6 +24198,252 @@
      }
     }
    ]
+  },
+  {
+   "slug": "clear-air-turbulence-increase",
+   "title": "Why Flights Are Getting Bumpier",
+   "hook": "It's not your imagination.",
+   "closing": "Buckle up. That's not a suggestion anymore.",
+   "question": "Have you noticed flights getting bumpier lately? Tell me below.",
+   "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
+   "hashtags": [
+    "turbulence",
+    "flying",
+    "aviation",
+    "climatechange",
+    "flightfacts",
+    "travel",
+    "planes",
+    "weather",
+    "science",
+    "didyouknow",
+    "jetstream",
+    "dataviz",
+    "flightanxiety",
+    "airtravel",
+    "climate"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "turbulence_trend",
+     "params": {
+      "file": "turbulence_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE BUMP",
+     "topic": "severe turbulence over the North Atlantic",
+     "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent."
+    },
+    {
+     "source": "offline",
+     "key": "turbulence_categories_comparison",
+     "params": {
+      "file": "turbulence_categories_comparison.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · THE PATTERN",
+     "topic": "turbulence increase by severity",
+     "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most."
+    },
+    {
+     "source": "offline",
+     "key": "turbulence_projection",
+     "params": {
+      "file": "turbulence_projection.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHY",
+     "topic": "turbulence under a warming climate",
+     "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century."
+    }
+   ]
+  },
+  {
+   "slug": "lego-minifigs-outnumber-humans",
+   "title": "There Are Now More Lego Minifigures Than People",
+   "hook": "One toy company out-populated Earth.",
+   "closing": "Somewhere, a tiny yellow army agrees.",
+   "question": "How many Lego minifigures do you think are in your house? Tell me below.",
+   "caption": "Lego has cranked out an estimated 10 billion minifigures since 1978, more than the 8.1 billion humans currently alive, and it makes around 400 million more every year. How many Lego minifigures do you think are in your house? Tell me below 👇",
+   "hashtags": [
+    "lego",
+    "minifigure",
+    "toys",
+    "legofacts",
+    "funfacts",
+    "didyouknow",
+    "dataviz",
+    "popculture",
+    "legominifigure",
+    "mindblown",
+    "toyindustry",
+    "quirky",
+    "kidsculture",
+    "legobricks",
+    "funstats"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "lego_minifig_vs_population_2023",
+     "params": {
+      "file": "lego_minifig_vs_population_2023.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE HEADLINE",
+     "topic": "minifigures made versus people alive",
+     "say": "Lego has made an estimated 10 billion minifigures since 1978. There are only 8.1 billion humans alive on Earth right now."
+    },
+    {
+     "source": "offline",
+     "key": "lego_minifig_cumulative_trend",
+     "params": {
+      "file": "lego_minifig_cumulative_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · HOW",
+     "topic": "cumulative minifigure production",
+     "say": "It happened fast: production went from basically zero in 1978 to an estimated 8.3 billion by 2019, right around when minifigures passed the human population."
+    },
+    {
+     "source": "offline",
+     "key": "lego_minifig_annual_rate",
+     "params": {
+      "file": "lego_minifig_annual_rate.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE PACE",
+     "topic": "minifigures made per year versus babies born per year",
+     "say": "And it's not slowing down: Lego molds around 400 million new minifigures a year, nearly 3 times the roughly 134 million babies born on Earth that same year."
+    }
+   ]
+  },
+  {
+   "slug": "twin-birth-rate-rise",
+   "title": "Why Twin Births Nearly Doubled — Then Started Falling",
+   "hook": "It's not just chance anymore.",
+   "closing": "Two really did become the new one.",
+   "question": "Do twins run in your family? Tell me below.",
+   "caption": "US twin births per 1,000 climbed from 18.9 in 1980 to almost 34 by 2014, driven by older moms and fertility treatments, before ticking back down as IVF clinics started transferring just one embryo at a time. Do twins run in your family? Tell me below 👇",
+   "hashtags": [
+    "twins",
+    "twinbirth",
+    "ivf",
+    "fertility",
+    "pregnancy",
+    "birthrate",
+    "publichealth",
+    "demographics",
+    "dataviz",
+    "didyouknow",
+    "science",
+    "parenting",
+    "healthdata",
+    "cdc",
+    "momsoftiktok"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "twin_birth_rate_trend",
+     "params": {
+      "file": "twin_birth_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "US twin birth rate",
+     "say": "The US twin birth rate climbed from 18.9 per 1,000 births in 1980 to almost 34 by 2014, nearly doubling in one generation."
+    },
+    {
+     "source": "offline",
+     "key": "twin_birth_rate_by_age",
+     "params": {
+      "file": "twin_birth_rate_by_age.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · WHY",
+     "topic": "twin rate by mother's age",
+     "say": "Part of it is biology: mothers over 40 naturally twin nearly 5 times as often as mothers under 20, and the average age of first-time moms kept rising."
+    },
+    {
+     "source": "offline",
+     "key": "ivf_twin_share_trend",
+     "params": {
+      "file": "ivf_twin_share_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE REVERSAL",
+     "topic": "twin share of IVF births",
+     "say": "The other driver, IVF, is now reversing it: the twin share of IVF births has crashed from 28 percent in 1997 to just 2 percent, since clinics switched to transferring one embryo at a time."
+    }
+   ]
+  },
+  {
+   "slug": "human-domesticated-14-animals",
+   "title": "Humans Have Only Ever Domesticated 14 Large Animals",
+   "hook": "The list closed thousands of years ago.",
+   "closing": "The dog got there first. Nothing's caught up since.",
+   "question": "If you could domesticate one wild animal, which would you pick? Tell me below.",
+   "caption": "Of roughly 148 candidate wild mammals big enough to be worth it, humans have only ever fully domesticated 14, starting with the dog about 15,000 years ago, and the list hasn't grown in about 3,000 years. If you could domesticate one wild animal, which would you pick? Tell me below 👇",
+   "hashtags": [
+    "domestication",
+    "animals",
+    "history",
+    "anthropology",
+    "dogs",
+    "evolution",
+    "sciencefacts",
+    "didyouknow",
+    "archaeology",
+    "wildlife",
+    "humanhistory",
+    "dataviz",
+    "biology",
+    "funfacts",
+    "civilization"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "domestication_rank",
+     "params": {
+      "file": "domestication_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE FIRST",
+     "topic": "how long ago each animal was domesticated",
+     "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other."
+    },
+    {
+     "source": "offline",
+     "key": "domestication_candidates_comparison",
+     "params": {
+      "file": "domestication_candidates_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · WHY SO FEW",
+     "topic": "candidate species versus actual successes",
+     "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity."
+    },
+    {
+     "source": "offline",
+     "key": "domestication_cumulative_flatline",
+     "params": {
+      "file": "domestication_cumulative_flatline.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE FLATLINE",
+     "topic": "the domestication count over time",
+     "say": "The count climbed steadily until about 3,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species."
+    }
+   ]
   }
  ],
  "videos": [

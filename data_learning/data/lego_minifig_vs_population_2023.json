@@ -1,0 +1,19 @@
+{
+  "key": "lego_minifig_vs_population_2023",
+  "title": "Cumulative LEGO minifigures made vs world population (billions)",
+  "unit": "billion",
+  "geography": "World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "LEGO Group cumulative minifigure production estimates vs UN World Population Prospects",
+    "publisher": "The LEGO Group / United Nations",
+    "url": "https://www.lego.com",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; LEGO does not publish an official running minifigure count, so cumulative production is estimated from widely reported industry figures. It is commonly reported that cumulative minifigure production passed world population around 2019.",
+  "points": [
+    {"label": "LEGO Minifigures Ever Made", "value": 10.0},
+    {"label": "World Population", "value": 8.1}
+  ]
+}

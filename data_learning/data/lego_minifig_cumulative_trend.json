@@ -1,0 +1,23 @@
+{
+  "key": "lego_minifig_cumulative_trend",
+  "title": "Cumulative LEGO minifigures produced (billions)",
+  "unit": "billion",
+  "geography": "World",
+  "time_coverage": "1978-2023",
+  "source": {
+    "name": "LEGO Group cumulative minifigure production estimates",
+    "publisher": "The LEGO Group",
+    "url": "https://www.lego.com",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures estimated from widely reported industry production figures since minifigures launched in 1978.",
+  "points": [
+    {"label": "1978", "value": 0.0, "period": "1978"},
+    {"label": "1990", "value": 0.5, "period": "1990"},
+    {"label": "2000", "value": 1.5, "period": "2000"},
+    {"label": "2010", "value": 4.0, "period": "2010"},
+    {"label": "2019", "value": 8.3, "period": "2019"},
+    {"label": "2023", "value": 10.0, "period": "2023"}
+  ]
+}
