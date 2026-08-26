@@ -836,16 +836,22 @@
       "revisit_after": "20260924"
     },
     "7414ad03de3e": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260826",
-      "because": "picked up this run",
+      "because": "Merged: PR #317 (commit 4fb5f08). Cache hits now require a sha256 match against the current entry's claim; regression test tests/test_media_cache_attestation.py added.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260826",
           "because": "Verified in scripts/exchange_phase_b.py fetch_media(): the disk-cache check (lines 138-141) returns any non-empty cache/exchange/<request_id> file before entry.status/drive/sha are inspected, and request_key/authored_shot_request_id (shared/exchange_bundle.py, shared/media_checkpoint.py) omit the date, so a stale file from an earlier day satisfies today's lookup while pin_verified_media still stamps the CURRENT entry's Drive URL/hash onto the package as if it verified. Real correctness bug in the media-trust chain, in scope to fix now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260826",
+          "because": "picked up this run"
         }
-      ]
+      ],
+      "commit": "4fb5f08"
     },
     "7f087a105388": {
       "verdict": "doing",
