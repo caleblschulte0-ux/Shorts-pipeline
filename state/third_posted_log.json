@@ -5019,6 +5019,25 @@
         "end": 27.1
       },
       "director_cut": true
+    },
+    "rejected-darlinggracefuljellyfishkappa-f9us2-8us21f6kk6": {
+      "source_url": "https://www.twitch.tv/xqc/clip/DarlingGracefulJellyfishKappa-f9us2-8US21f6kk6",
+      "streamer": "xqc",
+      "title": "Jeffrey?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (onstage monologue, no visible event)",
+      "ts": "2026-08-26T11:43:24.793329+00:00"
+    },
+    "clip-20260826-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alinity/clip/VictoriousBelovedTaroHotPokket-L5G9cDvj0iv9wvEF",
+      "story_key": null,
+      "streamer": "alinity",
+      "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
+      "kind": "twitch_clip",
+      "ts": "2026-08-26T11:45:56.337917+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
