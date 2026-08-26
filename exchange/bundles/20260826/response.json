@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260826",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "4fb5f082e2b2672c9de9e8555ece461106b4092c",
+    "production_date": "20260826",
+    "bundle_sha256": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0"
+  },
+  "media": [
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s1-dc71ee610336",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1TMCujm0fD4N1wCnePmlTJNdDEkHGFVYH",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s1-dc71ee610336.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1TMCujm0fD4N1wCnePmlTJNdDEkHGFVYH",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6cab3e04610e1dc5d89387f7f4e4b472aeefdd2c7421dfe567970c363f6a24ec",
+        "bytes": 1592705,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s1-dc71ee610336.json",
+        "verified_at": "2026-08-26T12:16:18.287Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "19U81VKX9EsWzp6Oe-IZ6KKL6F4dWQ3ML",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=19U81VKX9EsWzp6Oe-IZ6KKL6F4dWQ3ML",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5c3443e57314f5f89d8fdbd6c1b7e227758494a42ce72ef289e211dd15f2509c",
+        "bytes": 991634,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8.json",
+        "verified_at": "2026-08-26T12:16:19.416Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "13Imit3D0s_mFg97jF7H187xcZknnPXzO",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=13Imit3D0s_mFg97jF7H187xcZknnPXzO",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f8ea45f7c4224e09e0b52c85be0d4586d6432a4f9d333d6694d9ba64bff6952b",
+        "bytes": 1249211,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6.json",
+        "verified_at": "2026-08-26T12:16:20.618Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1m9TlpeAD0Ib1U0Ls127T7F16HyO3WFVI",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1m9TlpeAD0Ib1U0Ls127T7F16HyO3WFVI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "db51490c6408c1806adcf8611391e63b6431fdf46fdfa086ba5d04235bd2b771",
+        "bytes": 1411411,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a.json",
+        "verified_at": "2026-08-26T12:16:21.825Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s6-38f6d7100c74",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1kIwUvd7tIzpIvFfpv_8LHTupGKq_s6AU",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s6-38f6d7100c74.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1kIwUvd7tIzpIvFfpv_8LHTupGKq_s6AU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a236f8069a67568f113afa70e8f14a3aaecb6d87636fcf3caed02d6184f4e6fb",
+        "bytes": 1712844,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s6-38f6d7100c74.json",
+        "verified_at": "2026-08-26T12:16:22.948Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s7-19c385817b61",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1dVlUPmiOfQ-cyo8JZzDTH11vW4hDNDNp",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s7-19c385817b61.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1dVlUPmiOfQ-cyo8JZzDTH11vW4hDNDNp",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f541f044807bf415f57e7a73baae27b32bf7efee769d48c06844a75daa4f6878",
+        "bytes": 1117877,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s7-19c385817b61.json",
+        "verified_at": "2026-08-26T12:16:24.138Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gz3W5HGTU6Yh79p3Vp3NfR2eawuPvVLp",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gz3W5HGTU6Yh79p3Vp3NfR2eawuPvVLp",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d574cfa91310ca8a3f4bc6e65a0e34745b46920d6602d9c7059202a44d6a13ff",
+        "bytes": 1338643,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6.json",
+        "verified_at": "2026-08-26T12:16:25.256Z"
+      }
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gjZZ0EAdoISoDS4kl7wbnpzCyk1t1reP",
+        "filename": "20260826__reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gjZZ0EAdoISoDS4kl7wbnpzCyk1t1reP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "75eccc2c9b6cf3f85e0ee6bf329b36f31048ac36d60d8faead1683ea474e5593",
+        "bytes": 1145243,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd.json",
+        "verified_at": "2026-08-26T12:16:26.457Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1pbkjmBlzw8fKaLrtQXL2sR0v9sGbJN8k",
+        "filename": "20260826__reddit-airport-bag-sizer-s0-1abd378ed2ea.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1pbkjmBlzw8fKaLrtQXL2sR0v9sGbJN8k",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0a05e5a519f37acdff67cddc31c93f8cb7930f8f713f5ca782a7944b3d33a463",
+        "bytes": 1050648,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s0-1abd378ed2ea.json",
+        "verified_at": "2026-08-26T12:16:27.514Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s1-40d18cc032be",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qarTHLfpKaLrc_dfZnSobxr2Ja5xKcde",
+        "filename": "20260826__reddit-airport-bag-sizer-s1-40d18cc032be.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qarTHLfpKaLrc_dfZnSobxr2Ja5xKcde",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "34ed7ed07bd5aac0ba7a01e1ea32d9be8ea16ace1db96c8ef66680e8a2644bc8",
+        "bytes": 1133052,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s1-40d18cc032be.json",
+        "verified_at": "2026-08-26T12:16:28.609Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s2-1a942d1fbebf",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+        "filename": "20260826__reddit-airport-bag-sizer-s2-1a942d1fbebf.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2f9ec911a1ecfd47936cf888b06b24f181f67c9cea6e00e3b6697c0027e57b0d",
+        "bytes": 1296662,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s2-1a942d1fbebf.json",
+        "verified_at": "2026-08-26T12:16:29.664Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s3-1f315449a073",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+        "filename": "20260826__reddit-airport-bag-sizer-s3-1f315449a073.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b5f78687f5dee3c32cfe7067d2d66c8852cbdd058ec11bd7e92704db8231a75e",
+        "bytes": 1158636,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s3-1f315449a073.json",
+        "verified_at": "2026-08-26T12:16:30.688Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s4-c93f23e626db",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1FiDWRNHIR9jUI3Mk-0mvpPlEvow8AN_1",
+        "filename": "20260826__reddit-airport-bag-sizer-s4-c93f23e626db.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1FiDWRNHIR9jUI3Mk-0mvpPlEvow8AN_1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7d56d254d867403036785e15771b4ebba415dce85ed78ddd4e1ae60f7430ca19",
+        "bytes": 1468246,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s4-c93f23e626db.json",
+        "verified_at": "2026-08-26T12:16:31.700Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s5-d9a89a0b72cd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "17Gz9mAYVLtqC5ThpiM9vTRny8BCpEhug",
+        "filename": "20260826__reddit-airport-bag-sizer-s5-d9a89a0b72cd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=17Gz9mAYVLtqC5ThpiM9vTRny8BCpEhug",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "673528c1d36e1427b2be37faba9d24a1b8b47dc08e2c18387d81fce1ccfc9679",
+        "bytes": 1367547,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s5-d9a89a0b72cd.json",
+        "verified_at": "2026-08-26T12:16:32.800Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1HRBDTdatEMIugmiqjvXhgYcUtVPStf-X",
+        "filename": "20260826__reddit-airport-bag-sizer-s6-3b2e2fbe03ef.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1HRBDTdatEMIugmiqjvXhgYcUtVPStf-X",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0ff034a0dfc019fd7c46fd2577e9251fbe55556a877be98fcaa96b8e4ba965a8",
+        "bytes": 1289666,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s6-3b2e2fbe03ef.json",
+        "verified_at": "2026-08-26T12:28:08.804Z"
+      }
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s7-5596b2333541",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1H2pdbns_Y8ZZ-hIyaxv08caz8heKH2ea",
+        "filename": "20260826__reddit-airport-bag-sizer-s7-5596b2333541.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1H2pdbns_Y8ZZ-hIyaxv08caz8heKH2ea",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5f05c69934919bee243beed0dd29829fdf75a0302e56f27a1679ebd3365d0c89",
+        "bytes": 1271604,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s7-5596b2333541.json",
+        "verified_at": "2026-08-26T12:16:36.126Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-korea-birthrate-below-japan",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names South Korea's birth-rate crossover below Japan."
+    },
+    {
+      "slug": "graph-us-lng-passes-qatar",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly promises the US becoming the world's #1 gas exporter."
+    },
+    {
+      "slug": "graph-apple-passes-samsung",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names Samsung's 12-year lead and Apple's specific crossover."
+    },
+    {
+      "slug": "graph-obesity-passes-underweight",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly states the global crossover between obese and underweight adults."
+    },
+    {
+      "slug": "reddit-hoa-wheelchair-ramp",
+      "script": "An HOA fined what? Nobody wanted to be HOA secretary, so I took it. Then the board president fined a family four hundred dollars for an unapproved modification: a plywood wheelchair ramp for their new stepdad. I checked the bylaws. Federal fair-housing law makes disability modifications exempt—no board vote, no fine. I put that in writing and cc'd the whole board. The president called it a slippery slope. So I read three years of ignored complaints. Half targeted sheds and fences the president had personally approved for himself without a single board vote. That paperwork was selective. I filed every one, properly, with photos. The county fined the HOA for the unapproved additions, reversed the ramp fine, and the president resigned two meetings later—right after my fair-housing complaint got a callback. Was the wheelchair ramp really the slippery slope?",
+      "editor_note": "Punched up to a four-word question hook, compressed the bylaws-versus-president escalation, added one dry paperwork aside away from the disability itself, and landed on the wheelchair-ramp slippery slope while preserving every fact and shot phrase."
+    },
+    {
+      "slug": "reddit-airport-bag-sizer",
+      "script": "Zero exceptions—for whom? Corporate's new rule: every carry-on gets the metal sizer or gets checked and charged. My supervisor drilled it into us: zero exceptions, three times. Then a man in a suit arrived, bag too big, and dropped his boss's name like it was a boarding pass. My supervisor started waving him through. I asked her to confirm the rule in front of him—she'd repeated it that morning. That policy needed a personality test. She couldn't contradict herself, so the bag went to the sizer, didn't fit, and got checked and charged like everyone else's. He missed his connection complaining to a manager for twenty minutes. Corporate pulled the boarding footage, saw her waving other bags through all week, and the exceptions stopped that day—for everyone, sizer and all. Was his boss's name too big for the sizer?",
+      "editor_note": "Punched up to a three-word question hook, tightened the zero-exceptions reversal, added one dry policy aside, and landed on whether the boss's name fit the sizer while preserving every fact and shot phrase."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The actual numbers went the other direction.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
