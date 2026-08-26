@@ -6,7 +6,12 @@
   "shots": [
     {
       "phrase": "the metal sizer",
-      "query": "airport bag size checker frame"
+      "query": "airport bag size checker frame",
+      "pin_query": "Bag sizer",
+      "pin_context": "airport carry-on luggage size checker",
+      "news_query": "Bag sizer",
+      "news_angle": "The bag sizer is used to enforce a new corporate rule requiring every carry-on to be checked for size.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Handbagage_bakken.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "My supervisor drilled it into us",
@@ -30,7 +35,12 @@
     },
     {
       "phrase": "pulled the boarding footage",
-      "query": "security camera airport monitor"
+      "query": "security camera airport monitor",
+      "pin_query": "Boarding footage",
+      "pin_context": "airport security camera video",
+      "news_query": "Boarding footage",
+      "news_angle": "Corporate pulls the boarding footage to investigate a complaint, revealing a supervisor's inconsistent enforcement of the rules.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Superbike_on-board_footage.JPG"
     },
     {
       "phrase": "the exceptions stopped that day",

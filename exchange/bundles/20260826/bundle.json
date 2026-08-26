@@ -450,8 +450,8 @@
           "shot_index": 0,
           "phrase": "the metal sizer",
           "query": "airport bag size checker frame",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
@@ -492,8 +492,8 @@
           "shot_index": 6,
           "phrase": "pulled the boarding footage",
           "query": "security camera airport monitor",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
@@ -505,20 +505,20 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 2,
+        "missing": 6,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "reddit-airport-bag-sizer-s0-1abd378ed2ea",
         "reddit-airport-bag-sizer-s1-40d18cc032be",
         "reddit-airport-bag-sizer-s2-1a942d1fbebf",
         "reddit-airport-bag-sizer-s3-1f315449a073",
         "reddit-airport-bag-sizer-s4-c93f23e626db",
         "reddit-airport-bag-sizer-s5-d9a89a0b72cd",
-        "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
-        "reddit-airport-bag-sizer-s7-5596b2333541"
+        "reddit-airport-bag-sizer-s7-5596b2333541",
+        "reddit-airport-bag-sizer-s0-1abd378ed2ea",
+        "reddit-airport-bag-sizer-s6-3b2e2fbe03ef"
       ]
     }
   ],
@@ -736,32 +736,6 @@
       "verdict": "weak"
     },
     {
-      "request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
-      "safe_request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
-      "drive_filename": "20260826__reddit-airport-bag-sizer-s0-1abd378ed2ea.png",
-      "prompt_sha256": "35a08346a6d611a605164c604e6f0ea23f71d7613ccc54cfd7159a9d96bf04fd",
-      "checkpoint_path": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s0-1abd378ed2ea.json",
-      "slug": "reddit-airport-bag-sizer",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: airport bag size checker frame. It accompanies the narration: \"the metal sizer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-airport-bag-sizer-s1-40d18cc032be",
       "safe_request_id": "reddit-airport-bag-sizer-s1-40d18cc032be",
       "drive_filename": "20260826__reddit-airport-bag-sizer-s1-40d18cc032be.png",
@@ -892,32 +866,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
-      "safe_request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
-      "drive_filename": "20260826__reddit-airport-bag-sizer-s6-3b2e2fbe03ef.png",
-      "prompt_sha256": "a60537a4e233c404b809d2c5efcd65a0b389c9a1e7c92662cbe0ffa1b641e30d",
-      "checkpoint_path": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s6-3b2e2fbe03ef.json",
-      "slug": "reddit-airport-bag-sizer",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: security camera airport monitor. It accompanies the narration: \"pulled the boarding footage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "reddit-airport-bag-sizer-s7-5596b2333541",
       "safe_request_id": "reddit-airport-bag-sizer-s7-5596b2333541",
       "drive_filename": "20260826__reddit-airport-bag-sizer-s7-5596b2333541.png",
@@ -942,6 +890,62 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
+      "safe_request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
+      "drive_filename": "20260826__reddit-airport-bag-sizer-s0-1abd378ed2ea.png",
+      "prompt_sha256": "35a08346a6d611a605164c604e6f0ea23f71d7613ccc54cfd7159a9d96bf04fd",
+      "checkpoint_path": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s0-1abd378ed2ea.json",
+      "slug": "reddit-airport-bag-sizer",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: airport bag size checker frame. It accompanies the narration: \"the metal sizer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+      "safe_request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+      "drive_filename": "20260826__reddit-airport-bag-sizer-s6-3b2e2fbe03ef.png",
+      "prompt_sha256": "a60537a4e233c404b809d2c5efcd65a0b389c9a1e7c92662cbe0ffa1b641e30d",
+      "checkpoint_path": "exchange/bundles/20260826/media-progress/reddit-airport-bag-sizer-s6-3b2e2fbe03ef.json",
+      "slug": "reddit-airport-bag-sizer",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: security camera airport monitor. It accompanies the narration: \"pulled the boarding footage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     }
   ],
   "media_protocol": {
