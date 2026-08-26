@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a",
+  "safe_request_id": "reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "82b1bb2a3df309f3de9a99dab8b4430687e1e71006333d049ecd178cf1d2964b",
+  "prompt_used": "An editorial illustration for a short-form video: backyard shed fence. It accompanies the narration: \"sheds and fences the president had personally approved for himself\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1m9TlpeAD0Ib1U0Ls127T7F16HyO3WFVI",
+    "filename": "20260826__reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1m9TlpeAD0Ib1U0Ls127T7F16HyO3WFVI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "db51490c6408c1806adcf8611391e63b6431fdf46fdfa086ba5d04235bd2b771",
+    "bytes": 1411411,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:21.825Z",
+  "error": null,
+  "retryable": false
+}
