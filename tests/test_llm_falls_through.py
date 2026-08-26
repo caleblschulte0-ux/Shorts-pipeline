@@ -143,5 +143,30 @@ class TestTheRealChainIsStillWiredFreeFirst(unittest.TestCase):
             self.assertEqual(env, f"{name.upper()}_API_KEY")
 
 
+class TestDailyRepairUsesTheFallbackChain(unittest.TestCase):
+    """The production call site must not defeat _call_llm's fallback."""
+
+    def test_trending_repair_does_not_pin_groq(self):
+        import ast
+
+        source = (ROOT / "scripts" / "run_trending_daily.py").read_text()
+        tree = ast.parse(source)
+        calls = [
+            node for node in ast.walk(tree)
+            if isinstance(node, ast.Call)
+            and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "generate"
+            and isinstance(node.func.value, ast.Name)
+            and node.func.value.id == "script_generator"
+        ]
+        self.assertTrue(calls, "script_generator.generate call not found")
+        for call in calls:
+            self.assertNotIn(
+                "backend",
+                {kw.arg for kw in call.keywords},
+                "pinning backend='groq' disables the configured fallback chain",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
