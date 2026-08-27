@@ -1,0 +1,25 @@
+{
+  "key": "antarctica_recent_pause",
+  "title": "Antarctica ice mass change: losing vs a recent gain (billion tons/year)",
+  "unit": "billion tons per year",
+  "geography": "Antarctica",
+  "time_coverage": "2011-2020 vs 2021-2023",
+  "source": {
+    "name": "Antarctic Ice Mass Loss, GRACE/GRACE-FO satellite gravimetry",
+    "publisher": "NASA",
+    "url": "https://science.nasa.gov/earth/antarctic-ice-mass-loss-2002-2023",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "NASA reports Antarctica losing an average 157 billion tons/year from 2011-2020, then gaining back an average 119 billion tons/year from 2021-2023 due to a run of heavy snowfall years -- described by NASA scientists as noise on top of the longer-term decline, not a reversal of it.",
+  "points": [
+    {
+      "label": "Losing (2011-2020 avg)",
+      "value": 157
+    },
+    {
+      "label": "Gaining (2021-2023 avg)",
+      "value": 119
+    }
+  ]
+}

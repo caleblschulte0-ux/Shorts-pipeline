@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-spotify-overtakes-siriusxm",
+  "title": "SiriusXM Had Radio Locked Up. Spotify Ended That.",
+  "hook": "One Of These Grew 9x",
+  "y_label": "Subscribers (millions)",
+  "duration": 13,
+  "source": "Spotify quarterly/annual reports (premium subscribers) and SiriusXM Holdings 10-K/10-Q filings (self-pay subscribers), as compiled by company earnings releases and industry press. Spotify: 28M (2015), 71M (2017), 124M (2019), 172M (2021), 226M (2023), 252M (2024). SiriusXM: 29M (2015), 32M (2017), 34.9M (2019), 34.5M (2021), 34.3M (2023), 33M (2024). Figures are approximate, rounded to the nearest whole/tenth million from reported quarterly figures.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2021,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Spotify",
+      "color": "#1DB954",
+      "icon": "Spotify",
+      "values": [
+        28,
+        71,
+        124,
+        172,
+        226,
+        252
+      ]
+    },
+    {
+      "name": "SiriusXM",
+      "color": "#0066CC",
+      "icon": "SiriusXM",
+      "values": [
+        29,
+        32,
+        34.9,
+        34.5,
+        34.3,
+        33
+      ]
+    }
+  ],
+  "hashtags": [
+    "spotify",
+    "siriusxm",
+    "streaming",
+    "music",
+    "podcasts",
+    "radio",
+    "satelliteradio",
+    "musicindustry",
+    "tech",
+    "subscribers",
+    "dataviz",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

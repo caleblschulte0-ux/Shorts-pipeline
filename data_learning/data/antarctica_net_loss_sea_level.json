@@ -1,0 +1,25 @@
+{
+  "key": "antarctica_net_loss_sea_level",
+  "title": "Antarctica's net ice loss (2002-2023) vs its sea-level contribution",
+  "unit": "mixed",
+  "geography": "Antarctica / Global oceans",
+  "time_coverage": "2002-2023",
+  "source": {
+    "name": "Antarctic Ice Mass Loss / global mean sea level, satellite altimetry",
+    "publisher": "NASA",
+    "url": "https://science.nasa.gov/earth/antarctic-ice-mass-loss-2002-2023",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "Net Antarctic ice loss 2002-2023 totaled about 1.85 trillion tons (1,850 billion tons) per NASA GRACE/GRACE-FO data. Using the standard ~360 billion tons = 1mm sea-level-rise conversion, that is roughly 5.1mm of global sea level rise from Antarctica alone. Global mean sea level rose roughly 3.3mm/year over the same period (NASA/NOAA satellite altimetry), or approximately 75mm total since 2002 -- so Antarctica alone accounts for around a tenth of it.",
+  "points": [
+    {
+      "label": "From Antarctica alone",
+      "value": 5.1
+    },
+    {
+      "label": "Total global rise (all sources)",
+      "value": 75
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "key": "tallest_countries_today",
+  "title": "Average adult male height today, selected countries (cm)",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "circa 2020s estimates",
+  "source": {
+    "name": "A century of trends in adult human height / national health survey compilations",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC)",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "Netherlands figure (~182.5cm) is the study's cited tallest national average for men. US and global-average figures are illustrative approximations from national health survey compilations.",
+  "points": [
+    {
+      "label": "Netherlands",
+      "value": 182.5
+    },
+    {
+      "label": "United States",
+      "value": 175.4
+    },
+    {
+      "label": "Global average",
+      "value": 171
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "key": "antarctica_ice_loss_rate_by_decade",
+  "title": "Antarctica average annual ice mass loss, by period (billion tons/year)",
+  "unit": "billion tons per year",
+  "geography": "Antarctica",
+  "time_coverage": "1990s-2020 (period averages)",
+  "source": {
+    "name": "Antarctic Ice Mass Loss, GRACE/GRACE-FO satellite gravimetry",
+    "publisher": "NASA",
+    "url": "https://science.nasa.gov/earth/antarctic-ice-mass-loss-2002-2023",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "NASA GRACE/GRACE-FO satellite data: Antarctica's ice sheet was close to balance before the 1990s; 2002-2010 averaged 81 billion tons of loss per year; 2011-2020 averaged 157 billion tons per year, roughly double the prior decade.",
+  "points": [
+    {
+      "label": "1990s (near balance)",
+      "value": 5,
+      "period": "1995"
+    },
+    {
+      "label": "2002-2010 avg",
+      "value": 81,
+      "period": "2006"
+    },
+    {
+      "label": "2011-2020 avg",
+      "value": 157,
+      "period": "2015"
+    }
+  ]
+}

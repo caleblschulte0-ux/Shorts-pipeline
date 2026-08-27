@@ -1,0 +1,37 @@
+{
+  "key": "cursive_states_requiring_by_year",
+  "title": "US states legally requiring cursive instruction, by year",
+  "unit": "states",
+  "geography": "United States",
+  "time_coverage": "2016-2026",
+  "source": {
+    "name": "State legislation tracking on cursive handwriting mandates",
+    "publisher": "Compiled from state education department / legislature records (as reported by Zaner-Bloser, Fortune, and state education trackers)",
+    "url": "https://fortune.com/2026/08/25/cursive-state-mandates-ai-cheating/",
+    "officiality": "illustrative",
+    "access_date": "2026-08-27"
+  },
+  "notes": "Common Core's 2010 English Language Arts standards dropped a national cursive requirement. States have since passed their own laws bringing it back: 14 states by 2016, 20 by 2019, 25 by 2024, 27 by 2026 (most recently Florida, Pennsylvania, New Jersey and Idaho). Figures approximate, compiled from state-tracker and news coverage.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 14,
+      "period": "2016"
+    },
+    {
+      "label": "2019",
+      "value": 20,
+      "period": "2019"
+    },
+    {
+      "label": "2024",
+      "value": 25,
+      "period": "2024"
+    },
+    {
+      "label": "2026",
+      "value": 27,
+      "period": "2026"
+    }
+  ]
+}

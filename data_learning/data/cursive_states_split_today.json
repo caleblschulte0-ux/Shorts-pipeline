@@ -1,0 +1,25 @@
+{
+  "key": "cursive_states_split_today",
+  "title": "US states: require cursive vs don't, 2026",
+  "unit": "states",
+  "geography": "United States",
+  "time_coverage": "2026",
+  "source": {
+    "name": "State legislation tracking on cursive handwriting mandates",
+    "publisher": "Compiled from state education department / legislature records",
+    "url": "https://fortune.com/2026/08/25/cursive-state-mandates-ai-cheating/",
+    "officiality": "illustrative",
+    "access_date": "2026-08-27"
+  },
+  "notes": "27 of 50 states now have a law requiring cursive instruction; the remaining 23 states plus D.C. (24 jurisdictions) do not, as of 2026.",
+  "points": [
+    {
+      "label": "Require it",
+      "value": 27
+    },
+    {
+      "label": "Don't (incl. D.C.)",
+      "value": 24
+    }
+  ]
+}

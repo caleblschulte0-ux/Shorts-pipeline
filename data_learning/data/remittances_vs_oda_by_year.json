@@ -1,0 +1,52 @@
+{
+  "key": "remittances_vs_oda_by_year",
+  "title": "Money sent home by migrant workers vs global foreign aid (billion $)",
+  "unit": "billion dollars",
+  "geography": "Global (remittances to low/middle-income countries) vs worldwide ODA",
+  "time_coverage": "1995-2024",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank / KNOMAD",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "World Bank remittance flows to low- and middle-income countries and OECD DAC official development assistance (ODA) totals. Remittances: ~55B (1995), ~85B (2000), ~192B (2005), ~325B (2010), ~441B (2015), ~540B (2020), ~685B (2024, estimate). ODA: ~59B (1995), ~49B (2000), ~108B (2005), ~129B (2010), ~131B (2015), ~161B (2020), ~212B (2024). World Bank notes remittances to LMICs have exceeded ODA in every estimate since the mid-1990s. Figures approximate/rounded.",
+  "points": [
+    {
+      "label": "1995",
+      "value": 55,
+      "period": "1995"
+    },
+    {
+      "label": "2000",
+      "value": 85,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 192,
+      "period": "2005"
+    },
+    {
+      "label": "2010",
+      "value": 325,
+      "period": "2010"
+    },
+    {
+      "label": "2015",
+      "value": 441,
+      "period": "2015"
+    },
+    {
+      "label": "2020",
+      "value": 540,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 685,
+      "period": "2024"
+    }
+  ]
+}

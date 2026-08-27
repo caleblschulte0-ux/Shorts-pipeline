@@ -1,0 +1,33 @@
+{
+  "key": "top_remittance_destinations",
+  "title": "Top remittance-receiving countries, 2024 (billion $)",
+  "unit": "billion dollars",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank / KNOMAD",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "India is the world's largest remittance-receiving country by a wide margin. Figures approximate, from World Bank Migration and Development Brief estimates.",
+  "points": [
+    {
+      "label": "India",
+      "value": 129
+    },
+    {
+      "label": "Mexico",
+      "value": 68
+    },
+    {
+      "label": "China",
+      "value": 48
+    },
+    {
+      "label": "Philippines",
+      "value": 40
+    }
+  ]
+}

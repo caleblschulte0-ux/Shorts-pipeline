@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-buries-physical-music",
+  "title": "Streaming Buried CDs, Vinyl AND Downloads Combined",
+  "hook": "This Crossed Over In 2016",
+  "y_label": "US recorded music revenue (billion dollars)",
+  "duration": 13,
+  "source": "RIAA year-end and mid-year U.S. recorded music revenue reports. Streaming revenue: .24B (2015), ~.03B (2016, the year streaming became the largest format), .7B (2017), .8B (2019), 2.4B (2021), 4.4B (2023). Physical + digital downloads combined: .48B (2015), ~.4B (2016), ~.5B (2017), ~.8B (2019), ~.6B (2021), ~.39B (2023, physical formats partly rebounded on vinyl). Figures approximate, derived from RIAA-reported percentage shares of total industry revenue.",
+  "years": [
+    2015,
+    2016,
+    2017,
+    2019,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Streaming",
+      "color": "#1DB954",
+      "values": [
+        2.24,
+        3.03,
+        5.7,
+        8.8,
+        12.4,
+        14.4
+      ]
+    },
+    {
+      "name": "Physical + Downloads",
+      "color": "#e74c3c",
+      "values": [
+        4.48,
+        3.4,
+        2.5,
+        1.8,
+        1.6,
+        2.39
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "music",
+    "musicindustry",
+    "riaa",
+    "vinyl",
+    "cds",
+    "spotify",
+    "applemusic",
+    "downloads",
+    "entertainment",
+    "dataviz",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,25 @@
+{
+  "key": "cursive_law_pace_comparison",
+  "title": "New state cursive-instruction laws: multi-year stretch vs 2026 alone",
+  "unit": "states",
+  "geography": "United States",
+  "time_coverage": "2016-2019 vs 2026",
+  "source": {
+    "name": "State legislation tracking on cursive handwriting mandates",
+    "publisher": "Compiled from state education department / legislature records",
+    "url": "https://fortune.com/2026/08/25/cursive-state-mandates-ai-cheating/",
+    "officiality": "illustrative",
+    "access_date": "2026-08-27"
+  },
+  "notes": "Six states added a cursive requirement over the 2016-2019 stretch (14 to 20 states). In 2026 alone, at least four more joined -- Florida, Pennsylvania, New Jersey and Idaho -- with reporting citing concern over AI-generated schoolwork as part of the renewed push, alongside the older cognitive-development and historical-document-literacy arguments.",
+  "points": [
+    {
+      "label": "2016-2019 (3 years)",
+      "value": 6
+    },
+    {
+      "label": "2026 alone",
+      "value": 4
+    }
+  ]
+}

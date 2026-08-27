@@ -1,0 +1,79 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-coupon-binder-rule",
+  "title": "He Wrote The No-Exceptions Rule. I Enforced It On Him.",
+  "script": "Our new store manager rolled out a rule after coupon fraud got out of hand: every coupon gets checked against the master binder, no exceptions, not even for management. He announced it to the whole team like it was law. Two weeks later he tried to use his own employee discount on a register I was running, and it wasn't logged in that week's binder page, his assistant had forgotten to file it. I told him exactly what he'd told everyone: no exceptions, not even for management. He argued for ten minutes while four customers watched and waited. I rang him up at full price. He called corporate to get it overridden himself, and corporate asked why the store manager needed an override for his own rule. He personally re-laminated the binder that afternoon and taped a note to the front that said check twice.",
+  "shots": [
+    {
+      "phrase": "rolled out a rule after coupon fraud",
+      "query": "coupon stack cash register"
+    },
+    {
+      "phrase": "checked against the master binder",
+      "query": "binder checklist office desk"
+    },
+    {
+      "phrase": "his own employee discount on a register",
+      "query": "cash register checkout screen"
+    },
+    {
+      "phrase": "wasn't logged in that week's binder page",
+      "query": "missing paperwork folder"
+    },
+    {
+      "phrase": "four customers watched and waited",
+      "query": "customers waiting in line store"
+    },
+    {
+      "phrase": "called corporate to get it overridden himself",
+      "query": "office phone call desk"
+    },
+    {
+      "phrase": "personally re-laminated the binder",
+      "query": "laminating machine office"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "coupon fraud got out of hand",
+      "text": "FRAUD PROBLEM",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "no exceptions, not even for management",
+      "text": "NO EXCEPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "wasn't logged in that week's binder page",
+      "text": "NOT LOGGED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "I rang him up at full price",
+      "text": "FULL PRICE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "why the store manager needed an override for his own rule",
+      "text": "HIS OWN RULE",
+      "color": "#ffaa30"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "workplace",
+    "manager",
+    "coupon",
+    "corporate",
+    "jobstory",
+    "karma",
+    "reddit",
+    "storytime",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

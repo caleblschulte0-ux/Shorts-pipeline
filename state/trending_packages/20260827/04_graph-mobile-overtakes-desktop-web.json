@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-mobile-overtakes-desktop-web",
+  "title": "Desktop Ran The Internet For 20 Years. Mobile Took Over.",
+  "hook": "The Crossover Happened In 2017",
+  "y_label": "Share of global web traffic (%)",
+  "duration": 13,
+  "source": "StatCounter GlobalStats, worldwide platform market share (annual averages, desktop vs mobile, tablet excluded). Mobile: 31% (2015), 38% (2016), 50% (2017), 53% (2019), 57% (2021), 58% (2023). Desktop: 69% (2015), 62% (2016), 50% (2017), 47% (2019), 43% (2021), 42% (2023). Figures approximate annual averages.",
+  "years": [
+    2015,
+    2016,
+    2017,
+    2019,
+    2021,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Mobile",
+      "color": "#9b59b6",
+      "values": [
+        31,
+        38,
+        50,
+        53,
+        57,
+        58
+      ]
+    },
+    {
+      "name": "Desktop",
+      "color": "#1abc9c",
+      "values": [
+        69,
+        62,
+        50,
+        47,
+        43,
+        42
+      ]
+    }
+  ],
+  "hashtags": [
+    "mobile",
+    "internet",
+    "technology",
+    "webtraffic",
+    "statcounter",
+    "smartphones",
+    "desktop",
+    "tech",
+    "dataviz",
+    "digitaltrends",
+    "shorts",
+    "statistics"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

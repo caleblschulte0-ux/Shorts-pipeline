@@ -1,0 +1,37 @@
+{
+  "key": "korea_women_height_by_birth_year",
+  "title": "Average height of South Korean women, by birth year (cm)",
+  "unit": "years",
+  "geography": "South Korea",
+  "time_coverage": "1896-1996 (birth-year cohorts)",
+  "source": {
+    "name": "A century of trends in adult human height",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), published in eLife",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "Illustrative interpolation between the study's headline endpoints: women born in South Korea in 1896 averaged approximately 142.2cm; those born in 1996 averaged approximately 162.3cm, a 20.2cm gain, the single largest national increase of the 200 countries studied. Intermediate points are approximate.",
+  "points": [
+    {
+      "label": "1896",
+      "value": 142.2,
+      "period": "1896"
+    },
+    {
+      "label": "1930",
+      "value": 148,
+      "period": "1930"
+    },
+    {
+      "label": "1960",
+      "value": 154,
+      "period": "1960"
+    },
+    {
+      "label": "1996",
+      "value": 162.3,
+      "period": "1996"
+    }
+  ]
+}

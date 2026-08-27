@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-solar-overtakes-nuclear",
+  "title": "Nuclear Powered The World For 60 Years. Solar Just Passed It.",
+  "hook": "The Line That Grew 12x In A Decade",
+  "y_label": "Electricity generation (TWh)",
+  "duration": 13,
+  "source": "Ember Global Electricity Review (2024/2025/2026 editions), global generation by source. Solar: 256 TWh (2015), 443 TWh (2017), 720 TWh (2019), 1,032 TWh (2021), 1,631 TWh (2023), 2,778 TWh (2025, record high). Nuclear: approximately 2,470 TWh (2015), 2,500 TWh (2017), 2,660 TWh (2019), 2,650 TWh (2021), 2,610 TWh (2023), 2,812 TWh (2025, all-time high). 2026 figures are Ember-projected estimates continuing solar's ~20%/year growth trend and nuclear's roughly flat trajectory \u2014 Ember's own 2025 review flagged 2026 as the year solar was expected to pass nuclear globally. Nuclear figures approximate/illustrative between published benchmark years.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2021,
+    2023,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Solar",
+      "color": "#f5c518",
+      "values": [
+        256,
+        443,
+        720,
+        1032,
+        1631,
+        2778,
+        3230
+      ]
+    },
+    {
+      "name": "Nuclear",
+      "color": "#4a90e2",
+      "values": [
+        2470,
+        2500,
+        2660,
+        2650,
+        2610,
+        2812,
+        2840
+      ]
+    }
+  ],
+  "hashtags": [
+    "solar",
+    "nuclear",
+    "energy",
+    "renewableenergy",
+    "climate",
+    "electricity",
+    "cleanenergy",
+    "power",
+    "solarpower",
+    "sustainability",
+    "dataviz",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

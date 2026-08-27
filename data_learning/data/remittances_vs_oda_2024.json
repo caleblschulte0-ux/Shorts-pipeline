@@ -1,0 +1,25 @@
+{
+  "key": "remittances_vs_oda_2024",
+  "title": "Remittances vs foreign aid, 2024 (billion $)",
+  "unit": "billion dollars",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Migration and Development Brief",
+    "publisher": "World Bank / KNOMAD",
+    "url": "https://www.worldbank.org/en/topic/migrationremittancesdiasporaissues",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "2024: remittances to low- and middle-income countries reached an estimated $685 billion, more than 3x total global official development assistance (ODA), estimated around $212 billion.",
+  "points": [
+    {
+      "label": "Remittances",
+      "value": 685
+    },
+    {
+      "label": "Foreign aid (ODA)",
+      "value": 212
+    }
+  ]
+}

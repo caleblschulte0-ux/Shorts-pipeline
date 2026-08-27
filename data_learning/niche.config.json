@@ -24504,6 +24504,288 @@
      }
     }
    ]
+  },
+  {
+   "slug": "human-height-generational-leap",
+   "title": "Why Humans Keep Getting Taller (3 Charts)",
+   "hook": "You're taller than your grandparents. Here's how much.",
+   "closing": "Height isn't genetics catching up. It's dinner catching up.",
+   "question": "How tall are you compared to your parents at your age? Tell me below.",
+   "caption": "South Korean women born in 1996 are 20 centimeters taller than those born in 1896 -- the biggest height jump on Earth. Americans barely moved. It's not genetics. It's what a growing body gets to eat 👇",
+   "hashtags": [
+    "height",
+    "humanbody",
+    "science",
+    "nutrition",
+    "southkorea",
+    "biology",
+    "health",
+    "growth",
+    "genetics",
+    "interesting",
+    "didyouknow",
+    "data",
+    "dataviz",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "korea_women_height_by_birth_year",
+     "params": {
+      "file": "korea_women_height_by_birth_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE JUMP",
+     "topic": "average height by birth year",
+     "say": "Women born in South Korea in 1896 averaged 142 centimeters. Women born there in 1996? 162. A 20 centimeter jump in one century, the biggest of any country ever measured.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "height_gain_korea_vs_usa",
+     "params": {
+      "file": "height_gain_korea_vs_usa.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · WHY",
+     "topic": "total height gained since 1900",
+     "say": "So what happened? Childhood nutrition boomed as the country got richer. The US, already well-fed, barely moved — just 4 centimeters in the same hundred years."
+    },
+    {
+     "source": "offline",
+     "key": "tallest_countries_today",
+     "params": {
+      "file": "tallest_countries_today.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "3 · TODAY",
+     "topic": "average male height by country",
+     "say": "Today the Netherlands leads at 182.5 centimeters, taller than Americans by nearly 3 inches. Feed a generation better, and the whole country grows into it."
+    }
+   ]
+  },
+  {
+   "slug": "antarctica-ice-loss-doubled",
+   "title": "Antarctica's Ice Loss Rate Nearly Doubled (3 Charts)",
+   "hook": "Antarctica just did something scientists didn't expect.",
+   "closing": "A pause isn't a recovery. Physics doesn't take breaks that easily.",
+   "question": "Did you know Antarctica briefly gained ice? Tell me below.",
+   "caption": "Antarctica's ice loss rate nearly doubled in a decade -- then it briefly gained ice back. NASA says that's not a recovery, it's noise. The 21-year total: 1.85 trillion tons gone 👇",
+   "hashtags": [
+    "antarctica",
+    "climate",
+    "nasa",
+    "climatechange",
+    "science",
+    "icemelt",
+    "sealevelrise",
+    "globalwarming",
+    "satellite",
+    "environment",
+    "data",
+    "dataviz",
+    "interesting",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "antarctica_ice_loss_rate_by_decade",
+     "params": {
+      "file": "antarctica_ice_loss_rate_by_decade.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE ACCELERATION",
+     "topic": "ice loss rate by decade",
+     "say": "Antarctica used to be roughly in balance. By the 2000s it was losing 81 billion tons of ice a year. The 2010s? 157 billion tons a year — the rate nearly doubled.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "antarctica_recent_pause",
+     "params": {
+      "file": "antarctica_recent_pause.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE TWIST",
+     "topic": "losing ice vs a recent gain",
+     "say": "Then something strange: 2021 to 2023, the ice sheet actually gained back 119 billion tons a year. A freak run of heavy snowfall, NASA says — not a reversal."
+    },
+    {
+     "source": "offline",
+     "key": "antarctica_net_loss_sea_level",
+     "params": {
+      "file": "antarctica_net_loss_sea_level.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE BILL",
+     "topic": "sea level rise from Antarctica",
+     "say": "Because even with that bump, the 21-year total is a net loss of 1.85 trillion tons — about 5 millimeters of the ocean's rise since 2002, from one continent alone."
+    }
+   ]
+  },
+  {
+   "slug": "cursive-comeback-ai-era",
+   "title": "Cursive Writing Is Making An Unlikely Comeback (3 Charts)",
+   "hook": "Schools killed cursive. Now they're bringing it back.",
+   "closing": "Turns out a pen a computer can't hack is suddenly valuable again.",
+   "question": "Can you actually still read cursive? Be honest below.",
+   "caption": "Common Core dropped cursive in 2010. Now 27 states legally require it again -- and four joined in 2026 alone, partly to fight AI-written homework. The comeback nobody predicted 👇",
+   "hashtags": [
+    "cursive",
+    "handwriting",
+    "education",
+    "schools",
+    "commoncore",
+    "ai",
+    "learning",
+    "teachers",
+    "school",
+    "writing",
+    "interesting",
+    "didyouknow",
+    "data",
+    "shorts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cursive_states_requiring_by_year",
+     "params": {
+      "file": "cursive_states_requiring_by_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COMEBACK",
+     "topic": "states requiring cursive",
+     "say": "Common Core dropped cursive from national standards in 2010. States pushed back: 14 required it by 2016, 20 by 2019, 27 by this year.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "cursive_states_split_today",
+     "params": {
+      "file": "cursive_states_split_today.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · TODAY",
+     "topic": "states that require it now",
+     "say": "That's now 27 states mandating cursive, more than half the country, up from a standard that told schools not to bother."
+    },
+    {
+     "source": "offline",
+     "key": "cursive_law_pace_comparison",
+     "params": {
+      "file": "cursive_law_pace_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHY NOW",
+     "topic": "new laws, then vs now",
+     "say": "And it's speeding up: six states signed on over three years last decade. Four signed on in 2026 alone — with schools now citing AI-written homework as a new reason to make kids write by hand."
+    }
+   ]
+  },
+  {
+   "slug": "remittances-beat-foreign-aid",
+   "title": "The Money Migrants Send Home Beats All Foreign Aid (3 Charts)",
+   "hook": "One quiet money flow beats every government combined.",
+   "closing": "The biggest foreign aid program on Earth isn't run by any government.",
+   "question": "Have you ever sent money home to family? Tell me below.",
+   "caption": "Migrant workers sent $685 billion home in 2024 -- more than 3x all global foreign aid combined. It's been that way since the 1990s. Here's where the money actually goes 👇",
+   "hashtags": [
+    "remittances",
+    "migration",
+    "economy",
+    "worldbank",
+    "foreignaid",
+    "globaleconomy",
+    "money",
+    "immigration",
+    "finance",
+    "data",
+    "dataviz",
+    "interesting",
+    "shorts",
+    "economics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "remittances_vs_oda_by_year",
+     "params": {
+      "file": "remittances_vs_oda_by_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE FLOW",
+     "topic": "money migrants send home",
+     "say": "In 1995, migrant workers sent about 55 billion dollars home to poorer countries. By 2024? 685 billion. Twelve times bigger, and it never stopped climbing.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "timeline_axis",
+        "region": "full"
+       }
+      ]
+     }
+    },
+    {
+     "source": "offline",
+     "key": "remittances_vs_oda_2024",
+     "params": {
+      "file": "remittances_vs_oda_2024.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE CATCH",
+     "topic": "remittances vs foreign aid",
+     "say": "Here's the catch: that 685 billion dollars is now more than 3 times all global foreign aid combined, around 212 billion. Family money quietly out-funds every government's aid budget."
+    },
+    {
+     "source": "offline",
+     "key": "top_remittance_destinations",
+     "params": {
+      "file": "top_remittance_destinations.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "3 · WHERE IT GOES",
+     "topic": "top destination countries",
+     "say": "India alone takes in 129 billion dollars a year this way, more than Mexico, China and the Philippines combined. No summit, no treaty — just millions of people wiring money home."
+    }
+   ]
   }
  ],
  "videos": [

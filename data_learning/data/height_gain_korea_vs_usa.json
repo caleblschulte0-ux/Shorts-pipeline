@@ -1,0 +1,25 @@
+{
+  "key": "height_gain_korea_vs_usa",
+  "title": "Total height gain since ~1900, South Korea vs United States (cm)",
+  "unit": "years",
+  "geography": "South Korea / United States",
+  "time_coverage": "cohorts born ~1896-1996",
+  "source": {
+    "name": "A century of trends in adult human height",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), published in eLife",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "official",
+    "access_date": "2026-08-27"
+  },
+  "notes": "South Korea's 20.2cm gain (women) is the study's largest national increase. The US gain is illustrative, reflecting the study's finding that US height growth was comparatively modest and had largely plateaued by the mid-20th century versus fast-catching-up nations.",
+  "points": [
+    {
+      "label": "South Korea",
+      "value": 20.2
+    },
+    {
+      "label": "United States",
+      "value": 4
+    }
+  ]
+}
