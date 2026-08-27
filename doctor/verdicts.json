@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260826",
+  "updated": "20260827",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -876,6 +876,43 @@
       "date": "20260826",
       "because": "Evidence is real and checkable (state/analytics_third/latest.json: YT_SEARCH=2977 vs SHORTS=264, named search terms tied to specific low/high performers) and the proposal is appropriately bounded (title-only, no cadence/selection change, matched control arm). Accepting the direction; the actual 24-clip experiment runs over multiple days of production and is an editorial/authoring change to third_capture/author.py + docs/THIRD_INTERNET_PLAYBOOK.md titling guidance, not a same-session code fix.",
       "history": []
+    },
+    "4754c87f0f7e": {
+      "verdict": "in_progress",
+      "date": "20260827",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260827",
+          "because": "Verified: _collect_spans in shared/video_qa.py never closes a start with no matching end, so a black/freeze/silence defect running through EOF is silently dropped from black_frac/freeze_frac/silence_frac and can pass a genuinely broken render. Fixing this in the same session (rule zero)."
+        }
+      ]
+    },
+    "0bf9780d6272": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Verified: shared/punchup_guard.check() only runs numeric_claims/proper_nouns comparisons on original.script vs rewritten.script; apply() then copies rewritten title/hook through PUNCHUP_FIELDS with zero claim checking on those fields, even though the registry lists title/hook as editable and protects quantitative claims/entities. Real gap in the fact-guard. Accepted; queued behind the higher-ranked bug fix this run.",
+      "history": []
+    },
+    "3de32f29a8e4": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Verified: showrunner_review._temporal_evidence swallows every exception into a dict with effective_fps=None; temporal_hard_fail returns None (no block) and temporal_grade returns a neutral 2 for that unknown state, so a cadence-probe infra failure (ffmpeg/PIL/milestone import) reads as ordinary neutral evidence and the vision judge can still ship. This is exactly the fail-open gap CLAUDE.md's fail-closed rule for the showrunner exists to prevent on a publish run. Accepted; queued behind the bug fix and the punch-up guard fix.",
+      "history": []
+    },
+    "90428377a85b": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Reproduced independently against today's state/analytics_explainer/latest.json (35 usable-for-retention videos vs the report's 34): estimated-runtime<=40s videos median retention ~46.8% vs ~28.2% for longer videos, with comparable median views (83 vs 87.5) -- the gap survives an independent re-check and isn't a views artifact. Registry cadence/count/quality bar are untouched, matched-experiment design is sound, and it respects the retro briefs' 'too young to judge' caution. Accepted as a direction; queued behind the higher-ranked fixes -- building this means designing the experiment-arm tagging in the story/analytics metadata first, which is its own scoped task.",
+      "history": []
+    },
+    "4490f7560fed": {
+      "verdict": "later",
+      "date": "20260827",
+      "because": "Legitimate direction (video_qa, showrunner motion/temporal, and quality_milestones do each own a different shape of the same measurement with different unknown-evidence rules), but migrating to one versioned evidence contract without changing any existing block threshold is a multi-file, parity-tested refactor that should follow, not precede, the two concrete gaps already accepted this run (the video_qa EOF-span bug and the showrunner temporal fail-open gap) -- fixing those first changes what the unified contract needs to represent. Revisit after they ship.",
+      "history": [],
+      "revisit_after": "20260926"
     }
   }
 }
