@@ -24233,7 +24233,12 @@
      "insight_type": "trend",
      "role": "1 · THE BUMP",
      "topic": "severe turbulence over the North Atlantic",
-     "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent."
+     "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent.",
+     "scene": {
+      "mechanic": "shaking-jet-climb",
+      "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
+      "code": "n_pts = n\nx0, x1 = RX0+40, RX1-40\ny_mid = RTOP + 480\npts_all = []\nfor i in range(n_pts):\n    xx = lerp(x0, x1, i/max(n_pts-1,1))\n    amp = values[i] * 4\n    jag = 0 if i == 0 else (amp if i % 2 == 0 else -amp)\n    pts_all.append((xx, y_mid + jag))\nbuilt = clamp(reveal) * max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ndraw_pts = pts_all[:idx+1]\nif idx < n_pts-1:\n    xa, ya = pts_all[idx]; xb, yb = pts_all[idx+1]\n    draw_pts.append((lerp(xa, xb, fracb), lerp(ya, yb, fracb)))\nif len(draw_pts) >= 2:\n    d.line(draw_pts, fill=rgba(WARN, 230), width=8)\nplane = subject_image('small airplane top view')\nif draw_pts:\n    lx, ly = draw_pts[-1]\n    if plane is not None:\n        pw2 = 140; ph2 = int(pw2 * plane.height / plane.width)\n        paste(plane, int(lx - pw2//2), int(ly - ph2//2), pw2, ph2)\ntext(labels[0] + ': ' + str(values[0]) + ' hrs', RX0+20, RTOP+60, size=32, color=WARN)\ntext(labels[-1] + ': ' + str(values[-1]) + ' hrs', RX0+20, RTOP+110, size=40, color=HIGHLIGHT)\ntext('severe turbulence hours/year, N. Atlantic', (RX0+RX1)//2, RBOT-40, size=24, color=TEXT, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24245,7 +24250,12 @@
      "ascending": false,
      "role": "2 · THE PATTERN",
      "topic": "turbulence increase by severity",
-     "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most."
+     "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most.",
+     "scene": {
+      "mechanic": "rough-air-bands",
+      "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
+      "code": "rows_n = n\ngap = 20\nrow_h = int((RBOT - RTOP - 220 - gap*(rows_n-1)) / rows_n)\ntop = RTOP + 200\ncloud = subject_image('storm cloud turbulence')\nfor i in range(rows_n):\n    y0 = top + i*(row_h+gap)\n    frac = clamp(values[i] / 100.0) * reveal\n    w = int((RX1-RX0) * frac)\n    d.rounded_rectangle([RX0, y0, RX1, y0+row_h], radius=18, outline=rgba(TEXT,180), width=3)\n    d.rounded_rectangle([RX0, y0, RX0+max(w,4), y0+row_h], radius=18, fill=rgba(WARN if i==rows_n-1 else HIGHLIGHT, 200))\n    zig = int(lerp(4, 26, values[i]/100.0))\n    xstep = 24\n    steps = max(1, int(max(w,4)/xstep))\n    pts = []\n    for s in range(steps):\n        xx = RX0 + s*xstep\n        yy = y0 + (0 if s % 2 == 0 else zig)\n        pts.append((xx, yy))\n    if len(pts) >= 2:\n        d.line(pts, fill=rgba(TEXT,160), width=3)\n    text(labels[i], RX0+16, y0 + row_h//2 - 34, size=24, color=TEXT)\n    text(str(int(values[i])) + '%', RX0 + max(w,4) + 14, y0 + row_h//2 - 20, size=30, color=HIGHLIGHT)\nif cloud is not None:\n    cw = 200; ch = int(cw*cloud.height/cloud.width)\n    paste(cloud, RX1-cw-10, RTOP+40, cw, ch)\ntext('increase in turbulence hours by severity', (RX0+RX1)//2, RTOP+140, size=28, color=WARN, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24256,7 +24266,12 @@
      "insight_type": "trend",
      "role": "3 · WHY",
      "topic": "turbulence under a warming climate",
-     "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century."
+     "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century.",
+     "scene": {
+      "mechanic": "future-storm-panels",
+      "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
+      "code": "cols = n\ngap = 16\ncolw = int((RX1-RX0-gap*(cols-1))/cols)\ntop = RTOP+200\nbot = RBOT-140\nplane = subject_image('airplane flying side view')\nvmax_local = max(values) if values else 1\nfor i in range(cols):\n    x0 = RX0 + i*(colw+gap)\n    frac = clamp(values[i]/vmax_local) * reveal\n    dark = int(lerp(40, 210, frac))\n    d.rounded_rectangle([x0, top, x0+colw, bot], radius=20, fill=rgba((18,18,36), 255))\n    d.rounded_rectangle([x0, top, x0+colw, bot], radius=20, fill=rgba(WARN, dark))\n    if plane is not None:\n        amp = lerp(4, 40, frac)\n        jitter = math.sin(reveal*10 + i) * amp\n        pw2 = int(colw*0.6); ph2 = int(pw2*plane.height/plane.width)\n        paste(plane, x0 + (colw-pw2)//2, int((top+bot)//2 - ph2//2 + jitter), pw2, ph2)\n    text(labels[i], x0+colw//2, bot+30, size=20, color=TEXT, center=True)\n    text(str(int(values[i]))+'h', x0+colw//2, top-36, size=28, color=HIGHLIGHT, center=True)\ntext('projected severe-turbulence hours/year', (RX0+RX1)//2, RTOP+140, size=26, color=WARN, center=True)"
+     }
     }
    ]
   },
@@ -24295,7 +24310,12 @@
      "use_baseline": false,
      "role": "1 · THE HEADLINE",
      "topic": "minifigures made versus people alive",
-     "say": "Lego has made an estimated 10 billion minifigures since 1978. There are only 8.1 billion humans alive on Earth right now."
+     "say": "Lego has made an estimated 10 billion minifigures since 1978. There are only 8.1 billion humans alive on Earth right now.",
+     "scene": {
+      "mechanic": "toy-vs-humanity-columns",
+      "concept": "two rising columns, one built from a photo of stacked minifigures and one from a crowd of people, race to their totals",
+      "code": "cx = (RX0+RX1)//2\nminifig = subject_image('lego minifigure toy stack')\npeople = subject_image('crowd of people from above')\nvmax_local = max(values)\nlx = RX0+60; rx = cx+40\npan_w = 380\nfig_h = int(lerp(60, 520, values[0]/vmax_local) * reveal)\npeo_h = int(lerp(60, 520, values[1]/vmax_local) * reveal)\nbase_y = RBOT-140\nif minifig is not None:\n    paste(minifig, lx, base_y-fig_h, pan_w, fig_h)\nif people is not None:\n    paste(people, rx, base_y-peo_h, pan_w, peo_h)\nd.line([RX0, base_y, RX1, base_y], fill=rgba(TEXT,200), width=6)\ntext(labels[0], lx+pan_w//2, base_y+30, size=24, color=TEXT, center=True)\ntext(str(values[0])+'B', lx+pan_w//2, base_y-fig_h-40, size=34, color=HIGHLIGHT, center=True)\ntext(labels[1], rx+pan_w//2, base_y+30, size=24, color=TEXT, center=True)\ntext(str(values[1])+'B', rx+pan_w//2, base_y-peo_h-40, size=34, color=WARN, center=True)\ntext('made vs alive, 2023', cx, RTOP+120, size=30, color=TEXT, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24306,7 +24326,12 @@
      "insight_type": "trend",
      "role": "2 · HOW",
      "topic": "cumulative minifigure production",
-     "say": "It happened fast: production went from basically zero in 1978 to an estimated 8.3 billion by 2019, right around when minifigures passed the human population."
+     "say": "It happened fast: production went from basically zero in 1978 to an estimated 8.3 billion by 2019, right around when minifigures passed the human population.",
+     "scene": {
+      "mechanic": "minifig-fill-sweep",
+      "concept": "a giant minifigure silhouette fills bottom-up as the reveal sweeps across the production years toward the cumulative total",
+      "code": "n_pts = n\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ncur_val = values[idx]\nif idx < n_pts-1:\n    cur_val = lerp(values[idx], values[idx+1], fracb)\ncur_label = labels[idx]\nfigure = subject_image('giant lego minifigure')\nvmax_local = max(values) if values else 1\nfrac = clamp(cur_val/vmax_local)\ncx = (RX0+RX1)//2\nfig_w = 360\nfig_x = cx-fig_w//2\nfig_top = RTOP+180\nfig_bot = RBOT-140\nif figure is not None:\n    fill_image(figure, frac, fig_x, fig_top, fig_w, fig_bot-fig_top, direction='up', color=(230,180,40))\nelse:\n    fill_image(None, frac, fig_x, fig_top, fig_w, fig_bot-fig_top, direction='up', color=HIGHLIGHT)\ntext(cur_label, cx, fig_top-40, size=34, color=TEXT, center=True)\ntext(str(round(cur_val,1))+'B made', cx, fig_bot+40, size=36, color=HIGHLIGHT, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24318,7 +24343,12 @@
      "use_baseline": false,
      "role": "3 · THE PACE",
      "topic": "minifigures made per year versus babies born per year",
-     "say": "And it's not slowing down: Lego molds around 400 million new minifigures a year, nearly 3 times the roughly 134 million babies born on Earth that same year."
+     "say": "And it's not slowing down: Lego molds around 400 million new minifigures a year, nearly 3 times the roughly 134 million babies born on Earth that same year.",
+     "scene": {
+      "mechanic": "assembly-line-density",
+      "concept": "two streaming lanes of repeated icons, minifigures vs babies, whose count density encodes the per-year production rate race",
+      "code": "top1 = RTOP+260; top2 = RTOP+560\nlane_h = 200\nminifig = subject_image('lego minifigure toy')\nbaby = subject_image('baby icon')\nvmax_local = max(values)\nn1 = max(1, int(round(values[0]/vmax_local*10)))\nn2 = max(1, int(round(values[1]/vmax_local*10)))\nshown1 = int(n1*clamp(reveal))\nshown2 = int(n2*clamp(reveal))\ngap = (RX1-RX0)/10\nfor i in range(shown1):\n    x = RX0 + i*gap\n    if minifig is not None:\n        paste(minifig, int(x), top1, int(gap*0.8), lane_h)\nfor i in range(shown2):\n    x = RX0 + i*gap\n    if baby is not None:\n        paste(baby, int(x), top2, int(gap*0.8), lane_h)\nd.rectangle([RX0, top1, RX1, top1+lane_h], outline=rgba(TEXT,140), width=3)\nd.rectangle([RX0, top2, RX1, top2+lane_h], outline=rgba(TEXT,140), width=3)\ntext(labels[0]+': '+str(values[0])+'M/yr', RX0+20, top1-40, size=28, color=HIGHLIGHT)\ntext(labels[1]+': '+str(values[1])+'M/yr', RX0+20, top2-40, size=28, color=WARN)\ntext('production rate vs birth rate', (RX0+RX1)//2, RTOP+140, size=30, color=TEXT, center=True)"
+     }
     }
    ]
   },
@@ -24356,7 +24386,12 @@
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
      "topic": "US twin birth rate",
-     "say": "The US twin birth rate climbed from 18.9 per 1,000 births in 1980 to almost 34 by 2014, nearly doubling in one generation."
+     "say": "The US twin birth rate climbed from 18.9 per 1,000 births in 1980 to almost 34 by 2014, nearly doubling in one generation.",
+     "scene": {
+      "mechanic": "twin-curve-ride",
+      "concept": "a stroller icon rides a rise-then-dip curve traced from 1980 to 2022, with the peak year highlighted",
+      "code": "n_pts = n\nx0, x1 = RX0+40, RX1-40\nvmax_local = max(values); vmin_local = min(values)\nrng = max(vmax_local-vmin_local, 0.001)\ny_top = RTOP+220; y_bot = RBOT-160\npts_all = []\nfor i in range(n_pts):\n    xx = lerp(x0, x1, i/max(n_pts-1,1))\n    yy = y_bot - (values[i]-vmin_local)/rng*(y_bot-y_top)\n    pts_all.append((xx,yy))\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built-idx\ndraw_pts = pts_all[:idx+1]\nif idx < n_pts-1:\n    xa,ya = pts_all[idx]; xb,yb = pts_all[idx+1]\n    draw_pts.append((lerp(xa,xb,fracb), lerp(ya,yb,fracb)))\nif len(draw_pts) >= 2:\n    d.line(draw_pts, fill=rgba(HIGHLIGHT,230), width=8)\ntwins = subject_image('twin babies in stroller')\nif draw_pts:\n    lx,ly = draw_pts[-1]\n    if twins is not None:\n        tw=160; th=int(tw*twins.height/twins.width)\n        paste(twins, int(lx-tw//2), int(ly-th), tw, th)\npeak_i = values.index(vmax_local)\npx,py = pts_all[peak_i]\nd.ellipse([px-10,py-10,px+10,py+10], fill=rgba(WARN,255))\ntext(labels[0]+': '+str(values[0]), RX0+20, RTOP+60, size=32, color=TEXT)\ntext(labels[-1]+': '+str(values[-1]), RX0+20, RTOP+110, size=36, color=HIGHLIGHT)\ntext('twin births per 1,000, US', (RX0+RX1)//2, RBOT-40, size=26, color=TEXT, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24368,7 +24403,12 @@
      "ascending": false,
      "role": "2 · WHY",
      "topic": "twin rate by mother's age",
-     "say": "Part of it is biology: mothers over 40 naturally twin nearly 5 times as often as mothers under 20, and the average age of first-time moms kept rising."
+     "say": "Part of it is biology: mothers over 40 naturally twin nearly 5 times as often as mothers under 20, and the average age of first-time moms kept rising.",
+     "scene": {
+      "mechanic": "twin-odds-columns",
+      "concept": "six columns filled with a twin-babies image, one per mother's age bracket, rising with the twinning rate",
+      "code": "cols = n\ngap = 14\ncolw = int((RX1-RX0-gap*(cols-1))/cols)\nbase_y = RBOT-120\ntop_y = RTOP+240\nvmax_local = max(values)\nbabies = subject_image('twin babies icon')\nfor i in range(cols):\n    x0 = RX0+i*(colw+gap)\n    frac = clamp(values[i]/vmax_local)*reveal\n    if babies is not None:\n        fill_image(babies, frac, x0, top_y, colw, base_y-top_y, direction='up')\n    else:\n        fill_image(None, frac, x0, top_y, colw, base_y-top_y, direction='up', color=HIGHLIGHT)\n    d.rectangle([x0, top_y, x0+colw, base_y], outline=rgba(TEXT,180), width=3)\n    text(str(values[i]), x0+colw//2, top_y-36, size=26, color=HIGHLIGHT, center=True)\n    text(labels[i], x0+colw//2, base_y+22, size=18, color=TEXT, center=True)\ntext('twin rate per 1,000 births, by mother age', (RX0+RX1)//2, RTOP+100, size=28, color=WARN, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24379,7 +24419,12 @@
      "insight_type": "trend",
      "role": "3 · THE REVERSAL",
      "topic": "twin share of IVF births",
-     "say": "The other driver, IVF, is now reversing it: the twin share of IVF births has crashed from 28 percent in 1997 to just 2 percent, since clinics switched to transferring one embryo at a time."
+     "say": "The other driver, IVF, is now reversing it: the twin share of IVF births has crashed from 28 percent in 1997 to just 2 percent, since clinics switched to transferring one embryo at a time.",
+     "scene": {
+      "mechanic": "embryo-dish-drain",
+      "concept": "a petri-dish image drains from the top down as the reveal sweeps through years, tracking IVF twin share collapsing from 28% to 2%",
+      "code": "n_pts = n\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ncur_val = values[idx]\nif idx < n_pts-1:\n    cur_val = lerp(values[idx], values[idx+1], fracb)\ncur_label = labels[idx]\ndish = subject_image('petri dish embryos')\ncx = (RX0+RX1)//2\ndish_w = 420\ntop_y = RTOP+220\nbot_y = RBOT-180\nvmax_local = max(values) if values else 1\nfrac = clamp(cur_val/vmax_local)\nif dish is not None:\n    fill_image(dish, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down')\nelse:\n    fill_image(None, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down', color=WARN)\nd.rounded_rectangle([cx-dish_w//2, top_y, cx+dish_w//2, bot_y], radius=24, outline=rgba(TEXT,200), width=5)\ntext(cur_label, cx, top_y-50, size=34, color=TEXT, center=True)\ntext(str(round(cur_val,1))+'%', cx, bot_y+40, size=44, color=WARN, center=True)\ntext('twin share of IVF births', cx, RTOP+120, size=28, color=TEXT, center=True)"
+     }
     }
    ]
   },
@@ -24418,7 +24463,12 @@
      "ascending": false,
      "role": "1 · THE FIRST",
      "topic": "how long ago each animal was domesticated",
-     "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other."
+     "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other.",
+     "scene": {
+      "mechanic": "domestication-column-parade",
+      "concept": "a photo column per animal, ordered by how long ago it was domesticated, growing in as reveal sweeps left to right, tallest = oldest",
+      "code": "n_pts = n\ngap = 10\ncols = n_pts\ncolw = int((RX1-RX0-gap*(cols-1))/cols)\nbase_y = RBOT-140\ntop_y = RTOP+220\nvmax_local = max(values)\nshown = int(clamp(reveal)*cols) + 1\nfor i in range(cols):\n    x0 = RX0 + i*(colw+gap)\n    on = i < shown\n    h = int(colw * (0.6 + 0.5*values[i]/vmax_local))\n    h = min(h, base_y-top_y)\n    img = subject_image(labels[i]) if on else None\n    if img is not None:\n        paste(img, x0, base_y-h, colw, h)\n    d.rectangle([x0, base_y-h, x0+colw, base_y], outline=rgba(HIGHLIGHT if i==0 else TEXT, 200 if on else 60), width=3)\n    if on:\n        text(str(int(values[i]))+'y', x0+colw//2, base_y-h-28, size=18, color=HIGHLIGHT, center=True)\n        text(labels[i], x0+colw//2, base_y+16, size=15, color=TEXT, center=True)\ntext('years since domestication', (RX0+RX1)//2, RTOP+140, size=28, color=WARN, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24430,7 +24480,12 @@
      "use_baseline": false,
      "role": "2 · WHY SO FEW",
      "topic": "candidate species versus actual successes",
-     "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity."
+     "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity.",
+     "scene": {
+      "mechanic": "species-elimination-grid",
+      "concept": "a grid of candidate-species tiles fills in, most fading grey (failed) while a lit few (the actual domesticates) survive next to a real dog photo",
+      "code": "total = int(values[0])\nsuccess = int(values[1])\ncols = 14\nrows = max(1, (total + cols - 1)//cols)\ncell = min(int((RX1-RX0)/cols), int((RBOT-RTOP-320)/max(rows,1)))\ncell = max(cell, 16)\nox = (RX0+RX1)//2 - (cols*cell)//2\noy = RTOP+220\nshown = int(clamp(reveal)*total)\ndog = subject_image('dog')\nstep = max(total//max(success,1), 1)\ncount_lit = 0\nfor i in range(total):\n    if i >= shown:\n        break\n    r = i // cols\n    c = i % cols\n    x0 = ox + c*cell\n    y0 = oy + r*cell\n    is_success = (i % step == 0) and count_lit < success\n    if is_success:\n        count_lit += 1\n        d.rounded_rectangle([x0+2, y0+2, x0+cell-2, y0+cell-2], radius=4, fill=rgba(HIGHLIGHT, 230))\n    else:\n        d.rounded_rectangle([x0+2, y0+2, x0+cell-2, y0+cell-2], radius=4, fill=rgba(TEXT, 50))\ngrid_bot = oy + rows*cell\ndog_h = 0\nif dog is not None:\n    dog_w = 160\n    dog_h = int(dog_w * dog.height / dog.width)\n    paste(dog, (RX0+RX1)//2 - dog_w//2, grid_bot + 30, dog_w, dog_h)\ntext(str(total) + ' candidate species', (RX0+RX1)//2, RTOP + 140, size=30, color=TEXT, center=True)\ntext(str(success) + ' actually domesticated', (RX0+RX1)//2, grid_bot + dog_h + 70, size=30, color=HIGHLIGHT, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -24441,7 +24496,12 @@
      "insight_type": "trend",
      "role": "3 · THE FLATLINE",
      "topic": "the domestication count over time",
-     "say": "The count climbed steadily until about 3,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species."
+     "say": "The count climbed steadily until about 3,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species.",
+     "scene": {
+      "mechanic": "domestication-ekg-flatline",
+      "concept": "a step-style EKG line climbs with each new domesticated species then goes dead flat, a horse photo riding the last pulse",
+      "code": "n_pts = n\nx0, x1 = RX0+40, RX1-40\nvmax_local = max(values) if values else 1\ny_top = RTOP+240; y_bot = RBOT-200\npts_all = []\nfor i in range(n_pts):\n    xx = lerp(x0, x1, i/max(n_pts-1,1))\n    yy = y_bot - (values[i]/vmax_local)*(y_bot-y_top)\n    pts_all.append((xx,yy))\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ndraw_pts = []\nfor i in range(idx+1):\n    draw_pts.append(pts_all[i])\nif idx < n_pts-1:\n    xa,ya = pts_all[idx]; xb,yb = pts_all[idx+1]\n    draw_pts.append((lerp(xa,xb,fracb), lerp(ya,yb,fracb)))\nstep_pts = []\nfor i in range(len(draw_pts)):\n    if i == 0:\n        step_pts.append(draw_pts[0])\n    else:\n        py = draw_pts[i-1][1]\n        cx2, cy2 = draw_pts[i]\n        step_pts.append((cx2, py))\n        step_pts.append((cx2, cy2))\nif len(step_pts) >= 2:\n    d.line(step_pts, fill=rgba(HIGHLIGHT,230), width=7)\nhorse = subject_image('horse')\nif draw_pts:\n    lx,ly = draw_pts[-1]\n    d.ellipse([lx-10,ly-10,lx+10,ly+10], fill=rgba(WARN,255))\n    if horse is not None:\n        hw=140; hh=int(hw*horse.height/horse.width)\n        paste(horse, int(lx-hw//2), int(ly-hh-16), hw, hh)\ntext(labels[0]+': '+str(int(values[0])), RX0+20, RTOP+60, size=30, color=TEXT)\ntext(labels[-1]+': '+str(int(values[-1])), RX0+20, RTOP+110, size=36, color=HIGHLIGHT)\ntext('total domesticated species, over time', (RX0+RX1)//2, RBOT-40, size=26, color=TEXT, center=True)"
+     }
     }
    ]
   }
