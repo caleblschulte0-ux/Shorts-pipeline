@@ -66,8 +66,18 @@ def _ffprobe(path: str) -> dict | None:
         return None
 
 
-def _collect_spans(stderr: str, kind: str) -> list[tuple[float, float]]:
-    """Pair up <kind>_start / <kind>_end times from ffmpeg filter logs."""
+def _collect_spans(stderr: str, kind: str,
+                    duration: float | None = None) -> list[tuple[float, float]]:
+    """Pair up <kind>_start / <kind>_end times from ffmpeg filter logs.
+
+    A defect that is still running when the encode hits EOF never gets an
+    `_end` token from ffmpeg, so a dangling `start` used to be dropped on the
+    floor here — a render that goes black or silent for its last three
+    seconds reported 0% black/silence for that run. If ``duration`` is
+    known, an unclosed start is closed at the media's end (clamped so it
+    never precedes its own start); otherwise it is closed at zero length so
+    it is at least visible rather than silently discarded.
+    """
     spans, start = [], None
     for line in stderr.splitlines():
         if not _LAVFI.search(line):
@@ -81,6 +91,9 @@ def _collect_spans(stderr: str, kind: str) -> list[tuple[float, float]]:
             elif which == "end" and start is not None:
                 spans.append((start, val))
                 start = None
+    if start is not None:
+        end = duration if duration is not None else start
+        spans.append((start, max(start, end)))
     return spans
 
 
@@ -120,9 +133,9 @@ def qa_report(path, *, timeout: int = 300, black_min_s: float = BLACK_MIN_S,
                              timeout=timeout)
         err = run.stderr
 
-        black = _collect_spans(err, "black")
-        freeze = _collect_spans(err, "freeze")
-        silence = _collect_spans(err, "silence")
+        black = _collect_spans(err, "black", duration)
+        freeze = _collect_spans(err, "freeze", duration)
+        silence = _collect_spans(err, "silence", duration)
         loud = None
         mloud = _I_LUFS.findall(err)
         if mloud:
