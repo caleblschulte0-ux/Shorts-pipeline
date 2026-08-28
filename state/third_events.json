@@ -1176,6 +1176,48 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-26"
+    },
+    "stableronaldo-appear-call-2026w35": {
+      "event_id": "stableronaldo-appear-call-2026w35",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "appear",
+        "call",
+        "chop",
+        "stableronaldo"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-28",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/CallousSparklyLardUncleNox-kRwL0i4Taa9CB8-J",
+        "https://www.twitch.tv/stableronaldo/clip/PiliableBombasticMuleJKanStyle-DGiVm3sRW7iuiJiF"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-28"
+    },
+    "stableronaldo-about-almost-2026w35": {
+      "event_id": "stableronaldo-about-almost-2026w35",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "about",
+        "almost",
+        "argu",
+        "camera"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-08-28",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/MuddyFunYogurtNotLikeThis-DcYP3WDYjhOvsMKE",
+        "https://www.twitch.tv/silky/clip/RelentlessGrossChickenFailFish-oS7cCVvVo9MtIYRi"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-08-28"
     }
   }
 }
