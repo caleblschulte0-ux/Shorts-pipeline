@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s6-d59b3180dcd9",
+  "safe_request_id": "reddit-not-an-employee-s6-d59b3180dcd9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "947ef37a57b02e6d7e6f1e45f7afa14cf9e7565c1c8a1ff17f343e280e92f4ff",
+  "prompt_used": "An editorial illustration for a short-form video: security camera retail store. It accompanies the narration: \"Store cameras caught the whole thing\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+    "filename": "20260828__reddit-not-an-employee-s6-d59b3180dcd9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6f24e5e15b786f51de28583226d02eb731eb899ceccc49bb737c8e3ee5e6ce1b",
+    "bytes": 2197481,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:15:44Z",
+  "retryable": false
+}
