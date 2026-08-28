@@ -226,6 +226,16 @@ def main() -> int:
             resolve_media(pkg, verbose=not args.json)
         report = media_judge.judge_package(
             pkg, None, usage_penalties=usage_penalties(pkg))
+        if report.get("error"):
+            # judge_package fails open (unknown gaps for every enumerable
+            # shot), but a report that ALSO couldn't enumerate shots (no
+            # gaps despite the error) would still ask ChatGPT for nothing —
+            # surface it loudly rather than let it pass as a quiet report.
+            print(f"[phase-a] WARNING judge_package error on "
+                  f"{report.get('slug') or pkg.get('slug')}: "
+                  f"{report['error']}"
+                  + ("" if report.get("gaps") else
+                     " — NO GAPS EMITTED, shots could not be enumerated"))
         reports.append(report)
 
     bundle = xb.build_bundle(args.date, packages, reports,
