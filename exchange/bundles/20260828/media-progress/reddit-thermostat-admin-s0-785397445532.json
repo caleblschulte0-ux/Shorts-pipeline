@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s0-785397445532",
+  "safe_request_id": "reddit-thermostat-admin-s0-785397445532",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e46f7908268cf4b5b2cb8c7064e67b53c2e893e1a60b7e2f635ecdb40eb06c2b",
+  "prompt_used": "An editorial illustration for a short-form video: smart thermostat app phone. It accompanies the narration: \"controlled the office thermostat from an app on her phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+    "filename": "20260828__reddit-thermostat-admin-s0-785397445532.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c72a13c7174c9ed51e7340959a2ec2333d5efb5ce77985a2ac41ef2eccd72374",
+    "bytes": 1476737,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:16:04Z",
+  "retryable": false
+}
