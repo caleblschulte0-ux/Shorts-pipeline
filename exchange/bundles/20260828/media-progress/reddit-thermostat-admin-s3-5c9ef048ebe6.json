@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s3-5c9ef048ebe6",
+  "safe_request_id": "reddit-thermostat-admin-s3-5c9ef048ebe6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7acb98b976c26785575a55774a49a8241739ac4aa13d4e3c5fd49456482b073c",
+  "prompt_used": "An editorial illustration for a short-form video: computer access log screen. It accompanies the narration: \"pulled the access log instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+    "filename": "20260828__reddit-thermostat-admin-s3-5c9ef048ebe6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0b2cbe9d86572d1b53a48bf19aaceb2524864de2a63d9c433ef14d5dbff0c2d6",
+    "bytes": 1697241,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:17:35Z",
+  "retryable": false
+}
