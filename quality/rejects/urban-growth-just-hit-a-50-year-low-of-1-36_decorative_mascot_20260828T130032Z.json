@@ -1,0 +1,45 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260828T130032Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the identical lean-and-point pose parked over the 1972/1983 bars in hook@0.3, seg0:end, seg1:mid, seg2:start, seg3:mid and seg4:end \u2014 96s with no setup->action->payoff and no bit tied to any stat.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_data_and_repeated_template",
+  "visible_evidence": "seg2:end prints raw unseparated digit strings '2420179648', '2783042387', '3131290264' inside the bars, and seg2:start/mid are the same purple five-row layout, same 'PULLS AHEAD' kicker and same mascot pose already used in seg0 and seg1.",
+  "root_cause": "The renderer reuses one bar-race template for every indicator and passes population values through unformatted, so a 2.4-billion count is drawn as a 10-digit run-on while the leader kicker stays hard-wired to '1972 PULLS AHEAD'.",
+  "repair_goal": "Give seg2 its own demonstration: abbreviate the values (2.42B -> 3.46B) with thousands separators, drive the kicker off the actual leading row, and stage the mascot doing a rural-vs-urban bit (e.g. pushing/holding the growing bar) instead of the reused lean."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "catch_fall"
+  }
+ ]
+}
