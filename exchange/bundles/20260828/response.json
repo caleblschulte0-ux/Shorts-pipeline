@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260828",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "7d8ee9ee0f31546cef816034e258ef5cb303f9f2",
+    "production_date": "20260828",
+    "bundle_sha256": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6"
+  },
+  "media": [
+    {
+      "request_id": "reddit-not-an-employee-s0-5ec22059359c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+        "filename": "20260828__reddit-not-an-employee-s0-5ec22059359c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "378dfd7d86dff6b89f1a5d12acef9835a9e0bd0adfff7605d7cf8ebc90eef92e",
+        "bytes": 1912682,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s0-5ec22059359c.json",
+        "verified_at": "2026-08-28T11:11:17Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s1-2705af537350",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+        "filename": "20260828__reddit-not-an-employee-s1-2705af537350.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "18dce50f4864a7bd04fd911bd019e780763870df3f06ca3fae9c54a5459c899d",
+        "bytes": 1822890,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s1-2705af537350.json",
+        "verified_at": "2026-08-28T11:12:46Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s2-e46d94003e53",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+        "filename": "20260828__reddit-not-an-employee-s2-e46d94003e53.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6c5a4eb5350d1cc944454d421dd51f31583ad1e1136ac86a5a39c5037ebe19f7",
+        "bytes": 2302971,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s2-e46d94003e53.json",
+        "verified_at": "2026-08-28T11:12:57Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s3-bed564995838",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+        "filename": "20260828__reddit-not-an-employee-s3-bed564995838.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e66c03786a2dc4019c3adadcd6bfad4a20dac5d41fb0c2ae10fa0eb1edee72cb",
+        "bytes": 1927962,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s3-bed564995838.json",
+        "verified_at": "2026-08-28T11:14:01Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s4-c80db87f1d69",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+        "filename": "20260828__reddit-not-an-employee-s4-c80db87f1d69.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "12c0b7cc23e74de51b99615fa77e5e663410df291a1e58c8eaf0931f0544ac4c",
+        "bytes": 2049973,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s4-c80db87f1d69.json",
+        "verified_at": "2026-08-28T11:14:59Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s5-1b3a4dbe1d26",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+        "filename": "20260828__reddit-not-an-employee-s5-1b3a4dbe1d26.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1f038f3cdef4315ffbb79dd572b81a1b8dfa029aa2a5db980d514ec8b2301046",
+        "bytes": 2135383,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s5-1b3a4dbe1d26.json",
+        "verified_at": "2026-08-28T11:15:32Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s6-d59b3180dcd9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+        "filename": "20260828__reddit-not-an-employee-s6-d59b3180dcd9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6f24e5e15b786f51de28583226d02eb731eb899ceccc49bb737c8e3ee5e6ce1b",
+        "bytes": 2197481,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s6-d59b3180dcd9.json",
+        "verified_at": "2026-08-28T11:15:44Z"
+      }
+    },
+    {
+      "request_id": "reddit-not-an-employee-s7-31062aa61a5c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+        "filename": "20260828__reddit-not-an-employee-s7-31062aa61a5c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "baca31eb875b4d74201658ebfc35db1121e2c0037600bc8f7339dd3a8e70271c",
+        "bytes": 1545406,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-not-an-employee-s7-31062aa61a5c.json",
+        "verified_at": "2026-08-28T11:15:55Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s0-785397445532",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+        "filename": "20260828__reddit-thermostat-admin-s0-785397445532.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=19SBwvhG4822zAiTzqN8Qa5-GeCPfK9JD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c72a13c7174c9ed51e7340959a2ec2333d5efb5ce77985a2ac41ef2eccd72374",
+        "bytes": 1476737,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s0-785397445532.json",
+        "verified_at": "2026-08-28T11:16:04Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s1-591b8e80f1a0",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+        "filename": "20260828__reddit-thermostat-admin-s1-591b8e80f1a0.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "48f6e80907de9ba340acf61325ea0fbc049cfc9570da73421bbd2ca9b8c677ce",
+        "bytes": 2051098,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s1-591b8e80f1a0.json",
+        "verified_at": "2026-08-28T11:19:21Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s2-d2233909594c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1B20TkECw-06YZisfLXoschIJTFwI35xa",
+        "filename": "20260828__reddit-thermostat-admin-s2-d2233909594c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1B20TkECw-06YZisfLXoschIJTFwI35xa",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "80e48cdf42115a1c047cf34b47742993ae64f47f14eaf9155a717cd0c32bf1fc",
+        "bytes": 1718182,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s2-d2233909594c.json",
+        "verified_at": "2026-08-28T11:17:25Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s3-5c9ef048ebe6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+        "filename": "20260828__reddit-thermostat-admin-s3-5c9ef048ebe6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Wt1hbpzgCAgy9oTzyPMrz79U2NpKGKtX",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0b2cbe9d86572d1b53a48bf19aaceb2524864de2a63d9c433ef14d5dbff0c2d6",
+        "bytes": 1697241,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s3-5c9ef048ebe6.json",
+        "verified_at": "2026-08-28T11:17:35Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s4-553776492597",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+        "filename": "20260828__reddit-thermostat-admin-s4-553776492597.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "30d5bbcdbb2b26df1999863145fc876b4f7f1268246ac68825757650e4b87809",
+        "bytes": 2111452,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s4-553776492597.json",
+        "verified_at": "2026-08-28T11:17:51Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s5-92858138f45e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+        "filename": "20260828__reddit-thermostat-admin-s5-92858138f45e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "28d2144bb1ab666f7bb9994e63b8a4800bbcd25cc760df29ac0e4217908a5927",
+        "bytes": 1642840,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s5-92858138f45e.json",
+        "verified_at": "2026-08-28T11:18:01Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s6-8df57b83f8af",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+        "filename": "20260828__reddit-thermostat-admin-s6-8df57b83f8af.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2a4b78f75de00c75fe34863726051943ec0c76df9c8cfa513b57c61109d7b8d2",
+        "bytes": 1846866,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s6-8df57b83f8af.json",
+        "verified_at": "2026-08-28T11:18:12Z"
+      }
+    },
+    {
+      "request_id": "reddit-thermostat-admin-s7-d40ec9090171",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+        "filename": "20260828__reddit-thermostat-admin-s7-d40ec9090171.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "00d0b9fe9054c15a20c48450644cb63265d5163b0b2e708bb83a3b9680beb060",
+        "bytes": 1792454,
+        "format": "png",
+        "width": 1254,
+        "height": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260828/media-progress/reddit-thermostat-admin-s7-d40ec9090171.json",
+        "verified_at": "2026-08-28T11:18:22Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-spacex-launches",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names the SpaceX launch-volume crossover."
+    },
+    {
+      "slug": "graph-wind-solar-coal",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names the wind-and-solar crossover above coal."
+    },
+    {
+      "slug": "graph-dominos-pizza-hut",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names the Domino's crossover above Pizza Hut."
+    },
+    {
+      "slug": "graph-china-ev-sales",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names the China EV-sales crossover above the rest of the world."
+    },
+    {
+      "slug": "reddit-not-an-employee",
+      "script": "She grabbed the wrong employee? A woman grabbed my arm in the paint aisle because I was wearing a red hoodie. The store uniform was red too, so apparently employment is color-coded. I told her twice I didn't work there. She called me a liar, then flagged down an actual employee in an orange vest. He looked at my hoodie, hers too, and asked which one of us needed a stepladder. She pointed at me. I said neither of us worked there. He laughed so hard he had to lean on a shelf, then paged security over the intercom for an aisle nine altercation, both parties in red. Store cameras caught the whole thing. Corporate posted the clip internally for de-escalation training: her face blurred and mine left in, on purpose. Which red hoodie became the training video?",
+      "editor_note": "Punched up to a five-word question hook, tightened the mistaken-employee escalation, added one dry color-coded aside, and landed on the red-hoodie training video while preserving every fact and shot phrase."
+    },
+    {
+      "slug": "reddit-thermostat-admin",
+      "script": "Who froze the office? She controlled the office thermostat from an app on her phone and kept it at sixty two degrees to “stay sharp.” Everyone else just stayed cold. When anyone touched the wall panel, she blamed the app. Small problem: I'd installed the thermostat and still had admin access. Then a temp near the vent got blamed and written up for tampering, so I pulled the access log instead. Every override for four months straight was timestamped and tied to her phone—the same four months facilities quietly replaced two malfunctioning units at company expense. HR read the log twice. The temp got the write up removed and an apology. She got a very different meeting. The thermostat is now locked at a very reasonable seventy one degrees. How sharp did that access log feel?",
+      "editor_note": "Punched up to a four-word question hook, compressed the thermostat cover story, added one dry admin-access turn, and landed on the access-log reversal while preserving every fact and shot phrase."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The actual numbers went the other direction.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
