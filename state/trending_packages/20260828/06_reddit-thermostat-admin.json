@@ -1,0 +1,38 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "reddit-thermostat-admin",
+  "title": "She Blamed Everyone Else For The Freezing Office.",
+  "script": "She controlled the office thermostat from an app on her phone and kept it at sixty two degrees to, in her words, stay sharp. Everyone froze. Everyone complained. She smiled and said the app must be broken whenever anyone touched the wall panel, which was funny, because I had installed that thermostat during the renovation and still had admin access she never thought to ask about. So when it dropped to freezing again and a temp near the vent got blamed and written up for tampering, I stopped staying quiet and pulled the access log instead. Every override for four months straight, timestamped, tied to her phone, the same four months facilities quietly replaced two malfunctioning units at company expense. HR read the log twice. The temp got the write up removed and an apology. She got a very different meeting, and the thermostat, still on my admin account, has been locked at a very reasonable seventy one degrees ever since.",
+  "shots": [
+    {"phrase": "controlled the office thermostat from an app on her phone", "query": "smart thermostat app phone"},
+    {"phrase": "kept it at sixty two degrees", "query": "cold office worker shivering"},
+    {"phrase": "a temp near the vent got blamed and written up for tampering", "query": "office worker written up"},
+    {"phrase": "pulled the access log instead", "query": "computer access log screen"},
+    {"phrase": "facilities quietly replaced two malfunctioning units", "query": "hvac technician repair"},
+    {"phrase": "HR read the log twice", "query": "hr office meeting"},
+    {"phrase": "write up removed and an apology", "query": "handshake office apology"},
+    {"phrase": "locked at a very reasonable seventy one degrees", "query": "thermostat wall display"}
+  ],
+  "punches": [
+    {"phrase": "kept it at sixty two degrees", "text": "FREEZING", "color": "#ffaa30"},
+    {"phrase": "written up for tampering", "text": "WRONGLY BLAMED", "color": "#ff3030"},
+    {"phrase": "facilities quietly replaced two malfunctioning units", "text": "$$$ WASTED", "color": "#ff3030"},
+    {"phrase": "write up removed and an apology", "text": "CLEARED", "color": "#50ff80"},
+    {"phrase": "seventy one degrees ever since", "text": "LOCKED IN", "color": "#50ff80"}
+  ],
+  "hashtags": [
+    "pettyrevenge",
+    "reddit",
+    "storytime",
+    "workplace",
+    "karma",
+    "officelife",
+    "hrstory",
+    "corporaterevenge",
+    "shorts",
+    "viral",
+    "fyp"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

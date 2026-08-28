@@ -1,0 +1,19 @@
+{
+  "key": "workweek_adoption_2022_2024",
+  "title": "US employers who have trialed a four-day workweek, 2022 vs 2024",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022 vs 2024",
+  "source": {
+    "name": "Four-day workweek employer adoption surveys",
+    "publisher": "4 Day Week Global / industry HR surveys",
+    "url": "https://www.4dayweek.com/",
+    "officiality": "secondary",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Share of employers reporting they had trialed some form of a four-day workweek rose from about 14% in 2022 to about 22% in 2024, per employer-survey tracking cited across 2024-2025 four-day-week coverage.",
+  "points": [
+    {"label": "2022", "value": 14},
+    {"label": "2024", "value": 22}
+  ]
+}

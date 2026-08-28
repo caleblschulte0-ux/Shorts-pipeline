@@ -24504,6 +24504,249 @@
      }
     }
    ]
+  },
+  {
+   "slug": "melatonin-kids-er-surge",
+   "title": "Why Melatonin Gummies Are Sending Kids To The ER (3 Charts)",
+   "hook": "Your kid's gummy vitamins might not be so harmless.",
+   "closing": "The fix is a child-proof cap. Not every bottle has one yet.",
+   "question": "Where do you keep your melatonin -- locked up, or on the nightstand? Tell me below.",
+   "caption": "Poison control calls for kids swallowing melatonin jumped 530% in a decade, and it's now behind about 7% of all unsupervised child ER visits. Where do you keep yours -- locked up, or on the nightstand? 👇",
+   "hashtags": [
+    "melatonin",
+    "parenting",
+    "childsafety",
+    "health",
+    "publichealth",
+    "sleep",
+    "kidshealth",
+    "poisoncontrol",
+    "momsoftiktok",
+    "dadsoftiktok",
+    "healthdata",
+    "didyouknow",
+    "dataviz",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "melatonin_calls_2012_2021",
+     "params": {
+      "file": "melatonin_calls_2012_2021.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE JUMP",
+     "topic": "melatonin poison control calls, 2012 vs 2021",
+     "say": "In 2012, poison control got about 8,300 calls about kids swallowing melatonin. By 2021 that was 52,563 -- a 530 percent jump in one decade."
+    },
+    {
+     "source": "offline",
+     "key": "melatonin_share_ed_visits",
+     "params": {
+      "file": "melatonin_share_ed_visits.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE SCALE",
+     "topic": "melatonin's share of pediatric ER visits",
+     "say": "Melatonin alone now causes about 7 percent of every ER visit for a baby or toddler who got into medicine on their own -- one drug among thousands on the shelf."
+    },
+    {
+     "source": "offline",
+     "key": "melatonin_outcome_severity",
+     "params": {
+      "file": "melatonin_outcome_severity.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "3 · THE CONSEQUENCE",
+     "topic": "outcomes for hospital-treated cases",
+     "say": "Most kids get sent home the same day. But 14.7 percent get admitted, and 1 percent land in intensive care -- because a bottle of gummies looks exactly like candy."
+    }
+   ]
+  },
+  {
+   "slug": "four-day-workweek-spreads",
+   "title": "The Four-Day Workweek Just Passed Its Biggest Test (3 Charts)",
+   "hook": "Cut a day off the workweek. See what breaks.",
+   "closing": "Turns out the fifth day wasn't doing much work anyway.",
+   "question": "Would your job survive losing a day? Tell me below.",
+   "caption": "The largest four-day-workweek trial ever run had 90% of companies keep it for good -- burnout dropped 71%, and some saw productivity surge 40%. Would your job survive losing a day? 👇",
+   "hashtags": [
+    "fourdayworkweek",
+    "worklife",
+    "productivity",
+    "futureofwork",
+    "worklifebalance",
+    "labor",
+    "business",
+    "hrstory",
+    "corporateculture",
+    "burnout",
+    "didyouknow",
+    "dataviz",
+    "economy"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "workweek_adoption_2022_2024",
+     "params": {
+      "file": "workweek_adoption_2022_2024.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE SHIFT",
+     "topic": "employers trialing a four-day week",
+     "say": "In 2022, just 14 percent of employers said they'd trialed a four-day week. By 2024 that was 22 percent -- a real shift, and it's accelerating."
+    },
+    {
+     "source": "offline",
+     "key": "workweek_trial_keep_rate",
+     "params": {
+      "file": "workweek_trial_keep_rate.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE VERDICT",
+     "topic": "companies that kept the four-day week",
+     "say": "The largest trial yet ran 141 companies through six months of a shorter week. When it ended, 90 percent of them kept it for good."
+    },
+    {
+     "source": "offline",
+     "key": "workweek_trial_outcomes",
+     "params": {
+      "file": "workweek_trial_outcomes.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "3 · THE WHY",
+     "topic": "measured effects of the shorter week",
+     "say": "Here's why: burnout dropped 71 percent, and some companies saw productivity surge by up to 40 percent. Fewer hours, not less output."
+    }
+   ]
+  },
+  {
+   "slug": "container-ships-floating-cities",
+   "title": "Why Container Ships Turned Into Floating Cities (3 Charts)",
+   "hook": "One ship now carries 24,000 truckloads of cargo.",
+   "closing": "Somewhere out there, one boat is holding your order -- and 11,000 other people's.",
+   "question": "Ever tracked a package riding a container ship live? Tell me below.",
+   "caption": "The biggest container ship went from 6,600 boxes in 1996 to 24,000 today -- and that scale is why 80% of world trade now moves by sea. Ever tracked a package on one live? 👇",
+   "hashtags": [
+    "containership",
+    "shipping",
+    "globaltrade",
+    "logistics",
+    "supplychain",
+    "megaship",
+    "maritime",
+    "cargo",
+    "economy",
+    "didyouknow",
+    "dataviz",
+    "business"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "containership_capacity_trend",
+     "params": {
+      "file": "containership_capacity_trend.json"
+     },
+     "insight_type": "trend",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "1 · THE SCALE-UP",
+     "topic": "largest container ship capacity by year",
+     "say": "In 1996 the biggest container ship held 6,600 boxes. By 2006 it was 12,500. By 2019, the biggest ships carried 24,000 -- one ship doing a small fleet's job."
+    },
+    {
+     "source": "offline",
+     "key": "container_fleet_total_capacity",
+     "params": {
+      "file": "container_fleet_total_capacity.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE WHOLE FLEET",
+     "topic": "total world container fleet capacity",
+     "say": "It's not just the biggest ships -- the whole fleet grew. In 1990 the world's container ships could carry 1.2 million boxes total. By 2022 that was 25.8 million."
+    },
+    {
+     "source": "offline",
+     "key": "seaborne_trade_share",
+     "params": {
+      "file": "seaborne_trade_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE CONSEQUENCE",
+     "topic": "world trade carried by sea",
+     "say": "That scale is why about 80 percent of everything traded in the world, by volume, moves by ship. Bigger boats made shipping so cheap it swallowed global trade."
+    }
+   ]
+  },
+  {
+   "slug": "colorado-wolves-return",
+   "title": "Colorado Just Brought Wolves Back After 80 Years (3 Charts)",
+   "hook": "Colorado hunted wolves to zero. Then changed its mind.",
+   "closing": "Eighty years without a single wild wolf. It didn't take long to fix.",
+   "question": "Would you want wolves reintroduced near you? Tell me below.",
+   "caption": "Colorado released its first 10 wolves in 2023 -- the state now counts at least 32, including 14 pups born this spring. Would you want wolves reintroduced near you? 👇",
+   "hashtags": [
+    "wolves",
+    "colorado",
+    "wildlife",
+    "rewilding",
+    "conservation",
+    "ecology",
+    "nature",
+    "wildlifeconservation",
+    "naturefacts",
+    "biodiversity",
+    "didyouknow",
+    "dataviz",
+    "science"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "colorado_wolves_2023_now",
+     "params": {
+      "file": "colorado_wolves_2023_now.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE RESTART",
+     "topic": "Colorado wolves, first release vs today",
+     "say": "Colorado released the first 10 wolves back into the wild in December 2023, eighty years after wolves were wiped out here. Today the state counts at least 32."
+    },
+    {
+     "source": "offline",
+     "key": "colorado_wolves_composition",
+     "params": {
+      "file": "colorado_wolves_composition.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE PROOF",
+     "topic": "adults vs pups in the current population",
+     "say": "That count breaks down to 18 adults and 14 pups born this spring alone, across four separate packs -- proof they're not just surviving, they're breeding."
+    },
+    {
+     "source": "offline",
+     "key": "colorado_wolves_program_progress",
+     "params": {
+      "file": "colorado_wolves_program_progress.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE ROAD AHEAD",
+     "topic": "wolves so far vs the program's target",
+     "say": "The state's plan targets a stable population of about 50 wolves. At 32 and counting, Colorado is more than halfway to bringing its wolves back for good."
+    }
+   ]
   }
  ],
  "videos": [

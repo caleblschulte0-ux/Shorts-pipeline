@@ -1,0 +1,19 @@
+{
+  "key": "melatonin_share_ed_visits",
+  "title": "Melatonin's share of unsupervised pediatric medication ED visits, 2019-2022",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2022",
+  "source": {
+    "name": "Emergency Department Visits for Unsupervised Pediatric Melatonin Ingestion -- United States, 2019-2022 (MMWR)",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/73/wr/mm7309a5.htm",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Among emergency department visits for infants and young children who ingested medication without supervision (2019-2022), melatonin alone accounted for roughly 11,000 visits, about 7% of the total.",
+  "points": [
+    {"label": "Melatonin", "value": 7},
+    {"label": "Every other medication", "value": 93}
+  ]
+}
