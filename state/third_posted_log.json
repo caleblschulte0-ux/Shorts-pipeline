@@ -5294,14 +5294,45 @@
       "ts": "2026-08-28T21:52:19.804105+00:00"
     },
     "clip-20260828-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/MoldyStrangeAlfalfaTebowing-o7Up4O1hnQQBmh1_",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/jI352c0PHtA",
       "title": "Kaicenat: Kai Cenat Can't Believe What Emily Just Did",
       "kind": "twitch_clip",
-      "ts": "2026-08-28T22:23:05.331694+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-08-28T22:23:11.236145+00:00",
+      "uploaded_at": "2026-08-28T22:23:11.236160+00:00",
+      "publish_at": "2026-08-29T05:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MoldyStrangeAlfalfaTebowing-o7Up4O1hnQQBmh1_",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "CHAT WON'T STOP HYPING UP EMILY",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2700,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 35.38
+      },
+      "director_cut": true
+    },
+    "rejected-averageinexpensiveanteaterbabyrage-u3ps9mdoqs8twqib": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AverageInexpensiveAnteaterBabyRage-u3ps9mDoQs8twqIB",
+      "streamer": "xqc",
+      "title": "Annual 2k scan",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (menu/setup talk, no event)",
+      "ts": "2026-08-28T22:24:40.448087+00:00"
+    },
+    "rejected-clearlitigiousburritotwitchrpg-gpou4pbpoqk7bs_a": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ClearLitigiousBurritoTwitchRPG-GpOU4pBPOqk7bS_a",
+      "streamer": "ohnepixel",
+      "title": "ludwig gulp",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confused reaction, no visible event)",
+      "ts": "2026-08-28T22:25:17.162515+00:00"
     }
   }
 }
