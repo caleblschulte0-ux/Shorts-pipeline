@@ -1,0 +1,41 @@
+{
+ "slug": "world-renewable-power-was-still-only-19-7-after-two-decades",
+ "ts": "20260828T084908Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3 and hook@0.8: the entire frame below the title is empty navy with a thumbnail-size mascot and five pinprick dots \u2014 over half the 9:16 canvas carries nothing for the first ~1s.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "off-topic_hook_over_empty_frame",
+  "visible_evidence": "hook@0.3 and hook@1.5 read 'Agricultural irrigated land / BANGLADESH TOPS THE LIST' as the header while the hook words say 'You'd think / green energy / took off' \u2014 the card names a different indicator than the line being spoken, and the bubble chart underneath is still unbuilt (five 6px dots, no labels at 0.3s), so the frame is empty navy for the opening second.",
+  "root_cause": "The hook is composited over seg0's not-yet-animated irrigation bubble scene instead of over the video's actual subject (renewable electricity), so the first 2s carry both the wrong title and an unpopulated chart with no motion to hold on.",
+  "repair_goal": "Open the hook on the renewables area chart already animating \u2014 line sweeping from 1990 with Data physically starting his climb \u2014 so the header, the spoken line and the visual all name renewables, and the frame is filled with purposeful motion from frame 1."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "shoved_bar"
+  },
+  "2": {
+   "viz": "trend",
+   "perf": "shoved_bar"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "bubbles",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "race_sprint"
+  }
+ ]
+}
