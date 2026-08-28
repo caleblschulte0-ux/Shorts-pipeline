@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s5-1b3a4dbe1d26",
+  "safe_request_id": "reddit-not-an-employee-s5-1b3a4dbe1d26",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "20469eaa220643262cef26e8c2f19450a8dfe9b4b5582eb6e5d198ffea2fcfe7",
+  "prompt_used": "An editorial illustration for a short-form video: store intercom speaker. It accompanies the narration: \"paged security over the intercom\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+    "filename": "20260828__reddit-not-an-employee-s5-1b3a4dbe1d26.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1f038f3cdef4315ffbb79dd572b81a1b8dfa029aa2a5db980d514ec8b2301046",
+    "bytes": 2135383,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:15:32Z",
+  "retryable": false
+}
