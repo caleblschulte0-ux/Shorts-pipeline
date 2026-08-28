@@ -5,6 +5,10 @@
  },
  "0": {
   "viz": "pictorial_race",
-  "perf": "block_wall"
+  "perf": "race_sprint"
+ },
+ "2": {
+  "viz": "trend",
+  "perf": "drag_line"
  }
 }

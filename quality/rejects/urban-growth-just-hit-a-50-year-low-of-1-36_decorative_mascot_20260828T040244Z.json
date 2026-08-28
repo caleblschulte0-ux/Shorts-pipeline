@@ -1,0 +1,45 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260828T040244Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg2:end the mascot holds the same arms-out lean and drifts around the same mid-right spot beside the 1972/1983 bars \u2014 at seg1:mid (t=20.39s) and seg2:mid (t=52.28s) he is in an identical pose doing nothing tied to the rural or urban-growth numbers; no setup->acti",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "broken_composition_and_missing_payoff_number",
+  "visible_evidence": "At seg3:start (t=74.80s) the closing callout box is slammed over the top of the frame, cropping the chart title 'Urban population growth' to unreadable fragments, hiding the entire 1972 row, and chopping the mascot off the right edge; the source credit is printed twice (inside the card and again in the bottom letterbox at seg3:mid t=79.86s). The headline stat 1.36% never appears as a bar or label anywhere \u2014 seg3:end (t=84.92s) ends on 2.8 / 2.2 / 2.3 / 2.1, so the video's own claim is never shown.",
+  "root_cause": "The outro callout is composited as a fixed top overlay with no reserved safe area, so it collides with the title row and the top bar; and the chart's year set stops at 2014, so the 2025 value the title and closing line are built on is never rendered \u2014 the payoff beat has nothing to land on.",
+  "repair_goal": "Rebuild seg3 as a real payoff: move the callout into the empty lower-right region so the title and all five rows stay visible, drop the duplicate source line, keep the mascot fully in frame, and add the 2025 row so the 1.36% collapse is visually revealed (short bar dropping against the tall 1972/1983 bars) as the closing line reads."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "catch_fall"
+  }
+ ]
+}
