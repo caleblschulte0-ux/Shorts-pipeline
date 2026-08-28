@@ -5189,13 +5189,45 @@
       "director_cut": true
     },
     "clip-20260828-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/AltruisticInquisitiveBibimbapDoubleRainbow-LNYO5Alg-RoKSC2m",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/luedQHf9v-U",
       "title": "Kaicenat: Kai Cenat Loses It When The GTA 6 Reveal Crashes On Him",
       "kind": "twitch_clip",
-      "ts": "2026-08-28T21:27:48.222376+00:00",
+      "ts": "2026-08-28T21:27:53.156777+00:00",
+      "uploaded_at": "2026-08-28T21:27:53.156801+00:00",
+      "publish_at": "2026-08-28T23:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AltruisticInquisitiveBibimbapDoubleRainbow-LNYO5Alg-RoKSC2m",
+      "streamer": "kaicenat",
+      "series": "rage",
+      "hook": "THE REVEAL JUST CRASHED ON HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4958,
+      "banger": 0.8,
+      "cut": {
+        "start": 0.0,
+        "end": 47.67
+      },
+      "director_cut": true
+    },
+    "rejected-succulentexuberantbaboonbloodtrail-g88xuasm16xzim-b": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SucculentExuberantBaboonBloodTrail-G88XUASm16xziM-B",
+      "streamer": "jasontheween",
+      "title": "tried grabbing phone",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just walking, talking, no event)",
+      "ts": "2026-08-28T21:29:36.160336+00:00"
+    },
+    "clip-20260828-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/LongClearAirGuitarTebowing-eaThKvIacFCA-IBx",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Randomly Confesses His Love For Poppy",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T21:31:33.925221+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
