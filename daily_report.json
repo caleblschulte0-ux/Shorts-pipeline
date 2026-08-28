@@ -4,13 +4,13 @@
     "title": "SpaceX Just Out-Launched The Entire World",
     "format": "graph_race",
     "publish_at": "2026-08-28T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good race with a real overtake payoff, undermined by a composition that spills off every edge and a hook that opens on an unreadable clipped caption over an empty black chart.",
-    "elapsed_seconds": 101.0,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Jcbc-pleaoc",
+    "error": null,
+    "elapsed_seconds": 125.2,
     "package_path": "state/trending_packages/20260828/01_graph-spacex-launches.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-121003_spacex_just_out_launched_the_entire_worl.mp4",
+    "video_path": "output/daily_20260828-123037_spacex_just_out_launched_the_entire_worl.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +27,24 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good race with a real overtake payoff, undermined by a composition that spills off every edge and a hook that opens on an unreadable clipped caption over an empty black chart.",
+      "blocked": false,
+      "reason": "",
       "score": 74
     },
-    "blocked": true
+    "channel": "default"
   },
   {
     "topic": "Wind And Solar Just Passed Coal",
     "title": "Wind And Solar Just Passed Coal",
     "format": "graph_race",
-    "publish_at": "2026-08-28T13:00:00Z",
+    "publish_at": "2026-08-28T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/K54eZZ_Wjec",
+    "video_url": "https://youtube.com/shorts/jKjZLv8Gxno",
     "error": null,
-    "elapsed_seconds": 96.3,
+    "elapsed_seconds": 113.9,
     "package_path": "state/trending_packages/20260828/02_graph-wind-solar-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-121144_wind_and_solar_just_passed_coal.mp4",
+    "video_path": "output/daily_20260828-123242_wind_and_solar_just_passed_coal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -71,14 +71,14 @@
     "topic": "Domino's Quietly Buried Pizza Hut",
     "title": "Domino's Quietly Buried Pizza Hut",
     "format": "graph_race",
-    "publish_at": "2026-08-28T14:30:00Z",
+    "publish_at": "2026-08-28T16:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/7xVX82GV8y4",
+    "video_url": "https://youtube.com/shorts/WdXVenNDvEA",
     "error": null,
-    "elapsed_seconds": 99.8,
+    "elapsed_seconds": 116.5,
     "package_path": "state/trending_packages/20260828/03_graph-dominos-pizza-hut.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-121321_domino_s_quietly_buried_pizza_hut.mp4",
+    "video_path": "output/daily_20260828-123436_domino_s_quietly_buried_pizza_hut.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -105,14 +105,14 @@
     "topic": "China's EV Boom Just Passed The Rest Of The World",
     "title": "China's EV Boom Just Passed The Rest Of The World",
     "format": "graph_race",
-    "publish_at": "2026-08-28T16:00:00Z",
+    "publish_at": "2026-08-28T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/VH1a3hRKJjI",
+    "video_url": "https://youtube.com/shorts/zwxAnfMGfPg",
     "error": null,
-    "elapsed_seconds": 109.1,
+    "elapsed_seconds": 115.4,
     "package_path": "state/trending_packages/20260828/04_graph-china-ev-sales.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-121501_china_s_ev_boom_just_passed_the_rest_of_.mp4",
+    "video_path": "output/daily_20260828-123632_china_s_ev_boom_just_passed_the_rest_of_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -139,17 +139,17 @@
     "topic": "She Reported Me To An Employee. I Wasn't One.",
     "title": "She Reported Me To An Employee. I Wasn't One.",
     "format": "reddit",
-    "publish_at": "2026-08-28T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/99uU2NDfRho",
-    "error": null,
-    "elapsed_seconds": 313.4,
+    "publish_at": "2026-08-28T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Solid reddit-story spine with relevant per-beat shots for most of the run, but the payoff lands on an off-topic night-street photo over a half-black gameplay panel.",
+    "elapsed_seconds": 336.2,
     "package_path": "state/trending_packages/20260828/05_reddit-not-an-employee.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-121707_she_reported_me_to_an_employee__i_wasn_t.mp4",
+    "video_path": "output/daily_20260828-123848_she_reported_me_to_an_employee__i_wasn_t.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 41.6,
+      "duration": 41.967,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -24.1
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": ""
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
+      "blocked": true,
+      "reason": "showrunner BLOCK: Solid reddit-story spine with relevant per-beat shots for most of the run, but the payoff lands on an off-topic night-street photo over a half-black gameplay panel.",
+      "score": 79
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "She Blamed Everyone Else For The Freezing Office.",
     "title": "She Blamed Everyone Else For The Freezing Office.",
     "format": "reddit",
     "publish_at": "2026-08-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid runner-and-caption format undercut by a garbled overlapping caption at 21.8s and the same shivering-man photo reused for two consecutive beats.",
-    "elapsed_seconds": 349.4,
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/81B7PduCFSI",
+    "error": null,
+    "elapsed_seconds": 198.2,
     "package_path": "state/trending_packages/20260828/06_reddit-thermostat-admin.json",
     "source": "brain",
-    "video_path": "output/daily_20260828-122306_she_blamed_everyone_else_for_the_freezin.mp4",
+    "video_path": "output/daily_20260828-124405_she_blamed_everyone_else_for_the_freezin.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 52.733,
+      "duration": 48.667,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +199,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.3
+      "loudness_lufs": -24.9
     },
     "qa": {
       "ok": true,
@@ -207,24 +207,14 @@
       "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Solid runner-and-caption format undercut by a garbled overlapping caption at 21.8s and the same shivering-man photo reused for two consecutive beats.",
-      "score": 74
+      "blocked": false,
+      "reason": "",
+      "score": 87
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "singer",
-    "angle": null,
-    "publish_at": "2026-08-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.5,
-    "backfill": true
-  },
-  {
-    "topic": "strait of hormuz",
+    "topic": "lisa kudrow",
     "angle": null,
     "publish_at": "2026-08-28T20:30:00Z",
     "ok": false,

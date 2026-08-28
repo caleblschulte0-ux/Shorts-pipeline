@@ -4,15 +4,16 @@
   "schema": "production-channel-outcome/v1",
   "expected": 6,
   "previously_uploaded": 0,
-  "rendered_or_attempted": 8,
-  "uploaded": 4,
+  "rendered_or_attempted": 7,
+  "uploaded": 5,
   "quarantined": 0,
-  "failed": 4,
+  "failed": 2,
   "status": "repair_required",
   "video_urls": [
-    "https://youtube.com/shorts/K54eZZ_Wjec",
-    "https://youtube.com/shorts/7xVX82GV8y4",
-    "https://youtube.com/shorts/VH1a3hRKJjI",
-    "https://youtube.com/shorts/99uU2NDfRho"
+    "https://youtube.com/shorts/Jcbc-pleaoc",
+    "https://youtube.com/shorts/jKjZLv8Gxno",
+    "https://youtube.com/shorts/WdXVenNDvEA",
+    "https://youtube.com/shorts/zwxAnfMGfPg",
+    "https://youtube.com/shorts/81B7PduCFSI"
   ]
 }
