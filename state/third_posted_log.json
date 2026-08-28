@@ -5221,13 +5221,36 @@
       "ts": "2026-08-28T21:29:36.160336+00:00"
     },
     "clip-20260828-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/LongClearAirGuitarTebowing-eaThKvIacFCA-IBx",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/jBaUFAQeLEE",
       "title": "Stableronaldo Randomly Confesses His Love For Poppy",
       "kind": "twitch_clip",
-      "ts": "2026-08-28T21:31:33.925221+00:00",
+      "ts": "2026-08-28T21:31:36.853986+00:00",
+      "uploaded_at": "2026-08-28T21:31:36.854009+00:00",
+      "publish_at": "2026-08-29T00:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/LongClearAirGuitarTebowing-eaThKvIacFCA-IBx",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE JUST CONFESSED HIS LOVE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3289,
+      "banger": 0.5,
+      "cut": {
+        "start": 21.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260828-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/YummyCalmDadNerfBlueBlaster-XAG45PAgfWnhftfC",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Broke The #2 All-Time Sub Record And Got The Sweetest Surprise",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T21:34:47.937090+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
