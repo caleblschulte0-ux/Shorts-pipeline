@@ -1,0 +1,37 @@
+{
+  "format": "graph_race",
+  "slug": "graph-china-ev-sales",
+  "title": "China's EV Boom Just Passed The Rest Of The World",
+  "hook": "China Now Outsells Everyone Else",
+  "y_label": "New EVs sold (millions of units)",
+  "duration": 13,
+  "source": "International Energy Agency, Global EV Outlook reports (2020-2025), plus industry tallies (Canalys, CleanTechnica). Approximate annual battery-electric + plug-in-hybrid sales; China's share of global EV sales grew from roughly 40% in 2020 to about 60% in 2024, putting its own annual sales ahead of every other country combined since around 2022.",
+  "years": [2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "China",
+      "color": "#e74c3c",
+      "icon": "CN",
+      "values": [1.1, 1.2, 1.3, 3.2, 6.9, 8.1, 11]
+    },
+    {
+      "name": "Rest of world",
+      "color": "#4a90e2",
+      "values": [0.9, 1.1, 1.9, 3.5, 3.6, 5.9, 6.4]
+    }
+  ],
+  "hashtags": [
+    "electricvehicles",
+    "china",
+    "ev",
+    "electriccars",
+    "automotive",
+    "cleanenergy",
+    "manufacturing",
+    "dataviz",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

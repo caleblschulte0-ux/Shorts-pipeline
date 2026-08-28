@@ -1,0 +1,19 @@
+{
+  "key": "workweek_trial_keep_rate",
+  "title": "Companies that kept the four-day week after the largest multi-country trial",
+  "unit": "percent",
+  "geography": "Australia, Canada, Ireland, New Zealand, UK, US (141 companies)",
+  "time_coverage": "2025 (6-month trial)",
+  "source": {
+    "name": "Multi-country four-day workweek trial (141 companies, 2,896 employees)",
+    "publisher": "Boston College researchers, published in Nature Human Behaviour",
+    "url": "https://www.nature.com/articles/d41586-025-02295-2",
+    "officiality": "primary",
+    "access_date": "2026-08-28"
+  },
+  "notes": "The largest peer-reviewed four-day workweek trial to date ran 141 companies across six countries for six months; 90% of participating companies kept the schedule permanently afterward.",
+  "points": [
+    {"label": "Kept it permanently", "value": 90},
+    {"label": "Went back to 5 days", "value": 10}
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-dominos-pizza-hut",
+  "title": "Domino's Quietly Buried Pizza Hut",
+  "hook": "Pizza Hut Used To Win This",
+  "y_label": "US systemwide sales ($ billions)",
+  "duration": 13,
+  "source": "Company/franchise-disclosure system sales figures reported by trade press (Restaurant Business, QSR Magazine, Domino's/Yum! Brands filings), 2014-2023. Approximate annual U.S. systemwide sales; Domino's overtook Pizza Hut as the largest U.S. pizza chain by sales in 2017 and the gap has widened every year since.",
+  "years": [2014, 2015, 2016, 2017, 2018, 2019, 2021, 2023],
+  "series": [
+    {
+      "name": "Domino's",
+      "color": "#0078ae",
+      "icon": "Domino's Pizza",
+      "values": [4.55, 4.95, 5.4, 5.9, 6.4, 6.9, 7.8, 9.95]
+    },
+    {
+      "name": "Pizza Hut",
+      "color": "#ee3124",
+      "icon": "Pizza Hut",
+      "values": [5.45, 5.5, 5.5, 5.45, 5.4, 5.4, 5.25, 5.09]
+    }
+  ],
+  "hashtags": [
+    "dominos",
+    "pizzahut",
+    "pizza",
+    "fastfood",
+    "restaurantindustry",
+    "business",
+    "franchise",
+    "dataviz",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

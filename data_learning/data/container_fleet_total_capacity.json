@@ -1,0 +1,19 @@
+{
+  "key": "container_fleet_total_capacity",
+  "title": "Total world container ship fleet capacity, 1990 vs 2022",
+  "unit": "million TEU",
+  "geography": "Global",
+  "time_coverage": "1990 vs 2022",
+  "source": {
+    "name": "Evolution of container shipping fleet capacity",
+    "publisher": "Port Economics, Management and Policy / Sinay",
+    "url": "https://sinay.ai/en/how-has-container-shipping-changed-over-time/",
+    "officiality": "secondary",
+    "access_date": "2026-08-28"
+  },
+  "notes": "In 1990 the global container ship fleet (1,169 vessels) carried about 1.2 million TEU total. By mid-2022, 6,406 container ships carried about 25.8 million TEU total.",
+  "points": [
+    {"label": "1990", "value": 1.2},
+    {"label": "2022", "value": 25.8}
+  ]
+}

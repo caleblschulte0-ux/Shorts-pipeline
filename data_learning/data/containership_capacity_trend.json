@@ -1,0 +1,21 @@
+{
+  "key": "containership_capacity_trend",
+  "title": "Largest available container ship capacity by year",
+  "unit": "TEU (20-foot containers)",
+  "geography": "Global",
+  "time_coverage": "1996-2019",
+  "source": {
+    "name": "Evolution and upsizing of container vessels; largest available containership series",
+    "publisher": "Marine Insight / Port Economics, Management and Policy",
+    "url": "https://porteconomicsmanagement.org/pemp/contents/part6/ports-and-container-shipping/largest-available-containership-teus/",
+    "officiality": "secondary",
+    "access_date": "2026-08-28"
+  },
+  "notes": "The world's largest container ship grew from about 6,600 TEU (1996) to 12,500 TEU (2006 E/Emma-class) to 18,000 TEU (2013 Triple E-class) to 24,000 TEU (2019 Megamax-class).",
+  "points": [
+    {"label": "1996", "value": 6600, "period": "1996"},
+    {"label": "2006", "value": 12500, "period": "2006"},
+    {"label": "2013", "value": 18000, "period": "2013"},
+    {"label": "2019", "value": 24000, "period": "2019"}
+  ]
+}

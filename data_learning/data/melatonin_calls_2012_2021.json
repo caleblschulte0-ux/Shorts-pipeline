@@ -1,0 +1,19 @@
+{
+  "key": "melatonin_calls_2012_2021",
+  "title": "US poison control calls for pediatric melatonin ingestion, 2012 vs 2021",
+  "unit": "calls",
+  "geography": "United States",
+  "time_coverage": "2012 vs 2021",
+  "source": {
+    "name": "Pediatric Melatonin Ingestions -- United States, 2012-2021 (MMWR)",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/71/wr/mm7122a1.htm",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "National Poison Data System calls for pediatric (age <=19) melatonin ingestion rose from 8,337 in 2012 to 52,563 in 2021, a 530% increase over the decade, totaling 260,435 calls across the period.",
+  "points": [
+    {"label": "2012", "value": 8337},
+    {"label": "2021", "value": 52563}
+  ]
+}

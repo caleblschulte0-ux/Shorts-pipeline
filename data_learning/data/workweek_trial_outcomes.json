@@ -1,0 +1,19 @@
+{
+  "key": "workweek_trial_outcomes",
+  "title": "Measured effects of the four-day workweek trial",
+  "unit": "percent",
+  "geography": "Australia, Canada, Ireland, New Zealand, UK, US (141 companies)",
+  "time_coverage": "2025 (6-month trial)",
+  "source": {
+    "name": "Multi-country four-day workweek trial (141 companies, 2,896 employees)",
+    "publisher": "Boston College researchers, published in Nature Human Behaviour",
+    "url": "https://www.nature.com/articles/d41586-025-02295-2",
+    "officiality": "primary",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Reported outcomes of the 2025 trial: burnout symptoms fell 71% on average, and some participating companies saw productivity surge by as much as 40%, without cutting output.",
+  "points": [
+    {"label": "Burnout reduction", "value": 71},
+    {"label": "Productivity surge (top cases)", "value": 40}
+  ]
+}

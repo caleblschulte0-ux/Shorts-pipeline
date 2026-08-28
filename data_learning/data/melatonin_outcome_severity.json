@@ -1,0 +1,20 @@
+{
+  "key": "melatonin_outcome_severity",
+  "title": "Outcomes for kids treated at a health care facility for melatonin ingestion",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2012-2021",
+  "source": {
+    "name": "Pediatric Melatonin Ingestions -- United States, 2012-2021 (MMWR)",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/mmwr/volumes/71/wr/mm7122a1.htm",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Of the 27,795 pediatric melatonin cases treated at a health care facility 2012-2021: 71.6% were discharged same-day, 14.7% were hospitalized, and 1.0% required intensive care; two children died.",
+  "points": [
+    {"label": "Sent home", "value": 71.6},
+    {"label": "Hospitalized", "value": 14.7},
+    {"label": "Intensive care", "value": 1.0}
+  ]
+}
