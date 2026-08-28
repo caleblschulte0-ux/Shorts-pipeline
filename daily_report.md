@@ -1,42 +1,41 @@
-# Daily Trending Shorts — 2026-08-26
+# Daily Trending Shorts — 2026-08-28
 
-> **1 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **7**
-- succeeded: **5**
+- queued: **8**
+- succeeded: **4**
 - quarantined (off-topic imagery): **0**
-- failed: **2**
+- failed: **4**
 
 ## Posted
-- **The US Just Became The World's #1 Gas Exporter**
-  - topic: The US Just Became The World's #1 Gas Exporter
-  - publishes: `2026-08-26T14:30:00Z`
-  - https://youtube.com/shorts/4a3MhKRuJOI
-  - took: 123.4s
-- **Samsung Ruled Phones For 12 Years. Then Apple Passed It.**
-  - topic: Samsung Ruled Phones For 12 Years. Then Apple Passed It.
-  - publishes: `2026-08-26T16:00:00Z`
-  - https://youtube.com/shorts/5-018LU1Vkg
-  - took: 132.6s
-- **The World Now Has More Obese Adults Than Underweight Ones**
-  - topic: The World Now Has More Obese Adults Than Underweight Ones
-  - publishes: `2026-08-26T17:30:00Z`
-  - https://youtube.com/shorts/ottLbq41wIs
-  - took: 125.6s
-- **The HOA Fined A Wheelchair Ramp. I Had The Paperwork.**
-  - topic: The HOA Fined A Wheelchair Ramp. I Had The Paperwork.
-  - publishes: `2026-08-26T19:00:00Z`
-  - https://youtube.com/shorts/cx-0yyr7jIw
-  - took: 222.6s
-- **The Bag Sizer Doesn't Know Who You Are**
-  - topic: The Bag Sizer Doesn't Know Who You Are
-  - publishes: `2026-08-26T20:30:00Z`
-  - https://youtube.com/shorts/lktKLxF2EXQ
-  - took: 216.3s
+- **Wind And Solar Just Passed Coal**
+  - topic: Wind And Solar Just Passed Coal
+  - publishes: `2026-08-28T13:00:00Z`
+  - https://youtube.com/shorts/K54eZZ_Wjec
+  - took: 96.3s
+- **Domino's Quietly Buried Pizza Hut**
+  - topic: Domino's Quietly Buried Pizza Hut
+  - publishes: `2026-08-28T14:30:00Z`
+  - https://youtube.com/shorts/7xVX82GV8y4
+  - took: 99.8s
+- **China's EV Boom Just Passed The Rest Of The World**
+  - topic: China's EV Boom Just Passed The Rest Of The World
+  - publishes: `2026-08-28T16:00:00Z`
+  - https://youtube.com/shorts/VH1a3hRKJjI
+  - took: 109.1s
+- **She Reported Me To An Employee. I Wasn't One.**
+  - topic: She Reported Me To An Employee. I Wasn't One.
+  - publishes: `2026-08-28T17:30:00Z`
+  - https://youtube.com/shorts/99uU2NDfRho
+  - took: 313.4s
 
 ## Failed
-- **South Korea's Birth Rate Fell Below Japan's**
-  - error: `showrunner_block: showrunner BLOCK: A real, correctly-sourced race chart whose numbers are rounded to integers, so both countries read '1' for most of the video and the whole comparison is unreadable.`
-- **meta stock**
+- **SpaceX Just Out-Launched The Entire World**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good race with a real overtake payoff, undermined by a composition that spills off every edge and a hook that opens on an unreadable clipped caption over an empty black chart.`
+- **She Blamed Everyone Else For The Freezing Office.**
+  - error: `showrunner_block: showrunner BLOCK: Solid runner-and-caption format undercut by a garbled overlapping caption at 21.8s and the same shivering-man photo reused for two consecutive beats.`
+- **singer**
+  - error: `HTTPError: HTTP Error 404: Not Found`
+- **strait of hormuz**
   - error: `HTTPError: HTTP Error 404: Not Found`
 
