@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s4-c80db87f1d69",
+  "safe_request_id": "reddit-not-an-employee-s4-c80db87f1d69",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "33ec552f629f0a620aa89ef1f84dfd77ce6d1516560ad154809150e1ab6f0ef1",
+  "prompt_used": "An editorial illustration for a short-form video: man laughing store aisle. It accompanies the narration: \"laughed so hard he had to lean on a shelf\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+    "filename": "20260828__reddit-not-an-employee-s4-c80db87f1d69.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "12c0b7cc23e74de51b99615fa77e5e663410df291a1e58c8eaf0931f0544ac4c",
+    "bytes": 2049973,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:14:59Z",
+  "retryable": false
+}
