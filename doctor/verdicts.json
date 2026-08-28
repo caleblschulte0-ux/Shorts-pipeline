@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260827",
+  "updated": "20260828",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -913,6 +913,44 @@
       "because": "Legitimate direction (video_qa, showrunner motion/temporal, and quality_milestones do each own a different shape of the same measurement with different unknown-evidence rules), but migrating to one versioned evidence contract without changing any existing block threshold is a multi-file, parity-tested refactor that should follow, not precede, the two concrete gaps already accepted this run (the video_qa EOF-span bug and the showrunner temporal fail-open gap) -- fixing those first changes what the unified contract needs to represent. Revisit after they ship.",
       "history": [],
       "revisit_after": "20260926"
+    },
+    "9a7e1bcece21": {
+      "verdict": "in_progress",
+      "date": "20260828",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260828",
+          "because": "Confirmed by reading funnel/media_judge.py: judge_package's outer except returns gaps: [] on any package-loop exception, and neither scripts/exchange_phase_a.py nor shared/exchange_bundle.py inspect report['error'], so an unjudged package silently asks ChatGPT for nothing. This fails the media-judge open, contradicting its own documented intent that unknown must count as a gap. In scope to fix directly: synthesize unknown gaps for every shot on package-level failure."
+        }
+      ]
+    },
+    "4e9af949a9c9": {
+      "verdict": "doing",
+      "date": "20260828",
+      "because": "Confirmed: funnel/entity_media.py resolve_entity_media returns str|None and enrich_package/verify_shot_urls persist only shot['image_url'], and media_judge.py's documented production fallback for a bare image_url constructs only {'url': ...}. Real information loss between verified enrichment and judging. Worth doing, but it is a multi-file evidence-shape change (entity_media + media_judge fallback + a new end-to-end test) that should follow the smaller package-failure fix (9a7e1bcece21) landing first, to avoid touching judge_package's contract twice in one week.",
+      "history": []
+    },
+    "aab2495524a2": {
+      "verdict": "doing",
+      "date": "20260828",
+      "because": "Confirmed: funnel/topic_video.py _download's cache-hit check is only 'st_size > 0', and the download path accepts anything >= 10KB even after a Range-ignoring server truncation or interrupted write, with no decode/container check. A real correctness gap in cache validity. Doing, but ranked behind the media-judge package-failure fix this run.",
+      "history": []
+    },
+    "4589e347920b": {
+      "verdict": "later",
+      "date": "20260828",
+      "because": "Evidence is a single video (the fish-catch story) compared against only two neighbors, and the finding itself says the sample is too thin to treat as doctrine. The proposed matched 6-vs-6 test over the next twelve comparable stories needs more precise-number explainer stories to accumulate in the analytics window before a test design can even be matched by topic family/duration/slot. Revisit once several more World Bank-style stories with raw-figure titles have posted and aged past 72h; park 30 days.",
+      "history": [],
+      "revisit_after": "20260927"
+    },
+    "8d777dcd5eda": {
+      "verdict": "later",
+      "date": "20260828",
+      "because": "This is the correct long-term direction (a versioned MediaEvidence record), but it generalizes exactly the two shape problems just ruled doing in 9a7e1bcece21 (package-failure gaps) and 4e9af949a9c9 (entity evidence loss). Designing the typed contract before those two land risks touching judge_package's interface twice. Revisit once both are merged and we can see what the adapters actually need; park 30 days.",
+      "history": [],
+      "revisit_after": "20260927"
     }
   }
 }

@@ -255,7 +255,39 @@ def judge_package(pkg: dict, media_by_shot: dict | list | None = None, *,
             "verdicts": verdicts,
             "gaps": gaps,
         }
-    except Exception:                                    # noqa: BLE001
+    except Exception as e:                               # noqa: BLE001
+        # Fail OPEN, not closed: a package-loop crash must not read as "no
+        # media needed". Synthesize one `unknown` gap per shot we can still
+        # enumerate, so Phase A/build_bundle (which infer work only from
+        # `gaps`) still ask for every shot instead of asking for none.
+        try:
+            shots = pkg.get("shots") or [] if isinstance(pkg, dict) else []
+            title = pkg.get("title") or "" if isinstance(pkg, dict) else ""
+            script = pkg.get("script") or "" if isinstance(pkg, dict) else ""
+        except Exception:                                # noqa: BLE001
+            shots, title, script = [], "", ""
+        verdicts = []
+        for i, shot in enumerate(shots):
+            shot = shot if isinstance(shot, dict) else {}
+            phrase = str(shot.get("phrase") or "")
+            v = {
+                "verdict": "unknown", "score": 0.0,
+                "reasons": ["judge_package failed"],
+                "phrase": phrase, "shot_index": i,
+            }
+            # Match judge_shot's own except branch: an unknown verdict must
+            # still carry a prompt, or build_bundle's `if not prompt:
+            # continue` silently drops it right back to zero requests.
+            try:
+                v["ai_prompt"] = ai_prompt(shot, script=script, title=title)
+                v["wants"] = "image"
+            except Exception:                            # noqa: BLE001
+                pass
+            verdicts.append(v)
         return {"slug": pkg.get("slug") if isinstance(pkg, dict) else None,
-                "shot_count": 0, "counts": {}, "verdicts": [], "gaps": [],
-                "error": "judge_package failed"}
+                "shot_count": len(verdicts),
+                "counts": {"strong": 0, "weak": 0, "missing": 0,
+                           "unknown": len(verdicts)},
+                "verdicts": verdicts, "gaps": verdicts,
+                "error": f"judge_package failed: "
+                         f"{type(e).__name__}: {str(e)[:200]}"}

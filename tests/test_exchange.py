@@ -130,6 +130,29 @@ class TestMediaJudge(unittest.TestCase):
         self.assertIn("ai_prompt", v)
         self.assertIn(v, rep["gaps"])
 
+    def test_package_loop_crash_still_emits_a_gap_per_shot(self):
+        """A package-level exception (not a per-shot one) must fail OPEN:
+        every shot we could still enumerate becomes an `unknown` gap, never
+        an empty gap list. `usage_penalties(pkg)` producing a non-numeric
+        value raises inside judge_package's own loop — BEFORE judge_shot's
+        try/except is even entered — landing in judge_package's outer
+        except. That used to come back as shot_count 0, gaps [], which
+        Phase A/build_bundle then read as "no media needed" for the whole
+        package."""
+        pkg = {"slug": "crash", "title": "t", "script": "s",
+              "shots": [{"phrase": "a", "query": "b"},
+                        {"phrase": "c", "query": "d"}]}
+        rep = media_judge.judge_package(
+            pkg, None, usage_penalties={0: "not-a-number"})
+        self.assertEqual(rep["shot_count"], 2)
+        self.assertEqual(len(rep["gaps"]), 2)
+        self.assertTrue(all(v["verdict"] == "unknown" for v in rep["gaps"]))
+        self.assertIn("error", rep)
+        # And the bundle built from that report must actually ask for the
+        # missing media, not silently drop the package.
+        b = xb.build_bundle("20260730", [pkg], [rep])
+        self.assertEqual(b["counts"]["requests"], 2)
+
 
 class TestBundle(unittest.TestCase):
     def test_build_bundle_shape(self):
