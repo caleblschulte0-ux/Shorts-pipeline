@@ -915,16 +915,22 @@
       "revisit_after": "20260926"
     },
     "9a7e1bcece21": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260828",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260828",
           "because": "Confirmed by reading funnel/media_judge.py: judge_package's outer except returns gaps: [] on any package-loop exception, and neither scripts/exchange_phase_a.py nor shared/exchange_bundle.py inspect report['error'], so an unjudged package silently asks ChatGPT for nothing. This fails the media-judge open, contradicting its own documented intent that unknown must count as a gap. In scope to fix directly: synthesize unknown gaps for every shot on package-level failure."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260828",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "7d8ee9e"
     },
     "4e9af949a9c9": {
       "verdict": "doing",
