@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s7-31062aa61a5c",
+  "safe_request_id": "reddit-not-an-employee-s7-31062aa61a5c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "afa9fdee5e9567c7021f1b6166fcd39ff4176a0b003e9ec470db963752e7e53c",
+  "prompt_used": "An editorial illustration for a short-form video: blurred face security footage. It accompanies the narration: \"her face blurred and mine left in\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+    "filename": "20260828__reddit-not-an-employee-s7-31062aa61a5c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "baca31eb875b4d74201658ebfc35db1121e2c0037600bc8f7339dd3a8e70271c",
+    "bytes": 1545406,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:15:55Z",
+  "retryable": false
+}
