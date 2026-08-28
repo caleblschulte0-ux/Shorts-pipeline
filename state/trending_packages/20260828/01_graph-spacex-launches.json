@@ -6,18 +6,45 @@
   "y_label": "Orbital launches per year",
   "duration": 13,
   "source": "SpaceX annual launch counts from company/industry launch trackers (SpaceNews, NASASpaceFlight.com). 'Rest of world' is total global orbital launch attempts for the year (widely reported annual tallies, e.g. SpaceNews/Payload/Wikipedia 'in spaceflight' roundups) minus SpaceX's own launches. Approximate for years without one single authoritative public tally; 2023-2024 totals are the most precisely reported. SpaceX alone out-launched the rest of the world combined in 2024 (134 vs. roughly 127).",
-  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "SpaceX",
       "color": "#4a90e2",
       "icon": "SpaceX",
-      "values": [18, 21, 13, 27, 33, 61, 98, 133]
+      "values": [
+        18,
+        21,
+        13,
+        27,
+        33,
+        61,
+        98,
+        133
+      ]
     },
     {
       "name": "Rest of world",
       "color": "#e74c3c",
-      "values": [73, 93, 89, 87, 113, 125, 125, 128]
+      "values": [
+        73,
+        93,
+        89,
+        87,
+        113,
+        125,
+        125,
+        128
+      ]
     }
   ],
   "hashtags": [

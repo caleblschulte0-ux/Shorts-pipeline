@@ -4,20 +4,60 @@
   "title": "She Reported Me To An Employee. I Wasn't One.",
   "script": "A woman grabbed my arm in the paint aisle and would not let go. I was wearing a red hoodie, and this particular home improvement store's uniform happens to also be red, so she decided on the spot that I worked there. I told her twice that I did not. She said I was lying to get out of helping her, then flagged down an actual employee in an orange vest and pointed straight at me. He looked at my hoodie, looked at hers, since she was wearing red too, and asked which one of us needed a stepladder. She said me. I said neither of us worked there, since she clearly did not either. He laughed so hard he had to lean on a shelf, then paged security over the intercom for a customer altercation in aisle nine, both parties in red. Store cameras caught the whole thing. Corporate posted the clip internally as an example of de-escalation done right, her face blurred and mine left in, on purpose.",
   "shots": [
-    {"phrase": "grabbed my arm in the paint aisle", "query": "hardware store aisle"},
-    {"phrase": "wearing a red hoodie", "query": "red hoodie person"},
-    {"phrase": "flagged down an actual employee in an orange vest", "query": "store employee vest"},
-    {"phrase": "asked which one of us needed a stepladder", "query": "stepladder hardware store"},
-    {"phrase": "laughed so hard he had to lean on a shelf", "query": "man laughing store aisle"},
-    {"phrase": "paged security over the intercom", "query": "store intercom speaker"},
-    {"phrase": "Store cameras caught the whole thing", "query": "security camera retail store"},
-    {"phrase": "her face blurred and mine left in", "query": "blurred face security footage"}
+    {
+      "phrase": "grabbed my arm in the paint aisle",
+      "query": "hardware store aisle"
+    },
+    {
+      "phrase": "wearing a red hoodie",
+      "query": "red hoodie person"
+    },
+    {
+      "phrase": "flagged down an actual employee in an orange vest",
+      "query": "store employee vest"
+    },
+    {
+      "phrase": "asked which one of us needed a stepladder",
+      "query": "stepladder hardware store"
+    },
+    {
+      "phrase": "laughed so hard he had to lean on a shelf",
+      "query": "man laughing store aisle"
+    },
+    {
+      "phrase": "paged security over the intercom",
+      "query": "store intercom speaker"
+    },
+    {
+      "phrase": "Store cameras caught the whole thing",
+      "query": "security camera retail store"
+    },
+    {
+      "phrase": "her face blurred and mine left in",
+      "query": "blurred face security footage"
+    }
   ],
   "punches": [
-    {"phrase": "wearing a red hoodie", "text": "NOT STAFF", "color": "#ffaa30"},
-    {"phrase": "asked which one of us needed a stepladder", "text": "BUSTED", "color": "#ff3030"},
-    {"phrase": "laughed so hard he had to lean on a shelf", "text": "DEAD", "color": "#50ff80"},
-    {"phrase": "posted the clip internally", "text": "WENT VIRAL", "color": "#50ff80"}
+    {
+      "phrase": "wearing a red hoodie",
+      "text": "NOT STAFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "asked which one of us needed a stepladder",
+      "text": "BUSTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "laughed so hard he had to lean on a shelf",
+      "text": "DEAD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "posted the clip internally",
+      "text": "WENT VIRAL",
+      "color": "#50ff80"
+    }
   ],
   "hashtags": [
     "idontworkherelady",
