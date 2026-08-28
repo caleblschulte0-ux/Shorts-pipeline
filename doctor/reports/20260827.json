@@ -1,0 +1,79 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260827",
+  "summary": "The Thursday shared/funnel review found a fail-open package boundary in the media judge: an exception around the package loop is converted into a zero-shot, zero-gap report, and Phase A/Bundle construction consume that shape as if no AI media were needed. Two adjacent evidence problems make that failure harder to see: entity enrichment verifies a URL but persists only the bare URL, stripping the subject, dimensions, provenance, and license that the judge needs, while topic-video cache hits accept any non-empty file even when a capped or interrupted download left an undecodable container. The immediate repair is to make package-judge failure a total set of unknown gaps; the durable direction is a typed media-evidence record with explicit validity and acquisition identity across enrichment, judging, and bundling. Performance does not justify a cadence or mix change. One explainer is a reach outlier at 504 views and 8.17 VPH but only 25.9% average view percentage, so the useful next test isolates precise-number packaging from story retention instead of copying the title pattern wholesale.",
+  "alarm_ack": {
+    "production_repair_trending": "Trending's 5/6 upload with incomplete repair is already covered by critical in-progress backlog 2fc5cbb21cca (Phase B can finish without creating the Daily render) and high strategy backlog 33ccbcdc479b (hold the trending mix until reliability and attribution are measurable). This Doctor report does not duplicate those live items or weaken any publish gate."
+  },
+  "findings": [
+    {
+      "title": "A package-level media-judge crash becomes an empty gap list",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "funnel/media-judge-package-failure",
+      "files": [
+        "funnel/media_judge.py",
+        "scripts/exchange_phase_a.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "judge_shot fails closed to an unknown verdict and judge_package normally includes unknown in gaps, but judge_package's outer exception handler returns shot_count 0, empty verdicts, and gaps []. exchange_phase_a does not inspect report.error; build_bundle sorts report.gaps and therefore emits no request for the affected package. A malformed shot collection, non-dict shot, or any unexpected package-loop failure can be represented downstream as no missing media rather than unjudged media.",
+      "proposal": "On a package-level exception, preserve the package's shot cardinality and synthesize one unknown verdict and AI-media gap per shot, with the exception class and bounded message recorded at report level. Make Phase A refuse or explicitly quarantine any report carrying error when it cannot enumerate the shots. Add an adversarial test that forces the package loop to raise and asserts the resulting bundle contains requests or blocks, never zero gaps.",
+      "evidence": "funnel/media_judge.py judge_package normally counts unknown as a gap, but its final broad except returns {shot_count: 0, verdicts: [], gaps: [], error: 'judge_package failed'}. scripts/exchange_phase_a.py appends that report without checking error and passes it to shared/exchange_bundle.py. build_bundle reads report.get('gaps') or [] and creates requests only from those entries, so the error shape deterministically produces no media request."
+    },
+    {
+      "title": "Topic-video cache treats any nonempty partial file as valid media",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "funnel/topic-video-cache-validation",
+      "files": [
+        "funnel/topic_video.py"
+      ],
+      "observation": "_download returns an existing cache path whenever its size is greater than zero, without probing the container. On a new download it writes directly to the final path; when a server ignores Range, the loop stops after the byte cap and still returns the truncated file as long as it exceeds 10 KB. An interrupted process can likewise leave a positive-size final file. Every later call treats that artifact as a successful cache hit, so an undecodable clip can persist until manual cache eviction.",
+      "proposal": "Download to a unique temporary path, enforce the byte cap before committing a chunk, run a bounded ffprobe decode/container check, then atomically replace the cache path only on success. On cache hit, probe once or store and verify a validation sidecar keyed by size/hash. Add fixtures for an interrupted write, a server that ignores Range, a moov-at-end MP4, and a valid cached clip.",
+      "evidence": "funnel/topic_video.py _download begins with `if dest.exists() and dest.stat().st_size > 0: return dest`, opens dest itself with wb, breaks when written exceeds MAX_BYTES, and accepts any final size at or above 10,000 bytes. The function performs no ffprobe or decode check before returning or reusing the path."
+    },
+    {
+      "title": "Entity enrichment discards the evidence the media judge needs",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "funnel/entity-media-judge-evidence",
+      "files": [
+        "funnel/entity_media.py",
+        "funnel/media_judge.py",
+        "scripts/exchange_phase_a.py"
+      ],
+      "observation": "Entity enrichment does real work to identify an entity, disambiguate it with context, resolve a URL, and verify the URL is an image, but it persists only shot.image_url. Production Phase A calls judge_package with media_by_shot=None, whose pinned-media fallback deliberately constructs only {url}. That drops the entity, context, dimensions, source class, and license before scoring. The judge then sees no textual overlap, unverified resolution, and unverified provenance, so verified enrichment can be downgraded as weak and trigger an unnecessary generated replacement.",
+      "proposal": "Persist a compact media evidence object beside image_url when enrichment resolves or verifies a shot: candidate subject/title, provider, source_class, license, verified dimensions, verification time, and canonical URL. Teach judge_package's pinned fallback to consume that object while keeping legacy bare URLs unverified. Add an end-to-end test from enrich_package through judge_package proving a verified entity image is judged from real metadata and a bare URL still cannot self-certify.",
+      "evidence": "funnel/entity_media.py resolve_entity_media returns only str|None and enrich_package assigns only target['image_url'] after entity/context resolution; verify_shot_urls likewise retains only the chosen URL. scripts/exchange_phase_a.py calls media_judge.judge_package(pkg, None). funnel/media_judge.py documents that this is the production path and its fallback for image_url returns only {'url': shot['image_url']}, while scoring depends on title/query/entity text, width/height, source_class, and license-adjacent provenance."
+    },
+    {
+      "title": "Media evidence needs a typed validity contract across the exchange",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/typed-media-evidence-contract",
+      "files": [
+        "funnel/entity_media.py",
+        "funnel/media_judge.py",
+        "funnel/topic_video.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "The current media path communicates success through incompatible incidental shapes: a URL string from entity enrichment, a Path or None from topic video, a verdict dict from the shot judge, and a package report whose error state is optional. Missing, invalid, unknown, and verified-but-metadata-poor media can all collapse to empty values at a boundary. As more providers and recovery paths are added, each consumer must rediscover whether an asset was acquired, decoded, attributable, and actually judged.",
+      "proposal": "Define a versioned MediaEvidence record shared across acquisition, cache, enrichment, judging, and bundle assembly. Require asset identity/hash, media kind, subject/context, provider and license lane, byte/decode verification, dimensions or duration, acquisition outcome, judge validity, and explicit unknown reason. Adapt existing functions at their boundaries first, keep current scoring thresholds unchanged, and add contract tests proving that no invalid or unknown state serializes as an empty-success shape.",
+      "evidence": "funnel/entity_media.py exposes resolve_entity_media as str|None; funnel/topic_video.py exposes _download as Path|None and accepts positive-size cache files; funnel/media_judge.py returns detailed per-shot verdicts but an outer failure becomes an empty report; shared/exchange_bundle.py infers work exclusively from report.gaps and otherwise serializes media health from optional dict fields. These four current-main interfaces encode validity differently and lose information between them."
+    },
+    {
+      "title": "Separate precise-number reach from explainer retention before scaling it",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/explainer-precise-number-packaging",
+      "files": [
+        "state/analytics_explainer/latest.json",
+        "data_learning/niche.config.json",
+        "config/channel_registry.json"
+      ],
+      "observation": "The latest explainer snapshot has one exceptional reach result: Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons has 504 views at 8.17 VPH after 61.7 hours, versus 1.75 VPH for the next video and 0.38 VPH for the next older comparison. But the fish video's average view percentage is only 25.9% with 10 seconds average view duration. One title may have earned distribution without earning sustained viewing, and the sample is too thin to treat a long raw number as a new channel doctrine.",
+      "proposal": "Keep the registered four-per-day cadence and current topic mix. For the next twelve comparable World Bank-style stories, tag six truthful titles with a human-readable magnitude and six with the exact raw figure, matched by topic family, duration arm, and publish slot. Judge at 72 hours on impressions-to-views or VPH for reach plus average view percentage and absolute view duration for story hold. Scale precise-number packaging only if its reach lift repeats without a retention loss; otherwise retain the underlying fish/supply topic insight without copying the title form.",
+      "evidence": "state/analytics_explainer/latest.json fetched 2026-08-28T04:02:44Z reports the fish video at age 61.7h, 504 views, 8.17 views_per_hour, 25.9 average_view_percentage, and 10.0 average_view_duration_s. The next VPH result is a 22.3h cereal-land video at 1.75 VPH and is not yet retention-usable; the next older result is the US rail video at 0.38 VPH. config/channel_registry.json revision 5 keeps explainer at four data stories per day, so this proposal isolates packaging rather than changing cadence or weakening quality gates."
+    }
+  ]
+}
