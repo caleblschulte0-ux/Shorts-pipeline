@@ -5,12 +5,12 @@
     "format": "graph_race",
     "publish_at": "2026-08-29T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/2ULW0aywE88",
+    "video_url": "https://youtube.com/shorts/-0N5BfVD-UQ",
     "error": null,
-    "elapsed_seconds": 109.1,
+    "elapsed_seconds": 116.5,
     "package_path": "state/trending_packages/20260829/03_graph-dota-prize-pool-collapse.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260829-122146_esports__biggest_prize_ever_just_collaps.mp4",
+    "video_path": "output/daily_20260829-123353_esports__biggest_prize_ever_just_collaps.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -39,15 +39,15 @@
     "format": "reddit",
     "publish_at": "2026-08-29T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/hxWCKMBNPy8",
+    "video_url": "https://youtube.com/shorts/P844xpGQxq0",
     "error": null,
-    "elapsed_seconds": 207.7,
+    "elapsed_seconds": 206.9,
     "package_path": "state/trending_packages/20260829/05_paper-approval-mountain.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260829-122346_his_paper_only_rule_cost_more_than_the_s.mp4",
+    "video_path": "output/daily_20260829-123606_his_paper_only_rule_cost_more_than_the_s.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.3,
+      "duration": 54.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -58,7 +58,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
+      "loudness_lufs": -26.3
     },
     "qa": {
       "ok": true,
@@ -79,14 +79,14 @@
     "publish_at": "2026-08-29T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant live-action and dynamic gameplay, but the gameplay mascot is not integrated into the narrative.",
-    "elapsed_seconds": 235.9,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
+    "elapsed_seconds": 208.3,
     "package_path": "state/trending_packages/20260829/06_gym-sales-tour-cancel.json",
     "source": "chatgpt",
-    "video_path": "output/daily_20260829-122716_the_gym_hid_cancellation__i_booked_a_sal.mp4",
+    "video_path": "output/daily_20260829-123927_the_gym_hid_cancellation__i_booked_a_sal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 57.2,
+      "duration": 58.667,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,7 +97,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.9
+      "loudness_lufs": -24.7
     },
     "qa": {
       "ok": true,
@@ -106,29 +106,19 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant live-action and dynamic gameplay, but the gameplay mascot is not integrated into the narrative.",
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
       "score": 82
     },
     "blocked": true
   },
   {
-    "topic": "georgia football",
+    "topic": "keith urban",
     "angle": null,
     "publish_at": "2026-08-29T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.9,
-    "backfill": true
-  },
-  {
-    "topic": "chopped",
-    "angle": null,
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 3.2,
+    "elapsed_seconds": 25.3,
     "backfill": true
   },
   {
@@ -138,17 +128,27 @@
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.6,
+    "elapsed_seconds": 0.3,
     "backfill": true
   },
   {
-    "topic": "miami weather",
+    "topic": "atlanta weather",
     "angle": null,
     "publish_at": null,
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.7,
+    "elapsed_seconds": 0.9,
+    "backfill": true
+  },
+  {
+    "topic": "persian gulf oil flows recovery",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 1.0,
     "backfill": true
   }
 ]
