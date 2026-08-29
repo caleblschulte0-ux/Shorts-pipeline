@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-dota-prize-pool-collapse",
+  "title": "Esports' Biggest Prize Ever Just Collapsed",
+  "hook": "It was $40 million. Then Valve changed one thing.",
+  "y_label": "Tournament prize pool ($ millions)",
+  "duration": 13,
+  "source": "Valve compendium/battle-pass disclosures and reporting by Tips.GG and GosuGamers for Dota 2 The International: 2015 $18.4M, 2018 $25.5M, 2019 $34.3M, 2021 $40.0M, 2022 $18.9M, 2023 $3.0M, 2024 $2.8M. Riot Games and tournament reporting for League of Legends Worlds: 2015 $2.13M, 2018 $6.45M, and about $2.2-2.3M in 2019-2024.",
+  "years": [
+    2015,
+    2018,
+    2019,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Dota 2: The International",
+      "color": "#e74c3c",
+      "icon": "Dota 2",
+      "values": [
+        18.4,
+        25.5,
+        34.3,
+        40,
+        18.9,
+        3,
+        2.8
+      ]
+    },
+    {
+      "name": "LoL Worlds",
+      "color": "#1abc9c",
+      "icon": "League of Legends",
+      "values": [
+        2.13,
+        6.45,
+        2.25,
+        2.225,
+        2.25,
+        2.3,
+        2.23
+      ]
+    }
+  ],
+  "hashtags": [
+    "dota2",
+    "theinternational",
+    "esports",
+    "leagueoflegends",
+    "gaming",
+    "prizepool",
+    "valve",
+    "riotgames",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

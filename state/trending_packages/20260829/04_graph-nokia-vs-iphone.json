@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-nokia-vs-iphone",
+  "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+  "hook": "100 million, then nearly zero",
+  "y_label": "Smartphones shipped per year (millions)",
+  "duration": 13,
+  "source": "Nokia smartphone shipments and Apple iPhone fiscal-year unit sales compiled from IDC, Gartner, Strategy Analytics, and company reports. Nokia shipped about 100 million smartphones in 2010; its share halved from 33% in 2010 to 16% in 2011 and shipments fell to roughly 30-35 million by 2012-2013. Apple iPhone unit sales are from Apple 10-K filings. Figures are approximate and rounded to the nearest million.",
+  "years": [
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013
+  ],
+  "series": [
+    {
+      "name": "Nokia",
+      "color": "#124191",
+      "icon": "Nokia",
+      "values": [
+        61,
+        68,
+        100,
+        78,
+        35,
+        30
+      ]
+    },
+    {
+      "name": "iPhone",
+      "color": "#a3a3a3",
+      "icon": "Apple",
+      "values": [
+        11.63,
+        20.73,
+        39.99,
+        72.29,
+        125.05,
+        150.26
+      ]
+    }
+  ],
+  "hashtags": [
+    "nokia",
+    "iphone",
+    "apple",
+    "smartphones",
+    "symbian",
+    "techhistory",
+    "mobilephones",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}
