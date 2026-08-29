@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260829",
+  "bundle": {
+    "identity": "takeover-ce3cb772f437e74c7284709e35c60e25e195fbfa",
+    "path": "exchange/bundles/20260829/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-29T12:15:20Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-gym-sales-tour-cancel-s3",
+  "safe_request_id": "authored-gym-sales-tour-cancel-s3",
+  "prompt_sha256": "b43c9e565368ce899d3a99dce70fe11e07054b09988ae5cd8ef9a9dbc5f9993a",
+  "prompt_used": "evening gym cancellation letter",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QdDfnjs7o8OzHtdLWBQqZDoOHNvOuebG",
+    "filename": "20260829__authored-gym-sales-tour-cancel-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QdDfnjs7o8OzHtdLWBQqZDoOHNvOuebG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "cba554e99ab7171ba89850f6db005890feadacaa860726d5892374142e77ed96",
+    "bytes": 1768424,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "gym-sales-tour-cancel",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
