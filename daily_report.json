@@ -1,118 +1,16 @@
 [
   {
-    "topic": "SpaceX Just Out-Launched The Entire World",
-    "title": "SpaceX Just Out-Launched The Entire World",
+    "topic": "Esports' Biggest Prize Ever Just Collapsed",
+    "title": "Esports' Biggest Prize Ever Just Collapsed",
     "format": "graph_race",
-    "publish_at": "2026-08-28T13:00:00Z",
+    "publish_at": "2026-08-29T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/Jcbc-pleaoc",
+    "video_url": "https://youtube.com/shorts/2ULW0aywE88",
     "error": null,
-    "elapsed_seconds": 125.2,
-    "package_path": "state/trending_packages/20260828/01_graph-spacex-launches.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-123037_spacex_just_out_launched_the_entire_worl.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Wind And Solar Just Passed Coal",
-    "title": "Wind And Solar Just Passed Coal",
-    "format": "graph_race",
-    "publish_at": "2026-08-28T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/jKjZLv8Gxno",
-    "error": null,
-    "elapsed_seconds": 113.9,
-    "package_path": "state/trending_packages/20260828/02_graph-wind-solar-coal.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-123242_wind_and_solar_just_passed_coal.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Domino's Quietly Buried Pizza Hut",
-    "title": "Domino's Quietly Buried Pizza Hut",
-    "format": "graph_race",
-    "publish_at": "2026-08-28T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/WdXVenNDvEA",
-    "error": null,
-    "elapsed_seconds": 116.5,
-    "package_path": "state/trending_packages/20260828/03_graph-dominos-pizza-hut.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-123436_domino_s_quietly_buried_pizza_hut.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "China's EV Boom Just Passed The Rest Of The World",
-    "title": "China's EV Boom Just Passed The Rest Of The World",
-    "format": "graph_race",
-    "publish_at": "2026-08-28T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/zwxAnfMGfPg",
-    "error": null,
-    "elapsed_seconds": 115.4,
-    "package_path": "state/trending_packages/20260828/04_graph-china-ev-sales.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-123632_china_s_ev_boom_just_passed_the_rest_of_.mp4",
+    "elapsed_seconds": 109.1,
+    "package_path": "state/trending_packages/20260829/03_graph-dota-prize-pool-collapse.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-122146_esports__biggest_prize_ever_just_collaps.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -131,64 +29,25 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 79
+      "score": 100
     },
     "channel": "default"
   },
   {
-    "topic": "She Reported Me To An Employee. I Wasn't One.",
-    "title": "She Reported Me To An Employee. I Wasn't One.",
+    "topic": "His Paper-Only Rule Cost More Than the Supplies",
+    "title": "His Paper-Only Rule Cost More Than the Supplies",
     "format": "reddit",
-    "publish_at": "2026-08-28T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid reddit-story spine with relevant per-beat shots for most of the run, but the payoff lands on an off-topic night-street photo over a half-black gameplay panel.",
-    "elapsed_seconds": 336.2,
-    "package_path": "state/trending_packages/20260828/05_reddit-not-an-employee.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-123848_she_reported_me_to_an_employee__i_wasn_t.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 41.967,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": ""
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Solid reddit-story spine with relevant per-beat shots for most of the run, but the payoff lands on an off-topic night-street photo over a half-black gameplay panel.",
-      "score": 79
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Blamed Everyone Else For The Freezing Office.",
-    "title": "She Blamed Everyone Else For The Freezing Office.",
-    "format": "reddit",
-    "publish_at": "2026-08-28T19:00:00Z",
+    "publish_at": "2026-08-29T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/81B7PduCFSI",
+    "video_url": "https://youtube.com/shorts/hxWCKMBNPy8",
     "error": null,
-    "elapsed_seconds": 198.2,
-    "package_path": "state/trending_packages/20260828/06_reddit-thermostat-admin.json",
-    "source": "brain",
-    "video_path": "output/daily_20260828-124405_she_blamed_everyone_else_for_the_freezin.mp4",
+    "elapsed_seconds": 207.7,
+    "package_path": "state/trending_packages/20260829/05_paper-approval-mountain.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-122346_his_paper_only_rule_cost_more_than_the_s.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.667,
+      "duration": 53.3,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +58,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.9
+      "loudness_lufs": -24.0
     },
     "qa": {
       "ok": true,
@@ -209,18 +68,87 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 87
+      "score": 100
     },
     "channel": "default"
   },
   {
-    "topic": "lisa kudrow",
-    "angle": null,
-    "publish_at": "2026-08-28T20:30:00Z",
+    "topic": "The Gym Hid Cancellation. I Booked a Sales Tour.",
+    "title": "The Gym Hid Cancellation. I Booked a Sales Tour.",
+    "format": "reddit",
+    "publish_at": "2026-08-29T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.5,
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant live-action and dynamic gameplay, but the gameplay mascot is not integrated into the narrative.",
+    "elapsed_seconds": 235.9,
+    "package_path": "state/trending_packages/20260829/06_gym-sales-tour-cancel.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-122716_the_gym_hid_cancellation__i_booked_a_sal.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 57.2,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant live-action and dynamic gameplay, but the gameplay mascot is not integrated into the narrative.",
+      "score": 82
+    },
+    "blocked": true
+  },
+  {
+    "topic": "georgia football",
+    "angle": null,
+    "publish_at": "2026-08-29T16:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 0.9,
+    "backfill": true
+  },
+  {
+    "topic": "chopped",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 3.2,
+    "backfill": true
+  },
+  {
+    "topic": "texas longhorns football",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 0.6,
+    "backfill": true
+  },
+  {
+    "topic": "miami weather",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 0.7,
     "backfill": true
   }
 ]

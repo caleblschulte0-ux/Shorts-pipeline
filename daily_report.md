@@ -1,42 +1,34 @@
-# Daily Trending Shorts — 2026-08-28
+# Daily Trending Shorts — 2026-08-29
 
-> **1 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **ChatGPT wrote 3 of today's 7 packages** — the Claude Routine did not run (weekly limit?).
+> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
 - queued: **7**
-- succeeded: **5**
+- succeeded: **2**
 - quarantined (off-topic imagery): **0**
-- failed: **2**
+- failed: **5**
 
 ## Posted
-- **SpaceX Just Out-Launched The Entire World**
-  - topic: SpaceX Just Out-Launched The Entire World
-  - publishes: `2026-08-28T13:00:00Z`
-  - https://youtube.com/shorts/Jcbc-pleaoc
-  - took: 125.2s
-- **Wind And Solar Just Passed Coal**
-  - topic: Wind And Solar Just Passed Coal
-  - publishes: `2026-08-28T14:30:00Z`
-  - https://youtube.com/shorts/jKjZLv8Gxno
-  - took: 113.9s
-- **Domino's Quietly Buried Pizza Hut**
-  - topic: Domino's Quietly Buried Pizza Hut
-  - publishes: `2026-08-28T16:00:00Z`
-  - https://youtube.com/shorts/WdXVenNDvEA
-  - took: 116.5s
-- **China's EV Boom Just Passed The Rest Of The World**
-  - topic: China's EV Boom Just Passed The Rest Of The World
-  - publishes: `2026-08-28T17:30:00Z`
-  - https://youtube.com/shorts/zwxAnfMGfPg
-  - took: 115.4s
-- **She Blamed Everyone Else For The Freezing Office.**
-  - topic: She Blamed Everyone Else For The Freezing Office.
-  - publishes: `2026-08-28T19:00:00Z`
-  - https://youtube.com/shorts/81B7PduCFSI
-  - took: 198.2s
+- **Esports' Biggest Prize Ever Just Collapsed**
+  - topic: Esports' Biggest Prize Ever Just Collapsed
+  - publishes: `2026-08-29T13:00:00Z`
+  - https://youtube.com/shorts/2ULW0aywE88
+  - took: 109.1s
+- **His Paper-Only Rule Cost More Than the Supplies**
+  - topic: His Paper-Only Rule Cost More Than the Supplies
+  - publishes: `2026-08-29T14:30:00Z`
+  - https://youtube.com/shorts/hxWCKMBNPy8
+  - took: 207.7s
 
 ## Failed
-- **She Reported Me To An Employee. I Wasn't One.**
-  - error: `showrunner_block: showrunner BLOCK: Solid reddit-story spine with relevant per-beat shots for most of the run, but the payoff lands on an off-topic night-street photo over a half-black gameplay panel.`
-- **lisa kudrow**
-  - error: `HTTPError: HTTP Error 404: Not Found`
+- **The Gym Hid Cancellation. I Booked a Sales Tour.**
+  - error: `showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story using a split-screen format with relevant live-action and dynamic gameplay, but the gameplay mascot is not integrated into the narrative.`
+- **georgia football**
+  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **chopped**
+  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **texas longhorns football**
+  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **miami weather**
+  - error: `HTTPError: HTTP Error 401: Unauthorized`
 
