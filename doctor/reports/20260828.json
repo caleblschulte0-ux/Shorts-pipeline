@@ -1,0 +1,75 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260828",
+  "summary": "The repository recovered operationally on August 28—trending posted nine videos and the ChatGPT exchange closed cleanly—but the prior-day finalizer and zero-post alarms remain acknowledged against active repair work. Friday's deep read found a fail-open path in the binding data-learning judge policy, a one-shot reporting crash in the legacy explainer generator, and a Third story validator that can approve an EDL after truncating away its only payoff. The cache layer still lacks durable freshness/provenance semantics. Performance evidence does not yet justify a new channel-direction change: the newest explainer result is only 6.8 hours old, the mature raw-number result is still a single outlier, and existing Third experiments remain the right place to accumulate evidence.",
+  "alarm_ack": {
+    "chatgpt_task_failed_finalizer": "The August 27 no-artifact incident is acknowledged; active critical backlog 2fc5cbb21cca owns the closure-to-render reliability chain, and August 28 recovered with committed response.json/DONE plus Phase B commit 2426b1347ea724d300e3b3d288f4f3be0be855f7.",
+    "no_posts_trending": "The August 27 zero-post outage is acknowledged; active critical backlog 2fc5cbb21cca and strategy backlog 33ccbcdc479b cover delivery reliability and the mix hold. doctor/evidence.json now records nine trending posts for August 28, so this report does not duplicate the prior-day outage finding."
+  },
+  "findings": [
+    {
+      "title": "Required judges can unanimously reject and still advance",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "explainer/quality-policy",
+      "files": [
+        "data_learning/judge_policy.py"
+      ],
+      "observation": "The binding policy blocks a required judge only when its verdict is missing, failed, or abstained. It never blocks pass=false. If taste, technical, and factual all return status ok with pass=false, there is no dissent, so a high overall score with no separate hard finding reaches advance=true despite unanimous rejection.",
+      "proposal": "Require every required judge verdict to carry pass=true before advancement. Treat pass=false and a missing/non-boolean pass field as explicit blockers, and add adversarial tests for unanimous reject, one reject among passes, and malformed pass values.",
+      "evidence": "data_learning/judge_policy.py:312-321 checks only missing/failed/abstained required verdicts; lines 276-290 define dissent only as disagreement; lines 352-361 add a blocker for disagreement but not unanimous false; line 363 returns advance as not blockers."
+    },
+    {
+      "title": "One-shot explainer packages crash after being written",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "explainer/legacy-generator",
+      "files": [
+        "data_learning/generate.py",
+        "data_learning/qa.py"
+      ],
+      "observation": "The explainer QA contract accepts any nonempty shots list, but the success logger unconditionally reads shots[1]. A valid one-shot package is written and counted successful, then raises IndexError before the batch summary or remaining packages run.",
+      "proposal": "Derive the chart note with a bounds-safe search for any shot carrying image_url, and add a one-shot package regression test proving generation finishes and reports the correct chart state.",
+      "evidence": "data_learning/qa.py:24-34 rejects only an empty shots list and imposes no two-shot minimum. data_learning/generate.py:148-153 writes the accepted package and increments n_ok, then reads pkg['shots'][1] unconditionally for chart_note."
+    },
+    {
+      "title": "Story validation can truncate away its only payoff",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "third/story-director",
+      "files": [
+        "third_capture/story_director.py"
+      ],
+      "observation": "validate_edl proves that some incoming beat is a payoff or climax before it truncates the beat list to MAX_BEATS=5. A six-beat response whose only payoff is beat six can therefore satisfy the payoff check, lose that beat during cleaning, and still pass when beat five is merely a reaction.",
+      "proposal": "Validate narrative structure on the cleaned, bounded beat list: require at least one retained payoff/climax and prove the terminal reaction follows a retained payoff. Add a six-beat adversarial fixture with the sole payoff beyond MAX_BEATS.",
+      "evidence": "third_capture/story_director.py:31 sets MAX_BEATS=5; lines 205-208 compute payoffish over the full unbounded input; line 215 truncates to five beats; lines 272-276 accept a terminal reaction without rechecking that a payoff/climax survived."
+    },
+    {
+      "title": "Provider fallback cache has no freshness contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "explainer/media-resilience",
+      "files": [
+        "data_learning/stock_cache.py"
+      ],
+      "observation": "The provider fallback cache persists only provider, query, and candidate lists, with no schema version, fetch time, expiry, or candidate verification history. Whenever a live provider fails or returns empty, any old nonempty record remains eligible indefinitely, so dead CDN URLs and superseded licensing metadata can repeatedly re-enter production.",
+      "proposal": "Migrate the fallback to a versioned cache record with fetched_at, expiry policy, source/license provenance, and per-candidate verification outcomes. Evict repeatedly dead candidates while preserving the rule that successful live results always outrank fallback data.",
+      "evidence": "data_learning/stock_cache.py:38-48 accepts any parseable nonempty candidates list; lines 51-60 write only provider, query, and candidates; lines 65-87 reuse that record on every live failure or empty response without checking age or prior candidate failures."
+    },
+    {
+      "title": "Current performance evidence supports no new direction change",
+      "horizon": "strategy",
+      "severity": "low",
+      "area": "channel-management/evidence",
+      "files": [
+        "doctor/evidence.json",
+        "state/analytics_explainer/latest.json",
+        "state/analytics_third/latest.json",
+        "config/channel_registry.json"
+      ],
+      "observation": "August 28 delivery recovered sharply, but it is not a stable performance read: doctor/evidence.json records trending moving from zero posts on August 27 to nine on August 28, while the newest explainer result has 334 views at 49.42 VPH after only 6.8 hours. The mature fish-catch result has 504 views at 5.95 VPH after 84.7 hours but remains one story, and Third's leading mature videos remain tightly clustered around roughly one VPH.",
+      "proposal": "Keep the registered cadence and format mix unchanged. Let the already-filed reliability repairs and declared title/story experiments accumulate mature samples before making another registry or doctrine change; the next strategy read should compare repeated results, not the recovery spike or one young explainer.",
+      "evidence": "doctor/evidence.json channel_performance shows trending 0 posts on 2026-08-27 and 9 on 2026-08-28, with active strategy/reliability backlog. state/analytics_explainer/latest.json records the 6.8-hour baby-name result and 84.7-hour fish-catch result; state/analytics_third/latest.json shows the mature top Third titles near one VPH. config/channel_registry.json is the current cadence/mix authority."
+    }
+  ]
+}
