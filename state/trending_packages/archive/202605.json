@@ -489,5 +489,551 @@
       "music_vibe": "hiphop",
       "gameplay": "subway"
     }
+  },
+  "20260531": {
+    "01_anthropic-first-profit.json": {
+      "version": 8,
+      "slug": "anthropic-first-profit",
+      "title": "Anthropic Just Became the First AI Lab to Turn a Profit",
+      "hashtags": [
+        "anthropic",
+        "claude",
+        "ai",
+        "aiprofits",
+        "claudecode",
+        "techinvesting",
+        "aiearnings",
+        "ailab",
+        "openai",
+        "airevenue",
+        "machinelearning",
+        "frontier",
+        "aiindustry"
+      ],
+      "script": "For 5 years Anthropic burned billions racing OpenAI. This quarter, the race changed. Anthropic is projecting its first-ever operating profit \u2014 $559 million \u2014 on $10.9 billion in Q2 revenue. That's 130 percent growth in a single quarter. Claude Code alone crossed 1 billion in annualized revenue just 6 months after launch. If the numbers land, Anthropic becomes the first frontier AI lab ever to turn a quarterly profit. The startup that trained Claude just became a real business.",
+      "shots": [
+        {
+          "phrase": "burned billions racing OpenAI",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dario_Amodei_in_2023.jpg",
+          "query": "ai lab researchers computers servers"
+        },
+        {
+          "phrase": "first-ever operating profit",
+          "query": "profit chart green bar financial milestone"
+        },
+        {
+          "phrase": "10.9 billion in Q2 revenue",
+          "query": "quarterly earnings revenue bar chart growth"
+        },
+        {
+          "phrase": "130 percent growth in a single quarter",
+          "query": "stock price surge upward chart"
+        },
+        {
+          "phrase": "Claude Code alone crossed",
+          "query": "developer coding laptop software terminal dark"
+        },
+        {
+          "phrase": "first frontier AI lab ever",
+          "query": "ai supercomputer data center servers dark"
+        },
+        {
+          "phrase": "trained Claude just became",
+          "query": "tech startup office city skyline modern"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the race changed",
+          "text": "RACE CHANGED",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "first-ever operating profit",
+          "text": "$559M PROFIT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "130 percent growth",
+          "text": "130% GROWTH",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "first frontier AI lab ever",
+          "text": "FIRST IN HISTORY",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "trained Claude just became",
+          "text": "GAME OVER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_quantinuum-ipo.json": {
+      "version": 8,
+      "slug": "quantinuum-ipo",
+      "title": "Quantum Computing's Biggest IPO Ever Just Filed",
+      "hashtags": [
+        "quantinuum",
+        "quantumcomputing",
+        "ipo",
+        "quantumipo",
+        "honeywell",
+        "nasdaq",
+        "trappedion",
+        "qubits",
+        "quantumtech",
+        "techinvesting",
+        "wallstreet",
+        "science",
+        "investing"
+      ],
+      "script": "Quantum computing just filed for the biggest IPO in the history of the technology. Quantinuum \u2014 spun out of Honeywell \u2014 is seeking $1.05 billion at a $12.7 billion valuation under ticker QNT on Nasdaq. The company uses trapped ions to build quantum computers that no one else can replicate. Revenue was just $30.9 million in 2025. Net loss: $136.6 million in just the first quarter of 2026. Wall Street is betting the breakthrough is worth the burn.",
+      "shots": [
+        {
+          "phrase": "biggest IPO in the history of the technology",
+          "query": "nasdaq trading floor stock market exchange opening"
+        },
+        {
+          "phrase": "spun out of Honeywell",
+          "query": "honeywell industrial corporation headquarters building"
+        },
+        {
+          "phrase": "trapped ions to build quantum computers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_system_%2827274387309%29.jpg",
+          "query": "quantum computer cryogenic sphere gold science"
+        },
+        {
+          "phrase": "no one else can replicate",
+          "query": "laboratory scientist quantum physics research"
+        },
+        {
+          "phrase": "30.9 million in 2025",
+          "query": "small revenue financial statement startup loss"
+        },
+        {
+          "phrase": "worth the burn",
+          "query": "stock market investor risk bet chart"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "biggest IPO in the history",
+          "text": "BIGGEST QUANTUM IPO EVER",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "12.7 billion valuation",
+          "text": "$12.7B VALUATION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "136.6 million in just the first quarter",
+          "text": "$136.6M BURN",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "worth the burn",
+          "text": "WORTH THE BURN?",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "03_laos-cave-rescue.json": {
+      "version": 8,
+      "slug": "laos-cave-rescue",
+      "title": "Miners Trapped 10 Days Swam Out of the Cave Themselves",
+      "hashtags": [
+        "laos",
+        "caverescue",
+        "minersrescued",
+        "survival",
+        "breakingnews",
+        "rescue",
+        "flood",
+        "caving",
+        "miningaccident",
+        "thamluang",
+        "rescuediver",
+        "survival2026",
+        "heroic"
+      ],
+      "script": "7 gold miners were trapped in a flooded Laos cave for 10 days. The entrance had caved in. The tunnels filled with water. An international rescue team that helped save the Thai soccer team in 2018 raced to Laos. 4 miners didn't wait. They pushed through 1,000 feet of pitch-black flooded tunnels on their own and walked out alive. 2 others are still missing. They swam to freedom through the dark.",
+      "shots": [
+        {
+          "phrase": "trapped in a flooded Laos cave for 10 days",
+          "query": "cave flooded dark tunnel underground water"
+        },
+        {
+          "phrase": "The tunnels filled with water",
+          "query": "flooded cave tunnel rising water dark"
+        },
+        {
+          "phrase": "international rescue team that helped save the Thai soccer team",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/4547292_Cave_rescue_divers_prepare_dive_equipment_at_Tham_Luang_cave.jpg",
+          "query": "cave rescue diver equipment dark underground"
+        },
+        {
+          "phrase": "pushed through 1,000 feet of pitch-black flooded tunnels",
+          "query": "cave diver flooded tunnel headlamp dark"
+        },
+        {
+          "phrase": "walked out alive",
+          "query": "survivor rescued celebration alive muddy"
+        },
+        {
+          "phrase": "2 others are still missing",
+          "query": "search rescue team empty cave entrance"
+        },
+        {
+          "phrase": "swam to freedom through the dark",
+          "query": "dark flooded cave underwater torch light"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "trapped in a flooded Laos cave for 10 days",
+          "text": "10 DAYS TRAPPED",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.4
+        },
+        {
+          "phrase": "pushed through 1,000 feet",
+          "text": "1,000 FEET OF DARK",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "walked out alive",
+          "text": "WALKED OUT ALIVE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        },
+        {
+          "phrase": "2 others are still missing",
+          "text": "2 STILL MISSING",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "swam to freedom through the dark",
+          "text": "SWAM TO FREEDOM",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "04_tesla-fsd-delay.json": {
+      "version": 8,
+      "slug": "tesla-fsd-delay",
+      "title": "Elon Promised Full Self-Driving by 2018. It's 2026.",
+      "hashtags": [
+        "tesla",
+        "elonmusk",
+        "fsd",
+        "fullselfdrive",
+        "autonomous",
+        "teslafsd",
+        "robotaxi",
+        "cybercab",
+        "tesladelay",
+        "autonomousvehicle",
+        "selfdriving",
+        "ev",
+        "teslaowners"
+      ],
+      "script": "Elon Musk has promised fully self-driving Teslas since 2018. Last week he delayed it again \u2014 now Q4 2026 for unsupervised Full Self-Driving. Hardware 3 owners who paid up to $15,000 for Full Self-Driving are being left behind. Their cars have just one-eighth the memory bandwidth needed to go driverless. Musk promised full autonomy by 2018. Then 2020. Then 2022. Then 2025. The car that never crashes just keeps missing its own deadlines.",
+      "shots": [
+        {
+          "phrase": "promised fully self-driving Teslas since 2018",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_crop.jpg",
+          "query": "elon musk speaking presentation stage"
+        },
+        {
+          "phrase": "now Q4 2026 for unsupervised Full Self-Driving",
+          "query": "tesla car interior touchscreen autopilot dashboard"
+        },
+        {
+          "phrase": "paid up to $15,000 for Full Self-Driving",
+          "query": "tesla owner car key disappointed"
+        },
+        {
+          "phrase": "one-eighth the memory bandwidth",
+          "query": "computer chip circuit board hardware processor"
+        },
+        {
+          "phrase": "Musk promised full autonomy by 2018",
+          "query": "broken promise deadline calendar missed"
+        },
+        {
+          "phrase": "never crashes just keeps missing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Cybercab_July_2025_%2854693064262%29.jpg",
+          "query": "tesla electric car road autonomous driving"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "delayed it again",
+          "text": "DELAYED AGAIN",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "being left behind",
+          "text": "HW3: LEFT BEHIND",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "one-eighth the memory bandwidth",
+          "text": "1/8 THE POWER",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Then 2020",
+          "text": "2018. 2020. 2022. 2025.",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "never crashes just keeps missing",
+          "text": "GAME OVER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "05_bigtech-ai-capex.json": {
+      "version": 8,
+      "slug": "bigtech-ai-capex",
+      "title": "Big Tech Is Spending $900 Billion on AI This Year",
+      "hashtags": [
+        "aicapex",
+        "datacenter",
+        "bigtech",
+        "amazon",
+        "microsoft",
+        "meta",
+        "nvidia",
+        "aiinfrastructure",
+        "techspending",
+        "aiboom",
+        "aiinvesting",
+        "cloudcomputing",
+        "ai"
+      ],
+      "script": "In 2026, America's 5 biggest tech companies will spend between $650 billion and $900 billion building AI infrastructure. Amazon alone: $200 billion. Google: up to $185 billion. Microsoft, Meta, and Oracle together: another $285 billion. That's more money than the entire GDP of 175 countries \u2014 spent in a single year on servers, chips, and power plants to run artificial intelligence. By 2027, they expect to cross $1 trillion. The arms race just went physical.",
+      "shots": [
+        {
+          "phrase": "5 biggest tech companies",
+          "query": "data center construction aerial cranes building"
+        },
+        {
+          "phrase": "Amazon alone",
+          "query": "amazon aws server farm data center interior"
+        },
+        {
+          "phrase": "Microsoft, Meta, and Oracle together",
+          "query": "silicon valley tech company campus headquarters"
+        },
+        {
+          "phrase": "entire GDP of 175 countries",
+          "query": "world map economy global trade satellite"
+        },
+        {
+          "phrase": "servers, chips, and power plants",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nvidia_HQ.jpg",
+          "query": "nvidia semiconductor gpu chip factory"
+        },
+        {
+          "phrase": "arms race just went physical",
+          "query": "construction crane building data center night"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Amazon alone",
+          "text": "$200B AMAZON ALONE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "entire GDP of 175 countries",
+          "text": "175 COUNTRIES' GDP",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "servers, chips, and power plants",
+          "text": "SERVERS. CHIPS. POWER.",
+          "color": "#ffe24a",
+          "size": 160,
+          "duration": 2.2
+        },
+        {
+          "phrase": "cross $1 trillion",
+          "text": "CROSSING $1 TRILLION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 170,
+          "duration": 2.6
+        },
+        {
+          "phrase": "arms race just went physical",
+          "text": "ARMS RACE: PHYSICAL",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_hormuz-deal.json": {
+      "version": 8,
+      "slug": "hormuz-deal",
+      "title": "The World's Most Important Oil Lane Has Been Closed for 3 Months",
+      "hashtags": [
+        "straitofhormuz",
+        "iran",
+        "oil",
+        "oilprice",
+        "hormuz",
+        "geopolitics",
+        "energycrisis",
+        "oilmarket",
+        "middleeast",
+        "usnews",
+        "energyprice",
+        "oilsupply",
+        "globalnews"
+      ],
+      "script": "For 3 months, the world's most important oil shipping lane has been locked shut by war. The Strait of Hormuz \u2014 gateway to 20 percent of the world's oil \u2014 has been mined by Iran, blockaded by the US, and closed to tanker traffic. Now a deal is days away. The US would lift sanctions. Iran would clear the mines. Shipping reopens for 60 days while nuclear talks begin. Oil markets are watching. So is every country on earth.",
+      "shots": [
+        {
+          "phrase": "most important oil shipping lane",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_Hormuz_%28MODIS_2020-12-04%29.jpg",
+          "query": "oil tanker ship persian gulf sea"
+        },
+        {
+          "phrase": "mined by Iran, blockaded by the US",
+          "query": "naval warship destroyer missile persian gulf"
+        },
+        {
+          "phrase": "closed to tanker traffic",
+          "query": "oil tanker cargo ship at sea"
+        },
+        {
+          "phrase": "The US would lift sanctions",
+          "query": "diplomats negotiation agreement signing"
+        },
+        {
+          "phrase": "Iran would clear the mines",
+          "query": "naval mine underwater sea danger"
+        },
+        {
+          "phrase": "60 days while nuclear talks begin",
+          "query": "iran nuclear facility uranium diplomats"
+        },
+        {
+          "phrase": "every country on earth",
+          "query": "world map earth satellite view global"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "locked shut by war",
+          "text": "LOCKED SHUT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.4
+        },
+        {
+          "phrase": "20 percent of the world's oil",
+          "text": "20% WORLD OIL",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "closed to tanker traffic",
+          "text": "LANE CLOSED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "60 days while nuclear talks begin",
+          "text": "60-DAY DEAL",
+          "color": "#ffaa30",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "every country on earth",
+          "text": "EVERY NATION WATCHING",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    }
   }
 }
