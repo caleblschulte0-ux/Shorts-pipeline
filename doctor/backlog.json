@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260829",
+  "updated": "20260830",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -1654,6 +1654,74 @@
       "signature": "8bbdf9ac8a33",
       "last_seen": "20260829",
       "first_seen": "20260829"
+    },
+    "cc8333959d84": {
+      "title": "Auto-pause state can disappear while Daily keeps going",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "trending/durable-backoff-state",
+      "files": [
+        ".github/workflows/daily.yml"
+      ],
+      "observation": "Both branches that change the bounded auto-pause state append `|| true` to ci_commit_state.sh. A rejected push or transient commit failure therefore leaves only runner-local failure_count.txt or auto_pause_day.txt changes, yet preflight still emits skip=auto or resumes the run. The next firing reads the old committed state and can repeat the wrong branch, defeating the promised one-day pause and automatic retry semantics.",
+      "proposal": "Make persistence of auto_pause_day.txt and failure_count.txt a required preflight outcome. If the state commit fails, stop before publishing or claiming a durable pause, emit a named infrastructure failure, and add an executable test covering rejected persistence on both the pause and resume branches.",
+      "evidence": ".github/workflows/daily.yml:153-174 writes the pause/resume files, calls scripts/ci_commit_state.sh with `|| true` in both branches, and then sets the control output without checking that main contains the new state.",
+      "signature": "cc8333959d84",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "a2d4a0aea829": {
+      "title": "Four runbooks still publish retired Phase B times",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "operations/phase-b-runbooks",
+      "files": [
+        "README.md",
+        "docs/FALLBACKS.md",
+        "exchange/README.md",
+        "CLAUDE_ROUTINE_INSTRUCTIONS.md"
+      ],
+      "observation": "The live Phase B workflow now uses paired UTC crons plus an America/Chicago gate for 08:30 Central, but operator-facing instructions still name two retired schedules: README.md says 06:15 UTC, while FALLBACKS, exchange/README, and CLAUDE_ROUTINE_INSTRUCTIONS say 12:45 UTC. FALLBACKS also contradicts itself by later documenting the current DST-aware 08:30 rule.",
+      "proposal": "Replace every retired fixed-UTC claim with the canonical 08:30 America/Chicago contract, link the prose to exchange_phase_b.yml as the executable authority, and add a lightweight documentation test that rejects the retired 06:15 UTC and 12:45 UTC phrases in active runbooks.",
+      "evidence": ".github/workflows/exchange_phase_b.yml:69-71 schedules 13:30 and 14:30 UTC candidates and gates them in America/Chicago. README.md:32-33 says 06:15 UTC; docs/FALLBACKS.md:85-86 says 12:45 UTC while line 220 says DST-aware 08:30; exchange/README.md:450-452 and CLAUDE_ROUTINE_INSTRUCTIONS.md:73-82 still say 12:45 UTC.",
+      "signature": "a2d4a0aea829",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "694ab7c3e1d4": {
+      "title": "Retro can publish green after losing its evidence pack",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "retro/workflow-integrity",
+      "files": [
+        ".github/workflows/retro.yml",
+        "scripts/build_retro.py",
+        "scripts/review_proposals.py"
+      ],
+      "observation": "Advance-experiments, failure-census, brief construction, and proposal triage all use continue-on-error=true. The final commit step is fail-closed only around whatever files happen to exist, so build_retro.py and review_proposals.py can both fail while ci_commit_state.sh finds old or unrelated state and the workflow still finishes green. That turns absence of the day's brief or triage into a silent success.",
+      "proposal": "Keep analytics refresh best-effort, but make brief construction and triage required for the modes that invoke them. Add an explicit artifact gate before commit that checks the resolved date, freshness, schema, and required brief/triage files; fail only after preserving diagnostics so a missing daily review is visible and retryable.",
+      "evidence": ".github/workflows/retro.yml:128-181 marks experiment advance, failure census, Build the brief, and Triage proposals continue-on-error; lines 194-211 commit without first asserting fresh outputs. scripts/build_retro.py documents required retro/<date>/brief.json and brief.md outputs, while scripts/review_proposals.py documents triage.json as its durable result.",
+      "signature": "694ab7c3e1d4",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "b507d603aefb": {
+      "title": "Workflow dependencies still float on mutable action tags",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "ci/supply-chain-reproducibility",
+      "files": [
+        ".github/workflows/daily.yml",
+        ".github/workflows/retro.yml",
+        ".github/workflows/doctor.yml",
+        ".github/workflows/exchange_phase_b.yml"
+      ],
+      "observation": "Production, review, diagnosis, and exchange workflows invoke actions/checkout@v4 and actions/setup-python@v5 by mutable major-version tags. A compromised or unexpectedly changed upstream tag can alter code executed with contents:write permissions without any repository commit changing, making an incident hard to reproduce or audit.",
+      "proposal": "Adopt a repository-wide action pinning policy: replace mutable tags with reviewed full commit SHAs, retain the human-readable release in comments, and use Dependabot or Renovate to propose auditable update pull requests with the normal workflow tests.",
+      "evidence": ".github/workflows/daily.yml, .github/workflows/retro.yml, .github/workflows/doctor.yml, and .github/workflows/exchange_phase_b.yml all use actions/checkout@v4 and/or actions/setup-python@v5 while their jobs hold write-capable repository permissions.",
+      "signature": "b507d603aefb",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
     }
   }
 }

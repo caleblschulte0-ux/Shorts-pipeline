@@ -1,47 +1,71 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260829",
-  "judged_date": "20260828",
+  "date": "20260830",
+  "judged_date": "20260829",
   "alarm": {
-    "date": "20260828",
+    "date": "20260829",
     "ok": false,
     "alarms": [
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 3/4 posted for 20260828.",
+        "detail": "explainer: 2/4 posted for 20260829.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 1/6 posted for 20260828.",
+        "detail": "third: 3/6 posted for 20260829.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 4/6 posted for 20260829.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "production_repair_trending",
         "severity": "critical",
-        "detail": "trending 20260828: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 2 failed).",
+        "detail": "trending 20260829: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 5 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+      },
+      {
+        "code": "no_bundle",
+        "severity": "warning",
+        "detail": "no exchange/bundles/20260829/bundle.json \u2014 Phase A never wrote one.",
+        "fix": "A Phase A that finds no packages exits 0, so this is invisible in the Actions tab. Check exchange_phase_a.yml."
       },
       {
         "code": "trending_short_after_retries",
         "severity": "warning",
-        "detail": "trending shipped 5/6; 1 re-authored replacement(s) also failed to fill it.",
+        "detail": "trending shipped 2/6; 1 re-authored replacement(s) also failed to fill it.",
         "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "trending: 9/6 posted",
       "failure counter at 1/2 \u2014 one more failing day auto-pauses trending",
-      "exchange: 16/16 ChatGPT images pinned",
-      "doctor: findings current (20260828)"
+      "doctor: findings current (20260829)"
     ],
     "deferred": false
   },
   "production_runs": [
+    {
+      "date": "20260829",
+      "channel": "trending",
+      "schema": "production-channel-outcome/v1",
+      "expected": 6,
+      "previously_uploaded": 3,
+      "rendered_or_attempted": 7,
+      "uploaded": 5,
+      "quarantined": 0,
+      "failed": 5,
+      "status": "repair_required",
+      "video_urls": [
+        "https://youtube.com/shorts/-0N5BfVD-UQ",
+        "https://youtube.com/shorts/P844xpGQxq0"
+      ]
+    },
     {
       "date": "20260828",
       "channel": "trending",
@@ -148,159 +172,9 @@
         "https://youtube.com/shorts/YytE9uNvMeI",
         "https://youtube.com/shorts/HZp5jhotzBY"
       ]
-    },
-    {
-      "date": "20260820",
-      "channel": "trending",
-      "schema": "production-channel-outcome/v1",
-      "expected": 6,
-      "previously_uploaded": 0,
-      "rendered_or_attempted": 8,
-      "uploaded": 4,
-      "quarantined": 2,
-      "failed": 2,
-      "status": "repair_required",
-      "video_urls": [
-        "https://youtube.com/shorts/fAvkc5jS2G0",
-        "https://youtube.com/shorts/_byFwjXWagg",
-        "https://youtube.com/shorts/3l7VD1QGtkA",
-        "https://youtube.com/shorts/D8AY9QvF6GU"
-      ]
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-23T21:22:38+00:00",
-      "slug": "world-cereal-land-just-sank-below-its-1972-level",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "A competent bar-race chassis undone by a decorative mascot and a fertilizer beat that is a half-empty map with a number list stapled to its side.",
-      "auto_fails": [
-        "decorative_mascot: Data just drifts across the bars with no bit \u2014 same standing pose at hook@0.8, seg0:mid, seg1:mid (parked in empty lower-left of the map) and seg3:mid (floating over the title, occluding 'cereal'); no setup->action->payoff tied to any stat.",
-        "bare_number_card: seg1:end is a column of five colored dots with raw numbers (101756 / 59978 / 23435 / 20897 / 20163) beside a decorative map whose dots are not placed on Slovenia, Malawi, Costa Rica, Iceland or Estonia \u2014 a number list, not a demonstration.",
-        "empty_void: seg1:start and seg1:mid waste most of the frame \u2014 the top third is blank, the right half holds five tiny unlabeled dots, and the world map is a near-black silhouette with one small mascot in the corner."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.005,
-        "sampled": 202
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-23T21:35:29+00:00",
-      "slug": "world-cereal-land-just-sank-below-its-1972-level",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The chart for the headline claim shows land GROWING and never plots the 2024 collapse the narration is built on \u2014 the video visually contradicts its own title.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3, hook@1.5, seg0:mid and seg3:start all show Data simply hovering over the bar stack with no setup->action->payoff; at seg3:start and seg4:start he is drifting off the top edge with only his ears visible, and at hook@0.3 he sits on top of the '1972' label instead of acting on it \u2014 the one near-bit (seg1:start/mid, arms on the Slovenia bar tip) is not sustained anywhere else."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 202
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-23T21:48:21+00:00",
-      "slug": "world-cereal-land-just-sank-below-its-1972-level",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three identical bar races in a row, and the one that carries the title never shows the collapse it promises \u2014 the final chart only goes up.",
-      "auto_fails": [
-        "decorative_mascot: He does one real bit only in seg2 (seg2:start/mid he shoves Slovenia's yellow bar); in hook@0.3, seg0:mid, seg1:mid he just hovers mid-chart doing nothing tied to the index, and in seg3:start/seg4:start he is a clipped head parked on top of the title."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 202
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-24T10:00:04+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three near-identical chart layouts stretched over 96 seconds with the mascot parked beside the top bar the entire time \u2014 the urban-slowdown payoff is printed as numbers on circles instead of demonstrated.",
-      "auto_fails": [
-        "decorative_mascot: In every frame from hook@0.3 to payoff@-0.4 Data just hovers beside the 1972/1983 bars in the same spot \u2014 no setup->action->payoff tied to any number; at seg3:start he stands next to a bubble he never interacts with.",
-        "bare_number_card: seg3:mid and seg3:end are plain purple circles with '2.6 / 2.8 / 2.2 / 2.3 / 2.1' printed on them, near-uniform in size \u2014 numbers on blobs, not a demonstration of the slowdown.",
-        "empty_void: seg3:start leaves the bottom ~40% of the frame and a wide band under the title completely empty with five tiny dots floating mid-frame; seg3:end and seg4:end keep that same dead lower third."
-      ],
-      "problems": [
-        "Hook (hook@0.3\u2013hook@2.2) opens on an already-half-built 'Population ages 65 and above' bar chart while the voiceover says cities are exploding \u2014 the visual contradicts the hook line and nothing happens in the first second.",
-        "Caption text lands on top of the mascot: 'Everyone assumes' at hook@0.3 and 'cities are' at hook@0.8 cut straight through Data's head, and 'than ever' at hook@1.5/2.2 hides his face.",
-        "Mascot is decorative for the full 96s \u2014 same position beside the 1972/1983 bars from hook@0.3 to payoff@-0.4, no act tied to any statistic.",
-        "seg2:end crams raw unformatted digits inside the bars ('242017964' clipped, '2783042387') \u2014 unreadable and inconsistent with the comma-formatted narration.",
-        "seg3 is a bare-number bubble cluster with almost no size differentiation and a large empty lower third; the 2025 value of 1.36 never appears as a mark.",
-        "Closing callout at seg4:start\u2013payoff@-0.4 covers the scene title ('Urban population growth' is sliced in half) and stacks a second, duplicate source line at the very bottom."
-      ],
-      "fixes": [
-        "Open on motion that matches the claim: start seg3-style urban-growth marks collapsing from 2.62 to 1.36 in the first ~1s, then cut to the 65+ context \u2014 do not open mid-build on an off-topic chart.",
-        "Move captions to a reserved lower band (as in seg1:start onward) for the hook too, so text never overlaps the mascot rig.",
-        "Give Data a per-beat act tied to the number: push the 1972 bar forward, get squeezed as the rural bars overtake, then ride the shrinking urban mark down at the finale.",
-        "Format large values with thousands separators and shrink-to-fit inside the bar, or move the label outside the bar when it overflows (seg2:end).",
-        "Rebuild seg3 with strongly value-scaled marks that fill the frame vertically and include the 2025 = 1.36 endpoint so the deceleration is seen, not read.",
-        "Anchor the closing callout below the title safe-area and render exactly one source line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.003,
-        "sampled": 288
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-24T10:16:33+00:00",
       "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
@@ -2687,16 +2561,143 @@
       "judge": "headless-claude",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-29T12:35:45+00:00",
+      "slug": "esports__biggest_prize_ever_just_collaps",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clear and engaging graph race effectively demonstrates the dramatic collapse of Dota 2's prize pool, delivering on its title.",
+      "auto_fails": [],
+      "problems": [
+        "The final data point change in the payoff segment is numerically small, which slightly diminishes the visual impact of the ultimate conclusion."
+      ],
+      "fixes": [
+        "Enhance the visual emphasis or add a concluding graphic/text that summarizes the collapse more dramatically at the very end of the payoff segment."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-29T12:39:13+00:00",
+      "slug": "his_paper_only_rule_cost_more_than_the_s",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-executed Reddit story with clear visual demonstrations and good pacing.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 164
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-29T12:42:44+00:00",
+      "slug": "the_gym_hid_cancellation__i_booked_a_sal",
+      "score": 82,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 0,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
+      "auto_fails": [
+        "decorative_mascot: The Subway Surfers character (Jake) is present throughout the video, running in the bottom half of the screen, which for the REDDIT STORY format, is considered decorative."
+      ],
+      "problems": [
+        "The Subway Surfers character (mascot) is present throughout the video, which is considered decorative for the REDDIT STORY format, leading to a low mascot score."
+      ],
+      "fixes": [
+        "Remove the Subway Surfers character from the video to adhere to the REDDIT STORY format's guidelines regarding mascots."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 176
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-29T23:43:19+00:00",
+      "slug": "asteroid-hunt-still-blind",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "A well-paced and crafted video with an active mascot and strong payoff, though data demonstrations are functional rather than highly creative.",
+      "auto_fails": [],
+      "problems": [
+        "The data demonstration in segment 1 (asteroid catalog growth) is a standard bar fill, which is clear but not a highly creative visual metaphor.",
+        "The data demonstrations throughout are clear but lack the 'most interesting way it can be' aspect, relying on standard chart animations."
+      ],
+      "fixes": [
+        "For segment 1, explore a more dynamic visual metaphor for the increasing number of catalogued asteroids, e.g., objects accumulating or a more impactful growth animation.",
+        "For future data demonstrations, aim for more creative and physical metaphors beyond standard bar charts."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 124
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "56f7fcf 2026-08-29 exchange: media worker blocked by missing bundle 20260829 [skip ci]",
-    "d497092 2026-08-29 exchange: media worker started 20260829 [skip ci]"
+    "b349c60 2026-08-29 doctor: findings for 20260829",
+    "c0d1b63 2026-08-29 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-15": 2,
         "2026-08-16": 3,
         "2026-08-17": 4,
         "2026-08-18": 4,
@@ -2707,10 +2708,11 @@
         "2026-08-24": 4,
         "2026-08-25": 2,
         "2026-08-26": 5,
-        "2026-08-28": 9
+        "2026-08-28": 9,
+        "2026-08-29": 4
       },
-      "total_posted": 296,
-      "attempted": 296,
+      "total_posted": 300,
+      "attempted": 300,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -2722,15 +2724,15 @@
         "2026-08-26": 1,
         "2026-08-27": 1,
         "2026-08-28": 3,
-        "2026-08-29": 2
+        "2026-08-29": 2,
+        "2026-08-30": 1
       },
-      "total_posted": 209,
-      "attempted": 209,
+      "total_posted": 210,
+      "attempted": 210,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-15": 2,
         "2026-08-16": 4,
         "2026-08-17": 3,
         "2026-08-18": 2,
@@ -2747,8 +2749,8 @@
         "2026-08-29": 3
       },
       "total_posted": 219,
-      "attempted": 397,
-      "rejected_or_pending": 178
+      "attempted": 398,
+      "rejected_or_pending": 179
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -2762,63 +2764,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 135,
+      "videos": 132,
       "top_by_vph": [
         {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 59.53,
-          "views": 595
+          "vph": 38.26,
+          "views": 1049
+        },
+        {
+          "title": "The World Learned To Read. Not Everyone Did.",
+          "vph": 30.45,
+          "views": 624
+        },
+        {
+          "title": "We Take More Photos Every 2 Minutes Than All Of History",
+          "vph": 12.63,
+          "views": 183
         },
         {
           "title": "Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons",
-          "vph": 5.73,
+          "vph": 4.78,
           "views": 504
         },
         {
           "title": "World Cereal Land Just Sank Below Its 1972 Level",
-          "vph": 0.82,
+          "vph": 0.61,
           "views": 40
-        },
-        {
-          "title": "Hottest Planets",
-          "vph": 0.33,
-          "views": 412
-        },
-        {
-          "title": "World Renewable Power Was Still Only 19.7% After Two Decades",
-          "vph": 0.31,
-          "views": 5
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 99,
+      "videos": 103,
       "top_by_vph": [
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 0.99,
-          "views": 386
+          "vph": 0.96,
+          "views": 392
         },
         {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 0.96,
-          "views": 189
-        },
-        {
-          "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
-          "vph": 0.77,
-          "views": 41
+          "vph": 0.89,
+          "views": 190
         },
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 0.69,
+          "vph": 0.65,
           "views": 202
         },
         {
+          "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
+          "vph": 0.64,
+          "views": 45
+        },
+        {
           "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
-          "vph": 0.61,
-          "views": 46
+          "vph": 0.5,
+          "views": 47
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -2855,6 +2857,13 @@
     {
       "signature": "69a0ad32a52f",
       "title": "Required judges can unanimously reject and still advance",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "cc8333959d84",
+      "title": "Auto-pause state can disappear while Daily keeps going",
       "horizon": "bug",
       "severity": "high",
       "ruling": "new"
@@ -2930,6 +2939,13 @@
       "ruling": "new"
     },
     {
+      "signature": "694ab7c3e1d4",
+      "title": "Retro can publish green after losing its evidence pack",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "347e2440278c",
       "title": "Split Third attempts from the authoritative posted ledger",
       "horizon": "long_term",
@@ -2949,6 +2965,13 @@
       "horizon": "small_fix",
       "severity": "medium",
       "ruling": "doing"
+    },
+    {
+      "signature": "a2d4a0aea829",
+      "title": "Four runbooks still publish retired Phase B times",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
     },
     {
       "signature": "66364106b455",
@@ -3037,6 +3060,13 @@
     {
       "signature": "f85f65be87b6",
       "title": "Provider fallback cache has no freshness contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "b507d603aefb",
+      "title": "Workflow dependencies still float on mutable action tags",
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "new"
