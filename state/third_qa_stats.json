@@ -1,228 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260804",
-      "dry_run": false,
-      "ts": "2026-08-04T13:39:00+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 121,
-        "with_retention": 108,
-        "with_curve": 15,
-        "fetched_at": "2026-08-04T11:04:02.145251+00:00"
-      },
-      "brain": {
-        "ok": 20,
-        "fail": 7
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tpain": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260804-1",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.6,
-              "why": "Intriguing title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Vague title",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": false,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Finds Scary Diddy Character"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 100.3
-        },
-        {
-          "slug": "clip-20260804-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "visible win",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "Proving point",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": false,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ludwig Watches Maya Win"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 545.9
-        },
-        {
-          "slug": "clip-20260804-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "generic title",
-              "blind": false
-            },
-            "content": {
-              "score": 0.8,
-              "why": "Emotional crowd reaction",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ludwig Wins 2026 Streamer Games"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 177.6
-        },
-        {
-          "slug": "clip-20260804-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.8,
-              "why": "physical comedy",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "Observable fail",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Agent00 Falls"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 99.3
-        }
-      ]
-    },
-    {
       "date": "20260805",
       "dry_run": false,
       "ts": "2026-08-05T14:10:26+00:00",
@@ -7129,6 +6907,199 @@
         },
         {
           "slug": "clip-20260830-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260831",
+      "dry_run": false,
+      "ts": "2026-08-31T18:03:02+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 99,
+        "with_retention": 81,
+        "with_curve": 15,
+        "fetched_at": "2026-08-31T16:17:31.021425+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:erobb221": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:brucedropemoff": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:connoreatspants": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:atrioc": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dougdoug": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tenz": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:shroud": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sykkuno": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:alinity": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260831-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "solo travel streams",
+              "raw": "solo travel streams",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 182.9
+        },
+        {
+          "slug": "clip-20260831-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260831-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260831-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260831-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260831-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
         }
