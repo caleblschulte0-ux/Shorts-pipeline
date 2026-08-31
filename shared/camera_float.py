@@ -1,52 +1,13 @@
-"""The CAMERA FLOAT — duration-independent motion for temporal QA.
+"""Shared camera-float helper.
 
-WHY THIS EXISTS
----------------
-The showrunner's temporal grade measures the change between CONSECUTIVE
-frames (`showrunner_review._temporal_evidence`: 12x12 blocks of mean
-grayscale on a 192px downscale, a frame counts as a duplicate when the
-biggest block moves less than `BLOCK_MOTION_THRESH = 6.0`). The honest unit
-is therefore **pixels per frame**, and the counterintuitive consequence is
-that spreading a movement over MORE frames makes the measurement strictly
-WORSE — the same journey across a longer beat is a smaller step each frame.
+Trending still uses the existing shared motion profile because its temporal
+QA contract depends on it. Data Explainer does not: operator review on
+2026-08-31 explicitly rejected added camera drift / float / shake of any
+kind. Its profile is therefore a literal fixed frame.
 
-That is what killed both publishing channels:
-
-* explainer's chart build is stretched to fill its beat
-  (`nfr = ceil(duration * 30)`). Measured with the reviewer's own detector:
-
-      60 frames  (2s)   ->  3.1 effective fps
-      240 frames (8s)   ->  0.0 effective fps, duplicate_ratio 1.00
-      600 frames (20s)  ->  0.0 effective fps, duplicate_ratio 1.00
-
-* trending's `graph_race` eases into its race, so the opening seconds can be
-  near-still.
-
-A cyclic whole-frame move supplies a duration-independent motion floor. The
-important part is that the motion floor must not become the visual itself.
-The original 20px / 4.6rad/s float passed the detector but read as a nervous
-wobble. The 2026-08-16 retune moved that to 44px / 2.1rad/s, but operator
-review on 2026-08-31 still found the Explainer visibly shaky.
-
-PROFILES
---------
-`default` is the already-shipped shared profile and remains byte-for-byte
-compatible for Trending and any unknown caller.
-
-`explainer` is deliberately calmer. It trades a little more edge crop for a
-much lower angular frequency and nearly matched x/y frequencies. The result
-is a broad, coherent camera drift instead of two visibly beating
-oscillators. It keeps the same temporal-QA budget:
-
-    default x:    44 * 2.10 / 30 = 3.08 px/frame, 194 px/s^2
-    explainer x:  72 * 1.22 / 30 = 2.93 px/frame, 107 px/s^2
-    explainer y:  72 * 1.15 / 30 = 2.76 px/frame,  95 px/s^2
-
-The Explainer profile is selected automatically inside its GitHub workflow
-(`GITHUB_WORKFLOW=Explainer Stories`) and when `studio_render.py` is run
-directly. `CAMERA_FLOAT_PROFILE=default|explainer` is an explicit override
-for local previews and tests. This keeps the fix scoped to the Data
-Explainer channel instead of silently changing Trending's look.
+Profile selection is channel-scoped so this visual ruling cannot silently
+change Trending. `CAMERA_FLOAT_PROFILE=default|explainer` remains available
+for explicit local/test selection.
 """
 from __future__ import annotations
 
@@ -54,34 +15,27 @@ import os
 import sys
 from pathlib import Path
 
-# Existing shared/default profile. Do not retune this as part of an Explainer
-# fix: graph_race also imports this module and has its own visual contract.
+# Existing shared/default profile. Keep byte-for-byte behavior for Trending
+# and unknown callers.
 DEFAULT_FLOAT_A = 44
 DEFAULT_FLOAT_WX = 2.1
 DEFAULT_FLOAT_WY = 1.7
 
-# Explainer-only profile (operator visual ruling, 2026-08-31): slower,
-# broader, nearly circular drift. Keeping A*w close to the old value preserves
-# the detector's pixels-per-frame budget while A*w^2 (perceived acceleration)
-# drops by roughly half.
-EXPLAINER_FLOAT_A = 72
-EXPLAINER_FLOAT_WX = 1.22
-EXPLAINER_FLOAT_WY = 1.15
+# Explainer-only profile (operator ruling, 2026-08-31): NO artificial camera
+# motion. Data/chart builds, mascot performance, transitions, etc. may animate
+# because they are actual content. The camera itself stays fixed.
+EXPLAINER_FLOAT_A = 0
+EXPLAINER_FLOAT_WX = 0.0
+EXPLAINER_FLOAT_WY = 0.0
 
-# The floor the temporal grade needs. Below ~2.3 px/frame the measurement
-# collapses (2.3 measured 8.9 fps against an 11.0 floor); 2.9 is the target
-# x-axis margin for a fully static 30fps beat.
+# Default-channel temporal gate calibration. This is intentionally not a
+# requirement for the Explainer profile; the point of that profile is to stop
+# manufacturing motion solely to satisfy the gate.
 MIN_PX_PER_FRAME = 2.9
 
 
 def _auto_profile() -> str:
-    """Resolve the visual profile without making every renderer duplicate it.
-
-    An explicit env override always wins. GitHub exposes the workflow's `name`
-    as GITHUB_WORKFLOW, which lets the Explainer select its calmer camera even
-    when `studio_render.py` is launched indirectly by post_stories.py. Direct
-    studio CLI runs get the same look outside Actions.
-    """
+    """Resolve the visual profile without duplicating channel logic."""
     explicit = os.environ.get("CAMERA_FLOAT_PROFILE", "").strip().lower()
     if explicit in {"default", "explainer"}:
         return explicit
@@ -121,20 +75,23 @@ def px_per_frame(amp: float = FLOAT_A, w: float = FLOAT_WX,
 
 def overlay_xy(x0: float, y0: float, *, amp: float = FLOAT_A,
                wx: float = FLOAT_WX, wy: float = FLOAT_WY) -> tuple[str, str]:
-    """ffmpeg `overlay` x/y expressions floating a layer around (x0, y0)."""
+    """Return ffmpeg overlay x/y expressions for the selected profile."""
+    if not amp or (not wx and not wy):
+        return (f"{x0:g}", f"{y0:g}")
     return (f"{x0:g}+{amp:g}*sin({wx:g}*t)",
             f"{y0:g}+{amp:g}*cos({wy:g}*t)")
 
 
 def crop_vf(w: int, h: int, *, amp: float = FLOAT_A, wx: float = FLOAT_WX,
             wy: float = FLOAT_WY) -> str:
-    """Float a full-frame clip by oversizing it, then moving a fixed crop.
+    """Return a full-frame crop filter.
 
-    Because the profile constants are resolved at module import, the scene
-    metrics proxy and final Explainer master automatically use the same
-    amplitude/frequencies inside the Explainer workflow. That keeps repair
-    scoring honest about what will actually ship.
+    For the Explainer profile (`amp == 0`) this is deliberately static: no
+    time variable, no overscan, no drift, and therefore no camera-generated
+    motion at all. Other profiles retain the historical floating crop.
     """
+    if not amp or (not wx and not wy):
+        return f"scale={w}:{h},crop={w}:{h}:x=0:y=0"
     return (f"scale={w + 2 * amp}:{h + 2 * amp},"
             f"crop={w}:{h}:x='{amp:g}+{amp:g}*sin({wx:g}*t)'"
             f":y='{amp:g}+{amp:g}*cos({wy:g}*t)'")
