@@ -1,51 +1,45 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260830",
-  "judged_date": "20260829",
+  "date": "20260831",
+  "judged_date": "20260830",
   "alarm": {
-    "date": "20260829",
+    "date": "20260830",
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_finalizer",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260830 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260830/response.json, exchange/bundles/20260830/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20260829.",
+        "detail": "explainer: 1/4 posted for 20260830.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "short_slate_third",
-        "severity": "warning",
-        "detail": "third: 3/6 posted for 20260829.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "short_slate_trending",
-        "severity": "warning",
-        "detail": "trending: 4/6 posted for 20260829.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "production_repair_trending",
+        "code": "no_posts_third",
         "severity": "critical",
-        "detail": "trending 20260829: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 5 failed).",
-        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+        "detail": "third: ZERO videos posted for 20260830 (registry wants 6).",
+        "fix": "Check the third workflow run for 20260830. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
-        "code": "no_bundle",
-        "severity": "warning",
-        "detail": "no exchange/bundles/20260829/bundle.json \u2014 Phase A never wrote one.",
-        "fix": "A Phase A that finds no packages exits 0, so this is invisible in the Actions tab. Check exchange_phase_a.yml."
+        "code": "no_posts_trending",
+        "severity": "critical",
+        "detail": "trending: ZERO videos posted for 20260830 (registry wants 6).",
+        "fix": "Check the trending workflow run for 20260830. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 2/6; 1 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
+        "code": "channel_auto_paused",
+        "severity": "critical",
+        "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
+        "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
       }
     ],
     "notes": [
-      "failure counter at 1/2 \u2014 one more failing day auto-pauses trending",
-      "doctor: findings current (20260829)"
+      "slot fill not checked: daily_report.json has 7 row(s) and none belong to 20260830 \u2014 treating the report as absent for this date",
+      "doctor: findings current (20260830)"
     ],
     "deferred": false
   },
@@ -175,188 +169,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-24T10:16:33+00:00",
-      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
-      "score": 26,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "The headline stat 1.36% is never actually shown or demonstrated \u2014 the closing scenes are equal-size number bubbles frozen for the last 16 seconds while Data slides through in one unchanging pose.",
-      "auto_fails": [
-        "decorative_mascot: From hook@0.3 to payoff@-0.4 Data holds the same arms-out lean and simply slides along the left/top of the chart \u2014 at seg1:mid, seg2:mid and seg4:mid he is in the identical pose over the same 1972 row, never touching, stacking, pushing or reacting to a single number.",
-        "bare_number_card: seg2:mid and seg2:end are five plain purple circles with '2.6 / 2.8 / 2.2 / 2.3 / 2.1' typed inside them on a flat background \u2014 the circles are all the same size, so the number is the only information and nothing is demonstrated.",
-        "dead_air: seg3:mid (79.9s) through payoff@-0.4 (95.6s) are the same frozen bubble layout with the same values; only the caption line swaps, so roughly 16s of a 96s video repeats one identical beat.",
-        "empty_void: seg2:start (40.1s) is an almost entirely dark panel with five tiny valueless dots and a wholly empty lower half; seg3:start\u2013seg4:end keep that bottom third dead."
-      ],
-      "problems": [
-        "seg2/seg3/seg4 present urban growth as identical-diameter circles with numbers typed inside \u2014 no size, fill, race or shrink encodes the decline.",
-        "The title's number, 1.36% for 2025, appears in no frame; the bubbles stop at 2.1 (2014), so the payoff the hook promises is never landed.",
-        "Data is decoration: same arms-out lean and same left-of-chart position from hook@0.3 to payoff@-0.4, with no bit tied to any stat.",
-        "seg3:mid through payoff@-0.4 hold one identical bubble layout for ~16s; only the caption text changes.",
-        "The closing callout box is dropped straight over the 'Urban population growth' headline (seg3:start, seg4:end), blanking the title.",
-        "Chart kicker reads '1972 PULLS AHEAD' on the 65-and-above chart where 1972 is the smallest value (5.37%) \u2014 the label contradicts the data."
-      ],
-      "fixes": [
-        "Rebuild seg2 so bubble area (or a filling/draining column) is proportional to the growth rate, and animate 1972\u21922025 so the shrink to 1.36 is the visible event.",
-        "Add the 2025 datapoint to the urban-growth scene and make 1.36 the final on-screen beat before the closing card.",
-        "Give Data a per-scene bit: have him physically brace against the 1972 mark, then get carried down as each later mark shrinks \u2014 setup, action, payoff, different act per segment.",
-        "Split the last ~20s: either cut the closing hold to ~4s or animate the final beat (marks collapsing, 1.36 slamming in) so no layout repeats for more than a couple of seconds.",
-        "Reposition the closing callout below the headline (or fade the headline out first) so the title is never covered.",
-        "Fix the chart kicker to describe the actual leader \u2014 on a rising 65+ series it should read the latest/largest year, not '1972 PULLS AHEAD'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.003,
-        "sampled": 288
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-24T10:24:05+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Three near-identical auto-charts with a sticker mascot pasted over them: the hook is a slow bar build, the bars print raw unformatted digits (51915952) that contradict the narrated 'million metric tons', and the closing bubble scene is numbers-in-circles floating in a void.",
-      "auto_fails": [
-        "decorative_mascot: Data drifts across the bars in an identical standing/striding sticker pose from hook@0.3 to seg2:end and merely leans on the 2013 bubble at seg3:mid\u2013payoff@-0.4 \u2014 no setup->action->payoff tied to fish catch or protected area.",
-        "bare_number_card: seg3:end and seg4:start present 11.1 / 12.1 / 14.1 / 14.8 / 14.9 as numbers inside plain pink circles whose diameters barely differ, so the shape demonstrates nothing the digits don't.",
-        "empty_void: seg3:start and seg3:mid leave the entire upper third below the title empty and the lower quarter empty, with five small circles floating in dark navy; seg2:end also leaves a wide empty band under the 2023 bar."
-      ],
-      "problems": [
-        "hook@0.3\u2013hook@2.2 is exactly the disallowed slow chart build: bars creep out one at a time while word-by-word captions ('The world', 'eats more', 'fish than') sit on top \u2014 nothing happens in the first two seconds to earn a stop.",
-        "seg0:end and seg1:mid label bars with raw digits (51915952, 62548125, 88788151) while the caption says 'million metric tons' \u2014 the on-screen number is off by a factor of a million from the spoken one.",
-        "seg2 claims 'to 17.5 percent' at seg2:end while the chart's top bar reads 13.7 for 2023, so the visual contradicts the narration.",
-        "Data is the same standing sticker in every scene (hook@0.8, seg0:mid, seg1:end, seg2:start), and he repeatedly occludes the bars and collides with the caption text ('eats more', 'fish than', 'budged in' all run through his head).",
-        "seg0 and seg1 are the same bar-race template with only the title and years swapped \u2014 two of five beats look identical.",
-        "seg3 wastes most of the frame (empty upper third and lower quarter) and encodes an 11.1\u201314.9 range as circles of visibly the same size."
-      ],
-      "fixes": [
-        "Open on a completed, dramatic state \u2014 e.g. the 1972 and 2014 bars already drawn and visibly the same length, with Data slamming a ceiling plate down on the flatline \u2014 instead of building bars from zero under the first caption.",
-        "Format bar value labels as '51.9M' / '88.8M' / '94.4M' so the digits match the narrated 'million metric tons'; fix seg2's caption or data so 17.5% and the 2023 bar agree.",
-        "Give Data one bit per scene tied to the stat: hauling a net that stops filling in seg0/seg1, roping off a widening patch of ocean in seg2, staking flags across the map in seg3 \u2014 setup, action, payoff, with a position change.",
-        "Reserve a mascot lane outside the bar/caption area so he never overlaps the value labels or the burned-in text.",
-        "Differentiate seg1 from seg0 visually (different chart form or camera framing) so two consecutive beats do not read as the same shot.",
-        "Replace seg3's bubbles with a full-frame area fill of Earth's surface where the protected share visibly grows 11% -> 17%, filling the currently empty top third."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.025,
-        "sampled": 119
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-24T10:32:17+00:00",
-      "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Clean bar-race craft and continuous motion, but seg3 collapses into a half-empty bubble grid with indistinguishable circles, and Data is a passenger for the whole run rather than a performer.",
-      "auto_fails": [
-        "decorative_mascot: From seg3:start (t=26.52) to payoff@-0.4 (t=39.40) Data is parked on the same 2013 bubble doing a generic lean/kick, and in seg0-seg1 he merely slides alongside the bars (seg1:mid t=10.86) \u2014 no setup->action->payoff tied to the fish-catch ceiling.",
-        "empty_void: seg3:start (t=26.52) leaves the entire upper third and lower third of the panel dead navy with five pinhead dots floating mid-frame; still hollow at seg3:mid (t=29.23) where the bottom ~40% of the panel is empty."
-      ],
-      "problems": [
-        "seg3:start (t=26.52) is a near-empty frame: five pinhead dots on a blank navy panel, top third and bottom 40% wasted.",
-        "seg3 bubbles (11.1, 12.1, 14.1, 14.8, 14.9) are visually identical in size, so the '11% to 17%' growth the narration claims is not demonstrated at all.",
-        "Mascot never performs a bit: he slides beside the bars in seg0-seg2 and then stands on the 2013 bubble from t=26.52 to the end with no setup->action->payoff.",
-        "Mascot occludes data: he covers the 2013 bar value in seg1:mid (t=10.86) and hides the '11.1' label from seg3:end (t=31.94) through payoff@-0.4 (t=39.40).",
-        "Hook is a slow chart build with a plain header \u2014 hook@0.3 (t=0.30) opens on a title plus barely-started bars, and the caption 'The world' sits on top of the mascot.",
-        "Chart title is clipped by the closing speech bubble at seg4:start (t=34.95) and payoff@-1.8 (t=38.00), leaving a stray 's' at the top right."
-      ],
-      "fixes": [
-        "Rebuild seg3 as a full-frame growth demonstration (bar fill, filling globe, or rising water line) instead of a sparse bubble grid; anchor elements to the panel edges so no third of the frame is empty.",
-        "Rescale seg3's encoding (non-zero baseline or explicit before/after pair) so 11.1% and 14.9% are unmistakably different sizes.",
-        "Give Data one real bit per segment tied to the stat \u2014 e.g. hauling a net that stops dead at the 1993 bar, then getting hit by a hard 'ceiling' bar at the payoff \u2014 and make him change position and pose between segments.",
-        "Add a collision/occlusion offset so the mascot is never drawn over a bar value or bubble label (2013 in seg1:mid, 11.1 in seg3:end onward).",
-        "Open on motion, not a title: start the hook mid-race with bars already sweeping and the mascot reacting, and move the caption off the mascot's body.",
-        "Lay the closing speech bubble below the chart title, or fade the title out before the bubble enters, so nothing is clipped at seg4:start."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.025,
-        "sampled": 119
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
-    {
-      "ts": "2026-08-24T10:40:57+00:00",
-      "slug": "global-health-spending-exceeds-1300-per-person",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "Honest, well-sourced data, but the mascot is a sticker parked on top of the bars for the whole run and the title stat's scene is a sparse bubble grid with clipped labels and no performance.",
-      "auto_fails": [
-        "decorative_mascot: Data stands in the same idle lab-coat pose parked over the 1972/1982 bars from hook@0.3 to seg1:end, then re-parks top-left of the bubble grid for all of seg3:start\u2013seg4:end (f13\u2013f20) with no setup->action->payoff tied to any stat."
-      ],
-      "problems": [
-        "Data never performs: identical idle pose over the 1972/1982 bars from hook@0.3 to seg1:end, then identical idle pose at top-left of the bubble grid from seg3:start to payoff@-0.4 \u2014 no bit is tied to any number.",
-        "The mascot occludes the data he's standing on: at hook@0.8 through seg0:end and again at seg2:mid/seg2:end (f11, f12) his body covers the leading edge and value of the top two bars.",
-        "Caption text collides with the chart at hook@1.5 and hook@2.2 \u2014 'toughest health' sits directly over the '1972' row label, making both unreadable.",
-        "Hook is exactly what the rubric forbids: a slow bar build from zero under a plain title card ('Adolescent fertility rate / 1972 PULLS AHEAD') with no immediate event.",
-        "seg3:start and seg3:mid render bubble values clipped by their own circles ('5', '9', '75.6', '863.') \u2014 the numbers are unreadable for most of the beat.",
-        "Caption placement is inconsistent \u2014 burned over the chart in the hook/seg0, then dropped to a bottom strip from seg1:start onward."
-      ],
-      "fixes": [
-        "Block a real bit per beat via author_performance: e.g. Data physically pushing the 1972 bar down as it shrinks in seg0, catching the falling 12.5 -> 9.13 marker in seg2, and being dwarfed/knocked back by the inflating spending bubble in seg3.",
-        "Move the mascot out of the bar track \u2014 anchor him to the empty right gutter or the row below the last bar so he never covers a bar tip or its value.",
-        "Fit bubble labels to the circle at every animation frame (scale font with radius, or hold the label outside until the circle is large enough) so seg3 never shows '5' or '863.'.",
-        "Open on motion instead of a title build: start the hook mid-race with bars already flying and the title lower-thirded, or lead with the $1,317 shock before the two falling stats.",
-        "Pin captions to one safe zone (the bottom strip used from seg1 onward) for the entire video, including the hook.",
-        "Differentiate seg2 from seg0/seg1 \u2014 vary the chart form or camera so three consecutive bar races don't read as one repeated visual."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.034,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-24T10:49:10+00:00",
       "slug": "global-health-spending-exceeds-1300-per-person",
@@ -2689,16 +2501,156 @@
       "judge": "gemini-fallback",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-31T00:03:38+00:00",
+      "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively demonstrates data with filling bars, but the mascot's role is consistently decorative rather than performative.",
+      "auto_fails": [
+        "decorative_mascot: The mascot consistently slides along the bars and points, but does not perform a unique 'bit' (setup->action->payoff) tied to the specific data in any segment, making its role largely decorative. (e.g., seg0:start, seg1:start, seg2:start, seg3:start)"
+      ],
+      "problems": [
+        "The mascot's actions are repetitive and lack distinct, expressive bits tied to specific data points, making it a decorative element rather than a true performer."
+      ],
+      "fixes": [
+        "Introduce varied and specific mascot animations for each data point, creating a setup-action-payoff sequence that visually interprets the data's meaning, starting with the first data segment."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 288
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-31T00:14:57+00:00",
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "score": 82,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively uses a consistent visual style and an active mascot, but could benefit from more diverse and creative data visualization metaphors.",
+      "auto_fails": [],
+      "problems": [
+        "The data demonstrations, while clear, primarily rely on simple bar chart fills, which become repetitive across different data points.",
+        "The mascot's action of sliding along the bar is consistent but lacks variety or a more complex 'bit' in each scene."
+      ],
+      "fixes": [
+        "Explore more varied and imaginative visual metaphors for data demonstration beyond simple bar fills (e.g., stacking, growth, racing elements) for each data point.",
+        "Develop more distinct and engaging actions for the mascot in each scene that are uniquely tied to the specific data being presented, rather than just sliding along a bar."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 158
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-31T00:22:53+00:00",
+      "slug": "eight-glasses-water-myth",
+      "score": 60,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively debunks the 8-glasses myth with clear data demonstrations, but the mascot is largely decorative, and some data points are presented as bare numbers.",
+      "auto_fails": [
+        "decorative_mascot: The mascot is mostly static or slides without performing a significant bit tied to the data, e.g., in hook@0.3 it stands still at the bottom of the bar.",
+        "bare_number_card: In seg3:mid, the numbers '3.7' and '2.7' appear next to 'Men' and 'Women' respectively, with just circles around them, without any further visual demonstration or metaphor."
+      ],
+      "problems": [
+        "The mascot is mostly static or merely slides, not performing engaging bits tied to the data.",
+        "The gender-specific fluid intake numbers in seg3 are presented as bare numbers without an interesting visual demonstration."
+      ],
+      "fixes": [
+        "Integrate the mascot more actively into data demonstrations, giving it specific actions that illustrate the numbers (e.g., filling a glass, pointing to a difference).",
+        "For seg3, animate the '3.7' and '2.7' numbers with a visual metaphor, such as two distinct bars or containers filling to those levels, and have the mascot interact with them."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.015,
+        "sampled": 132
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-08-31T00:32:22+00:00",
+      "slug": "solo-living-overtakes-family",
+      "score": 86,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video effectively visualizes changes in household composition with clear charts and good pacing, but the mascot's role is more illustrative than performative.",
+      "auto_fails": [
+        "decorative_mascot: The mascot consistently moves along or stands on bars, but does not perform a distinct 'bit' with a setup, action, and payoff, as seen in seg0:mid where it moves up the bars."
+      ],
+      "problems": [
+        "The mascot's actions are generally illustrative rather than performing a distinct 'bit' with a setup, action, and payoff.",
+        "In seg2, the mascot's interaction with the data is minimal, failing to effectively demonstrate the 'collapse' of married-couple households by remaining static on the 1970 bar."
+      ],
+      "fixes": [
+        "For seg2, animate the mascot to move from the 1970 bar to the 2022 bar, or show it reacting to the decrease in percentage, to better illustrate the decline.",
+        "Throughout the video, consider more dynamic 'bits' for the mascot that go beyond simply moving along or standing on bars, perhaps involving more direct interaction with the data elements (e.g., pushing bars, reacting to changes)."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 116
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "d7f8c5c 2026-08-30 doctor: evidence pack + backlog 2026-08-30 [skip ci]",
-    "b349c60 2026-08-29 doctor: findings for 20260829"
+    "03e4549 2026-08-30 doctor: findings for 20260830",
+    "b46913c 2026-08-31 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-16": 3,
         "2026-08-17": 4,
         "2026-08-18": 4,
         "2026-08-19": 2,
@@ -2725,15 +2677,15 @@
         "2026-08-27": 1,
         "2026-08-28": 3,
         "2026-08-29": 2,
-        "2026-08-30": 1
+        "2026-08-30": 1,
+        "2026-08-31": 5
       },
-      "total_posted": 210,
-      "attempted": 210,
+      "total_posted": 215,
+      "attempted": 215,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-16": 4,
         "2026-08-17": 3,
         "2026-08-18": 2,
         "2026-08-19": 4,
@@ -2764,62 +2716,62 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 132,
+      "videos": 129,
       "top_by_vph": [
         {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 38.26,
-          "views": 1049
+          "vph": 23.3,
+          "views": 1217
         },
         {
           "title": "The World Learned To Read. Not Everyone Did.",
-          "vph": 30.45,
-          "views": 624
+          "vph": 17.66,
+          "views": 800
         },
         {
           "title": "We Take More Photos Every 2 Minutes Than All Of History",
-          "vph": 12.63,
-          "views": 183
+          "vph": 5.85,
+          "views": 230
         },
         {
           "title": "Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons",
-          "vph": 4.78,
+          "vph": 3.87,
           "views": 504
         },
         {
-          "title": "World Cereal Land Just Sank Below Its 1972 Level",
-          "vph": 0.61,
-          "views": 40
+          "title": "We've Found 39,000 Asteroids. That's Not Enough.",
+          "vph": 1.45,
+          "views": 35
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 103,
+      "videos": 100,
       "top_by_vph": [
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 0.96,
-          "views": 392
+          "vph": 0.91,
+          "views": 391
         },
         {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 0.89,
+          "vph": 0.8,
           "views": 190
         },
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 0.65,
+          "vph": 0.61,
           "views": 202
         },
         {
           "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
-          "vph": 0.64,
-          "views": 45
+          "vph": 0.51,
+          "views": 48
         },
         {
           "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
-          "vph": 0.5,
+          "vph": 0.4,
           "views": 47
         }
       ],
@@ -2864,6 +2816,13 @@
     {
       "signature": "cc8333959d84",
       "title": "Auto-pause state can disappear while Daily keeps going",
+      "horizon": "bug",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
+      "signature": "5187e34e11f3",
+      "title": "Dead-authoring days still have no timely Phase A guarantee",
       "horizon": "bug",
       "severity": "high",
       "ruling": "new"
@@ -2946,6 +2905,13 @@
       "ruling": "new"
     },
     {
+      "signature": "d486c2fbfdaf",
+      "title": "Render-handoff test proves strings, not failure behavior",
+      "horizon": "short_term",
+      "severity": "high",
+      "ruling": "new"
+    },
+    {
       "signature": "347e2440278c",
       "title": "Split Third attempts from the authoritative posted ledger",
       "horizon": "long_term",
@@ -2969,6 +2935,13 @@
     {
       "signature": "a2d4a0aea829",
       "title": "Four runbooks still publish retired Phase B times",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "f7633072ef78",
+      "title": "Phase A trigger topology has no regression test",
       "horizon": "small_fix",
       "severity": "medium",
       "ruling": "new"
@@ -3067,6 +3040,13 @@
     {
       "signature": "b507d603aefb",
       "title": "Workflow dependencies still float on mutable action tags",
+      "horizon": "long_term",
+      "severity": "medium",
+      "ruling": "new"
+    },
+    {
+      "signature": "500b791bc671",
+      "title": "Executable direct pushes to main bypass the full suite",
       "horizon": "long_term",
       "severity": "medium",
       "ruling": "new"
