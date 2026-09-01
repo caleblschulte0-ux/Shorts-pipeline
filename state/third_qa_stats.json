@@ -1,245 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260805",
-      "dry_run": false,
-      "ts": "2026-08-05T14:10:26+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 13,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 125,
-        "with_retention": 111,
-        "with_curve": 15,
-        "fetched_at": "2026-08-05T11:00:48.453235+00:00"
-      },
-      "brain": {
-        "ok": 31,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260805-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: render_qa: freeze: 7.8s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: Hook card caption text overflows the frame and is cut off on both left and right edges at 1.5s ('ENT HAS A GIN",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "reaction to visible photos",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "streamer reacts, mildly funny photos",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Can't Believe What's On Agent's Head In This Photo"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": [
-                "render_qa: freeze: 7.8s of frozen frames (>= 2s) \u2014 stalled render or dead source"
-              ]
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.75,
-              "problems": [
-                "Hook card caption text overflows the frame and is cut off on both left and right edges at 1.5s ('ENT HAS A GINGERBREAD M"
-              ]
-            }
-          },
-          "took_s": 340.8
-        },
-        {
-          "slug": "clip-20260805-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "stableronaldo/stableronaldo-archery-arrow-2026w31",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.6,
-              "why": "small clear win moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "wins shirt, excited genuine reaction",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ludwig: QT Wins A T-Shirt And Everyone Starts Chanting Her Name"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 971.0
-        },
-        {
-          "slug": "clip-20260805-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "emotional wholesome payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "boxer requesting water, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Asks For Water And His Coach Says This Instead \ud83d\ude2d"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 128.4
-        },
-        {
-          "slug": "clip-20260805-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "playful banter/reaction, no clear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Gets Roasted By Agent Over His Old Clips"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": []
-            }
-          },
-          "took_s": 202.4
-        }
-      ]
-    },
-    {
       "date": "20260806",
       "dry_run": false,
       "ts": "2026-08-06T14:07:29+00:00",
@@ -7100,6 +6861,149 @@
         },
         {
           "slug": "clip-20260831-6",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260901",
+      "dry_run": false,
+      "ts": "2026-09-01T15:30:42+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 96,
+        "with_retention": 80,
+        "with_curve": 15,
+        "fetched_at": "2026-09-01T13:37:26.449064+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 4
+      },
+      "dead_sources": {
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260901-1",
+          "ok": false,
+          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "blind": true
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "Soda Competition shirt has a german design",
+              "raw": "Soda Competition shirt has a german design",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 132.8
+        },
+        {
+          "slug": "clip-20260901-2",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260901-3",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260901-4",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260901-5",
+          "ok": false,
+          "skipped": "brain down \u2014 blind-slate gate"
+        },
+        {
+          "slug": "clip-20260901-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
         }
