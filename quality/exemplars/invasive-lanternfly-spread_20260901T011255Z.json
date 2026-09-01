@@ -1,0 +1,205 @@
+{
+ "slug": "invasive-lanternfly-spread",
+ "ts": "20260901T011255Z",
+ "score": 91,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 4,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.006,
+  "effective_fps": 23.8,
+  "max_dup_run": 2,
+  "max_dup_at_s": 5.25,
+  "duration_s": 32.79
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": {
+    "action": "shoved_bar",
+    "family": "push",
+    "goal": "hold the leader back and be overpowered \u2014 2014",
+    "target": "2014",
+    "selection_input": {
+     "claim": "US states with a confirmed spotted lanternfly population climbed from 1 in 2014 to 19 in 2026.",
+     "relationships": [
+      "increase"
+     ],
+     "direction": "rising",
+     "shape": "trend",
+     "used_families": []
+    },
+    "contact": "both hands braced on the bar's advancing face",
+    "cause": "pushes back to hold the leader",
+    "consequence": "the bar outgrows him \u2014 skids, then LAUNCHED off it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": {
+    "action": "hoist_stack",
+    "family": "carry",
+    "goal": "bear the growing total's weight \u2014 Human-aided long-distance jumps",
+    "target": "Human-aided long-distance jumps",
+    "selection_input": {
+     "claim": "Human-aided long-distance jumps leads spotted lanternfly spread rate: natural dispersal vs human-aided jumps at 57 miles, far above Natural spread (hopping/walking/short flights) at 16.",
+     "relationships": [
+      "dominance",
+      "imbalance"
+     ],
+     "direction": "stable_high",
+     "shape": "ranking",
+     "used_families": [
+      "push"
+     ]
+    },
+    "contact": "arms pressed overhead on the fill's underside",
+    "cause": "holds the growing pile up",
+    "consequence": "the load buckles him, he barely heaves it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": {
+    "action": "get_buried",
+    "family": "get_buried",
+    "goal": "be buried by accumulation \u2014 Current damage (2019, SE Pennsylvania)",
+    "target": "Current damage (2019, SE Pennsylvania)",
+    "selection_input": {
+     "claim": "The lowest spotted lanternfly's estimated annual economic cost to pennsylvania is Current damage (2019, SE Pennsylvania) at 50 million dollars.",
+     "relationships": [
+      "decrease",
+      "scale"
+     ],
+     "direction": "falling",
+     "shape": "ranking",
+     "used_families": [
+      "carry",
+      "push"
+     ]
+    },
+    "contact": "body under the accumulating pile",
+    "cause": "shields himself",
+    "consequence": "pressed down until only an arm pops out",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  }
+ ],
+ "why_it_worked": "A well-paced and engaging animation effectively demonstrates the spread and economic impact of the spotted lanternfly using clear data visualizations and an active mascot.",
+ "render_ref": "preview-renders branch @ 20260901T011255Z"
+}

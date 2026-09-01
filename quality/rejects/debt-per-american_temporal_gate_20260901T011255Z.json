@@ -1,0 +1,30 @@
+{
+ "slug": "debt-per-american",
+ "ts": "20260901T011255Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 96 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=41.75s of 48.08s (~4.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "comparison",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "get_buried"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "shoved_bar"
+  }
+ ]
+}
