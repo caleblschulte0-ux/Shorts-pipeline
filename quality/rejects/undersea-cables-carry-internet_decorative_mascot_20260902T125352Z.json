@@ -1,0 +1,37 @@
+{
+ "slug": "undersea-cables-carry-internet",
+ "ts": "20260902T125352Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0/seg1/seg3/seg4 Data merely glides along the top bar with no setup-action-payoff (seg1:start t=5.04s and seg3:mid t=23.84s are the same parked pose on a different chart); only seg2 gives him a real bit (standing on the rising 95% column).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_data_labels",
+  "visible_evidence": "At seg2:start/mid/end the two category labels run off the right edge of the frame: 'Satellite and other  5' and 'Submarine cables  95' are clipped, and by seg2:end the percentages are gone entirely \u2014 the headline 95% stat is never legible on screen. The 95% column is also a flat untextured pink slab with a tiny mascot on it and no counting number.",
+  "root_cause": "The stacked-share scene is laid out at a width wider than the 9:16 safe area, so right-aligned series labels/values overflow the crop; nothing animates the 95% value itself.",
+  "repair_goal": "Refit seg2 inside the vertical safe area so both category labels AND their percentages are fully visible, and demonstrate the split actively \u2014 e.g. a counting 95% that fills as the column rises with Data riding it up to the satellite sliver."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "get_buried"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}
