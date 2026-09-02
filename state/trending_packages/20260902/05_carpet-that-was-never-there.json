@@ -6,23 +6,33 @@
   "shots": [
     {
       "phrase": "tried to keep our whole security deposit",
-      "query": "security deposit paperwork"
+      "query": "security deposit paperwork",
+      "image_url": "https://pixabay.com/get/g30cb1198125a5b4f913436db51b0db12da4d3b9a94fc399247337e957dc5f40d428bd3df9e507270d166e4f832e5d9ed78f9b15249a10b35c1727b251a66a725_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "hardwood floors under every square foot",
-      "query": "hardwood floor apartment"
+      "query": "hardwood floor apartment",
+      "image_url": "https://pixabay.com/get/g41dc43ad21ef07c13de2531a97086bc435106a7f76e9fe5ba2079a18ecc0ed0061667bd7dd3174a13af3049be6372212c019994e3253fcbdbcb67b90ccff73b8_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "photographed every room, every wall, every floor plank",
-      "query": "person photographing empty apartment"
+      "query": "person photographing empty apartment",
+      "image_url": "https://images.pexels.com/photos/7414962/pexels-photo-7414962.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "six hundred dollars for carpet replacement",
-      "query": "itemized deduction invoice"
+      "query": "itemized deduction invoice",
+      "image_url": "https://pixabay.com/get/gf6d32a478f31c75719c7fb23da898a6e07a0e94826daab78d9a3a24a9c879acc590b389331959cda7588b9255b6d32d9ddb6be0ef7df50db8b08b1aa8b6d819a_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "bad-faith withholding pays triple damages",
-      "query": "tenant law document"
+      "query": "tenant law document",
+      "image_url": "https://pixabay.com/get/gb78627bfc975edf26d6cb01b4e053d5641a667047f89ef2005bbae1fb7a5a3e7c2efce58df52b729382c6f8381d5465ff10652db9af13c12e637be93ba940481_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "filed in small claims with the timestamps and the lease",
@@ -30,15 +40,21 @@
       "pin_query": "Small Claims Court",
       "pin_context": "court legal system justice building",
       "news_query": "Small Claims Court",
-      "news_angle": "Small Claims Court where a tenant successfully sued their landlord for illegally withholding a security deposit."
+      "news_angle": "Small Claims Court where a tenant successfully sued their landlord for illegally withholding a security deposit.",
+      "image_url": "https://pixabay.com/get/g05ae0ae4205f7651bd64e7a823062f7ae74505a24c381b0849c7888070f5ff7adfdcf5af86a8533d7508128737aed6e37001e1631c8a7ef4ec1d9494faada08c_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "judge read the carpet line item out loud",
-      "query": "courtroom judge bench"
+      "query": "courtroom judge bench",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Sketch_of_an_overview_of_the_courtroom_that_includes_the_judges_bench_and_the_defense_table._24.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a check arrived for eighteen hundred dollars",
-      "query": "mailed check envelope"
+      "query": "mailed check envelope",
+      "image_url": "https://pixabay.com/get/g10fe527e91a2f4dace0992617f2e1566a506734223d0528ae8314f6cffec8a9ee4ac4c9ce24d4bce733a815afa511952c75a4977628ad76284d7e3f5b747097b_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
