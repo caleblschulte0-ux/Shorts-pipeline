@@ -5381,13 +5381,54 @@
       "director_cut": true
     },
     "clip-20260902-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/DelightfulPuzzledWoodpeckerDAESuppy-84AiDvojhEM72vRi",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/3m7AgDc8JVs",
       "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los",
       "kind": "twitch_clip",
-      "ts": "2026-09-02T15:15:15.697969+00:00",
+      "ts": "2026-09-02T15:15:19.540573+00:00",
+      "uploaded_at": "2026-09-02T15:15:19.540590+00:00",
+      "publish_at": "2026-09-02T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DelightfulPuzzledWoodpeckerDAESuppy-84AiDvojhEM72vRi",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "THEY GOT TANGLED AND HE FELL",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4188,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 27.3
+      },
+      "director_cut": true
+    },
+    "rejected-abnegateacceptabledurianbloodtrail--1aaxhzrxkn5esuc": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AbnegateAcceptableDurianBloodTrail--1aAXHZrxKn5eSuC",
+      "streamer": "xqc",
+      "title": "documentaries",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (streamer discusses documentary, no visib)",
+      "ts": "2026-09-02T15:17:20.702893+00:00"
+    },
+    "rejected-dependablesecretivepicklestheringer-78crrzspizrlri-h": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DependableSecretivePicklesTheRinger-78cRRzsPiZrLRI-h",
+      "streamer": "kaicenat",
+      "title": "wtf is he doing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confusing beef talk, no visible event)",
+      "ts": "2026-09-02T15:18:07.247451+00:00"
+    },
+    "clip-20260902-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidWealthySushiBibleThump-qP14QQVTeueFo5Jn",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Junko Cracks Stableronaldo Up With This WILD Line",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:21:27.442179+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
