@@ -13,6 +13,10 @@ This module makes that number binding, and makes the whole decision explicit:
     repair required / internal review / owner review).
   - a hard blocker from ANY judge blocks advancement. Nothing is averaged
     away: `decide()` never mixes a blocker into a mean.
+  - EVERY required judge must individually pass. A unanimous reject
+    (pass=False from all required judges) is not "disagreement" — dissent()
+    only fires on a split — so a required judge's own pass field is checked
+    directly and blocks on its own.
   - judge DISAGREEMENT is surfaced as its own blocker rather than resolved by
     silently taking the kinder verdict.
   - autonomous publishing stays off here regardless of score; only the
@@ -309,8 +313,16 @@ def decide(combined: dict, policy: dict | None = None) -> dict:
 
     blockers: list[str] = []
 
-    # 1. required judges must have spoken. A judge that failed or abstained is
-    #    recorded as such and FAILS CLOSED — missing evidence is not consent.
+    # 1. required judges must have spoken, AND must have passed. A judge that
+    #    failed or abstained is recorded as such and FAILS CLOSED — missing
+    #    evidence is not consent. Doctor finding 69a0ad32a52f: this used to
+    #    stop at "did the judge speak", so every required judge could return
+    #    status "ok" with pass=False (an explicit REJECT) and still advance
+    #    as long as overall_10 cleared the score floor and no OTHER judge
+    #    disagreed — a unanimous reject is not a disagreement, so dissent()
+    #    never caught it either. A required judge's pass is now itself a
+    #    blocker: only pass is True (not falsy, not missing, not a string)
+    #    counts as a pass.
     for name in pol["required_judges"]:
         v = verdicts.get(name)
         if v is None:
@@ -319,6 +331,9 @@ def decide(combined: dict, policy: dict | None = None) -> dict:
         elif str(v.get("status", "ok")) in ("failed", "abstained"):
             blockers.append(f"required judge {name!r} {v.get('status')}"
                             f" ({str(v.get('error', ''))[:80]}) — FAILS CLOSED")
+        elif v.get("pass") is not True:
+            blockers.append(f"required judge {name!r} did not pass "
+                            f"(pass={v.get('pass')!r}) — FAILS CLOSED")
 
     # 2. the professional-quality score is REQUIRED and BINDING.
     if overall is None:

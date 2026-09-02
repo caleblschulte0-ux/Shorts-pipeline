@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260828",
+  "updated": "20260902",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -957,6 +957,94 @@
       "because": "This is the correct long-term direction (a versioned MediaEvidence record), but it generalizes exactly the two shape problems just ruled doing in 9a7e1bcece21 (package-failure gaps) and 4e9af949a9c9 (entity evidence loss). Designing the typed contract before those two land risks touching judge_package's interface twice. Revisit once both are merged and we can see what the adapters actually need; park 30 days.",
       "history": [],
       "revisit_after": "20260927"
+    },
+    "69a0ad32a52f": {
+      "verdict": "in_progress",
+      "date": "20260902",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260902",
+          "because": "Confirmed by reading judge_policy.py:293-370: dissent() only blocks on a SPLIT verdict (len(set(pass values))>1), so unanimous pass=false from every required judge produces zero dissent and zero blocker unless overall_10 also happens to be low. overall_10 is a separately-reported taste-judge number, so a unanimous reject can still carry a high score and advance=True. This is the sovereign showrunner gate CLAUDE.md calls load-bearing \u2014 building this first."
+        }
+      ]
+    },
+    "cc8333959d84": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed: daily.yml:153-174 appends || true to both ci_commit_state.sh calls in the auto-pause/auto-resume branches, so a rejected push leaves committed state stale while the job still emits skip=auto or skip= based on runner-local files. Real durability bug in the backoff CLAUDE.md documents as load-bearing. Queued, not this session's build.",
+      "history": []
+    },
+    "5187e34e11f3": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed: exchange_phase_a.yml comments admit multi-hour cron drift and only the 09:45 UTC cron is independent of upstream authoring. Real gap, but the proposed fix is a new fail-closed watchdog component \u2014 too large for one session alongside today's build. Queued as doing; a future session should scope the watchdog narrowly (readiness check + dispatch + durable refusal state) rather than build it all at once.",
+      "history": []
+    },
+    "02da0ae2137f": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed: story_director.py:205-208 computes payoffish over the UNBOUNDED beats list before the [:MAX_BEATS] truncation at line 215, and the terminal-role check at 272-276 never reconfirms a payoff/climax survived truncation. A 6-beat EDL whose only payoff is beat 6 can validate on a fabricated structure. Real bug in the story quality gate.",
+      "history": []
+    },
+    "694ab7c3e1d4": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed: retro.yml has continue-on-error: true on the brief-construction and triage steps (lines 141-222) with the final commit step not asserting those outputs exist first, so a failed build_retro.py/review_proposals.py can still finish green. Weakens the standing evidence pack retro depends on.",
+      "history": []
+    },
+    "d486c2fbfdaf": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed: tests/test_phase_b_render_handoff.py:71-81 only regex-matches substrings in the YAML body text (HANDOFF['run']) \u2014 it never executes the shell branch or mocks an HTTP response. A refactor could leave the tokens in a comment and still pass. Legitimate test-quality gap on a critical handoff.",
+      "history": []
+    },
+    "a2d4a0aea829": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed by grep: README.md:33 still says 06:15 UTC, docs/FALLBACKS.md:86/exchange/README.md:451/CLAUDE_ROUTINE_INSTRUCTIONS.md:75,82 still say 12:45 UTC, while the live workflow and FALLBACKS.md:220 already document the correct DST-aware 08:30 Central gate. Easy, low-risk docs fix \u2014 queued, will likely be picked up soon given its low cost.",
+      "history": []
+    },
+    "f7633072ef78": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed by repo search: no test references exchange_phase_a.yml's trigger topology or the 09:45 backstop. Related to the 5187e34e11f3 liveness finding \u2014 should land together with whatever watchdog fix addresses that, so a regression test locks in the real fix rather than just the current (admittedly gappy) topology.",
+      "history": []
+    },
+    "f85f65be87b6": {
+      "verdict": "later",
+      "date": "20260902",
+      "because": "Confirmed data_learning/stock_cache.py:38-60 has no fetched_at/expiry/verification fields, so stale candidates can resurface indefinitely on live-provider failure. Real but low urgency \u2014 live results always outrank the cache per the existing wrap() logic, so the failure mode is degraded-not-wrong media, not a correctness break. Park for a session with room to design the versioned cache record properly.",
+      "history": [],
+      "revisit_after": "20261002"
+    },
+    "b507d603aefb": {
+      "verdict": "later",
+      "date": "20260902",
+      "because": "Confirmed widespread use of actions/checkout@v4 and actions/setup-python@v5 by mutable tag across every workflow with write permissions. Real supply-chain hardening item, mechanical but touches ~15+ workflow files plus a Dependabot/Renovate config decision \u2014 parking for a dedicated session rather than a rushed sweep.",
+      "history": [],
+      "revisit_after": "20261002"
+    },
+    "500b791bc671": {
+      "verdict": "later",
+      "date": "20260902",
+      "because": "Confirmed auto-merge.yml's full test suite gate is pull_request-only, scoped to claude/* branches; no equivalent push-to-main verification exists even though exchange_phase_a.yml documents direct pushes as a supported path. Real gap, but needs a deliberate new workflow design (avoiding recursive state-commit triggers) rather than a quick patch \u2014 parking for a focused session.",
+      "history": [],
+      "revisit_after": "20261002"
+    },
+    "e61446f7bc2a": {
+      "verdict": "doing",
+      "date": "20260902",
+      "because": "Confirmed data_learning/qa.py:35-36 accepts a single-shot package and generate.py:163 unconditionally reads pkg['shots'][1] for the success log line, raising IndexError after the package is already written and counted ok \u2014 crashes the rest of the batch. Small, contained fix.",
+      "history": []
+    },
+    "8bbdf9ac8a33": {
+      "verdict": "later",
+      "date": "20260902",
+      "because": "Agreed with the analysis \u2014 evidence really is too thin right now (one 6.8h-old explainer result, an 84.7h single fish-catch data point, Third clustered ~1 VPH) to justify any registry change. Not proposing anything to build, so 'later' fits better than 'doing': revisit once repeated mature samples exist rather than the recovery spike.",
+      "history": [],
+      "revisit_after": "20261002"
     }
   }
 }
