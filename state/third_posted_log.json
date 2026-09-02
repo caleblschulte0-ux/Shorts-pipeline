@@ -5422,13 +5422,36 @@
       "ts": "2026-09-02T15:18:07.247451+00:00"
     },
     "clip-20260902-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidWealthySushiBibleThump-qP14QQVTeueFo5Jn",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/wWnl-QK1wRg",
       "title": "Junko Cracks Stableronaldo Up With This WILD Line",
       "kind": "twitch_clip",
-      "ts": "2026-09-02T15:21:27.442179+00:00",
+      "ts": "2026-09-02T15:21:31.290025+00:00",
+      "uploaded_at": "2026-09-02T15:21:31.290042+00:00",
+      "publish_at": "2026-09-02T21:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidWealthySushiBibleThump-qP14QQVTeueFo5Jn",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "JUNKO SAID SOMETHING THAT BROKE RON",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2485,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 15.5
+      },
+      "director_cut": true
+    },
+    "clip-20260902-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnthusiasticFrozenCockroachStoneLightning-PXtNcttuiQ8fE8gW",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe He Sold For The Third Time",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:26:15.653313+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
