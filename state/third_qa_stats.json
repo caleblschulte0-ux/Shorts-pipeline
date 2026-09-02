@@ -1,245 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260806",
-      "dry_run": false,
-      "ts": "2026-08-06T14:07:29+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 16,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 128,
-        "with_retention": 112,
-        "with_curve": 15,
-        "fetched_at": "2026-08-06T11:01:28.786741+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260806-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague slang, reaction unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.72,
-              "why": "elimination event, physical struggle, te",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Gets Sold Out By His Own Teammate And Eliminated"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.78,
-              "problems": []
-            }
-          },
-          "took_s": 218.0
-        },
-        {
-          "slug": "clip-20260806-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.6,
-              "why": "myth debunked, visible result",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "chatter about naming a myth, unclear eve",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Sodapoppin Killed Myth And Then Caught Him In A Lie"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 302.0
-        },
-        {
-          "slug": "clip-20260806-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "emotional heartbreak signal, vague",
-              "blind": false
-            },
-            "content": {
-              "score": 0.6,
-              "why": "jump attempt, unsure if it counted",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Isn't Sure If This Throw Even Counted"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 202.6
-        },
-        {
-          "slug": "clip-20260806-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "kaicenat/kaicenat-agent-cenat-2026w32",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                },
-                {
-                  "cluster": "stableronaldo/stableronaldo-camera-directly-2026w31",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.65,
-              "why": "visible dispute, replay demand reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "real race dispute, replay drama",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Demands A Replay Then Gets Exposed By It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.78,
-              "problems": []
-            }
-          },
-          "took_s": 1527.9
-        }
-      ]
-    },
-    {
       "date": "20260807",
       "dry_run": false,
       "ts": "2026-08-07T12:38:31+00:00",
@@ -7006,6 +6767,307 @@
           "slug": "clip-20260901-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20260902",
+      "dry_run": false,
+      "ts": "2026-09-02T16:19:11+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 92,
+        "with_retention": 77,
+        "with_curve": 15,
+        "fetched_at": "2026-09-02T12:53:40.607042+00:00"
+      },
+      "brain": {
+        "ok": 36,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:nymn": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260902-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "vague reaction, unclear trigger",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "narrated gameplay, no real payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Jokes He's Learning Spanish From This Game"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": []
+            }
+          },
+          "took_s": 166.4
+        },
+        {
+          "slug": "clip-20260902-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "visible fall, clear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "tangled fall, real reaction",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 263.2
+        },
+        {
+          "slug": "clip-20260902-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (confusing beef talk, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "confusing beef talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 46.5
+        },
+        {
+          "slug": "clip-20260902-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.75,
+              "why": "visible emotional confrontation, real re",
+              "blind": false
+            },
+            "content": {
+              "score": 0.65,
+              "why": "genuine flustered reaction, visible mome",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Junko Cracks Stableronaldo Up With This WILD Line"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 154.8
+        },
+        {
+          "slug": "clip-20260902-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "sells/dies, visible in-game event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "wild physics launch, genuine shocked rea",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Can't Believe He Sold For The Third Time"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": [
+                "7.4s: 'THE FUCK' text + beer-mug emojis overlay sits over the lower half of the streamer's face, partially obscuring it"
+              ]
+            }
+          },
+          "took_s": 288.4
+        },
+        {
+          "slug": "clip-20260902-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "xqc/xqc-about-brows-2026w35",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "milestone hit, no visible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "gift reveal, unclear payoff visually",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Hits 100K Subs And Opens His Surprise Gift Live"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 1361.5
         }
       ]
     }

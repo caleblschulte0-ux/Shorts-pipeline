@@ -5477,14 +5477,27 @@
       "ts": "2026-09-02T15:56:29.717301+00:00"
     },
     "clip-20260902-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/CrepuscularElatedDonutPJSalt-WqgSn9TW8QO0aYYv",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/uJgfOsP5sJM",
       "title": "Cinna Hits 100K Subs And Opens His Surprise Gift Live",
       "kind": "twitch_clip",
-      "ts": "2026-09-02T16:19:06.090433+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-02T16:19:11.200411+00:00",
+      "uploaded_at": "2026-09-02T16:19:11.200431+00:00",
+      "publish_at": "2026-09-03T00:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/CrepuscularElatedDonutPJSalt-WqgSn9TW8QO0aYYv",
+      "streamer": "cinna",
+      "series": "wholesome",
+      "hook": "CINNA GETS A GIFT FOR 100K SUBS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3282,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
     }
   }
 }
