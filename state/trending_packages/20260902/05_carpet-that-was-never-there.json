@@ -26,7 +26,11 @@
     },
     {
       "phrase": "filed in small claims with the timestamps and the lease",
-      "query": "small claims court filing"
+      "query": "small claims court filing",
+      "pin_query": "Small Claims Court",
+      "pin_context": "court legal system justice building",
+      "news_query": "Small Claims Court",
+      "news_angle": "Small Claims Court where a tenant successfully sued their landlord for illegally withholding a security deposit."
     },
     {
       "phrase": "judge read the carpet line item out loud",
