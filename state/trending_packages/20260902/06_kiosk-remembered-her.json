@@ -2,23 +2,67 @@
   "subreddit": "entitledparents",
   "slug": "kiosk-remembered-her",
   "title": "The Kiosk Remembered Her From Last Time",
-  "script": "A mom at the trampoline park shoved three families out of the safety-waiver line so her son could jump first, announcing they come here every week like that skipped the rules. I was the front-desk teenager stuck holding the line, and the park's insurance is clear: every child completes the harness check, no exceptions, no regulars, no excuses. She argued for ten straight minutes while her son bounced on a trampoline he wasn't cleared for yet. Then the new check-in kiosk, installed after her last two visits ended in a banned account, flagged her photo ID under a completely different kid's name — the front desk had upgraded to facial recognition that spring, specifically because of repeat troublemakers. Security walked over before I said a single word. She tried explaining it was a sibling's account, loudly, to a line of people she had personally cut. The manager didn't blink — banned families don't get sibling accounts. She left empty-handed, past everyone she'd shoved.",
+  "script": "A mom at the trampoline park shoved three families out of the safety-waiver line so her son could jump first, announcing they come here every week like that skipped the rules. I was the front-desk teenager stuck holding the line, and the park's insurance is clear: every child completes the harness check, no exceptions, no regulars, no excuses. She argued for ten straight minutes while her son bounced on a trampoline he wasn't cleared for yet. Then the new check-in kiosk, installed after her last two visits ended in a banned account, flagged her photo ID under a completely different kid's name \u2014 the front desk had upgraded to facial recognition that spring, specifically because of repeat troublemakers. Security walked over before I said a single word. She tried explaining it was a sibling's account, loudly, to a line of people she had personally cut. The manager didn't blink \u2014 banned families don't get sibling accounts. She left empty-handed, past everyone she'd shoved.",
   "shots": [
-    {"phrase": "shoved three families out of the safety-waiver line", "query": "crowded waiting line"},
-    {"phrase": "every child completes the harness check, no exceptions", "query": "trampoline park safety harness"},
-    {"phrase": "bounced on a trampoline he wasn't cleared for yet", "query": "kid jumping trampoline park"},
-    {"phrase": "the new check-in kiosk", "query": "self check-in kiosk screen"},
-    {"phrase": "flagged her photo ID under a completely different kid's name", "query": "id badge scanner alert"},
-    {"phrase": "facial recognition that spring", "query": "facial recognition camera"},
-    {"phrase": "Security walked over before I said a single word", "query": "security guard walking"},
-    {"phrase": "banned families don't get sibling accounts", "query": "manager talking front desk"}
+    {
+      "phrase": "shoved three families out of the safety-waiver line",
+      "query": "crowded waiting line"
+    },
+    {
+      "phrase": "every child completes the harness check, no exceptions",
+      "query": "trampoline park safety harness"
+    },
+    {
+      "phrase": "bounced on a trampoline he wasn't cleared for yet",
+      "query": "kid jumping trampoline park"
+    },
+    {
+      "phrase": "the new check-in kiosk",
+      "query": "self check-in kiosk screen"
+    },
+    {
+      "phrase": "flagged her photo ID under a completely different kid's name",
+      "query": "id badge scanner alert"
+    },
+    {
+      "phrase": "facial recognition that spring",
+      "query": "facial recognition camera"
+    },
+    {
+      "phrase": "Security walked over before I said a single word",
+      "query": "security guard walking"
+    },
+    {
+      "phrase": "banned families don't get sibling accounts",
+      "query": "manager talking front desk"
+    }
   ],
   "punches": [
-    {"phrase": "shoved three families out of the safety-waiver line", "text": "LINE CUTTER", "color": "#ffaa30"},
-    {"phrase": "no exceptions, no regulars, no excuses", "text": "NO EXCEPTIONS", "color": "#ffaa30"},
-    {"phrase": "flagged her photo ID under a completely different kid's name", "text": "BUSTED", "color": "#ff3030"},
-    {"phrase": "Security walked over", "text": "SECURITY", "color": "#ff3030"},
-    {"phrase": "banned families don't get sibling accounts", "text": "STILL BANNED", "color": "#50ff80"}
+    {
+      "phrase": "shoved three families out of the safety-waiver line",
+      "text": "LINE CUTTER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "no exceptions, no regulars, no excuses",
+      "text": "NO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "flagged her photo ID under a completely different kid's name",
+      "text": "BUSTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Security walked over",
+      "text": "SECURITY",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "banned families don't get sibling accounts",
+      "text": "STILL BANNED",
+      "color": "#50ff80"
+    }
   ],
   "hashtags": [
     "entitledparents",

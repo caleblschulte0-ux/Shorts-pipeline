@@ -298,14 +298,648 @@
   "response_path": "exchange/bundles/20260902/response.json",
   "done_marker": "exchange/bundles/20260902/DONE",
   "counts": {
-    "packages": 0,
-    "requests": 0,
+    "packages": 6,
+    "requests": 16,
     "animations": 0,
-    "to_author": 6,
-    "channels_needing_a_brain": 2
+    "to_author": 0,
+    "channels_needing_a_brain": 1
   },
-  "packages": [],
-  "requests": [],
+  "packages": [
+    {
+      "slug": "graph-pickleball-vs-tennis",
+      "title": "The Fastest Sport In America Is Catching Tennis",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-tsmc-vs-intel",
+      "title": "The Chipmaker That Quietly Passed Intel",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-suez-vs-panama-canal",
+      "title": "Ships Picked A New Favorite Canal",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-amazon-robots-vs-employees",
+      "title": "Amazon's Robot Army Is Closing In",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "carpet-that-was-never-there",
+      "title": "He Billed Me For Carpet That Was Never There",
+      "script": "My landlord tried to keep our whole security deposit for water-damaged carpet in a unit that had hardwood floors under every square foot the entire two years we lived there. I know because I photographed every room, every wall, every floor plank, timestamped, the day we moved in \u2014 a habit from a bad first apartment. When the itemized deduction list showed six hundred dollars for carpet replacement, I emailed him the move-in photos and a link to our state's tenant law: bad-faith withholding pays triple damages. He tried backpedaling, calling it a clerical mix-up with another unit. Too late \u2014 I'd already filed in small claims with the timestamps and the lease. The judge read the carpet line item out loud, looked at the hardwood photos, and asked him directly where exactly this carpet went. He had no answer. Thirty days later a check arrived for eighteen hundred dollars, three times the deposit, with a one-line note: no explanation required.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "tried to keep our whole security deposit",
+          "query": "security deposit paperwork",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "hardwood floors under every square foot",
+          "query": "hardwood floor apartment",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "photographed every room, every wall, every floor plank",
+          "query": "person photographing empty apartment",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "six hundred dollars for carpet replacement",
+          "query": "itemized deduction invoice",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "bad-faith withholding pays triple damages",
+          "query": "tenant law document",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "filed in small claims with the timestamps and the lease",
+          "query": "small claims court filing",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "judge read the carpet line item out loud",
+          "query": "courtroom judge bench",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "a check arrived for eighteen hundred dollars",
+          "query": "mailed check envelope",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": [
+        "carpet-that-was-never-there-s0-15bb736d7371",
+        "carpet-that-was-never-there-s1-609b26e523fb",
+        "carpet-that-was-never-there-s2-be4c6085c954",
+        "carpet-that-was-never-there-s3-54d2f3abd216",
+        "carpet-that-was-never-there-s4-b1988680a67d",
+        "carpet-that-was-never-there-s5-a19e82d17076",
+        "carpet-that-was-never-there-s6-cb58c57b1dc0",
+        "carpet-that-was-never-there-s7-3927bb00b686"
+      ]
+    },
+    {
+      "slug": "kiosk-remembered-her",
+      "title": "The Kiosk Remembered Her From Last Time",
+      "script": "A mom at the trampoline park shoved three families out of the safety-waiver line so her son could jump first, announcing they come here every week like that skipped the rules. I was the front-desk teenager stuck holding the line, and the park's insurance is clear: every child completes the harness check, no exceptions, no regulars, no excuses. She argued for ten straight minutes while her son bounced on a trampoline he wasn't cleared for yet. Then the new check-in kiosk, installed after her last two visits ended in a banned account, flagged her photo ID under a completely different kid's name \u2014 the front desk had upgraded to facial recognition that spring, specifically because of repeat troublemakers. Security walked over before I said a single word. She tried explaining it was a sibling's account, loudly, to a line of people she had personally cut. The manager didn't blink \u2014 banned families don't get sibling accounts. She left empty-handed, past everyone she'd shoved.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "shoved three families out of the safety-waiver line",
+          "query": "crowded waiting line",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "every child completes the harness check, no exceptions",
+          "query": "trampoline park safety harness",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "bounced on a trampoline he wasn't cleared for yet",
+          "query": "kid jumping trampoline park",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "the new check-in kiosk",
+          "query": "self check-in kiosk screen",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "flagged her photo ID under a completely different kid's name",
+          "query": "id badge scanner alert",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "facial recognition that spring",
+          "query": "facial recognition camera",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "Security walked over before I said a single word",
+          "query": "security guard walking",
+          "has_media": false,
+          "verdict": "missing"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "banned families don't get sibling accounts",
+          "query": "manager talking front desk",
+          "has_media": false,
+          "verdict": "missing"
+        }
+      ],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 8,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": [
+        "kiosk-remembered-her-s0-bc0055a559e7",
+        "kiosk-remembered-her-s1-48110323b3fd",
+        "kiosk-remembered-her-s2-9e1a6d63c94b",
+        "kiosk-remembered-her-s3-9b270180032b",
+        "kiosk-remembered-her-s4-988c9930b4cd",
+        "kiosk-remembered-her-s5-86611cf2725b",
+        "kiosk-remembered-her-s6-8e6c08c62b7c",
+        "kiosk-remembered-her-s7-3e8a584b18ac"
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "carpet-that-was-never-there-s0-15bb736d7371",
+      "safe_request_id": "carpet-that-was-never-there-s0-15bb736d7371",
+      "drive_filename": "20260902__carpet-that-was-never-there-s0-15bb736d7371.png",
+      "prompt_sha256": "662ef53c9629f72aeb20958f0a29a129bc6386ccc0d5ece6d8e4dc46ba691a6a",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s0-15bb736d7371.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: security deposit paperwork. It accompanies the narration: \"tried to keep our whole security deposit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s1-609b26e523fb",
+      "safe_request_id": "carpet-that-was-never-there-s1-609b26e523fb",
+      "drive_filename": "20260902__carpet-that-was-never-there-s1-609b26e523fb.png",
+      "prompt_sha256": "f86a60e8045a3c9cd879d3a0f55f23baa51955d7654cb53e5b50164e2e0553e0",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s1-609b26e523fb.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: hardwood floor apartment. It accompanies the narration: \"hardwood floors under every square foot\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s2-be4c6085c954",
+      "safe_request_id": "carpet-that-was-never-there-s2-be4c6085c954",
+      "drive_filename": "20260902__carpet-that-was-never-there-s2-be4c6085c954.png",
+      "prompt_sha256": "0d946809b5203cf6125ceba684016bcfacd7149e0687c688feeea27cd3dfa09b",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s2-be4c6085c954.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: person photographing empty apartment. It accompanies the narration: \"photographed every room, every wall, every floor plank\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s3-54d2f3abd216",
+      "safe_request_id": "carpet-that-was-never-there-s3-54d2f3abd216",
+      "drive_filename": "20260902__carpet-that-was-never-there-s3-54d2f3abd216.png",
+      "prompt_sha256": "76c996d748c42a1e8cc35bfd513aa9c7e8aa89c201c214e5ccb67bdc3cd6eb82",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s3-54d2f3abd216.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: itemized deduction invoice. It accompanies the narration: \"six hundred dollars for carpet replacement\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s4-b1988680a67d",
+      "safe_request_id": "carpet-that-was-never-there-s4-b1988680a67d",
+      "drive_filename": "20260902__carpet-that-was-never-there-s4-b1988680a67d.png",
+      "prompt_sha256": "bab29d5cb0826b454a15d7c7894714a4edc5ecfc5743035a20eb49e5d6639f31",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s4-b1988680a67d.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: tenant law document. It accompanies the narration: \"bad-faith withholding pays triple damages\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s5-a19e82d17076",
+      "safe_request_id": "carpet-that-was-never-there-s5-a19e82d17076",
+      "drive_filename": "20260902__carpet-that-was-never-there-s5-a19e82d17076.png",
+      "prompt_sha256": "02147ecda6905a9d18d1f383a7a81943922ffd49a364743ff9663c5bbffdfb9f",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s5-a19e82d17076.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: small claims court filing. It accompanies the narration: \"filed in small claims with the timestamps and the lease\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s6-cb58c57b1dc0",
+      "safe_request_id": "carpet-that-was-never-there-s6-cb58c57b1dc0",
+      "drive_filename": "20260902__carpet-that-was-never-there-s6-cb58c57b1dc0.png",
+      "prompt_sha256": "0ce7015bcd050dea657b5bdbad04fef04766db43fc5e830414c9fbc8bd7e5dc4",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s6-cb58c57b1dc0.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: courtroom judge bench. It accompanies the narration: \"judge read the carpet line item out loud\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s7-3927bb00b686",
+      "safe_request_id": "carpet-that-was-never-there-s7-3927bb00b686",
+      "drive_filename": "20260902__carpet-that-was-never-there-s7-3927bb00b686.png",
+      "prompt_sha256": "c39a573e7ca4a8886247d45f0ee519ab950a560217f6cf7cb87284d1756c07e0",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/carpet-that-was-never-there-s7-3927bb00b686.json",
+      "slug": "carpet-that-was-never-there",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: mailed check envelope. It accompanies the narration: \"a check arrived for eighteen hundred dollars\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s0-bc0055a559e7",
+      "safe_request_id": "kiosk-remembered-her-s0-bc0055a559e7",
+      "drive_filename": "20260902__kiosk-remembered-her-s0-bc0055a559e7.png",
+      "prompt_sha256": "a93a71759a8366d0503907244b1b7f5b53bf83a9ce2df361651952a098feac9c",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s0-bc0055a559e7.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: crowded waiting line. It accompanies the narration: \"shoved three families out of the safety-waiver line\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s1-48110323b3fd",
+      "safe_request_id": "kiosk-remembered-her-s1-48110323b3fd",
+      "drive_filename": "20260902__kiosk-remembered-her-s1-48110323b3fd.png",
+      "prompt_sha256": "809eb5fc33ca891c51c3ef047b956fb4f8f92979b3cf7e2a2eceb6d631ca3a2d",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s1-48110323b3fd.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: trampoline park safety harness. It accompanies the narration: \"every child completes the harness check, no exceptions\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s2-9e1a6d63c94b",
+      "safe_request_id": "kiosk-remembered-her-s2-9e1a6d63c94b",
+      "drive_filename": "20260902__kiosk-remembered-her-s2-9e1a6d63c94b.png",
+      "prompt_sha256": "2066273fb0c67795ec2e955d02613c0ddfa9dbde95011c34e6fe8a04eb3c3dc7",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s2-9e1a6d63c94b.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: kid jumping trampoline park. It accompanies the narration: \"bounced on a trampoline he wasn't cleared for yet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s3-9b270180032b",
+      "safe_request_id": "kiosk-remembered-her-s3-9b270180032b",
+      "drive_filename": "20260902__kiosk-remembered-her-s3-9b270180032b.png",
+      "prompt_sha256": "62b3ae54e1c0cf0ae882c20bdfbaea667f090f7cf68acf23f5f4b0e62c7e71c6",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s3-9b270180032b.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: self check-in kiosk screen. It accompanies the narration: \"the new check-in kiosk\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s4-988c9930b4cd",
+      "safe_request_id": "kiosk-remembered-her-s4-988c9930b4cd",
+      "drive_filename": "20260902__kiosk-remembered-her-s4-988c9930b4cd.png",
+      "prompt_sha256": "6a4a94504eb3209671295a9c0d3386848aa0446e50fd277d5108bfb2483454b0",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s4-988c9930b4cd.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: id badge scanner alert. It accompanies the narration: \"flagged her photo ID under a completely different kid's name\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s5-86611cf2725b",
+      "safe_request_id": "kiosk-remembered-her-s5-86611cf2725b",
+      "drive_filename": "20260902__kiosk-remembered-her-s5-86611cf2725b.png",
+      "prompt_sha256": "d5017b050e5ec1046a673abbfa73af99534572aaabbe2e8408f394a2dda88ebc",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s5-86611cf2725b.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: facial recognition camera. It accompanies the narration: \"facial recognition that spring\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s6-8e6c08c62b7c",
+      "safe_request_id": "kiosk-remembered-her-s6-8e6c08c62b7c",
+      "drive_filename": "20260902__kiosk-remembered-her-s6-8e6c08c62b7c.png",
+      "prompt_sha256": "f52496e081e559f2cc98339f69a8b37869ba6c1058c4b591dfa4616e5d10a321",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s6-8e6c08c62b7c.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: security guard walking. It accompanies the narration: \"Security walked over before I said a single word\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s7-3e8a584b18ac",
+      "safe_request_id": "kiosk-remembered-her-s7-3e8a584b18ac",
+      "drive_filename": "20260902__kiosk-remembered-her-s7-3e8a584b18ac.png",
+      "prompt_sha256": "30a230dc836bd989e8657a8b9b070b725568cc0fe66bdedf56df64d6e8037bb3",
+      "checkpoint_path": "exchange/bundles/20260902/media-progress/kiosk-remembered-her-s7-3e8a584b18ac.json",
+      "slug": "kiosk-remembered-her",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: manager talking front desk. It accompanies the narration: \"banned families don't get sibling accounts\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    }
+  ],
   "media_protocol": {
     "schema": "chatgpt-media-checkpoint/v1",
     "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
@@ -431,7 +1065,7 @@
       "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
     },
     "two_jobs": [
-      "0. AUTHOR THE DAY \u2014 READ `authoring_request` FIRST. The channel's own writing brain did not run today, so there is no slate. You are the brain: write the missing packages per the spec in `authoring_request.formats` and return them in this response's `authored` array. Without this the channel posts NOTHING today.",
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but explainer do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
       "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
       "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
     ],
@@ -474,238 +1108,6 @@
     "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
   },
   "authoring_requests": {
-    "trending": {
-      "schema": "chatgpt-authoring-request/v1",
-      "date": "20260902",
-      "channel": "trending",
-      "reason": "only 0 of 6 packages exist for 20260902: the Claude authoring Routine did not run",
-      "authored_already": 0,
-      "target": 6,
-      "registry_target": 6,
-      "write": 6,
-      "mix": {
-        "graph_race": 4,
-        "reddit_story": 2
-      },
-      "retired_formats": [
-        "text_card"
-      ],
-      "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-      "where": {
-        "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-        "alternative": "Or commit one file per package to exchange/bundles/20260902/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-        "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-      },
-      "formats": {
-        "graph_race": {
-          "how_to_signal": "set \"format\": \"graph_race\"",
-          "renderer": "make_graph_race.py",
-          "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-          "required": [
-            "format",
-            "slug",
-            "title",
-            "y_label",
-            "duration",
-            "source",
-            "years",
-            "series",
-            "hashtags",
-            "music_vibe"
-          ],
-          "rules": [
-            "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-            "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-            "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-            "Prefer a dramatic crossover or collapse mid-video.",
-            "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-            "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-          ],
-          "media": {
-            "shots": false,
-            "chatgpt_supplies_images": false,
-            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-          },
-          "target_today": 4
-        },
-        "reddit_story": {
-          "how_to_signal": "omit the `format` field, set `subreddit`",
-          "renderer": "make_reddit_story.py",
-          "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-          "required": [
-            "subreddit",
-            "slug",
-            "title",
-            "hashtags",
-            "script",
-            "shots",
-            "punches",
-            "music_vibe"
-          ],
-          "subreddit_options": [
-            "pettyrevenge",
-            "MaliciousCompliance",
-            "ProRevenge",
-            "entitledparents",
-            "TalesFromTheCustomer",
-            "IDontWorkHereLady"
-          ],
-          "rules": [
-            "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-            "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-            "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-            "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-            "Do not add the Data/Explainer mascot; Trending is a separate channel."
-          ],
-          "media": {
-            "shots": true,
-            "chatgpt_supplies_images": true,
-            "shots_min": 6,
-            "shots_max": 8,
-            "per_shot": [
-              "phrase",
-              "query"
-            ],
-            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-          },
-          "target_today": 2
-        }
-      },
-      "hard_rules": [
-        "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-        "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-        "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-        "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-        "TOS-safe: no slurs, no explicit content, no gore.",
-        "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-        "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-        "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-      ],
-      "do_not_repeat": [
-        "A 2-Year-Old App Just Passed Etsy",
-        "We've Now Found 40,000 Asteroids Near Earth",
-        "Esports' Biggest Prize Ever Just Collapsed",
-        "Nokia Ruled Smartphones. Then Apple Ended It",
-        "His Paper-Only Rule Cost More Than the Supplies",
-        "The Gym Hid Cancellation. I Booked a Sales Tour.",
-        "SpaceX Just Out-Launched The Entire World",
-        "Wind And Solar Just Passed Coal",
-        "Domino's Quietly Buried Pizza Hut",
-        "China's EV Boom Just Passed The Rest Of The World",
-        "She Reported Me To An Employee. I Wasn't One.",
-        "She Blamed Everyone Else For The Freezing Office.",
-        "South Korea's Birth Rate Fell Below Japan's",
-        "The US Just Became The World's #1 Gas Exporter",
-        "Samsung Ruled Phones For 12 Years. Then Apple Passed It.",
-        "The World Now Has More Obese Adults Than Underweight Ones",
-        "The HOA Fined A Wheelchair Ramp. I Had The Paperwork.",
-        "The Bag Sizer Doesn't Know Who You Are",
-        "Electric Cars Just Outsold Diesel Worldwide",
-        "Dubai's Airport Quietly Buried Heathrow",
-        "MSC Just Ended Maersk's 25-Year Reign",
-        "Pakistan Quietly Passed Brazil in Population",
-        "He Wrote The Rule. I Just Followed It.",
-        "The Sign Said Beat Any Price. So I Did.",
-        "Amazon Built Its Own Delivery Army. Then It Won.",
-        "Sports Betting Just Passed The Lottery",
-        "Subway Was America's Sandwich King. Chipotle Passed It.",
-        "Peloton Passed Planet Fitness And Stayed Ahead",
-        "Boss Enforced Dress Code, Employee Followed It Exactly",
-        "Lunch Thief Finally Picked The Wrong Sandwich",
-        "Intel Ruled Chips For Decades. Then TSMC Passed It.",
-        "Grubhub Owned Food Delivery. Then DoorDash Buried It.",
-        "Console Gaming Ruled. Then Phones Beat It.",
-        "Costco Built The Membership Model. Amazon Ate It.",
-        "Her Corporate Lounge Account Was Flagged. Guess Why.",
-        "The Sign Promised 15 Minutes Or Free. I Timed It."
-      ],
-      "levity": {
-        "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-        "moves": [
-          {
-            "name": "the flat undercut",
-            "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-            "example": "The chase lasted two hours. Top speed: twelve."
-          },
-          {
-            "name": "the mundane detail",
-            "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-            "example": "He fled on foot, still holding the salad."
-          },
-          {
-            "name": "the understatement",
-            "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-            "example": "This did not go well for the bees."
-          },
-          {
-            "name": "the callback kicker",
-            "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-            "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-          },
-          {
-            "name": "the deadpan attribution",
-            "how": "Quote officialese straight and let it sit. Do not mock it.",
-            "example": "The report calls this 'an unplanned pond entry'."
-          }
-        ],
-        "never": [
-          "puns and wordplay",
-          "setup-then-punchline structure",
-          "'wait for it', 'plot twist', 'you won't believe'",
-          "exclamation marks",
-          "telling the viewer it was funny ('hilariously', 'comedy gold')",
-          "emoji, 'lol', 'lmao'",
-          "sarcasm aimed at a person rather than a situation",
-          "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-        ],
-        "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-      },
-      "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-      "read_first": [
-        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-        "data_learning/SCHULTE_MEDIA_BRAIN.md",
-        "docs/FALLBACKS.md"
-      ],
-      "media_contract": {
-        "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-        "shape": {
-          "shots": [
-            {
-              "phrase": "...exact substring of your script...",
-              "query": "...what the shot shows...",
-              "media": {
-                "status": "fulfilled",
-                "drive": {
-                  "file_id": "1AbC...",
-                  "folder_id": "1FolderXyz...",
-                  "filename": "<date>__authored-<slug>-s0.png",
-                  "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                  "sharing": "anyone_with_link"
-                },
-                "image": {
-                  "sha256": "...64 hex of the exact bytes...",
-                  "bytes": 1554380,
-                  "format": "png",
-                  "width": 1080,
-                  "height": 1080
-                }
-              }
-            }
-          ]
-        },
-        "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-        "verified_on_arrival": [
-          "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-          "Full pixel decode \u2014 an undecodable file is refused.",
-          "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-          "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-        ],
-        "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-        "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-        "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-      }
-    },
     "explainer": {
       "schema": "chatgpt-authoring-request/v1",
       "date": "20260902",
@@ -762,236 +1164,5 @@
       }
     }
   },
-  "authoring_request": {
-    "schema": "chatgpt-authoring-request/v1",
-    "date": "20260902",
-    "channel": "trending",
-    "reason": "only 0 of 6 packages exist for 20260902: the Claude authoring Routine did not run",
-    "authored_already": 0,
-    "target": 6,
-    "registry_target": 6,
-    "write": 6,
-    "mix": {
-      "graph_race": 4,
-      "reddit_story": 2
-    },
-    "retired_formats": [
-      "text_card"
-    ],
-    "retired_note": "These formats are RETIRED and must not be authored: text_card. They are absent from `formats` and from `mix` on purpose. If an example anywhere \u2014 a README, an old bundle, a remembered instruction \u2014 shows one, the registry wins.",
-    "where": {
-      "preferred": "Add an `authored` array to the SAME response.json you already write, one complete package object per entry. One file write, no new plumbing.",
-      "alternative": "Or commit one file per package to exchange/bundles/20260902/authored/NN_slug.json. Both are read; the response.json array is preferred because it is a single write.",
-      "never": "Do NOT write into state/trending_packages/ directly. Everything you author is validated before promotion, and anything that fails validation is quarantined with reasons rather than silently rendered."
-    },
-    "formats": {
-      "graph_race": {
-        "how_to_signal": "set \"format\": \"graph_race\"",
-        "renderer": "make_graph_race.py",
-        "shape": "animated multi-series chart race \u2014 lines grow, a year counter climbs, a live leaderboard reorders",
-        "required": [
-          "format",
-          "slug",
-          "title",
-          "y_label",
-          "duration",
-          "source",
-          "years",
-          "series",
-          "hashtags",
-          "music_vibe"
-        ],
-        "rules": [
-          "`years`: 6-8 ascending integers. `series`: 2-4 entries, each {name, color, icon, values} with `values` the SAME LENGTH as `years`.",
-          "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, otherwise a brand/org name to look up (\"Netflix\"). Omit only for abstract categories.",
-          "BIG MOVING NUMBERS \u2014 a HARD renderer gate (engines/chart_race.assess), not a preference: the chart is REFUSED if the leader peaks under 50 after unit scaling, or if the biggest swing is under 5x (1.6x only when two MOVING series genuinely trade the lead \u2014 a flat reference line crossing does not count). Verify before submitting: python -c \"from engines import chart_race; print(chart_race.assess(<spec>))\".",
-          "Prefer a dramatic crossover or collapse mid-video.",
-          "`source` must cite real, defensible numbers. Approximate is fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but strongly preferred \u2014 it buys the first-seconds hold.",
-          "`title` <= 60 chars. `duration` 13. No `shots`, no `text`."
-        ],
-        "media": {
-          "shots": false,
-          "chatgpt_supplies_images": false,
-          "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
-        },
-        "target_today": 4
-      },
-      "reddit_story": {
-        "how_to_signal": "omit the `format` field, set `subreddit`",
-        "renderer": "make_reddit_story.py",
-        "shape": "full-screen gameplay + Reddit post card + narrated TTS",
-        "required": [
-          "subreddit",
-          "slug",
-          "title",
-          "hashtags",
-          "script",
-          "shots",
-          "punches",
-          "music_vibe"
-        ],
-        "subreddit_options": [
-          "pettyrevenge",
-          "MaliciousCompliance",
-          "ProRevenge",
-          "entitledparents",
-          "TalesFromTheCustomer",
-          "IDontWorkHereLady"
-        ],
-        "rules": [
-          "ORIGINAL first-person story, 130-170 words, ONE paragraph.",
-          "Open-loop hook; end on a satisfying twist or payoff, NOT a question.",
-          "UNIVERSAL premises \u2014 workplace justice, petty/pro revenge, entitled customers or neighbours, scams turned around, karma. NO weddings, NO relationship/breakup/cheating drama.",
-          "6-8 `shots`: {phrase, query}. Every `phrase` must be an EXACT substring of `script`. `query` is mood b-roll.",
-          "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT substring of `script`; `text` SHORT CAPS; color one of #ff3030 / #ffaa30 / #50ff80.",
-          "Do not add the Data/Explainer mascot; Trending is a separate channel."
-        ],
-        "media": {
-          "shots": true,
-          "chatgpt_supplies_images": true,
-          "shots_min": 6,
-          "shots_max": 8,
-          "per_shot": [
-            "phrase",
-            "query"
-          ],
-          "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
-        },
-        "target_today": 2
-      }
-    },
-    "hard_rules": [
-      "Write EXACTLY 6 package(s) in the mix above \u2014 4 x graph_race, 2 x reddit_story.",
-      "Every package a DIFFERENT topic. None may repeat a title in `do_not_repeat`.",
-      "Real, verifiable stories only for news-based formats \u2014 wire-service (AP/UPI/Reuters/BBC) confirmation or skip it. r/nottheonion and r/FloridaMan carry satire reposts.",
-      "NO fabricated statistics. A graph_race with invented numbers is worse than no video \u2014 the channel's whole data credibility rides on this.",
-      "TOS-safe: no slurs, no explicit content, no gore.",
-      "`slug` lowercase kebab-case; filenames/order 01..06 grouped by format.",
-      "SUPPLY THE MEDIA TOO. Every shot of every reddit_story you write needs an image attached as `media` per `media_contract`. This is the one pass \u2014 nothing downstream asks you again.",
-      "VERIFY BEFORE YOU FINISH: every shot/punch `phrase` is an exact substring of its `script`; every `highlight` is an exact substring of its `text`; every `series.values` has the same length as `years`. These are mechanically checked on our side and a failure means that package is dropped from the slate."
-    ],
-    "do_not_repeat": [
-      "A 2-Year-Old App Just Passed Etsy",
-      "We've Now Found 40,000 Asteroids Near Earth",
-      "Esports' Biggest Prize Ever Just Collapsed",
-      "Nokia Ruled Smartphones. Then Apple Ended It",
-      "His Paper-Only Rule Cost More Than the Supplies",
-      "The Gym Hid Cancellation. I Booked a Sales Tour.",
-      "SpaceX Just Out-Launched The Entire World",
-      "Wind And Solar Just Passed Coal",
-      "Domino's Quietly Buried Pizza Hut",
-      "China's EV Boom Just Passed The Rest Of The World",
-      "She Reported Me To An Employee. I Wasn't One.",
-      "She Blamed Everyone Else For The Freezing Office.",
-      "South Korea's Birth Rate Fell Below Japan's",
-      "The US Just Became The World's #1 Gas Exporter",
-      "Samsung Ruled Phones For 12 Years. Then Apple Passed It.",
-      "The World Now Has More Obese Adults Than Underweight Ones",
-      "The HOA Fined A Wheelchair Ramp. I Had The Paperwork.",
-      "The Bag Sizer Doesn't Know Who You Are",
-      "Electric Cars Just Outsold Diesel Worldwide",
-      "Dubai's Airport Quietly Buried Heathrow",
-      "MSC Just Ended Maersk's 25-Year Reign",
-      "Pakistan Quietly Passed Brazil in Population",
-      "He Wrote The Rule. I Just Followed It.",
-      "The Sign Said Beat Any Price. So I Did.",
-      "Amazon Built Its Own Delivery Army. Then It Won.",
-      "Sports Betting Just Passed The Lottery",
-      "Subway Was America's Sandwich King. Chipotle Passed It.",
-      "Peloton Passed Planet Fitness And Stayed Ahead",
-      "Boss Enforced Dress Code, Employee Followed It Exactly",
-      "Lunch Thief Finally Picked The Wrong Sandwich",
-      "Intel Ruled Chips For Decades. Then TSMC Passed It.",
-      "Grubhub Owned Food Delivery. Then DoorDash Buried It.",
-      "Console Gaming Ruled. Then Phones Beat It.",
-      "Costco Built The Membership Model. Amazon Ate It.",
-      "Her Corporate Lounge Account Was Flagged. Guess Why.",
-      "The Sign Promised 15 Minutes Or Free. I Timed It."
-    ],
-    "levity": {
-      "rule": "Land ONE dry aside per script where the subject allows it. This channel has never made anyone laugh and that is a real gap, not a style preference.",
-      "moves": [
-        {
-          "name": "the flat undercut",
-          "how": "State the absurd fact plainly, then react in 3-6 words with no adjectives. The comedy is the gap between the size of the event and the size of the reaction.",
-          "example": "The chase lasted two hours. Top speed: twelve."
-        },
-        {
-          "name": "the mundane detail",
-          "how": "Amid chaos, name the one boring specific. Specificity is the joke; the reader does the rest.",
-          "example": "He fled on foot, still holding the salad."
-        },
-        {
-          "name": "the understatement",
-          "how": "Describe a disaster as a mild inconvenience. Never signal it \u2014 no 'ironically', no 'you can guess'.",
-          "example": "This did not go well for the bees."
-        },
-        {
-          "name": "the callback kicker",
-          "how": "End by returning to the hook's image with one word changed. It lands because the viewer already has the setup.",
-          "example": "hook 'nobody checked the roof' -> kicker 'somebody should have checked the roof'"
-        },
-        {
-          "name": "the deadpan attribution",
-          "how": "Quote officialese straight and let it sit. Do not mock it.",
-          "example": "The report calls this 'an unplanned pond entry'."
-        }
-      ],
-      "never": [
-        "puns and wordplay",
-        "setup-then-punchline structure",
-        "'wait for it', 'plot twist', 'you won't believe'",
-        "exclamation marks",
-        "telling the viewer it was funny ('hilariously', 'comedy gold')",
-        "emoji, 'lol', 'lmao'",
-        "sarcasm aimed at a person rather than a situation",
-        "a joke in the first 2 seconds \u2014 the hook earns attention, then you spend it"
-      ],
-      "hard_gate": "NO joke on anything involving death, injury, crime victims, war, illness or missing persons. Those stay completely straight \u2014 a quip there is not a tone miss, it is unrecoverable."
-    },
-    "quality_bar": "You are standing in for the channel's brain, not filling a quota. A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today: dry wit, real voice, a hook that stops the thumb in two seconds, and a kicker that names the story instead of trailing off. Six mediocre packages is a worse outcome than four good ones \u2014 if you cannot make one land, write fewer and say so.",
-    "read_first": [
-      "CLAUDE_ROUTINE_INSTRUCTIONS.md",
-      "data_learning/SCHULTE_MEDIA_BRAIN.md",
-      "docs/FALLBACKS.md"
-    ],
-    "media_contract": {
-      "rule": "Every shot in every package you author needs an image. Attach it to the shot itself as `media` \u2014 do not put authored-package images in the top-level `media` array, which is keyed by request_id and has no request for work you invented.",
-      "shape": {
-        "shots": [
-          {
-            "phrase": "...exact substring of your script...",
-            "query": "...what the shot shows...",
-            "media": {
-              "status": "fulfilled",
-              "drive": {
-                "file_id": "1AbC...",
-                "folder_id": "1FolderXyz...",
-                "filename": "<date>__authored-<slug>-s0.png",
-                "download_url": "https://drive.google.com/uc?export=download&id=1AbC...",
-                "sharing": "anyone_with_link"
-              },
-              "image": {
-                "sha256": "...64 hex of the exact bytes...",
-                "bytes": 1554380,
-                "format": "png",
-                "width": 1080,
-                "height": 1080
-              }
-            }
-          }
-        ]
-      },
-      "every_field_must_match_the_checkpoint": "filename, file_id, folder_id, sha256, bytes, format, width, height and sharing are ALL compared against the checkpoint you wrote, and any disagreement refuses the image. Hash and byte count alone say the CONTENT matches; they say nothing about whether the pointer names the same asset you verified. Copy the values from the checkpoint \u2014 do not re-describe the file from memory.",
-      "verified_on_arrival": [
-        "SHA-256 recomputed from the downloaded bytes \u2014 a mismatch is refused, never pinned.",
-        "Full pixel decode \u2014 an undecodable file is refused.",
-        "Placeholder check \u2014 an image with <= 8 distinct colours is refused.",
-        "A Drive file that is not link-visible serves an HTML page instead; that is detected and refused."
-      ],
-      "checkpoint_every_shot": "Each of these images ALSO needs a checkpoint, exactly like a bundle request: `exchange/bundles/<date>/media-progress/<safe_request_id>.json` with `request_kind: \"authored_shot\"`, the package slug in `package_id`, and the shot index in `shot_index`. There is no bundle request behind an authored shot, so build the id yourself: `authored-<slug>-s<shot_index>` (slug lowercased, anything outside [a-z0-9-] replaced by `-`). Derive it from slug + shot index ONLY \u2014 the 07:00 finalizer recomputes the identical string from the package on disk, and it cannot do that from a prompt or a counter. Upload the file as `<date>__<safe_request_id>.png`.",
-      "if_you_cannot": "Leave `media` off that shot and say so honestly. We self-fill it from real stock media \u2014 weaker, but it ships. A fabricated pointer or a wrong hash is worse than an honest omission.",
-      "text_card_and_graph_race": "These formats have no `shots` and need no media from you \u2014 the renderer sources b-roll from `broll_query` and draws the chart itself."
-    }
-  }
+  "authoring_request": null
 }

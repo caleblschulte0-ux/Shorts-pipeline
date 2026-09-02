@@ -2,23 +2,67 @@
   "subreddit": "ProRevenge",
   "slug": "carpet-that-was-never-there",
   "title": "He Billed Me For Carpet That Was Never There",
-  "script": "My landlord tried to keep our whole security deposit for water-damaged carpet in a unit that had hardwood floors under every square foot the entire two years we lived there. I know because I photographed every room, every wall, every floor plank, timestamped, the day we moved in — a habit from a bad first apartment. When the itemized deduction list showed six hundred dollars for carpet replacement, I emailed him the move-in photos and a link to our state's tenant law: bad-faith withholding pays triple damages. He tried backpedaling, calling it a clerical mix-up with another unit. Too late — I'd already filed in small claims with the timestamps and the lease. The judge read the carpet line item out loud, looked at the hardwood photos, and asked him directly where exactly this carpet went. He had no answer. Thirty days later a check arrived for eighteen hundred dollars, three times the deposit, with a one-line note: no explanation required.",
+  "script": "My landlord tried to keep our whole security deposit for water-damaged carpet in a unit that had hardwood floors under every square foot the entire two years we lived there. I know because I photographed every room, every wall, every floor plank, timestamped, the day we moved in \u2014 a habit from a bad first apartment. When the itemized deduction list showed six hundred dollars for carpet replacement, I emailed him the move-in photos and a link to our state's tenant law: bad-faith withholding pays triple damages. He tried backpedaling, calling it a clerical mix-up with another unit. Too late \u2014 I'd already filed in small claims with the timestamps and the lease. The judge read the carpet line item out loud, looked at the hardwood photos, and asked him directly where exactly this carpet went. He had no answer. Thirty days later a check arrived for eighteen hundred dollars, three times the deposit, with a one-line note: no explanation required.",
   "shots": [
-    {"phrase": "tried to keep our whole security deposit", "query": "security deposit paperwork"},
-    {"phrase": "hardwood floors under every square foot", "query": "hardwood floor apartment"},
-    {"phrase": "photographed every room, every wall, every floor plank", "query": "person photographing empty apartment"},
-    {"phrase": "six hundred dollars for carpet replacement", "query": "itemized deduction invoice"},
-    {"phrase": "bad-faith withholding pays triple damages", "query": "tenant law document"},
-    {"phrase": "filed in small claims with the timestamps and the lease", "query": "small claims court filing"},
-    {"phrase": "judge read the carpet line item out loud", "query": "courtroom judge bench"},
-    {"phrase": "a check arrived for eighteen hundred dollars", "query": "mailed check envelope"}
+    {
+      "phrase": "tried to keep our whole security deposit",
+      "query": "security deposit paperwork"
+    },
+    {
+      "phrase": "hardwood floors under every square foot",
+      "query": "hardwood floor apartment"
+    },
+    {
+      "phrase": "photographed every room, every wall, every floor plank",
+      "query": "person photographing empty apartment"
+    },
+    {
+      "phrase": "six hundred dollars for carpet replacement",
+      "query": "itemized deduction invoice"
+    },
+    {
+      "phrase": "bad-faith withholding pays triple damages",
+      "query": "tenant law document"
+    },
+    {
+      "phrase": "filed in small claims with the timestamps and the lease",
+      "query": "small claims court filing"
+    },
+    {
+      "phrase": "judge read the carpet line item out loud",
+      "query": "courtroom judge bench"
+    },
+    {
+      "phrase": "a check arrived for eighteen hundred dollars",
+      "query": "mailed check envelope"
+    }
   ],
   "punches": [
-    {"phrase": "tried to keep our whole security deposit", "text": "DEPOSIT THEFT", "color": "#ff3030"},
-    {"phrase": "hardwood floors under every square foot", "text": "NO CARPET EVER", "color": "#ffaa30"},
-    {"phrase": "bad-faith withholding pays triple damages", "text": "TRIPLE DAMAGES", "color": "#50ff80"},
-    {"phrase": "He had no answer", "text": "CAUGHT", "color": "#ff3030"},
-    {"phrase": "a check arrived for eighteen hundred dollars", "text": "$1,800 CHECK", "color": "#50ff80"}
+    {
+      "phrase": "tried to keep our whole security deposit",
+      "text": "DEPOSIT THEFT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "hardwood floors under every square foot",
+      "text": "NO CARPET EVER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "bad-faith withholding pays triple damages",
+      "text": "TRIPLE DAMAGES",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "He had no answer",
+      "text": "CAUGHT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a check arrived for eighteen hundred dollars",
+      "text": "$1,800 CHECK",
+      "color": "#50ff80"
+    }
   ],
   "hashtags": [
     "prorevenge",
