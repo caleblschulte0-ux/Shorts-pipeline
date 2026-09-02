@@ -1,0 +1,41 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tsmc-vs-intel",
+  "title": "The Chipmaker That Quietly Passed Intel",
+  "hook": "Intel Used To Be Twice As Big",
+  "y_label": "Annual revenue ($ billions)",
+  "duration": 13,
+  "source": "Company annual reports and SEC filings (Intel Form 10-K; TSMC investor relations), approximate net revenue in USD: Intel roughly $43.6B (2010), $55.4B (2015), $77.9B (2020), $54.2B (2023), $53.1B (2024) and $52.9B (2025); TSMC roughly $13.3B (2010), $26.6B (2015), $45.5B (2020), $69.3B (2023), $88.3B (2024) and $121.4B (2025), per TSMC's own reporting and MacroTrends/Statista compilations. TSMC's revenue overtook Intel's around 2022-2023 and has since pulled far ahead on AI-chip demand.",
+  "years": [2010, 2015, 2020, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "Intel",
+      "color": "#0068b5",
+      "icon": "Intel",
+      "values": [43.6, 55.4, 77.9, 54.2, 53.1, 52.9]
+    },
+    {
+      "name": "TSMC",
+      "color": "#e4002b",
+      "icon": "TSMC",
+      "values": [13.3, 26.6, 45.5, 69.3, 88.3, 121.4]
+    }
+  ],
+  "hashtags": [
+    "tsmc",
+    "intel",
+    "semiconductors",
+    "chips",
+    "ai",
+    "technews",
+    "siliconvalley",
+    "manufacturing",
+    "techbusiness",
+    "dataviz",
+    "shorts",
+    "trending",
+    "business"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

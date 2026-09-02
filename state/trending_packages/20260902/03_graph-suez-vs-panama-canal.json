@@ -1,0 +1,39 @@
+{
+  "format": "graph_race",
+  "slug": "graph-suez-vs-panama-canal",
+  "title": "Ships Picked A New Favorite Canal",
+  "hook": "One Canal Lost Its Crown",
+  "y_label": "Annual ship transits",
+  "duration": 13,
+  "source": "Suez Canal Authority and Panama Canal Authority annual transit statistics, as reported by Statista, Reuters and Seatrade Maritime. Suez Canal transits approximately 18,830 (2020), 20,694 (2021), 24,820 (2022), 26,434 (2023, an all-time record), 13,213 (2024) and 12,758 (2025), after Houthi attacks on shipping in the Red Sea forced most carriers to reroute around Africa. Panama Canal transits (fiscal years) approximately 13,369 (2020), 13,342 (2021), 14,200 (2022), 12,638 (2023), 11,240 (2024, cut sharply by a Gatun Lake drought) and 13,404 (2025, after the drought eased) per Panama Canal Authority annual reports. In 2025 Panama moved more ships than Suez for the first time in years.",
+  "years": [2020, 2021, 2022, 2023, 2024, 2025],
+  "series": [
+    {
+      "name": "Suez Canal",
+      "color": "#3498db",
+      "values": [18830, 20694, 24820, 26434, 13213, 12758]
+    },
+    {
+      "name": "Panama Canal",
+      "color": "#e67e22",
+      "values": [13369, 13342, 14200, 12638, 11240, 13404]
+    }
+  ],
+  "hashtags": [
+    "suezcanal",
+    "panamacanal",
+    "shipping",
+    "globaltrade",
+    "redsea",
+    "supplychain",
+    "maritime",
+    "logistics",
+    "geopolitics",
+    "dataviz",
+    "trending",
+    "shorts",
+    "news"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

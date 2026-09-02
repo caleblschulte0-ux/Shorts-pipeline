@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-pickleball-vs-tennis",
+  "title": "The Fastest Sport In America Is Catching Tennis",
+  "hook": "Pickleball Is Catching Tennis",
+  "y_label": "US participants (millions)",
+  "duration": 13,
+  "source": "Sports & Fitness Industry Association (SFIA) annual topline participation reports and USTA participation reports, US participants aged 6+: Tennis approximately 17.7M (2019), 21.6M (2020), 22.5M (2021), 23.6M (2022), 23.8M (2023) and 27.3M (2025); Pickleball approximately 3.3M (2019), 4.2M (2020), 4.8M (2021), 8.9M (2022), 13.6M (2023) and 24.3M (2025), per SFIA's annual State of Pickleball report. Separately, monthly-active-player trackers (Pickleheads/PPA Tour) reported pickleball's monthly participant count passing tennis's for the first time in July 2023, though SFIA's annual survey total for tennis remained higher through 2025.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2025],
+  "series": [
+    {
+      "name": "Tennis",
+      "color": "#f1c40f",
+      "values": [17.7, 21.6, 22.5, 23.6, 23.8, 27.3]
+    },
+    {
+      "name": "Pickleball",
+      "color": "#ff6b35",
+      "values": [3.3, 4.2, 4.8, 8.9, 13.6, 24.3]
+    }
+  ],
+  "hashtags": [
+    "pickleball",
+    "tennis",
+    "sports",
+    "fastestgrowingsport",
+    "sportsdata",
+    "fitness",
+    "racquetsports",
+    "usasports",
+    "dataviz",
+    "trending",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
