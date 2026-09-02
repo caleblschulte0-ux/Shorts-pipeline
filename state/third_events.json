@@ -1218,6 +1218,28 @@
       ],
       "published_versions": [],
       "last_updated": "2026-08-28"
+    },
+    "xqc-about-brows-2026w35": {
+      "event_id": "xqc-about-brows-2026w35",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "brows",
+        "head",
+        "scan"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-02",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/BlindingSpicySwanWholeWheat-_yPGI0fj-dX-AcWG",
+        "https://www.twitch.tv/xqc/clip/LachrymoseAcceptableAlbatrossRalpherZ-0-kNHC6G8eLVxRx2",
+        "https://www.twitch.tv/xqc/clip/AverageInexpensiveAnteaterBabyRage-u3ps9mDoQs8twqIB"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-02"
     }
   }
 }
