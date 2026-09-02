@@ -1,0 +1,19 @@
+{
+  "key": "unclaimed_property_returned_vs_total",
+  "title": "Unclaimed money nationwide vs. what got returned (FY2024, $ billions)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "FY2024 (Jul 2023-Jun 2024)",
+  "source": {
+    "name": "NAUPA/NAST Annual Report",
+    "publisher": "National Association of Unclaimed Property Administrators (NAUPA) / National Association of State Treasurers (NAST)",
+    "url": "https://nast.org/wp-content/uploads/naupa-release-annual-report-oct-29-2024.pdf",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; total nationwide unclaimed property holdings vs. amount states returned to owners in fiscal year 2024, per NAUPA/NAST annual report.",
+  "points": [
+    {"label": "Total held nationwide", "value": 70},
+    {"label": "Returned to owners (FY2024)", "value": 4.49}
+  ]
+}

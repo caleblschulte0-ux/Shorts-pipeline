@@ -54,10 +54,19 @@ _STOPWORDS = frozenset({
     # Sentence-initial referents
     "this", "these", "those", "it", "they", "we", "you", "i", "he", "she",
     "his", "her", "their", "its", "our", "your", "my",
-    # Counting words ("One scientist said...") — proper nouns rarely
-    # start with these and they cause false positives like "One Wi-Fi"
+    # Counting words ("One scientist said...", "Thirty days later") —
+    # proper nouns rarely start with these and they cause false
+    # positives like "One Wi-Fi". Extended 2026-09-02: first-person
+    # narrative scripts (reddit_story) routinely open a sentence with
+    # a spelled-out count ("Thirty days later a check arrived") and
+    # the regex-fallback path (no LLM key) was flagging the bare
+    # number as an uncovered "entity", failing an honestly-anonymous
+    # story's pre-flight coverage for no real reason.
     "one", "two", "three", "four", "five", "six", "seven", "eight",
-    "nine", "ten",
+    "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+    "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty",
+    "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred",
+    "thousand",
     # Temporal sentence-starters
     "today", "yesterday", "tomorrow", "now", "then", "soon", "later",
     "once", "while",
@@ -74,7 +83,7 @@ _STOPWORDS = frozenset({
     "americans", "american",
     # Common adverbs that auto-capitalize
     "back", "still", "even", "just", "also", "very", "always", "never",
-    "ever", "much", "many", "few", "all", "some", "any", "every",
+    "ever", "much", "many", "few", "all", "some", "any", "every", "too",
     # Time units. "Second" is intentionally omitted — collides with
     # "Second Avenue", "Second Amendment", etc. The few false-positive
     # sentence-starts using "Second" as a time unit are tolerable.
@@ -105,19 +114,24 @@ _MAX_ENTITY_WORDS = 4
 
 def extract_proper_nouns(script: str) -> list[str]:
     """Return proper-noun candidates from `script`, in first-mention
-    order, deduplicated. Handles three messy cases the raw regex
+    order, deduplicated. Handles four messy cases the raw regex
     can't:
       1. `Microsoft's` -> `Microsoft` (drop possessive)
       2. `The FAA` -> `FAA` (drop leading stopwords; the sentence
          started with "The" and the regex grabbed it because the next
          word was also capitalized)
       3. Trailing stopwords (rare, e.g. `Apple And`)
+      4. `I'd`/`I'm`/`I've`/`I'll`/`I're` -> `I` -> dropped (a
+         first-person sentence opener like "I'd already filed..." was
+         surviving as a fake 3-letter "entity" because only the
+         possessive `'s` was stripped; found 2026-09-02 authoring
+         reddit_story packages, where this contraction is routine.)
     Drops single-letter results and pure-stopword phrases.
     """
     out: list[str] = []
     seen: set[str] = set()
     for raw in _PROPER_NOUN_RE.findall(script):
-        cand = re.sub(r"'s\b", "", raw).strip()
+        cand = re.sub(r"'(s|d|m|ve|ll|re)\b", "", raw).strip()
         if not cand:
             continue
         # Walk in from both ends, dropping stopword tokens. Stops as
@@ -627,10 +641,12 @@ def validate_package(pkg: dict) -> dict:
     """
     try:
         fmt = _reg.classify(pkg, "trending")
-        needs_shots = _reg.media_requirements("trending", fmt)["shots"] \
-            if fmt else True
+        media_req = _reg.media_requirements("trending", fmt) if fmt else {}
+        needs_shots = media_req.get("shots", True)
+        chatgpt_media = media_req.get("chatgpt_supplies_images", False)
     except _reg.RegistryError:
         needs_shots = True
+        chatgpt_media = False
     if not needs_shots:
         return {"source": "n/a", "total_visuals": 0, "matched": [],
                 "uncovered": [], "coverage_pct": 100.0, "total_shots": 0,
@@ -675,6 +691,24 @@ def validate_package(pkg: dict) -> dict:
         keyword_only.append((s.get("phrase") or "?")[:50])
     n_shots = max(1, len(shots))
     illustrated = len(shots) - len(keyword_only)
+    # A format whose shot images are CONTRACTUALLY ChatGPT's job (the
+    # registry's `chatgpt_supplies_images`, e.g. reddit_story) has not
+    # been touched by that pass yet when the Routine author runs this
+    # pre-flight — every shot is legitimately `{phrase, query}` only, by
+    # design (see FORMAT_SPECS / docs/EXCHANGE_PIPELINE.md). A 0%
+    # illustration score here does not mean the author forgot photos; it
+    # means the media_worker pass has not run yet, so the metric is not
+    # yet meaningful. Same "nothing to cover" shape as the shots-not-
+    # needed branch above and the coverage_pct fix below, one layer
+    # down. Only suppress it pre-enrichment: once ANY shot carries a
+    # real image (ChatGPT ran, or the author pinned one manually),
+    # illustration becomes a real, checkable signal again — e.g. for
+    # Phase B's post-exchange verification, which is exactly where this
+    # metric is supposed to bite.
+    pre_chatgpt_media = chatgpt_media and not any(
+        s.get("image_url") or s.get("image") for s in shots)
+    illustration_pct = (100.0 if pre_chatgpt_media
+                         else round(100.0 * illustrated / n_shots, 1))
     # Same "nothing to cover" reasoning as the no-shots-needed branch above,
     # one level down: a script with zero extracted entities (a genuinely
     # anonymous reddit_story with no named person/place/brand — the format
@@ -695,7 +729,10 @@ def validate_package(pkg: dict) -> dict:
         "coverage_pct": coverage_pct,
         "total_shots": len(shots),
         "keyword_only_shots": keyword_only,
-        "illustration_pct": round(100.0 * illustrated / n_shots, 1),
+        "illustration_pct": illustration_pct,
+        "illustration_note": ("chatgpt_supplies_images for this format; "
+                               "not yet attached — not gated pre-exchange")
+                              if pre_chatgpt_media else None,
     }
 
 

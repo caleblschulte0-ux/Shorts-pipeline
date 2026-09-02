@@ -24807,6 +24807,252 @@
           }
         }
       ]
+    },
+    {
+      "slug": "third-interstellar-visitor",
+      "title": "The Third Visitor From Outside Our Solar System",
+      "hook": "Something just flew past Earth. It wasn't from here.",
+      "closing": "Three visitors, ever. And each one's been bigger.",
+      "question": "Do you think we'll ever catch up to one? Tell me below.",
+      "caption": "Only 3 objects have ever been confirmed passing through our solar system from interstellar space -- 'Oumuamua in 2017, Borisov in 2019, and 3I/ATLAS in 2025. Each one found has been bigger and faster than the last, and this one is the biggest yet: up to 5.6 km wide, moving at 246,000 km/h. Do you think we'll ever catch up to one? 👇",
+      "hashtags": [
+        "interstellar",
+        "comet",
+        "atlas",
+        "oumuamua",
+        "borisov",
+        "space",
+        "astronomy",
+        "nasa",
+        "hubble",
+        "science",
+        "universe",
+        "solarsystem",
+        "spaceexploration",
+        "didyouknow",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "interstellar_objects_timeline",
+          "params": {
+            "file": "interstellar_objects_timeline.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE COUNT",
+          "topic": "interstellar visitors found",
+          "say": "In the history of modern astronomy, we've confirmed something from outside our solar system just 3 times -- 2017, then 2019, then 2025."
+        },
+        {
+          "source": "offline",
+          "key": "interstellar_object_speeds",
+          "params": {
+            "file": "interstellar_object_speeds.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 · GETTING FASTER",
+          "topic": "peak speed through the solar system",
+          "say": "And each one has been faster. 'Oumuamua topped 140,000 kilometers an hour, Borisov hit 177,000 -- and 3I/ATLAS peaked at 246,000, the fastest yet."
+        },
+        {
+          "source": "offline",
+          "key": "interstellar_object_sizes",
+          "params": {
+            "file": "interstellar_object_sizes.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · GETTING BIGGER",
+          "topic": "nucleus size vs the last record holder",
+          "say": "It's also the biggest. Borisov's nucleus was about 1 kilometer across; 3I/ATLAS could be 5.6 kilometers -- big enough that better telescopes might soon catch one even closer."
+        }
+      ]
+    },
+    {
+      "slug": "bat-fungus-collapse",
+      "title": "A Fungus Is Erasing North America's Bats",
+      "hook": "A fungus is quietly wiping out America's bats.",
+      "closing": "No bats, no free pest control. That's the trade.",
+      "question": "Ever seen a bat near your home? Tell me below.",
+      "caption": "Since 2006, a cold-loving fungus called white-nose syndrome has spread from a single New York cave to 35 states, killing over 90% of three major bat species. Bats aren't just creepy -- they save US farmers an estimated $3.7 billion a year eating crop pests. Ever seen a bat near your home? 👇",
+      "hashtags": [
+        "bats",
+        "whitenose",
+        "wildlife",
+        "ecology",
+        "nature",
+        "usgs",
+        "fungus",
+        "conservation",
+        "biodiversity",
+        "agriculture",
+        "pestcontrol",
+        "didyouknow",
+        "science",
+        "animals"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wns_states_affected",
+          "params": {
+            "file": "wns_states_affected.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPREAD",
+          "topic": "states with the bat fungus",
+          "say": "In 2006, a cold-loving fungus showed up in one New York cave. By 2018 it had reached 32 states. Today it's confirmed in 35."
+        },
+        {
+          "source": "offline",
+          "key": "wns_bat_species_decline",
+          "params": {
+            "file": "wns_bat_species_decline.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 · THE DIE-OFF",
+          "topic": "bat population decline",
+          "say": "That fungus is called white-nose syndrome, and it's brutal -- it's killed off 97 percent of northern long-eared bats and 90 percent of little brown bats in under a decade."
+        },
+        {
+          "source": "offline",
+          "key": "wns_pest_control_value",
+          "params": {
+            "file": "wns_pest_control_value.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · WHAT WE LOSE",
+          "topic": "value of bats to farmers",
+          "say": "Here's why that matters beyond the bats: they eat crop pests worth 3.7 to 53 billion dollars a year to US farmers -- a free service that's now disappearing."
+        }
+      ]
+    },
+    {
+      "slug": "cremation-overtakes-burial",
+      "title": "Cremation Just Became the New American Normal",
+      "hook": "More Americans now choose fire over the ground.",
+      "closing": "Half a century ago, almost nobody chose this. Now most do.",
+      "question": "Would you choose cremation or burial? Tell me below.",
+      "caption": "In the 1970s, only about 5% of Americans were cremated. In 2025 it's 63.4%, more than double the burial rate of 31.6%. Cost, mobility, and changing traditions are behind the flip -- and it still varies wildly by state. Would you choose cremation or burial? 👇",
+      "hashtags": [
+        "cremation",
+        "burial",
+        "funeral",
+        "deathcare",
+        "demographics",
+        "society",
+        "nfda",
+        "cana",
+        "tradition",
+        "endoflife",
+        "didyouknow",
+        "dataviz",
+        "culture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cremation_rate_trend",
+          "params": {
+            "file": "cremation_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SHIFT",
+          "topic": "US cremation rate over time",
+          "say": "In the 1970s, almost nobody in America chose cremation -- just 5 percent. By 2010 that hit 41 percent. Today it's 63 percent and still climbing."
+        },
+        {
+          "source": "offline",
+          "key": "cremation_vs_burial_2025",
+          "params": {
+            "file": "cremation_vs_burial_2025.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE CROSSOVER",
+          "topic": "cremation vs burial today",
+          "say": "That means cremation now sits at 63.4 percent, more than double burial's 31.6 percent -- a complete flip from what your grandparents chose."
+        },
+        {
+          "source": "offline",
+          "key": "cremation_rate_by_state",
+          "params": {
+            "file": "cremation_rate_by_state.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": true,
+          "role": "3 · NOT EVERYWHERE",
+          "topic": "cremation rate by state",
+          "say": "But it's not even. Nevada cremates 81.9 percent of people, while Mississippi is still just 32.8 percent -- tradition and cost still split the country."
+        }
+      ]
+    },
+    {
+      "slug": "unclaimed-money-states-hold",
+      "title": "Every State Is Secretly Holding Billions Of Your Money",
+      "hook": "The government might be holding your money right now.",
+      "closing": "Seventy billion dollars, just sitting there. Go check yours.",
+      "question": "Have you ever checked if you're owed money? Tell me below.",
+      "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
+      "hashtags": [
+        "unclaimedmoney",
+        "unclaimedproperty",
+        "personalfinance",
+        "moneytips",
+        "naupa",
+        "finance",
+        "freemoney",
+        "budgeting",
+        "savings",
+        "didyouknow",
+        "financetips",
+        "money"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "unclaimed_property_top_states",
+          "params": {
+            "file": "unclaimed_property_top_states.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "1 · IT'S EVERYWHERE",
+          "topic": "states holding the most money",
+          "say": "US states are sitting on about 70 billion dollars in forgotten money. California alone holds 15 billion of it, more than Texas and Ohio combined."
+        },
+        {
+          "source": "offline",
+          "key": "unclaimed_property_returned_vs_total",
+          "params": {
+            "file": "unclaimed_property_returned_vs_total.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · BARELY RECLAIMED",
+          "topic": "money returned vs money held",
+          "say": "But almost none of it moves. Of that 70 billion, states handed back just 4.49 billion dollars last year -- the rest just sits there."
+        },
+        {
+          "source": "offline",
+          "key": "unclaimed_property_population_share",
+          "params": {
+            "file": "unclaimed_property_population_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · IS IT YOURS?",
+          "topic": "who has unclaimed money",
+          "say": "That's because 1 in 7 Americans -- about 14 percent -- currently have some, from an old paycheck, a deposit, a policy nobody cashed out. It's free to check."
+        }
+      ]
     }
   ],
   "videos": [
