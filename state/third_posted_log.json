@@ -5358,13 +5358,36 @@
       "ts": "2026-09-02T15:08:09.936419+00:00"
     },
     "clip-20260902-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/AmusedSpikyIcecreamRitzMitz-mTPghh_U_jCtbOY_",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/u4_31GXVfR8",
       "title": "Jynxzi Jokes He's Learning Spanish From This Game",
       "kind": "twitch_clip",
-      "ts": "2026-09-02T15:10:52.321233+00:00",
+      "ts": "2026-09-02T15:10:56.385284+00:00",
+      "uploaded_at": "2026-09-02T15:10:56.385303+00:00",
+      "publish_at": "2026-09-02T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AmusedSpikyIcecreamRitzMitz-mTPghh_U_jCtbOY_",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "HE'S LEARNING SPANISH FROM THIS GAME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 31677,
+      "banger": 0.55,
+      "cut": {
+        "start": 4.0,
+        "end": 15.97
+      },
+      "director_cut": true
+    },
+    "clip-20260902-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DelightfulPuzzledWoodpeckerDAESuppy-84AiDvojhEM72vRi",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:15:15.697969+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
