@@ -68,11 +68,15 @@ result or `None`, never raising into a caller; engines never write outside
 ### svg_motion (added 2026-07-30 — capability sprint)
 
 > **STATUS 2026-08-01: demoted `active` -> `experimental`, decision date
-> 2026-09-01.** It has no consumer. It was built for animated cards and
-> `text_card` — the card format it would have served — was retired the next
-> day. Claiming `active` was the exact lie rule zero is about. Adopt it (a
-> `graph_race` stat pop and the `reddit_story` post card are the live
-> candidates) or delete it by the decision date.
+> 2026-09-01, RE-DATED 2026-09-02 -> 2026-10-02.** It has no consumer. It
+> was built for animated cards and `text_card` — the card format it would
+> have served — was retired the next day. Claiming `active` was the exact
+> lie rule zero is about. Adopt it (a `graph_race` stat pop and the
+> `reddit_story` post card are the live candidates) or delete it by the
+> decision date. The 2026-09-01 date passed with neither evaluated; it was
+> re-dated once, with this reason recorded, rather than deleting untried,
+> working code on a technicality — see `engines/__init__.py`'s registry
+> entry. Do not re-date it again without doing the evaluation.
 
 Animated vector renders: the caller supplies `frame_fn(t) -> svg` (t∈[0,1]),
 the engine rasterizes every frame via cairosvg and assembles with ffmpeg.
