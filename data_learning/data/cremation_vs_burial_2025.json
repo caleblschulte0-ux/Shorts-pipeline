@@ -1,0 +1,19 @@
+{
+  "key": "cremation_vs_burial_2025",
+  "title": "Cremation vs. burial, 2025 (percent of deaths)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "2025 Cremation & Burial Report",
+    "publisher": "National Funeral Directors Association (NFDA)",
+    "url": "https://nfda.org/news/media-center/nfda-news-releases/id/8944/us-cremation-rate-is-projected-to-climb-to-619-in-2024",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; NFDA-projected 2025 national rates. Remainder reflects other/unknown disposition methods.",
+  "points": [
+    {"label": "Cremation", "value": 63.4},
+    {"label": "Burial", "value": 31.6}
+  ]
+}

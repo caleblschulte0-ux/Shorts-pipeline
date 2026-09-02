@@ -1,0 +1,20 @@
+{
+  "key": "unclaimed_property_top_states",
+  "title": "States holding the most unclaimed property ($ billions)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "State unclaimed property holdings",
+    "publisher": "National Association of Unclaimed Property Administrators (NAUPA)",
+    "url": "https://unclaimed.org/what-is-unclaimed-property/",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; approximate current unclaimed property holdings compiled from NAUPA-sourced state treasury figures.",
+  "points": [
+    {"label": "California", "value": 15},
+    {"label": "Texas", "value": 10.5},
+    {"label": "Ohio", "value": 4.8}
+  ]
+}

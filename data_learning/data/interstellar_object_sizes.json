@@ -1,0 +1,19 @@
+{
+  "key": "interstellar_object_sizes",
+  "title": "Nucleus size: 3I/ATLAS vs. the previous record holder (km)",
+  "unit": "kilometers",
+  "geography": "Global",
+  "time_coverage": "2019 vs 2025",
+  "source": {
+    "name": "Hubble Space Telescope nucleus size estimates",
+    "publisher": "NASA / ESA Hubble Space Telescope",
+    "url": "https://science.nasa.gov/solar-system/comets/3i-atlas/3i-atlas-facts-and-faqs/",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; 3I/ATLAS nucleus diameter estimated 0.44-5.6 km from Aug 2025 Hubble imaging (upper bound used here); 2I/Borisov nucleus estimated at roughly 0.975 km from earlier Hubble analysis.",
+  "points": [
+    {"label": "3I/ATLAS", "value": 5.6},
+    {"label": "2I/Borisov", "value": 0.975}
+  ]
+}

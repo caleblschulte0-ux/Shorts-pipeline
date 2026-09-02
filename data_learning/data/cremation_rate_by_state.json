@@ -1,0 +1,23 @@
+{
+  "key": "cremation_rate_by_state",
+  "title": "Cremation rate by state, highest vs. lowest (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "State cremation rate rankings",
+    "publisher": "Cremation Association of North America (CANA)",
+    "url": "https://www.directcremate.com/which-states-have-the-highest-and-lowest-cremation-rates/",
+    "officiality": "secondary",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; state cremation rates as reported by CANA-sourced rankings. Mississippi is the only state below 40%; Nevada leads the nation.",
+  "points": [
+    {"label": "Nevada", "value": 81.9},
+    {"label": "Utah", "value": 42.8},
+    {"label": "Kentucky", "value": 41.2},
+    {"label": "Alabama", "value": 38.1},
+    {"label": "Mississippi", "value": 32.8}
+  ],
+  "baseline": {"label": "National average", "value": 63.4}
+}
