@@ -1,40 +1,45 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20260901",
-  "judged_date": "20260831",
+  "date": "20260902",
+  "judged_date": "20260901",
   "alarm": {
-    "date": "20260831",
+    "date": "20260901",
     "ok": false,
     "alarms": [
       {
         "code": "chatgpt_task_failed_finalizer",
         "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260831 (a bundle exists for this date).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260831/response.json, exchange/bundles/20260831/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260901 (a bundle exists for this date).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: exchange/bundles/20260901/response.json, exchange/bundles/20260901/DONE. Re-fire the task in the ChatGPT app; the repo side needs no changes."
       },
       {
         "code": "no_posts_third",
         "severity": "critical",
-        "detail": "third: ZERO videos posted for 20260831 (registry wants 6).",
-        "fix": "Check the third workflow run for 20260831. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "third: ZERO videos posted for 20260901 (registry wants 6).",
+        "fix": "Check the third workflow run for 20260901. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "no_posts_trending",
         "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20260831 (registry wants 6).",
-        "fix": "Check the trending workflow run for 20260831. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "trending: ZERO videos posted for 20260901 (registry wants 6).",
+        "fix": "Check the trending workflow run for 20260901. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "channel_auto_paused",
         "severity": "critical",
         "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
         "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
+      },
+      {
+        "code": "doctor_reviewer_silent",
+        "severity": "warning",
+        "detail": "No doctor findings filed since 20260830 (2 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "explainer: 5/4 posted",
-      "slot fill not checked: daily_report.json has 7 row(s) and none belong to 20260831 \u2014 treating the report as absent for this date",
-      "doctor: findings current (20260830)"
+      "explainer: 4/4 posted",
+      "slot fill not checked: daily_report.json has 7 row(s) and none belong to 20260901 \u2014 treating the report as absent for this date"
     ],
     "deferred": false
   },
@@ -164,48 +169,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-08-24T12:16:31+00:00",
-      "slug": "peloton_passed_planet_fitness_and_stayed",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real graph race with a genuine lead change, wrecked by text that runs off the frame \u2014 the hook line is clipped at both edges and the tip labels overrun the right margin.",
-      "auto_fails": [],
-      "problems": [
-        "hook@0.3\u20130.8: hook banner clipped at the left edge ('he Bike That Out-Earned The Gym') and overlapping the Planet Fitness tip label.",
-        "hook@1.5: the faded hook text lingers as a dark smear across the plot instead of clearing cleanly.",
-        "hook@0.3\u20130.8: y-axis tick labels are cut off at the left edge ('00M' instead of '600M'); same clipping recurs at mid5 and payoff@-0.4.",
-        "mid5/payoff@-1.8/payoff@-0.4: the Peloton and Planet Fitness tip labels run off the right edge ('PELOT\u2026', badge half out of frame) exactly at the moment the final values should read cleanly.",
-        "mid0 (t=2.50s): the two tip badges collide and stack on top of each other at the crossover, making both values unreadable at the most important instant of the race.",
-        "payoff: the '#1 Peloton' resolve is rendered in near-black low-contrast type under the year counter and barely registers; the visible ending is a falling line, so the 'stayed ahead' claim lands weakly."
-      ],
-      "fixes": [
-        "Auto-fit the hook line to the safe width (wrap to two lines if needed) and render it in a reserved band above the plot, not over it; clear it fully by 1.2s.",
-        "Add right/left margin padding to the plot so tip labels and axis ticks always render inside the frame \u2014 clamp the label to flip to the left of the tip when the series is near the right edge.",
-        "Add vertical collision offset for tip badges so the two series separate at the crossover instead of stacking.",
-        "Punch up the payoff: hold the final frame with a high-contrast '#1 PELOTON \u2014 2.7B vs 1.2B' resolve card over the chart, so the reversal is stated, not whispered in near-black text.",
-        "Start the chart mid-build (or add an immediate tip-motion burst) so the first 0.5s has both lines already moving instead of two stubs on an empty axis.",
-        "Tighten the y-axis top margin so the plot fills the frame instead of leaving a dead black band above the highest line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "0de15d8f8a"
-    },
     {
       "ts": "2026-08-24T12:20:41+00:00",
       "slug": "boss_enforced_dress_code__employee_follo",
@@ -2583,16 +2546,55 @@
       "judge": "gemini-fallback",
       "model": "opus",
       "rubric_sha": "0de15d8f8a"
+    },
+    {
+      "ts": "2026-09-01T19:43:14+00:00",
+      "slug": "gold-central-bank-hoarding",
+      "score": 69,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "Strong continuous motion and a mascot who actually performs on the data, but the middle comparison beat runs most of its length as two unlabeled blobs under a half-empty frame, and drifting crops keep clipping the title.",
+      "auto_fails": [],
+      "problems": [
+        "seg2:start/seg2:mid: the vs comparison is two anonymous coloured pills with no numbers or units for most of the beat; the top half of the frame is empty track.",
+        "seg2:end: the source credit line runs straight through the '2025' and 'Pre-2022 average' axis labels, making both hard to read.",
+        "seg3:end and payoff@-0.4: the drifting camera crops the 'central bank gold purchases' title off the left edge, and the speech bubble covers the '2010 -> 2025' subtitle and clips '1136' to '136'.",
+        "hook@0.3-hook@1.5: the caption sits directly over Data's face and the 2015 bar, so the opening reads as text-on-text rather than a clean first frame.",
+        "Hook is a bar-race build rather than an event \u2014 at 0.3s the bars are still near zero and no dollar figure is visible until seg1:end."
+      ],
+      "fixes": [
+        "Reveal the tonne labels (863 / 450) on the seg2 pills as they grow, and scale the pill tracks to the data so the bars occupy the frame's vertical centre instead of the bottom third.",
+        "Move the source credit in seg2 below the category labels (or fade it in after the labels settle) so the two never overlap.",
+        "Clamp the drift/zoom so the title block and axis subtitle stay fully inside frame for seg3/seg4, and offset the speech bubble down-right so it does not cover the 1136 peak label.",
+        "Offset the hook caption below the mascot so frame 1 shows Data's reaction and the leading bar unobstructed.",
+        "Open on the $5,405 figure already slamming in (or the 2015 bar snapping to full) so the first half-second carries the number, not an empty track."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 137
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "0de15d8f8a"
     }
   ],
   "recent_commits": [
-    "b833b2c 2026-09-01 explainer: update posted log + analytics [skip ci]",
-    "652a9f5 2026-08-31 explainer: update posted log + analytics [skip ci]"
+    "ea5995a 2026-09-02 exchange: phase A bundle for 20260902 [skip ci]",
+    "79e75da 2026-09-01 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-08-18": 4,
         "2026-08-19": 2,
         "2026-08-20": 4,
         "2026-08-21": 3,
@@ -2619,15 +2621,14 @@
         "2026-08-29": 2,
         "2026-08-30": 1,
         "2026-08-31": 5,
-        "2026-09-01": 3
+        "2026-09-01": 4
       },
-      "total_posted": 218,
-      "attempted": 218,
+      "total_posted": 219,
+      "attempted": 219,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-08-18": 2,
         "2026-08-19": 4,
         "2026-08-20": 4,
         "2026-08-21": 6,
@@ -2656,63 +2657,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 125,
+      "videos": 122,
       "top_by_vph": [
         {
           "title": "The #1 Baby Name Isn't What It Used To Be",
-          "vph": 15.85,
-          "views": 1219
+          "vph": 12.45,
+          "views": 1218
         },
         {
           "title": "The World Learned To Read. Not Everyone Did.",
-          "vph": 11.85,
-          "views": 829
+          "vph": 9.11,
+          "views": 828
         },
         {
-          "title": "We Take More Photos Every 2 Minutes Than All Of History",
-          "vph": 3.75,
-          "views": 240
+          "title": "The Bug That's Already In 19 States",
+          "vph": 7.04,
+          "views": 103
         },
         {
           "title": "Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons",
-          "vph": 3.26,
+          "vph": 2.87,
           "views": 504
         },
         {
-          "title": "We've Found 39,000 Asteroids. That's Not Enough.",
-          "vph": 0.8,
-          "views": 39
+          "title": "We Take More Photos Every 2 Minutes Than All Of History",
+          "vph": 2.83,
+          "views": 240
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 99,
+      "videos": 96,
       "top_by_vph": [
         {
           "title": "Kaicenat: Kai Cenat's 'Bad Bitch Boat' Gets Blown Up By A Creeper",
-          "vph": 0.86,
-          "views": 392
+          "vph": 0.83,
+          "views": 396
         },
         {
           "title": "Caseoh Panics When He Realizes It's Everywhere On His Setup",
-          "vph": 0.72,
-          "views": 190
+          "vph": 0.67,
+          "views": 191
         },
         {
           "title": "Jynxzi Was Told To Keep It Secret... Then Leaked It Live",
-          "vph": 0.56,
+          "vph": 0.53,
           "views": 202
         },
         {
           "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
-          "vph": 0.4,
+          "vph": 0.34,
           "views": 49
         },
         {
-          "title": "Silky Guapo Moment Turns Into Total Chaos",
-          "vph": 0.35,
-          "views": 82
+          "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
+          "vph": 0.32,
+          "views": 189
         }
       ],
       "full_data": "state/analytics_third/latest.json"
