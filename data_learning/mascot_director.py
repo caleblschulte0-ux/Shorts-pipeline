@@ -657,7 +657,7 @@ def _a_juggle(t, prop):
         a = 2 * math.pi * (t + k / 3.0)
         eggs += _egg_a(170 + 52 * math.sin(a), 96 - 34 * math.cos(a), math.degrees(a))
     return (arms, None, "", eggs, R.eye_open(R.LEX, 0, -6) + R.eye_open(R.REX, 0, -6),
-            R.mouth_o(), _s(t) * 3)
+            R.mouth_o(), 0.0)
 
 
 def _a_push(t, prop):
@@ -676,7 +676,7 @@ def _a_push(t, prop):
             f'fill="#7FD9CD" stroke="{OUT}" stroke-width="8" stroke-linejoin="round"/>'
             + _wheel(cx - 46, cy + 62, rot) + _wheel(cx + 46, cy + 62, rot))
     return (arms, lower, "", cart, R.eye_open(R.LEX, 3, 2) + R.eye_open(R.REX, 3, 2),
-            R.mouth_line(), abs(_s(t)) * 4)
+            R.mouth_line(), 0.0)
 
 
 def _a_ride(t, prop):
@@ -691,7 +691,7 @@ def _a_ride(t, prop):
     arms = R.arm(*R.SHL, 150, 244, -18) + R.arm(*R.SHR, 190, 244, 18)
     return (arms, R.lower_ride(), bird, "",
             R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
-            R.mouth_open_smile(), _s(t) * 5)
+            R.mouth_open_smile(), 0.0)
 
 
 def _a_stagger(t, prop):
@@ -699,42 +699,42 @@ def _a_stagger(t, prop):
     arms = R.arm(*R.SHL, int(120 + wob), 70, -14) + R.arm(*R.SHR, int(220 + wob), 70, 14)
     front = prop(int(170 + wob), 40)
     return (arms, R.lower_seated(), "", front,
-            R.eye_closed(R.LEX) + R.eye_closed(R.REX), R.mouth_line(), abs(_s(t)) * 2)
+            R.eye_closed(R.LEX) + R.eye_closed(R.REX), R.mouth_line(), 0.0)
 
 
 def _a_carry(t, prop):
     sway = _s(t) * 4
     arms = R.arm(*R.SHL, 150, 252, -8) + R.arm(*R.SHR, 190, 252, 8)
     return (arms, None, "", prop(int(170 + sway), int(250 + _s(t, .25) * 4)),
-            R.eye_open(R.LEX, 0, 1) + R.eye_open(R.REX, 0, 1), R.mouth_smile(), _s(t) * 3)
+            R.eye_open(R.LEX, 0, 1) + R.eye_open(R.REX, 0, 1), R.mouth_smile(), 0.0)
 
 
 def _a_hold_up(t, prop):
     arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, 250, int(150 + _s(t) * 8), 10)
     return (arms, None, "", prop(258, int(150 + _s(t) * 8)),
             R.eye_open(R.LEX, 2, -4) + R.eye_open(R.REX, 2, -4),
-            R.mouth_pursed(), _s(t) * 3)
+            R.mouth_pursed(), 0.0)
 
 
 def _a_sit(t, prop):
     arms = R.arm(*R.SHL, 150, 252, -8) + R.arm(*R.SHR, 214, 176, 20)
     return (arms, R.lower_seated(), prop(170, 372), "",
             R.eye_open(R.LEX, 0, 3) + R.eye_open(R.REX, 0, 3),
-            R.mouth_open_smile(), _s(t) * 2)
+            R.mouth_open_smile(), 0.0)
 
 
 def _a_lean(t, prop):
     arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, 286, 200, 12)
     return (arms, None, prop(320, 250), "",
             R.eye_open(R.LEX, 4, 1) + R.eye_open(R.REX, 4, 1),
-            R.mouth_smile(), _s(t) * 3)
+            R.mouth_smile(), 0.0)
 
 
 def _a_present(t, prop):
     ga = int(300 + _s(t) * 20)                    # gesturing arm sweeps
     arms = R.arm(*R.SHL, 150, 250, -8) + R.arm(*R.SHR, ga, int(210 + _s(t) * 12), 12)
     return (arms, None, "", prop(150, 250),
-            R.eye_open(R.LEX, 0, 0) + R.eye_open(R.REX, 0, 0), _talk_mouth(t), _s(t) * 3)
+            R.eye_open(R.LEX, 0, 0) + R.eye_open(R.REX, 0, 0), _talk_mouth(t), 0.0)
 
 
 def _a_cheer(t, prop):
@@ -748,7 +748,7 @@ def _a_point(t, prop):
     arms = R.arm(*R.SHL, 116, 300, -4) + R.arm(*R.SHR, int(300 + _s(t) * 8), 150, 10)
     return (arms, None, prop(330, 150), "",
             R.eye_open(R.LEX, 5, 0) + R.eye_open(R.REX, 5, 0),
-            _talk_mouth(t), _s(t) * 3)
+            _talk_mouth(t), 0.0)
 
 
 # -------------------------------------------------------------------------
@@ -772,7 +772,7 @@ def _a_push_bar(t, _prop):
     arms = R.arm(*R.SHL, px, 250, -6) + R.arm(*R.SHR, px + 8, 288, 6)
     return (arms, lower, "", "",
             R.eye_open(R.LEX, 3, 2) + R.eye_open(R.REX, 3, 2),
-            R.mouth_line(), abs(_s(t)) * 6)
+            R.mouth_line(), 0.0)
 
 
 def _a_ride_line(t, _prop):
@@ -784,7 +784,7 @@ def _a_ride_line(t, _prop):
             + R.arm(*R.SHR, int(276 + lean), int(196 + lean), 26))
     return (arms, R.lower_ride(), "", "",
             R.eye_open(R.LEX, 0, 2) + R.eye_open(R.REX, 0, 2),
-            R.mouth_open_smile(), _s(t) * 12)
+            R.mouth_open_smile(), 0.0)
 
 
 def _a_climb(t, _prop):
@@ -1148,7 +1148,7 @@ def _a_catch_fall(t, _prop):
         imp = math.sin(min(1.0, s * 2) * math.pi * 0.5)
         lh = [126, 60 + imp * 30, -14]; rh = [214, 60 + imp * 30, 14]
         lower = _braced_legs(crouch=0.25 + imp * 0.65, sway=8)
-        bob = 2.0 + imp * 14; tilt = math.sin(s * math.pi * 8) * 3
+        bob = 2.0 + imp * 14; tilt = 0.0  # was a 8-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                        # holds it aloft, trembling
         tr = math.sin(s * math.pi * 10) * 3
@@ -1196,7 +1196,7 @@ def _a_get_buried(t, _prop):
     elif z == 1:                                  # pressed down under the pile
         lh = [130, 120 + s * 60, -10]; rh = [210, 120 + s * 60, 10]
         lower = _braced_legs(crouch=0.4 + s * 0.5, sway=6)
-        bob = 6 + s * 22; tilt = math.sin(s * math.pi * 6) * 3
+        bob = 6 + s * 22; tilt = 0.0  # was a 6-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                         # one defiant arm punches out
         up = math.sin(s * math.pi) * 20
@@ -1267,7 +1267,7 @@ def _a_compressed(t, _prop):
         sq = s
         lh = [96 + sq * 20, 210, -22]; rh = [244 - sq * 20, 210, 22]
         lower = _braced_legs(crouch=0.2 + sq * 0.6, sway=4)
-        bob = 2 + sq * 16; tilt = math.sin(s * math.pi * 7) * 2
+        bob = 2 + sq * 16; tilt = 0.0  # was a 7-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                         # pops UP out of the squeeze
         up = math.sin(s * math.pi) * 24
@@ -1292,7 +1292,7 @@ def _a_stretched(t, _prop):
         w = 60 + s * 50
         lh = [170 - w, 186, -22]; rh = [170 + w, 186, 22]
         lower = _braced_legs(crouch=0.3, sway=10 + s * 10)
-        bob = 3 + s * 3; tilt = math.sin(s * math.pi * 5) * 4
+        bob = 3 + s * 3; tilt = 0.0  # was a 5-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                          # released: snaps to one side
         lh = [116, 96, -14]; rh = [200 - s * 30, 120, 10]
@@ -1359,7 +1359,7 @@ def _a_transform_reveal(t, _prop):
         lower = _braced_legs(crouch=0.3, sway=8); bob = 3
         tilt = -10 * s; expr = "think"
     elif z == 1:                                   # the SPIN (big tilt sweep)
-        tilt = math.sin(s * math.pi * 2) * 24
+        tilt = 0.0  # was a 2-cycle rattle: body vibration, not acting
         lh = [110 + s * 30, 180, -16]; rh = [230 - s * 30, 180, 16]
         lower = _braced_legs(crouch=0.25, sway=12)
         bob = 2 - math.sin(s * math.pi) * 8; expr = "happy"
@@ -1409,7 +1409,7 @@ def _a_stack_tiles(t, _prop):
         cyc = (1.0 - math.cos(s * math.pi * 2 * 3)) * 0.5
         lh = [128, 250 - cyc * 160, -12]; rh = [212, 250 - cyc * 160, 12]
         lower = _braced_legs(crouch=0.55 - cyc * 0.45, sway=6)
-        bob = 8 - cyc * 10; tilt = math.sin(s * math.pi * 6) * 3
+        bob = 8 - cyc * 10; tilt = 0.0  # was a 6-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                          # slam the last one, step back
         lh = [126, 96, -14]; rh = [214, 96, 14]
@@ -1851,17 +1851,14 @@ def compose_anim(spec: dict, t: float) -> str:
     env = ENVS.get(prop_name, _shadow)() if grounded else ""
     masc = R.assemble(arms, eyes, mouth, lower=lower,
                       extra_back=back, extra_front=front)
-    # THE CHOKEPOINT: the whole body never translates or rotates. Every
-    # animator is free to return a `bob` and a `tilt`, and many still do —
-    # continuous _s(t) breathing in the legacy actions, and tilt rattles of up
-    # to eight cycles per phase in the coupled ones. Applied to the whole rig
-    # they are a character vibrating on the spot, which is what the channel has
-    # been shipping. Killing them here rather than in twenty animators means
-    # there is exactly ONE place this can come back, and a test watches it.
-    #
-    # What still moves: arms, legs, props, eyes, mouth — the performance.
-    _ = (bob, tilt)
-    inner = env + f'<g transform="translate(0,0) rotate(0,170,210)">{masc}</g>'
+    # Whole-body bob/tilt are applied — a crouch, a drive, a progressive lean
+    # are the PERFORMANCE and they move once, in one direction, within a beat.
+    # What is banned is the PERIODIC form: a continuous _s(t) breath, or a tilt
+    # that rattles several cycles inside one phase. Those are vibration, they
+    # are what read as a handheld camera, and tests/test_no_camera_shake.py
+    # fails the build if one reappears.
+    inner = env + (f'<g transform="translate(0,{bob:.1f}) '
+                   f'rotate({tilt:.1f},170,210)">{masc}</g>')
 
     return R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}")
 

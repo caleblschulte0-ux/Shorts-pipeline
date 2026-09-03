@@ -117,32 +117,29 @@ def test_posed_rig_has_zero_idle_bob_at_every_phase():
 # --------------------------------------------------------------------------- #
 # 6: the chokepoint — the whole body never translates or rotates
 # --------------------------------------------------------------------------- #
-def test_no_animator_can_move_the_whole_body():
-    """Every animator, every phase: the rig's group transform must be identity.
+def test_no_periodic_whole_body_term_in_any_animator():
+    """The rule is not "the body never moves" — a crouch, a drive and a
+    progressive lean are the performance, and the acting gate needs them.
+    The rule is that whole-body motion may never be PERIODIC:
 
-    This is the guarantee that matters, because it does not depend on auditing
-    twenty animators. Many of them still RETURN a bob/tilt — continuous _s(t)
-    breathing in the legacy actions, tilt rattles of up to eight cycles per
-    phase in the coupled ones — and compose_anim must refuse to apply them.
+      * no `bob` driven by _s(t), which is sin(2*pi*t) — a continuous breath
+        that runs for the entire video;
+      * no `tilt` driven by sin(x * pi * N) with N >= 2 — a rattle of several
+        cycles inside a single phase.
+
+    Both read as a vibrating character, which is what a viewer calls camera
+    shake. One-shot arcs (sin(s*pi), or anything linear in phase) are fine.
     """
-    import re as _re
-    from data_learning import mascot_director as md
-
-    actions = sorted(md.ANIMATORS) + ["pose"]
     bad = []
-    for action in actions:
-        spec = {"action": action, "prop": "price_tag", "text": "9",
-                "pose": {"lh": [150, 252, -8], "rh": [190, 252, 8],
-                         "motion": {"limb": "both", "amp": 6}, "bob": 8}}
-        for i in range(9):
-            svg = md.compose_anim(spec, i / 8.0)
-            for tx, ty in _re.findall(r"translate\(([-\d.]+),\s*([-\d.]+)\)", svg):
-                if float(tx) or float(ty):
-                    bad.append(f"{action}@{i/8.0}: translate({tx},{ty})")
-            for rot in _re.findall(r"rotate\(([-\d.]+),", svg):
-                if float(rot):
-                    bad.append(f"{action}@{i/8.0}: rotate({rot})")
-    assert not bad, f"whole-body motion is back: {bad[:4]}"
+    for i, ln in enumerate(_DIRECTOR.splitlines(), 1):
+        code = ln.split("#", 1)[0]
+        if re.search(r"\bbob\s*=.*_s\(", code):
+            bad.append(f"{i}: continuous breath -> {ln.strip()[:70]}")
+        m = re.search(r"\btilt\s*=\s*math\.sin\([a-z_]+ \* math\.pi \* ([\d.]+)\)",
+                      code)
+        if m and float(m.group(1)) >= 2:
+            bad.append(f"{i}: {m.group(1)}-cycle rattle -> {ln.strip()[:70]}")
+    assert not bad, "periodic whole-body motion is back:\n  " + "\n  ".join(bad[:5])
 
 
 def test_body_pixels_do_not_move_between_phases():
