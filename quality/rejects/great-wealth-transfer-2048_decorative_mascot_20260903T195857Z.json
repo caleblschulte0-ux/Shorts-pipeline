@@ -1,0 +1,32 @@
+{
+ "slug": "great-wealth-transfer-2048",
+ "ts": "20260903T195857Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg3:start (t=31.94) to payoff@-0.4 (t=47.93) Data just strolls along the flat top of the purple capsule with no bit tied to the 2%/98% stat, and by seg4:start his head is cropped off by the callout box.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "frozen_beat_with_colliding_labels",
+  "visible_evidence": "At seg3:start/mid/end the two capsules are already at full height and never move, and the two axis labels are printed on top of each other into an unreadable smear \u2014 'Wealthiest 2% of households' and 'The other 98% of households' overlap as one string across the bottom; the header subtitle 'WEALTHIEST 2% OF HOUSEHOLDS VS THE OTHER 98%' is clipped off the right edge, and the pink 98% capsule carries no value at all while the purple one only gets '62' at seg4:mid.",
+  "root_cause": "The scene is drawn pre-grown rather than animated, and both category labels are placed at the same centered anchor instead of under their own bar, so the payoff comparison ($62T from 2% equals the other 98% combined) is neither animated nor legible.",
+  "repair_goal": "Animate the two capsules growing from zero to equal height with counting value labels on BOTH bars ($62T vs $62T) so the equality lands visually, place each category label centered under its own capsule inside the safe area, un-clip the header subtitle, and give Data a real bit here \u2014 e.g. hauling the tiny-2% bar up until it matches the 98% bar."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "race_sprint"
+  }
+ ]
+}

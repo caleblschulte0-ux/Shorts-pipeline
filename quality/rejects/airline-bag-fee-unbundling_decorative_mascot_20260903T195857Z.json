@@ -1,0 +1,41 @@
+{
+ "slug": "airline-bag-fee-unbundling",
+ "ts": "20260903T195857Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start/mid/end (t=6.94/10.72/14.49) show Data in the identical standing pose inside the purple pill for ~8s; elsewhere (seg0, seg3) he only perches on the leading bar \u2014 the same act every scene, never a setup->action->payoff.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "misproportioned_comparison_and_static_mascot",
+  "visible_evidence": "At seg2:end (t=25.41) the pink '7.1' pill stands roughly 30% as tall as the purple '117.9' pill, so a 17x gap reads as ~3x \u2014 the comparison lies visually; the two bottom labels 'Global ancillary revenue' and 'US bag fees' overlap into 'revenuUS bag fees' and collide with the source line; and Data holds one unchanged standing pose inside the purple pill across seg1:start, seg1:mid and seg1:end.",
+  "root_cause": "The two-column 'vs' template scales each column independently (or applies a minimum-height floor) instead of mapping both values onto one shared height axis, its bottom labels are placed at fixed x with no collision/width fit, and no per-beat performance was authored for the mascot in this scene so he falls back to an idle stand.",
+  "repair_goal": "Scale both columns on a single shared value->height axis so 7.1 renders at ~1/17th of 117.9 (with the tiny pill called out rather than padded), lay the two column labels out without overlap and clear of the source line, and give Data an authored setup->action->payoff in this beat \u2014 e.g. climbing the small bag-fee pill and looking up at the ancillary tower."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}
