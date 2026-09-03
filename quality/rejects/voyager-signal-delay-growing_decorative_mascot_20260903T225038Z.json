@@ -1,0 +1,41 @@
+{
+ "slug": "voyager-signal-delay-growing",
+ "ts": "20260903T225038Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the identical arms-out standing pose in hook@0.3, seg1:mid, seg2:mid, seg3:mid and seg4:end \u2014 he is translated along the bars but never performs a setup->action->payoff bit tied to the 22-hour delay or the 470->230W decline.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "misframed_demonstration",
+  "visible_evidence": "seg3:start/mid/end are captioned 'why it's fading' with the subtitle '1977 (LAUNCH) IS 67% OF THE WHOLE' and a 67%/33% stacked column, while the narration says the RTG fell from 470 watts to about 230. The 2026 33% block floats detached above the pink 67% block with a hard gap (seg3:start), both value labels are ghost-grey on near-black and barely legible, and Data just stands at the base of the pink block being progressively covered by it (seg3:end). The only added motion is a lone empty cyan ellipse popping in at seg3:mid.",
+  "root_cause": "The scene reuses a generic share-of-whole column template and its auto-generated '% of the whole' subtitle instead of demonstrating a decline; the real quantities (470W -> 230W) never appear as a physical shrink, and the mascot has no act attached to the power loss.",
+  "repair_goal": "Rebuild seg3 as a visible DRAIN: one battery/power bar labelled 470 W that physically shrinks to 230 W with the watt numbers in high-contrast type, instruments switching off one by one as it falls, and Data performing a real bit against it (setup: flipping instrument switches off; action: bracing as the bar drops on him; payoff: he keeps one radio light lit). Kill the '67% of the whole' framing and the empty cyan ellipse."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "stack",
+   "perf": "hoist_stack"
+  },
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "stack",
+   "performance": "hoist_stack"
+  }
+ ]
+}

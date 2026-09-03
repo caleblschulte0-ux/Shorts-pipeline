@@ -1,0 +1,32 @@
+{
+ "slug": "great-wealth-transfer-2048",
+ "ts": "20260903T225038Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg3:start (t=31.9s) to payoff@-0.4 (t=48.0s) \u2014 a third of the runtime \u2014 Data just leans/perches on the left purple capsule with micro pose shifts and never performs a setup\u2192action\u2192payoff tied to the 2%-vs-98% stat.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "illegible_layout",
+  "visible_evidence": "At seg3:start/mid/end (t=31.9\u201339.0s) the two category labels print on top of each other along the baseline \u2014 'Wealthiest 2% of households' and 'The other 98% of households' overlap into unreadable mush ('offhe.uslehol98'), the subtitle 'WEALTHIEST 2% OF HOUSEHOLDS VS THE OTHER 98%' is clipped off the right edge, and neither capsule carries a value the whole scene (the '62' only fades in at seg4:mid, and only on the purple one).",
+  "root_cause": "Two bottom axis labels are placed at the same y with no column-anchored x-offset or width budget, and the value labels are keyed to a later scene, so the scene that carries the video's whole punchline ('2% hand down as much as the other 98%') renders with no readable identification of either bar.",
+  "repair_goal": "Anchor each capsule's label under its own column with wrapping inside the column width (never centered/overlapping), fit the subtitle inside the safe area, and reveal BOTH values ($62T vs $62T) during seg3 so the equality is what the viewer sees, not something they infer from the voiceover."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "race_sprint"
+  }
+ ]
+}

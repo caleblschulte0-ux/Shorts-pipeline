@@ -2,5 +2,9 @@
  "2": {
   "viz": "stack",
   "perf": "hoist_stack"
+ },
+ "1": {
+  "viz": "comparison",
+  "perf": "compressed"
  }
 }

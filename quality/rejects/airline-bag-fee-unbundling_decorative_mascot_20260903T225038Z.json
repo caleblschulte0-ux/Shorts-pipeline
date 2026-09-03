@@ -1,0 +1,41 @@
+{
+ "slug": "airline-bag-fee-unbundling",
+ "ts": "20260903T225038Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start/mid/end (t=19.10-25.42s) he stands arms-down inside the purple capsule for the entire beat, and elsewhere (seg0:end, seg3:end, seg4:end) he only perches on the leading bar tip \u2014 no setup->action->payoff tied to any number.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "inert_mascot_and_broken_layout",
+  "visible_evidence": "seg2:start/mid/end: the two axis labels collide into unreadable text ('Global ancillary revenuUS bag fees'); the value labels 117.9 and 7.1 are rendered in near-background pink/white at ~20% contrast and are barely legible; the top half of both capsule tracks stays empty; the mascot stands motionless inside the purple bar with arms down and never reacts to the 117.9-vs-7.1 gap; the source line is clipped at the frame edge.",
+  "root_cause": "The vertical VS comparison scene uses a full-height track with bottom-anchored fill and bottom-anchored labels that were never collision-tested at this label length, and the scene's mascot slot got a static standing pose parked inside the bar instead of a performance tied to the 16x gap.",
+  "repair_goal": "Give seg2 a real bit on the size gap \u2014 Data climbs or is dwarfed by the 117.9 column while the 7.1 stub barely reaches his knee \u2014 and fix the layout: stack/shorten the two bar labels so they never overlap, raise value-label contrast to foreground white, and scale the tracks so the fill occupies the frame instead of leaving the top half empty."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}
