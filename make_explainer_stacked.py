@@ -845,8 +845,9 @@ def _build_topic_image_pool(shots: list["Shot"]) -> list[dict]:
     thumbnails of the same source image at different resolutions
     can't both end up in the pool — and therefore can never get
     picked back-to-back. Each entry drops straight into the
-    renderer's existing `is_image` branch (Ken Burns zoompan) and
-    carries `title` from the source filename for token scoring.
+    renderer's existing `is_image` branch (a STATIC fill since the
+    no-camera-movement ruling) and carries `title` from the source
+    filename for token scoring.
     """
     context = next((s.topic_context for s in shots if s.topic_context), "")
     if not context:
@@ -1636,10 +1637,10 @@ def build_timed_top(
                 f"[1:v]scale={W*2}:{top_h*2}[canvas];"
                 f"[0:v]scale={W*2}:{top_h*2}:force_original_aspect_ratio=decrease[fg];"
                 f"[canvas][fg]overlay=(W-w)/2:(H-h)/2:format=auto[stage];"
-                f"[stage]zoompan=z='{z_expr}'"
-                f":x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
-                f":d={frames}:s={W}x{top_h}:fps={FPS},"
-                f"setsar=1[out]"
+                # NO KEN BURNS. zoompan truncates its pan to whole pixels per
+                # frame, so even a slow push judders the picture. Same operator
+                # ruling as the studio and reddit renders: the frame is locked.
+                f"[stage]scale={W}:{top_h},setsar=1[out]"
             )
             try:
                 run([

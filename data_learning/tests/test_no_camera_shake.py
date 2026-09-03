@@ -224,6 +224,87 @@ def test_body_pixels_do_not_move_between_phases():
     assert not moved, f"body band shifts at phases {moved} — the rig still moves"
 
 
+# --------------------------------------------------------------------------- #
+# 7: EVERY CHANNEL, not just this one (2026-09-03: the operator found the same
+#    wobble on trending — it was a different oscillator in a different file)
+# --------------------------------------------------------------------------- #
+_RENDER_PATHS = [
+    "make_reddit_story.py",            # trending: reddit_story
+    "make_explainer_stacked.py",       # stacked explainer
+    "make_text_card.py",               # retired format, still importable
+    "engines/chart_race.py",           # trending: graph_race
+    "shared/themed_bottom.py",         # trending: bottom strip
+    "data_learning/footage_hybrid.py", # stock-footage compositor
+    "data_learning/studio_render.py",  # data channel master
+]
+
+
+def _sources():
+    for rel in _RENDER_PATHS:
+        f = _REPO / rel
+        if f.exists():
+            yield rel, f.read_text()
+
+
+def test_no_zoompan_in_any_channel():
+    """zoompan is a moving crop window. No channel ships one."""
+    bad = [f"{rel}:{i}" for rel, src in _sources()
+           for i, ln in enumerate(src.splitlines(), 1)
+           if "zoompan" in ln.split("#", 1)[0]]
+    assert not bad, f"zoompan is back: {bad[:5]}"
+
+
+def test_no_whole_frame_roll_in_any_channel():
+    """np.roll of a finished frame is a shaken camera. Subjects may move; the
+    frame may not. (The quake and chase renderers each had one.)"""
+    bad = [f"{rel}:{i}" for rel, src in _sources()
+           for i, ln in enumerate(src.splitlines(), 1)
+           if "np.roll(out" in ln.split("#", 1)[0]]
+    assert not bad, f"whole-frame roll is back: {bad[:5]}"
+
+
+def test_no_periodic_pan_in_any_channel():
+    """A crop/overlay/zoompan coordinate driven by sin/cos of time — the shape
+    every one of these bugs has had, whichever file it lived in."""
+    bad = []
+    for rel, src in _sources():
+        for i, ln in enumerate(src.splitlines(), 1):
+            code = ln.split("#", 1)[0]
+            if re.search(r"[xy]\s*=\s*'[^']*\b(sin|cos)\(", code) or \
+               re.search(r"(crop|overlay)=[^\n]*\b(sin|cos)\(", code):
+                bad.append(f"{rel}:{i}: {ln.strip()[:60]}")
+    assert not bad, f"a periodic pan is back: {bad[:5]}"
+
+
+def test_kenburns_engine_is_retired():
+    """engines/still_motion is the canonical Ken Burns. It must refuse, and
+    maybe_kenburns must keep the engine contract by returning None."""
+    from engines.still_motion import kenburns, maybe_kenburns
+    try:
+        kenburns("x.png", "o.mp4", 2.0)
+        raise AssertionError("kenburns() still renders a camera move")
+    except RuntimeError:
+        pass
+    assert maybe_kenburns("x.png", "o.mp4", 2.0) is None, \
+        "maybe_kenburns must return None, not a moving clip"
+
+
+def test_camera_float_module_stays_retired():
+    """main retired shared/camera_float on 2026-08-25. It stays retired."""
+    from shared import camera_float as cf
+    for name in ("crop_vf", "overlay_xy", "px_per_frame"):
+        fn = getattr(cf, name, None)
+        if fn is None:
+            continue
+        try:
+            fn(1080, 1920)
+            raise AssertionError(f"camera_float.{name} works again")
+        except AssertionError:
+            raise
+        except Exception:
+            pass
+
+
 def _main() -> int:
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

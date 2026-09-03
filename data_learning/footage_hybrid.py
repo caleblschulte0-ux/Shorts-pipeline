@@ -12,9 +12,11 @@ zero critical failures) on footage assembled with three rules and nothing else:
   1. REAL footage only — NASA hosts data-visualizations and artist animations
      alongside camera footage; the animations read as GENERIC_CG to the panel.
      `is_real_footage()` rejects them from metadata before download.
-  2. FULL-FRAME, with a matched continuous move — the footage IS the beat
-     (scaled/cropped to fill 1920x1080 + a slow zoompan push), never a small
-     rectangle pasted into an animation. `full_frame_beat()`.
+  2. FULL-FRAME — the footage IS the beat (scaled/cropped to fill
+     1920x1080), never a small rectangle pasted into an animation. The
+     motion is the FOOTAGE's own; the camera does not move (the slow
+     push this used to add was retired with every other camera move on
+     2026-09-03). `full_frame_beat()`.
   3. A motion-matched DISSOLVE between beats — never a hard cut from motion to a
      near-static image (that is the PASTED_MEDIA tell), never a fade to black.
      `dissolve_join()`.
@@ -361,7 +363,8 @@ def full_frame_beat(src: Path, ss: float, dur: float, out: Path,
     # to fill, then the push.
     vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
           f"crop={W * 2}:{H * 2},"
-          f"zoompan=z='{z}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+          # NO PUSH — the frame is locked (operator ruling). zoompan judders.
+          f"null,"
           f"d=1:s={W}x{H}:fps={FPS},format=yuv420p")
     # A SHOT MUST BE EXACTLY AS LONG AS ITS BEAT. `-t` on a source that runs
     # out early yields a SHORT clip and ffmpeg exits 0 — so the concat comes up
@@ -432,7 +435,8 @@ def image_beat(src: Path, dur: float, out: Path,
     # cost is paid once and `-t` truncation is unnecessary.
     vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
           f"crop={W * 2}:{H * 2},setsar=1,"
-          f"zoompan=z='{z}':x='{x}':y='{y}':"
+          # NO PUSH/PAN — the frame is locked (operator ruling).
+          f"null,"
           f"d={frames}:s={W}x{H}:fps={FPS},format=yuv420p")
     subprocess.run(
         ["ffmpeg", "-y", "-loglevel", "error", "-i", str(src),
