@@ -1148,5 +1148,1123 @@
       "music_vibe": "dark",
       "gameplay": "minecraft"
     }
+  },
+  "20260603": {
+    "01_microsoft-majorana-2.json": {
+      "version": 8,
+      "slug": "microsoft-majorana-2",
+      "title": "Microsoft's Quantum Chip Just Got 1,000x More Stable",
+      "hashtags": [
+        "majorana2",
+        "microsoftquantum",
+        "quantumcomputing",
+        "quantumchip",
+        "qubitbreakthrough",
+        "microsoftbuild",
+        "build2026",
+        "quantumtech",
+        "quantumerror",
+        "microsoftai",
+        "quantumcomputer",
+        "quantumhardware",
+        "futuretech",
+        "techai"
+      ],
+      "script": "For 30 years, quantum computers have been plagued by a single fatal flaw \u2014 their qubits last milliseconds before collapsing from noise. Microsoft just cracked it. The new Majorana 2 chip, unveiled at Build 2026, uses lead superconductors instead of aluminum to shield qubits from interference. Average qubit lifetime: 20 seconds \u2014 1,000 times more reliable than Majorana 1. Microsoft now says a full-scale quantum computer is on track by 2029.",
+      "shots": [
+        {
+          "phrase": "For 30 years, quantum computers have been plagued",
+          "query": "quantum computer laboratory error cryogenic noise research"
+        },
+        {
+          "phrase": "Microsoft just cracked it",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+          "query": "Microsoft CEO technology announcement conference stage"
+        },
+        {
+          "phrase": "Majorana 2 chip, unveiled at Build 2026",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_System_Two_Ikerbasque_01.jpg",
+          "query": "quantum chip hardware cryogenic cooling laboratory closeup"
+        },
+        {
+          "phrase": "lead superconductors instead of aluminum",
+          "query": "superconductor metal material science laboratory physics"
+        },
+        {
+          "phrase": "1,000 times more reliable than Majorana 1",
+          "query": "reliability improvement exponential bar chart comparison technology"
+        },
+        {
+          "phrase": "full-scale quantum computer is on track by 2029",
+          "query": "quantum computing future roadmap technology timeline progress"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "milliseconds before collapsing from noise",
+          "text": "COLLAPSES IN MILLISECONDS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Microsoft just cracked it",
+          "text": "MICROSOFT CRACKED IT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "lead superconductors instead of aluminum",
+          "text": "LEAD, NOT ALUMINUM",
+          "color": "#ffaa30",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "1,000 times more reliable",
+          "text": "1,000X MORE RELIABLE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 195,
+          "duration": 2.4
+        },
+        {
+          "phrase": "on track by 2029",
+          "text": "QUANTUM BY 2029",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.2
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_microsoft-mai-thinking-1.json": {
+      "version": 8,
+      "slug": "microsoft-mai-thinking-1",
+      "title": "Microsoft Just Built Its Own AI \u2014 And It Beats OpenAI",
+      "hashtags": [
+        "microsoftai",
+        "maithinking1",
+        "openai",
+        "microsoftbuild",
+        "build2026",
+        "aimodel",
+        "reasoningai",
+        "llm",
+        "aicompetition",
+        "artificialintelligence",
+        "satyanadella",
+        "aibenchmark",
+        "aibreakthrough",
+        "techaiwar",
+        "aiindependence"
+      ],
+      "script": "Microsoft has paid OpenAI more than $13 billion since 2019. Today it announced something different. MAI-Thinking-1 is Microsoft's first in-house reasoning model \u2014 trained from scratch using zero OpenAI data. 35 billion active parameters. It scores 97 percent on AIME math benchmarks. Independent raters prefer it to Claude Sonnet in blind tests. It matches Opus on coding. Microsoft is no longer dependent on OpenAI.",
+      "shots": [
+        {
+          "phrase": "Microsoft has paid OpenAI more than $13 billion",
+          "query": "Microsoft OpenAI partnership deal money billions contract signed"
+        },
+        {
+          "phrase": "MAI-Thinking-1 is Microsoft's first in-house reasoning model",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+          "query": "Microsoft CEO stage keynote announcement AI product launch"
+        },
+        {
+          "phrase": "trained from scratch using zero OpenAI data",
+          "query": "AI training data center servers computing from scratch"
+        },
+        {
+          "phrase": "97 percent on AIME math benchmarks",
+          "query": "AI benchmark test score performance chart math reasoning"
+        },
+        {
+          "phrase": "prefer it to Claude Sonnet in blind tests",
+          "query": "AI model comparison blind evaluation human preference test"
+        },
+        {
+          "phrase": "Microsoft is no longer dependent on OpenAI",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_sign_closeup.jpg",
+          "query": "Microsoft independence technology break free corporate split"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "paid OpenAI more than $13 billion",
+          "text": "$13B TO OPENAI",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "zero OpenAI data",
+          "text": "ZERO OPENAI DATA",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "97 percent on AIME",
+          "text": "97% AIME",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "prefer it to Claude Sonnet",
+          "text": "BEATS CLAUDE SONNET",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "no longer dependent on OpenAI",
+          "text": "MICROSOFT IS FREE",
+          "color": "#ffffff",
+          "size": 195,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "03_quantinuum-ipo.json": {
+      "version": 8,
+      "slug": "quantinuum-ipo",
+      "title": "Quantum Computing Just Hit the Stock Market at $14 Billion",
+      "hashtags": [
+        "quantinuum",
+        "quantinuumipo",
+        "qnt",
+        "quantumcomputing",
+        "ipo",
+        "honeywell",
+        "nasdaq",
+        "stockmarket",
+        "quantumstocks",
+        "quantumtech",
+        "investing",
+        "wallstreet",
+        "quantumfuture",
+        "ipoday",
+        "techinvesting"
+      ],
+      "script": "Quantum computing has been '10 years away' for 30 years. Today it's an IPO. Quantinuum \u2014 Honeywell's quantum spinoff \u2014 priced its Nasdaq debut this morning at $55 a share: a $14.3 billion valuation. The company lost $192 million last year on just $31 million in revenue. Investors don't care. Demand was oversubscribed by double digits. The quantum era just became a stock you can buy.",
+      "shots": [
+        {
+          "phrase": "Quantum computing has been '10 years away' for 30 years",
+          "query": "quantum computer laboratory scientist research timeline decade history"
+        },
+        {
+          "phrase": "Quantinuum \u2014 Honeywell's quantum spinoff \u2014 priced its Nasdaq debut",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_System_Two_Ikerbasque_01.jpg",
+          "query": "quantum computer hardware cryogenic system gold cold laboratory"
+        },
+        {
+          "phrase": "at $55 a share: a $14.3 billion valuation",
+          "query": "Nasdaq stock market IPO bell ring trading floor ceremony"
+        },
+        {
+          "phrase": "$192 million last year on just $31 million in revenue",
+          "query": "financial loss chart red deficit startup burn rate losses"
+        },
+        {
+          "phrase": "Demand was oversubscribed by double digits",
+          "query": "IPO oversubscribed investor rush stocks demand buying frenzy"
+        },
+        {
+          "phrase": "quantum era just became a stock you can buy",
+          "query": "quantum technology future stock portfolio investment buy"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "'10 years away' for 30 years",
+          "text": "ALWAYS '10 YEARS AWAY'",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "a $14.3 billion valuation",
+          "text": "$14.3B IPO",
+          "color": "#ffaa30",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "lost $192 million last year",
+          "text": "$192M LOSS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Demand was oversubscribed by double digits",
+          "text": "10X+ OVERSUBSCRIBED",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "quantum era just became a stock",
+          "text": "QUANTUM GOES PUBLIC",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "04_alphabet-80b-ai-raise.json": {
+      "version": 8,
+      "slug": "alphabet-80b-ai-raise",
+      "title": "Google Just Raised $85 Billion in One Week for AI",
+      "hashtags": [
+        "alphabet",
+        "google",
+        "aiinfrastructure",
+        "datacenter",
+        "sunpichai",
+        "berkshirehathaway",
+        "aiinvestment",
+        "aiarms",
+        "googai",
+        "technews",
+        "airace",
+        "wallstreet",
+        "bigtech",
+        "aibuildup",
+        "alphabetstock"
+      ],
+      "script": "Google's parent company just pulled off one of the biggest fundraises in US history. Alphabet raised $84.75 billion this week \u2014 $10 billion directly from Berkshire Hathaway, the rest from banks and public markets. The purpose: AI data centers. The company plans to spend $180 billion on infrastructure this year alone. The AI race has become so expensive, even the most profitable company on Earth needs to raise money.",
+      "shots": [
+        {
+          "phrase": "Google's parent company just pulled off",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sundar_Pichai_-_2023_(cropped).jpg",
+          "query": "Google Alphabet CEO announcement stage technology"
+        },
+        {
+          "phrase": "Alphabet raised $84.75 billion this week",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Google_Mountain_View_campus_B43.jpg",
+          "query": "Google headquarters campus Mountain View California building"
+        },
+        {
+          "phrase": "directly from Berkshire Hathaway",
+          "query": "Berkshire Hathaway Warren Buffett investor finance Omaha"
+        },
+        {
+          "phrase": "AI data centers",
+          "query": "AI data center server racks cooling computing infrastructure"
+        },
+        {
+          "phrase": "spend $180 billion on infrastructure this year alone",
+          "query": "data center construction massive AI computing infrastructure build"
+        },
+        {
+          "phrase": "most profitable company on Earth needs to raise money",
+          "query": "Wall Street stock market equity raise fundraise billions finance"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "biggest fundraises in US history",
+          "text": "BIGGEST RAISE IN US HISTORY",
+          "color": "#ffaa30",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "$84.75 billion this week",
+          "text": "$84.75 BILLION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "directly from Berkshire Hathaway",
+          "text": "$10B FROM BUFFETT",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "spend $180 billion on infrastructure",
+          "text": "$180B THIS YEAR",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 195,
+          "duration": 2.2
+        },
+        {
+          "phrase": "most profitable company on Earth",
+          "text": "MOST PROFITABLE. NOT ENOUGH.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "05_valleytronics-light-chip.json": {
+      "version": 8,
+      "slug": "valleytronics-light-chip",
+      "title": "Scientists Built a Chip That Computes With Light, Not Electricity",
+      "hashtags": [
+        "valleytronics",
+        "photonicchip",
+        "lightcomputing",
+        "quantumchip",
+        "siliconreplacement",
+        "monashuniversity",
+        "computerchip",
+        "chipbreakthrough",
+        "futuretech",
+        "greencomputing",
+        "atomicthin",
+        "semiconductors",
+        "sciencebreakthrough",
+        "nextgencomputing",
+        "energyefficiency"
+      ],
+      "script": "Every chip in your phone runs on electrons. Electrons generate heat, waste energy, and hit a speed wall. Scientists at Monash University just built a chip that computes using light instead. It exploits a property of atomically thin materials called the 'valley degree of freedom.' The field is called valleytronics. If it scales, it could slash computing energy use by 90 percent and replace silicon entirely.",
+      "shots": [
+        {
+          "phrase": "Every chip in your phone runs on electrons",
+          "query": "smartphone chip silicon processor circuit board closeup"
+        },
+        {
+          "phrase": "generate heat, waste energy, and hit a speed wall",
+          "query": "CPU heat thermal throttle temperature high processor overheating"
+        },
+        {
+          "phrase": "Scientists at Monash University just built a chip",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Monash_University_Clayton_Campus.jpg",
+          "query": "university campus laboratory research science building Australia"
+        },
+        {
+          "phrase": "computes using light instead",
+          "query": "photonic laser light beam chip fiber optic computing"
+        },
+        {
+          "phrase": "valley degree of freedom",
+          "query": "atomically thin material graphene 2d electron microscope crystal"
+        },
+        {
+          "phrase": "slash computing energy use by 90 percent",
+          "query": "energy efficiency chip green computing semiconductor saving power"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Every chip in your phone runs on electrons",
+          "text": "ELECTRONS. EVERY CHIP.",
+          "color": "#ffaa30",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "generate heat, waste energy, and hit a speed wall",
+          "text": "HEAT. WASTE. WALL.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "computes using light instead",
+          "text": "LIGHT, NOT ELECTRONS",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "valleytronics",
+          "text": "VALLEYTRONICS",
+          "color": "#ffffff",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "slash computing energy use by 90 percent",
+          "text": "90% LESS ENERGY",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 195,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_microsoft-scout-autopilot.json": {
+      "version": 8,
+      "slug": "microsoft-scout-autopilot",
+      "title": "Microsoft Built an AI Agent That Works While You Sleep",
+      "hashtags": [
+        "microsoftscout",
+        "autopilot",
+        "aiagent",
+        "agenticai",
+        "microsoftai",
+        "build2026",
+        "windows11",
+        "microsoft",
+        "aicoworker",
+        "agentic",
+        "entraid",
+        "workplaceai",
+        "futureofwork",
+        "microsoftbuild2026",
+        "autonomousai"
+      ],
+      "script": "AI chatbots wait for you to ask. Microsoft Scout doesn't. Scout is Microsoft's first Autopilot agent \u2014 it runs continuously on your Windows 11 PC or Mac with its own Microsoft work identity through Entra ID. It reads your files, joins your calendar, tracks your tasks, and acts autonomously. No prompts needed. Microsoft says this is what AI was always supposed to become: not a tool, but a coworker.",
+      "shots": [
+        {
+          "phrase": "AI chatbots wait for you to ask",
+          "query": "chatbot AI interface waiting prompt user conversation screen"
+        },
+        {
+          "phrase": "Microsoft Scout doesn't",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella.jpg",
+          "query": "Microsoft CEO product launch Build conference stage keynote"
+        },
+        {
+          "phrase": "its own Microsoft work identity through Entra ID",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_sign_closeup.jpg",
+          "query": "Microsoft office corporate identity badge employee Redmond campus"
+        },
+        {
+          "phrase": "reads your files, joins your calendar, tracks your tasks",
+          "query": "calendar files tasks workflow office schedule productivity AI"
+        },
+        {
+          "phrase": "acts autonomously",
+          "query": "AI automation autonomous agent robot digital workflow background"
+        },
+        {
+          "phrase": "not a tool, but a coworker",
+          "query": "AI coworker collaboration digital office future work partner"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "AI chatbots wait for you to ask",
+          "text": "CHATBOTS WAIT FOR YOU",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Microsoft Scout doesn't",
+          "text": "SCOUT DOESN'T WAIT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 195,
+          "duration": 2.2
+        },
+        {
+          "phrase": "its own Microsoft work identity",
+          "text": "ITS OWN WORK ID",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "acts autonomously",
+          "text": "FULLY AUTONOMOUS",
+          "color": "#ffffff",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "not a tool, but a coworker",
+          "text": "NOT A TOOL. A COWORKER.",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 175,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    }
+  },
+  "20260604": {
+    "01_ukraine-st-petersburg-drones.json": {
+      "version": 8,
+      "slug": "ukraine-st-petersburg-drones",
+      "title": "Ukraine Struck Russia's 'Davos' City With 1,000-Kilometer Drones",
+      "hashtags": [
+        "ukraine",
+        "russia",
+        "stpetersburg",
+        "drone",
+        "zelenskyy",
+        "putin",
+        "ukrainewar",
+        "kronstadt",
+        "navalbase",
+        "uavattack",
+        "oilfire",
+        "russiaukrainewar",
+        "worldnews",
+        "geopolitics"
+      ],
+      "script": "A day after Russia launched a mass missile strike on Kyiv, Ukraine hit back \u2014 deep inside Russia. Ukrainian drones flew more than 1,000 kilometers overnight, setting fire to a St. Petersburg oil terminal just 10 miles from where Putin was scheduled to speak at Russia's annual Economic Forum. A second wave hit a Russian warship at Kronstadt naval base and a weapons plant 600 kilometers inside Russian territory. Smoke was still rising over St. Petersburg as Putin took the stage.",
+      "shots": [
+        {
+          "phrase": "Russia launched a mass missile strike on Kyiv",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Volodymyr_Zelensky_2022_official_portrait.jpg",
+          "query": "drone missile attack Kyiv Ukraine explosion night fire"
+        },
+        {
+          "phrase": "Ukrainian drones flew more than 1,000 kilometers overnight",
+          "query": "long-range drone military dark sky surveillance Ukraine"
+        },
+        {
+          "phrase": "setting fire to a St. Petersburg oil terminal",
+          "query": "oil terminal fire explosion Russia black smoke industrial"
+        },
+        {
+          "phrase": "where Putin was scheduled to speak",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Vladimir_Putin_official_portrait.jpg",
+          "query": "Putin economic forum stage Russia president podium"
+        },
+        {
+          "phrase": "hit a Russian warship at Kronstadt naval base",
+          "query": "Russian warship naval base military ship fire smoke"
+        },
+        {
+          "phrase": "weapons plant 600 kilometers inside Russian territory",
+          "query": "Russian military factory weapons plant explosion fire"
+        },
+        {
+          "phrase": "Smoke was still rising over St. Petersburg",
+          "query": "thick black smoke city industrial fire Russia aerial"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "deep inside Russia",
+          "text": "1,000 KM INSIDE RUSSIA",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "1,000 kilometers overnight",
+          "text": "1,000 KM STRIKE",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "setting fire to a St. Petersburg oil terminal",
+          "text": "OIL TERMINAL HIT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "hit a Russian warship",
+          "text": "WARSHIP HIT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Smoke was still rising over St. Petersburg",
+          "text": "RUSSIA BURNING",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "02_spacex-75b-ipo.json": {
+      "version": 8,
+      "slug": "spacex-75b-ipo",
+      "title": "SpaceX Files for $75 Billion IPO \u2014 Largest in History",
+      "hashtags": [
+        "spacex",
+        "spacexipo",
+        "elonmusk",
+        "ipo",
+        "wallstreet",
+        "stocks",
+        "trillionaire",
+        "nasdaq",
+        "starship",
+        "investing",
+        "techinvesting",
+        "finance",
+        "spacetech",
+        "biggestipo"
+      ],
+      "script": "SpaceX just filed for the largest IPO in history. The company is seeking $75 billion \u2014 more than double the previous record held by Saudi Aramco. At $135 per share and a $1.77 trillion valuation, SpaceX would be worth more than every company on Earth except Apple and Nvidia. Elon Musk retains 82 percent of voting power. If the deal closes, Musk becomes the world's first trillionaire. The roadshow starts this week.",
+      "shots": [
+        {
+          "phrase": "largest IPO in history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Liftoff_of_SpaceX_IFT-5_%2854064037095%29.jpg",
+          "query": "SpaceX rocket launch fire liftoff starship pad"
+        },
+        {
+          "phrase": "$75 billion \u2014 more than double the previous record",
+          "query": "IPO stock offering wall street NYSE trading floor bell"
+        },
+        {
+          "phrase": "previous record held by Saudi Aramco",
+          "query": "Saudi Aramco oil company stock exchange IPO billions"
+        },
+        {
+          "phrase": "$1.77 trillion valuation",
+          "query": "trillion dollar valuation tech company stock chart massive"
+        },
+        {
+          "phrase": "Elon Musk retains 82 percent of voting power",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society.jpg",
+          "query": "Elon Musk SpaceX CEO shareholder voting control press"
+        },
+        {
+          "phrase": "Musk becomes the world's first trillionaire",
+          "query": "billionaire trillionaire wealth net worth money chart record"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "largest IPO in history",
+          "text": "BIGGEST IPO EVER",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.4
+        },
+        {
+          "phrase": "$75 billion",
+          "text": "$75B IPO",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "$1.77 trillion valuation",
+          "text": "$1.77T VALUATION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "82 percent of voting power",
+          "text": "82% CONTROL",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "first trillionaire",
+          "text": "FIRST TRILLIONAIRE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "03_deepseek-74b-funding.json": {
+      "version": 8,
+      "slug": "deepseek-74b-funding",
+      "title": "DeepSeek Takes Its First Outside Money: $7.4 Billion",
+      "hashtags": [
+        "deepseek",
+        "tencent",
+        "catl",
+        "liangwenfeng",
+        "chineseai",
+        "aifunding",
+        "aiinvestment",
+        "techvaluation",
+        "chinatech",
+        "aistartup",
+        "venturecapital",
+        "llm",
+        "aimodel"
+      ],
+      "script": "The AI company that built a model matching GPT-4 for just $6 million is now worth $59 billion. DeepSeek \u2014 the Chinese lab that shocked Silicon Valley in January 2025 \u2014 is raising its first-ever outside funding: $7.4 billion. Tencent is investing $1.5 billion. Battery maker CATL is in. And founder Liang Wenfeng is personally investing $3 billion. The startup that needed no outside money just became one of the most valuable AI companies on Earth.",
+      "shots": [
+        {
+          "phrase": "model matching GPT-4 for just $6 million",
+          "query": "AI model benchmark performance chart GPT comparison dark"
+        },
+        {
+          "phrase": "the Chinese lab that shocked Silicon Valley",
+          "query": "Chinese AI lab research Hangzhou tech dark servers"
+        },
+        {
+          "phrase": "Tencent is investing $1.5 billion",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tencent_HQ.JPG",
+          "query": "Tencent headquarters Shenzhen China technology investment billion"
+        },
+        {
+          "phrase": "first-ever outside funding: $7.4 billion",
+          "query": "startup funding round billion dollar venture capital investment"
+        },
+        {
+          "phrase": "Liang Wenfeng is personally investing $3 billion",
+          "query": "Chinese tech founder billionaire personal investment capital"
+        },
+        {
+          "phrase": "most valuable AI companies on Earth",
+          "query": "AI company valuation ranking chart billion dollar tech"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "for just $6 million",
+          "text": "$6M MATCHED GPT-4",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "first-ever outside funding: $7.4 billion",
+          "text": "$7.4B ROUND",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "now worth $59 billion",
+          "text": "$59B VALUATION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "personally investing $3 billion",
+          "text": "$3B OWN MONEY",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "no outside money",
+          "text": "ZERO OUTSIDE MONEY... UNTIL NOW",
+          "color": "#ffaa30",
+          "size": 155,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "04_israel-lebanon-ceasefire-unifil.json": {
+      "version": 8,
+      "slug": "israel-lebanon-ceasefire-unifil",
+      "title": "Lebanon Ceasefire Collapsed in Hours \u2014 UN Peacekeeper Killed",
+      "hashtags": [
+        "israel",
+        "lebanon",
+        "ceasefire",
+        "unifil",
+        "hezbollah",
+        "southlebanon",
+        "marjayoun",
+        "unpeacekeepers",
+        "middleeast",
+        "israellebanon",
+        "conflict",
+        "worldnews",
+        "geopolitics",
+        "ceasefirefailed"
+      ],
+      "script": "Israel and Lebanon announced a ceasefire today. Within hours, Israeli forces launched fresh strikes across southern Lebanon. A UN peacekeeper from Serbia was killed \u2014 struck by a mortar at his post near Marjayoun. Two others were wounded. The deal requires Hezbollah to stop firing and withdraw all fighters from the border zone. Hezbollah has not agreed. The Israeli military says it is still targeting Hezbollah infrastructure in southern Lebanon. The ceasefire exists on paper only.",
+      "shots": [
+        {
+          "phrase": "Israel and Lebanon announced a ceasefire today",
+          "query": "Israel Lebanon ceasefire agreement flag diplomacy UN talks"
+        },
+        {
+          "phrase": "Israeli forces launched fresh strikes across southern Lebanon",
+          "query": "Israeli military airstrike Lebanon explosion smoke southern village"
+        },
+        {
+          "phrase": "A UN peacekeeper from Serbia was killed",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/UNIFIL_Deployment_February_2018_%28cropped%29.jpg",
+          "query": "UN peacekeepers UNIFIL Lebanon blue helmet patrol base"
+        },
+        {
+          "phrase": "struck by a mortar at his post near Marjayoun",
+          "query": "UN military outpost base attack mortar explosion Lebanon"
+        },
+        {
+          "phrase": "Hezbollah to stop firing and withdraw all fighters",
+          "query": "Hezbollah fighters Lebanon border armed militia south"
+        },
+        {
+          "phrase": "targeting Hezbollah infrastructure in southern Lebanon",
+          "query": "Israeli forces Lebanon village south military airstrike"
+        },
+        {
+          "phrase": "The ceasefire exists on paper only",
+          "query": "ceasefire violation broken agreement conflict ongoing fire"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Within hours",
+          "text": "BROKEN IN HOURS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "A UN peacekeeper from Serbia was killed",
+          "text": "UN SOLDIER KILLED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.4
+        },
+        {
+          "phrase": "struck by a mortar",
+          "text": "KILLED BY MORTAR",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Hezbollah has not agreed",
+          "text": "HEZBOLLAH REFUSES",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "The ceasefire exists on paper only",
+          "text": "PAPER ONLY",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "05_mrna-melanoma-vaccine.json": {
+      "version": 8,
+      "slug": "mrna-melanoma-vaccine",
+      "title": "mRNA Cancer Vaccine Just Doubled Melanoma Survival at 5 Years",
+      "hashtags": [
+        "mrna",
+        "cancer",
+        "melanoma",
+        "moderna",
+        "keytruda",
+        "merck",
+        "cancervaccine",
+        "immunotherapy",
+        "oncology",
+        "fda",
+        "clinicaltrial",
+        "medicalbreakthrough",
+        "healthnews",
+        "sciencenews"
+      ],
+      "script": "5-year trial results just confirmed: a personalized mRNA cancer vaccine nearly doubles melanoma survival rates. Moderna's experimental vaccine reads your tumor's unique mutations and builds a custom injection targeting up to 34 cancer fingerprints. In the trial, patients who got the vaccine plus Merck's Keytruda had a 92 percent 5-year survival rate. Those on Keytruda alone: 71 percent. A Phase 3 trial with 1,000 patients is underway. FDA approval is the next target.",
+      "shots": [
+        {
+          "phrase": "personalized mRNA cancer vaccine",
+          "query": "mRNA vaccine syringe cancer treatment medicine personalized lab"
+        },
+        {
+          "phrase": "Moderna's experimental vaccine reads your tumor's unique mutations",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Moderna_Headquarters,_December_2020.jpg",
+          "query": "Moderna pharmaceutical lab cancer research mRNA building"
+        },
+        {
+          "phrase": "custom injection targeting up to 34 cancer fingerprints",
+          "query": "cancer neoantigen mutation cells tumor microscope targeted therapy"
+        },
+        {
+          "phrase": "patients who got the vaccine plus Merck's Keytruda",
+          "query": "cancer patient treatment hospital immunotherapy clinical trial IV"
+        },
+        {
+          "phrase": "92 percent 5-year survival rate",
+          "query": "survival rate medical chart statistics cancer treatment improvement"
+        },
+        {
+          "phrase": "FDA approval is the next target",
+          "query": "FDA drug approval pharmaceutical regulatory medicine label"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "nearly doubles melanoma survival rates",
+          "text": "DOUBLE SURVIVAL RATE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "up to 34 cancer fingerprints",
+          "text": "34 CANCER TARGETS",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "92 percent 5-year survival rate",
+          "text": "92% SURVIVAL",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 205,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Keytruda alone: 71 percent",
+          "text": "71% WITHOUT IT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "FDA approval is the next target",
+          "text": "FDA APPROVAL NEXT",
+          "color": "#ffffff",
+          "size": 180,
+          "duration": 2.2
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_compass-antitrust-ny-ag.json": {
+      "version": 8,
+      "slug": "compass-antitrust-ny-ag",
+      "title": "NY AG Investigates Compass After It Became Too Big",
+      "hashtags": [
+        "compass",
+        "anywhererent",
+        "letitiajames",
+        "nyag",
+        "antitrust",
+        "realestate",
+        "brokerage",
+        "housingmarket",
+        "merger",
+        "stockdrop",
+        "businessnews",
+        "corporatelaw",
+        "investigation"
+      ],
+      "script": "Compass just absorbed Anywhere Real Estate in a $1.6 billion deal, growing overnight from 40,000 agents to more than 200,000 \u2014 making it the largest residential brokerage in US history. Now the New York Attorney General is probing whether that deal was too good. Investigators from Letitia James' antitrust bureau have been calling rival brokerages asking for documents. Compass shares tanked more than 12 percent on the news. No charges filed yet.",
+      "shots": [
+        {
+          "phrase": "Compass just absorbed Anywhere Real Estate",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Compass_Real_Estate_Seattle_Hub.jpg",
+          "query": "Compass real estate brokerage office luxury modern sign"
+        },
+        {
+          "phrase": "40,000 agents to more than 200,000",
+          "query": "real estate agents large team office workspace professionals"
+        },
+        {
+          "phrase": "largest residential brokerage in US history",
+          "query": "US real estate housing market largest corporation nationwide"
+        },
+        {
+          "phrase": "New York Attorney General is probing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Letitia_James_at_March_for_Our_Lives_NYC.jpg",
+          "query": "New York attorney general antitrust investigation office law"
+        },
+        {
+          "phrase": "antitrust bureau have been calling rival brokerages asking for documents",
+          "query": "antitrust investigation legal documents subpoena office lawyer"
+        },
+        {
+          "phrase": "Compass shares tanked more than 12 percent on the news",
+          "query": "stock price crash drop 12 percent red chart trading"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "40,000 agents to more than 200,000",
+          "text": "200,000 AGENTS",
+          "color": "#ffaa30",
+          "size": 195,
+          "duration": 2.0
+        },
+        {
+          "phrase": "largest residential brokerage in US history",
+          "text": "BIGGEST IN US HISTORY",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 165,
+          "duration": 2.4
+        },
+        {
+          "phrase": "New York Attorney General is probing",
+          "text": "NY AG PROBE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Compass shares tanked more than 12 percent",
+          "text": "STOCK DOWN 12%",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "No charges filed yet",
+          "text": "NO CHARGES YET",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.2
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "minecraft"
+    }
   }
 }

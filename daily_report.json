@@ -1,16 +1,16 @@
 [
   {
-    "topic": "Esports' Biggest Prize Ever Just Collapsed",
-    "title": "Esports' Biggest Prize Ever Just Collapsed",
+    "topic": "Apple Ruled Markets For Decades. Nvidia Just Passed It.",
+    "title": "Apple Ruled Markets For Decades. Nvidia Just Passed It.",
     "format": "graph_race",
-    "publish_at": "2026-08-29T13:00:00Z",
+    "publish_at": "2026-09-03T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/-0N5BfVD-UQ",
+    "video_url": "https://youtube.com/shorts/UCBI8bKyR-g",
     "error": null,
-    "elapsed_seconds": 116.5,
-    "package_path": "state/trending_packages/20260829/03_graph-dota-prize-pool-collapse.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260829-123353_esports__biggest_prize_ever_just_collaps.mp4",
+    "elapsed_seconds": 114.0,
+    "package_path": "state/trending_packages/20260903/01_graph-nvidia-passed-apple.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-171500_apple_ruled_markets_for_decades__nvidia_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -24,69 +24,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -22.8
+      "loudness_lufs": -25.2
     },
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 100
+      "score": 82
     },
     "channel": "default"
   },
   {
-    "topic": "His Paper-Only Rule Cost More Than the Supplies",
-    "title": "His Paper-Only Rule Cost More Than the Supplies",
-    "format": "reddit",
-    "publish_at": "2026-08-29T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/P844xpGQxq0",
-    "error": null,
-    "elapsed_seconds": 206.9,
-    "package_path": "state/trending_packages/20260829/05_paper-approval-mountain.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260829-123606_his_paper_only_rule_cost_more_than_the_s.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 54.6,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -26.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 100
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "The Gym Hid Cancellation. I Booked a Sales Tour.",
-    "title": "The Gym Hid Cancellation. I Booked a Sales Tour.",
-    "format": "reddit",
-    "publish_at": "2026-08-29T16:00:00Z",
+    "topic": "The Coffee Startup That Buried Starbucks In China",
+    "title": "The Coffee Startup That Buried Starbucks In China",
+    "format": "graph_race",
+    "publish_at": "2026-09-03T19:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
-    "elapsed_seconds": 208.3,
-    "package_path": "state/trending_packages/20260829/06_gym-sales-tour-cancel.json",
-    "source": "chatgpt",
-    "video_path": "output/daily_20260829-123927_the_gym_hid_cancellation__i_booked_a_sal.mp4",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "elapsed_seconds": 48.5,
+    "package_path": "state/trending_packages/20260903/02_graph-luckin-buried-starbucks.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-171654_the_coffee_startup_that_buried_starbucks.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 58.667,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -97,7 +58,109 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.7
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "score": 0
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Cable Ruled TV For Decades. Streaming Just Ended It.",
+    "title": "Cable Ruled TV For Decades. Streaming Just Ended It.",
+    "format": "graph_race",
+    "publish_at": "2026-09-03T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/NTuKjFWe6bg",
+    "error": null,
+    "elapsed_seconds": 112.9,
+    "package_path": "state/trending_packages/20260903/03_graph-streaming-ended-cable.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-171742_cable_ruled_tv_for_decades__streaming_ju.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "TikTok's Ad Business Passed Twitter's In 2 Years",
+    "title": "TikTok's Ad Business Passed Twitter's In 2 Years",
+    "format": "graph_race",
+    "publish_at": "2026-09-03T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/yd3e0EMjwro",
+    "error": null,
+    "elapsed_seconds": 96.8,
+    "package_path": "state/trending_packages/20260903/04_graph-tiktok-passed-twitter-ads.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-171935_tiktok_s_ad_business_passed_twitter_s_in.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.0
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 78
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "The Airline Bumped Me. I Knew The Federal Rule.",
+    "title": "The Airline Bumped Me. I Knew The Federal Rule.",
+    "format": "reddit",
+    "publish_at": "2026-09-04T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Two of the five story shots are unrelated stock (a paper boat, a breakfast tray) and the worst of them sits on the closing punchline, so the story's cause-and-effect is never actually shown.",
+    "elapsed_seconds": 176.6,
+    "package_path": "state/trending_packages/20260903/05_airline-bump-federal-compensation.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-172121_the_airline_bumped_me__i_knew_the_federa.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 51.267,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.6
     },
     "qa": {
       "ok": true,
@@ -106,49 +169,78 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
-      "score": 82
+      "reason": "showrunner BLOCK: Two of the five story shots are unrelated stock (a paper boat, a breakfast tray) and the worst of them sits on the closing punchline, so the story's cause-and-effect is never actually shown.",
+      "score": 65
     },
     "blocked": true
   },
   {
-    "topic": "keith urban",
+    "topic": "The Menu Said No Substitutions. I Had An Allergy.",
+    "title": "The Menu Said No Substitutions. I Had An Allergy.",
+    "format": "reddit",
+    "publish_at": "2026-09-04T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Clean split-screen craft and unbroken motion, but the shot illustrations drift off-topic \u2014 a road sign and a coffee shop stand in for a restaurant allergy confrontation.",
+    "elapsed_seconds": 168.8,
+    "package_path": "state/trending_packages/20260903/06_restaurant-allergy-no-substitutions.json",
+    "source": "brain",
+    "video_path": "output/daily_20260903-172409_the_menu_said_no_substitutions__i_had_an.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.033,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -23.9
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Clean split-screen craft and unbroken motion, but the shot illustrations drift off-topic \u2014 a road sign and a coffee shop stand in for a restaurant allergy confrontation.",
+      "score": 70
+    },
+    "blocked": true
+  },
+  {
+    "topic": "supervolcano",
     "angle": null,
-    "publish_at": "2026-08-29T16:00:00Z",
+    "publish_at": "2026-09-04T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 25.3,
+    "elapsed_seconds": 0.8,
     "backfill": true
   },
   {
-    "topic": "texas longhorns football",
+    "topic": "keith mackenzie betty ebay truck sale",
     "angle": null,
-    "publish_at": null,
+    "publish_at": "2026-09-04T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.3,
+    "elapsed_seconds": 1.1,
     "backfill": true
   },
   {
-    "topic": "atlanta weather",
+    "topic": "grand theft auto vi",
     "angle": null,
-    "publish_at": null,
+    "publish_at": "2026-09-04T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.9,
-    "backfill": true
-  },
-  {
-    "topic": "persian gulf oil flows recovery",
-    "angle": null,
-    "publish_at": null,
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 1.0,
+    "elapsed_seconds": 0.5,
     "backfill": true
   }
 ]
