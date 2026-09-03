@@ -183,9 +183,18 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt -r data_learning/requirements.txt
+
           # rembg: reliable background removal for the illustrated 'diorama'
           # cut-outs (onnxruntime is already present for Kokoro).
           pip install --quiet rembg || echo "rembg install failed (chroma fallback)"
+
+      - name: Camera-shake guard (fail fast, pre-render)
+        run: |
+          # The data channel shipped a handheld wobble for a month because five
+          # separate oscillators each looked reasonable on its own. This test
+          # fails the run before a single frame is rendered if any of them is
+          # back. Do not skip it; fix the oscillator.
+          python3 data_learning/tests/test_no_camera_shake.py
 
       # Translation cache (audit Ticket 3): moved out of git into cache/,
       # persisted between runs via actions/cache (evolving-cache pattern).

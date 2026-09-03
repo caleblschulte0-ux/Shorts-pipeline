@@ -1119,11 +1119,9 @@ class _Space(_Renderer):
                   outline=(160, 170, 190, 255), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if k > 0.6:
-            amp = int(6 * (k - 0.6) / 0.4)
-            if amp:
-                out = np.roll(out, rng.randint(-amp, amp), axis=0)
-                out = np.roll(out, rng.randint(-amp, amp), axis=1)
+        # NO WHOLE-FRAME ROLL (see the quake renderer): rolling the finished
+        # frame by a random offset on both axes as intensity ramps is a shaken
+        # camera. The scene's own elements still escalate.
         return self.lag(out, ts)
 
 # ---------- PLINKO: the universal satisfying default ----------
@@ -1557,9 +1555,11 @@ class _Quake(_Renderer):
                     outline=(200, 210, 200, 180), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if shake_px > 2 and not self.in_hang(t):
-            out = np.roll(out, rng.randint(-int(shake_px / 2),
-                                           int(shake_px / 2)), axis=0)
+        # NO WHOLE-FRAME ROLL. The buildings still shake — that is the subject
+        # of an earthquake clip and it stays. What is gone is np.roll of the
+        # ENTIRE rendered frame by a random offset each frame, which is a
+        # camera being shaken. The line this channel now holds: subjects may
+        # move, the frame may not.
         return self.overload(out, t)# ---------- VOLCANO: distant eruption raining fireballs ----------
 # (Sakurajima grey-rain-class stories.)
 
@@ -1936,10 +1936,7 @@ class _Volcano(_Renderer):
                    fill=(255, 210, 110, a), width=2)
 
         out = np.asarray(img, dtype=np.uint8)
-        if k > 0.55:
-            amp = int(7 * (k - 0.55) / 0.45)
-            if amp:
-                out = np.roll(out, rng.randint(-amp, amp), axis=0)
+        # NO WHOLE-FRAME ROLL — same ruling as the other renderers.
         return self.lag(out, ts)
 
 
@@ -3874,7 +3871,12 @@ class _Pursuit(_Renderer):
         self.scroll += speed * dt
         rx0, rx1 = self.rx0, self.rx1
         cx = (rx0 + rx1) / 2
-        shake = self.rng.uniform(-1, 1) * 4.0 * k    # camera shake ramps
+        # NO CAMERA SHAKE. This jittered every vehicle by a random +/-4 px
+        # each frame as the chase ramped — a literal handheld camera, and the
+        # operator ruling is that this channel ships none of it. The chase
+        # reads through speed, lane changes and the siren, not through the
+        # picture vibrating.
+        shake = 0.0
 
         img = Image.fromarray(np.clip(self.bg.copy(), 0, 255).astype(np.uint8))
         d = ImageDraw.Draw(img, "RGBA")

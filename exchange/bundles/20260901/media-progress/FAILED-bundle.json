@@ -1,0 +1,24 @@
+{
+  "schema": "chatgpt-media-worker-failure/v1",
+  "date": "20260901",
+  "worker": "media",
+  "status": "failed",
+  "step": "read_bundle",
+  "bundle_path": "exchange/bundles/20260901/bundle.json",
+  "heartbeat_commit": "096fb21366cd44f682c5a0335512a15f614d0676",
+  "observed_at": "2026-09-01T06:58:00-05:00",
+  "error": {
+    "code": "BUNDLE_MISSING",
+    "message": "exchange/bundles/20260901/bundle.json and BUNDLE_ID are absent on main; state/trending_packages/20260901 and state/third_packages/20260901 are also absent. The worker cannot discover or safely invent media requests, prompts, filenames, or bundle identity."
+  },
+  "drive_audit": {
+    "mode": "read_only",
+    "current_date_matches": 0,
+    "note": "The shared Drive folder contains no media matching the deterministic 20260901__ filename prefix."
+  },
+  "requests_discovered": 0,
+  "checkpoints_committed": 0,
+  "failed_notes_committed": 1,
+  "retryable": true,
+  "next_step": "Finalizer recovery should re-check for a valid bundle. If it appears, run the Media contract completely before finalization. If it remains absent, Finalizer owns no-bundle takeover authoring and authored-shot media."
+}

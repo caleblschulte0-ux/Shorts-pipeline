@@ -225,10 +225,15 @@ def _visual_track(pkg: dict, words: list, title_end: float, total: float,
         _run([
             "ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
             "-t", f"{dur:.3f}", "-i", str(panel),
-            "-vf", (f"zoompan=z='min(1+0.10*on/{_frames},1.10)':"
-                    f"x='iw/2-(iw/zoom/2)+22*sin(6.0*on/{FPS})':"
-                    f"y='ih/2-(ih/zoom/2)+22*cos(5.2*on/{FPS})':"
-                    f"d=1:s={W}x{H // 2}:fps={FPS},format=yuv420p"),
+            # NO ORBIT, NO ZOOM. The x/y carried a 22 px drift at 6.0 and 5.2
+            # rad/s — ~0.95 Hz, 4.4 px per frame — so the panel swam in a
+            # circle for its whole duration, and zoompan truncates its pan to
+            # whole pixels each frame on top of that. It was added to give the
+            # temporal detector something to see; a viewer sees a handheld
+            # camera. Same operator ruling as the studio render: the frame is
+            # locked. A panel that measures short needs to be SHORTER or to
+            # cut, not to wobble.
+            "-vf", f"scale={W}:{H // 2},format=yuv420p",
             "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
             str(clip),
         ])

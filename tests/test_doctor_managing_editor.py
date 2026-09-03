@@ -29,6 +29,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -63,22 +64,36 @@ class TestStrategyIsAFirstClassHorizon(unittest.TestCase):
 
 
 class TestTheEvidencePackCarriesTheDesk(unittest.TestCase):
-    """Built against a fake ROOT so the test owns every file it reads."""
+    """Built against a fake ROOT so the test owns every file it reads.
+
+    The fixture dates are computed relative to `now`, not hardcoded — a
+    fixed calendar date ages out of the pack's rolling 14-day window after
+    ~2 weeks, which is exactly what happened to the 2026-08-14/15 dates
+    this test used to hard-code (caught 2026-09-02: `posted_by_day_14d`
+    correctly excluded posts that had rolled 19 days stale, and the test
+    read that correct exclusion as a bug). `old` stays a fixed, far-past
+    date on purpose — it only has to stay outside a 14-day window, which a
+    date almost eight months in the past does indefinitely for any
+    plausible test run.
+    """
 
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="mgr-"))
         self._root = doctor.ROOT
         doctor.ROOT = self.tmp
+        now = datetime.now(timezone.utc)
+        self.day_a = (now - timedelta(days=3)).strftime("%Y-%m-%d")
+        self.day_b = (now - timedelta(days=2)).strftime("%Y-%m-%d")
         (self.tmp / "state").mkdir()
         (self.tmp / "state" / "explainer_posted_log.json").write_text(
             json.dumps({"posted": {
-                "a": {"at": "2026-08-14T10:00:00+00:00", "url": "u1"},
-                "b": {"at": "2026-08-14T12:00:00+00:00", "url": "u2"},
+                "a": {"at": f"{self.day_a}T10:00:00+00:00", "url": "u1"},
+                "b": {"at": f"{self.day_a}T12:00:00+00:00", "url": "u2"},
                 "old": {"at": "2026-01-01T00:00:00+00:00", "url": "u3"},
             }}))
         (self.tmp / "state" / "posted_log.json").write_text(
             json.dumps({"posted": [
-                {"posted_at": "2026-08-15T09:00:00Z", "video_url": "v"}]}))
+                {"posted_at": f"{self.day_b}T09:00:00Z", "video_url": "v"}]}))
         adir = self.tmp / "state" / "analytics_explainer"
         adir.mkdir()
         (adir / "latest.json").write_text(json.dumps({"videos": [
@@ -99,7 +114,7 @@ class TestTheEvidencePackCarriesTheDesk(unittest.TestCase):
     def test_posting_cadence_is_in_the_pack(self):
         perf = self.pack()
         self.assertEqual(
-            perf["explainer"]["posted_by_day_14d"].get("2026-08-14"), 2)
+            perf["explainer"]["posted_by_day_14d"].get(self.day_a), 2)
         self.assertEqual(perf["explainer"]["total_posted"], 3)
 
     def test_old_posts_do_not_pollute_the_window(self):
@@ -108,7 +123,7 @@ class TestTheEvidencePackCarriesTheDesk(unittest.TestCase):
 
     def test_the_list_shaped_trending_log_reads_too(self):
         self.assertEqual(
-            self.pack()["trending"]["posted_by_day_14d"].get("2026-08-15"), 1)
+            self.pack()["trending"]["posted_by_day_14d"].get(self.day_b), 1)
 
     def test_analytics_top_videos_by_vph(self):
         a = self.pack()["analytics_explainer"]
@@ -139,20 +154,27 @@ class TestCadenceMatchesTheAlarmNotRawRows(unittest.TestCase):
         self.tmp = Path(tempfile.mkdtemp(prefix="mgr-cadence-"))
         self._root = doctor.ROOT
         doctor.ROOT = self.tmp
+        # Relative to `now`, not hardcoded — see the docstring on
+        # TestTheEvidencePackCarriesTheDesk for why a fixed calendar date
+        # eventually ages out of the pack's 14-day window on its own.
+        day = (datetime.now(timezone.utc) - timedelta(days=3))
+        self.day_dash = day.strftime("%Y-%m-%d")
+        self.day_compact = day.strftime("%Y%m%d")
+        ts = day.strftime("%Y-%m-%dT")
         (self.tmp / "state").mkdir()
         (self.tmp / "state" / "third_posted_log.json").write_text(
             json.dumps({"posted": {
-                "clip-20260815-1": {"ts": "2026-08-15T09:00:00Z",
+                f"clip-{self.day_compact}-1": {"ts": f"{ts}09:00:00Z",
                                     "url": "https://youtu.be/a"},
-                "clip-20260815-2": {"posted_at": "2026-08-15T11:00:00Z",
+                f"clip-{self.day_compact}-2": {"posted_at": f"{ts}11:00:00Z",
                                     "url": "https://youtu.be/b"},
-                "rejected-clip-20260815-3": {"ts": "2026-08-15T08:00:00Z",
+                f"rejected-clip-{self.day_compact}-3": {"ts": f"{ts}08:00:00Z",
                                              "qa_rejected": True},
-                "clip-20260815-4": {"ts": "2026-08-15T08:30:00Z",
+                f"clip-{self.day_compact}-4": {"ts": f"{ts}08:30:00Z",
                                     "qa_rejected": True},
-                "clip-20260815-5": {"ts": "2026-08-15T08:45:00Z",
+                f"clip-{self.day_compact}-5": {"ts": f"{ts}08:45:00Z",
                                     "status": "rejected: low quality"},
-                "clip-20260815-6": {"ts": "2026-08-15T08:50:00Z"},  # pending
+                f"clip-{self.day_compact}-6": {"ts": f"{ts}08:50:00Z"},  # pending
             }}))
         (self.tmp / "state" / "posted_log.json").write_text(
             json.dumps({"posted": []}))
@@ -165,13 +187,13 @@ class TestCadenceMatchesTheAlarmNotRawRows(unittest.TestCase):
 
     def test_the_desk_and_the_alarm_agree_on_2_of_6(self):
         perf = doctor.evidence_pack()["channel_performance"]["third"]
-        self.assertEqual(perf["posted_by_day_14d"].get("2026-08-15"), 2)
+        self.assertEqual(perf["posted_by_day_14d"].get(self.day_dash), 2)
         self.assertEqual(perf["total_posted"], 2)
 
         alarm_count = len(daily_alarm._posted_on(
-            self.tmp / "state" / "third_posted_log.json", "20260815"))
+            self.tmp / "state" / "third_posted_log.json", self.day_compact))
         self.assertEqual(alarm_count, 2)
-        self.assertEqual(perf["posted_by_day_14d"]["2026-08-15"],
+        self.assertEqual(perf["posted_by_day_14d"][self.day_dash],
                          alarm_count)
 
     def test_attempted_and_excluded_are_preserved_not_laundered(self):

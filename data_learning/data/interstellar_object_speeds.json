@@ -1,0 +1,20 @@
+{
+  "key": "interstellar_object_speeds",
+  "title": "Peak speed through the solar system (km/h)",
+  "unit": "km/h",
+  "geography": "Global",
+  "time_coverage": "2017-2025",
+  "source": {
+    "name": "Interstellar object velocity comparison",
+    "publisher": "NASA / ESA",
+    "url": "https://www.esa.int/Science_Exploration/Space_Science/Comet_3I_ATLAS_frequently_asked_questions",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; peak heliocentric speed reported for each object near closest solar approach, per NASA/ESA mission communications.",
+  "points": [
+    {"label": "1I 'Oumuamua", "value": 140000},
+    {"label": "2I/Borisov", "value": 177000},
+    {"label": "3I/ATLAS", "value": 246000}
+  ]
+}

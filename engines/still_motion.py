@@ -35,11 +35,21 @@ def kenburns(
     bg_color: str = DEFAULT_BG,
     crf: int = 20,
 ) -> Path:
-    """Render `image` as a `duration`-second H.264 clip with a slow push.
+    """RETIRED. Raises — this engine no longer animates anything.
 
-    Raises on failure (corrupt image, missing ffmpeg). Callers that need
-    the best-effort contract should use `maybe_kenburns`.
+    Operator ruling (2026-08-25, restated 2026-09-03 for every channel): no
+    camera movement of any kind ships. A Ken Burns push is exactly that, and
+    zoompan truncates its pan to whole pixels per frame so even a slow one
+    judders. `maybe_kenburns` keeps the engine contract by returning None, so
+    callers fall through to their next tier instead of breaking.
+
+    If a still needs to hold the screen, the answer is a shorter hold or a
+    cut, not a moving camera.
     """
+    raise RuntimeError(
+        "engines.still_motion is RETIRED: no camera movement ships on any "
+        "channel (operator ruling). Use a static fill, a shorter hold, or a "
+        "cut.")
     w, h = int(size[0]), int(size[1])
     frames = max(2, int(duration * fps))
     if direction == "in":

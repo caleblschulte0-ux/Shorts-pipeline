@@ -163,8 +163,18 @@ REGISTRY: dict[str, dict] = {
         # about; `experimental` is the registry's own state for "built, not
         # yet earning its slot". Adopt it (a graph_race stat pop and the
         # reddit_story post card are the live candidates) or delete it.
+        # RE-DATED 2026-09-02 (with reason, per test_engine_registry_honesty's
+        # own "adopt, demote, or re-date with a reason" clock): the original
+        # 2026-09-01 deadline passed with no session having actually
+        # evaluated either candidate integration — the daily authoring
+        # routine hit this expiry as an unrelated CI-red blocker on its
+        # content PR and is not the right context to rush a real adopt-vs-
+        # delete call on working, tested, zero-risk code. Extending 30 days
+        # to leave room for a session with the bandwidth to actually build
+        # the stat-pop or post-card integration (or, failing that, delete it
+        # for real next time) rather than deleting on a technicality.
         "status": "experimental",
-        "decision_date": "2026-09-01",
+        "decision_date": "2026-10-02",
         "problem": "Animated vector graphics (title cards, stat pops, "
                    "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
                    "Born from the ChatGPT-integration finding that animated "

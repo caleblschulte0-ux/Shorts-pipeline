@@ -1,0 +1,203 @@
+{
+ "slug": "nasa-astronaut-selection-odds",
+ "ts": "20260901T011255Z",
+ "score": 95,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.003,
+  "effective_fps": 23.9,
+  "max_dup_run": 3,
+  "max_dup_at_s": 12.79,
+  "duration_s": 42.25
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": {
+    "action": "drag_line",
+    "family": "pull",
+    "goal": "resist a growing value and lose \u2014 2013",
+    "target": "2013",
+    "selection_input": {
+     "claim": "NASA astronaut candidate applicants per selection class climbed from 6,300 in 2013 to 8,000 in 2025.",
+     "relationships": [
+      "increase"
+     ],
+     "direction": "rising",
+     "shape": "trend",
+     "used_families": []
+    },
+    "contact": "both fists clamped on the object's tip",
+    "cause": "hauls DOWN trying to stop the rise",
+    "consequence": "the data keeps rising and DRAGS HIM airborne",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": {
+    "action": "race_sprint",
+    "family": "race",
+    "goal": "race a fast-moving value \u2014 Applicants",
+    "target": "Applicants",
+    "selection_input": {
+     "claim": "The highest 2017 astronaut class: applicants vs. selected is Applicants at 18,300 count.",
+     "relationships": [
+      "increase"
+     ],
+     "direction": "rising",
+     "shape": "ranking",
+     "used_families": [
+      "pull"
+     ]
+    },
+    "contact": "sprinting flush with the advancing edge",
+    "cause": "races the data to the mark",
+    "consequence": "loses ground and dives across",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": {
+    "action": "catch_fall",
+    "family": "catch",
+    "goal": "arrest a falling value \u2014 2000",
+    "target": "2000",
+    "selection_input": {
+     "claim": "NASA active astronaut corps size fell from 149 in 2000 to 41 in 2026.",
+     "relationships": [
+      "decrease"
+     ],
+     "direction": "falling",
+     "shape": "trend",
+     "used_families": [
+      "pull",
+      "race"
+     ]
+    },
+    "contact": "arms under the falling value",
+    "cause": "catches the drop",
+    "consequence": "impact squashes him into a squat; he holds it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": true,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  }
+ ],
+ "why_it_worked": "An engaging video effectively demonstrating the extreme odds of becoming a NASA astronaut with strong visual metaphors and mascot interaction.",
+ "render_ref": "preview-renders branch @ 20260901T011255Z"
+}

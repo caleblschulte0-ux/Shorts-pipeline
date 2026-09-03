@@ -227,6 +227,16 @@ def _frame_plan(dur: float, manifest: dict | None):
     plan = [(0.3, "hook@0.3"), (0.8, "hook@0.8"), (1.5, "hook@1.5"),
             (2.2, "hook@2.2")]
     wins = (manifest or {}).get("segment_windows")
+    if not wins and (manifest or {}).get("chapters"):
+        # LONG-FORM: `longform_render` writes chapters (start second + label),
+        # not segment windows — the same information in the shape that video
+        # actually has. Turn consecutive chapter starts into windows so the
+        # judge samples each chapter settled rather than sweeping blind.
+        chs = sorted((float(c.get("t", 0.0)) for c in manifest["chapters"]
+                      if isinstance(c, dict)))
+        wins = [[chs[i], (chs[i + 1] if i + 1 < len(chs) else dur)]
+                for i in range(len(chs))]
+        wins = [w for w in wins if w[1] - w[0] > 1.0]
     if wins:
         for i, (s0, s1) in enumerate(wins):
             # Sample SETTLED moments, not the transition-in (mascot still gliding,
@@ -235,8 +245,16 @@ def _frame_plan(dur: float, manifest: dict | None):
             for f, tag in ((0.25, "start"), (0.55, "mid"), (0.85, "end")):
                 plan.append((s0 + f * (s1 - s0), f"seg{i}:{tag}"))
     else:
-        for k in range(6):
-            t = 2.5 + (dur - 4.5) * k / 5
+        # SIX STILLS IS A SHORTS NUMBER. It covers a 40s vertical fine; on a
+        # 5-8 minute 16:9 long-form it is one glance per ~60 seconds, and a
+        # judge that never sees minute 4 cannot honestly say the video holds
+        # up — it would rubber-stamp exactly the dead middle a watch-page
+        # video dies of. Scale the sweep with duration (~one sample per 12s,
+        # bounded) so a long-form is actually watched, and keep the classic
+        # six for anything short so no existing verdict shifts.
+        n = 6 if dur <= 90 else max(6, min(28, int(dur // 12)))
+        for k in range(n):
+            t = 2.5 + (dur - 4.5) * k / max(1, n - 1)
             plan.append((t, f"mid{k}"))
     plan.append((max(0.0, dur - 1.8), "payoff@-1.8"))
     plan.append((max(0.0, dur - 0.4), "payoff@-0.4"))
@@ -631,6 +649,18 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
                 manifest = json.loads(mpath.read_text())
             except Exception:  # noqa: BLE001
                 manifest = None
+    if manifest is None:
+        # LONG-FORM sidecar: `longform_render` writes `<out>.meta.json`
+        # (chapters + duration + sources) instead of a shorts manifest.
+        # Without this the judge falls to a blind sweep of a 5-minute video.
+        mpath = mp4.with_suffix(".meta.json")
+        if mpath.exists():
+            try:
+                manifest = json.loads(mpath.read_text())
+            except Exception:  # noqa: BLE001
+                manifest = None
+    if manifest is None and ctx.get("chapters"):
+        manifest = {"chapters": ctx["chapters"]}
     with tempfile.TemporaryDirectory() as td:
         tdp = Path(td)
         labeled = _extract_frames(mp4, tdp, manifest)

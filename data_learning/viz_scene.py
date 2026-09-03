@@ -302,21 +302,12 @@ def draw_object(d, canvas, box, cutout, value, label, color, reveal, vmax,
         # leader is unmistakably the biggest thing on screen.
         _vr = max(0.0, min(1.0, (value / vmax) if vmax else 1.0))
         _full = bh * (0.40 + 0.44 * (_vr ** 0.5))
-        # GROW IN, then keep breathing. Rows used to snap to final size and hold,
-        # so once every element had revealed the frames were byte-identical and
-        # the scene measured 1.0 effective fps against an 11.0 floor — a build
-        # that is technically 30fps and visually a still. Size now rides the
-        # reveal, and a small oscillation on the global build phase means no two
-        # frames of the beat are the same.
-        import math as _mo
-        # Growth rides the GLOBAL build phase, not the per-element reveal.
-        # A per-element reveal saturates early (element 0 is done ~40% in) and
-        # every frame after that is byte-identical, which is what put a 76-frame
-        # frozen run in the master. Tying it to the phase means every row is
-        # still changing size on the last frame of the beat.
-        _grow = 0.34 + 0.66 * max(0.0, min(1.0, phase)) * max(0.35, min(1.0, reveal * 1.4))
-        _breathe = 1.0 + 0.035 * _mo.sin(2 * _mo.pi * (phase * 2.0 + _vr))
-        ih = max(8, int(_full * _grow * _breathe))
+        # GROW IN, then hold. An earlier version multiplied this by a sine on
+        # the build phase to keep frames non-identical; that pulsing is a
+        # shake by another name and it is gone. Motion inside a beat comes from
+        # the reveal, the counting numeral and the host's performance.
+        _grow = 0.42 + 0.58 * max(0.0, min(1.0, reveal))
+        ih = max(8, int(_full * _grow))
         if photo is not None:
             # A REAL photo of the thing, framed as a rounded card filling the left.
             iw = int(bw * 0.48)

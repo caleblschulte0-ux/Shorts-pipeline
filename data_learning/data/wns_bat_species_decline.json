@@ -1,0 +1,20 @@
+{
+  "key": "wns_bat_species_decline",
+  "title": "Population decline since white-nose syndrome arrived (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "~2007-2018 (within a decade of arrival)",
+  "source": {
+    "name": "White-Nose Syndrome Killed Over 90% of Three North American Bat Species",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov/news/national-news-release/white-nose-syndrome-killed-over-90-three-north-american-bat-species",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; population decline in fewer than 10 years following white-nose syndrome's arrival, per USGS national news release.",
+  "points": [
+    {"label": "Northern long-eared bat", "value": 97},
+    {"label": "Little brown bat", "value": 90},
+    {"label": "Tri-colored bat", "value": 90}
+  ]
+}

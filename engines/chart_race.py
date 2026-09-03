@@ -49,7 +49,6 @@ _REPO = Path(__file__).resolve().parent.parent
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-from shared import camera_float                                    # noqa: E402
 from shared.fit_title import fit_title                              # noqa: E402
 
 FPS = 24
@@ -818,18 +817,23 @@ def render(spec: dict, out: str | Path, *,
             fig.savefig(frames_dir / f"f{f:05d}.png", facecolor="#000000")
         plt.close(fig)
 
-        # CAMERA FLOAT — see shared/camera_float.py. The race eases in, so
-        # its opening seconds are near-still: on 2026-08-11 three of six
-        # trending videos were blocked before vision review at 4.5 / 8.7 /
-        # 8.9 effective fps against an 11.0 floor. The float is cyclic, so
-        # unlike the race itself it does not thin out over a longer chart —
-        # measured 23.1 fps on a completely static 20-second clip. It costs
-        # 20px of edge (1.9%) and never exposes background.
-        _float = camera_float.crop_vf(W, H)
+        # NO CAMERA FLOAT (operator ruling 2026-08-25: rip the camera shake
+        # out all the way). It was added on 2026-08-11 because the race EASES
+        # IN and its opening seconds were near-still — three of six trending
+        # videos blocked at 4.5 / 8.7 / 8.9 effective fps against an 11.0
+        # floor. The float made the meter happy without making the opening
+        # any better to watch.
+        #
+        # The opening is the thing to fix, and the drama gate now refuses a
+        # chart whose first seconds are an empty plot (doctor d17724dfb1c0:
+        # `assess()` derives the opening's painted area and the leader's
+        # screen travel from the renderer's own axis math, BEFORE a slot is
+        # spent). A race that passes that gate is moving in its opening by
+        # construction; one that is not should be replaced, not shaken.
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error",
              "-framerate", str(fps), "-i", str(frames_dir / "f%05d.png"),
-             "-vf", f"{_float},format=yuv420p", "-c:v", "libx264",
+             "-vf", "format=yuv420p", "-c:v", "libx264",
              "-preset", "veryfast", "-crf", "20", "-r", str(fps),
              "-an", "-movflags", "+faststart", str(out)],
             check=True)

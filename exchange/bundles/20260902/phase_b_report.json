@@ -1,0 +1,112 @@
+{
+  "date": "20260902",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 15,
+    "unfilled": 1,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "6f079b638f9e9fc339adacd70e1d54e8e07292c7404d5bed23281f0da18f3221",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "carpet-that-was-never-there-s0-15bb736d7371",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g30cb1198125a5b4f913436db51b0db12da4d3b9a94fc399247337e957dc5f40d428bd3df9e507270d166e4f832e5d9ed78f9b15249a10b35c1727b251a66a725_1280.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s1-609b26e523fb",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g41dc43ad21ef07c13de2531a97086bc435106a7f76e9fe5ba2079a18ecc0ed0061667bd7dd3174a13af3049be6372212c019994e3253fcbdbcb67b90ccff73b8_1280.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s2-be4c6085c954",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/7414962/pexels-photo-7414962.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s3-54d2f3abd216",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf6d32a478f31c75719c7fb23da898a6e07a0e94826daab78d9a3a24a9c879acc590b389331959cda7588b9255b6d32d9ddb6be0ef7df50db8b08b1aa8b6d819a_1280.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s4-b1988680a67d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb78627bfc975edf26d6cb01b4e053d5641a667047f89ef2005bbae1fb7a5a3e7c2efce58df52b729382c6f8381d5465ff10652db9af13c12e637be93ba940481_1280.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s5-a19e82d17076",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g05ae0ae4205f7651bd64e7a823062f7ae74505a24c381b0849c7888070f5ff7adfdcf5af86a8533d7508128737aed6e37001e1631c8a7ef4ec1d9494faada08c_1280.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s6-cb58c57b1dc0",
+      "outcome": "self_fill",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Sketch_of_an_overview_of_the_courtroom_that_includes_the_judges_bench_and_the_defense_table._24.jpg"
+    },
+    {
+      "request_id": "carpet-that-was-never-there-s7-3927bb00b686",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g10fe527e91a2f4dace0992617f2e1566a506734223d0528ae8314f6cffec8a9ee4ac4c9ce24d4bce733a815afa511952c75a4977628ad76284d7e3f5b747097b_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s0-bc0055a559e7",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g04661c13e244b651d740d2f5b0b62ed9a1afa160ad336c1e3321f7cb73c3da632be8b956eace541d2e5c5819901b126621f7bc4b16779d37d00fe9375eb79fb2_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s1-48110323b3fd",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd4196db8b4e1a6cdab1d5325b329fe71cb6af8e2b689b7e28c7fc403831a21606223e7e4068e96aaf8fef88a5568a37d76090ec542be460ab8f7230707d674ac_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s2-9e1a6d63c94b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g341142489fa95f7c3ca725391d7ca4a26f171df7047b4e33948e23e0d9649438d6aeb4f499d8da0bc85daab69cb6a07c30449e0964d97da5c91e38569c056ec0_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s3-9b270180032b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g12227352db0dad339f806106505c5c6f1dcab48bc7c9c830c9b122cf3466625b57226c7a6aac9a846db38f84d19bf0bdb012440d762e02286d2346fd25b2c125_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s4-988c9930b4cd",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s5-86611cf2725b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga37c31facd4c3868e4cf3e34512cf1f381674860bcab57ca7680bb756895abc9873a56d3073ddc531369121b32280fee59677bfcb5d6f7361c0cf9016477ce5b_1280.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s6-8e6c08c62b7c",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3070/2504049318_457aeffd9e.jpg"
+    },
+    {
+      "request_id": "kiosk-remembered-her-s7-3e8a584b18ac",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g4c2b99bae2f53573c0b066db2bc051c16744cb4500d35d96069c92daa0d593ab77ceefa13fd094b30d10533e2f970e5287371d1e137c7693639f134dd6a53aaa_1280.jpg"
+    }
+  ]
+}

@@ -24809,6 +24809,316 @@
       ]
     },
     {
+      "slug": "third-interstellar-visitor",
+      "title": "The Third Visitor From Outside Our Solar System",
+      "hook": "Something just flew past Earth. It wasn't from here.",
+      "closing": "Three visitors, ever. And each one's been bigger.",
+      "question": "Do you think we'll ever catch up to one? Tell me below.",
+      "caption": "Only 3 objects have ever been confirmed passing through our solar system from interstellar space -- 'Oumuamua in 2017, Borisov in 2019, and 3I/ATLAS in 2025. Each one found has been bigger and faster than the last, and this one is the biggest yet: up to 5.6 km wide, moving at 246,000 km/h. Do you think we'll ever catch up to one? 👇",
+      "hashtags": [
+        "interstellar",
+        "comet",
+        "atlas",
+        "oumuamua",
+        "borisov",
+        "space",
+        "astronomy",
+        "nasa",
+        "hubble",
+        "science",
+        "universe",
+        "solarsystem",
+        "spaceexploration",
+        "didyouknow",
+        "mindblown"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "interstellar_objects_timeline",
+          "params": {
+            "file": "interstellar_objects_timeline.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE COUNT",
+          "topic": "interstellar visitors found",
+          "say": "In the history of modern astronomy, we've confirmed something from outside our solar system just 3 times -- 2017, then 2019, then 2025.",
+          "scene": {
+            "mechanic": "portal-comet-count",
+            "concept": "a glowing wormhole portal at the frame edge fires real comet cutouts across the sky one by one as the confirmed count climbs 1->3",
+            "code": "comet = subject_image('interstellar comet with glowing tail')\ncx, cy = RX0 + 90, RTOP + 260\nd.ellipse([cx-70,cy-70,cx+70,cy+70], outline=rgba(HIGHLIGHT,220), width=6)\nd.ellipse([cx-40,cy-40,cx+40,cy+40], fill=rgba(ACCENT,140))\nshown = max(1, int(reveal * n + 0.999))\ngap = (RX1 - RX0 - 220) // max(1, n - 1)\nfor i in range(min(shown, n)):\n    stage = clamp(reveal * n - i)\n    tx = RX0 + 180 + i * gap\n    ty = RTOP + 320 + (i % 2) * 120\n    x = int(lerp(cx, tx, stage))\n    y = int(lerp(cy, ty, stage))\n    if comet is not None:\n        paste(comet, x - 60, y - 60, 120, 90)\n    else:\n        d.ellipse([x-30,y-18,x+30,y+18], fill=rgba(WARN,220))\n    if stage >= 0.98:\n        text(labels[i], tx, ty + 60, size=30, color=TEXT, center=True)\n        text(str(int(values[i])), tx, ty + 96, size=44, color=HIGHLIGHT, center=True)\ntext(f'{int(values[min(shown,n)-1])} CONFIRMED', (RX0+RX1)//2, RBOT-70, size=40, color=WARN, center=True)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "interstellar_object_speeds",
+          "params": {
+            "file": "interstellar_object_speeds.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 · GETTING FASTER",
+          "topic": "peak speed through the solar system",
+          "say": "And each one has been faster. 'Oumuamua topped 140,000 kilometers an hour, Borisov hit 177,000 -- and 3I/ATLAS peaked at 246,000, the fastest yet.",
+          "scene": {
+            "mechanic": "comet-speedway-race",
+            "concept": "three real comet cutouts race down parallel lanes, each stopping at a finish position proportional to its peak km/h -- the newest visitor screaming past the others",
+            "code": "comet = subject_image('interstellar comet with glowing tail')\nlane_h = (RBOT - RTOP - 60) // n\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    ly = RTOP + 40 + i * lane_h\n    d.line([RX0+20, ly+lane_h-20, RX1-20, ly+lane_h-20], fill=rgba(TEXT,90), width=3)\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * 1.15)\n    x = int(lerp(RX0 + 100, RX0 + 60 + (RX1 - RX0 - 160) * frac, stage))\n    if comet is not None:\n        paste(comet, x - 55, ly, 130, 90)\n    else:\n        d.ellipse([x-40,ly+20,x+40,ly+60], fill=rgba(WARN if i==n-1 else ACCENT,220))\n    text(lab, RX0 + 10, ly - 6, size=24, color=TEXT)\n    if stage >= 1.0:\n        text(f'{int(v):,} km/h', x + 40, ly + 30, size=26,\n             color=WARN if i == n - 1 else HIGHLIGHT)\ntext('GETTING FASTER EACH TIME', (RX0+RX1)//2, RTOP, size=32, color=WARN, center=True)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "interstellar_object_sizes",
+          "params": {
+            "file": "interstellar_object_sizes.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · GETTING BIGGER",
+          "topic": "nucleus size vs the last record holder",
+          "say": "It's also the biggest. Borisov's nucleus was about 1 kilometer across; 3I/ATLAS could be 5.6 kilometers -- big enough that better telescopes might soon catch one even closer.",
+          "scene": {
+            "mechanic": "comet-scale-swell",
+            "concept": "two real comet cutouts swell in place against a size-ruler backdrop to their true relative diameter -- the newest one dwarfing the old record holder",
+            "code": "comet = subject_image('interstellar comet with glowing tail')\ncx0, cx1 = RX0 + 260, RX1 - 220\nbase_y = RBOT - 140\nfor gx in range(RX0, RX1, 90):\n    d.line([gx, RTOP+40, gx, RBOT-40], fill=rgba(TEXT,40), width=2)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * 1.1)\n    size = int((80 + 380 * frac) * stage)\n    cx = cx0 if i == 0 else cx1\n    if comet is not None:\n        paste(comet, cx - size // 2, base_y - size, size, int(size * 0.7))\n    else:\n        d.ellipse([cx-size//2, base_y-size, cx+size//2, base_y], fill=rgba(WARN if i==0 else ACCENT,210))\n    text(lab, cx, base_y + 20, size=26, color=TEXT, center=True)\n    if stage >= 1.0:\n        text(f'{v:.2f} km', cx, base_y + 52, size=30,\n             color=WARN if i == 0 else HIGHLIGHT, center=True)\ntext('THE BIGGEST YET', (RX0+RX1)//2, RTOP+10, size=34, color=WARN, center=True)"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "bat-fungus-collapse",
+      "title": "A Fungus Is Erasing North America's Bats",
+      "hook": "A fungus is quietly wiping out America's bats.",
+      "closing": "No bats, no free pest control. That's the trade.",
+      "question": "Ever seen a bat near your home? Tell me below.",
+      "caption": "Since 2006, a cold-loving fungus called white-nose syndrome has spread from a single New York cave to 35 states, killing over 90% of three major bat species. Bats aren't just creepy -- they save US farmers an estimated $3.7 billion a year eating crop pests. Ever seen a bat near your home? 👇",
+      "hashtags": [
+        "bats",
+        "whitenose",
+        "wildlife",
+        "ecology",
+        "nature",
+        "usgs",
+        "fungus",
+        "conservation",
+        "biodiversity",
+        "agriculture",
+        "pestcontrol",
+        "didyouknow",
+        "science",
+        "animals"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "wns_states_affected",
+          "params": {
+            "file": "wns_states_affected.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SPREAD",
+          "topic": "states with the bat fungus",
+          "say": "In 2006, a cold-loving fungus showed up in one New York cave. By 2018 it had reached 32 states. Today it's confirmed in 35.",
+          "viz": "geo_us"
+        },
+        {
+          "source": "offline",
+          "key": "wns_bat_species_decline",
+          "params": {
+            "file": "wns_bat_species_decline.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 · THE DIE-OFF",
+          "topic": "bat population decline",
+          "say": "That fungus is called white-nose syndrome, and it's brutal -- it's killed off 97 percent of northern long-eared bats and 90 percent of little brown bats in under a decade.",
+          "scene": {
+            "mechanic": "bat-colony-collapse-columns",
+            "concept": "three cave-ceiling colonies of real bat cutouts hang above their species label, then the fungus's toll drops most of each colony to the floor -- only a handful still hanging",
+            "code": "bat = subject_image('brown bat hanging upside down')\ncol_w = (RX1 - RX0) // n\nrows, cols = 5, 2\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + col_w * i + col_w // 2\n    kept_frac = clamp(1 - v / 100.0)\n    kept = max(1, round(rows * cols * kept_frac))\n    stage = clamp(reveal * 1.2)\n    idx = 0\n    for r in range(rows):\n        for c in range(cols):\n            idx += 1\n            bx = cx - col_w // 2 + 30 + c * (col_w - 60)\n            by = RTOP + 60 + r * 70\n            alive = idx <= kept\n            fall = 0 if alive else int(560 * clamp((stage - 0.3) * 1.6))\n            if bat is not None:\n                paste(bat, bx - 24, by + fall, 48, 48)\n            else:\n                d.ellipse([bx-18,by+fall-18,bx+18,by+fall+18], fill=rgba(TEXT if alive else WARN,200))\n    text(lab, cx, RBOT - 70, size=22, color=TEXT, center=True)\n    if stage >= 1.0:\n        text(f'-{int(v)}%', cx, RBOT - 38, size=34, color=WARN, center=True)\nd.line([RX0+10, RBOT-90, RX1-10, RBOT-90], fill=rgba(TEXT,120), width=3)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "wns_pest_control_value",
+          "params": {
+            "file": "wns_pest_control_value.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · WHAT WE LOSE",
+          "topic": "value of bats to farmers",
+          "say": "Here's why that matters beyond the bats: they eat crop pests worth 3.7 to 53 billion dollars a year to US farmers -- a free service that's now disappearing.",
+          "scene": {
+            "mechanic": "farmland-value-gauge",
+            "concept": "a bat cutout sweeps like a gauge needle over a farmland photo from the low to the high dollar estimate, crop icons filling in behind it as the value climbs",
+            "code": "bat = subject_image('bat flying silhouette')\nfield = subject_image('farm crop field aerial photo')\ncx, cy = (RX0 + RX1) // 2, RBOT - 260\nif field is not None:\n    paste(field, RX0, RTOP + 40, RX1 - RX0, 420)\nradius = 300\nlo, hi = min(values), max(values)\ncur = lerp(lo, hi, clamp(reveal * 1.1))\nfrac = clamp((cur - lo) / max(1e-6, hi - lo))\nang0, ang1 = 200, 340\nd.arc([cx-radius, cy-radius, cx+radius, cy+radius], ang0, ang1, fill=rgba(TEXT,140), width=14)\nang = ang0 + (ang1 - ang0) * frac\nrad = math.radians(ang)\nnx, ny = cx + radius * math.cos(rad), cy + radius * math.sin(rad)\nif bat is not None:\n    paste(bat, int(nx)-40, int(ny)-40, 80, 80)\nd.line([cx, cy, nx, ny], fill=rgba(WARN,230), width=8)\ntext(f'${cur:,.1f}B / YEAR', cx, cy + 60, size=42, color=WARN, center=True)\ntext(f'low ${lo:.1f}B', RX0 + 60, cy + 40, size=24, color=TEXT)\ntext(f'high ${hi:.0f}B', RX1 - 200, cy + 40, size=24, color=TEXT)"
+          }
+        }
+      ]
+    },
+    {
+      "slug": "cremation-overtakes-burial",
+      "title": "Cremation Just Became the New American Normal",
+      "hook": "More Americans now choose fire over the ground.",
+      "closing": "Half a century ago, almost nobody chose this. Now most do.",
+      "question": "Would you choose cremation or burial? Tell me below.",
+      "caption": "In the 1970s, only about 5% of Americans were cremated. In 2025 it's 63.4%, more than double the burial rate of 31.6%. Cost, mobility, and changing traditions are behind the flip -- and it still varies wildly by state. Would you choose cremation or burial? 👇",
+      "hashtags": [
+        "cremation",
+        "burial",
+        "funeral",
+        "deathcare",
+        "demographics",
+        "society",
+        "nfda",
+        "cana",
+        "tradition",
+        "endoflife",
+        "didyouknow",
+        "dataviz",
+        "culture"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "cremation_rate_trend",
+          "params": {
+            "file": "cremation_rate_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE SHIFT",
+          "topic": "US cremation rate over time",
+          "say": "In the 1970s, almost nobody in America chose cremation -- just 5 percent. By 2010 that hit 41 percent. Today it's 63 percent and still climbing.",
+          "scene": {
+            "mechanic": "urn-flame-rise",
+            "concept": "a real funeral urn fills with rising flame/glow at each decade marker as the national cremation rate climbs from 5% to 63%",
+            "code": "urn = subject_image('funeral cremation urn photo')\ngap = (RX1 - RX0 - 160) // max(1, n - 1)\nbase_y = RBOT - 80\nurn_h = 260\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x = RX0 + 80 + i * gap\n    stage = clamp(reveal * n - i)\n    if urn is not None:\n        paste(urn, x - 70, base_y - urn_h, 140, urn_h)\n    frac = clamp(v / 100.0) * stage\n    fh = int((urn_h - 40) * frac)\n    d.rounded_rectangle([x-45, base_y-30-fh, x+45, base_y-30], radius=10, fill=rgba(WARN,190))\n    text(lab, x, base_y + 14, size=24, color=TEXT, center=True)\n    if stage >= 1:\n        text(f'{v:.0f}%', x, base_y - urn_h - 34, size=30, color=HIGHLIGHT, center=True)\ntext('CREMATION RATE OVER TIME', (RX0+RX1)//2, RTOP+20, size=30, color=TEXT, center=True)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "cremation_vs_burial_2025",
+          "params": {
+            "file": "cremation_vs_burial_2025.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · THE CROSSOVER",
+          "topic": "cremation vs burial today",
+          "say": "That means cremation now sits at 63.4 percent, more than double burial's 31.6 percent -- a complete flip from what your grandparents chose.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cremation urn",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "cemetery headstone",
+                "data": {
+                  "value_from": "item:1"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "source": "offline",
+          "key": "cremation_rate_by_state",
+          "params": {
+            "file": "cremation_rate_by_state.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": true,
+          "role": "3 · NOT EVERYWHERE",
+          "topic": "cremation rate by state",
+          "say": "But it's not even. Nevada cremates 81.9 percent of people, while Mississippi is still just 32.8 percent -- tradition and cost still split the country.",
+          "viz": "geo_us"
+        }
+      ]
+    },
+    {
+      "slug": "unclaimed-money-states-hold",
+      "title": "Every State Is Secretly Holding Billions Of Your Money",
+      "hook": "The government might be holding your money right now.",
+      "closing": "Seventy billion dollars, just sitting there. Go check yours.",
+      "question": "Have you ever checked if you're owed money? Tell me below.",
+      "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
+      "hashtags": [
+        "unclaimedmoney",
+        "unclaimedproperty",
+        "personalfinance",
+        "moneytips",
+        "naupa",
+        "finance",
+        "freemoney",
+        "budgeting",
+        "savings",
+        "didyouknow",
+        "financetips",
+        "money"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "unclaimed_property_top_states",
+          "params": {
+            "file": "unclaimed_property_top_states.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "1 · IT'S EVERYWHERE",
+          "topic": "states holding the most money",
+          "say": "US states are sitting on about 70 billion dollars in forgotten money. California alone holds 15 billion of it, more than Texas and Ohio combined.",
+          "viz": "geo_us"
+        },
+        {
+          "source": "offline",
+          "key": "unclaimed_property_returned_vs_total",
+          "params": {
+            "file": "unclaimed_property_returned_vs_total.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "2 · BARELY RECLAIMED",
+          "topic": "money returned vs money held",
+          "say": "But almost none of it moves. Of that 70 billion, states handed back just 4.49 billion dollars last year -- the rest just sits there.",
+          "scene": {
+            "mechanic": "vault-drain-trickle",
+            "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
+            "code": "vault = subject_image('bank vault door photo')\ncash = subject_image('stack of cash dollars')\ncx = (RX0 + RX1) // 2\nvy, vh, vw = RTOP + 40, 420, 460\nif vault is not None:\n    paste(vault, cx - vw // 2, vy, vw, vh)\ntot, ret = values[0], values[1]\nfill_frac = clamp(reveal * 1.2)\nif cash is not None:\n    fill_image(cash, fill_frac, cx - vw // 2 + 30, vy + 20, vw - 60, vh - 60, direction='up')\ntext(f'${tot:.0f}B HELD', cx, vy - 40, size=36, color=WARN, center=True)\ndrain_frac = clamp((ret / tot)) * clamp((reveal - 0.4) * 1.8)\ndx0, dy0 = cx - 20, vy + vh\ndlen = int(420 * drain_frac)\nd.rectangle([dx0, dy0, dx0 + 40, dy0 + dlen], fill=rgba(HIGHLIGHT, 210))\ntext(f'${ret:.2f}B RETURNED', cx, dy0 + dlen + 20, size=30, color=HIGHLIGHT, center=True)"
+          }
+        },
+        {
+          "source": "offline",
+          "key": "unclaimed_property_population_share",
+          "params": {
+            "file": "unclaimed_property_population_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · IS IT YOURS?",
+          "topic": "who has unclaimed money",
+          "say": "That's because 1 in 7 Americans -- about 14 percent -- currently have some, from an old paycheck, a deposit, a policy nobody cashed out. It's free to check.",
+          "scene": {
+            "mechanic": "crowd-glow-share",
+            "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
+            "code": "person = subject_image('person silhouette icon')\ncash = subject_image('dollar bill icon')\nshare = values[0] / 100.0\ncols, rows = 7, 4\ncw = (RX1 - RX0) // cols\nch = (RBOT - RTOP - 120) // rows\nlit_total = max(1, round(cols * rows * share))\nshown = max(1, int(lit_total * clamp(reveal * 1.2)))\nidx = 0\nfor r in range(rows):\n    for c in range(cols):\n        idx += 1\n        x = RX0 + c * cw + cw // 2\n        y = RTOP + 60 + r * ch\n        lit = (idx % 7 == 1) and (idx // 7) < shown\n        if person is not None:\n            im = person\n            paste(im, x - cw // 3, y, int(cw * 0.6), int(ch * 0.8))\n        else:\n            d.ellipse([x-20,y,x+20,y+40], fill=rgba(HIGHLIGHT if lit else TEXT, 220 if lit else 90))\n        if lit and cash is not None:\n            paste(cash, x - 16, y - 20, 32, 32)\ntext(f'{values[0]:.1f}% HAVE MONEY WAITING', (RX0+RX1)//2, RBOT-50, size=30, color=WARN, center=True)"
+          }
+        }
+      ]
+    },
+    {
       "slug": "container-losses-red-sea-reroute",
       "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
       "hook": "Why Cargo Ships Started Losing Containers Again",

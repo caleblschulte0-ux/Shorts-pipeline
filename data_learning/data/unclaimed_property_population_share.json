@@ -1,0 +1,19 @@
+{
+  "key": "unclaimed_property_population_share",
+  "title": "Share of Americans with unclaimed property waiting",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "Unclaimed property owner estimate",
+    "publisher": "National Association of Unclaimed Property Administrators (NAUPA)",
+    "url": "https://finance.yahoo.com/news/70-billion-unclaimed-property-held-220441321.html",
+    "officiality": "secondary",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; NAUPA estimates roughly 1 in 7 Americans (about 33 million people) currently have unclaimed property on record with a state.",
+  "points": [
+    {"label": "Have unclaimed property waiting", "value": 14.3},
+    {"label": "Don't (as far as they know)", "value": 85.7}
+  ]
+}
