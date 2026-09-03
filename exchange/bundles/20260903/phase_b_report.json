@@ -1,0 +1,103 @@
+{
+  "date": "20260903",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 14,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "8d3c43d5f73f76dda7c561cee9e600b37ace89cc9a5ffdb9bdd1c6329952c536",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "airline-bump-federal-compensation-s0-60ef76b14638",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3586/3549277852_d83c5517fb_b.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s1-d00c5f63259b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g8e0098f9dfa6cfc5bef75481dc8d0d0507920a58b0bd553ac7c6c0e849e63acd8effc97c969d2d9e74b2bcd8a8fe1068646866f928dc86cc3de640d26c753b97_1280.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s2-c89a41c84cc2",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gddfc29552915e0eaf07625f077b7d687d0afd7bf4c0c6297bb932ae3b2d403dbca9d669efdb2a4c7b70d993099c368822441743a93a0b69512b92f37ba82c8d2_1280.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s3-8117a11b8dfb",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc6a0192841816a783f9631b750862f54fade5e233b3e3b56115f73b1c7420c057e44eedcf4f69503b186ff288c0b25aa6d102ced4deaae6baabad33dc1cedad4_1280.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s4-6e5ec5ae77b3",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3327/5792929304_430ca048f5_m.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s5-340803103fa0",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0947e7683ea7ffb45cee2c52d9208504b9a2bd6ee0c1aef401e7f65ed044f38459d0136100bdbb444c4ca5f30b33f067768d2b268f2f55037b7a2b25982d7799_1280.jpg"
+    },
+    {
+      "request_id": "airline-bump-federal-compensation-s6-6d2808418624",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb9785803afe703ee298bbeaccb1ea0d5af0271bc2f0ea0a09dfd64ea0633b7f14402fd33f1da6f41ed3e514a57067f9f7d46c8b73f5ee1a268159d00bd3fd58d_1280.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s0-aa96dcd26d45",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2741/5739009696_64321ff5d9.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s1-3fbd184d3395",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g3f83ab80e7f1a7b54bb1c07515aeac90037aab926699722a77f4e804a9d74bdb0b4001b6f11df495e8f33fe0226f26ca42153e3f776a3a9d03a264dd7e92b41c_1280.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s2-0a1a5c661008",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/35885512/pexels-photo-35885512.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s3-607fec4cbdfa",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb889a6ebf2c8eade3715f3ca9a61a12d2be8073b0f785aad1967ce61e66b061f253d513634e730f3669b2006942bc77ee1b7d60daed4f630ec933c80f232677f_1280.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s4-3dcd3be6c6eb",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g7cc521bf7ba84219d6ed8cf504568b3c0e940515480cc6ab0d6473c2b041a6b0116762015ada5ae9a121e3992c155f0eac1f793044bd6de9949408fd20317def_1280.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s5-937e7c6925ce",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g77eca59e983ebf0492e959d05982e63fcb1df129e4acb8ed05cecd9310434ba7bf070bc842029fe6328e299bfb8c03aa10a2933c1a3f3ca3caa0f5100d2d1ebf_1280.jpg"
+    },
+    {
+      "request_id": "restaurant-allergy-no-substitutions-s6-c3c01b78253c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gdf18d7fd29097ac110e67eb2cfd579fade0051e8d608056b0b4e90126855bc4878b542cd0e7651f3b6b5f70028b51b938afdaae80bfa9b5db97a9f9dc8b6f6bb_1280.jpg"
+    }
+  ]
+}

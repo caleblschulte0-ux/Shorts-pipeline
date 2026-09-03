@@ -21,31 +21,45 @@
   "shots": [
     {
       "phrase": "My flight was overbooked",
-      "query": "airport departure board delay"
+      "query": "airport departure board delay",
+      "image_url": "https://live.staticflickr.com/3586/3549277852_d83c5517fb_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a $200 voucher",
-      "query": "airline travel voucher paper"
+      "query": "airline travel voucher paper",
+      "image_url": "https://pixabay.com/get/g8e0098f9dfa6cfc5bef75481dc8d0d0507920a58b0bd553ac7c6c0e849e63acd8effc97c969d2d9e74b2bcd8a8fe1068646866f928dc86cc3de640d26c753b97_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the exact rule on my phone",
-      "query": "hand holding phone reading"
+      "query": "hand holding phone reading",
+      "image_url": "https://pixabay.com/get/gddfc29552915e0eaf07625f077b7d687d0afd7bf4c0c6297bb932ae3b2d403dbca9d669efdb2a4c7b70d993099c368822441743a93a0b69512b92f37ba82c8d2_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Her supervisor showed up",
-      "query": "airport gate agent counter"
+      "query": "airport gate agent counter",
+      "image_url": "https://pixabay.com/get/gc6a0192841816a783f9631b750862f54fade5e233b3e3b56115f73b1c7420c057e44eedcf4f69503b186ff288c0b25aa6d102ced4deaae6baabad33dc1cedad4_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a check for $1,700",
-      "query": "bank check payment closeup"
+      "query": "bank check payment closeup",
+      "image_url": "https://live.staticflickr.com/3327/5792929304_430ca048f5_m.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "free upgrades",
-      "query": "first class airplane cabin seat"
+      "query": "first class airplane cabin seat",
+      "image_url": "https://pixabay.com/get/g0947e7683ea7ffb45cee2c52d9208504b9a2bd6ee0c1aef401e7f65ed044f38459d0136100bdbb444c4ca5f30b33f067768d2b268f2f55037b7a2b25982d7799_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "ordered the steak",
-      "query": "airplane first class meal tray"
+      "query": "airplane first class meal tray",
+      "image_url": "https://pixabay.com/get/gb9785803afe703ee298bbeaccb1ea0d5af0271bc2f0ea0a09dfd64ea0633b7f14402fd33f1da6f41ed3e514a57067f9f7d46c8b73f5ee1a268159d00bd3fd58d_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
