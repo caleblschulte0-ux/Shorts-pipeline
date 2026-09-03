@@ -142,6 +142,40 @@ def test_no_periodic_whole_body_term_in_any_animator():
     assert not bad, "periodic whole-body motion is back:\n  " + "\n  ".join(bad[:5])
 
 
+def test_no_breath_returned_inline_by_a_legacy_animator():
+    """The legacy actions return their bob as the last element of the tuple —
+    `..., R.mouth_o(), _s(t) * 3)` — never assigning it to a name, so the scan
+    above cannot see it. This caught a real escape during mutation testing."""
+    bad = [f"{i}: {ln.strip()[:74]}"
+           for i, ln in enumerate(_DIRECTOR.splitlines(), 1)
+           if re.search(r",\s*(abs\()?_s\(t\)\)?\s*\*\s*[\d.]+\)\s*$",
+                        ln.split("#", 1)[0])]
+    assert not bad, "a breathing bob is back in a return tuple:\n  " + "\n  ".join(bad[:5])
+
+
+def test_no_animator_bob_is_antisymmetric_over_the_cycle():
+    """Behavioural periodicity detector, independent of how the code is spelled.
+
+    A continuous breath is bob(t) = A*sin(2*pi*t), so bob(t + 0.5) == -bob(t)
+    for every t. Real acting (a crouch that descends, a hop that lands) does
+    not have that symmetry. Any animator whose bob is antisymmetric across the
+    half-cycle AND not flat is vibrating.
+    """
+    from data_learning import mascot_director as md
+    offenders = []
+    for name, fn in sorted(md.ANIMATORS.items()):
+        try:
+            bobs = [(fn(i / 16.0, md.price_tag)[6],
+                     fn((i / 16.0 + 0.5) % 1.0, md.price_tag)[6])
+                    for i in range(16)]
+        except Exception:                     # animator needs a different prop
+            continue
+        if any(abs(a) > 1e-9 for a, _ in bobs) and \
+                all(abs(a + b) < 1e-6 for a, b in bobs):
+            offenders.append(name)
+    assert not offenders, f"antisymmetric (sine) bob in animators: {offenders}"
+
+
 def test_body_pixels_do_not_move_between_phases():
     """Pixel proof: the legs/feet band is byte-identical across a full phase
     cycle. Arms may (and should) move; the body may not."""
