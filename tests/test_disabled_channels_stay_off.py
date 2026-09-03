@@ -41,9 +41,23 @@ WF = ROOT / ".github" / "workflows"
 #: To re-enable one: turn it on in the registry (or add the format), then
 #: take it out of this list in the SAME change — never one without the other.
 OFF_BY_RULING = {
-    "longform.yml": "long-form is not posting (2026-08-05 ruling); it is "
-                    "also not a format in explainer's registry entry",
     "curiosity.yml": "curiosity is disabled in config/channel_registry.json",
+}
+
+#: Paths that publish on a timer BECAUSE the operator turned them on, and
+#: therefore owe the gate instead of a dry-run guard. `longform.yml` moved
+#: here on 2026-08-25 by operator ruling — *"I want long form videos to
+#: start posting"*, purpose-built 16:9, fail-closed gate — reversing the
+#: 2026-08-05 "the long form video should not be posting right now".
+#:
+#: The reversal is deliberate and it is NOT a weakening: what made the old
+#: ruling necessary was that long-form uploaded an unjudged concatenation of
+#: six vertical Shorts. It now renders a real 1920x1080 watch-page video and
+#: every cut passes shared/showrunner_gate.run() fail-closed before upload.
+#: A cron may publish; it may not publish something no judge watched.
+ON_BUT_GATED = {
+    "longform.yml": "long-form publishes weekly, fail-closed behind the "
+                    "showrunner (2026-08-25 ruling)",
 }
 
 
@@ -69,14 +83,38 @@ class TestAnOffChannelHasNoPublishingCron(unittest.TestCase):
                 f"{name} has a cron and no guard tying uploads to a manual "
                 f"dispatch — {why}")
 
-    def test_longform_cron_forces_dry_run(self):
+    def test_longform_publishes_only_behind_the_fail_closed_gate(self):
+        """The replacement obligation for long-form. It may upload on a
+        timer now — so the thing that must hold is that nothing reaches the
+        channel unjudged, and that the run refuses when the gate has no
+        brain (a judge-less fail-closed gate holds every video while every
+        step stays green)."""
         src = body("longform.yml")
-        self.assertIn("--dry-run", src)
-        guard = src[src.index("github.event_name"):]
-        self.assertIn("--dry-run", guard[:400],
-                      "the scheduled-run branch must add --dry-run; without "
-                      "it a Sunday cron uploads a video the operator said "
-                      "should not post")
+        self.assertNotIn("case \"$ARGS\" in *--dry-run*", src,
+                         "the old cron-forces-dry-run guard is gone on "
+                         "purpose; do not resurrect it alongside the gate")
+        self.assertIn("CLAUDE_CODE_OAUTH_TOKEN", src)
+        self.assertIn("GEMINI_API_KEY", src)
+        self.assertRegex(src, r"no CLAUDE_CODE_OAUTH_TOKEN and no GEMINI_API_KEY",
+                         "longform.yml must preflight the showrunner brain")
+        builder = (ROOT / "scripts" / "build_longform.py").read_text()
+        self.assertIn("showrunner_gate", builder,
+                      "long-form must not upload without the gate")
+        gate_at = builder.index("showrunner_gate.run(")
+        upload_at = builder.index("up.upload(")
+        self.assertLess(gate_at, upload_at,
+                        "the gate must run BEFORE the upload call")
+        self.assertIn("will_upload=will_upload", builder,
+                      "the gate must know this is a publish run so it fails "
+                      "CLOSED rather than letting a no-verdict through")
+
+    def test_longform_renders_the_real_watch_page(self):
+        """The other half of why publishing was allowed back on: the video
+        is a 16:9 watch-page render, not six vertical Shorts concatenated."""
+        builder = (ROOT / "scripts" / "build_longform.py").read_text()
+        self.assertIn("longform_render", builder)
+        self.assertNotIn('"-f", "concat"', builder,
+                         "long-form is no longer a concatenation of Shorts")
 
     def test_curiosity_cron_cannot_set_the_publish_flag(self):
         src = body("curiosity.yml")

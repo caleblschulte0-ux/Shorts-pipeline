@@ -101,34 +101,61 @@ jobs:
           [ -z "$YT_CLIENT" ] && { echo "::error::missing YOUTUBE_CLIENT_SECRETS_JSON"; exit 1; }
           [ -z "$YT_TOKEN" ] && { echo "::error::missing YOUTUBE_TOKEN_JSON_EXPLAINER"; exit 1; }
           echo "Secrets present."
+      # THE GATE NEEDS A JUDGE OR IT HOLDS EVERYTHING (CLAUDE.md). A publish
+      # run with no brain renders a full video and publishes none of it,
+      # green the whole way — so say so BEFORE spending the render.
+      - name: Pre-flight — the showrunner has a brain
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no CLAUDE_CODE_OAUTH_TOKEN and no GEMINI_API_KEY — "\
+                 "the fail-closed long-form gate would hold every video. "\
+                 "Add one before publishing long-form."
+            exit 1
+          fi
+          echo "showrunner brain available"
+
+      - name: Install Claude Code CLI (headless showrunner brain)
+        run: |
+          command -v claude >/dev/null 2>&1 && { echo "claude CLI already present"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed — showrunner falls back to Gemini"
+
       - name: Build + upload long-form
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
           YOUTUBE_EXPECTED_CHANNEL: short_explainer67
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
+          set -o pipefail
+          # PUBLISHING IS ON AGAIN — GATED. Operator ruling 2026-08-25,
+          # reversing the 2026-08-05 "long-form is not posting" ruling in the
+          # operator's own words: "I want long form videos to start posting",
+          # purpose-built 16:9, fail-closed gate.
+          #
+          # What made the old ruling necessary is fixed, not waived:
+          #   * the video is a real 1920x1080 watch-page render now
+          #     (data_learning/longform_render.py), not six vertical Shorts
+          #     concatenated with `-c copy`;
+          #   * every cut goes through shared/showrunner_gate.run() BEFORE
+          #     upload, fail-closed exactly like the shorts channels — no
+          #     verdict / infra error / timeout HOLDS the video.
+          # An ungated weekly upload is the one thing this must never become:
+          # docs/SYSTEM_AUDIT.md §B is the record of what ungated volume did
+          # to trending (6/day ungated, best video 45 views).
+          #
+          # The gate needs a judge or it holds EVERYTHING (CLAUDE.md): the
+          # preflight below fails the run when neither brain token is present,
+          # rather than rendering a video nobody can publish.
           ARGS=""
-          [ -n "${{ inputs.slugs }}" ] && ARGS="$ARGS --slugs ${{ inputs.slugs }}"
+          [ -n "${{ inputs.slugs }}" ] && ARGS="$ARGS --slug ${{ inputs.slugs }}"
           [ -n "${{ inputs.title }}" ] && ARGS="$ARGS --title '${{ inputs.title }}'"
           [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
-          # THE CRON CAN NEVER UPLOAD. Operator ruling 2026-08-05: long-form
-          # is not posting right now. That ruling reached the registry
-          # (`curiosity` disabled, explainer = 4x data_story and nothing
-          # else) but it could not reach HERE, because long-form is not a
-          # registry channel — it is an extra format posted to explainer,
-          # with its own Sunday cron and its own upload path. So for half a
-          # week the ruling was true everywhere except the one workflow that
-          # would actually have published one.
-          #
-          # Same shape as curiosity.yml: a scheduled run builds and reports,
-          # a HUMAN with `dry_run: false` publishes. Turning long-form back
-          # on is a deliberate act, not a cron nobody remembered.
-          if [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "::notice::scheduled run — building WITHOUT upload "\
-                 "(long-form publishing is off; dispatch manually with "\
-                 "dry_run=false to publish)"
-            case "$ARGS" in *--dry-run*) ;; *) ARGS="$ARGS --dry-run" ;; esac
-          fi
           eval python scripts/build_longform.py $ARGS
       - name: Persist long-form log
         if: always()

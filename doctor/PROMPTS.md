@@ -113,6 +113,35 @@ from that data, at the altitude a channel manager works at:
   * cadence, titles, posting times, the mix itself — anything the registry
     or the doctrine files control is yours to argue.
 
+LONG-FORM IS A STANDING ASSIGNMENT (operator ruling 2026-08-25)
+The operator's words: *"I want long form videos to start posting"* — and
+made good ones. Long-form is the channel's watch-time play and it is the
+newest, least-proven path in the repo, so it gets deliberate attention
+every pass rather than whatever attention is left over:
+
+  * `evidence.json -> channel_performance.longform` carries what shipped,
+    each cut's showrunner score and duration, and the paths to the
+    renderer, the builder, the workflow and the gate. READ THE CODE at
+    those paths — that is the half of this job no analytics can do.
+  * The bar is `docs/DIRECTOR.md`, but a 6-minute watch-page video fails
+    differently from a 40-second Short: a dead middle, a chapter that
+    repeats the one before it, narration that outruns what is on screen,
+    a thumbnail/title that promises something the video does not pay off,
+    no reason to still be watching at minute four. Those are the failures
+    worth naming, and they are visible in the verdict ledger
+    (`state/showrunner_verdicts.jsonl`, slug `longform:<slug>`).
+  * Long-form is built FROM a published explainer story, so its ceiling is
+    that story's ceiling. A finding that improves the source story's
+    depth, structure or data is a long-form finding too — say when that is
+    the real bottleneck instead of proposing a long-form-only patch.
+  * Entries before 2026-08-25 were a retired vertical concatenation of six
+    Shorts. Do not reason from their numbers; they measure a different
+    product.
+
+Do NOT propose reaching a cadence by loosening the long-form gate, and do
+not propose publishing long-form unjudged — that is the refusal list in
+STEP 4, and it is the specific mistake that made long-form worth fixing.
+
 Strategy findings are judged like all others: evidence a reader can open,
 not vibes. Views/retention need enough age to mean something — the retro
 briefs already band this honestly; respect their "too young to judge".

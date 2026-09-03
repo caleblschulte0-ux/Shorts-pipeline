@@ -1227,11 +1227,14 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
-        # MEASURE WHAT SHIPS. The master frame is LOCKED (no camera float),
-        # so the proxy composites the build over the background and measures
-        # that — the honest number for a still camera. It will read lower than
-        # it did when a whole-frame drift was padding it; that is the true
-        # motion of the content and the place to fix pace is the content.
+        # MEASURE WHAT SHIPS — and what ships no longer floats (2026-08-25
+        # ruling: the camera shake is out). The rule this probe exists for is
+        # unchanged and now cuts the other way: measuring motion the master
+        # does not have would let a beat that is actually static score as
+        # lively, which is exactly the "fps 1.0 measured, 1.0 shipped" bug
+        # with the sign flipped. So the proxy composites the build at rest,
+        # full stop, and a beat that measures short is a beat that needs more
+        # REAL motion.
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
@@ -1811,16 +1814,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # KEN BURNS: the hook image is a still, so a static hold of it for the
             # whole hook window is the #1 swipe-away trigger. Push in slowly
             # (zoompan) so the first frame is ALWAYS moving — never a frozen photo.
-            # NO PUSH-IN. This was a zoompan from 1.12 to 1.6 across the hook,
-            # full-frame. zoompan truncates its pan expressions to whole pixels
-            # every frame, so an aggressive zoom makes the entire image judder —
-            # the handheld shake that opened every video on this channel. The
-            # hook photo is now a STATIC fill; the hook's motion comes from the
-            # chart build, the captions and the host, none of which move the
-            # frame itself.
+            zframes = max(1, int((he + 0.6) * FPS))
+            # HARD, fast push-in (1.12 -> ~1.6) so frame 1 is already moving with
+            # energy — a slow drift reads as a static slide and gets swiped.
             fc.append(
-                f"[{hook_idx}:v]scale={W}:{H}:"
-                f"force_original_aspect_ratio=increase,crop={W}:{H},"
+                f"[{hook_idx}:v]scale={int(W*1.6)}:{int(H*1.6)}:"
+                f"force_original_aspect_ratio=increase,crop={int(W*1.6)}:{int(H*1.6)},"
+                f"zoompan=z='min(zoom+0.0032,1.6)':d={zframes}:fps={FPS}:"
+                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H},"
                 f"eq=brightness=-0.14:saturation=1.12:contrast=1.06,format=rgba,"
                 f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
             fc.append(
@@ -1899,13 +1900,37 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # A data beat sweeps in from its own entry point (onto the datum);
             # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)
-            # NO IDLE OSCILLATION. These carried +6*sin(1.3*t) horizontally and
-            # +9*sin(2.1*t) vertically, evaluated every frame for the entire
-            # video: the host drifted in a continuous two-axis wobble that reads
-            # as a handheld camera. Data now travels a deliberate path and then
-            # holds still; the motion in a beat comes from the performance, not
-            # from the frame breathing. Do not reintroduce a periodic term here
-            # (tests/test_no_camera_shake.py fails the build if you do).
+            # THE IDLE IS A HOVER NOW, NOT THE GATE'S MOTION SOURCE.
+            #
+            # History, because this line has been retuned twice and each
+            # tuning was right about one constraint and wrong about another.
+            # The original `6*sin(1.3*t)` moved 0.26 px/frame — invisible to
+            # the temporal grade, and the channel posted nothing for eleven
+            # days. The fix cranked it to `30*sin(6.0*t)`: 6 px/frame, gate
+            # satisfied — but 6.0 rad/s is 0.95 Hz at ~1080 px/s^2 of
+            # acceleration, a visible one-per-second jiggle stacked on a
+            # card float wobbling at a different frequency. The operator
+            # watched the shipped videos and called it "a weird shaking
+            # motion". Both tunings chased one number and shipped the other.
+            #
+            # A third tuning moved the budget onto a whole-frame camera
+            # breath and left the mascot a gentle hover. Calmer, still fake,
+            # and the operator called it out again on 2026-08-25: rip the
+            # camera shake out all the way. Both are gone.
+            #
+            # The budget is carried by REAL motion now — struggle reps
+            # through the whole beat (charts._perf_phase) and an anchor that
+            # WALKS the ranking instead of parking when the build finishes
+            # (charts._tour_index). If a beat measures short, it needs more
+            # of that, not a wobble. His glide between beats and his
+            # performed bits are unchanged.
+            # NO HOVER OSCILLATION either (2026-08-25 ruling: "no semblance
+            # of the camera shake"). This 12px/9px sine pair was the last
+            # survivor of the shake family — a sprite bobbing on the spot in
+            # its own phase, which is what made two oscillations read as
+            # "weird shaking" in the first place. His MOTION is his glide to
+            # the beat's anchor (the piecewise below) and the performance
+            # baked into the sprite; neither needs a bob to be alive.
             xe = f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
             ye = f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
             Sk = int(round(S * sc))
@@ -1915,26 +1940,27 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
-        # CAMERA BREATH — the one motion source the temporal gate can always
-        # see, applied ONCE to the finished composite. A slow Lissajous crop
-        # of an oversized frame: every layer (background, charts, mascot)
-        # drifts together like a breathing camera, so there is no per-layer
-        # wobble to read as shake, and a beat whose content goes fully still
-        # still measures ~16 effective fps (constants + the measured ladder:
-        # shared/camera_float.py). Applied BEFORE the subtitles so captions
-        # stay pinned and pixel-crisp while the frame moves under them.
-        # NO CAMERA FLOAT. What used to be here was
-        # `[prev]{_cf.crop_vf(W, H)}[flt]` — a moving crop window over an
-        # oversized frame, i.e. shared/camera_float.py's own description: "a
-        # slow Lissajous drift of the visual layer — a hand-held/breathing
-        # camera". It was added to feed the showrunner's per-frame motion
-        # detector, and it is the handheld shake the operator has been seeing
-        # on every video this channel posts. The frame is now LOCKED.
+        # NO CAMERA MOTION. Operator ruling 2026-08-25, verbatim: "that
+        # camera shake that keeps plaguing our videos — rip it out all the
+        # way, it's a cancer, I want no semblance of the camera shake to
+        # exist."
         #
-        # This does remove the motion source the temporal floor was leaning
-        # on. That floor must be satisfied by CONTENT that actually moves —
-        # a build that advances, a numeral that counts, a host that performs —
-        # not by wobbling the camera under a still picture.
+        # It was here for one reason: the temporal grade measures per-frame
+        # pixel change, and a chart that finishes drawing and then HOLDS
+        # reads as duplicate frames. Rather than make the content move, a
+        # whole-frame Lissajous drift was added to manufacture the motion the
+        # detector wanted. That is gaming a gate, and the operator could see
+        # it — twice ("a weird shaking"), through two retunes that only ever
+        # traded amplitude against frequency.
+        #
+        # The honest fix is the one the content now supports: the mascot
+        # performs struggle reps through the whole beat (`_perf_phase`) and
+        # his anchor TOURS the ranking instead of parking once the build
+        # finishes (`charts._tour_index`), so real motion is present in
+        # frames that used to be static. If a beat still measures short, the
+        # answer is more REAL motion in that beat — never a camera that
+        # shakes to fool the meter. Captions were already pinned; with no
+        # crop they simply stay where they are drawn.
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
