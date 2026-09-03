@@ -1819,14 +1819,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # opened every video, still there after the float came out. The
             # hook photo is a static fill; the hook's motion is the chart
             # build, the captions and the host.
+            # AND IT IS AN ESTABLISHING SHOT, NOT A HOLD. Covering the whole
+            # hook window with a full-frame still is what made segment_0
+            # measure 0.8-1.8 fps while segment_1 and segment_2 sat at 24 —
+            # the animating chart was underneath it the entire time, hidden.
+            # Every "fix" for that number added camera movement instead of
+            # asking why the frame was static.
+            #
+            # Measured with the reviewer's own detector: a still frame with
+            # only the host moving on it scores 0.0 fps (a 90px sprite moving
+            # 4px is sub-threshold once the detector downscales to 192px), and
+            # the max-duplicate-run ceiling is 45 frames = 1.5s. So the photo
+            # gets ~1.2s — an establishing beat, comfortably inside the
+            # ceiling — and then hands off to the chart build, which animates
+            # across the rest of the hook and measures 24.
+            _hook_hold = min(he, 1.2)
             fc.append(
                 f"[{hook_idx}:v]scale={W}:{H}:"
                 f"force_original_aspect_ratio=increase,crop={W}:{H},"
                 f"eq=brightness=-0.14:saturation=1.12:contrast=1.06,format=rgba,"
-                f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
+                f"fade=t=out:st={max(0.1, _hook_hold - 0.3):.2f}:d=0.3:alpha=1"
+                f"[hookimg]")
             fc.append(
                 f"[{prev}][hookimg]overlay=0:0:"
-                f"enable='between(t,0,{he:.2f})'[hk]")
+                f"enable='between(t,0,{_hook_hold:.2f})'[hk]")
             prev = "hk"
         # HOOK RECEIPT: the total races up over the hook window, then holds
         # briefly and fades as the first chart arrives. Full-frame; Data reacts
