@@ -1811,17 +1811,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # first chart arrives. The hero number + claim are ASS, drawn last on top.
         if hook_idx is not None:
             he = windows[0][1]
-            # KEN BURNS: the hook image is a still, so a static hold of it for the
-            # whole hook window is the #1 swipe-away trigger. Push in slowly
-            # (zoompan) so the first frame is ALWAYS moving — never a frozen photo.
-            zframes = max(1, int((he + 0.6) * FPS))
-            # HARD, fast push-in (1.12 -> ~1.6) so frame 1 is already moving with
-            # energy — a slow drift reads as a static slide and gets swiped.
+            # NO KEN BURNS PUSH-IN. The 2026-08-25 ruling took the camera
+            # motion out of this render, and this survived it: a zoompan from
+            # 1.12 to 1.6 across the hook, on a FULL-FRAME image. zoompan
+            # truncates its pan expressions to whole pixels every frame, so an
+            # aggressive push judders the entire picture — the shake that
+            # opened every video, still there after the float came out. The
+            # hook photo is a static fill; the hook's motion is the chart
+            # build, the captions and the host.
             fc.append(
-                f"[{hook_idx}:v]scale={int(W*1.6)}:{int(H*1.6)}:"
-                f"force_original_aspect_ratio=increase,crop={int(W*1.6)}:{int(H*1.6)},"
-                f"zoompan=z='min(zoom+0.0032,1.6)':d={zframes}:fps={FPS}:"
-                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H},"
+                f"[{hook_idx}:v]scale={W}:{H}:"
+                f"force_original_aspect_ratio=increase,crop={W}:{H},"
                 f"eq=brightness=-0.14:saturation=1.12:contrast=1.06,format=rgba,"
                 f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
             fc.append(
