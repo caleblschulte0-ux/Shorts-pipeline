@@ -1,0 +1,25 @@
+{
+  "key": "domestication_rank",
+  "title": "Years ago first domesticated",
+  "unit": "years",
+  "geography": "Worldwide (archaeological estimates)",
+  "time_coverage": "~15,000 to ~5,500 years ago",
+  "source": {
+    "name": "Archaeological and genetic domestication timeline estimates",
+    "publisher": "Peer-reviewed archaeology/genetics literature",
+    "url": "https://en.wikipedia.org/wiki/Domestication_of_animals",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; exact domestication dates are debated within a range and these are commonly cited midpoint estimates.",
+  "points": [
+    {"label": "Dog", "value": 15000},
+    {"label": "Sheep", "value": 11000},
+    {"label": "Pig", "value": 10500},
+    {"label": "Goat", "value": 10500},
+    {"label": "Cattle", "value": 10500},
+    {"label": "Cat", "value": 9500},
+    {"label": "Chicken", "value": 8000},
+    {"label": "Horse", "value": 5500}
+  ]
+}

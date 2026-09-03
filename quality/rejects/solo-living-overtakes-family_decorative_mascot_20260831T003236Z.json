@@ -1,0 +1,32 @@
+{
+ "slug": "solo-living-overtakes-family",
+ "ts": "20260831T003236Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The mascot consistently moves along or stands on bars, but does not perform a distinct 'bit' with a setup, action, and payoff, as seen in seg0:mid where it moves up the bars.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "Mascot performance",
+  "visible_evidence": "In seg2, the mascot remains static on the 1970 bar (71%) while the 2022 bar (47%) fills, failing to actively demonstrate the 'collapse' or comparison between the two data points.",
+  "root_cause": "The mascot's animation in this scene was not designed to actively engage with the comparative data, making its presence less impactful than in other scenes.",
+  "repair_goal": "Animate the mascot in seg2 to actively demonstrate the decline in married-couple households, perhaps by having it move from the 1970 bar to the 2022 bar, or show a reaction to the shrinking proportion."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "stack",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "geo_world",
+   "performance": "race_sprint"
+  }
+ ]
+}

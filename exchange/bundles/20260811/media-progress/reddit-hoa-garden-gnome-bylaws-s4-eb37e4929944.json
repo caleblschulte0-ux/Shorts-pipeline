@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260811",
+  "bundle": {
+    "identity": "cd0376b7fa910be8a856c1b4a8c8e13268b5be955a52367e2d28de3ce72b4a84",
+    "path": "exchange/bundles/20260811/bundle.json"
+  },
+  "request_id": "reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944",
+  "safe_request_id": "reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4efca28fc7687dcf1807c9180c3e3bb245f7779c55c910a09943d82829d103dc",
+  "prompt_used": "An editorial illustration for a short-form video: backyard trampoline. It accompanies the narration: \"a trampoline over the height limit\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+    "filename": "20260811__reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CePWA4uWjVtzCnf0-2n4qPQ4PWprrGz-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "098f6a0a2125bf605c91ebe6c7a7cb8eccdb1eac7d7a733be2fefb5c4d300a65",
+    "bytes": 2209034,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-11T11:12:00Z",
+  "error": null,
+  "retryable": false
+}

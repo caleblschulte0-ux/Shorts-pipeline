@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-cocoa-price-spike",
+  "title": "Why Chocolate Got So Expensive (Then Didn't)",
+  "hook": "Cocoa tripled. Then it crashed.",
+  "y_label": "Cocoa price ($ per tonne)",
+  "duration": 13,
+  "source": "Sources: ICCO / World Bank global cocoa price data as tracked by FRED (Global Price of Cocoa, series PCOCOUSDA/PCOCOUSDQ) and Macrotrends; 2018/2020 approximate pre-crisis baseline (cocoa held near $2,300-2,600/tonne for years), 2022-2025 reported annual averages, 2026 Q2 value.",
+  "hashtags": [
+    "chocolate",
+    "cocoa",
+    "prices",
+    "inflation",
+    "food",
+    "economy",
+    "westafrica",
+    "consumer",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "years": [
+    2018,
+    2020,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Global cocoa price",
+      "color": "#8b4513",
+      "values": [
+        2500,
+        2400,
+        2369,
+        3258,
+        7391,
+        7788,
+        3977
+      ]
+    },
+    {
+      "name": "2018-2022 average",
+      "color": "#c9a27a",
+      "values": [
+        2423,
+        2423,
+        2423,
+        2423,
+        2423,
+        2423,
+        2423
+      ]
+    }
+  ],
+  "music_vibe": "hiphop"
+}

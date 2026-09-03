@@ -1,0 +1,25 @@
+{
+  "key": "financial_independence_age_21",
+  "title": "Share of 21-year-olds who are financially independent of parents",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1980 vs 2021",
+  "source": {
+    "name": "Financial Help and Independence in Young Adulthood",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/social-trends/2024/01/25/financial-help-and-independence-in-young-adulthood/",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Pew Research Center analysis: 42% of 21-year-olds were financially independent of their parents in 1980, compared with 25% of 21-year-olds in 2021.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 42
+    },
+    {
+      "label": "1980",
+      "value": 42
+    }
+  ]
+}

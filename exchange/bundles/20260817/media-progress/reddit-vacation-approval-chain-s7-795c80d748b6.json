@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260817",
+  "bundle": {
+    "identity": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe",
+    "path": "exchange/bundles/20260817/bundle.json"
+  },
+  "request_id": "reddit-vacation-approval-chain-s7-795c80d748b6",
+  "safe_request_id": "reddit-vacation-approval-chain-s7-795c80d748b6",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-vacation-approval-chain",
+  "shot_index": 7,
+  "prompt_sha256": "763e8cd0f2d88e849afe6a0b9eb8ea15923e45552b55f6828aa3544c0c810abb",
+  "prompt_used": "An editorial illustration for a short-form video: december calendar snow. It accompanies the narration: \"using them all in December\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+    "filename": "20260817__reddit-vacation-approval-chain-s7-795c80d748b6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b55d6f97f35af1a21c2aff3e025cfe4d83fcdfa2edce08c06bec8c2f364cc9b5",
+    "bytes": 1867301,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-17T11:06:50Z",
+  "error": null,
+  "retryable": false
+}

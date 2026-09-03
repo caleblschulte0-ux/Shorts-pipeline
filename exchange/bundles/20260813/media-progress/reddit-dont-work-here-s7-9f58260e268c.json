@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-dont-work-here-s7-9f58260e268c",
+  "safe_request_id": "reddit-dont-work-here-s7-9f58260e268c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "90140099486c5e80a2913496e4d640a56ca3adbde020940686fc8bd0d7a707c2",
+  "prompt_used": "An editorial illustration for a short-form video: checkout register store. It accompanies the narration: \"I was already checking out\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+    "filename": "20260813__reddit-dont-work-here-s7-9f58260e268c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18SZz4PUPvXdYuEYjIh9LlWBG5PRNXwfF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d7d5a9307c86c0618e8bbbd9a04061b248b00b649f9c8be425d45d3bd7676b1a",
+    "bytes": 1429159,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:17:33.719Z",
+  "error": null,
+  "retryable": false
+}

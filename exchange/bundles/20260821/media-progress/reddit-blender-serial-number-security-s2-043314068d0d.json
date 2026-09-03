@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-blender-serial-number-security-s2-043314068d0d",
+  "safe_request_id": "reddit-blender-serial-number-security-s2-043314068d0d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ff075c3734f2ea2179fb2af1a3add1786b679cc70041345de644f33b228f25ed",
+  "prompt_used": "An editorial illustration for a short-form video: person shrugging store. It accompanies the narration: \"I did not work there\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+    "filename": "20260821__reddit-blender-serial-number-security-s2-043314068d0d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "076378e56df53c4645f3b3a3680d84265f2adafd9981a5796afd53c0fe8cc4ee",
+    "bytes": 1503942,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:28.622Z",
+  "error": null,
+  "retryable": false
+}

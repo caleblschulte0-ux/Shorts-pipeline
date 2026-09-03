@@ -1,0 +1,100 @@
+{
+  "date": "20260817",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 10,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe",
+    "required": true,
+    "checked": 10,
+    "ok": 10,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-vacation-approval-chain-s1-e0db44f62b67",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s1-e0db44f62b67.png"
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s2-34b0e2bf4812",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s2-34b0e2bf4812.png"
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s3-06f53758fe92",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s3-06f53758fe92.png"
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s4-e58553e64566",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s4-e58553e64566.png"
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s5-8c35344a9038",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s5-8c35344a9038.png"
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s7-795c80d748b6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-vacation-approval-chain-s7-795c80d748b6.png"
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s0-c7a1d5347ea1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-quiet-hours-vacuum-s0-c7a1d5347ea1.png"
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f.png"
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a.png"
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s3-418b31ed7796",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-quiet-hours-vacuum-s3-418b31ed7796.png"
+    },
+    {
+      "slug": "reddit-vacation-approval-chain",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): fine",
+        "INVENTED named entity(ies): efficient"
+      ]
+    },
+    {
+      "slug": "reddit-quiet-hours-vacuum",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): old",
+        "INVENTED named entity(ies): subtle, whose, working"
+      ]
+    }
+  ]
+}

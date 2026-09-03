@@ -72,6 +72,55 @@ class AlarmCase(unittest.TestCase):
                 if a["severity"] == "critical"}
 
 
+class TestChatGPTSilenceIsPaged(AlarmCase):
+    """The 08-04..08-07 hole: Phase A published 10-12 image requests every
+    morning, ChatGPT returned nothing, and every exchange alarm stayed
+    quiet because they all key off a response that exists. Four days of
+    weak self-fill stock — the exact media the showrunner kept blocking —
+    with no page. Silence must page."""
+
+    def _requests_bundle(self, n=10):
+        self._bundle(bundle={"media_requests": [{"request_id": f"r{i}"}
+                                                for i in range(n)]})
+
+    def test_requests_out_nothing_back_is_an_alarm(self):
+        self._requests_bundle()
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_two_silent_days_escalate_to_critical(self):
+        self._requests_bundle()
+        import json as _json
+        prev = self.tmp / "exchange" / "bundles" / "29991214"
+        prev.mkdir(parents=True)
+        (prev / "bundle.json").write_text(_json.dumps(
+            {"media_requests": [{"request_id": "x"}]}))
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("chatgpt_exchange_silent", self.criticals(r))
+
+    def test_a_single_checkpoint_counts_as_alive(self):
+        """The STARTED/checkpoint heartbeat is exactly what distinguishes
+        'ran and died' (visible, debuggable) from 'never ran' (this
+        alarm)."""
+        self._requests_bundle()
+        mp = self.tmp / "exchange" / "bundles" / DATE / "media-progress"
+        mp.mkdir()
+        (mp / "STARTED.json").write_text("{}")
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_a_response_counts_as_alive(self):
+        self._requests_bundle()
+        self._bundle(response={"media": []})
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+    def test_a_day_with_no_requests_stays_quiet(self):
+        self._bundle(bundle={"media_requests": []})
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("chatgpt_exchange_silent", self.codes(r))
+
+
 class TestSilentOutage(AlarmCase):
     """2026-07-26..28: three days, zero videos, nothing alerted."""
 
@@ -174,6 +223,224 @@ class TestItDoesNotCryWolf(AlarmCase):
     def test_markdown_renders_without_blowing_up(self):
         r = alarm.check(DATE, now=LATE)
         self.assertIn(DATE, alarm.render(r))
+
+
+class TestItCanActuallyREADEveryChannelsLog(AlarmCase):
+    """The posted logs are not all the same shape, and assuming they were
+    made the alarm blind to a whole channel.
+
+        trending / explainer   {"posted": [ {...} ]}                 LIST
+        third                  {"posted": {"clip-...": {...}}}       DICT
+
+    Iterating a dict yields KEYS — strings — which the old loop skipped, so
+    `no_posts_third` fired as CRITICAL on days third had posted its full
+    slate. A false critical every morning is how people learn to ignore the
+    real one, which is the exact failure this alarm exists to avoid."""
+
+    def test_a_DICT_keyed_log_is_counted(self):
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"posted": {
+            f"clip-{DATE}-{i}": {"url": f"https://y/{i}", "title": f"t{i}",
+                                 "ts": f"{DATE[:4]}-{DATE[4:6]}-"
+                                       f"{DATE[6:8]}T12:00:00Z"}
+            for i in range(3)}}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 3)
+
+    def test_a_LIST_log_still_works(self):
+        p = self.tmp / "state" / "posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        stamp = f"{DATE[:4]}-{DATE[4:6]}-{DATE[6:8]}T12:00:00Z"
+        p.write_text(json.dumps({"posted": [{"title": "a",
+                                             "posted_at": stamp}]}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 1)
+
+    def test_refusals_and_claims_are_not_counted_as_posts(self):
+        """third's log records what it REFUSED and slots it CLAIMED as well
+        as what it shipped. On 2026-08-05 that was 5 refusals against 3 real
+        uploads — counting rows would report a full slate on a short day.
+        Overcounting hides an outage as effectively as undercounting
+        invents one."""
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        stamp = f"{DATE[:4]}-{DATE[4:6]}-{DATE[6:8]}T12:00:00Z"
+        p.write_text(json.dumps({"posted": {
+            "clip-1": {"url": "https://y/1", "ts": stamp},
+            # a refusal, marked the way the real log marks them: by key
+            # prefix and `qa_rejected` — there is no `status` field
+            "rejected-abc": {"source_url": "https://t/x", "ts": stamp,
+                             "qa_rejected": True, "streamer": "x"},
+            # a claimed slot whose upload never completed
+            "clip-2": {"ts": stamp, "title": "claimed but never uploaded"}}}))
+        self.assertEqual(len(alarm._posted_on(p, DATE)), 1)
+
+    def test_the_real_log_gives_the_number_a_human_would_count(self):
+        real = ROOT / "state" / "third_posted_log.json"
+        if not real.exists():
+            self.skipTest("no third log in this checkout")
+        posted = json.loads(real.read_text()).get("posted") or {}
+        by_hand = sum(
+            1 for k, v in posted.items()
+            if isinstance(v, dict) and v.get("url")
+            and str(v.get("ts", "")).startswith("2026-08-05"))
+        self.assertEqual(len(alarm._posted_on(real, "20260805")), by_hand)
+
+    def test_another_days_entries_are_excluded(self):
+        p = self.tmp / "state" / "third_posted_log.json"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps({"posted": {
+            "clip-1": {"url": "https://y/1", "ts": "2020-01-01T00:00:00Z"}}}))
+        self.assertEqual(alarm._posted_on(p, DATE), [])
+
+    def test_the_real_third_log_shape_parses(self):
+        """Against the actual file on disk, not a fixture — the fixture is
+        what was wrong last time."""
+        real = ROOT / "state" / "third_posted_log.json"
+        if not real.exists():
+            self.skipTest("no third log in this checkout")
+        entries = json.loads(real.read_text()).get("posted")
+        self.assertIsInstance(entries, dict,
+                              "third's log changed shape — re-check the "
+                              "alarm's reader")
+
+
+class TestAPausedChannelSaysSo(AlarmCase):
+    """2026-08-03..05: trending posted nothing for three days because the
+    auto-pause counter was stuck at 2, and every run reported success. The
+    alarm said `no_posts_trending` each morning — true, and useless. It named
+    the symptom while the cause sat in a one-byte file.
+
+    A pause explains every other symptom; nothing else explains a pause. So
+    it is checked first and it names the exact command that clears it."""
+
+    def _counter(self, n):
+        p = self.tmp / "state" / "failure_count.txt"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(f"{n}\n")
+
+    def test_the_auto_pause_is_CRITICAL_and_names_itself(self):
+        self._counter(2)
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("channel_auto_paused", self.criticals(r))
+
+    def test_it_says_the_counter_cannot_clear_itself(self):
+        self._counter(3)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"] if x["code"] == "channel_auto_paused")
+        self.assertIn("CANNOT clear itself", a["fix"])
+        self.assertIn("failure_count.txt", a["fix"])
+
+    def test_one_failure_is_a_warning_not_a_pause(self):
+        self._counter(1)
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+        self.assertTrue(any("one more failing day" in n for n in r["notes"]))
+
+    def test_a_healthy_counter_says_nothing(self):
+        self._counter(0)
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_a_missing_counter_is_not_a_pause(self):
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_a_corrupt_counter_is_not_a_pause(self):
+        p = self.tmp / "state" / "failure_count.txt"
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("not a number")
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("channel_auto_paused", self.codes(r))
+
+    def test_the_kill_switch_files_are_reported_too(self):
+        for switch, code in (("PAUSED", "paused_paused"),
+                             ("PAUSED_DAILY", "paused_paused_daily")):
+            (self.tmp / switch).write_text("")
+            r = alarm.check(DATE, now=LATE)
+            self.assertIn(code, self.criticals(r))
+            (self.tmp / switch).unlink()
+
+    def test_a_pause_is_shouted_even_mid_day(self):
+        """Publishing checks defer until evening, but a pause is knowable at
+        any hour and wastes the whole day if you learn it at 18:00."""
+        self._counter(2)
+        noon = datetime(2999, 12, 15, 15, 0, tzinfo=timezone.utc)
+        r = alarm.check(DATE, now=noon)
+        self.assertIn("channel_auto_paused", self.criticals(r))
+
+
+class TestSlotFillReportIsDateScoped(AlarmCase):
+    """Doctor finding 06e600e3ecaa: daily_report.json is one root file the
+    render run overwrites daily, with no report_date. The slot-fill section
+    used to read it unscoped, so check('20260811') built
+    trending_short_after_retries from August 12's rows while the dated
+    production outcome in the same result correctly said 0/6 — a
+    contradictory evidence pack pointing repair work at the wrong day.
+    Rows are now dated from their own package_path/publish_at, and a report
+    whose rows all belong to another date is treated as absent."""
+
+    OTHER = "29991216"      # the day AFTER the DATE the alarm is judging
+
+    def _report(self, rows):
+        (self.tmp / "daily_report.json").write_text(json.dumps(rows))
+
+    def _row(self, date, ok=False, backfill=False, via="package_path"):
+        r = {"title": "t", "ok": ok, "backfill": backfill}
+        if via in ("package_path", "both"):
+            r["package_path"] = (f"state/trending_packages/{date}/"
+                                 f"01_pkg.json")
+        if via in ("publish_at", "both"):
+            r["publish_at"] = (f"{date[:4]}-{date[4:6]}-{date[6:8]}"
+                               f"T13:00:00Z")
+        return r
+
+    def test_another_days_rows_cannot_raise_this_days_alarm(self):
+        # The literal incident: the file holds only the NEXT day's short
+        # slate; judging the previous day must not inherit it.
+        self._report([self._row(self.OTHER, ok=(i < 2), backfill=(i >= 2),
+                                via="both") for i in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
+        self.assertTrue(any("none belong to" in n for n in r["notes"]),
+                        r["notes"])
+
+    def test_matching_rows_still_raise_the_alarm(self):
+        self._report([self._row(DATE, ok=(i < 2), backfill=(i >= 2))
+                      for i in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("trending_short_after_retries", self.codes(r))
+        a = next(x for x in r["alarms"]
+                 if x["code"] == "trending_short_after_retries")
+        self.assertIn("2/6", a["detail"])
+
+    def test_mixed_dates_count_only_the_requested_day(self):
+        # 2 shipped rows for DATE + 6 shipped rows for the other day: only
+        # DATE's own rows may be counted, so the day still reads short.
+        rows = ([self._row(DATE, ok=True) for _ in range(2)]
+                + [self._row(self.OTHER, ok=True) for _ in range(6)])
+        self._report(rows)
+        r = alarm.check(DATE, now=LATE)
+        a = next(x for x in r["alarms"]
+                 if x["code"] == "trending_short_after_retries")
+        self.assertIn("2/6", a["detail"])
+
+    def test_publish_at_alone_is_enough_to_date_a_row(self):
+        self._report([self._row(DATE, ok=False, via="publish_at")
+                      for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertIn("trending_short_after_retries", self.codes(r))
+
+    def test_undatable_rows_are_not_evidence(self):
+        # No package_path, no publish_at: the row cannot be attributed to
+        # any date, so it must never be counted for THIS one.
+        self._report([{"title": "t", "ok": False} for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
+
+    def test_a_full_matching_day_stays_quiet(self):
+        self._report([self._row(DATE, ok=True) for _ in range(6)])
+        r = alarm.check(DATE, now=LATE)
+        self.assertNotIn("trending_short_after_retries", self.codes(r))
 
 
 class TestAnUnusableRegistryIsTheLoudestThing(AlarmCase):

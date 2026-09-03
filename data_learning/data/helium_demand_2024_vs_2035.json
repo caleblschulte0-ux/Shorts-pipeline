@@ -1,0 +1,19 @@
+{
+  "key": "helium_demand_2024_vs_2035",
+  "title": "Global helium demand index: 2024 vs. 2035 (projected)",
+  "unit": "index",
+  "geography": "World",
+  "time_coverage": "2024 vs. 2035 (projected)",
+  "source": {
+    "name": "Helium Market 2024-2035 report",
+    "publisher": "IDTechEx",
+    "url": "https://www.idtechex.com/",
+    "officiality": "illustrative",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Illustrative index (2024 = 100) built from IDTechEx's finding that global helium demand is likely to nearly double by 2035, driven mainly by advanced semiconductor manufacturing.",
+  "points": [
+    {"label": "2024 demand", "value": 100},
+    {"label": "2035 projected demand", "value": 190}
+  ]
+}

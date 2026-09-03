@@ -1,0 +1,25 @@
+{
+  "key": "hydration_by_gender",
+  "title": "Recommended daily fluid intake by sex",
+  "unit": "liters",
+  "geography": "United States",
+  "time_coverage": "2004-2025",
+  "source": {
+    "name": "Dietary Reference Intakes for Water",
+    "publisher": "U.S. National Academies of Sciences, Engineering, and Medicine",
+    "url": "https://www.nationalacademies.org",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "NASEM adequate intake for total water (all sources): men ~3.7L/day, women ~2.7L/day.",
+  "points": [
+    {
+      "label": "Men",
+      "value": 3.7
+    },
+    {
+      "label": "Women",
+      "value": 2.7
+    }
+  ]
+}

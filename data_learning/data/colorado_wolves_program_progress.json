@@ -1,0 +1,19 @@
+{
+  "key": "colorado_wolves_program_progress",
+  "title": "Colorado wolves so far vs the restoration program's target",
+  "unit": "wolves",
+  "geography": "Colorado, United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Colorado wolf restoration plan",
+    "publisher": "Colorado Parks and Wildlife (CPW)",
+    "url": "https://cpw.state.co.us/bringing-wolves-back-colorado",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Colorado's voter-approved restoration plan calls for releasing 10-15 wolves per year for 3-5 years, targeting roughly 50 wolves statewide; the current minimum count of 32 is more than halfway there.",
+  "points": [
+    {"label": "Wolves so far", "value": 32},
+    {"label": "Program target", "value": 50}
+  ]
+}

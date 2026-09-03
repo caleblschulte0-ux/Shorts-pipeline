@@ -1,0 +1,111 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-clock-in-exactly-on-time",
+  "title": "He Banned Early Clock-Ins. So I Stopped Clocking In Early.",
+  "script": "My new manager posted a memo: no clocking in early, not even sixty seconds, because unpaid labor is unpaid labor, clearly aimed at the two of us who always started fifteen minutes early to prep the queue. Fine. I set an alarm and clocked in at exactly nine o'clock every single day, and refused to answer a message before that second. Turns out those fifteen minutes were the only reason his nine-fifteen report ever went out on time. The first week, it was late. The second week, it was late and wrong, because nobody had pre-sorted the queue. By the third week he was standing at my desk at eight fifty-nine, watching the clock like it owed him money. He pulled me into his office, said the policy was more of a guideline, and asked if I would consider coming back fifteen minutes early, paid this time, and backdated to the memo. I said I would think about it. I clocked in at exactly nine o'clock the next morning too.",
+  "shots": [
+    {
+      "phrase": "posted a memo",
+      "query": "office bulletin board memo",
+      "pin_query": "memo",
+      "pin_context": "office document policy",
+      "news_query": "memo",
+      "news_angle": "The manager posted a memo banning early clock-ins.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Rumsfeld_Memo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    },
+    {
+      "phrase": "clocked in at exactly nine o'clock every",
+      "query": "time clock punch card",
+      "pin_query": "clock",
+      "pin_context": "timekeeping device",
+      "news_query": "clock",
+      "news_angle": "The manager was anxiously watching the clock as the employee refused to work before nine o'clock.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Pendulum_clock_by_Jacob_Kock%2C_antique_furniture_photography%2C_IMG_0931_edit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "refused to answer a message",
+      "query": "phone screen unread messages",
+      "image_url": "https://pixabay.com/get/gea4d33c1beaaa0b7228fdd9ec9c7c919e9550fd27329ebfab8d43cbd688d3c34e4fe775971976745a4e6296fdadb8a219135ebc229cf3d93a7016d1965301b2a_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "his nine-fifteen report ever went out",
+      "query": "office desk report printout",
+      "pin_query": "report",
+      "pin_context": "office document deadline",
+      "news_query": "report",
+      "news_angle": "The nine-fifteen report was late and wrong due to the lack of pre-sorting.",
+      "image_url": "https://pixabay.com/get/gcd8174bed62c09402f030f82c0581a31acf8b66b82eef7ef30aa80b9a0d463fc3a65ed5e7a99960cf8fed9fc176cf13783168d4a644359b34fd00cab5abf7ecb_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "nobody had pre-sorted the queue",
+      "query": "messy inbox paperwork stack",
+      "pin_query": "queue",
+      "pin_context": "office workflow task",
+      "news_query": "queue",
+      "news_angle": "The queue was not pre-sorted due to the new clock-in policy.",
+      "image_url": "https://live.staticflickr.com/5301/5557256203_2e8f8bfdc0_b.jpg"
+    },
+    {
+      "phrase": "standing at my desk at eight fifty-nine",
+      "query": "manager standing hallway office",
+      "image_url": "https://pixabay.com/get/gfd87492e1cfd532582b041ecf8675619162bd530707721da686ef2f25f379690fd5dcb3421caf9643dd1c2cce5a9e7e465703658e20ee825b503644648f576d4_1280.jpg",
+      "media_origin": "self_fill",
+      "pin_query": "desk",
+      "pin_context": "workplace furniture",
+      "news_query": "desk",
+      "news_angle": "The manager stood at the narrator's desk to discuss the policy change."
+    },
+    {
+      "phrase": "more of a guideline",
+      "query": "manager talking office door",
+      "image_url": "https://pixabay.com/get/g2c4a9a2ae1fb9eab4b69ebb2c81de660aeb75dae4e8847b1b5bf7a0de025600ba35a3394d55fad412f380ab2ccde66136064996ae9d26e20b5ef3ca43e953916_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "backdated to the memo",
+      "query": "paycheck stub closeup",
+      "image_url": "https://pixabay.com/get/gb5bb0124d2e9927b0ac9f5eb88d45e46600ddb30f8c673854d2ee84e50f41c1949b07a507133d524d0075951b98317036b772b37db27a9e237135e092c262fb6_1280.jpg",
+      "media_origin": "self_fill"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no clocking in early",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "it was late and wrong",
+      "text": "LATE. AGAIN.",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "more of a guideline",
+      "text": "\"A GUIDELINE\"",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "paid this time, and backdated",
+      "text": "BACKDATED PAY",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "9to5",
+    "corporatelife",
+    "reddit",
+    "worklife",
+    "management",
+    "9to5life",
+    "boss",
+    "karma",
+    "workplacestories",
+    "officelife"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

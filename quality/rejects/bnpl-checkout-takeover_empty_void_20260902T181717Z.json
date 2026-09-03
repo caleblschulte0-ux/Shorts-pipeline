@@ -1,0 +1,32 @@
+{
+ "slug": "bnpl-checkout-takeover",
+ "ts": "20260902T181717Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start (t=16.92s) wastes the top ~45% of the frame entirely \u2014 one small mascot-sized circle and a tiny pink '2' dot float in the lower half with nothing else in the composition; seg2:mid is still half-empty above the bubbles.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "empty_void_and_occluded_value",
+  "visible_evidence": "seg2:start has a huge empty upper region with two tiny circles low in the frame; at seg2:start and seg2:mid the mascot stands directly on top of the 2021 bubble's label so the headline number renders as '2|2' instead of 24.2, and it only becomes readable at seg2:end. The CFPB source line is also clipped off the right edge of the frame in all three seg2 frames.",
+  "root_cause": "The bubble pair is laid out on a baseline near the bottom with no scaling to the vertical safe area, so the twelve-fold comparison occupies only the lower half; the mascot anchor is placed at the bubble centroid, which is exactly where the value label is drawn, and the source string is not width-fitted to the card.",
+  "repair_goal": "Recompose seg2 to use the full frame: enlarge/center the bubble pair so 24.2 fills most of the vertical space with 2019's '2' dot small beside it for the 12x contrast, move the mascot anchor to the bubble's edge (or have him inflate/get pushed back by it) so the 24.2 label is never occluded, and wrap or shrink the source line to fit inside the card."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_1",
+   "kind": "bubbles",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  }
+ ]
+}

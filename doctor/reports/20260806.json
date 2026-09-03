@@ -1,0 +1,47 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260806",
+  "summary": "The shared/funnel layer has broad acquisition coverage, but its stateful ranking behavior is not internally consistent. Cached candidates can bypass current reuse and freshness scoring, timed-out providers continue without a durable result record, and asset metadata is inferred too broadly. With trending again producing a short slate, the useful direction is stronger and more observable acquisition behavior rather than weaker publishing gates.",
+  "findings": [
+    {
+      "title": "Cache hits bypass the recent-use penalty",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "funnel/media-selection",
+      "files": ["funnel/media_funnel.py", "funnel/media_usage.py"],
+      "observation": "On a cache miss, _prefilter subtracts media_usage.penalty(url) for assets used in the last 14 days. On a cache hit, search() rebuilds Candidate objects from cached dictionaries and returns immediately, so the current usage ledger is never consulted.",
+      "proposal": "Cache raw candidate facts, then rerun dynamic scoring on every read. Add a regression test that caches a URL, records it as used, and verifies that the next cache hit lowers its rank.",
+      "evidence": "funnel/media_funnel.py lines 1460-1472 apply media_usage.penalty() only inside _prefilter; lines 1572-1587 return cached candidates directly; funnel/media_usage.py lines 49-63 define the live 14-day penalty lookup."
+    },
+    {
+      "title": "Cached scores are not recomputed",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "funnel/ranking",
+      "files": ["funnel/media_funnel.py"],
+      "observation": "_cache_put stores Candidate.to_dict(), including the final score after time-dependent freshness, staleness, recent-use, same-host, and LLM adjustments. Cache hits restore that score unchanged for up to 48 hours.",
+      "proposal": "Persist only source facts in the cache and recompute derived score components after every read, or store score components separately with explicit timestamps and invalidation rules.",
+      "evidence": "funnel/media_funnel.py lines 145-154 include score in Candidate.to_dict(); lines 181-193 persist those dictionaries; lines 1475-1513 add dynamic score adjustments; lines 1572-1587 restore and return cached scores; CACHE_TTL_SEC is 48 hours at lines 105-107."
+    },
+    {
+      "title": "Timed-out providers lack terminal outcomes",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "funnel/provider-orchestration",
+      "files": ["funnel/media_funnel.py"],
+      "observation": "search() stops collecting after a 15-second timeout and calls shutdown(wait=False, cancel_futures=True). Already-running provider calls continue, can still update shared quota state, and have no run-scoped completed, cancelled, or timed-out record.",
+      "proposal": "Add a structured provider outcome ledger and per-provider deadline handling so every started provider reaches a recorded terminal state before the search result is finalized, while preserving the overall latency limit.",
+      "evidence": "funnel/media_funnel.py lines 1596-1632 stop result collection after 15 seconds and use shutdown(wait=False, cancel_futures=True); lines 196-241 update shared quota state from provider calls."
+    },
+    {
+      "title": "Asset metadata is assigned by provider class",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "funnel/media-governance",
+      "files": ["funnel/media_funnel.py"],
+      "observation": "Candidate exposes source_class and license as asset metadata, but _prefilter assigns many values from a provider-name map rather than from item-level fields returned for the selected asset. Some stored values explicitly say verification is still required.",
+      "proposal": "Move to a provenance-first asset manifest that stores source page, creator, original rights text, retrieval time, selection reason, and verification status for each chosen asset. Require item-level evidence for any lane that depends on it.",
+      "evidence": "funnel/media_funnel.py lines 141-148 define source_class and license fields; lines 1420-1458 assign those fields from provider categories and include values such as 'verify per item'."
+    }
+  ]
+}

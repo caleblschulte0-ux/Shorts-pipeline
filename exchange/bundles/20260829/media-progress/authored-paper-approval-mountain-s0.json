@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260829",
+  "bundle": {
+    "identity": "takeover-ce3cb772f437e74c7284709e35c60e25e195fbfa",
+    "path": "exchange/bundles/20260829/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-29T12:15:20Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-paper-approval-mountain-s0",
+  "safe_request_id": "authored-paper-approval-mountain-s0",
+  "prompt_sha256": "ad7cc9d819402347accb131327f1a045dc582855fa1e2a32f4be18e3151c5905",
+  "prompt_used": "manager posting printed approval rule",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1vwUzt_pziPylIuIpFmdYQB8M4_K9P9sZ",
+    "filename": "20260829__authored-paper-approval-mountain-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1vwUzt_pziPylIuIpFmdYQB8M4_K9P9sZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "63ce8db6b35dc40b873db615896167c74a30e900921681626f30e1a80c660731",
+    "bytes": 2254097,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "paper-approval-mountain",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

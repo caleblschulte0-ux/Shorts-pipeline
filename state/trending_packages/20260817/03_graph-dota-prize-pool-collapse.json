@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-dota-prize-pool-collapse",
+  "title": "Esports' Biggest Prize Ever Just Collapsed",
+  "hook": "It was $40 million. Then Valve changed one thing.",
+  "y_label": "Tournament prize pool ($ millions)",
+  "duration": 13,
+  "source": "Prize pool totals for Dota 2's The International, per Valve's own compendium/battle-pass disclosures and reporting by Tips.GG, GosuGamers and esports outlets: TI5 (2015) $18.4M, TI8 (2018) approx. $25.5M, TI9 (2019) approx. $34.3M, TI10 (2021) $40.0M (an all-time esports record), TI11 (2022) $18.9M, TI12 (2023) $3.0M, TI13 (2024) $2.8M \u2014 the crash followed Valve ending the crowdfunded Battle Pass/Compendium model in 2023. League of Legends World Championship prize pools (Riot Games, via Statista/Fragster): 2015 approx. $2.13M, 2018 $6.45M (its own record year), 2019-2024 stable around $2.2-2.3M each year, including just under $2.23M in 2024.",
+  "years": [
+    2015,
+    2018,
+    2019,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Dota 2: The International",
+      "color": "#e74c3c",
+      "icon": "Dota 2",
+      "values": [
+        18.4,
+        25.5,
+        34.3,
+        40.0,
+        18.9,
+        3.0,
+        2.8
+      ]
+    },
+    {
+      "name": "LoL Worlds",
+      "color": "#1abc9c",
+      "icon": "League of Legends",
+      "values": [
+        2.13,
+        6.45,
+        2.25,
+        2.225,
+        2.25,
+        2.3,
+        2.23
+      ]
+    }
+  ],
+  "hashtags": [
+    "dota2",
+    "theinternational",
+    "esports",
+    "leagueoflegends",
+    "gaming",
+    "prizepool",
+    "valve",
+    "lolworlds",
+    "twitch",
+    "esportsnews",
+    "pcgaming",
+    "riotgames"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

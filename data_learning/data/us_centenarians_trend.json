@@ -1,0 +1,21 @@
+{
+  "key": "us_centenarians_trend",
+  "title": "Americans aged 100 and older",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1990-2024",
+  "source": {
+    "name": "Decennial Census centenarian counts and Census Bureau population estimates",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "1990 and 2010 are decennial Census counts; 2020 reflects the Census Bureau's reported ~50% growth over the 2010 count; 2024 is the Census Bureau's current population estimate as widely reported (Pew Research, CNBC) in early 2024/2025 coverage.",
+  "points": [
+    {"label": "1990", "value": 37306, "period": "1990"},
+    {"label": "2010", "value": 53364, "period": "2010"},
+    {"label": "2020", "value": 80000, "period": "2020"},
+    {"label": "2024", "value": 101000, "period": "2024"}
+  ]
+}

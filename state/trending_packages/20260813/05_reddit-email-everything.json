@@ -1,0 +1,113 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-email-everything",
+  "title": "He Said Email Everything. So I Did.",
+  "script": "My new supervisor hated 'wasting time' on hallway questions, so he posted a memo: every request goes through email, no exceptions, effective immediately. Fine by me \u2014 I stopped answering anyone who just walked up to my desk, no matter how small the ask. Day one, seven emails piled into his inbox before lunch, every one a two-line question he used to wave off verbally in ten seconds. By day four he had ninety-one unread messages and a folder titled 'URGENT' with fourteen items in it, half of them from himself asking where things were. Day five he called an all-staff meeting to announce that verbal requests were, actually, fine again, small ones especially, and could everyone please stop CC'ing him on literally everything. I printed his original memo, framed it, and hung it directly above my monitor. He walked past it every single day and never once said a word about taking it down.",
+  "shots": [
+    {
+      "phrase": "posted a memo",
+      "query": "office memo bulletin board",
+      "pin_query": "memo",
+      "pin_context": "office document paper",
+      "news_query": "memo",
+      "news_angle": "The supervisor posted a memo requiring all requests to go through email.",
+      "image_url": "https://live.staticflickr.com/5/8559258_93307987d7.jpg"
+    },
+    {
+      "phrase": "answering anyone who just walked up",
+      "query": "office cubicle desk",
+      "image_url": "https://drive.google.com/uc?export=download&id=19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+      "media_origin": "chatgpt",
+      "media_file_id": "19u2d29GDfr-QZFS1s3pQZzqvIC30Zetz",
+      "media_sha256": "43ac74e4aaf055d41197f21da9ea6b5de766f15a465a71c968075d2521b26fce",
+      "media_bytes": 853693
+    },
+    {
+      "phrase": "seven emails piled into his inbox",
+      "query": "email inbox overflow",
+      "pin_query": "inbox",
+      "pin_context": "email digital messages",
+      "news_query": "inbox",
+      "news_angle": "The supervisor's inbox was flooded with emails from employees.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "ninety-one unread messages",
+      "query": "computer screen inbox",
+      "image_url": "https://drive.google.com/uc?export=download&id=16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+      "media_origin": "chatgpt",
+      "media_file_id": "16CfPDwDY6fj0gFlnA-DwOQZZEgqg1cDD",
+      "media_sha256": "d6bfd689458ae251d2dd92635ddb1ab433c668524eb64a74d95dcaf64b7f65ae",
+      "media_bytes": 1369166
+    },
+    {
+      "phrase": "an all-staff meeting",
+      "query": "office meeting room",
+      "pin_query": "all-staff meeting",
+      "pin_context": "office conference gathering",
+      "news_query": "all-staff meeting",
+      "news_angle": "The supervisor called an all-staff meeting to announce a change in email policy.",
+      "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+    },
+    {
+      "phrase": "verbal requests were, actually, fine again",
+      "query": "manager talking employees",
+      "image_url": "https://drive.google.com/uc?export=download&id=10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+      "media_origin": "chatgpt",
+      "media_file_id": "10PKrrcbkxHz3W1_MaRmgQULxEXhltI23",
+      "media_sha256": "d1474c2ae0fe957ae6fe16bfe58b5bf4b4fd470ab4d7dcf2ec1f493ce486a029",
+      "media_bytes": 1335763
+    },
+    {
+      "phrase": "framed it",
+      "query": "framed paper wall",
+      "image_url": "https://drive.google.com/uc?export=download&id=17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+      "media_origin": "chatgpt",
+      "media_file_id": "17OTJ3AWNZbiWd7L-tFCijcShl43opH8L",
+      "media_sha256": "7eeb96c3ec1ce8abea03628224374e0acb30ff3542a4eca5685ed20e5cd83ecd",
+      "media_bytes": 1572860
+    },
+    {
+      "phrase": "never once said a word",
+      "query": "office hallway walking",
+      "image_url": "https://drive.google.com/uc?export=download&id=1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+      "media_origin": "chatgpt",
+      "media_file_id": "1AEVf9DLGYLgh1WUcFTbaLCBMS0Bt5MdQ",
+      "media_sha256": "d876cd4fb9f7c887732a8f014a02009c3937bb15def4e51ff27e1151e8afb6bc",
+      "media_bytes": 1029192
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no exceptions",
+      "text": "NO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "ninety-one unread messages",
+      "text": "91 UNREAD",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "verbal requests were, actually, fine again",
+      "text": "POLICY REVERSED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "9to5",
+    "corporatelife",
+    "reddit",
+    "worklife",
+    "management",
+    "office",
+    "boss",
+    "karma",
+    "workplacestories",
+    "officelife"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

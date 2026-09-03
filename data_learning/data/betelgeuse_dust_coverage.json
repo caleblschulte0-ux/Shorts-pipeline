@@ -1,0 +1,20 @@
+{
+  "key": "betelgeuse_dust_coverage",
+  "title": "Share of Betelgeuse's imaged disk obscured by the dust cloud",
+  "unit": "percent",
+  "geography": "N/A (stellar observation)",
+  "time_coverage": "December 2019",
+  "source": {
+    "name": "ESO Very Large Telescope (SPHERE instrument) imaging of Betelgeuse's surface",
+    "publisher": "Montarges et al., Nature, 2021; European Southern Observatory (ESO) press materials",
+    "url": "https://www.eso.org/public/news/eso2003/",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "Direct imaging of Betelgeuse's surface showed roughly half of its southern hemisphere visibly darkened where an ejected gas plume had cooled into an obscuring dust cloud.",
+  "insight_type": "share",
+  "points": [
+    {"label": "Dust-obscured", "value": 50},
+    {"label": "Unobscured", "value": 50}
+  ]
+}

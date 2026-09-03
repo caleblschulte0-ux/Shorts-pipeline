@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260808",
+  "bundle": {
+    "identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "path": "exchange/bundles/20260808/bundle.json"
+  },
+  "request_id": "reddit-pharmacy-coupon-not-an-employee-s3-2511e9af7c8b",
+  "safe_request_id": "reddit-pharmacy-coupon-not-an-employee-s3-2511e9af7c8b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d72caaaa928b7576f28fef449a29ce451e6549c0fd6977cb132aadfc678822a0",
+  "prompt_used": "An editorial illustration for a short-form video: phone pretend call. It accompanies the narration: \"radioed my invisible manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1nm5if3SUbxW6LMrpIFi5PphnKv4R2hxa",
+    "filename": "20260808__reddit-pharmacy-coupon-not-an-employee-s3-2511e9af7c8b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1nm5if3SUbxW6LMrpIFi5PphnKv4R2hxa",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "cbaaad9ab38455bf0bbdf95a81e8035d5f702b7c2874fcaf8b3065cce66d0a65",
+    "bytes": 2142574,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-08T12:19:59Z",
+  "error": null,
+  "retryable": false
+}

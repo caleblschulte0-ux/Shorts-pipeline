@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s6-8df57b83f8af",
+  "safe_request_id": "reddit-thermostat-admin-s6-8df57b83f8af",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d148bfe1f1c4a5d61715845d5c4ec135c0b280eed1e8f926e2a1c5fcbbf6bda5",
+  "prompt_used": "An editorial illustration for a short-form video: handshake office apology. It accompanies the narration: \"write up removed and an apology\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+    "filename": "20260828__reddit-thermostat-admin-s6-8df57b83f8af.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1M2DFXwcARlSaGbI4K5SM3jVLnxtb2xC-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2a4b78f75de00c75fe34863726051943ec0c76df9c8cfa513b57c61109d7b8d2",
+    "bytes": 1846866,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:18:12Z",
+  "retryable": false
+}

@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tiktok-shop-passed-etsy",
+  "title": "A 2-Year-Old App Just Passed Etsy",
+  "hook": "Etsy took 19 years. TikTok took 2.",
+  "y_label": "Global GMV ($ billions)",
+  "duration": 13,
+  "source": "Etsy Inc. 10-K filings, total marketplace Gross Merchandise Sales: 2019 $4.97B, 2020 $10.28B, 2021 $13.51B, 2022 $13.31B, 2023 $13.2B, 2024 $12.6B, 2025 $11.9B. TikTok Shop global Gross Merchandise Value, per company disclosures and reporting by Reuters/Momentum Works/Retail TouchPoints: estimated $4.4B in 2022, $11B in 2023, $33.2B in 2024, and $66B in 2025.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Etsy",
+      "color": "#f45800",
+      "icon": "Etsy",
+      "values": [
+        4.97,
+        10.28,
+        13.51,
+        13.31,
+        13.2,
+        12.6,
+        11.9
+      ]
+    },
+    {
+      "name": "TikTok Shop",
+      "color": "#25f4ee",
+      "icon": "TikTok",
+      "values": [
+        0,
+        0,
+        0,
+        4.4,
+        11,
+        33.2,
+        66
+      ]
+    }
+  ],
+  "hashtags": [
+    "tiktokshop",
+    "etsy",
+    "ecommerce",
+    "onlineshopping",
+    "smallbusiness",
+    "retail",
+    "socialcommerce",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "_authored_by": "chatgpt-takeover"
+}

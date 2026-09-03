@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s7-fe9995066855",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s7-fe9995066855",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d66e35aebcb04324958afb52dd3d6b84347b1dc4becaf8b32c7a7cb0e03fb7a6",
+  "prompt_used": "An editorial illustration for a short-form video: warning sign office fridge. It accompanies the narration: \"handwritten sign above the fridge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s7-fe9995066855.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "34d3fd3da7331b3084b5ee9d1db7b00212cca4862c2b0fa6380242e2bd373fdf",
+    "bytes": 926430,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:21:59.325Z",
+  "error": null,
+  "retryable": false
+}

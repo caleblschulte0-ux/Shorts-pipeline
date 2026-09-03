@@ -1,0 +1,25 @@
+{
+  "key": "left_handed_by_gender",
+  "title": "Left-handedness rate by gender",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Men vs. women left-handedness prevalence",
+    "publisher": "Meta-analysis findings as reported by Psychology Today (men ~23% more likely to be left-handed than women)",
+    "url": "https://www.psychologytoday.com/us/blog/the-asymmetric-brain/202004/the-worlds-biggest-study-on-left-handedness",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Illustrative split derived from the reported ~10.6% global average and the commonly cited finding that men are ~23% more likely to be left-handed than women; not independently sourced per-gender rates.",
+  "points": [
+    {
+      "label": "Women",
+      "value": 9.5
+    },
+    {
+      "label": "Men",
+      "value": 11.7
+    }
+  ]
+}

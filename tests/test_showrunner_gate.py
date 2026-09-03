@@ -84,6 +84,53 @@ class TestAPublishRunFailsClosed(unittest.TestCase):
                                        "a gate nothing passes gets removed")
 
 
+class TestOnlyAnExplicitShipShips(unittest.TestCase):
+    """The doctor's first HIGH finding (2026-08-05), verified real: the gate
+    used to block on the exact token 'block' or a missing score — so a
+    MALFORMED verdict, an unknown token carrying a numeric score, matched
+    neither check and shipped on a publish run. 'Not refused' is not
+    'approved'. On publish, the only thing that ships is literally
+    verdict='ship' with a bounded numeric score."""
+
+    def hold(self, verdict):
+        d = gate.decide(will_upload=True, gate_on=True, verdict=verdict)
+        self.assertTrue(d["blocked"], f"{verdict!r} must not ship")
+        return d
+
+    def test_an_unknown_token_with_a_score_holds(self):
+        # The exact shape from the doctor's report: verdict='error', score=7.
+        d = self.hold({"verdict": "error", "score": 7})
+        self.assertIn("not an explicit ship", d["reason"])
+
+    def test_misc_malformed_verdicts_all_hold(self):
+        for v in ({"verdict": "approved", "score": 9},
+                  {"verdict": "SHIP?", "score": 8},
+                  {"verdict": None, "score": 8},
+                  {"score": 8},
+                  {"verdict": "ship", "score": "88"},     # string score
+                  {"verdict": "ship", "score": True},     # bool is not a score
+                  {"verdict": "ship", "score": 101},      # out of range (0-100)
+                  {"verdict": "ship", "score": -1},
+                  {"verdict": "ship", "score": float("nan")},
+                  {"verdict": "ship"}):
+            self.hold(v)
+
+    def test_a_preview_is_still_lenient(self):
+        """The strictness is publish-only — a preview with a weird verdict
+        proceeds, same as every other preview leniency."""
+        d = gate.decide(will_upload=False, gate_on=True,
+                        verdict={"verdict": "error", "score": 7})
+        self.assertFalse(d["blocked"])
+
+    def test_a_real_block_reason_still_leads(self):
+        """A malformed BLOCK is still reported as the brain's block, not
+        re-labelled malformed — the brain's veto stays sovereign."""
+        d = gate.decide(will_upload=True, gate_on=True,
+                        verdict={"verdict": "block", "one_line": "bad"})
+        self.assertTrue(d["blocked"])
+        self.assertIn("showrunner BLOCK", d["reason"])
+
+
 class TestAPreviewRunFailsOpen(unittest.TestCase):
     """Iteration must not be blocked by infrastructure."""
 
@@ -120,13 +167,20 @@ class TestRunNeverRaises(unittest.TestCase):
     exists to prevent."""
 
     def setUp(self):
+        import scripts
+        self._pkg = scripts
         self.real = sys.modules.get("scripts.showrunner_review")
+        self.real_attr = getattr(scripts, "showrunner_review", None)
 
     def tearDown(self):
         if self.real is not None:
             sys.modules["scripts.showrunner_review"] = self.real
         else:
             sys.modules.pop("scripts.showrunner_review", None)
+        if self.real_attr is not None:
+            self._pkg.showrunner_review = self.real_attr
+        elif hasattr(self._pkg, "showrunner_review"):
+            del self._pkg.showrunner_review
 
     def _fake(self, fn):
         import types
@@ -135,6 +189,12 @@ class TestRunNeverRaises(unittest.TestCase):
         m.append_ledger = lambda *a, **k: None
         m.should_block = lambda v: v.get("verdict") == "block"
         sys.modules["scripts.showrunner_review"] = m
+        # `from scripts import showrunner_review` resolves via the PACKAGE
+        # ATTRIBUTE when the real module was ever imported (any earlier test
+        # importing it plants the attribute), so patching sys.modules alone
+        # works under `-m unittest tests.test_showrunner_gate` and silently
+        # fails under full discovery. Patch both, like a real seam.
+        self._pkg.showrunner_review = m
 
     def test_a_reviewer_that_explodes_holds_a_publish_run(self):
         def boom(*a, **k):
@@ -226,6 +286,26 @@ class TestBothChannelsAreActuallyGated(unittest.TestCase):
                     self.assertNotEqual(getattr(t, "id", None), "blocked",
                                         "decide() reassigns `blocked` — that "
                                         "is exactly the bypass shape")
+
+
+class TestZFormatAwareShowrunnerContract(unittest.TestCase):
+    def test_reddit_is_not_required_to_invent_a_statistic(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "reddit_story"})
+        self.assertIn("narrative, not a statistics explainer", text)
+        self.assertIn("do not demand numbers", text)
+
+    def test_graph_forbids_explainer_mascot(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "graph_race"})
+        self.assertIn("separate Explainer channel mascot", text)
+        self.assertIn("mark decorative_mascot present", text)
+
+    def test_reddit_forbids_explainer_mascot(self):
+        from scripts.showrunner_review import _format_directive
+        text = _format_directive({"format": "reddit_story"})
+        self.assertIn("separate Explainer channel mascot", text)
+        self.assertIn("mark decorative_mascot present", text)
 
 
 if __name__ == "__main__":

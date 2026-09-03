@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f",
+  "safe_request_id": "reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ff31199669ddbb647bda5da057c00037d7e6029702140af29d8a76712b823111",
+  "prompt_used": "An editorial illustration for a short-form video: man entering office hallway. It accompanies the narration: \"district manager showed up unannounced\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+    "filename": "20260821__reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "95d5df5715b3e2ffa2caa94d453178ec9cbf21645471a5c3ed628c11e0fe5314",
+    "bytes": 1041232,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:23.181Z",
+  "error": null,
+  "retryable": false
+}

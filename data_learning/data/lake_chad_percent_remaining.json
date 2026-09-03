@@ -1,0 +1,19 @@
+{
+  "key": "lake_chad_percent_remaining",
+  "title": "Share of Lake Chad's 1963 surface remaining",
+  "unit": "percent",
+  "geography": "Lake Chad",
+  "time_coverage": "1963 vs today",
+  "source": {
+    "name": "Lake Chad satellite imagery case study",
+    "publisher": "NASA Earth Observatory / USGS EROS",
+    "url": "https://science.nasa.gov/earth/earth-observatory/africas-disappearing-lake-chad-1240/",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "Computed as today's surface area (~1,350-1,500 sq km) divided by the 1963 baseline (25,000 sq km).",
+  "points": [
+    {"label": "1963", "value": 100},
+    {"label": "Today", "value": 5}
+  ]
+}

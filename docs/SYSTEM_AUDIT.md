@@ -446,3 +446,478 @@ New this pass: `tests/test_showrunner_gate.py` (25),
 `tests/test_uploaders.py` (35), `tests/test_captions.py` (25),
 `tests/test_research_intake.py` (20), `tests/test_fsutil_writes.py` (12),
 `tests/test_repo_layout.py` (5), `tests/test_engine_registry_honesty.py` (10).
+
+---
+
+## Fourth pass, 2026-08-05: the ChatGPT emergency edits, line-audited
+
+Context: the Claude subscription lapsed ~2026-08-01. With the operator's
+explicit authorization, ChatGPT edited production code on 08-02/08-03 to
+finish the whole-pipeline takeover — a sanctioned one-off exception to the
+"only Claude edits" ruling, now closed (see CLAUDE.md). It notated its work
+well (`docs/CHATGPT_CHANGES_2026-08-02.md`,
+`docs/CHATGPT_CHANNEL_SEPARATION_2026-08-03.md`), which made this audit
+tractable. Every code file it touched was diffed and judged.
+
+### RATIFIED — kept, they are real fixes
+
+- **`pin_verified_media` (`scripts/exchange_phase_b.py`)** — Phase B used to
+  commit `/home/runner/...` paths from its disposable VM into packages; the
+  separate render runner could not read them and silently lost every ChatGPT
+  image. Now the durable Drive URL + file_id + sha256 ride the package. The
+  single best fix of the takeover work. Also kept: the idempotent takeover
+  repair (a rerun reattaches response media to already-promoted packages).
+- **Takeover identity (`shared/media_checkpoint.py`)** — a no-bundle
+  takeover has no `BUNDLE_ID` to copy, and a late Phase A cron would mint a
+  new identity and invalidate every takeover checkpoint (the wrong-bundle
+  failure shape again). `takeover.json` now pins identity for a claimed
+  date. Fails toward refusal, never acceptance.
+- **The manifest-only renderer** — `--require-manifest` in
+  `run_trending_daily.py`; daily.yml no longer authors (in-CI brain removed)
+  or back-fills (reserve fill removed — it still runs in Phase A, the right
+  place). The render job is deterministic; re-authoring at render time hid
+  broken handoffs.
+- **Channel separation** — Data is Explainer's mascot; trending renders
+  without it (registry rev 3, `mascot_pose` gone from contracts,
+  `tests/test_channel_mascot_separation.py`).
+- **Format-aware showrunner directive** — the judge is told what a
+  reddit_story/graph_race is supposed to demonstrate instead of blocking a
+  narrative for lacking a chart. Gate stays sovereign; my 25 gate tests are
+  untouched, ChatGPT only added.
+- **The illustrated Reddit layout, layout-aware vision QA, the
+  production-outcome file, `production_supervisor` in the registry.**
+
+### REPAIRED — the damage
+
+1. **The failure counter punished the gate.** The run going RED on any
+   shortfall (right — visibility) also fed the auto-pause counter, so two
+   days where the showrunner correctly held one video would pause the whole
+   channel — mechanized "more output via a lower bar" pressure, against the
+   old explicit ruling that a quarantine must not bump the counter. Fixed:
+   RED on shortfall stays; the counter bumps only on a ZERO-upload day, read
+   from the production outcome file. `tests/test_production_outcome.py` pins
+   both halves.
+2. **The two judges contradicted each other about the mascot.** The 08-02
+   vision-QA text told the judge a mascot in a trending frame was
+   "intentional"; the 08-03 separation made it a brand violation the
+   showrunner must flag. ChatGPT fixed the showrunner side and missed its
+   own vision-QA text. Fixed; tested.
+3. **`registry_acceptance.py` was broken on main since 08-02** — step 6
+   hardcoded `registry_revision == 1`; ChatGPT bumped the registry to rev
+   2, then 3, and never saw the failure because **its pushes went straight
+   to main, bypassing the auto-merge gate that runs this script**. Fixed to
+   compare against the revision captured at freeze time. This is also the
+   audit's sharpest lesson: the gate can only guard what goes through it.
+4. **Doctrine drift** — CLAUDE.md still claimed the reserve fill runs in
+   daily.yml; corrected. The who-may-edit ruling now records the exception
+   as closed and re-asserts the line.
+5. **The alarm now reads the production outcome** — `repair_required`
+   sitting at end of day is a critical (`production_repair_<cid>`), which is
+   ChatGPT's own "DONE is not production completion" contract, wired into
+   the thing that shouts.
+
+Suite: 666 (as found) → **680 tests**, dry run 9/9, acceptance 7/7 (was
+6/7 on main).
+
+---
+
+## Fifth pass, 2026-08-11: the motion floor was eating both channels
+
+Explainer had posted **nothing since 2026-07-30** (twelve days) and trending
+had fallen from 5-6 videos a day to 1-2. Two channels, one defect, and it is
+not a taste question — it is arithmetic.
+
+### The finding: pixels per frame, not smoothness
+
+The showrunner's temporal grade (`showrunner_review._temporal_evidence`)
+measures the change between **consecutive** frames: 12x12 blocks of mean
+grayscale on a 192px downscale, a frame counting as a duplicate when the
+biggest block moves less than `BLOCK_MOTION_THRESH = 6.0`. So the honest
+unit is **pixels per frame**, and the consequence is counterintuitive:
+
+> Spreading a movement over MORE frames makes the measurement strictly
+> WORSE. The same journey across a longer beat is a smaller step each frame.
+
+Measured with the reviewer's own detector on a real explainer chart build:
+
+| build frames | beat | effective fps | duplicate ratio |
+|---|---|---|---|
+| 60 | 2s | 3.1 | 0.87 |
+| 240 | 8s | **0.0** | **1.00** |
+| 600 | 20s | **0.0** | **1.00** |
+
+`studio_render` sizes the build as `ceil(duration * 30)` and `segment_0`
+carries the hook lead, so it is always the longest window in the video.
+That is exactly what the 2026-08-11 run shows: `segment_0` measured
+0.8-1.4 fps in every story while `segment_2` sat at 24.0. A comment in that
+file had **raised the frame cap from 600 to 1200 to fix segment_0** — the
+wrong direction, and the measurement above is why.
+
+The same defect on trending: `graph_race` eases into its race, so its
+opening seconds are near-still. Three of six videos that day were blocked
+before vision review at 4.5 / 8.7 / 8.9 fps against an 11.0 floor.
+
+No amount of re-pacing a build fixes this. A one-way move slow enough to
+last 20 seconds is sub-pixel per frame *by definition*. **Only cyclic
+motion holds its per-frame rate at any duration** — the same finding that
+fixed the mascot idle (`+30*sin(6.0*t)`, 0.26 -> 6.0 px/frame) and the
+reddit panels.
+
+### The fix: `shared/camera_float.py`, one definition, both channels
+
+A slow Lissajous drift of the visual layer — a breathing camera — that is
+duration-independent. Calibrated, not chosen (static 1080x1920 chart held
+20 seconds):
+
+| amplitude | rad/s | px/frame | effective fps | dup |
+|---|---|---|---|---|
+| none | — | 0.00 | 0.0 | 1.000 |
+| 8 | 3.0 | 0.80 | 11.1 | 0.536 |
+| **20** | **4.6** | **3.07** | **22.3** | **0.071** |
+| 26 | 4.0 | 3.47 | 22.8 | 0.050 |
+
+Shipped at amplitude 20 — 1.9% of frame width, absorbed entirely by the
+chart card's own ~31px transparent margin (no crop at all), and a 1.9% crop
+on a full-frame layer, which is oversized first so the drift never exposes
+background. End-to-end against the real gate, on the worst possible input:
+
+    explainer card, 20s frozen hold   0.0 -> 22.2 fps   PASS
+    graph_race, 20s identical frames  0.0 -> 23.1 fps   PASS
+
+It lives in `shared/` because two channels use it, and
+`tests/test_camera_float.py` fails if either grows its own copy of the
+constants — the same second-source-of-truth failure that let trending ship
+six months ungated.
+
+### Three things found alongside it, all fixed
+
+1. **The repair loop repaired the wrong scene, every time.** A temporal
+   hard-fail happens *before* vision review, so there is no
+   `weakest_scene` and no `segN` prose to parse, and `failing_scene` fell
+   through to its last-segment default. All four stories on 08-11
+   "repaired" segment 2 — passing at 24.0 fps — while segment 0 at 0.8 was
+   never touched. Two renders and two showrunner reviews per story aimed at
+   a scene that was fine. The evidence to aim correctly was already on disk:
+   `_scene_metrics` writes a per-scene measured gate and **nothing read it**
+   — rule zero's "capability nothing calls", found in the repair path
+   itself. `tests/test_repair_targets_the_failure.py`.
+
+2. **The scene proxy measured something that never ships.** It overlaid the
+   build at a fixed `0:0`, so it graded the raw build rather than the
+   composited scene — which is why candidate scoring reported `fps_score:
+   1.0` for scenes that then shipped at 1.0 effective fps. Both the proxy
+   and `scene_repair.score_candidate` now composite the float, so a short
+   candidate proxy is honest about a long beat.
+
+3. **A rate-limited backend was a total authoring outage.** `_call_llm`'s
+   docstring promised to "fall back to whichever has a configured key"; the
+   code only ever SELECTED one and re-raised its error. Groq 429'd all
+   morning, so all four trending backfill attempts died — the re-authoring
+   path the whole *"if something doesn't run properly, it goes through and
+   tries again"* ruling rests on — with `GEMINI_API_KEY` present and idle
+   the entire time. It now walks the configured backends until one answers;
+   an explicit `backend=` stays exact. `tests/test_llm_falls_through.py`.
+
+`state/failure_count.txt` reset to 0 in the same change: it reached 2 on two
+zero-upload days caused by the defect above, and would have made trending
+sit out 08-12 — the first day carrying the fix. That is clearing a backoff
+whose cause is removed in the same commit, not weakening a gate.
+
+### Not fixed here, deliberately
+
+`make_reddit_story`'s panel drift (4.4 px/frame, measured 13.4 fps) is above
+the 11.0 floor but thin against phase-2's 17.0, and it shipped only hours
+earlier — it has not been observed in a single production render yet.
+Raising it now would be guessing on top of guessing. Read tomorrow's
+measured numbers first.
+
+Suite: 830 → **860 tests**.
+
+### Same day, second finding: the headline really was clipped
+
+The showrunner's note on the hydropower story was, in its own words, *"a
+headline clipped off the right edge"*. It was right, and the cause was a
+comment asserting a property the code did not have:
+
+```python
+# ...auto-shrink so long titles never clip the right edge of the card.
+size = (42 if len(title) <= 24 else 36 if len(title) <= 31
+        else 30 if len(title) <= 40 else 26)
+```
+
+Character count is not width. Measured on that very card (right edge as a
+fraction of figure width; the card's text margin is 0.915):
+
+| title | before |
+|---|---|
+| "Urban growth just hit a 50-year low" | 0.929 |
+| "World hydropower fell below its 1990 level" | **0.966** (shipped) |
+| "Prevalence of undernourishment in the population" | 1.120 |
+| "Agricultural land area as a share of total land area" | 1.352 |
+| `"M" * 24` | 1.481 |
+
+`engines/chart_race.py` had already solved this properly — it measures the
+rendered extent with the canvas renderer and steps the size down, and its
+docstring records the same production bug. So this is the CLAUDE.md case
+exactly: **look for the duplicate before you write the caller.** The
+measuring implementation moved to `shared/fit_title.py`, `chart_race`
+delegates, and `charts._heading` now calls it. Every title above fits, and
+short ones stopped being needlessly shrunk (the hydropower headline went
+from size 26 *clipping* to size 24 *fitting*, and "People per sq km" from a
+guessed 42 to a measured 42).
+
+Two things the fix had to not break, both pinned:
+
+* **A wrapped title must not land on the plot.** The tallest chart axes on
+  this card top out at 0.85 and the subtitle sits at 0.845, so `_heading`
+  shrinks to one line first and only wraps when it cannot — and a wrapped
+  title is capped at 32pt, the largest two-line block that still fits above
+  the subtitle. Nothing below it moves.
+* **The consolidation must change nothing.** `tests/test_fit_title.py` keeps
+  the pre-move `chart_race` implementation VERBATIM as an oracle and
+  compares over generated input. It asserts identity wherever the original
+  produced a fitting result and improvement where it did not — because the
+  move deliberately added one behaviour: an unbreakable token (a long
+  compound, a run of caps) is now ellipsized instead of returned untouched
+  to run off the card, which is how a function whose docstring promised
+  "NEVER runs off frame" shipped one that did. A blanket identity claim
+  would have been false, and a loose one would have hidden real drift.
+
+Suite: 860 → **874 tests**.
+
+### Same day, third finding: the bubble scene was 8.7% ink
+
+Three of the five stories carried showrunner notes about the same scene:
+
+> "seg0 is a near-empty card with a flat bubble row"
+> "tiny bubbles in a mostly empty frame"
+> "equal-size blobs that only reveal numbers at the very end"
+
+All three are literally true, and all three are measurable. `_story_bubbles`
+packed every item into ONE row scaled to fit the **width**, inside a card
+1.15x **taller** than it is wide. With five items the row is already 92% of
+the width, so the bubbles cannot grow and the rest of the frame stays empty:
+
+| items | ink coverage | frame height used | after |
+|---|---|---|---|
+| 5 (the macao seg0) | **8.7%** | **18.5%** | 20.1% / 50.8% |
+| 5 near-identical | 7.9% | 13.4% | 26.3% / 54.9% |
+| 4 | — | — | 37.5% / 77.4% |
+| 3 | 16.9% | 31.4% | **unchanged** |
+| 2 | 27.7% | 46.8% | **unchanged** |
+
+Four or more items now pack into two staggered rows and scale to whichever
+of width/height binds first. Two things that mattered while doing it:
+
+* **Gaps do not scale.** Solving the scale by shrinking the whole block
+  (circles + gaps together) silently under-sizes every bubble; the gaps have
+  to come out of the budget first and only the circles divide what is left.
+  Getting this wrong made 2- and 3-item scenes *worse* than before, which is
+  how the "unchanged" column above became a test.
+* **A second row puts the top row's labels where the bottom row's circles
+  are.** Measured at 2.0 units of overlap on a 4-item scene at the in-row
+  gap; rows are now separated by a dedicated label band. Trading an empty
+  frame for a collided one is not an improvement.
+
+And the numbers: `_lblalpha` holds every label at alpha 0 until 80% of the
+build. That is right for a BAR — the label sits at the tip and lands as the
+bar reaches it — but a bubble's number sits at the CENTRE of a circle drawn
+from frame one, so there is nothing to land. On the hook beat, whose reveal
+curve does not pass 0.8 until ~71% of a 20-second window, the values were
+invisible for **fourteen seconds**. Bubbles now fade their labels with the
+inflation, complete by a third of the way in. Bars are untouched.
+
+What is NOT fixed, and cannot honestly be: five near-identical values still
+render as near-identical circles (radius ∝ sqrt(value), so area ∝ value).
+That encoding is correct and distorting it to exaggerate differences would
+be fabricating the data's appearance. The honest answer to "these values are
+too close for bubbles" is a different depiction, which is the scene-repair
+router's decision — and it can now aim at the right scene.
+
+Suite: 874 → **887 tests**.
+
+### Same day, fourth finding: the hook was narrated over somebody else's chart
+
+The showrunner's note on the macao story was:
+
+> "Three unrelated datasets stapled together — the hook promises Macao's
+> density but the first 14 seconds are a cropland bar race, and the closing
+> line about 'the most crowded place' lands over a fertilizer line chart."
+
+That reads like a bad script. It was not: it was a **desync**, and a
+systematic one.
+
+`scripts/story_forge.py` authors title / hook / `says[i]` / closing against
+its datasets **in sequence**, and `studio_render` makes segment 0's chart
+span the hook window (`lead_hook`). But `story.build` sorted **every**
+segment to push `trend` (line) charts to the end — so any story whose
+opening dataset is a time series had its hook narrated over a different
+dataset's chart.
+
+That is most of them. Of the six most recently authored stories, four open
+on a trend, and every one of those hooks names the opening dataset:
+
+| story | hook | seg0 |
+|---|---|---|
+| solo-living-overtakes-family | "1 in 3 homes now has just one person." | US one-person households (trend) |
+| sand-mining-crisis | "We're mining sand faster than nature makes it." | sand extraction (trend) |
+| boomerang-generation | "Living with your parents at 27?" | living with parents over time (trend) |
+| chatgpt-fastest-adoption-ever | "This app broke every growth record." | ChatGPT users over time (trend) |
+
+Two of those four were in the 2026-08-11 slate.
+
+**Segment 0 is now pinned** — the hook is written about it, so it does not
+move. Segments 1..n still sort, so a mid-video line chart still sinks. The
+"never open on a line" rule is kept and applied to the DEPICTION instead of
+the ORDER, which is exactly what the code already did one line below for the
+all-trend case; `timeline` is the other time-shaped kind, renders full-frame,
+and falls back to `trend` on its own if it cannot produce.
+
+`tests/test_the_hook_gets_its_own_chart.py` pins both halves — the hook
+keeps its chart AND the video still never opens on a line — plus the
+renderer contract the whole argument rests on (`windows[0][0] if (i == 0 and
+lead_hook)`), so the two files cannot drift apart silently.
+
+Suite: 887 → **900 tests**.
+
+---
+
+## Sixth pass, 2026-08-12: three ChatGPT tasks fired and left nothing
+
+All three ChatGPT scheduled tasks ran on time — media ~06:03 CT, finalizer
+~07:03, doctor overnight — and committed **nothing**: no
+`media-progress/STARTED.json`, no `response.json`, no `DONE`, no
+`doctor/reports/20260812.json`.
+
+### It was not the instructions, and it was not the bundle
+
+Both were checked before anything was written:
+
+* Today's `bundle.json` is **structurally identical** to yesterday's — same
+  schema, `mode: "author"`, `status: "open"`, well-formed `requests[]` with
+  every field (`prompt_verbatim`, `drive_filename`, `checkpoint_path`,
+  `safe_request_id`, …).
+* It was **present and populated when each worker fired**: 13 requests at
+  06:03 CT, 12 at 07:03 CT.
+* The same tasks committed normally the previous morning — a STARTED.json
+  heartbeat at 06:03, sixteen checkpoints by 06:15, `response.json` 07:06,
+  `DONE` 07:07.
+
+### The decisive observation is STEP 0
+
+The media worker's first instruction is a heartbeat: one small JSON file,
+committed **before** any real work. It needs no Drive, no image generation,
+no bundle parsing, no Phase A. It depends on exactly **one** capability —
+the ability to write to the repo.
+
+It did not land. Neither did the other two tasks' artifacts. On the same
+day. The only thing all three share is that capability.
+
+So the failing component is not the prompts, the contract, or the work: it
+is **ChatGPT's ability to COMMIT from a scheduled session**, which worked at
+08-11 07:07 and has not worked since. No repo change can grant it — a
+stronger prompt cannot make a session write where it has no write path.
+
+**What the repo CAN stop doing is depending on it silently**, and that is
+where the real engineering defects were.
+
+### Defect 1 — a no-show was indistinguishable from an idle day
+
+`daily_alarm` runs at **01:15 UTC**. A 06:03 CT failure therefore went
+unreported for nearly **twenty hours**, long past the point where re-firing
+the task could still have saved the day. And even then the signals were
+ambiguous by construction: an empty `media-progress/` reads the same whether
+the worker failed or the day legitimately had no media requests, exactly as
+an empty doctor backlog reads the same whether every finding was ruled or
+nobody filed one.
+
+Fixed with `scripts/chatgpt_watchdog.py` + `.github/workflows/
+chatgpt_watchdog.yml` — the deterministic half of the boundary the operator
+asked for. **ChatGPT supplies judgment and content; WE verify and record.**
+It runs on paired, DST-gated crons shortly after each task's deadline,
+decides on filesystem evidence, writes
+`state/chatgpt_tasks/<date>/<task>.json`, and exits non-zero so the run goes
+RED. Validated in both directions before shipping:
+
+    20260812 (the failure)  media FAILED · finalizer FAILED · doctor FAILED
+    20260811 (it worked)    media OK     · finalizer OK     · doctor FAILED
+    a date with no bundle   not_required, exit 0 — it does not cry wolf
+
+Care taken so the alarm keeps its credibility: a day with zero media
+requests is `not_required`, not a failure; a `FAILED-<id>.json` note counts
+as a **successful** heartbeat (the worker showed up and said what blocked
+it — "silence is the one output that is never acceptable"); before the
+deadline a task is `pending`, never failed; and the doctor's deadline is
+23:00 CT because it files nightly, so it is judged the following morning
+rather than reported failed every day of its life.
+
+### Defect 2 — a missing verdict would have been silent the same way
+
+The first cut had `daily_alarm` read only the recorded verdicts, which
+recreates the blind spot one level up: a watchdog that never runs produces
+no record, and no record produced no alarm. The alarm now **evaluates live**
+for any task without a record, and says so in the fix text.
+
+### Defect 3 — the bundle was not frozen while a worker was running
+
+Phase A's primary trigger is `workflow_run: ["Auto-merge claude PRs"]`, so
+**every merged PR rewrites the day's bundle.** It ran three times on 08-12,
+the last at 07:02 CT — sixty seconds before the finalizer fired — changing
+the ask from 13 requests to 12 and moving `BUNDLE_ID`.
+
+A guard for this already existed but only engaged when verified
+**checkpoints** were present, so the whole window between "worker announced
+itself" and "first image verified" was unprotected — precisely the window
+STEP 0 exists to mark. Any artifact in `media-progress/` now freezes the
+ask. This did not cause today's failure (nothing was written to orphan) but
+would silently destroy a *successful* run.
+
+### What is still outside the repo
+
+Nothing here can make a scheduled ChatGPT session able to write to GitHub.
+If the connector's write path is unavailable to those tasks, they will keep
+failing — but they will now fail **loudly, by name, within the hour**,
+instead of looking idle until the next morning.
+
+## Seventh pass, 2026-08-16: Rule 2's quirky bucket had nowhere left to land
+
+The morning Routine tried to author today's trending slate straight from
+`CLAUDE_ROUTINE_INSTRUCTIONS.md` Rule 2 ("at least 4 of 6 picks from the
+Quirky/Animal/Disaster bucket") and it dead-ended on every attempt: the live
+mix is 4x `graph_race` + 2x `reddit_story` (set 2026-07-31), and neither
+format is a quirky-news pick. `graph_race` is a head-to-head numeric
+comparison gated by `engines.chart_race.assess` (needs a real swing/
+crossover across years of two comparable series) and `reddit_story` is an
+original first-person narrative per `authoring_brief.py:FORMAT_SPECS`
+(workplace/revenge/karma — no news subject at all). Four fresh disaster
+candidates (a wildfire, a river-crest record, a tanker spill, a drought)
+were tried and each failed `chart_race.assess` on swing size or on having
+only 2-3 defensible year values. Rule 2 is exactly the old single-format
+doctrine the 2026-07-31 ruling was supposed to retire everywhere, and it had
+been landing in `daily.yml`'s prompt only — `CLAUDE_ROUTINE_INSTRUCTIONS.md`
+itself still told every session to force-fit a bucket that structurally
+cannot exist in either current format.
+
+Separately, the same read surfaced Rule 1 telling authors to write literal
+date-anchored language ("happened today / this morning / just announced")
+into the package — which `shared/package_schema.py:staleness_problems`
+mechanically refuses. The instructions were telling authors to write
+exactly what the promotion gate quarantines.
+
+**Fixed in the same change**: `CLAUDE_ROUTINE_INSTRUCTIONS.md` Rule 1 now
+says to keep recency evidence out of the narrative text (title/script/hook/
+punches) and into metadata instead; Rule 2 is marked as applying only if a
+quirky-news-shaped format returns to the mix, with each live format's real
+topic-selection gate named explicitly (chart-race swing/crossover for
+`graph_race`, non-generic original narrative for `reddit_story`). Today's
+slate was authored against the real gates, not the stale bucket rule — see
+`state/trending_packages/20260816/`.
+
+**Not fixed here, deliberately**: whether the trending slate should regain
+some other topic-selection texture beyond "clears the format gate" (e.g. a
+preference among otherwise-eligible `graph_race` topics, or a tone/subject
+rule for `reddit_story`) is an editorial call the operator hasn't made for
+the new formats yet. This pass only removed doctrine that contradicted the
+code; it did not invent a replacement editorial policy.
+
+Suite: 938 → **962 tests**.

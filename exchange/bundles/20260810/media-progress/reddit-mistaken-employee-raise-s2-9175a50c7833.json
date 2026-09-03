@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s2-9175a50c7833",
+  "safe_request_id": "reddit-mistaken-employee-raise-s2-9175a50c7833",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3ca4359f42c898f359f08b1b6e0544b4b14cc77561b2cceb4737f3656075e82c",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle sign. It accompanies the narration: \"barking aisle numbers\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1cu_hPeAznbuHephsMbeMnS9gAvYnbcOu",
+    "filename": "20260810__reddit-mistaken-employee-raise-s2-9175a50c7833.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1cu_hPeAznbuHephsMbeMnS9gAvYnbcOu",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8e7653582993032d4ea1af916448fca14cd1f1a4960e475451c41bf1f151ae63",
+    "bytes": 979270,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}

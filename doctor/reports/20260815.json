@@ -1,0 +1,63 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260815",
+  "summary": "Saturday's workflow-and-documentation pass found a latent winter orchestration bug: the early Phase B candidate deliberately returns success without producing a handoff, but Daily Shorts treats any successful Phase B workflow completion as render-ready and can start an unfinished day at 07:30 Central. The watchdog has a related durability gap because failure to commit the verdict record is explicitly swallowed on otherwise healthy task days. The operational docs also contain both the corrected 08:30 Central backstop and the removed 12:45 UTC/06:15 schedules, while a superseded media-dropbox experiment still calls itself the only ChatGPT contract and includes a paste-ready obsolete task prompt. The August 14 alarm remains severe at 1/6 trending uploads with eight failed attempts, but its production-shortfall and known renderer/gate causes are already in the open backlog and are not re-filed here.",
+  "findings": [
+    {
+      "title": "The early Phase B candidate still hands an unfinished day to Daily",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "workflows/exchange-render-handoff",
+      "files": [
+        ".github/workflows/exchange_phase_b.yml",
+        ".github/workflows/daily.yml",
+        "scripts/exchange_phase_b.py"
+      ],
+      "observation": "The paired UTC schedule intentionally wakes Phase B twice so code can choose the 08:30 Central candidate. In winter, the 13:30 UTC run reaches the job at 07:30 CST; because no phase_b_report exists, the workflow guard allows execution, then exchange_phase_b returns 0 because the finalizer window is still open. The workflow nevertheless executes the commit and handoff steps and concludes success. Daily Shorts listens to every completed Phase B run and gates only on conclusion=success, so that intentional no-op is indistinguishable from a completed deterministic handoff and can start rendering an unfinished day one hour early. The existing DST test proves the Python gate's clock decision but does not assert the cross-workflow consequence of a successful no-op.",
+      "proposal": "Make readiness an explicit workflow outcome rather than infer it from exit code. Have the Phase B step expose a ready/applied output or require the dated phase_b_report with a matching date/schema before the workflow can reach a success state that Daily accepts; represent early and already-applied candidates as a non-rendering terminal outcome that cannot satisfy the downstream trigger. Add a workflow contract test for both DST seasons that follows each scheduled candidate through guard, Phase B outcome, workflow conclusion, and Daily's job condition, proving exactly one render-capable handoff per local date.",
+      "evidence": ".github/workflows/exchange_phase_b.yml lines 50-71 document the two candidates and say the wrong one exits 0; lines 148-159 set guard.skip=false whenever no phase_b_report exists; lines 161-197 run commit and handoff solely from that guard. scripts/exchange_phase_b.py lines 91-97 return ready=false before 08:30 Central and lines 400-406 translate that state to process exit 0. .github/workflows/daily.yml lines 39-43 subscribe to every completed Phase B workflow and lines 64-69 accept any success conclusion. Calling backstop_status at 2026-01-15T13:30:00Z returns ready=false at 07:30 CST, while tests/test_split_worker.py lines 558-579 assert only the clock gate and not downstream handoff suppression."
+    },
+    {
+      "title": "Current runbooks still prescribe the removed Phase B schedule",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "docs/exchange-schedule",
+      "files": [
+        "CLAUDE.md",
+        "docs/FALLBACKS.md"
+      ],
+      "observation": "The primary repository runbook contradicts itself within fifteen lines: it first gives the current 08:30 Central paired-cron design and explains that 12:45 UTC was unsafe, then its clock summary restores 12:45 UTC and calls that time deliberately late. An earlier bullet calls the same backstop 06:15 without a timezone. FALLBACKS also promises that the removed 12:45 UTC cron renders a no-show day. An operator following either summary can undo the DST fix or diagnose the live schedule against a nonexistent cron.",
+      "proposal": "Replace the three stale schedule statements with the single current contract: candidate crons at 13:30 and 14:30 UTC, code-gated to 08:30 America/Chicago, with DONE as the immediate path. Link the abbreviated fallback text to the authoritative exchange schedule instead of restating clock arithmetic. Add a lightweight documentation assertion that rejects the retired '12:45 UTC backstop' and ambiguous '06:15 backstop' phrases in active runbooks.",
+      "evidence": "CLAUDE.md lines 229-230 say '06:15 backstop'; lines 251-256 correctly specify 08:30 Central from crons 30 13 and 30 14 and identify 12:45 UTC as the old unsafe design; lines 264-269 then say the live backstop is 12:45 UTC and deliberately late. docs/FALLBACKS.md lines 85-86 also names 12:45 UTC as the live no-show backstop. The actual .github/workflows/exchange_phase_b.yml schedule is 30 13 and 30 14, and docs/EXCHANGE_PIPELINE.md lines 248-256 describes that current wiring correctly."
+    },
+    {
+      "title": "The watchdog can go green without preserving its verdict record",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "workflows/watchdog-durability",
+      "files": [
+        ".github/workflows/chatgpt_watchdog.yml",
+        "scripts/ci_commit_state.sh",
+        "tests/test_chatgpt_watchdog.py"
+      ],
+      "observation": "The watchdog's stated purpose is to produce a durable, timestamped verdict that the alarm can read, but its persistence step converts every ci_commit_state failure into a warning. On a day when all task artifacts are present, judge.rc remains zero, so a checkout race, rejected push, or other commit failure leaves no record and the entire watchdog workflow still concludes green. On a failed-task day the later explicit failure makes Actions red, but the alarm still loses the committed record it is designed to consume.",
+      "proposal": "Treat verdict persistence as required output: distinguish a clean no-change from a failed commit, retry safe non-fast-forward races against current main, and fail the job if the expected dated verdict files are not present on the remote after persistence. Add a workflow-level test that forces ci_commit_state to fail with judge.rc=0 and judge.rc=1 and proves both cases remain visible, while a genuine no-change remains successful.",
+      "evidence": ".github/workflows/chatgpt_watchdog.yml lines 10-15 say the check writes state/chatgpt_tasks and exits nonzero so the alarm reads a recorded verdict; lines 74-80 say the record is the point but append `|| echo ::warning::verdict commit failed`; lines 84-88 fail later only when judge.rc is nonzero. scripts/ci_commit_state.sh is the invoked persistence boundary. tests/test_chatgpt_watchdog.py exercises evaluator status and exit-code behavior but repository search finds no test that injects a commit failure or verifies the remote verdict exists after a green workflow."
+    },
+    {
+      "title": "Superseded task contracts remain publishable as current instructions",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "docs/contract-lifecycle",
+      "files": [
+        "docs/CHATGPT_MEDIA_HANDOFF.md",
+        "docs/EXCHANGE_PIPELINE.md",
+        "doctor/PROMPTS.md",
+        "scripts/check_media_dropbox.py"
+      ],
+      "observation": "The repository has a live two-worker exchange contract in doctor/PROMPTS and EXCHANGE_PIPELINE, but the earlier connectivity experiment remains in the active docs tree, declares itself 'the contract' and 'the only file a ChatGPT task needs to read,' and supplies a paste-ready scheduled-task prompt that writes to media-dropbox instead of the live Drive/checkpoint/DONE flow. Its checker still exists, and the document does not name the production contract that superseded it. This leaves two internally complete task protocols discoverable as current; choosing the wrong one produces work the live renderer never consumes.",
+      "proposal": "Introduce an explicit lifecycle for operational contracts: mark each task/runbook document current, superseded, experimental, or historical with an owner and canonical successor; keep exactly one current prompt source per task; and validate that paste-ready scheduled-task instructions may appear only in current contract files. Move the connectivity-test narrative behind an unmistakable historical banner that links to doctor/PROMPTS sections 4-5 and EXCHANGE_PIPELINE, while retaining its checker only as a named diagnostic fixture until a separate cleanup decision is made.",
+      "evidence": "docs/CHATGPT_MEDIA_HANDOFF.md lines 1-9 calls itself the only required contract while also saying nothing is wired to a renderer; lines 28-49 provide a scheduled prompt and media-dropbox branch layout; lines 102-117 expose scripts/check_media_dropbox.py and an unresolved connectivity question. doctor/PROMPTS.md sections 4-5 are the current scheduled-task contracts, and docs/EXCHANGE_PIPELINE.md lines 248-256 declares the live bundle/checkpoint/Drive/DONE wiring. Repository search finds no reference to CHATGPT_MEDIA_HANDOFF.md outside that file, so it has no superseded banner or inbound path from the current contract."
+    }
+  ]
+}

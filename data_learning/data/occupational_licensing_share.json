@@ -1,0 +1,42 @@
+{
+  "key": "occupational_licensing_share",
+  "title": "Share of US workers who need a government license to work",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1950-2023",
+  "source": {
+    "name": "Growth of occupational licensing in the US workforce",
+    "publisher": "Brookings Institution / Institute for Justice licensing research, commonly cited '5% to ~25%' figure",
+    "url": "https://www.brookings.edu",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Documented anchors: ~5% of US workers needed a license in the 1950s, roughly 25% do today. Points between anchors are a smooth interpolation.",
+  "points": [
+    {
+      "label": "1950",
+      "value": 5.0,
+      "period": "1950"
+    },
+    {
+      "label": "1970",
+      "value": 10.0,
+      "period": "1970"
+    },
+    {
+      "label": "1990",
+      "value": 15.0,
+      "period": "1990"
+    },
+    {
+      "label": "2010",
+      "value": 20.0,
+      "period": "2010"
+    },
+    {
+      "label": "2023",
+      "value": 25.0,
+      "period": "2023"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+ "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+ "ts": "20260826T142258Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 through seg3:end Data does the same thing every beat \u2014 walks/perches on top of the growing bar with arms out (seg1:start, seg3:mid, seg3:end); no setup->action->payoff tied to cereal tonnage, and by seg4:start the closing card hides all but his legs.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "visual_craft_collision",
+  "visible_evidence": "At seg4:start/seg4:mid the five-line closing card sits on top of the chart and erases the 'Cereal production' title and the entire 1972 row; the value labels render as raw unformatted digits ('1493231379', '2093026046') that run off the right edge of the frame ('2822286' is clipped mid-number at seg4:mid and payoff@-1.8), and they contradict the narration's '1644.1 million metric tons'. The mascot is reduced to two legs poking below the card.",
+  "root_cause": "The closing/outro card is composited at full width over the still-live chart layer instead of the chart clearing or shrinking for it, and the payoff beat switches from the formatted axis labels used in seg3 to raw source integers with no unit scaling or right-edge clamp.",
+  "repair_goal": "On seg4, clear or scale down the chart behind the closing line (or move the card to the empty lower third), and render the payoff values with the same formatting as the narration \u2014 '1,644.1M t' style, scaled and clamped inside the frame \u2014 so no digit is clipped and the title stays readable."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "race_sprint"
+  }
+ ]
+}

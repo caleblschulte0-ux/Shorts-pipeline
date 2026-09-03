@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-karen-cup-review-s3-e2f022d988f0",
+  "safe_request_id": "reddit-karen-cup-review-s3-e2f022d988f0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "76f1da24cb9c04e62d14da42cd5a84674e9d0781a3b7a8ec29a6a220d8a03f54",
+  "prompt_used": "An editorial illustration for a short-form video: phone typing review app. It accompanies the narration: \"posted the review anyway\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18aNErBQkDR33ARw46kbZ9AMtjA2Fn57X",
+    "filename": "20260810__reddit-karen-cup-review-s3-e2f022d988f0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18aNErBQkDR33ARw46kbZ9AMtjA2Fn57X",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9bbc88ad99842868a534769d70989c5e1aed052f4ffd09446369eda520fc0ae1",
+    "bytes": 1002732,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}

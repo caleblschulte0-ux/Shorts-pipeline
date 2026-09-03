@@ -1,0 +1,47 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260805",
+  "summary": "The quality gates are intentionally fail-closed at the publish boundary, but the Doctor control plane is not yet producing its required evidence file on main, so this run could not compare candidates against settled rulings or the open backlog. The gate implementation also contains two reliability gaps: malformed non-block verdicts can pass if they carry any score, and durable-ledger write failures are silently ignored despite the module contract saying every verdict is recorded. The codebase would benefit from one canonical typed verdict contract shared by the reviewer and publish gate rather than parallel decision layers with partially duplicated authority.",
+  "findings": [
+    {
+      "title": "Doctor evidence file is absent from main",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "doctor/control-plane",
+      "files": ["doctor/README.md"],
+      "observation": "doctor/README.md requires evidence.json to be read first because it carries settled rulings and the open backlog, but the doctor directory on main contains only PROMPTS.md and README.md. The required runtime truth therefore cannot be consulted, making duplicate-safe diagnosis impossible.",
+      "proposal": "Restore the job that writes doctor/evidence.json before the Doctor run, and make absence or staleness of that file a visible failing workflow condition rather than silent missing state.",
+      "evidence": "doctor/README.md lines 15-18 and 24-26 define doctor/evidence.json as required runtime truth; opening the main-branch doctor directory on 2026-08-05 shows only doctor/PROMPTS.md and doctor/README.md."
+    },
+    {
+      "title": "Showrunner documentation still describes caller fail-open behavior",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "gates/showrunner",
+      "files": ["scripts/showrunner_review.py", "shared/showrunner_gate.py"],
+      "observation": "The reviewer's module and function documentation says infrastructure failures are treated as ship by callers or that the caller fails open, while the shared publish gate explicitly fails closed whenever will_upload is true. The executable policy is safer than the stale description, but the contradiction makes future maintenance error-prone.",
+      "proposal": "Update the reviewer documentation to state that review_video raises on infrastructure failure and shared/showrunner_gate.py decides fail-open only for previews and fail-closed for real publishing.",
+      "evidence": "scripts/showrunner_review.py lines 1-18 and the review_video docstring describe skipped/errored reviews as ship or caller fail-open; shared/showrunner_gate.py lines 20-31 and decide() implement fail-closed behavior for publish runs."
+    },
+    {
+      "title": "Publish gate accepts malformed non-block verdicts",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "gates/showrunner",
+      "files": ["shared/showrunner_gate.py"],
+      "observation": "decide() blocks only when verdict.verdict is exactly 'block' or when a publish verdict has score=None. A malformed verdict such as verdict='error' with a numeric score, or an unknown verdict token with a score, is treated as SHIP even though it is not an affirmative approval.",
+      "proposal": "Define and validate a strict verdict schema at the gate boundary. On publish runs, require verdict='ship', a valid bounded numeric score, complete hard-check data, and the expected rubric/version metadata; treat every unknown or malformed value as blocked.",
+      "evidence": "shared/showrunner_gate.py lines 83-95 append a reason only for the exact string 'block' and for score is None, then return blocked=bool(reasons); no branch requires an explicit 'ship' verdict or rejects unknown verdict values."
+    },
+    {
+      "title": "Reviewer and gate both own final ship/block semantics",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "gates/architecture",
+      "files": ["scripts/showrunner_review.py", "shared/showrunner_gate.py"],
+      "observation": "scripts/showrunner_review.py computes a final ship/block verdict from score and auto-fails, while shared/showrunner_gate.py separately interprets that verdict and adds publish-context rules. Both files describe themselves as the decisive authority, leaving the final contract distributed across two modules and increasing the chance that new verdict states or stronger checks are added to only one layer.",
+      "proposal": "Move the complete typed decision model into one canonical gate domain module: the reviewer should return measurements and anchored judgments, and one policy function should compute the only final disposition, including quality, infrastructure, publish context, schema validity, and ledger durability.",
+      "evidence": "scripts/showrunner_review.py defines decide_verdict() as the single ship/block rule near lines 85-89; shared/showrunner_gate.py lines 1-31 and 47-95 describe and implement the whole fail-closed policy as a second decision layer."
+    }
+  ]
+}

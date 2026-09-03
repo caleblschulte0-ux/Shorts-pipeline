@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-dont-work-here-s3-298eda6a00d5",
+  "safe_request_id": "reddit-dont-work-here-s3-298eda6a00d5",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d14eacf07249b8ab3986a1bcfb8a0894913ca64e878ab522367d0ab56e9e7d03",
+  "prompt_used": "An editorial illustration for a short-form video: canvas drop cloth. It accompanies the narration: \"the drop cloths were discontinued\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+    "filename": "20260813__reddit-dont-work-here-s3-298eda6a00d5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ND0ScAzkNet2qoQ-_oWMzyQGsbxHsWpo",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2ae654cfe6b8dae95c455efc26fb4cbd8072bdcc7ec00805a262997c8e6bc8b3",
+    "bytes": 1406489,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:16:08.111Z",
+  "error": null,
+  "retryable": false
+}

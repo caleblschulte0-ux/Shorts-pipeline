@@ -1,0 +1,21 @@
+{
+  "key": "microplastics_found_in_body",
+  "title": "Share of tested samples/people with microplastics found (percent)",
+  "unit": "percent",
+  "geography": "Multiple published studies",
+  "time_coverage": "2022-2024",
+  "source": {
+    "name": "Plasticenta / human blood microplastics / carotid atheroma studies",
+    "publisher": "University of New Mexico (placenta, 2024); Environment International (Leslie et al., blood, 2022); New England Journal of Medicine (Marfella et al., artery plaque, 2024)",
+    "url": "https://www.nejm.org/doi/10.1056/NEJMoa2309822",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Three separate peer-reviewed studies, different sample groups: microplastics were found in 100% of 62 human placenta samples (Univ. of New Mexico, 2024); in 77% of 22 healthy blood donors (Leslie et al., Environment International, 2022); and in 58.4% of 257 patients' carotid artery plaque (Marfella et al., NEJM, 2024).",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Placenta samples", "value": 100},
+    {"label": "Blood donors", "value": 77},
+    {"label": "Artery plaque patients", "value": 58}
+  ]
+}

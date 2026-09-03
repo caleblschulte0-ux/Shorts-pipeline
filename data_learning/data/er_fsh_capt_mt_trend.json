@@ -1,0 +1,48 @@
+{
+  "key": "er_fsh_capt_mt_trend",
+  "title": "Capture fisheries production",
+  "unit": "metric tons",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Capture fisheries production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/ER.FSH.CAPT.MT",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 51915952,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 62548125,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 88788151,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 91084188,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 93466633,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 94403126,
+      "period": "2024"
+    }
+  ]
+}

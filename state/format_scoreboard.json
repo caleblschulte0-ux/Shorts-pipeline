@@ -1,54 +1,54 @@
 {
   "formats": [
     {
-      "format": "graph_race",
-      "videos": 8,
-      "views": 81,
-      "views_per_video": 10.1,
-      "avg_views_per_hour": 0.12,
-      "engaged_views": 44,
-      "avg_view_pct": 78.2,
-      "likes": 0,
-      "shares": 0,
-      "subs_gained": 0
-    },
-    {
       "format": "text_card",
-      "videos": 10,
-      "views": 51,
-      "views_per_video": 5.1,
-      "avg_views_per_hour": 0.03,
-      "engaged_views": 18,
-      "avg_view_pct": 227.9,
-      "likes": 0,
-      "shares": 0,
-      "subs_gained": 0
-    },
-    {
-      "format": "explainer",
-      "videos": 35,
-      "views": 178,
-      "views_per_video": 5.1,
+      "videos": 12,
+      "views": 88,
+      "views_per_video": 7.3,
       "avg_views_per_hour": 0.02,
-      "engaged_views": 84,
-      "avg_view_pct": 39.0,
+      "engaged_views": 28,
+      "avg_view_pct": 204.1,
       "likes": 1,
       "shares": 0,
       "subs_gained": 0
     },
     {
-      "format": "reddit",
-      "videos": 10,
-      "views": 7,
-      "views_per_video": 0.7,
+      "format": "graph_race",
+      "videos": 29,
+      "views": 193,
+      "views_per_video": 6.7,
+      "avg_views_per_hour": 0.04,
+      "engaged_views": 85,
+      "avg_view_pct": 94.7,
+      "likes": 1,
+      "shares": 0,
+      "subs_gained": 0
+    },
+    {
+      "format": "explainer",
+      "videos": 6,
+      "views": 15,
+      "views_per_video": 2.5,
+      "avg_views_per_hour": 0.01,
+      "engaged_views": 5,
+      "avg_view_pct": 100.1,
+      "likes": 0,
+      "shares": 0,
+      "subs_gained": 0
+    },
+    {
+      "format": "reddit_story",
+      "videos": 14,
+      "views": 9,
+      "views_per_video": 0.6,
       "avg_views_per_hour": 0.0,
-      "engaged_views": 6,
-      "avg_view_pct": 16.8,
+      "engaged_views": 5,
+      "avg_view_pct": 19.6,
       "likes": 0,
       "shares": 0,
       "subs_gained": 0
     }
   ],
-  "matched": 63,
-  "unmatched": 13
+  "matched": 61,
+  "unmatched": 1
 }

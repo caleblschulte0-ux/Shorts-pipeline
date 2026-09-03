@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-gym-tuesday-cancellation-s0-33da710f84cb",
+  "safe_request_id": "reddit-gym-tuesday-cancellation-s0-33da710f84cb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "58013c3979d204587860afed48fef0776fbd56729984f959bfad9f67904a0a0f",
+  "prompt_used": "An editorial illustration for a short-form video: gym front desk. It accompanies the narration: \"front desk\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+    "filename": "20260822__reddit-gym-tuesday-cancellation-s0-33da710f84cb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "97c017ec475785853b63b86c612ac1a5139cdd2f057e61dd3d4d9b4a449125dd",
+    "bytes": 1204596,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:40.023Z",
+  "error": null,
+  "retryable": false
+}

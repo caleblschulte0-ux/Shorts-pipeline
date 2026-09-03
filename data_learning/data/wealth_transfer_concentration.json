@@ -1,0 +1,19 @@
+{
+  "key": "wealth_transfer_concentration",
+  "title": "Share of the US wealth transfer by household wealth tier",
+  "unit": "trillion dollars",
+  "geography": "United States",
+  "time_coverage": "2025-2048 (projected)",
+  "source": {
+    "name": "US Advisor Metrics: The Cerulli Report -- The Great Wealth Transfer",
+    "publisher": "Cerulli Associates",
+    "url": "https://www.cerulli.com/press-releases/cerulli-anticipates-124-trillion-in-wealth-will-transfer-through-2048",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Cerulli finds that high-net-worth and ultra-high-net-worth (HNW/UHNW) households -- just 2% of all US households -- account for more than 50% of total transfer volume ($62 trillion of the $124 trillion projected total). The remaining ~$62 trillion (the complement) is split across the other 98% of households; this second figure is derived (total minus the reported HNW/UHNW share), not separately published by Cerulli.",
+  "points": [
+    {"label": "Wealthiest 2% of households", "value": 62},
+    {"label": "The other 98% of households", "value": 62}
+  ]
+}

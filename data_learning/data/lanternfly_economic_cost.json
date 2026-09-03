@@ -1,0 +1,20 @@
+{
+  "key": "lanternfly_economic_cost",
+  "title": "Spotted lanternfly's estimated annual economic cost to Pennsylvania",
+  "unit": "million dollars",
+  "geography": "Pennsylvania",
+  "time_coverage": "2019 estimate",
+  "source": {
+    "name": "Economic Impact of the Spotted Lanternfly on the Pennsylvania Economy (2019)",
+    "publisher": "Penn State College of Agricultural Sciences, Center for Economic and Community Development",
+    "url": "https://aese.psu.edu/research/centers/cecd/publications/economic-impact/spotted-lanternfly-2019.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-14"
+  },
+  "notes": "The 2019 Penn State study found then-current damage of about $50.1 million/year (484 jobs) concentrated in southeastern PA, projected to reach at least $324 million/year (2,800 jobs) statewide if the pest is left unchecked, and up to a worst-case $554 million/year (nearly 5,000 jobs) if damage reaches the maximum projected by crop and forestry experts.",
+  "points": [
+    {"label": "Current damage (2019, SE Pennsylvania)", "value": 50},
+    {"label": "Projected if unchecked (statewide)", "value": 324},
+    {"label": "Worst-case scenario", "value": 554}
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "key": "voyager1_signal_delay_trend",
+  "title": "Voyager 1 one-way radio signal delay",
+  "unit": "hours",
+  "geography": "Interstellar space (Voyager 1)",
+  "time_coverage": "1977-2024",
+  "source": {
+    "name": "Voyager mission distance/light-time tracking",
+    "publisher": "NASA / JPL",
+    "url": "https://science.nasa.gov/mission/voyager/voyager-1/",
+    "officiality": "official",
+    "access_date": "2026-08-20"
+  },
+  "notes": "Voyager 1 launched in 1977. Its 1990 'Pale Blue Dot' images were taken from about 40 AU out (light-time ~5.5 hours). It crossed the heliopause into interstellar space at about 121 AU in 2012 (light-time ~16.8 hours). By 2024 it was roughly 170 AU out, with a reported one-way signal delay of about 22.5 hours.",
+  "insight_type": "trend",
+  "points": [
+    {
+      "label": "1977 (launch)",
+      "value": 0,
+      "period": "1977"
+    },
+    {
+      "label": "1990",
+      "value": 5.5,
+      "period": "1990"
+    },
+    {
+      "label": "2012",
+      "value": 16.8,
+      "period": "2012"
+    },
+    {
+      "label": "2024",
+      "value": 22.5,
+      "period": "2024"
+    }
+  ]
+}

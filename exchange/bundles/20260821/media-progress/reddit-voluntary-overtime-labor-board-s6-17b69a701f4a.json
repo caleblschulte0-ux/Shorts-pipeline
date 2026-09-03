@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-voluntary-overtime-labor-board-s6-17b69a701f4a",
+  "safe_request_id": "reddit-voluntary-overtime-labor-board-s6-17b69a701f4a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1f9d51717eb284ee892a53a5beae501cb6958d059e678393b04b10609d02a3b5",
+  "prompt_used": "An editorial illustration for a short-form video: office clock overtime. It accompanies the narration: \"unpaid overtime going back four months\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+    "filename": "20260821__reddit-voluntary-overtime-labor-board-s6-17b69a701f4a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8dbb240f324655865f59263323aa5faeee32c952812d4ed43a928bb938550dbf",
+    "bytes": 1165021,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:24.298Z",
+  "error": null,
+  "retryable": false
+}

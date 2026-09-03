@@ -1,0 +1,29 @@
+{
+  "key": "app_100m_users_speed",
+  "title": "Months to reach 100 million users",
+  "unit": "months",
+  "geography": "World",
+  "time_coverage": "2010-2023",
+  "source": {
+    "name": "Consumer app adoption timelines (widely reported industry figures)",
+    "publisher": "Company announcements / press coverage",
+    "url": "https://openai.com/index/chatgpt",
+    "officiality": "illustrative",
+    "access_date": "2026-08-10"
+  },
+  "notes": "Commonly cited time-to-100M-users figures: ChatGPT ~2 months (OpenAI), TikTok ~9 months, Instagram ~30 months. Illustrative industry consensus figures, not a single primary source.",
+  "points": [
+    {
+      "label": "ChatGPT",
+      "value": 2
+    },
+    {
+      "label": "TikTok",
+      "value": 9
+    },
+    {
+      "label": "Instagram",
+      "value": 30
+    }
+  ]
+}

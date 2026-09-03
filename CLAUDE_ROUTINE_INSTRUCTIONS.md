@@ -1,15 +1,30 @@
 # Daily Routine Instructions
 
-> ## Your job did NOT end after authoring
+> ## THE MORNING IS FOUR JOBS — a run that does fewer FAILED, even if its PR merged
 >
-> Two things now follow the packages. Both are quick, and skipping them is
-> how the improvement loop quietly dies:
+> **This scheduled task IS the pipeline's morning.** The operator's ruling
+> (2026-08-06): the day runs off THIS task, not off git crons — the crons
+> that exist are late backstops for a morning where this task never fired,
+> and backstops render nothing until afternoon. Ticking box 1 and stopping
+> is the exact failure of 2026-08-06: the trending PR merged, Part 2 was
+> skipped, nobody fired the explainer posting, and the channel sat dark
+> until a human noticed at 10am Central.
 >
-> **1. Top up the reserve bank** — step 5b below.
+> 1. **Author the trending slate** (Part 1 below) and open the PR.
+> 2. **Author the 4 explainer stories** (Part 2 below) into the same PR.
+> 3. **FIRE THE EXPLAINER POSTING YOURSELF** after the PR merges —
+>    `mcp__github__actions_run_trigger` on `explainer.yml` with
+>    `{"mode": "schedule"}` (CLI: `gh workflow run explainer.yml -f
+>    mode=schedule`). Authoring without firing ships nothing; the
+>    posted-log and per-day cap make double-firing harmless, so when in
+>    doubt, fire.
+> 4. **Answer any pending retro proposals** (below).
 >
-> **2. Answer any pending retro proposals.** The reviewer writes proposals
-> each evening; `retro_decide.yml` normally answers them at 8am Central, but
-> if it did not run, they are still waiting:
+> ## Answering the retro proposals
+>
+> The reviewer writes proposals each evening; `retro_decide.yml` normally
+> answers them at 8am Central, but if it did not run, they are still
+> waiting:
 >
 > ```bash
 > python3 scripts/pending_decisions.py
@@ -88,22 +103,21 @@ python -m shared.channel_registry                  # every channel
 
 This heading used to state the mix itself. On 2026-07-31 the operator moved
 trending to a graph-led slate and retired `text_card`; the ruling landed in
-`daily.yml`'s prompt and nowhere else, so this file, `package_buffer.py`,
+`daily.yml`'s prompt and nowhere else, so this file, the package validator,
 `authoring_brief.py` and three tables in `exchange/README.md` all went on
-saying something that was no longer true — and the reserve bank kept banking
+saying something that was no longer true — and the takeover kept asking for
 a retired format. **Any number written down twice is a number that will
 disagree with itself.**
 
 <!-- BEGIN GENERATED SLATE — python -m shared.channel_registry --markdown -->
 | Channel | Per day | Active formats | Retired | ChatGPT does |
 |---|---|---|---|---|
-| `curiosity` | 1 | 1x `long_form` | — | queue_stocking |
-| `explainer` | 1 | 1x `data_story` | — | editorial_review |
-| `third` | 3 | 3x `clip` | — | nothing |
-| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring |
+| `explainer` | 4 | 4x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
+| `third` | 6 | 6x `clip` | — | production_supervisor |
+| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring, production_supervisor |
 
-<!-- generated from config/channel_registry.json rev 1 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
-<!-- END GENERATED SLATE -->
+<!-- generated from config/channel_registry.json rev 5 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+
 
 The registry also decides which formats are RETIRED. A retired format is
 absent from the authoring brief entirely and is rejected at promotion, so
@@ -130,10 +144,37 @@ write and HOW MANY; those say HOW.
 2. **Pick 6** from the ranker output. Hard rules:
 
    **Rule 1 — Freshness.** Every package should be from the last 24-48 hours.
-   Each ranker line shows an age marker like `[2h ago]`. Anchor the package
-   to "happened today / this morning / just announced" or skip it.
+   Each ranker line shows an age marker like `[2h ago]`. Pick topics that
+   genuinely broke/updated in that window — but do NOT write that recency
+   into the package's title/script/hook/punch text as literal date-anchored
+   language ("today", "this morning", "just announced", "breaking", a
+   weekday name, "as of \<date\>"). `shared/package_schema.py:staleness_problems`
+   mechanically REJECTS all of those (a package authored at 09:19 UTC and
+   rendered hours later — or by ChatGPT during a multi-day takeover — reads
+   wrong with them). Put the freshness evidence in a `source` field or
+   similar metadata instead; the narrative itself should read as evergreen
+   as of the moment it airs.
 
-   **Rule 2 — Quirky-heavy slate (4 of 6 minimum).** Real channel analytics:
+   **Rule 2 does not structurally apply to the current mix — read this
+   before applying it.** Rule 2 (below) was written for the old single
+   stacked/quirky-news format. The live mix is 4x `graph_race` + 2x
+   `reddit_story` (`config/channel_registry.json`), and neither format is a
+   quirky-news pick: `graph_race` is a head-to-head numeric comparison gated
+   by `engines.chart_race.assess` (needs a real swing/crossover across
+   6-8+ years of two comparable series — pick topics that can clear THAT
+   gate, not the quirky bucket, and prefer a clean winner/loser shape over
+   an abstract valuation metric — see `state/analytics/latest.json` bias),
+   and `reddit_story` is an original first-person narrative per
+   `shared/authoring_brief.py:FORMAT_SPECS` (workplace/revenge/karma —
+   no news subject at all; pick genuinely surprising, non-generic
+   narratives). If a future registry change reintroduces a quirky-news
+   format, Rule 2 applies again to that format's picks; until then, don't
+   force-fit a quirky bucket that has nowhere to land — that was tried and
+   confirmed dead-ended on 2026-08-16 (see `docs/SYSTEM_AUDIT.md`).
+
+   **Rule 2 — Quirky-heavy slate (4 of 6 minimum) — applies only if the
+   mix ever includes a quirky-news-shaped format again.** Real channel
+   analytics:
    shark attack got 21 views, kangaroo named Hunter got 12, meteor over Rome
    got 10 — Nvidia / Apple / Foxconn / Broadcom earnings got 0. Serious tech
    news doesn't earn a slot here unless it has a niche named-entity angle.
@@ -219,47 +260,17 @@ write and HOW MANY; those say HOW.
    one**, so a single un-illustratable package no longer poisons a day,
    but it does mean you lose that slot. Fix it here instead.
 
-5b. **Top up the reserve bank — the day you can't run is the day it pays.**
-
-   Everything above depends on a live Claude subscription. If the token is
-   revoked or the subscription lapses, this Routine never fires, the in-CI
-   brain in `daily.yml` also fails, and the day falls to Groq or to
-   re-serving an already-posted slate. The reserve bank is the cover:
-   banked **evergreen** packages that any dead day draws from automatically.
-
-   ```bash
-   python3 scripts/package_reserve.py status
-   ```
-
-   If it prints `LOW` for a format, write **one extra package of that
-   format** — same quality bar, same schema — into
-   `state/package_buffer/inbox/` instead of today's dated folder. One extra
-   per day is enough; it is banked and drawn automatically.
-
-   **Reserve packages must be EVERGREEN.** They may sit for weeks, so they
-   are refused at deposit time if they contain date-anchored language:
-   weekday names, "yesterday", "today", "this morning", "breaking",
-   "just announced", "3 hours ago", or a "March 14"-style date. Write the
-   timeless version of the story — a Reddit revenge story, a "how this
-   actually works" text card, a long-arc chart. Verify before you push:
-
-   ```bash
-   python3 scripts/package_reserve.py deposit \
-     --dir state/package_buffer/inbox --dry-run
-   ```
-
-   Every file must print `OK`. Fix anything it refuses before you push —
-   a refused file sits in the inbox forever and banks nothing.
-
-   Do NOT bank a package you also put in today's slate — the bank refuses
-   any slug that has already been authored for a day, and a package is
-   drawn from the bank exactly once so it can never duplicate an upload.
+5b. **A refused slot is re-authored automatically — do not pre-stock for
+   it.** If a gate holds one of today's videos, `run_trending_daily`
+   discovers a fresh topic and writes a replacement itself (see
+   `docs/FALLBACKS.md` §5). There is no reserve bank to top up; that was
+   retired on 2026-08-05. Your job is six good packages, not seven.
 
 6. **Commit, push, AND open a PR.** Plain `git push` puts work on a feature
    branch nothing renders from; the PR is what auto-merge.yml watches:
 
    ```bash
-   git add state/trending_packages/$(date -u +%Y%m%d)/ state/package_buffer/
+   git add state/trending_packages/$(date -u +%Y%m%d)/
    git commit -m "daily packages $(date -u +%Y-%m-%d)"
    git push -u origin HEAD
    gh pr create --base main \
@@ -659,9 +670,10 @@ but YOU are responsible for firing it. Treat "wrote the stories" and "fired
 the posting" as two separate must-do steps; finishing one without the other
 means nothing new ships.
 
-(There is also a daily cron + a Daily-Shorts chain as backups, but do not rely
-on them — GitHub event chains silently no-op. The explicit trigger above is the
-guarantee.)
+(There are two backstop crons — 13:40 and 17:10 UTC — but they exist for a
+morning where THIS TASK never fired at all, and the late one doesn't post
+until midday Central. The Daily-Shorts chain is GONE (2026-08-05, double-post
+risk). Your explicit trigger is the morning; do not delegate it to a clock.)
 
 ## Learn from what's working first
 Before picking topics, read the explainer channel's own performance:

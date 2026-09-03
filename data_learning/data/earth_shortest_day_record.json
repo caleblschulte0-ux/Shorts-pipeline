@@ -1,0 +1,20 @@
+{
+  "key": "earth_shortest_day_record",
+  "title": "Earth's record-shortest-day deviation, milliseconds under 24 hours",
+  "unit": "milliseconds",
+  "geography": "Global",
+  "time_coverage": "2020-2024",
+  "source": {
+    "name": "Length-of-day measurements, International Earth Rotation and Reference Systems Service (IERS) / US Naval Observatory (USNO)",
+    "publisher": "IERS / USNO, via timeanddate.com",
+    "url": "https://www.timeanddate.com/time/negative-leap-second-maybe.html",
+    "officiality": "secondary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Length-of-day deviation from the standard 86,400-second day, in milliseconds SHORTER, on Earth's record-setting fastest-rotation days as tracked by IERS/USNO atomic-clock measurements: July 19 2020 (-1.47ms, a new record at the time), June 29 2022 (-1.59ms, broke it), July 5 2024 (-1.66ms, current record). Since 2020, Earth has been spinning faster than at any point since precision rotation measurement began.",
+  "points": [
+    {"label": "2020", "value": 1.47, "period": "2020"},
+    {"label": "2022", "value": 1.59, "period": "2022"},
+    {"label": "2024", "value": 1.66, "period": "2024"}
+  ]
+}

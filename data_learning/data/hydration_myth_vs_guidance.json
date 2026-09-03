@@ -1,0 +1,25 @@
+{
+  "key": "hydration_myth_vs_guidance",
+  "title": "The 8-glasses myth vs modern fluid guidance",
+  "unit": "liters",
+  "geography": "United States",
+  "time_coverage": "1945 vs 2004-2025",
+  "source": {
+    "name": "Dietary Reference Intakes for Water",
+    "publisher": "U.S. National Academies of Sciences, Engineering, and Medicine",
+    "url": "https://www.nationalacademies.org",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "The 8-glasses myth (64oz) works out to ~1.9L of plain water. NASEM's modern guidance recommends an average of ~3.2L of total daily fluid (men 3.7L, women 2.7L), from all sources including food.",
+  "points": [
+    {
+      "label": "The 8-glasses myth (water only)",
+      "value": 1.9
+    },
+    {
+      "label": "What's actually recommended (all fluid)",
+      "value": 3.2
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-mobile-gaming-overtakes-console",
+  "title": "Console Gaming Ruled. Then Phones Beat It.",
+  "hook": "Your Phone Beat The PS5",
+  "y_label": "Global games revenue (billion USD)",
+  "duration": 13,
+  "source": "Global video game market revenue by segment, from Newzoo Global Games Market Reports as compiled by TechCrunch, Fortune and Statista. Console: $24.0B (2012), $25.5B (2014), $26.4B (2015), $33.5B (2017), $34.0B (2018), $50.4B (2021). Mobile: $9.0B (2012), $25.0B (2014), $30.3B (2015), $46.1B (2017), $70.3B (2018), $93.2B (2021). Mobile overtook console revenue globally in 2015 and has led every year since.",
+  "years": [
+    2012,
+    2014,
+    2015,
+    2017,
+    2018,
+    2021
+  ],
+  "series": [
+    {
+      "name": "Console",
+      "color": "#8f5cff",
+      "icon": "PlayStation",
+      "values": [
+        24.0,
+        25.5,
+        26.4,
+        33.5,
+        34.0,
+        50.4
+      ]
+    },
+    {
+      "name": "Mobile",
+      "color": "#34c759",
+      "icon": "phone",
+      "values": [
+        9.0,
+        25.0,
+        30.3,
+        46.1,
+        70.3,
+        93.2
+      ]
+    }
+  ],
+  "hashtags": [
+    "gaming",
+    "mobilegaming",
+    "videogames",
+    "gamer",
+    "playstation",
+    "esports",
+    "gamingnews",
+    "tech",
+    "gamingindustry",
+    "phonegaming",
+    "dataviz"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

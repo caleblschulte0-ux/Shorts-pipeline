@@ -1,0 +1,19 @@
+{
+  "key": "parker_speed_travel_times",
+  "title": "Time to cover real-world distances at Parker's top speed",
+  "unit": "seconds",
+  "geography": "N/A (hypothetical, at 692,000 km/h)",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Parker Solar Probe top-speed distance calculations",
+    "publisher": "NASA / Johns Hopkins Applied Physics Laboratory",
+    "url": "https://science.nasa.gov/mission/parker-solar-probe/",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- derived from NASA's published December 2024 record speed of 692,000 km/h (430,000 mph) applied to real-world distances, formatted for narration.",
+  "points": [
+    {"label": "New York to Tokyo", "value": 56},
+    {"label": "All the way around Earth", "value": 208}
+  ]
+}

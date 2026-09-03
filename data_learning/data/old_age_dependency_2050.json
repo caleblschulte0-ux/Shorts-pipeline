@@ -1,0 +1,21 @@
+{
+  "key": "old_age_dependency_2050",
+  "title": "Projected old-age dependency ratio, 2050 (people 65+ per 100 working-age)",
+  "unit": "index",
+  "geography": "Japan, South Korea, Italy",
+  "time_coverage": "2050 projection",
+  "source": {
+    "name": "Old-age dependency ratio indicator / OECD Employment Outlook 2025",
+    "publisher": "Organisation for Economic Co-operation and Development (OECD)",
+    "url": "https://www.oecd.org/en/data/indicators/old-age-dependency-ratio.html",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Old-age dependency ratio (people aged 65+ per 100 people aged 15-64/20-64), 2050 projection, as reported in OECD population-ageing analysis (OECD Employment Outlook 2025 and related OECD projections): Japan ~80.7, South Korea ~75.6, Italy ~70.4.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Japan", "value": 80.7},
+    {"label": "South Korea", "value": 75.6},
+    {"label": "Italy", "value": 70.4}
+  ]
+}

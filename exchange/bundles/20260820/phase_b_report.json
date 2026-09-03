@@ -1,0 +1,119 @@
+{
+  "date": "20260820",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 14,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "a08d7c1fde06635c6e31ee703ece773fff29c92dc17b56f5ed1096591c41ac52",
+    "required": true,
+    "checked": 14,
+    "ok": 14,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-ticket-everything-s0-705486d73a16",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s0-705486d73a16.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s1-7ba6c39aa6c9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s1-7ba6c39aa6c9.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s2-b719f8ec24b9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s2-b719f8ec24b9.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s3-cc69c287b8f1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s3-cc69c287b8f1.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s4-fe5306a51e7c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s4-fe5306a51e7c.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s5-70c1b20a0613",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s5-70c1b20a0613.png"
+    },
+    {
+      "request_id": "reddit-ticket-everything-s6-dd6bbeae655d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-ticket-everything-s6-dd6bbeae655d.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s0-01ffe3f9faf6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s0-01ffe3f9faf6.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s1-091fcd357847",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s1-091fcd357847.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s2-8d54af7301e5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s2-8d54af7301e5.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s3-460cff16365c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s3-460cff16365c.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s4-c4ca852c88b0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s4-c4ca852c88b0.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s5-26072c22b121",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s5-26072c22b121.png"
+    },
+    {
+      "request_id": "reddit-cart-cop-boxed-in-s6-ed77a0b90f4b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-cart-cop-boxed-in-s6-ed77a0b90f4b.png"
+    },
+    {
+      "slug": "reddit-ticket-everything",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): fine",
+        "INVENTED named entity(ies): administrative, log, who"
+      ]
+    },
+    {
+      "slug": "reddit-cart-cop-boxed-in",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): impeccable, leave, which"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "diabetes_prevalence_trend",
+  "title": "Adults worldwide with diabetes (age-standardized, percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1990-2022",
+  "source": {
+    "name": "Worldwide trends in diabetes prevalence and treatment from 1990 to 2022 (NCD-RisC)",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), with WHO",
+    "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(24)02317-1/fulltext",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "Age-standardized global diabetes prevalence among adults 18+, pooled analysis of 1,108 population-representative studies covering 141 million participants, published in The Lancet, Nov 2024.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "1990", "value": 7.0, "period": "1990"},
+    {"label": "2022", "value": 14.0, "period": "2022"}
+  ]
+}

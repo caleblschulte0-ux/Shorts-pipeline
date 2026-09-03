@@ -86,10 +86,23 @@ def renderable(kind: str) -> bool:
 
 # Depictions whose renderer BAKES a mechanically-coupled host (charts._bake_host
 # with an attachment record): the contact-verified set. Kinds that auto-route to
-# one of these (waffle_grid/share -> stack, pictograph -> race, timeline ->
-# trend) count too.
+# one of these inside `_compose_story` (waffle_grid/share -> stack, pictograph
+# -> pictorial_race) count too — that routing happens BEFORE any drawing.
+#
+# `timeline` was in this set and did not belong (removed 2026-08-24). It is a
+# FULL-FRAME renderer: `charts.render_series` dispatches to `_render_timeline`,
+# which authors its own 1080x1920 sequence and never calls `_bake_host`, so a
+# timeline beat records ZERO grip frames. The `timeline -> trend` mapping the
+# old comment cited is `charts.FALLBACK` — the degrade path taken only when
+# the full-frame renderer FAILS, not a routing. The claim sat dormant because
+# `pictorial_race` always won the slot ahead of it; the moment the variety
+# pass started reaching for `timeline`, grocery-squeeze rendered a beat with
+# no mascot at all and the benchmark's contact gate caught it pre-render.
+# Same doctrine as the engine registry: a capability list that does not tell
+# the truth is worse than no list. Anything added here must actually bake —
+# tests/test_contact_set_is_honest.py checks both directions.
 _CONTACT_OK = frozenset({
-    "trend", "timeline", "pictorial_race", "rank", "bars", "comparison",
+    "trend", "pictorial_race", "rank", "bars", "comparison",
     "stack", "share", "waffle_grid", "pictograph", "bubbles",
     "geo_us", "geo_world"})
 
@@ -465,16 +478,26 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     # this mode; production opts in via env.
     strict = os.environ.get("STRICT_CONTACT", "0") == "1"
 
-    def _take(i: int, kind: str) -> bool:
+    def _take(i: int, kind: str, no_repeat: bool = False) -> bool:
         if strict and kind not in _CONTACT_OK:
             return False
         nonlocal images
         meta = KINDS.get(kind, {})
-        # place/trend/real-photo depictions may repeat (all good); the lazy shape
-        # depictions must stay distinct within a video.
-        if not (meta.get("place") or meta.get("time") or meta.get("repeatable")) \
-                and kind in used:
-            return False
+        # place/trend/real-photo depictions may repeat; the lazy shape
+        # depictions must stay distinct within a video. `no_repeat` tightens
+        # that to EVERY kind — the variety-first round below — because "may
+        # repeat" quietly became "does repeat": a story of three *_trend
+        # segments rendered the same line card three times and the 2026-08-24
+        # verdicts read it back verbatim ("three near-identical chart layouts
+        # stretched over 96 seconds", scores 26-52). Same doctrine as
+        # scene_repair's story-level distinctness: a duplicate is a LAST
+        # RESORT, not a default.
+        if kind in used:
+            if no_repeat:
+                return False
+            if not (meta.get("place") or meta.get("time")
+                    or meta.get("repeatable")):
+                return False
         if meta.get("image"):
             if images >= image_budget:
                 return False
@@ -544,12 +567,23 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             _take(i, av)
 
     # Pass 2 — fill the rest with the best renderable, non-repeating candidate.
+    # VARIETY FIRST: try every candidate with repeats forbidden outright (the
+    # terminal "bubbles" guarantee excluded — bubbles-for-variety is worse
+    # than an honest repeat), and only when nothing distinct fits fall back to
+    # the old rules, where place/time/repeatable kinds may recur. A 3-trend
+    # story now lands trend / timeline / pictorial_race instead of the same
+    # card thrice; a 3-region geo story still maps every segment.
     for i in order:
         if chosen[i]:
             continue
-        for cand in _candidates(inss[i], feats[i]):
-            if _take(i, cand):
+        cands = _candidates(inss[i], feats[i])
+        for cand in cands:
+            if cand != "bubbles" and _take(i, cand, no_repeat=True):
                 break
+        if not chosen[i]:
+            for cand in cands:
+                if _take(i, cand):
+                    break
         if not chosen[i]:
             chosen[i] = "bubbles"        # absolute last resort (still depicts)
 
@@ -569,6 +603,57 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
                 if KINDS[nov].get("image"):
                     images += 1
                 break
+
+    # ONE LINE CHART PER VIDEO.
+    #
+    # `_take` lets any `time` or `place` kind repeat freely, on the reasoning
+    # that "place/trend/real-photo depictions may repeat (all good)". For
+    # MAPS that holds — two different countries are two different pictures.
+    # For `trend` it does not: the line-chart template is the same shot every
+    # time, and explainer stories are almost all time series, so videos came
+    # out as three identical charts. The showrunner blocked exactly that on
+    # 2026-08-11 — "One chart-draw template is doing all the work for three
+    # very different numbers, so the video is 89 seconds of the same rising
+    # line", and "Three different indicators rendered as the same faded line
+    # chart with the mascot walking it".
+    #
+    # Done as a POST-PASS rather than a cap inside `_take`: refusing there
+    # can leave a segment with no depiction at all, whereas here a segment
+    # only ever moves to a candidate that is genuinely renderable, and keeps
+    # its line chart when nothing else fits. Variety is worth a lot; a
+    # crashed or mis-shaped render is worth less than a repeat.
+    for _lim in ("trend", "timeline"):
+        _seen = False
+        for i in range(n):
+            if chosen[i] != _lim:
+                continue
+            if not _seen:
+                _seen = True
+                continue
+            # The replacement must not itself be a repeat — the first cut of
+            # this pass turned trend/trend/trend into trend/waffle/waffle,
+            # which is the same complaint with a different template. Honour
+            # the same distinctness rule `_take` uses.
+            def _free(c):
+                m = KINDS.get(c, {})
+                return (m.get("place") or m.get("repeatable")
+                        or c not in used)
+            # "bubbles" is the terminal guarantee, never a variety move —
+            # without this exclusion the pass bought a bare dot chart to
+            # avoid a second line chart, which is the exact trade its own
+            # comment above forbids ("a mis-shaped render is worth less
+            # than a repeat"). Nothing else fitting => keep the repeat.
+            alt = next((c for c in _candidates(inss[i], feats[i])
+                        if c != _lim and c not in ("trend", "timeline",
+                                                   "bubbles")
+                        and renderable(c) and _free(c)
+                        and not (KINDS.get(c, {}).get("image")
+                                 and images >= image_budget)), None)
+            if alt:
+                chosen[i] = alt
+                used.add(alt)
+                if KINDS.get(alt, {}).get("image"):
+                    images += 1
 
     for ins, k in zip(inss, chosen):
         if k in _SCENE_BUILDERS:                 # deterministic scene token
@@ -590,7 +675,8 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
             spec = _md.performance_for(
                 ins.kind, getattr(ins, "main_insight", "") or "",
                 (ins.items[0].label if getattr(ins, "items", None) else ""),
-                used_families=used_families, seed=seed + j)
+                used_families=used_families, seed=seed + j,
+                require_contact=True)
             ins.perf_override = spec["action"]
             ins.perf_spec = spec
             used_families.add(spec.get("family", spec["action"]))

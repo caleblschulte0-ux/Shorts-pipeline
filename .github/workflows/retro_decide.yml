@@ -168,7 +168,15 @@ jobs:
             --body "Automated retro decisions. Verdicts in \
           \`retro/state/ledger.jsonl\`; any implementation is in the diff." \
             || echo "::warning::could not open PR"
-        continue-on-error: true
+        # NOTE: this step's continue-on-error is declared ONCE, above the
+        # run block. It was declared twice (before AND after) until
+        # 2026-08-06 — PyYAML keeps the last duplicate key silently, but
+        # GitHub Actions rejects the file outright, so the cron NEVER fired
+        # and the decide half of the retro loop was dead from the day it
+        # merged. The only visible symptom was a jobless "failure" run named
+        # by file path on every non-[skip ci] push, which nobody reads.
+        # tests/test_disabled_channels_stay_off.py now parses every workflow
+        # with a duplicate-rejecting loader so this cannot come back.
 
       - name: Anything still unanswered?
         if: steps.when.outputs.go == 'true'

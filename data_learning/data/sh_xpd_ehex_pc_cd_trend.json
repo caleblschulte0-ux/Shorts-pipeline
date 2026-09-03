@@ -1,0 +1,48 @@
+{
+  "key": "sh_xpd_ehex_pc_cd_trend",
+  "title": "External health expenditure per capita",
+  "unit": "current US$",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "External health expenditure per capita",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.XPD.EHEX.PC.CD",
+    "officiality": "official",
+    "access_date": "2026-08-07"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-07. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 0.65,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 1.55,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 2.25,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 2.98,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 2.44,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 3.58,
+      "period": "2023"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "key": "rare_odds_ranked",
+  "title": "How rare, ranked (1 in N chance)",
+  "unit": "1 in N (chance)",
+  "geography": "Global / United States",
+  "time_coverage": "2026 (illustrative)",
+  "source": {
+    "name": "Commonly cited odds: royal flush, lifetime shark attack, Powerball jackpot",
+    "publisher": "Standard poker-hand probability; shark-attack lifetime odds and lottery odds as widely reported",
+    "url": "https://www.accuweather.com/en/leisure-recreation/powerball-mega-millions-or-a-lightning-strike-which-has-better-odds/882156",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Figures approximate/commonly cited; royal flush odds are exact combinatorics (1 in 649,740).",
+  "points": [
+    {
+      "label": "Royal flush in poker",
+      "value": 649740
+    },
+    {
+      "label": "Lifetime shark attack",
+      "value": 11500000
+    },
+    {
+      "label": "Powerball jackpot",
+      "value": 292201338
+    }
+  ]
+}

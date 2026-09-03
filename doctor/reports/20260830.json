@@ -1,0 +1,61 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260830",
+  "summary": "August 30 Media again reached its handoff with no Phase A bundle, bundle identity, or package slate, one day after the same no-bundle condition forced a six-package Finalizer takeover. The shared Drive contains no August 30 assets and its latest visible files are the twelve verified August 29 takeover images. Sunday's test-coverage review found that the absent-authoring path still depends on one drift-prone cron, has no executable workflow-liveness contract, and that the Phase B render-handoff regression test only scans YAML text rather than executing the status-handling branch. The full suite also runs only on Claude pull requests, leaving executable direct pushes to main without equivalent test coverage. The prior-day critical repair alarm is acknowledged against active repair owners. Performance remains sparse and recovery-distorted, so no cadence, format-mix, or topic-direction change is proposed; existing backlog 8bbdf9ac8a33 already owns the no-change decision.",
+  "alarm_ack": {
+    "production_repair_trending": "Acknowledged against active critical backlog 2fc5cbb21cca and reliability/mix backlog 33ccbcdc479b. The evidence alarm records a 5/6 August 29 production outcome whose repair never completed; the later takeover closed the exchange artifacts but did not erase that delivery failure. Those active owners already cover downstream render handoff and the instruction to hold the mix until reliability is measurable, so this report does not duplicate the alarm as a new finding."
+  },
+  "findings": [
+    {
+      "title": "Dead-authoring days still have no timely Phase A guarantee",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/phase-a-liveness",
+      "files": [
+        ".github/workflows/exchange_phase_a.yml",
+        "scripts/exchange_phase_a.py"
+      ],
+      "observation": "The Phase A workflow has three paths, but only its single 09:45 UTC cron is independent of an upstream package write or Auto-merge run. Its own comments record GitHub cron drift measured in hours. On both August 29 and August 30 the Media worker reached the handoff with no bundle or package slate; the August 30 failure artifact explicitly says no current-date Phase A artifact or commit existed. The advertised backstop therefore does not guarantee that a dead-authoring day becomes a bundle before Media starts.",
+      "proposal": "Add a fail-closed, idempotent readiness watchdog before the Media handoff. It should check main for the current-date bundle identity, dispatch Phase A when absent, wait for a completed Phase A run or a durable named refusal, and publish that outcome as repository state. Keep bundle freeze semantics so duplicate triggers are harmless, and test both the no-upstream-authoring and delayed-cron cases.",
+      "evidence": ".github/workflows/exchange_phase_a.yml:10-54 makes workflow_run and push depend on upstream activity, while the only independent path is cron 45 9 and the comments acknowledge multi-hour drift. Commit ba29df54138255c2515eb3077e5e8dfc records August 30 BUNDLE_MISSING with no bundle, BUNDLE_ID, packages, Phase A artifact, or current-date Drive media; August 29 required a Finalizer takeover after the same shape."
+    },
+    {
+      "title": "Phase A trigger topology has no regression test",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "tests/phase-a-workflow-contract",
+      "files": [
+        ".github/workflows/exchange_phase_a.yml",
+        "tests/test_authoring_takeover.py"
+      ],
+      "observation": "The takeover suite thoroughly tests package validation and recovery after authoring is already requested, but no test references exchange_phase_a.yml or asserts that a no-authoring day can reach that takeover path. The workflow's trigger comments are currently the only specification for workflow_run, push, and scheduled backstop behavior, so removing or weakening the independent path would leave the full unit suite green.",
+      "proposal": "Add a focused workflow-contract test that parses exchange_phase_a.yml, proves at least one trigger is independent of upstream authoring, asserts the current-date calculation and bundle commit path, and pins the readiness-watchdog behavior from the liveness finding. Run it inside the existing full unit suite.",
+      "evidence": "Repository code search found no reference to exchange_phase_a.yml, its 09:45 backstop, or its workflow_run topology under tests/. tests/test_authoring_takeover.py begins at the already-authored bundle/Phase B boundary and does not exercise the Phase A workflow triggers."
+    },
+    {
+      "title": "Render-handoff test proves strings, not failure behavior",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "tests/phase-b-handoff-execution",
+      "files": [
+        ".github/workflows/exchange_phase_b.yml",
+        "tests/test_phase_b_render_handoff.py"
+      ],
+      "observation": "The regression test for the critical Phase B-to-Daily handoff parses YAML and searches for an endpoint substring, an HTTP-versus-204 regex, and an `exit 1` within 400 characters. It never executes the shell branch or mocks the API. A refactor can leave those tokens in comments or an unreachable branch while a rejected dispatch exits zero, and every asserted test still passes.",
+      "proposal": "Extract the dispatch-and-verify logic into a small script with an injectable HTTP client, then test 204 success, 401/403/404/422 failure, timeout, malformed response, and missing token as executable cases. Leave one thin YAML wiring assertion that the workflow invokes that tested script only after a real non-dry-run apply.",
+      "evidence": "tests/test_phase_b_render_handoff.py:test_a_rejected_dispatch_fails_the_job only inspects HANDOFF['run'] text with a regex and nearby-substring check; the file contains no subprocess execution, HTTP mock, or asserted process status. This weakens the active critical repair 2fc5cbb21cca without duplicating its implementation scope."
+    },
+    {
+      "title": "Executable direct pushes to main bypass the full suite",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "ci/main-branch-test-coverage",
+      "files": [
+        ".github/workflows/auto-merge.yml"
+      ],
+      "observation": "The only workflow that installs Pillow, PyYAML, NumPy, Matplotlib, and ffmpeg and runs unittest discovery is Auto-merge claude PRs, whose jobs are gated to Claude pull-request branches. A human, PAT, or other authorized direct push can change Python or workflow code on main without running the full suite; exchange_phase_a.yml explicitly documents that such direct pushes are supported as an operational path.",
+      "proposal": "Create a scoped push-to-main verification workflow for changes under Python source, tests, and .github/workflows. Reuse the same pinned test environment and commands as the pull-request gate, skip state-only and report-only commits, and surface failures without creating a recursive state commit. Longer term, make the required check a branch-protection invariant for every executable change path.",
+      "evidence": ".github/workflows/auto-merge.yml is triggered only by pull_request and every sanity/tests job requires startsWith(github.head_ref, 'claude/'); its full suite installs the production test dependencies and ffmpeg. No equivalent push-to-main full-suite trigger is declared there, while .github/workflows/exchange_phase_a.yml:35-42 explicitly accepts human/PAT pushes to main."
+    }
+  ]
+}

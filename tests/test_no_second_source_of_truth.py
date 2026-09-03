@@ -2,7 +2,7 @@
 
 The registry only works if nothing else declares the same facts. Prose and
 constants rot silently: the 2026-07-31 graph-led ruling landed in ONE of five
-places that stated the mix, and for weeks the reserve bank banked a retired
+places that stated the mix, and for weeks the takeover kept asking for a retired
 format while every test passed.
 
 So this scans the files where an operational rule would plausibly be written
@@ -40,12 +40,11 @@ WATCHED = [
     "docs/EXCHANGE_PIPELINE.md",
     "docs/FALLBACKS.md",
     "shared/authoring_brief.py",
-    "shared/package_buffer.py",
+    "shared/package_schema.py",
     "shared/exchange_bundle.py",
     "scripts/exchange_phase_a.py",
     "scripts/exchange_phase_b.py",
     "scripts/ingest_authored.py",
-    "scripts/package_reserve.py",
     "scripts/run_trending_daily.py",
     ".github/workflows/daily.yml",
     ".github/workflows/exchange_phase_a.yml",
@@ -148,7 +147,7 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
 
     def test_production_code_imports_the_registry(self):
         """The consumers that decide a slate must resolve it, not carry it."""
-        for rel in ("shared/authoring_brief.py", "shared/package_buffer.py",
+        for rel in ("shared/authoring_brief.py", "shared/package_schema.py",
                     "scripts/exchange_phase_a.py",
                     "scripts/exchange_phase_b.py"):
             text = (ROOT / rel).read_text()
@@ -156,12 +155,16 @@ class TestNoSecondSourceOfTruth(unittest.TestCase):
                           f"{rel} decides slate policy without reading the "
                           f"registry")
 
-    def test_the_brain_prompt_interpolates_the_ruling(self):
+    def test_the_render_workflow_is_not_a_second_brain(self):
         wf = (ROOT / ".github" / "workflows" / "daily.yml").read_text()
-        self.assertIn("shared.channel_registry --mix", wf,
-                      "daily.yml's brain prompt must generate the mix line "
-                      "from the registry, not restate it")
-        self.assertIn("$SLATE_RULING", wf)
+        self.assertNotIn("Brain — author today's packages", wf)
+        self.assertNotIn("claude -p", wf)
+        self.assertIn("--require-manifest", wf)
+        self.assertIn('GITHUB_EVENT_NAME" = "push', wf,
+                      "the repair trigger must resume a partial batch")
+        self.assertIn("shared import channel_registry", wf,
+                      "daily.yml must still resolve its render count from "
+                      "the registry")
 
     def test_the_test_suite_is_actually_discoverable(self):
         """`python -m unittest discover -s tests` must WORK.

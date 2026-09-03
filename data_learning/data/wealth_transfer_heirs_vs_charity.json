@@ -1,0 +1,19 @@
+{
+  "key": "wealth_transfer_heirs_vs_charity",
+  "title": "Projected US wealth transfer through 2048, by destination",
+  "unit": "trillion dollars",
+  "geography": "United States",
+  "time_coverage": "2025-2048 (projected)",
+  "source": {
+    "name": "US Advisor Metrics: The Cerulli Report -- The Great Wealth Transfer",
+    "publisher": "Cerulli Associates",
+    "url": "https://www.cerulli.com/press-releases/cerulli-anticipates-124-trillion-in-wealth-will-transfer-through-2048",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Cerulli projects $124 trillion in total US wealth transfer through 2048. Of that, $105 trillion is expected to flow to heirs and $18 trillion to charity (the two sum to $123T, a touch under the $124T headline total due to Cerulli's own rounding of residual/spousal categories). Roughly 81% of the total ($100T) originates from Baby Boomers and older generations.",
+  "points": [
+    {"label": "To heirs", "value": 105},
+    {"label": "To charity", "value": 18}
+  ]
+}

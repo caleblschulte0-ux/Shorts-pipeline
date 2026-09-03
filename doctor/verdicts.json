@@ -1,0 +1,962 @@
+{
+  "schema": "shorts-doctor-verdicts/v1",
+  "updated": "20260828",
+  "verdicts": {
+    "a5318d0404da": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Correct when you read the repo \u2014 the evidence job had never run because doctor.yml only merged that evening. It now runs daily (05:10 UTC cron) and commits doctor/evidence.json + backlog; today's runs prove it (commits f0766789, 26fbc707). Your 'make absence a visible failure' ask is half-done: the commit step warns rather than fails. If you still see a stale evidence.json after 2026-08-07, re-file with new_evidence_since.",
+      "history": []
+    },
+    "2801098e02ce": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified and fixed the same day. showrunner_review.py's header and two docstrings said infra failures are 'treated as ship by callers' \u2014 stale since shared/showrunner_gate.py centralized the policy. They now say: review raises on infra failure, and the shared gate decides \u2014 open on preview, CLOSED on publish.",
+      "history": []
+    },
+    "cda65fc717ba": {
+      "verdict": "done",
+      "date": "20260806",
+      "because": "Verified REAL and HIGH \u2014 good catch, exactly what this loop is for. decide() blocked only on the literal token 'block' or a missing score, so {'verdict':'error','score':7} shipped on a publish run. Now on publish nothing ships except literally verdict='ship' with a numeric score in [0,100] (the reviewer's actual scale \u2014 your 'bounded' ask, calibrated to compute_score); every unknown/malformed shape holds. Ten adversarial cases in tests/test_showrunner_gate.py::TestOnlyAnExplicitShipShips. Rubric/version metadata validation deliberately deferred \u2014 the reviewer doesn't emit it yet; adding a required field the producer doesn't produce would block every real video.",
+      "history": []
+    },
+    "df9eeac8ee28": {
+      "verdict": "later",
+      "date": "20260806",
+      "because": "The diagnosis is right \u2014 decide_verdict() in the reviewer and decide() in the gate both claim final authority \u2014 and the direction you propose (reviewer returns measurements + anchored judgments; ONE policy function computes the only disposition) is the same direction the 2026-08-01 gate extraction was already moving. But it's a refactor across every publishing channel's callsite, and this week the priority is watching the new backfill/cap/backoff machinery hold in production. Constraint for whoever picks it up: the consolidation may only ever ADD blocks \u2014 the sovereign-BLOCK and fail-closed tests must pass unchanged.",
+      "history": [],
+      "revisit_after": "20260905"
+    },
+    "6be0849a55e4": {
+      "verdict": "done",
+      "date": "20260811",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: search()'s cache-hit path restored stored score verbatim, so the 14-day recent-use penalty never applied to cached results. Fixed in this run: cache-hit now rebuilds raw Candidates and reruns _prefilter (fresh penalty/freshness/staleness/same-host) before adding back a separately-cached llm_bonus. Regression test tests/test_media_funnel_cache.py fails pre-fix, passes post-fix."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260811",
+          "because": "picked up"
+        }
+      ],
+      "commit": "a4042472ba8131bccb935ff636a67e33673c476f"
+    },
+    "3cca8a711ec4": {
+      "verdict": "done",
+      "date": "20260811",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Same root cause and same fix as 6be0849a55e4 (cached scores are frozen for up to 48h): cache-hit path now recomputes the full dynamic score via _prefilter on every read instead of trusting the stored total, with only the paid LLM-rerank bonus cached and re-added on top. See funnel/media_funnel.py search()/to_dict()/_llm_rerank() and tests/test_media_funnel_cache.py."
+        },
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Same root cause and same fix as 6be0849a55e4 (built this run): cache-hit path in funnel/media_funnel.py search() now recomputes the full dynamic score via _prefilter on every read instead of trusting the stored total, with only the paid LLM-rerank bonus cached separately and re-added. See tests/test_media_funnel_cache.py."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260811",
+          "because": "picked up"
+        }
+      ],
+      "commit": "a4042472ba8131bccb935ff636a67e33673c476f"
+    },
+    "653acb99b575": {
+      "verdict": "done",
+      "date": "20260812",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in third_capture/clip_qa.py review(): the outer except at line 444 sets verdict='pass' on ANY internal exception (probe/vision/contact-sheet failure), and scripts/run_third.py:1938 treats verdict!='fail' as ship-it with no other gate downstream. This contradicts the pipeline's fail-closed doctrine (CLAUDE.md showrunner section) even though the local docstring calls it deliberate. Queued to fail closed (verdict='fail'/quarantine) with the exception text preserved as evidence; not built this run \u2014 next highest-value pickup."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260812",
+          "because": "picked up"
+        }
+      ],
+      "commit": "1660dda"
+    },
+    "69a886343361": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Retroactively closing a bookkeeping gap found while triaging: marked in_progress on 2026-08-15 ('picked up') and never closed out. Verified the fix is live on main: tests/test_production_outcome.py:TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall now drives the real rtd.compute_production_outcome() completion decision with a fixture (showrunner-held + QA-quarantined results), not the old assertIn() substring check against raw source text. Full test class passes (21/21) on current main tip 3693f74; could not pin the exact originating commit through the shallow history, so citing the verified-present tip instead.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: TestRedVersusPaused.test_the_run_still_goes_red_on_any_shortfall (tests/test_production_outcome.py:47-52) only does two assertIn() substring checks against the raw source text of run_trending_daily.py, never executes the branch. Queued to replace with a fixture-driven test on the real completion decision."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260815",
+          "because": "picked up"
+        }
+      ],
+      "commit": "3693f74"
+    },
+    "a544d37c275e": {
+      "verdict": "done",
+      "date": "20260817",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in make_reddit_story.py: _shot_panels() (line ~42-76) drops any shot whose image failed to resolve, and _visual_track() (line ~86) computes per = duration/len(panels), an equal split with no reference to shot phrase/word timing. This is a real renderer defect (matches the 2026-08-09 showrunner evidence of ~35s dead air on one stretched panel) but the fix is a nontrivial renderer change (phrase-aligned scheduling + a refusal/quarantine path for insufficient panel coverage) \u2014 queued, not attempted in this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260817",
+          "because": "picked up in the 2026-08-17 triage: reused make_explainer_stacked.find_phrase_start (the resolver the explainer renderer already relies on) to give each reddit_story shot its own phrase-aligned on-screen window, keyed by shot index so a dropped image no longer donates its window to a neighbor. Added tests/test_reddit_story_timing.py (fails on old equal-division code, passes on the fix) and fixed the one renamed-variable string-match in tests/test_still_panels_never_freeze.py. Full suite green except 5 pre-existing unrelated errors."
+        },
+        {
+          "verdict": "done",
+          "date": "20260817",
+          "because": ""
+        }
+      ],
+      "commit": "6c25c89"
+    },
+    "cf263a770061": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: novelty_check raises typed NoveltyProbeError on ffprobe failure/garbage/undecodable frames instead of returning 'clean'; the publish path rejects with exit 5 and persists a TECHNICAL blocker finding in director_findings.json; DIRECTOR.md documents the fail-closed rule. A too-short-to-violate video still legitimately passes. 5 tests in tests/test_novelty_fail_closed.py drive the outage end-to-end.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in scripts/no_dull_beats.py novelty_check(): the ffprobe duration call is wrapped in a bare except that returns [] on ANY failure, which the caller reads as 'no stale spans' \u2014 a broken probe silently satisfies DIRECTOR.md's gate-0 hard rule. Queued: needs a distinguishable could-not-evaluate sentinel and a fail-closed caller change plus a forced-failure test."
+        }
+      ]
+    },
+    "d17724dfb1c0": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built inside assess() so every existing caller (run_trending_daily's pre-render quarantine, package_schema's structural gate) inherits it: opening painted-area and leader screen-travel are derived from the renderer's own axis math (fixed year span, 12%-of-max camera floor). A hockey-stick parked at zero for its first fifth and a line that never climbs the frame are both refused with named reasons BEFORE a slot is spent, and the quarantine reason already feeds the replacement path. Verdict now reports open_area and travel for calibration. Real authored-package corpus still passes; 4 new tests.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed shape: engines/chart_race.py's assess() (data-drama gate) has no visibility into the renderer's fixed full-year x-axis span or the 12%-of-global-max y-floor, so a package can pass preflight and still open as a near-empty plot. Real August 9 evidence (two empty-void blocks, one 1.7fps block) backs this. Queued \u2014 needs a cheap composition/motion preflight derived from the same axis math, larger than a one-line fix, not attempted this run."
+        }
+      ]
+    },
+    "d64b063a21bd": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: package_schema validates graph_race data as finite real numbers with strictly increasing numeric years before the drama gate; the blanket except is gone \u2014 engine-unavailable and engine-crashed are named, distinct, and both refuse the package. chart_race.assess() refuses garbage with reasons instead of raising TypeError. 13 new tests across test_package_schema and test_chart_race; the real authored-package corpus still passes.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in shared/package_schema.py structural_problems(): the graph_race branch only checks values-array LENGTH against years, never numeric/finite-ness, and wraps chart_race.assess() in a blanket except Exception: pass that swallows both 'engine absent' and 'assess() crashed on bad data' identically. A fix here only ADDS validation (numeric/finite/strictly-increasing years, narrowing the except to ImportError) so it strengthens rather than weakens the one structural gate every package producer is held to. Queued, not built this run."
+        }
+      ]
+    },
+    "e02d4cf673bd": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: search() records a total per-provider outcome ledger (completed/failed/cancelled/timed_out) finalized after the shutdown call, published to LAST_SEARCH_OUTCOMES with one log line flagging that timed-out providers may still write quota in the background; the 15s window is unchanged. Tests prove totality over fast/failed/slow providers.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: funnel/media_funnel.py search() calls shutdown(wait=False, cancel_futures=True) after a 15s timeout while already-running provider calls keep executing and mutating shared quota state with no recorded terminal outcome. Legitimate observability gap, not urgent \u2014 queued as short_term."
+        }
+      ]
+    },
+    "9943424b8251": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the daily failure-counter policy extracted verbatim to scripts/daily_failure_counter.sh (RUN_OUTCOME env-wired) and tests/test_production_outcome.py now EXECUTES the counter, stop and preflight-backoff policies against fixture state instead of pinning tokens; preflight/stop stay inline because test_split_worker executes their inline text directly \u2014 same doctor ask, different seam. In this session's PR.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed: tests/test_production_outcome.py's counter_step()/stop_step() helpers slice daily.yml as text and assert substrings, proving wording survives but not that the YAML is valid or the branch conditions actually bind. Overlaps with 69a886343361 (same file) \u2014 worth doing together in one future pass that moves the policy into testable functions."
+        }
+      ]
+    },
+    "75af24a46374": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed in third_capture/auto_edit.py build_edl(): the replay branch appends an ('whoosh') cue, but the over-cap cleanup at line 392 only filters cues where cue[1]!='riser', leaving the replay's whoosh cue firing at the old position after its segment is removed. Small, contained, queued for a quick pickup.",
+      "history": []
+    },
+    "9b8b29a78b87": {
+      "verdict": "doing",
+      "date": "20260811",
+      "because": "Confirmed: test_a_junk_outcome_file_is_ignored (tests/test_production_outcome.py:196-201) writes malformed JSON and asserts only that the result contains an 'alarms' key, which is true of the normal result shape too \u2014 the test can't detect a regression in malformed-state handling. Small, contained, queued.",
+      "history": []
+    },
+    "4c58349192b8": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate long-term direction (provenance-first asset manifest vs current provider-class metadata assignment in funnel/media_funnel.py _prefilter), but it's an architectural change to the media-governance model, not urgent \u2014 parking per the long_term horizon; the doctor's evidence.json will resurface it if this becomes blocking.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "79e94e61b5a9": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction (content-addressed proof manifest for third_capture/capture_cli.py so tampering is detectable, not just trusted by convention), but proof-mode's ledger has no known live incident driving urgency \u2014 parking as long_term.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "74db7c4b3786": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Legitimate direction \u2014 a real end-to-end production-state-machine test harness would catch what the current seam-tests (test_production_outcome.py + test_daily_alarm.py) can't. Overlaps with 69a886343361/9943424b8251, which are the concrete near-term slice of the same problem and are already queued doing; parking the full state-machine harness as the long_term version of the same work.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "30d9585ddd32": {
+      "verdict": "later",
+      "date": "20260811",
+      "because": "Confirmed: engines/render_qa.py (fail-open on analyzer error) and shared/video_qa.py (fail-closed) are two independent finished-video QA engines with different semantics, used by different channels (trending vs third capture). Consolidating them safely needs parity fixtures across both channels before either implementation can be retired \u2014 real risk of silently changing what ships if rushed. Parking as long_term; not something to build in a single triage session.",
+      "history": [],
+      "revisit_after": "20260910"
+    },
+    "6e0d256d4c2f": {
+      "verdict": "done",
+      "date": "20260813",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260813",
+          "because": "Confirmed: failed_autofails() only counts checks present as dicts with present=true; grades.get('checks', {}) is passed straight through with no validation that the model answered all five mandatory AUTOFAIL_CHECKS. An empty/malformed checks payload silently ships. This is a fail-closed violation on the sovereign gate, per CLAUDE.md rule zero we fix it now, not file it."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260813",
+          "because": "picked up"
+        }
+      ],
+      "commit": "0f99083c52688a4a070c110b8a2bbab4910f14e4"
+    },
+    "06e600e3ecaa": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the alarm's slot-fill section dates every daily_report.json row from package_path/publish_at, counts only rows matching the requested date, treats an all-other-day report as absent with a note, and never counts an undatable row. Live repro fixed: check('20260811') no longer emits trending_short_after_retries from Aug-12 rows while check('20260822') still evidences its real 4/6.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260813",
+          "because": "Confirmed: check(date) reads ROOT/daily_report.json unconditionally with no filter on the date argument, so a stale root report misattributes another day's slot-fill outcome. Real bug in alarm evidence integrity, worth fixing, but lower priority than the showrunner fail-open gap this run; queued for a future triage session's top-item build."
+        }
+      ]
+    },
+    "ddfcb2ed4837": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: numeric_claims() is a Counter (normalization and precedence byte-identical), check() compares occurrence counts in both directions and reports the token with its count delta ('40% (x2 -> x1)'). The finding's exact repro \u2014 dropping one of two sentences carrying the same figure \u2014 is now rejected; equal counts still pass. tests/test_punchup_multiplicity.py.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260813",
+          "because": "Confirmed: numeric_claims() returns a set, collapsing repeated identical numeric claims to one membership test, so a punch-up can silently drop a repeated stat. Small, well-scoped fix (Counter-based multiplicity) that strengthens a guard CLAUDE.md says is not advisory; accepted, queued behind today's higher-severity build."
+        }
+      ]
+    },
+    "8dc00d1eadd0": {
+      "verdict": "doing",
+      "date": "20260813",
+      "because": "Confirmed: append_ledger() persists only dimensions/one_line/auto_fails/motion/judge/model/rubric_sha and drops checks, weakest_scene, problems, fixes, temporal and format/package lineage, so the ledger can't detect recurring failure classes across days. Legitimate long-term direction (ledger schema versioning + migration) but too large for a single session; accepted as doing, to be picked up as a dedicated build, not bundled into a smaller fix.",
+      "history": []
+    },
+    "71d8f01ef635": {
+      "verdict": "done",
+      "date": "20260814",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified: recovered_media() checkpoints are merged into idx['media'] but validate_response_media() at exchange_phase_b.py:529-532 validates the raw response object only, never idx \u2014 checkpoint_problems' bundle-identity/schema/sharing/filename checks never run on the recovery path, and the fetch/pin loop at lines 668-681 pins straight from idx. test_checkpoint_recovery.py only asserts textual ordering, not that recovered pointers are actually checked. This is the exact staleness gap the bundle-identity check exists to close. Fixing now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260814",
+          "because": "picked up"
+        }
+      ],
+      "commit": "f1e0250"
+    },
+    "44caf5d53209": {
+      "verdict": "done",
+      "date": "20260814",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified: self_fill()'s lane 3 (exchange_phase_b.py ~288-296) calls topic_media.search() directly and returns the first nonempty URL with zero url_is_image() check, even though lane 2 (entity_media.resolve_entity_media) just fed the same search results through url_is_image and rejected all of them. Lane 3 can return the exact dead/non-image URL lane 2 already refused. Small, clear fix: gate lane 3 on entity_media.url_is_image() same as lane 2. Queuing for a future build after today's critical item; scope is small enough to pick up next."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260814",
+          "because": "picked up alongside the critical checkpoint-recovery fix; both verified, both small, fixed in the same PR"
+        }
+      ],
+      "commit": "f1e0250"
+    },
+    "2f7ee366fb9b": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built with one clause refused on the merits. Date proof is enforced: is_done() is True only when the payload's date equals the requested day; {}/blank/wrong-date are False with a printed diagnostic (tests: test_done_marker_is_date_scoped, test_done_marker_blank_date_never_matches). The unparseable/non-object clause is refused: DONE=True selects the STRICTER Phase B branch (checkpoints required), so treating a garbled marker as absent would route the day to the LENIENT no-DONE backstop and downgrade media validation \u2014 a malformed marker now loudly honors as done-but-broken, including the JSON-array case that used to silently fall to False (test_done_marker_unparseable_is_honored).",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260814",
+          "because": "Verified is_done() in shared/exchange_bundle.py, but the finding conflates two different things. The malformed-JSON case (DONE present but not parseable JSON -> True) is INTENTIONAL: the comment at line 485 says so, and exchange_phase_b.py:503-511 already treats done=True + unreadable response.json as an error state that forces strict/mandatory checkpoint enforcement rather than silently falling back to the lenient no-DONE backstop -- that is correct fail-strict behavior, not a bug. The real gap is narrower: an empty/blank date field ({} or {\"date\":\"\"}) makes is_done() return True for ANY requested date via 'not stamped', which contradicts the function's own docstring ('a marker for another day never fires this day's render'). Ruling doing scoped to closing that date-scoping gap only (require an exact non-blank date match) plus adding the missing malformed/empty-payload regression tests test_done_marker_is_date_scoped lacks -- not the blanket 'all malformed shapes must be false' proposal, which would break the intentional fail-strict path."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260820",
+          "because": "picked up"
+        }
+      ]
+    },
+    "ab49431193c5": {
+      "verdict": "doing",
+      "date": "20260814",
+      "because": "Verified: response_index() never reads schema/date/status/contract, contract_problems() explicitly tolerates a missing contract by design (pinned by test_a_silent_response_is_tolerated), and ingest_authored.py consumes authored/explainer/curiosity sections with no envelope check. This is a real latent gap (no incident yet -- the Aug 13 bundle correctly declares the envelope) and genuinely spans 5 files needing a new typed validator plus a phased rollout so the live scheduled worker isn't broken by a hard requirement it doesn't yet emit. Agree long_term is the right horizon; queuing as doing so it's on the backlog, but it is not a one-session build -- a smaller first slice (require schema+date only, defer status/contract) would be the way to start it when picked up.",
+      "history": []
+    },
+    "5ac409690185": {
+      "verdict": "done",
+      "date": "20260818",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260815",
+          "because": "Confirmed: scripts/run_third.py:2209-2212 sources the synthesized fallback slate size from state/third_packages/default_clip.json's count field (4), never from channel_registry target_count('third') (6). Matches the 3/6 and 4/6 third-channel shapes in the 08-10..08-14 alarm history. Building this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260818",
+          "because": "picked up in 2026-08-18 doctor triage"
+        }
+      ],
+      "commit": "8b6f875"
+    },
+    "ec1665fbf9fa": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: premise_ok accepts only the exact tokens \u2014 REJECT blocks, PASS is the sole llm-pass, and every other shape ({}, misspelled, non-string, unrelated object) is labeled 'deterministic (llm verdict unusable)' so the already-passed floor stands without a fabricated approval. 11 tests in tests/test_editorial_gate.py including the malformed-JSON and non-string cases.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260815",
+          "because": "Confirmed: scripts/editorial_gate.py:157-164 only blocks on a literal verdict=='REJECT'; any other parsed object (including {}, malformed JSON, wrong keys) falls through to judge='llm-pass', which inverts the module's own documented fail-closed / default-to-reject design. Queued behind the third-channel fallback fix."
+        }
+      ]
+    },
+    "9fe73cb62e3f": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: judge_policy overrides validate against a typed schema (finite 0-10 scores, integer attempt floors, monotonic bands, nonempty judges) and are refused ATOMICALLY on any invalid field with a loud log; the docstring-named safety floors can only be raised and autonomous_publish can never be enabled through load(), from config or env. 18 tests plus the updated standalone check that env can no longer lower the development floor.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260815",
+          "because": "Confirmed: data_learning/judge_policy.py load() overlays judge_policy config block values into the live policy dict with zero type/range/invariant validation (config path, not just the env-var path). A bad value crashes at int() conversion later, or a config could zero out development_min_overall/owner_review_min_overall and flip autonomous_publish with no safety floor check. No live exploit today since only Claude commits channel configs, but the missing validation is real and matches this repo's fail-closed doctrine. Queued behind items 1 and 2."
+        }
+      ]
+    },
+    "ca6665bd598d": {
+      "verdict": "later",
+      "date": "20260815",
+      "because": "Confirmed real: judge_loop.run is unwired (scripts/produce.py only imports its lower-level helpers -- run_judges/combine/compare/next_escalation -- never .run itself), and it has drifted from produce.py's path in two ways: JudgingStore.open_attempt() hashes the artifact BEFORE render_fn runs, and a failed render is written to the store but never added to the verdicts dict decide() sees, so three passing required judges can yield advance=True even when render_fn returned ok=false. Real bug, but the actual fix is an architecture call (converge produce.py onto judge_loop.run vs. formally retire judge_loop.run and migrate its useful comparison/escalation logic) that deserves a dedicated session, not a rushed patch competing with today's one-item budget. Parking 30 days; revisit after items 1-3 land.",
+      "history": [],
+      "revisit_after": "20260914"
+    },
+    "612efa85efcb": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Retroactively closing a bookkeeping gap found while triaging: this was marked in_progress on 2026-08-16 ('picked up ... branch claude/doctor-20260816') and never closed out. Verified the fix is live on main: .github/workflows/daily.yml:104-113 checks exchange/bundles/<date>/phase_b_report.json exists before rendering, exactly as the ruling described, landed in ef2c52f ('daily.yml: dont render on Phase Bs benign no-op candidate (#281)'). tests/test_split_worker.py passes (its own PIL-dependent tests aside, which is an unrelated sandbox gap, not this fix).",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260816",
+          "because": "Confirmed: exchange_phase_b.py backstop_status() returns ready=false pre-08:30-Central but main() still returns 0 (line ~406), so the early candidate's workflow steps all exit clean and the job concludes success with nothing applied. daily.yml's workflow_run trigger gates only on conclusion=success (no readiness check), so it can fire off that no-op and render an unfinished day early in winter. Fixing this in this run: make the workflow only report a render-capable success when Phase B actually applied something."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260816",
+          "because": "picked up \u2014 fix in daily.yml preflight (checks exchange/bundles/<date>/phase_b_report.json exists before rendering on a workflow_run trigger) + tests/test_split_worker.py, branch claude/doctor-20260816"
+        }
+      ],
+      "commit": "ef2c52f"
+    },
+    "09d56163c745": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the watchdog persist step no longer swallows ci_commit_state failure (and the artifact check runs under always()); ci_commit_state.sh itself could exit 0 after a FAILED commit by pushing the unchanged HEAD \u2014 both commit sites are now guarded, with the one benign case (union-merge left no delta because the racing push carried our state) exiting 0 explicitly. Behavioral tests run the real script against a bare remote with hook-injected faults.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260816",
+          "because": "Confirmed: chatgpt_watchdog.yml line 80 pipes ci_commit_state.sh failure into ::warning:: and the Fail step (line 85) only triggers on judge.rc!=0, so a commit/push race on a clean day leaves the workflow green with no verdict record. Real gap, but lower urgency than the Phase B early-render bug (which can ship an incomplete day live); queued for a future run rather than built in this same session so the Phase B fix gets full attention."
+        }
+      ]
+    },
+    "51e40ccf5e7f": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "CLAUDE.md now states one Phase B backstop truth everywhere: 08:30 Central via the 30 13 / 30 14 UTC cron pair with the hour held in FINALIZER_HOUR_CENTRAL. The stale 06:15 and 12:45-UTC copies are gone, and the corrected paragraph names the two authoritative locations so the next drift has one less place to hide.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260816",
+          "because": "Confirmed: CLAUDE.md lines 229, 251-256 and 264-269 give three different backstop times (06:15, 08:30 Central via 30/13+30/14, and 12:45 UTC) for the same schedule, and docs/FALLBACKS.md:86 still names the retired 12:45 UTC cron. Small, mechanical fix; queued behind the critical Phase B bug for this run but cheap enough to take next."
+        }
+      ]
+    },
+    "825a41037aae": {
+      "verdict": "doing",
+      "date": "20260816",
+      "because": "Confirmed: docs/CHATGPT_MEDIA_HANDOFF.md still calls itself 'the only file a ChatGPT task needs to read' and hands out a media-dropbox scheduled-task prompt that nothing consumes, with no pointer to the live contract in doctor/PROMPTS.md sections 4-5. Accepting the narrow fix (mark it superseded, point to the live contract) rather than the full lifecycle-metadata proposal, which is more machinery than this one stale doc needs right now.",
+      "history": []
+    },
+    "a833d2f37a5c": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Merged in PR #291 (7363095). scripts/doctor.py's channel_performance cadence now uses daily_alarm.real_uploads()/is_real_upload() instead of raw row counts, preserving attempted/rejected_or_pending as separate fields. tests/test_doctor_managing_editor.py's production-shaped third-channel fixture (2 uploads, 4 refusals/pending) proves the desk agrees with the alarm's 2/6.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: scripts/doctor.py:474-482 counts every timestamped row in a channel's posted log as a post, while state/third_posted_log.json stores qa_rejected refusals and pending claims beside real uploads (daily_alarm.py already has the correct exclusion predicate at lines 99-114). The managing-editor desk is reporting fabricated cadence to itself and to the operator. Building this now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Building now (session picked this up after correctly ranking it #1 in doctor.py next -- it was ruled doing on 08-17 and left unbuilt for two days). Extracted the exclusion predicate daily_alarm.py already had right into a public is_real_upload()/real_uploads() pair, and pointed scripts/doctor.py's channel_performance cadence rollup at it instead of raw row counts. Preserved attempted/rejected_or_pending as separate fields per the proposal rather than just dropping the excluded rows. Regression test in tests/test_doctor_managing_editor.py (production-shaped third-channel fixture: 2 uploads, 4 refusals/pending) proves the desk now agrees with daily_alarm._posted_on's 2/6, and fails against the pre-fix code."
+        }
+      ],
+      "commit": "7363095"
+    },
+    "1eb84ce4609f": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Merged in PR #291 (7363095) alongside a833d2f37a5c. top_by_vph now reads views_per_hour (the analytics producer's real field) first, falling back to the legacy vph alias only if absent.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: scripts/fetch_analytics.py writes views_per_hour but scripts/doctor.py:488-494 reads v.get('vph'), so every channel's top_by_vph list is silently all-zero and shows source-order rows as 'top performers'. Real fix, small diff. Queued behind the higher-ranked bug this run."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Built in the same change as a833d2f37a5c -- it is the immediately adjacent lines in the same evidence_pack() function (scripts/doctor.py channel_performance block) and touching one without the other would leave a known-bad top_by_vph ranking in code already being edited. Fixed _vph() to read the producer's real field (views_per_hour from scripts/fetch_analytics.py) first, falling back to the legacy 'vph' alias only if that's absent. Regression test in tests/test_doctor_managing_editor.py proves ranking now uses views_per_hour and fails pre-fix."
+        }
+      ],
+      "commit": "7363095"
+    },
+    "fb2c88996071": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Merged in PR #291 (7363095) -- adding the commit sha to the earlier done ruling. package_formats() now resolves through shared/channel_registry.classify(); the script also gained the missing sys.path.insert(0, ROOT) that a live CI invocation needs, which a subprocess test (test_the_script_finds_reddit_story_when_run_directly) pins directly.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260817",
+          "because": "Confirmed live: 'python scripts/format_scoreboard.py' raises KeyError: reddit on current main because package_formats() labels subreddit packages 'reddit' while the registry bucket is 'reddit_story'. Doctor's own channel_performance pointer tells readers to run this command, so it's actively misleading. Queued behind higher-ranked items this run."
+        },
+        {
+          "verdict": "done",
+          "date": "20260819",
+          "because": "Confirmed this is exactly the crash I independently hit while investigating strategy finding 33ccbcdc479b (format_scoreboard.py KeyError: 'reddit'). Fixed properly per the proposal: package_formats() now resolves through shared/channel_registry.py's own classify() detector instead of a second hand-rolled guess, so any future registry format change stays in sync automatically. Also caught and fixed a second, worse bug the classify()-based fix would otherwise have introduced silently: the script had no sys.path.insert(0, ROOT), so running it the way daily.yml actually does (python3 scripts/format_scoreboard.py, not as a module) put scripts/ on sys.path[0] and 'from shared import channel_registry' failed silently inside a bare except -- every reddit_story package would have been mis-bucketed as 'explainer' with NO crash and NO warning, which is worse than the KeyError it replaced. tests/test_format_scoreboard.py covers registry-driven classification, an unknown-format rollup to unmatched, and a subprocess test that runs the real 'python3 scripts/format_scoreboard.py' invocation from repo root to pin this exact import-context failure mode. All 4 new tests fail against the pre-fix code and pass after."
+        }
+      ],
+      "commit": "7363095"
+    },
+    "c8ca85c0ce21": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Confirmed: scripts/fetch_analytics.py:296-301 drops format/experiment_arm/hook identity for every trending row, so all 62 live trending analytics rows are format=unknown and build_retro cannot compare graph_race vs reddit_story at any maturity band. Accepted as the long-term direction (versioned attribution record); it's the lowest-ranked open item so it will sit until the acute bugs above are cleared, which is appropriate for its horizon.",
+      "history": []
+    },
+    "66364106b455": {
+      "verdict": "doing",
+      "date": "20260817",
+      "because": "Legitimate: Third's story-vs-clip A/B is already live (state/third_packages/default_clip.json story_count=1, date-seeded shuffle in run_third.py) but was never registered via shared/experiments.py, so retro/20260815/brief.json still reports zero live experiments and the arm has no declared readout window. Accept registering it with the proposed thresholds (25 mature story samples, 28 days, median VPH primary metric) and extending eligible_videos scoping to actual_structure so clip-fallback slots aren't miscounted as story samples. Does not touch the six-post target or any quality gate. Not this run's build (ranks below the two confirmed bugs).",
+      "history": []
+    },
+    "87d632368528": {
+      "verdict": "later",
+      "date": "20260818",
+      "because": "Confirmed real (verified against make_reddit_story.py:71-87, base._fetch_image, and the 3 blocked showrunner verdicts from 08-16) but a reliable pre-render semantic/OCR gate needs an actual vision/OCR dependency chosen through the engines/ checklist (CPU-viable, pinned model, license) before it can be built responsibly. A shallow heuristic (e.g. text-density only) would create a second gate that can disagree with the sovereign showrunner, which already fails closed on exactly these four failure modes -- nothing bad has shipped, the cost is wasted renders, not editorial quality. Revisit once an OCR/vision engine is registered with a documented consumer plan.",
+      "history": [],
+      "revisit_after": "20260917"
+    },
+    "8b6949ab0573": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: make_reddit_story verifies media_bytes + media_sha256 against the downloaded bytes BEFORE Pillow when the package carries them, logs expected vs actual in full, and routes a mismatch into the existing unresolved-panel path (no panel, gameplay shows through). Attestation-less legacy shots unchanged. 7 tests in tests/test_reddit_story_attestation.py.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260818",
+          "because": "Confirmed: make_reddit_story.py never reads media_sha256/media_bytes even though ChatGPT already writes them into the package (verified in 20260816/06_reddit-gift-card-scam-wrong-digit.json shots 2,4-7). Self-contained, clearly-specified integrity check with existing attestation fields to check against -- building this now."
+        }
+      ]
+    },
+    "f6aa3e1f1c66": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Verified the numbers independently against state/analytics_explainer/latest.json: n=34 superlative-titled videos median 50.1% AVP vs n=97 others median 29.1% AVP, matches the report exactly. Real signal worth acting on, but a formal 28-day cohort experiment with age-banded comparison is a bigger build than one triage session -- queuing for a dedicated build pass rather than rushing a shallow version.",
+      "history": []
+    },
+    "1207ec562569": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: parallax and lookmatch each carry a decision_date (2026-09-15) and a named trial with an adopt-or-demote criterion; tests/test_engine_registry_honesty.py now requires lifecycle metadata on every consumerless gated-active engine AND fails the suite the day after any decision date passes \u2014 expiry is deliberately loud, so the waiting room cannot become a residence.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260818",
+          "because": "Confirmed against engines/__init__.py (parallax, lookmatch both status=active, gated=True, no decision_date) and tests/test_engine_registry_honesty.py (decision_date only required for status=experimental, gated actives exempt from consumers too). Small, well-scoped fix -- queued behind this session's top pick."
+        }
+      ]
+    },
+    "66d90578bc9b": {
+      "verdict": "doing",
+      "date": "20260818",
+      "because": "Confirmed: make_reddit_story.py, make_explainer_stacked.py and make_text_card.py all call the global random module directly with no seed plumbed through the build entrypoints or audit sidecar. Agree with the direction as a long-term reproducibility investment; real scope (seeded RNG contract across 3 renderers + audit manifest + cross-renderer tests) is multi-session work, queued at long_term priority.",
+      "history": []
+    },
+    "d79703f6f53b": {
+      "verdict": "done",
+      "date": "20260819",
+      "because": "Merged in PR #291 (7363095). ask_fingerprint() now hashes an editorial signature (package scripts, shot phrasing, authoring_request/authoring_requests) alongside the request/contract fields it already covered; tests/test_media_checkpoint.py proves script/phrase/brief rewrites move the identity while media-derived fields (verdict, has_media, media_health, strong_fraction, requested) still do not.",
+      "history": [
+        {
+          "verdict": "in_progress",
+          "date": "20260819",
+          "because": "Confirmed real: ask_fingerprint only hashed requests+contract, not package scripts/shot phrasing/authoring briefs. Building the fix now: extend the fingerprint with an editorial signature (scripts, shot phrase/query, authoring_request/authoring_requests) while keeping media_health/verdict/has_media/strong_fraction/requested as noise, per the existing cosmetic-rewrite test's contract."
+        }
+      ],
+      "commit": "7363095"
+    },
+    "5a7b4694a767": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: Phase B tracks every intended write; a failed package write or a failed phase_b_report.json write is a named ::error:: and the phase returns 1 listing the failed paths, never printing 'ready to render'. Fault-injection tests in test_authoring_takeover (one package lost, audit lost, all landed).",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260819",
+          "because": "Confirmed real by reading scripts/exchange_phase_b.py:783-799: per-package atomic_write_json failures are caught and only printed as WARN, and phase_b_report.json write failures are silently swallowed by a bare except/pass -- the function still returns 0 either way, so the workflow reads 'ready to render' with lost package writes or no audit trail. This is a bigger blast-radius fail-open than the fingerprint bug (it can lose verified media/punch-up edits AND the record of having lost them) but ranks second because the top-ranked bug beats it on horizon tiebreak; queued for the next session unless picked up sooner."
+        }
+      ]
+    },
+    "33ccbcdc479b": {
+      "verdict": "doing",
+      "date": "20260819",
+      "because": "Accepted as filed: hold the six-slot 4/2 mix, do not shift it off two weeks of thin/noisy data (trending's own retro brief marks n=2-3 at every maturity window as not-enough-to-judge). While investigating this I found the concrete blocker to 'repaired format attribution' the proposal calls for: scripts/format_scoreboard.py's title-to-format fallback bucketed every reddit_story package as the string 'reddit', which is not a registry format id (the real one is reddit_story), so build() raised KeyError on any real reddit_story video. It runs in daily.yml behind '|| exit 0', so it has been silently failing to produce the format-level report this exact strategy finding needs. Fixed in this same change (scripts/format_scoreboard.py, tests/test_format_scoreboard.py) alongside the fingerprint fix. The broader reliability-tracking (attempted/rendered/held/replaced counters by stage) is real work but larger than one session -- leaving that part open for a future pass; posting-cadence data already in doctor/evidence.json channel_performance shows trending trending upward (3, 4, 4 uploads on the last three days) which the next triage should factor in before deciding if more instrumentation is still needed.",
+      "history": []
+    },
+    "ee3bb63e4024": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built type-aware recovery: recovered_media now serves only the bundle-request lane, and new recovered_authored_media returns authored-shot pointers keyed (package_id, shot_index) \u2014 validated with the FULL checkpoint contract plus request_kind and package/shot identity agreement (a mismatch refuses, never guesses). Phase B attaches recovered pointers only onto takeover-authored packages, only where the response was silent, before cover_authored, which pins them with origin chatgpt_authored_recovered so the audit trail names the lane. End-to-end tests prove a checkpoint alone fills the bare shot, identity mismatches never attach, and a response pointer is never overridden. 14 new tests; 1233-test suite green.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260819",
+          "because": "Confirmed real by reading shared/media_checkpoint.py:1345-1385 and scripts/exchange_phase_b.py: recovered_media() correctly rebuilds authored_shot checkpoints into idx.media, but the freshly-authored-package loop (cover_authored) only ever reads shot.pop('media') from the response and never consults idx.media/recovered pointers, while the bundle.requests loop that DOES read idx.media never covers freshly-authored packages (they are not in bundle.requests). A verified authored-shot checkpoint whose response omits shot.media is real work invisibly discarded. Queued -- next in line by rank after the two 'high' severity items above."
+        }
+      ]
+    },
+    "589a78eabb84": {
+      "verdict": "later",
+      "date": "20260819",
+      "because": "Confirmed the two fields exist (shared/exchange_bundle.py:373-421: authoring_requests['trending'] and authoring_request are set from the SAME object at write time, so they cannot disagree at the moment the bundle is produced), and confirmed scripts/exchange_phase_b.py:589-602 still falls back to the singular alias for promotion target. The risk described (a future producer change or manual repair diverging the two) is real but currently latent -- there is no live incident, and target resolution already prefers contract.channels[channel].target_count first, only falling back to the alias when that's absent. This is genuinely a 'ways out' architectural cleanup (version the contract around one map + shared accessor), not urgent against three higher-severity items filed the same day. Revisit if a future finding shows the two fields actually diverging in production.",
+      "history": [],
+      "revisit_after": "20260918"
+    },
+    "5b8318ee7172": {
+      "verdict": "done",
+      "date": "20260821",
+      "because": "Merged in PR #297 (commit 268f49b): judge_package no longer synthesizes candidate title/query from the shot's own phrase/search query for a bare pinned image_url, unknown width/height no longer earns free resolution credit, and an 'unknown' judge verdict now counts as a gap. 990 tests pass (3 new adversarial tests added), registry_acceptance 7/7.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in funnel/media_judge.py:199-207 \u2014 judge_package synthesizes candidate title/query FROM the shot's own phrase/query when a shot only has a pinned image_url, so judge_shot then scores that media against text copied from itself. A completely unrelated URL earns full semantic overlap and an unknown-dimension pass. This defeats the exchange's whole purpose of catching weak media and requesting AI replacements. Building this now: highest-ranked critical/bug, well-scoped, matches rule zero."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260821",
+          "because": "picked up this run"
+        }
+      ],
+      "commit": "268f49b"
+    },
+    "aaeb12de3ebd": {
+      "verdict": "in_progress",
+      "date": "20260824",
+      "because": "The delivery restoration is built and merging: PR #294 fixed the run-completion cascade (cutout circuit breaker), PR #305 fixed what the showrunner blocks (mascot anchoring clamp, geo scene as a real demonstration, churn joints: 48h rotation window, persisted scene_plans, ledger problems/fixes, showrunner_starving_the_slate alarm), PR #306 wires the exemplar/reject library and failure census into production. A proving render of the most-blocked slug is running now; the topic-test readout stays frozen until the channel posts on cadence again.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified against doctor/evidence.json channel_performance.explainer: posted_by_day_14d shows only 1 (08-13), 2 (08-14), 1 (08-20) against a registry target of 4/day -- meaning zero posts on 08-15 through 08-19, and no explainer entry exists in production_runs to localize the stage. This matches CLAUDE.md's own description of explainer as the load-bearing, fail-closed channel, so a silent multi-day delivery collapse there is serious. Accepted: hold interpretation of the topic experiment and build production-outcome instrumentation (attempted/showrunner-held/render-failed/upload-failed/uploaded) for explainer mirroring trending's, before touching the mix. Queued behind today's critical bug fix -- this needs its own session to diagnose root cause properly, not a rushed same-session patch."
+        }
+      ]
+    },
+    "86ad3ba9d045": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: conclude() reloads the canonical register entry, refuses unregistered ids, and enforces readout_ready() (status + day floor + sample floor) on the PERSISTED sample count, raising ReadoutNotReady with the exact readiness reason. Day-zero and zero-sample conclusions are refused in tests; a ripe experiment still concludes; abandon() remains the legitimate early exit.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in shared/experiments.py: conclude() (line 175) never calls readout_ready() (line 150), so any caller holding an experiment dict can mutate status to adopted/reverted/inconclusive with zero elapsed days or zero samples, contradicting the module's own docstring promise that early conclusions are 'structurally impossible'. Currently latent in production -- grep shows only tests/test_retro.py and tests/test_retro_loop.py call conclude() directly; scripts/retro_reply.py only calls register(), scripts/advance_experiments.py only calls advance()/stale()/summary(). Still a real foot-gun for the next caller (e.g. a future retro_reply readout path) and the fix is small and well-scoped: make conclude() reload the canonical experiment and refuse via readout_ready(). Accepted, queued."
+        }
+      ]
+    },
+    "d65eddf69fba": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: shared/fsutil.load_state_json fails CLOSED on corruption (preserves .corrupt sidecar, names the repair) while absence still returns the default; six authoritative posted-log/ledger readers routed through it; merge_posted_log and ci_commit_state.sh no longer clobber on a failed union; rollup_state keeps unreadable originals. Pinned-fail-open test flipped to fail-closed. In this session's PR.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in shared/fsutil.py: load_json() (and the ad hoc loaders in scripts/render_cinematic.py, scripts/build_longform.py) collapse missing-file and corrupt-file into the same empty default, which the module's own header calls dedupe-blind/duplicate-upload risk for posted ledgers. Real architectural gap, but this is a multi-file migration (typed authoritative loader + backup/recovery path + per-ledger risk migration + new corruption tests) that deserves a dedicated session, not a same-run patch alongside today's other fixes. Accepted as long-term direction, queued."
+        }
+      ]
+    },
+    "ab128687aaf7": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: the entity filter matches the required word against normalized whole title tokens with possessive stripping (straight and curly), hyphens as boundaries \u2014 Musk no longer matches Muskox/Muskrat while Musk's/MUSK/Musk-led still match. Table-driven tests in tests/test_media_funnel_prefilter.py.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260821",
+          "because": "Verified in funnel/media_funnel.py:1401 -- required_word not in title_l is a raw substring test, so entity='Elon Musk' keeps candidate titles like 'Muskox herd expands' and 'Muskrat population grows'. Genuine disambiguation bug, but small and low-risk (whole-token comparison instead of substring, a few table-driven test cases). Accepted, queued for a quick pickup -- not built this run to keep this session's one build (the critical media_judge bug) done properly rather than spreading across multiple changes."
+        }
+      ]
+    },
+    "8bb141fe6f49": {
+      "verdict": "done",
+      "date": "20260822",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed: qa.py only flagged unmatched numbers with a decimal point or >=1000, so sourced-looking small integers (counts/ranks/percentages under 1000) shipped unchecked. Fixed in this run: removed the magnitude shortcut so every unmatched non-year numeric token is flagged; verified the generator's numbers are all fact-derived (packager._num traces every spoken figure to a Fact) so no false positives on real packages; added adversarial (12/99/999) + positive (small value + year) regression tests in data_learning/tests/test_pipeline.py. Full suite unaffected (same pre-existing PIL/matplotlib-only failures before and after)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260822",
+          "because": "picked up"
+        }
+      ],
+      "commit": "403778e"
+    },
+    "3445b0aecae4": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: _call_claude requires returncode 0 before accepting JSON; the usage-limit breaker keeps its regex path; any other nonzero exit raises with bounded stderr/stdout and the callers' existing except+_brain_note(False) records a brain failure instead of a success. Mocked tests cover nonzero-with-valid-JSON, limit-text, zero-with-valid-JSON, and that rank_clips health-counts the failure.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed at third_capture/author.py:538-575 -- _call_claude only checks returncode against the usage-limit regex; a nonzero-exit CLI call whose stdout happens to be well-formed JSON is parsed and returned as a successful brain answer, so a crashed/partial run can silently drive ranking/authoring/scene judgment. Real bug, worth fixing: require returncode==0 before accepting JSON (preserving the limit-breaker check on any nonzero exit), with mocked coverage for nonzero+valid-JSON, nonzero+limit-text, and zero+valid-JSON. Queued as the next small_fix -- not built this run, one item per run and the critical explainer QA bug took priority."
+        }
+      ]
+    },
+    "2127c6395c2c": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Verified against a fresh pull of state/analytics_third/latest.json: chaos is by far the largest mature (72h+) series bucket (n=35) with a weak median VPH (~0.02) while fail/wholesome/jumpscare show better median VPH on much smaller samples -- exact numbers drift slightly as analytics refresh but the shape holds. Also confirmed third_capture/author.py folds every missing/invalid series label into chaos via 'series or \"chaos\"', which is exactly the mechanism the finding names. Legitimate strategy direction under the 2026-08-16 managing-editor mandate; the proposal (label unknown separately, audit, cap chaos at baseline, do not force weak fills) does not lower any bar. Queued to build as a registry/doctrine change in a future run -- the audit plus registry_acceptance.py validation deserves its own dedicated session rather than a rushed pass alongside four other rulings.",
+      "history": []
+    },
+    "5171aa14cc8d": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: generate.py consults QA BEFORE writing \u2014 a passing package publishes to out_dir as before, a failing one is quarantined at out_dir/quarantine/<name> with its qa_errors attached, out of reach of any downstream glob. tests/test_generate_quarantine.py pins the write into the passing branch.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260822",
+          "because": "Confirmed at data_learning/generate.py:143-160 -- out_path.write_text() runs unconditionally before the QA-errors branch, and --publish without --strict exits 0 even when packages failed QA, leaving the rejected package sitting in state/trending_packages/<date>/ for the daily renderer to pick up. Confirmed this path is not wired into any workflow today (it appears only in data_learning/README.md's manual examples), so it is a real but currently-manual footgun rather than an active production hole. Queued as the next short_term item: make publish intrinsically strict, or stage the batch and promote only QA-passing packages atomically."
+        }
+      ]
+    },
+    "347e2440278c": {
+      "verdict": "doing",
+      "date": "20260822",
+      "because": "Confirmed the shape -- scripts/run_third.py folds uploaded, rejected, and pending-claim records into one state/third_posted_log.json dict, and readers already have to rediscover which is which via key prefixes/flags. Agreed this is worth doing (append-only typed events -> a derived, schema-checked posted projection), and the long_term horizon is the right one for it: it touches the posted log CLAUDE.md calls sacred append-only dedupe state, so migrating it safely needs its own dedicated session with invariant tests written and green before any real migration, preserving every rejection and pending claim -- not a fast pass alongside four other rulings this run.",
+      "history": []
+    },
+    "e524811347c4": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built and merged in PR #303 (e9a8284): auto-merge.yml no longer dispatches daily.yml at all \u2014 the render is reachable only through Phase B's workflow_run (or a manual trigger touch), and the workflow comments say so at the old dispatch site. Verified on main: the only 'daily' references left in auto-merge.yml are the explanatory comments.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260823",
+          "because": "Confirmed real and critical: auto-merge.yml's 'Trigger daily.yml if the PR added today's packages' step calls gh workflow run daily.yml (a workflow_dispatch event), which daily.yml's Phase B guard does not gate -- that guard only applies to workflow_run events (test_manual_and_dispatch_triggers_are_never_gated_by_phase_b documents dispatch as an intentional human-override escape hatch). Verified against the 2026-08-21 timeline in state/production_runs/20260821/trending.json (3/6 uploaded, matches the finding) and confirmed exchange_phase_a.yml already re-fires unconditionally on every Auto-merge claude PRs completion, so the direct dispatch was pure leftover from before the exchange chain existed. Fixed in this same run: removed the step and the now-unused actions:write permission from auto-merge.yml, added tests/test_split_worker.py::TestAutoMergeNeverDispatchesDailyDirectly to guard against regrowth."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260823",
+          "because": "picked up"
+        }
+      ]
+    },
+    "e752c2bc148f": {
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Real and worth doing but smaller/lower-severity than e524811347c4 which is the same trigger-chain area and is being fixed in this run -- want to see how removing the direct daily.yml dispatch changes Phase A's actual rerun frequency before adding a conclusion/changed-files filter on top of it, to avoid two overlapping fixes in one PR. Verified the observation: exchange_phase_a.yml's workflow_run trigger has no conclusion check and no changed-path check. Revisit within 30 days; if e524811347c4's fix alone doesn't reduce redundant Phase A runs, build this.",
+      "history": [],
+      "revisit_after": "20260922"
+    },
+    "2b0e2fafca9b": {
+      "verdict": "later",
+      "date": "20260823",
+      "because": "Legitimate strategy finding -- analytics collection gated on steps.run.outcome=='success' in daily.yml does leave the snapshot stale on any partial day, and trending has been missing 6/6 for a week per its own evidence. But the specific proposal (best-effort collection after any upload, or an independent scheduled workflow) needs a full session to design and test properly, not a same-day bolt-on, and per house rules the top doing item this run is the critical orchestration bug (e524811347c4) which may itself reduce partial-day frequency. Parking 30 days; revisit with fresh evidence.json numbers once the daily.yml fix has had a few days to change the partial-day rate.",
+      "history": [],
+      "revisit_after": "20260922"
+    },
+    "bc0647fe9257": {
+      "verdict": "done",
+      "date": "20260824",
+      "because": "Built: doctor.py exposes report_level() \u2014 per-finding trimming stays ok, a report whose findings ALL failed intake (or unreadable JSON, which used to traceback) is failed, and the enforced unaddressed-critical refusal turns the day red; doctor.yml gained pipefail (the tee pipe made the captured status always 0 \u2014 the recorded status was fiction) and a final step that fails the run AFTER evidence, persist, and the teaching comment go out. 13 new tests.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260823",
+          "because": "Confirmed: .github/workflows/doctor.yml sets +e around report ingestion, captures steps.ingest.outputs.status, but no later step checks it before the unconditional evidence-regeneration step -- a malformed or wholly-rejected report can commit and stay green. This is a real silent-failure gap in the same family as the ChatGPT-no-show class of bugs this repo has been bitten by before. Queued for a future build session (not this run's top item -- see e524811347c4 above)."
+        }
+      ]
+    },
+    "212a57534cee": {
+      "verdict": "not_doing",
+      "date": "20260823",
+      "because": "Real observation (longform.yml sits outside channel_registry.json and enforces its own disabled state, with tests/test_disabled_channels_stay_off.py hard-coding OFF_BY_RULING separately) but the proposal is a large speculative migration -- extend the registry schema to cover non-registered publishers, generate regression cases from registry data -- with no concrete failure it would have prevented that the existing dual-anchor test (registry + hard-coded workflow list) does not already catch. CLAUDE.md is explicit that curiosity.yml and longform.yml deliberately sit outside registry authority as a documented design choice, not an oversight, and test_disabled_channels_stay_off.py exists precisely to hold both ends together despite that split. Not doing a speculative registry-schema expansion without a concrete gap it closes; revisit if a longform/curiosity policy actually drifts from its test in practice.",
+      "history": []
+    },
+    "03ed6ae9f195": {
+      "verdict": "done",
+      "date": "20260825",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260824",
+          "because": "Confirmed live: no shell: in auto-merge.yml so the default bash -e (no pipefail) let 'unittest | tail -40' return tail's zero. Fixing in this session: pipefail on the step + tests/test_automerge_gate.py executes a failing producer through the exact pipe shape."
+        }
+      ],
+      "commit": "668d03f4edecbc032aa7ac70e83899df6837c365"
+    },
+    "abfb291b5f65": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: unittest discovery collects 0 tests from test_viz_director.py/test_viz_scene.py (free functions, no TestCase). Convert + wire into the preflight next build batch.",
+      "history": []
+    },
+    "808fcf2f9b8e": {
+      "verdict": "doing",
+      "date": "20260824",
+      "because": "Real: expression-tests.yml is not a dependency of the squash merge and its PR paths omit pro_render.py. Wire as a required pre-merge job in a coming batch.",
+      "history": []
+    },
+    "268b809a2bbb": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Right direction (four incompatible test topologies) but it rides on abfb291b5f65 and the runner inventory design; revisit after the orphan modules are wired.",
+      "history": [],
+      "revisit_after": "20260923"
+    },
+    "a703af75ca3d": {
+      "verdict": "later",
+      "date": "20260824",
+      "because": "Bounded and evidence-based, but a creator-mix change is the operator's call under THIRD_INTERNET_PLAYBOOK; surfacing it to the operator rather than building unasked.",
+      "history": [],
+      "revisit_after": "20260923"
+    },
+    "2fc5cbb21cca": {
+      "verdict": "in_progress",
+      "date": "20260825",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260825",
+          "because": "Confirmed live: Actions history shows zero daily.yml runs (workflow_run or otherwise) for 2026-08-23 despite exchange_phase_b run 32643778540 (schedule trigger) completing successfully and writing exchange/bundles/20260823/phase_b_report.json, and a second candidate run 32646462573 also completing successfully. Relying solely on the implicit workflow_run event with no verification that GitHub actually dispatched a downstream run is the root cause of a silent zero-render day. Building now: making a real (non-skipped) Phase B apply explicitly dispatch Daily Shorts and verify the dispatch was accepted, failing loudly if not, while keeping workflow_run as an idempotent fallback."
+        }
+      ]
+    },
+    "47afe3adb739": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Verified in shared/camera_float.py: FLOAT_A was retuned 20->44 on 2026-08-16 (crop cost 44px/8.1% per side, not the 20px/1.9% both that file's docstring and engines/chart_race.py line 827 still claim), while engines/chart_race.py still fits titles/axes to the old margin. The math checks out (crop.x ranges 0..88 against content laid out for a ~43px margin) and matches the cited showrunner clipping verdicts. Real bug, but not this run's build \u2014 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds exactly one item. Queued for the next doctor build; the fix is small (recompute the title/axis safe box from camera_float's actual worst-case inset, or refresh the stale comments) and should not require lowering the float amplitude.",
+      "history": []
+    },
+    "8d1b5d1e1f69": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Verified in scripts/editorial_gate.py: pre_render_verdict() (lines 189-197) combines only data_provenance() (per-segment source check) and premise_ok() (title+hook only) -- there genuinely is no check that segments cohere with the headline or with each other, confirming the gap. This is a real feature (a coherence gate + intake-side rejection), not a quick fix, and is queued rather than built this run since 2fc5cbb21cca (a full zero-render day) is higher severity and this run builds one item. Whoever picks this up next should design it as an addition ON TOP of the existing two checks, never replacing them, and keep the refusal-list rule that a weak/incoherent story goes back through authoring rather than spending renders on repair.",
+      "history": []
+    },
+    "9d5a03472328": {
+      "verdict": "doing",
+      "date": "20260825",
+      "because": "Spot-checked state/analytics/latest.json directly: filtering videos by the cited rivalry/crossover cue words reproduces the finding's named examples (Switch Buried the PS5 at 0.19 VPH, Starlink Outnumbers at 0.13, Lottery Mega Millions vs Powerball at 0.11) and the general pattern of higher velocity on explicit-rivalry titles. Proposal only changes title wording on stories where the data already contains a genuine crossover, keeps the registered mix/cadence untouched, and stays inside the refusal list. Note for whoever builds it: fetched_at in that file is 2026-08-13 -- pull a fresh analytics snapshot before running the actual ten-video test so the control group is current.",
+      "history": []
+    },
+    "9f547a4372a9": {
+      "verdict": "later",
+      "date": "20260825",
+      "because": "Verified: make_graph_race.py's audit.json (lines ~77-82) writes only out/format/engine/series and swallows every write error with a bare except/pass, matching the finding. The direction is right and worth building eventually, but a versioned render-manifest contract spanning three renderer families plus the showrunner/repair loop is a multi-session design effort, not a single build -- it needs a scoped design (element ID scheme, what claims/bounds each renderer can cheaply emit, migration order) before implementation starts. Parking 30 days; revisit starting with graph-race labels only, the narrowest slice named in the proposal, once 2fc5cbb21cca and the higher-severity items in this backlog are clear.",
+      "history": [],
+      "revisit_after": "20260924"
+    },
+    "7414ad03de3e": {
+      "verdict": "done",
+      "date": "20260826",
+      "because": "Merged: PR #317 (commit 4fb5f08). Cache hits now require a sha256 match against the current entry's claim; regression test tests/test_media_cache_attestation.py added.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260826",
+          "because": "Verified in scripts/exchange_phase_b.py fetch_media(): the disk-cache check (lines 138-141) returns any non-empty cache/exchange/<request_id> file before entry.status/drive/sha are inspected, and request_key/authored_shot_request_id (shared/exchange_bundle.py, shared/media_checkpoint.py) omit the date, so a stale file from an earlier day satisfies today's lookup while pin_verified_media still stamps the CURRENT entry's Drive URL/hash onto the package as if it verified. Real correctness bug in the media-trust chain, in scope to fix now."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260826",
+          "because": "picked up this run"
+        }
+      ],
+      "commit": "4fb5f08"
+    },
+    "7f087a105388": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Verified: scripts/exchange_phase_a.py _PACKAGE_MARKERS (script/text/series/shots/subreddit/broll_query/segments) does not include source_url, while config/channel_registry.json revision 5 defines third's active clip format by source_url presence with required_fields [slug, source_url], and a real recipe on disk (state/third_packages/20260707/11_clip.json) carries none of the current markers. is_package() silently drops every genuine Third package. Small, scoped fix.",
+      "history": []
+    },
+    "34e98321286f": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Verified: scripts/exchange_phase_b.py already computes authored['other_channels'] (line ~630) and collects _recovered_refused/_auth_refused (checkpoint recovery), but the final report dict (line ~723) reconstructs 'authored' from only promoted/rejected counts and never persists other_channels or the recovery refusal detail into report/report['checkpoints']. The durable audit record silently omits real structured outcomes it already has in hand. Scoped fix: wire the existing data into the report schema.",
+      "history": []
+    },
+    "363113a0188b": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Confirmed architecturally: every Phase B run overwrites the same exchange/bundles/<date>/phase_b_report.json via atomic_write_json, so a later repair erases the record of an earlier refusal/self-fill/partial promotion, and nothing but git history can recover it. Real long-term gap worth an append-only attempt-history design, but it's a bigger schema change (new artifact shape, retro/alarm consumers) than one session should rush alongside the higher-ranked bug fixes above -- leaving it in the backlog for a dedicated session rather than building it this run.",
+      "history": []
+    },
+    "0aa9d12e55a8": {
+      "verdict": "doing",
+      "date": "20260826",
+      "because": "Evidence is real and checkable (state/analytics_third/latest.json: YT_SEARCH=2977 vs SHORTS=264, named search terms tied to specific low/high performers) and the proposal is appropriately bounded (title-only, no cadence/selection change, matched control arm). Accepting the direction; the actual 24-clip experiment runs over multiple days of production and is an editorial/authoring change to third_capture/author.py + docs/THIRD_INTERNET_PLAYBOOK.md titling guidance, not a same-session code fix.",
+      "history": []
+    },
+    "4754c87f0f7e": {
+      "verdict": "in_progress",
+      "date": "20260827",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260827",
+          "because": "Verified: _collect_spans in shared/video_qa.py never closes a start with no matching end, so a black/freeze/silence defect running through EOF is silently dropped from black_frac/freeze_frac/silence_frac and can pass a genuinely broken render. Fixing this in the same session (rule zero)."
+        }
+      ]
+    },
+    "0bf9780d6272": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Verified: shared/punchup_guard.check() only runs numeric_claims/proper_nouns comparisons on original.script vs rewritten.script; apply() then copies rewritten title/hook through PUNCHUP_FIELDS with zero claim checking on those fields, even though the registry lists title/hook as editable and protects quantitative claims/entities. Real gap in the fact-guard. Accepted; queued behind the higher-ranked bug fix this run.",
+      "history": []
+    },
+    "3de32f29a8e4": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Verified: showrunner_review._temporal_evidence swallows every exception into a dict with effective_fps=None; temporal_hard_fail returns None (no block) and temporal_grade returns a neutral 2 for that unknown state, so a cadence-probe infra failure (ffmpeg/PIL/milestone import) reads as ordinary neutral evidence and the vision judge can still ship. This is exactly the fail-open gap CLAUDE.md's fail-closed rule for the showrunner exists to prevent on a publish run. Accepted; queued behind the bug fix and the punch-up guard fix.",
+      "history": []
+    },
+    "90428377a85b": {
+      "verdict": "doing",
+      "date": "20260827",
+      "because": "Reproduced independently against today's state/analytics_explainer/latest.json (35 usable-for-retention videos vs the report's 34): estimated-runtime<=40s videos median retention ~46.8% vs ~28.2% for longer videos, with comparable median views (83 vs 87.5) -- the gap survives an independent re-check and isn't a views artifact. Registry cadence/count/quality bar are untouched, matched-experiment design is sound, and it respects the retro briefs' 'too young to judge' caution. Accepted as a direction; queued behind the higher-ranked fixes -- building this means designing the experiment-arm tagging in the story/analytics metadata first, which is its own scoped task.",
+      "history": []
+    },
+    "4490f7560fed": {
+      "verdict": "later",
+      "date": "20260827",
+      "because": "Legitimate direction (video_qa, showrunner motion/temporal, and quality_milestones do each own a different shape of the same measurement with different unknown-evidence rules), but migrating to one versioned evidence contract without changing any existing block threshold is a multi-file, parity-tested refactor that should follow, not precede, the two concrete gaps already accepted this run (the video_qa EOF-span bug and the showrunner temporal fail-open gap) -- fixing those first changes what the unified contract needs to represent. Revisit after they ship.",
+      "history": [],
+      "revisit_after": "20260926"
+    },
+    "9a7e1bcece21": {
+      "verdict": "done",
+      "date": "20260828",
+      "because": "",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260828",
+          "because": "Confirmed by reading funnel/media_judge.py: judge_package's outer except returns gaps: [] on any package-loop exception, and neither scripts/exchange_phase_a.py nor shared/exchange_bundle.py inspect report['error'], so an unjudged package silently asks ChatGPT for nothing. This fails the media-judge open, contradicting its own documented intent that unknown must count as a gap. In scope to fix directly: synthesize unknown gaps for every shot on package-level failure."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260828",
+          "because": "picked up"
+        }
+      ],
+      "commit": "7d8ee9e"
+    },
+    "4e9af949a9c9": {
+      "verdict": "doing",
+      "date": "20260828",
+      "because": "Confirmed: funnel/entity_media.py resolve_entity_media returns str|None and enrich_package/verify_shot_urls persist only shot['image_url'], and media_judge.py's documented production fallback for a bare image_url constructs only {'url': ...}. Real information loss between verified enrichment and judging. Worth doing, but it is a multi-file evidence-shape change (entity_media + media_judge fallback + a new end-to-end test) that should follow the smaller package-failure fix (9a7e1bcece21) landing first, to avoid touching judge_package's contract twice in one week.",
+      "history": []
+    },
+    "aab2495524a2": {
+      "verdict": "doing",
+      "date": "20260828",
+      "because": "Confirmed: funnel/topic_video.py _download's cache-hit check is only 'st_size > 0', and the download path accepts anything >= 10KB even after a Range-ignoring server truncation or interrupted write, with no decode/container check. A real correctness gap in cache validity. Doing, but ranked behind the media-judge package-failure fix this run.",
+      "history": []
+    },
+    "4589e347920b": {
+      "verdict": "later",
+      "date": "20260828",
+      "because": "Evidence is a single video (the fish-catch story) compared against only two neighbors, and the finding itself says the sample is too thin to treat as doctrine. The proposed matched 6-vs-6 test over the next twelve comparable stories needs more precise-number explainer stories to accumulate in the analytics window before a test design can even be matched by topic family/duration/slot. Revisit once several more World Bank-style stories with raw-figure titles have posted and aged past 72h; park 30 days.",
+      "history": [],
+      "revisit_after": "20260927"
+    },
+    "8d777dcd5eda": {
+      "verdict": "later",
+      "date": "20260828",
+      "because": "This is the correct long-term direction (a versioned MediaEvidence record), but it generalizes exactly the two shape problems just ruled doing in 9a7e1bcece21 (package-failure gaps) and 4e9af949a9c9 (entity evidence loss). Designing the typed contract before those two land risks touching judge_package's interface twice. Revisit once both are merged and we can see what the adapters actually need; park 30 days.",
+      "history": [],
+      "revisit_after": "20260927"
+    }
+  }
+}

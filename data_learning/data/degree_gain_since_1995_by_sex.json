@@ -1,0 +1,19 @@
+{
+  "key": "degree_gain_since_1995_by_sex",
+  "title": "Change in bachelor's degree attainment, ages 25-34, since 1995 (points)",
+  "unit": "points",
+  "geography": "United States",
+  "time_coverage": "1995-2024",
+  "source": {
+    "name": "U.S. women are outpacing men in college completion",
+    "publisher": "Pew Research Center (analysis of Census Bureau data)",
+    "url": "https://www.pewresearch.org/short-reads/2024/11/18/us-women-are-outpacing-men-in-college-completion-including-in-every-major-racial-and-ethnic-group/",
+    "officiality": "secondary",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published Pew Research/Census figures formatted for narration. Share of 25-34 year-olds with a bachelor's degree rose from 25% to 47% for women (a 22-point gain) and from 25% to 37% for men (a 12-point gain) between 1995 and 2024.",
+  "points": [
+    {"label": "Women", "value": 22},
+    {"label": "Men", "value": 12}
+  ]
+}

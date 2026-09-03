@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-eggs-vs-milk-prices",
+  "title": "Eggs Now Cost More Than Milk. Seriously.",
+  "hook": "Eggs just passed milk in price.",
+  "y_label": "US average retail price (cents)",
+  "duration": 13,
+  "source": "Source: U.S. Bureau of Labor Statistics CPI Average Price Data, Eggs (Grade A, large, per dozen) and Milk (fresh, whole, fortified, per gallon), U.S. city average, 2019-2025; egg price spikes tied to avian-influenza outbreaks in commercial flocks per USDA APHIS reporting. 2025 figure is a partial-year average. Values shown in cents for both units.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Eggs (per dozen)",
+      "color": "#f5c518",
+      "values": [
+        140,
+        146,
+        179,
+        359,
+        285,
+        365,
+        590
+      ]
+    },
+    {
+      "name": "Milk (per gallon)",
+      "color": "#4a90e2",
+      "values": [
+        319,
+        324,
+        354,
+        419,
+        409,
+        405,
+        410
+      ]
+    }
+  ],
+  "hashtags": [
+    "eggprices",
+    "grocery",
+    "birdflu",
+    "inflation",
+    "milk",
+    "costofliving",
+    "economy",
+    "shopping",
+    "food",
+    "avianflu",
+    "cpi",
+    "groceryprices",
+    "consumer",
+    "money"
+  ],
+  "music_vibe": "cinematic"
+}

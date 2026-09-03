@@ -1,0 +1,48 @@
+{
+  "key": "en_ghg_ch4_wa_mt_ce_ar5_trend",
+  "title": "Methane (CH4) emissions from Waste",
+  "unit": "Mt CO2e",
+  "geography": "World",
+  "time_coverage": "1972-2024",
+  "insight_type": "trend",
+  "source": {
+    "name": "Methane (CH4) emissions from Waste",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/EN.GHG.CH4.WA.MT.CE.AR5",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 903.8,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 1058,
+      "period": "1982"
+    },
+    {
+      "label": "1993",
+      "value": 1202,
+      "period": "1993"
+    },
+    {
+      "label": "2003",
+      "value": 1288,
+      "period": "2003"
+    },
+    {
+      "label": "2014",
+      "value": 1551,
+      "period": "2014"
+    },
+    {
+      "label": "2024",
+      "value": 1652,
+      "period": "2024"
+    }
+  ]
+}

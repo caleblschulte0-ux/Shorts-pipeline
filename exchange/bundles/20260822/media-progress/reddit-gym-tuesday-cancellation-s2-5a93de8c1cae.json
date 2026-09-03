@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae",
+  "safe_request_id": "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d308e57ddc0bc525ac39e9b72b65aa5c8339469dcc50721d2c05499307bc7b38",
+  "prompt_used": "An editorial illustration for a short-form video: empty office morning. It accompanies the narration: \"during that exact window\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+    "filename": "20260822__reddit-gym-tuesday-cancellation-s2-5a93de8c1cae.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "17dfda7c708d00e19478e5d385c0178599412fab6442f783d3498cdb555973ba",
+    "bytes": 1194744,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:41.904Z",
+  "error": null,
+  "retryable": false
+}

@@ -26,7 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from shared.fsutil import atomic_write_json, load_json  # noqa: E402
+from shared.fsutil import atomic_write_json, load_state_json  # noqa: E402
 
 LEDGER = ROOT / "state" / "permission_requests.json"
 
@@ -68,7 +68,12 @@ def main() -> int:
     dn.add_argument("id")
     a = ap.parse_args()
 
-    ledger = load_json(LEDGER, {"requests": {}})
+    # Strict: this ledger is what proves an asset may (or may NOT) be used.
+    # A corrupt file read as empty would erase pending/denied records and
+    # the next atomic_write_json would make the erasure permanent — so
+    # corruption refuses (CorruptStateError); a missing file is just a
+    # ledger nobody has drafted into yet.
+    ledger = load_state_json(LEDGER, {"requests": {}}, expect_type=dict)
     reqs = ledger.setdefault("requests", {})
 
     if a.cmd == "draft":

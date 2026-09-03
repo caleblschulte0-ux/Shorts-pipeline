@@ -1,0 +1,21 @@
+{
+  "key": "o_positive_share_by_ethnicity",
+  "title": "Share who are blood type O-positive, by ethnicity (US donor population)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "recent",
+  "source": {
+    "name": "Blood type distribution by ethnicity",
+    "publisher": "American Red Cross",
+    "url": "https://www.redcrossblood.org",
+    "officiality": "official",
+    "access_date": "2026-08-11"
+  },
+  "notes": "Among the US donor population, O-positive prevalence varies by ethnicity: Latin American 53%, African American 47%, Asian 39%, Caucasian 37%. This is why blood drives specifically target diverse donors: rarer, ethnicity-linked antigens are best matched within the same background.",
+  "points": [
+    {"label": "Latin American", "value": 53},
+    {"label": "African American", "value": 47},
+    {"label": "Asian", "value": 39},
+    {"label": "Caucasian", "value": 37}
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-doordash-overtakes-grubhub",
+  "title": "Grubhub Owned Food Delivery. Then DoorDash Buried It.",
+  "hook": "The Delivery King Got Dethroned",
+  "y_label": "US food delivery market share (%)",
+  "duration": 13,
+  "source": "US online food delivery market share by company, as tracked by Bloomberg Second Measure and Edison Trends and reported by Fast Company, Food On Demand and Qz. Grubhub: 33% (2018), 26% (2019), 18% (2020), 15% (2021), 14% (2022), 10% (2023, est.). DoorDash: 18% (2018), 30% (2019), 52% (2020), 53% (2021), 59% (2022), 65% (2023, est.). DoorDash overtook Grubhub for the #1 spot in early 2019 and never looked back; Grubhub was later sold to Just Eat Takeaway and then Wonder Group.",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Grubhub",
+      "color": "#F63440",
+      "icon": "Grubhub",
+      "values": [
+        33,
+        26,
+        18,
+        15,
+        14,
+        10
+      ]
+    },
+    {
+      "name": "DoorDash",
+      "color": "#FF3008",
+      "icon": "DoorDash",
+      "values": [
+        18,
+        30,
+        52,
+        53,
+        59,
+        65
+      ]
+    }
+  ],
+  "hashtags": [
+    "doordash",
+    "grubhub",
+    "fooddelivery",
+    "ubereats",
+    "gigeconomy",
+    "startup",
+    "delivery",
+    "food",
+    "marketshare",
+    "business",
+    "tech",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

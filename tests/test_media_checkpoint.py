@@ -269,11 +269,90 @@ class TestBundleIdentity(_TempBundles):
         changed["requests"][0]["prompt_sha256"] = "different"
         self.assertNotEqual(base, mc.ask_fingerprint(changed))
 
+    def test_a_package_script_rewrite_moves_the_identity(self):
+        """A rerun that rewrites a package's script (a re-author, a manual
+        fix) is a changed ask exactly like a changed prompt — a worker who
+        already claimed the old script must not have that ground moved
+        underneath it silently."""
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "original script",
+                          "shots": [{"shot_index": 0, "phrase": "p",
+                                     "query": "q"}]}]
+        base = mc.ask_fingerprint(b)
+        rewritten = json.loads(json.dumps(b))
+        rewritten["packages"][0]["script"] = "a materially different script"
+        self.assertNotEqual(base, mc.ask_fingerprint(rewritten))
+
+    def test_a_shot_phrase_rewrite_moves_the_identity(self):
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "s",
+                          "shots": [{"shot_index": 0, "phrase": "original",
+                                     "query": "q"}]}]
+        base = mc.ask_fingerprint(b)
+        rewritten = json.loads(json.dumps(b))
+        rewritten["packages"][0]["shots"][0]["phrase"] = "different phrase"
+        self.assertNotEqual(base, mc.ask_fingerprint(rewritten))
+
+    def test_an_authoring_brief_rewrite_moves_the_identity(self):
+        """The takeover work order — `authoring_request` /
+        `authoring_requests` — is as editorially load-bearing as a script.
+        Changing the mix or instructions mid-flight must not read as the
+        same ask."""
+        b = self._bundle("r1")
+        b["authoring_request"] = {"channel": "trending", "write": 6,
+                                  "mix": {"reddit_story": 2, "graph_race": 4}}
+        base = mc.ask_fingerprint(b)
+        changed = json.loads(json.dumps(b))
+        changed["authoring_request"]["mix"] = {"reddit_story": 6}
+        self.assertNotEqual(base, mc.ask_fingerprint(changed))
+
+        b2 = self._bundle("r1")
+        b2["authoring_requests"] = {"explainer": {"write": 1}}
+        base2 = mc.ask_fingerprint(b2)
+        changed2 = json.loads(json.dumps(b2))
+        changed2["authoring_requests"]["explainer"]["write"] = 3
+        self.assertNotEqual(base2, mc.ask_fingerprint(changed2))
+
+    def test_media_health_and_verdict_still_do_NOT_move_it(self):
+        """Only the editorial fields matter — the per-shot media-derived
+        fields Phase A recomputes on every re-judge must stay noise, exactly
+        like the plain cosmetic-rewrite case above."""
+        b = self._bundle("r1")
+        b["packages"] = [{"slug": "spacex-catch", "title": "t",
+                          "script": "s",
+                          "shots": [{"shot_index": 0, "phrase": "p",
+                                     "query": "q", "has_media": False,
+                                     "verdict": "missing"}],
+                          "media_health": {"strong": 0},
+                          "strong_fraction": 0.0, "requested": []}]
+        base = mc.ask_fingerprint(b)
+        rejudged = json.loads(json.dumps(b))
+        rejudged["packages"][0]["shots"][0]["has_media"] = True
+        rejudged["packages"][0]["shots"][0]["verdict"] = "strong"
+        rejudged["packages"][0]["media_health"] = {"strong": 1}
+        rejudged["packages"][0]["strong_fraction"] = 1.0
+        rejudged["packages"][0]["requested"] = ["r1"]
+        self.assertEqual(base, mc.ask_fingerprint(rejudged))
+
     def test_the_sidecar_is_what_readers_get(self):
         b = self._bundle("r1")
         ident = mc.write_bundle_identity(DATE, b)
         self.assertEqual(mc.bundle_identity(DATE), ident)
         self.assertTrue((mc.bundle_dir(DATE) / mc.IDENTITY_FILE).exists())
+
+    def test_chatgpt_takeover_identity_survives_a_late_phase_a_bundle(self):
+        """A late bundle is useful as a work order, but cannot invalidate
+        media made after ChatGPT already claimed the production date."""
+        late = self._bundle("late-request")
+        mc.write_bundle_identity(DATE, late)
+        (mc.bundle_dir(DATE) / "takeover.json").write_text(json.dumps({
+            "owner": "chatgpt",
+            "mode": "takeover",
+            "checkpoint_identity": "takeover-claim-abc123",
+        }))
+        self.assertEqual(mc.bundle_identity(DATE), "takeover-claim-abc123")
 
     def test_old_bundles_without_a_sidecar_still_resolve(self):
         self.write_bundle({"a": 1})
@@ -747,11 +826,28 @@ class TestResponseValidation(_TempBundles):
             "slug": "kangaroo-court",
             "shots": [{"phrase": "a"},
                       {"phrase": "b", "media": {
-                          "request_id": rid, "status": "fulfilled",
+                          "status": "fulfilled",
                           "drive": good_drive(request_id=rid),
                           "image": good_image()}}]}]})
         self.assertEqual(out["rejected"], [])
         self.assertEqual(out["ok"], [rid])
+
+    def test_authored_shot_explicit_wrong_request_id_is_refused(self):
+        rid = mc.authored_shot_request_id("kangaroo-court", 1)
+        mc.write_checkpoint(DATE, mc.build_checkpoint(
+            date=DATE, request_id=rid, bundle_id=self.bid,
+            request_kind="authored_shot", package_id="kangaroo-court",
+            shot_index=1, prompt="anything",
+            drive=good_drive(request_id=rid), image=good_image()))
+        out = self._validate({"authored": [{
+            "slug": "kangaroo-court",
+            "shots": [{}, {"media": {
+                "request_id": "authored-someone-else-s1",
+                "status": "fulfilled",
+                "drive": good_drive(request_id=rid),
+                "image": good_image()}}]}]})
+        self.assertTrue(any("does not match" in p
+                            for p in out["rejected"][0]["problems"]))
 
     def test_authored_media_on_the_wrong_package_is_refused(self):
         rid = mc.authored_shot_request_id("kangaroo-court", 1)

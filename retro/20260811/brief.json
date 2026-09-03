@@ -1,0 +1,1496 @@
+{
+  "schema": "shorts-retro-brief/v1",
+  "date": "20260811",
+  "generated_at": "2026-08-11T23:57:44Z",
+  "problem_classes": {
+    "audience_performance": "real viewers saw it and did not stay",
+    "editorial_quality": "the idea or the writing was weak",
+    "packaging": "title, thumbnail or hook did not earn the click",
+    "media_quality": "the visuals were wrong, generic or repeated",
+    "pipeline_failure": "render, upload or gate failed \u2014 viewers never judged this at all",
+    "insufficient_data": "too young, too few samples, or the metric was not reported"
+  },
+  "how_to_read_this": {
+    "classify_before_you_propose": "Pick a `problem_class` first. A render that failed or an upload that never went public is a pipeline_failure \u2014 NOT evidence that viewers rejected the idea. A null metric is insufficient_data, not a zero.",
+    "compare_like_with_like": "Use `channels.<n>.maturity` \u2014 cohorts at ~24h, ~72h and ~7d, and within a format. A graph_race baseline does not judge a reddit_story unless you argue why it does.",
+    "age_matters": "Every video is compared ONLY against videos of the same age band. `percentile_vs_same_age` is the honest signal; raw `views` is not, because a 2-hour-old short and a 3-week-old short are not comparable.",
+    "sample_size": "Bands listed in `thin_bands` have fewer than 5 samples. Do not build a theory on them \u2014 say the data is thin instead.",
+    "channel_scale": "This channel is small. Single-digit view counts are normal and mostly noise. Prefer explanations that survive that fact over ones that require a 9-view video to mean something."
+  },
+  "posted_today": 0,
+  "continuity": {
+    "my_verdicts_on_your_last_proposals": [],
+    "decision_history": {
+      "total": 0,
+      "adopted": 0,
+      "declined": 0
+    },
+    "open_agenda": [],
+    "experiments": {
+      "total": 0,
+      "by_status": {},
+      "running": [],
+      "concluded": []
+    },
+    "readouts_due": []
+  },
+  "what_you_owe_today": {
+    "count": 2,
+    "must_do": 1,
+    "items": [
+      {
+        "kind": "no_live_experiment",
+        "ref": null,
+        "must": true,
+        "what": "Nothing is being tested right now. Propose an experiment: a specific change, the metric it should move, and the window to judge it over."
+      },
+      {
+        "kind": "coverage",
+        "ref": "trending,curiosity,third",
+        "must": false,
+        "what": "Some age bands are too thin to judge. Worth a `watch` note on what would give us signal."
+      }
+    ],
+    "an_empty_retro_is_only_ok_if": "must_do is 0. Otherwise 'nothing needs changing' means the loop stopped working, not that the channel is finished."
+  },
+  "standing_directive": "You are not a helper that comments on a dashboard \u2014 you are the channel's editor-in-residence, and the job is that it gets better every week without anyone asking. Continue yesterday's work: read out what is due, answer what I asked for, and always have something running. A day with nothing to change is a real outcome ONLY when `what_you_owe_today.must_do` is 0.",
+  "channels": {
+    "trending": {
+      "channel": "trending",
+      "available": true,
+      "fetched_at": "2026-08-08T12:30:02.345982+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 17,
+        "total_views": 34,
+        "median_views": 1.0,
+        "median_vph": 0.0073,
+        "best": "Bitcoin vs. Gold: Which One Actually Wins?",
+        "worst": "China vs U.S.: The Urban Population Crossover"
+      },
+      "last_30d": {
+        "videos": 63,
+        "total_views": 262,
+        "median_views": 2.0,
+        "median_vph": 0.006,
+        "best": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+        "worst": "The Fastest Animal Alive Isn't the Cheetah"
+      },
+      "all_time_summary": {
+        "total_videos": 63,
+        "total_views": 262,
+        "avg_views_per_video": 4.2,
+        "median_views_per_hour": 0.01,
+        "top_5_by_vph": [
+          {
+            "title": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+            "views_per_hour": 0.14,
+            "views": 47,
+            "age_hours": 327.5,
+            "url": "https://youtube.com/shorts/nNDmpmFZOBA"
+          },
+          {
+            "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+            "views_per_hour": 0.14,
+            "views": 3,
+            "age_hours": 22.0,
+            "url": "https://youtube.com/shorts/5g_6YVYSrTQ"
+          },
+          {
+            "title": "15 Pigs Just Took Over A New Jersey Highway",
+            "views_per_hour": 0.11,
+            "views": 21,
+            "age_hours": 188.5,
+            "url": "https://youtube.com/shorts/xsVHNaDqDGQ"
+          },
+          {
+            "title": "India vs China: The Population Race",
+            "views_per_hour": 0.1,
+            "views": 24,
+            "age_hours": 231.5,
+            "url": "https://youtube.com/shorts/vv_kJcu1b6w"
+          },
+          {
+            "title": "Naples' Supervolcano: Quakes Per Week",
+            "views_per_hour": 0.08,
+            "views": 13,
+            "age_hours": 163.0,
+            "url": "https://youtube.com/shorts/P68A1pdbw-k"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "Who's Actually Worth More: Nvidia or Apple?",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 23.5,
+            "url": "https://youtube.com/shorts/kq4GcKmXlmM"
+          },
+          {
+            "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 68.6,
+            "url": "https://youtube.com/shorts/FgKWlmoSE94"
+          },
+          {
+            "title": "My Manager's Bag Checks Became Paid Overtime",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 120.0,
+            "url": "https://youtube.com/shorts/taogwkS1mvQ"
+          },
+          {
+            "title": "Broadband Passed Landlines in 20 Years",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 120.1,
+            "url": "https://youtube.com/shorts/yAoVBbzBw_0"
+          },
+          {
+            "title": "China vs U.S.: The Urban Population Crossover",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 136.7,
+            "url": "https://youtube.com/shorts/8bLQMgdgoKM"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 0
+          },
+          "clip": {
+            "n": 0
+          },
+          "story": {
+            "n": 0
+          },
+          "simple_fallback": {
+            "n": 0
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {},
+          "n_mature_total": 0,
+          "enough_data": false
+        },
+        "pending_scheduled": 1
+      },
+      "band_sample_sizes": {
+        "1-3d": 3,
+        "1-4w": 40,
+        "3-7d": 12,
+        "4w+": 6,
+        "6-24h": 2
+      },
+      "thin_bands": [
+        "6-24h",
+        "1-3d"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 2,
+            "median_vph": 0.0682,
+            "median_views": 1.5,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/2",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "unknown": {
+              "n": 2,
+              "median_vph": 0.0682,
+              "median_views": 1.5,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/2",
+              "enough_to_judge": false
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 1,
+            "median_vph": 0.0,
+            "median_views": 0.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/1",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "unknown": {
+              "n": 1,
+              "median_vph": 0.0,
+              "median_views": 0.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/1",
+              "enough_to_judge": false
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 10,
+            "median_vph": 0.021,
+            "median_views": 3.5,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/10",
+            "enough_to_judge": true
+          },
+          "by_format": {
+            "unknown": {
+              "n": 10,
+              "median_vph": 0.021,
+              "median_views": 3.5,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/10",
+              "enough_to_judge": true
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+          "vph": 0.1435,
+          "fmt": "unknown",
+          "age_hours": 327.5
+        },
+        {
+          "title": "Bitcoin vs. Gold: Which One Actually Wins?",
+          "vph": 0.1364,
+          "fmt": "unknown",
+          "age_hours": 22.0
+        },
+        {
+          "title": "15 Pigs Just Took Over A New Jersey Highway",
+          "vph": 0.1114,
+          "fmt": "unknown",
+          "age_hours": 188.5
+        },
+        {
+          "title": "India vs China: The Population Race",
+          "vph": 0.1037,
+          "fmt": "unknown",
+          "age_hours": 231.5
+        },
+        {
+          "title": "Naples' Supervolcano: Quakes Per Week",
+          "vph": 0.0798,
+          "fmt": "unknown",
+          "age_hours": 163.0
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "The Fastest Animal Alive Isn't the Cheetah",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 717.5
+        },
+        {
+          "title": "The Bug With a Sting So Bad You Just Lie Down",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 711.5
+        },
+        {
+          "title": "A stranger handed me an envelope at my rehearsal dinner proving my fiance was still married",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 505.2
+        },
+        {
+          "title": "An entitled mom cut a hole in my bounce house's safety net with kitchen scissors",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 481.2
+        },
+        {
+          "title": "3 days after my dad's funeral I found a second will, and the name on it wasn't anyone in our family",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 457.2
+        }
+      ]
+    },
+    "explainer": {
+      "channel": "explainer",
+      "available": true,
+      "fetched_at": "2026-08-11T20:50:00.195353+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 0
+      },
+      "last_30d": {
+        "videos": 58,
+        "total_views": 1183,
+        "median_views": 3.5,
+        "median_vph": 0.008,
+        "best": "Probability In Everyday Life",
+        "worst": "Elevator Speed Records"
+      },
+      "all_time_summary": {
+        "total_videos": 157,
+        "total_views": 5482,
+        "avg_views_per_video": 34.9,
+        "median_views_per_hour": 0.01,
+        "top_5_by_vph": [
+          {
+            "title": "Hottest Planets",
+            "views_per_hour": 0.49,
+            "views": 412,
+            "age_hours": 847.8,
+            "url": "https://youtube.com/shorts/OaUs5PvB1vY"
+          },
+          {
+            "title": "Probability In Everyday Life",
+            "views_per_hour": 0.37,
+            "views": 228,
+            "age_hours": 609.1,
+            "url": "https://youtube.com/shorts/QEIPN2r0elo"
+          },
+          {
+            "title": "Why Chocolate Is About to Get Much More Expensive",
+            "views_per_hour": 0.31,
+            "views": 347,
+            "age_hours": 1118.1,
+            "url": "https://youtube.com/shorts/Q2EiEB-iSQY"
+          },
+          {
+            "title": "Driest Places on Earth",
+            "views_per_hour": 0.31,
+            "views": 128,
+            "age_hours": 413.5,
+            "url": "https://youtube.com/shorts/n31FbiwUE8o"
+          },
+          {
+            "title": "The Longest Fossil Record",
+            "views_per_hour": 0.23,
+            "views": 238,
+            "age_hours": 1023.2,
+            "url": "https://youtube.com/shorts/tXumZPp0BFg"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "Malaria Fell For 18 Years \u2014 Then Jumped Back To 64.0 Per 1,000",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 276.4,
+            "url": "https://youtube.com/shorts/YHTgSbzYf7s"
+          },
+          {
+            "title": "Food Travel Distance",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 309.4,
+            "url": "https://youtube.com/shorts/2tnO8wwdaus"
+          },
+          {
+            "title": "Sugar Content Revealed",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 313.4,
+            "url": "https://youtube.com/shorts/a3EamVzqDWU"
+          },
+          {
+            "title": "Gigantic Fruits And Veggies",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 313.6,
+            "url": "https://youtube.com/shorts/NXSlns1NKag"
+          },
+          {
+            "title": "Caffeine Content Revealed",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 319.6,
+            "url": "https://youtube.com/shorts/f17LQJeCLuM"
+          }
+        ],
+        "opening": {
+          "median_early_retention": 0.811,
+          "videos_with_curve": 13,
+          "worst": 0.5,
+          "best": 0.975
+        },
+        "videos_with_retention": 38,
+        "avg_view_percentage": 45.4,
+        "top_5_by_retention": [
+          {
+            "title": "Hottest Planets",
+            "average_view_percentage": 117.2,
+            "average_view_duration_s": 32.0,
+            "views": 412,
+            "url": "https://youtube.com/shorts/OaUs5PvB1vY"
+          },
+          {
+            "title": "Largest Star Ever Found",
+            "average_view_percentage": 110.8,
+            "average_view_duration_s": 19.0,
+            "views": 86,
+            "url": "https://youtube.com/shorts/_Lj6q627YzI"
+          },
+          {
+            "title": "The Largest Living Thing",
+            "average_view_percentage": 89.3,
+            "average_view_duration_s": 35.0,
+            "views": 60,
+            "url": "https://youtube.com/shorts/Sq3ZvVtEaFY"
+          },
+          {
+            "title": "US Wildfires Are Burning 3x More Land Than 30 Years Ago",
+            "average_view_percentage": 83.5,
+            "average_view_duration_s": 48.0,
+            "views": 146,
+            "url": "https://youtube.com/shorts/dGC70CU5hPQ"
+          },
+          {
+            "title": "Most Magnetic Materials Known",
+            "average_view_percentage": 77.2,
+            "average_view_duration_s": 55.0,
+            "views": 55,
+            "url": "https://youtube.com/shorts/eBbQhjY_GdE"
+          }
+        ],
+        "bottom_5_by_retention": [
+          {
+            "title": "The Average US Wedding Now Costs More Than a New Car",
+            "average_view_percentage": 16.4,
+            "average_view_duration_s": 8.0,
+            "views": 50,
+            "url": "https://youtube.com/shorts/yMj8_Fx7IW0"
+          },
+          {
+            "title": "Largest Living Fjords",
+            "average_view_percentage": 17.3,
+            "average_view_duration_s": 7.0,
+            "views": 75,
+            "url": "https://youtube.com/shorts/sxScken0E18"
+          },
+          {
+            "title": "Hollywood Is Losing the Seat War",
+            "average_view_percentage": 21.1,
+            "average_view_duration_s": 15.0,
+            "views": 81,
+            "url": "https://youtube.com/shorts/rwcd9aYU2s8"
+          },
+          {
+            "title": "Driest Places on Earth",
+            "average_view_percentage": 21.6,
+            "average_view_duration_s": 12.0,
+            "views": 128,
+            "url": "https://youtube.com/shorts/n31FbiwUE8o"
+          },
+          {
+            "title": "Glaciers Are Melting Faster Every Decade",
+            "average_view_percentage": 23.0,
+            "average_view_duration_s": 15.0,
+            "views": 225,
+            "url": "https://youtube.com/shorts/OZs56TorTX8"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 0
+          },
+          "clip": {
+            "n": 0
+          },
+          "story": {
+            "n": 0
+          },
+          "simple_fallback": {
+            "n": 0
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {},
+          "n_mature_total": 0,
+          "enough_data": false
+        },
+        "pending_scheduled": 2
+      },
+      "band_sample_sizes": {
+        "1-4w": 54,
+        "4w+": 103
+      },
+      "thin_bands": [],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Hottest Planets",
+          "vph": 0.486,
+          "fmt": "unknown",
+          "age_hours": 847.8
+        },
+        {
+          "title": "Probability In Everyday Life",
+          "vph": 0.3743,
+          "fmt": "unknown",
+          "age_hours": 609.1
+        },
+        {
+          "title": "Why Chocolate Is About to Get Much More Expensive",
+          "vph": 0.3103,
+          "fmt": "unknown",
+          "age_hours": 1118.1
+        },
+        {
+          "title": "Driest Places on Earth",
+          "vph": 0.3096,
+          "fmt": "unknown",
+          "age_hours": 413.5
+        },
+        {
+          "title": "The Longest Fossil Record",
+          "vph": 0.2326,
+          "fmt": "unknown",
+          "age_hours": 1023.2
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "The Deadliest Animal On Earth",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 868.9
+        },
+        {
+          "title": "The Silent War We're Losing: Superbugs",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1176.3
+        },
+        {
+          "title": "Space Is Getting Crowded Fast",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1158.3
+        },
+        {
+          "title": "The US Locks Up More People Than Any Country on Earth",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1154.3
+        },
+        {
+          "title": "The Longest Migration",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1058.2
+        }
+      ]
+    },
+    "curiosity": {
+      "channel": "curiosity",
+      "available": true,
+      "fetched_at": "2026-07-08T18:27:01.431310+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 1,
+        "total_views": 0,
+        "median_views": 0.0,
+        "median_vph": 0.0,
+        "best": "The Deepest Hole on Earth Is Welded Shut",
+        "worst": "The Deepest Hole on Earth Is Welded Shut"
+      },
+      "last_30d": {
+        "videos": 1,
+        "total_views": 0,
+        "median_views": 0.0,
+        "median_vph": 0.0,
+        "best": "The Deepest Hole on Earth Is Welded Shut",
+        "worst": "The Deepest Hole on Earth Is Welded Shut"
+      },
+      "all_time_summary": {
+        "total_videos": 1,
+        "total_views": 0,
+        "avg_views_per_video": 0.0,
+        "median_views_per_hour": 0.0,
+        "top_5_by_vph": [
+          {
+            "title": "The Deepest Hole on Earth Is Welded Shut",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 0.0,
+            "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "The Deepest Hole on Earth Is Welded Shut",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 0.0,
+            "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+          }
+        ]
+      },
+      "band_sample_sizes": {
+        "0-6h": 1
+      },
+      "thin_bands": [
+        "0-6h"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [],
+      "worst_mature": []
+    },
+    "third": {
+      "channel": "third",
+      "available": true,
+      "fetched_at": "2026-08-11T12:44:35.934680+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 26,
+        "total_views": 552,
+        "median_views": 10.0,
+        "median_vph": 0.1075,
+        "best": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+        "worst": "Stableronaldo Gets Sold Out By His Own Teammate And Eliminated"
+      },
+      "last_30d": {
+        "videos": 108,
+        "total_views": 3647,
+        "median_views": 11.0,
+        "median_vph": 0.0316,
+        "best": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+        "worst": "Silky Was Way Too Scared To Check This Message On Stream"
+      },
+      "all_time_summary": {
+        "total_videos": 108,
+        "total_views": 3647,
+        "avg_views_per_video": 33.8,
+        "median_views_per_hour": 0.03,
+        "top_5_by_vph": [
+          {
+            "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+            "views_per_hour": 3.52,
+            "views": 138,
+            "age_hours": 39.2,
+            "url": "https://youtube.com/shorts/fSM5Jbb8cnU"
+          },
+          {
+            "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
+            "views_per_hour": 1.66,
+            "views": 145,
+            "age_hours": 87.2,
+            "url": "https://youtube.com/shorts/1M5rZcgoGv0"
+          },
+          {
+            "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous At All",
+            "views_per_hour": 1.11,
+            "views": 582,
+            "age_hours": 522.2,
+            "url": "https://youtube.com/shorts/oMDk3tBN9ko"
+          },
+          {
+            "title": "Caseoh Gets Chills Seeing Who's Still Standing There \u2620\ufe0f",
+            "views_per_hour": 1.11,
+            "views": 22,
+            "age_hours": 19.7,
+            "url": "https://youtube.com/shorts/KrDMtk8yCSQ"
+          },
+          {
+            "title": "Plaqueboymax Can't Stop Saying He Loves This Five Gifted",
+            "views_per_hour": 0.69,
+            "views": 208,
+            "age_hours": 303.2,
+            "url": "https://youtube.com/shorts/Y2lLlPN6S0k"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "Jynxzi Can't Believe His Dad Actually Sent Him This",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 16.7,
+            "url": "https://youtube.com/shorts/ovJJ9ftvf0o"
+          },
+          {
+            "title": "Lacy Whole Body Went Numb... Except One Place",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 40.7,
+            "url": "https://youtube.com/shorts/3x2bpPcvkJw"
+          },
+          {
+            "title": "Kaicenat: Kai Cenat Can't Believe It After Speed Dies",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 43.7,
+            "url": "https://youtube.com/shorts/aFjNIrQJew8"
+          },
+          {
+            "title": "Plaqueboymax Gets Caught Lookin' And It's Instant Chaos",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 63.2,
+            "url": "https://youtube.com/shorts/1gtzLasz5Hs"
+          },
+          {
+            "title": "Jasontheween Isn't Sure If This Throw Even Counted",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 112.7,
+            "url": "https://youtube.com/shorts/g3NQR7-IKzY"
+          }
+        ],
+        "opening": {
+          "median_early_retention": 0.808,
+          "videos_with_curve": 14,
+          "worst": 0.702,
+          "best": 0.904
+        },
+        "videos_with_retention": 19,
+        "avg_view_percentage": 71.1,
+        "top_5_by_retention": [
+          {
+            "title": "Silky Instantly Claps Back After Ron Tries To Clown Her",
+            "average_view_percentage": 133.1,
+            "average_view_duration_s": 7.0,
+            "views": 92,
+            "url": "https://youtube.com/shorts/KheBsuCQzO8"
+          },
+          {
+            "title": "Agent00 Makes 2 Insane Catches",
+            "average_view_percentage": 95.7,
+            "average_view_duration_s": 16.0,
+            "views": 55,
+            "url": "https://youtube.com/shorts/Pj6xiBNvuRY"
+          },
+          {
+            "title": "Plaqueboymax Can't Stop Saying He Loves This Five Gifted",
+            "average_view_percentage": 93.7,
+            "average_view_duration_s": 11.0,
+            "views": 208,
+            "url": "https://youtube.com/shorts/Y2lLlPN6S0k"
+          },
+          {
+            "title": "Jynxzi Takes Out Queasy In The Fortnite Pro-Am",
+            "average_view_percentage": 90.9,
+            "average_view_duration_s": 20.0,
+            "views": 82,
+            "url": "https://youtube.com/shorts/eQmO2q6_vtE"
+          },
+          {
+            "title": "Plaqueboymax Admits His Mistakes On Stream",
+            "average_view_percentage": 82.2,
+            "average_view_duration_s": 13.0,
+            "views": 52,
+            "url": "https://youtube.com/shorts/3gfcbVeXreo"
+          }
+        ],
+        "bottom_5_by_retention": [
+          {
+            "title": "Plaqueboymax Crashes Out Mid-Stream",
+            "average_view_percentage": 37.2,
+            "average_view_duration_s": 13.0,
+            "views": 59,
+            "url": "https://youtube.com/shorts/Pi9D_SF16b4"
+          },
+          {
+            "title": "Plaqueboymax Turns All the Way Up Screaming Yeah",
+            "average_view_percentage": 45.2,
+            "average_view_duration_s": 14.0,
+            "views": 127,
+            "url": "https://youtube.com/shorts/beZW6FTWY2c"
+          },
+          {
+            "title": "Jasontheween Steals A Car On Stream",
+            "average_view_percentage": 50.5,
+            "average_view_duration_s": 15.0,
+            "views": 67,
+            "url": "https://youtube.com/shorts/bCJ2y_MWT2M"
+          },
+          {
+            "title": "Rayasianboy Meets DJ Khaled And Says \"God Did\"",
+            "average_view_percentage": 51.3,
+            "average_view_duration_s": 13.0,
+            "views": 62,
+            "url": "https://youtube.com/shorts/FIZyxruJquc"
+          },
+          {
+            "title": "Jasontheween Watches Chaos Erupt In Raes Class",
+            "average_view_percentage": 59.3,
+            "average_view_duration_s": 14.0,
+            "views": 142,
+            "url": "https://youtube.com/shorts/Kj31RLt4Dx0"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 7,
+            "n_mature_24h": 7,
+            "median_vph": 0.01,
+            "avg_views": 10.6,
+            "enough_data": false
+          },
+          "clip": {
+            "n": 51,
+            "n_mature_24h": 49,
+            "median_vph": 0.03,
+            "avg_views": 22.9,
+            "enough_data": true
+          },
+          "story": {
+            "n": 2,
+            "n_mature_24h": 2,
+            "median_vph": 0.13,
+            "avg_views": 17.0,
+            "enough_data": false
+          },
+          "simple_fallback": {
+            "n": 6,
+            "n_mature_24h": 5,
+            "median_vph": 0.03,
+            "avg_views": 11.8,
+            "enough_data": false
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {
+            "chronological": {
+              "n_mature": 1,
+              "median_vph": 0.13,
+              "median_duration": null,
+              "avg_retention": null
+            },
+            "escalation": {
+              "n_mature": 1,
+              "median_vph": 0.01,
+              "median_duration": null,
+              "avg_retention": null
+            }
+          },
+          "n_mature_total": 2,
+          "enough_data": false
+        },
+        "pending_scheduled": 5
+      },
+      "band_sample_sizes": {
+        "1-3d": 8,
+        "1-4w": 80,
+        "3-7d": 15,
+        "4w+": 2,
+        "6-24h": 3
+      },
+      "thin_bands": [
+        "6-24h",
+        "4w+"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "argument": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chaos": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chat-betrayal": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "clip": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "drama": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "edit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "fail": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "jumpscare": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "rage": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "wholesome": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "win": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 4,
+            "median_vph": 0.0724,
+            "median_views": 4.5,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/4",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "argument": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chaos": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chat-betrayal": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "clip": {
+              "n": 4,
+              "median_vph": 0.0724,
+              "median_views": 4.5,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/4",
+              "enough_to_judge": false
+            },
+            "drama": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "edit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "fail": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "jumpscare": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "rage": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "wholesome": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "win": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 6,
+            "median_vph": 0.075,
+            "median_views": 12.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/6",
+            "enough_to_judge": true
+          },
+          "by_format": {
+            "argument": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chaos": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "chat-betrayal": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "clip": {
+              "n": 6,
+              "median_vph": 0.075,
+              "median_views": 12.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/6",
+              "enough_to_judge": true
+            },
+            "drama": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "edit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "fail": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "jumpscare": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "rage": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "wholesome": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "win": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Rayasianboy Challenges Madi To A Kung Fu Pose Off",
+          "vph": 3.5204,
+          "fmt": "clip",
+          "age_hours": 39.2
+        },
+        {
+          "title": "Rosii Falls And Gets Knocked Out On Cinna Stream",
+          "vph": 1.6628,
+          "fmt": "clip",
+          "age_hours": 87.2
+        },
+        {
+          "title": "Kaicenat: Kai Cenat Meets A Fan Named Caternado And She's Not Nervous At All",
+          "vph": 1.1145,
+          "fmt": "wholesome",
+          "age_hours": 522.2
+        },
+        {
+          "title": "Plaqueboymax Can't Stop Saying He Loves This Five Gifted",
+          "vph": 0.686,
+          "fmt": "clip",
+          "age_hours": 303.2
+        },
+        {
+          "title": "Lacy Falls In The Wheelchair And Coach Isn't Buying The Excuse",
+          "vph": 0.5803,
+          "fmt": "fail",
+          "age_hours": 499.7
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "Silky Was Way Too Scared To Check This Message On Stream",
+          "vph": 0.0,
+          "fmt": "chaos",
+          "age_hours": 498.2
+        },
+        {
+          "title": "Rayasianboy Hypes Up The Whole Hallway Before This Hit",
+          "vph": 0.0,
+          "fmt": "edit",
+          "age_hours": 475.7
+        },
+        {
+          "title": "Sodapoppin Sub Shoutout Takes A Wild Turn At The End \ud83d\ude33",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 472.7
+        },
+        {
+          "title": "Lirik Sends His Teammate Into A Tornado And Instant Karma Hits Back",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 468.2
+        },
+        {
+          "title": "Zackrawrr Gets Caught Red-Handed Over This Necklace",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 466.7
+        }
+      ]
+    }
+  },
+  "pipeline_health": {
+    "consecutive_failures": "0",
+    "exchange": {
+      "media": {
+        "fulfilled": 15,
+        "self_filled": 0,
+        "unfilled": 0,
+        "refused": 0
+      },
+      "punchup": {
+        "applied": 0,
+        "kept": 4,
+        "rejected": 2,
+        "absent": 0
+      },
+      "done_marker": true,
+      "authored": {
+        "promoted": 0,
+        "rejected": 0
+      }
+    },
+    "slots": {
+      "target": 6,
+      "shipped": 0,
+      "held": 6,
+      "backfilled": 4,
+      "short": 6,
+      "held_reasons": [
+        "showrunner_block: showrunner BLOCK: The 2023 overtake and the 500K finish land hard, but the first four seconds are two ",
+        "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 4.5 < 11.0 (phase-1 floor) \u2014 low-fps sou",
+        "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.9 < 11.0 (phase-1 floor) \u2014 low-fps sou",
+        "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 8.7 < 11.0 (phase-1 floor) \u2014 low-fps sou",
+        "showrunner_block: showrunner BLOCK: Solid topical shots for the first half, but the last ~11s freezes on one repeated cl",
+        "showrunner_block: showrunner BLOCK: The story's climax is served by one dark wallet still frozen for the last ten second"
+      ]
+    },
+    "showrunner": {
+      "recent": 40,
+      "blocks": 0,
+      "avg_score": 43.0
+    },
+    "failure_census": {
+      "n_verdicts": 20,
+      "classes": {
+        "decorative_mascot": {
+          "count": 9,
+          "stories": {
+            "population-giants": 3,
+            "world-power-mix": 5,
+            "carbon-climb": 1
+          },
+          "timestamps": [
+            "2026-07-25T02:58:26Z",
+            "2026-07-25T02:58:26Z",
+            "2026-07-25T03:20:57Z",
+            "2026-07-25T03:20:57Z",
+            "2026-07-25T03:20:57Z",
+            "2026-07-25T04:06:22Z",
+            "2026-07-25T04:06:22Z",
+            "2026-07-25T04:06:22Z",
+            "2026-07-25T04:47:01Z"
+          ],
+          "examples": [
+            "decorative_mascot: Data perches on the leading bar and slides right with it for the entire runtime (hook@0.3 through payoff@-0.4) \u2014 pose wobbles but there is no setup->action->payoff bit tied to any n",
+            "decorative_mascot: Data is perched on the leading bar's tip in every frame from hook@0.3 through payoff@-0.4 \u2014 arms/legs jitter but there is no setup\u2192action\u2192payoff bit tied to 34% coal or the 59/41 fl",
+            "decorative_mascot: Data holds the identical arms-out standing pose from hook@0.3 through payoff@-0.4, only translated along the bar tip \u2014 no setup/action/payoff bit, and at hook@0.8 he sits on top of "
+          ],
+          "recurred_after_fix": true
+        },
+        "empty_void": {
+          "count": 3,
+          "stories": {
+            "population-giants": 2,
+            "world-power-mix": 1
+          },
+          "timestamps": [
+            "2026-07-25T03:20:57Z",
+            "2026-07-25T04:06:22Z",
+            "2026-07-25T04:27:25Z"
+          ],
+          "examples": [
+            "empty_void: At seg2:start and seg2:mid the top ~60% of the card is featureless near-black with a barely-visible grey column and one small purple block at the bottom; the wide empty band under the card",
+            "empty_void: seg2:start\u2013seg2:end put the whole chart in a narrow center column (~a quarter of frame width) with the entire right and upper-right of the card empty, plus the permanent unused bands above",
+            "empty_void: seg2:start through seg2:end holds ~5s where two short capsules occupy a narrow middle band \u2014 the whole area under the subtitle and the entire lower third below 'Fossil fuels / Clean power'"
+          ],
+          "recurred_after_fix": true
+        }
+      },
+      "weak_dims": {
+        "hook": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "data_demo": {
+          "median": 3,
+          "min": 2,
+          "max": 3
+        },
+        "mascot": {
+          "median": 2,
+          "min": 1,
+          "max": 3
+        },
+        "craft": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "pace": {
+          "median": 1,
+          "min": 1,
+          "max": 2
+        },
+        "payoff": {
+          "median": 1,
+          "min": 1,
+          "max": 1
+        },
+        "temporal_craft": {
+          "median": 2,
+          "min": 1,
+          "max": 2
+        }
+      },
+      "scores": [
+        39,
+        39,
+        48,
+        44,
+        48,
+        48,
+        52,
+        52,
+        53,
+        44,
+        48,
+        57,
+        48,
+        56,
+        61,
+        61,
+        53,
+        52,
+        48,
+        53
+      ]
+    }
+  },
+  "levity": {
+    "eligible_scripts": 19,
+    "with_levity": 13,
+    "pct": 68.4,
+    "kept_straight_by_the_gate": 1,
+    "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
+  },
+  "repo": {
+    "head": "839c8c6",
+    "commits_since": "2026-08-10",
+    "commit_count": 50,
+    "commits": [
+      "839c8c6 explainer: update posted log + analytics [skip ci]",
+      "e8f659a explainer: update posted log + analytics [skip ci]",
+      "c3c2f3f the hook was narrated over somebody else's chart (#262)",
+      "91a9faf the bubble scene was 8.7% ink in a frame it never used (#261)",
+      "d56369d the headline really was clipped: fit titles by measurement, once (#260)",
+      "7bbbb81 the motion floor was eating both channels: one camera float, calibrated (#259)",
+      "8a4092e reddit panels froze the moment their Ken Burns hit its cap (#258)",
+      "24ccdb2 explainer: update posted log + analytics [skip ci]",
+      "864c43e third: analytics [skip ci]",
+      "9fbeb43 third: update posted log + analytics [skip ci]",
+      "bf58a9b third: checkpoint posted log (claim upload slot) [skip ci]",
+      "0852a7b daily: 2026-08-11 report + state [skip ci]",
+      "722c200 exchange: phase B applied for 20260811 [skip ci]",
+      "86c39e0 exchange: finalizer DONE 20260811",
+      "3a3d7b6 exchange: finalizer response 20260811 [skip ci]",
+      "1a55888 third: checkpoint posted log (claim upload slot) [skip ci]",
+      "7a8e69f third: checkpoint posted log (claim upload slot) [skip ci]",
+      "a463e07 exchange: checkpoint media reddit-wrong-store-coupon-s7-a59fa74186d6 [skip ci]",
+      "03e394f exchange: checkpoint media reddit-wrong-store-coupon-s6-6de19989e98b [skip ci]",
+      "de3909e exchange: checkpoint media reddit-wrong-store-coupon-s5-55116d03995d [skip ci]",
+      "e0ec444 exchange: checkpoint media reddit-wrong-store-coupon-s4-8bde1ab28dd0 [skip ci]",
+      "2542e3e exchange: checkpoint media reddit-wrong-store-coupon-s3-4fafcf6fe3e4 [skip ci]",
+      "3a5f125 exchange: checkpoint media reddit-wrong-store-coupon-s2-c80f3165b0fa [skip ci]",
+      "05fcced exchange: checkpoint media reddit-wrong-store-coupon-s1-6cdae6d9e2b9 [skip ci]",
+      "9690681 exchange: checkpoint media reddit-wrong-store-coupon-s0-06039ea8da2a [skip ci]",
+      "2bc859f exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s7-8c0cbd5056aa [skip ci]",
+      "fc58385 exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s6-52f166e8d8d8 [skip ci]",
+      "35d7c99 exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s5-f200aa857a64 [skip ci]",
+      "f5ed00a exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s4-eb37e4929944 [skip ci]",
+      "e090900 exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s3-41f91586236c [skip ci]",
+      "07ded2d exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s2-bbfc47140df5 [skip ci]",
+      "cdad6c2 exchange: checkpoint media reddit-hoa-garden-gnome-bylaws-s0-7ecb84ea5ee3 [skip ci]",
+      "c381ee5 exchange: claim media reddit-wrong-store-coupon-s7-a59fa74186d6 [skip ci]",
+      "a487ef3 exchange: claim media reddit-wrong-store-coupon-s6-6de19989e98b [skip ci]",
+      "8b39f3f exchange: claim media reddit-wrong-store-coupon-s5-55116d03995d [skip ci]",
+      "9cc62a3 exchange: claim media reddit-wrong-store-coupon-s4-8bde1ab28dd0 [skip ci]",
+      "486d3b5 exchange: claim media reddit-wrong-store-coupon-s3-4fafcf6fe3e4 [skip ci]",
+      "4fc4c33 exchange: claim media reddit-wrong-store-coupon-s2-c80f3165b0fa [skip ci]",
+      "618be02 exchange: claim media reddit-wrong-store-coupon-s1-6cdae6d9e2b9 [skip ci]",
+      "c3e4c36 exchange: claim media reddit-wrong-store-coupon-s0-06039ea8da2a [skip ci]"
+    ],
+    "test_files": [
+      "test_authoring_takeover.py",
+      "test_backfill.py",
+      "test_bubbles_use_the_frame.py",
+      "test_camera_float.py",
+      "test_capabilities.py",
+      "test_captions.py",
+      "test_channel_mascot_separation.py",
+      "test_channel_registry.py",
+      "test_chart_race.py",
+      "test_checkpoint_recovery.py",
+      "test_daily_alarm.py",
+      "test_disabled_channels_stay_off.py",
+      "test_doctor.py",
+      "test_engine_registry_honesty.py",
+      "test_exchange.py",
+      "test_fit_title.py",
+      "test_fsutil_writes.py",
+      "test_gap_coverage.py",
+      "test_levity.py",
+      "test_llm_falls_through.py",
+      "test_media_checkpoint.py",
+      "test_media_funnel_cache.py",
+      "test_multichannel_takeover.py",
+      "test_no_second_source_of_truth.py",
+      "test_package_schema.py",
+      "test_placement_gate.py",
+      "test_production_outcome.py",
+      "test_publish_slots.py",
+      "test_render_motion_floor.py",
+      "test_repair_targets_the_failure.py",
+      "test_repo_layout.py",
+      "test_research_intake.py",
+      "test_retro.py",
+      "test_retro_loop.py",
+      "test_retro_workflow.py",
+      "test_showrunner_gate.py",
+      "test_split_worker.py",
+      "test_still_panels_never_freeze.py",
+      "test_the_hook_gets_its_own_chart.py",
+      "test_upload_metadata.py",
+      "test_uploaders.py",
+      "test_vision_layout.py"
+    ],
+    "open_ticket_docs": [
+      "MEDIA_ACQUISITION.md",
+      "ENGINE_REGISTRY.md"
+    ]
+  },
+  "channel_contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "channels": {
+      "explainer": {
+        "target_count": 4,
+        "target_mix": {
+          "data_story": 4
+        },
+        "retired": []
+      },
+      "third": {
+        "target_count": 6,
+        "target_mix": {
+          "clip": 6
+        },
+        "retired": []
+      },
+      "trending": {
+        "target_count": 6,
+        "target_mix": {
+          "graph_race": 4,
+          "reddit_story": 2
+        },
+        "retired": [
+          "text_card"
+        ]
+      }
+    },
+    "note": "Proposals are judged against THIS ruling. A change to the mix is a change to what the numbers mean \u2014 compare revisions before comparing performance."
+  },
+  "your_job": "retro/README.md"
+}

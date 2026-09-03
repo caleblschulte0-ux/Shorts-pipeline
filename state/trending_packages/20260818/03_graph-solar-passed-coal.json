@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-solar-passed-coal",
+  "title": "Solar Power Just Passed Coal In America",
+  "hook": "Solar just out-built coal.",
+  "y_label": "Installed generating capacity (gigawatts)",
+  "duration": 13,
+  "source": "U.S. cumulative installed capacity, gigawatts. Solar (utility-scale): 76 GW (2019) and 141 GW (2022), 177 GW (2023), 236 GW (2024) -- SEIA/Wood Mackenzie 'Solar Market Insight' Year-in-Review reports; 2020 and 2026 figures are straight-line estimates between confirmed SEIA annual totals, not independently reported. Coal (net summer capacity): 223 GW (2020) and 178.4 GW (2023) -- EIA 'Today in Energy'; 163.4 GW (early 2026) -- EIA data as reported by Energy Central, the point at which cumulative solar capacity overtook coal capacity for the first time; 2019 and 2022 figures are straight-line estimates between confirmed EIA totals.",
+  "years": [
+    2019,
+    2020,
+    2022,
+    2023,
+    2024,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Solar",
+      "color": "#ffd23f",
+      "values": [
+        76,
+        95,
+        141,
+        177,
+        236,
+        290
+      ]
+    },
+    {
+      "name": "Coal",
+      "color": "#4a4a4a",
+      "values": [
+        229,
+        223,
+        206,
+        178,
+        165,
+        163
+      ]
+    }
+  ],
+  "hashtags": [
+    "solarenergy",
+    "coal",
+    "energy",
+    "renewableenergy",
+    "climate",
+    "cleanenergy",
+    "electricity",
+    "powergrid",
+    "sustainability",
+    "energytransition",
+    "science",
+    "usa"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

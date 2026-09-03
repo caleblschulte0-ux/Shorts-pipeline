@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s1-af7b6447241e",
+  "safe_request_id": "reddit-mistaken-employee-raise-s1-af7b6447241e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fc591a80ce7bac13a37281691405f7caf2ced5d08a03365ca327673b72bc7167",
+  "prompt_used": "An editorial illustration for a short-form video: paint cans shelf. It accompanies the narration: \"shoving paint cans into my hands\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1PTj8iCnUD3PwXQXA8-Or6wgZXEj-1aQs",
+    "filename": "20260810__reddit-mistaken-employee-raise-s1-af7b6447241e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1PTj8iCnUD3PwXQXA8-Or6wgZXEj-1aQs",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f15b654ab5cac85cec41486c254dc7ed2ffcd32438780660ef1e71bc6c5ad74d",
+    "bytes": 2526117,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}

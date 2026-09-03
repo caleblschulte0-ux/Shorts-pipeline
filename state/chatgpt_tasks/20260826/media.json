@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-08-27T23:47:15+00:00",
+ "date": "20260826",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260826/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-airport-bag-sizer-s0-1abd378ed2ea.json",
+  "reddit-airport-bag-sizer-s1-40d18cc032be.json",
+  "reddit-airport-bag-sizer-s2-1a942d1fbebf.json",
+  "reddit-airport-bag-sizer-s3-1f315449a073.json",
+  "reddit-airport-bag-sizer-s4-c93f23e626db.json",
+  "reddit-airport-bag-sizer-s5-d9a89a0b72cd.json",
+  "reddit-airport-bag-sizer-s6-3b2e2fbe03ef.json",
+  "reddit-airport-bag-sizer-s7-5596b2333541.json",
+  "reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6.json",
+  "reddit-hoa-wheelchair-ramp-s1-dc71ee610336.json",
+  "reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd.json",
+  "reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8.json",
+  "reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6.json",
+  "reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a.json",
+  "reddit-hoa-wheelchair-ramp-s6-38f6d7100c74.json",
+  "reddit-hoa-wheelchair-ramp-s7-19c385817b61.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}

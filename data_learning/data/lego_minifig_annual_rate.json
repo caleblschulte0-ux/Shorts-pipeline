@@ -1,0 +1,19 @@
+{
+  "key": "lego_minifig_annual_rate",
+  "title": "Minifigures made per year vs babies born per year (millions)",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "recent year",
+  "source": {
+    "name": "LEGO Group annual production estimates vs UN World Population Prospects (global live births)",
+    "publisher": "The LEGO Group / United Nations",
+    "url": "https://www.lego.com",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures.",
+  "points": [
+    {"label": "New Minifigures Made (per year)", "value": 400},
+    {"label": "Babies Born Worldwide (per year)", "value": 134}
+  ]
+}

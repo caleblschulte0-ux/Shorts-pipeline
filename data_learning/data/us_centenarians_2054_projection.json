@@ -1,0 +1,19 @@
+{
+  "key": "us_centenarians_2054_projection",
+  "title": "Americans aged 100+, projected",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024-2054 (projected)",
+  "source": {
+    "name": "U.S. Census Bureau population projections, centenarian population",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "2024 is the current Census Bureau estimate; 2054 is the Census Bureau's own 30-year-out projection, widely reported by Pew Research and CNBC in 2024/2025 coverage.",
+  "points": [
+    {"label": "2024", "value": 101000, "period": "2024"},
+    {"label": "2054 (projected)", "value": 422000, "period": "2054"}
+  ]
+}

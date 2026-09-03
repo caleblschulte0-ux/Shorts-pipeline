@@ -8,7 +8,7 @@ Two jobs, deliberately separated:
     the change.
   * **The propagation.** Everything else changes ONLY the registry — never a
     line of code — and asserts that Phase A, the authoring shortfall, the
-    reserve bank, validation, promotion and the takeover all move with it.
+    package validation, promotion and the takeover all move with it.
     If any of these fails, a second source of truth has grown back.
 
     python -m unittest tests.test_channel_registry -v
@@ -28,10 +28,10 @@ sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 from shared import authoring_brief as brief          # noqa: E402
 from shared import channel_registry as reg           # noqa: E402
-from shared import package_buffer as buf             # noqa: E402
+from shared import package_schema as buf             # noqa: E402
 from tests.registry_fixture import (broken_registry,  # noqa: E402
                                     build, registry)
-from tests.test_package_buffer import (               # noqa: E402
+from tests.test_package_schema import (               # noqa: E402
     graph_pkg, reddit_pkg, text_card_pkg)
 
 
@@ -56,13 +56,37 @@ class TestTheLiveRuling(unittest.TestCase):
         self.assertNotIn("text_card", reg.active_formats("trending"))
 
     def test_every_channel_is_accounted_for(self):
+        """Only ENABLED channels resolve. Curiosity was disabled 2026-08-05
+        (long-form is deliberately not publishing), and disabling it is the
+        whole mechanism: an enabled channel that nobody expects to post
+        makes the alarm cry `no_posts_curiosity` every night, which is how
+        a real alarm gets ignored."""
         self.assertEqual(reg.channel_ids(),
-                         ["curiosity", "explainer", "third", "trending"])
+                         ["explainer", "third", "trending"])
+        self.assertNotIn("curiosity", reg.channel_ids())
 
-    def test_third_asks_nothing_of_chatgpt(self):
-        """Its package is a capture recipe for a clip that does not exist
-        until the run happens — there is nothing to hand over in advance."""
-        self.assertEqual(reg.roles("third"), [])
+    def test_a_disabled_channel_can_be_switched_back_on(self):
+        """Disabled is a pause, not a deletion — the config must survive so
+        flipping `enabled` is the only step needed to resume."""
+        import json
+        from pathlib import Path
+        raw = json.loads((Path(reg.__file__).resolve().parent.parent
+                          / "config" / "channel_registry.json").read_text())
+        cur = raw["channels"].get("curiosity")
+        self.assertIsNotNone(cur, "curiosity's config was deleted, not paused")
+        self.assertFalse(cur.get("enabled"))
+        self.assertTrue(cur.get("formats"), "its formats must survive the pause")
+
+    def test_every_channel_has_a_chatgpt_production_supervisor(self):
+        """A Claude-out takeover owns outcomes, including specialized jobs."""
+        for channel in reg.channel_ids():
+            self.assertIn("production_supervisor", reg.roles(channel),
+                          channel)
+
+    def test_third_is_supervised_but_not_preauthored(self):
+        """Its real clip is captured at run time; ChatGPT monitors that job."""
+        self.assertEqual(reg.roles("third"), ["production_supervisor"])
+        self.assertNotIn("takeover_authoring", reg.roles("third"))
 
     def test_only_reddit_stories_want_chatgpt_images(self):
         self.assertTrue(reg.media_requirements("trending", "reddit_story")
@@ -96,12 +120,10 @@ class TestArbitraryMixPropagates(unittest.TestCase):
             self.assertEqual(brief.missing_mix(have),
                              {"graph_race": 0, "reddit_story": 4})
 
-    def test_the_reserve_bank_follows_the_same_mix(self):
+    def test_the_package_validator_follows_the_same_mix(self):
         with registry(self.ARBITRARY):
             self.assertEqual(buf.target_mix(), self.ARBITRARY)
             self.assertEqual(set(buf.formats()), set(self.ARBITRARY))
-            self.assertEqual(buf.low_water()["reddit_story"],
-                             5 * buf.LOW_WATER_DAYS)
 
     def test_phase_a_bundles_the_new_plan(self):
         with registry(self.ARBITRARY):

@@ -1,0 +1,20 @@
+{
+  "key": "ring_of_fire_share",
+  "title": "Share of Earth's active volcanoes on the Ring of Fire",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Ring of Fire overview",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov/media/images/ringoffiregif",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "USGS: about 75% of Earth's active volcanoes sit along the Pacific 'Ring of Fire,' the roughly 25,000-mile belt that runs through the US, Japan, Russia, Indonesia, and Chile.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "On the Ring of Fire", "value": 75},
+    {"label": "Everywhere else on Earth", "value": 25}
+  ]
+}

@@ -1,0 +1,1039 @@
+{
+  "20260530": {
+    "01_spacex-ipo.json": {
+      "version": 8,
+      "slug": "spacex-ipo",
+      "title": "SpaceX Just Filed the Biggest IPO in History",
+      "tags": [
+        "SpaceX",
+        "IPO",
+        "Elon Musk",
+        "Starlink",
+        "stocks",
+        "SPCX",
+        "Nasdaq"
+      ],
+      "script": "SpaceX just filed for an IPO \u2014 the biggest in history. Ticker SPCX on Nasdaq, listing in June. In 2025 the company made $18.7 billion in revenue but lost $2.6 billion doing it. Starlink alone pulled in $11 billion. Target valuation: $1.75 trillion. Goldman Sachs is leading the deal. Retail investors get 3 times the normal allocation. This is the moment everyone has been waiting for.",
+      "shots": [
+        {
+          "phrase": "biggest in history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_%28crop2%29.jpg",
+          "query": "elon musk speaking conference"
+        },
+        {
+          "phrase": "listing in June",
+          "query": "nasdaq stock exchange trading floor"
+        },
+        {
+          "phrase": "revenue but lost",
+          "query": "financial chart red losses decline"
+        },
+        {
+          "phrase": "Starlink alone pulled",
+          "query": "starlink satellite dish rural field"
+        },
+        {
+          "phrase": "Target valuation",
+          "query": "rocket launch cape canaveral night"
+        },
+        {
+          "phrase": "Goldman Sachs is leading",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Goldman_Sachs_Tower_%28NYC%29.jpg",
+          "query": "wall street investment bank skyscraper"
+        },
+        {
+          "phrase": "everyone has been waiting",
+          "query": "crowd cheering celebration launch watch"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "biggest in history",
+          "text": "BIGGEST IPO EVER",
+          "color": "#ffffff",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "revenue but lost",
+          "text": "$2.6B LOSSES",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Starlink alone pulled",
+          "text": "$11B STARLINK",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Target valuation",
+          "text": "$1.75 TRILLION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "times the normal allocation",
+          "text": "3\u00d7 RETAIL FLOAT",
+          "color": "#ffe24a",
+          "size": 160,
+          "duration": 2.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "02_figure-ai-robots.json": {
+      "version": 8,
+      "slug": "figure-ai-robots",
+      "title": "Robots Worked 200 Hours Straight. Then a Human Beat Them.",
+      "tags": [
+        "robots",
+        "AI",
+        "Figure AI",
+        "humanoid robot",
+        "automation",
+        "jobs",
+        "viral"
+      ],
+      "script": "A robot just worked 200 hours straight without a single failure. Figure AI's humanoid robots sorted 250,000 packages on a live stream \u2014 no breaks, no complaints, no quit. Then viewers challenged one to race a human intern. The intern won: 12,924 packages to 12,732. But the machines are getting faster every day. And unlike any intern, they never need to go home.",
+      "shots": [
+        {
+          "phrase": "straight without a single failure",
+          "query": "humanoid robot warehouse sorting packages"
+        },
+        {
+          "phrase": "packages on a live stream",
+          "query": "warehouse conveyor belt packages automated"
+        },
+        {
+          "phrase": "no breaks, no complaints",
+          "query": "robot arm factory assembly line"
+        },
+        {
+          "phrase": "race a human intern",
+          "query": "worker sorting packages warehouse job"
+        },
+        {
+          "phrase": "The intern won",
+          "query": "person celebrating winning race competition"
+        },
+        {
+          "phrase": "never need to go home",
+          "query": "dark empty factory floor night automation"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "straight without a single failure",
+          "text": "200 HRS STRAIGHT",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "no breaks, no complaints",
+          "text": "ZERO FAILURES",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "The intern won",
+          "text": "HUMAN WINS... BARELY",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "getting faster every day",
+          "text": "GETTING FASTER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "never need to go home",
+          "text": "GAME OVER",
+          "color": "#ffffff",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "03_ntsb-ai-cockpit.json": {
+      "version": 8,
+      "slug": "ntsb-ai-cockpit",
+      "title": "AI Unlocked a Crash Recording the Government Was Banned From Releasing",
+      "tags": [
+        "NTSB",
+        "AI",
+        "aviation",
+        "crash",
+        "cockpit recording",
+        "UPS",
+        "privacy"
+      ],
+      "script": "The government accidentally let AI unlock a crash recording they were legally forbidden to release. The NTSB published spectrogram images from UPS flight 2976 \u2014 a crash that killed 15 people. Researchers found those images could reconstruct the actual cockpit audio. The NTSB pulled tens of thousands of case files offline. The rule protecting cockpit recordings for 50 years just met its match.",
+      "shots": [
+        {
+          "phrase": "legally forbidden to release",
+          "query": "airplane cockpit pilot instrument panel"
+        },
+        {
+          "phrase": "UPS flight 2976",
+          "query": "cargo airplane ups aircraft tarmac"
+        },
+        {
+          "phrase": "killed 15 people",
+          "query": "airplane crash wreckage investigation scene"
+        },
+        {
+          "phrase": "reconstruct the actual cockpit",
+          "query": "audio spectrogram waveform visualization screen"
+        },
+        {
+          "phrase": "protecting cockpit recordings",
+          "query": "federal investigators aviation documents report"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "legally forbidden to release",
+          "text": "FORBIDDEN BY LAW",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "killed 15 people",
+          "text": "15 DEAD",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.2
+        },
+        {
+          "phrase": "pulled tens of thousands",
+          "text": "WIPED OFFLINE",
+          "color": "#ffe24a",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "just met its match",
+          "text": "GAME OVER",
+          "color": "#ffffff",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "04_pope-ai-encyclical.json": {
+      "version": 8,
+      "slug": "pope-ai-encyclical",
+      "title": "The Pope Just Issued a 40,000-Word Warning to Silicon Valley",
+      "tags": [
+        "Pope Leo XIV",
+        "AI",
+        "Vatican",
+        "encyclical",
+        "Magnifica Humanitas",
+        "regulation",
+        "tech"
+      ],
+      "script": "The Pope just issued a 40,000-word document about artificial intelligence. Magnifica Humanitas \u2014 the first papal encyclical ever written on AI \u2014 warns that the technology must be disarmed and stripped from military and corporate hands. Pope Leo the Fourteenth says AI is the new industrial revolution and could concentrate dangerous power in the wrong hands. He is calling for strict global regulation. Silicon Valley was not consulted.",
+      "shots": [
+        {
+          "phrase": "40,000-word document",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pope_Leo_XIV_2.jpg",
+          "query": "pope vatican ceremony audience"
+        },
+        {
+          "phrase": "Magnifica Humanitas",
+          "query": "saint peter basilica rome vatican exterior"
+        },
+        {
+          "phrase": "technology must be disarmed",
+          "query": "ai data center servers glowing dark"
+        },
+        {
+          "phrase": "new industrial revolution",
+          "query": "robot arm factory industrial production"
+        },
+        {
+          "phrase": "strict global regulation",
+          "query": "united nations meeting summit hall"
+        },
+        {
+          "phrase": "Silicon Valley was not",
+          "query": "silicon valley tech campus aerial california"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "40,000-word document",
+          "text": "40,000 WORDS",
+          "color": "#ffffff",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "technology must be disarmed",
+          "text": "DISARM AI",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.6
+        },
+        {
+          "phrase": "new industrial revolution",
+          "text": "NEW REVOLUTION",
+          "color": "#ffe24a",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "concentrate dangerous power",
+          "text": "DANGEROUS POWER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 160,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Silicon Valley was not consulted",
+          "text": "SILICON VALLEY: RIP",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 150,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "05_gemini-spark.json": {
+      "version": 8,
+      "slug": "gemini-spark",
+      "title": "Google's New AI Agent Works 24/7 \u2014 Even When Your Phone Is Off",
+      "tags": [
+        "Google",
+        "Gemini Spark",
+        "AI agent",
+        "Google IO",
+        "artificial intelligence",
+        "tech"
+      ],
+      "script": "Google just announced an AI agent that never stops working \u2014 even when your phone is off. Gemini Spark runs on Google Cloud around the clock, handles your emails, books appointments, and can authorize purchases on your behalf. The AI Ultra plan that used to cost $250 a month just dropped to $100. The AI agent that does everything you ask just got affordable. And it never sleeps.",
+      "shots": [
+        {
+          "phrase": "never stops working",
+          "query": "ai digital assistant smartphone glowing interface"
+        },
+        {
+          "phrase": "Gemini Spark runs on Google Cloud",
+          "query": "google data center servers cloud computing"
+        },
+        {
+          "phrase": "authorize purchases on your behalf",
+          "query": "digital payment credit card phone tap"
+        },
+        {
+          "phrase": "cost $250 a month",
+          "query": "subscription price expensive monthly payment"
+        },
+        {
+          "phrase": "just got affordable",
+          "query": "google io keynote stage presentation audience"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "never stops working",
+          "text": "24/7 AI AGENT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "authorize purchases",
+          "text": "SPENDS YOUR $$$",
+          "color": "#ffe24a",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "cost $250 a month",
+          "text": "$250/MO BEFORE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 160,
+          "duration": 2.0
+        },
+        {
+          "phrase": "just dropped to $100",
+          "text": "NOW $100",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        },
+        {
+          "phrase": "it never sleeps",
+          "text": "NEVER SLEEPS",
+          "color": "#ffffff",
+          "size": 190,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "06_bees-crash-i94.json": {
+      "version": 8,
+      "slug": "bees-crash-i94",
+      "title": "2 Million Bees Escaped on an Interstate. The Driver Ran for the River.",
+      "tags": [
+        "bees",
+        "truck crash",
+        "North Dakota",
+        "Interstate 94",
+        "viral",
+        "weird news"
+      ],
+      "script": "A semi carrying 2 million bees rolled over on Interstate 94 in North Dakota. The driver climbed out and was immediately swarmed. He ran to the Sheyenne River to wash them off. Still got stung hundreds of times. The highway closed for 8 hours while crews dealt with 600 scattered beehives. The local bees had no comment. The driver is expected to recover.",
+      "shots": [
+        {
+          "phrase": "2 million bees rolled over",
+          "query": "overturned semi truck highway rollover"
+        },
+        {
+          "phrase": "immediately swarmed",
+          "query": "bee swarm cloud insects attack"
+        },
+        {
+          "phrase": "Sheyenne River",
+          "query": "river bank north dakota plains"
+        },
+        {
+          "phrase": "stung hundreds of times",
+          "query": "beekeeper suit removing bees hive"
+        },
+        {
+          "phrase": "600 scattered beehives",
+          "query": "beehive boxes stacked highway roadside"
+        },
+        {
+          "phrase": "driver is expected to recover",
+          "query": "highway cleanup crews emergency vehicles"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "2 million bees",
+          "text": "2 MILLION BEES",
+          "color": "#ffe24a",
+          "flash_bg": "#1a1400",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "immediately swarmed",
+          "text": "SWARMED",
+          "color": "#ffe24a",
+          "size": 220,
+          "duration": 1.8
+        },
+        {
+          "phrase": "stung hundreds of times",
+          "text": "HUNDREDS OF STINGS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 155,
+          "duration": 2.2
+        },
+        {
+          "phrase": "600 scattered beehives",
+          "text": "600 HIVES LOOSE",
+          "color": "#ffe24a",
+          "flash_bg": "#1a1400",
+          "size": 160,
+          "duration": 2.0
+        },
+        {
+          "phrase": "driver is expected to recover",
+          "text": "HE'S OK",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    }
+  },
+  "20260531": {
+    "01_anthropic-first-profit.json": {
+      "version": 8,
+      "slug": "anthropic-first-profit",
+      "title": "Anthropic Just Became the First AI Lab to Turn a Profit",
+      "hashtags": [
+        "anthropic",
+        "claude",
+        "ai",
+        "aiprofits",
+        "claudecode",
+        "techinvesting",
+        "aiearnings",
+        "ailab",
+        "openai",
+        "airevenue",
+        "machinelearning",
+        "frontier",
+        "aiindustry"
+      ],
+      "script": "For 5 years Anthropic burned billions racing OpenAI. This quarter, the race changed. Anthropic is projecting its first-ever operating profit \u2014 $559 million \u2014 on $10.9 billion in Q2 revenue. That's 130 percent growth in a single quarter. Claude Code alone crossed 1 billion in annualized revenue just 6 months after launch. If the numbers land, Anthropic becomes the first frontier AI lab ever to turn a quarterly profit. The startup that trained Claude just became a real business.",
+      "shots": [
+        {
+          "phrase": "burned billions racing OpenAI",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Dario_Amodei_in_2023.jpg",
+          "query": "ai lab researchers computers servers"
+        },
+        {
+          "phrase": "first-ever operating profit",
+          "query": "profit chart green bar financial milestone"
+        },
+        {
+          "phrase": "10.9 billion in Q2 revenue",
+          "query": "quarterly earnings revenue bar chart growth"
+        },
+        {
+          "phrase": "130 percent growth in a single quarter",
+          "query": "stock price surge upward chart"
+        },
+        {
+          "phrase": "Claude Code alone crossed",
+          "query": "developer coding laptop software terminal dark"
+        },
+        {
+          "phrase": "first frontier AI lab ever",
+          "query": "ai supercomputer data center servers dark"
+        },
+        {
+          "phrase": "trained Claude just became",
+          "query": "tech startup office city skyline modern"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the race changed",
+          "text": "RACE CHANGED",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "first-ever operating profit",
+          "text": "$559M PROFIT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "130 percent growth",
+          "text": "130% GROWTH",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "first frontier AI lab ever",
+          "text": "FIRST IN HISTORY",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "trained Claude just became",
+          "text": "GAME OVER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_quantinuum-ipo.json": {
+      "version": 8,
+      "slug": "quantinuum-ipo",
+      "title": "Quantum Computing's Biggest IPO Ever Just Filed",
+      "hashtags": [
+        "quantinuum",
+        "quantumcomputing",
+        "ipo",
+        "quantumipo",
+        "honeywell",
+        "nasdaq",
+        "trappedion",
+        "qubits",
+        "quantumtech",
+        "techinvesting",
+        "wallstreet",
+        "science",
+        "investing"
+      ],
+      "script": "Quantum computing just filed for the biggest IPO in the history of the technology. Quantinuum \u2014 spun out of Honeywell \u2014 is seeking $1.05 billion at a $12.7 billion valuation under ticker QNT on Nasdaq. The company uses trapped ions to build quantum computers that no one else can replicate. Revenue was just $30.9 million in 2025. Net loss: $136.6 million in just the first quarter of 2026. Wall Street is betting the breakthrough is worth the burn.",
+      "shots": [
+        {
+          "phrase": "biggest IPO in the history of the technology",
+          "query": "nasdaq trading floor stock market exchange opening"
+        },
+        {
+          "phrase": "spun out of Honeywell",
+          "query": "honeywell industrial corporation headquarters building"
+        },
+        {
+          "phrase": "trapped ions to build quantum computers",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/IBM_Q_system_%2827274387309%29.jpg",
+          "query": "quantum computer cryogenic sphere gold science"
+        },
+        {
+          "phrase": "no one else can replicate",
+          "query": "laboratory scientist quantum physics research"
+        },
+        {
+          "phrase": "30.9 million in 2025",
+          "query": "small revenue financial statement startup loss"
+        },
+        {
+          "phrase": "worth the burn",
+          "query": "stock market investor risk bet chart"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "biggest IPO in the history",
+          "text": "BIGGEST QUANTUM IPO EVER",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "12.7 billion valuation",
+          "text": "$12.7B VALUATION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "136.6 million in just the first quarter",
+          "text": "$136.6M BURN",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "worth the burn",
+          "text": "WORTH THE BURN?",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "03_laos-cave-rescue.json": {
+      "version": 8,
+      "slug": "laos-cave-rescue",
+      "title": "Miners Trapped 10 Days Swam Out of the Cave Themselves",
+      "hashtags": [
+        "laos",
+        "caverescue",
+        "minersrescued",
+        "survival",
+        "breakingnews",
+        "rescue",
+        "flood",
+        "caving",
+        "miningaccident",
+        "thamluang",
+        "rescuediver",
+        "survival2026",
+        "heroic"
+      ],
+      "script": "7 gold miners were trapped in a flooded Laos cave for 10 days. The entrance had caved in. The tunnels filled with water. An international rescue team that helped save the Thai soccer team in 2018 raced to Laos. 4 miners didn't wait. They pushed through 1,000 feet of pitch-black flooded tunnels on their own and walked out alive. 2 others are still missing. They swam to freedom through the dark.",
+      "shots": [
+        {
+          "phrase": "trapped in a flooded Laos cave for 10 days",
+          "query": "cave flooded dark tunnel underground water"
+        },
+        {
+          "phrase": "The tunnels filled with water",
+          "query": "flooded cave tunnel rising water dark"
+        },
+        {
+          "phrase": "international rescue team that helped save the Thai soccer team",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/4547292_Cave_rescue_divers_prepare_dive_equipment_at_Tham_Luang_cave.jpg",
+          "query": "cave rescue diver equipment dark underground"
+        },
+        {
+          "phrase": "pushed through 1,000 feet of pitch-black flooded tunnels",
+          "query": "cave diver flooded tunnel headlamp dark"
+        },
+        {
+          "phrase": "walked out alive",
+          "query": "survivor rescued celebration alive muddy"
+        },
+        {
+          "phrase": "2 others are still missing",
+          "query": "search rescue team empty cave entrance"
+        },
+        {
+          "phrase": "swam to freedom through the dark",
+          "query": "dark flooded cave underwater torch light"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "trapped in a flooded Laos cave for 10 days",
+          "text": "10 DAYS TRAPPED",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.4
+        },
+        {
+          "phrase": "pushed through 1,000 feet",
+          "text": "1,000 FEET OF DARK",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "walked out alive",
+          "text": "WALKED OUT ALIVE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        },
+        {
+          "phrase": "2 others are still missing",
+          "text": "2 STILL MISSING",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "swam to freedom through the dark",
+          "text": "SWAM TO FREEDOM",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "04_tesla-fsd-delay.json": {
+      "version": 8,
+      "slug": "tesla-fsd-delay",
+      "title": "Elon Promised Full Self-Driving by 2018. It's 2026.",
+      "hashtags": [
+        "tesla",
+        "elonmusk",
+        "fsd",
+        "fullselfdrive",
+        "autonomous",
+        "teslafsd",
+        "robotaxi",
+        "cybercab",
+        "tesladelay",
+        "autonomousvehicle",
+        "selfdriving",
+        "ev",
+        "teslaowners"
+      ],
+      "script": "Elon Musk has promised fully self-driving Teslas since 2018. Last week he delayed it again \u2014 now Q4 2026 for unsupervised Full Self-Driving. Hardware 3 owners who paid up to $15,000 for Full Self-Driving are being left behind. Their cars have just one-eighth the memory bandwidth needed to go driverless. Musk promised full autonomy by 2018. Then 2020. Then 2022. Then 2025. The car that never crashes just keeps missing its own deadlines.",
+      "shots": [
+        {
+          "phrase": "promised fully self-driving Teslas since 2018",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_Royal_Society_crop.jpg",
+          "query": "elon musk speaking presentation stage"
+        },
+        {
+          "phrase": "now Q4 2026 for unsupervised Full Self-Driving",
+          "query": "tesla car interior touchscreen autopilot dashboard"
+        },
+        {
+          "phrase": "paid up to $15,000 for Full Self-Driving",
+          "query": "tesla owner car key disappointed"
+        },
+        {
+          "phrase": "one-eighth the memory bandwidth",
+          "query": "computer chip circuit board hardware processor"
+        },
+        {
+          "phrase": "Musk promised full autonomy by 2018",
+          "query": "broken promise deadline calendar missed"
+        },
+        {
+          "phrase": "never crashes just keeps missing",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_Cybercab_July_2025_%2854693064262%29.jpg",
+          "query": "tesla electric car road autonomous driving"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "delayed it again",
+          "text": "DELAYED AGAIN",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "being left behind",
+          "text": "HW3: LEFT BEHIND",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "one-eighth the memory bandwidth",
+          "text": "1/8 THE POWER",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Then 2020",
+          "text": "2018. 2020. 2022. 2025.",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 2.6
+        },
+        {
+          "phrase": "never crashes just keeps missing",
+          "text": "GAME OVER",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "05_bigtech-ai-capex.json": {
+      "version": 8,
+      "slug": "bigtech-ai-capex",
+      "title": "Big Tech Is Spending $900 Billion on AI This Year",
+      "hashtags": [
+        "aicapex",
+        "datacenter",
+        "bigtech",
+        "amazon",
+        "microsoft",
+        "meta",
+        "nvidia",
+        "aiinfrastructure",
+        "techspending",
+        "aiboom",
+        "aiinvesting",
+        "cloudcomputing",
+        "ai"
+      ],
+      "script": "In 2026, America's 5 biggest tech companies will spend between $650 billion and $900 billion building AI infrastructure. Amazon alone: $200 billion. Google: up to $185 billion. Microsoft, Meta, and Oracle together: another $285 billion. That's more money than the entire GDP of 175 countries \u2014 spent in a single year on servers, chips, and power plants to run artificial intelligence. By 2027, they expect to cross $1 trillion. The arms race just went physical.",
+      "shots": [
+        {
+          "phrase": "5 biggest tech companies",
+          "query": "data center construction aerial cranes building"
+        },
+        {
+          "phrase": "Amazon alone",
+          "query": "amazon aws server farm data center interior"
+        },
+        {
+          "phrase": "Microsoft, Meta, and Oracle together",
+          "query": "silicon valley tech company campus headquarters"
+        },
+        {
+          "phrase": "entire GDP of 175 countries",
+          "query": "world map economy global trade satellite"
+        },
+        {
+          "phrase": "servers, chips, and power plants",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nvidia_HQ.jpg",
+          "query": "nvidia semiconductor gpu chip factory"
+        },
+        {
+          "phrase": "arms race just went physical",
+          "query": "construction crane building data center night"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Amazon alone",
+          "text": "$200B AMAZON ALONE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "entire GDP of 175 countries",
+          "text": "175 COUNTRIES' GDP",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.4
+        },
+        {
+          "phrase": "servers, chips, and power plants",
+          "text": "SERVERS. CHIPS. POWER.",
+          "color": "#ffe24a",
+          "size": 160,
+          "duration": 2.2
+        },
+        {
+          "phrase": "cross $1 trillion",
+          "text": "CROSSING $1 TRILLION",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 170,
+          "duration": 2.6
+        },
+        {
+          "phrase": "arms race just went physical",
+          "text": "ARMS RACE: PHYSICAL",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 170,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_hormuz-deal.json": {
+      "version": 8,
+      "slug": "hormuz-deal",
+      "title": "The World's Most Important Oil Lane Has Been Closed for 3 Months",
+      "hashtags": [
+        "straitofhormuz",
+        "iran",
+        "oil",
+        "oilprice",
+        "hormuz",
+        "geopolitics",
+        "energycrisis",
+        "oilmarket",
+        "middleeast",
+        "usnews",
+        "energyprice",
+        "oilsupply",
+        "globalnews"
+      ],
+      "script": "For 3 months, the world's most important oil shipping lane has been locked shut by war. The Strait of Hormuz \u2014 gateway to 20 percent of the world's oil \u2014 has been mined by Iran, blockaded by the US, and closed to tanker traffic. Now a deal is days away. The US would lift sanctions. Iran would clear the mines. Shipping reopens for 60 days while nuclear talks begin. Oil markets are watching. So is every country on earth.",
+      "shots": [
+        {
+          "phrase": "most important oil shipping lane",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_Hormuz_%28MODIS_2020-12-04%29.jpg",
+          "query": "oil tanker ship persian gulf sea"
+        },
+        {
+          "phrase": "mined by Iran, blockaded by the US",
+          "query": "naval warship destroyer missile persian gulf"
+        },
+        {
+          "phrase": "closed to tanker traffic",
+          "query": "oil tanker cargo ship at sea"
+        },
+        {
+          "phrase": "The US would lift sanctions",
+          "query": "diplomats negotiation agreement signing"
+        },
+        {
+          "phrase": "Iran would clear the mines",
+          "query": "naval mine underwater sea danger"
+        },
+        {
+          "phrase": "60 days while nuclear talks begin",
+          "query": "iran nuclear facility uranium diplomats"
+        },
+        {
+          "phrase": "every country on earth",
+          "query": "world map earth satellite view global"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "locked shut by war",
+          "text": "LOCKED SHUT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.4
+        },
+        {
+          "phrase": "20 percent of the world's oil",
+          "text": "20% WORLD OIL",
+          "color": "#ffe24a",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "closed to tanker traffic",
+          "text": "LANE CLOSED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "60 days while nuclear talks begin",
+          "text": "60-DAY DEAL",
+          "color": "#ffaa30",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "every country on earth",
+          "text": "EVERY NATION WATCHING",
+          "color": "#ffffff",
+          "size": 160,
+          "duration": 3.0
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    }
+  }
+}

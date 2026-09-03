@@ -1,0 +1,102 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "reddit-entitled-parent-starting-lineup",
+  "title": "She Wanted Her Son Starting Every Game. I Read Her The Rule.",
+  "hashtags": [
+    "entitledparents",
+    "maliciouscompliance",
+    "youthsports",
+    "soccer",
+    "coachlife",
+    "karma",
+    "recleague",
+    "pettyrevenge",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "script": "She cornered me at halftime, arms crossed, demanding her son start every single game because they paid the same registration fee as everyone else. I run the rec league schedule, so I pulled up the bylaw on my phone and read it out loud: guaranteed EQUAL PLAYING TIME, not equal starts. She said fine, make him a starter then. So the next game, I did exactly that. Her son started. Ninety seconds later, right on the rotation clock, I subbed him out like every other kid on the roster. He started the next five games too, for ninety seconds each, technically undefeated as a starter. She showed up furious, waving the same rule she'd quoted at me. I handed her the printed schedule with her own words highlighted in yellow. By the final game, the other parents were timing his starts on their phones and cheering when the whistle blew. Her son quietly asked to just play normal minutes like everybody else.",
+  "shots": [
+    {
+      "phrase": "cornered me at halftime",
+      "query": "youth soccer sideline",
+      "image_url": "https://live.staticflickr.com/3763/10586043946_f159539418_b.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "pulled up the bylaw on my phone",
+      "query": "phone reading document",
+      "pin_query": "bylaw",
+      "pin_context": "youth sports rules",
+      "news_query": "bylaw",
+      "news_angle": "The narrator reads the bylaw to the mother regarding equal playing time.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Sign_in_a_car_park_in_Ripon%2C_North_Yorkshire.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "phrase": "He started the next five games too",
+      "query": "kids soccer bench",
+      "image_url": "https://images.pexels.com/photos/12887245/pexels-photo-12887245.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "waving the same rule she'd quoted at me",
+      "query": "angry parent argument",
+      "image_url": "https://pixabay.com/get/g26332490cd2f9ca316d2e3dc119a4bdfde3bf8f1fc9222faa52e7a9334711b12cd0fdcb78353ceb00db66aba5b648c3f9abb458be21aed826592d2c639e1411d_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "printed schedule with her own words highlighted in yellow",
+      "query": "highlighted paper document",
+      "pin_query": "schedule",
+      "pin_context": "youth sports game plan",
+      "news_query": "schedule",
+      "news_angle": "The narrator hands the mother the printed schedule with her own words highlighted.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Wikimania2007_everythings_a_wiki.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "timing his starts on their phones",
+      "query": "parents phone stopwatch",
+      "image_url": "https://images.pexels.com/photos/4114789/pexels-photo-4114789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "cheering when the whistle blew",
+      "query": "referee whistle blow",
+      "image_url": "https://images.pexels.com/photos/29582086/pexels-photo-29582086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "quietly asked to just play normal minutes",
+      "query": "kid soccer field walking",
+      "image_url": "https://pixabay.com/get/gc1c04a07fcb998f3d0f2817b0ba664db6c137e32d105b289d533f02fd711dd5f6dd2277a881333aed21143d0838239ef_1280.jpg",
+      "media_origin": "self_fill"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "the same registration fee",
+      "text": "SAME FEE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "Ninety seconds later",
+      "text": "90 SECONDS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "technically undefeated as a starter",
+      "text": "UNDEFEATED*",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "highlighted in yellow",
+      "text": "RECEIPTS",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop"
+}

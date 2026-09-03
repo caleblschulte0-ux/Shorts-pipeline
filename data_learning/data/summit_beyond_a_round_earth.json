@@ -1,0 +1,20 @@
+{
+  "key": "summit_beyond_a_round_earth",
+  "title": "How far a summit sticks out past a perfectly round Earth (kilometers)",
+  "unit": "kilometers",
+  "geography": "Ecuador and Nepal/China",
+  "time_coverage": "current",
+  "source": {
+    "name": "What is the highest point on Earth as measured from Earth's center?",
+    "publisher": "NOAA National Ocean Service",
+    "url": "https://oceanservice.noaa.gov/facts/highestpoint.html",
+    "officiality": "official",
+    "access_date": "2026-08-16"
+  },
+  "notes": "NOAA: the summit of Chimborazo (Ecuador, 1 degree south of the equator) sits 6,384.4 km from Earth's center; Everest's summit sits 6,382.3 km. Earth is an oblate spheroid - mean sea level is 6,378.1 km from the center at the equator and 6,356.8 km at the poles, a bulge of about 21 km. Plotted values are each summit's distance from Earth's center minus Earth's mean radius of 6,371.0 km (Chimborazo 13.4 km, Everest 11.3 km), so the 2.1 km gap NOAA reports is visible on the chart instead of two identical bars.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Chimborazo, Ecuador", "value": 13.4},
+    {"label": "Everest, Nepal/China", "value": 11.3}
+  ]
+}

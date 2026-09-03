@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36"
+  },
+  "request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+  "safe_request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+  "worker": "media",
+  "worker_run_id": "media-20260816-110112z",
+  "created_at": "2026-08-16T11:02:36Z",
+  "expires_at": "2026-08-16T11:17:36Z",
+  "lease_seconds": 900
+}

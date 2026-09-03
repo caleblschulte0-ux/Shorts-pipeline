@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260808",
+  "bundle": {
+    "identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "path": "exchange/bundles/20260808/bundle.json"
+  },
+  "request_id": "reddit-unpaid-driveway-lien-s2-3db099c66479",
+  "safe_request_id": "reddit-unpaid-driveway-lien-s2-3db099c66479",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "30e117da89e186582fb0376943cde375a7b9ada402dd56c9e2cace5602a8b523",
+  "prompt_used": "An editorial illustration for a short-form video: construction contract paperwork. It accompanies the narration: \"signed work order\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "196YkNa6N1p6-FmwhZ7vofprx1Tt2EMfj",
+    "filename": "20260808__reddit-unpaid-driveway-lien-s2-3db099c66479.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=196YkNa6N1p6-FmwhZ7vofprx1Tt2EMfj",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "71b393e8492d33d9215a2fc093f7326899176096d5654d6823355475006b0b01",
+    "bytes": 2062759,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-08T12:19:59Z",
+  "error": null,
+  "retryable": false
+}

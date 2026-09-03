@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-08-22T15:33:55+00:00",
+ "date": "20260821",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260821/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "reddit-blender-serial-number-security-s0-b98bbd3e8e0b.json",
+  "reddit-blender-serial-number-security-s1-42b370728a44.json",
+  "reddit-blender-serial-number-security-s2-043314068d0d.json",
+  "reddit-blender-serial-number-security-s3-ffd9dcbada3b.json",
+  "reddit-blender-serial-number-security-s4-f0231707f79f.json",
+  "reddit-blender-serial-number-security-s5-b0ca345b2040.json",
+  "reddit-blender-serial-number-security-s6-e2238c2f71d1.json",
+  "reddit-blender-serial-number-security-s7-e3c1d44af3c4.json",
+  "reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d.json",
+  "reddit-voluntary-overtime-labor-board-s1-82f45bb4608b.json",
+  "reddit-voluntary-overtime-labor-board-s2-ac7918c69348.json",
+  "reddit-voluntary-overtime-labor-board-s3-34855d4c80e7.json",
+  "reddit-voluntary-overtime-labor-board-s4-11a3b59f334a.json",
+  "reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f.json",
+  "reddit-voluntary-overtime-labor-board-s6-17b69a701f4a.json",
+  "reddit-voluntary-overtime-labor-board-s7-94bb214c2003.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}

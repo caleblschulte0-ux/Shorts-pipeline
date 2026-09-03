@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260814",
+  "bundle": {
+    "identity": "6581f9bd693e5a115cf37385d3dbd5e51b0bf8a20f7b162478a19ca7892522f2",
+    "path": "exchange/bundles/20260814/bundle.json"
+  },
+  "request_id": "reddit-price-dispute-item-free-s4-a68e050b39b9",
+  "safe_request_id": "reddit-price-dispute-item-free-s4-a68e050b39b9",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-price-dispute-item-free",
+  "shot_index": 4,
+  "prompt_sha256": "226ba8e53b34e493ccba316b44c1ac47935f0b93ffdee0e0bfc6319c07f43082",
+  "prompt_used": "An editorial illustration for a short-form video: store intercom speaker. It accompanies the narration: \"paging it over the intercom\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+    "filename": "20260814__reddit-price-dispute-item-free-s4-a68e050b39b9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "64e087b561abcb56ddc30f5087f0744a0361b89f7b76215cc45f040f27b0ae29",
+    "bytes": 1572498,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-14T11:10:22Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,15 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s2-d2233909594c",
+  "safe_request_id": "reddit-thermostat-admin-s2-d2233909594c",
+  "worker": "media",
+  "worker_run_id": "media-20260828-060014",
+  "created_at": "2026-08-28T11:00:14Z",
+  "expires_at": "2026-08-28T11:15:14Z",
+  "lease_seconds": 900
+}

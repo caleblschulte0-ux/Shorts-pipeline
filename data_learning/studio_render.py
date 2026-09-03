@@ -60,7 +60,11 @@ HOST_BAKED_KINDS = ("fill_vessel", "bignum", "timeline")
 # robust regardless of when the host_baked flag propagates.
 BAKED_CHART_KINDS = frozenset({
     "trend", "timeline", "pictorial_race", "rank", "comparison", "bars",
-    "waffle_grid", "share", "pictograph", "stack"})
+    "waffle_grid", "share", "pictograph", "stack",
+    # geo beats bake the host too (winning bar tip / winning pin) — before
+    # 2026-08-24 they relied on the host_baked flag alone, and geo_city had
+    # no bake at all, so the travelling overlay drifted over the map.
+    "geo_us", "geo_world", "geo_city"})
 
 
 def _seg_is_baked(seg) -> bool:
@@ -949,11 +953,33 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # Engagement CTA — ask the question + nudge a comment (drives the algorithm).
     question = getattr(st, "question", "")
     if question:
-        q = ("{\\an5\\pos(540,1330)\\fs46\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
-             "\\shad0\\fad(300,0)}" + _wrap(question, 24))
+        # THE CLOSING STILL HAS A CHART UNDER IT.
+        #
+        # These sat at y=1330 and y=1442, inside the chart region (26..1673),
+        # so on a `lead_payoff` close — where the last segment's chart spans
+        # the closing — they printed straight over its value labels. The
+        # showrunner on 2026-08-11: "the strong bubble finale is buried under
+        # overlapping text", and its own fix note, "Move the CTA block below
+        # the bubble cluster ... so it never overlaps 'Hong Kong SAR, China'
+        # or 'Gibraltar'".
+        #
+        # The answer is three lines up in this same function: narration is
+        # already pinned to the lower-band plate at y=1734 precisely "so it
+        # never lands on the chart". The closing's two lines join it. The
+        # foot band is 1683..1920 and is free during the closing except the
+        # sources strip at 1898, so the stack is:
+        #
+        #     question  an5 fs42, <=2 lines   1690 .. 1800
+        #     CTA       an5 fs54, 1 line      1802 .. 1870
+        #     sources   an2 fs15              1880 .. 1898
+        #
+        # Wrapped at 30 rather than 24 to hold the question to two lines; a
+        # third would push its top back over the chart.
+        q = ("{\\an5\\pos(540,1745)\\fs42\\c&HFFFFFF&\\b1\\bord3\\3c&H000000&"
+             "\\shad0\\fad(300,0)}" + _wrap(question, 30))
         lines.append(f"Dialogue: 5,{_ass_time(qs)},{_ass_time(c1)},Cap,,0,0,0,,{q}")
-        # CTA pops in late (below the big central mascot) with a bounce.
-        cta = ("{\\an5\\move(540,1454,540,1442,0,900)\\fs54\\c&H" + acc
+        # CTA pops in late, under the question, with the same bounce.
+        cta = ("{\\an5\\move(540,1848,540,1836,0,900)\\fs54\\c&H" + acc
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
@@ -1201,14 +1227,19 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
+        # MEASURE WHAT SHIPS. The master frame is LOCKED (no camera float),
+        # so the proxy composites the build over the background and measures
+        # that — the honest number for a still camera. It will read lower than
+        # it did when a whole-frame drift was padding it; that is the true
+        # motion of the content and the place to fix pace is the content.
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
                  "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
                  "-framerate", "30", "-i", pat,
                  "-filter_complex",
-                 "[1:v]scale=540:-1,format=rgba[c];"
-                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 f"[1:v]scale=540:-1,format=rgba[c];"
+                 f"[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
             with _tf.TemporaryDirectory() as td:
                 ev = _temporal_evidence(mp4, Path(td))
@@ -1225,7 +1256,8 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
             _shm.copy2(mp4, seg_dir / "scene.mp4")
             metrics = {"slug": slug, "scene": i, "id": f"segment_{i}",
                        "kind": getattr(seg, "kind", ""),
-                       "frames": n, "temporal": ev,
+                       "frames": n, "temporal": ev, "gate": gate or "pass",
+                       "effective_fps": ev.get("effective_fps"),
                        "performance": attach.get("performance"),
                        "contact_frames": attach.get("contact_frames"),
                        "timeline": attach.get("timeline")}
@@ -1827,6 +1859,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             full = getattr(st.segments[i], "kind", "") in charts.FULLFRAME_RENDERERS
             vw, vh = (W, H) if full else (CHART_W, CHART_H)
             vx, vy = (0, 0) if full else (CHART_X, CHART_Y)
+            # NO per-layer float here any more. The card used to drift on its
+            # own (20px @ 4.6 rad/s) while the mascot jiggled at a different
+            # frequency on top — two independent oscillations, which the
+            # operator watched and called "a weird shaking motion". They were
+            # right: perceived shake is acceleration (amp*w^2), and layers
+            # oscillating out of phase multiply it. The gate's per-frame
+            # motion now comes from ONE slow whole-frame drift applied to the
+            # finished composite just before the captions burn in (see the
+            # CAMERA BREATH step below) — same measured pixels per frame,
+            # less than half the acceleration, one coherent camera.
             fc.append(
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
@@ -1873,6 +1915,26 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
+        # CAMERA BREATH — the one motion source the temporal gate can always
+        # see, applied ONCE to the finished composite. A slow Lissajous crop
+        # of an oversized frame: every layer (background, charts, mascot)
+        # drifts together like a breathing camera, so there is no per-layer
+        # wobble to read as shake, and a beat whose content goes fully still
+        # still measures ~16 effective fps (constants + the measured ladder:
+        # shared/camera_float.py). Applied BEFORE the subtitles so captions
+        # stay pinned and pixel-crisp while the frame moves under them.
+        # NO CAMERA FLOAT. What used to be here was
+        # `[prev]{_cf.crop_vf(W, H)}[flt]` — a moving crop window over an
+        # oversized frame, i.e. shared/camera_float.py's own description: "a
+        # slow Lissajous drift of the visual layer — a hand-held/breathing
+        # camera". It was added to feed the showrunner's per-frame motion
+        # detector, and it is the handheld shake the operator has been seeing
+        # on every video this channel posts. The frame is now LOCKED.
+        #
+        # This does remove the motion source the temporal floor was leaning
+        # on. That floor must be satisfied by CONTENT that actually moves —
+        # a build that advances, a numeral that counts, a host that performs —
+        # not by wobbling the camera under a still picture.
         fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,

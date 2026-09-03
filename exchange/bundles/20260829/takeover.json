@@ -1,0 +1,44 @@
+{
+  "schema": "chatgpt-takeover-state/v1",
+  "production_date": "20260829",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "checkpoint_identity": "takeover-ce3cb772f437e74c7284709e35c60e25e195fbfa",
+  "status": "finalizer_authoring_media_complete",
+  "claimed_at": "2026-08-29T12:15:20Z",
+  "trigger": {
+    "bundle_missing": true,
+    "path": "exchange/bundles/20260829/bundle.json",
+    "reason": "No valid upstream production bundle or package slate existed at the Finalizer takeover check."
+  },
+  "source_commit": "ce3cb772f437e74c7284709e35c60e25e195fbfa",
+  "registry": {
+    "revision": 5,
+    "sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f"
+  },
+  "ownership_rule": "ChatGPT owns the no-bundle takeover response for 20260829; a late bundle must not replace this claim.",
+  "channels": {
+    "trending": {
+      "expected": 6,
+      "formats": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": 6,
+      "missing": 0,
+      "state": "authored_and_media_complete_ready_to_render"
+    }
+  },
+  "media": {
+    "completed": 12,
+    "failed": 0,
+    "drive_byte_verified": 12,
+    "dimensions": "1254x1254"
+  },
+  "finalizer_resume": [
+    "Read this takeover claim before any late bundle.",
+    "Promote the six authored Trending packages from response.json.",
+    "Validate and reuse the twelve authored-shot checkpoints.",
+    "Render under channel-registry revision 5."
+  ]
+}

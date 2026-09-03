@@ -1,0 +1,57 @@
+{
+  "format": "graph_race",
+  "slug": "graph-fever-outdraws-the-league",
+  "title": "One WNBA Team Now Outdraws The Whole League",
+  "hook": "One rookie changed the math.",
+  "y_label": "Average attendance per game",
+  "duration": 13,
+  "source": "Indiana Fever average home attendance: 2022 1,776; 2023 4,067; 2024 17,036 (post-Caitlin Clark draft); 2025 16,560 (widely reported, e.g. Sportsnaut/Yahoo Sports season recaps). WNBA league-wide average attendance: 2022 5,647; 2023 6,608; 2024 9,807; 2025 10,986 (ESPN, WNBA.com season recaps). 2026 figures are partial-season, through the first 59 league games: league average 11,381 (reported record pace); Fever 2026 approximate, consistent with reported individual-game attendance in the 17,000 range this season.",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Indiana Fever",
+      "color": "#ffc633",
+      "icon": "Fever",
+      "values": [
+        1776,
+        4067,
+        17036,
+        16560,
+        17000
+      ]
+    },
+    {
+      "name": "WNBA league avg",
+      "color": "#e0289b",
+      "icon": "WNBA",
+      "values": [
+        5647,
+        6608,
+        9807,
+        10986,
+        11381
+      ]
+    }
+  ],
+  "hashtags": [
+    "wnba",
+    "caitlinclark",
+    "indianafever",
+    "basketball",
+    "sports",
+    "attendance",
+    "womenssports",
+    "sportsbusiness",
+    "wnbarecord",
+    "angelreese",
+    "attendancerecord"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

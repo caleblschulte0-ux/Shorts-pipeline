@@ -1,0 +1,177 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260814",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "f1e02507ca65357c009f5e623267c1f7d4812d83",
+    "production_date": "20260814",
+    "bundle_sha256": "6581f9bd693e5a115cf37385d3dbd5e51b0bf8a20f7b162478a19ca7892522f2"
+  },
+  "media": [
+    {
+      "request_id": "reddit-badge-every-room-s5-553c78ffe74f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+        "filename": "20260814__reddit-badge-every-room-s5-553c78ffe74f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7570a77d5ff21f4b9a6d5a5a06d7a612d1b78f083ad8d53148ace731760ee6ce",
+        "bytes": 1019358,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260814/media-progress/reddit-badge-every-room-s5-553c78ffe74f.json",
+        "verified_at": "2026-08-14T11:10:20Z"
+      }
+    },
+    {
+      "request_id": "reddit-price-dispute-item-free-s3-010821445738",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+        "filename": "20260814__reddit-price-dispute-item-free-s3-010821445738.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ltTGWI3mpmyF0dmra-6JgegXTl_UfBXd",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f94acff3e5c32406e1d84b9aa0686e3ab8bd7a320ced41d5864aedf5f8d76cc2",
+        "bytes": 1287533,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260814/media-progress/reddit-price-dispute-item-free-s3-010821445738.json",
+        "verified_at": "2026-08-14T11:10:21Z"
+      }
+    },
+    {
+      "request_id": "reddit-price-dispute-item-free-s4-a68e050b39b9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+        "filename": "20260814__reddit-price-dispute-item-free-s4-a68e050b39b9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1JF5VdUiRTaQCaOmDx8C-Juu29xQ6yu-I",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "64e087b561abcb56ddc30f5087f0744a0361b89f7b76215cc45f040f27b0ae29",
+        "bytes": 1572498,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260814/media-progress/reddit-price-dispute-item-free-s4-a68e050b39b9.json",
+        "verified_at": "2026-08-14T11:10:22Z"
+      }
+    },
+    {
+      "request_id": "reddit-price-dispute-item-free-s6-962de1ebabdd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+        "filename": "20260814__reddit-price-dispute-item-free-s6-962de1ebabdd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1vSigz-LijdcIwv4ndNf8n9z38PErYU1H",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a54c2215dbfcfb3925f873a06353fe45c2a00a0a9a7ebadf152f4c124c14850a",
+        "bytes": 1158603,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260814/media-progress/reddit-price-dispute-item-free-s6-962de1ebabdd.json",
+        "verified_at": "2026-08-14T11:10:23Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-glp1-vs-bariatric-surgery",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title immediately names the specific weight-loss-drug victory over bariatric surgery."
+    },
+    {
+      "slug": "graph-fever-outdraws-the-league",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already lands the concrete Fever attendance upset over the rest of the WNBA."
+    },
+    {
+      "slug": "graph-cybertruck-vs-lightning",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title creates a clean electric-truck lead-flip reveal without spoiling the chart sequence."
+    },
+    {
+      "slug": "graph-china-humanoid-robots",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names China and the exact hundreds-to-50,000 escalation the chart delivers."
+    },
+    {
+      "slug": "reddit-badge-every-room",
+      "script": "Badge every room? Sure. Our new facilities director demanded badge in and out of every room, every single time — the break room, supply closet, the bathroom — for \"security audit accuracy.\" Fine by me. I badged in for the bathroom. I badged out. I badged into the break room for eleven seconds to grab a pen, headed toward the printer. Within two days, badge history was four hundred and twelve entries long. By day four, the software flagged \"anomalous access patterns\" and froze half the badges — including his. Very secure. Next morning he was locked out of his own office, badging the door twelve times while security reviewed how many bathroom trips the audit required. The rule quietly vanished from the intranet that afternoon. I kept the screenshot. Who won the four hundred and twelve-entry security audit?",
+      "editor_note": "Punched up to a three-word question hook, tightened the compliance escalation to 139 words, added one dry security aside, and landed on the exact four hundred and twelve-entry audit while preserving every protected fact, number, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-price-dispute-item-free",
+      "script": "Make it free? Corporate told cashiers: if a customer says an item rang up wrong, don't argue or call for a price check — make it free and keep the line moving. One regular learned the rule within a week. Every visit, something new had \"scanned wrong\": a rotisserie chicken, a case of water, once an entire pack of steaks. Store policy was store policy, so I gave her every single one, free. Then I started paging it over the intercom: \"Price dispute at register two — item free.\" Every item, every time. Three visits later, people started watching her cart. Subtle operation. The store manager noticed too. Two weeks in, corporate finally added one word to the policy: \"verify.\" She hasn't been back since. Apparently, four towns over already knew her name. Who broke the register two giveaway?",
+      "editor_note": "Punched up to a three-word question hook, compressed the free-item escalation, added one dry aside, and landed on register two while preserving every protected fact, number, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972 — The Famine Forecast Lost",
+      "hook": "The 1970s forecast said food would run short. The data went the other way.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher. School kept moving.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never showed up. Schools advanced, grain climbed, and farmland scaled while the forecast quietly missed.",
+      "question": "Which shift matters most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled — and it still isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy story now comes from what we once treated as leftovers.",
+      "question": "Which change hits hardest — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating. Instead, the curve hit the brakes.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. The acceleration story is the part that nearly disappeared.",
+      "question": "Which shift surprised you most — rural, city, or growth?"
+    }
+  ]
+}

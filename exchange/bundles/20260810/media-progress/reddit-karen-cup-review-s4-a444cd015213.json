@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-karen-cup-review-s4-a444cd015213",
+  "safe_request_id": "reddit-karen-cup-review-s4-a444cd015213",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "69d22fa4ed4f4cd29fe73623080ab19e536e3bac1b2323df0c08d5bb55501d95",
+  "prompt_used": "An editorial illustration for a short-form video: corporate office computer. It accompanies the narration: \"Corporate saw it within the hour\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11U5tv2ZJYYKyAzlXEwgMPwclreb1yfTQ",
+    "filename": "20260810__reddit-karen-cup-review-s4-a444cd015213.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11U5tv2ZJYYKyAzlXEwgMPwclreb1yfTQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "db0ed398d28053dbb149236374764546a8f94786d6304005681827f789310514",
+    "bytes": 801536,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}

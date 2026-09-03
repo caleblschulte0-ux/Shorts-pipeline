@@ -1,0 +1,37 @@
+{
+ "slug": "global-health-spending-exceeds-1300-per-person",
+ "ts": "20260824T111248Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:mid/seg3:end present $475.6\u2192$1,067 as numerals inside plain pink blobs whose areas barely differ (863.3 vs 1016 read as the same size), and the numerals overflow the blob edges \u2014 a number on a shape, not a demonstration.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start shows five near-identical tiny pink dots with unreadable clipped labels floating in a mostly empty panel; by seg3:mid the values ($475.6, $679.5, $863.3, $1016, $1067) overflow their circles and the leftmost is cut by the card edge, while the top third and bottom quarter stay blank and Data just stands to the left doing nothing.",
+  "root_cause": "The spending beat is rendered as an area-scaled bubble grid whose radius mapping compresses a 2.2x value range into visually indistinguishable circles, with text sized larger than the shapes containing it and no layout use of the vertical space; the mascot has no act authored against the 'tripled' claim.",
+  "repair_goal": "Rebuild seg3 as a physical demonstration of tripling \u2014 e.g. a stack/column that grows to 2.8x its 2000 height, or coins/bills piling \u2014 filling the full frame height, with labels placed outside the shapes so no number is clipped, and give Data a bit tied to the stat (setup: he holds the $476 stack; action: it grows past him; payoff: he is buried/pushed out of frame)."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "pull_down_win"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "overwhelmed"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "race_sprint"
+  }
+ ]
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260824",
+  "summary": "The exchange completed cleanly on August 23, but its only automatic render handoff produced no Daily Shorts run, so trending shipped zero despite a complete Phase B report; this is new evidence after the direct pre-exchange dispatch was removed. Explainer's zero-post outage remains under the active critical delivery-restoration item, while the latest renders expose two concrete quality bottlenecks inside that work: the full-frame camera float crops chart text beyond the renderer's declared safe area, and the editorial gate accepts stories whose real, individually valid segments do not form one thesis. The current analytics do not justify a registry-mix change: trending measurement is stale and both explainer delivery and Third experiments already have active owners. They do support one bounded title test, however: mature explicit-rivalry titles have a repeated velocity advantage without requiring any change to cadence or quality gates.",
+  "alarm_ack": {
+    "no_posts_explainer": "Already covered by open backlog aaeb12de3ebd, Restore explainer delivery before interpreting its topic test, ruled in_progress at critical severity; the current report adds a distinct story-coherence bottleneck without duplicating that channel-restoration item.",
+    "showrunner_starving_the_slate": "Already owned by critical in-progress backlog aaeb12de3ebd and its delivery-restoration work; commit 1c698c7 added blocked-slug rotation, scene-plan persistence, failure census, and the starvation alarm itself. The current report separately identifies story coherence as fresh upstream evidence rather than re-filing the same channel-restoration item."
+  },
+  "findings": [
+    {
+      "title": "Phase B can finish without creating the Daily render",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "pipeline/phase-b-render-handoff",
+      "files": [
+        ".github/workflows/daily.yml",
+        ".github/workflows/exchange_phase_b.yml"
+      ],
+      "observation": "The August 23 no_posts_trending alarm is a failed handoff, not a missing bundle. Scheduled Phase B run 32643778540 completed its consume, commit, and Hand off to render steps successfully and wrote exchange/bundles/20260823/phase_b_report.json, but the repository's Actions history contains no Daily Shorts workflow_run for August 23. The second Phase B candidate also completed successfully after skipping its apply steps. daily.yml relies on workflow_run as the only automatic post-exchange trigger, while exchange_phase_b.yml merely prints that completion will render and never verifies that a downstream run exists. Removing the earlier direct dispatch therefore converted a premature-render bug into a silent no-render day.",
+      "proposal": "Make a real, non-skipped Phase B application establish a verifiable render handoff: after the report and package commit succeeds, explicitly dispatch Daily Shorts with Actions write permission or emit an equivalent authenticated repository event, capture the downstream run ID, and fail Phase B if GitHub does not accept the handoff. Keep daily.yml's workflow_run route as an idempotent fallback and keep its phase_b_report preflight, so neither route can render before the finalized exchange or double-publish. Add a workflow-contract test that distinguishes the applied candidate from the scheduled no-op and requires exactly one accepted downstream handoff for the applied path.",
+      "evidence": ".github/workflows/daily.yml lines 31-52 declares workflow_run on Exchange Phase B as the sole automatic route after exchange; .github/workflows/exchange_phase_b.yml lines 181-203 commits the applied bundle and then only echoes that daily.yml will run. GitHub Actions run https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/32643778540 shows every Phase B step, including commit and handoff, succeeded on 2026-08-23; run 32646462573 shows the later no-op candidate succeeded with apply/handoff skipped. The August 23 Actions history has no Daily Shorts run, exchange/bundles/20260823/phase_b_report.json records 15 fulfilled media items, and doctor/evidence.json raises no_posts_trending with zero posts.",
+      "new_evidence_since": "After commit e9a8284 shipped the settled e524811347c4 fix by removing auto-merge's direct Daily dispatch, the first complete August 23 Phase B application succeeded but created no Daily Shorts run and trending shipped zero."
+    },
+    {
+      "title": "Camera float crops chart text beyond the renderer safe area",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "trending/chart-camera-safe-area",
+      "files": [
+        "engines/chart_race.py",
+        "shared/camera_float.py",
+        "state/showrunner_verdicts.jsonl"
+      ],
+      "observation": "Graph-race layout is measured before a full-frame scale-and-moving-crop transform. The title is allowed to occupy 92% of the original 1080-pixel width, leaving 43 pixels per side, but camera_float now uses amplitude 44, scales to 1168 pixels, and moves a 1080-pixel crop from x=0 to x=88. The comments still claim a 20-pixel/1.9% edge cost. In all four August 24 graph-race reviews, the showrunner reported edge clipping: titles, y-axis ticks, hook text, series badges, or payoff labels were cut; three of those videos nevertheless shipped because clipping is not an auto-fail.",
+      "proposal": "Make graph layout consume the camera transform's actual worst-case inset before drawing: either render into an explicit overscan/padded canvas whose content safe box survives the moving crop, or derive title, axes, hook, and tip-label bounds from the maximum transformed crop. Preserve the calibrated motion floor rather than lowering float amplitude blindly. Add a post-transform frame test at both horizontal extrema that requires every title, axis label, hook, badge, and payoff label to remain inside the output frame.",
+      "evidence": "engines/chart_race.py lines 593-615 fits the title to W*0.92 and fixes the axes before applying shared.camera_float.crop_vf at lines 821-835; its line 827 still says the transform costs 20 pixels. shared/camera_float.py lines 73-88 retunes FLOAT_A to 44, while lines 118-126 scale 1080 to 1168 and move the 1080 crop across x=0..88; its docstring still calls that 1.9%. state/showrunner_verdicts.jsonl entries at 2026-08-24T12:10:44Z, 12:12:35Z, 12:14:31Z, and 12:16:31Z report clipped edge content on every graph race, including the Sports Betting title in 8 of 12 sampled frames and Peloton's hook, ticks, and payoff labels."
+    },
+    {
+      "title": "Explainer gate proves facts but not a coherent story",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "explainer/story-coherence-gate",
+      "files": [
+        "scripts/editorial_gate.py",
+        "data_learning/niche.config.json"
+      ],
+      "observation": "The pre-render editorial gate independently proves source provenance and grades only the title plus hook; it never checks whether the segments support that premise or each other. The active queue therefore contains real-data anthologies masquerading as single stories: the renewable-power title surrounds its renewable segment with irrigation and broadband, the rail title opens on mobile subscriptions and farm methane, and the shrinking-land title follows land area with external health spending and crop production. This is a material contributor to the current 18-renders/zero-ships quality crisis: after the recent mascot and variety fixes, August 24 reviews still blocked these videos for opening on the wrong subject, repeating unrelated charts, and failing to demonstrate the headline claim.",
+      "proposal": "Add a fail-closed story-coherence verdict before render and at authoring intake. Require the hook, closing, and every segment to declare how they advance one thesis; reject packages where the headline subject appears only in a late segment or where a segment has no checkable semantic bridge to that thesis. Use deterministic entity/topic overlap as the minimum floor and an adversarial semantic judge for ambiguous bridges, persist per-segment reasons, and send rejected stories back through authoring instead of spending three full renders on scene repair that cannot fix the script's premise.",
+      "evidence": "scripts/editorial_gate.py lines 69-96 validates each segment's source and lines 113-183 grades only title/hook premise; pre_render_verdict at lines 189-197 combines those two checks and has no segment-coherence result. data_learning/niche.config.json stories world-renewable-power-was-still-only-19-7-after-two-decades, the-us-still-has-148-553-km-of-rail-more-than-china, and the-world-has-less-land-than-it-did-in-2013 contain the unrelated segment sequences described. doctor/evidence.json records 18 renders and zero ships for August 23; opening the current main-branch verdict ledger at timestamps 2026-08-24T23:03:50Z through 2026-08-25T00:11:53Z shows the promised topic absent, visuals contradicting hooks, and unrelated irrigation/mobile/health charts preceding title claims; two slugs consumed all three repair attempts."
+    },
+    {
+      "title": "Renderer audits cannot locate the element the reviewer saw fail",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "render/diagnostic-manifest",
+      "files": [
+        "make_graph_race.py",
+        "make_reddit_story.py",
+        "make_explainer_stacked.py"
+      ],
+      "observation": "All three active renderer families emit different best-effort sidecars after the video is already complete. Graph race records only format, engine, and series names and silently discards an audit-write failure; Reddit records only subreddit, title-end, and duration; the explainer records media-source choices. None records timed semantic beats plus the screen bounds of titles, axes, labels, mascot contacts, or shot windows. The showrunner can say a Peloton payoff label left the frame or a renewable segment contradicted the hook, but repair code has no renderer-authored coordinate/claim manifest to map that diagnosis back to the responsible element.",
+      "proposal": "Define one versioned render-manifest contract produced during planning and finalized after encoding. For each timed scene, record its semantic claim, source package fields, asset hashes, renderer/engine version, safe region, and the planned/observed bounds of important text and visual elements; bind the manifest to the output hash. Make the showrunner and repair loop cite stable element IDs from that manifest while retaining frame evidence and the sovereign final review. Migrate format by format, beginning with graph-race labels and explainer segment claims, and make a missing or unwritable manifest a named production outcome rather than silent diagnostic loss.",
+      "evidence": "make_graph_race.py lines 76-83 writes a four-field audit and swallows every write error; make_reddit_story.py lines 487-498 writes only subreddit/title timing/duration and continues after failure; make_explainer_stacked.py lines 2520-2536 writes shot source records and likewise continues. The August 24 state/showrunner_verdicts.jsonl diagnoses exact clipped labels, wrong-subject segments, and repeated shot windows in prose, but none of those three sidecars contains element bounds, semantic segment claims, stable element IDs, or an output digest with which to target the diagnosis."
+    },
+    {
+      "title": "Test explicit rivalry titles on truthful graph crossovers",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/trending-graph-title-doctrine",
+      "files": [
+        "state/analytics/latest.json",
+        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "Trending's analytics snapshot is stale for current mix management, but it contains a repeated mature title signal that does not depend on guessing format identity. Among 58 public videos at least 72 hours old, the 16 titles using an explicit rivalry/crossover cue such as vs, passed, overtook, outnumbers, beat, buried, or ahead have median velocity 0.025 views per hour; the other 42 have median 0.0. The leading mature examples are The Switch Buried the PS5 in Sales at 0.19, Starlink Now Outnumbers Every Other Satellite at 0.13, and Biggest Lottery Jackpots Ever: Mega Millions vs Powerball at 0.11. Current graph authoring requires real swing/crossover data but has no measured title experiment tied to that payoff.",
+      "proposal": "Without changing the registered 4 graph-race / 2 Reddit mix, run a bounded ten-video graph-title test: when the data contains a real named rivalry and visible crossover, title the video as an explicit A-passed-B contest; otherwise keep the existing truthful title and do not manufacture conflict. Tag the arm in package metadata, compare mature median VPH and retention against ten eligible controls, and adopt the wording pattern only if the repeat advantage survives the current production-reliability and format-attribution repairs.",
+      "evidence": "state/analytics/latest.json was fetched at 2026-08-13T12:18:16Z and contains 58 public videos at least 72 hours old; grouping the titles by the explicit rivalry/crossover cues listed above yields n=16 at median 0.025 VPH versus n=42 at median 0.0, with the three named videos at 0.19, 0.13, and 0.11. CLAUDE_ROUTINE_INSTRUCTIONS.md lines 149-165 already requires authored graph races to contain a real swing/crossover, while config/channel_registry.json keeps graph_race at four of six trending slots; the proposal changes title doctrine only and leaves cadence, mix, and every gate intact."
+    }
+  ]
+}

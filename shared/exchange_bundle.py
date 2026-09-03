@@ -84,8 +84,8 @@ def build_bundle(date: str, packages: list[dict],
 
     `authoring_request` is the AUTHORING TAKEOVER brief (see
     `shared/authoring_brief.py`): present only when the day came up short of
-    packages, which means the Claude Routine did not run and the reserve bank
-    could not cover it. When present the bundle's `mode` flips to `"author"`
+    packages, which means the Claude Routine did not run. When present the
+    bundle's `mode` flips to `"author"`
     and ChatGPT writes the missing packages itself. Both jobs can be live at
     once — 2 authored packages still want their media judged and punched up
     while the other 4 get written from scratch."""
@@ -197,13 +197,29 @@ def build_bundle(date: str, packages: list[dict],
             "read_first": "exchange/README.md",
             "who_runs_what": {
                 "media_worker_0600": (
-                    "MEDIA ONLY. Work `requests` (and, on a takeover, the "
-                    "shots of the packages you author). Upload under the "
+                    "MEDIA ONLY. YOUR FIRST ACTION, before generating "
+                    "anything, is to commit media-progress/STARTED.json "
+                    "({\"task\": \"media_worker\", \"date\": ...}) — it is "
+                    "the difference between 'never ran' and 'ran and died', "
+                    "and four silent days (08-04..08-07) were undiagnosable "
+                    "without it. Then work `requests` (and, on a takeover, "
+                    "the shots of the packages you author). Upload under the "
                     "`drive_filename` each request carries, verify the bytes, "
                     "and write a checkpoint the moment each image verifies — "
-                    "one file per request, not one batch at the end. NEVER "
-                    "write response.json and NEVER write DONE."),
+                    "one file per request, not one batch at the end. A step "
+                    "you cannot complete gets a FAILED-<step>.json note in "
+                    "media-progress/ naming what blocked it — silence is the "
+                    "one output that is never acceptable. NEVER write "
+                    "response.json and NEVER write DONE."),
                 "finalizer_0700": (
+                    "FINISH OR SAY WHY. The run is judged ONLY by its two "
+                    "closure artifacts (response.json, then DONE as a second "
+                    "commit) — partial work that never reaches them counts "
+                    "as a no-show, and downstream automation activity is not "
+                    "credit for this task. If any step is impossible, still "
+                    "commit response.json with what you HAVE plus a "
+                    "`blocked` note naming the step; only skip DONE when the "
+                    "response itself could not be written. "
                     "RECOVER FIRST: read media-progress/ before generating "
                     "anything — a verified checkpoint is an image that "
                     "already exists, and re-making it both burns the budget "
@@ -371,8 +387,8 @@ def build_bundle(date: str, packages: list[dict],
         if authoring_request:
             job_zero = (
                 "0. AUTHOR THE DAY — READ `authoring_request` FIRST. The "
-                "channel's own writing brain did not run today and the reserve "
-                "bank could not cover it, so there is no slate. You are the "
+                "channel's own writing brain did not run today, so there is "
+                "no slate. You are the "
                 "brain: write the missing packages per the spec in "
                 "`authoring_request.formats` and return them in this "
                 "response's `authored` array. Without this the channel posts "
@@ -458,7 +474,17 @@ def mark_ready(date: str) -> Path | None:
 
 def is_done(date: str) -> bool:
     """True once ChatGPT has written the DONE marker for THIS date. A marker
-    for another day never fires this day's render."""
+    that parses but is for another day — or has no date at all — never fires
+    this day's render. A PRESENT-BUT-UNPARSEABLE marker (non-JSON text, or
+    JSON that is not an object) is deliberately honored as done: DONE=True
+    routes Phase B into the STRICTER branch (checkpoints required for every
+    piece of media), while "not done" falls to the lenient no-DONE emergency
+    backstop that may accept media without checkpoints. Treating a malformed
+    marker as absent would let a garbled handoff DOWNGRADE media validation
+    — the opposite of failing closed. (Doctor finding 2f7ee366fb9b asked for
+    strict date proof, built here; its unparseable clause was refused on the
+    grounds above — the test pinning this is
+    tests/test_exchange.py::test_done_marker_unparseable_is_honored.)"""
     try:
         p = bundle_dir(date) / "DONE"
         if not p.exists():
@@ -466,9 +492,22 @@ def is_done(date: str) -> bool:
         try:
             payload = json.loads(p.read_text())
         except Exception:                                # noqa: BLE001
+            print(f"[exchange] DONE for {date} present but not JSON — "
+                  f"honoring as done (strict branch), but the Finalizer "
+                  f"broke its contract", flush=True)
             return True          # marker present but unparseable — honor it
+        if not isinstance(payload, dict):
+            print(f"[exchange] DONE for {date} is JSON but not an object "
+                  f"({type(payload).__name__}) — honoring as done (strict "
+                  f"branch), but the Finalizer broke its contract",
+                  flush=True)
+            return True
         stamped = str(payload.get("date") or "").strip()
-        return (not stamped) or stamped == str(date)
+        if stamped != str(date):
+            print(f"[exchange] DONE date {stamped!r} does not match {date} "
+                  f"— treating as NOT done", flush=True)
+            return False
+        return True
     except Exception:                                    # noqa: BLE001
         return False
 

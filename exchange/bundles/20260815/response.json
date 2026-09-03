@@ -1,0 +1,154 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260815",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "1ca74365521e0cbfb0b00134ad4dccbe797d24dd",
+    "production_date": "20260815",
+    "bundle_sha256": "2558e1c1be73aebb5cabf791878de00713675fe9769d9093fe33538c883f5fe2"
+  },
+  "media": [
+    {
+      "request_id": "reddit-reply-all-chaos-s2-6c6e5362b64d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+        "filename": "20260815__reddit-reply-all-chaos-s2-6c6e5362b64d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-AgBpsZjm3R1jvECKfU4klUWtibqqVd1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "33de0c834cdbdc64a11fe952f7fe1c2bdb48380bd21cee9f4664084d61ca9722",
+        "bytes": 1034560,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s2-6c6e5362b64d.json",
+        "verified_at": "2026-08-15T11:02:10Z"
+      }
+    },
+    {
+      "request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+        "filename": "20260815__reddit-reply-all-chaos-s6-0fea0eba1793.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1o8D0n_YimQko-CQC7r3N7Wy2JJi3qkRo",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b382798b43f73b74570b99d1ffcde85972141de86973017cfdfba479d52887a6",
+        "bytes": 1261544,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s6-0fea0eba1793.json",
+        "verified_at": "2026-08-15T11:02:11Z"
+      }
+    },
+    {
+      "request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+        "filename": "20260815__reddit-reply-all-chaos-s7-becff40b5e6a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a596c748d32ff217911acb735b04c8d2d9594411d16c942946666dfbb1c7a61f",
+        "bytes": 1535959,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260815/media-progress/reddit-reply-all-chaos-s7-becff40b5e6a.json",
+        "verified_at": "2026-08-15T11:02:12Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-japan-korea-tourism",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title immediately names Japan, South Korea, and the tourism gap the chart reveals."
+    },
+    {
+      "slug": "graph-byd-vs-tesla",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title delivers the specific BYD-over-Tesla EV-sales reversal without weakening the chart payoff."
+    },
+    {
+      "slug": "graph-sports-betting-handle",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title front-loads the concrete $167 billion annual sports-betting scale."
+    },
+    {
+      "slug": "graph-popmart-vs-mattel",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title frames the Labubu company’s exact 8X revenue surge as the clean chart reveal."
+    },
+    {
+      "slug": "reddit-reply-all-chaos",
+      "script": "Reply all? Absolutely. Our new VP wanted proof people read company emails, so his rule was reply-all, every single time, with \"confirmed read\" on any all-staff message. No exceptions. Fine by me. The next memo reached four hundred people. Four hundred replies hit every inbox within six minutes. Then out-of-office auto-replies triggered another wave of confirmed reads, which triggered more auto-replies. A perfectly efficient circle. By hour two, the mail server was queuing eleven thousand messages, and IT had shut off outbound email company-wide. The VP sent an urgent memo asking everyone to please stop replying all. I replied all: confirmed read. So did everyone else. IT killed the entire distribution list by lunch. The rule quietly disappeared from the handbook that same afternoon. Who confirmed the VP's reply-all disaster?",
+      "editor_note": "Punched up to a two-word question hook, tightened the cascading email failure, added one dry efficiency aside, and landed on the VP’s reply-all disaster while preserving every number, entity, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-loss-prevention-audit",
+      "script": "Who was stealing? The loss-prevention guy at my regular grocery store kept stopping me at the exit every single visit — bag check and receipt check — despite the register printing a receipt every time. I kept every one in a dated folder. After the eleventh stop in six weeks, I filed a formal complaint with corporate, receipts and timestamps attached. Corporate pulled the store's loss-prevention log before answering. I wasn't the only regular customer he targeted, and the store's own shrink numbers had climbed the entire time he worked there. An internal audit found what the stops were covering for: he'd been walking product out the loading dock himself for over a year. He was gone within the week. Then corporate mailed me a written apology and a gift card. Who was the loss-prevention guy really watching?",
+      "editor_note": "Punched up to a three-word question hook, front-loaded the theft reversal, removed procedural drag, and landed on the loss-prevention contradiction without levity because the story involves a crime victim; every fact, number, shot phrase, and query is preserved."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s warned the world would run out of food. The numbers refused to cooperate.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast was left waiting.",
+      "question": "Which shift changed the story most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled. It wasn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "The world's overlooked energy story is built from what people once treated as waste.",
+      "question": "Which shift stands out most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating forever. Instead, the curve nearly stopped.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration everyone assumed would continue.",
+      "question": "Which change surprised you most — rural, city, or growth?"
+    }
+  ]
+}

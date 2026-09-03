@@ -1,0 +1,19 @@
+{
+  "key": "activity_inequality_obesity_risk",
+  "title": "Relative obesity likelihood: low vs high 'activity inequality' countries (index)",
+  "unit": "index",
+  "geography": "World (country groupings from the 2017 Stanford activity study)",
+  "time_coverage": "2017",
+  "source": {
+    "name": "Large-scale physical activity data reveal worldwide activity inequality (Althoff et al.)",
+    "publisher": "Nature (Stanford University study, journal vol. 547)",
+    "url": "https://www.nature.com/articles/nature23018",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "'Activity inequality' = the gap in step counts between a country's most-active and least-active people, distinct from the country's raw average. The study found this gap -- not average step count -- was the strongest predictor of obesity: people in high-inequality countries (e.g. US, Canada, Australia, New Zealand, Egypt) were found to be almost 200% more likely to be obese than people in low-inequality countries (e.g. Sweden, Japan). Shown here as an index: low-inequality baseline = 100, high-inequality = ~297 (100 + ~197%).",
+  "points": [
+    {"label": "Low activity-inequality countries (e.g. Sweden, Japan)", "value": 100},
+    {"label": "High activity-inequality countries (e.g. US, Canada, Egypt)", "value": 297}
+  ]
+}

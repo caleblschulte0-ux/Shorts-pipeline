@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-billion-dollar-disasters",
+  "title": "US Disaster Costs Are Exploding",
+  "hook": "28 disasters. One billion each.",
+  "y_label": "Disaster cost that year ($ billions)",
+  "duration": 13,
+  "source": "Sources: NOAA National Centers for Environmental Information (NCEI), U.S. Billion-Dollar Weather and Climate Disasters database (ncei.noaa.gov/access/billions); annual totals for 2005, 2017, 2019, 2020 and 2024 and the 1980s per-year average ($22B) per NOAA Climate.gov year-end reporting.",
+  "hashtags": [
+    "disaster",
+    "noaa",
+    "climate",
+    "wildfire",
+    "hurricane",
+    "weather",
+    "billiondollar",
+    "data",
+    "chart",
+    "didyouknow",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "years": [
+    1985,
+    2005,
+    2017,
+    2019,
+    2020,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Disaster cost that year",
+      "color": "#ff3030",
+      "values": [
+        22,
+        268.5,
+        395.9,
+        45.0,
+        95.0,
+        182.7
+      ]
+    },
+    {
+      "name": "1980s average ($22B/yr)",
+      "color": "#8a8fa3",
+      "values": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ]
+    }
+  ],
+  "music_vibe": "cinematic"
+}

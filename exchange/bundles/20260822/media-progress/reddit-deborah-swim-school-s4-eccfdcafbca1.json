@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-deborah-swim-school-s4-eccfdcafbca1",
+  "safe_request_id": "reddit-deborah-swim-school-s4-eccfdcafbca1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "052339938cc7606100b38434bb1e86edf968d2463d33deecafcace8f5da27ece",
+  "prompt_used": "An editorial illustration for a short-form video: embarrassed woman looking down. It accompanies the narration: \"went pale and mumbled\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+    "filename": "20260822__reddit-deborah-swim-school-s4-eccfdcafbca1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "eb4ad3f29e62117f4a68a52a574146232a7924b2634ad23ae6f4d3493d75b54c",
+    "bytes": 1119138,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:35.250Z",
+  "error": null,
+  "retryable": false
+}

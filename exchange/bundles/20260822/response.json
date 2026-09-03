@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260822",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "403778e4fe42d148fcee6091e984148da8ebb2c7",
+    "production_date": "20260822",
+    "bundle_sha256": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2"
+  },
+  "media": [
+    {
+      "request_id": "reddit-deborah-swim-school-s0-7aba38055ff0",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "16wS_jpeEJdE_NPOBD3g6V0HR5SuLdTZq",
+        "filename": "20260822__reddit-deborah-swim-school-s0-7aba38055ff0.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=16wS_jpeEJdE_NPOBD3g6V0HR5SuLdTZq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9e136b79a96a44901152e423f974b1679c53e605fa009a467c4d2485e41998c6",
+        "bytes": 1246351,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s0-7aba38055ff0.json",
+        "verified_at": "2026-08-22T11:16:32.283Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s1-2dacb57a4bb1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1CppspbO8zqIK12WiaejUdc2f0sHfJ5SP",
+        "filename": "20260822__reddit-deborah-swim-school-s1-2dacb57a4bb1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1CppspbO8zqIK12WiaejUdc2f0sHfJ5SP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4735cd1a50f5f3be4f95f136d4075f5769f0429db7b5f9b7836ccaca8323720d",
+        "bytes": 1215102,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s1-2dacb57a4bb1.json",
+        "verified_at": "2026-08-22T11:16:33.202Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s2-800b38d816fb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "117DafUZ__r2zfijRoktSl-iFBRh96K0t",
+        "filename": "20260822__reddit-deborah-swim-school-s2-800b38d816fb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=117DafUZ__r2zfijRoktSl-iFBRh96K0t",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a35f3744ee49eac794787c873e4bff6336c95e1fe792dc447dd399df622dbd06",
+        "bytes": 1757072,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s2-800b38d816fb.json",
+        "verified_at": "2026-08-22T11:16:34.238Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s4-eccfdcafbca1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+        "filename": "20260822__reddit-deborah-swim-school-s4-eccfdcafbca1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1fQZ5joOQ1uSShS-K2qNoI2h7PN1Ki_eA",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "eb4ad3f29e62117f4a68a52a574146232a7924b2634ad23ae6f4d3493d75b54c",
+        "bytes": 1119138,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s4-eccfdcafbca1.json",
+        "verified_at": "2026-08-22T11:16:35.250Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s5-618bdf27c9aa",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1WVQnrNFlhnTcehLVhX5Nx3KJsufK04tJ",
+        "filename": "20260822__reddit-deborah-swim-school-s5-618bdf27c9aa.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1WVQnrNFlhnTcehLVhX5Nx3KJsufK04tJ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d6e3b5ecbe91b0a6301710194aa4ce7eae7dc4ecde67400722611ede0f8a03fd",
+        "bytes": 1511585,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s5-618bdf27c9aa.json",
+        "verified_at": "2026-08-22T11:16:36.231Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s6-f3190e01ecb3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+        "filename": "20260822__reddit-deborah-swim-school-s6-f3190e01ecb3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "762cd7e8ce889a4dfe0a39339ebb996a2fc97af88edf31d5beb9eda103e059cb",
+        "bytes": 1407268,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s6-f3190e01ecb3.json",
+        "verified_at": "2026-08-22T11:16:37.159Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s7-d96c58f05202",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+        "filename": "20260822__reddit-deborah-swim-school-s7-d96c58f05202.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1e9yIe-Mse7V8rKdBRZRZf9TYa-15zdIl",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "50907f2ba5ce03834d3b83794dee09fe4abfe5824c97f2811a43eabed3a24650",
+        "bytes": 1019555,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s7-d96c58f05202.json",
+        "verified_at": "2026-08-22T11:16:38.114Z"
+      }
+    },
+    {
+      "request_id": "reddit-deborah-swim-school-s3-29d10843c2bb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+        "filename": "20260822__reddit-deborah-swim-school-s3-29d10843c2bb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "09b35f9e33dfcaadb190533d8e349b4107087378a08c02ad8063ee019fd8184b",
+        "bytes": 1185689,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-deborah-swim-school-s3-29d10843c2bb.json",
+        "verified_at": "2026-08-22T11:16:39.070Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s0-33da710f84cb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s0-33da710f84cb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Eceo2HaUsCHI7onYFmjU65bZBol7xcVx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "97c017ec475785853b63b86c612ac1a5139cdd2f057e61dd3d4d9b4a449125dd",
+        "bytes": 1204596,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s0-33da710f84cb.json",
+        "verified_at": "2026-08-22T11:16:40.023Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s1-20746d02edc1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "12p37Z4f-vj6BJRPKBPS2dIIykm4hcH-V",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s1-20746d02edc1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=12p37Z4f-vj6BJRPKBPS2dIIykm4hcH-V",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "dd213033bc6b109d806481098457a19827dc76487c0cd92954d711b88f7fd9cb",
+        "bytes": 1440379,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s1-20746d02edc1.json",
+        "verified_at": "2026-08-22T11:16:40.972Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s2-5a93de8c1cae",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s2-5a93de8c1cae.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1FjdrDdDE6WjvcRG0HlkejGo_qk1gQA5a",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "17dfda7c708d00e19478e5d385c0178599412fab6442f783d3498cdb555973ba",
+        "bytes": 1194744,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s2-5a93de8c1cae.json",
+        "verified_at": "2026-08-22T11:16:41.904Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s3-168dae713010",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10OdaJLXEXcM5juiaeEzl6g8cGmknBERE",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s3-168dae713010.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10OdaJLXEXcM5juiaeEzl6g8cGmknBERE",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b278bb5df662ed9cf4f68aeb1cb6a61a33092a27b23ff832e2fd0b77bef03112",
+        "bytes": 939103,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s3-168dae713010.json",
+        "verified_at": "2026-08-22T11:16:43.009Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a66ebf21888d3b3a617d3c390861eccf280010530dbc63d582bb63e7bfebe0fa",
+        "bytes": 1064247,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.json",
+        "verified_at": "2026-08-22T11:16:44.004Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s6-b37ba8c8d333",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1l1fW2Q6silxwhk4rT9WNgGLIlqnaWnqB",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s6-b37ba8c8d333.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1l1fW2Q6silxwhk4rT9WNgGLIlqnaWnqB",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c78a8bb16cfaca9c303ee7fc3c3282618c136254d59c9a658d6ff320dd31e373",
+        "bytes": 1216908,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s6-b37ba8c8d333.json",
+        "verified_at": "2026-08-22T11:16:44.968Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s7-3aba312dd033",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s7-3aba312dd033.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f8b4db02d12ee1ff70a317e938fc2054de7690dc56d71ea47374d21aea5fe216",
+        "bytes": 1156626,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s7-3aba312dd033.json",
+        "verified_at": "2026-08-22T11:16:46.079Z"
+      }
+    },
+    {
+      "request_id": "reddit-gym-tuesday-cancellation-s4-7687515b2fe7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Z1RqGxtgrn1VphcKUWn3IsXfT9uzJ7da",
+        "filename": "20260822__reddit-gym-tuesday-cancellation-s4-7687515b2fe7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Z1RqGxtgrn1VphcKUWn3IsXfT9uzJ7da",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3ecd7c91aa4457233388b40e34c0f6292405d04cfce0ac68a1b67e4a8d6b2572",
+        "bytes": 1419826,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260822/media-progress/reddit-gym-tuesday-cancellation-s4-7687515b2fe7.json",
+        "verified_at": "2026-08-22T11:16:47.076Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-airbus-overtakes-boeing",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames Airbus overtaking Boeing after the 737 MAX crisis."
+    },
+    {
+      "slug": "graph-shopify-overtakes-ebay",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly names Shopify overtaking eBay in total sales."
+    },
+    {
+      "slug": "graph-modelo-overtakes-budlight",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already promises Modelo dethroning Bud Light as America's #1."
+    },
+    {
+      "slug": "graph-netflix-overtakes-cable",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly identifies Netflix passing cable in total subscribers."
+    },
+    {
+      "slug": "reddit-deborah-swim-school",
+      "script": "She knew the owner? A regular cornered me at the front desk. Her son needed to skip the six month waitlist because owner Deborah was her close friend. I said nobody skips, but I'd pass it along. She said she'd call Deborah herself. There was one problem: our owner's name is Patricia, and she was twelve feet away restocking towels. Patricia walked over, introduced herself, and asked who Deborah was. The woman went pale and mumbled about mixing up schools. Patricia calmly explained that inventing a friendship with ownership to cut a swim safety line full of children put her on our permanent do not fast track list. A wonderfully efficient list. Her son stayed at position forty one. Two weeks later, her membership got flagged for a background review nobody on staff requested. Who was Deborah supposed to impress?",
+      "editor_note": "Punched up to a four-word question hook, tightened the fake-owner escalation, added one dry list aside, and landed on Deborah while preserving every fact, number, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-gym-tuesday-cancellation",
+      "script": "Why only Tuesday? My gym's contract let monthly memberships be cancelled in person with thirty days notice. The front desk said one manager processed them, in a single two hour window each week, with a specific form in a locked drawer. I returned during that exact window the following week. No manager. He missed the week after that too. A normal system. Instead of coming back a third time, I mailed a certified letter quoting the contract and filed a complaint with the state attorney general's consumer protection division, attaching the mystery-hours sign photos. Three weeks later, a corporate compliance officer apologized personally, refunded four months of fees charged after my cancellation date, and confirmed the location's cancellation policy was being rewritten chain wide. The window disappeared from every location by the following month. How expensive was that locked drawer?",
+      "editor_note": "Punched up to a four-word question hook, compressed the impossible cancellation procedure, added one dry lunar-alignment aside, and landed on the locked drawer while preserving every fact, number, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The actual numbers went the other direction.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}

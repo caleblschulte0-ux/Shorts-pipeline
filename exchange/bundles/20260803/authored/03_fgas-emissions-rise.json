@@ -1,0 +1,18 @@
+{
+  "format": "graph_race",
+  "slug": "fgas-emissions-rise",
+  "title": "F-Gases Grew Faster Than Methane",
+  "hook": "One line exploded.",
+  "y_label": "Million tonnes CO2e",
+  "duration": 13,
+  "source": "World Bank, greenhouse-gas emissions by source: agricultural methane (EN.GHG.CH4.AG.MT.CE.AR5), waste methane (EN.GHG.CH4.WA.MT.CE.AR5), and industrial F-gases (EN.GHG.FGAS.IP.MT.CE.AR5), 1972-2024: https://data.worldbank.org",
+  "years": [1972, 1982, 1993, 2003, 2014, 2024],
+  "series": [
+    {"name": "Agriculture methane", "color": "#ffaa30", "icon": "World Bank", "values": [2932, 3329, 3542, 3632, 4036, 4334]},
+    {"name": "Waste methane", "color": "#50ff80", "icon": "World Bank", "values": [903.8, 1058, 1202, 1288, 1551, 1652]},
+    {"name": "Industrial F-gases", "color": "#b05cff", "icon": "World Bank", "values": [169.8, 242.1, 397.9, 688.2, 1040, 1510]}
+  ],
+  "hashtags": ["climate", "emissions", "industry", "data", "environment", "shorts"],
+  "music_vibe": "tense industrial pulse",
+  "_authored_by": "chatgpt-takeover"
+}

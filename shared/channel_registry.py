@@ -2,13 +2,13 @@
 
 For most of this pipeline's life, "the trending slate is 2 reddit + 2 text
 card + 2 graph race" was written down in eight places: a constant in
-`package_buffer`, another in `authoring_brief`, a heading in
+the package validator, another in `authoring_brief`, a heading in
 `CLAUDE_ROUTINE_INSTRUCTIONS.md`, three tables in `exchange/README.md`, a
 paragraph of prose inside `daily.yml`'s brain prompt, and the assertions in
 four test files. On 2026-07-31 the operator changed the ruling to 4 graph
 races + 2 reddit stories with text cards retired — and it landed in exactly
-ONE of those eight. The others kept saying 2+2+2, so the reserve bank kept
-banking retired formats and the takeover kept asking for them.
+ONE of those eight. The others kept saying 2+2+2, so the takeover kept
+asking for a retired format and the validators kept accepting it.
 
 That is the failure this module exists to make impossible. `config/
 channel_registry.json` is the only place a channel's operational rules are
@@ -51,7 +51,7 @@ PATH_ENV = "CHANNEL_REGISTRY_PATH"
 
 FORMAT_STATES = ("active", "retired", "disabled")
 KNOWN_ROLES = ("media_worker", "editorial_review", "takeover_authoring",
-               "queue_stocking", "none")
+               "queue_stocking", "production_supervisor", "none")
 
 
 class RegistryError(RuntimeError):

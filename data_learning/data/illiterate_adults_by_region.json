@@ -1,0 +1,20 @@
+{
+  "key": "illiterate_adults_by_region",
+  "title": "Illiterate adults by world region (millions)",
+  "unit": "million",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "International Literacy Day 2025 fact sheet",
+    "publisher": "UNESCO Institute for Statistics (UIS)",
+    "url": "https://www.unesco.org/sites/default/files/medias/fichiers/2025/09/ild-2025-factsheet.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Number of illiterate adults (15+) by region in 2024. Central and Southern Asia (347 million) and Sub-Saharan Africa (225 million) together hold nearly 77% of the world's illiterate adults, a share that has grown since 2015. The Middle East and North Africa region holds 47 million.",
+  "points": [
+    {"label": "Central & Southern Asia", "value": 347},
+    {"label": "Sub-Saharan Africa", "value": 225},
+    {"label": "Middle East & North Africa", "value": 47}
+  ]
+}

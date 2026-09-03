@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-uk-coal-vs-wind-power",
+  "title": "The UK Killed Coal In One Decade",
+  "hook": "Coal ran Britain. Now it's zero.",
+  "y_label": "Electricity generated (TWh)",
+  "duration": 13,
+  "source": "Source: Carbon Brief and Ember Energy analysis of UK electricity generation by fuel, 2015-2024 (compiled from DUKES/National Grid ESO data). The UK's last coal power station, Ratcliffe-on-Soar, closed in September 2024. Figures approximate.",
+  "years": [
+    2015,
+    2017,
+    2018,
+    2019,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Coal",
+      "color": "#3a3a3a",
+      "values": [
+        76,
+        23,
+        17,
+        7,
+        0.55,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "Wind",
+      "color": "#2ca7e0",
+      "values": [
+        40,
+        52,
+        58,
+        64,
+        75,
+        80,
+        83
+      ]
+    }
+  ],
+  "hashtags": [
+    "ukcoal",
+    "coalphaseout",
+    "windpower",
+    "renewableenergy",
+    "cleanenergy",
+    "climate",
+    "uk",
+    "britain",
+    "energy",
+    "netzero",
+    "fossilfuels",
+    "greenenergy",
+    "sustainability",
+    "trending",
+    "shorts"
+  ],
+  "music_vibe": "dark"
+}

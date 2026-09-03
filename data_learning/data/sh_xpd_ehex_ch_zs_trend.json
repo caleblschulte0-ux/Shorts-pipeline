@@ -1,0 +1,48 @@
+{
+  "key": "sh_xpd_ehex_ch_zs_trend",
+  "title": "External health expenditure",
+  "unit": "% of current health expenditure",
+  "geography": "World",
+  "time_coverage": "2000-2023",
+  "insight_type": "trend",
+  "source": {
+    "name": "External health expenditure",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/SH.XPD.EHEX.CH.ZS",
+    "officiality": "official",
+    "access_date": "2026-08-05"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-05. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 0.15,
+      "period": "2000"
+    },
+    {
+      "label": "2005",
+      "value": 0.27,
+      "period": "2005"
+    },
+    {
+      "label": "2009",
+      "value": 0.31,
+      "period": "2009"
+    },
+    {
+      "label": "2014",
+      "value": 0.32,
+      "period": "2014"
+    },
+    {
+      "label": "2018",
+      "value": 0.24,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 0.29,
+      "period": "2023"
+    }
+  ]
+}

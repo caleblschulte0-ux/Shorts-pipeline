@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-japan-korea-tourism",
+  "title": "Japan Just Lapped South Korea In Tourism",
+  "hook": "One nation's comeback tripled.",
+  "y_label": "International tourist arrivals (millions)",
+  "duration": 13,
+  "source": "Japan National Tourism Organization (JNTO) inbound visitor totals: 2019 31.88M (pre-pandemic peak), 2020 4.12M, 2021 0.25M (COVID low), 2022 3.83M, 2023 25.07M, 2024 36.87M (record, per JNTO/Reuters coverage). Korea Tourism Organization inbound totals: 2019 17.50M, 2020 2.5M, 2021 0.97M, 2022 3.20M, 2023 11.03M, 2024 16.36M (still below its own 2019 peak). Both countries crashed together in 2020-2021; Japan's recovery pulled dramatically ahead of Korea's by 2023-2024, widely reported as Japan riding a weak yen to record visitor numbers.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Japan",
+      "color": "#ff4d6d",
+      "icon": "JP",
+      "values": [
+        31.88,
+        4.12,
+        0.25,
+        3.83,
+        25.07,
+        36.87
+      ]
+    },
+    {
+      "name": "South Korea",
+      "color": "#4a90e2",
+      "icon": "KR",
+      "values": [
+        17.5,
+        2.5,
+        0.97,
+        3.2,
+        11.03,
+        16.36
+      ]
+    }
+  ],
+  "hashtags": [
+    "japan",
+    "southkorea",
+    "tourism",
+    "travel",
+    "weakyen",
+    "traveltrends",
+    "asia",
+    "tourists",
+    "visitjapan",
+    "koreatourism",
+    "traveldata"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

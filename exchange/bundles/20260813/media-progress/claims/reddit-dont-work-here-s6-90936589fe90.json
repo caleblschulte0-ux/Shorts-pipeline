@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820"
+  },
+  "request_id": "reddit-dont-work-here-s6-90936589fe90",
+  "safe_request_id": "reddit-dont-work-here-s6-90936589fe90",
+  "worker": "media",
+  "worker_run_id": "media-20260813-110234z",
+  "created_at": "2026-08-13T11:03:11Z",
+  "expires_at": "2026-08-13T11:18:11Z",
+  "lease_seconds": 900
+}

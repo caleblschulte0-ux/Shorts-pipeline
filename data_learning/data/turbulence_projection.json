@@ -1,0 +1,20 @@
+{
+  "key": "turbulence_projection",
+  "title": "Projected severe clear-air turbulence (annual hours, North Atlantic)",
+  "unit": "hours",
+  "geography": "North Atlantic flight corridor",
+  "time_coverage": "2020-2080 (modeled projection)",
+  "source": {
+    "name": "Climate-change turbulence projections",
+    "publisher": "Williams (2017), Advances in Atmospheric Sciences",
+    "url": "https://doi.org/10.1007/s00376-017-6268-2",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; the study models severe clear-air turbulence roughly doubling to tripling under a warming climate by the mid-to-late 21st century.",
+  "points": [
+    {"label": "2020 (observed)", "value": 27, "period": "2020"},
+    {"label": "2050 (modeled)", "value": 43, "period": "2050"},
+    {"label": "2080 (modeled)", "value": 62, "period": "2080"}
+  ]
+}

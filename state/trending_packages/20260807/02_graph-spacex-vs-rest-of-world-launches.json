@@ -1,0 +1,66 @@
+{
+  "format": "graph_race",
+  "slug": "graph-spacex-vs-rest-of-world-launches",
+  "title": "SpaceX Now Out-Launches the Entire Planet",
+  "hook": "One company beat the world.",
+  "y_label": "Orbital launches per year",
+  "duration": 13,
+  "source": "Sources: annual orbital launch-attempt tallies reported by SpaceNews and Jonathan McDowell's Space Launch Report; SpaceX Falcon 9/Heavy missions vs. every other provider worldwide combined, 2019-2025.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Rest of World",
+      "color": "#999999",
+      "icon": "",
+      "values": [
+        89,
+        88,
+        115,
+        125,
+        127,
+        125,
+        164
+      ]
+    },
+    {
+      "name": "SpaceX",
+      "color": "#005288",
+      "icon": "SpaceX",
+      "values": [
+        13,
+        26,
+        31,
+        61,
+        96,
+        134,
+        165
+      ]
+    }
+  ],
+  "hashtags": [
+    "spacex",
+    "rocketlaunch",
+    "elonmusk",
+    "nasa",
+    "falcon9",
+    "spacerace",
+    "rocketscience",
+    "aerospace",
+    "china",
+    "spaceindustry",
+    "satellites",
+    "space",
+    "shorts",
+    "trending",
+    "launch"
+  ],
+  "music_vibe": "cinematic"
+}

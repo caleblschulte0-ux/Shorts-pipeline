@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       count:
-        description: 'How many shorts to publish (6 = 4 graph-race + 2 reddit)'
+        description: 'How many shorts to publish (blank = live channel registry)'
         required: false
-        default: '6'
+        default: ''
       force:
         description: 'Bypass 6-hour duplicate-trigger guard (--force-rerun, keeps pre-written packages)'
         required: false
@@ -36,6 +36,16 @@ on:
   # scripts and media. workflow_run (not push) because Phase B commits with
   # GITHUB_TOKEN and GitHub blocks those pushes from firing other workflows.
   # run_trending_daily's 6-hour dedupe guard makes a double-fire a safe no-op.
+  #
+  # THIS TRIGGER IS A FALLBACK, NOT THE ONLY ROUTE (2026-08-25, doctor
+  # finding 2fc5cbb21cca). On 2026-08-23 exchange_phase_b.yml completed a
+  # real, non-skipped apply and this workflow_run event never fired at all —
+  # zero daily.yml runs that day, not even a skipped one. Phase B's own
+  # "Hand off to render" step now explicitly dispatches this workflow
+  # (workflow_dispatch) the moment a real apply commits, and fails its own
+  # job loudly if GitHub does not accept that dispatch. Keep this
+  # workflow_run trigger wired anyway — it is still a legitimate second path
+  # in, and the phase_b_report.json preflight below makes either route safe.
   workflow_run:
     workflows:
       - "Exchange Phase B (consume ChatGPT, self-fill, ready to render)"
@@ -63,6 +73,10 @@ env:
 
 jobs:
   daily:
+    # Added by ChatGPT 2026-08-02: a failed Phase B is not a render manifest.
+    # Manual/trigger-file rescues still run, but workflow_run only advances on
+    # a successful deterministic handoff.
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 120
     concurrency:
@@ -80,6 +94,36 @@ jobs:
         id: preflight
         run: |
           set -e
+          # A COMPLETED PHASE B RUN IS NOT THE SAME THING AS A FINISHED DAY.
+          #
+          # exchange_phase_b.yml fires on TWO candidate UTC hours so the code
+          # can pick the one that lands at 08:30 America/Chicago in either
+          # DST half (see that workflow's header). The OTHER candidate hour
+          # is a deliberate no-op: `backstop_status()` says the finalizer's
+          # window hasn't opened yet, `exchange_phase_b.py --backstop`
+          # returns 0 having applied nothing, and every step in that job
+          # still exits clean — so the workflow's conclusion is `success`
+          # with nothing actually applied. This job's own `if:` only checks
+          # `github.event.workflow_run.conclusion == 'success'`, which
+          # cannot tell that benign no-op apart from a real completed
+          # handoff — so in winter (13:30 UTC = 07:30 CST, an hour before
+          # the finalizer's window even closes) it would start rendering an
+          # unfinished day: no self-fill, no punch-up, most media missing,
+          # every check green (doctor finding 612efa85efcb, 2026-08-16).
+          #
+          # `exchange/bundles/<date>/phase_b_report.json` is written ONLY at
+          # the tail of a real Phase B application (scripts/exchange_phase_b.py,
+          # after self-fill + punch-up + package writes) — never on the
+          # early no-op path. Its presence for TODAY is the actual "ready to
+          # render" fact; the upstream conclusion alone is not.
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            D=$(date -u +%Y%m%d)
+            if [ ! -f "exchange/bundles/$D/phase_b_report.json" ]; then
+              echo "skip=phase_b_incomplete" >> $GITHUB_OUTPUT
+              echo "Phase B's workflow completed but exchange/bundles/$D/phase_b_report.json does not exist yet — this was the OTHER scheduled candidate (its window hasn't opened / nothing applied), not a real handoff. Not rendering; the correct candidate or the DONE push will fire this properly."
+              exit 0
+            fi
+          fi
           # PAUSED = global kill switch (all channels). PAUSED_DAILY = pause
           # ONLY this trending channel (operator ruling 2026-07-11: keep
           # trending down for the distribution diagnosis while the other
@@ -91,15 +135,55 @@ jobs:
           fi
           fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
           echo "Failure count: $fc"
+          # AUTO-PAUSE IS A BACKOFF, NOT A LATCH. It used to skip forever
+          # until a human reset the counter by hand — the exact opposite of
+          # the operator's standing ruling ("if something doesn't run
+          # properly, it goes through and tries again"), and a two-day
+          # external outage (YouTube API, a runner image break) would have
+          # parked the channel permanently on a box nobody was watching.
+          #
+          # Now: two zero-upload days -> sit out ONE day (that still
+          # protects quota and render minutes against a systematically
+          # broken pipeline) -> retry automatically. A retry that fails
+          # again earns another day off; one that works resets to 0. The
+          # channel can degrade to every-other-day, never to never. The
+          # alarm's `channel_auto_paused` critical still fires on every
+          # paused day, so a real breakage is loud while it self-retries.
           if [ "$fc" -ge 2 ]; then
-            echo "skip=auto" >> $GITHUB_OUTPUT
-            echo "Pipeline auto-paused: 2+ failures in a row. Reset state/failure_count.txt to resume."
+            TODAY=$(date -u +%Y%m%d)
+            SAT_OUT=$(cat state/auto_pause_day.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
+            if [ "$SAT_OUT" -ge "$TODAY" ]; then
+              # already sitting out this day — a re-fire stays skipped
+              echo "skip=auto" >> $GITHUB_OUTPUT
+              echo "::error::TRENDING IS PAUSED for $TODAY (2 zero-upload days). Retrying automatically tomorrow."
+            elif [ "$SAT_OUT" -gt 0 ]; then
+              # sat out a full day — retry now
+              echo "1" > state/failure_count.txt
+              rm -f state/auto_pause_day.txt
+              bash scripts/ci_commit_state.sh \
+                "trending: auto-resume after a paused day [skip ci]" \
+                state/failure_count.txt state/auto_pause_day.txt || true
+              echo "skip=" >> $GITHUB_OUTPUT
+              echo "::warning::AUTO-RESUME: sat out $SAT_OUT, retrying today. Another zero-upload day pauses again tomorrow."
+            else
+              # first paused day — record it so tomorrow's run can retry
+              echo "$TODAY" > state/auto_pause_day.txt
+              bash scripts/ci_commit_state.sh \
+                "trending: auto-pause day $TODAY recorded [skip ci]" \
+                state/auto_pause_day.txt || true
+              echo "skip=auto" >> $GITHUB_OUTPUT
+              echo "::error::TRENDING IS PAUSED for $TODAY (state/failure_count.txt=$fc). It will retry ITSELF tomorrow — no manual reset needed. To retry sooner: echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push"
+            fi
           else
             echo "skip=" >> $GITHUB_OUTPUT
           fi
 
       - name: Notify (skipped run)
-        if: steps.preflight.outputs.skip != ''
+        # phase_b_incomplete is the OTHER scheduled Phase B candidate no-op'ing
+        # — expected roughly once a day for half of every year (see
+        # preflight), not a fault. Alerting on it daily is how people learn to
+        # ignore the channel.
+        if: steps.preflight.outputs.skip != '' && steps.preflight.outputs.skip != 'phase_b_incomplete'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -108,9 +192,9 @@ jobs:
           if [ "$SKIP_REASON" = "manual" ]; then
             REASON="manual pause (PAUSED file present in repo root)"
           else
-            REASON="auto-pause (state/failure_count.txt >= 2 — 2 days in a row failed)"
+            REASON="auto-pause (2 zero-upload days in a row — sitting out today, retrying itself tomorrow)"
           fi
-          MSG="Daily shorts run SKIPPED — $REASON. Resume by removing the file (manual) or resetting the counter to 0 (auto)."
+          MSG="Daily shorts run SKIPPED — $REASON. Manual pause: remove the PAUSED file. Auto-pause: no action needed (it retries tomorrow); to retry sooner reset state/failure_count.txt to 0."
           gh issue comment "$REPORT_ISSUE_NUMBER" \
             --repo "${{ github.repository }}" \
             --body "$MSG"
@@ -122,7 +206,29 @@ jobs:
 
       - name: Stop here if skipped
         if: steps.preflight.outputs.skip != ''
-        run: exit 0
+        run: |
+          # A SKIPPED RUN MUST NOT LOOK LIKE A WORKING ONE.
+          #
+          # This was `exit 0`. On 2026-08-03 the auto-pause tripped and, for
+          # three days, this job skipped the orchestrator and reported
+          # SUCCESS — a green check on a channel that shipped nothing. That
+          # is the exact failure shape this repo keeps re-learning: the step
+          # succeeded at the wrong thing.
+          #
+          # An AUTO-pause is a fault that needs a human, so the run goes RED.
+          # A MANUAL pause (the PAUSED / PAUSED_DAILY files) is a deliberate
+          # operator choice, so it stays green — being told off daily for a
+          # decision you made on purpose is how people learn to ignore red.
+          if [ "${{ steps.preflight.outputs.skip }}" = "auto" ]; then
+            echo "::error::auto-paused — failing the run so it is not a green check on a dead channel"
+            exit 1
+          fi
+          if [ "${{ steps.preflight.outputs.skip }}" = "phase_b_incomplete" ]; then
+            echo "::notice::Phase B's other scheduled candidate hasn't applied yet — staying green, not rendering"
+            exit 0
+          fi
+          echo "::notice::manually paused on purpose — staying green"
+          exit 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -145,6 +251,23 @@ jobs:
         run: |
           pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Prepare showrunner judge
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          # ChatGPT 2026-08-02: authoring was removed from this render job,
+          # but the showrunner may still use the subscription-backed Claude
+          # CLI as its vision judge. Install it only for that gate; Gemini is
+          # the independent fallback.
+          if [ -n "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
+          fi
+          if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (Claude CLI install failed and GEMINI_API_KEY is empty)"
+            exit 1
+          fi
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
@@ -203,7 +326,6 @@ jobs:
         env:
           YT_CLIENT: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
           YT_TOKEN: ${{ secrets.YOUTUBE_TOKEN_JSON }}
-          GROQ: ${{ secrets.GROQ_API_KEY }}
           PEXELS: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY: ${{ secrets.PIXABAY_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -212,7 +334,6 @@ jobs:
           missing=0
           [ -z "$YT_CLIENT" ] && { echo "::error::missing secret YOUTUBE_CLIENT_SECRETS_JSON"; missing=1; }
           [ -z "$YT_TOKEN" ] && { echo "::error::missing secret YOUTUBE_TOKEN_JSON"; missing=1; }
-          [ -z "$GROQ" ] && { echo "::error::missing secret GROQ_API_KEY (free key at https://console.groq.com/keys)"; missing=1; }
           [ -z "$PEXELS" ] && { echo "::error::missing secret PEXELS_API_KEY"; missing=1; }
           [ -z "$PIXABAY" ] && { echo "::error::missing secret PIXABAY_API_KEY"; missing=1; }
           # THE SHOWRUNNER NOW GATES THIS CHANNEL, AND IT FAILS CLOSED.
@@ -222,103 +343,19 @@ jobs:
           # instead of a silent zero-post day. This is a check being ADDED,
           # never a way to skip the gate — there is no bypass, only a
           # clearer reason.
-          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
-            echo "::error::no vision judge available (need CLAUDE_CODE_OAUTH_TOKEN, or GEMINI_API_KEY as fallback)."
+          if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no vision judge available (need an installed authenticated Claude CLI, or GEMINI_API_KEY as fallback)."
             echo "::error::The showrunner gates this channel and fails closed, so every video would be held."
             missing=1
           fi
           [ $missing -ne 0 ] && exit 1
           echo "Secrets present."
 
-      # THE BRAIN. Headless Claude authors the day's packages per the
-      # Schulte Media playbook BEFORE render, so we never silently fall to
-      # the weak Groq writer. Non-fatal + time-boxed: if the token is
-      # missing or it errors, we log LOUDLY and the orchestrator proceeds
-      # (prewritten if present, else Groq — which now warns).
-      - name: Brain — author today's packages (Claude)
-        if: steps.preflight.outputs.skip == ''
-        continue-on-error: true
-        timeout-minutes: 20
-        env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-        run: |
-          set +e
-          TODAY=$(date -u +%Y%m%d)
-          DIR="state/trending_packages/$TODAY"
-          if ls "$DIR"/*.json >/dev/null 2>&1; then
-            echo "brain: $DIR already has hand-authored packages — leaving them."; exit 0
-          fi
-          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
-            echo "::warning::BRAIN SKIPPED — CLAUDE_CODE_OAUTH_TOKEN not set; run will fall to Groq."; exit 0
-          fi
-          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || { echo "::warning::BRAIN — claude-code install failed; falling to Groq."; exit 0; }
-          mkdir -p "$DIR"
-          # THE SLATE COMES FROM THE REGISTRY, not from this prompt. Editing
-          # the mix used to mean editing prose here AND four constants
-          # elsewhere; the 2026-07-31 graph-led ruling landed only here, and
-          # the reserve bank kept banking a retired format for weeks.
-          SLATE_RULING=$(python3 -m shared.channel_registry --mix trending) || {
-            echo "::error::channel registry unusable — refusing to author a guessed slate"; exit 1; }
-          SLATE_COUNT=$(python3 -c "from shared import channel_registry as r; print(r.target_count('trending'))")
-          echo "brain: slate ruling -> $SLATE_RULING"
-          cat > "$RUNNER_TEMP/brain_prompt.txt" <<EOF
-          You are the Schulte Media BRAIN, running headless in CI before render. Author today's $SLATE_COUNT video packages into the directory: $DIR
-
-          READ FIRST and treat as law:
-          - data_learning/SCHULTE_MEDIA_BRAIN.md  (playbook: identity, iron gate, hooks, retention doctrine)
-          - data_learning/LEARNING_LOOP.md         (how to read analytics)
-          - state/analytics/latest.json            (what is winning — study retention)
-          - state/posted_log.json                  (do NOT reuse a subject/title posted recently)
-
-          FORMAT MIX — THE REGISTRY DECIDES, NOT THIS PROMPT. The line below is generated at run time from config/channel_registry.json (see the "Resolve the slate from the registry" step). If it ever disagrees with anything else you read — this file, a README, a remembered instruction — the registry wins.
-
-          ${SLATE_RULING}
-
-          Topics = whatever is hot/selling now (read state/scouted_sources.json); each of the 6 a DIFFERENT topic, none reused from the last 6 entries in state/posted_log.json. All TOS-safe (no slurs/explicit). Filenames 01_.. through 06_..; group by format.
-
-          FORMAT A — REDDIT (see the mix line above for how many): first-person Reddit story, narrated. Set "subreddit" (pettyrevenge|MaliciousCompliance|ProRevenge|entitledparents|TalesFromTheCustomer|IDontWorkHereLady). UNIVERSAL, all-gender premises with broad appeal: workplace justice, petty/pro revenge, entitled customers or neighbors, scams turned around, karma, malicious compliance, standing up to a bully. NO weddings, NO bridal/relationship/breakup/cheating drama, NO female-skewed niche stories — anyone of any gender should enjoy it. ORIGINAL story, ~130-170 words one paragraph, open-loop hook, ends on a satisfying twist/payoff (NOT a question). 6-8 "shots" (each phrase an EXACT substring of the script; query = mood b-roll) and 3-5 "punches" (phrase = exact substring; SHORT CAPS text; color #ff3030/#ffaa30/#50ff80). Schema: {"version":1,"subreddit":"..","slug":"..","title":"..","hashtags":[12],"script":"..","shots":[{"phrase":"..","query":"..","mascot_pose":"shock|point|idle"}],"punches":[{"phrase":"..","text":"..","color":"#ff3030"}],"music_vibe":"dark"}. Max 3 non-idle poses.
-
-          FORMAT B — GRAPH RACE (see the mix line above for how many): "format":"graph_race". Animated line chart over time (lines grow, dots track tips, year counter climbs, live leaderboard). Pick a topic with a clear multi-series time trend (e.g. market share, subscribers, counts by country). Schema: {"version":1,"format":"graph_race","slug":"..","title":"<=60 chars","y_label":"..","duration":13,"source":"Sources: ..","hashtags":[12],"years":[6-8 ascending ints],"series":[{"name":"..","color":"#hex","icon":"..","values":[same length as years]},.. 2-4 series],"music_vibe":"dark","hook":"<=32 chars tease of the payoff, e.g. Wait for 2008..."}. "hook" is optional but strongly preferred — it flashes over the chart for the first ~1.5s and buys the crucial first-seconds hold. "icon" gives each line a badge at its tip + in the leaderboard so viewers know who is who: a 2-letter COUNTRY CODE ("US","CN","JP") for countries, otherwise the brand/company/org name to look up ("Netflix","SpaceX"); omit it only when the series is an abstract category. BIG NUMBERS RULE — this is a HARD gate, not a preference: the renderer REFUSES data whose leader peaks under 1,000 or grows less than 3x (1.6x if there is a lead change). Pick metrics that are naturally huge and violent — millions of subscribers/users/tons/dollars/launches, not two-digit counts. A line creeping from 12 to 40 is an instant reject; 40,000 collapsing to 4,000, or 0 exploding to 220 million, is the target. Prefer a DRAMATIC crossover or collapse (one line overtaking another mid-video). Use REAL, defensible numbers — approximate is fine, fabrication is not. No shots/text.
-
-          HARD RULES — verify with Bash/python BEFORE finishing, fix any failure:
-          1. The file count and per-format counts EXACTLY as the mix line above states, valid JSON. Author nothing in a format that line marks RETIRED.
-          2. REDDIT: every shot.phrase and punch.phrase is an exact substring of that file's script. GRAPH: each series.values length == years length, and every graph has AT LEAST 2 series (a one-line chart is not a race — it is rejected).
-          2b. GRAPH DRAMA GATE — run it, do not eyeball it: `python3 -c "import json,glob;from engines import chart_race;[print(f, chart_race.assess(json.load(open(f)))) for f in glob.glob('$DIR/*graph*.json')]"`. Every graph file must print ok=True. If one is False, REPLACE ITS DATASET with a bigger/faster-moving metric and re-run until it passes — do not ship a rejected chart.
-          3. $SLATE_COUNT different topics; none in the last 6 posted_log entries. No fabricated stats. TOS-safe.
-
-          Finish by printing all $SLATE_COUNT titles + their formats and confirming the substring / length / format / accuracy checks passed.
-          EOF
-          echo "brain: authoring into $DIR ..."
-          claude -p "$(cat "$RUNNER_TEMP/brain_prompt.txt")" \
-            --allowedTools "Read,Write,Edit,Bash" \
-            --permission-mode acceptEdits \
-            --model "${BRAIN_MODEL:-sonnet}" \
-            --output-format text 2>&1 | tail -40 || echo "::warning::BRAIN run errored (non-fatal)."
-          N=$(ls "$DIR"/*.json 2>/dev/null | wc -l)
-          echo "brain: authored $N package(s)"
-          [ "$N" -eq 0 ] && echo "::warning::BRAIN produced 0 packages; run will fall to Groq."
-          exit 0
-
-      # LAST-RESORT COVER. The brain above is the only Claude-authored path
-      # in this workflow, and it is `continue-on-error` by design — a lapsed
-      # subscription, a revoked token, or a failed npm install all land here
-      # with an empty package directory. Before that becomes "Groq writes six
-      # scripts" (rate-limited, weak) or "re-serve yesterday's already-posted
-      # slate", draw banked evergreen packages instead. A no-op on any day
-      # the brain worked.
-      - name: Reserve bank — cover a dead brain
-        if: steps.preflight.outputs.skip == ''
-        continue-on-error: true
-        run: |
-          set -e
-          TODAY=$(date -u +%Y%m%d)
-          if ls state/package_buffer/inbox/*.json >/dev/null 2>&1; then
-            python scripts/package_reserve.py deposit \
-              --dir state/package_buffer/inbox --source routine --delete
-          fi
-          python scripts/package_reserve.py status
-          python scripts/package_reserve.py fill --date "$TODAY" \
-            --reason "daily.yml brain authored nothing"
+      # ChatGPT 2026-08-02: this workflow is a renderer/uploader, never a
+      # fallback brain. Claude's normal authoring happens before Phase A;
+      # ChatGPT owns a Claude-out day before Phase B. Re-authoring here hid
+      # broken handoffs and made "render" a second, conflicting source of
+      # content policy.
 
       - name: Run daily orchestrator
         id: run
@@ -342,8 +379,8 @@ jobs:
           # THE SHOWRUNNER. This channel ships 6 videos a day and, until now,
           # nothing watched any of them (docs/SYSTEM_AUDIT.md §D). The gate
           # judges on the headless-Claude SUBSCRIPTION via this token — the
-          # `claude` CLI installed by the brain step above, in this same job —
-          # never the paid API. Without it the gate falls back to Gemini
+          # Claude subscription credential when available — never the paid
+          # API. Without it the gate falls back to Gemini
           # below; with neither, the preflight has already failed the run.
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Gemini: the showrunner's only fallback judge, plus the optional
@@ -417,7 +454,7 @@ jobs:
           # fair-use defense.
           TOPIC_VIDEO_ALLOW_STRIKES: ${{ vars.TOPIC_VIDEO_ALLOW_STRIKES }}
           KOKORO_VOICE: ${{ vars.KOKORO_VOICE || 'am_adam' }}
-          COUNT: ${{ github.event.inputs.count || '6' }}
+          COUNT: ${{ github.event.inputs.count }}
           FORCE: ${{ github.event.inputs.force }}
           # Default to immediate publish for EVERY trigger (dispatch, push,
           # workflow_run). On non-dispatch triggers inputs.* is empty, so the
@@ -433,8 +470,17 @@ jobs:
               echo "::error::channel registry unusable — refusing to guess a slate size"; exit 1; }
             echo "count from the registry: $COUNT"
           fi
-          ARGS="--count $COUNT"
-          if [ "$FORCE" = "true" ]; then ARGS="$ARGS --force-rerun"; fi
+          # ChatGPT 2026-08-02: Phase B is the only production admission
+          # gate. The renderer must refuse an incomplete manifest instead of
+          # reaching backward for stale packages or becoming a Groq brain.
+          ARGS="--count $COUNT --require-manifest"
+          # The trigger file is the operator/supervisor's explicit repair
+          # mechanism. It must resume the unposted remainder even when one
+          # package succeeded in the last six hours; posted-title dedupe still
+          # prevents that successful package from being uploaded twice.
+          if [ "$FORCE" = "true" ] || [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            ARGS="$ARGS --force-rerun"
+          fi
           # Publish IMMEDIATELY by default (operator ruling): the daily video
           # goes public the moment it renders. Only schedule if explicitly
           # asked via a manual dispatch with the box unchecked (NO_SCHEDULE
@@ -459,17 +505,21 @@ jobs:
 
       - name: Update failure counter
         if: always() && steps.preflight.outputs.skip == ''
+        env:
+          # the policy script reads the orchestrator outcome from env rather
+          # than an inlined ${{ }} so the tests can execute it with either
+          # value directly
+          RUN_OUTCOME: ${{ steps.run.outcome }}
         run: |
-          mkdir -p state
-          if [ "${{ steps.run.outcome }}" = "success" ]; then
-            echo "0" > state/failure_count.txt
-            echo "Run OK — counter reset."
-          else
-            fc=$(cat state/failure_count.txt 2>/dev/null | tr -d '[:space:]' || echo 0)
-            new=$((fc + 1))
-            echo "$new" > state/failure_count.txt
-            echo "::warning::Run failed — failure counter now $new (auto-pause at 2)."
-          fi
+          # WHAT COUNTS AS "FAILURE" IS POLICY, NOT PLUMBING — and policy
+          # has to be executable to be testable. The RED-vs-PAUSED decision
+          # (the run stays red on any shortfall for visibility; the counter
+          # bumps ONLY on a zero-upload day, so the showrunner holding a
+          # video never feeds auto-pause) lives with its full rationale in
+          # scripts/daily_failure_counter.sh, which
+          # tests/test_production_outcome.py RUNS against real outcome files
+          # instead of grepping this workflow (doctor finding 9943424b8251).
+          bash scripts/daily_failure_counter.sh
 
       - name: Fetch analytics snapshot
         # Pulls views/likes/comments for every uploaded video in the last
@@ -513,8 +563,14 @@ jobs:
           # Shared hardened persist (audit Ticket 1): retry loop + backup/
           # restore of our artifacts + UNION-MERGE of every posted-log on a
           # push race, so no dedupe entry from either side is ever lost.
+          # [skip ci] is LOAD-BEARING here, not tidiness: this blanket
+          # `state/` add includes any package `run_one` wrote during a
+          # backfill (state/trending_packages/<ts>_auto_*.json), and
+          # state/trending_packages/** is a PUSH TRIGGER for Phase A.
+          # Without it, every day with a re-authored slot pokes Phase A
+          # back awake AFTER the day rendered.
           bash scripts/ci_commit_state.sh \
-            "daily: $(date -u +%Y-%m-%d) report + state" \
+            "daily: $(date -u +%Y-%m-%d) report + state [skip ci]" \
             state/ daily_report.md daily_report.json
 
       - name: Post report to tracking issue

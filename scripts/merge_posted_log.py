@@ -14,8 +14,12 @@ For dict logs: union of keys, OURS wins per-slug (our entry is fresher —
 it was just written by the run doing the merge). For list logs: THEIRS
 order preserved, then any OURS entries not already present, identity =
 catalog_id / url / video_url / id / slug (first present), else the whole
-entry. Unknown top-level keys: OURS wins. Missing/corrupt inputs are
-treated as empty rather than fatal — this runs inside a CI retry loop.
+entry. Unknown top-level keys: OURS wins. A MISSING input is treated as
+empty (a fresh checkout or first run is legitimate); a CORRUPT input is
+FATAL — a union merge with one side read as empty is not a union, it is a
+silent mass-delete of that side's entries, and every video they record
+re-uploads. The CI retry loop that calls this must surface the failure,
+not paper over it with an empty side.
 """
 from __future__ import annotations
 
@@ -25,10 +29,23 @@ from pathlib import Path
 
 
 def _load(p: str):
+    path = Path(p)
+    if not path.exists():
+        return {}          # missing side = fresh checkout / first run: empty is honest
     try:
-        return json.loads(Path(p).read_text())
-    except Exception:  # noqa: BLE001
-        return {}
+        obj = json.loads(path.read_text())
+    except Exception as e:  # noqa: BLE001 — exists-but-unreadable is corruption
+        raise SystemExit(
+            f"FATAL: {path} is corrupt ({e}). Refusing to union-merge: a "
+            f"corrupt side read as empty would silently drop every entry "
+            f"on that side, and each dropped entry is a duplicate upload. "
+            f"Restore the file from git history and re-run.")
+    if not isinstance(obj, dict):
+        raise SystemExit(
+            f"FATAL: {path} is not a JSON object (got "
+            f"{type(obj).__name__}) — refusing to merge a log whose shape "
+            f"cannot be trusted. Restore it from git history and re-run.")
+    return obj
 
 
 _ID_KEYS = ("catalog_id", "url", "video_url", "id", "slug")

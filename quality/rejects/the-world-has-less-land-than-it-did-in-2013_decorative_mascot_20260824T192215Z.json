@@ -1,0 +1,37 @@
+{
+ "slug": "the-world-has-less-land-than-it-did-in-2013",
+ "ts": "20260824T192215Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data is parked on the leading bar's right edge in every single frame (hook@0.3, seg0:end, seg1:mid, seg2:end) and merely slides down to the 20.8 bubble at seg3:start \u2014 arms twitch, but there is no setup->action->payoff tied to land area, health spending, or crop index.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg3:start (t=43.26s) the crop-index bubbles are barely 12px dots stranded in a huge dark field with the bottom third of the frame completely empty; by seg3:end the bubbles have grown but the frame is still a static two-row scatter with the mascot idling on the 20.8 dot and no motion beyond the caption.",
+  "root_cause": "The bubble layout scales radius from the smallest value, so early-index years render as near-invisible dots and the scene reserves grid space it never fills; the mascot is anchored to the leading bubble rather than performing against the 20.8 -> 100.0 five-fold jump.",
+  "repair_goal": "Fill the frame for seg3: scale bubbles so even 20.8 reads as a substantial disc and the 100.0 bubble dominates, tighten/expand the grid to use the empty lower third, and give Data a real bit against the growth (e.g. he strains to hold up the tiny 1972 bubble, then is lifted/overtaken as the 2020 bubble swells past him) so the five-fold rise is demonstrated, not just plotted."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  }
+ ]
+}

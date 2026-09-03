@@ -1,0 +1,810 @@
+{
+  "schema": "chatgpt-exchange-bundle/v1",
+  "date": "20260805",
+  "status": "open",
+  "contract": {
+    "schema_version": "channel-registry/v1",
+    "registry_revision": 3,
+    "registry_sha256": "0c35d78e29088e2666f1213f7d5b6de21edd9171fb02842026993e5ca7bd1e92",
+    "registry_path": "config/channel_registry.json",
+    "source_commit": "4783b7c3eb54ac292bcb477e4550f7f9b19bf1d1",
+    "production_date": "20260805",
+    "production_date_policy": {
+      "timezone": "America/Chicago",
+      "policy": "utc_calendar_day",
+      "policy_note": "The bundle/package date is the UTC calendar day, because every workflow that resolves a date does `date -u +%Y%m%d` and the packages on disk are keyed that way. The timezone above is the OPERATIONAL clock \u2014 publish slots, the 06:00/07:00 ChatGPT workers, and the Phase B backstop window are all Central and DST-correct. Do not conflate them: the folder name is UTC, the wall clock is Central.",
+      "format": "YYYYMMDD"
+    },
+    "response_schema": "chatgpt-exchange-response/v1",
+    "checkpoint_schema": "chatgpt-media-checkpoint/v1",
+    "drive": {
+      "destination_ref": "operator's shared Drive folder, made link-visible manually; files inherit the folder permission",
+      "filename_rule": "<date>__<safe_request_id>.<ext>",
+      "required_sharing": "anyone_with_link"
+    },
+    "role_glossary": {
+      "media_worker": "Generate, upload and verify images; checkpoint each one. The 06:00 Central task.",
+      "editorial_review": "Read every package and either punch it up or state a reason for keeping it. The 07:00 Central task.",
+      "takeover_authoring": "Write the packages this channel is short, when the Claude side left it nothing.",
+      "queue_stocking": "Write new queue entries when the channel's queue runs below its minimum.",
+      "production_supervisor": "On a Claude-out day, quarterback this channel's registered worker through render, QA, retry/repair and verified upload; do not treat response.json or DONE as production completion.",
+      "none": "ChatGPT has no responsibility for this channel or format."
+    },
+    "channels": {
+      "curiosity": {
+        "channel": "curiosity",
+        "display_name": "Curiosity (long-form)",
+        "enabled": true,
+        "target_count": 1,
+        "target_mix": {
+          "long_form": 1
+        },
+        "have": {
+          "long_form": 0
+        },
+        "shortfall": {
+          "long_form": 1
+        },
+        "to_author": 1,
+        "active_formats": [
+          "long_form"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [
+          "queue_stocking",
+          "takeover_authoring",
+          "production_supervisor"
+        ],
+        "chatgpt_job": "stock_queue",
+        "response_key": "authored_curiosity",
+        "media_requirements": {
+          "long_form": {
+            "shots": false,
+            "chatgpt_supplies_images": false
+          }
+        },
+        "queue": {
+          "config": "data_learning/curiosity.config.json",
+          "collection": "stories",
+          "posted_log": "state/curiosity_posted_log.json",
+          "minimum_unposted": 3,
+          "maximum_unposted": 12,
+          "stocked_by": "the Claude Routine",
+          "chatgpt_may_stock": true
+        },
+        "paths": {
+          "config": "data_learning/curiosity.config.json",
+          "posted_log": "state/curiosity_posted_log.json",
+          "promotion_target": "data_learning/curiosity.config.json"
+        },
+        "package_schema": "data_learning/curiosity.config.json:stories[]",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "named_entities"
+        ],
+        "protected_fields_enforced_by": null,
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "closing",
+          "question",
+          "segments"
+        ],
+        "doctrine": [
+          {
+            "path": "data_learning/CURIOSITY_BRAIN.md",
+            "sha256": "d89d974dd3475ed7ffdb8bb4ca9e6ffc3d151a3ea0db3eef08575184aedb71e9",
+            "bytes": 45182
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected.",
+          "on_empty_queue": "chatgpt_queue_stocking"
+        }
+      },
+      "explainer": {
+        "channel": "explainer",
+        "display_name": "Explainer (data stories)",
+        "enabled": true,
+        "target_count": 1,
+        "target_mix": {
+          "data_story": 1
+        },
+        "have": {
+          "data_story": 0
+        },
+        "shortfall": {
+          "data_story": 1
+        },
+        "to_author": 1,
+        "active_formats": [
+          "data_story"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [
+          "editorial_review",
+          "takeover_authoring",
+          "production_supervisor"
+        ],
+        "chatgpt_job": "rewrite_words",
+        "response_key": "authored_explainer",
+        "media_requirements": {
+          "data_story": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "Scenes are rendered from the dataset; the mascot director stages them. ChatGPT supplies WORDS only."
+          }
+        },
+        "queue": {
+          "config": "data_learning/niche.config.json",
+          "collection": "stories",
+          "posted_log": "state/explainer_posted_log.json",
+          "minimum_unposted": 3,
+          "stocked_by": "scripts/story_forge.py",
+          "chatgpt_may_stock": false
+        },
+        "paths": {
+          "config": "data_learning/niche.config.json",
+          "posted_log": "state/explainer_posted_log.json",
+          "promotion_target": "data_learning/niche.config.json"
+        },
+        "package_schema": "data_learning/niche.config.json:stories[]",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "percentages",
+          "years",
+          "countries",
+          "named_entities",
+          "segment_count",
+          "segment_order"
+        ],
+        "protected_fields_enforced_by": "shared/punchup_guard.py",
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "closing",
+          "question",
+          "segment_say_wording"
+        ],
+        "doctrine": [
+          {
+            "path": "docs/DIRECTOR.md",
+            "sha256": "d61a469b79d31b021097f95ea8dd7b93fbb9bbf736374e2fe7eda265621873f2",
+            "bytes": 5203
+          },
+          {
+            "path": "docs/EDITORIAL_RESET.md",
+            "sha256": "1a3bec48c4a717ead2d82403540fd17e36e2ba2054e6cd04f832d677e13e1c0f",
+            "bytes": 7445
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "ship_the_deterministic_words",
+          "note": "The showrunner veto is sovereign here and this channel publishes NOTHING without a verdict. That gate is not registry-configurable on purpose.",
+          "showrunner": "fails_closed_on_publish"
+        }
+      },
+      "third": {
+        "channel": "third",
+        "display_name": "Third channel (Proof Mode / clips)",
+        "enabled": true,
+        "target_count": 3,
+        "target_mix": {
+          "clip": 3
+        },
+        "have": {
+          "clip": 0
+        },
+        "shortfall": {
+          "clip": 3
+        },
+        "to_author": 3,
+        "active_formats": [
+          "clip"
+        ],
+        "retired_formats": [],
+        "chatgpt_roles": [
+          "production_supervisor"
+        ],
+        "chatgpt_job": null,
+        "response_key": null,
+        "media_requirements": {
+          "clip": {
+            "shots": false,
+            "chatgpt_supplies_images": false
+          }
+        },
+        "queue": null,
+        "paths": {
+          "packages": "state/third_packages/<date>",
+          "posted_log": "state/third_posted_log.json",
+          "promotion_target": "state/third_packages/<date>"
+        },
+        "package_schema": "third_capture/author.py",
+        "response_schema": null,
+        "protected_fields": [
+          "source_url",
+          "story_key"
+        ],
+        "protected_fields_enforced_by": null,
+        "allowed_editorial_mutations": [],
+        "doctrine": [
+          {
+            "path": "docs/THIRD_INTERNET_PLAYBOOK.md",
+            "sha256": "75fd73160138f7a229eaaf2799bf319966dc6f48678cbd7f8a5fa55e9b8e9d1b",
+            "bytes": 9970
+          },
+          {
+            "path": "docs/STORY_ARC_SYSTEM.md",
+            "sha256": "e129038cca0fde8c127edb7f96f9ef5f9426fcef670f9baa2e1622e5f602d2bb",
+            "bytes": 10735
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected.",
+          "on_no_brain": "safe_raw_clip_title"
+        }
+      },
+      "trending": {
+        "channel": "trending",
+        "display_name": "Trending / daily shorts",
+        "enabled": true,
+        "target_count": 6,
+        "target_mix": {
+          "graph_race": 4,
+          "reddit_story": 2
+        },
+        "have": {
+          "graph_race": 0,
+          "reddit_story": 0
+        },
+        "shortfall": {
+          "graph_race": 4,
+          "reddit_story": 2
+        },
+        "to_author": 6,
+        "active_formats": [
+          "graph_race",
+          "reddit_story"
+        ],
+        "retired_formats": [
+          "text_card"
+        ],
+        "chatgpt_roles": [
+          "media_worker",
+          "editorial_review",
+          "takeover_authoring",
+          "production_supervisor"
+        ],
+        "chatgpt_job": null,
+        "response_key": null,
+        "media_requirements": {
+          "graph_race": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
+          },
+          "reddit_story": {
+            "shots": true,
+            "chatgpt_supplies_images": true,
+            "shots_min": 6,
+            "shots_max": 8,
+            "per_shot": [
+              "phrase",
+              "query"
+            ],
+            "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
+          }
+        },
+        "queue": null,
+        "paths": {
+          "packages": "state/trending_packages/<date>",
+          "posted_log": "state/posted_log.json",
+          "reserve_bank": "state/package_buffer",
+          "promotion_target": "state/trending_packages/<date>",
+          "quarantine": "exchange/bundles/<date>/authored_report.json"
+        },
+        "package_schema": "shared/package_buffer.py:structural_problems",
+        "response_schema": "chatgpt-exchange-response/v1",
+        "protected_fields": [
+          "numbers",
+          "percentages",
+          "money_amounts",
+          "dates",
+          "years",
+          "named_entities",
+          "shot_count",
+          "shot_query"
+        ],
+        "protected_fields_enforced_by": "shared/punchup_guard.py",
+        "allowed_editorial_mutations": [
+          "title",
+          "hook",
+          "script_wording",
+          "sentence_order",
+          "hashtags",
+          "shot_phrase"
+        ],
+        "doctrine": [
+          {
+            "path": "CLAUDE_ROUTINE_INSTRUCTIONS.md",
+            "sha256": "db597e9436c033574836e3bac13025e51eaa58602d6981de7d8e602ff758b044",
+            "bytes": 54607
+          },
+          {
+            "path": "data_learning/SCHULTE_MEDIA_BRAIN.md",
+            "sha256": "af2bc36ef724eeb2c3ee24f1189be9935c1e3706329637fb6f338352b96b862a",
+            "bytes": 11158
+          },
+          {
+            "path": "shared/levity.py",
+            "sha256": "3f8732c00bf1e87985fbf3242c874ec1e3e01c0f54187a2ffee4111b5164fa43",
+            "bytes": 11157
+          }
+        ],
+        "failure_policy": {
+          "on_missing_registry": "fail_closed",
+          "on_short_slate": "chatgpt_takeover_authoring",
+          "on_unfulfilled_media": "self_fill_from_real_media",
+          "on_no_chatgpt": "proceed_with_what_exists",
+          "note": "Policy A: a ChatGPT no-show never costs the day. A weaker shot beats no video. But a MISSING OR INVALID REGISTRY fails closed \u2014 falling back to a historical mix is how a retired format gets resurrected."
+        }
+      }
+    },
+    "totals": {
+      "channels_active": 4,
+      "packages_expected": 11,
+      "packages_to_author": 11
+    },
+    "immutability": "This block is the CONTRACT for this production date. It is frozen at bundle creation: if config/channel_registry.json changes afterwards, the 07:00 finalizer still works these numbers, and the new rules begin with the next date's bundle. Read doctrine at `source_commit`, not at HEAD."
+  },
+  "mode": "author",
+  "response_path": "exchange/bundles/20260805/response.json",
+  "done_marker": "exchange/bundles/20260805/DONE",
+  "counts": {
+    "packages": 6,
+    "requests": 0,
+    "animations": 0,
+    "to_author": 0,
+    "channels_needing_a_brain": 1
+  },
+  "packages": [
+    {
+      "slug": "graph-billion-dollar-disasters",
+      "title": "US Disaster Costs Are Exploding",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-bald-eagle-comeback",
+      "title": "Bald Eagles Went From 417 Pairs To 71,000",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-cocoa-price-spike",
+      "title": "Why Chocolate Got So Expensive (Then Didn't)",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "graph-dow-record-climb",
+      "title": "The Dow Just Hit 54,000 For The First Time",
+      "script": null,
+      "shots": [],
+      "media_health": {
+        "strong": 0,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 0.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-hardware-store-mistaken-staff",
+      "title": "The Customer Insisted I Worked There. Fine.",
+      "script": "Fourth time that hour, a stranger grabbed my arm demanding to know where the drywall screws were. I don't work at this hardware store, I just wear a lot of orange. She cut off my \"I don't work here\" with \"don't play games, I need help now.\" Fine. I walked her confidently to aisle twelve, pointed past the pool noodles, and told her drywall screws come in bulk boxes near the register, technically true since I'd seen a promo bin there that morning. She marched off triumphant. Ten minutes later an actual employee found her arguing with a cashier about being sent to buy pool floats for a bathroom renovation. Store security pulled the aisle camera and the whole break room had a good laugh at customer service's expense. I finished my paint run in total peace. Nobody has grabbed my arm at that store since. I stopped wearing orange there entirely.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "grabbed my arm demanding",
+          "query": "person grabbing arm store aisle",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "I don't work at this hardware store",
+          "query": "hardware store aisle shelves",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "don't play games, I need help now",
+          "query": "frustrated customer talking",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "drywall screws come in bulk boxes",
+          "query": "box of screws hardware",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "pool noodles",
+          "query": "pool noodles floats display",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "arguing with a cashier",
+          "query": "cashier checkout counter",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "pulled the aisle camera",
+          "query": "security camera footage screen",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "stopped wearing orange there entirely",
+          "query": "orange work vest hanging",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 8,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 1.0,
+      "requested": []
+    },
+    {
+      "slug": "reddit-driveway-parking-trash-cans",
+      "title": "He Blocked My Driveway. I Just Stopped Moving My Trash Cans.",
+      "script": "He parked across our shared driveway every morning, blocking my car in for \"just five minutes\" that stretched to forty. I asked nicely three times. He shrugged and said the city never tickets there anyway. So I started paying attention to exactly when parking enforcement swept our block, turns out it's eight fourteen a.m. sharp, right when his car was always sitting there. I didn't call anyone. I didn't need to. I just stopped moving my trash cans out of the second spot at eight like I used to, so the officer had a clean sightline to his bumper instead of mine. Three tickets in eight days, then a boot on the fourth. He knocked on my door convinced I had reported him. I told him, truthfully, I hadn't dialed a single number. He moved his car onto his own driveway the very next morning, and it has been there every day since.",
+      "shots": [
+        {
+          "shot_index": 0,
+          "phrase": "parked across our shared driveway",
+          "query": "car blocking driveway entrance",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 1,
+          "phrase": "blocking my car in",
+          "query": "car boxed in driveway",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 2,
+          "phrase": "asked nicely three times",
+          "query": "neighbor conversation doorstep",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 3,
+          "phrase": "parking enforcement swept our block",
+          "query": "parking enforcement officer street",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 4,
+          "phrase": "moving my trash cans out of the second spot",
+          "query": "trash cans curb street",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 5,
+          "phrase": "Three tickets in eight days",
+          "query": "parking ticket on windshield",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 6,
+          "phrase": "a boot on the fourth",
+          "query": "wheel boot car tire",
+          "has_media": true,
+          "verdict": "strong"
+        },
+        {
+          "shot_index": 7,
+          "phrase": "moved his car onto his own driveway",
+          "query": "car parked in driveway",
+          "has_media": true,
+          "verdict": "strong"
+        }
+      ],
+      "media_health": {
+        "strong": 8,
+        "weak": 0,
+        "missing": 0,
+        "unknown": 0
+      },
+      "strong_fraction": 1.0,
+      "requested": []
+    }
+  ],
+  "requests": [],
+  "media_protocol": {
+    "schema": "chatgpt-media-checkpoint/v1",
+    "why": "Two scheduled workers share this day and cannot see each other's context \u2014 only this repo. These files ARE the shared memory.",
+    "checkpoint_dir": "exchange/bundles/20260805/media-progress/",
+    "claims_dir": "exchange/bundles/20260805/media-progress/claims/",
+    "checkpoint_path": "exchange/bundles/20260805/media-progress/<safe_request_id>.json",
+    "filename_rule": "Upload every asset to Drive as `20260805__<safe_request_id>.<ext>`. Each bundle request already carries its exact `drive_filename` \u2014 use that string verbatim.",
+    "safe_request_id": "The request_id with anything outside [A-Za-z0-9._-] replaced by `-`; if that changed the string (or it exceeded 72 chars), an 8-hex sha256 of the ORIGINAL is appended so two different requests can never share one file. Bundle requests publish theirs as `safe_request_id`.",
+    "authored_shot_request_id": "For a shot inside a package YOU authored there is no bundle request, so build the id yourself: `authored-<slug>-s<shot_index>`, where <slug> is the package's slug lowercased with anything outside [a-z0-9-] replaced by `-`. It must be derived from slug + shot index ONLY \u2014 never from the prompt, a timestamp, or a counter \u2014 so the 07:00 worker recomputes the identical string from the package on disk.",
+    "bundle_identity": "READ IT FROM exchange/bundles/20260805/BUNDLE_ID \u2014 a single line of 64 hex. Copy that string into every checkpoint's `bundle.identity`. Do NOT hash bundle.json yourself: Phase A re-runs and rewrites that file through the day, and on 2026-08-01 it did so five hours after the media worker finished, which would have invalidated all 17 of its verified images. The sidecar only changes when the ASK changes \u2014 a new request, a changed prompt, a contract migration \u2014 which is exactly when a checkpoint should stop being valid.",
+    "checkpoint_fields": {
+      "schema": "chatgpt-media-checkpoint/v1",
+      "schema_version": 1,
+      "date": "20260805",
+      "bundle": {
+        "identity": "<sha256 of bundle.json>",
+        "path": "exchange/bundles/20260805/bundle.json"
+      },
+      "request_id": "<the id from the bundle, or the authored-shot id>",
+      "safe_request_id": "<as above>",
+      "request_kind": "bundle_request | authored_shot",
+      "package_id": "<authored_shot only: the package slug>",
+      "shot_index": "<authored_shot only: integer>",
+      "prompt_sha256": "<sha256 of the prompt text you actually used>",
+      "prompt_used": "<that prompt, verbatim>",
+      "status": "verified | failed | in_progress | skipped",
+      "attempt": 1,
+      "worker": "media | finalizer",
+      "drive": {
+        "folder_id": "\u2026",
+        "file_id": "\u2026",
+        "filename": "20260805__<safe_request_id>.png",
+        "download_url": "\u2026",
+        "sharing": "anyone_with_link | domain | private | unknown"
+      },
+      "image": {
+        "sha256": "<64 hex of the exact bytes>",
+        "bytes": 0,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified_at": "<ISO8601 Z>",
+      "error": {
+        "code": "\u2026",
+        "step": "\u2026",
+        "message": "\u2026"
+      },
+      "retryable": false
+    },
+    "recovery_order": [
+      "1. Read the checkpoint. Valid + verified + same bundle identity + same prompt -> REUSE it. Do not re-generate.",
+      "2. Otherwise search Drive for the EXACT deterministic filename.",
+      "3. Exactly one match -> download it, hash the bytes, confirm it decodes, and write the checkpoint from what you actually found. A filename is a lookup key, never evidence about content.",
+      "4. More than one match -> CONFLICTED. Report it and move on; do not guess which file belongs to the request.",
+      "5. Only when nothing is reusable, generate it."
+    ],
+    "claims": {
+      "path": "exchange/bundles/20260805/media-progress/claims/<safe_request_id>.json",
+      "semantics": "Create-only. If the file already exists and its `expires_at` is in the future, someone else is on it \u2014 skip that request. An EXPIRED claim is inert: take it over and say so. A verified checkpoint supersedes any claim, including a live one.",
+      "lease_seconds": 900,
+      "fields": [
+        "schema",
+        "date",
+        "bundle.identity",
+        "request_id",
+        "safe_request_id",
+        "worker",
+        "worker_run_id",
+        "created_at",
+        "expires_at",
+        "lease_seconds"
+      ]
+    },
+    "workers": {
+      "media": {
+        "role": "MEDIA worker",
+        "runs_at": "06:00 America/Chicago",
+        "job": "Generate, upload and VERIFY every image the day needs, and record each one as a checkpoint the moment it verifies.",
+        "may_write": [
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json"
+        ],
+        "must_never_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json"
+        ],
+        "rules": [
+          "Checkpoint after EVERY verified image, one file per request \u2014 not one batch at the end. A run that dies at image 19 of 24 must leave 18 recoverable results behind, not zero.",
+          "Never write response.json. Never write DONE. DONE fires the render, and at 06:00 nothing has been authored or punched up yet \u2014 writing it would ship half a day with everything green.",
+          "Work the deterministic filename from the bundle. Uploading under any other name makes the image unrecoverable if your checkpoint is lost."
+        ]
+      },
+      "finalizer": {
+        "role": "FINALIZER worker",
+        "runs_at": "07:00 America/Chicago",
+        "job": "Recover what the media worker did, fill whatever it missed, punch up the scripts, author anything the Claude side left undone, then write response.json and \u2014 separately \u2014 DONE.",
+        "may_write": [
+          "exchange/bundles/*/response.json",
+          "exchange/bundles/*/DONE",
+          "exchange/bundles/*/authored/*.json",
+          "exchange/bundles/*/media-progress/*.json",
+          "exchange/bundles/*/media-progress/claims/*.json",
+          "retro/*/proposals/*.json"
+        ],
+        "must_never_write": [],
+        "rules": [
+          "START by reading media-progress/. Every verified checkpoint is an image that already exists on Drive \u2014 re-generating it burns the budget AND produces a different picture than the one the checkpoint names.",
+          "Fill the gaps the media worker left, checkpointing each one the same way. You are the second attempt, not a separate pipeline.",
+          "Do the explainer and curiosity work even when trending already has six packages. Those are separate channels with separate asks; a full trending slate says nothing about either of them.",
+          "Commit response.json, READ IT BACK from main and confirm it parses, and only THEN commit DONE as a second commit. DONE is the only thing that fires the render."
+        ]
+      }
+    },
+    "honesty": "A checkpoint is a claim that you verified bytes. Writing one for an image you did not download and hash is worse than writing nothing, because the next worker will skip the work believing it is done."
+  },
+  "instructions": {
+    "read_first": "exchange/README.md",
+    "who_runs_what": {
+      "media_worker_0600": "MEDIA ONLY. Work `requests` (and, on a takeover, the shots of the packages you author). Upload under the `drive_filename` each request carries, verify the bytes, and write a checkpoint the moment each image verifies \u2014 one file per request, not one batch at the end. NEVER write response.json and NEVER write DONE.",
+      "finalizer_0700": "RECOVER FIRST: read media-progress/ before generating anything \u2014 a verified checkpoint is an image that already exists, and re-making it both burns the budget and produces a different picture than the one recorded. Then fill the gaps, punch up the scripts, do the explainer/curiosity work (even if trending is full), write response.json, verify it reads back, and only then commit DONE as a SECOND commit.",
+      "only_done_renders": "DONE is the single trigger for Phase B. Nothing else starts the render \u2014 not a response.json push, not a checkpoint push, not a package push."
+    },
+    "two_jobs": [
+      "0. AUTHOR FOR THE OTHER CHANNELS \u2014 READ `authoring_requests` FIRST. Trending has its full slate today, but explainer do NOT: Claude left them nothing and you are their brain. A full trending slate is not permission to skip them.",
+      "1. MEDIA \u2014 for every entry in `requests`, generate the asset from `prompt_verbatim` word for word, upload it to the shared Drive folder under the request's `drive_filename`, verify the bytes, write its checkpoint, and report a verified pointer (drive.file_id, download_url, image.sha256, image.bytes).",
+      "2. PUNCH-UP \u2014 act as the script EDITOR for every entry in `packages`. For each one make an editorial decision: punch it up, or keep it as-is because it already lands. Keeping is a legitimate call \u2014 but it is a DECISION you state, never a default. Returning scripts unchanged with no stated reason is a failed run. See `punchup_mission`."
+    ],
+    "punchup_mission": {
+      "the_ask": "These scripts are RESEARCHED and TRUE but they are often written flat \u2014 a chronological who-did-what recap with no point of view and a limp ending. That flatness, not the imagery, is the single biggest reason a finished video falls flat. Your job is to keep every fact and change how it LANDS. If a script already lands \u2014 hook under 5 words ending ?/!, real voice, kicker naming the story \u2014 say so and keep it. Do not change for the sake of changing.",
+      "per_package_verdict": "Every entry in your response's `packages` array carries either the rewritten fields, or `\"kept\": true` plus a one-line `editor_note` saying why it already works (e.g. 'hook already 4 words + ?, voice present, kicker names Gary'). An entry with neither is a skipped job. MAKE A REAL DECISION PER PACKAGE: `kept` means you read it and it already lands, not that the guard looked strict. Keeping the whole slate is a red flag, not caution \u2014 the guard only protects numbers, entities and beat structure, and wording is yours to improve freely within them. If you keep more than half a slate, say why in each `editor_note`.",
+      "levity": "LAND A JOKE when the subject allows one. The doctrine has said 'dry wit' for months and this channel has never once made anyone laugh, because an adjective is not an instruction. Concretely: ONE dry aside per script, placed after the fact it reacts to, never in the first two seconds. The shapes that work \u2014 state the absurd fact flat then react in 3-6 words ('Top speed: twelve.'); name the one mundane detail amid chaos ('still holding the salad'); understate the disaster ('This did not go well for the bees'). NEVER puns, setup-punchline, exclamation marks, 'wait for it', or telling the viewer it was funny. And NEVER on a script involving death, injury, crime victims, war or illness \u2014 those stay completely straight. If nothing genuinely occurs to you, ship it straight; a forced joke is worse than none. See shared/levity.py.",
+      "house_voice": "A deadpan, slightly incredulous friend telling you the most ridiculous thing they read today. Dry wit, real reactions, second person, contractions. It is allowed to be amused, skeptical or appalled. Accuracy is non-negotiable; attitude is MANDATORY.",
+      "do_this": [
+        "HOOK: first sentence must be <=5 words and end with ? or ! \u2014 'A kangaroo did WHAT?', 'Why fire 30,000?'. This earns the 3-second hold; it is the highest-leverage line in the video.",
+        "KICKER: last sentence must end with ? and name something specific from the story \u2014 never a generic 'what do you think?'.",
+        "REACT to the absurd instead of reporting it ('Cool, weird, whatever \u2014 until a SECOND call comes in.').",
+        "Short punchy sentences, varied rhythm. Fragments are fine. Em-dashes and hard stops make the TTS breathe instead of drone.",
+        "Cut corporate hedging ('officials confirmed', 'authorities stated') and filler procedure. Use the strongest concrete verb available.",
+        "Front-load the most surprising fact. If the best number is in sentence four, move it up \u2014 reordering facts is encouraged, changing them is not.",
+        "Keep 110-140 spoken words."
+      ],
+      "the_numbers_are_yours_to_use": "Every number, date and name in the script was verified by the writer \u2014 treat them as AMMUNITION, not as landmines. Land them harder, put them earlier, give them a beat before the payoff. The only rule is that the value itself must survive unchanged.",
+      "why_the_rules_below_exist": "The constraints in `punchup_rules` exist ONLY to stop invented facts, because an earlier audit found 519 of 546 datasets on a sibling channel were LLM-fabricated. They are not a hint that you should play it safe with the WRITING. Rewrite boldly; just do not manufacture.",
+      "worked_example": {
+        "before": "A sinkhole opened in Marshall, North Carolina on Tuesday. Officials confirmed severe storms caused the collapse.",
+        "after": "A sinkhole opened WHERE? Tuesday's storms tore through Marshall, North Carolina \u2014 and the road outside a funeral home just gave up.",
+        "note": "Same place, same day, same cause. Nothing was invented. Only the delivery changed."
+      }
+    },
+    "punchup_rules": [
+      "These are GUARDRAILS on the facts, not a reason to leave the writing alone. Read `punchup_mission` first \u2014 the rewrite is expected.",
+      "NEVER change or invent a number, percentage, money amount, date or year. Every figure in the original must appear unchanged in your rewrite.",
+      "NEVER add or remove a named entity (person, company, place).",
+      "NEVER change the shot count or any shot's `query` \u2014 the media is already chosen against those.",
+      "Stay within roughly 0.5x-1.8x the original word count.",
+      "A rewrite that breaks any of these is rejected mechanically and the original ships, so the work is wasted."
+    ],
+    "prompt_rules": [
+      "You are reading a code repository. Do NOT let that leak into the imagery \u2014 never draw screenshots, terminals, editors, UI or code. The repo is where the instruction lives, never the subject.",
+      "Use `prompt_verbatim` exactly; treat `negative` as exclusions."
+    ],
+    "finish_with": "Write exchange/bundles/<date>/response.json, then create exchange/bundles/<date>/DONE containing {\"date\": \"<date>\"}. The DONE marker is what triggers our render \u2014 write it LAST, and only after response.json is committed.",
+    "honesty": "If you cannot do something, say so in the response with the blocking step named. A fabricated pointer or an unverified hash is worse than an honest failure: our consumer recomputes every hash and rejects mismatches.",
+    "takeover_note": "`packages` and `requests` cover whatever WAS authored before you \u2014 on a takeover day, usually nothing. YOU OWN THE WHOLE DAY: write the packages AND supply the media for every shot in them, in this one pass. Nothing downstream gets a second chance to ask you for anything \u2014 the next thing that runs is the renderer. Attach each shot's image to the shot itself as `media` (same Drive + sha256 pointer shape you use in the `media` array); see `authoring_request.media_contract`. Anything you leave without media we will try to fill from stock, which is the weaker outcome this exists to avoid."
+  },
+  "authoring_requests": {
+    "explainer": {
+      "schema": "chatgpt-authoring-request/v1",
+      "date": "20260805",
+      "channel": "explainer",
+      "job": "rewrite_words",
+      "reason": "these stories were composed with NO brain reachable \u2014 their numbers are real but their title/hook/narration came from a deterministic template",
+      "write": 3,
+      "stories": [
+        {
+          "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+          "current_title": "Cereal production Is 1.5x Higher Than In 1972",
+          "current_hook": "In 1972 it was 1083.7 million. Now it's 1644.1 million, and almost nobody noticed.",
+          "current_closing": "The world quietly grew itself out of a famine era.",
+          "current_question": "Which number surprised you most - school, grain, or land?",
+          "says": [
+            "In 1985, progression to secondary school (%) was 77.8. By 2017: 91.3 \u2014 1.2 times higher.",
+            "In 1972, cereal production was 1083.7 million metric tons. By 2024: 1644.1 million metric tons \u2014 1.5 times higher.",
+            "China leads at 5.2 million sq. km. United States is 4.2 million sq. km. Russian Federation \u2014 2.2 million sq. km."
+          ]
+        },
+        {
+          "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+          "current_title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+          "current_hook": "In 1990 it was 10.2. Now it's 30.1, and almost nobody noticed.",
+          "current_closing": "A third of the world's energy now comes from things we used to just throw away.",
+          "current_question": "Which number surprised you most - fuel, power, or waste?",
+          "says": [
+            "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024: 30.1 % of total energy \u2014 3.0 times higher.",
+            "In 1998, access to electricity was 73.2 % of population. By 2024: 91.9 % of population \u2014 1.3 times higher.",
+            "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024: 1,652 Mt CO2e \u2014 1.8 times higher."
+          ]
+        },
+        {
+          "slug": "population-growth-fell-54-since-1972",
+          "current_title": "Population growth Fell 54% Since 1972",
+          "current_hook": "In 1972 it was 2. Now it's 0.91, and almost nobody noticed.",
+          "current_closing": "The planet is still growing. It has just almost stopped accelerating.",
+          "current_question": "Which number surprised you most - rural, city, or growth?",
+          "says": [
+            "In 1972, rural population was 63.1 % of total population. By 2025: 42.2 % of total population \u2014 down to 67 percent of that.",
+            "In 1972, population in the largest city was 18.2 % of urban population. By 2025: 16.2 % of urban population \u2014 barely moved.",
+            "In 1972, population growth was 2 annual %. By 2025: 0.91 annual % \u2014 down to 46 percent of that."
+          ]
+        }
+      ],
+      "hard_rules": [
+        "You are rewriting WORDS around numbers that are already correct and sourced. You may not change, drop, or invent ANY number, percent, year, date, country or entity \u2014 a guard checks this mechanically and rejects the whole rewrite if you do.",
+        "Return one `says` entry per segment, in the same order and the same count. Each speaks that segment's actual numbers in natural English, ~22 words.",
+        "The title must name the surprise, not describe the dataset. 'Congo, Dem. Rep. Beats Everyone On Male primary school age children out-of-school' is the failure this exists to fix.",
+        "Hook stops the thumb in two seconds. Closing lands the point."
+      ],
+      "where": {
+        "preferred": "an `authored_explainer` array in response.json, one object per slug with title / hook / says / closing / question"
+      }
+    }
+  },
+  "authoring_request": null
+}

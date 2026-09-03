@@ -1,0 +1,21 @@
+{
+  "key": "ozone_hole_peak_extent",
+  "title": "Antarctic ozone hole, greatest single-day extent (million sq km)",
+  "unit": "million",
+  "geography": "Antarctica",
+  "time_coverage": "2000-2025 (annual peak day)",
+  "source": {
+    "name": "Antarctic ozone hole annual assessments",
+    "publisher": "NASA / NOAA",
+    "url": "https://science.nasa.gov/earth/nasa-noaa-rank-2025-ozone-hole-as-5th-smallest-since-1992/",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "Greatest one-day extent of the Antarctic ozone hole each year, from NASA/NOAA satellite ozone monitoring. 2000: record single-day extent of 29.9 million sq km (Sept 29, 2000). 2015: peak of 28.2 million sq km (Oct 2, 2015). 2024: peak of 22.4 million sq km (Sept 28, 2024), ranked 7th-smallest since recovery began in 1992. 2025: peak of 22.86 million sq km (Sept 9, 2025), ranked 5th-smallest since 1992; rounded to 22.9 for display.",
+  "points": [
+    {"label": "2000", "value": 29.9, "period": "2000"},
+    {"label": "2015", "value": 28.2, "period": "2015"},
+    {"label": "2024", "value": 22.4, "period": "2024"},
+    {"label": "2025", "value": 22.9, "period": "2025"}
+  ]
+}

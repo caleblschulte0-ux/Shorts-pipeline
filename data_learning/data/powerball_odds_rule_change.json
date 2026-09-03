@@ -1,0 +1,25 @@
+{
+  "key": "powerball_odds_rule_change",
+  "title": "Powerball jackpot odds, before vs. after the 2015 rule change",
+  "unit": "1 in N (chance)",
+  "geography": "United States",
+  "time_coverage": "Before Oct 2015 vs. after",
+  "source": {
+    "name": "Powerball matrix change, October 2015",
+    "publisher": "Multi-State Lottery Association, as widely reported by lottery-odds trackers",
+    "url": "https://www.lottodraws.io/blog/powerball-vs-mega-millions-which-has-better-odds/",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "In October 2015, Powerball deliberately widened its number pool, worsening jackpot odds from about 1 in 175 million to 1 in 292 million, specifically to grow jackpot size via more rollovers.",
+  "points": [
+    {
+      "label": "Before Oct 2015",
+      "value": 175000000
+    },
+    {
+      "label": "After Oct 2015",
+      "value": 292201338
+    }
+  ]
+}

@@ -15,13 +15,17 @@ Design notes:
   CLAUDE_CODE_OAUTH_TOKEN subscription, the SAME mechanism the pipeline's brain
   step already uses. NOT the paid Anthropic API. The CLI Reads the sampled
   frame images itself (vision). Free Gemini vision is the only fallback.
-- FAIL-OPEN on infrastructure problems (CLI missing, timeout, ffmpeg error) on a
-  preview run; the caller (post_stories) fails CLOSED on a real publish run.
+- Infrastructure problems (CLI missing, timeout, ffmpeg error) RAISE. What
+  that means for the video is not this module's call: every publishing
+  channel routes the outcome through `shared/showrunner_gate.decide()`,
+  which fails OPEN on a preview run and CLOSED on a real publish run — an
+  infra failure is not evidence of quality, and it is not approval either.
 - Model: the CLI 'opus' alias (override with SHOWRUNNER_MODEL).
 
 CLI:
     python scripts/showrunner_review.py output/story_x.mp4 [--context ctx.json]
-    # exit 0 = ship, 2 = block, 1 = skipped/errored (treated as ship by callers)
+    # exit 0 = ship, 2 = block, 1 = skipped/errored — on a PUBLISH run the
+    # shared gate treats 1 as a hold (fail-closed); only previews proceed
 """
 from __future__ import annotations
 
@@ -62,6 +66,69 @@ WEIGHTS = {
 AUTOFAIL_CHECKS = ["junk_imagery", "decorative_mascot", "bare_number_card",
                    "dead_air", "empty_void"]
 
+# DECISION POLICY — which auto-fails hard-block, and at what floor.
+#
+# "standard" is the rule as it has always been: ANY auto-fail blocks, floor
+# MIN_SCORE. "rebuild" is an INTERIM OPERATOR RULING (2026-08-13, twice
+# reaffirmed: "I don't care if the quality dips ... we should never not be
+# posting"): only the FATAL classes hard-block, and the numeric floor —
+# lowered by env in the one workflow that opts in — decides the rest.
+#
+# The ruling was made against measured data, not vibes. Of 23 blocks in the
+# ledger since 08-11, ZERO were held by the score floor alone — every hold
+# was the any-auto-fail rule, and the craft classes (empty_void,
+# decorative_mascot, bare_number_card, dead_air) held videos the judge
+# itself scored 55-78. Fourteen days of zero posts on the explainer channel
+# is the outcome the operator overruled.
+#
+# What "rebuild" does NOT change, ever:
+#   * the brain still watches every video and grades exactly as before —
+#     nothing here touches the judge, the rubric, or its sovereignty;
+#   * junk_imagery still blocks at ANY score: mismatched or misleading
+#     imagery is a trust defect, not a craft one, and "quality can dip"
+#     does not cover publishing visuals that misrepresent the data;
+#   * the measured temporal gate (frozen/choppy video) still blocks in code;
+#   * a publish run still fails CLOSED on no-verdict/infra-error/timeout;
+#   * every craft check is still recorded in the verdict, the ledger and
+#     the fix notes — the repair loop and the retro keep working the
+#     backlog while the channel posts.
+#
+# To END the rebuild: delete the SHOWRUNNER_POLICY / SHOWRUNNER_MIN_SCORE
+# env lines from the workflow that set them. Defaults restore "standard"/70.
+POLICY = os.environ.get("SHOWRUNNER_POLICY", "standard").strip() or "standard"
+FATAL_CHECKS = ("junk_imagery",)
+
+
+def _format_directive(ctx: dict) -> str:
+    """Translate the shared quality bar for the format actually rendered.
+
+    ChatGPT added this on 2026-08-02 after the generic data-story wording
+    blocked two correctly rendered Reddit narratives for not demonstrating a
+    statistic. The gate remains sovereign; only an inapplicable criterion is
+    translated into the format's equivalent visual-demonstration standard.
+    """
+    fmt = str((ctx or {}).get("format") or "").strip().lower()
+    if fmt == "reddit_story":
+        return (
+            "FORMAT = REDDIT STORY. This is a narrative, not a statistics "
+            "explainer. Grade data_demo by whether the cause/effect story "
+            "beats are visibly demonstrated with changing, relevant shot "
+            "illustrations plus gameplay/captions; do not demand numbers, a "
+            "chart, or a data claim. bare_number_card is relevant only if an "
+            "actual number card appears. Data is the separate Explainer "
+            "channel mascot: if any mascot appears here, mark "
+            "decorative_mascot present. If none appears, grade mascot=4 for "
+            "correct channel-brand separation.")
+    if fmt == "graph_race":
+        return (
+            "FORMAT = GRAPH RACE. The growing lines, moving tips, changing "
+            "leaderboard, and year counter are the data demonstration. Data "
+            "is the separate Explainer channel mascot: if any mascot appears "
+            "here, mark decorative_mascot present. If none appears, grade "
+            "mascot=4 for correct channel-brand separation. A one-series "
+            "growth chart has a scale payoff, not a competitive winner.")
+    return "Apply the general director rubric exactly as written."
+
 
 def compute_score(dims: dict) -> int:
     """Turn anchored dimension grades into the weighted 100-pt score. In CODE,
@@ -91,10 +158,54 @@ def failed_autofails(checks: dict) -> list:
             if isinstance((checks or {}).get(k), dict) and checks[k].get("present")]
 
 
-def decide_verdict(score: int, checks: dict) -> str:
-    """The single ship/block rule: block on ANY auto-fail OR a sub-threshold
-    score. Pure so the calibration fixtures can pin it in CI."""
-    return "block" if (failed_autofails(checks) or score < MIN_SCORE) else "ship"
+def validate_judge_response(grades: dict) -> list:
+    """Sanity-check the judge's JSON against the schema `_GRADE_PROMPT` asked
+    for. Non-empty return means the response cannot be trusted to score or
+    grade: every WEIGHTS dimension and every AUTOFAIL_CHECKS key must be
+    present with the right shape, or `review_video` blocks outright rather
+    than letting a missing/malformed answer read as a silent pass (an empty
+    or partial `checks` object previously computed zero auto-fails)."""
+    problems = []
+    dims = (grades or {}).get("dimensions")
+    if not isinstance(dims, dict):
+        problems.append("dimensions missing or not an object")
+    else:
+        for k, (_, ceil) in WEIGHTS.items():
+            if k == "temporal_craft":
+                continue  # code-graded, not part of the judge's answer
+            v = dims.get(k)
+            if isinstance(v, bool) or not isinstance(v, int) or not (0 <= v <= ceil):
+                problems.append(f"dimensions.{k} missing or out of range 0-{ceil}")
+    checks = (grades or {}).get("checks")
+    if not isinstance(checks, dict):
+        problems.append("checks missing or not an object")
+    else:
+        for k in AUTOFAIL_CHECKS:
+            c = checks.get(k)
+            if not isinstance(c, dict):
+                problems.append(f"checks.{k} missing or not an object")
+                continue
+            if not isinstance(c.get("present"), bool):
+                problems.append(f"checks.{k}.present missing or not boolean")
+            if not str(c.get("evidence") or "").strip():
+                problems.append(f"checks.{k}.evidence missing or empty")
+    return problems
+
+
+def decide_verdict(score: int, checks: dict, *, policy: str | None = None,
+                   min_score: int | None = None) -> str:
+    """The single ship/block rule, pure so the calibration fixtures can pin
+    it in CI. "standard": ANY auto-fail blocks, floor MIN_SCORE — unchanged
+    from the day it was written. "rebuild" (interim operator ruling, see
+    POLICY above): only FATAL_CHECKS hard-block; craft auto-fails are
+    recorded and repair-targeted but the numeric floor decides."""
+    policy = policy if policy is not None else POLICY
+    floor = min_score if min_score is not None else MIN_SCORE
+    fails = failed_autofails(checks)
+    if policy == "rebuild":
+        fatal = [f for f in fails if f in FATAL_CHECKS]
+        return "block" if (fatal or score < floor) else "ship"
+    return "block" if (fails or score < floor) else "ship"
 
 
 def _duration(mp4: Path) -> float:
@@ -478,6 +589,9 @@ MOTION FACTS (measured in code, not opinion) — use them, especially for dead_a
 and empty_void:
 {motion}
 
+FORMAT CONTRACT (authoritative for how this format demonstrates its content):
+{format_directive}
+
 STRUCTURED DIAGNOSIS (required): identify the WEAKEST SCENE by its frame-label \
 segment id (segN as printed on the frame labels; the hook is "hook"). If you \
 would block this video you MUST name the scene that most needs repair, the \
@@ -504,7 +618,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
     """Grade the finished video and COMPUTE the verdict in code. The model
     supplies anchored dimension grades + hard-check answers; this function turns
     them into the 100-pt score, folds in objective motion evidence, and decides
-    ship/block. Raises only on genuine infra failure (caller fails open on that)."""
+    ship/block. Raises only on genuine infra failure — which
+    `shared/showrunner_gate.decide()` turns into a HOLD on a publish run
+    and a skip on a preview. This function never decides that itself."""
     mp4 = Path(mp4)
     ctx = dict(context or {})
     manifest = ctx.get("manifest")
@@ -543,16 +659,36 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
             }
         prompt = _GRADE_PROMPT.format(
             motion=json.dumps({**motion, "temporal": temporal}),
+            format_directive=_format_directive(ctx),
             rubric=_rubric()[:6000],
             ctx=json.dumps(ctx, indent=0)[:3000])
         grades, backend = _judge(prompt, labeled)
+
+    schema_problems = validate_judge_response(grades)
+    if schema_problems:
+        dims = {k: 0 for k in WEIGHTS}
+        dims["temporal_craft"] = temporal_grade(temporal)
+        evidence = "; ".join(schema_problems)[:500]
+        return {
+            "score": compute_score(dims), "verdict": "block",
+            "dimensions": dims,
+            "auto_fails": [f"malformed_judge_response: {p}" for p in schema_problems],
+            "checks": {"malformed_judge_response": {"present": True, "evidence": evidence}},
+            "motion": motion, "temporal": temporal,
+            "judge": backend,
+            "one_line": "blocked: judge response failed schema validation",
+            "problems": schema_problems,
+            "fixes": ["judge must answer every WEIGHTS dimension and every "
+                      "AUTOFAIL_CHECKS key with present(bool) + nonempty "
+                      "evidence, per _GRADE_PROMPT"],
+        }
 
     dims = grades.get("dimensions", {}) or {}
     # temporal_craft is CODE-graded from measured cadence — the model doesn't
     # get to call a choppy video smooth.
     dims["temporal_craft"] = temporal_grade(temporal)
-    score = compute_score(dims)
     checks = apply_motion_override(grades.get("checks", {}) or {}, motion)
+    score = compute_score(dims)
     failed = failed_autofails(checks)
     verdict = decide_verdict(score, checks)
     # STRUCTURED weakest-scene diagnosis: pass the judge's own scene target
@@ -597,6 +733,15 @@ def append_ledger(slug: str, verdict: dict) -> None:
                "dimensions": verdict.get("dimensions"),
                "one_line": verdict.get("one_line"),
                "auto_fails": verdict.get("auto_fails", []),
+               # The judge's specific diagnosis and prescriptions. These were
+               # dropped from the durable record until 2026-08-24, so the only
+               # cross-run trace of WHY a video failed was one_line — a
+               # re-planner (or a human reading the ledger) had nothing to act
+               # on. Bounded so a chatty verdict can't bloat the ledger.
+               "problems": [str(p)[:300] for p in
+                            (verdict.get("problems") or [])[:6]],
+               "fixes": [str(f)[:300] for f in
+                         (verdict.get("fixes") or [])[:6]],
                "motion": verdict.get("motion"),
                "judge": verdict.get("judge", "unknown"),   # ACTUAL backend used
                "model": os.environ.get("SHOWRUNNER_MODEL", "opus"),

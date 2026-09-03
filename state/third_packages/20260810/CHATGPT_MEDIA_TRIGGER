@@ -1,0 +1,13 @@
+{
+  "schema": "chatgpt-specialized-workflow-trigger/v1",
+  "date": "20260810",
+  "channel": "third",
+  "owner": "chatgpt",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle_identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+  "expected": 6,
+  "existing": 0,
+  "missing": 6,
+  "action": "invoke_and_monitor_registered_third_workflow",
+  "created_at": "2026-08-10T11:21:00Z"
+}

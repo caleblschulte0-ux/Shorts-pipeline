@@ -1,0 +1,22 @@
+{
+  "key": "us_office_vacancy_rate_trend",
+  "title": "US office vacancy rate (percent)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2019-2026 (annual snapshots)",
+  "source": {
+    "name": "Moody's Analytics CRE Preliminary Trend Analysis",
+    "publisher": "Moody's Analytics",
+    "url": "https://www.bisnow.com/national/news/office/moodys-office-vacancy-hits-21-in-q1-another-record-high-133979",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Snapshots: 2019 pre-pandemic baseline (16.8%); Q4 2023 (19.6%); Q2 2024 (20.1%, first time breaking 20% in Moody's ~50-year data history); Q2 2025 (20.7%); Q1 2026 (21.0%). The prior all-time record was 19.3%, set during the 1986/1991 S&L-crisis office glut.",
+  "points": [
+    {"label": "2019", "value": 16.8, "period": "2019"},
+    {"label": "2023", "value": 19.6, "period": "2023"},
+    {"label": "2024", "value": 20.1, "period": "2024"},
+    {"label": "2025", "value": 20.7, "period": "2025"},
+    {"label": "2026", "value": 21.0, "period": "2026"}
+  ]
+}

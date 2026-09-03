@@ -1,0 +1,24 @@
+{
+  "key": "cesarean_rate_by_state",
+  "title": "Cesarean delivery rate by state (%, 2023)",
+  "unit": "percent",
+  "geography": "United States, by state",
+  "time_coverage": "2023",
+  "source": {
+    "name": "National Vital Statistics Reports -- state natality tables",
+    "publisher": "CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/data/nvsr/nvsr74/nvsr74-1.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "2023 state cesarean rates from NCHS natality data: Mississippi highest at 37.9%, Alaska lowest at 24.0%. This pattern (Southern states clustering high, Mountain West/Alaska clustering low) has held for nearly two decades and reflects hospital practice variation more than patient risk.",
+  "points": [
+    {"label": "Mississippi", "value": 37.9},
+    {"label": "Florida", "value": 36.2},
+    {"label": "Louisiana", "value": 36.1},
+    {"label": "South Dakota", "value": 24.4},
+    {"label": "Utah", "value": 24.3},
+    {"label": "Alaska", "value": 24.0}
+  ],
+  "baseline": {"label": "US average", "value": 32.4}
+}

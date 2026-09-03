@@ -1,0 +1,107 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-logged-every-call",
+  "title": "No Personal Calls On The Floor. So I Logged Every Call.",
+  "script": "My manager rolled out a new rule: no personal calls on the floor, every call has to go through the front desk phone and get logged in the visitor binder, no exceptions. I said fine, and I meant it literally. Every call, mine and everyone else's, went in that binder: time, caller, duration, reason. Two weeks in, the binder was thicker than the schedule board, and half the entries said manager's cell, personal, twelve minutes. Turns out our manager was taking two personal calls an hour from the same number, on the clock, off the log, every single day. Corporate did a policy audit after a complaint about staffing gaps, pulled the binder as evidence, and the log did the rest. My manager got written up for the exact rule he wrote, in front of the district supervisor, off a binder he never thought anyone would actually use. Now the binder just says front desk only, and somehow the personal calls stopped completely.",
+  "shots": [
+    {
+      "phrase": "no personal calls on the floor",
+      "query": "office phone desk",
+      "image_url": "https://pixabay.com/get/g5910c8527d02fa9d151b2bd7c0f65bfed4c2a71db8f564216cac2557ca27ef22e4b0f098217505c0ead09f63673b01a27ea31fd599e0a905c54eef68a5a32f41_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "logged in the visitor binder",
+      "query": "logbook binder pen",
+      "pin_query": "Visitor Binder",
+      "pin_context": "office front desk call log book register",
+      "news_query": "Visitor Binder",
+      "news_angle": "The visitor binder was meticulously used to log every call, revealing the manager's frequent personal calls.",
+      "image_url": "https://live.staticflickr.com/31/47785944_4e75a34a47_b.jpg"
+    },
+    {
+      "phrase": "went in that binder: time, caller, duration, reason",
+      "query": "handwritten log entries",
+      "image_url": "https://images.pexels.com/photos/12983110/pexels-photo-12983110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "the binder was thicker than the schedule board",
+      "query": "thick binder stack",
+      "image_url": "https://pixabay.com/get/ga6c034e4a44678dd521c75f87e1c6237417bebe048557057841bb5d7221ba99edea487710f79238e16dbd591a437a5dd22cd1a2a0a6254f5c5424b69ef48cbc8_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "taking two personal calls an hour from the same number",
+      "query": "phone call ringing",
+      "image_url": "https://live.staticflickr.com/765/21886785298_0579769d21_b.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Corporate did a policy audit",
+      "query": "office audit meeting",
+      "pin_query": "Corporate Office",
+      "pin_context": "company headquarters administration policy audit",
+      "news_query": "Corporate Office",
+      "news_angle": "Corporate conducted a policy audit using the visitor binder as evidence to write up the manager.",
+      "image_url": "https://live.staticflickr.com/4010/4650354197_c4fa2c40d9_b.jpg"
+    },
+    {
+      "phrase": "written up for the exact rule he wrote",
+      "query": "disciplinary paperwork desk",
+      "image_url": "https://pixabay.com/get/g59ce2d6f205f8c1c5e67be3971ddea55d08410a9f53025ea347d28bf18905343ffe943111bb8036b3cbde868d1c8c7646b9b6f09983efaaa59e4838bbf1f71b3_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "the personal calls stopped completely",
+      "query": "quiet empty office",
+      "image_url": "https://pixabay.com/get/gc1f3bf6a502810ae86115f6011c05cfbc5ff7e251662cf4794841c1470e7fc0962a4f5c0d308e481731624ecc3d63e27f988800bd61cd8f1c219b4d57e00acfc_1280.jpg",
+      "media_origin": "self_fill"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no personal calls on the floor",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "manager's cell, personal, twelve minutes",
+      "text": "LOGGED HIM TOO",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "policy audit",
+      "text": "AUDITED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "written up for the exact rule he wrote",
+      "text": "WRITTEN UP",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "personal calls stopped completely",
+      "text": "RULE ENFORCED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplacestory",
+    "corporatelife",
+    "karma",
+    "pettyrevenge",
+    "reddit",
+    "redditstories",
+    "officepolitics",
+    "boss",
+    "management",
+    "worklife",
+    "karmaisreal",
+    "9to5",
+    "truestory"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

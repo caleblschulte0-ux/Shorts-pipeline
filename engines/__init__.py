@@ -144,6 +144,16 @@ REGISTRY: dict[str, dict] = {
         "benchmark": "python -m engines.benchmarks.parallax_bench "
                      "(promotion to active requires passing verdict — Ticket E2)",
         "sample": "python -m engines demo parallax --image photo.jpg --out /tmp/px.mp4",
+        # Gated is a WAITING ROOM, not a residence (doctor finding
+        # 1207ec562569: both gated engines had sat consumerless with no
+        # deadline since July). By the decision date below, either a channel
+        # has run the named trial and adopted it, or it demotes to
+        # experimental/deferred — the honesty test fails the suite the day
+        # after, so the decision cannot be skipped quietly.
+        "decision_date": "2026-09-15",
+        "trial": "preview render of one explainer story with parallax on "
+                 "its photo beats (kenburns as the A side); adopt on a "
+                 "showrunner score no worse than the A cut, else demote.",
     },
     "svg_motion": {
         "kind": "module",
@@ -153,8 +163,18 @@ REGISTRY: dict[str, dict] = {
         # about; `experimental` is the registry's own state for "built, not
         # yet earning its slot". Adopt it (a graph_race stat pop and the
         # reddit_story post card are the live candidates) or delete it.
+        # RE-DATED 2026-09-02 (with reason, per test_engine_registry_honesty's
+        # own "adopt, demote, or re-date with a reason" clock): the original
+        # 2026-09-01 deadline passed with no session having actually
+        # evaluated either candidate integration — the daily authoring
+        # routine hit this expiry as an unrelated CI-red blocker on its
+        # content PR and is not the right context to rush a real adopt-vs-
+        # delete call on working, tested, zero-risk code. Extending 30 days
+        # to leave room for a session with the bandwidth to actually build
+        # the stat-pop or post-card integration (or, failing that, delete it
+        # for real next time) rather than deleting on a technicality.
         "status": "experimental",
-        "decision_date": "2026-09-01",
+        "decision_date": "2026-10-02",
         "problem": "Animated vector graphics (title cards, stat pops, "
                    "diagrams) rendered as per-frame SVG -> PNG -> mp4. "
                    "Born from the ChatGPT-integration finding that animated "
@@ -240,6 +260,11 @@ REGISTRY: dict[str, dict] = {
         # no consumer — that is what gated MEANS — but the field has to say
         # so out loud, because a missing key reads as "nobody checked".
         "consumers": [],
+        # Same waiting-room rule as parallax (doctor finding 1207ec562569).
+        "decision_date": "2026-09-15",
+        "trial": "harmonize one third-channel clip slate's mixed-source "
+                 "media before assembly; adopt if the blind look judge "
+                 "stops flagging 'never settles into one look', else demote.",
     },
     "ffmpeg": {
         "kind": "external", "status": "active",

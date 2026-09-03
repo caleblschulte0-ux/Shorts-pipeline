@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
+  "safe_request_id": "reddit-gym-tuesday-cancellation-s5-43f7801cb1fb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8c4bee8ce8b62bae36b55fd6c2b4459eec9fbbb626e7a24e803a0571a249d39f",
+  "prompt_used": "An editorial illustration for a short-form video: businessperson on phone call. It accompanies the narration: \"compliance officer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+    "filename": "20260822__reddit-gym-tuesday-cancellation-s5-43f7801cb1fb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1xEbNDJ0Oloi9Y1yp12QCCnadthhfo8iP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a66ebf21888d3b3a617d3c390861eccf280010530dbc63d582bb63e7bfebe0fa",
+    "bytes": 1064247,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:44.004Z",
+  "error": null,
+  "retryable": false
+}

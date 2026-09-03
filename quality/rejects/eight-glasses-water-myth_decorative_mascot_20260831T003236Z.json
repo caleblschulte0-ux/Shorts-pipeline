@@ -1,0 +1,32 @@
+{
+ "slug": "eight-glasses-water-myth",
+ "ts": "20260831T003236Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The mascot is mostly static or slides without performing a significant bit tied to the data, e.g., in hook@0.3 it stands still at the bottom of the bar.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "Data demonstration",
+  "visible_evidence": "In seg3:mid, the numbers '3.7' and '2.7' are simply displayed with circles, lacking an engaging visual metaphor.",
+  "root_cause": "The scene presents a key data point (gender-specific recommendations) but fails to visualize it dynamically or engage the mascot in the demonstration, resorting to a static number display.",
+  "repair_goal": "Introduce a dynamic visual metaphor for the gender-specific fluid intake numbers (e.g., filling different sized containers or bars) and have the mascot interact with these visuals to highlight the difference or the specific values."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  }
+ ]
+}

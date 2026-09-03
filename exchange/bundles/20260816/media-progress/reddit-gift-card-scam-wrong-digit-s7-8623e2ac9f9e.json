@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e",
+  "safe_request_id": "reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-gift-card-scam-wrong-digit",
+  "shot_index": 7,
+  "prompt_sha256": "20b32ae78cf530481a2e6636de8e4a168f536a9debd901d6e809bbec5eb95f83",
+  "prompt_used": "An editorial illustration for a short-form video: mobile phone missed calls. It accompanies the narration: \"He rang back nine times\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+    "filename": "20260816__reddit-gift-card-scam-wrong-digit-s7-8623e2ac9f9e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1GvJsGGPq_f6Oe31PbXzf0AjCXcvZvcfU",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e185a9fbf834cb40bb2cb9dbc0b3b316913c4427f20f9ba3357221284061f630",
+    "bytes": 1174285,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:18Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,47 @@
+{
+  "key": "one_person_households_trend",
+  "title": "Share of US households with one person",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1960-2023",
+  "source": {
+    "name": "Historical Households Tables",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/data/tables/time-series/demo/families/households.html",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "Share of all US households consisting of one person living alone, by decade (2023 is the latest annual estimate).",
+  "points": [
+    {
+      "label": "1960",
+      "value": 13,
+      "period": "1960"
+    },
+    {
+      "label": "1970",
+      "value": 17.6,
+      "period": "1970"
+    },
+    {
+      "label": "1980",
+      "value": 22.7,
+      "period": "1980"
+    },
+    {
+      "label": "2000",
+      "value": 26,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 26.7,
+      "period": "2010"
+    },
+    {
+      "label": "2023",
+      "value": 29,
+      "period": "2023"
+    }
+  ]
+}

@@ -32,7 +32,13 @@ information*, not the same idea still animating.
 This is enforced, not advised. `novelty_check` (gate 0) samples the whole render
 and compares every frame to the frame 5 seconds earlier; if they look the same,
 the video has been holding one idea, and the render is **REJECTED** (exit 3) — no
-matter how much it technically "moves." The loop cannot auto-fix a stale span
+matter how much it technically "moves." And the gate **fails CLOSED**: when the
+probe itself cannot run (ffprobe/ffmpeg broken, an unreadable render),
+`novelty_check` raises `NoveltyProbeError` and the DIRECTOR **REJECTS** (exit 5)
+with the outage persisted in `director_findings.json` — until 2026-08-24 a probe
+failure returned "no stale spans", so a tooling outage silently satisfied the
+hard rule for as long as it lasted (doctor finding cf263a770061). "Could not
+measure" is never "clean." The loop cannot auto-fix a stale span
 (it can't rewrite narration or split a beat), so a stale span is an **authoring**
 failure: cut sooner, split the beat, or STAGE the beat so a new element keeps
 landing (e.g. a grid that fills category by category, not one plate that holds).
@@ -94,7 +100,7 @@ every round. Each line is a gate that RAN:
 
 | # | Gate | Judge | Fix when flagged |
 |---|------|-------|------------------|
-| 0 | **NOVELTY** — something NEW every ≤5s (HARD RULE) | `novelty_check` (perceptual, whole-video) | REJECT — the beat holds one idea too long; author must cut / split / stage a new element. Motion is not novelty. |
+| 0 | **NOVELTY** — something NEW every ≤5s (HARD RULE) | `novelty_check` (perceptual, whole-video) | REJECT — the beat holds one idea too long; author must cut / split / stage a new element. Motion is not novelty. A probe that cannot run also REJECTs (exit 5, fail closed) — an unmeasured film is unproven, not clean. |
 | 1 | **HOOK** — the opening ~3–8s | `hook_director` (metric pre-screen) + vision hook judge | recut beat 0: force a dynamic window, stamp hook text that contradicts the setup, pick a non-generic subject |
 | 2 | **SYNC** — the picture matches the words under it | `pacing_check` (+ vision judge) | a ground/human subject over Earth-from-orbit → route to the designed explainer that illustrates the words |
 | 3 | **VARIETY** — no reel of look-alikes (the "5 clouds") | `variety_check` (subject-family + perceptual) | convert the excess footage beats to designed number cards; keep the bookends |

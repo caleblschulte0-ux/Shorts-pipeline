@@ -1,0 +1,17 @@
+{
+  "format": "graph_race",
+  "slug": "landlines-peak-and-fall",
+  "title": "Internet Users Outran Broadband Lines",
+  "hook": "People beat the cables.",
+  "y_label": "Per 100 people",
+  "duration": 13,
+  "source": "World Bank, Individuals using the Internet (IT.NET.USER.ZS) and fixed broadband subscriptions per 100 people (IT.NET.BBND.P2), 2005-2025: https://data.worldbank.org/indicator/IT.NET.USER.ZS and https://data.worldbank.org/indicator/IT.NET.BBND.P2",
+  "years": [2005, 2009, 2013, 2017, 2021, 2025],
+  "series": [
+    {"name": "Internet users", "color": "#50ff80", "icon": "World Bank", "values": [15.6, 25.3, 35.3, 46.3, 63.8, 73.6]},
+    {"name": "Fixed broadband", "color": "#3088ff", "icon": "World Bank", "values": [3.4, 6.9, 9.7, 13.5, 16.7, 20.1]}
+  ],
+  "hashtags": ["internet", "broadband", "technology", "data", "worldbank", "shorts"],
+  "music_vibe": "clean accelerating electronic",
+  "_authored_by": "chatgpt-takeover"
+}

@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-suez-vs-cape-good-hope",
+  "title": "The Detour That Broke The Suez Canal",
+  "hook": "War rerouted the world's ships.",
+  "y_label": "Monthly container ship transits (est.)",
+  "duration": 13,
+  "source": "Source: Suez Canal Authority transit counts and Cape of Good Hope diversion tracking as reported by Reuters, Lloyd's List, the Kiel Institute for the World Economy (Kiel Trade Indicator) and IMF PortWatch, 2019-2025; Red Sea/Suez traffic collapsed after Houthi attacks began in November 2023. Figures are approximate monthly averages.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Suez Canal",
+      "color": "#f5c518",
+      "values": [
+        1900,
+        1700,
+        1900,
+        2000,
+        2068,
+        877,
+        850
+      ]
+    },
+    {
+      "name": "Cape of Good Hope",
+      "color": "#2ecc71",
+      "values": [
+        180,
+        200,
+        220,
+        250,
+        300,
+        1600,
+        1500
+      ]
+    }
+  ],
+  "hashtags": [
+    "suezcanal",
+    "redsea",
+    "shipping",
+    "globaltrade",
+    "houthi",
+    "logistics",
+    "supplychain",
+    "capeofgoodhope",
+    "egypt",
+    "geopolitics",
+    "containerships",
+    "economy",
+    "worldnews",
+    "trade"
+  ],
+  "music_vibe": "cinematic"
+}

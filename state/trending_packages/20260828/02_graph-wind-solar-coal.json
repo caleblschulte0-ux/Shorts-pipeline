@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-wind-solar-coal",
+  "title": "Wind And Solar Just Passed Coal",
+  "hook": "Coal Just Lost Its 100-Year Grip",
+  "y_label": "US electricity generation (TWh)",
+  "duration": 13,
+  "source": "U.S. Energy Information Administration, Electric Power Annual and 'Today in Energy' reports, 2017-2024. Approximate annual terawatt-hours; combined wind + solar generation overtook coal-fired generation in the U.S. power sector for the first time in 2024, capping a decade-long decline in coal output.",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Coal",
+      "color": "#7f8c8d",
+      "values": [
+        1206,
+        1146,
+        966,
+        774,
+        899,
+        832,
+        665,
+        628
+      ]
+    },
+    {
+      "name": "Wind + Solar",
+      "color": "#2ecc71",
+      "values": [
+        307,
+        342,
+        389,
+        471,
+        544,
+        625,
+        660,
+        757
+      ]
+    }
+  ],
+  "hashtags": [
+    "renewableenergy",
+    "solarpower",
+    "windpower",
+    "coal",
+    "cleanenergy",
+    "climate",
+    "energy",
+    "electricity",
+    "dataviz",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

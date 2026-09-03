@@ -1,0 +1,41 @@
+{
+  "key": "solo_living_by_country",
+  "title": "Share of households with one person, by country",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2023-2025",
+  "source": {
+    "name": "National statistical agencies (Eurostat / national census bureaus)",
+    "publisher": "Eurostat and national statistics offices",
+    "url": "https://ec.europa.eu/eurostat",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "Most recent published one-person-household share per country; US figure from Census Bureau 2023 estimate for comparison.",
+  "points": [
+    {
+      "label": "Finland",
+      "value": 45.3
+    },
+    {
+      "label": "Germany",
+      "value": 40.8
+    },
+    {
+      "label": "Sweden",
+      "value": 40.7
+    },
+    {
+      "label": "Norway",
+      "value": 40.0
+    },
+    {
+      "label": "Japan",
+      "value": 34.6
+    },
+    {
+      "label": "United States",
+      "value": 29.0
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "key": "us_mobility_rate_by_year",
+  "title": "Share of Americans who moved in the past year",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1950-2023",
+  "source": {
+    "name": "CPS Historical Migration/Geographic Mobility Tables",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www.census.gov/data/tables/time-series/demo/geographic-mobility/historic.html",
+    "officiality": "official",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Documented anchors: ~20% annual mobility in the 1950s, roughly halved by the late 2010s, and below 10% for the first time on record by 2023. Points between anchors are a smooth interpolation of the Census Bureau's long-documented decline, not individually verified single years.",
+  "points": [
+    {
+      "label": "1950",
+      "value": 20.0,
+      "period": "1950"
+    },
+    {
+      "label": "1970",
+      "value": 18.0,
+      "period": "1970"
+    },
+    {
+      "label": "1990",
+      "value": 17.0,
+      "period": "1990"
+    },
+    {
+      "label": "2010",
+      "value": 12.5,
+      "period": "2010"
+    },
+    {
+      "label": "2023",
+      "value": 8.0,
+      "period": "2023"
+    }
+  ]
+}

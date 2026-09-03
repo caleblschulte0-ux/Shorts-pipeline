@@ -1,0 +1,47 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260808",
+  "summary": "Saturday's workflow/docs pass found that the repository's outcome alarm is doing its job, but two orchestration layers still allow silence to look healthier than it is: the explainer workflow can explicitly exit successfully when an automatic run has nothing to post, which matches the observed 0/4 explainer day, and the alarm can identify a repair-required production state without any in-repo retry handoff to execute the documented safe repair path. The workflow itself also contains comments that no longer describe the code it runs, a concrete sign that the channel-specific orchestration has become too large and self-contradictory. The quality gates should stay exactly as strong as they are; the direction is to make production success, recovery, and channel policy more explicit and machine-enforced around them.",
+  "findings": [
+    {
+      "title": "Explainer auto-run can ship zero and exit green",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "explainer/orchestration",
+      "files": [".github/workflows/explainer.yml"],
+      "observation": "The automatic explainer path derives a slug list from the forge output and existing queue, but if that list is empty it prints a warning and executes `exit 0`. The registry expects a nonzero daily explainer slate, so an automatic run can produce no publish attempt while the workflow still succeeds. Runtime evidence for 20260807 reports explainer at 0/4, demonstrating the failure shape is live rather than hypothetical.",
+      "proposal": "Make an automatic posting run with a positive registry target and zero eligible slugs a failing production condition, or emit a durable production outcome that a same-run postcondition turns red. Preserve all editorial and showrunner holds: the fix is to distinguish 'nothing eligible to attempt' from success, not to force weak videos through the gates.",
+      "evidence": ".github/workflows/explainer.yml around the Run step builds SLUGS from the forge/existing queue, then executes `if [ -z \"$SLUGS\" ]; ... exit 0`; doctor/evidence.json for judged date 20260807 records critical alarm `no_posts_explainer` with `ZERO videos posted ... (registry wants 4)`.
+    },
+    {
+      "title": "Explainer workflow comments contradict its live forge and trigger behavior",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "explainer/docs",
+      "files": [".github/workflows/explainer.yml"],
+      "observation": "The workflow header says the cron is explainer's only automatic trigger and later comments still refer to a daily.yml chain firing the workflow. Farther down, comments say the automatic queue-filler is GONE and new real stories are added by hand, while an earlier live step invokes `scripts/story_forge.py --count` on posting runs. These comments describe mutually incompatible operating models inside the same file.",
+      "proposal": "Rewrite the workflow comments to describe only the triggers and authoring paths that actually exist today, and delete historical operational commentary that now states false current behavior. Keep history in an audit/change document rather than inline beside executable policy.",
+      "evidence": ".github/workflows/explainer.yml header says the 13:40 UTC cron is the ONLY automatic trigger; schedule comments later say 'The chain and the Routine both still fire it'; the live 'Top up the queue with REAL, sourced stories' step runs `python3 scripts/story_forge.py --count`, while the Run-step comments later state 'the automatic queue-filler is GONE' and 'real stories are added by hand'."
+    },
+    {
+      "title": "Critical production alarms have no in-repo repair handoff",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "operations/recovery",
+      "files": [".github/workflows/alarm.yml"],
+      "observation": "alarm.yml correctly runs the outcome judge and turns the workflow red, but on failure its only actions are to comment on the tracking issue and exit 1. The current evidence contains `production_repair_trending` for 20260807 and explicitly says the safe repair path is a push to `.github/triggers/daily`; that repair never completed. Detection therefore exists, but the repository has no machine handoff from a retry-safe repair-required verdict to the already-documented recovery path.",
+      "proposal": "Add a bounded, auditable recovery handoff for alarm codes whose repair path is explicitly retry-safe: persist a repair request or dispatch a dedicated recovery workflow once, with posted-title dedupe, existing quality gates, and a retry budget still sovereign. Any held/quarantined video must remain held; recovery should only resume missing work, never weaken a gate.",
+      "evidence": ".github/workflows/alarm.yml 'Raise the alarm' only posts an issue comment and 'Fail the run' exits 1; doctor/evidence.json for 20260807 reports `production_repair_trending`, says 2/6 uploaded and repair never completed, and names a push to `.github/triggers/daily` as the safe resume path."
+    },
+    {
+      "title": "Channel orchestration is too large to keep policy and prose synchronized",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "workflows/architecture",
+      "files": [".github/workflows/explainer.yml", "CLAUDE.md"],
+      "observation": "CLAUDE.md declares `config/channel_registry.json` the only place channel policy lives, but explainer.yml still contains a large channel-specific orchestration surface for schedules, fallback timing, authoring/top-up behavior, posting modes, repair count, persistence, secrets, and recovery commentary. The contradictory comments already present in that workflow are evidence that operational policy and explanation are drifting faster than maintainers can keep one giant YAML synchronized.",
+      "proposal": "Move toward a reusable publishing workflow driven by a typed registry-derived channel contract: common scheduling/postcondition/recovery/persistence mechanics should be shared, while channel workflows provide only renderer-specific inputs, token binding, and genuinely unique steps. Generate or validate workflow-facing policy from the registry so counts, disabled state, recovery semantics, and outcome expectations cannot silently diverge across channels.",
+      "evidence": "CLAUDE.md section '`config/channel_registry.json` is the ONLY place channel policy lives' says counts/formats/output policy resolve through the registry; .github/workflows/explainer.yml independently encodes two cron schedules, mode routing, forge/top-up behavior, `--repair 1`, persistence, and extensive recovery policy comments, including current contradictions documented above."
+    }
+  ]
+}

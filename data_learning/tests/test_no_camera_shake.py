@@ -39,6 +39,35 @@ _DIRECTOR = (_REPO / "data_learning" / "mascot_director.py").read_text()
 
 
 # --------------------------------------------------------------------------- #
+# 0: the whole-frame camera float (the big one)
+# --------------------------------------------------------------------------- #
+def test_data_channel_never_applies_the_camera_float():
+    """shared/camera_float.py describes itself as "a slow Lissajous drift of
+    the visual layer — a hand-held/breathing camera", implemented as a moving
+    crop window over an oversized frame. It was added to feed the showrunner's
+    per-frame motion detector and it moved EVERY pixel of EVERY frame.
+
+    Other channels may keep it. The data channel may not touch it.
+    """
+    live = [ln.strip() for ln in _STUDIO.splitlines()
+            if ("camera_float" in ln or "crop_vf" in ln or "_cf." in ln)
+            and not ln.lstrip().startswith("#")]
+    assert not live, f"the camera float is back in the data render: {live[:3]}"
+
+
+def test_no_moving_crop_window_anywhere_in_the_data_render():
+    """The float's shape, independent of which module it comes from: a crop
+    whose x or y is a function of time."""
+    bad = []
+    for src, name in ((_STUDIO, "studio_render"), (_VIZ_SCENE, "viz_scene")):
+        for ln in src.splitlines():
+            code = ln.split("#", 1)[0]
+            if "crop=" in code and re.search(r"(sin|cos)\(", code):
+                bad.append(f"{name}: {ln.strip()[:70]}")
+    assert not bad, f"a moving crop window is back: {bad[:3]}"
+
+
+# --------------------------------------------------------------------------- #
 # 1 + 2: the ffmpeg filtergraph
 # --------------------------------------------------------------------------- #
 def test_no_zoompan_anywhere_in_the_studio_render():

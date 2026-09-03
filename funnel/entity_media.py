@@ -54,10 +54,19 @@ _STOPWORDS = frozenset({
     # Sentence-initial referents
     "this", "these", "those", "it", "they", "we", "you", "i", "he", "she",
     "his", "her", "their", "its", "our", "your", "my",
-    # Counting words ("One scientist said...") — proper nouns rarely
-    # start with these and they cause false positives like "One Wi-Fi"
+    # Counting words ("One scientist said...", "Thirty days later") —
+    # proper nouns rarely start with these and they cause false
+    # positives like "One Wi-Fi". Extended 2026-09-02: first-person
+    # narrative scripts (reddit_story) routinely open a sentence with
+    # a spelled-out count ("Thirty days later a check arrived") and
+    # the regex-fallback path (no LLM key) was flagging the bare
+    # number as an uncovered "entity", failing an honestly-anonymous
+    # story's pre-flight coverage for no real reason.
     "one", "two", "three", "four", "five", "six", "seven", "eight",
-    "nine", "ten",
+    "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+    "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "thirty",
+    "forty", "fifty", "sixty", "seventy", "eighty", "ninety", "hundred",
+    "thousand",
     # Temporal sentence-starters
     "today", "yesterday", "tomorrow", "now", "then", "soon", "later",
     "once", "while",
@@ -74,7 +83,7 @@ _STOPWORDS = frozenset({
     "americans", "american",
     # Common adverbs that auto-capitalize
     "back", "still", "even", "just", "also", "very", "always", "never",
-    "ever", "much", "many", "few", "all", "some", "any", "every",
+    "ever", "much", "many", "few", "all", "some", "any", "every", "too",
     # Time units. "Second" is intentionally omitted — collides with
     # "Second Avenue", "Second Amendment", etc. The few false-positive
     # sentence-starts using "Second" as a time unit are tolerable.
@@ -105,19 +114,24 @@ _MAX_ENTITY_WORDS = 4
 
 def extract_proper_nouns(script: str) -> list[str]:
     """Return proper-noun candidates from `script`, in first-mention
-    order, deduplicated. Handles three messy cases the raw regex
+    order, deduplicated. Handles four messy cases the raw regex
     can't:
       1. `Microsoft's` -> `Microsoft` (drop possessive)
       2. `The FAA` -> `FAA` (drop leading stopwords; the sentence
          started with "The" and the regex grabbed it because the next
          word was also capitalized)
       3. Trailing stopwords (rare, e.g. `Apple And`)
+      4. `I'd`/`I'm`/`I've`/`I'll`/`I're` -> `I` -> dropped (a
+         first-person sentence opener like "I'd already filed..." was
+         surviving as a fake 3-letter "entity" because only the
+         possessive `'s` was stripped; found 2026-09-02 authoring
+         reddit_story packages, where this contraction is routine.)
     Drops single-letter results and pure-stopword phrases.
     """
     out: list[str] = []
     seen: set[str] = set()
     for raw in _PROPER_NOUN_RE.findall(script):
-        cand = re.sub(r"'s\b", "", raw).strip()
+        cand = re.sub(r"'(s|d|m|ve|ll|re)\b", "", raw).strip()
         if not cand:
             continue
         # Walk in from both ends, dropping stopword tokens. Stops as
@@ -219,9 +233,17 @@ _LLM_SKIP_LOGGED = False
 
 def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
     """Ask the LLM for {entity, context, phrase} triples. Returns None
-    when the LLM path is unavailable (no API key, network failure,
+    ONLY when the LLM path is unavailable (no API key, network failure,
     malformed response) so the caller can fall back to the regex
-    extractor. Never raises."""
+    extractor. Returns `[]` (a real, distinct answer, NOT None) when the
+    LLM ran fine and correctly found zero named, photographable entities —
+    the expected result for a deliberately anonymous, universal
+    reddit_story (the format spec bans named people/places/brands). A
+    caller must not collapse that into "unavailable": doing so silently
+    hands the noisy regex fallback a script it will misread (sentence-
+    initial capitals like "Corporate" or "He'd" look like proper nouns to
+    a regex), producing bogus "entities" and, in `enrich_package`, real
+    off-topic image searches for them. Never raises."""
     global _LLM_SKIP_LOGGED
     if not script.strip():
         return None
@@ -269,7 +291,10 @@ def extract_visuals_llm(script: str, title: str = "") -> list[dict] | None:
             "entity": entity, "context": context, "phrase": phrase,
             "story_angle": story_angle,
         })
-    return out or None
+    # `out` (possibly `[]`) is the real answer; only genuine failure
+    # paths above return None. See the docstring — this used to be
+    # `return out or None`, which threw away a correct empty answer.
+    return out
 
 
 # ---------- Cache ----------
@@ -527,8 +552,11 @@ def enrich_package(pkg: dict, *, verbose: bool = True) -> dict:
 
     visuals = extract_visuals_llm(script, title=title)
     used_llm = visuals is not None
-    if not visuals:
-        # Fallback: regex extractor, with title as context.
+    if visuals is None:
+        # LLM path genuinely unavailable — fall back to the regex
+        # extractor, with title as context. A real `[]` from the LLM
+        # (a correctly entity-free anonymous story) is trusted as-is,
+        # not routed through here (see extract_visuals_llm's docstring).
         nouns = extract_proper_nouns(script)
         visuals = [{"entity": n, "context": title, "phrase": n} for n in nouns]
 
@@ -613,10 +641,12 @@ def validate_package(pkg: dict) -> dict:
     """
     try:
         fmt = _reg.classify(pkg, "trending")
-        needs_shots = _reg.media_requirements("trending", fmt)["shots"] \
-            if fmt else True
+        media_req = _reg.media_requirements("trending", fmt) if fmt else {}
+        needs_shots = media_req.get("shots", True)
+        chatgpt_media = media_req.get("chatgpt_supplies_images", False)
     except _reg.RegistryError:
         needs_shots = True
+        chatgpt_media = False
     if not needs_shots:
         return {"source": "n/a", "total_visuals": 0, "matched": [],
                 "uncovered": [], "coverage_pct": 100.0, "total_shots": 0,
@@ -626,7 +656,11 @@ def validate_package(pkg: dict) -> dict:
     shots = pkg.get("shots") or []
     visuals = extract_visuals_llm(script, title=pkg.get("title", ""))
     used_llm = visuals is not None
-    if not visuals:
+    if visuals is None:
+        # Genuinely unavailable (no key / network / bad JSON) — regex
+        # fallback. A real `[]` (LLM ran, found nothing to illustrate) is
+        # trusted as-is; see extract_visuals_llm's docstring for why this
+        # distinction matters for an intentionally anonymous reddit_story.
         nouns = extract_proper_nouns(script)
         visuals = [{"entity": n, "context": pkg.get("title", ""),
                     "phrase": n} for n in nouns]
@@ -657,15 +691,48 @@ def validate_package(pkg: dict) -> dict:
         keyword_only.append((s.get("phrase") or "?")[:50])
     n_shots = max(1, len(shots))
     illustrated = len(shots) - len(keyword_only)
+    # A format whose shot images are CONTRACTUALLY ChatGPT's job (the
+    # registry's `chatgpt_supplies_images`, e.g. reddit_story) has not
+    # been touched by that pass yet when the Routine author runs this
+    # pre-flight — every shot is legitimately `{phrase, query}` only, by
+    # design (see FORMAT_SPECS / docs/EXCHANGE_PIPELINE.md). A 0%
+    # illustration score here does not mean the author forgot photos; it
+    # means the media_worker pass has not run yet, so the metric is not
+    # yet meaningful. Same "nothing to cover" shape as the shots-not-
+    # needed branch above and the coverage_pct fix below, one layer
+    # down. Only suppress it pre-enrichment: once ANY shot carries a
+    # real image (ChatGPT ran, or the author pinned one manually),
+    # illustration becomes a real, checkable signal again — e.g. for
+    # Phase B's post-exchange verification, which is exactly where this
+    # metric is supposed to bite.
+    pre_chatgpt_media = chatgpt_media and not any(
+        s.get("image_url") or s.get("image") for s in shots)
+    illustration_pct = (100.0 if pre_chatgpt_media
+                         else round(100.0 * illustrated / n_shots, 1))
+    # Same "nothing to cover" reasoning as the no-shots-needed branch above,
+    # one level down: a script with zero extracted entities (a genuinely
+    # anonymous reddit_story with no named person/place/brand — the format
+    # spec REQUIRES universal, un-named premises) divides 0 matched by 0
+    # possible. That is "nothing to cover", not "covered nothing", so it
+    # must not score 0%. Before this fix `max(1, len(visuals))` silently
+    # turned the zero-possible case into a 0/1 division, which flagged
+    # every honestly-illustrated, entity-free reddit_story as a coverage
+    # failure — the exact bug this docstring already diagnosed for
+    # graph_race/text_card, just left unfixed on this sibling path.
+    coverage_pct = 100.0 if not visuals else round(
+        100.0 * len(matched) / len(visuals), 1)
     return {
         "source": "llm" if used_llm else "regex",
         "total_visuals": len(visuals),
         "matched": matched,
         "uncovered": uncovered,
-        "coverage_pct": round(100.0 * len(matched) / max(1, len(visuals)), 1),
+        "coverage_pct": coverage_pct,
         "total_shots": len(shots),
         "keyword_only_shots": keyword_only,
-        "illustration_pct": round(100.0 * illustrated / n_shots, 1),
+        "illustration_pct": illustration_pct,
+        "illustration_note": ("chatgpt_supplies_images for this format; "
+                               "not yet attached — not gated pre-exchange")
+                              if pre_chatgpt_media else None,
     }
 
 

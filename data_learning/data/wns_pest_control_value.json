@@ -1,0 +1,19 @@
+{
+  "key": "wns_pest_control_value",
+  "title": "Annual value of bat pest control to US agriculture ($ billions)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2011 study estimate",
+  "source": {
+    "name": "Economic value of bat pest-control services to agriculture",
+    "publisher": "USGS / Boston University / University of Tennessee",
+    "url": "https://www.usgs.gov/faqs/why-are-bats-important",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; published range for the annual value of insect-eating bats' pest-control services to US agriculture, cited by USGS (low estimate $3.7B, high estimate $53B).",
+  "points": [
+    {"label": "High estimate", "value": 53},
+    {"label": "Low estimate", "value": 3.7}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "wealth_transfer_by_generation",
+  "title": "Projected US inheritance by generation, through 2048",
+  "unit": "trillion dollars",
+  "geography": "United States",
+  "time_coverage": "2025-2048 (projected)",
+  "source": {
+    "name": "US Advisor Metrics: The Cerulli Report -- The Great Wealth Transfer",
+    "publisher": "Cerulli Associates",
+    "url": "https://www.cerulli.com/press-releases/generation-x-represents-the-most-immediate-opportunity-for-wealth-managers",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Cerulli's generation-by-generation projection of the $105 trillion flowing to heirs through 2048: Millennials $46T, Gen X $39T, Gen Z $15T. These three generations account for $100T of the $105T total to heirs; the remainder goes to the Silent Generation and other/unspecified heirs.",
+  "points": [
+    {"label": "Millennials", "value": 46},
+    {"label": "Gen X", "value": 39},
+    {"label": "Gen Z", "value": 15}
+  ]
+}

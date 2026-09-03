@@ -1,0 +1,19 @@
+{
+  "key": "genz_text_vs_call_share",
+  "title": "18-34 year-olds: preferred way to be contacted",
+  "unit": "percent",
+  "geography": "United Kingdom (survey; widely cited as representative of the wider trend)",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Uswitch mobile communications survey",
+    "publisher": "Uswitch",
+    "url": "https://www.uswitch.com",
+    "officiality": "secondary",
+    "access_date": "2026-08-11"
+  },
+  "notes": "A 2024 Uswitch survey found nearly 70% of 18-34 year-olds said they would prefer a text to a phone call; the remaining share is treated here as the complement (preferring a call).",
+  "points": [
+    {"label": "Prefer text", "value": 70},
+    {"label": "Prefer call", "value": 30}
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "format": "graph_race",
+  "slug": "graph-airbus-overtakes-boeing",
+  "title": "Airbus Overtook Boeing After The 737 MAX Crisis",
+  "hook": "Boeing's Crown Just Fell",
+  "y_label": "Commercial aircraft delivered (annual)",
+  "duration": 13,
+  "source": "Boeing and Airbus annual commercial aircraft delivery totals, from company delivery reports and SEC filings (Boeing Form 8-K delivery releases; Airbus orders-and-deliveries data), as compiled by Reuters, CNBC, AirlineGeeks and Simple Flying. Boeing: 748 (2016), 763 (2017), 806 (2018), 380 (2019), 157 (2020), 340 (2021), 480 (2022), 528 (2023). Airbus: 688 (2016), 718 (2017), 800 (2018), 863 (2019), 566 (2020), 611 (2021), 661 (2022), 735 (2023). Boeing's 2019-2020 collapse followed the 737 MAX grounding and the COVID-19 pandemic; Airbus became the world's top-selling planemaker starting in 2019.",
+  "years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Boeing",
+      "color": "#003DA5",
+      "icon": "Boeing",
+      "values": [
+        748,
+        763,
+        806,
+        380,
+        157,
+        340,
+        480,
+        528
+      ]
+    },
+    {
+      "name": "Airbus",
+      "color": "#E30613",
+      "icon": "Airbus",
+      "values": [
+        688,
+        718,
+        800,
+        863,
+        566,
+        611,
+        661,
+        735
+      ]
+    }
+  ],
+  "hashtags": [
+    "boeing",
+    "airbus",
+    "737max",
+    "aircraft",
+    "aviation",
+    "airplanes",
+    "aerospace",
+    "aviationgeek",
+    "planespotting",
+    "deliveries",
+    "jets",
+    "manufacturing",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

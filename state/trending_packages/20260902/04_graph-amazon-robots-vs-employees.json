@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-amazon-robots-vs-employees",
+  "title": "Amazon's Robot Army Is Closing In",
+  "hook": "The Robots Are Catching Up Fast",
+  "y_label": "Count",
+  "duration": 13,
+  "source": "Amazon company disclosures and public filings, as reported by MIT Technology Review, The Wall Street Journal and Reuters. Warehouse/fulfillment robots deployed approximately 100,000 (2017), 200,000 (2019), 350,000 (2021), 520,000 (2022), 750,000 (2023) and over 1,000,000 (mid-2025, a company-announced milestone). Total Amazon employees worldwide approximately 566,000 (2017), 798,000 (2019), 1,608,000 (2021, the pandemic-hiring peak), 1,541,000 (2022), 1,525,000 (2023) and approximately 1,560,000 (2025), per Amazon's own headcount disclosures compiled by multiple trackers. The robot fleet is growing far faster than the human one.",
+  "years": [
+    2017,
+    2019,
+    2021,
+    2022,
+    2023,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Amazon employees",
+      "color": "#146eb4",
+      "values": [
+        566000,
+        798000,
+        1608000,
+        1541000,
+        1525000,
+        1560000
+      ]
+    },
+    {
+      "name": "Amazon robots",
+      "color": "#ff9900",
+      "values": [
+        100000,
+        200000,
+        350000,
+        520000,
+        750000,
+        1000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "amazon",
+    "robots",
+    "automation",
+    "ai",
+    "warehouserobots",
+    "futureofwork",
+    "jobs",
+    "tech",
+    "technews",
+    "dataviz",
+    "trending",
+    "shorts",
+    "business"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

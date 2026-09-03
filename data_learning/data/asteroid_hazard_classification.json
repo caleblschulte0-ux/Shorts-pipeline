@@ -1,0 +1,25 @@
+{
+  "key": "asteroid_hazard_classification",
+  "title": "Near-Earth asteroids by hazard classification",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Potentially Hazardous Asteroids",
+    "publisher": "NASA JPL CNEOS / Minor Planet Center",
+    "url": "https://cneos.jpl.nasa.gov/about/neo_groups.html",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "As of August 2025, ~2,500 of the 38,985 known near-Earth asteroids are classified potentially hazardous (140m+, orbit within 7.5M km of Earth's).",
+  "points": [
+    {
+      "label": "Potentially hazardous",
+      "value": 2500
+    },
+    {
+      "label": "Not considered hazardous",
+      "value": 36485
+    }
+  ]
+}

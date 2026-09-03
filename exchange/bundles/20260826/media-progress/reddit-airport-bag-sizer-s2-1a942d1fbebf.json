@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-airport-bag-sizer-s2-1a942d1fbebf",
+  "safe_request_id": "reddit-airport-bag-sizer-s2-1a942d1fbebf",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7e418ff4ef2491b349c38b78f5d1f0a4cd2e214fe623fb1bdccffa58ad70faf8",
+  "prompt_used": "An editorial illustration for a short-form video: businessman suit airport terminal. It accompanies the narration: \"dropped his boss's name\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+    "filename": "20260826__reddit-airport-bag-sizer-s2-1a942d1fbebf.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2f9ec911a1ecfd47936cf888b06b24f181f67c9cea6e00e3b6697c0027e57b0d",
+    "bytes": 1296662,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:29.664Z",
+  "error": null,
+  "retryable": false
+}

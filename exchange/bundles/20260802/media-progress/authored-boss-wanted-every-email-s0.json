@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260802",
+  "bundle": {
+    "identity": "c0ca71d3d3ede556319b1cb19ba0c3327a4a0a0a8532f18b6c45eb71576b4291",
+    "path": "exchange/bundles/20260802/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-02T12:26:49.046Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-boss-wanted-every-email-s0",
+  "safe_request_id": "authored-boss-wanted-every-email-s0",
+  "prompt_sha256": "57cc872a053d615f29326cbbcf8bb3f18a4fbc68bdccc9f45a590e19531fd565",
+  "prompt_used": "An editorial illustration for a short-form video: manager demanding an office meeting. It accompanies the narration: \"needed 'complete visibility'\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+    "filename": "20260802__authored-boss-wanted-every-email-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1phF7ptl2HwKCney6iR2MyKsVJyQg98Cj",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f1de831bd3f43dccb6b9ebb654260368972a17648f9d2496bbf143bbe79953fa",
+    "bytes": 2001788,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "boss-wanted-every-email",
+  "shot_index": 0
+}

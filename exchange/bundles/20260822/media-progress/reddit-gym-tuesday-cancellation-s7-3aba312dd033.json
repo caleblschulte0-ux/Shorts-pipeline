@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-gym-tuesday-cancellation-s7-3aba312dd033",
+  "safe_request_id": "reddit-gym-tuesday-cancellation-s7-3aba312dd033",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9ad3e851a9ef8d2e9643d2f031b0501fb22c7e1cd4b3d67d51192bc39b2a8cd7",
+  "prompt_used": "An editorial illustration for a short-form video: gym membership sign. It accompanies the narration: \"cancellation policy was being rewritten\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+    "filename": "20260822__reddit-gym-tuesday-cancellation-s7-3aba312dd033.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DuRMWigw1T6atCllufepuVEnfGrM_FOI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f8b4db02d12ee1ff70a317e938fc2054de7690dc56d71ea47374d21aea5fe216",
+    "bytes": 1156626,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:46.079Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,105 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-karen-cup-review",
+  "title": "She Threatened A Bad Review Over Free Coffee. So I Let Her Have It.",
+  "script": "A regular tried to pay with a gift card from a store we don't even carry, then got furious when it wouldn't scan. She demanded a free drink for the inconvenience and said she'd leave a one star review if I refused. Fine. I made her drink and wrote her order under her actual name on the cup, exactly as she gave it, nothing extra. That night she posted the review anyway, bragging with a photo of the cup, proof she'd gotten free coffee by threatening a teenager. Corporate saw it within the hour. They didn't just delete the review, they pulled her loyalty account number off every location in the chain and replied to the post explaining exactly why. She showed up the next morning demanding to know why her app wouldn't load. I pointed at the conduct policy taped to the register and let her read it herself.",
+  "shots": [
+    {
+      "phrase": "tried to pay with a gift card",
+      "query": "coffee shop counter",
+      "pin_query": "gift card",
+      "pin_context": "store payment method",
+      "news_query": "gift card",
+      "news_angle": "A customer tried to pay with a gift card from a store we don't even carry.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/OSH_gift_card.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "furious when it wouldn't scan",
+      "query": "frustrated customer register",
+      "image_url": "https://pixabay.com/get/gac277cd84c95854b79b6025ae852b0de15af02e03708cd74cf8936b7bee49f50a241ddfaf88f49aa1b41dea22441872a4095a756889275a4a054e562392e0ff4_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "demanded a free drink",
+      "query": "barista making coffee",
+      "image_url": "https://pixabay.com/get/g91e416240d38a5c6aa624d9f487d14584c1b2325522ea81f9689fb49f8741d3aa541dec831432fc64572541b4ae637316de66075edd18e3aa6e227319386ee9c_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "posted the review anyway",
+      "query": "phone typing review app",
+      "image_url": "https://pixabay.com/get/g121a799219ebc3c7c166f09b2d4578600667c73811e39261306edef1421572290d7f6773b84f1c3b9b444989ddb90000f5179151d49af328062dd0f0216ac6b3_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "Corporate saw it within the hour",
+      "query": "corporate office computer",
+      "image_url": "https://pixabay.com/get/g41ac3372f0466e78f3c534ea22e19c8a8f60837008c3706552098448a68b5fbfadaf48e67d2a3cc66af51119626789ed79c18be3bc5a7c35a528b3e086fd4be7_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "pulled her loyalty account number",
+      "query": "customer database screen",
+      "pin_query": "loyalty account",
+      "pin_context": "customer rewards program",
+      "news_query": "loyalty account",
+      "news_angle": "Corporate pulled her loyalty account number off every location in the chain after she posted a bad review.",
+      "image_url": "https://live.staticflickr.com/2669/4061897394_5b42aa3056_m.jpg"
+    },
+    {
+      "phrase": "showed up the next morning",
+      "query": "coffee shop morning storefront",
+      "image_url": "https://live.staticflickr.com/49/178191328_06343bb15a.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "pointed at the conduct policy",
+      "query": "policy sign wall",
+      "pin_query": "conduct policy",
+      "pin_context": "store rules and regulations",
+      "news_query": "conduct policy",
+      "news_angle": "The customer was shown the conduct policy after she demanded to know why her app wouldn't load.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Community_Insights_2024_User_conduct_policy_sentiments.png"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "one star review",
+      "text": "1-STAR THREAT",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "proof she'd gotten free coffee by threatening",
+      "text": "POSTED THE PROOF HERSELF",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "pulled her loyalty account number off every location",
+      "text": "BANNED CHAINWIDE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "why her app wouldn't load",
+      "text": "APP: DENIED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "talesfromthecustomer",
+    "customerservice",
+    "karma",
+    "retail",
+    "coffeeshop",
+    "entitled",
+    "workplace",
+    "reddit",
+    "storytime",
+    "truestory",
+    "pettyrevenge",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "music_vibe": "hiphop"
+}

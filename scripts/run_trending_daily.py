@@ -45,7 +45,18 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
-sys.path.insert(0, str(REPO / "scripts"))
+# APPEND, never insert. This used to `insert(0, REPO/"scripts")`, which put
+# `scripts/` AHEAD of `tests/` on sys.path for the rest of the process — so
+# the moment any test that sorts before `test_exchange` imported this
+# module, `unittest discover -s tests` resolved `test_exchange` to
+# `scripts/test_exchange.py` and died with an ImportError. The whole suite
+# stopped being discoverable because of an import side effect in a renderer.
+#
+# Nothing here needs the front of the path: the sibling imports below are
+# already fully qualified (`from scripts.discover_topic import ...`), which
+# resolves off REPO. Appending keeps direct `python scripts/x.py` execution
+# working without letting this module reorder anyone else's imports.
+sys.path.append(str(REPO / "scripts"))
 
 from scripts.discover_topic import discover_all  # noqa: E402
 from scripts import rank_topics  # noqa: E402
@@ -116,12 +127,14 @@ def _publish_slots() -> list[tuple[int, int]]:
 
 
 def load_log() -> dict:
-    if LOG_PATH.exists():
-        try:
-            return json.loads(LOG_PATH.read_text())
-        except json.JSONDecodeError:
-            pass
-    return {"posted": []}
+    # FAIL CLOSED on corruption. This used to swallow JSONDecodeError and
+    # return the empty default, so a truncated/mis-merged posted log read as
+    # "nothing ever posted": posted_titles() stops guarding, every slot
+    # re-uploads, and save_log() then writes today's handful OVER the whole
+    # history. A missing file is a first run and stays fine; a corrupt file
+    # raises CorruptStateError naming the file and the repair.
+    from shared.fsutil import load_state_json
+    return load_state_json(LOG_PATH, {"posted": []}, expect_type=dict)
 
 
 def save_log(log: dict) -> None:
@@ -446,9 +459,16 @@ def _qa_and_thumbnail(pkg: dict, out_path: Path, result: dict) -> tuple[str | No
         return None, None
     # Feature 3 — vision QA (blocks only broken/unsafe; fail-open).
     try:
+        is_reddit = bool(pkg.get("subreddit"))
+        has_story_images = any(
+            (s.get("image_url") or s.get("image"))
+            for s in (pkg.get("shots") or []))
+        layout = ("reddit_illustrated" if is_reddit and has_story_images
+                  else "reddit_gameplay_card" if is_reddit
+                  else "stacked")
         verdict = gemini_images.vision_judge(
             _sample_frames(out_path), topic=result.get("topic", ""),
-            title=result.get("title") or "")
+            title=result.get("title") or "", layout=layout)
         result["qa"] = verdict
         if not verdict.get("ok"):
             block = f"vision QA: {verdict.get('verdict')} — {verdict.get('reason')}"
@@ -528,10 +548,12 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
     publish run, a BLOCK is sovereign) lives in `shared/showrunner_gate.py`
     so there is exactly one copy of it for every channel."""
     from shared import showrunner_gate
+    fmt = (pkg.get("format") or
+           ("reddit_story" if pkg.get("subreddit") else None))
     ctx = {"slug": _slug(result.get("topic") or ""),
            "title": result.get("title") or pkg.get("title"),
            "hook": (pkg.get("hook") or "") or None,
-           "format": pkg.get("format"),
+           "format": fmt,
            "segments": [s.get("say") or s.get("text") or s.get("caption")
                         for s in (pkg.get("shots") or [])][:8]}
     gate = showrunner_gate.run(out_path, slug=ctx["slug"], context=ctx,
@@ -541,6 +563,124 @@ def _showrunner(pkg: dict, out_path: Path, result: dict, *,
                             "reason": gate["reason"],
                             "score": (gate.get("verdict") or {}).get("score")}
     return gate
+
+
+#: How many replacement videos one run may attempt. Bounded because each
+#: costs a full render: the cap is what stops a systematically-bad day (every
+#: chart failing the motion floor, say) from burning the whole job timeout
+#: re-rendering variations of the same fault.
+MAX_BACKFILL = int(os.environ.get("MAX_BACKFILL", "4"))
+
+
+def _backfill(results: list[dict], args, sched, now, log) -> list[dict]:
+    """Refill slots the gate emptied. **A HELD SLOT IS NOT A LOST SLOT.**
+
+    Operator ruling 2026-08-05: *"if the video doesn't make it past the
+    gates, they get a new video going — nothing doesn't post."*
+
+    On 2026-08-05 trending rendered six and shipped one: the showrunner
+    correctly held five weak videos, and then the run simply ended. The gate
+    was right every time; the pipeline's mistake was treating a refusal as
+    the end of the slot instead of the start of another attempt.
+
+    THIS DOES NOT TOUCH THE GATE. Every replacement is rendered and judged
+    by exactly the same showrunner, technical QA and vision QA as the video
+    it replaces — a backfill that shipped a held video would be the bypass
+    the doctrine forbids. The only thing that changes is that a refusal now
+    costs a render instead of a slot.
+
+    Replacements are AUTHORED FRESH — discovery, ranking, a new script,
+    a new render. There is deliberately no reserve bank: a shelf only ever
+    covers as many failures as somebody remembered to stock it for, and
+    ours held two packages against a low-water mark of twelve. Authoring
+    has no such ceiling.
+
+    Already-posted titles are excluded, so a replacement can never
+    duplicate an upload. When discovery has nothing fresh the shortfall
+    stands and the run reports it — an honest short day, never a fabricated
+    one.
+    """
+    if args.dry_run:
+        return []
+    expected = int(args.count)
+    posted = sum(1 for r in results if r.get("ok"))
+    short = expected - posted
+    if short <= 0:
+        return []
+
+    # What the gate actually refused, so the log says WHY we are backfilling.
+    held = [r for r in results
+            if not r.get("ok") and (r.get("blocked") or r.get("quarantined"))]
+    print(f"\n=== BACKFILL: {posted}/{expected} shipped, {short} slot(s) "
+          f"short ({len(held)} held by a gate) ===", flush=True)
+
+    attempts = min(short, MAX_BACKFILL)
+    if short > MAX_BACKFILL:
+        print(f"[backfill] capped at {MAX_BACKFILL} attempts (short {short}) "
+              f"— a systematically bad day must not eat the job timeout",
+              flush=True)
+
+    # FRESH TOPICS, not a pre-stocked shelf. Operator ruling 2026-08-05:
+    # "there shouldn't be a reserve bank — if something doesn't run
+    # properly, it goes through and tries again."
+    #
+    # A bank can only ever cover as many failures as somebody remembered to
+    # stock it for; ours held two packages against a low-water mark of
+    # twelve, so it would have covered one bad slot and then been empty for
+    # a week. Authoring a new one has no such ceiling: the day retries until
+    # it fills or runs out of attempts.
+    try:
+        already = posted_titles()
+        raw = discover_all()
+        try:
+            picks = rank_topics.rank(raw, top_k=attempts * 3)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[backfill] ranking unavailable ({type(exc).__name__}) — "
+                  f"using unranked candidates", flush=True)
+            picks = raw[: attempts * 3]
+    except Exception as exc:                             # noqa: BLE001
+        print(f"[backfill] discovery failed ({type(exc).__name__}: "
+              f"{str(exc)[:80]}) — the day stays short rather than shipping "
+              f"something unjudged", flush=True)
+        return []
+
+    fresh = [t for t in picks
+             if (getattr(t, "query", "") or "").strip().casefold()
+             not in already]
+    if not fresh:
+        print("[backfill] discovery returned nothing this channel has not "
+              "already posted — an honest short day", flush=True)
+        return []
+
+    out: list[dict] = []
+    for i in range(attempts):
+        if i >= len(fresh):
+            print(f"[backfill] out of fresh topics after {i} replacement(s)",
+                  flush=True)
+            break
+        topic = fresh[i]
+        print(f"[backfill] {i + 1}/{attempts}: authoring a replacement for "
+              f"{getattr(topic, 'query', '?')!r}", flush=True)
+        slot = len(out) + sum(1 for r in results if r.get("ok"))
+        publish_at = sched[slot] if slot < len(sched) else None
+        try:
+            res = run_one(topic, publish_at, dry_run=False,
+                          no_schedule=args.no_schedule)
+        except Exception as exc:                         # noqa: BLE001
+            print(f"[backfill] replacement crashed "
+                  f"({type(exc).__name__}: {str(exc)[:80]})", flush=True)
+            continue
+        res["backfill"] = True
+        out.append(res)
+        if res.get("ok"):
+            print("[backfill] replacement SHIPPED — slot recovered",
+                  flush=True)
+        else:
+            # The replacement met the same gate and lost too. That is the
+            # gate working; keep going while attempts remain.
+            print(f"[backfill] replacement also held: "
+                  f"{str(res.get('error'))[:90]}", flush=True)
+    return out
 
 
 def todays_package_dir() -> Path:
@@ -577,10 +717,12 @@ def posted_titles() -> set[str]:
     gap that fallback serves day one's slate 24h later, straight past the
     6-hour window, and re-uploads every video. This is the title-level guard
     that makes the stale-slate path safe."""
-    try:
-        log = load_log()
-    except Exception:                                # noqa: BLE001
-        return set()
+    # No try/except here on purpose: load_log() fails CLOSED on a corrupt
+    # file, and that refusal must propagate. This function IS the re-upload
+    # guard, so "couldn't read the log" can never be allowed to mean
+    # "nothing was ever posted" — that was the old swallow, and it turned a
+    # corrupt ledger into a full catalogue re-upload.
+    log = load_log()
     out = set()
     for e in log.get("posted", []) or []:
         for key in ("title", "topic"):
@@ -588,6 +730,25 @@ def posted_titles() -> set[str]:
             if v:
                 out.add(v.casefold())
     return out
+
+
+def _load_package_dir(directory: Path) -> list[dict]:
+    """Load package JSON from one exact date directory, without fallback."""
+    pkgs: list[dict] = []
+    for path in sorted(directory.glob("*.json")):
+        if path.name.startswith("_"):
+            continue
+        try:
+            pkg = json.loads(path.read_text())
+            try:
+                pkg.setdefault("_path", str(path.relative_to(REPO)))
+            except ValueError:                       # redirected in tests
+                pkg.setdefault("_path", str(path))
+            pkgs.append(pkg)
+        except json.JSONDecodeError as exc:
+            print(f"[run_trending_daily] skipping malformed {path.name}: "
+                  f"{exc}", file=sys.stderr)
+    return pkgs
 
 
 def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
@@ -605,20 +766,7 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
         if d is None or d in seen or not d.exists():
             continue
         seen.add(d)
-        pkgs: list[dict] = []
-        for p in sorted(d.glob("*.json")):
-            if p.name.startswith("_"):
-                continue  # _schedule.json etc. are config, not packages
-            try:
-                pkg = json.loads(p.read_text())
-                try:
-                    pkg.setdefault("_path", str(p.relative_to(REPO)))
-                except ValueError:       # package dir redirected (tests)
-                    pkg.setdefault("_path", str(p))
-                pkgs.append(pkg)
-            except json.JSONDecodeError as e:
-                print(f"[run_trending_daily] skipping malformed {p.name}: {e}",
-                      file=sys.stderr)
+        pkgs = _load_package_dir(d)
         already = posted_titles()
         fresh = [p for p in pkgs
                  if (p.get("title") or "").strip().casefold() not in already]
@@ -648,8 +796,9 @@ def load_prewritten_packages() -> tuple[Path | None, list[dict]]:
         if fresh:
             if d != todays_package_dir():
                 print(f"[run_trending_daily] WARNING using STALE packages "
-                      f"from {d.name} — today's dir is empty. The reserve "
-                      f"bank and the ChatGPT takeover both came up short.",
+                      f"from {d.name} — today's dir is empty. Neither "
+                      f"the Claude Routine nor the ChatGPT takeover wrote "
+                      f"anything for today.",
                       flush=True)
             return d, fresh
     return None, []
@@ -673,6 +822,9 @@ def run_one_from_package(pkg: dict, publish_at: str | None, *,
         # a fallback brain for a day or three at a time, several times a
         # month — often enough that it must be visible in the daily report
         # and the phone push, not buried in an Actions log nobody opens.
+        # `_reserve` is only on packages drawn from the reserve bank before
+        # it was retired (2026-08-05). Nothing writes it now; it is still
+        # read so an archived day re-rendered from disk reports honestly.
         "source": ("chatgpt" if pkg.get("_authored_by") == "chatgpt-takeover"
                    else "reserve" if pkg.get("_reserve") else "brain"),
     }
@@ -891,10 +1043,12 @@ def format_report(date_str: str, results: list[dict]) -> str:
         banner.append(f"> **ChatGPT wrote {by_source['chatgpt']} of today's "
                       f"{len(results)} packages** — the Claude Routine did "
                       f"not run (weekly limit?).")
-    if by_source.get("reserve"):
-        banner.append(f"> **{by_source['reserve']} package(s) came from the "
-                      f"reserve bank** — top it up when Claude is back: "
-                      f"`python scripts/package_reserve.py status`.")
+    backfilled = sum(1 for r in results if r.get("backfill"))
+    if backfilled:
+        banner.append(f"> **{backfilled} slot(s) were re-authored** after a "
+                      f"gate refused the first attempt. The gate was right "
+                      f"every time; a high number here means the AUTHORING "
+                      f"needs work, never that the gate does.")
     if banner:
         banner.append("")
 
@@ -979,6 +1133,33 @@ def _assign_bottom_diversity(pkgs: list[dict]) -> None:
           flush=True)
 
 
+def compute_production_outcome(results: list, *, prior_uploaded: int,
+                                expected: int, dry_run: bool) -> tuple:
+    """The real completion decision, isolated so it is executable in a test
+    instead of only greppable in source: a partial day (uploaded < expected)
+    must always report `complete=False` and status `repair_required`, never
+    silently pass as done. Returns (outcome_dict_for_disk, complete)."""
+    posted = [r for r in results if r["ok"]]
+    quarantined = [r for r in results if r.get("quarantined")]
+    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
+    uploaded_total = prior_uploaded + len(posted)
+    complete = (dry_run or uploaded_total == expected)
+    outcome = {
+        "schema": "production-channel-outcome/v1",
+        "expected": expected,
+        "previously_uploaded": prior_uploaded,
+        "rendered_or_attempted": len(results),
+        "uploaded": uploaded_total if not dry_run else 0,
+        "quarantined": len(quarantined),
+        "failed": len(failed),
+        "status": ("dry_run" if dry_run else
+                   "production_complete" if complete else "repair_required"),
+        "video_urls": [r.get("video_url") for r in posted
+                       if r.get("video_url")],
+    }
+    return outcome, complete
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--count", type=int, default=1,
@@ -998,6 +1179,10 @@ def main() -> int:
                          "don't drop us below count (LLM fallback only)")
     ap.add_argument("--force-llm", action="store_true",
                     help="ignore pre-written packages, force Groq fallback")
+    ap.add_argument(
+        "--require-manifest", action="store_true",
+        help=("production mode: require today's complete validated package "
+              "slate; never use stale packages or the Groq authoring fallback"))
     ap.add_argument("--force-rerun", action="store_true",
                     help="bypass the 6-hour duplicate-trigger guard. Use when "
                          "you want to re-publish a fresh package slate the "
@@ -1068,7 +1253,32 @@ def main() -> int:
     # today's dir is missing (routine hasn't fired yet) we fall back
     # to the most recent day's packages — far better than burning
     # through Groq's free tier on emergency script generation.
-    src_dir, prewritten = (None, []) if args.force_llm else load_prewritten_packages()
+    prior_uploaded = 0
+    if args.require_manifest:
+        today_dir = todays_package_dir()
+        all_today = _load_package_dir(today_dir) if today_dir.exists() else []
+        if len(all_today) < args.count:
+            print(
+                f"[run_trending_daily] validated production manifest is "
+                f"incomplete: found {len(all_today)}/{args.count} packages "
+                f"in {today_dir.relative_to(REPO)}; refusing stale/Groq "
+                "authoring inside the renderer",
+                file=sys.stderr,
+            )
+            return 2
+        src_dir = today_dir
+        already = posted_titles()
+        prior_uploaded = sum(
+            1 for pkg in all_today
+            if (pkg.get("title") or "").strip().casefold() in already
+        )
+        prewritten = [
+            pkg for pkg in all_today
+            if (pkg.get("title") or "").strip().casefold() not in already
+        ]
+    else:
+        src_dir, prewritten = ((None, []) if args.force_llm
+                               else load_prewritten_packages())
     if prewritten and args.only:
         needle = args.only.lower()
         prewritten = [
@@ -1181,39 +1391,49 @@ def main() -> int:
             })
     save_log(log)
 
+    # 4b. BACKFILL. A held slot is not a lost slot.
+    results += _backfill(results, args, sched, now, log)
+    save_log(load_log())          # backfill uploads appended to the log
+
     # 5. Write report.
     date_str = now.strftime("%Y-%m-%d")
     REPORT_PATH.write_text(format_report(date_str, results) + "\n")
     REPORT_JSON.write_text(json.dumps(results, indent=2) + "\n")
     print(f"\n=== wrote {REPORT_PATH.name} + {REPORT_JSON.name} ===")
 
-    # Exit non-zero if anything genuinely FAILED so the workflow's
-    # failure counter bumps and we get a real notification. A
-    # quarantine is an intentional skip (off-topic imagery), not a
-    # crash — it must NOT bump the auto-pause counter, or a few
-    # un-illustratable packages would silence the whole pipeline.
-    posted = [r for r in results if r["ok"]]
-    quarantined = [r for r in results if r.get("quarantined")]
-    failed = [r for r in results if not r["ok"] and not r.get("quarantined")]
-    if quarantined:
-        print(f"[run_trending_daily] {len(quarantined)} package(s) "
+    # ChatGPT 2026-08-02: renderer completion is not production completion.
+    # A quarantined expected video is still a missing upload, so leave a
+    # machine-readable channel outcome and return RED until every requested
+    # slot has a verified uploader result.  The production supervisor can
+    # then repair/retry the exact failures instead of accepting a partial day.
+    expected = int(args.count)
+    outcome, complete = compute_production_outcome(
+        results, prior_uploaded=prior_uploaded, expected=expected,
+        dry_run=args.dry_run)
+    try:
+        from shared.fsutil import atomic_write_json
+        outcome_path = (STATE_DIR / "production_runs" /
+                        now.strftime("%Y%m%d") / "trending.json")
+        outcome_path.parent.mkdir(parents=True, exist_ok=True)
+        atomic_write_json(outcome_path, {
+            "date": now.strftime("%Y%m%d"),
+            "channel": "trending",
+            **outcome,
+        })
+    except Exception as exc:  # noqa: BLE001
+        print(f"::warning::could not write production outcome: {exc}",
+              file=sys.stderr)
+    if outcome["quarantined"]:
+        print(f"[run_trending_daily] {outcome['quarantined']} package(s) "
               f"quarantined for off-topic imagery (slate shipped without "
               f"them)", file=sys.stderr)
-    if failed:
-        print(f"[run_trending_daily] {len(failed)} of {len(results)} failed",
+    if outcome["failed"]:
+        print(f"[run_trending_daily] {outcome['failed']} of "
+              f"{len(results)} failed", file=sys.stderr)
+    if not complete:
+        print(f"[run_trending_daily] production incomplete: uploaded "
+              f"{outcome['uploaded']}/{expected}; repair/retry required",
               file=sys.stderr)
-    # ZERO-POST SAFEGUARD: a non-empty slate that shipped NOTHING is a real
-    # outage (every package quarantined and/or failed). Fail loudly so the
-    # run goes RED, the failure counter bumps, and the ntfy alert fires —
-    # instead of a silent green "0 posted" that goes unnoticed for days
-    # (exactly what happened 07-03..07-05). A partial run (>=1 posted) with
-    # some quarantines stays green, per the original intent.
-    if results and not args.dry_run and not posted:
-        print(f"[run_trending_daily] ZERO of {len(results)} posted — total "
-              f"outage; exiting non-zero so the run goes RED and alerts.",
-              file=sys.stderr)
-        return 1
-    if failed:
         return 1
     return 0
 

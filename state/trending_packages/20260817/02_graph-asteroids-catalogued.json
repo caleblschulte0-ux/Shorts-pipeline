@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-asteroids-catalogued",
+  "title": "We've Now Found 40,000 Asteroids Near Earth",
+  "hook": "Space just got a lot less empty.",
+  "y_label": "Cumulative near-Earth asteroids catalogued",
+  "duration": 13,
+  "source": "NASA Center for Near-Earth Object Studies (CNEOS) and ESA's Planetary Defence Office milestone announcements: the 10,000th near-Earth object was catalogued in June 2013, the 30,000th in October 2022, and the 40,000th in November 2025. Earlier and intermediate-year totals are conservative estimates interpolated from the discovery-rate curve published in those releases. Potentially Hazardous Asteroid (PHA) counts are approximate running totals from the same catalogues, which track PHAs as a subset of all catalogued near-Earth asteroids.",
+  "years": [
+    2000,
+    2010,
+    2013,
+    2018,
+    2022,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Near-Earth Asteroids",
+      "color": "#f5c518",
+      "icon": "NASA",
+      "values": [
+        900,
+        7000,
+        10000,
+        19000,
+        30000,
+        40000
+      ]
+    },
+    {
+      "name": "Potentially Hazardous",
+      "color": "#e74c3c",
+      "icon": "PHA",
+      "values": [
+        150,
+        1000,
+        1400,
+        1900,
+        2300,
+        2500
+      ]
+    }
+  ],
+  "hashtags": [
+    "asteroid",
+    "nasa",
+    "space",
+    "planetarydefense",
+    "astronomy",
+    "science",
+    "solarsystem",
+    "cneos",
+    "esa",
+    "spacefacts",
+    "universe",
+    "nearearthobject"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

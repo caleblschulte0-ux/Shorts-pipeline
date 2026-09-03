@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-amazon-passed-walmart",
+  "title": "Amazon Passed Walmart. Then Kept Going.",
+  "hook": "It never looked back.",
+  "y_label": "Market cap ($ billions)",
+  "duration": 13,
+  "source": "Public market capitalization at approximate year-end/period close, per company stock data widely reported by financial press and market-cap trackers (YCharts, FinanceCharts, MarketCapHistory): Walmart ~$187B (2010), ~$244B (2013), ~$196B (2015), ~$279B (2018), ~$388B (2020), ~$378B (2022), ~$650B+ (2024). Amazon ~$81B (2010), ~$183B (2013), ~$317B (2015, the year Amazon's market cap first overtook Walmart's), ~$738B (2018), a pandemic-era peak near $1.63T (2020), ~$879B (the 2022 tech selloff low), and roughly $2T+ (2024).",
+  "years": [
+    2010,
+    2013,
+    2015,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Walmart",
+      "color": "#0071ce",
+      "icon": "Walmart",
+      "values": [
+        187,
+        244,
+        196,
+        279,
+        388,
+        378,
+        650
+      ]
+    },
+    {
+      "name": "Amazon",
+      "color": "#ff9900",
+      "icon": "Amazon",
+      "values": [
+        81,
+        183,
+        317,
+        738,
+        1634,
+        879,
+        2000
+      ]
+    }
+  ],
+  "hashtags": [
+    "amazon",
+    "walmart",
+    "stockmarket",
+    "ecommerce",
+    "retail",
+    "business",
+    "investing",
+    "marketcap",
+    "wallstreet",
+    "bigtech",
+    "economics",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

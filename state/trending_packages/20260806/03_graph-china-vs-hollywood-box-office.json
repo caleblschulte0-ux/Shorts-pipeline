@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-china-vs-hollywood-box-office",
+  "title": "China vs Hollywood: The Box Office War",
+  "hook": "Who really wins at the movies?",
+  "y_label": "Box office revenue (USD)",
+  "duration": 13,
+  "source": "Sources: China Film Administration annual box office totals, 2019-2024 (via Variety, SCMP and China Daily reporting, yuan converted to USD); Comscore / MPA North America annual box office totals, 2019-2024 (via Statista and Variety reporting).",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#e74c3c",
+      "icon": "CN",
+      "values": [
+        9200000000,
+        3120000000,
+        7440000000,
+        4330000000,
+        7730000000,
+        5910000000
+      ]
+    },
+    {
+      "name": "North America",
+      "color": "#4a90e2",
+      "values": [
+        11400000000,
+        2200000000,
+        4650000000,
+        7500000000,
+        8600000000,
+        8600000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "boxoffice",
+    "hollywood",
+    "china",
+    "movies",
+    "film",
+    "entertainment",
+    "cinema",
+    "moviestats",
+    "filmindustry",
+    "data",
+    "boxofficewar",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop"
+}

@@ -1,0 +1,19 @@
+{
+  "key": "ant_vs_human_count",
+  "title": "Individuals alive right now, ants vs. humans (trillions)",
+  "unit": "trillion",
+  "geography": "Global",
+  "time_coverage": "2022 estimate (ants) / 2026 estimate (humans)",
+  "source": {
+    "name": "Ant population estimate vs. world population",
+    "publisher": "Schultheiss et al., PNAS 2022 (~20 quadrillion ants, ~2.5 million per human); United Nations World Population Prospects (world population ~8.2 billion, 2026 estimate)",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.2201550119",
+    "officiality": "reference",
+    "access_date": "2026-08-18"
+  },
+  "notes": "20 quadrillion = 20,000 trillion. World population ~8.2 billion = 0.0082 trillion.",
+  "points": [
+    {"label": "Ants", "value": 20000},
+    {"label": "Humans", "value": 0.0082}
+  ]
+}

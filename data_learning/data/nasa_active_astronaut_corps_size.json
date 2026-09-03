@@ -1,0 +1,19 @@
+{
+  "key": "nasa_active_astronaut_corps_size",
+  "title": "NASA active astronaut corps size",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2000-2026",
+  "source": {
+    "name": "NASA Active Astronauts roster",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/humans-in-space/astronauts/active-astronauts/",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "Approximate active-astronaut headcount; peak Shuttle-era corps size (~2000) vs. the current roster, both as publicly reported by NASA. Approximate for the 2000 figure.",
+  "points": [
+    {"label": "2000", "value": 149, "period": "2000"},
+    {"label": "2026", "value": 41, "period": "2026"}
+  ]
+}

@@ -12,7 +12,14 @@ from __future__ import annotations
 
 import math
 import re
+import sys
 from pathlib import Path
+
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
+from shared.fit_title import fit_title
 
 from .insights import Insight
 
@@ -244,7 +251,8 @@ def _perf_action(insight: Insight, kind: str) -> str:
         if insight.items:
             star = (insight.items[-1].label if kind in ("trend", "timeline")
                     else insight.items[0].label)
-        spec = _md.performance_for(kind, insight.main_insight or "", star)
+        spec = _md.performance_for(kind, insight.main_insight or "", star,
+                                   require_contact=True)
         _LAST_PERF = spec
         return spec["action"]
     except Exception:  # noqa: BLE001 — never lose a render over direction
@@ -258,7 +266,11 @@ def _host_img(action: str, phase: float):
     (~1.2s = a stack of duplicate frames that aliased the effort reps and tanked
     effective_fps); 40 buckets keep the arc's pushes SMOOTH and the mascot moving
     nearly every frame, while still caching (≤40 rasterises per action)."""
-    key = (action, round(phase * 40) / 40)
+    # 80 buckets, raised from 40: `_perf_phase` folds six effort reps into
+    # the arc, so a full rep spans ~1/6 of phase — at 40 buckets that is ~7
+    # steps per rep, which staircases; 80 keeps reps smooth at ≤80 cached
+    # rasterises per action.
+    key = (action, round(phase * 80) / 80)
     if key in _HOST_IMG_CACHE:
         return _HOST_IMG_CACHE[key]
     val = None
@@ -285,15 +297,103 @@ def _host_img(action: str, phase: float):
     return val
 
 
+def _perf_phase(phase: float) -> float:
+    """Beat progress -> performance phase: the arc, plus EFFORT REPS.
+
+    Every action animator is a one-way ARC — setup at 0, climax at 1 — and
+    ``phase`` is beat progress, which crosses 0..1 ONCE. A beat is 10-18
+    seconds, so Data performed one shove spread over fifteen seconds: at any
+    human-scale window his limbs move a few pixels per SECOND, which is a
+    statue. The showrunner said it in three different videos on 2026-08-16 —
+    "the mascot is a sticker", "never does a bit" — and it was right; the
+    per-quarter-beat frame diffs looked healthy while the per-second ones
+    rounded to zero. (The phase-bucket comment in `_host_img` still talks
+    about "effort reps" — an earlier incarnation had them; the plumbing that
+    fed a cycling clock was lost when phase became raw reveal.)
+
+    So: six visible strain-and-heave reps ride ON the arc — the pose works
+    back and forth ±6% of arc around its forward progress, enveloped by
+    (1-t) so the reps die out as the climax approaches and phase 1.0 still
+    lands EXACTLY on the payoff pose (the clamp in `_host_img` that took a
+    separate bug to win stays meaningful). At a 15s beat that is a rep every
+    2.5s; at 6s, one per second — working tempo, not jiggle, and it is limb
+    motion inside the sprite, not sprite translation, so it cannot re-open
+    the "weird shaking" the camera-breath rework closed."""
+    t = min(1.0, max(0.0, float(phase)))
+    if t >= 0.8:
+        # THE FINALE: one committed, uninterrupted run of the whole arc over
+        # the beat's last fifth, landing phase 1.0 exactly on the payoff
+        # pose. ~3s at a 15s beat — the decisive push after the struggle.
+        return (t - 0.8) / 0.2
+    # THE STRUGGLE: four ping-pong reps (strain toward the climax, get
+    # pushed back, strain again) across the first 80% of the beat. Ping-pong
+    # rather than modulo because the arcs are not seamless loops — a %-wrap
+    # snaps the pose from climax back to setup in one frame, which reads as
+    # a glitch; the mirror reads as effort and release. Capped at 0.85 so
+    # the true climax is seen only once, in the finale.
+    u = (t / 0.8) * 4.0
+    frac = u - int(u)
+    return 0.85 * (1.0 - abs(1.0 - 2.0 * frac))
+
+
+def _clamp_host(ax, x, y, img_hw, zoom, align):
+    """Nudge the host's anchor so his sprite box stays ON the card.
+
+    `annotation_clip=False` lets the bake follow a data tip anywhere — which
+    is the point — but with no bounds the top row of a bar race parks his
+    head across the title ("floating over the title, occluding 'cereal'"),
+    and a trend whose tip rides high hangs him over the x tick labels ("sits
+    on top of the '1972' label"). Both were verbatim showrunner blocks on
+    2026-08-22/23. The box is clamped to: inside the card horizontally,
+    below the subtitle band, and (when the target axes sits above the card
+    floor) no lower than the axes' own bottom edge, so tick labels stay
+    readable. A bake already in bounds — the praised "arms on the Slovenia
+    bar tip" — comes back untouched.
+
+    OffsetImage with dpi_cor renders img_px * zoom * dpi/72 device pixels;
+    as a figure fraction the dpi cancels: frac = img_px * zoom / (72 * inches).
+    `tests/test_mascot_anchoring.py` pins that arithmetic against the real
+    rendered extent, so a matplotlib behaviour change fails loudly."""
+    try:
+        fig = ax.figure
+        try:
+            ax.apply_aspect()      # aspect-set axes (maps) finalize their box
+        except Exception:          # lazily; transforms lie until it's applied
+            pass
+        fw_in, fh_in = fig.get_size_inches()
+        bw = img_hw[1] * zoom / (72.0 * fw_in)     # box width,  figure frac
+        bh = img_hw[0] * zoom / (72.0 * fh_in)     # box height, figure frac
+        fx, fy = fig.transFigure.inverted().transform(
+            ax.transData.transform((float(x), float(y))))
+        left, bottom = fx - bw * align[0], fy - bh * align[1]
+        x0, x1 = 0.02, 0.98                        # card side margins
+        y1 = SUB_Y - 0.012                         # stay below the subtitle
+        y0 = 0.04
+        ay0 = float(ax.get_position().y0)
+        if ay0 > y0 + 0.02:                        # a real plot axes, not a
+            y0 = ay0 - 0.015                       # full-figure overlay
+        nl = min(max(left, x0), max(x0, x1 - bw))
+        nb = min(max(bottom, y0), max(y0, y1 - bh))
+        if abs(nl - left) < 1e-9 and abs(nb - bottom) < 1e-9:
+            return float(x), float(y)
+        nfx, nfy = nl + bw * align[0], nb + bh * align[1]
+        return tuple(ax.transData.inverted().transform(
+            fig.transFigure.transform((nfx, nfy))))
+    except Exception:  # noqa: BLE001 — a chart must never die over the clamp
+        return float(x), float(y)
+
+
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
     pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
     so he stands ON the datum. Records the grip into the attachment log
     (`_ATTACH_FRAME`) — the contract that the mascot is ATTACHED to a chart
     object, not floating near it."""
+    img = _host_img(action, _perf_phase(phase))
+    if img is not None:
+        x, y = _clamp_host(ax, x, y, img.shape[:2], zoom, align)
     _ATTACH_FRAME.append({"action": action, "x": float(x), "y": float(y),
                           "phase": round(float(min(1.0, max(0.0, phase))), 3)})
-    img = _host_img(action, phase)
     if img is None:
         return
     from matplotlib.offsetbox import OffsetImage, AnnotationBbox
@@ -416,17 +516,53 @@ def _card_base():
     return fig, plt
 
 
+# The title band: from the left text margin to a matching right margin
+# inside the card. `_heading` fits the title to THIS width, measured.
+HEAD_X = 0.085
+HEAD_RIGHT = 0.915
+HEAD_Y = 0.91
+SUB_Y = 0.845
+
+
 def _heading(fig, title: str, subtitle: str, accent: str = HIGHLIGHT):
-    # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)") and
-    # auto-shrink so long titles never clip the right edge of the card.
+    """Title + subtitle, fitted to the card by MEASUREMENT.
+
+    This used to pick a font size from `len(title)` under a comment claiming
+    it "auto-shrink[s] so long titles never clip the right edge of the card".
+    Character count is not width, and it did not: measured on this very card,
+    "World hydropower fell below its 1990 level" reached 0.966 of figure
+    width against a 0.915 margin, and it shipped that way on 2026-08-11 —
+    the showrunner's note was "a headline clipped off the right edge".
+    Longer real titles reached 1.35, a third of the way off frame.
+
+    `shared.fit_title` measures the rendered extent and steps the size down,
+    wrapping to a second line only if shrinking alone cannot do it — and a
+    wrapped title is capped at a size whose two lines still fit ABOVE the
+    subtitle. Nothing below it moves. A fix that traded a clipped title for
+    one printed over the chart would not be a fix.
+    """
+    # Drop a trailing unit parenthetical ("($)", "(%)", "($ billions)").
     title = re.sub(r"\s*\([^)]*\)\s*$", "", title).strip()
-    size = (42 if len(title) <= 24 else 36 if len(title) <= 31
-            else 30 if len(title) <= 40 else 26)
-    fig.text(0.085, 0.91, title, color=TEXT, fontsize=size, fontweight="bold",
-             ha="left", va="top")
+    W_px = fig.get_size_inches()[0] * fig.dpi
+    band = (HEAD_RIGHT - HEAD_X) * W_px
+    # SHRINK BEFORE WRAPPING. The tallest chart axes on this card top out at
+    # 0.85, and the subtitle already sits at 0.845 — so a second title line
+    # pushes the subtitle onto the plot. Trading a clipped title for one
+    # printed over the chart is not a fix. One line down to 24pt first; only
+    # a title that cannot fit even there is allowed to wrap.
+    fitted, fp = fit_title(fig, title, None, band, max_lines=1, hi=42, lo=24)
+    if "\n" in fitted or len(fitted.split()) < len(title.split()):
+        # 32pt is the largest two-line block that still fits ABOVE the
+        # subtitle: 2 * 32 * 1.08 linespacing = 105px against the 111px band
+        # between HEAD_Y and SUB_Y. Staying inside it means the subtitle
+        # never has to move, so it never lands on the plot.
+        fitted, fp = fit_title(fig, title, None, band,
+                               max_lines=2, hi=32, lo=20)
+    fig.text(HEAD_X, HEAD_Y, fitted, color=TEXT, fontproperties=fp,
+             ha="left", va="top", linespacing=1.08)
     if subtitle:
-        fig.text(0.085, 0.845, subtitle.upper(), color=accent, fontsize=22,
-                 fontweight="bold", ha="left", va="top")
+        fig.text(HEAD_X, SUB_Y, subtitle.upper(), color=accent,
+                 fontsize=22, fontweight="bold", ha="left", va="top")
 
 
 def _footer(fig, insight: Insight):
@@ -538,12 +674,18 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         _round_barv(ax, x, max(p.value * reveal, vmax * 0.02), lw, color, zorder=3)
         # Winner (j==0) carries the mascot gripping its TOP, so its big number
         # sits LOW inside the column (white) — clear of the top-gripping host.
+        # UNIT-AWARE label. This used to hardcode "%" on both columns, which is
+        # right for a percent comparison and a lie for every other unit — and
+        # _compose_story routes ANY two-item insight here, so a 2-row ranking in
+        # metres/dollars/counts rendered "10211%". _ulabel is what every other
+        # chart kind already uses.
         if j == 0:
-            t = ax.text(x, vmax * 0.16, _vfmt(p.value) + "%", ha="center",
+            t = ax.text(x, vmax * 0.16, _ulabel(p.value, insight.unit),
+                        ha="center",
                         va="center", fontsize=42, color="white",
                         fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
         else:
-            t = ax.text(x, p.value + vmax * 0.06, _vfmt(p.value) + "%",
+            t = ax.text(x, p.value + vmax * 0.06, _ulabel(p.value, insight.unit),
                         ha="center", fontsize=46, color=TEXT, fontweight="bold",
                         zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
@@ -557,7 +699,8 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         ax.plot([0.10, 0.90], [b, b], color=WARN, lw=2.5, ls=(0, (4, 3)),
                 zorder=2)
         ax.text(0.5, b + vmax * 0.04,
-                f"{insight.baseline.label} {_vfmt(b)}%", ha="center",
+                f"{insight.baseline.label} {_ulabel(b, insight.unit)}",
+                ha="center",
                 va="bottom", fontsize=19, color=WARN, fontweight="bold",
                 zorder=4)
     ax.set_xlim(0, 1)
@@ -585,7 +728,12 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     pts = insight.items
     x = list(range(len(pts)))
     values = [p.value for p in pts]
-    ax = fig.add_axes([0.13, 0.18, 0.80, 0.56])
+    # Top at 0.80, just under the subtitle band (SUB_Y 0.845). At 0.56 height
+    # the plot stopped at 0.74 and left a further tenth of the card as bare
+    # navy above it — part of the same "empty frame" the showrunner kept
+    # naming. The peak callout sits inside the axes headroom, so raising the
+    # box cannot push it into the subtitle.
+    ax = fig.add_axes([0.13, 0.18, 0.80, 0.62])
     ax.set_facecolor("none")
     lo = min(values)
     span = max(values) - lo
@@ -634,16 +782,41 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
             arts.append((values[k], "pt", x[k], values[k]))
     ax.set_xticks(x)
     ax.set_xticklabels([p.label for p in pts], fontsize=22, color=SUBTLE)
-    ax.set_yticks([])
     ax.set_xlim(-0.35, (len(pts) - 1) + 0.85)
-    _ylo, _yhi = lo - span * 0.18, max(values) * 1.22
+    # FRAME THE DATA, NOT THE ORIGIN.
+    #
+    # This was `_yhi = max(values) * 1.22` — headroom as a fraction of the
+    # ABSOLUTE VALUE rather than of the variation. For a series that lives in
+    # a narrow band high above zero (a percentage, an index, a population)
+    # that is enormous dead space, and it flattens the very change the video
+    # is about. Measured on the hydropower story of 2026-08-11:
+    #
+    #     values 16.1 .. 18.7  (span 2.6)  ->  ylim 15.63 .. 22.81
+    #     the data occupied 36% of the axis and 20% of the CARD
+    #
+    # The showrunner's notes were "a hairline timeline and an empty lower
+    # frame that no scroller would stay for", "no frame is >30% empty", and
+    # — decisively — "the headline stat, hydro falling from 18.4% to 16.1%,
+    # is never actually shown". It was on screen the whole time, drawn nearly
+    # flat. Padding is now proportional to the SPAN, so the fall reads.
+    _pad = max(span, abs(max(values)) * 0.02, 1e-9)
+    _ylo = lo - _pad * 0.28
+    _yhi = max(values) + _pad * 0.50      # room for the peak callout
     ax.set_ylim(_ylo, _yhi)
-    # Faint horizontal reference lines across the FULL card width so the upper
-    # area reads as chart space, not empty navy. set_yticks([]) meant the old
-    # grid drew nothing, leaving the top two-thirds a void (empty_void).
-    for _f in (0.22, 0.42, 0.62, 0.82):
-        ax.axhline(_ylo + (_yhi - _ylo) * _f, color="#1E2A44",
-                   linewidth=1.3, zorder=0, alpha=0.8)
+    # A non-zero-based axis has to SAY so, or the framing above becomes a way
+    # of overstating a change. `set_yticks([])` drew no scale at all — the
+    # reader could not tell 16-19 from 0-19. Three labelled gridlines make the
+    # framing legible instead of flattering.
+    _ticks = [lo, (lo + max(values)) / 2.0, max(values)]
+    ax.set_yticks(_ticks)
+    ax.set_yticklabels([_ulabel(v, insight.unit) for v in _ticks],
+                       fontsize=19, color=SUBTLE)
+    # Gridlines ON the labelled ticks, so the lines and the scale agree.
+    # These used to sit at four arbitrary fractions of the axis because
+    # set_yticks([]) meant matplotlib's own grid drew nothing — decorative
+    # rules that described no value.
+    for _t in _ticks:
+        ax.axhline(_t, color="#1E2A44", linewidth=1.3, zorder=0, alpha=0.8)
     for s in ax.spines.values():
         s.set_visible(False)
     ax.tick_params(length=0)
@@ -780,9 +953,61 @@ def _exterior_rings(geom):
                 yield poly[0]
 
 
+def _ring_area_centroid(ring):
+    """Shoelace signed area + centroid of one ring. Fine at map-pin scale."""
+    a = cx = cy = 0.0
+    for (x0, y0), (x1, y1) in zip(ring, ring[1:] + ring[:1]):
+        cross = x0 * y1 - x1 * y0
+        a += cross
+        cx += (x0 + x1) * cross
+        cy += (y0 + y1) * cross
+    if abs(a) < 1e-12:
+        xs = [p[0] for p in ring]; ys = [p[1] for p in ring]
+        return 0.0, sum(xs) / len(xs), sum(ys) / len(ys)
+    return a / 2.0, cx / (3.0 * a), cy / (3.0 * a)
+
+
+def region_centroid(scope: str, label: str):
+    """(lon, lat) for a region, from its LARGEST polygon — the mainland, so
+    France pins on France, not averaged into the Atlantic by its islands.
+    None when the label is not in the scope's geojson. This is what puts the
+    ranked markers ON Slovenia / Malawi / Iceland instead of a decorative
+    dot column beside the map (the 2026-08-22/23 bare_number_card blocks)."""
+    key = f"_centroids_{scope}"
+    if key not in _GEO_CACHE:
+        table = {}
+        for feat in _load_geojson(scope)["features"]:
+            nm = feat.get("properties", {}).get("name", "")
+            best = None
+            for ring in _exterior_rings(feat.get("geometry", {})):
+                a, cx, cy = _ring_area_centroid(ring)
+                if best is None or abs(a) > best[0]:
+                    best = (abs(a), cx, cy)
+            if nm and best:
+                table[nm] = (best[1], best[2])
+        _GEO_CACHE[key] = table
+    return _GEO_CACHE[key].get(_norm_region(label))
+
+
 def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: str):
-    """Choropleth for geographic data. Present regions fill from neutral ->
-    house ramp as `reveal` grows; value labels land on the top regions."""
+    """Map + ranked bars for geographic data — a DEMONSTRATION, not a legend.
+
+    The 2026-08-22/23 blocks named this beat three ways at once: empty_void
+    (a world map ~280px tall inside a ~1064px axes, everything else blank),
+    bare_number_card (a dot column at a fixed x with raw numbers, "not placed
+    on Slovenia, Malawi, Costa Rica, Iceland or Estonia"), and a mascot
+    parked at an empty hard-coded corner. All three were layout facts, so
+    all three are fixed here structurally:
+
+    * the map ZOOMS to the ranked regions' bounding box and its axes box is
+      sized to the map's real aspect — no internal letterbox, no dead band;
+    * rank markers sit ON each region (``region_centroid``), numbered, sized
+      and colored by value — the geo_city pin pattern, worldwide;
+    * the numbers live in a ranked ROUNDED-BAR strip under the map (length
+      encodes value, colors match the pins) instead of a floating list;
+    * Data performs on the WINNING BAR TIP — the exact contact the judge
+      praised on 08-23 ("arms on the Slovenia bar tip") — not at (0.30, 0.10).
+    """
     import math as _m
     from matplotlib.patches import Polygon as _Poly
     from matplotlib.colors import Normalize, LinearSegmentedColormap, to_rgb
@@ -793,17 +1018,45 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     vmin, vmax = min(vals), max(vals)
     norm = Normalize(vmin, vmax if vmax > vmin else vmin + 1.0)
     cmap = LinearSegmentedColormap.from_list("house", [ACCENT, HIGHLIGHT, WARN])
-    base_rgb = to_rgb(BAR_BASE)
+    # Base fill lifted OFF near-black: #1F2937 at reveal 0 read as "a
+    # near-black silhouette" (verbatim block); unmatched land now sits a
+    # visible slate above the card so the map is a map from frame one.
+    base_rgb = tuple(0.45 * b + 0.55 * g for b, g in
+                     zip(to_rgb(BAR_BASE), to_rgb("#3A4A6B")))
     t = max(0.0, min(1.0, reveal))
+    ranked = sorted(values.items(), key=lambda kv: kv[1], reverse=True)[:6]
+    pins = [(nm, v, region_centroid(scope, nm)) for nm, v in ranked]
+    pins = [(nm, v, c) for nm, v, c in pins if c]
 
-    # Map on the LEFT ~60%; ranked legend on the right (collision-free).
-    ax = fig.add_axes([0.01, 0.13, 0.62, 0.62])
-    ax.set_axis_off()
+    # --- map extent: zoom to the ranked regions, padded, clamped to scope ---
     if scope == "us":
-        ax.set_xlim(-125, -66); ax.set_ylim(24, 50); mean_lat = 37.0
+        wx0, wx1, wy0, wy1 = -125.0, -66.0, 24.0, 50.0
+        min_lon, min_lat = 16.0, 9.0
     else:
-        ax.set_xlim(-170, 190); ax.set_ylim(-58, 84); mean_lat = 15.0
-    ax.set_aspect(1.0 / _m.cos(_m.radians(mean_lat)))
+        wx0, wx1, wy0, wy1 = -170.0, 190.0, -58.0, 84.0
+        min_lon, min_lat = 55.0, 26.0
+    if pins:
+        lons = [c[0] for _, _, c in pins]; lats = [c[1] for _, _, c in pins]
+        pad_x = max(min_lon, (max(lons) - min(lons)) * 0.35)
+        pad_y = max(min_lat, (max(lats) - min(lats)) * 0.35)
+        x0 = max(wx0, min(lons) - pad_x); x1 = min(wx1, max(lons) + pad_x)
+        y0m = max(wy0, min(lats) - pad_y); y1m = min(wy1, max(lats) + pad_y)
+    else:
+        x0, x1, y0m, y1m = wx0, wx1, wy0, wy1
+    mean_lat = (y0m + y1m) / 2.0
+    aspect = 1.0 / max(0.3, _m.cos(_m.radians(min(75.0, abs(mean_lat)))))
+
+    # --- axes box sized to the map's REAL drawn aspect (no letterbox) ---
+    fw_in, fh_in = fig.get_size_inches()
+    map_top, bars_top_max = 0.795, 0.46
+    wf = 0.94
+    hf = wf * (fw_in / fh_in) * ((y1m - y0m) * aspect / max(1e-6, x1 - x0))
+    hf = min(hf, map_top - bars_top_max)     # never squeeze the bar strip out
+    wf2 = min(wf, wf * (map_top - bars_top_max) / max(1e-6, hf))
+    ax = fig.add_axes([(1.0 - wf2) / 2.0, map_top - hf, wf2, hf])
+    ax.set_axis_off()
+    ax.set_xlim(x0, x1); ax.set_ylim(y0m, y1m)
+    ax.set_aspect(aspect)
     for feat in gj["features"]:
         nm = feat.get("properties", {}).get("name", "")
         if nm in values:
@@ -816,31 +1069,67 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
             ax.add_patch(_Poly(ring, closed=True, facecolor=fc, edgecolor=edge,
                                linewidth=lw, zorder=z))
 
-    # Ranked legend (swatch + label + value), one row each — never overlaps.
+    # --- numbered rank markers ON the regions themselves ---
     la = _lblalpha(reveal)
-    ranked = sorted(values.items(), key=lambda kv: kv[1], reverse=True)[:6]
-    leg = fig.add_axes([0, 0, 1, 1]); leg.set_axis_off()
-    leg.set_xlim(0, 1); leg.set_ylim(0, 1)
-    y0 = 0.70
-    dy = min(0.115, 0.60 / max(1, len(ranked)))
+    for i, (nm, v, (lon, lat)) in enumerate(pins):
+        ri = max(0.0, min(1.0, (t - i * 0.07) / max(1e-6, 1.0 - i * 0.07)))
+        col = cmap(norm(v))
+        ax.scatter([lon], [lat], s=260 + 500 * float(norm(v)) * ri, color=col,
+                   edgecolors="white", linewidths=1.5, zorder=5,
+                   alpha=0.35 + 0.6 * ri)
+        ax.text(lon, lat, str(i + 1), ha="center", va="center", fontsize=17,
+                color="white", fontweight="bold", zorder=6,
+                alpha=0.35 + 0.65 * ri, path_effects=_shadow())
+    if pins:
+        nm0, v0, (lon0, lat0) = pins[0]
+        ax.text(lon0, lat0 + (y1m - y0m) * 0.055,
+                f"{nm0}  {_vfmt(v0)}", ha="center", va="bottom", fontsize=23,
+                color=TEXT, fontweight="bold", zorder=6, alpha=la,
+                path_effects=_shadow())
+
+    # --- ranked bar strip under the map: length IS the demonstration ---
+    n = max(1, len(ranked))
+    bax = fig.add_axes([0.08, 0.115, 0.84, (map_top - hf) - 0.145])
+    bax.set_axis_off()
+    # Bars run from the SMALLEST ranked value's floor so negative series
+    # (e.g. growth rates) still read left-to-right; labels carry true values.
+    floor = min(0.0, min(v for _, v in ranked)) if ranked else 0.0
+    span = max(1e-9, (max(v for _, v in ranked) if ranked else 1.0) - floor)
+    bax.set_xlim(0.0, span * 1.24)
+    bax.set_ylim(n - 0.4, -0.85)             # rank 1 on top, host headroom
+    bpos = bax.get_position()
+    row_px = bpos.height * fh_in * fig.dpi / n
+    blw = max(26.0, row_px * 0.42 * 72.0 / fig.dpi)
     specs = []
     for i, (nm, v) in enumerate(ranked):
-        y = y0 - i * dy
+        ri = max(0.0, min(1.0, (t - i * 0.07) / max(1e-6, 1.0 - i * 0.07)))
         col = cmap(norm(v))
-        leg.scatter([0.655], [y], s=230, color=col, edgecolors="white",
-                    linewidths=1.2, zorder=6, alpha=min(1.0, 0.3 + la))
-        disp = nm if len(nm) <= 15 else nm[:14] + "…"
-        leg.text(0.69, y + 0.018, disp, fontsize=21, color=TEXT, fontweight="bold",
-                 va="center", alpha=la, zorder=6)
-        t2 = leg.text(0.69, y - 0.024, _vfmt(v), fontsize=30, color=col,
-                      fontweight="bold", va="center", alpha=la, zorder=6)
+        tip = max((v - floor) * ri, span * 0.02)
+        _round_barh(bax, i, span * 1.02, blw, "#141B2E", zorder=2)
+        _round_barh(bax, i, tip, blw, col, zorder=3)
+        disp = nm if len(nm) <= 16 else nm[:15] + "…"
+        bax.text(0.0, i - 0.33, f"{i + 1}. {disp}", ha="left", va="bottom",
+                 fontsize=20, color=TEXT, fontweight="bold", zorder=4,
+                 alpha=min(1.0, 0.35 + ri))
+        if i == 0:
+            # The host performs AT this tip — the value rides INSIDE the
+            # bar so his body never covers the number.
+            t2 = bax.text(tip - span * 0.015, i, _vfmt(v), ha="right",
+                          va="center", fontsize=26, color="white",
+                          fontweight="bold", zorder=4, alpha=la,
+                          path_effects=_shadow())
+        else:
+            t2 = bax.text(tip, i, " " + _vfmt(v), ha="left", va="center",
+                          fontsize=26, color=col, fontweight="bold", zorder=4,
+                          alpha=la)
         specs.append((v, "art", t2, None))
-    # COUPLE THE HOST on the legend axes beside the map: Data hoists the ranked
-    # column as it fills in (contact on the leaderboard the map is building) —
-    # a geo beat is no longer mascot-less.
-    _act_g = _perf_action(insight, "rank")
-    _bake_host(leg, 0.30, 0.10, _act_g, reveal,
-               zoom=0.72, align=_perf_align(_act_g, (0.5, 0.0)))
+    # THE HOST performs on the winning bar's tip — the contact the judge
+    # praised — with the clamp keeping him off the map's markers above.
+    if ranked:
+        _act_g = _perf_action(insight, "rank")
+        _bake_host(bax, max((ranked[0][1] - floor) * t, span * 0.02), 0,
+                   _act_g, reveal,
+                   zoom=0.78, align=_perf_align(_act_g, (0.28, 0.5)))
     insight.host_baked = True
     return ax, specs
 
@@ -1185,31 +1474,90 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     ax.set_aspect("equal")
     ymax = 100 * hpx / wpx
     t = max(0.0, min(1.0, reveal))
-    # radius ~ sqrt(value) (area ∝ value); scale the packed row to fit width.
+    # radius ~ sqrt(value) (area ∝ value)
     rraw = [_m.sqrt(v) for v in vals]
     gap = 4.0
-    scale = (100 - gap * (n + 1)) / (2 * sum(rraw)) if sum(rraw) else 1.0
+    # LAY OUT ACROSS BOTH AXES, NOT JUST THE WIDTH.
+    #
+    # This packed every bubble into ONE row scaled to fit the WIDTH, in a
+    # frame 1.15x TALLER than it is wide. With five items the row is already
+    # 92% of the width, so the bubbles cannot grow — and the other 80%+ of
+    # the frame stays empty. Measured on the final frame of the 2026-08-11
+    # macao story, whose seg0 used exactly this:
+    #
+    #     items   ink coverage   frame height used
+    #       5         8.7%            18.5%
+    #       3        16.9%            31.4%
+    #       2        27.7%            46.8%
+    #
+    # The showrunner's notes that day were "tiny bubbles in a mostly empty
+    # frame", "a near-empty card with a flat bubble row" and "equal-size
+    # blobs" — all three describing this. Four or more items now pack into
+    # TWO staggered rows and scale to whichever of width/height binds first,
+    # so the bubbles are as large as the frame allows.
+    per_row = n if n <= 3 else (n + 1) // 2
+    rows = [list(range(0, per_row)), list(range(per_row, n))]
+    rows = [r for r in rows if r]
+
+    # Solve the scale directly on each axis. GAPS DO NOT SCALE, so they come
+    # out of the budget FIRST and only the circles divide what is left —
+    # scaling the whole block instead silently shrinks every bubble.
+    # Every row needs the label band UNDER it clear — the label sits 3.2
+    # below the circle and a fontsize-22 line is ~3.3 units tall here, so
+    # rows are separated by more than the in-row gap. At `gap` the top row's
+    # labels landed 2.0 units inside the bottom row's circles.
+    LABEL_BAND = 6.8
+    row_gap = LABEL_BAND + 0.7
+    avail_w = 100 - gap * 2
+    avail_h = ymax - gap * 2 - LABEL_BAND
+    scale_w = min(
+        ((avail_w - gap * (len(row) - 1))
+         / sum(2 * rraw[i] for i in row)) for row in rows)
+    tall = sum(2 * max(rraw[i] for i in row) for row in rows)
+    scale_h = ((avail_h - row_gap * (len(rows) - 1)) / tall
+               if tall else scale_w)
+    scale = max(0.0001, min(scale_w, scale_h))
     rad = [r * scale for r in rraw]
-    rad = [min(r, ymax / 2 - 6) for r in rad]      # keep inside vertical band
-    # Centre the packed row both ways so there's no empty band / left bias.
-    row_w = sum(2 * r for r in rad) + gap * (n - 1)
-    cy = ymax / 2
-    x = (100 - row_w) / 2.0
+    row_h = [2 * max(rad[i] for i in row) for row in rows]
+    block_h = sum(row_h) + row_gap * (len(rows) - 1)
+    cy_top = ymax / 2 + block_h / 2.0
     specs = []
+    # centre of each item, laid out row by row from the top of the block
+    centres: list[tuple[float, float]] = [(0.0, 0.0)] * n
+    _y = cy_top
+    for ri, row in enumerate(rows):
+        row_w = sum(2 * rad[i] for i in row) + gap * (len(row) - 1)
+        _x = (100 - row_w) / 2.0
+        cyr = _y - row_h[ri] / 2.0
+        for i in row:
+            centres[i] = (_x + rad[i], cyr)
+            _x += 2 * rad[i] + gap
+        _y -= row_h[ri] + row_gap
+    cy = ymax / 2
     for i, (p, r) in enumerate(zip(items, rad)):
-        cx = x + r
-        x += 2 * r + gap
+        cx, cy = centres[i]
         color = (HIGHLIGHT if p.label == insight.highlight_label
                  else WARN if (insight.baseline and p.label == insight.baseline.label)
                  else ACCENT)
         ax.add_patch(Circle((cx, cy), r * t, facecolor=color, edgecolor="white",
                             linewidth=1.5, alpha=0.92, zorder=3))
         fs = max(16, min(46, r * 2.0))
+        # THE NUMBER RIDES THE BUBBLE, IT DOES NOT WAIT FOR IT.
+        # `_lblalpha` holds every label at alpha 0 until 80% of the build,
+        # which is right for a BAR — the label sits at the tip and lands as
+        # the bar reaches it. A bubble's number sits at the CENTRE of a
+        # circle that is on screen from frame one, so there is nothing to
+        # land: on the hook beat, whose reveal curve does not pass 0.8 until
+        # ~71% of a 20-second window, that left the values invisible for
+        # fourteen seconds. The showrunner's note on 2026-08-11 was
+        # "equal-size blobs that only reveal numbers at the very end".
+        # Fade with the inflation instead, complete by a third of the way in.
+        _balpha = max(0.0, min(1.0, (t - 0.05) / 0.28))
         tt = ax.text(cx, cy, _vfmt(p.value), ha="center", va="center",
                      color="#0B1020", fontsize=fs, fontweight="bold",
-                     zorder=4, alpha=_lblalpha(reveal))
+                     zorder=4, alpha=_balpha)
         ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
-                fontsize=22, fontweight="bold", zorder=4, alpha=_lblalpha(reveal),
+                fontsize=22, fontweight="bold", zorder=4, alpha=_balpha,
                 path_effects=_shadow())
         specs.append((p.value, "art", tt, None))
         if i == 0:
@@ -1337,6 +1685,14 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
                       fontweight="bold", zorder=5, alpha=_lblalpha(reveal),
                       path_effects=_shadow())
         specs.append((p.value, "art", txt, None))
+    # THE HOST performs at the WINNING metro's pin (clamped on-card) — this
+    # beat used to have no bake at all, so the drifting overlay covered it.
+    if pts:
+        top_p, (tlon, tlat) = max(pts, key=lambda x: x[0].value)
+        _act_c = _perf_action(insight, "rank")
+        _bake_host(ax, tlon, tlat, _act_c, reveal,
+                   zoom=0.62, align=_perf_align(_act_c, (0.5, 0.04)))
+    insight.host_baked = True
     return ax, specs
 
 

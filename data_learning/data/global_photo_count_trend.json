@@ -1,0 +1,21 @@
+{
+  "key": "global_photo_count_trend",
+  "title": "Global photos taken per year",
+  "unit": "trillion",
+  "geography": "Global",
+  "time_coverage": "2017-2025",
+  "source": {
+    "name": "Global photo volume estimates",
+    "publisher": "Mylio / Photutorial / PetaPixel annual photo-count compilations",
+    "url": "https://petapixel.com/2025/06/18/the-number-of-photos-taken-in-2025-is-expected-to-exceed-two-trillion/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Annual global photo counts as compiled by industry trackers (Mylio/Photutorial/PetaPixel): roughly 1.2 trillion in 2017, climbing past 1.8 trillion by 2023, and expected to exceed 2.1 trillion in 2025. Figures are industry estimates, not a census.",
+  "points": [
+    {"label": "2017", "value": 1.2, "period": "2017"},
+    {"label": "2020", "value": 1.4, "period": "2020"},
+    {"label": "2023", "value": 1.8, "period": "2023"},
+    {"label": "2025", "value": 2.1, "period": "2025"}
+  ]
+}

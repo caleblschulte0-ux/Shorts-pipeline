@@ -1,0 +1,20 @@
+{
+  "key": "chess_signups_before_after_queens_gambit",
+  "title": "New Chess.com members per month: pandemic baseline vs post-Queen's Gambit",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2020",
+  "source": {
+    "name": "Reporting on Chess.com signup growth around The Queen's Gambit release (Oct 23, 2020)",
+    "publisher": "Chess.com / contemporaneous press coverage (Sportico, NBC News)",
+    "url": "https://www.sportico.com/business/media/2020/queens-gambit-chess-popularity-beth-harmon-chess-com-1234617271/",
+    "officiality": "verified",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Chess.com was adding roughly 1 million new members a month during the 2020 pandemic lockdowns; in November 2020, the month after Netflix's The Queen's Gambit premiered, it added about 2.8 million.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "Pandemic baseline (per month)", "value": 1},
+    {"label": "November 2020 (post-release)", "value": 2.8}
+  ]
+}

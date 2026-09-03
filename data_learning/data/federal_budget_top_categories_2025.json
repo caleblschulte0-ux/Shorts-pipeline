@@ -1,0 +1,21 @@
+{
+  "key": "federal_budget_top_categories_2025",
+  "title": "Largest federal spending categories, FY2025 (billion dollars)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "Fiscal Year 2025",
+  "source": {
+    "name": "Monthly Budget Review, September 2025",
+    "publisher": "Congressional Budget Office (CBO)",
+    "url": "https://www.cbo.gov/system/files/2025-10/60306-MBR.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-15"
+  },
+  "notes": "CBO's largest FY2025 federal outlay categories, in order: Social Security ($1.6 trillion), net interest on the debt ($1.0 trillion), and Medicare ($987 billion) -- interest on the debt is now bigger than the entire Medicare program.",
+  "insight_type": "rank",
+  "points": [
+    {"label": "Social Security", "value": 1600},
+    {"label": "Interest on the debt", "value": 1000},
+    {"label": "Medicare", "value": 987}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "format": "graph_race",
+  "slug": "mobile-subscriptions-china-india-us",
+  "title": "Mobile Subscriptions: China, India, U.S.",
+  "hook": "Three mobile giants",
+  "y_label": "Mobile subscriptions",
+  "duration": 13,
+  "source": "World Bank/ITU, Mobile cellular subscriptions (IT.CEL.SETS), 2000\u20132023, updated 2026-07-13: https://data.worldbank.org/indicator/IT.CEL.SETS",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "icon": "CN",
+      "values": [
+        85260000,
+        393406000,
+        859003000,
+        1291984200,
+        1718411000,
+        1824422700
+      ]
+    },
+    {
+      "name": "India",
+      "color": "#ff9933",
+      "icon": "IN",
+      "values": [
+        3577095,
+        90140000,
+        752190000,
+        1001056000,
+        1153709832,
+        1158554883
+      ]
+    },
+    {
+      "name": "United States",
+      "color": "#3088ff",
+      "icon": "US",
+      "values": [
+        109478031,
+        203700000,
+        285118000,
+        332101000,
+        352522000,
+        386106000
+      ]
+    }
+  ],
+  "hashtags": [
+    "mobile",
+    "telecom",
+    "china",
+    "india",
+    "usa",
+    "data",
+    "graphrace"
+  ],
+  "music_vibe": "fast digital pulse",
+  "_authored_by": "chatgpt-takeover"
+}

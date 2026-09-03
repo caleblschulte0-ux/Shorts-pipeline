@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260824",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "1c698c71ea72e34f35840f06a19ce4dd76fad13d",
+    "production_date": "20260824",
+    "bundle_sha256": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050"
+  },
+  "media": [
+    {
+      "request_id": "reddit-heat-wave-dress-code-s0-736c89e4483a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1LyC_0JTBZWmO75iQTD_TbNJ0Si96ro8t",
+        "filename": "20260824__reddit-heat-wave-dress-code-s0-736c89e4483a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1LyC_0JTBZWmO75iQTD_TbNJ0Si96ro8t",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b1def67ff4b1967e90a450a899a45e87404726998460aa818a8dfbbf4bd29fa7",
+        "bytes": 1245794,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s0-736c89e4483a.json",
+        "verified_at": "2026-08-24T11:17:00.000Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s1-1964763f7e41",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "15J1p4I6ZG8QcYd9Odqo0GJfhJLXLXpLB",
+        "filename": "20260824__reddit-heat-wave-dress-code-s1-1964763f7e41.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=15J1p4I6ZG8QcYd9Odqo0GJfhJLXLXpLB",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f076111c0bf3697b31392bc0150ac605f14ffabe013ac26f411a79ddd989182f",
+        "bytes": 1675165,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s1-1964763f7e41.json",
+        "verified_at": "2026-08-24T11:18:59.721Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s2-24b4303fddf8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+        "filename": "20260824__reddit-heat-wave-dress-code-s2-24b4303fddf8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "49189aa82386a4d64b2ae2fc32cb3d3c54bf59ebdf6406a5501c72fd77e8128f",
+        "bytes": 1166327,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s2-24b4303fddf8.json",
+        "verified_at": "2026-08-24T11:19:06.399Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s3-1f94874785db",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+        "filename": "20260824__reddit-heat-wave-dress-code-s3-1f94874785db.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1oU3taTV3wuKj_DCqy3oEmmvzj4e2Ohme",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b5f0c44c00f8a83f9666246099f40c1dd5a41ab0ee4aeb42db5675faf139ecfb",
+        "bytes": 1768497,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s3-1f94874785db.json",
+        "verified_at": "2026-08-24T11:19:13.044Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s4-7e04407ac864",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1G60uB4ZOCYir9U6EHrHY9tJ8YPBLyBhI",
+        "filename": "20260824__reddit-heat-wave-dress-code-s4-7e04407ac864.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1G60uB4ZOCYir9U6EHrHY9tJ8YPBLyBhI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b412d587d1e82cd11983e066ed675e60f602f2950fa5fe1841ea811cc5e9c5f6",
+        "bytes": 1426989,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s4-7e04407ac864.json",
+        "verified_at": "2026-08-24T11:19:20.220Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s5-3a0e5a30c03e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+        "filename": "20260824__reddit-heat-wave-dress-code-s5-3a0e5a30c03e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9473c6eb278d5b1f15e17c6918c2e6d3bfcf35c1990a6eb77b36fb3d6fd3c932",
+        "bytes": 1180422,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s5-3a0e5a30c03e.json",
+        "verified_at": "2026-08-24T11:19:26.795Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s6-85366b350742",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Kr7Idmshuw1xT2GHzdKEVudMSrh7KjVz",
+        "filename": "20260824__reddit-heat-wave-dress-code-s6-85366b350742.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Kr7Idmshuw1xT2GHzdKEVudMSrh7KjVz",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ea2f0540d3525d5ea7252dbd70ca5bc2ebdcc936b7c7e22c3259f22618ebe4bf",
+        "bytes": 1728968,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s6-85366b350742.json",
+        "verified_at": "2026-08-24T11:20:19.514Z"
+      }
+    },
+    {
+      "request_id": "reddit-heat-wave-dress-code-s7-bef3ef48b705",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1yyCvPEkMDaffbezto7mOo6npnvxT_CZ8",
+        "filename": "20260824__reddit-heat-wave-dress-code-s7-bef3ef48b705.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1yyCvPEkMDaffbezto7mOo6npnvxT_CZ8",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2a26cc39df334731451e5ab7cdc81393540c26c9c483f2ed6ad7e64bffd74d28",
+        "bytes": 1462308,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-heat-wave-dress-code-s7-bef3ef48b705.json",
+        "verified_at": "2026-08-24T11:20:26.898Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s0-3572dde74593",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s0-3572dde74593.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1v2zGgcSd3D5TxUUtB1qiDlmtY89SOBZl",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9d5d379c2c9c3c0e46626857e6ab595b2ed81770f9bfb6a906d10fd1ec6f8e8b",
+        "bytes": 1231466,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s0-3572dde74593.json",
+        "verified_at": "2026-08-24T11:20:33.948Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-dinGPMcZODo2JzFyjQ9phILgGEt0PEm",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0cfe90aa417457de543064c3e2be61697a37138afc8c3ea179391e34d51249a3",
+        "bytes": 1455685,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s2-1aaf8a1cb584.json",
+        "verified_at": "2026-08-24T11:20:40.133Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "81636c7103ef63116510fdef6231b57bddfb444db7a5c6e85e6e7f0f34db7ce2",
+        "bytes": 1391480,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d.json",
+        "verified_at": "2026-08-24T11:20:46.747Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=11zs1Yc4lviHhDi9DJVknRm8d7SeWwLrr",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6b2da448ccdad09ab1caa79f4aae8773ecea16136ef8adde327b3e1563d3ef3e",
+        "bytes": 1268518,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s4-d8dc09ffd8b3.json",
+        "verified_at": "2026-08-24T11:21:41.141Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "72638b78227acc5de236464e2cf1eb160cc518f57569a1261022f4bbe527a368",
+        "bytes": 1363957,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf.json",
+        "verified_at": "2026-08-24T11:21:46.837Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s6-d606e277f281",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s6-d606e277f281.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c0343463328371e4516916547edbc898e02338016a59bd2084416f99d3a44e48",
+        "bytes": 1327073,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s6-d606e277f281.json",
+        "verified_at": "2026-08-24T11:21:53.544Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s7-fe9995066855",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s7-fe9995066855.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1z7u82j3IaQMartphe5Kcuv-l3DSm36fQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "34d3fd3da7331b3084b5ee9d1db7b00212cca4862c2b0fa6380242e2bd373fdf",
+        "bytes": 926430,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s7-fe9995066855.json",
+        "verified_at": "2026-08-24T11:21:59.325Z"
+      }
+    },
+    {
+      "request_id": "reddit-lunch-thief-ghost-pepper-s1-106e3adf08e2",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+        "filename": "20260824__reddit-lunch-thief-ghost-pepper-s1-106e3adf08e2.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ywHAFIXY4KcatIAgePaE-DijG2mOd6sO",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "467cdd2c9e64cb3f9c7ab2899c1d3ec8376cb4bac825c5a5d875be9dc397f2f1",
+        "bytes": 1133272,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260824/media-progress/reddit-lunch-thief-ghost-pepper-s1-106e3adf08e2.json",
+        "verified_at": "2026-08-24T11:22:08.030Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-amazon-overtakes-ups",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names Amazon's delivery buildout and its specific crossover over UPS."
+    },
+    {
+      "slug": "graph-betting-overtakes-lottery",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly promises sports betting's specific crossover over the lottery."
+    },
+    {
+      "slug": "graph-chipotle-overtakes-subway",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names Subway's former sandwich lead and Chipotle's specific crossover."
+    },
+    {
+      "slug": "graph-peloton-overtakes-planet-fitness",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly frames Peloton passing Planet Fitness and remaining ahead."
+    },
+    {
+      "slug": "reddit-heat-wave-dress-code",
+      "script": "Wool at ninety-one degrees? My manager wrote me up for wearing a short-sleeve polo after our store's air conditioner broke during a brutal heat wave. He said if I couldn't dress professionally, I shouldn't clock in. So I followed the employee handbook exactly. Next day: pressed slacks, a collared dress shirt, a tie, plus the wool blazer nobody had worn since the store opened. Page forty had spoken. Customers offered water while sweat soaked through the blazer, and I loudly explained that corporate required every stitch. During my third sweltering hour, our regional manager walked in, saw my soaked collar, and asked why the air conditioner had been broken for eleven days. A technician arrived within two hours. The handbook gained an official heat-wave exception—with my name on the memo. Was page forty worth eleven days?",
+      "editor_note": "Punched up to a four-word question hook, tightened the handbook-versus-heat escalation, added one dry page-forty aside, and landed on eleven days while preserving every fact and shot phrase."
+    },
+    {
+      "slug": "reddit-lunch-thief-ghost-pepper",
+      "script": "Who stole three sandwiches? Someone kept stealing my lunch from the shared fridge. After three sandwiches vanished in two weeks, I set a trap. I bought the hottest ghost pepper sauce, layered it inside a turkey sandwich that looked like mine, wrote my name on the bag, and left it on the middle shelf. By eleven that morning: coughing violently in the break room, chugging every cup of water, mouth on fire. My actual lunch was still sealed in my desk drawer. The thief was our composed office manager—red-faced, eyes streaming, unable to speak. She never confessed, but started bringing her own lunch every single day. Our supervisor posted a handwritten sign above the fridge warning that stolen food would not be replaced. Nobody has touched my sandwich since. Was one stolen turkey sandwich worth it?",
+      "editor_note": "Punched up to a four-word question hook, compressed the sandwich-trap escalation, kept the injury-related sequence straight, and landed on the stolen turkey sandwich while preserving every fact and shot phrase."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The actual numbers went the other direction.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}

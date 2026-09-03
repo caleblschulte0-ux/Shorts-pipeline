@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-snack-bag-clipboard-s3-92cb77b0f069",
+  "safe_request_id": "reddit-snack-bag-clipboard-s3-92cb77b0f069",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-snack-bag-clipboard",
+  "shot_index": 3,
+  "prompt_sha256": "dee64da749cfd8ee38eba032add1e6d14d83c77a9d05baddcbd564b4f8a8e319",
+  "prompt_used": "An editorial illustration for a short-form video: receipt pile clipboard. It accompanies the narration: \"forty-one dollars in unpaid snacks\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ify5eCOBTjk9SXWaVIot_nZ0FA715A4e",
+    "filename": "20260818__reddit-snack-bag-clipboard-s3-92cb77b0f069.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ify5eCOBTjk9SXWaVIot_nZ0FA715A4e",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0184a8ff21c2f806407c0a434b8c65517ae91d7b5daeaf5ec35bacf7488e7d9e",
+    "bytes": 1340409,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:03.000Z",
+  "error": null,
+  "retryable": false
+}

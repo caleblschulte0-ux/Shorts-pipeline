@@ -1,0 +1,58 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260812",
+  "summary": "Wednesday's gate pass found that the quality bar is correctly holding visibly weak output, but two fail-closed claims are not mechanically complete: a vision response may omit every hard-check answer and still ship on score, and the punch-up guard collapses repeated numeric claims into sets. The alarm also attributes whichever undated daily_report.json is currently on main to any date being checked; today that made an August 11 check describe the two August 12 uploads and four August 12 replacements. Longer term, the showrunner ledger should retain the structured scene diagnosis it already computes so repeated failure classes can drive repairs instead of surviving only as prose. The August 11 outage remains real in the dated production outcome (zero of six trending and zero explainer posts), and all proposals preserve or add blocks rather than weakening the showrunner.",
+  "findings": [
+    {
+      "title": "Missing showrunner hard-check answers count as passes",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "gates/showrunner-response",
+      "files": [
+        "scripts/showrunner_review.py"
+      ],
+      "observation": "The reviewer prompt requires answers for all five hard auto-fails, but the decision code only blocks checks that are present as objects with present=true. Missing checks, a missing present field, or an empty checks object are therefore treated as no failures. A model response with maximum dimension grades and checks={} computes score 100 and verdict ship, even though none of the mandatory hard rules was answered. The shared gate then sees an explicit ship with a bounded numeric score and permits a publish run.",
+      "proposal": "Validate the judge response before scoring. Require dimensions to contain every anchored grade with an in-range integer and checks to contain exactly every AUTOFAIL_CHECKS key with a boolean present plus nonempty evidence. Convert any missing, malformed, or extra schema state into an explicit block (or raise so the publish gate holds fail-closed). Add pure tests for empty checks, one omitted check, missing present, wrong types, and a complete all-false response; do not change any existing blocking threshold.",
+      "evidence": "scripts/showrunner_review.py lines 63-67 declare that the model must answer every hard check; lines 122-132 only collect keys that exist as dicts with truthy present; lines 502-532 prescribe the complete JSON; lines 591-598 pass grades.get('checks', {}) directly to that permissive logic. Running compute_score with each WEIGHTS ceiling and decide_verdict(score, {}) on main returns score=100, verdict='ship'; a junk_imagery object containing evidence but no present also returns ship."
+    },
+    {
+      "title": "Punch-up guard loses repeated numeric claims",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "exchange/punchup-claims",
+      "files": [
+        "shared/punchup_guard.py"
+      ],
+      "observation": "numeric_claims returns a set, so it records only whether a normalized number appears at least once. check then compares set differences. A rewrite can delete one of two distinct sentences carrying the same percentage and year, and the guard reports no dropped claim because one copy remains. That contradicts the module's stated rule that every number in the original must still be present and gives a punch-up a mechanical path to remove a repeated quantitative beat.",
+      "proposal": "Preserve numeric-claim multiplicity with a Counter or ordered occurrence list and compare counts in both directions. Report the token and missing or added occurrence count, while retaining the current normalization and money/percent/year precedence. Add a regression fixture where the original uses 40% and 2025 twice in distinct sentences and the rewrite keeps each only once; the original must ship instead of the rewrite.",
+      "evidence": "shared/punchup_guard.py lines 28-32 define numeric token patterns; lines 83-96 build and return a set; lines 133-140 use set subtraction for dropped and invented claims. On main, check({'script':'SpaceX hit 40% in 2025. SpaceX held 40% in 2025.','shots':[]}, {'script':'SpaceX hit 40% in 2025.','shots':[]}) returns (True, []), and both numeric_claims calls return exactly {'40%', '2025'}."
+    },
+    {
+      "title": "Daily alarm attributes the latest trending report to historical dates",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "alarm/trending-date-integrity",
+      "files": [
+        "scripts/daily_alarm.py",
+        "daily_report.json"
+      ],
+      "observation": "daily_alarm.check(date) uses dated logs and production outcomes for most channel evidence, but its slot-fill section reads the single root daily_report.json without verifying that any row belongs to date. The file currently contains only August 12 publish times and 20260812 package paths. Calling check('20260811') nevertheless emits trending_short_after_retries saying 2/6 shipped with four replacements, which are August 12 results; the dated August 11 production outcome in the same alarm correctly says 0/6. This creates a contradictory evidence pack and can send repair work toward the wrong day's packages.",
+      "proposal": "Give each trending report an explicit report_date and archive it under a date-keyed path, then make the alarm load only the requested date and reject mixed or missing row dates. As a safe transitional check, derive each row's date from publish_at and package_path, require all rows to agree with the requested date, and emit a dedicated stale_or_wrong_daily_report alarm instead of a slot-fill claim when they do not. Add consecutive-day and backfill tests that prove an August 12 report cannot affect an August 11 alarm.",
+      "evidence": "scripts/daily_alarm.py lines 422-434 unconditionally read ROOT/daily_report.json and compute shipped/retried without consulting the date argument. daily_report.json on main contains publish_at values only for 2026-08-12 and package paths under state/trending_packages/20260812; executing daily_alarm.check('20260811') produces trending_short_after_retries detail 'trending shipped 2/6; 4 re-authored replacement(s)', while doctor/evidence.json's dated production_repair_trending for 20260811 says 0/6 uploaded and 10 failed."
+    },
+    {
+      "title": "Showrunner memory drops the scene diagnosis needed to detect recurrences",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "gates/showrunner-memory",
+      "files": [
+        "scripts/showrunner_review.py",
+        "doctor/evidence.json",
+        "daily_report.json"
+      ],
+      "observation": "review_video returns structured checks, weakest_scene, problems, fixes, temporal measurements, and the judge backend, but append_ledger persists only dimensions, one_line, auto_fails, motion, and identity metadata. The doctor evidence is built from the last 60 ledger records, so the durable history cannot group failures by format, scene, failure_class, repair_goal, package source, or repair attempt. Production is now repeating the same broad failure on consecutive days: August 11 evidence records a Reddit story ending on an unchanged clock still for about 11 seconds, and August 12 daily_report records another Reddit story whose content panel is one alarm-clock still for the full roughly 40-second body. The gate blocks both, but its memory cannot express that the same repair class recurred.",
+      "proposal": "Version the verdict ledger and persist the complete normalized diagnosis needed for learning: format/channel, package path or source, checks, weakest_scene fields, problems/fixes, temporal data, and repair-attempt lineage, plus a deterministic failure fingerprint derived from format + hard-check + failure_class rather than model prose. Have evidence generation aggregate counts and consecutive-day recurrences by fingerprint so authoring and renderer work can prioritize repeated causes. Keep raw verdicts append-only and preserve the current rubric hash/model metadata during migration.",
+      "evidence": "scripts/showrunner_review.py lines 608-615 return checks, temporal, weakest_scene, problems, and fixes, while append_ledger at lines 627-648 omits all but dimensions, one_line, auto_fails, motion, judge/model, and rubric_sha. scripts/doctor.py evidence_pack reads only the last 60 ledger lines. doctor/evidence.json records the August 11 garden-gnome Reddit render holding the same clock still through mid4, mid5 and payoff; daily_report.json on main records the August 12 clock-in story blocked because one alarm-clock still occupied the story half for the entire body."
+    }
+  ]
+}

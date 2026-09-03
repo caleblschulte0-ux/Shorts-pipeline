@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-snack-bag-clipboard-s5-cd5889bc86bf",
+  "safe_request_id": "reddit-snack-bag-clipboard-s5-cd5889bc86bf",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-snack-bag-clipboard",
+  "shot_index": 5,
+  "prompt_sha256": "ee85f4a0c9cde7cbefa2e7156432b0b5f53ae5ca655ff36350afaaf6c4d3c8dd",
+  "prompt_used": "An editorial illustration for a short-form video: card declined machine. It accompanies the narration: \"got declined at the register\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1UMjTpf-6onu_odTWbmavxzbGITMgoNm7",
+    "filename": "20260818__reddit-snack-bag-clipboard-s5-cd5889bc86bf.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1UMjTpf-6onu_odTWbmavxzbGITMgoNm7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5b26386ac06ee5581a7f9af633d1f6f34d3d52cc7a40948536fae3cb269794d2",
+    "bytes": 1134067,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:05.000Z",
+  "error": null,
+  "retryable": false
+}

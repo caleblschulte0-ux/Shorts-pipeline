@@ -1,0 +1,20 @@
+{
+  "key": "ozone_recovery_years_by_region",
+  "title": "Projected years from now until full ozone recovery, by region",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "2022 assessment, projected from 2026",
+  "source": {
+    "name": "Scientific Assessment of Ozone Depletion 2022",
+    "publisher": "World Meteorological Organization (WMO) / UN Environment Programme (UNEP)",
+    "url": "https://wmo.int/news/media-centre/ozone-layer-recovery-track-helping-avoid-global-warming-05degc",
+    "officiality": "official",
+    "access_date": "2026-08-08"
+  },
+  "notes": "The 2022 WMO/UNEP Scientific Assessment projects the ozone layer will recover to 1980 (pre-hole) values by around 2040 for most of the world, 2045 over the Arctic, and 2066 over the Antarctic, assuming current policies hold. Values here are expressed as years remaining from 2026 (the story's publish year): 2040 minus 2026 = 14; 2045 minus 2026 = 19; 2066 minus 2026 = 40.",
+  "points": [
+    {"label": "Rest of world", "value": 14},
+    {"label": "Arctic", "value": 19},
+    {"label": "Antarctic", "value": 40}
+  ]
+}

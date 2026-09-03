@@ -1,0 +1,48 @@
+{
+  "key": "ag_prd_food_xd_trend",
+  "title": "Food production index",
+  "unit": "2014-2016 = 100",
+  "geography": "World",
+  "time_coverage": "1972-2020",
+  "insight_type": "trend",
+  "source": {
+    "name": "Food production index",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.PRD.FOOD.XD",
+    "officiality": "official",
+    "access_date": "2026-08-07"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-07. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "1972",
+      "value": 16.9,
+      "period": "1972"
+    },
+    {
+      "label": "1982",
+      "value": 21.9,
+      "period": "1982"
+    },
+    {
+      "label": "1991",
+      "value": 25.9,
+      "period": "1991"
+    },
+    {
+      "label": "2001",
+      "value": 89.9,
+      "period": "2001"
+    },
+    {
+      "label": "2010",
+      "value": 99.5,
+      "period": "2010"
+    },
+    {
+      "label": "2020",
+      "value": 100.0,
+      "period": "2020"
+    }
+  ]
+}

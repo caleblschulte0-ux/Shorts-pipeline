@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+  "safe_request_id": "reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-gift-card-scam-wrong-digit",
+  "shot_index": 2,
+  "prompt_sha256": "fa0906e610176f8a685ed74f4fac46d221dcd3efc650f0edf06fb5a62664630a",
+  "prompt_used": "An editorial illustration for a short-form video: speakerphone desk phone. It accompanies the narration: \"he stayed on the line for two hours\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+    "filename": "20260816__reddit-gift-card-scam-wrong-digit-s2-7af801a6ba0d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1MHmMb-cBCSygkVpclAtRPz5w_f7nwPsw",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "08de2891e8cf3cecf7fa7b153cec5981ec215aa4810626aa8e4806bc7a7f6ee9",
+    "bytes": 1239215,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:14Z",
+  "error": null,
+  "retryable": false
+}

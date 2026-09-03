@@ -2,7 +2,7 @@
 """Reddit drama storytime renderer — the genre format, done right.
 
 Composes the signature look instead of the generic explainer stack:
-  * full-screen satisfying gameplay (no top b-roll / no split)
+  * verified story-beat imagery above satisfying gameplay
   * the Reddit post card overlaid while the TITLE is narrated, then it
     dings, whooshes, and fades to reveal the gameplay
   * bold word-by-word ("karaoke") captions, centered in the safe zone
@@ -41,6 +41,199 @@ CAP_MAX_WORDS = 3
 # ASS colours are &HBBGGRR&. White base, gold-yellow active word.
 CAP_WHITE = "&HFFFFFF&"
 CAP_HILITE = "&H00E8FF&"    # bright gold-yellow
+
+
+def _verify_shot_attestation(shot: dict, local: Path, i: int) -> None:
+    """Prove the downloaded bytes are the bytes Phase B verified, when the
+    shot carries an attestation (media_sha256 / media_bytes). Raises
+    ValueError on mismatch, AFTER logging expected vs actual in full — the
+    caller's generic skip line truncates its message, and a digest cut at 90
+    chars is useless for diagnosing WHICH asset the Drive URL now serves.
+
+    Both fields are checked when both are present: a length check is not
+    subsumed by the hash (it is the cheap first-line diagnostic that
+    distinguishes 'truncated download' from 'replaced content'), and a hash
+    mismatch with matching length is precisely the swapped-asset case."""
+    expected_sha = str(shot.get("media_sha256") or "").strip().lower()
+    expected_bytes = shot.get("media_bytes")
+    if not expected_sha and expected_bytes is None:
+        return                       # no attestation — legacy shot, old path
+    data = local.read_bytes()
+    if expected_bytes is not None and len(data) != int(expected_bytes):
+        print(f"      shot {i} ATTESTATION MISMATCH: media_bytes expected "
+              f"{int(expected_bytes)}, got {len(data)} "
+              f"({shot.get('image_url') or shot.get('image')})", flush=True)
+        raise ValueError("media_bytes attestation mismatch")
+    if expected_sha:
+        import hashlib
+        actual = hashlib.sha256(data).hexdigest()
+        if actual != expected_sha:
+            print(f"      shot {i} ATTESTATION MISMATCH: media_sha256 "
+                  f"expected {expected_sha}, got {actual} "
+                  f"({shot.get('image_url') or shot.get('image')})",
+                  flush=True)
+            raise ValueError("media_sha256 attestation mismatch")
+
+
+def _shot_panels(pkg: dict, workdir: Path) -> dict[int, Path]:
+    """Materialise the verified per-shot images as 1080x960 panels.
+
+    The media contract has always required an image for every Reddit beat,
+    but this genre renderer never consumed them; it rendered only gameplay
+    while downstream QA was explicitly judging a top-image/bottom-gameplay
+    composite.  That made image generation expensive theatre and turned the
+    Reddit card into a false "blank top image" failure.
+
+    Added by ChatGPT on 2026-08-02; corrected by ChatGPT on 2026-08-03 so the
+    Data/Explainer mascot is never composited into the separate Trending
+    channel. Returning an empty dict is deliberately safe: the caller keeps
+    the prior full-screen-gameplay composition.
+
+    Keyed by shot index (not a plain list) so a skipped shot doesn't shift
+    every panel after it out of sync with its own narrated window — see
+    `_shot_windows`.
+    """
+    try:
+        from PIL import Image, ImageOps
+    except Exception:  # noqa: BLE001
+        return {}
+
+    out: dict[int, Path] = {}
+    cache = workdir / "shot_cache"
+    for i, shot in enumerate(pkg.get("shots") or []):
+        src = shot.get("image_url") or shot.get("image")
+        if not src:
+            continue
+        try:
+            local = base._fetch_image(str(src), cache)  # verified upstream
+            # Byte attestation BEFORE any decode (doctor finding
+            # 8b6949ab0573): ChatGPT-supplied shots carry media_sha256 /
+            # media_bytes beside a MUTABLE Drive URL, recorded when Phase B
+            # verified the asset. The renderer used to ignore both fields
+            # and ship whatever the URL serves today, so the rendered image
+            # was never proven to be the one that was verified. A mismatch
+            # raises into the except below — the same path an unreachable
+            # image takes — so the panel is UNRESOLVED under the existing
+            # media-completeness policy (no panel, gameplay shows through,
+            # `_visual_track` leaves the gap) rather than silently swapped.
+            # Shots without the fields (legacy / self-filled media) keep the
+            # old behavior: absent attestation is absent, not failing.
+            _verify_shot_attestation(shot, local, i)
+            with Image.open(local) as im:
+                panel = ImageOps.fit(im.convert("RGB"), (W, H // 2),
+                                     method=Image.Resampling.LANCZOS)
+
+            dest = workdir / f"shot_panel_{i:02d}.jpg"
+            panel.save(dest, "JPEG", quality=92)
+            out[i] = dest
+        except Exception as exc:  # noqa: BLE001
+            print(f"      shot panel {i} skipped: {type(exc).__name__}: "
+                  f"{str(exc)[:90]}", flush=True)
+    return out
+
+
+def _shot_windows(shots: list[dict], words: list, title_end: float,
+                  total: float) -> list[dict]:
+    """Resolve each shot's on-screen window from its narrated phrase.
+
+    Every shot in a reddit_story package already carries a `phrase` that
+    `shared/package_schema.py` verifies is a real substring of the script,
+    so this reuses `make_explainer_stacked.find_phrase_start` — the same
+    cursor-based phrase-to-timestamp resolver that renderer has used for
+    years — instead of guessing. A shot whose phrase can't be located in
+    the transcript gets a 2.5s floor after the previous shot rather than
+    collapsing that window to nothing (mirrors find_phrase_start's own
+    caller in make_explainer_stacked). Windows are strictly ordered and
+    non-overlapping by construction: each start is a floor for the next.
+    """
+    starts: list[float] = []
+    hint = title_end
+    for shot in shots:
+        phrase = (shot or {}).get("phrase") or ""
+        t = base.find_phrase_start(words, phrase, hint_after=hint) \
+            if phrase else None
+        if t is None:
+            t = hint + 2.5 if starts else hint
+        t = max(t, hint)
+        starts.append(t)
+        hint = t + 0.1
+    windows = []
+    for i, start in enumerate(starts):
+        end = starts[i + 1] if i + 1 < len(starts) else total
+        windows.append({"shot_index": i, "start": start,
+                        "end": max(end, start + 0.35)})
+    return windows
+
+
+def _visual_track(pkg: dict, words: list, title_end: float, total: float,
+                  workdir: Path) -> list[dict] | None:
+    """Build one illustrated clip per shot with a resolved image, each sized
+    to that shot's own phrase-aligned window (not an equal share of the
+    total). Shots whose image never resolved get NO clip: the background
+    gameplay shows through unobstructed for that window instead of a
+    neighboring panel being stretched to cover it.
+
+    On 2026-08-11 the showrunner blocked two reddit stories for exactly the
+    old failure mode: the SAME image held from 10.71s through the payoff
+    while the narration advanced through multiple unrelated beats, because
+    equal division and list-compaction (dropped shots shifting everyone
+    after them) both threw away the shot-to-phrase correspondence the
+    package already carries.
+    """
+    if total <= title_end + 0.1:
+        return None
+    panels = _shot_panels(pkg, workdir)
+    if not panels:
+        return None
+    shots = pkg.get("shots") or []
+    windows = _shot_windows(shots, words, title_end, total)
+    out: list[dict] = []
+    for w in windows:
+        panel = panels.get(w["shot_index"])
+        if panel is None:
+            continue
+        dur = w["end"] - w["start"]
+        clip = workdir / f"shot_clip_{w['shot_index']:02d}.mp4"
+        # A still panel must never stop moving, for as long as it is on
+        # screen. The old push was `min(zoom+0.0007,1.07)`: it reached the
+        # cap after (1.07-1.00)/0.0007 = 100 frames = 3.3 s and then held a
+        # DEAD STILL for the rest of the panel. On 2026-08-11 the showrunner
+        # blocked two reddit stories in those exact words — "the last ~11s
+        # freezes on one repeated clock still", "one dark wallet still
+        # frozen for the last ten seconds". Worse, even its moving phase was
+        # invisible: 0.0007 zoom/frame is ~0.4 px/frame at this width, which
+        # is sub-pixel once the temporal detector downscales, so the panel
+        # measured 0.0 effective fps for its WHOLE duration.
+        #
+        # Two changes, both measured through the reviewer's own detector on
+        # a 14 s panel:
+        #
+        #   old (cap at 3.3 s)              ->  0.0 fps, dup 1.00, 280-frame
+        #                                       frozen run
+        #   ramp across the panel + orbit   -> 13.4 fps, dup 0.44, max run 13
+        #
+        #   * the zoom is a function of the FRAME INDEX over this panel's own
+        #     length, so it spans exactly the time the panel is shown and can
+        #     never reach a cap early, whether the panel runs 2 s or 20 s;
+        #   * a slow orbital drift rides on top. Amplitude*coefficient/fps is
+        #     the per-frame displacement that actually decides whether the
+        #     gate can see motion — 22*6.0/30 = 4.4 px/frame here — and being
+        #     cyclic it stays constant no matter how long the panel lasts,
+        #     which a pure pan cannot do (a pan slow enough to last 20 s is
+        #     sub-pixel again). Under 1 Hz, so it reads as a gentle float.
+        _frames = max(1, int(round(dur * FPS)))
+        _run([
+            "ffmpeg", "-y", "-loglevel", "error", "-loop", "1",
+            "-t", f"{dur:.3f}", "-i", str(panel),
+            "-vf", (f"zoompan=z='min(1+0.10*on/{_frames},1.10)':"
+                    f"x='iw/2-(iw/zoom/2)+22*sin(6.0*on/{FPS})':"
+                    f"y='ih/2-(ih/zoom/2)+22*cos(5.2*on/{FPS})':"
+                    f"d=1:s={W}x{H // 2}:fps={FPS},format=yuv420p"),
+            "-an", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+            str(clip),
+        ])
+        out.append({"start": w["start"], "end": w["end"], "clip": clip})
+    return out or None
 
 
 def _run(cmd: list[str]) -> None:
@@ -130,7 +323,7 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,{CAP_FONT},{CAP_FONT_SIZE},{CAP_WHITE},&H000000FF,&H00101010,&H90000000,0,0,0,0,100,100,1,0,1,9,4,5,90,90,0,1
+Style: Cap,{CAP_FONT},{CAP_FONT_SIZE},{CAP_WHITE},&H000000FF,&H00101010,&H90000000,0,0,0,0,100,100,1,0,1,9,4,2,90,90,300,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -212,6 +405,7 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
             comments=str(cf["comments"]), avatar_seed=cf["avatar_seed"])
         caps = workdir / "caps.ass"
         _karaoke_ass(words, caps, title_end, total)
+        visual = _visual_track(pkg, words, title_end, total, workdir)
 
         print("[5/6] audio bed + SFX")
         music = workdir / "music.wav"
@@ -226,8 +420,29 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
         # Card slides up the screen a touch and fades as it hands off.
         fade_st = max(0.3, title_end - 0.4)
         card_w = 980
-        graph = (
-            f"[0:v]format=yuv420p[bg];"
+        bg_chain = "[0:v]format=yuv420p[bg0];"
+        if visual:
+            # Each shot's clip is its own input, shifted to its own
+            # phrase-aligned window and enabled only for that window — so a
+            # missing panel leaves a genuine gap (gameplay shows through)
+            # instead of a neighboring panel silently covering it.
+            label = "bg0"
+            for j, seg in enumerate(visual):
+                idx = 5 + j
+                shifted = f"top{j}"
+                nxt = f"ov{j}"
+                bg_chain += (
+                    f"[{idx}:v]setpts=PTS+{seg['start']:.3f}/TB[{shifted}];"
+                    f"[{label}][{shifted}]overlay=0:0:"
+                    f"enable='between(t,{seg['start']:.3f},{seg['end']:.3f})'"
+                    f"[{nxt}];")
+                label = nxt
+            bg_chain += (
+                f"[{label}]drawbox=x=0:y={H // 2 - 2}:w={W}:h=4:"
+                f"color=white@0.28:t=fill[bg];")
+        else:
+            bg_chain += "[bg0]null[bg];"
+        graph = bg_chain + (
             f"[3:v]scale={card_w}:-1,format=rgba,"
             f"fade=t=out:st={fade_st:.2f}:d=0.4:alpha=1,setpts=PTS-STARTPTS[card];"
             f"[bg][card]overlay=(W-w)/2:220:enable='lt(t,{title_end:.2f})'[bv];"
@@ -246,6 +461,9 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
                     "-i", "anullsrc=r=44100:cl=stereo"]  # 2 (silent)
         cmd += ["-loop", "1", "-t", f"{title_end:.2f}", "-i", str(card)]  # 3
         cmd += ["-i", str(ding)]        # 4
+        if visual:
+            for seg in visual:          # 5, 6, 7, ... one per shot clip
+                cmd += ["-i", str(seg["clip"])]
 
         a_graph = (
             "[1:a]volume=1.0,adelay=0|0[vo];"

@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-pickleball-vs-tennis",
+  "title": "Pickleball Is Catching Tennis. For Real.",
+  "hook": "America's fastest sport is closing in.",
+  "y_label": "US participants (millions)",
+  "duration": 13,
+  "source": "Source: Sports & Fitness Industry Association (SFIA) Topline Participation Reports, 2021-2026 editions; annual US participant counts, tennis and pickleball, ages 6+.",
+  "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Tennis",
+      "color": "#1F77B4",
+      "icon": "Tennis",
+      "values": [
+        21600000,
+        22500000,
+        23600000,
+        23800000,
+        25700000,
+        27300000
+      ]
+    },
+    {
+      "name": "Pickleball",
+      "color": "#f5c518",
+      "icon": "Pickleball",
+      "values": [
+        4200000,
+        4800000,
+        8900000,
+        13600000,
+        19800000,
+        24300000
+      ]
+    }
+  ],
+  "hashtags": [
+    "pickleball",
+    "tennis",
+    "sports",
+    "fastestgrowingsport",
+    "fitness",
+    "recreation",
+    "usta",
+    "sfia",
+    "sportsdata",
+    "trending",
+    "shorts",
+    "viral",
+    "fyp",
+    "activelifestyle",
+    "racketsports"
+  ],
+  "music_vibe": "cinematic"
+}

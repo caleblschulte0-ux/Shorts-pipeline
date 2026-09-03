@@ -1,0 +1,63 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260813",
+  "summary": "Thursday's shared/funnel pass found a trust gap precisely on the recovery path exercised by the August 12 Finalizer no-show: Phase B reconstructs media pointers from checkpoints but validates the original response object, so recovered pointers bypass the checkpoint contract despite comments and tests claiming the opposite. The same closure boundary treats malformed or empty DONE payloads as completion, and the last self-fill lane returns topic-media URLs without the image verification performed by the immediately preceding entity lane. Longer term, the exchange should enforce the versioned response envelope already named in the registry; today schema, date, status, and even the contract declaration are optional, leaving non-media sections to unrelated ad hoc consumers. The August 13 Finalizer did subsequently produce valid response and DONE commits, but these code paths remain live for the next partial or malformed run.",
+  "findings": [
+    {
+      "title": "Recovered media checkpoints bypass their contract validator",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "exchange/checkpoint-recovery",
+      "files": [
+        "shared/media_checkpoint.py",
+        "scripts/exchange_phase_b.py"
+      ],
+      "observation": "When response.json omits a request or is absent, Phase B reconstructs pointers with recovered_media and adds them to idx['media']. It then calls validate_response_media on the unchanged response object, not on the augmented index or a rebuilt response. The recovered entries therefore never reach checkpoint_problems, contract matching, deterministic-filename checks, sharing checks, dimension checks, or duplicate-file detection. pointer_from_checkpoint admits any object marked verified that has only request_id, drive.file_id, and image.sha256. Later, the fetch loop reads the unvalidated recovered pointer from idx and can pin it. This is the exact recovery mode made important by the August 12 critical finalizer-no-artifact alarm.",
+      "proposal": "Validate each checkpoint before converting it, using the requested date, active bundle identity, request id, prompt, and request kind, then validate a single merged response view so recovered and explicit pointers receive identical cross-entry checks. Refuse any recovered entry that fails and send the shot to the existing self-fill path. Replace the current source-order test with a behavioral test that plants a verified-looking checkpoint with the wrong schema, date, bundle, filename, sharing, and dimensions and proves Phase B refuses it.",
+      "evidence": "scripts/exchange_phase_b.py lines 480-502 add recovered pointers only to idx; lines 529-532 validate response instead; lines 657-681 later fetch and pin from idx. shared/media_checkpoint.py lines 1303-1339 make pointer_from_checkpoint require only status, request_id, file_id, and sha256, while checkpoint_problems at lines 464-530 defines the stronger trust contract. On main, a checkpoint with schema='wrong', date='20200101', bundle.identity='wrong', no folder/sharing/filename/dimensions, but status='verified', file_id and a 64-hex sha produces 13 checkpoint_problems yet recovered_media('20260813') returns it as fulfilled. tests/test_checkpoint_recovery.py only asserts that the recovery call appears textually before validation, so it passes without proving the merged object is what gets validated."
+    },
+    {
+      "title": "Malformed DONE payloads count as completed Finalizer runs",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "exchange/closure-marker",
+      "files": [
+        "shared/exchange_bundle.py",
+        "scripts/exchange_phase_b.py"
+      ],
+      "observation": "is_done returns true when DONE exists but is not JSON, and it also returns true for an empty object or an empty date. Phase B consequently enables the stricter DONE branch and satisfies --require-done even though the closure artifact does not prove its production date. A missing or malformed response is logged, but the function continues into recovery, self-fill, and rendering. This contradicts the Finalizer contract that DONE is a separate, verified JSON commit written only after response.json reads back successfully.",
+      "proposal": "Make is_done true only for a JSON object whose date exactly equals the requested YYYYMMDD date; all malformed, non-object, missing-date, and wrong-date shapes must be false with a diagnostic. Add table-driven tests for invalid JSON, arrays, null, {}, empty dates, wrong dates, and the one valid payload. Keep the no-DONE backstop as the explicit recovery path rather than laundering a bad marker into completion.",
+      "evidence": "shared/exchange_bundle.py lines 475-487 explicitly return True on JSON parse failure and accept a blank stamped date. scripts/exchange_phase_b.py lines 452-478 use is_done to decide checkpoint requirements and --require-done. Running is_done('20260813') against DONE contents 'not json', '{}', and '{\"date\":\"\"}' returns True for all three; only a different nonempty date returns False. tests/test_exchange.py test_done_marker_is_date_scoped covers missing, wrong, and correct dates but has no malformed or empty-payload cases."
+    },
+    {
+      "title": "Last-resort topic media bypasses the image URL trust boundary",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "funnel/self-fill-verification",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "funnel/entity_media.py",
+        "funnel/topic_media.py"
+      ],
+      "observation": "The second self-fill lane calls resolve_entity_media, which runs topic_media.search and accepts only a URL that passes url_is_image. If every candidate fails that verification, the third lane immediately calls topic_media.search again and returns the first nonempty URL without any check. The fallback can therefore select the exact dead, HTML, or non-image candidate the declared trust boundary just rejected, undermining the reason the verifier exists and creating another route to blank or unrelated shot media.",
+      "proposal": "Expose a verified-candidate helper from entity_media or make topic_media return typed candidates with verification state, then have every self-fill lane consume only verified image URLs. Avoid repeating the same source search after a verified resolver has exhausted it. Add a test where topic_media returns one candidate and url_is_image rejects it; self_fill must return None or continue to a genuinely different verified provider, never return the rejected string.",
+      "evidence": "scripts/exchange_phase_b.py lines 276-294 call entity_media.resolve_entity_media and then topic_media.search, returning the latter's first nonempty string. funnel/entity_media.py lines 313-354 wrap topic_media.search and require url_is_image at lines 342-349; lines 363-396 name that function as the trust boundary. funnel/topic_media.py lines 234-280 aggregate URLs without verifying them. With media_funnel.search mocked empty, resolve_entity_media mocked None, and topic_media.search returning ['unverified-candidate'], self_fill returns 'unverified-candidate'."
+    },
+    {
+      "title": "The versioned exchange response schema is not enforced",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/response-contract",
+      "files": [
+        "config/channel_registry.json",
+        "shared/exchange_bundle.py",
+        "shared/media_checkpoint.py",
+        "scripts/exchange_phase_b.py",
+        "scripts/ingest_authored.py"
+      ],
+      "observation": "The frozen registry contract names chatgpt-exchange-response/v1, and successful August 13 output declares schema, date, status, and contract. No shared validator requires those envelope fields. response_index accepts any dictionary containing media or packages; contract_problems explicitly tolerates a missing contract declaration; and Phase B then hands authored, explainer, curiosity, and punch-up sections to separate consumers with different local checks. A response can therefore omit its schema, date, status, and contract while still changing packages and scripts, even though only its media pointers receive centralized validation.",
+      "proposal": "Define one typed validator for the complete chatgpt-exchange-response/v1 envelope: exact schema and production date, explicit terminal status, required frozen-contract identity, allowed top-level keys, and structural validation for every response section before any consumer mutates state. Introduce it in report-only mode against captured historical responses, update the scheduled-worker contract to emit any newly required fields, then make Phase B refuse invalid sections while preserving valid independent sections and the existing no-response backstop. Retire the intentional silent-contract compatibility case once all live workers emit the current schema.",
+      "evidence": "config/channel_registry.json declares defaults.response_schema='chatgpt-exchange-response/v1'; the August 13 bundle freezes that response_schema and its response.json correctly declares schema/date/status/contract. shared/exchange_bundle.py lines 500-514 response_index checks none of them. shared/media_checkpoint.py lines 1023-1055 validate declared contract fields but explicitly return no problems when the declaration is absent, pinned by tests/test_media_checkpoint.py test_a_silent_response_is_tolerated. scripts/exchange_phase_b.py lines 480-568 centralize only media validation before scripts/ingest_authored.py separately consumes authored channel sections."
+    }
+  ]
+}

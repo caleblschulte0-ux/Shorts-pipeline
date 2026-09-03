@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260821",
+  "bundle": {
+    "identity": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b",
+    "path": "exchange/bundles/20260821/bundle.json"
+  },
+  "request_id": "reddit-voluntary-overtime-labor-board-s7-94bb214c2003",
+  "safe_request_id": "reddit-voluntary-overtime-labor-board-s7-94bb214c2003",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3839dc42de4df6c48c6070ed47d5a1dcca72bec8e40f71f3954aa12dd93c37f7",
+  "prompt_used": "An editorial illustration for a short-form video: paycheck stack desk. It accompanies the narration: \"cut checks to every person on that weekend list\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+    "filename": "20260821__reddit-voluntary-overtime-labor-board-s7-94bb214c2003.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2c0e37e370cd56f7502543b8a22f70dfb1cf49058ae1a67713580fd3712b5566",
+    "bytes": 1281155,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-21T11:18:25.552Z",
+  "error": null,
+  "retryable": false
+}

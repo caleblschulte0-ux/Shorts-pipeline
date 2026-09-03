@@ -1708,9 +1708,23 @@ def analyze_claim(claim: str) -> dict:
             ("rising" if "increase" in rels else "stable_high")}
 
 
+# Acts whose pose physically GRIPS the anchored chart object — hands on the
+# bar tip, hauling the line, buried under the stack. The 2026-08-24 morning
+# blocks separated these from the STANDING acts empirically: every "mascot is
+# a sticker parked on top of the bars/data" verdict traced to an act aligned
+# (0.5, 0.04) — feet planted on the datum, body hovering above the chart —
+# while the one bit the judge praised twice ("arms on the Slovenia bar tip",
+# the 95-scoring preview) was a grip act. Standing acts stay available to
+# scene/mechanic beats, which stage their own floor; a BAKED chart anchor
+# requires visible contact or it reads as decoration at any tempo.
+ANCHOR_GRIP_ACTS = frozenset({
+    "drag_line", "pull_down_win", "shoved_bar", "hoist_stack", "block_wall",
+    "race_sprint", "catch_fall", "get_buried", "compressed", "stretched"})
+
+
 def performance_for(kind: str, claim: str = "", target: str = "",
                     phase: str = "action", used_families=None,
-                    seed: int = 0) -> dict:
+                    seed: int = 0, require_contact: bool = False) -> dict:
     """Select + parameterise a VERIFIED performance from the story's actual
     CLAIM — its relationship and direction — never merely the chart type.
     ``used_families`` (families already performed in this story) drives
@@ -1730,6 +1744,8 @@ def performance_for(kind: str, claim: str = "", target: str = "",
     for name, meta in VERIFIED_PERFORMANCES.items():
         if shape not in meta.get("supported_shapes", ()):
             continue
+        if require_contact and name not in ANCHOR_GRIP_ACTS:
+            continue          # baked anchors demand a grip, not a perch
         overlap = len(set(meta.get("supported_relationships", ())) &
                       set(intent["relationships"]))
         # direction-specific hard preferences

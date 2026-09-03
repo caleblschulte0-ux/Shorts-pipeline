@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260813",
+  "bundle": {
+    "identity": "ddf62ebafc579486ee36fd17e62ddd0bd53376f86c95c11cad4c203efd600820",
+    "path": "exchange/bundles/20260813/bundle.json"
+  },
+  "request_id": "reddit-dont-work-here-s0-a3c7ca5f5575",
+  "safe_request_id": "reddit-dont-work-here-s0-a3c7ca5f5575",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9e26be5d2bc3f2db7680299eb0ca6c3c4c1675e95bb0db52502eba0e3c157e0b",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle. It accompanies the narration: \"the paint aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+    "filename": "20260813__reddit-dont-work-here-s0-a3c7ca5f5575.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1BRturVkq-tXB7-CaUNgY5z2w8S4s7dC7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3e77bc1c92722294c241bc056688331c6b13bda2079f36dcc51d5cc8fe4615bf",
+    "bytes": 1546468,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-13T11:15:50.804Z",
+  "error": null,
+  "retryable": false
+}

@@ -14,7 +14,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write   # needed for `gh workflow run` to dispatch daily.yml
 
 jobs:
   sanity:
@@ -50,11 +49,26 @@ jobs:
             python3 -m py_compile "$f" || { echo "::error file=$f::does not compile"; exit 1; }
           done
           # 3. No file over 1MB, no committed media/binaries (storage rule).
+          #    Compare against BASE_SHA, not just the file's final size: a
+          #    file that was ALREADY over 1MB before this PR (an
+          #    accumulating text asset like data_learning/niche.config.json,
+          #    253 stories and growing by design) is not this PR's doing,
+          #    and flagging it blocks EVERY future PR that touches it —
+          #    including the routine's own daily explainer authoring. Only
+          #    fail on a file that is brand-new over 1MB, or that grew by
+          #    more than 300KB in this one diff — the shape of a dropped-in
+          #    binary/media blob, not incremental content growth. Found
+          #    2026-08-21 when the Routine's own daily PR tripped this on a
+          #    niche.config.json that had organically crossed 1MB weeks
+          #    earlier with nobody noticing because no PR since had failed
+          #    loudly enough to get read.
           for f in $changed; do
             [ -f "$f" ] || continue
             size=$(stat -c%s "$f")
-            if [ "$size" -gt 1048576 ]; then
-              echo "::error file=$f::${size} bytes — files >1MB never belong in git (see docs/STORAGE_AUDIT.md)"; fail=1
+            base_size=$(git cat-file -s "$BASE_SHA:$f" 2>/dev/null || echo 0)
+            growth=$((size - base_size))
+            if [ "$size" -gt 1048576 ] && { [ "$base_size" -eq 0 ] || [ "$growth" -gt 307200 ]; }; then
+              echo "::error file=$f::${size} bytes, grew ${growth} bytes in this diff — large new content or binary; see docs/STORAGE_AUDIT.md"; fail=1
             fi
             case "$f" in
               *.mp4|*.mov|*.webm|*.mkv|*.wav|*.mp3|*.onnx|*.pt|*.bin)
@@ -71,8 +85,8 @@ jobs:
           #     queue thresholds. This fails if a second copy of any of that
           #     grows back — a constant, a prompt, a doc table. The 2026-07-31
           #     graph-led ruling landed in ONE of five places that stated the
-          #     mix, and for weeks the reserve bank banked a retired format
-          #     while every check stayed green.
+          #     mix, and for weeks the takeover kept asking for a retired
+          #     format while every check stayed green.
           python3 -m shared.channel_registry --validate || {
             echo "::error::config/channel_registry.json is invalid"; fail=1; }
           python3 -m unittest tests.test_no_second_source_of_truth -q || {
@@ -104,10 +118,25 @@ jobs:
           # numpy: data_learning/scenes.py (scripts/test_scene_dispatch.py)
           # ffmpeg: the lookmatch engine self-test refuses to run without it,
           #         which is correct — it measures real video.
-          pip install -q pillow pyyaml requests numpy
+          # matplotlib: nine tests/ files import it at module level (chart
+          #         compositors, fit_title, hook charts). They had been
+          #         ERRORING in CI on every run since they were written —
+          #         invisibly, because the suite's exit code died in the
+          #         tail pipe this gate used to run under (03ed6ae9f195).
+          #         The first run with pipefail surfaced all 11 errors.
+          pip install -q pillow pyyaml requests numpy matplotlib
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      # PIPEFAIL OR THE GATE IS DECORATION (doctor 03ed6ae9f195, 2026-08-24).
+      # GitHub's default `run:` shell on Linux is `bash -e {0}` — NO pipefail —
+      # so `unittest | tail` returned tail's zero and a red suite still
+      # squash-merged. The doctor reproduced it: a producer exiting 7 through
+      # this exact pipe shape yields step status 0. tests/test_automerge_gate.py
+      # now executes a failing producer through this wrapper and requires the
+      # nonzero to survive the pipe.
       - name: Full unit suite
-        run: python -m unittest discover -s tests -v 2>&1 | tail -40
+        run: |
+          set -o pipefail
+          python -m unittest discover -s tests -v 2>&1 | tail -40
       - name: Split-worker dry run (offline, no Drive, no ChatGPT)
         run: python scripts/exchange_dry_run.py
       - name: Channel-contract acceptance (registry propagation)
@@ -151,29 +180,25 @@ jobs:
             --repo "${{ github.repository }}" \
             --squash --delete-branch
 
-      # If the PR touched today's package directory, manually kick off
-      # daily.yml. We can't rely on the workflow_run cascade or the
-      # push-paths trigger — both are dead-ended by GitHub's "workflows
-      # can't trigger other workflows from GITHUB_TOKEN" anti-recursion
-      # rule. workflow_dispatch is the explicitly-allowed exception:
-      # it's the one event GITHUB_TOKEN CAN fire.
-      - name: Trigger daily.yml if the PR added today's packages
-        if: success()
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # List files the PR changed.
-          files=$(gh pr view "${{ github.event.pull_request.number }}" \
-            --repo "${{ github.repository }}" \
-            --json files --jq '.files[].path')
-          echo "Changed files:"
-          printf '  %s\n' $files
-          today=$(date -u +%Y%m%d)
-          if echo "$files" | grep -q "^state/trending_packages/${today}/"; then
-            echo "Today's packages were touched — firing daily.yml."
-            gh workflow run daily.yml \
-              --repo "${{ github.repository }}" \
-              --ref main
-          else
-            echo "No package changes for today (${today}); skipping daily dispatch."
-          fi
+      # daily.yml is NEVER dispatched from here (doctor finding
+      # e524811347c4, 2026-08-23). Before the 2026-07-30 exchange chain,
+      # this job used to dispatch daily.yml directly (`gh workflow run`)
+      # whenever the PR touched today's trending_packages/ — the note
+      # above explained why (GITHUB_TOKEN can't fire workflow_run,
+      # workflow_dispatch is the allowed exception). That step survived
+      # the exchange migration by accident: exchange_phase_a.yml's own
+      # workflow_run trigger on "Auto-merge claude PRs" already covers
+      # "kick off the chain after a package merge", and daily.yml itself
+      # now only renders on Phase B completing successfully (or an
+      # explicit human override). Leaving the old step in place meant a
+      # package merge could reach daily.yml via workflow_dispatch — which
+      # is NOT gated on Phase B — hours before ChatGPT's media/editorial
+      # pass ever ran. That is exactly what happened on 2026-08-21: the
+      # package merge landed at 09:31:56 UTC, Daily rendered by 09:48:07
+      # UTC, and the exchange (media worker 11:02:13, finalizer 12:08:53,
+      # Phase B applied 14:06:59) did not finish until hours later —
+      # trending shipped 3/6 with both Reddit packages blocked for
+      # inadequate media, media the exchange had by then fully supplied.
+      # See CLAUDE.md's EXCHANGE PIPELINE section and
+      # docs/EXCHANGE_PIPELINE.md for the intended order:
+      # Phase A -> ChatGPT -> DONE -> Phase B -> daily.yml.

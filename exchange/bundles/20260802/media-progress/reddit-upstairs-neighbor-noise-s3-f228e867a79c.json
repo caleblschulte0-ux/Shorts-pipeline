@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260802",
+  "bundle": {
+    "identity": "c0ca71d3d3ede556319b1cb19ba0c3327a4a0a0a8532f18b6c45eb71576b4291",
+    "path": "exchange/bundles/20260802/bundle.json"
+  },
+  "request_kind": "bundle_request",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-02T12:16:16.120Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "reddit-upstairs-neighbor-noise-s3-f228e867a79c",
+  "safe_request_id": "reddit-upstairs-neighbor-noise-s3-f228e867a79c",
+  "prompt_sha256": "0599501ac4f3d9dfed35a5fa017a46c2ee5981b3dfb3ab58cc509076c856a5b5",
+  "prompt_used": "An editorial illustration for a short-form video: person startled awake. It accompanies the narration: \"waking him up, over and over\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+    "filename": "20260802__reddit-upstairs-neighbor-noise-s3-f228e867a79c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1PrdOVFFuTu1D6EZVAYTVMsxeOWUl0uvx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f74df14bbff913585407bcd3f4329eef507bf738cae5ab279266b56d46dd0eec",
+    "bytes": 2079135,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  }
+}

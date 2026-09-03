@@ -151,6 +151,18 @@ def _subject(beat: dict) -> str:
 
 
 NOVELTY_MAX_STALE = 5.0     # HARD RULE: show something new at least this often
+
+
+class NoveltyProbeError(RuntimeError):
+    """`novelty_check` could NOT evaluate the render — which is a different
+    thing from finding it clean. The old code caught the ffprobe failure and
+    returned [] ("no stale spans"), so a missing/broken probe silently
+    satisfied DIRECTOR.md's gate 0 — the HARD novelty rule — for as long as
+    the outage lasted (doctor finding cf263a770061, 2026-08-08). A gate that
+    cannot run must HOLD the film, not bless it; raising a typed error is
+    what lets every caller tell the two apart (data_learning/judges.py
+    already converts any exception here into pass=None + an error string,
+    which is exactly the honest 'could not evaluate' verdict)."""
 NOVELTY_PIX_DELTA = 22.0    # a 48x27 gray pixel must move this much to count "new"
 # < this fraction of the frame changed in 5s = HELD. A genuinely boring hold (a
 # frozen card / a chart that stopped) sits at 0-2%; a calm scene that keeps
@@ -187,7 +199,11 @@ def novelty_check(render: Path, max_stale: float = NOVELTY_MAX_STALE):
     Unlike a whole-frame MEAN (which a bold graphic on negative space fools by
     averaging out), a changed-fraction count credits a real new element without
     blessing in-place motion. Returns the [start,end] spans held longer than the
-    limit; any span means the video sat on one idea and must cut / reveal."""
+    limit; any span means the video sat on one idea and must cut / reveal.
+
+    Raises `NoveltyProbeError` when the render cannot be MEASURED at all —
+    a probe failure is never reported as a clean video (see the class
+    docstring for the 2026-08-08 outage-blesses-everything bug)."""
     import subprocess
     import numpy as np
     try:
@@ -195,12 +211,29 @@ def novelty_check(render: Path, max_stale: float = NOVELTY_MAX_STALE):
             ["ffprobe", "-v", "error", "-show_entries", "format=duration",
              "-of", "csv=p=0", str(render)], capture_output=True,
             text=True).stdout.strip())
-    except Exception:
-        return []
+        if dur <= 0:
+            raise ValueError(f"ffprobe read duration {dur!r}")
+    except Exception as e:  # noqa: BLE001 — every probe failure fails CLOSED
+        raise NoveltyProbeError(
+            f"could not read the render's duration ({type(e).__name__}: "
+            f"{str(e)[:120]}) — the NOVELTY gate cannot run, which is not "
+            f"the same as passing") from e
     fps = 2.0
     ts = [round(i / fps, 2) for i in range(int(dur * fps))]
     sigs = [_frame_sig(render, t) for t in ts]
     lag = int(max_stale * fps)
+    # ffprobe answering while ffmpeg cannot decode a single frame is the
+    # SAME outage in a different coat: every signature comes back None, the
+    # loop below evaluates nothing, and the old code returned [] = clean. A
+    # video long enough to contain a violation (more samples than the lag)
+    # that yields ZERO comparable frame pairs was not measured — say so.
+    if len(ts) > lag and not any(
+            sigs[i] is not None and sigs[i - lag] is not None
+            for i in range(lag, len(sigs))):
+        raise NoveltyProbeError(
+            f"no frame pair could be extracted from {render} "
+            f"({len(ts)} samples, all unreadable) — the NOVELTY gate "
+            f"cannot run")
     stale, run0 = [], None
     for i in range(len(sigs)):
         if i < lag or sigs[i] is None or sigs[i - lag] is None:
@@ -511,6 +544,10 @@ def _hook_gate(beats: list, beatmap: Path, render: Path):
 # Codes match repair_planner.CATALOG so each one becomes a repair task.
 _DIR_FINDINGS: list[dict] = []
 _LAST_STALE: list = []
+# Set when gate 0 (NOVELTY) could not RUN — a probe outage, not a verdict.
+# Persisted into director_findings.json so the outage is visible in the
+# report instead of masquerading as a clean film (doctor cf263a770061).
+_NOVELTY_ERROR: str = ""
 
 
 def _finding(code, target, complaint, severity="major", fix=""):
@@ -540,6 +577,16 @@ def _collect_findings(hv, interest, dull, excess) -> list[dict]:
             fix=("raise the card's motion, keep the graphic"
                  if d.get("kind") == "animate" else
                  "escalate to motion of the beat's subject")))
+    if _NOVELTY_ERROR:
+        # gate 0 did not run. TECHNICAL is the catalog's infra bucket
+        # (repair_planner.CATALOG) — this is a tooling outage to fix, not a
+        # beat to repair, and it BLOCKS because an unmeasured film is unproven.
+        out.append(_finding(
+            "TECHNICAL", "film",
+            f"NOVELTY gate 0 could not run: {_NOVELTY_ERROR}",
+            severity="blocker",
+            fix="fix the probe (ffprobe/ffmpeg or the render file) — the "
+                "film is held until gate 0 can actually measure it"))
     for span in _LAST_STALE or []:
         try:
             a, b = float(span[0]), float(span[1])
@@ -739,7 +786,26 @@ def _direct(story_path: Path, out: Path, rounds: int = 3) -> int:
         # THE HARD PACING RULE — something new every 5s, or it does not ship. This
         # is a BLOCKER (motion is not novelty): a held card or a slow single-idea
         # reveal fails here even if it 'moves'.
-        stale = novelty_check(out)
+        #
+        # FAIL CLOSED when the gate cannot RUN. Until 2026-08-24 a probe
+        # failure here came back as [] and read as "no stale spans" — a
+        # broken ffprobe was silently satisfying the one gate DIRECTOR.md
+        # calls a hard rule (doctor cf263a770061). An unmeasured film is an
+        # UNPROVEN film: hold it, persist the outage in the report, and let
+        # a human fix the tooling — never "fix" this by catching the error.
+        try:
+            stale = novelty_check(out)
+            globals()["_NOVELTY_ERROR"] = ""
+        except NoveltyProbeError as e:
+            globals()["_NOVELTY_ERROR"] = str(e)
+            globals()["_LAST_STALE"] = []
+            _record_memory(story_path.stem, work, rnd, proc.stderr or "")
+            _gate_report(f"REJECTED — NOVELTY (gate 0) could not be "
+                         f"evaluated: {e}. A gate that cannot run holds the "
+                         "film; a probe outage is not a clean video.",
+                         hv, interest, dull, escalated, beats,
+                         excess=excess, beatmap=beatmap)
+            return 5
         globals()["_LAST_STALE"] = stale
         card_frac, cards_over = composition_budget(beats, beatmap)
         print(f"[ndb] round {rnd}: dead={interest.get('dead_fraction')} "

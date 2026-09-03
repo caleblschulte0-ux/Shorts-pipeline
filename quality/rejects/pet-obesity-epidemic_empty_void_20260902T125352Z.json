@@ -1,0 +1,37 @@
+{
+ "slug": "pet-obesity-epidemic",
+ "ts": "20260902T125352Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start (t=25.0s) is a near-black frame whose entire upper half below the title is empty, with two thumbnail-sized dots at mid-screen; the void persists through seg4:start/seg4:end where the bottom third under the labels is dead space.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg3:start the circles are tiny dots on a black field, the top half of the frame is empty, and the two category labels collide \u2014 'Lean-fed dogs' overlaps 'Overweight-prone (control-fed) do' which is clipped off the right edge. The stale subtitle 'LEAN-FED DOGS TOPS THE LIST' and a clipped source line are the only other content. Even at seg3:end the two circles occupy roughly the middle fifth of a 9:16 frame.",
+  "root_cause": "The lifespan comparison is laid out as a small centered two-bubble scatter with default label placement: circles are scaled to a max radius far below the available canvas, the group is vertically centered instead of filling the frame, and the long category label is neither wrapped nor width-clamped, so it overruns its neighbor and the safe area.",
+  "repair_goal": "Rescale the two lifespan bubbles to fill the vertical frame (13 nearly full-width of its column) and animate them growing in from zero so the 13 vs 11.2 gap is a physical size difference, move the group up to occupy the empty upper half, and wrap/shorten the category labels to two lines inside the safe area so they no longer overlap or clip."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "stack",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "stack",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  }
+ ]
+}

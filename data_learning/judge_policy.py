@@ -24,7 +24,9 @@ policy is the same law for every film.
 from __future__ import annotations
 
 import json
+import math
 import os
+import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
@@ -62,14 +64,121 @@ _NUMERIC = {"repair_floor", "internal_floor", "owner_floor",
             "development_min_overall", "owner_review_min_overall",
             "min_personality", "max_unresolved_major", "max_attempts"}
 
+# The 0-10 professional-quality scale every score-shaped field lives on.
+_SCORE_FIELDS = ("repair_floor", "internal_floor", "owner_floor",
+                 "development_min_overall", "owner_review_min_overall",
+                 "min_personality")
+_INT_FIELDS = ("max_unresolved_major", "max_attempts")
+
+#: SAFETY FLOORS — the minimums this module's own docstring makes binding
+#: ("the professional-quality score is REQUIRED", "personality still has a
+#: floor"). An override may RAISE a floor (stricter is always allowed, the
+#: same rule the retro triage applies) but may never push one below the
+#: default: a config that sets development_min_overall to 0 is the exact
+#: "advance a 3.0/10 film" failure this module exists to prevent, arriving
+#: through a side door.
+_SAFETY_FLOORS = ("development_min_overall", "owner_review_min_overall",
+                  "min_personality")
+
 # Severities, most serious first. `blocker` can never be averaged away.
 SEVERITY_ORDER = ("blocker", "major", "minor", "info")
 
 
+def _is_num(v) -> bool:
+    return (isinstance(v, (int, float)) and not isinstance(v, bool)
+            and math.isfinite(float(v)))
+
+
+def _problems(pol: dict) -> list[str]:
+    """Every reason a candidate policy is NOT a lawful judge policy.
+
+    Applied to the WHOLE candidate after each override is overlaid, never to
+    fields one at a time — a policy is a system of related thresholds, and a
+    field can be individually plausible while breaking the system (an
+    internal_floor below the repair_floor inverts the bands; a lowered
+    development_min_overall removes the law's whole point). Empty list =
+    lawful."""
+    probs: list[str] = []
+    for k in _SCORE_FIELDS:
+        v = pol.get(k)
+        if not _is_num(v) or not (0.0 <= float(v) <= 10.0):
+            probs.append(f"{k} must be a finite number in [0, 10], "
+                         f"got {v!r}")
+    for k in _INT_FIELDS:
+        v = pol.get(k)
+        if not _is_num(v) or float(v) != int(float(v)):
+            probs.append(f"{k} must be an integer, got {v!r}")
+    if not probs:
+        # Cross-field checks only make sense once every field is a number.
+        if not (pol["repair_floor"] <= pol["internal_floor"]
+                <= pol["owner_floor"]):
+            probs.append("score bands must be monotonic: repair_floor <= "
+                         "internal_floor <= owner_floor "
+                         f"(got {pol['repair_floor']!r} / "
+                         f"{pol['internal_floor']!r} / "
+                         f"{pol['owner_floor']!r})")
+        if pol["development_min_overall"] > pol["owner_review_min_overall"]:
+            probs.append("development_min_overall may not exceed "
+                         "owner_review_min_overall")
+        if int(pol["max_attempts"]) < 1:
+            probs.append(f"max_attempts must be >= 1, "
+                         f"got {pol['max_attempts']!r}")
+        if int(pol["max_unresolved_major"]) < 0:
+            probs.append(f"max_unresolved_major must be >= 0, "
+                         f"got {pol['max_unresolved_major']!r}")
+        # SAFETY INVARIANTS — not tunables. Raising a floor is a stricter
+        # law and always lawful; lowering one below the default is
+        # bar-removal and is refused regardless of how it arrived.
+        for k in _SAFETY_FLOORS:
+            if float(pol[k]) < float(DEFAULT_POLICY[k]):
+                probs.append(f"{k}={pol[k]!r} lowers the safety floor "
+                             f"below the default {DEFAULT_POLICY[k]!r} — "
+                             "floors may only be raised")
+        # "Autonomous publishing stays off here regardless of score; only
+        # the separately approved launch policy may permit it" (module
+        # docstring). That launch policy hands `decide()` its own policy
+        # dict — it does not flow through load(), so nothing load() reads
+        # may ever flip this on.
+        if bool(pol.get("autonomous_publish")):
+            probs.append("autonomous_publish cannot be enabled by config or "
+                         "environment — only the separately approved launch "
+                         "policy may permit it")
+    rj = pol.get("required_judges")
+    if (not isinstance(rj, list) or not rj
+            or not all(isinstance(x, str) and x.strip() for x in rj)):
+        probs.append(f"required_judges must be a nonempty list of judge "
+                     f"names, got {rj!r}")
+    arl = pol.get("auto_reject_labels")
+    if not isinstance(arl, list) or not all(isinstance(x, str) for x in arl):
+        probs.append(f"auto_reject_labels must be a list of strings, "
+                     f"got {arl!r}")
+    return probs
+
+
+def _refuse(source: str, probs: list[str]) -> None:
+    """A refused override must be LOUD. Silently keeping defaults is correct
+    for the law but wrong for the operator, who thinks their override took —
+    the exact green-but-not-doing-what-you-think shape this repo keeps
+    re-finding. Printed to stderr so it survives into CI logs."""
+    for p in probs:
+        print(f"[judge_policy] REFUSED {source}: {p} — keeping the default "
+              f"policy for this override", file=sys.stderr)
+
+
 def load(config_path: Path | None = None) -> dict:
     """The active policy: defaults, overlaid by a ``judge_policy`` block in the
-    channel config, overlaid by ``CURIOSITY_JUDGE_*`` env vars. A malformed
-    override is ignored rather than allowed to silently loosen the law."""
+    channel config, overlaid by ``CURIOSITY_JUDGE_*`` env vars.
+
+    Overrides are VALIDATED BEFORE USE (doctor finding 9fe73cb62e3f — a
+    nonnumeric max_attempts used to survive this function and crash the
+    caller mid-run, and a config could zero the development floor). The
+    config block is accepted or refused ATOMICALLY: one invalid field
+    refuses the whole block, loudly, and the defaults stand — combining
+    "the fields that happened to parse" would ship a policy nobody wrote.
+    Each env var is its own override and is validated the same way against
+    the policy it would produce. The safety invariants (`_SAFETY_FLOORS`
+    may only be raised; ``autonomous_publish`` stays off) hold against
+    config and environment alike."""
     pol = dict(DEFAULT_POLICY)
     pol["auto_reject_labels"] = list(DEFAULT_POLICY["auto_reject_labels"])
     pol["required_judges"] = list(DEFAULT_POLICY["required_judges"])
@@ -77,27 +186,44 @@ def load(config_path: Path | None = None) -> dict:
         try:
             block = (json.loads(Path(config_path).read_text())
                      .get("judge_policy") or {})
-            for k, v in block.items():
-                if k in pol:
-                    pol[k] = v
         except Exception:  # noqa: BLE001 — an unreadable config never loosens policy
-            pass
+            block = {}
+        if block:
+            candidate = dict(pol)
+            for k, v in block.items():
+                if k in candidate:
+                    candidate[k] = v
+            probs = _problems(candidate)
+            if probs:
+                _refuse(f"judge_policy block in {config_path}", probs)
+            else:
+                pol = candidate
     for k in list(pol):
         raw = os.environ.get(_ENV_PREFIX + k.upper())
         if raw is None or raw == "":
             continue
+        candidate = dict(pol)
         try:
             if k in _NUMERIC:
-                pol[k] = float(raw)
+                candidate[k] = float(raw)
             elif isinstance(pol[k], bool):
-                pol[k] = raw.strip().lower() in ("1", "true", "yes", "on")
+                candidate[k] = raw.strip().lower() in ("1", "true", "yes",
+                                                       "on")
             elif isinstance(pol[k], list):
-                pol[k] = [x.strip() for x in raw.split(",") if x.strip()]
+                candidate[k] = [x.strip() for x in raw.split(",")
+                                if x.strip()]
             else:
-                pol[k] = raw
+                candidate[k] = raw
         except (TypeError, ValueError):
+            _refuse(f"env {_ENV_PREFIX + k.upper()}",
+                    [f"{k}={raw!r} is not parseable"])
             continue
-    for k in ("max_unresolved_major", "max_attempts"):
+        probs = _problems(candidate)
+        if probs:
+            _refuse(f"env {_ENV_PREFIX + k.upper()}", probs)
+            continue
+        pol = candidate
+    for k in _INT_FIELDS:
         pol[k] = int(pol[k])
     return pol
 

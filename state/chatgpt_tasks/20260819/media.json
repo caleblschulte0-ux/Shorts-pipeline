@@ -1,0 +1,19 @@
+{
+ "checked_at": "2026-08-20T15:47:59+00:00",
+ "date": "20260819",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260819/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [],
+ "headline": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the media task left nothing in the repo for 20260819 (the bundle asks for 1 image(s)).",
+ "ok": false,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "FAILED_NO_ARTIFACT",
+ "task": "media",
+ "why_required": "the bundle asks for 1 image(s)"
+}

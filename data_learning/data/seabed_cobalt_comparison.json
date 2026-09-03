@@ -1,0 +1,19 @@
+{
+  "key": "seabed_cobalt_comparison",
+  "title": "Cobalt: seabed nodules vs all land-based reserves (million tonnes)",
+  "unit": "million tonnes",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Clarion-Clipperton Zone resource assessment vs global land reserves",
+    "publisher": "International Seabed Authority (seabed figure) / U.S. Geological Survey Mineral Commodity Summaries (land figure)",
+    "url": "https://pubs.usgs.gov/periodicals/mcs2024/mcs2024-cobalt.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "ISA-cited figures put the Clarion-Clipperton Zone's polymetallic nodules at roughly 44 million tonnes of contained cobalt (also ~270 million tonnes of nickel and ~6 billion tonnes of manganese) -- more of each metal than is known on land. USGS's 2024 Mineral Commodity Summary put total global land-based cobalt reserves at about 11 million tonnes, over half of it in the Democratic Republic of Congo.",
+  "points": [
+    {"label": "Seabed nodules (Clarion-Clipperton Zone)", "value": 44},
+    {"label": "All land-based reserves combined", "value": 11}
+  ]
+}

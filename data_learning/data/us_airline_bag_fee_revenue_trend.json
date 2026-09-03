@@ -1,0 +1,48 @@
+{
+  "key": "us_airline_bag_fee_revenue_trend",
+  "title": "US airline checked-bag fee revenue",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2007-2023",
+  "source": {
+    "name": "Schedule P-1.2, Air Carrier Financial Reports",
+    "publisher": "Bureau of Transportation Statistics (BTS), U.S. DOT",
+    "url": "https://www.transportation.gov/briefing-room/us-department-transportation-proposes-rule-require-airlines-report-more-data-fees",
+    "officiality": "official",
+    "access_date": "2026-08-20"
+  },
+  "notes": "Checked-bag fees were introduced by US airlines starting in 2007-2008. BTS-reported bag fee revenue: $0.464B (2007), $3.4B (2010), $5.76B (2019, pre-pandemic record), $5.3B (2021), $6.7B (2022), $7.1B (2023).",
+  "insight_type": "trend",
+  "points": [
+    {
+      "label": "2007",
+      "value": 0.464,
+      "period": "2007"
+    },
+    {
+      "label": "2010",
+      "value": 3.4,
+      "period": "2010"
+    },
+    {
+      "label": "2019",
+      "value": 5.76,
+      "period": "2019"
+    },
+    {
+      "label": "2021",
+      "value": 5.3,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 6.7,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 7.1,
+      "period": "2023"
+    }
+  ]
+}

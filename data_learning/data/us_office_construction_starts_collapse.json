@@ -1,0 +1,19 @@
+{
+  "key": "us_office_construction_starts_collapse",
+  "title": "New US office construction starts (million square feet)",
+  "unit": "million square feet",
+  "geography": "United States",
+  "time_coverage": "2019 vs 2024",
+  "source": {
+    "name": "National Office Report",
+    "publisher": "Yardi Matrix",
+    "url": "https://commercialobserver.com/2025/01/u-s-office-construction-10-year-low-2024-report/",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Yardi Matrix tracks ground-broken office construction starts for buildings 25,000+ sq ft. 2024's 9.8 million sq ft of starts was the lowest in at least a decade, down from 83 million sq ft in 2019 -- even as vacancy kept climbing.",
+  "points": [
+    {"label": "2019 construction starts", "value": 83},
+    {"label": "2024 construction starts", "value": 9.8}
+  ]
+}

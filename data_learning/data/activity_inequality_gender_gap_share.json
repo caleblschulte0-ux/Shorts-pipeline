@@ -1,0 +1,19 @@
+{
+  "key": "activity_inequality_gender_gap_share",
+  "title": "Share of worldwide activity inequality explained by the gender step gap",
+  "unit": "percent",
+  "geography": "World (111 countries sampled)",
+  "time_coverage": "2017",
+  "source": {
+    "name": "Large-scale physical activity data reveal worldwide activity inequality (Althoff et al.)",
+    "publisher": "Nature (Stanford University study, journal vol. 547)",
+    "url": "https://www.nature.com/articles/nature23018",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "The study found women walk disproportionately fewer steps than men in nearly every country studied, and this gender-activity gap is widest in the highest-obesity countries. The gender-activity gap statistically explains 43% of the observed difference in activity inequality between countries; the remaining 57% reflects other factors.",
+  "points": [
+    {"label": "Explained by the gender step gap", "value": 43},
+    {"label": "Other factors", "value": 57}
+  ]
+}

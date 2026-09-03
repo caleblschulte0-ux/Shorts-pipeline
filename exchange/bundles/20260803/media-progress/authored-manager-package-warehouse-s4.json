@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260803",
+  "bundle": {
+    "identity": "takeover-e57b801221808ba1210bc61a19a1b51bf88679ea",
+    "path": "exchange/bundles/20260803/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-03T11:34:00Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-manager-package-warehouse-s4",
+  "safe_request_id": "authored-manager-package-warehouse-s4",
+  "prompt_sha256": "4c812aecb60ed251599daeed543a4b5f2661c54150f61966c834ffd67347d0e3",
+  "prompt_used": "manager trapped behind stacks of packages",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA",
+    "filename": "20260803__authored-manager-package-warehouse-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "18126dfbc763db1e1960b4acb464a6d81105d0404d38c805132cc9324a9a5587",
+    "bytes": 1839563,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "manager-package-warehouse",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true
+  }
+}

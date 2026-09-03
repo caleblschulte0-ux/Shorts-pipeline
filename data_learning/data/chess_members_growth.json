@@ -1,0 +1,22 @@
+{
+  "key": "chess_members_growth",
+  "title": "Chess.com registered members over time (millions)",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2020-2025",
+  "source": {
+    "name": "Chess.com membership milestone announcements",
+    "publisher": "Chess.com",
+    "url": "https://www.chess.com/news/view/chesscom-reaches-200-million-members",
+    "officiality": "official",
+    "access_date": "2026-08-19"
+  },
+  "notes": "Chess.com self-reported registered-member milestones: ~30M at the start of the pandemic (Mar 2020), 57M (Feb 2021), 100M (Dec 2022), 150M (Oct 2023), 200M (Apr 2025).",
+  "points": [
+    {"label": "Mar 2020", "value": 30, "period": "2020"},
+    {"label": "Feb 2021", "value": 57, "period": "2021"},
+    {"label": "Dec 2022", "value": 100, "period": "2022"},
+    {"label": "Oct 2023", "value": 150, "period": "2023"},
+    {"label": "Apr 2025", "value": 200, "period": "2025"}
+  ]
+}

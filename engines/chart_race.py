@@ -37,15 +37,25 @@ returns a Path or None, never raises; nothing here mutates repo state.
 """
 from __future__ import annotations
 
+import math
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
+
+_REPO = Path(__file__).resolve().parent.parent
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
+
+from shared import camera_float                                    # noqa: E402
+from shared.fit_title import fit_title                              # noqa: E402
 
 FPS = 24
 HOLD_S = 1.4                 # hold the finished chart at the end
 HOOK_S = 1.6                 # optional hook text fades out over this window
+PING_S = 0.9                 # leader-tip ring: one expand-and-fade cycle
 PALETTE = ["#4a90e2", "#e74c3c", "#f5c518", "#2ecc71",
            "#9b59b6", "#e67e22", "#1abc9c", "#fd79a8"]
 _FONT = str(Path(__file__).resolve().parent.parent / "assets" / "fonts"
@@ -64,9 +74,56 @@ _FONT = str(Path(__file__).resolve().parent.parent / "assets" / "fonts"
 # MIN_SWING, or MIN_SWING_CROSSOVER when the lead actually changes hands.
 MIN_SERIES = 2             # a one-line chart is not a race
 MIN_PEAK = 50.0            # post-normalization; catches 0-10 index data
-MIN_SWING = 3.0
+# RAISED 3.0 -> 5.0 on 2026-08-05, from measurement rather than taste.
+#
+# Four of that day's charts were rendered and measured against the
+# showrunner's motion floor. The swing of the biggest-moving series
+# predicted the result almost perfectly:
+#
+#     bald eagles   171x swing  -> 13.7 effective fps   PASS
+#     Dow           4.2x swing  -> 13.1 fps, duplicate ratio 0.453 (ceiling
+#                                  0.45) — marginal
+#     cocoa         3.3x swing  -> 6.6 fps               well under the floor
+#
+# A 3.3x swing spread over seven points and thirteen seconds moves the line
+# a couple of pixels per frame: technically "dramatic", visually a still
+# image. No amount of renderer work fixes that — the fault is upstream, in
+# data that was never going to make a watchable race.
+#
+# This is a gate getting STRONGER, which is always allowed, and it is only
+# affordable because a refused slot is now re-authored rather than lost
+# (`run_trending_daily._backfill`). Calibrated on four samples: revisit as
+# more accumulate.
+MIN_SWING = 5.0
 CROSSOVER_SWING = 1.6
 SWING_CAP = 999.0        # a series touching 0 is an infinite ratio
+
+# A series whose whole range is within this fraction of its own peak is a
+# REFERENCE LINE, not a competitor — "2018-2022 average", "target", "break
+# even". It is drawn, but it can never take the lead, so a moving line
+# crossing it is not a lead change.
+#
+# This closes a real loophole. On 2026-08-05 the cocoa chart paired a moving
+# price with a flat 2423 baseline; the price crossed it twice, `crossovers`
+# read 2, and the spec was granted the lenient 1.6x bar with a swing of only
+# 3.3x. It rendered at 6.6 effective fps — half the showrunner's floor. The
+# lenient bar exists because two competitors trading the lead is dramatic
+# even when neither moves much; one line drifting past a constant is not
+# that, and must be held to the full MIN_SWING.
+FLAT_SERIES_TOL = 0.02
+
+# ---- composition floors (doctor finding d17724dfb1c0) ---------------------
+# The drama numbers above are TIMELINE-WIDE; the renderer's axes are not:
+# the full year span is exposed from frame one and the y-camera floors at
+# `global_max * 0.12`. A package whose values sit near zero for the first
+# fifth therefore passes peak/swing while OPENING as a tiny lower-left stub
+# in a mostly empty plot — two chart races were blocked for exactly that on
+# 2026-08-09, after preflight had said ok. These floors are derived from
+# the SAME axis math the renderer uses (see `render`: xlim = full span,
+# cam_top = max(tips * 1.22, global_max * 0.12)) — no render needed.
+OPEN_FRAC = 0.20         # "the opening" = the first fifth of the timeline
+OPEN_AREA_MIN = 0.05     # painted fraction of the plot at the OPEN_FRAC mark
+TRAVEL_MIN = 0.30        # top moving line's total |Δ| relative to global max
 
 # Multipliers detected in y_label/title (or set explicitly via
 # spec["unit_scale"]). Longest match wins, so "billion" beats "bn".
@@ -84,6 +141,11 @@ TIP_ICON_MAX_W = 92        # wordmarks are wide — cap so they don't sprawl
 BOARD_ICON_PX = 24
 BOARD_ICON_MAX_W = 52
 
+# Rough advance width of the tip label's 15pt bold face, in px. Only used to
+# decide which SIDE of the tip the label goes on, so an approximation is
+# fine and far cheaper than measuring text on every frame.
+TIP_LABEL_PX_PER_CHAR = 9.4
+
 # Vertical layout in figure fractions. The key lives in the dead band
 # between the title and the plot, so it can never cover the lines.
 TITLE_TOP = 0.965          # title grows DOWNWARD from here (va="top")
@@ -93,9 +155,37 @@ KEY_X_ICON = 0.155
 KEY_X_NAME = 0.225
 KEY_X_VALUE = 0.90
 
+# Plot rect in figure fractions. The top is computed per render (it hangs
+# under the measured title + key), the rest is fixed. Widened and dropped on
+# 2026-08-05: the old [0.13, 0.30, 0.82, ...] left a quarter of a portrait
+# frame as dead black band between the plot floor and the year counter, and
+# a chart that fills less of the screen moves fewer pixels per frame — which
+# is literally what the showrunner's motion floor measures.
+AX_LEFT = 0.10
+AX_BOTTOM = 0.205
+AX_WIDTH = 0.87
 
-def _smoothstep(p: float) -> float:
-    return p * p * (3.0 - 2.0 * p)
+
+def _race_ease(p: float) -> float:
+    """Timeline easing for a RACE: move immediately, land softly.
+
+    This used to be a smoothstep (`p*p*(3-2p)`) — an ease-IN-out, slope zero
+    at BOTH ends — so the chart stood still through the opening seconds and
+    again through the finish. On
+    2026-08-05 that put three of four graph races under the showrunner's
+    motion floor, and measuring proved the gate right: the first three
+    seconds moved by a max block-diff of 1.3 against a threshold of 6.0.
+
+    The opening of a Short is the entire hook. A chart that has not moved by
+    second three has been scrolled past. Near-linear for the first 80% (a
+    race advances at a steady rate). Measured, in this order: ease-in-out
+    5.7 effective fps, cubic ease-out 8.1 (it reached 87% of the data by
+    halfway then sat for five seconds), an 80/20 linear-then-landing 12.0
+    (still a 1.4s freeze at t=11s where the landing began), and finally
+    LINEAR — because the end-hold's winner animation is the landing beat,
+    so the timeline has no reason to decelerate at all.
+    """
+    return p
 
 
 def _is_ratio(spec: dict) -> bool:
@@ -160,15 +250,106 @@ def normalize(spec: dict) -> dict:
     return out
 
 
+def is_reference_line(values) -> bool:
+    """True when a series is scenery rather than a competitor.
+
+    A baseline, target or long-run average is legitimate to plot — it gives
+    the moving line something to be measured against — but it cannot race.
+    Treating a moving line crossing it as a "lead change" hands the spec the
+    lenient CROSSOVER_SWING bar it has not earned.
+    """
+    vals = list(values or [])
+    if not vals:
+        return True
+    hi, lo = max(vals), min(vals)
+    if hi <= 0:
+        return True
+    return (hi - lo) <= FLAT_SERIES_TOL * hi
+
+
+CREDIT_MAX_CHARS = 78
+
+
+def credit_line(source: str) -> str:
+    """Condense a provenance blob into ONE readable on-screen credit.
+
+    Specs carry full provenance — publisher, dataset, survey years, release
+    notes — and that is right: it is what makes a claim checkable. Printed
+    verbatim it was three wrapped lines of 11px grey at the bottom of the
+    frame, illegible at phone size and reading as visual noise on a chart
+    whose whole job is to look clean.
+
+    Nothing is lost: `run_trending_daily._description` puts the FULL source
+    string in the video description, which is where attribution is actually
+    legible and where a viewer can copy a link. On screen we show the
+    publisher(s) only.
+    """
+    s = re.sub(r"\s+", " ", str(source or "")).strip()
+    if not s:
+        return ""
+    s = re.sub(r"^sources?\s*:\s*", "", s, flags=re.I)
+    # Publishers are the leading fragment(s) before the first detail clause.
+    # Splitting on ';' then ',' keeps "U.S. Fish & Wildlife Service" whole
+    # while dropping "nesting-pair counts for the lower 48 states (1963 ...".
+    head = s.split(";")[0]
+    head = re.split(r",\s*(?=[a-z0-9])", head)[0]     # drop lowercase clauses
+    head = head.strip(" .,;—-")
+    if len(head) > CREDIT_MAX_CHARS:
+        head = head[:CREDIT_MAX_CHARS - 1].rstrip(" .,;—-") + "…"
+    return f"Source: {head}" if head else ""
+
+
+def _spec_data_problems(spec: dict) -> list[str]:
+    """Data defects that make DRAMA unjudgeable: non-numeric / non-finite
+    values, unsorted years, length mismatches. Checked BEFORE `normalize`
+    (which multiplies values) — until 2026-08-24 a spec whose values were
+    strings crashed `assess` with a TypeError, and the one caller that
+    gates on it (shared/package_schema) swallowed that crash as "engine
+    absent" and passed the package (doctor d64b063a21bd). A spec assess
+    cannot do arithmetic on is a refusal with named reasons, not a crash
+    for callers to misread."""
+    years = spec.get("years") or []
+    series = spec.get("series") or []
+
+    def _num(v) -> bool:
+        # bool excluded on purpose: True is an int in Python, not data.
+        return (isinstance(v, (int, float)) and not isinstance(v, bool)
+                and math.isfinite(v))
+
+    bad: list[str] = []
+    non_num = [y for y in years if not _num(y)]
+    if non_num:
+        bad.append(f"years are not all finite numbers: {non_num[:4]!r}")
+    elif any(b <= a for a, b in zip(years, years[1:])):
+        bad.append(f"years are not strictly increasing: {years!r}")
+    for s in series:
+        vals = (s or {}).get("values") or []
+        non_num = [v for v in vals if not _num(v)]
+        if non_num:
+            bad.append(f"series {(s or {}).get('name')!r} values are not "
+                       f"all finite numbers: {non_num[:4]!r}")
+        elif len(vals) != len(years):
+            bad.append(f"series {(s or {}).get('name')!r} has {len(vals)} "
+                       f"values for {len(years)} years")
+    return bad
+
+
 def assess(spec: dict) -> dict:
     """Score a spec's DATA DRAMA (after unit normalization). Returns
     {ok, peak, swing, crossovers, reasons[]}. `ok` is False when the
-    numbers are too trivial or too flat to carry a video."""
-    spec = normalize(spec)
+    numbers are too trivial or too flat to carry a video — or when the
+    data is not judgeable at all (non-numeric, unsorted, mismatched; see
+    `_spec_data_problems`), which is a refusal, never a raise."""
     series = spec.get("series") or []
     if not series or not spec.get("years"):
         return {"ok": False, "peak": 0.0, "swing": 0.0, "crossovers": 0,
                 "reasons": ["no series/years"]}
+    data_bad = _spec_data_problems(spec)
+    if data_bad:
+        return {"ok": False, "peak": 0.0, "swing": 0.0, "crossovers": 0,
+                "reasons": data_bad}
+    spec = normalize(spec)
+    series = spec.get("series") or []
 
     reasons: list[str] = []
     # A single line is not a race — there is nobody to beat, so there is no
@@ -187,10 +368,16 @@ def assess(spec: dict) -> dict:
             continue
         swing = max(swing, min(hi / max(abs(lo), hi / SWING_CAP), SWING_CAP))
 
-    # lead changes: how many times the top-ranked series swaps
+    # lead changes: how many times the top-ranked series swaps — counting
+    # ONLY swaps between two series that actually move. A flat reference
+    # line is scenery; a price drifting past it is not a race (see
+    # FLAT_SERIES_TOL).
     order = [max(range(len(series)), key=lambda i: series[i]["values"][t])
              for t in range(len(spec["years"]))]
-    crossovers = sum(1 for a, b in zip(order, order[1:]) if a != b)
+    moving = [not is_reference_line(s["values"]) for s in series]
+    swaps = [(a, b) for a, b in zip(order, order[1:]) if a != b]
+    crossovers = sum(1 for a, b in swaps if moving[a] and moving[b])
+    scenery = len(swaps) - crossovers
 
     need = CROSSOVER_SWING if crossovers else MIN_SWING
     if peak < MIN_PEAK and not _is_ratio(spec):
@@ -198,12 +385,59 @@ def assess(spec: dict) -> dict:
                        f"feel big on screen (scale the metric up, or pick a "
                        f"bigger one)")
     if swing < need:
+        why = ""
+        if not crossovers:
+            why = (" and nobody ever takes the lead"
+                   if not scenery else
+                   f" and the {scenery} lead change(s) are only a line "
+                   f"crossing a flat reference series, which is scenery, "
+                   f"not a race")
         reasons.append(f"biggest swing {swing:.1f}x < {need:g}x — the lines "
-                       f"barely move"
-                       + ("" if crossovers else " and nobody ever takes the "
-                                                "lead"))
+                       f"barely move{why}")
+
+    # ---- composition floors: what the OPENING actually paints -----------
+    # See the OPEN_FRAC block up top. w = how far into the fixed year axis
+    # the reveal has reached at the first-fifth mark; h = the tallest tip so
+    # far against the camera the renderer would actually show (which floors
+    # at 12% of the global max — the exact reason a near-zero opening reads
+    # as an empty black frame instead of a zoomed-in one).
+    years = spec["years"]
+    span = float(years[-1] - years[0]) or 1.0
+    k = max(1, int(round(OPEN_FRAC * (len(years) - 1))))
+    w_open = (years[k] - years[0]) / span
+    tip_open = max(max(s["values"][:k + 1]) for s in series)
+    cam_open = max(tip_open * 1.22, peak * 0.12)
+    h_open = (tip_open / cam_open) if cam_open > 0 else 0.0
+    area_open = w_open * h_open
+    if area_open < OPEN_AREA_MIN:
+        reasons.append(
+            f"opening paints ~{area_open:.0%} of the plot (first "
+            f"{OPEN_FRAC:.0%} of the timeline is a stub against the "
+            f"12%-of-max camera floor) < {OPEN_AREA_MIN:.0%} — trim the "
+            f"flat early years or pick a window where the story has "
+            f"already started")
+    # Expected on-screen travel: total |Δ| of the tallest MOVING line,
+    # relative to the global max. A ratio-shaped swing can pass while the
+    # line barely climbs the frame (the 08-09 case that passed preflight
+    # and then measured almost no effective motion).
+    moving_series = [s for s, m in zip(series, moving) if m]
+    if moving_series:
+        top = max(moving_series, key=lambda s: max(s["values"]))
+        travel = sum(abs(b - a)
+                     for a, b in zip(top["values"], top["values"][1:]))
+        travel_frac = (travel / peak) if peak > 0 else 0.0
+    else:
+        travel_frac = 0.0
+    if travel_frac < TRAVEL_MIN:
+        reasons.append(
+            f"expected screen travel ~{travel_frac:.0%} of the frame < "
+            f"{TRAVEL_MIN:.0%} — the leading line never really climbs; "
+            f"this renders as a near-static plot however good the ratio "
+            f"looks")
     return {"ok": not reasons, "peak": peak, "swing": round(swing, 2),
-            "crossovers": crossovers, "reasons": reasons}
+            "crossovers": crossovers, "reasons": reasons,
+            "open_area": round(area_open, 3),
+            "travel": round(travel_frac, 3)}
 
 
 def _fmt_compact(v: float) -> str:
@@ -250,50 +484,15 @@ def _fit_title(fig, text: str, font_path: str | None, max_w_px: float,
                max_lines: int = 2, hi: int = 46, lo: int = 26):
     """Wrap + auto-shrink a title so it NEVER runs off frame.
 
-    matplotlib's own `wrap=True` measures against the figure, not the
-    band we allot, and silently overflowed long titles off both edges
-    (seen in production). This measures the real rendered width with the
-    canvas renderer and steps the size down until the text fits
-    `max_lines` lines of `max_w_px`. Returns (text_with_newlines, fp).
+    The implementation moved to `shared/fit_title.py` when the explainer
+    turned out to need the identical thing and had been guessing font size
+    from the character count instead — shipping "a headline clipped off the
+    right edge" (the showrunner's words, 2026-08-11). This delegates with
+    the same defaults, and `tests/test_fit_title.py` holds the shared
+    version against the original code kept verbatim as an oracle.
     """
-    import matplotlib.font_manager as fm
-    words = text.split()
-    if not words:
-        return text, fm.FontProperties(size=hi)
-    try:
-        renderer = fig.canvas.get_renderer()
-    except Exception:  # noqa: BLE001 — no renderer: trust the caller's size
-        return text, (fm.FontProperties(fname=font_path, size=hi)
-                      if font_path else fm.FontProperties(weight="bold",
-                                                          size=hi))
-
-    def _fp(size):
-        return (fm.FontProperties(fname=font_path, size=size) if font_path
-                else fm.FontProperties(weight="bold", size=size))
-
-    def _width(s, fp):
-        probe = fig.text(0, 0, s, fontproperties=fp)
-        w = probe.get_window_extent(renderer=renderer).width
-        probe.remove()
-        return w
-
-    for size in range(hi, lo - 1, -2):
-        fp = _fp(size)
-        lines, cur = [], ""
-        for w in words:
-            trial = f"{cur} {w}".strip()
-            if cur and _width(trial, fp) > max_w_px:
-                lines.append(cur)
-                cur = w
-            else:
-                cur = trial
-        if cur:
-            lines.append(cur)
-        # a single word wider than the band can't be fixed by wrapping
-        if len(lines) <= max_lines and all(_width(x, fp) <= max_w_px
-                                           for x in lines):
-            return "\n".join(lines), fp
-    return "\n".join(words[:max_lines]), _fp(lo)
+    return fit_title(fig, text, font_path, max_w_px,
+                     max_lines=max_lines, hi=hi, lo=lo)
 
 
 def _spread(pos: list[float], min_sep: float, floor: float,
@@ -331,6 +530,7 @@ def render(spec: dict, out: str | Path, *,
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     import matplotlib.font_manager as fm
+    import matplotlib.image as mpimg
     from matplotlib.offsetbox import AnnotationBbox, OffsetImage
     from matplotlib.ticker import FuncFormatter, MaxNLocator
 
@@ -341,6 +541,7 @@ def render(spec: dict, out: str | Path, *,
     title = spec.get("title", "")
     y_label = spec.get("y_label", "")
     source = spec.get("source", "")
+    credit = credit_line(source)
     hook = (spec.get("hook") or "").strip()
     years = [float(y) for y in spec["years"]]
     series = [dict(s) for s in spec["series"]]
@@ -354,7 +555,6 @@ def render(spec: dict, out: str | Path, *,
     if spec.get("icons", True):
         try:
             from funnel import series_icons
-            import matplotlib.image as mpimg
             for name, path in series_icons.resolve_many(
                     series, context=title).items():
                 try:
@@ -384,9 +584,12 @@ def render(spec: dict, out: str | Path, *,
         # render time otherwise
         fig = plt.figure(figsize=(W / dpi, H / dpi), dpi=dpi)
         fig.patch.set_facecolor("#000000")
-        ax = fig.add_axes([0.13, 0.30, 0.82, 0.44])
+        ax = fig.add_axes([AX_LEFT, AX_BOTTOM, AX_WIDTH, 0.565])
         # Fit the title ONCE (measuring costs a canvas draw), not per frame.
         fig.canvas.draw()
+        # Plot width in px — fixed for the whole render, so measure it here
+        # and not 345 times. Drives the tip-label side flip below.
+        ax_w_px = float(ax.get_window_extent().width)
         title_text, title_font = _fit_title(
             fig, title, _FONT if have_font else None, max_w_px=W * 0.92)
 
@@ -406,14 +609,20 @@ def render(spec: dict, out: str | Path, *,
             pass
         key_bottom = key_top - KEY_STEP * max(0, len(series) - 1)
         ax_top = max(0.45, key_bottom - 0.035)
-        ax.set_position([0.13, 0.30, 0.82, ax_top - 0.30])
+        # NOTE: this overrides the rect passed to `add_axes` above, so the
+        # plot geometry is defined HERE and only here. A 2026-08-05 change
+        # to the `add_axes` call alone did nothing for exactly that reason.
+        ax.set_position([AX_LEFT, AX_BOTTOM, AX_WIDTH, ax_top - AX_BOTTOM])
         cam_top = 0.0            # dynamic y "camera": only ever zooms out
         extra: list = []         # per-frame figure-level artists to recycle
         print(f"[chart_race] {n_frames + hold} frames @ {W}x{H}")
         for f in range(n_frames + hold):
-            p = _smoothstep(min(1.0, f / max(1, n_frames - 1)))
+            p = _race_ease(min(1.0, f / max(1, n_frames - 1)))
             cur = years[0] + p * (years[-1] - years[0])
             in_hold = f >= n_frames
+            # Progress through the end-hold, 0..1 — drives the winner's
+            # landing animation below so the payoff is never a frozen frame.
+            hp = ((f - n_frames) / max(1, hold - 1)) if in_hold else 0.0
 
             ax.clear()
             for t in fig.texts[:]:
@@ -438,18 +647,31 @@ def render(spec: dict, out: str | Path, *,
                 tips.append((cv, s, xs, ys))
             tips.sort(key=lambda t: -t[0])
 
-            # Past ~82% of the timeline the tip sits at the right edge, so
-            # icons AND labels flip to the inside of the dot — otherwise
-            # they hang off-frame exactly on the most-watched final frames.
-            near_end = (cur - years[0]) > 0.82 * (years[-1] - years[0])
-
             for rank, (cv, s, xs, ys) in enumerate(tips):
-                lw = 6 if rank == 0 else 4.5
+                lw = 9 if rank == 0 else 7
                 ax.plot(xs, ys, color=s["color"], linewidth=lw,
                         solid_capstyle="round", zorder=3)
                 ax.plot([cur], [cv], "o", color=s["color"],
-                        markersize=14 if rank == 0 else 12, zorder=4,
-                        markeredgecolor="white", markeredgewidth=1.2)
+                        markersize=16 if rank == 0 else 13, zorder=4,
+                        markeredgecolor="white", markeredgewidth=1.4)
+                # THE PING. A ring expands out of the leader's tip and fades,
+                # once every PING_S. It reads as live data, and it is the
+                # only motion source in the frame that does not depend on
+                # the DATA moving — which matters because the showrunner
+                # measures motion on a 192px downscale of the frame.
+                #
+                # An earlier attempt breathed the tip MARKER instead
+                # (16px +/- 28%). Measured: no change at all. At 192px a
+                # 16px dot is under 3px and a 28% wobble is sub-pixel — it
+                # was invisible to the metric and very nearly to the eye.
+                # A ring sweeping 20 -> 78px covers ~10px at sample scale,
+                # which is most of a measurement block.
+                if rank == 0:
+                    ring = (f % max(1, int(fps * PING_S))) / (fps * PING_S)
+                    ax.plot([cur], [cv], "o", markersize=20 + 58 * ring,
+                            markerfacecolor="none", markeredgecolor=s["color"],
+                            markeredgewidth=2.6, alpha=0.6 * (1.0 - ring) ** 2,
+                            zorder=3.5)
 
             cam_top = max(cam_top, max(t[0] for t in tips) * 1.22,
                           global_max * 0.12)
@@ -480,30 +702,48 @@ def render(spec: dict, out: str | Path, *,
             for rank, (cv, s, _xs, _ys) in enumerate(tips):
                 ly = placed[rank]
                 art = icons.get(s["name"])
-                if art is None:
-                    off = 8
-                else:
-                    iw = _icon_width(art, TIP_ICON_PX, TIP_ICON_MAX_W)
+                label = f"{s['name']}  {_fmt_compact(cv)}"
+                iw = 0.0 if art is None else _icon_width(art, TIP_ICON_PX,
+                                                         TIP_ICON_MAX_W)
+                off = 8 if art is None else iw + 16
+                # Flip the icon+label to the LEFT of the tip once they would
+                # not fit to its right. This used to be one shared
+                # `cur > 82% of the span` flag, which is wrong twice over: it
+                # ignores how WIDE the label is, and it flips every series at
+                # once. A 30-character series name ran off the right edge for
+                # seconds before the flag tripped — visible in the 2016 frame
+                # of the disaster-costs chart as "Disaster cost that".
+                span = (years[-1] - years[0]) or 1.0
+                avail = (1.0 - (cur - years[0]) / span) * ax_w_px
+                flip = (len(label) * TIP_LABEL_PX_PER_CHAR + off + 14) > avail
+                if art is not None:
                     ax.add_artist(AnnotationBbox(
                         OffsetImage(art, zoom=_icon_zoom(art, TIP_ICON_PX,
                                                          TIP_ICON_MAX_W)),
                         (cur, ly),
-                        xybox=(-(iw / 2 + 6) if near_end else iw / 2 + 6, 0),
+                        xybox=(-(iw / 2 + 6) if flip else iw / 2 + 6, 0),
                         boxcoords="offset points",
                         frameon=True, pad=0.15, zorder=6,
                         bboxprops=dict(edgecolor=s["color"], linewidth=2,
                                        facecolor="white",
                                        boxstyle="round,pad=0.18"),
                         annotation_clip=False))
-                    off = iw + 16
-                ax.annotate(f"{s['name']}  {_fmt_compact(cv)}",
+                ax.annotate(label,
                             xy=(cur, ly),
-                            xytext=(-off, 0) if near_end else (off, 0),
+                            xytext=(-off, 0) if flip else (off, 0),
                             textcoords="offset points", color=s["color"],
                             fontsize=15, fontweight="bold", va="center",
-                            ha="right" if near_end else "left",
+                            ha="right" if flip else "left",
                             zorder=5, clip_on=False,
-                            annotation_clip=False)
+                            annotation_clip=False,
+                            # The label sits AT its series' value, which is
+                            # exactly where that series' line is — so grey
+                            # text landed on a grey line and vanished. A
+                            # near-opaque plate makes every tip readable
+                            # over lines, gridlines and other labels.
+                            bbox=dict(boxstyle="round,pad=0.25",
+                                      facecolor="#000000", alpha=0.78,
+                                      edgecolor="none"))
 
             # THE KEY: compact icon + name + value rows parked in the
             # dead band between the title and the plot, so it never sits
@@ -540,29 +780,56 @@ def render(spec: dict, out: str | Path, *,
                 ly -= KEY_STEP
 
             # big year counter under the chart
-            fig.text(0.5, 0.225, str(int(round(cur))), color="white",
+            fig.text(0.5, 0.140, str(int(round(cur))), color="white",
                      ha="center", va="center", fontproperties=year_font)
             if in_hold:
                 lead = tips[0][1]
-                fig.text(0.5, 0.155, f"#1  {lead['name']}",
+                # THE PAYOFF BEAT. This used to redraw one identical frame
+                # `hold` times — a literal freeze on the last thing the
+                # viewer sees, and the moment they decide whether to watch
+                # another. The winner now LANDS: a quick scale-up and fade
+                # over the first 40% of the hold, then a slow drift, so no
+                # two frames are the same right through to the cut.
+                land = min(1.0, hp / 0.4)
+                ease = 1.0 - (1.0 - land) ** 3
+                fig.text(0.5, 0.078 + 0.014 * (1.0 - ease) + 0.004 * hp,
+                         f"#1  {lead['name']}",
                          color=lead["color"], ha="center", va="center",
-                         fontsize=34, fontweight="bold")
-            if source:
-                fig.text(0.5, 0.06, source, color="#6b7280", ha="center",
-                         va="center", fontsize=11, wrap=True)
+                         fontsize=32 + 10 * ease, fontweight="bold",
+                         alpha=0.25 + 0.75 * ease)
+            if credit:
+                fig.text(0.5, 0.030, credit, color="#8b93a1", ha="center",
+                         va="center", fontsize=15)
 
             if hook and f < HOOK_S * fps:
+                # The hook used to sit at 0.79 — right on top of the key
+                # rows, so on a 2-series chart it printed straight through
+                # "S&P 500 close". Put it INSIDE the plot area, where there
+                # is always empty space above the lines early in the race,
+                # with a panel behind it so it reads over gridlines.
                 alpha = max(0.0, 1.0 - f / (HOOK_S * fps))
-                fig.text(0.5, 0.79, hook, color="#f5c518", ha="center",
-                         va="center", fontproperties=hook_font, alpha=alpha)
+                fig.text(0.5, 0.63, hook, color="#f5c518", ha="center",
+                         va="center", fontproperties=hook_font, alpha=alpha,
+                         bbox=dict(boxstyle="round,pad=0.45",
+                                   facecolor="#000000",
+                                   edgecolor="#f5c518",
+                                   alpha=min(0.82, alpha)))
 
             fig.savefig(frames_dir / f"f{f:05d}.png", facecolor="#000000")
         plt.close(fig)
 
+        # CAMERA FLOAT — see shared/camera_float.py. The race eases in, so
+        # its opening seconds are near-still: on 2026-08-11 three of six
+        # trending videos were blocked before vision review at 4.5 / 8.7 /
+        # 8.9 effective fps against an 11.0 floor. The float is cyclic, so
+        # unlike the race itself it does not thin out over a longer chart —
+        # measured 23.1 fps on a completely static 20-second clip. It costs
+        # 20px of edge (1.9%) and never exposes background.
+        _float = camera_float.crop_vf(W, H)
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error",
              "-framerate", str(fps), "-i", str(frames_dir / "f%05d.png"),
-             "-vf", f"scale={W}:{H},format=yuv420p", "-c:v", "libx264",
+             "-vf", f"{_float},format=yuv420p", "-c:v", "libx264",
              "-preset", "veryfast", "-crf", "20", "-r", str(fps),
              "-an", "-movflags", "+faststart", str(out)],
             check=True)

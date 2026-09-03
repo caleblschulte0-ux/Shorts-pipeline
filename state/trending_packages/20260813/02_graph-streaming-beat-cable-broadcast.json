@@ -1,0 +1,55 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-beat-cable-broadcast",
+  "title": "Streaming Just Beat Cable AND Broadcast",
+  "hook": "TV quietly flipped for good.",
+  "y_label": "Share of total TV viewing (%)",
+  "duration": 13,
+  "source": "Nielsen 'The Gauge' monthly TV-viewing share reports (May measurement each year); interim years approximate between reported milestones. Figures approximate.",
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Streaming",
+      "color": "#50ff80",
+      "icon": "Netflix",
+      "values": [
+        26.2,
+        30.5,
+        35.8,
+        40.3,
+        44.8
+      ]
+    },
+    {
+      "name": "Cable + Broadcast",
+      "color": "#3060c0",
+      "icon": "TV",
+      "values": [
+        64.0,
+        58.0,
+        51.5,
+        47.8,
+        44.2
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "cabletv",
+    "netflix",
+    "cordcutting",
+    "nielsen",
+    "broadcast",
+    "tvratings",
+    "streamingwars",
+    "hulu",
+    "disneyplus"
+  ],
+  "music_vibe": "cinematic"
+}

@@ -1,0 +1,22 @@
+{
+  "key": "gps_position_error_growth",
+  "title": "GPS position error if relativity were ignored (kilometers)",
+  "unit": "kilometers",
+  "geography": "Global",
+  "time_coverage": "hours after the last correction",
+  "source": {
+    "name": "Real-World Relativity: The GPS Navigation System",
+    "publisher": "Ohio State University Department of Astronomy (Richard Pogge); same figure in Penn State GEOG 862, 'The Satellite Clock'",
+    "url": "https://www.astronomy.ohio-state.edu/pogge.1/Ast162/Unit5/gps.html",
+    "officiality": "reference",
+    "access_date": "2026-08-16"
+  },
+  "notes": "Published figure: without the relativistic correction a GPS fix is already false after about 2 minutes, and global position errors accumulate at roughly 10 kilometers per day. Points are that published daily rate scaled linearly across a day (0.4 km at 1 hour, 2.5 km at 6, 5.0 km at 12, 10.0 km at 24). Cross-check: 38 microseconds of clock error times the speed of light is about 11 km, consistent with the 10 km/day figure.",
+  "insight_type": "trend",
+  "points": [
+    {"label": "1 hour", "value": 0.4, "period": "1 hour"},
+    {"label": "6 hours", "value": 2.5, "period": "6 hours"},
+    {"label": "12 hours", "value": 5.0, "period": "12 hours"},
+    {"label": "24 hours", "value": 10.0, "period": "24 hours"}
+  ]
+}

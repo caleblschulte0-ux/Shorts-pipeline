@@ -1,0 +1,92 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-badge-every-room",
+  "title": "Badge In For Every Room. Even The Bathroom.",
+  "script": "Our new facilities director rolled out a mandate: badge in and out of every room in the building, every single time, no exceptions \u2014 the break room, the supply closet, even the bathroom, all \"for security audit accuracy.\" Fine by me. I badged in for the bathroom. I badged out of the bathroom. I badged into the break room for eleven seconds to grab a pen and badged right back out on my way to the printer. Within two days my badge history ran four hundred and twelve entries long. By day four the security software flagged our whole floor for \"anomalous access patterns\" and froze half the badges \u2014 including his. He spent the next morning locked out of his own office, badging the door twelve times while security reviewed a log that now showed, in exact timestamps, exactly how many bathroom trips a security audit apparently required. The mandate quietly vanished from the intranet that afternoon. I kept a screenshot of all four hundred and twelve entries anyway.",
+  "shots": [
+    {
+      "phrase": "badge in and out of every room",
+      "query": "employee id badge",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Biometric_Argentine_DNI_for_Citizens-Foreigners_Falkland_Islands_Seal.png",
+      "pin_query": "badge",
+      "pin_context": "office building access control card",
+      "news_query": "badge",
+      "news_angle": "The narrator uses their badge to comply with the facilities director's mandate."
+    },
+    {
+      "phrase": "the break room for eleven seconds",
+      "query": "office break room",
+      "pin_query": "break room",
+      "pin_context": "office building interior space",
+      "news_query": "break room",
+      "news_angle": "The narrator badges in and out of the break room to grab a pen.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/2015-04-28_19_09_17_Employee_break_room_at_the_National_Weather_Service_Weather_Forecast_Office_in_Elko%2C_Nevada_%28NWS_WFO_LKN%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "four hundred and twelve entries long",
+      "query": "computer log screen",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg"
+    },
+    {
+      "phrase": "anomalous access patterns",
+      "query": "security control room",
+      "image_url": "https://live.staticflickr.com/3086/2795391606_5c53c8cb88_b.jpg"
+    },
+    {
+      "phrase": "froze half the badges",
+      "query": "office building hallway",
+      "image_url": "https://live.staticflickr.com/3834/9821525314_f5d4bf4d15_b.jpg"
+    },
+    {
+      "phrase": "locked out of his own office",
+      "query": "closed office door",
+      "image_url": "https://drive.google.com/uc?export=download&id=1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+      "media_origin": "chatgpt",
+      "media_file_id": "1xIzh8xWQrEwh3x2T7kkvAX-TgBGncS4b",
+      "media_sha256": "7570a77d5ff21f4b9a6d5a5a06d7a612d1b78f083ad8d53148ace731760ee6ce",
+      "media_bytes": 1019358
+    },
+    {
+      "phrase": "quietly vanished from the intranet",
+      "query": "computer intranet screen",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Evolution_36_mail.png",
+      "pin_query": "intranet",
+      "pin_context": "office building internal network",
+      "news_query": "intranet",
+      "news_angle": "The facilities director's mandate quietly vanishes from the intranet."
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "four hundred and twelve entries",
+      "text": "412 ENTRIES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "froze half the badges",
+      "text": "BADGES FROZEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "quietly vanished from the intranet",
+      "text": "POLICY GONE",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "workplace",
+    "corporatelife",
+    "officepolicy",
+    "worklife",
+    "karma",
+    "9to5",
+    "security",
+    "reddit",
+    "workplacestories",
+    "officelife",
+    "corporate"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

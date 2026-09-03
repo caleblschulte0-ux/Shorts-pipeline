@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260808",
+  "bundle": {
+    "identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "path": "exchange/bundles/20260808/bundle.json"
+  },
+  "request_id": "reddit-unpaid-driveway-lien-s1-c0ca2a80974e",
+  "safe_request_id": "reddit-unpaid-driveway-lien-s1-c0ca2a80974e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "dce24d44bb8d191350c6b8eb47d8087abf34d0c0e2b83e808d2f95a42fc2db80",
+  "prompt_used": "An editorial illustration for a short-form video: phone silence ignored calls. It accompanies the narration: \"went quiet for two months\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18y9kQOGp1nOED65bdCFY1iAZK5GfxtTp",
+    "filename": "20260808__reddit-unpaid-driveway-lien-s1-c0ca2a80974e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18y9kQOGp1nOED65bdCFY1iAZK5GfxtTp",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4c8e93ad2b6b0f14409a7b3f1c0910c1c9c427fda7beb658e8a9c6a8b3781e23",
+    "bytes": 1666281,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-08T12:19:59Z",
+  "error": null,
+  "retryable": false
+}

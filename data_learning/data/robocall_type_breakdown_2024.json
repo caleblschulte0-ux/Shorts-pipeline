@@ -1,0 +1,21 @@
+{
+  "key": "robocall_type_breakdown_2024",
+  "title": "US robocalls in 2024, by category",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "YouMail Robocall Index -- 2024 Annual Robocall Report",
+    "publisher": "YouMail",
+    "url": "https://blog.youmail.com/2025/02/what-the-2024-robocall-review-tells-us-about-spam-calls/",
+    "officiality": "primary",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Breakdown of the 52.8 billion robocalls placed to US phones in 2024 by category, per the YouMail Robocall Index: telemarketing 36%, alerts/reminders 25%, scam calls 22%, payment reminders 16% (sums to 99% due to source rounding).",
+  "points": [
+    {"label": "Telemarketing", "value": 36},
+    {"label": "Alerts & reminders", "value": 25},
+    {"label": "Scam calls", "value": 22},
+    {"label": "Payment reminders", "value": 16}
+  ]
+}

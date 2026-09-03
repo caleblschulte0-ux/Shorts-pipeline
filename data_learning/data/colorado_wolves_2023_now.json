@@ -1,0 +1,19 @@
+{
+  "key": "colorado_wolves_2023_now",
+  "title": "Colorado wild wolf population, first release vs today",
+  "unit": "wolves",
+  "geography": "Colorado, United States",
+  "time_coverage": "December 2023 vs 2025",
+  "source": {
+    "name": "Colorado wolf restoration program updates",
+    "publisher": "Colorado Parks and Wildlife (CPW)",
+    "url": "https://cpw.state.co.us/bringing-wolves-back-colorado",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "Colorado released its first 10 wolves in December 2023 after wolves had been extirpated from the state since the 1940s. After a second release of 15 wolves in January 2025 and this spring's litters, CPW's minimum count is at least 32 wolves.",
+  "points": [
+    {"label": "First release (Dec 2023)", "value": 10},
+    {"label": "Today", "value": 32}
+  ]
+}

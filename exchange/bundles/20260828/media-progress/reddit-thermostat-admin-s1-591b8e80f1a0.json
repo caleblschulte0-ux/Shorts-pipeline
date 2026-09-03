@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s1-591b8e80f1a0",
+  "safe_request_id": "reddit-thermostat-admin-s1-591b8e80f1a0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7c87d4a91ebf3b9ba25d18a041aaf8fb4491c6e291bd5a22e369be16c320efb3",
+  "prompt_used": "An editorial illustration for a short-form video: cold office worker shivering. It accompanies the narration: \"kept it at sixty two degrees\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 2,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+    "filename": "20260828__reddit-thermostat-admin-s1-591b8e80f1a0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1tdNIshP0T-Q8ppvbpoJHZNFWXj8pAqn3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "48f6e80907de9ba340acf61325ea0fbc049cfc9570da73421bbd2ca9b8c677ce",
+    "bytes": 2051098,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:19:21Z",
+  "retryable": false
+}

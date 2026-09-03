@@ -1,0 +1,37 @@
+{
+ "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+ "ts": "20260824T111248Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data hovers beside the top bar in the same arms-out pose from hook@0.3 to seg4:end (seg1:mid, seg2:mid, seg3:mid all show him parked at the leading bar) \u2014 he never acts on a stat, no setup/action/payoff.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "template_repetition_and_broken_layout",
+  "visible_evidence": "seg3:start shows the headline 'Agricultural land' cut off at the left frame edge and the row label rendered as 'an Federation'; seg3:mid/end repeat the exact same horizontal-bar template already used in seg1 and seg2, with Data parked motionless at the China bar; by payoff@-1.8 the value text ('5204150', '4215404') is raw unformatted digits overlapping the bar ends instead of the scripted '5.2 million square kilometers'.",
+  "root_cause": "One bar-race layout is reused for all three segments with no per-scene composition or scale pass: long country labels and un-humanized value strings overflow their boxes, the title is pushed off-canvas, and the mascot has no scene-specific performance so the third repeat reads as the same shot again.",
+  "repair_goal": "Rebuild seg3 as a distinct demonstration of farmland area \u2014 fit the title and full country labels inside the safe area, format values as '5.2M km\u00b2' placed clear of the bar caps, and give Data a real bit tied to the stat (e.g. pacing out / measuring China's bar against the US bar) so the beat is not a third identical chart build."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "block_wall"
+  }
+ ]
+}

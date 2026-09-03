@@ -540,6 +540,22 @@ def _call_claude(user: str, system: str = SYSTEM,
                                                + (r.stdout or "")):
         _note_limit((r.stderr or r.stdout or "").strip().replace("\n", " "))
         return None
+    if r.returncode != 0:
+        # A FAILED PROCESS IS NOT AN ANSWER. This used to fall through to
+        # the JSON parse below, so a CLI that died mid-reply — after
+        # emitting a complete or embedded JSON object — handed back partial
+        # or stale output as a successful brain verdict, and the callers'
+        # health accounting recorded an `ok` for a call that failed. Require
+        # rc=0 before trusting a byte of stdout; everything nonzero that is
+        # not the usage-limit breaker above raises with the CLI's own
+        # message (bounded), which the callers already catch, count via
+        # _brain_note(False), and fall back on.
+        err = (r.stderr or "").strip().replace("\n", " ")[:300]
+        head = (r.stdout or "").strip().replace("\n", " ")[:120]
+        raise RuntimeError(
+            f"claude exited rc={r.returncode}"
+            + (f" stderr={err!r}" if err else "")
+            + (f" stdout={head!r}" if head else " stdout=<empty>"))
     # Prefer a clean parse of the whole reply; the greedy r"\{.*\}" spans
     # from the FIRST brace to the LAST, so any prose containing braces (or
     # a fenced block plus trailing commentary) mis-spans and raises a

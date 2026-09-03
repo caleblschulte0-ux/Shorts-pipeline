@@ -187,19 +187,18 @@ def main() -> int:
     print(f"[phase-a] contract: {args.channel} wants {target} — "
           f"{reg.mix_sentence(args.channel)}")
 
-    # AUTHORING TAKEOVER. A short day means the Claude Routine did not run
-    # AND the reserve bank could not cover it (the workflow fills from the
-    # bank immediately before this). Rather than exit 0 with nothing to ask
-    # for — which is exactly how a dead authoring night stayed invisible —
-    # put an authoring brief in the bundle and let ChatGPT be the brain.
+    # AUTHORING TAKEOVER. A short day means the Claude Routine did not run.
+    # Rather than exit 0 with nothing to ask for — which is exactly how a
+    # dead authoring night stayed invisible — put an authoring brief in the
+    # bundle and let ChatGPT be the brain.
     authoring_request = None
     if len(packages) < target:
         authoring_request = brief.build_request(
             args.date, args.channel, have_packages=packages,
             target=args.target,
             reason=(f"only {len(packages)} of {target} packages exist "
-                    f"for {args.date}: the Claude authoring Routine did not "
-                    f"run and the reserve bank could not cover the day"))
+                    f"for {args.date}: the Claude authoring Routine did "
+                    f"not run"))
         print(f"[phase-a] TAKEOVER: {len(packages)}/{target} packages — "
               f"asking ChatGPT to author {authoring_request['write']} "
               f"({', '.join(f'{n}x{f}' for f, n in authoring_request['mix'].items() if n)})")
@@ -227,6 +226,16 @@ def main() -> int:
             resolve_media(pkg, verbose=not args.json)
         report = media_judge.judge_package(
             pkg, None, usage_penalties=usage_penalties(pkg))
+        if report.get("error"):
+            # judge_package fails open (unknown gaps for every enumerable
+            # shot), but a report that ALSO couldn't enumerate shots (no
+            # gaps despite the error) would still ask ChatGPT for nothing —
+            # surface it loudly rather than let it pass as a quiet report.
+            print(f"[phase-a] WARNING judge_package error on "
+                  f"{report.get('slug') or pkg.get('slug')}: "
+                  f"{report['error']}"
+                  + ("" if report.get("gaps") else
+                     " — NO GAPS EMITTED, shots could not be enumerated"))
         reports.append(report)
 
     bundle = xb.build_bundle(args.date, packages, reports,
@@ -260,7 +269,22 @@ def main() -> int:
     # Rewriting the ask now orphans its work. A re-judge that changes nothing
     # is harmless and allowed through; a changed ask is refused unless the
     # operator explicitly migrates the day.
-    existing_cps = mc.all_checkpoints(args.date)
+    # "A worker is running" is announced by the HEARTBEAT, not only by
+    # finished work. STEP 0 commits media-progress/STARTED.json before any
+    # image exists, and FAILED-<id>.json notes are also evidence of a live
+    # session — but this guard only counted verified checkpoints, so the
+    # whole window between "worker started" and "first image verified" was
+    # unprotected. Phase A re-runs on EVERY auto-merge (three times on
+    # 2026-08-12, the last of them 60 seconds before the finalizer fired,
+    # changing the ask from 13 requests to 12 and moving BUNDLE_ID), so that
+    # window is not theoretical. Any artifact in media-progress/ now freezes
+    # the ask.
+    existing_cps = dict(mc.all_checkpoints(args.date))
+    _prog = mc.progress_dir(args.date)
+    if not existing_cps and _prog.is_dir() and any(_prog.glob("*.json")):
+        existing_cps = {"_heartbeat": {"note": "media-progress/ is not empty"}}
+        print(f"[phase-a] a worker has announced itself for {args.date} "
+              f"(media-progress/ is not empty) — the ask is frozen")
     if existing_cps and not args.rebuild_contract:
         live = mc.ask_fingerprint(bundle)
         frozen_id = mc.bundle_identity(args.date)

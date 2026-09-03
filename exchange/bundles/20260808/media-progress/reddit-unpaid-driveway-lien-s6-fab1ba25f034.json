@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260808",
+  "bundle": {
+    "identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "path": "exchange/bundles/20260808/bundle.json"
+  },
+  "request_id": "reddit-unpaid-driveway-lien-s6-fab1ba25f034",
+  "safe_request_id": "reddit-unpaid-driveway-lien-s6-fab1ba25f034",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7970359ad167dccba40cc30243834867a5038844d29925bb8425a249ed17ea42",
+  "prompt_used": "An editorial illustration for a short-form video: angry phone call office. It accompanies the narration: \"buyer's lawyer called him screaming\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1lSYQHLsZ0iGi0z1Vxk8s_Sk6Jv2b8jze",
+    "filename": "20260808__reddit-unpaid-driveway-lien-s6-fab1ba25f034.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1lSYQHLsZ0iGi0z1Vxk8s_Sk6Jv2b8jze",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c4e854ac9f540f42970754fdc89f28e75b3bbe72f79cef9ef75e5fe6e0aafab1",
+    "bytes": 1913065,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-08T12:19:59Z",
+  "error": null,
+  "retryable": false
+}

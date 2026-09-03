@@ -1,0 +1,38 @@
+{
+  "key": "ag_yld_crel_kg_rank",
+  "title": "Cereal yield",
+  "unit": "kg per hectare",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Cereal yield",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.YLD.CREL.KG",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "Oman",
+      "value": 29147
+    },
+    {
+      "label": "United Arab Emirates",
+      "value": 23306
+    },
+    {
+      "label": "Qatar",
+      "value": 18275
+    },
+    {
+      "label": "Kuwait",
+      "value": 14957
+    },
+    {
+      "label": "St. Vincent and the Grenadines",
+      "value": 13344
+    }
+  ]
+}

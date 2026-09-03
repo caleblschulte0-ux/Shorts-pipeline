@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260809",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20",
+    "path": "exchange/bundles/20260809/bundle.json"
+  },
+  "request_id": "reddit-sign-off-flood-s5-5446dc635396",
+  "safe_request_id": "reddit-sign-off-flood-s5-5446dc635396",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f3f59e37c621c14766cf93ab9eea7b7b81ed89834d2bc324c02e97c9acdcbb04",
+  "prompt_used": "An editorial illustration for a short-form video: corporate office call. It accompanies the narration: \"corporate started asking why he wasn't answering\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1poULbYyHb7FjyXecwcRHZAHLGWqiFuIl",
+    "filename": "20260809__reddit-sign-off-flood-s5-5446dc635396.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1poULbYyHb7FjyXecwcRHZAHLGWqiFuIl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f296d298ee563eec9f60a4f94e2bbb71a7ed72f54eab0866f30af4b697d6f451",
+    "bytes": 1264329,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-09T11:12:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "raw_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true,
+    "decoded_locally_before_upload": true
+  }
+}

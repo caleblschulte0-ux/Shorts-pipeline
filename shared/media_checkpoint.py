@@ -284,6 +284,38 @@ def identity_of_bytes(blob: bytes) -> str:
 IDENTITY_FILE = "BUNDLE_ID"
 
 
+def _editorial_signature_of(bundle) -> str:
+    """Canonical snapshot of the EDITORIAL content a worker acts on: each
+    package's script and shot phrasing/queries, plus every channel's
+    authoring brief (the takeover work order).
+
+    Deliberately excludes anything Phase A derives from media availability
+    on a re-judge — `media_health`, `verdict`, `has_media`,
+    `strong_fraction`, `requested` — those change on every run and are
+    exactly the noise this identity must NOT react to (see the 2026-08-01
+    incident this function's sibling docstring describes). A script
+    rewrite, a shot phrase edit, or a changed authoring brief is not that
+    noise: it silently reassigns what a worker already claimed against the
+    same bundle identity, so it must move the fingerprint."""
+    pkgs = []
+    for pkg in bundle.get("packages") or []:
+        if not isinstance(pkg, dict) or not pkg.get("slug"):
+            # No slug means nothing downstream can attribute this entry to a
+            # real package either — same as absent, never a false "changed".
+            continue
+        shots = [
+            {"phrase": s.get("phrase"), "query": s.get("query")}
+            for s in (pkg.get("shots") or []) if isinstance(s, dict)
+        ]
+        pkgs.append({"slug": pkg.get("slug"), "title": pkg.get("title"),
+                     "script": pkg.get("script"), "shots": shots})
+    pkgs.sort(key=lambda p: str(p.get("slug") or ""))
+    briefs = {"authoring_request": bundle.get("authoring_request") or None,
+              "authoring_requests": bundle.get("authoring_requests") or None}
+    return json.dumps({"packages": pkgs, "briefs": briefs},
+                      sort_keys=True, default=str)
+
+
 def ask_fingerprint(bundle) -> str:
     """Hash of WHAT WE ASKED FOR, not of the file that carries it.
 
@@ -296,10 +328,16 @@ def ask_fingerprint(bundle) -> str:
     17 verified images would have been refused.
 
     The fix is to hash the ASK: request ids, their prompts, their agreed
-    filenames, plus the registry snapshot the day is contracted to. A
-    re-judge that changes nothing a worker acts on leaves this untouched, so
-    the checkpoints survive. Change a prompt, add a request, or migrate the
-    contract and it moves — which is exactly when they should die."""
+    filenames, the registry snapshot the day is contracted to, AND the
+    editorial content a worker actually acts on (package scripts, shot
+    phrasing, authoring briefs — see `_editorial_signature_of`). Without
+    that last piece a rerun that changes package scripts or a takeover brief
+    read as "unchanged" and rewrote bundle.json underneath a worker already
+    acting on the prior editorial assignment. A re-judge that changes
+    nothing a worker acts on leaves this untouched, so the checkpoints
+    survive. Change a prompt, a script, a shot phrase, an authoring brief,
+    add a request, or migrate the contract and it moves — which is exactly
+    when they should die."""
     if not isinstance(bundle, dict):
         return ""
     reqs = []
@@ -316,6 +354,7 @@ def ask_fingerprint(bundle) -> str:
         f"revision={contract.get('registry_revision') or ''}",
         f"commit={contract.get('source_commit') or ''}",
         "requests=" + "\n".join(sorted(reqs)),
+        "editorial=" + _editorial_signature_of(bundle),
     ]
     return hashlib.sha256("\n".join(parts).encode("utf-8")).hexdigest()
 
@@ -331,6 +370,19 @@ def bundle_identity(date) -> str | None:
     Falls back to hashing `bundle.json` for bundles written before the
     sidecar existed, so old days stay readable."""
     d = bundle_dir(date)
+    # Added by ChatGPT 2026-08-03: a late mechanical Phase A bundle must not
+    # steal identity from an already-claimed ChatGPT takeover.  The takeover
+    # state records the exact identity used by its durable media checkpoints;
+    # prefer it while that owner remains authoritative for the date.
+    try:
+        takeover = json.loads((d / "takeover.json").read_text())
+        takeover_id = str(takeover.get("checkpoint_identity") or "").strip()
+        if (takeover.get("owner") == "chatgpt"
+                and takeover.get("mode") == "takeover"
+                and takeover_id):
+            return takeover_id
+    except Exception:                                    # noqa: BLE001
+        pass
     try:
         text = (d / IDENTITY_FILE).read_text().strip()
         if _HEX64.match(text.lower()):
@@ -909,9 +961,13 @@ def media_entry_problems(entry, *, date, bundle_id=None, request_id=None,
 
     claimed_rid = entry.get("request_id")
     if request_id is not None:
-        if claimed_rid is None:
+        # Added by ChatGPT 2026-08-03: an authored-shot pointer rides on the
+        # shot itself, so its id is already unambiguously derived from
+        # package slug + shot index.  The authoring brief intentionally omits
+        # this redundant field.  Bundle-request entries remain strict.
+        if claimed_rid is None and expect_kind != "authored_shot":
             problems.append(f"no request_id (expected {request_id!r})")
-        elif str(claimed_rid) != str(request_id):
+        elif claimed_rid is not None and str(claimed_rid) != str(request_id):
             problems.append(f"request_id {str(claimed_rid)!r} does not match "
                             f"the request it is attached to ({request_id!r})")
 
@@ -1281,3 +1337,184 @@ def protocol_block(date) -> dict:
                     "than writing nothing, because the next worker will skip "
                     "the work believing it is done."),
     }
+
+
+def pointer_from_checkpoint(cp: dict) -> dict | None:
+    """A verified checkpoint, expressed as a response-shaped media pointer.
+
+    THE CHECKPOINT IS ALREADY THE PROOF. It carries every field a pointer
+    does — drive.file_id, download_url, sha256, bytes, format, dimensions,
+    sharing — because the media worker writes it at the moment those bytes
+    verify. `response.json` was never the evidence; it was only the envelope
+    the finalizer put the evidence in.
+
+    That distinction cost the channel real videos. From 2026-08-09 the 6:00
+    media worker delivered 14-16 verified images a day and the 7:00 finalizer
+    stopped writing `response.json`, so Phase B — which read pointers ONLY
+    from the response — threw every one of them away and self-filled the day
+    with unrelated stock. That stock is exactly what the showrunner then
+    blocked trending's reddit stories for, two days running. The work existed,
+    was verified, and was discarded for want of an envelope.
+
+    Returns None when the checkpoint is not a usable record. This is only
+    the SHAPE check (status + the minimum fields to build a pointer at all);
+    it is not the trust check. `recovered_media` below is the caller that
+    also runs `checkpoint_problems` before ever handing one back, so a
+    checkpoint this function accepts can still be refused for being stale,
+    for the wrong bundle, or for the wrong day.
+    """
+    if not isinstance(cp, dict):
+        return None
+    if str(cp.get("status") or "").lower() != "verified":
+        return None
+    rid = cp.get("request_id")
+    drive = cp.get("drive") or {}
+    image = cp.get("image") or {}
+    if not rid or not drive.get("file_id") or not image.get("sha256"):
+        return None
+    return {
+        "request_id": str(rid),
+        "status": "fulfilled",
+        "drive": dict(drive),
+        "image": dict(image),
+        "recovered_from_checkpoint": True,
+    }
+
+
+def recovered_media(date, *, have: set | None = None, bundle: dict | None = None,
+                    bundle_id: str | None = None,
+                    refused_out: dict[str, list[str]] | None = None,
+                    ) -> dict[str, dict]:
+    """Pointers rebuilt from the day's checkpoints for requests the response
+    did not already answer. `have` is the set of request_ids the response
+    covers, which always wins — recovery fills gaps, it never overrides.
+
+    Recovery grants NO extra trust: every candidate is put through
+    `checkpoint_problems` — the identical schema / date / bundle-identity /
+    prompt / sharing / filename / image checks a response pointer's own
+    checkpoint gets inside `validate_response_media` — before it is ever
+    handed back. A checkpoint made for a different bundle revision, the
+    wrong day, or missing the fields that make it fetchable is dropped
+    exactly like a refused response pointer, never silently promoted.
+    Pass `bundle` (for prompt-agreement checks on bundle requests) and
+    `bundle_id` (for the identity check) whenever they are known; a caller
+    that omits them only loses those two axes, it never loses the rest.
+    Refused candidates are reported via `refused_out` (rid -> problems)
+    when the caller passes a dict, purely for logging."""
+    have = have or set()
+    prompts = {
+        str(r.get("request_id")): r.get("prompt_verbatim")
+        for r in (bundle or {}).get("requests") or []
+        if isinstance(r, dict) and r.get("request_id")
+    }
+    out: dict[str, dict] = {}
+    for rid, cp in all_checkpoints(date).items():
+        if rid in have:
+            continue
+        # TYPE-AWARE: this is the BUNDLE-REQUEST lane. An authored-shot
+        # checkpoint recovered here used to be memory no consumer read
+        # (doctor ee3bb63e4024): Phase B merges this map into idx["media"],
+        # which only the bundle.requests loop walks — and there is no bundle
+        # request for a package ChatGPT invented, so the pointer sat in the
+        # map while the shot self-filled with stock. Authored-shot
+        # checkpoints belong to `recovered_authored_media` below, keyed the
+        # way their consumer (cover_authored) actually addresses shots.
+        if (str((cp or {}).get("request_kind") or "") == "authored_shot"
+                or is_authored_shot_request(rid)):
+            continue
+        ptr = pointer_from_checkpoint(cp)
+        if not ptr:
+            continue
+        problems = checkpoint_problems(cp, date=date, bundle_id=bundle_id,
+                                       request_id=rid, prompt=prompts.get(rid))
+        if problems:
+            if refused_out is not None:
+                refused_out[rid] = problems
+            continue
+        out[rid] = ptr
+    return out
+
+
+def recovered_authored_media(date, *, have: set | None = None,
+                             bundle_id: str | None = None,
+                             refused_out: dict[str, list[str]] | None = None,
+                             ) -> dict[tuple[str, int], dict]:
+    """Authored-shot pointers rebuilt from the day's checkpoints, keyed by
+    `(package_id, shot_index)` — the address their consumer actually uses.
+
+    The second half of the recovery story `recovered_media` tells: a media
+    worker on a takeover day checkpoints images for shots inside packages
+    ChatGPT authored itself, and if the finalizer then omits the matching
+    `shot.media` pointer from its response, that verified work must still
+    reach the shot instead of falling to stock self-fill (doctor
+    ee3bb63e4024 — the durable memory existed, was verified, and was then
+    ignored for want of an envelope).
+
+    Recovery grants NO extra trust — never fewer checks than an explicit
+    authored pointer's checkpoint gets inside `validate_response_media`:
+
+      * the full `checkpoint_problems` contract (schema, date, bundle
+        identity, verified status, sharing, deterministic filename, image
+        fields), with `prompt=None` exactly as `media_entry_problems` uses
+        for authored shots;
+      * `request_kind` must be `authored_shot` — a bundle-request checkpoint
+        cannot back an authored shot, and vice versa;
+      * package/shot IDENTITY: the checkpoint's declared `package_id` and
+        `shot_index` must agree with the ones its own request_id encodes.
+        A mismatch is a refusal, never a guess about which one is right.
+
+    `have` is a set of `(package_id, shot_index)` keys the response already
+    covered — the response always wins where it spoke; recovery fills
+    silence. Refused candidates land in `refused_out` (rid -> problems)
+    when the caller passes a dict, purely for logging."""
+    have = have or set()
+    out: dict[tuple[str, int], dict] = {}
+    for rid, cp in all_checkpoints(date).items():
+        if not isinstance(cp, dict):
+            continue
+        parsed = parse_authored_shot_request_id(rid)
+        kind = str(cp.get("request_kind") or "")
+        if parsed is None and kind != "authored_shot":
+            continue                    # the bundle-request lane's business
+        if parsed is not None and parsed in have:
+            continue                    # the response spoke — it wins
+        problems: list[str] = []
+        if parsed is None:
+            problems.append(
+                "request_kind is 'authored_shot' but the request_id is not "
+                "the authored-<slug>-s<index> shape — cannot tell which "
+                "package/shot this claims to back")
+        elif kind != "authored_shot":
+            problems.append(
+                f"request_id names an authored shot but request_kind is "
+                f"{kind!r} — a bundle-request checkpoint cannot back an "
+                f"authored shot")
+        else:
+            pkg_id, idx = parsed
+            got_pkg = str(cp.get("package_id") or "")
+            if got_pkg != pkg_id:
+                problems.append(
+                    f"checkpoint declares package {got_pkg!r} but its "
+                    f"request_id encodes {pkg_id!r} — identity mismatch, "
+                    f"refusing rather than guessing which is right")
+            try:
+                if int(cp.get("shot_index")) != idx:
+                    problems.append(
+                        f"checkpoint declares shot {cp.get('shot_index')} "
+                        f"but its request_id encodes shot {idx}")
+            except Exception:                            # noqa: BLE001
+                problems.append(
+                    f"checkpoint has no usable shot_index (its request_id "
+                    f"encodes shot {idx})")
+        ptr = pointer_from_checkpoint(cp)
+        if ptr is None:
+            problems.append("checkpoint is not a usable pointer (not "
+                            "verified, or missing file_id/sha256)")
+        problems += checkpoint_problems(cp, date=date, bundle_id=bundle_id,
+                                        request_id=rid, prompt=None)
+        if problems:
+            if refused_out is not None:
+                refused_out[rid] = problems
+            continue
+        out[parsed] = ptr
+    return out

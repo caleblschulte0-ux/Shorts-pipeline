@@ -1,0 +1,99 @@
+{
+  "schema": "chatgpt-takeover/v1",
+  "date": "20260810",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "status": "ready_for_finalizer",
+  "reason": "Claude bundle is valid but materially incomplete for active registry: Explainer began 0/4 and Third began 0/6.",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json",
+    "source_commit": "9912ed1b9d8d062ebb10e41ddfff2216602a2c0f"
+  },
+  "registry": {
+    "revision": 5,
+    "sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f"
+  },
+  "channels": {
+    "trending": {
+      "expected": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "have": {
+        "graph_race": 4,
+        "reddit_story": 2
+      },
+      "missing": {
+        "graph_race": 0,
+        "reddit_story": 0
+      },
+      "media": {
+        "expected": 13,
+        "verified": 13,
+        "failed": 0,
+        "missing": 0
+      }
+    },
+    "explainer": {
+      "expected": {
+        "data_story": 4
+      },
+      "have": {
+        "data_story": 3
+      },
+      "missing": {
+        "data_story": 1
+      },
+      "state": "Three protected-field-safe renderer-ready rewrites staged; fourth must come from registered story_forge/specialized workflow because ChatGPT may not stock this queue."
+    },
+    "third": {
+      "expected": {
+        "clip": 6
+      },
+      "have": {
+        "clip": 0
+      },
+      "missing": {
+        "clip": 6
+      },
+      "state": "Specialized workflow trigger committed on its registered push path; no workflow run attached after two 30-second observations."
+    }
+  },
+  "media": {
+    "expected": 13,
+    "verified": 13,
+    "failed": 0,
+    "missing": 0,
+    "drive_folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "verification": "Downloaded every Drive upload, recomputed SHA-256, decoded locally, and confirmed anyone-with-link reader permission."
+  },
+  "durable_commits": {
+    "takeover_claim": "dc7c2fd39def4c704654bcd8b34eb5fdd6056957",
+    "media_started": "c7ff6aaceaf4cb100cd9990e4925d40659bb3e14",
+    "claims": {
+      "count": 13,
+      "first": "8c6cbb12e7b931399e892a942101dcc983d9c209",
+      "last": "208d07e59f501d18709d2827bb420bc4a2d106c9"
+    },
+    "checkpoints": {
+      "count": 13,
+      "first": "323fa419eb9eea67b4816699004114dc587f2259",
+      "last": "c362368f9b1e7487b0f768419c0a8cc0c097bc63"
+    },
+    "explainer_takeover_work": "44bd5b8c82aa5bf5a84d25c19fceb09e1bb6c03d",
+    "third_workflow_trigger": "71795090d840328caec88caecdd1a0f2ad4c65c6"
+  },
+  "finalizer_resume": [
+    "Read and reuse all 13 verified media checkpoints; do not regenerate.",
+    "Run punchup_guard on the three staged Explainer rewrites, place accepted objects in response.json authored_explainer, and use the registered Explainer workflow/story_forge to supply and render the fourth target.",
+    "Recheck the Third workflow run for commit 71795090d840328caec88caecdd1a0f2ad4c65c6; if still absent, dispatch the registered Third workflow for date 20260810, monitor QA/retries/upload, and preserve target six.",
+    "Perform editorial decisions for the six existing Trending packages.",
+    "Only after recovery and all honest remaining work, write response.json, read it back, then commit DONE separately."
+  ],
+  "claimed_at": "2026-08-10T11:05:28Z",
+  "updated_at": "2026-08-10T11:26:00Z",
+  "immutable_note": "This checkpoint_identity remains authoritative for every takeover checkpoint even if a later Phase A result appears.",
+  "closure_guard": "response.json and DONE intentionally absent; Finalizer owns ordered closure commits."
+}

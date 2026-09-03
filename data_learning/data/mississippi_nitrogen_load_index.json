@@ -1,0 +1,19 @@
+{
+  "key": "mississippi_nitrogen_load_index",
+  "title": "Nitrogen load in the Mississippi River watershed vs the 1950s (index)",
+  "unit": "percent",
+  "geography": "Mississippi River watershed (41% of the continental US)",
+  "time_coverage": "1950s vs today (index, 1950s = 100)",
+  "source": {
+    "name": "Research on Mississippi River nutrient loading and Gulf hypoxia",
+    "publisher": "USGS / university nutrient-runoff research, via Investigate Midwest",
+    "url": "https://investigatemidwest.org/2023/06/08/a-lifetime-of-research-links-gulf-of-mexico-dead-zone-to-midwest-fertilizer-runoff/",
+    "officiality": "reference",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Index where the 1950s nitrogen load in the Mississippi River watershed = 100. Nitrogen levels have roughly tripled since then (to ~300), driven largely by fertilizer runoff from Midwest farmland; the watershed drains roughly 41% of the continental United States into the Gulf.",
+  "points": [
+    {"label": "1950s nitrogen load", "value": 100},
+    {"label": "Today's nitrogen load", "value": 300}
+  ]
+}

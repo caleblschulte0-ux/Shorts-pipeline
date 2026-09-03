@@ -1,0 +1,19 @@
+{
+  "key": "plastic_recycling_rate_2019_vs_2060",
+  "title": "Global plastic recycling rate: today vs. OECD's best case",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2019 vs. 2060 (projected)",
+  "source": {
+    "name": "Global Plastics Outlook",
+    "publisher": "OECD",
+    "url": "https://www.oecd.org/en/about/news/press-releases/2022/06/global-plastic-waste-set-to-almost-triple-by-2060.html",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "OECD projects the global plastic recycling share rising from 9% in 2019 to 17% by 2060 under its own outlook.",
+  "points": [
+    {"label": "2019", "value": 9},
+    {"label": "2060 (projected)", "value": 17}
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "format": "graph_race",
+  "slug": "graph-de-minimis-packages-boom-bust",
+  "title": "The $800 Loophole That Shipped A Billion Boxes",
+  "hook": "It exploded. Then it vanished.",
+  "y_label": "Duty-free packages per year",
+  "duration": 13,
+  "source": "Source: U.S. Customs and Border Protection Section 321 'de minimis' entry data, 2015-2024 (de minimis shipments grew from ~134 million in 2015 to ~1.36 billion in 2024, over 60% China-origin). 2025-2026 figures are post-policy estimates following the White House executive order ending the de minimis exemption for all countries, effective Aug 29, 2025. Figures approximate.",
+  "years": [
+    2015,
+    2018,
+    2021,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "China-Origin",
+      "color": "#e8483c",
+      "icon": "CN",
+      "values": [
+        80000000,
+        250000000,
+        450000000,
+        620000000,
+        820000000,
+        150000000,
+        10000000
+      ]
+    },
+    {
+      "name": "Rest of World",
+      "color": "#e0a030",
+      "values": [
+        54000000,
+        150000000,
+        250000000,
+        380000000,
+        540000000,
+        400000000,
+        30000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "deminimis",
+    "tariffs",
+    "tradepolicy",
+    "shein",
+    "temu",
+    "ecommerce",
+    "imports",
+    "customs",
+    "tariff",
+    "economy",
+    "trade",
+    "onlineshopping",
+    "china",
+    "cbp",
+    "trending"
+  ],
+  "music_vibe": "dark"
+}

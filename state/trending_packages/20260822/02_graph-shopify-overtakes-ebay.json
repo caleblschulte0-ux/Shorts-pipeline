@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-shopify-overtakes-ebay",
+  "title": "Shopify Overtook eBay In Total Sales",
+  "hook": "The New King Of E-Commerce",
+  "y_label": "Gross merchandise volume ($ billions)",
+  "duration": 13,
+  "source": "Shopify quarterly and annual shareholder letters and SEC Form 6-K filings; eBay Inc. quarterly and annual earnings releases and SEC Form 10-K filings, as compiled by Marketplace Pulse and Business Quant. Gross merchandise volume ($ billions) - Shopify: 7.7 (2015), 26.3 (2017), 61.1 (2019), 119.6 (2020), 175.4 (2021), 197.2 (2022). eBay: ~82 (2015), ~88 (2017), ~90.2 (2019), ~100.1 (2020, pandemic-boosted), ~87.4 (2021), ~73.4 (2022). Shopify's annual GMV overtook eBay's for the first time in 2020.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Shopify",
+      "color": "#95BF47",
+      "icon": "Shopify",
+      "values": [
+        7.7,
+        26.3,
+        61.1,
+        119.6,
+        175.4,
+        197.2
+      ]
+    },
+    {
+      "name": "eBay",
+      "color": "#E53238",
+      "icon": "eBay",
+      "values": [
+        82,
+        88,
+        90.2,
+        100.1,
+        87.4,
+        73.4
+      ]
+    }
+  ],
+  "hashtags": [
+    "shopify",
+    "ebay",
+    "ecommerce",
+    "gmv",
+    "onlineshopping",
+    "startups",
+    "retailtech",
+    "smallbusiness",
+    "dropshipping",
+    "techstocks",
+    "entrepreneurship",
+    "business",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

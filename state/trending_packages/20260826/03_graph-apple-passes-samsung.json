@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-apple-passes-samsung",
+  "title": "Samsung Ruled Phones For 12 Years. Then Apple Passed It.",
+  "hook": "One Company Finally Broke Samsung's Streak",
+  "y_label": "Global smartphone shipments (million units/year)",
+  "duration": 13,
+  "source": "IDC and Counterpoint Research annual smartphone shipment estimates, 2013-2023. Approximate, order-of-magnitude figures; Apple shipped more smartphones than Samsung for a full calendar year for the first time in 2023, ending Samsung's run atop the market.",
+  "years": [
+    2013,
+    2016,
+    2018,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Samsung",
+      "color": "#4a90e2",
+      "icon": "Samsung",
+      "values": [
+        455,
+        309,
+        292,
+        253,
+        272,
+        258,
+        226
+      ]
+    },
+    {
+      "name": "Apple",
+      "color": "#e74c3c",
+      "icon": "Apple",
+      "values": [
+        153,
+        215,
+        209,
+        206,
+        236,
+        226,
+        234
+      ]
+    }
+  ],
+  "hashtags": [
+    "apple",
+    "samsung",
+    "smartphones",
+    "iphone",
+    "galaxy",
+    "tech",
+    "smartphonemarket",
+    "dataviz",
+    "consumertech",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

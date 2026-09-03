@@ -1,0 +1,25 @@
+{
+  "key": "lottery_vs_lightning_odds",
+  "title": "Odds of winning Powerball vs. being struck by lightning",
+  "unit": "1 in N (chance)",
+  "geography": "United States",
+  "time_coverage": "2026 (current rules)",
+  "source": {
+    "name": "Powerball jackpot odds vs. lifetime lightning strike odds",
+    "publisher": "Multi-State Lottery Association; National Weather Service lifetime lightning-strike odds (80-year span)",
+    "url": "https://www.weather.gov/safety/lightning-odds",
+    "officiality": "official",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Powerball jackpot odds are 1 in 292,201,338; NWS lifetime lightning-strike odds are 1 in 15,300.",
+  "points": [
+    {
+      "label": "Struck by lightning (lifetime)",
+      "value": 15300
+    },
+    {
+      "label": "Win the Powerball jackpot",
+      "value": 292201338
+    }
+  ]
+}

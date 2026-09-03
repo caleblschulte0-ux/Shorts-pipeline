@@ -1,0 +1,1152 @@
+{
+  "20260601": {
+    "01_nvidia-rtx-spark.json": {
+      "version": 8,
+      "slug": "nvidia-rtx-spark",
+      "title": "Nvidia Just Built Its Own PC Chip \u2014 Intel and Qualcomm Are Rattled",
+      "hashtags": [
+        "nvidia",
+        "jensenhuang",
+        "rtxspark",
+        "blackwell",
+        "computex2026",
+        "armchip",
+        "windows",
+        "laptoptech",
+        "techinnovation",
+        "aipc",
+        "pclaptop",
+        "nvda",
+        "techinvesting",
+        "computex"
+      ],
+      "script": "For 30 years Nvidia has made the GPU. Never a full chip. Until now. At Computex, CEO Jensen Huang announced the RTX Spark \u2014 Nvidia's first processor in decades. It combines a Blackwell GPU with an Arm CPU, 128 gigabytes of unified memory, and runs Windows natively. Dell, ASUS, Lenovo, and Microsoft are all building laptops around it. Ships this fall. Intel and Qualcomm just lost their biggest moat.",
+      "shots": [
+        {
+          "phrase": "For 30 years Nvidia has made the GPU",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jensen_Huang_20231109.jpg",
+          "query": "nvidia ceo keynote stage technology announcement"
+        },
+        {
+          "phrase": "first processor in decades",
+          "query": "cpu processor silicon chip circuit board close up"
+        },
+        {
+          "phrase": "Blackwell GPU with an Arm CPU",
+          "query": "system on chip SoC processor architecture diagram"
+        },
+        {
+          "phrase": "128 gigabytes of unified memory",
+          "query": "laptop gaming performance benchmark power dark"
+        },
+        {
+          "phrase": "Dell, ASUS, Lenovo, and Microsoft are all building",
+          "query": "laptops computers display manufacturers modern store"
+        },
+        {
+          "phrase": "Intel and Qualcomm just lost",
+          "query": "tech stocks falling competition market share rival"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Never a full chip",
+          "text": "NEVER A FULL CHIP",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.0
+        },
+        {
+          "phrase": "first processor in decades",
+          "text": "FIRST PC CHIP IN DECADES",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "128 gigabytes of unified memory",
+          "text": "128GB UNIFIED",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Ships this fall",
+          "text": "SHIPS FALL 2026",
+          "color": "#ffaa30",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Intel and Qualcomm just lost",
+          "text": "INTEL. QUALCOMM. RATTLED.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_clickup-ai-layoffs.json": {
+      "version": 8,
+      "slug": "clickup-ai-layoffs",
+      "title": "ClickUp Fired 290 Workers and Replaced Them With AI Agents",
+      "hashtags": [
+        "clickup",
+        "ailayoffs",
+        "aiagents",
+        "futureofwork",
+        "techlayoffs",
+        "automation",
+        "100xorg",
+        "zebevans",
+        "aiworkplace",
+        "projectmanagement",
+        "aitools",
+        "workforceautomation",
+        "airevolution",
+        "techjobs"
+      ],
+      "script": "ClickUp just rewrote the company playbook. The project management software startup laid off 22 percent of its team \u2014 290 people \u2014 and replaced them with 3,000 AI agents. That's a 10-to-1 ratio of bots to humans. CEO Zeb Evans calls it the 100x org. Surviving employees can now earn $1 million per year in cash. The message: master AI or become obsolete. Every company is watching.",
+      "shots": [
+        {
+          "phrase": "rewrote the company playbook",
+          "query": "startup office tech company modern open space"
+        },
+        {
+          "phrase": "laid off 22 percent of its team",
+          "query": "office workers layoff fired empty desks terminated"
+        },
+        {
+          "phrase": "3,000 AI agents",
+          "query": "ai agent chatbot digital robot automation interface dark"
+        },
+        {
+          "phrase": "10-to-1 ratio of bots to humans",
+          "query": "robots replacing workers automation factory manufacturing"
+        },
+        {
+          "phrase": "earn $1 million per year in cash",
+          "query": "million dollar salary cash wealth finance success"
+        },
+        {
+          "phrase": "master AI or become obsolete",
+          "query": "human versus machine competition workplace technology future"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "22 percent of its team",
+          "text": "22% FIRED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "3,000 AI agents",
+          "text": "3,000 AI AGENTS",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "10-to-1 ratio",
+          "text": "10:1 BOTS TO HUMANS",
+          "color": "#ffaa30",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "$1 million per year in cash",
+          "text": "$1M SALARY",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "master AI or become obsolete",
+          "text": "MASTER AI OR OBSOLETE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "03_oracle-ai-layoffs.json": {
+      "version": 8,
+      "slug": "oracle-ai-layoffs",
+      "title": "Oracle Fired 30,000 People at 6 A.M. to Fund AI Data Centers",
+      "hashtags": [
+        "oracle",
+        "layoffs",
+        "techlayoffs",
+        "openai",
+        "stargate",
+        "aiinvestment",
+        "cloudinfrastructure",
+        "aiinfrastructure",
+        "techjobs",
+        "workforcereduction",
+        "oraclecloud",
+        "aiinvesting",
+        "orcl",
+        "datacenters"
+      ],
+      "script": "Oracle just completed the largest layoff in its history. On March 31st, 2026, 30,000 employees \u2014 18 percent of the global workforce \u2014 received termination emails at 6 a.m. with no warning from HR. The cuts free up $8 billion in cash. The money goes directly to a $156 billion AI infrastructure buildout tied to OpenAI's Stargate contract. Many workers forfeited unvested stock worth hundreds of thousands. Jobs were traded for compute.",
+      "shots": [
+        {
+          "phrase": "largest layoff in its history",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Oracle_HQ_3.JPG",
+          "query": "oracle corporation headquarters building campus"
+        },
+        {
+          "phrase": "30,000 employees \u2014 18 percent of the global workforce",
+          "query": "mass layoff fired workers empty office desks terminated"
+        },
+        {
+          "phrase": "termination emails at 6 a.m. with no warning",
+          "query": "email notification phone dark morning shock bad news inbox"
+        },
+        {
+          "phrase": "$156 billion AI infrastructure buildout",
+          "query": "data center server racks AI compute infrastructure dark rows"
+        },
+        {
+          "phrase": "OpenAI's Stargate contract",
+          "query": "openai artificial intelligence computing facility servers"
+        },
+        {
+          "phrase": "forfeited unvested stock worth hundreds of thousands",
+          "query": "stock options vest RSU financial loss chart falling"
+        },
+        {
+          "phrase": "Jobs were traded for compute",
+          "query": "gpu chips AI hardware technology powerful server racks"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "largest layoff in its history",
+          "text": "BIGGEST IN ORACLE HISTORY",
+          "color": "#ffffff",
+          "size": 170,
+          "duration": 2.2
+        },
+        {
+          "phrase": "30,000 employees",
+          "text": "30,000 FIRED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.6
+        },
+        {
+          "phrase": "$8 billion in cash",
+          "text": "$8B FREED UP",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "$156 billion AI infrastructure",
+          "text": "$156B AI BUILDOUT",
+          "color": "#ffaa30",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "forfeited unvested stock",
+          "text": "LOST THEIR STOCK",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "04_nasa-space-chip.json": {
+      "version": 8,
+      "slug": "nasa-space-chip",
+      "title": "NASA's New Space Chip Is 500 Times More Powerful Than Any Before",
+      "hashtags": [
+        "nasa",
+        "space",
+        "hpsc",
+        "deepspace",
+        "spacetechnology",
+        "jpl",
+        "spacecraft",
+        "marsrover",
+        "spacecomputer",
+        "aitechnology",
+        "sciencenews",
+        "nasanews",
+        "spaceexploration",
+        "microchiptech"
+      ],
+      "script": "The computers guiding spacecraft today were designed in the 1990s. NASA just changed that. Its new High Performance Spaceflight Computing chip \u2014 built by Microchip Technology \u2014 is 500 times more powerful than current space computers, fits in your palm, and survives deep space radiation. It passed testing at JPL last month. Future rovers, lunar habitats, and deep space probes will run it. For the first time, spacecraft will be able to think for themselves.",
+      "shots": [
+        {
+          "phrase": "computers guiding spacecraft today were designed in the 1990s",
+          "query": "old vintage spacecraft computer control panel 1990s retro"
+        },
+        {
+          "phrase": "High Performance Spaceflight Computing chip",
+          "query": "computer chip space technology radiation hardened processor palm"
+        },
+        {
+          "phrase": "fits in your palm",
+          "query": "tiny microchip held in human palm hand small technology"
+        },
+        {
+          "phrase": "testing at JPL last month",
+          "query": "nasa jpl jet propulsion laboratory campus scientists engineers"
+        },
+        {
+          "phrase": "Future rovers, lunar habitats",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA_Mars_Rover.jpg",
+          "query": "mars rover nasa space exploration planet surface"
+        },
+        {
+          "phrase": "spacecraft will be able to think for themselves",
+          "query": "autonomous spacecraft deep space stars galaxy dark ai"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "designed in the 1990s",
+          "text": "BUILT IN THE 90s",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "500 times more powerful",
+          "text": "500X MORE POWERFUL",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "fits in your palm",
+          "text": "FITS IN YOUR PALM",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Future rovers, lunar habitats, and deep space probes",
+          "text": "ROVERS. HABITATS. PROBES.",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "spacecraft will be able to think for themselves",
+          "text": "AI IN DEEP SPACE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "05_brain-aging-nasal-spray.json": {
+      "version": 8,
+      "slug": "brain-aging-nasal-spray",
+      "title": "Scientists Reversed Brain Aging With a Nasal Spray. Alzheimer's Is Next.",
+      "hashtags": [
+        "brainaging",
+        "alzheimers",
+        "dementia",
+        "nasalspray",
+        "neuroscience",
+        "texasam",
+        "stemcells",
+        "brainhealth",
+        "aging",
+        "memorycare",
+        "sciencebreakthrough",
+        "parkinsonsdisease",
+        "neurology",
+        "medicine"
+      ],
+      "script": "Texas A&M University just reversed brain aging \u2014 in mice \u2014 with a simple nasal spray. Researchers developed a spray using microscopic particles from neural stem cells. When given to 18-month-old mice \u2014 equivalent to 60-year-old humans \u2014 it reduced brain inflammation, restored memory, and produced benefits lasting months from just 2 doses. The team is now filing a patent. A human version is the next step. Alzheimer's may have met its match.",
+      "shots": [
+        {
+          "phrase": "reversed brain aging \u2014 in mice \u2014 with a simple nasal spray",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Texas_A%26M_University_Chemistry_Building.jpg",
+          "query": "university research lab science building campus quadrangle"
+        },
+        {
+          "phrase": "microscopic particles from neural stem cells",
+          "query": "brain neuron microscope cells neural science research lab"
+        },
+        {
+          "phrase": "18-month-old mice",
+          "query": "lab mice research aging neuroscience study laboratory white"
+        },
+        {
+          "phrase": "reduced brain inflammation, restored memory",
+          "query": "brain scan mri memory alzheimer neuroscience cognitive"
+        },
+        {
+          "phrase": "Alzheimer's may have met its match",
+          "query": "alzheimer disease treatment hope brain scan senior cognitive"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "reversed brain aging",
+          "text": "BRAIN AGING REVERSED",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.4
+        },
+        {
+          "phrase": "microscopic particles from neural stem cells",
+          "text": "NEURAL STEM CELLS",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "60-year-old humans",
+          "text": "EQUIV. TO AGE 60",
+          "color": "#ffaa30",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "benefits lasting months from just 2 doses",
+          "text": "2 DOSES. MONTHS OF BENEFIT.",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "Alzheimer's may have met its match",
+          "text": "ALZHEIMER'S MET ITS MATCH",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_microsoft-ai-automation.json": {
+      "version": 8,
+      "slug": "microsoft-ai-automation",
+      "title": "Microsoft's AI Boss Says White-Collar Jobs Are Gone in 18 Months",
+      "hashtags": [
+        "mustafasuleyman",
+        "microsoft",
+        "whitecollar",
+        "aiautomation",
+        "futureofwork",
+        "ailayoffs",
+        "technews",
+        "automation",
+        "artificialintelligence",
+        "aijobs",
+        "microsoftai",
+        "whitecollarjobs",
+        "jobsai",
+        "techgiant"
+      ],
+      "script": "Microsoft's CEO of AI just drew an 18-month deadline for white-collar work. Mustafa Suleyman told the Financial Times that virtually all professional tasks \u2014 accounting, legal work, marketing, project management \u2014 will be done by AI within 12 to 18 months. He called it 'human-level performance on most professional tasks.' Microsoft is betting $190 billion on this being true. Over 100,000 tech workers have already been laid off in 2026. The clock is ticking.",
+      "shots": [
+        {
+          "phrase": "an 18-month deadline for white-collar work",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mustafa_Suleyman_photo_(cropped).jpg",
+          "query": "executive technology ai ceo interview keynote conference stage"
+        },
+        {
+          "phrase": "accounting, legal work, marketing, project management",
+          "query": "office workers white collar professional laptop desk corporate"
+        },
+        {
+          "phrase": "done by AI within 12 to 18 months",
+          "query": "ai robot computer automation office task software"
+        },
+        {
+          "phrase": "$190 billion",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_campus_(5536187533).jpg",
+          "query": "microsoft headquarters building campus redmond office tower"
+        },
+        {
+          "phrase": "Over 100,000 tech workers have already been laid off",
+          "query": "tech layoff workers unemployed office closed desk empty"
+        },
+        {
+          "phrase": "The clock is ticking",
+          "query": "countdown clock timer digital red urgent pressure deadline"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "an 18-month deadline",
+          "text": "18 MONTHS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 2.6
+        },
+        {
+          "phrase": "accounting, legal work, marketing",
+          "text": "ACCOUNTING. LEGAL. MARKETING.",
+          "color": "#ffaa30",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "human-level performance on most professional tasks",
+          "text": "HUMAN-LEVEL AI",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "$190 billion",
+          "text": "$190B BET",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "100,000 tech workers have already been laid off in 2026",
+          "text": "100K GONE IN 2026",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 190,
+          "duration": 2.4
+        },
+        {
+          "phrase": "The clock is ticking",
+          "text": "TICK TOCK",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    }
+  },
+  "20260602": {
+    "01_spacex-starship-catch.json": {
+      "version": 8,
+      "slug": "spacex-starship-catch",
+      "title": "SpaceX Just Caught a Falling Skyscraper With Giant Chopsticks",
+      "hashtags": [
+        "spacex",
+        "starship",
+        "superheavy",
+        "mechazilla",
+        "elonmusk",
+        "rocketreuse",
+        "spacenews",
+        "spacetech",
+        "reusablerocket",
+        "ift5",
+        "boostercatch",
+        "aerospace",
+        "futurespace",
+        "rocketscience"
+      ],
+      "script": "For 60 years, every rocket launched was burned up or lost forever. SpaceX just broke that rule. On October 13, 2024, the Super Heavy booster \u2014 70 meters tall, 33 engines \u2014 launched, completed its burn, and flew back to its launch tower. Giant mechanical arms called Mechazilla caught it mid-air. No splash landing. No parachutes. Just a skyscraper snapped out of the sky. Rocket reuse just became real.",
+      "shots": [
+        {
+          "phrase": "For 60 years, every rocket launched was burned up",
+          "query": "historical rocket launch saturn v apollo smoke fire exhaust"
+        },
+        {
+          "phrase": "SpaceX just broke that rule",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/SpaceX_Starship_IFT-5.jpg",
+          "query": "spacex starship launch booster fire launchpad texas"
+        },
+        {
+          "phrase": "70 meters tall, 33 engines",
+          "query": "super heavy booster rocket engines raptor bottom view close up"
+        },
+        {
+          "phrase": "Mechazilla caught it mid-air",
+          "query": "mechanical arms tower rocket catch launchpad chopsticks space"
+        },
+        {
+          "phrase": "No splash landing. No parachutes.",
+          "query": "ocean rocket landing barge sea comparison splash"
+        },
+        {
+          "phrase": "skyscraper snapped out of the sky",
+          "query": "skyscraper building city tall height comparison steel"
+        },
+        {
+          "phrase": "Rocket reuse just became real",
+          "query": "reusable rocket launch future technology space era"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "every rocket launched was burned up",
+          "text": "BURNED. EVERY TIME.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "SpaceX just broke that rule",
+          "text": "RULE BROKEN",
+          "color": "#ffffff",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "70 meters tall, 33 engines",
+          "text": "70M. 33 ENGINES.",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Mechazilla caught it mid-air",
+          "text": "MECHAZILLA CATCHES IT",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "Rocket reuse just became real",
+          "text": "REUSE IS REAL",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_deepseek-r1-shock.json": {
+      "version": 8,
+      "slug": "deepseek-r1-shock",
+      "title": "China's Free AI Just Wiped $600 Billion Off Nvidia in One Day",
+      "hashtags": [
+        "deepseek",
+        "deepseekr1",
+        "nvidia",
+        "nvda",
+        "aistock",
+        "chineseai",
+        "openai",
+        "wallstreet",
+        "aishock",
+        "technews",
+        "aicompetition",
+        "stockcrash",
+        "llm",
+        "artificialintelligence"
+      ],
+      "script": "A tiny Chinese AI lab no one had heard of just sent shockwaves through Wall Street. On January 27, 2025, DeepSeek released R1 \u2014 a reasoning AI that matched OpenAI's best model, cost 97 percent less to build, and is completely free. Nvidia lost 17 percent of its value in a single day \u2014 $600 billion gone. DeepSeek built what US labs spent billions on, for $6 million.",
+      "shots": [
+        {
+          "phrase": "no one had heard of just sent shockwaves",
+          "query": "shock explosion surprise wall street finance trading floor nyse"
+        },
+        {
+          "phrase": "DeepSeek released R1",
+          "query": "ai chatbot interface laptop screen dark china technology server"
+        },
+        {
+          "phrase": "matched OpenAI's best model",
+          "query": "ai benchmark comparison chart test results competitive performance"
+        },
+        {
+          "phrase": "97 percent less to build",
+          "query": "cost savings efficiency bar chart low budget comparison dollar"
+        },
+        {
+          "phrase": "Nvidia lost 17 percent of its value",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jensen_Huang_20231109.jpg",
+          "query": "nvidia stock price chart red crash decline falling billions"
+        },
+        {
+          "phrase": "$600 billion gone",
+          "query": "stock market crash red numbers falling hundreds billions loss"
+        },
+        {
+          "phrase": "for $6 million",
+          "query": "small budget startup computer server cheap efficient low cost"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "just sent shockwaves through Wall Street",
+          "text": "WALL STREET SHOCKED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "DeepSeek released R1",
+          "text": "DEEPSEEK R1",
+          "color": "#ffffff",
+          "size": 200,
+          "duration": 2.0
+        },
+        {
+          "phrase": "97 percent less to build",
+          "text": "97% CHEAPER",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Nvidia lost 17 percent",
+          "text": "NVIDIA: -17%",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "$600 billion gone",
+          "text": "$600B GONE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "for $6 million",
+          "text": "BUILT FOR $6M",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "03_waymo-1m-rides.json": {
+      "version": 8,
+      "slug": "waymo-1m-rides",
+      "title": "Waymo Just Crossed 1 Million Driverless Rides \u2014 No Human Inside",
+      "hashtags": [
+        "waymo",
+        "robotaxi",
+        "selfdrivingcar",
+        "autonomousvehicle",
+        "waymoone",
+        "driverless",
+        "jaguar",
+        "alphabet",
+        "google",
+        "futuretransport",
+        "avtech",
+        "techinnovation",
+        "rideshare",
+        "nodrivingneeded"
+      ],
+      "script": "There are robotaxis on US streets right now with no steering wheel, no pedals, and no human inside. Waymo's fully autonomous fleet crossed 1 million paid rides in May 2024 \u2014 all without a human driver. The Jaguar I-PACE robotaxi picks you up, navigates construction, pedestrians, and rain, and drops you off. No tips. No small talk. The era of human-driven taxis just quietly started ending.",
+      "shots": [
+        {
+          "phrase": "robotaxis on US streets right now",
+          "query": "empty driverless car city street urban night autonomous vehicle"
+        },
+        {
+          "phrase": "no steering wheel, no pedals, and no human inside",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Waymo_self-driving_car_trimmed.jpg",
+          "query": "waymo robotaxi no steering wheel interior autonomous empty seat"
+        },
+        {
+          "phrase": "crossed 1 million paid rides in May 2024",
+          "query": "milestone one million rides celebration chart victory achievement"
+        },
+        {
+          "phrase": "Jaguar I-PACE robotaxi picks you up",
+          "query": "jaguar ipace electric car robotaxi black city pickup passenger"
+        },
+        {
+          "phrase": "navigates construction, pedestrians, and rain",
+          "query": "autonomous car rain night city lights sensors lidar cameras"
+        },
+        {
+          "phrase": "No tips. No small talk.",
+          "query": "taxi cab yellow driver traditional human compare ride"
+        },
+        {
+          "phrase": "human-driven taxis just quietly started ending",
+          "query": "taxi driver occupation automation future ending last ride"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no steering wheel, no pedals, and no human inside",
+          "text": "NO STEERING WHEEL",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "1 million paid rides",
+          "text": "1 MILLION RIDES",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "all without a human driver",
+          "text": "ZERO HUMAN DRIVERS",
+          "color": "#ffe24a",
+          "size": 180,
+          "duration": 2.2
+        },
+        {
+          "phrase": "No tips. No small talk.",
+          "text": "NO TIPS. NO TALK.",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.0
+        },
+        {
+          "phrase": "human-driven taxis just quietly started ending",
+          "text": "END OF TAXI DRIVERS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "04_microsoft-nuclear-tmi.json": {
+      "version": 8,
+      "slug": "microsoft-nuclear-tmi",
+      "title": "Microsoft Is Reopening America's Most Infamous Nuclear Plant for AI",
+      "hashtags": [
+        "microsoft",
+        "threemileisland",
+        "nuclear",
+        "nuclearenergy",
+        "constellationenergy",
+        "aipower",
+        "cleanenergy",
+        "datacenter",
+        "nuclearrevival",
+        "msft",
+        "energynews",
+        "aiinfrastructure",
+        "nuclearpower",
+        "greentech"
+      ],
+      "script": "Three Mile Island \u2014 site of America's worst nuclear accident \u2014 is coming back online. Microsoft signed a 20-year power deal with Constellation Energy to restart Unit 1, shut since 2019. The plant will be renamed the Crane Clean Energy Center and generate 835 megawatts \u2014 enough for 800,000 homes. Microsoft needs the power for AI data centers. America's most infamous nuclear site is now feeding artificial intelligence.",
+      "shots": [
+        {
+          "phrase": "Three Mile Island",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Three_Mile_Island_Nuclear_Generating_Station_(color).jpg",
+          "query": "three mile island nuclear plant cooling towers pennsylvania aerial"
+        },
+        {
+          "phrase": "America's worst nuclear accident",
+          "query": "nuclear accident steam cooling tower old 1979 power plant danger"
+        },
+        {
+          "phrase": "Microsoft signed a 20-year power deal",
+          "query": "microsoft headquarters corporate building tech giant contract signing"
+        },
+        {
+          "phrase": "Constellation Energy to restart Unit 1",
+          "query": "nuclear reactor control room restart power plant operator"
+        },
+        {
+          "phrase": "generate 835 megawatts",
+          "query": "nuclear power plant electricity generation energy megawatts output"
+        },
+        {
+          "phrase": "Microsoft needs the power for AI data centers",
+          "query": "data center server farm rows rack electricity power cooling ai"
+        },
+        {
+          "phrase": "America's most infamous nuclear site is now feeding artificial intelligence",
+          "query": "ai artificial intelligence nuclear power future data center glowing"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "America's worst nuclear accident",
+          "text": "WORST NUCLEAR ACCIDENT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "coming back online",
+          "text": "COMING BACK ONLINE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 180,
+          "duration": 2.0
+        },
+        {
+          "phrase": "20-year power deal",
+          "text": "20-YEAR DEAL",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "generate 835 megawatts",
+          "text": "835 MEGAWATTS",
+          "color": "#ffe24a",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "enough for 800,000 homes",
+          "text": "800K HOMES",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "now feeding artificial intelligence",
+          "text": "FEEDING AI",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 210,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "05_neuralink-first-patient.json": {
+      "version": 8,
+      "slug": "neuralink-first-patient",
+      "title": "A Paralyzed Man Is Playing Chess By Thinking \u2014 Thanks to a Brain Chip",
+      "hashtags": [
+        "neuralink",
+        "bci",
+        "brainchip",
+        "nolandarbaugh",
+        "elonmusk",
+        "neurotechnology",
+        "brainsignals",
+        "paralysis",
+        "n1implant",
+        "braincomputerinterface",
+        "medtech",
+        "sciencenews",
+        "futuremed",
+        "neurosciencenews"
+      ],
+      "script": "In January 2024, Noland Arbaugh became the first human to receive Neuralink's brain chip. He is paralyzed from the shoulders down. 8 weeks later, he was playing chess, browsing the web, and gaming \u2014 all by thinking. The N1 chip reads his brain signals, and a computer translates them to cursor movements. Zero physical movement required. Brain-computer interfaces just crossed from science fiction into everyday reality.",
+      "shots": [
+        {
+          "phrase": "first human to receive Neuralink's brain chip",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Elon_Musk_2015.jpg",
+          "query": "neuralink brain implant chip neural interface technology medical"
+        },
+        {
+          "phrase": "paralyzed from the shoulders down",
+          "query": "spinal cord injury paralyzed wheelchair disability medical patient"
+        },
+        {
+          "phrase": "playing chess, browsing the web, and gaming",
+          "query": "chess game computer screen cursor moving brain control autonomous"
+        },
+        {
+          "phrase": "N1 chip reads his brain signals",
+          "query": "brain signal electrode neural eeg scan computer interface waves"
+        },
+        {
+          "phrase": "computer translates them to cursor movements",
+          "query": "computer cursor movement screen pointer autonomous control thought"
+        },
+        {
+          "phrase": "Zero physical movement required",
+          "query": "still hands person using computer thought control mind alone"
+        },
+        {
+          "phrase": "Brain-computer interfaces just crossed from science fiction",
+          "query": "futuristic brain computer neural cyberpunk sci fi interface tech"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "first human to receive Neuralink's brain chip",
+          "text": "FIRST BRAIN CHIP EVER",
+          "color": "#ffffff",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "paralyzed from the shoulders down",
+          "text": "PARALYZED. SHOULDERS DOWN.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 175,
+          "duration": 2.2
+        },
+        {
+          "phrase": "all by thinking",
+          "text": "BY THINKING ALONE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "Zero physical movement required",
+          "text": "ZERO MOVEMENT",
+          "color": "#ffe24a",
+          "size": 195,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Brain-computer interfaces just crossed from science fiction",
+          "text": "SCI-FI IS REAL",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.6
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_figure-ai-bmw-factory.json": {
+      "version": 8,
+      "slug": "figure-ai-bmw-factory",
+      "title": "A Humanoid Robot Is Now Working Alone on a Real Factory Floor",
+      "hashtags": [
+        "figureai",
+        "figure02",
+        "humanoidrobot",
+        "bmw",
+        "robotics",
+        "automation",
+        "robotjobs",
+        "spartanburg",
+        "manufacturingrobot",
+        "futureofwork",
+        "airobots",
+        "industrialai",
+        "figurerobots",
+        "robotfactory"
+      ],
+      "script": "A humanoid robot is now working alone on a real factory floor. Figure AI's Figure 02 robot is deployed in BMW's Spartanburg, South Carolina plant \u2014 picking up sheet metal parts, inspecting them, and transferring them between stations without human help. The robot completes each task in under 60 seconds. BMW employs 11,000 people at that plant. Humanoid robots just clocked in for their first real shift.",
+      "shots": [
+        {
+          "phrase": "humanoid robot is now working alone on a real factory floor",
+          "query": "humanoid robot working factory floor automation industrial arm white"
+        },
+        {
+          "phrase": "Figure AI's Figure 02 robot",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Figure-01_humanoid_robot.jpg",
+          "query": "figure ai humanoid robot white bipedal factory warehouse"
+        },
+        {
+          "phrase": "BMW's Spartanburg, South Carolina plant",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/BMW_Welt.jpg",
+          "query": "bmw factory plant south carolina assembly line car manufacturing"
+        },
+        {
+          "phrase": "picking up sheet metal parts",
+          "query": "robot arm picking sheet metal parts assembly line car manufacturing"
+        },
+        {
+          "phrase": "completes each task in under 60 seconds",
+          "query": "robot task fast speed efficiency factory precision timer"
+        },
+        {
+          "phrase": "BMW employs 11,000 people at that plant",
+          "query": "factory workers thousands assembly line automobile human labor workforce"
+        },
+        {
+          "phrase": "Humanoid robots just clocked in for their first real shift",
+          "query": "robot entering factory futuristic future work automation era"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "working alone on a real factory floor",
+          "text": "WORKING. ALONE.",
+          "color": "#ffffff",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Figure AI's Figure 02 robot",
+          "text": "FIGURE 02",
+          "color": "#ffe24a",
+          "size": 210,
+          "duration": 2.2
+        },
+        {
+          "phrase": "without human help",
+          "text": "ZERO HUMAN HELP",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "under 60 seconds",
+          "text": "UNDER 60 SECONDS",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "BMW employs 11,000 people",
+          "text": "11,000 HUMANS.",
+          "color": "#ffaa30",
+          "size": 195,
+          "duration": 2.2
+        },
+        {
+          "phrase": "first real shift",
+          "text": "FIRST SHIFT. EVER.",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.8
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    }
+  }
+}

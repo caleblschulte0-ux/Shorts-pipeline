@@ -1,0 +1,21 @@
+{
+  "schema": "chatgpt-takeover-explainer/v1",
+  "production_date": "20260803",
+  "channel": "explainer",
+  "job": "rewrite_words",
+  "source_slug": "population-growth-fell-54-since-1972",
+  "protected_data_unchanged": true,
+  "rewrite": {
+    "slug": "population-growth-fell-54-since-1972",
+    "title": "Population Growth Fell 54% Since 1972",
+    "hook": "Population growth dropped from 2 in 1972 to 0.91—and almost nobody noticed.",
+    "closing": "The world did not stop growing. It just quietly hit the brakes.",
+    "question": "Did you realize population growth had slowed this much?",
+    "says": [
+      "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population—just 67 percent of the earlier share.",
+      "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population—barely moved while the world around it urbanized.",
+      "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual %—down to 46 percent of that earlier pace. That is not a slowdown; that is the demographic brakes coming on."
+    ]
+  },
+  "finalizer_action": "Copy this object into response.json authored_explainer only after punchup_guard confirms every protected number, year, entity, and segment position is unchanged."
+}

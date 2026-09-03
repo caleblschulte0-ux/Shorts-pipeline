@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-snack-bag-clipboard-s4-fe966f1f45dc",
+  "safe_request_id": "reddit-snack-bag-clipboard-s4-fe966f1f45dc",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-snack-bag-clipboard",
+  "shot_index": 4,
+  "prompt_sha256": "85f7863f045dc1310f4e07e5029208f3b9fb9605c0bf992b237c0af8e71fd2b6",
+  "prompt_used": "An editorial illustration for a short-form video: security camera monitor. It accompanies the narration: \"Loss prevention flagged her rewards account\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1pbosam8aF5Qcu2L0HUPnM-kBikkXUg9c",
+    "filename": "20260818__reddit-snack-bag-clipboard-s4-fe966f1f45dc.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1pbosam8aF5Qcu2L0HUPnM-kBikkXUg9c",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c7f8a2cab9d9f1f38b91e8cccf4e7d230b758ef37cd78651f431b72a63147592",
+    "bytes": 1546252,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:04.000Z",
+  "error": null,
+  "retryable": false
+}

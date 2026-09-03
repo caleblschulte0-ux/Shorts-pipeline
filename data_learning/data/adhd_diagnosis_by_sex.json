@@ -1,0 +1,19 @@
+{
+  "key": "adhd_diagnosis_by_sex",
+  "title": "Children ever diagnosed with ADHD, by sex (2022)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "ADHD Prevalence Among U.S. Children and Adolescents in 2022",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/adhd/data/index.html",
+    "officiality": "official",
+    "access_date": "2026-08-22"
+  },
+  "notes": "Illustrative -- real published 2022 NSCH figures formatted for narration. Boys were diagnosed at roughly 1.8x the rate of girls in 2022, down from more than 2x in prior years -- the sex gap is narrowing as more girls get identified.",
+  "points": [
+    {"label": "Boys", "value": 15},
+    {"label": "Girls", "value": 8}
+  ]
+}

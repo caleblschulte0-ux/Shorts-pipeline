@@ -1,0 +1,38 @@
+{
+  "key": "ag_lnd_crel_ha_rank",
+  "title": "Land under cereal production",
+  "unit": "hectares",
+  "geography": "Top 5 countries",
+  "time_coverage": "2024",
+  "insight_type": "rank",
+  "source": {
+    "name": "Land under cereal production",
+    "publisher": "World Bank",
+    "url": "https://data.worldbank.org/indicator/AG.LND.CREL.HA",
+    "officiality": "official",
+    "access_date": "2026-08-02"
+  },
+  "notes": "Fetched live from World Bank on 2026-08-02. Values are the publisher's, unmodified.",
+  "points": [
+    {
+      "label": "India",
+      "value": 107673781
+    },
+    {
+      "label": "China",
+      "value": 99987255
+    },
+    {
+      "label": "United States",
+      "value": 54078269
+    },
+    {
+      "label": "Russian Federation",
+      "value": 43171705
+    },
+    {
+      "label": "Brazil",
+      "value": 27781508
+    }
+  ]
+}

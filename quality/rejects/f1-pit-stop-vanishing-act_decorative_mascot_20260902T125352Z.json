@@ -1,0 +1,37 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260902T125352Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only rides/stands on the bar caps and columns (seg1:mid, seg2:start, seg3:mid, seg4:end) in the same arms-out/idle stance \u2014 no setup\u2192action\u2192payoff bit tied to a pit stop (no jack, no wheel gun, no crew act).",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg0:start/mid/end (f01, f03, f05) open on a static, empty bar-chart skeleton with a cartoon HOUSE icon capping the 'Current record' row; the row labels 'Refueling era' and 'Current record' are clipped off the left edge, the caption 'a minute.' collides with the '1950s' bar, and Data just stands mid-frame doing nothing.",
+  "root_cause": "Row cap icons are being pulled from a generic icon pool with no topic match (house for an F1 record), the category label column is too narrow for its longest strings so text is cropped at the frame edge, and the opening beat is a chart build rather than an event \u2014 the mascot has no authored performance tied to the pit-stop stat.",
+  "repair_goal": "Replace the house/irrelevant cap icons with pit-stop-relevant marks (stopwatch, wheel, jack) or drop them entirely; widen/inset the label gutter so 'Refueling era' and 'Current record' render fully inside the panel and the caption never overlaps the bars; open on motion \u2014 the 1950s bar already stretching while Data performs a real bit (hauling a tire, cranking a jack) so the first frame is an action, not a static skeleton."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}

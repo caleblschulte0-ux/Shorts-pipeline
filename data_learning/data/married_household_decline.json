@@ -1,0 +1,25 @@
+{
+  "key": "married_household_decline",
+  "title": "Married-couple households, share of all US households",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1970 vs 2022",
+  "source": {
+    "name": "America's Families and Living Arrangements",
+    "publisher": "U.S. Census Bureau",
+    "url": "https://www2.census.gov/library/publications/2024/demo/p20-587.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "Married-couple households fell from 71% of all US households in 1970 to 47% in 2022.",
+  "points": [
+    {
+      "label": "1970",
+      "value": 71
+    },
+    {
+      "label": "2022",
+      "value": 47
+    }
+  ]
+}

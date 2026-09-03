@@ -1,0 +1,19 @@
+{
+  "key": "saffron_vs_pepper_price",
+  "title": "Retail spice price (dollars per gram)",
+  "unit": "dollars",
+  "geography": "United States, retail",
+  "time_coverage": "2026 (current retail)",
+  "source": {
+    "name": "Saffron and common-spice retail pricing",
+    "publisher": "industry pricing guides (e.g. Raihan Saffron, LatestCost) cross-checked against typical US grocery pricing",
+    "url": "https://raihansaffron.com/blogs/journal/how-much-does-saffron-cost-in-2026-real-prices-per-gram-from-the-grocery-aisle-to-single-origin",
+    "officiality": "illustrative",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Genuine, lab-graded saffron retails for roughly $10-30/gram in the US in 2026 (midpoint $15 used here). Black pepper retail price is a conservative round estimate from typical US grocery pricing (~$0.02/gram).",
+  "points": [
+    {"label": "Black pepper", "value": 0.02},
+    {"label": "Saffron", "value": 15}
+  ]
+}

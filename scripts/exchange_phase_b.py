@@ -129,24 +129,53 @@ def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
     Verification is not optional: SHA-256 against the producer's claim, a full
     pixel decode, and a placeholder check. A mismatch returns None so the
     caller self-fills rather than pinning a corrupt or substituted image.
+
+    That same claim also gates reusing a file already on disk. Bundle
+    request IDs are content-addressed from slug/shot/prompt (and an
+    authored shot's ID from slug/shot alone) with NO DATE, so an identical
+    ask on a later production day resolves to the same cache path even
+    though the mutable Drive object behind it may since have changed. A
+    cache hit used to be returned unconditionally, before the current
+    entry's claimed hash was even read — so pin_verified_media would then
+    stamp TODAY's Drive URL/hash onto the package as if today's bytes had
+    been the ones downloaded and verified, when only yesterday's were. A
+    cached file is now trusted only when it hashes to the CURRENT entry's
+    claim; anything else — no current claim, or a hash that disagrees — is
+    treated as no cache at all and re-fetched.
     """
     import hashlib
     import io
     import urllib.request
 
-    # Already on disk from a previous run?
-    for ext in ("png", "jpg", "jpeg", "webp", "mp4"):
-        p = MEDIA_CACHE / f"{request_id}.{ext}"
-        if p.exists() and p.stat().st_size:
-            return p
-
-    if not isinstance(entry, dict) or entry.get("status") not in ("fulfilled",
-                                                                  "partial"):
-        return None
-    drive = entry.get("drive") or {}
-    img = entry.get("image") or {}
+    valid_entry = (isinstance(entry, dict)
+                   and entry.get("status") in ("fulfilled", "partial"))
+    drive = (entry.get("drive") or {}) if valid_entry else {}
+    img = (entry.get("image") or {}) if valid_entry else {}
     fid = (drive.get("file_id") or "").strip()
     claim = (img.get("sha256") or "").strip().lower()
+
+    # Already on disk from a previous run — but only trust it against what
+    # the CURRENT entry claims. See the docstring above for why the request
+    # ID alone is not enough evidence.
+    if valid_entry and claim:
+        for ext in ("png", "jpg", "jpeg", "webp", "mp4"):
+            p = MEDIA_CACHE / f"{request_id}.{ext}"
+            if not (p.exists() and p.stat().st_size):
+                continue
+            try:
+                cached_sha = hashlib.sha256(p.read_bytes()).hexdigest()
+            except Exception as exc:                     # noqa: BLE001
+                print(f"[phase-b] {request_id}: cached file unreadable "
+                      f"({exc}) — refetching")
+                continue
+            if cached_sha == claim:
+                return p
+            print(f"[phase-b] {request_id}: cached file does not match "
+                  f"today's claim (cached {cached_sha[:12]}…, claim "
+                  f"{claim[:12]}…) — stale cache, refetching")
+
+    if not valid_entry:
+        return None
 
     urls = [u for u in (
         drive.get("download_url"),
@@ -204,6 +233,35 @@ def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
     return None
 
 
+def pin_verified_media(shot: dict, entry: dict, *, origin: str) -> None:
+    """Persist a verified pointer in a form a *different runner* can use.
+
+    Phase B and the renderer are separate GitHub Actions jobs.  The old code
+    committed ``/home/runner/.../cache/exchange/foo.png`` into the package;
+    that path only existed on Phase B's disposable VM, so the render job
+    silently lost every ChatGPT image.  ``fetch_media`` still verifies the
+    exact Drive object locally first, but the package now retains the public
+    download URL plus its identity/hash instead of the temporary filename.
+
+    Added by ChatGPT on 2026-08-02 after the first takeover production run
+    exposed the cross-runner handoff bug.  Reverting this function and its two
+    call sites restores the previous behaviour in one commit.
+    """
+    drive = entry.get("drive") or {}
+    image = entry.get("image") or {}
+    fid = str(drive.get("file_id") or "").strip()
+    url = str(drive.get("download_url") or "").strip()
+    if not url and fid:
+        url = f"https://drive.google.com/uc?export=download&id={fid}"
+    if not url:
+        raise ValueError("verified media has no durable Drive URL")
+    shot["image_url"] = url
+    shot["media_origin"] = origin
+    shot["media_file_id"] = fid
+    shot["media_sha256"] = str(image.get("sha256") or "").strip().lower()
+    shot["media_bytes"] = image.get("bytes")
+
+
 # Renderers keep funnel candidates at score >= 0.4. Self-fill is the
 # gloves-off pass: accept weaker-but-real media rather than ship nothing.
 SELF_FILL_FLOOR = 0.15
@@ -255,12 +313,17 @@ def self_fill(pkg: dict, shot_index: int) -> str | None:
         pass
 
     # Lane 3 — topic image finder: search(topic, context) -> list[str]
-    # (Wikipedia article images, Commons, Openverse; keyless).
+    # (Wikipedia article images, Commons, Openverse; keyless). This draws
+    # from the SAME sources lane 2 just fed through url_is_image() and
+    # rejected every candidate from, so it must clear the identical trust
+    # boundary — otherwise it is a side door back to the dead/HTML/non-image
+    # URLs lane 2 already refused (entity_media.url_is_image's own docstring:
+    # "the trust boundary for routine-supplied image URLs").
     try:
-        from funnel import topic_media
+        from funnel import entity_media, topic_media
         urls = topic_media.search(entity, angle) or []
         for url in urls:
-            if url:
+            if url and entity_media.url_is_image(url):
                 print(f"[phase-b] self-fill lane=topic shot={shot_index}")
                 return url
     except Exception:                                # noqa: BLE001
@@ -317,8 +380,14 @@ def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False,
             continue
         local = fetch_media(rid, pointer)
         if local:
-            shot["image_url"] = str(local)
-            shot["media_origin"] = "chatgpt_authored"
+            # The audit trail must be able to tell a pointer the finalizer
+            # actually declared from one rebuilt out of a checkpoint after
+            # the response omitted it — a day repaired by recovery should
+            # say so, not read as if the envelope had been fine all along.
+            origin = ("chatgpt_authored_recovered"
+                      if pointer.get("recovered_from_checkpoint")
+                      else "chatgpt_authored")
+            pin_verified_media(shot, pointer, origin=origin)
             report["media"]["fulfilled"] += 1
         else:
             print(f"[phase-b] {slug} shot {i}: ChatGPT media pointer did not "
@@ -338,8 +407,12 @@ def cover_authored(pkg: dict, report: dict, *, no_self_fill: bool = False,
         else:
             report["media"]["unfilled"] += 1
     filled = sum(1 for s in shots if s.get("image_url"))
+    # Both declared and checkpoint-recovered pointers are ChatGPT's own
+    # generated images — the origin suffix records HOW they arrived, not who
+    # made them.
     from_chatgpt = sum(1 for s in shots
-                       if s.get("media_origin") == "chatgpt_authored")
+                       if str(s.get("media_origin") or "")
+                       .startswith("chatgpt_authored"))
     print(f"[phase-b] authored {slug}: {filled}/{len(shots)} shots have "
           f"media ({from_chatgpt} generated by ChatGPT, "
           f"{filled - from_chatgpt} found by us)")
@@ -451,6 +524,43 @@ def main() -> int:
 
     response = xb.read_response(args.date)
     idx = xb.response_index(response)
+
+    # Computed here (not at its old spot, right before validate_response_media
+    # below) because RECOVERY needs it too — a recovered checkpoint made for a
+    # stale bundle revision must fail the identity check exactly like an
+    # explicit response pointer would, and that requires knowing the current
+    # bundle_id before recovery runs, not after.
+    bundle_id = mc.bundle_identity(args.date)
+
+    # RECOVER THE MEDIA WORKER'S OUTPUT FROM ITS CHECKPOINTS.
+    #
+    # Pointers used to come ONLY from response.json, which made every image
+    # the 6:00 worker produced hostage to the 7:00 finalizer writing an
+    # envelope for them. On 2026-08-09/10 the worker delivered 14-16 verified
+    # images a day, the finalizer stopped closing, and Phase B discarded all
+    # of it and self-filled with unrelated stock — which is precisely what
+    # the showrunner then blocked trending's reddit stories for.
+    #
+    # A checkpoint is written at the moment the bytes verify and carries the
+    # same file_id / sha256 / dimensions a pointer does, so it IS the
+    # evidence. Recovered pointers fill only the gaps the response left, and
+    # `recovered_media` puts each one through `checkpoint_problems` — the
+    # same schema / date / bundle-identity / prompt / sharing / filename /
+    # image checks an explicit pointer's checkpoint gets inside
+    # `validate_response_media` — before it is ever merged in, so recovery
+    # grants no extra trust; it only stops verified work from being thrown
+    # away.
+    _recovered_refused: dict[str, list[str]] = {}
+    _recovered = mc.recovered_media(args.date, have=set(idx["media"]),
+                                    bundle=bundle, bundle_id=bundle_id,
+                                    refused_out=_recovered_refused)
+    if _recovered:
+        idx["media"].update(_recovered)
+        print(f"[phase-b] recovered {len(_recovered)} media pointer(s) from "
+              f"checkpoints (requests the response did not answer)")
+    for rid, problems in _recovered_refused.items():
+        print(f"::warning::[phase-b] REFUSED recovered checkpoint for "
+              f"{rid}: {problems[0]}")
     if response is None:
         if done:
             # DONE says "I finished" but the payload will not parse. That is
@@ -477,7 +587,6 @@ def main() -> int:
     # and strong on its own, and hard-failing here would mean a worker that
     # skipped its checkpoints loses every image to stock self-fill — a
     # regression dressed up as strictness.
-    bundle_id = mc.bundle_identity(args.date)
     validation = mc.validate_response_media(
         response, bundle, date=args.date, bundle_id=bundle_id,
         require_checkpoint=require_cp)
@@ -554,17 +663,89 @@ def main() -> int:
     from exchange_phase_a import load_packages      # noqa: E402
     packages = {p.get("slug"): p for p in
                 load_packages(args.channel, args.date)}
+
+    # IDEMPOTENT TAKEOVER REPAIR.  A second Phase B run used to see the
+    # ChatGPT package already promoted, reject the duplicate candidate, and
+    # therefore never revisit its media.  Reattach the response's media
+    # pointers to the already-promoted package so a corrected checkpoint or
+    # response can repair the day without deleting state first.
+    response_authored = {
+        str(p.get("slug") or ""): p
+        for p in ((response or {}).get("authored") or [])
+        if isinstance(p, dict) and p.get("slug")
+    }
+    for slug, pkg in packages.items():
+        src = response_authored.get(str(slug))
+        if not src or pkg.get("_authored_by") != "chatgpt-takeover":
+            continue
+        for dst_shot, src_shot in zip(pkg.get("shots") or [],
+                                      src.get("shots") or []):
+            if (isinstance(src_shot, dict)
+                    and isinstance(src_shot.get("media"), dict)):
+                dst_shot["media"] = dict(src_shot["media"])
     # Packages ChatGPT just wrote were not around when Phase A found media,
     # so they carry no `requests` and no `image_url` anywhere. Cover them
     # here or they render as bare keyword stock.
     new_slugs = {Path(p).stem.split("_", 1)[-1]
                  for p in authored.get("promoted") or []}
+    new_slugs |= {
+        str(slug) for slug, pkg in packages.items()
+        if pkg.get("_authored_by") == "chatgpt-takeover"
+        and str(slug) in response_authored
+    }
     if bundle.get("rescue"):
         # No bundle means no `requests`, so the normal media loop below has
         # nothing to iterate. Everything on disk is uncovered — treat the
         # whole slate as freshly authored so it all goes through the media
         # pass instead of rendering on bare keyword stock.
         new_slugs |= set(packages)
+
+    # AUTHORED-SHOT RECOVERY — the other half of the checkpoint-recovery
+    # story above. `recovered_media` rebuilds BUNDLE-REQUEST pointers into
+    # idx["media"], which only the bundle.requests loop reads; an
+    # authored-shot checkpoint has no bundle request, and cover_authored
+    # consumes only the `media` riding on a response-authored shot — so a
+    # verified authored-shot checkpoint whose finalizer response omitted the
+    # pointer was recovered into a map no consumer read, and the shot
+    # self-filled with stock while its verified image sat on Drive (doctor
+    # ee3bb63e4024). Recover those checkpoints type-aware, validated exactly
+    # like an explicit authored pointer's checkpoint (request_kind,
+    # package/shot identity, full checkpoint contract — see
+    # `recovered_authored_media`), and attach each one to its shot BEFORE
+    # cover_authored runs so it takes the identical byte-level fetch path
+    # (sha256 + decode + placeholder). Recovery fills silence only: a shot
+    # whose response pointer exists — or was refused — is never overridden.
+    _auth_refused: dict[str, list[str]] = {}
+    _auth_recovered = mc.recovered_authored_media(
+        args.date, bundle_id=bundle_id, refused_out=_auth_refused)
+    for _rid, problems in _auth_refused.items():
+        print(f"::warning::[phase-b] REFUSED recovered authored-shot "
+              f"checkpoint for {_rid}: {problems[0]}")
+    if _auth_recovered:
+        attached = 0
+        for slug, pkg in packages.items():
+            if pkg.get("_authored_by") != "chatgpt-takeover":
+                # Authored-shot checkpoints exist only for packages ChatGPT
+                # authored itself; one claiming a Claude package's slug is
+                # not evidence about that package.
+                continue
+            for i, shot in enumerate(pkg.get("shots") or []):
+                if not isinstance(shot, dict) or \
+                        isinstance(shot.get("media"), dict):
+                    continue        # the response spoke here — it wins
+                rid = mc.authored_shot_request_id(slug, i)
+                if rid in refused:
+                    continue        # spoken AND refused — stays refused
+                ptr = _auth_recovered.get(
+                    mc.parse_authored_shot_request_id(rid))
+                if ptr:
+                    shot["media"] = dict(ptr)
+                    # The whole point: a package whose response entry was
+                    # missing entirely still gets its media pass.
+                    new_slugs.add(str(slug))
+                    attached += 1
+        print(f"[phase-b] recovered {attached} authored-shot pointer(s) "
+              f"from checkpoints (shots the response left bare)")
 
     report = {"date": str(args.date), "channel": args.channel,
               "done_marker": done, "had_response": response is not None,
@@ -603,8 +784,8 @@ def main() -> int:
         else:
             local = fetch_media(rid, idx["media"].get(rid))
         if local:
-            shots[sidx]["image_url"] = str(local)
-            shots[sidx]["media_origin"] = "chatgpt"
+            pin_verified_media(shots[sidx], idx["media"][rid],
+                               origin="chatgpt")
             report["media"]["fulfilled"] += 1
             report["details"].append(
                 {"request_id": rid, "outcome": "chatgpt", "path": str(local)})
@@ -686,6 +867,18 @@ def main() -> int:
         print("[phase-b] dry run — packages not written")
         return 0
 
+    # ---- persist: every write must LAND before "ready to render" ---------
+    # Exit 0 IS the contract ("Exit 0 = ready to render", module docstring):
+    # daily.yml renders whatever is on disk the moment this returns. A
+    # package write that failed here used to be a ::warning:: and a report
+    # write that failed was silently discarded — so the renderer picked up
+    # the STALE pre-Phase-B package (no verified media, no punch-up) and the
+    # day shipped with no audit record, green the whole way. So: track every
+    # intended write, and any failure flips the exit code and names the
+    # path. The successful writes are left in place — they are individually
+    # atomic and correct — but the phase as a whole refuses to call itself
+    # ready.
+    failed_writes: list[str] = []
     for slug, pkg in packages.items():
         path = pkg.pop("_path", None)
         if not path:
@@ -693,15 +886,29 @@ def main() -> int:
         try:
             atomic_write_json(Path(path), pkg)
         except Exception as exc:                     # noqa: BLE001
-            print(f"[phase-b] WARN could not write {slug}: {exc}")
+            print(f"::error::[phase-b] could not write package "
+                  f"{slug} ({path}): {exc}")
+            failed_writes.append(str(path))
 
     out = xb.bundle_dir(args.date) / "phase_b_report.json"
     try:
         out.parent.mkdir(parents=True, exist_ok=True)
         atomic_write_json(out, report)
-        print(f"[phase-b] wrote {out.relative_to(ROOT)} — ready to render")
-    except Exception:                                # noqa: BLE001
-        pass
+    except Exception as exc:                         # noqa: BLE001
+        # The report is the phase's only durable evidence of WHAT it did —
+        # which pointers were refused, what self-filled, what the punch-up
+        # guard rejected. Losing it silently is how a bad day becomes an
+        # unexplainable day.
+        print(f"::error::[phase-b] could not write audit record "
+              f"{out}: {exc}")
+        failed_writes.append(str(out))
+
+    if failed_writes:
+        print("::error::[phase-b] NOT ready to render — "
+              f"{len(failed_writes)} write(s) failed: "
+              + ", ".join(failed_writes))
+        return 1
+    print(f"[phase-b] wrote {out.relative_to(ROOT)} — ready to render")
     return 0
 
 

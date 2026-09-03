@@ -1,0 +1,65 @@
+{
+  "format": "graph_race",
+  "slug": "graph-vinyl-buried-cd",
+  "title": "Vinyl Buried CDs After 34 Years On Top",
+  "hook": "Records Won The Rematch",
+  "y_label": "US format revenue ($ millions)",
+  "duration": 13,
+  "source": "RIAA Year-End Music Industry Revenue Reports, US physical format revenue: vinyl $395M (2017), $419M (2018), $504M (2019), $626M (2020), $1,000M (2021), $1,200M (2022), $1,350M (2023); CD $1,100M (2017), $698M (2018), $615M (2019), $483M (2020), $584M (2021), $482M (2022), $537M (2023). Vinyl revenue overtook CD revenue in 2020, the first time since 1987.",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Vinyl",
+      "color": "#7C3AED",
+      "values": [
+        395,
+        419,
+        504,
+        626,
+        1000,
+        1200,
+        1350
+      ]
+    },
+    {
+      "name": "CDs",
+      "color": "#38BDF8",
+      "values": [
+        1100,
+        698,
+        615,
+        483,
+        584,
+        482,
+        537
+      ]
+    }
+  ],
+  "hashtags": [
+    "vinyl",
+    "vinylrecords",
+    "cds",
+    "compactdisc",
+    "musicindustry",
+    "riaa",
+    "recordstore",
+    "turntable",
+    "physicalmedia",
+    "musichistory",
+    "nostalgia",
+    "albumsales",
+    "musicbiz",
+    "records",
+    "dataviz"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

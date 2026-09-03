@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-airport-bag-sizer-s3-1f315449a073",
+  "safe_request_id": "reddit-airport-bag-sizer-s3-1f315449a073",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fd7da929341c52718489ab3dd78a951e748bbe581be6a13339351d45b0edec9a",
+  "prompt_used": "An editorial illustration for a short-form video: airport gate agent waving. It accompanies the narration: \"started waving him through\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+    "filename": "20260826__reddit-airport-bag-sizer-s3-1f315449a073.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "b5f78687f5dee3c32cfe7067d2d66c8852cbdd058ec11bd7e92704db8231a75e",
+    "bytes": 1158636,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:30.688Z",
+  "error": null,
+  "retryable": false
+}

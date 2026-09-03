@@ -1,0 +1,102 @@
+{
+  "date": "20260819",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 13,
+    "unfilled": 1,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "1c49f0f9d4c3e1dac14f6bd1ca7b76db0fbd934659aa11878c0e5372cf90c4ad",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-logged-every-call-s0-888a4b84b93c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5910c8527d02fa9d151b2bd7c0f65bfed4c2a71db8f564216cac2557ca27ef22e4b0f098217505c0ead09f63673b01a27ea31fd599e0a905c54eef68a5a32f41_1280.jpg"
+    },
+    {
+      "request_id": "reddit-logged-every-call-s2-53627320fd7f",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/12983110/pexels-photo-12983110.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-logged-every-call-s3-a90dd4ffde33",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga6c034e4a44678dd521c75f87e1c6237417bebe048557057841bb5d7221ba99edea487710f79238e16dbd591a437a5dd22cd1a2a0a6254f5c5424b69ef48cbc8_1280.jpg"
+    },
+    {
+      "request_id": "reddit-logged-every-call-s4-783badccb9bf",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/765/21886785298_0579769d21_b.jpg"
+    },
+    {
+      "request_id": "reddit-logged-every-call-s6-fa9b7fe16d38",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g59ce2d6f205f8c1c5e67be3971ddea55d08410a9f53025ea347d28bf18905343ffe943111bb8036b3cbde868d1c8c7646b9b6f09983efaaa59e4838bbf1f71b3_1280.jpg"
+    },
+    {
+      "request_id": "reddit-logged-every-call-s7-93d86d1baae3",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc1f3bf6a502810ae86115f6011c05cfbc5ff7e251662cf4794841c1470e7fc0962a4f5c0d308e481731624ecc3d63e27f988800bd61cd8f1c219b4d57e00acfc_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s0-98727ba4574e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfb653ca32eca361fe87b49909b45697c1eba6c4819ebf893a17693dbc75f2a9c0d42abadbf823c91c0bc0ee0c4499a37f46cbb53ad49bb8b208176a2e29131cf_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s1-c5f0a8deb102",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s2-d0573ab32de0",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/6169/6263479762_ea4acc31c0_b.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s3-13d4722dc752",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g95955d0b640f934dd3d2b45655bd6149d651600ad35116c491907431d4fd84492d326d80500cad85d9bb96496f5892048241b77e28042d5cbaf0989ebe6f63ec_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s4-822970c6126a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g92c61d8160a684b2c025373d5b74f330aa5b9f97f2c631aa22260b2b008adc7eb5bb427fa312d5da5f9f521c0daf36b3144fd328782c0387732f5397959bc986_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s5-5b0b9e7e45be",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gac80974911f8b39c13bb10a0d2a8327c41a8697ed725f6cdccb64ee7cd57ca3f2037fb20c0b05f19b24f2fb537a11865_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s6-78bf0bedc03d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5570eea8bdfdefde9c304134ef50d5ec639a4aaaefd801b09493f1871dd97c22fc7abcd6bab8cafbcd596a77928c0c087bae5f01660c60ff2b87e5ef44ffb40f_1280.jpg"
+    },
+    {
+      "request_id": "reddit-landlord-deposit-audit-s7-df30091155fa",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf5958a2f8ffcbd1f031f1c6a00fda831e6796f76b3f5c962fd7f3eb056adfafd8feabb7c6e5426e5c56d8919a763c9d9a105ee41dce98411b6b574b6b546312a_1280.jpg"
+    }
+  ]
+}

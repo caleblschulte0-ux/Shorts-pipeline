@@ -1,0 +1,123 @@
+{
+  "date": "20260823",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 15,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679",
+    "required": true,
+    "checked": 15,
+    "ok": 15,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-lounge-flagged-account-s0-1c15bd3dcd59",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s0-1c15bd3dcd59.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s1-a1b4d42a11d2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s1-a1b4d42a11d2.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s2-5129c3f28e34",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s2-5129c3f28e34.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s3-d480d8ff6996",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s3-d480d8ff6996.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s4-7a2fa640b346",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s4-7a2fa640b346.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s6-896c00deb4c6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s6-896c00deb4c6.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s7-065f5511b89b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s7-065f5511b89b.png"
+    },
+    {
+      "request_id": "reddit-lounge-flagged-account-s5-d596f0150317",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-lounge-flagged-account-s5-d596f0150317.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s0-4d6604db1491",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s0-4d6604db1491.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s1-f723d83118ae",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s1-f723d83118ae.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s2-6eecf6d2842f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s2-6eecf6d2842f.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s3-35f68aace885",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s3-35f68aace885.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s4-8c4f34ea4a83",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s4-8c4f34ea4a83.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s6-1d38584eb1a5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s6-1d38584eb1a5.png"
+    },
+    {
+      "request_id": "reddit-fifteen-minute-sign-s5-22a56ca069dd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-fifteen-minute-sign-s5-22a56ca069dd.png"
+    },
+    {
+      "slug": "reddit-lounge-flagged-account",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): efficient"
+      ]
+    },
+    {
+      "slug": "reddit-fifteen-minute-sign",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): apparently, which"
+      ]
+    }
+  ]
+}

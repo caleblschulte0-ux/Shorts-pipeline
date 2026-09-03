@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-yellowstone-wolves-vs-elk",
+  "title": "Wolves Came Back. The Elk Paid For It.",
+  "hook": "One predator changed a park.",
+  "y_label": "Population (count)",
+  "duration": 13,
+  "source": "Yellowstone gray wolf population = interior-park wolf count from the National Park Service Yellowstone Wolf Project annual reports; northern-range elk herd count from NPS / Wyoming Game & Fish aerial survey data (1995 reintroduction to 2026). Figures approximate, especially 2026 which reflects the most recently published survey trend.",
+  "years": [
+    1995,
+    2000,
+    2005,
+    2010,
+    2015,
+    2020,
+    2026
+  ],
+  "series": [
+    {
+      "name": "Gray wolves",
+      "color": "#5a5a5a",
+      "icon": "Gray Wolf",
+      "values": [
+        14,
+        119,
+        118,
+        97,
+        99,
+        94,
+        108
+      ]
+    },
+    {
+      "name": "Northern range elk",
+      "color": "#8b5a2b",
+      "icon": "Elk",
+      "values": [
+        19000,
+        13400,
+        9500,
+        6000,
+        4900,
+        4200,
+        3500
+      ]
+    }
+  ],
+  "hashtags": [
+    "yellowstone",
+    "graywolf",
+    "wolves",
+    "elk",
+    "wildlife",
+    "nationalpark",
+    "conservation",
+    "trophiccascade",
+    "ecology",
+    "nature",
+    "wolfreintroduction",
+    "wildlifecomeback",
+    "animals"
+  ],
+  "music_vibe": "cinematic"
+}

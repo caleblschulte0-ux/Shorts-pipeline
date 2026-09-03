@@ -143,6 +143,43 @@ class TestExperimentalCannotBecomeForever(unittest.TestCase):
                                  f"{name}: decision_date must be YYYY-MM-DD")
 
 
+class TestGatedIsAWaitingRoomNotAResidence(unittest.TestCase):
+    """Doctor finding 1207ec562569: the two rules above exempted every
+    gated active engine, so parallax and lookmatch could stay advertised
+    as production capabilities forever — consumerless, untried, deadline-
+    free. A gate is a pending DECISION; these tests give it a clock."""
+
+    def test_consumerless_gated_engines_carry_a_lifecycle(self):
+        for name, meta in engines.REGISTRY.items():
+            if (meta.get("status") == "active" and meta.get("gated")
+                    and not meta.get("consumers")):
+                self.assertTrue(
+                    meta.get("decision_date"),
+                    f"{name} is active+gated with no consumer and no "
+                    f"decision_date — adopt it, demote it, or date the "
+                    f"decision.")
+                self.assertTrue(
+                    meta.get("trial"),
+                    f"{name} names no trial or demotion criterion — a "
+                    f"deadline with no test attached just gets extended.")
+
+    def test_an_expired_decision_date_fails_the_suite(self):
+        """DELIBERATE: the day after a decision date passes, this test goes
+        red until someone adopts, demotes, or (with a reason) re-dates the
+        engine. That is the entire point of a deadline — if expiry were
+        quiet, the waiting room would be a residence with extra fields."""
+        from datetime import date as _date
+        today = _date.today().isoformat()
+        for name, meta in engines.REGISTRY.items():
+            d = meta.get("decision_date")
+            if d:
+                self.assertGreaterEqual(
+                    str(d), today,
+                    f"{name}'s decision date {d} has PASSED. Run its trial "
+                    f"({meta.get('trial', 'see registry')!s:.80}) and adopt "
+                    f"it, or demote it — do not silently push the date.")
+
+
 class TestTheRegistryStaysUsable(unittest.TestCase):
     def test_every_engine_has_the_fields_a_reader_needs(self):
         for name, meta in engines.REGISTRY.items():

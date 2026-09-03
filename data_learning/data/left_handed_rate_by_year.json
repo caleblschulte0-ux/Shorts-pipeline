@@ -1,0 +1,42 @@
+{
+  "key": "left_handed_rate_by_year",
+  "title": "Share of people who are left-handed, by birth era",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "1900-2026",
+  "source": {
+    "name": "Historical prevalence of left-handedness (meta-analysis of birth-cohort studies)",
+    "publisher": "I.C. McManus handedness research; Washington Post/Psychology Today summaries of the meta-analysis",
+    "url": "https://www.washingtonpost.com/health/the-big-number-lefties-make-up-about-10-percent-of-the-world/2019/08/09/69978100-b9e2-11e9-bad6-609f75bfd97f_story.html",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Rate by decade of birth, not year measured. Documented anchors: ~3% for those born ~1900, ~4% by 1920, ~12% for those born after 1960, best current overall estimate ~10.6%. Points between anchors are a smooth interpolation, not individually measured years.",
+  "points": [
+    {
+      "label": "1900",
+      "value": 3.0,
+      "period": "1900"
+    },
+    {
+      "label": "1920",
+      "value": 4.0,
+      "period": "1920"
+    },
+    {
+      "label": "1940",
+      "value": 7.5,
+      "period": "1940"
+    },
+    {
+      "label": "1960",
+      "value": 12.0,
+      "period": "1960"
+    },
+    {
+      "label": "2026",
+      "value": 10.6,
+      "period": "2026"
+    }
+  ]
+}

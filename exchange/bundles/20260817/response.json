@@ -1,0 +1,315 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260817",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "6c25c8969c64d17f8585a8be6940a2ba1b5c73ce",
+    "production_date": "20260817",
+    "bundle_sha256": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe"
+  },
+  "media": [
+    {
+      "request_id": "reddit-vacation-approval-chain-s1-e0db44f62b67",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1uy3cIaWP3tg1ro8oCoFE-dgjFE8qhpBk",
+        "filename": "20260817__reddit-vacation-approval-chain-s1-e0db44f62b67.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1uy3cIaWP3tg1ro8oCoFE-dgjFE8qhpBk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d0bb88000e7be76c176821fc59ad49ba5f9104ca91641efdaff2c95c3053dd4f",
+        "bytes": 1170000,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s1-e0db44f62b67.json",
+        "verified_at": "2026-08-17T11:06:45Z"
+      }
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s2-34b0e2bf4812",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1OzEGqcNF8cVLCK1mwvGy6iQ9i04AdqnD",
+        "filename": "20260817__reddit-vacation-approval-chain-s2-34b0e2bf4812.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1OzEGqcNF8cVLCK1mwvGy6iQ9i04AdqnD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "56e39466a3352ce328fcd914d393968a680615d09a72bb172277044f5a0c596b",
+        "bytes": 1296523,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s2-34b0e2bf4812.json",
+        "verified_at": "2026-08-17T11:06:46Z"
+      }
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s3-06f53758fe92",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1K9pzbh1J6pGi6u3795-g4DZg2bdP_C0C",
+        "filename": "20260817__reddit-vacation-approval-chain-s3-06f53758fe92.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1K9pzbh1J6pGi6u3795-g4DZg2bdP_C0C",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ce96004bfd16fb1c894956fdf605b55efdeeebae7fafc032a1e0c0ceb1d4dbc3",
+        "bytes": 1204294,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s3-06f53758fe92.json",
+        "verified_at": "2026-08-17T11:06:47Z"
+      }
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s4-e58553e64566",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1oo0RRoSl1QSlXAfHW0pnAIUWEqqmtK9y",
+        "filename": "20260817__reddit-vacation-approval-chain-s4-e58553e64566.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1oo0RRoSl1QSlXAfHW0pnAIUWEqqmtK9y",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "95e2ae0827b7559e778cff5b5bc92503e1b4dd8c2c858e9f815935ddc4016e64",
+        "bytes": 1362201,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s4-e58553e64566.json",
+        "verified_at": "2026-08-17T11:06:48Z"
+      }
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s5-8c35344a9038",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+        "filename": "20260817__reddit-vacation-approval-chain-s5-8c35344a9038.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1sg4iwbkvVZ4NNyQwo6adTuCNXMpfqSCF",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9e4b1c13bc5e59a0fcd2f7d4f94de44f59f674ffec905a8e0926ccc7c7e30ae6",
+        "bytes": 1091835,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s5-8c35344a9038.json",
+        "verified_at": "2026-08-17T11:06:49Z"
+      }
+    },
+    {
+      "request_id": "reddit-vacation-approval-chain-s7-795c80d748b6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+        "filename": "20260817__reddit-vacation-approval-chain-s7-795c80d748b6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1MQAGE3SWIqZ8t4SkeQTCd7EkH9ZEscn-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b55d6f97f35af1a21c2aff3e025cfe4d83fcdfa2edce08c06bec8c2f364cc9b5",
+        "bytes": 1867301,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-vacation-approval-chain-s7-795c80d748b6.json",
+        "verified_at": "2026-08-17T11:06:50Z"
+      }
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s0-c7a1d5347ea1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1A8PmME-sGUl4rBkQ1OF8FYMIX5BQfJWp",
+        "filename": "20260817__reddit-quiet-hours-vacuum-s0-c7a1d5347ea1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1A8PmME-sGUl4rBkQ1OF8FYMIX5BQfJWp",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6015229cf801201b7e46e5601305da0503d65d532d21e9fc6abb4a6e0bd9bf06",
+        "bytes": 993911,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-quiet-hours-vacuum-s0-c7a1d5347ea1.json",
+        "verified_at": "2026-08-17T11:06:51Z"
+      }
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "15MNEb7pzKB_C-OmRzYkfW1q5VKkQdp-N",
+        "filename": "20260817__reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=15MNEb7pzKB_C-OmRzYkfW1q5VKkQdp-N",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7d89a759aa7c3a9e9d1ed7fa4d04fa8d1f18c501747a137538c0516f34509201",
+        "bytes": 1500667,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-quiet-hours-vacuum-s1-89dbe6a9bc9f.json",
+        "verified_at": "2026-08-17T11:06:52Z"
+      }
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+        "filename": "20260817__reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a343105fb160b7afce5fc474b4d0ece3a89dc8f3d9b47b3f36c68646bab133fc",
+        "bytes": 961265,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a.json",
+        "verified_at": "2026-08-17T11:06:53Z"
+      }
+    },
+    {
+      "request_id": "reddit-quiet-hours-vacuum-s3-418b31ed7796",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1y_di3XaSWcHgphE315KYmQcxS9e4c46D",
+        "filename": "20260817__reddit-quiet-hours-vacuum-s3-418b31ed7796.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1y_di3XaSWcHgphE315KYmQcxS9e4c46D",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "324e9fd53ef831756a27b09bad4899671bf50ab03ebf4d19b62dd7ce0982a0eb",
+        "bytes": 1431751,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260817/media-progress/reddit-quiet-hours-vacuum-s3-418b31ed7796.json",
+        "verified_at": "2026-08-17T11:06:54Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-tiktok-shop-passed-etsy",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title immediately frames the specific two-year app-over-Etsy reversal the chart reveals."
+    },
+    {
+      "slug": "graph-asteroids-catalogued",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title front-loads the concrete 40,000 near-Earth asteroid milestone."
+    },
+    {
+      "slug": "graph-dota-prize-pool-collapse",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly names the collapse of esports’ former biggest prize as the chart payoff."
+    },
+    {
+      "slug": "graph-kpop-demon-hunters-record",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title lands the cartoon-to-Netflix’s-biggest-movie record in one clean reveal."
+    },
+    {
+      "slug": "reddit-vacation-approval-chain",
+      "script": "PTO needs how many? The company launched a new PTO policy: requests needed sign-off from all five team leads, not only your manager, for coverage. I ran support tickets with eleven vacation days saved. I didn't book eleven days. I filed eleven separate one-day requests—one email to all five leads. The first needed five signatures; the second and every single one after got the same treatment across three months. Before 9 a.m., inboxes filled with color-coded approval chains. Two coworkers joined. Within two weeks, one team lead was approving requests during her own commute. By the third week, coverage visibility had collapsed completely; finding coverage meant opening forty separate threads. Efficient. HR quietly reverted to one-manager approval nine days later. My eleven days remain unbooked. I'm using them all in December, in one request. How many signatures will December need?",
+      "editor_note": "Punched up to a four-word question hook, compressed the approval-chain escalation, added one dry efficiency aside, and landed on December’s signature count while preserving every number, entity, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-quiet-hours-vacuum",
+      "script": "Quiet hours mean what? My upstairs neighbor blasts music until 2 a.m. most nights. Our lease has one rule: quiet hours, 10 p.m. to 8 a.m., building-wide. Working nights and sleeping mornings, I emailed management with timestamps and a recording. They warned her. She played it louder the next night out of spite. I reread the lease: quiet hours end at 8 a.m., not 8:01. At 7:59 the next morning, I set up my vacuum by her bedroom wall. At 8:00:00 I turned it on. Then I practiced trumpet. Then the washing machine on the loudest cycle. Subtle. Every morning, right on the second, for two straight weeks. She filed a noise complaint. Management checked the lease; I hadn't broken a single quiet hour. She now stops by 9:30. I still vacuum at 8 sharp. Whose quiet-hours lesson got louder?",
+      "editor_note": "Punched up to a four-word question hook, tightened the lease-clock escalation, added one restrained dry aside, and landed on the quiet-hours reversal while preserving every number, entity, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "The 1970s warned the world would run out of food. The numbers refused to cooperate.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast was left waiting.",
+      "question": "Which shift changed the story most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Is 3.0x Higher Than In 1990",
+      "hook": "Since 1990, one energy source tripled. It wasn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "The world's overlooked energy story is built from what people once treated as waste.",
+      "question": "Which shift stands out most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating forever. Instead, the curve nearly stopped.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration everyone assumed would continue.",
+      "question": "Which change surprised you most — rural, city, or growth?"
+    }
+  ]
+}

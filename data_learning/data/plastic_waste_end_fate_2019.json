@@ -1,0 +1,21 @@
+{
+  "key": "plastic_waste_end_fate_2019",
+  "title": "Where global plastic waste actually ends up",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2019",
+  "source": {
+    "name": "Global Plastics Outlook",
+    "publisher": "OECD",
+    "url": "https://www.oecd.org/content/dam/oecd/en/publications/support-materials/2022/02/global-plastics-outlook_a653d1c9/Global%20Plastics%20Outlook%20I.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-13"
+  },
+  "notes": "2019 global plastic waste disposition, OECD Global Plastics Outlook.",
+  "points": [
+    {"label": "Recycled", "value": 9},
+    {"label": "Incinerated", "value": 19},
+    {"label": "Landfilled", "value": 50},
+    {"label": "Mismanaged / dumped", "value": 22}
+  ]
+}

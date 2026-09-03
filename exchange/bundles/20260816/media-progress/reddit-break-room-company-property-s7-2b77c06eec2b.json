@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-break-room-company-property-s7-2b77c06eec2b",
+  "safe_request_id": "reddit-break-room-company-property-s7-2b77c06eec2b",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-break-room-company-property",
+  "shot_index": 7,
+  "prompt_sha256": "1ca02eca638f87c7054ecb0b68dcf23be01d3ae4f939649b41802c3d17431d82",
+  "prompt_used": "An editorial illustration for a short-form video: email inbox icon. It accompanies the narration: \"She emailed a second memo\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "183fF4uAuHiAm-t881HXZbzILYrjU86U5",
+    "filename": "20260816__reddit-break-room-company-property-s7-2b77c06eec2b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=183fF4uAuHiAm-t881HXZbzILYrjU86U5",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "07e6949b5919a7948edfdab39cf8fa3a0c2f1a5d8998c29afa55bc9f5c627b0e",
+    "bytes": 1107335,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:13Z",
+  "error": null,
+  "retryable": false
+}

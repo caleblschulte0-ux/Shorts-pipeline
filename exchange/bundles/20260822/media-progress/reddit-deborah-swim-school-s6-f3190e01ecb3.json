@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-deborah-swim-school-s6-f3190e01ecb3",
+  "safe_request_id": "reddit-deborah-swim-school-s6-f3190e01ecb3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2af5d68a6b44b0888db2be1b9dd15f7a827971eb241fbc2d717b34a1b6b1b93a",
+  "prompt_used": "An editorial illustration for a short-form video: numbered list paper. It accompanies the narration: \"position forty one\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+    "filename": "20260822__reddit-deborah-swim-school-s6-f3190e01ecb3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1OG_t1lNGAekvs-cw9irkwkcYoFlKeqE0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "762cd7e8ce889a4dfe0a39339ebb996a2fc97af88edf31d5beb9eda103e059cb",
+    "bytes": 1407268,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:37.159Z",
+  "error": null,
+  "retryable": false
+}

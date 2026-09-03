@@ -1,0 +1,37 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260824T111248Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start (40.1s) is an almost entirely dark panel with five tiny valueless dots and a wholly empty lower half; seg3:start\u2013seg4:end keep that bottom third dead.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start is five tiny unlabeled dots in a mostly empty dark panel; by seg2:mid/seg2:end they are equal-diameter circles printing 2.6, 2.8, 2.2, 2.3, 2.1 with the bottom 40% of the frame empty \u2014 and the video's headline figure, 1.36% for 2025, never appears on screen at all.",
+  "root_cause": "The scene falls back to a static equal-size bubble layout that encodes value only as typed text, with no size/fill/race mapping and no 2025 datapoint rendered, so the decline the script narrates is never visible and the mascot has nothing to act against.",
+  "repair_goal": "Rebuild seg2 as a shrinking-scale demonstration: size each 1972\u21922025 mark proportional to its growth rate so the collapse from 2.82 to 1.36 is readable without reading, include and land on the 1.36 mark as the final beat, fill the empty lower frame, and give Data a setup\u2192action\u2192payoff bit tied to the shrink (e.g. hauling/measuring the 1972 mark, then being dwarfed by how small 2025 comes in)."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "block_wall"
+  }
+ ]
+}

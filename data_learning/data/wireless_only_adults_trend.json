@@ -1,0 +1,21 @@
+{
+  "key": "wireless_only_adults_trend",
+  "title": "Share of US adults with no landline (wireless-only)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2010-2024",
+  "source": {
+    "name": "Wireless Substitution: Early Release of Estimates from the National Health Interview Survey",
+    "publisher": "National Center for Health Statistics (NCHS), CDC",
+    "url": "https://www.cdc.gov/nchs/data/nhis/earlyrelease/wireless202506.pdf",
+    "officiality": "official",
+    "access_date": "2026-08-21"
+  },
+  "notes": "Share of US adults living in a household with wireless (cell) phone service only, no landline, from the semiannual NCHS/NHIS Wireless Substitution early-release series: 24.9% in 2010, 44.1% in 2014 (about 106 million adults), 73.2% by the end of 2022, roughly 76% by 2023-2024 (most recent release).",
+  "points": [
+    {"label": "2010", "value": 24.9, "period": "2010"},
+    {"label": "2014", "value": 44.1, "period": "2014"},
+    {"label": "2022", "value": 73.2, "period": "2022"},
+    {"label": "2024", "value": 76, "period": "2024"}
+  ]
+}

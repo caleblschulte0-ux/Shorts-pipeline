@@ -13,6 +13,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -84,6 +85,74 @@ class TestMediaJudge(unittest.TestCase):
                          "missing")
         self.assertEqual(media_judge.judge_package({})["shot_count"], 0)
 
+    def test_pinned_url_cannot_self_certify(self):
+        """A shot with only image_url (no separately-verified candidate
+        record) is the ONLY path every real caller exercises — judge_package
+        is always called with media_by_shot=None. It must not score
+        `strong` just because judge_package used to copy the shot's own
+        phrase/query into the candidate's title/query, guaranteeing overlap
+        with itself regardless of what the URL actually shows."""
+        pkg = {
+            "slug": "self-cert",
+            "title": PKG["title"],
+            "script": PKG["script"],
+            "shots": [{**PKG["shots"][0],
+                       "image_url": "https://example.com/unrelated.jpg"}],
+        }
+        rep = media_judge.judge_package(pkg, None)
+        v = rep["verdicts"][0]
+        self.assertNotEqual(v["verdict"], "strong", v["reasons"])
+        self.assertIn(v, rep["gaps"])
+
+    def test_unknown_dimensions_get_no_free_resolution_credit(self):
+        """Absent width/height must not score as if the image were verified
+        large — that let an unverified pinned URL cross the strong
+        threshold on baseline + missing-resolution-data credit alone."""
+        media = {"url": "https://x/starship.jpg",
+                 "title": "SpaceX Starship booster catch at Starbase",
+                 "source_class": "open_or_licensed"}          # no width/height
+        v = media_judge.judge_shot(PKG["shots"][0], media, script=PKG["script"])
+        self.assertNotEqual(v["verdict"], "strong", v["reasons"])
+        self.assertTrue(any("resolution unverified" in r
+                            for r in v["reasons"]), v["reasons"])
+
+    def test_unknown_verdict_counts_as_a_gap(self):
+        """A judge failure must never silently pass as 'fine' — it has to
+        surface as a gap so a stronger replacement gets requested."""
+        pkg = {"slug": "boom", "title": "t", "script": "s",
+              "shots": [{"phrase": "x", "query": "y"}]}
+        # int("bad width") raises inside judge_shot's resolution check,
+        # landing in the except branch — verdict should be "unknown".
+        rep = media_judge.judge_package(
+            pkg, {0: {"url": "https://x/a.jpg", "width": "bad"}})
+        v = rep["verdicts"][0]
+        self.assertEqual(v["verdict"], "unknown")
+        self.assertIn("ai_prompt", v)
+        self.assertIn(v, rep["gaps"])
+
+    def test_package_loop_crash_still_emits_a_gap_per_shot(self):
+        """A package-level exception (not a per-shot one) must fail OPEN:
+        every shot we could still enumerate becomes an `unknown` gap, never
+        an empty gap list. `usage_penalties(pkg)` producing a non-numeric
+        value raises inside judge_package's own loop — BEFORE judge_shot's
+        try/except is even entered — landing in judge_package's outer
+        except. That used to come back as shot_count 0, gaps [], which
+        Phase A/build_bundle then read as "no media needed" for the whole
+        package."""
+        pkg = {"slug": "crash", "title": "t", "script": "s",
+              "shots": [{"phrase": "a", "query": "b"},
+                        {"phrase": "c", "query": "d"}]}
+        rep = media_judge.judge_package(
+            pkg, None, usage_penalties={0: "not-a-number"})
+        self.assertEqual(rep["shot_count"], 2)
+        self.assertEqual(len(rep["gaps"]), 2)
+        self.assertTrue(all(v["verdict"] == "unknown" for v in rep["gaps"]))
+        self.assertIn("error", rep)
+        # And the bundle built from that report must actually ask for the
+        # missing media, not silently drop the package.
+        b = xb.build_bundle("20260730", [pkg], [rep])
+        self.assertEqual(b["counts"]["requests"], 2)
+
 
 class TestBundle(unittest.TestCase):
     def test_build_bundle_shape(self):
@@ -138,6 +207,47 @@ class TestBundle(unittest.TestCase):
                 (d / "DONE").write_text(json.dumps({"date": "20260729"}))
                 self.assertFalse(xb.is_done("20260730"))   # stale, wrong day
                 (d / "DONE").write_text(json.dumps({"date": "20260730"}))
+                self.assertTrue(xb.is_done("20260730"))
+            finally:
+                xb.BUNDLE_ROOT = orig
+
+    def test_done_marker_blank_date_never_matches(self):
+        # A marker with no recorded date proves nothing about THIS date and
+        # must not be honored for it — only an unparseable marker (below)
+        # gets the fail-strict "honor it" treatment.
+        with tempfile.TemporaryDirectory() as td:
+            orig = xb.BUNDLE_ROOT
+            xb.BUNDLE_ROOT = Path(td)
+            try:
+                d = xb.bundle_dir("20260730")
+                d.mkdir(parents=True)
+                (d / "DONE").write_text(json.dumps({}))
+                self.assertFalse(xb.is_done("20260730"))
+                (d / "DONE").write_text(json.dumps({"date": ""}))
+                self.assertFalse(xb.is_done("20260730"))
+                (d / "DONE").write_text(json.dumps({"date": "   "}))
+                self.assertFalse(xb.is_done("20260730"))
+            finally:
+                xb.BUNDLE_ROOT = orig
+
+    def test_done_marker_unparseable_is_honored(self):
+        # Present but not JSON is the intentional fail-strict path: it is
+        # ChatGPT's marker, just malformed, and Phase B is meant to treat
+        # that as "done, but broken" rather than silently falling back to
+        # the lenient no-DONE emergency backstop.
+        with tempfile.TemporaryDirectory() as td:
+            orig = xb.BUNDLE_ROOT
+            xb.BUNDLE_ROOT = Path(td)
+            try:
+                d = xb.bundle_dir("20260730")
+                d.mkdir(parents=True)
+                (d / "DONE").write_text("not json")
+                self.assertTrue(xb.is_done("20260730"))
+                # JSON-but-not-an-object is the same malformed-marker case;
+                # it used to fall through an AttributeError to False, which
+                # silently routed the day to the LENIENT no-DONE backstop —
+                # the one downgrade a garbled marker must never buy.
+                (d / "DONE").write_text(json.dumps(["done"]))
                 self.assertTrue(xb.is_done("20260730"))
             finally:
                 xb.BUNDLE_ROOT = orig
@@ -302,6 +412,47 @@ class TestSelfFillContracts(unittest.TestCase):
         self.assertIsNone(self_fill({"shots": []}, 0))
         self.assertIsNone(self_fill({"shots": [{"query": ""}]}, 0))
         self.assertIsNone(self_fill({}, 5))
+
+    def test_lane_3_topic_fallback_respects_the_image_trust_boundary(self):
+        """Found live 2026-08-14: lane 2 (entity_media.resolve_entity_media)
+        runs every topic_media.search() candidate through url_is_image() —
+        its own docstring calls that "the trust boundary for routine-supplied
+        image URLs" — but when every candidate failed it, lane 3 called
+        topic_media.search() again directly and returned the first nonempty
+        URL with NO verification at all, handing back the exact dead/HTML/
+        non-image candidate the trust boundary had just rejected."""
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+        import exchange_phase_b as pb
+        from funnel import entity_media, media_funnel, topic_media
+
+        pkg = {"shots": [{"query": "some entity", "phrase": "some entity"}],
+              "title": "Some Story"}
+
+        with mock.patch.object(
+                media_funnel, "search", return_value=[]), \
+            mock.patch.object(
+                entity_media, "resolve_entity_media", return_value=None), \
+            mock.patch.object(
+                topic_media, "search",
+                return_value=["https://example.com/dead-or-html.html"]), \
+            mock.patch.object(
+                entity_media, "url_is_image", return_value=False) as m_verify:
+            self.assertIsNone(pb.self_fill(pkg, 0),
+                              "lane 3 must not return a URL that fails "
+                              "url_is_image, same as lane 2 would refuse it")
+            m_verify.assert_called()
+
+        with mock.patch.object(
+                media_funnel, "search", return_value=[]), \
+            mock.patch.object(
+                entity_media, "resolve_entity_media", return_value=None), \
+            mock.patch.object(
+                topic_media, "search",
+                return_value=["https://example.com/real.jpg"]), \
+            mock.patch.object(
+                entity_media, "url_is_image", return_value=True):
+            self.assertEqual(pb.self_fill(pkg, 0),
+                             "https://example.com/real.jpg")
 
 
 class TestPunchupBriefIsActionable(unittest.TestCase):

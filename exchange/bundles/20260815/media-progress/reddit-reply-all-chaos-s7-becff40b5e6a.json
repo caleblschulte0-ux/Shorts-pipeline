@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260815",
+  "bundle": {
+    "identity": "2558e1c1be73aebb5cabf791878de00713675fe9769d9093fe33538c883f5fe2",
+    "path": "exchange/bundles/20260815/bundle.json"
+  },
+  "request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+  "safe_request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-reply-all-chaos",
+  "shot_index": 7,
+  "prompt_sha256": "68b1959ddd145b0c6d963c7c7397decbf146a13d90ffaaae7cd5f7c6810009b7",
+  "prompt_used": "An editorial illustration for a short-form video: employee handbook binder. It accompanies the narration: \"quietly disappeared from the handbook\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+    "filename": "20260815__reddit-reply-all-chaos-s7-becff40b5e6a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1-4lVtelBuyFTE8PIec0F1xUkj6KJq9e5",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a596c748d32ff217911acb735b04c8d2d9594411d16c942946666dfbb1c7a61f",
+    "bytes": 1535959,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-15T11:02:12Z",
+  "error": null,
+  "retryable": false
+}

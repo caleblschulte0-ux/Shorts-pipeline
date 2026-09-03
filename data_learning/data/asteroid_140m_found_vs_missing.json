@@ -1,0 +1,25 @@
+{
+  "key": "asteroid_140m_found_vs_missing",
+  "title": "Share of 140m+ near-Earth asteroids found",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2025",
+  "source": {
+    "name": "NASA congressional NEO survey mandate progress",
+    "publisher": "NASA / CNEOS",
+    "url": "https://cneos.jpl.nasa.gov/stats/",
+    "officiality": "official",
+    "access_date": "2026-08-10"
+  },
+  "notes": "2005 Congress directed NASA to find 90% of NEOs 140m+ ('city-killer' size); as of 2025 roughly 45% of the estimated population has been found.",
+  "points": [
+    {
+      "label": "Congress's 90% goal",
+      "value": 90
+    },
+    {
+      "label": "Found",
+      "value": 45
+    }
+  ]
+}

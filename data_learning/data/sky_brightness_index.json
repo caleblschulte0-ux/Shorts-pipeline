@@ -1,0 +1,47 @@
+{
+  "key": "sky_brightness_index",
+  "title": "Artificial night-sky brightness index (2016 = 100)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2016-2026",
+  "source": {
+    "name": "Global increase in artificial night sky brightness",
+    "publisher": "Kyba et al., Science (2017) citizen-science analysis, commonly cited ~2%/year global growth rate",
+    "url": "https://www.science.org/doi/10.1126/sciadv.1701528",
+    "officiality": "secondary",
+    "access_date": "2026-08-12"
+  },
+  "notes": "Index built from the widely cited ~2% per year global growth rate in artificial sky brightness, compounded from a 2016 baseline of 100. Illustrative index, not a directly measured series.",
+  "points": [
+    {
+      "label": "2016",
+      "value": 100,
+      "period": "2016"
+    },
+    {
+      "label": "2018",
+      "value": 104,
+      "period": "2018"
+    },
+    {
+      "label": "2020",
+      "value": 108,
+      "period": "2020"
+    },
+    {
+      "label": "2022",
+      "value": 112,
+      "period": "2022"
+    },
+    {
+      "label": "2024",
+      "value": 117,
+      "period": "2024"
+    },
+    {
+      "label": "2026",
+      "value": 122,
+      "period": "2026"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "task": "media_worker",
+  "date": "20260809",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "started_at": "2026-08-09T11:01:30Z",
+  "recorded_at": "2026-08-09T11:14:00Z",
+  "note": "Late durability marker: the takeover claim was committed first and media generation began before this required STARTED marker was noticed. No application/workflow code was edited."
+}

@@ -1,0 +1,19 @@
+{
+  "key": "labor_hours_per_pound",
+  "title": "Hand-harvest labor per pound (hours)",
+  "unit": "hours",
+  "geography": "Global",
+  "time_coverage": "Illustrative, per harvest method",
+  "source": {
+    "name": "Saffron harvesting labor reporting",
+    "publisher": "agricultural/horticultural reporting on saffron harvest labor",
+    "url": "https://mizanfoods.com/blogs/blog/the-art-of-harvesting-a-day-in-the-life-of-a-saffron-farmer",
+    "officiality": "illustrative",
+    "access_date": "2026-08-17"
+  },
+  "notes": "Saffron: commonly cited 40-70 hours of skilled hand-harvesting labor per pound (midpoint ~55 used here), since every crocus flower is hand-picked and hand-separated. Black pepper is a conservative estimate reflecting modern mechanized/semi-mechanized harvesting.",
+  "points": [
+    {"label": "Black pepper (machine-harvested)", "value": 0.5},
+    {"label": "Saffron (hand-harvested)", "value": 55}
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "format": "graph_race",
+  "slug": "india-vs-us-internet-users",
+  "title": "India vs U.S.: Internet Users by Year",
+  "hook": "India crossed the U.S.",
+  "y_label": "Estimated internet users",
+  "duration": 13,
+  "source": "Derived and rounded from World Bank/ITU IT.NET.USER.ZS and World Bank population totals: https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+  "years": [
+    2000,
+    2005,
+    2010,
+    2015,
+    2020,
+    2023
+  ],
+  "series": [
+    {
+      "name": "India",
+      "color": "#ff9933",
+      "icon": "IN",
+      "values": [
+        5600000,
+        23000000,
+        93000000,
+        195000000,
+        608000000,
+        790000000
+      ]
+    },
+    {
+      "name": "United States",
+      "color": "#3088ff",
+      "icon": "US",
+      "values": [
+        124000000,
+        197000000,
+        240000000,
+        276000000,
+        312000000,
+        330000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "internet",
+    "technology",
+    "india",
+    "usa",
+    "data",
+    "graphrace",
+    "shorts"
+  ],
+  "music_vibe": "electronic momentum",
+  "_authored_by": "chatgpt-takeover"
+}

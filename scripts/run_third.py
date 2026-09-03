@@ -35,6 +35,7 @@ sys.path.insert(0, str(REPO))
 from third_capture import capture_cli  # noqa: E402
 from third_capture import compose as composer  # noqa: E402
 from third_capture import author  # noqa: E402  (title safety choke)
+from shared import channel_registry  # noqa: E402
 
 PACKAGE_DIR = REPO / "state" / "third_packages"
 LOG_PATH = REPO / "state" / "third_posted_log.json"
@@ -2185,6 +2186,62 @@ def process(pkg: dict, pkg_path: Path | None, *,
     return result
 
 
+def _synthesize_fallback_packages(date: str) -> list[tuple[dict, None]]:
+    """Build the day's slate when nothing was authored, sized from the
+    registry's target_count('third') -- never from the template's own
+    `count` field, which is stale drift, not a second authority (the
+    2026-08-15 finding: template said 4, registry says 6, so a flawless
+    fallback day topped out at 4/6 before a single quality rejection).
+
+    Returns an empty list if there is no template to synthesize from.
+    Raises channel_registry.RegistryError if the registry itself cannot be
+    resolved -- refusing to guess a count is the fail-closed behavior this
+    pipeline uses everywhere else the registry is the only authority.
+    """
+    template = PACKAGE_DIR / "default_clip.json"
+    if not template.exists():
+        return []
+    base = json.loads(template.read_text())
+    template_count = base.pop("count", None)
+    n = channel_registry.target_count("third")
+    if not n:
+        raise channel_registry.RegistryError(
+            "channel_registry target_count('third') resolved to 0 -- "
+            "refusing to synthesize a fallback slate of size 0")
+    if template_count is not None and int(template_count) != n:
+        print(f"default_clip.json count={template_count} disagrees with "
+              f"registry target_count('third')={n} -- registry wins, "
+              f"template count is stale drift, not a second authority",
+              flush=True)
+    # A/B STRUCTURE SPLIT: `story_count` of the n daily slots try the
+    # multi-clip STORY arm (auto-detected narrative arcs — the format
+    # the deep dive says the feed actually rewards); the rest stay the
+    # "clip" structure. A story slot that finds no genuine arc falls
+    # back to a normal clip (event-driven, quality-gated — a forced
+    # story on thin material is worse than none). Slots are chosen by
+    # a DATE-SEEDED shuffle so the story arm isn't permanently
+    # correlated with the same posting times (arm vs daypart
+    # confound). `story_count` supersedes the earlier `edit_count`
+    # montage arm, per the operator's call to replace it.
+    import random as _rnd
+    story_count = min(int(base.pop("story_count",
+                                   base.pop("edit_count", 0))), n)
+    base.pop("edit_count", None)
+    slots = list(range(1, n + 1))
+    _rnd.Random(f"third-ab-{date}").shuffle(slots)
+    story_slots = set(slots[:story_count])
+    packages: list[tuple[dict, None]] = []
+    for i in range(1, n + 1):
+        pkg = json.loads(json.dumps(base))
+        pkg["slug"] = f"clip-{date}-{i}"
+        pkg["story_mode"] = i in story_slots
+        packages.append((pkg, None))
+    print(f"no authored packages — synthesized {n} from registry target "
+          f"({story_count} story-arm slots: "
+          f"{sorted(s for s in story_slots if s <= n)})")
+    return packages
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=datetime.now(timezone.utc)
@@ -2206,36 +2263,13 @@ def main() -> int:
     if not packages:
         # self-sufficient cron: synthesize the day's slate from the
         # default template so no one has to author packages daily
-        template = PACKAGE_DIR / "default_clip.json"
-        if template.exists():
-            base = json.loads(template.read_text())
-            n = int(base.pop("count", 3))
-            # A/B STRUCTURE SPLIT: `story_count` of the n daily slots try the
-            # multi-clip STORY arm (auto-detected narrative arcs — the format
-            # the deep dive says the feed actually rewards); the rest stay the
-            # "clip" structure. A story slot that finds no genuine arc falls
-            # back to a normal clip (event-driven, quality-gated — a forced
-            # story on thin material is worse than none). Slots are chosen by
-            # a DATE-SEEDED shuffle so the story arm isn't permanently
-            # correlated with the same posting times (arm vs daypart
-            # confound). `story_count` supersedes the earlier `edit_count`
-            # montage arm, per the operator's call to replace it.
-            import random as _rnd
-            story_count = min(int(base.pop("story_count",
-                                           base.pop("edit_count", 0))), n)
-            base.pop("edit_count", None)
-            _slots = list(range(1, n + 1))
-            _rnd.Random(f"third-ab-{args.date}").shuffle(_slots)
-            story_slots = set(_slots[:story_count])
-            for i in range(1, n + 1):
-                pkg = json.loads(json.dumps(base))
-                pkg["slug"] = f"clip-{args.date}-{i}"
-                pkg["story_mode"] = i in story_slots
-                packages.append((pkg, None))
-            print(f"no authored packages — synthesized {n} from template "
-                  f"({story_count} story-arm slots: "
-                  f"{sorted(s for s in story_slots if s <= n)})")
-        else:
+        try:
+            packages = _synthesize_fallback_packages(args.date)
+        except channel_registry.RegistryError as exc:
+            print(f"registry unusable, refusing to synthesize a fallback "
+                  f"slate: {exc}", flush=True)
+            return 1
+        if not packages:
             print(f"no packages under {day_dir}")
             return 0
     # Slot cadence: with a higher daily count we tighten spacing so the extra

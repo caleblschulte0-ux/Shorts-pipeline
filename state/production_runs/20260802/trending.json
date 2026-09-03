@@ -1,0 +1,15 @@
+{
+  "schema": "production-channel-outcome/v1",
+  "date": "20260802",
+  "channel": "trending",
+  "expected": 6,
+  "previously_uploaded": 4,
+  "rendered_or_attempted": 2,
+  "uploaded": 5,
+  "quarantined": 0,
+  "failed": 1,
+  "status": "repair_required",
+  "video_urls": [
+    "https://youtube.com/shorts/MMOE_TgX_mU"
+  ]
+}

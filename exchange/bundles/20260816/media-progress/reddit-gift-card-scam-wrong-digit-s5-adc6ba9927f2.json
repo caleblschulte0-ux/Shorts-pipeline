@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260816",
+  "bundle": {
+    "identity": "207857282fa5687fdfed0cd0d8587c806a603a9a3ce43ca3c9e1518d6194df36",
+    "path": "exchange/bundles/20260816/bundle.json"
+  },
+  "request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+  "safe_request_id": "reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-gift-card-scam-wrong-digit",
+  "shot_index": 5,
+  "prompt_sha256": "1f60f8df8a0cf9291c37ac881bc0d316034638be10520df8512ad0da3b3c42b4",
+  "prompt_used": "An editorial illustration for a short-form video: cashier checkout register. It accompanies the narration: \"the real numbers at the register as I bought them\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+    "filename": "20260816__reddit-gift-card-scam-wrong-digit-s5-adc6ba9927f2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1KxVx5aqGi2T8r1oMPALwpVLMj9NHEQkN",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "56f90f3eccf2a7511be7282c292dd9a31f0b7ee53b589a499a0a3b47990288f7",
+    "bytes": 1073055,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-16T11:08:16Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260820",
+  "bundle": {
+    "identity": "a08d7c1fde06635c6e31ee703ece773fff29c92dc17b56f5ed1096591c41ac52",
+    "path": "exchange/bundles/20260820/bundle.json"
+  },
+  "request_id": "reddit-cart-cop-boxed-in-s3-460cff16365c",
+  "safe_request_id": "reddit-cart-cop-boxed-in-s3-460cff16365c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8e424e95dfeebed5ae3c7889212ebefc2ebbac9683c5eda7dfd12689a717c98c",
+  "prompt_used": "An editorial illustration for a short-form video: shopping carts row. It accompanies the narration: \"rounded up eleven stray carts\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1zeMjrVrLV-htYsqkWiLvKEleFswuflP5",
+    "filename": "20260820__reddit-cart-cop-boxed-in-s3-460cff16365c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1zeMjrVrLV-htYsqkWiLvKEleFswuflP5",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "70cd895e78a0d83027cebc3574a5a860cf89bc67087cb7631a97d19e9eb85d58",
+    "bytes": 1376947,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-20T11:28:41.689Z",
+  "error": null,
+  "retryable": false
+}

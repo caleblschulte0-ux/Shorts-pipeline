@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-not-staff-microwave-s7-f4363b068d18",
+  "safe_request_id": "reddit-not-staff-microwave-s7-f4363b068d18",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-not-staff-microwave",
+  "shot_index": 7,
+  "prompt_sha256": "a337473d7fe5c2aaf3ef684d853b9bcc8596739b7b109a7c62efe4babf2965b1",
+  "prompt_used": "An editorial illustration for a short-form video: store parking lot. It accompanies the narration: \"banned from four stores in the county\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1eB2Ep7k5YYIBV0pKTZkkin5eyunLsJuY",
+    "filename": "20260818__reddit-not-staff-microwave-s7-f4363b068d18.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1eB2Ep7k5YYIBV0pKTZkkin5eyunLsJuY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a630f88bcbeec58deb3fa562a50264a5b00882d6d9306ad4c4828e1e66a9696d",
+    "bytes": 1253453,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:14.000Z",
+  "error": null,
+  "retryable": false
+}

@@ -154,6 +154,20 @@ jobs:
         continue-on-error: true
         run: python3 scripts/advance_experiments.py
 
+      # Refresh the failure census FROM THE DURABLE LEDGER before the brief
+      # reads it. Until 2026-08-24 the census ran only in the preview
+      # workflow, so the state/failure_census.json the brief embedded was
+      # whatever some long-ago preview run left behind — a stale census in
+      # an honest brief is exactly the noise-laundering this loop's README
+      # warns against. The ledger is committed state, so this is offline.
+      - name: Refresh failure census
+        if: >-
+          steps.when.outputs.go == 'true'
+          && github.event_name != 'push'
+          && inputs.triage_only != true
+        continue-on-error: true
+        run: python3 scripts/failure_census.py state/showrunner_verdicts.jsonl
+
       - name: Build the brief
         if: >-
           steps.when.outputs.go == 'true'
@@ -196,7 +210,8 @@ jobs:
             bash scripts/ci_commit_state.sh \
               "retro: brief + triage for $D [skip ci]" \
               "retro/$D" retro/state state/analytics state/analytics_explainer \
-              state/analytics_curiosity state/analytics_third
+              state/analytics_curiosity state/analytics_third \
+              state/failure_census.json
           fi
 
       - name: Post the executive summary

@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260809",
+  "checkpoint_identity": "takeover-20260809-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "77b4b4ad10e6114af881e72f2c5c8f3f3182a626023f7c734580b467e262ef20",
+    "path": "exchange/bundles/20260809/bundle.json"
+  },
+  "request_id": "reddit-wifi-throttle-s5-288966783daa",
+  "safe_request_id": "reddit-wifi-throttle-s5-288966783daa",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d702dc6da56398fce5e8b58ece0be501659c161b7772b46bcc976bf732aadb78",
+  "prompt_used": "An editorial illustration for a short-form video: internet bill paperwork. It accompanies the narration: \"bought his own plan\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1VIghRYOIL3ofXgZp51AI0qnx0Eg4clxx",
+    "filename": "20260809__reddit-wifi-throttle-s5-288966783daa.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1VIghRYOIL3ofXgZp51AI0qnx0Eg4clxx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "df80b8825f90bec45a1df5fe7e4960a11243894b5988ca341f0679fc735d9a7b",
+    "bytes": 995007,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-09T11:12:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "raw_readback": true,
+    "size_matches_uploaded_source": true,
+    "public_reader_permission": true,
+    "decoded_locally_before_upload": true
+  }
+}

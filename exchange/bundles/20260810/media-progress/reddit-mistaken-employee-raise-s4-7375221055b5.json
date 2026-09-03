@@ -1,0 +1,35 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260810",
+  "checkpoint_identity": "takeover-20260810-chatgpt-r5-f770a999",
+  "bundle": {
+    "identity": "fb5a86e3a470d07278af0f8b32864b5f0d805022acc5afa625bb235fed079656",
+    "path": "exchange/bundles/20260810/bundle.json"
+  },
+  "request_id": "reddit-mistaken-employee-raise-s4-7375221055b5",
+  "safe_request_id": "reddit-mistaken-employee-raise-s4-7375221055b5",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d59121f2c5da4b273273b0c630107ee31a5584c23b76aa2bbaaf6d5da09599fc",
+  "prompt_used": "An editorial illustration for a short-form video: store checkout counter. It accompanies the narration: \"walked her to the checkout\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QV4BtHIOiZfDqDaLWJuZceiZG-EiRg_r",
+    "filename": "20260810__reddit-mistaken-employee-raise-s4-7375221055b5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QV4BtHIOiZfDqDaLWJuZceiZG-EiRg_r",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3639a1b950d25c932b9b293841a67f886d4dbae24885a201d9053c5a1f2ff821",
+    "bytes": 1310016,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-10T11:20:00Z",
+  "error": null,
+  "retryable": false
+}

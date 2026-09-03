@@ -1,0 +1,651 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260803",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "contract": {
+    "registry_revision": 3,
+    "registry_sha256": "0c35d78e29088e2666f1213f7d5b6de21edd9171fb02842026993e5ca7bd1e92",
+    "bundle_sha256": "40620ac35abb7979555104cf44ca46fa8352c4520c6c742e7944457d6a1625f1",
+    "operator_ruling": "20260803-short-form-only"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "fixed-broadband-world",
+      "title": "Broadband Passed Landlines in 20 Years",
+      "hook": "Broadband passed landlines.",
+      "y_label": "Subscriptions",
+      "duration": 13,
+      "source": "World Bank, Fixed broadband subscriptions (IT.NET.BBND) and fixed telephone subscriptions (IT.MLT.MAIN), 2005-2025; broadband values reported, landline values approximately interpolated between reported 2006/2015/2025 points: https://data.worldbank.org/indicator/IT.NET.BBND and https://data.worldbank.org/indicator/IT.MLT.MAIN",
+      "years": [
+        2005,
+        2009,
+        2013,
+        2017,
+        2021,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Fixed broadband",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            219600000,
+            468100000,
+            692400000,
+            1027000000,
+            1330000000,
+            1654000000
+          ]
+        },
+        {
+          "name": "Fixed telephones",
+          "color": "#ffaa30",
+          "icon": "World Bank",
+          "values": [
+            1213000000,
+            1168100000,
+            1072600000,
+            999800000,
+            907400000,
+            815000000
+          ]
+        }
+      ],
+      "hashtags": [
+        "broadband",
+        "landline",
+        "internet",
+        "technology",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "driving electronic",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "landlines-peak-and-fall",
+      "title": "Internet Users Outran Broadband Lines",
+      "hook": "People beat the cables.",
+      "y_label": "Per 100 people",
+      "duration": 13,
+      "source": "World Bank, Individuals using the Internet (IT.NET.USER.ZS) and fixed broadband subscriptions per 100 people (IT.NET.BBND.P2), 2005-2025: https://data.worldbank.org/indicator/IT.NET.USER.ZS and https://data.worldbank.org/indicator/IT.NET.BBND.P2",
+      "years": [
+        2005,
+        2009,
+        2013,
+        2017,
+        2021,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Internet users",
+          "color": "#50ff80",
+          "icon": "World Bank",
+          "values": [
+            15.6,
+            25.3,
+            35.3,
+            46.3,
+            63.8,
+            73.6
+          ]
+        },
+        {
+          "name": "Fixed broadband",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            3.4,
+            6.9,
+            9.7,
+            13.5,
+            16.7,
+            20.1
+          ]
+        }
+      ],
+      "hashtags": [
+        "internet",
+        "broadband",
+        "technology",
+        "data",
+        "worldbank",
+        "shorts"
+      ],
+      "music_vibe": "clean accelerating electronic",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "fgas-emissions-rise",
+      "title": "F-Gases Grew Faster Than Methane",
+      "hook": "One line exploded.",
+      "y_label": "Million tonnes CO2e",
+      "duration": 13,
+      "source": "World Bank, greenhouse-gas emissions by source: agricultural methane (EN.GHG.CH4.AG.MT.CE.AR5), waste methane (EN.GHG.CH4.WA.MT.CE.AR5), and industrial F-gases (EN.GHG.FGAS.IP.MT.CE.AR5), 1972-2024: https://data.worldbank.org",
+      "years": [
+        1972,
+        1982,
+        1993,
+        2003,
+        2014,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Agriculture methane",
+          "color": "#ffaa30",
+          "icon": "World Bank",
+          "values": [
+            2932,
+            3329,
+            3542,
+            3632,
+            4036,
+            4334
+          ]
+        },
+        {
+          "name": "Waste methane",
+          "color": "#50ff80",
+          "icon": "World Bank",
+          "values": [
+            903.8,
+            1058,
+            1202,
+            1288,
+            1551,
+            1652
+          ]
+        },
+        {
+          "name": "Industrial F-gases",
+          "color": "#b05cff",
+          "icon": "World Bank",
+          "values": [
+            169.8,
+            242.1,
+            397.9,
+            688.2,
+            1040,
+            1510
+          ]
+        }
+      ],
+      "hashtags": [
+        "climate",
+        "emissions",
+        "industry",
+        "data",
+        "environment",
+        "shorts"
+      ],
+      "music_vibe": "tense industrial pulse",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "world-fisheries-production",
+      "title": "Fish Farming Drove the Production Boom",
+      "hook": "Wild catch went flat.",
+      "y_label": "Metric tons",
+      "duration": 13,
+      "source": "World Bank, Total fisheries production (ER.FSH.PROD.MT) and capture fisheries production (ER.FSH.CAPT.MT), 1972-2024: https://data.worldbank.org/indicator/ER.FSH.PROD.MT and https://data.worldbank.org/indicator/ER.FSH.CAPT.MT",
+      "years": [
+        1972,
+        1982,
+        1993,
+        2003,
+        2014,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Total production",
+          "color": "#27d7c8",
+          "icon": "World Bank",
+          "values": [
+            56432926,
+            71055453,
+            114461514,
+            142660467,
+            193120017,
+            235811491
+          ]
+        },
+        {
+          "name": "Wild capture",
+          "color": "#3088ff",
+          "icon": "World Bank",
+          "values": [
+            51915952,
+            62548125,
+            88788151,
+            91084188,
+            93466633,
+            94403126
+          ]
+        }
+      ],
+      "hashtags": [
+        "fishing",
+        "ocean",
+        "aquaculture",
+        "data",
+        "food",
+        "shorts"
+      ],
+      "music_vibe": "steady cinematic build",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "bag-check-overtime",
+      "title": "My Manager's Bag Checks Became Paid Overtime",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "retail",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "Every bag, seriously? Our new manager decided employees were stealing and ordered mandatory bag checks before anyone could leave. The catch was that two supervisors had to witness each inspection, and night shift usually had one supervisor total. So we clocked out, waited by the locked office, and wrote down every minute. After payroll explained that required waiting time was still work time, we stayed clocked in instead. Ten people waiting twenty minutes each night became a very expensive little security theater. By Friday, overtime had swallowed more money than the manager claimed was missing all month. Corporate asked for his evidence. He had none—just a feeling and a laminated checklist. The following Monday, bag checks became random, one witness was enough, and nobody waited off the clock. Apparently suspicion gets much more efficient when payroll starts billing by the minute.",
+      "shots": [
+        {
+          "phrase": "mandatory bag checks",
+          "query": "retail employee bag inspection",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s0.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1wQ7YUyLjQLHyLs5RZ5OFi7lbg56yvTh7"
+            },
+            "image": {
+              "sha256": "bdec2822ef3f958f6a740e215531946cb79ed5a7bbe8f12d8bccc61a46df5f22",
+              "bytes": 1921662,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "two supervisors had to witness",
+          "query": "two store supervisors watching inspection",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s1.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1-yEPoGXAvXR0Gk_8b9mzrMK4gMNyJ5aT"
+            },
+            "image": {
+              "sha256": "2480246f0df78741053bd2ae14021f9c38e1dec24df06d0924fb1add6459c420",
+              "bytes": 1843173,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "waited by the locked office",
+          "query": "employees waiting outside locked office",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s2.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1i_PNdR9A0q0PbF2OyLcvC0vcn9m_L9hc"
+            },
+            "image": {
+              "sha256": "db4011d5e7857b453b4a9fe86f8e531f6f5fa34afb869109f44665cee75f2f4f",
+              "bytes": 2149054,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "required waiting time was still work time",
+          "query": "payroll timesheet and clock",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s3.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1o4U0d2edh08muR8c8WMEMyTtQVXzzlmc"
+            },
+            "image": {
+              "sha256": "3061b279d345a68928376d20649115d16ed6a1fb5db0e94021cad62212594c4f",
+              "bytes": 1826156,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "overtime had swallowed more money",
+          "query": "manager reviewing expensive payroll report",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s4.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1VHwULZ9tW6hRfatNS5C9xCrIyDvKPA4w"
+            },
+            "image": {
+              "sha256": "23fd071e4c3171c71ebc8d095c87bcc416c71153d44a9030b6645782d1581974",
+              "bytes": 1953204,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "a laminated checklist",
+          "query": "laminated workplace checklist on clipboard",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-bag-check-overtime-s5.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1eZZQq3ULA7smd-7BNygizDhuPE2qQEKo"
+            },
+            "image": {
+              "sha256": "abee5d3d7c6f848e014900fd55d28403fac9d9bbe19bfdddfd7b04644f1caf6d",
+              "bytes": 2231868,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Every bag, seriously?",
+          "text": "EVERY BAG?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "still work time",
+          "text": "STILL PAID",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "very expensive little security theater",
+          "text": "EXPENSIVE THEATER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He had none",
+          "text": "ZERO EVIDENCE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dry office tension into playful payoff",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "subreddit": "pettyrevenge",
+      "slug": "manager-package-warehouse",
+      "title": "He Banned Desk Deliveries. His Office Became a Warehouse.",
+      "hashtags": [
+        "pettyrevenge",
+        "office",
+        "workplace",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "Personal packages are unprofessional! That was our office manager's announcement after one small box appeared at reception. His new rule said every personal delivery had to be addressed to the department head and stored in his office until pickup. Fine. Holiday shopping started the next week, and twenty-seven employees followed the policy exactly. His office collected dog food, paper towels, birthday balloons, a desk chair, and one heroic flat-packed bookcase. Nothing blocked an exit; it just turned his workspace into the world's least convenient warehouse. He complained that people were abusing the system. We showed HR his memo, including the sentence requiring his name and office number on every label. HR asked him whether he wanted the rule enforced or deleted. It vanished before lunch. Reception got a package shelf, employees got one delivery a week, and his office became an office again. Apparently boxes look less professional when they're all addressed to you.",
+      "shots": [
+        {
+          "phrase": "Personal packages are unprofessional!",
+          "query": "office manager making stern announcement",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s0.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1It4pk1nW9AyvBpZ4GQQWzvRIPewgwGIc"
+            },
+            "image": {
+              "sha256": "232816b30b3c58d4eaa83725e0ee0f41ad2d9933e949c97b8538e7d95ee91c53",
+              "bytes": 2064848,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "stored in his office until pickup",
+          "query": "office beginning to fill with parcels",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1L0OmOWaQ151EbuOMc0QPG6hgQEP9Nxu1",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s1.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1L0OmOWaQ151EbuOMc0QPG6hgQEP9Nxu1"
+            },
+            "image": {
+              "sha256": "5e985eea42bbba50dd55dcf3bb076bcf692a8de2cd7cf66fde5ffab180b705a8",
+              "bytes": 1946850,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "twenty-seven employees followed the policy exactly",
+          "query": "employees carrying delivery boxes through office",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1oUH-uAJaiVceeKUUBpbaUaCp5anrzRKn",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s2.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1oUH-uAJaiVceeKUUBpbaUaCp5anrzRKn"
+            },
+            "image": {
+              "sha256": "85abf33a797acdcd93673461ddf71f894a7e2f6f2028ee35cefae1e6ee5c236d",
+              "bytes": 2162788,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "dog food, paper towels, birthday balloons",
+          "query": "absurd pile of mixed household deliveries",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1OQudDHXZvDdgL7TiD6a_hIflc_eBdsHg",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s3.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1OQudDHXZvDdgL7TiD6a_hIflc_eBdsHg"
+            },
+            "image": {
+              "sha256": "f7a019e1239b79fc5c4dce16dc01d54eb6722acdc0955c6f349458a9246eb01a",
+              "bytes": 2231765,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "the world's least convenient warehouse",
+          "query": "manager trapped behind stacks of packages",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s4.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1HK5MNikIEuRKZfig9HyIPfb-afe8d-kA"
+            },
+            "image": {
+              "sha256": "18126dfbc763db1e1960b4acb464a6d81105d0404d38c805132cc9324a9a5587",
+              "bytes": 1839563,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "We showed HR his memo",
+          "query": "employees presenting printed policy to human resources",
+          "mascot_pose": "idle",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260803__authored-manager-package-warehouse-s5.png",
+              "sharing": "anyone_with_link",
+              "download_url": "https://drive.google.com/uc?export=download&id=1EcV3SGBw2GFTOj6ufCVdYTwNmBTfa_x_"
+            },
+            "image": {
+              "sha256": "4deacd05770c4a7691990d5c15b49b759723e3dcc9e811322f4600f8ba657d02",
+              "bytes": 2169818,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Personal packages are unprofessional!",
+          "text": "UNPROFESSIONAL!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "twenty-seven employees",
+          "text": "27 EMPLOYEES",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "least convenient warehouse",
+          "text": "OFFICE WAREHOUSE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "It vanished before lunch",
+          "text": "RULE DELETED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "light mischievous build",
+      "_authored_by": "chatgpt-takeover"
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Rose 1.5x Since 1972",
+      "hook": "Cereal production climbed from 1083.7 million to 1644.1 million—and almost nobody noticed.",
+      "closing": "The harvest grew. The available land did not keep pace.",
+      "question": "Which part of the food story surprised you most?",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017: 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024: 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million sq. km. United States is 4.2 million sq. km. Russian Federation — 2.2 million sq. km."
+      ]
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Renewables and Waste Rose 3.0x Since 1990",
+      "hook": "One energy share climbed from 10.2 to 30.1—and it was not the only system changing.",
+      "closing": "Energy access expanded, but the waste problem expanded with it.",
+      "question": "Which of these shifts did you expect least?",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024: 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024: 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024: 1,652 Mt CO2e — 1.8 times higher."
+      ]
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth dropped from 2 in 1972 to 0.91—and almost nobody noticed.",
+      "closing": "The world did not stop growing. It just quietly hit the brakes.",
+      "question": "Did you realize population growth had slowed this much?",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population—just 67 percent of the earlier share.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population—barely moved while the world around it urbanized.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual %—down to 46 percent of that earlier pace. That is not a slowdown; that is the demographic brakes coming on."
+      ]
+    }
+  ],
+  "authored_curiosity": [],
+  "production_supervision": {
+    "expected_short_form": {
+      "trending": 6,
+      "explainer": 1,
+      "third": 3
+    },
+    "curiosity_long_form": "excluded_for_20260803",
+    "trending_media_checkpoints": 12,
+    "third_workflow_trigger_commit": "76bfea2ecf8fcac5f779d92de770ed60e45836c4",
+    "data_mascot_policy": "Explainer/Data only; forbidden in Trending"
+  },
+  "notes": [
+    "Resumed the durable ChatGPT takeover claimed before the late Phase A bundle; the late bundle was reconciled without replacing ownership.",
+    "Reused all six staged Trending packages and all twelve verified authored-shot media checkpoints.",
+    "Current main commit 1100bcb4 isolates the Data mascot from Trending renderers and restores channel-appropriate QA.",
+    "Curiosity long-form is intentionally excluded only for production date 20260803 by the operator ruling.",
+    "READY_TO_RENDER only; production completion requires ten verified short-form uploads."
+  ]
+}

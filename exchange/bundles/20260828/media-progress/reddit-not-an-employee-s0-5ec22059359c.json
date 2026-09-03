@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s0-5ec22059359c",
+  "safe_request_id": "reddit-not-an-employee-s0-5ec22059359c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "542e47763363d39550734545155470f239370f82a2d349b7c4fd460669c0a2f9",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle. It accompanies the narration: \"grabbed my arm in the paint aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+    "filename": "20260828__reddit-not-an-employee-s0-5ec22059359c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "378dfd7d86dff6b89f1a5d12acef9835a9e0bd0adfff7605d7cf8ebc90eef92e",
+    "bytes": 1912682,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:11:17Z",
+  "retryable": false
+}

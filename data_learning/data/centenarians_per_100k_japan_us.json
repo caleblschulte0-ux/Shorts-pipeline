@@ -1,0 +1,19 @@
+{
+  "key": "centenarians_per_100k_japan_us",
+  "title": "Centenarians per 100,000 people",
+  "unit": "per 100,000 people",
+  "geography": "United States vs Japan",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Japan Ministry of Health, Labour and Welfare centenarian count (95,119 as of Sept 1 2024) and U.S. Census Bureau centenarian estimate (101,000, 2024), divided by each country's total population",
+    "publisher": "Japan MHLW / U.S. Census Bureau",
+    "url": "https://www.mhlw.go.jp",
+    "officiality": "official",
+    "access_date": "2026-08-23"
+  },
+  "notes": "Rate computed from official centenarian counts divided by each country's total population (Japan ~123.9M, US ~335M) and scaled per 100,000 residents.",
+  "points": [
+    {"label": "United States", "value": 30},
+    {"label": "Japan", "value": 77}
+  ]
+}

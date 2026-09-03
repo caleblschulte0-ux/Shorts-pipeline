@@ -1,0 +1,19 @@
+{
+  "key": "iss_vs_mars_bone_loss",
+  "title": "Estimated cumulative hip bone loss: ISS mission vs a Mars mission, unmitigated",
+  "unit": "percent",
+  "geography": "Spaceflight (ISS vs theoretical Mars transit)",
+  "time_coverage": "6-month ISS mission vs ~30-month Mars round trip",
+  "source": {
+    "name": "NASA Human Research Program bone-loss extrapolations",
+    "publisher": "NASA-funded spaceflight medicine research, as reported in science press coverage",
+    "url": "https://www.nasa.gov/humans-in-space/nasa-studies-astronaut-bone-loss/",
+    "officiality": "illustrative",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Illustrative extrapolation: a ~6-month ISS mission produces roughly 7-11% cumulative hip bone density loss without countermeasures (using ~1.5%/month); a ~30-month Mars round trip, at the same unmitigated rate, could in principle reach 30-60% per NASA-funded research summaries. 30% (the low end) shown here as the conservative estimate. This is why ISS crews perform ~2.5 hours/day of resistive and aerobic exercise (e.g. the Advanced Resistive Exercise Device) as a countermeasure.",
+  "points": [
+    {"label": "ISS mission (6 months, unmitigated)", "value": 9},
+    {"label": "Mars mission (30 months, unmitigated)", "value": 30}
+  ]
+}

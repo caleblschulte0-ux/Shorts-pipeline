@@ -16,11 +16,15 @@ An experiment here is a coded, dated commitment:
     min_samples  no readout before this many videos have run under it
     guardrail    a number that must NOT regress (quality, usually)
 
-`readout_ready()` refuses until BOTH thresholds are met. `conclude()` then
-compares against the recorded baseline and returns adopted / reverted /
-inconclusive — and it will return `reverted` when the guardrail regressed
-even if the target metric improved, because "more views, worse videos" is
-a loss.
+`readout_ready()` refuses until BOTH thresholds are met, and `conclude()`
+ENFORCES it: it reloads the canonical register entry and refuses (raises
+`ReadoutNotReady`, with the exact readiness reason) unless the experiment
+is running/readout_due and both floors pass on the PERSISTED sample count.
+It then compares against the recorded baseline and returns adopted /
+reverted / inconclusive — and it will return `reverted` when the guardrail
+regressed even if the target metric improved, because "more views, worse
+videos" is a loss. An experiment that will never ripen is closed with
+`abandon()`, never with an early conclusion.
 
 This is what turns a daily suggestion box into something that compounds:
 every day, the running experiments are in the brief, the ones whose window
@@ -172,14 +176,43 @@ def _improved(direction: str, baseline: float, observed: float) -> float:
     return rel if direction == "up" else -rel
 
 
+class ReadoutNotReady(RuntimeError):
+    """`conclude()` refused: the readout window has not closed (or the
+    experiment is not in a concludable state). The message carries the
+    exact `readout_ready()` reason so the caller can report it verbatim."""
+
+
 def conclude(exp: dict, *, observed: float,
              guardrail_observed: float | None = None,
              note: str = "", now: str = "") -> dict:
     """Read the experiment out. Mutates and persists the register entry.
 
+    ENFORCES `readout_ready()` first. The module's opening promise is that
+    early conclusions are "structurally impossible", but until 2026-08-24
+    this function never checked (doctor finding 86ad3ba9d045): any caller
+    holding an experiment dict could persist a day-zero / zero-sample
+    verdict, which on this channel's single-digit view counts is a random
+    walk with a confident label. So: reload the CANONICAL register entry
+    (a caller's stale dict does not get a vote on samples_seen), require
+    running/readout_due status, and refuse with the exact readiness reason
+    unless both the day floor and the sample floor pass. An experiment that
+    will never ripen is `abandon()`-ed, not concluded early.
+
     A guardrail regression outranks a win on the target metric: shipping
     more views at the cost of quality is a loss, and the channel's whole
     premise is the other way round."""
+    data = _read()
+    idx = next((i for i, e in enumerate(data.get("experiments") or [])
+                if e.get("id") == exp.get("id")), None)
+    if idx is None:
+        raise ReadoutNotReady(
+            f"experiment {exp.get('id')!r} is not in the register — "
+            f"nothing canonical to conclude")
+    exp = data["experiments"][idx]
+    ok, why = readout_ready(exp, now=_parse(now) if now else None)
+    if not ok:
+        raise ReadoutNotReady(f"refusing to conclude {exp['id']}: {why}")
+
     effect = _improved(exp.get("direction", "up"),
                        float(exp.get("baseline") or 0), float(observed))
     guard_slip = 0.0
@@ -208,11 +241,8 @@ def conclude(exp: dict, *, observed: float,
                       "guardrail_observed": guardrail_observed,
                       "guardrail_slip": round(guard_slip, 4),
                       "verdict": why, "note": note}
-    data = _read()
-    for i, e in enumerate(data.get("experiments") or []):
-        if e.get("id") == exp.get("id"):
-            data["experiments"][i] = exp
-            break
+    # `exp` IS data["experiments"][idx] (the canonical entry reloaded at the
+    # top — the readiness check and the persisted verdict cannot diverge).
     _write(data)
     return exp
 

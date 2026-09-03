@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-chatgpt-vs-gemini-billion-users",
+  "title": "The Race To A Billion AI Users",
+  "hook": "Who gets there first?",
+  "y_label": "Active users (millions)",
+  "duration": 13,
+  "source": "ChatGPT figures are OpenAI-reported weekly active users; Gemini figures are Google-reported monthly active users \u2014 different cadences, same order of magnitude, both from each company's own disclosures as reported by Reuters, TechCrunch and Android Headlines (2021-2026). Figures approximate, especially 2022-2024 which are estimated from public growth milestones.",
+  "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "series": [
+    {
+      "name": "ChatGPT",
+      "color": "#10a37f",
+      "icon": "ChatGPT",
+      "values": [
+        0,
+        5,
+        100,
+        300,
+        900,
+        1000
+      ]
+    },
+    {
+      "name": "Gemini",
+      "color": "#4285f4",
+      "icon": "Gemini",
+      "values": [
+        0,
+        0,
+        0,
+        100,
+        650,
+        1000
+      ]
+    }
+  ],
+  "hashtags": [
+    "chatgpt",
+    "geminiai",
+    "googleai",
+    "openai",
+    "artificialintelligence",
+    "ai",
+    "bigtech",
+    "aiassistant",
+    "chatbot",
+    "googlegemini",
+    "techtrends",
+    "siliconvalley",
+    "technews"
+  ],
+  "music_vibe": "cinematic"
+}

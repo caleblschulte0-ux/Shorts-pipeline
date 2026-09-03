@@ -1,0 +1,19 @@
+{
+  "key": "cable_vs_satellite_traffic_share",
+  "title": "Share of international internet traffic (percent)",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2025 (status)",
+  "source": {
+    "name": "Submarine cable mythbusting",
+    "publisher": "TeleGeography",
+    "url": "https://resources.telegeography.com/2023-mythbusting-part-3",
+    "officiality": "official",
+    "access_date": "2026-08-17"
+  },
+  "notes": "TeleGeography and multiple industry sources cite submarine cables as carrying 95-99% of intercontinental internet traffic; this uses the conservative 95% figure, with the remainder attributed to satellite and other links.",
+  "points": [
+    {"label": "Submarine cables", "value": 95},
+    {"label": "Satellite and other", "value": 5}
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "date": "20260815",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 3,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "2558e1c1be73aebb5cabf791878de00713675fe9769d9093fe33538c883f5fe2",
+    "required": true,
+    "checked": 3,
+    "ok": 3,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-reply-all-chaos-s2-6c6e5362b64d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-reply-all-chaos-s2-6c6e5362b64d.png"
+    },
+    {
+      "request_id": "reddit-reply-all-chaos-s6-0fea0eba1793",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-reply-all-chaos-s6-0fea0eba1793.png"
+    },
+    {
+      "request_id": "reddit-reply-all-chaos-s7-becff40b5e6a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-reply-all-chaos-s7-becff40b5e6a.png"
+    },
+    {
+      "slug": "reddit-reply-all-chaos",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): absolutely, reply, who"
+      ]
+    },
+    {
+      "slug": "reddit-loss-prevention-audit",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): who"
+      ]
+    }
+  ]
+}

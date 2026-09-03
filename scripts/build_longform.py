@@ -146,8 +146,12 @@ def main() -> int:
                     publish_at=args.publish_at)
     url = getattr(res, "url", None) or str(res)
     print(f"[longform] uploaded -> {url}")
-    from shared.fsutil import atomic_write_json, load_json
-    log = load_json(LONGFORM_LOG, {"posted": []})
+    # Strict read (CorruptStateError on corruption): this append + write-back
+    # is exactly where a corrupt-read-as-empty ledger gets REPLACED by a
+    # one-entry log, and the longform dedupe history is gone on the next
+    # push. Missing file = first longform ever = honest empty default.
+    from shared.fsutil import atomic_write_json, load_state_json
+    log = load_state_json(LONGFORM_LOG, {"posted": []}, expect_type=dict)
     log["posted"].append({"url": url, "title": title, "slugs": slugs,
                           "at": datetime.now(timezone.utc).isoformat()})
     atomic_write_json(LONGFORM_LOG, log)

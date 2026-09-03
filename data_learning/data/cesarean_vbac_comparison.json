@@ -1,0 +1,19 @@
+{
+  "key": "cesarean_vbac_comparison",
+  "title": "After one C-section: repeat surgery vs vaginal birth (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Vaginal birth after cesarean (VBAC) rate",
+    "publisher": "CDC National Center for Health Statistics (NCHS) / March of Dimes PeriStats",
+    "url": "https://www.marchofdimes.org/peristats/data?lev=1&obj=1&reg=99&slev=1&stop=90&top=8",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "NCHS reports the 2024 VBAC rate (share of women with a prior cesarean who deliver vaginally) at 15.5 per 100 births, up from 11.3 per 100 in 2014 but still low. The repeat-cesarean share shown here (84.5%) is the direct arithmetic complement of the published VBAC rate (100 - 15.5).",
+  "points": [
+    {"label": "Have a repeat cesarean", "value": 84.5},
+    {"label": "Deliver vaginally (VBAC)", "value": 15.5}
+  ]
+}

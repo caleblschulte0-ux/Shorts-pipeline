@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-heat-wave-dress-code-s5-3a0e5a30c03e",
+  "safe_request_id": "reddit-heat-wave-dress-code-s5-3a0e5a30c03e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "71cea595447bae4bfe9e2d1f1a2e4c70c3f6f1f4a5a6465acaf5558ba49737f8",
+  "prompt_used": "An editorial illustration for a short-form video: manager walking store aisle. It accompanies the narration: \"regional manager walked in\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+    "filename": "20260824__reddit-heat-wave-dress-code-s5-3a0e5a30c03e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZUo7VTHJ5yvc6_eBWrshlri52A4uhG3c",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9473c6eb278d5b1f15e17c6918c2e6d3bfcf35c1990a6eb77b36fb3d6fd3c932",
+    "bytes": 1180422,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:19:26.795Z",
+  "error": null,
+  "retryable": false
+}

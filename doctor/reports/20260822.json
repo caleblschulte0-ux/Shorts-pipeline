@@ -1,0 +1,81 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260822",
+  "summary": "Saturday's workflow and documentation audit found one critical ordering regression: the auto-merge workflow launches the renderer as soon as packages merge, before the documented Phase A to ChatGPT to Phase B exchange can finish, and the August 21 history shows that premature run producing only three of six trending uploads despite a later complete handoff. The same trigger surface also reruns Phase A after unrelated or failed auto-merge runs, while Doctor intake can conceal a wholly unusable report behind a green workflow. Longer term, the registry still is not the actual authority for every publisher. Editorially, Third reached six of six for the first time and explainer recovery is already tracked, but trending analytics have been frozen since August 13 because collection is conditional on a perfect production run; with seven consecutive partial days, there is not enough current, format-attributed evidence for a new mix call, so measurement continuity is the strategy priority.",
+  "findings": [
+    {
+      "title": "Auto-merge renders before the exchange handoff",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "trending/orchestration-order",
+      "files": [
+        ".github/workflows/auto-merge.yml",
+        ".github/workflows/daily.yml",
+        "CLAUDE.md",
+        "state/production_runs/20260821/trending.json"
+      ],
+      "observation": "When an auto-merged PR touches today's packages, auto-merge dispatches daily.yml immediately. That bypasses the package workflow_run route's Phase B artifact check, so rendering can begin before ChatGPT's media and editorial response is applied. On August 21 the package merge landed at 09:31:56 UTC, a Daily result was committed at 09:48:07 UTC, the media worker did not start until 11:02:13 UTC, the Finalizer responded at 12:08:53 UTC, and Phase B was not applied until 14:06:59 UTC. The premature production record contains only three uploaded graphs; both Reddit packages were blocked for inadequate authored-media coverage even though the later exchange completed all sixteen media requests.",
+      "proposal": "Remove the direct daily.yml dispatch from the package auto-merge path and make that path initiate or await Phase A instead. Require every non-rescue entry into daily.yml, including workflow_dispatch, to validate today's successful Phase B report before rendering. Preserve an explicitly identified rescue route for operators, and add an executable workflow test proving a package merge cannot reach Daily before Phase B succeeds.",
+      "evidence": ".github/workflows/auto-merge.yml lines 169-191 directly dispatch daily.yml after detecting today's package path; .github/workflows/daily.yml lines 109-116 apply the Phase B guard only to workflow_run; CLAUDE.md lines 257-263 document the required Phase A -> ChatGPT -> Phase B -> Daily order. Git commits 504cea3714f7151372514250953509c39d45e53f, aa7eca7e7ea27a27c8ffb04169dcc328387fd3e7, 004db95583a7fd4ce8b2617d17ac688c2da85e92, e637ec68886ae8a18c38a5b2b0d48f17a408bc57, and 30d594ee181a2ea3d6fa889d61b2f09e4222cdb4 establish the August 21 sequence; state/production_runs/20260821/trending.json records the resulting 3/6 outcome and Reddit media-coverage failures."
+    },
+    {
+      "title": "Every auto-merge completion re-runs Phase A",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "exchange/phase-a-trigger",
+      "files": [
+        ".github/workflows/exchange_phase_a.yml",
+        "scripts/exchange_phase_a.py",
+        "tests/test_split_worker.py"
+      ],
+      "observation": "Phase A listens to every completed Auto-merge claude PRs run without checking its conclusion or whether the merged PR changed packages. The implementation explicitly documents that this causes repeated Phase A executions and relies on downstream bundle freezing after media work begins. On August 21 Phase A commits appeared at 09:32, 10:05, and again around other auto-merge activity, creating avoidable reruns and a pre-heartbeat window where the authoritative ask can be rewritten.",
+      "proposal": "Dispatch Phase A only from the successful package-changing branch of auto-merge, or pass a package-change marker that the Phase A job validates before running. Keep the direct-push and scheduled recovery paths. Add workflow-contract tests covering failed auto-merge runs, successful code-only PRs, and exactly one successful current-date package merge.",
+      "evidence": ".github/workflows/exchange_phase_a.yml lines 26-44 subscribe to workflow_run completion with no conclusion or changed-path condition; scripts/exchange_phase_a.py lines 257-291 describe repeated auto-merge invocation and apply the media-progress freeze only after work has begun; tests/test_split_worker.py contains Phase A recovery coverage but no trigger-selectivity case. August 21 Phase A commits 9eaab15e947b3a37081d6943605a5e50bc351817 and 1672a79d925b27a73bd50f56c0044ee2d701932c show repeat execution after the initial package handoff."
+    },
+    {
+      "title": "Doctor intake hides wholly unusable reports",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "doctor/intake-integrity",
+      "files": [
+        ".github/workflows/doctor.yml",
+        "scripts/doctor.py",
+        "tests/test_doctor.py"
+      ],
+      "observation": "The Doctor workflow deliberately disables shell failure handling around report ingestion and records the exit status, but no later step consumes that status. A malformed JSON report or a report with zero usable findings can therefore fail ingestion, remain committed on main, contribute nothing to the backlog, and still leave the workflow green; evidence regeneration and persistence continue as though intake succeeded.",
+      "proposal": "Make ingestion emit a structured outcome that distinguishes normal per-finding rejection from report-level failure. Continue commenting and regenerating evidence for partial editorial rejection, but fail the workflow when the report is unreadable, violates the report schema, or yields no ingestible report state. Cover malformed JSON, wrong top-level schema, all-rejected, and partially accepted reports in workflow-facing tests.",
+      "evidence": ".github/workflows/doctor.yml lines 83-104 use set +e, write steps.ingest.outputs.status, and never inspect it before the unconditional evidence step at lines 106-111. scripts/doctor.py lines 614-636 parse the report and return a nonzero status for report-level failure. tests/test_doctor.py exercises validator and ingestion behavior but does not assert that the workflow propagates a wholly unusable report as failure."
+    },
+    {
+      "title": "Put every publisher under registry authority",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "registry/publisher-governance",
+      "files": [
+        "config/channel_registry.json",
+        "shared/channel_registry.py",
+        ".github/workflows/longform.yml",
+        "tests/test_disabled_channels_stay_off.py",
+        "CLAUDE.md"
+      ],
+      "observation": "The repository declares channel_registry.json the only authority for enabled channels, but CLAUDE.md documents publisher exceptions and the longform workflow enforces its disabled/dry-run state with workflow-local logic because longform is absent from the registry. The regression test consequently maintains a separate hard-coded list of off-by-ruling workflows. Adding or changing a publisher therefore still requires synchronized edits across policy prose, workflow code, and a test-owned authority list.",
+      "proposal": "Extend the registry model to every publishing workflow and format, including longform, with explicit enabled state, cadence, and publish mode. Make publisher workflows consume one shared registry gate, generate or parameterize the disabled-channel regression cases from registry data, and remove the documented exceptions only after parity tests prove the migration. Preserve every currently disabled publisher until an explicit operator registry change.",
+      "evidence": "CLAUDE.md lines 91-136 first declares registry authority and then names publishing workflows outside it; config/channel_registry.json has no longform entry; .github/workflows/longform.yml lines 114-131 implement a workflow-local dry-run override; tests/test_disabled_channels_stay_off.py defines OFF_BY_RULING and inspects workflows separately from shared/channel_registry.py."
+    },
+    {
+      "title": "Decouple trending measurement from a perfect 6/6 day",
+      "horizon": "strategy",
+      "severity": "high",
+      "area": "strategy/trending-measurement",
+      "files": [
+        ".github/workflows/daily.yml",
+        "state/analytics/latest.json",
+        "retro/20260821/brief.json",
+        "doctor/evidence.json"
+      ],
+      "observation": "Trending analytics are frozen at a fetch time of 2026-08-13T12:18:16Z and contain published videos only through August 12 because daily.yml fetches analytics only when the production step succeeds. Trending has missed its 6/6 registry target for seven consecutive days, so every partial day also suppresses measurement; at least 23 videos uploaded from August 14 through August 21 are absent from the current analytics snapshot. Existing backlog items already address production reliability and format attribution, but the managing-editor view cannot judge the current mix while the measurement loop itself requires perfect delivery.",
+      "proposal": "Keep the six-per-day target and all production gates, but run best-effort analytics collection after every production attempt that uploads anything, or move collection to an independent scheduled workflow. Add analytics-freshness age to the daily evidence and alarm when it exceeds its service level. Do not change the format mix until the snapshot is current and the already-filed format-attribution work can separate graph, Reddit, and gameplay performance.",
+      "evidence": ".github/workflows/daily.yml lines 535-548 gate analytics collection on steps.run.outcome == 'success'; state/analytics/latest.json records fetched_at 2026-08-13T12:18:16Z and no publication later than August 12; retro/20260821/brief.json repeats that stale trending fetch while its other channel inputs were refreshed on August 21; doctor/evidence.json records trending delivered 2, 3, 4, 4, 2, 4, and 3 videos on August 15-21 against a six-video target, plus 23 uploads on August 14-21 that the snapshot cannot include."
+    }
+  ]
+}

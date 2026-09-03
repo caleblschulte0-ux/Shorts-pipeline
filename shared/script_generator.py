@@ -54,7 +54,7 @@ SYSTEM_PROMPT = """You write viral Reddit-style DRAMA STORYTIME scripts for \
 YouTube Shorts as strict JSON. 1080x1920 vertical, ~45-60 seconds. First-person, \
 emotionally charged, authentic Reddit voice (AITA / relationship / entitled \
 family / revenge). Write an ORIGINAL story — never copy a real post. Open on the \
-shock, build tension, end on a twist. Each shot can carry a `mascot_pose` hint. \
+shock, build tension, end on a twist. \
 Output JSON only — no prose, no fences."""
 
 
@@ -69,8 +69,7 @@ Schema:
   "script": "<130-170 words, first-person, sentence 1 drops into the shock/premise, builds tension, ends on the twist — NOT a question>",
   "shots": [
     {{"phrase": "<2-4 word VERBATIM substring of the script>",
-      "query": "<1-3 word stock-footage search, visually concrete>",
-      "mascot_pose": "<idle|shock|point|laugh|think|dismiss>"}}
+      "query": "<1-3 word stock-footage search, visually concrete>"}}
   ],
   "punches": [
     {{"phrase": "<VERBATIM substring of the script>",
@@ -270,15 +269,51 @@ def _call_anthropic(system: str, user: str, model: str = DEFAULT_ANTHROPIC_MODEL
     return resp["content"][0]["text"]
 
 
-def _call_llm(system: str, user: str, *, backend: str | None = None, model: str | None = None) -> str:
-    """Dispatch to whichever backend the caller asked for, or fall back
-    to whichever has a configured key. Free backends win over paid."""
-    if backend == "groq" or (backend is None and os.environ.get("GROQ_API_KEY")):
-        return _call_groq(system, user, model=model or DEFAULT_GROQ_MODEL)
-    if backend == "gemini" or (backend is None and os.environ.get("GEMINI_API_KEY")):
-        return _call_gemini(system, user, model=model or DEFAULT_GEMINI_MODEL)
-    if backend == "anthropic" or (backend is None and os.environ.get("ANTHROPIC_API_KEY")):
-        return _call_anthropic(system, user, model=model or DEFAULT_ANTHROPIC_MODEL)
+_LLM_CHAIN = (
+    ("groq", "GROQ_API_KEY", lambda s, u, m: _call_groq(
+        s, u, model=m or DEFAULT_GROQ_MODEL)),
+    ("gemini", "GEMINI_API_KEY", lambda s, u, m: _call_gemini(
+        s, u, model=m or DEFAULT_GEMINI_MODEL)),
+    ("anthropic", "ANTHROPIC_API_KEY", lambda s, u, m: _call_anthropic(
+        s, u, model=m or DEFAULT_ANTHROPIC_MODEL)),
+)
+
+
+def _call_llm(system: str, user: str, *, backend: str | None = None,
+              model: str | None = None) -> str:
+    """Dispatch to the backend the caller asked for, or walk the configured
+    ones in order (free before paid) until one ANSWERS.
+
+    This used to CHOOSE a backend and then raise whatever that one raised —
+    the docstring said "fall back" but the code only ever selected. So a
+    Groq rate limit was a total authoring outage even with Gemini configured:
+    on 2026-08-11 all four trending backfill attempts and the entity-media
+    pass died on `HTTP Error 429` in a run where the showrunner's own Gemini
+    fallback key was present and idle. Falling through on a FAILURE is the
+    thing the name always promised.
+
+    An explicit `backend=` is still exact — the caller asked for that one, so
+    it gets that one's error rather than a silent substitution.
+    """
+    if backend is not None:
+        for name, _env, call in _LLM_CHAIN:
+            if name == backend:
+                return call(system, user, model)
+        raise RuntimeError(f"unknown LLM backend {backend!r}")
+    errs: list[str] = []
+    for name, env, call in _LLM_CHAIN:
+        if not os.environ.get(env):
+            continue
+        try:
+            return call(system, user, model)
+        except Exception as e:  # noqa: BLE001 — try the next backend
+            errs.append(f"{name}: {type(e).__name__}: {str(e)[:120]}")
+            print(f"[llm] {name} unavailable ({type(e).__name__}: "
+                  f"{str(e)[:90]}) — trying the next backend",
+                  file=sys.stderr, flush=True)
+    if errs:
+        raise RuntimeError("every configured LLM backend failed — "
+                           + " | ".join(errs))
     raise RuntimeError(
         "no LLM backend configured. Set one of:\n"
         "  GROQ_API_KEY    (free, recommended — https://console.groq.com/keys)\n"
@@ -296,11 +331,6 @@ def _strip_fence(text: str) -> str:
         text = re.sub(r"\s*```$", "", text)
     return text
 
-
-# Allowed mascot poses. Unknown / missing pose falls back to "idle" in
-# the renderer; we DO surface a soft warning so the model learns to fill
-# the field on retry.
-_VALID_POSES = frozenset({"idle", "shock", "point", "laugh", "think", "dismiss"})
 
 # Suppression-bait phrases the algorithm flags. We reject scripts that
 # contain any of these — see 1kReach 2026 research.
@@ -383,25 +413,6 @@ def _validate_package(pkg: dict) -> list[str]:
                 f"of the script. Either change the script to include it, or pick "
                 f"a different trigger phrase that IS in the script."
             )
-        pose = (s.get("mascot_pose") or "").strip().lower()
-        if pose and pose not in _VALID_POSES:
-            issues.append(
-                f"shot has unknown mascot_pose {pose!r} — must be one of: "
-                f"{sorted(_VALID_POSES)}. Omit the field for 'idle'."
-            )
-
-    # Cap non-idle poses at 3 per script so the mascot stays watermark-feel.
-    non_idle = sum(
-        1 for s in pkg.get("shots", [])
-        if (s.get("mascot_pose") or "idle").strip().lower() not in ("", "idle")
-    )
-    if non_idle > 3:
-        issues.append(
-            f"{non_idle} shots have non-idle mascot_pose — max 3 per script. "
-            "Reactive poses are for the 2-3 emotional beats only; the rest "
-            "stay idle."
-        )
-
     for p in pkg.get("punches", []):
         phrase = (p.get("phrase") or "").lower().strip()
         if not phrase:

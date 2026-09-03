@@ -1,0 +1,114 @@
+{
+  "date": "20260808",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "4ea778fe0127ce260da7b19f9a63b93cc312fa7444800141637936f13058346b",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s0-ba0e84276b37",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s0-ba0e84276b37.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s1-c0ca2a80974e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s1-c0ca2a80974e.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s2-3db099c66479",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s2-3db099c66479.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s3-42ae77901239",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s3-42ae77901239.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s4-9fc12f1c89d2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s4-9fc12f1c89d2.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s5-c3d9c9bbde10",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s5-c3d9c9bbde10.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s6-fab1ba25f034",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s6-fab1ba25f034.png"
+    },
+    {
+      "request_id": "reddit-unpaid-driveway-lien-s7-f3518ce27313",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-unpaid-driveway-lien-s7-f3518ce27313.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s0-86ca94ea659a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s0-86ca94ea659a.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s1-1d5ebf6aea26",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s1-1d5ebf6aea26.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s2-61430ce95e0f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s2-61430ce95e0f.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s3-2511e9af7c8b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s3-2511e9af7c8b.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s4-6882e8bb3009",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s4-6882e8bb3009.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s5-6ca4b3e1a8c2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s5-6ca4b3e1a8c2.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s6-c3abe7153bac",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s6-c3abe7153bac.png"
+    },
+    {
+      "request_id": "reddit-pharmacy-coupon-not-an-employee-s7-7276f7b8d5f8",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-pharmacy-coupon-not-an-employee-s7-7276f7b8d5f8.png"
+    }
+  ]
+}

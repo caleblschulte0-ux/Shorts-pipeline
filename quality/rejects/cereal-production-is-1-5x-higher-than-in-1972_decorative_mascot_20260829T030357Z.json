@@ -1,0 +1,45 @@
+{
+ "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+ "ts": "20260829T030357Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data perches on the top bar in essentially one pose for the entire run \u2014 hook@0.8, seg1:mid, seg2:mid, seg3:mid and seg4:mid all show him hovering over row 1 with no setup->action->payoff tied to grain, farmland or enrollment; at payoff@-1.8 he is simply occluded by the closing ca",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "broken_layout_and_unit_mismatch",
+  "visible_evidence": "From seg4:start (46.29s) to payoff@-0.4 (52.13s) the closing card is stamped over the top of the chart \u2014 it covers the 'Cereal production' title, the '1972 TOPS THE LIST' subhead and the entire 1972 row (seg4:end shows '1972' fully hidden). Simultaneously the value labels render as raw unformatted integers that overflow the right edge: '1493231379', '2093026046', and '2822286' clipped mid-number at 2014 (seg4:mid, payoff@-1.8). Those figures also contradict the narrated units \u2014 the script says 1083.7 and 1644.1 million metric tons, the screen says 1644081590.",
+  "root_cause": "The closing/outro overlay is composited at the same z-layer and vertical origin as the chart header instead of replacing or push-scrolling the chart, and the end-state value labels bypass the unit-scaled formatter used in seg1 (which correctly printed 77.8/81.1), emitting full-precision raw values with no right-edge width clamp.",
+  "repair_goal": "Rebuild seg4 so the closing statement owns the frame: fade/scale the chart down or slide it out before the closing card lands so no title or row is occluded, and format the terminal value labels through the same unit-scaled formatter the narration uses (1083.7 / 1644.1 million t), right-clamped inside the card so no digits fall off the frame. Then give Data one real closing bit tied to the 1.5x grain result rather than leaving him hidden behind the card."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "rank",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "race_sprint"
+  }
+ ]
+}

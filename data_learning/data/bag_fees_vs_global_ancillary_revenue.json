@@ -1,0 +1,27 @@
+{
+  "key": "bag_fees_vs_global_ancillary_revenue",
+  "title": "US bag fees vs worldwide airline ancillary revenue, 2023",
+  "unit": "billion dollars",
+  "geography": "US vs World",
+  "time_coverage": "2023",
+  "source": {
+    "name": "CarTrawler Yearbook of Ancillary Revenue",
+    "publisher": "IdeaWorksCompany / CarTrawler",
+    "url": "https://ideaworkscompany.com/2023-cartrawler-yearbook-of-ancillary-revenue-report/",
+    "officiality": "primary",
+    "access_date": "2026-08-20"
+  },
+  "notes": "In 2023, US airlines collected $7.1B in checked-bag fees alone (BTS). The same year, airlines worldwide collected $117.9B in total ancillary revenue (seat selection, bags, loyalty program sales, and other extras), per IdeaWorksCompany/CarTrawler's annual estimate -- bags are roughly one-sixteenth of the total add-on business.",
+  "insight_type": "comparison",
+  "use_baseline": false,
+  "points": [
+    {
+      "label": "US bag fees",
+      "value": 7.1
+    },
+    {
+      "label": "Global ancillary revenue",
+      "value": 117.9
+    }
+  ]
+}

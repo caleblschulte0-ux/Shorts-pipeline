@@ -1,0 +1,27 @@
+{
+  "key": "voyager1_power_decline",
+  "title": "Voyager 1 electrical power output, 1977 vs current",
+  "unit": "watts",
+  "geography": "Interstellar space (Voyager 1)",
+  "time_coverage": "1977 vs 2026",
+  "source": {
+    "name": "Voyager mission status",
+    "publisher": "NASA / JPL",
+    "url": "https://www.jhuapl.edu/",
+    "officiality": "official",
+    "access_date": "2026-08-20"
+  },
+  "notes": "Voyager 1's radioisotope thermoelectric generators (RTGs) produced 470 watts at launch in 1977. Output declines by roughly 4 watts a year as the onboard plutonium decays; by 2026 the craft was down to about 230 watts, forcing NASA to shut down science instruments one by one -- 8 of the original 10 are now off -- to keep the transmitter (and the signal) alive.",
+  "insight_type": "comparison",
+  "use_baseline": false,
+  "points": [
+    {
+      "label": "1977 (launch)",
+      "value": 470
+    },
+    {
+      "label": "2026",
+      "value": 230
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "key": "global_daily_steps_by_country",
+  "title": "Average daily steps by country (smartphone accelerometer data)",
+  "unit": "steps",
+  "geography": "World (111 countries sampled)",
+  "time_coverage": "2017 (95-day average per user)",
+  "source": {
+    "name": "Large-scale physical activity data reveal worldwide activity inequality (Althoff et al.)",
+    "publisher": "Nature (Stanford University study, journal vol. 547)",
+    "url": "https://www.nature.com/articles/nature23018",
+    "officiality": "secondary",
+    "access_date": "2026-08-14"
+  },
+  "notes": "Stanford study of 68 million days of smartphone step-count data from 717,527 people across 111 countries (2017). Hong Kong was the most active country studied; Indonesia the least. Global average across the sample was about 4,961 steps/day, shown here as the baseline.",
+  "points": [
+    {"label": "Hong Kong", "value": 6880},
+    {"label": "China", "value": 6180},
+    {"label": "United States", "value": 4774},
+    {"label": "Saudi Arabia", "value": 3807},
+    {"label": "Indonesia", "value": 3513}
+  ],
+  "baseline": {"label": "Global average", "value": 4961}
+}

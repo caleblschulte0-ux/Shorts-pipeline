@@ -345,6 +345,14 @@ class TestExperimentsRefuseEarlyConclusions(unittest.TestCase):
         kw.update(over)
         return self.ex.register("shorter hooks hold better", **kw)
 
+    def _ripe(self, **over):
+        """A register entry past BOTH floors — since 2026-08-24 the only
+        kind `conclude()` will read out (doctor 86ad3ba9d045): it reloads
+        the canonical entry and enforces `readout_ready()` itself."""
+        e = self._reg(days_ago=8, **over)
+        self.ex.bump_samples(e["id"], 12)
+        return e
+
     def test_plenty_of_samples_but_too_few_days_is_refused(self):
         e = self._reg(days_ago=3)
         ok, why = self.ex.readout_ready(e, samples=500)
@@ -362,17 +370,17 @@ class TestExperimentsRefuseEarlyConclusions(unittest.TestCase):
         self.assertTrue(self.ex.readout_ready(e, samples=12)[0])
 
     def test_a_real_improvement_is_adopted(self):
-        e = self._reg(days_ago=8)
+        e = self._ripe()
         r = self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
         self.assertEqual(r["status"], "adopted")
 
     def test_a_regression_is_reverted(self):
-        e = self._reg(days_ago=8)
+        e = self._ripe()
         r = self.ex.conclude(e, observed=50.0, guardrail_observed=74.0)
         self.assertEqual(r["status"], "reverted")
 
     def test_a_small_move_is_weather_not_a_result(self):
-        e = self._reg(days_ago=8)
+        e = self._ripe()
         r = self.ex.conclude(e, observed=83.0, guardrail_observed=74.0)
         self.assertEqual(r["status"], "inconclusive")
         self.assertIn("weather", r["readout"]["verdict"])
@@ -380,13 +388,13 @@ class TestExperimentsRefuseEarlyConclusions(unittest.TestCase):
     def test_a_guardrail_regression_outranks_a_metric_win(self):
         """More views bought with worse videos is a LOSS. This ordering is
         the loop's value alignment and must not be reachable by proposal."""
-        e = self._reg(days_ago=8)
+        e = self._ripe()
         r = self.ex.conclude(e, observed=160.0, guardrail_observed=50.0)
         self.assertEqual(r["status"], "reverted")
         self.assertIn("guardrail", r["readout"]["verdict"])
 
     def test_direction_down_is_honoured(self):
-        e = self._reg(days_ago=8, direction="down", baseline=10.0)
+        e = self._ripe(direction="down", baseline=10.0)
         self.assertEqual(
             self.ex.conclude(e, observed=4.0,
                              guardrail_observed=74.0)["status"], "adopted")
@@ -400,15 +408,62 @@ class TestExperimentsRefuseEarlyConclusions(unittest.TestCase):
         self.assertEqual(len(due), 1)
 
     def test_a_concluded_experiment_cannot_be_read_out_again(self):
-        e = self._reg(days_ago=8)
+        e = self._ripe()
         self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
         self.assertFalse(self.ex.readout_ready(
             self.ex.all_experiments()[0], samples=99)[0])
 
     def test_zero_baseline_does_not_explode(self):
-        e = self._reg(days_ago=8, baseline=0.0)
+        e = self._ripe(baseline=0.0)
         self.assertIn(self.ex.conclude(e, observed=5.0)["status"],
                       ("adopted", "reverted", "inconclusive"))
+
+    # -- conclude() enforces the floors ITSELF (doctor 86ad3ba9d045):
+    # the register's whole premise is that early conclusions are structurally
+    # impossible, so readiness cannot live only in a function callers may
+    # forget to call.
+
+    def test_a_day_zero_conclusion_is_refused_with_the_reason(self):
+        e = self._reg(days_ago=0)
+        self.ex.bump_samples(e["id"], 500)     # samples alone are not enough
+        with self.assertRaises(self.ex.ReadoutNotReady) as cm:
+            self.ex.conclude(e, observed=200.0, guardrail_observed=75.0)
+        self.assertIn("days elapsed", str(cm.exception))
+        self.assertEqual(self.ex.all_experiments()[0]["status"], "running",
+                         "a refused conclusion must not touch the register")
+        self.assertIsNone(self.ex.all_experiments()[0]["readout"])
+
+    def test_a_zero_sample_conclusion_is_refused_with_the_reason(self):
+        e = self._reg(days_ago=30)             # plenty of days, zero videos
+        with self.assertRaises(self.ex.ReadoutNotReady) as cm:
+            self.ex.conclude(e, observed=200.0, guardrail_observed=75.0)
+        self.assertIn("samples", str(cm.exception))
+        self.assertEqual(self.ex.all_experiments()[0]["status"], "running")
+
+    def test_conclude_reads_the_persisted_samples_not_the_callers_dict(self):
+        """A caller editing samples_seen on its own copy must not smuggle a
+        thin experiment past the floor — the canonical entry decides."""
+        e = self._reg(days_ago=8)
+        e["samples_seen"] = 999                # local lie; register says 0
+        with self.assertRaises(self.ex.ReadoutNotReady):
+            self.ex.conclude(e, observed=200.0)
+
+    def test_an_unregistered_experiment_cannot_conclude(self):
+        with self.assertRaises(self.ex.ReadoutNotReady):
+            self.ex.conclude({"id": "nope", "baseline": 1.0}, observed=2.0)
+
+    def test_a_ripe_experiment_still_concludes(self):
+        e = self._ripe()
+        r = self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
+        self.assertEqual(r["status"], "adopted")
+        self.assertEqual(self.ex.all_experiments()[0]["status"], "adopted")
+
+    def test_a_concluded_experiment_cannot_be_concluded_again(self):
+        e = self._ripe()
+        self.ex.conclude(e, observed=100.0, guardrail_observed=75.0)
+        with self.assertRaises(self.ex.ReadoutNotReady) as cm:
+            self.ex.conclude(e, observed=1.0)
+        self.assertIn("status is adopted", str(cm.exception))
 
 
 class TestTheLoopHasMemory(unittest.TestCase):

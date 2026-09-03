@@ -69,12 +69,91 @@ def write_json_if_changed(path: str | Path, obj, *, indent: int = 2,
 
 
 def load_json(path: str | Path, default):
-    """Read JSON, returning `default` when missing or corrupt — the loader
-    every posted-log already implements ad hoc."""
+    """Read JSON, returning `default` when missing or corrupt.
+
+    This is the TOLERANT loader — for expendable caches, quota counters and
+    reports, where the worst case of "corrupt read as empty" is a re-fetch
+    or a noisier report. It must NEVER read authoritative state: a posted
+    log or ledger that reads as empty means duplicate uploads or a bypassed
+    gate. Those callers use `load_state_json`, which keeps default-on-missing
+    (first runs must work) but fails CLOSED on corruption."""
     path = Path(path)
     if path.exists():
         try:
             return json.loads(path.read_text())
-        except Exception:  # noqa: BLE001 — corrupt state must not break a run
+        except Exception:  # noqa: BLE001 — a corrupt CACHE must not break a run
             pass
     return default
+
+
+class CorruptStateError(RuntimeError):
+    """An AUTHORITATIVE state file exists but cannot be read as what it
+    claims to be. Deliberately NOT caught anywhere in the pipeline: the only
+    correct handler is the operator restoring the file."""
+
+
+def load_state_json(path: str | Path, default, *, expect_type: type | None = None):
+    """Read AUTHORITATIVE state: absence returns `default`, corruption RAISES.
+
+    The distinction this module's header warns about (corrupt log -> dedupe
+    blind -> duplicate upload) is exactly the one `load_json` erases: it
+    returns the caller's empty default for a missing file AND for a
+    truncated/mangled one. A missing posted-log is a first run and the
+    default is honest; a corrupt posted-log is an emergency, and treating it
+    as empty re-uploads the catalogue and then lets the writer replace 100+
+    real entries with this run's handful. So:
+
+    - file missing            -> `default` (first runs keep working)
+    - unreadable / unparseable / wrong top-level type (`expect_type`)
+                              -> the bad bytes are preserved as
+                                 `<name>.corrupt` beside the file and
+                                 CorruptStateError is raised, naming the
+                                 file, the reason, and the repair.
+
+    Do not catch CorruptStateError to "keep the run going" — a run without
+    its dedupe state must not run. Fix the file (usually
+    `git checkout <last-good-commit> -- <path>`), then re-run.
+    """
+    path = Path(path)
+    try:
+        raw = path.read_bytes()
+    except FileNotFoundError:
+        return default
+    except OSError as e:
+        # Exists-but-unreadable (permissions, path is a directory, I/O
+        # error) is NOT absence — returning `default` here would be the
+        # exact corrupt-reads-as-empty bug this loader exists to close.
+        raise CorruptStateError(
+            f"REFUSING to run: authoritative state {path} exists but cannot "
+            f"be read ({e}). A ledger that cannot be read must not be "
+            f"treated as empty — fix the file or its permissions, then "
+            f"re-run.")
+    reason = None
+    try:
+        obj = json.loads(raw.decode("utf-8"))
+    except Exception as e:  # noqa: BLE001 — any parse failure is corruption
+        obj, reason = None, f"not valid JSON: {e}"
+    if reason is None and expect_type is not None \
+            and not isinstance(obj, expect_type):
+        reason = (f"wrong shape: expected {expect_type.__name__}, "
+                  f"got {type(obj).__name__}")
+    if reason is None:
+        return obj
+    # Preserve the evidence BEFORE refusing: the operator (or a later
+    # session) repairs from the bad bytes plus git history, and the next
+    # run must not find them already overwritten by a "fix". Best-effort —
+    # failing to write the sidecar must not mask the refusal itself.
+    sidecar = path.with_name(path.name + ".corrupt")
+    try:
+        sidecar.write_bytes(raw)
+        preserved = f"the bad bytes are preserved at {sidecar}"
+    except OSError:
+        preserved = "the bad bytes could not be copied aside — do not edit in place"
+    raise CorruptStateError(
+        f"REFUSING to run: authoritative state {path} is corrupt "
+        f"({reason}). Reading it as empty would mean duplicate uploads or "
+        f"a bypassed gate, so this fails CLOSED. {preserved}. Restore the "
+        f"file from git history (git log --oneline -- {path.name}; "
+        f"git checkout <good-commit> -- <path>) and re-run. A genuinely "
+        f"missing file would have returned the default — only corruption "
+        f"refuses.")

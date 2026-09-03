@@ -5,7 +5,8 @@ facts or reshuffle beats. This module is the mechanical enforcement of that,
 because trust is not a control:
 
   * every number, percentage, money amount, date and year in the original must
-    still be present, unchanged, in the rewrite;
+    still be present, unchanged, in the rewrite — and as OFTEN as it appeared
+    (a repeated stat is a repeated beat; dropping one copy is dropping a claim);
   * the rewrite may not introduce a numeric claim that was not in the original;
   * named entities (proper nouns) may not be dropped or invented;
   * beat structure is preserved — same shot count, same subject per shot — so
@@ -24,6 +25,7 @@ Fails CLOSED: on any doubt the rewrite is rejected and the original ships.
 from __future__ import annotations
 
 import re
+from collections import Counter
 
 # Numeric claims, most specific first so money/percent win over bare digits.
 _MONEY = re.compile(r"[$€£]\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmbt]|thousand|million|billion|trillion)?", re.I)
@@ -83,20 +85,41 @@ def _norm_num(tok: str) -> str:
     return tok.lower().replace(",", "").replace(" ", "").rstrip(".")
 
 
-def numeric_claims(text: str) -> set[str]:
-    """Every quantitative claim in a piece of text, normalized."""
+def numeric_claims(text: str) -> Counter:
+    """Every quantitative claim in a piece of text, normalized — WITH its
+    occurrence count.
+
+    This returned a set until 2026-08-24, which collapsed "40% ... 40%" to
+    one membership bit: a rewrite could delete one of two sentences carrying
+    the same number and the guard saw no dropped claim because one copy
+    remained (doctor finding ddfcb2ed4837). A repeated stat is repeated on
+    purpose — a beat that restates the number IS a claim — so multiplicity
+    is part of what must be preserved. A Counter keeps `in` / iteration
+    semantics for existing callers while `check()` compares counts in both
+    directions. The token patterns, `_norm_num` normalization, and the
+    money/percent/year-before-bare-number precedence are UNCHANGED."""
     text = text or ""
-    found: set[str] = set()
+    found: Counter = Counter()
     consumed: list[tuple[int, int]] = []
     for pat in (_MONEY, _PERCENT, _YEAR):
         for m in pat.finditer(text):
-            found.add(_norm_num(m.group(0)))
+            found[_norm_num(m.group(0))] += 1
             consumed.append(m.span())
     for m in _NUMBER.finditer(text):
         if any(s <= m.start() < e for s, e in consumed):
             continue
-        found.add(_norm_num(m.group(0)))
+        found[_norm_num(m.group(0))] += 1
     return found
+
+
+def _claim_delta(tok: str, before: int, after: int) -> str:
+    """Human-readable claim diff: a token whose count merely CHANGED shows
+    both counts ("40% (x2 -> x1)"); a token fully dropped or fully new
+    reads exactly as it always did (just the token) — the messages the
+    existing tests and operators know keep their shape."""
+    if before and after:
+        return f"{tok} (x{before} -> x{after})"
+    return tok
 
 
 _ANYWORD = re.compile(r"\b([A-Za-z][A-Za-z0-9'\-]*)\b")
@@ -141,14 +164,20 @@ def check(original: dict, rewritten: dict, *,
             return False, ["rewrite has an empty script"]
 
         # --- claims -------------------------------------------------------
+        # Counter subtraction keeps only POSITIVE deficits, so each
+        # direction reports every token whose occurrence count fell (or
+        # rose) — including the one-of-two-copies-deleted case a set
+        # comparison was blind to (ddfcb2ed4837).
         o_nums = numeric_claims(o_script)
         r_nums = numeric_claims(r_script)
         dropped = sorted(o_nums - r_nums)
         invented = sorted(r_nums - o_nums)
         if dropped:
-            problems.append("dropped numeric claim(s): " + ", ".join(dropped[:6]))
+            problems.append("dropped numeric claim(s): " + ", ".join(
+                _claim_delta(t, o_nums[t], r_nums[t]) for t in dropped[:6]))
         if invented:
-            problems.append("INVENTED numeric claim(s): " + ", ".join(invented[:6]))
+            problems.append("INVENTED numeric claim(s): " + ", ".join(
+                _claim_delta(t, o_nums[t], r_nums[t]) for t in invented[:6]))
 
         # Compare entities against the other text's FULL word set, not just
         # its proper nouns — otherwise emphasis capitalization ("caught" ->

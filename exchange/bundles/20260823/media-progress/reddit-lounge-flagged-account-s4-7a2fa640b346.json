@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260823",
+  "bundle": {
+    "identity": "fc89ad03354539200569066289cc516d085f9f1dcf461e0b884ecbe989f64679",
+    "path": "exchange/bundles/20260823/bundle.json"
+  },
+  "request_id": "reddit-lounge-flagged-account-s4-7a2fa640b346",
+  "safe_request_id": "reddit-lounge-flagged-account-s4-7a2fa640b346",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0329c8ad9896fb2af75893aabb5d15dfb0891bfb2b1ff43c7f6ef6337e51cf62",
+  "prompt_used": "An editorial illustration for a short-form video: crowded airport lounge seating. It accompanies the narration: \"smuggling four extra guests\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+    "filename": "20260823__reddit-lounge-flagged-account-s4-7a2fa640b346.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1hKwEoPkNIz7el2JQpZDF0hhZQ25DGjfy",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c3ab4541eda3a02cfac929ca904000c3c929e4273ae23af1a40508726bdb3c9b",
+    "bytes": 1457644,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-23T11:14:06.897Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260818",
+  "summary": "Tuesday's exchange pass finds that the split-worker protocol has strong checkpoint validation but still has three authority and persistence gaps: its frozen identity covers media requests while omitting scripts and takeover briefs, Phase B reports success after suppressing package or report write failures, and authored-shot checkpoints cannot reconstruct a missing authored response pointer even though they are durable verified evidence. The bundle also exposes the trending takeover ask twice, as a singular compatibility alias and in the per-channel map, leaving two serialized authorities that can disagree. Yesterday's alarm shows the exchange itself delivered 10/10 verified images, yet trending still shipped only 4/6 after eight attempts and two replacements, explainer shipped 0/4, and Third 3/6; the quality gates should remain untouched. As managing editor I would hold the registered trending 4 graph-race / 2 Reddit mix while production reliability is repaired: seven consecutive trending days missed 6/6, and the only mature format evidence still labels trending uploads unknown, so there is not enough trustworthy data to shrink or scale either format.",
+  "findings": [
+    {
+      "title": "The frozen exchange identity omits scripts and takeover briefs",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/ask-immutability",
+      "files": [
+        "shared/media_checkpoint.py",
+        "scripts/exchange_phase_a.py",
+        "shared/exchange_bundle.py",
+        "tests/test_media_checkpoint.py"
+      ],
+      "observation": "Phase A freezes a running worker's assignment by comparing ask_fingerprint(bundle) with BUNDLE_ID, but the fingerprint hashes only the date, registry fields, and media-request identifiers/prompts/filenames. The same bundle is also the authoritative punch-up work order and may contain whole-channel authoring briefs. A rerun after STARTED.json can therefore change package scripts, shot phrases, authoring_request, or authoring_requests while producing the same identity; Phase A calls that ask unchanged and rewrites bundle.json underneath workers already acting on the prior editorial assignment.",
+      "proposal": "Make the fingerprint cover a canonical, versioned representation of every actionable input: each package's slug, script and protected shot fields; every per-channel authoring brief; media requests; and the frozen contract. Exclude only explicitly cosmetic/generated fields. Add tests proving that package-script, shot-phrase, target/mix, and other-channel brief changes move the identity after a heartbeat, while ordering and diagnostic media-health changes do not; Phase A must refuse an undeclared mid-flight rewrite.",
+      "evidence": "shared/media_checkpoint.py lines 287-320 constructs ask_fingerprint from contract fields and bundle.requests only. shared/exchange_bundle.py lines 154-190 puts scripts and shots in packages, and lines 373-421 adds authoring_requests plus authoring_request to the work order. scripts/exchange_phase_a.py lines 272-291 treats an equal fingerprint as proof the ask is unchanged and then rewrites the bundle at lines 304-305. tests/test_media_checkpoint.py lines 243-271 asserts request/contract changes and treats arbitrary packages changes as cosmetic, but has no script or authoring-brief mutation case."
+    },
+    {
+      "title": "Phase B exits green after losing package or audit writes",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "exchange/phase-b-publication",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "tests/test_authoring_takeover.py"
+      ],
+      "observation": "Phase B catches each package persistence failure, prints a warning, and continues. It then catches every phase_b_report.json write failure and silently discards the exception before returning zero. Its module contract says exit zero means ready to render, so the workflow can advance with stale packages, lost verified media or punch-up edits, and no audit record while the phase itself reports success.",
+      "proposal": "Track every intended package write and require all of them plus phase_b_report.json to commit successfully before returning zero or printing ready to render. Return nonzero with the failed paths when any write fails, preserve atomic_write_json, and add fault-injection tests for one package failure, report failure, and the all-success case. This changes publication truthfulness only; editorial acceptance remains exactly as registered.",
+      "evidence": "scripts/exchange_phase_b.py lines 783-790 catches atomic_write_json failures per package without changing the exit result; lines 792-798 suppresses report-write failures completely; line 799 returns 0 unconditionally. tests/test_authoring_takeover.py exercises promotion and media behavior but repository search finds no test that patches atomic_write_json to fail or asserts Phase B's persistence exit status."
+    },
+    {
+      "title": "Authored-shot checkpoints cannot recover a missing response pointer",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "exchange/authored-media-recovery",
+      "files": [
+        "shared/media_checkpoint.py",
+        "scripts/exchange_phase_b.py",
+        "tests/test_checkpoint_recovery.py",
+        "tests/test_authoring_takeover.py"
+      ],
+      "observation": "The checkpoint protocol defines authored_shot records as durable shared memory and recovered_media walks every verified checkpoint, including authored-shot ids. Phase B inserts all recovered pointers into idx.media, but its normal media loop consumes only bundle.requests, while cover_authored reads only media embedded on response-authored shots. A verified authored-shot checkpoint whose finalizer response omits the matching shot.media pointer is therefore recovered into a map no consumer reads and the shot falls to stock self-fill or remains bare.",
+      "proposal": "Make recovery type-aware: return bundle-request pointers separately from authored-shot pointers keyed by package slug and shot index, validate the latter with request_kind=authored_shot and package/shot identity, then attach them to promoted or already-promoted authored packages before cover_authored. Add an end-to-end test with a valid authored-shot checkpoint, a promoted package, and a response that omits shot.media; require the verified image to win without regeneration or stock fallback, plus stale-identity and wrong-package refusal cases.",
+      "evidence": "shared/media_checkpoint.py lines 1345-1385 rebuilds one flat request-id map from all checkpoints. scripts/exchange_phase_b.py lines 506-517 merges that map only into idx.media; lines 668-718 consumes idx.media only while iterating bundle.requests. scripts/exchange_phase_b.py lines 338-358 cover_authored consumes only shot.pop('media') and never consults recovered pointers. tests/test_checkpoint_recovery.py lines 102-234 covers ordinary recovered request ids and call ordering; tests/test_authoring_takeover.py lines 420-520 covers explicit authored pointers but not checkpoint-only authored recovery."
+    },
+    {
+      "title": "Trending takeover has two serialized sources of truth",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/authoring-contract",
+      "files": [
+        "shared/exchange_bundle.py",
+        "scripts/exchange_phase_b.py",
+        "exchange/README.md",
+        "tests/test_authoring_takeover.py"
+      ],
+      "observation": "A takeover bundle publishes the trending brief both as authoring_request and as authoring_requests.trending. The singular field is retained as a compatibility alias while the per-channel map is described as the whole signal. Because both copies are ordinary JSON, a partial writer, manual repair, or future producer change can leave different targets, mixes, or instructions; Phase B still reads the singular alias for its target fallback while workers are directed to read the plural map.",
+      "proposal": "Version the bundle contract around one per-channel authoring_requests map and give every consumer a shared accessor. During a bounded migration, accept the singular alias only when it is byte-for-byte equivalent to authoring_requests.trending and fail closed on disagreement; instrument legacy reads, migrate tests and docs, then remove the alias. The canonical accessor should also be part of the expanded ask fingerprint so one authority determines both identity and execution.",
+      "evidence": "shared/exchange_bundle.py lines 373-386 writes authoring_requests and then authoring_request into the same bundle, explicitly calling the latter a trending alias. scripts/exchange_phase_b.py lines 589-602 falls back to bundle.authoring_request.target. exchange/README.md lines 360-421 calls authoring_requests the signal for all channels, while lines 455-492 separately instruct trending takeover readers through authoring_request. tests/test_authoring_takeover.py asserts takeover behavior but repository search finds no disagreement test between the two fields."
+    },
+    {
+      "title": "Hold the trending mix until reliability and attribution are measurable",
+      "horizon": "strategy",
+      "severity": "high",
+      "area": "strategy/trending-reliability",
+      "files": [
+        "config/channel_registry.json",
+        "doctor/evidence.json",
+        "retro/20260817/brief.json",
+        "exchange/bundles/20260817/phase_b_report.json",
+        "state/showrunner_verdicts.jsonl"
+      ],
+      "observation": "Trending is registered for six daily uploads in a 4 graph-race / 2 Reddit mix, but it missed target on every production day from August 11 through August 17: 0, 2, 1, 1, 2, 3, and 4 uploads, despite 8-10 attempts on six of those days. On August 17 the exchange successfully pinned 10/10 requested images, while the showrunner still blocked a Reddit story with no illustrations and an empty-void beat and recorded graph typography/empty-space defects. Performance cannot yet arbitrate the mix: the latest retro has only n=2 at 24h, n=2 at 72h, and n=3 at 7d for trending, all under format=unknown and all marked not enough to judge.",
+      "proposal": "Keep the six-slot target, 4/2 format mix, and all acceptance criteria unchanged while running a time-boxed production-reliability objective: reach five consecutive 6/6 days, recording attempted, rendered, held, replaced, and uploaded counts by format and stage. Require repaired format attribution and at least 15 mature uploads per active format before proposing a mix shift. Manage the immediate bottleneck through the existing replacement and repair paths plus stronger pre-render checks; quality criteria remain fixed throughout.",
+      "evidence": "config/channel_registry.json lines 22-105 registers trending at six per day with graph_race target 4 and reddit_story target 2. doctor/evidence.json production_runs records trending uploads/expected for 20260811..20260817 as 0/6, 2/6, 1/6, 1/6, 2/6, 3/6, and 4/6; its 20260817 alarm notes 10/10 ChatGPT images pinned and two failed replacements. exchange/bundles/20260817/phase_b_report.json records media fulfilled=10, self_filled=0, unfilled=0, refused=0. state/showrunner_verdicts.jsonl entries at 2026-08-17T09:48:53Z and 09:53:12Z describe zero post-hook illustrations and empty space. retro/20260817/brief.json trending maturity buckets report n=2, n=2, and n=3 under by_format.unknown, each with enough_to_judge=false."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "date": "20260807",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 11,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "b49399480ff553a3eaad7dadb36944e1b2fa46f3d12094186e69ae83336f6ad1",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s0-bff2933b4e18",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/3763/10586043946_f159539418_b.jpg"
+    },
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s2-3159e1aa1511",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/12887245/pexels-photo-12887245.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s3-804408f4ed49",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g26332490cd2f9ca316d2e3dc119a4bdfde3bf8f1fc9222faa52e7a9334711b12cd0fdcb78353ceb00db66aba5b648c3f9abb458be21aed826592d2c639e1411d_1280.jpg"
+    },
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s5-c58b2e5ef962",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/4114789/pexels-photo-4114789.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s6-813974953976",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/29582086/pexels-photo-29582086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-entitled-parent-starting-lineup-s7-37ed4f388c79",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc1c04a07fcb998f3d0f2817b0ba664db6c137e32d105b289d533f02fd711dd5f6dd2277a881333aed21143d0838239ef_1280.jpg"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s1-417c12e141d5",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/27946928/pexels-photo-27946928.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s3-76b3f36684dc",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g982f356e58a38c301bb0c98baecae5ce5c10eeca57a7eeff2dc53af1515810046440c73619e5478023591433439ac440c8114c79d922a5ff4c63a484c943f12c_1280.jpg"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s4-5cfc7092ebcb",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g58c608e849fb40b28914e7a9a7717506d49b1ffd59966d863ab8a22bc60ec413b12d74ae75c4cb6e5ab1ef4dbaec1f62e70d767d6d0d78c0d842c5fcf7f0e008_1280.jpg"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s6-feae1fe4cb85",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc736bf0f0d71a1e47962daba386454fbb3a98c9f715407192c243d4e13e2954cd12c4466de59b2c130f43c328b92e878bbf207bc07ece7336cbf5eff84c4d522_1280.jpg"
+    },
+    {
+      "request_id": "reddit-price-match-bluff-print-shop-s7-30cfb3832d63",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/15543033/pexels-photo-15543033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  ]
+}

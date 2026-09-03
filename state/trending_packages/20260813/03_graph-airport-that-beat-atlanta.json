@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "graph-airport-that-beat-atlanta",
+  "title": "The Airport That Knocked Atlanta Off The Map",
+  "hook": "For one year, it wasn't Atlanta.",
+  "y_label": "Annual passengers (millions)",
+  "duration": 13,
+  "source": "Airports Council International (ACI World) annual passenger rankings; Hartsfield-Jackson Atlanta figures from airport/ACI reporting; Guangzhou Baiyun figures from ACI World rankings and Chinese aviation authority reports. 2022-2023 Guangzhou figures approximate (exact totals not fully published; derived from ACI global-rank position). Figures approximate.",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "Atlanta",
+      "color": "#c8102e",
+      "icon": "US",
+      "values": [
+        107.4,
+        110.5,
+        42.9,
+        75.7,
+        93.7,
+        104.65
+      ]
+    },
+    {
+      "name": "Guangzhou",
+      "color": "#de2910",
+      "icon": "CN",
+      "values": [
+        69.7,
+        73.3,
+        43.7,
+        40.25,
+        27.0,
+        50.0
+      ]
+    }
+  ],
+  "hashtags": [
+    "airport",
+    "atlanta",
+    "aviation",
+    "guangzhou",
+    "travel",
+    "airtravel",
+    "covid",
+    "busiestairport",
+    "china",
+    "hartsfieldjackson"
+  ],
+  "music_vibe": "cinematic"
+}

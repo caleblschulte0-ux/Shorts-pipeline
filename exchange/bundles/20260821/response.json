@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260821",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "268f49bb114854c288e1ebc05b285cdf5a8f2f09",
+    "production_date": "20260821",
+    "bundle_sha256": "f97ad9bc15ce54feb2296372c3645a9f74191061c9192f219558ffb319ce457b"
+  },
+  "media": [
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1kOtauAGQ2GD1zYMkXA7dGck8lX-sWlya",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "848c89eff0fbd015fa3d9688c2f5cbfab946740bc9c4f0dca425871bd30c201a",
+        "bytes": 1489752,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s0-a4e5e05eee1d.json",
+        "verified_at": "2026-08-21T11:18:17.865Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s1-82f45bb4608b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1KxnUN16fVJoM_po9Kk2TvROSNhK-Qbd3",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s1-82f45bb4608b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1KxnUN16fVJoM_po9Kk2TvROSNhK-Qbd3",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "60ca026f878241aacccffba545fe714003dbc9538fa30f0863cb6457776b4497",
+        "bytes": 1266239,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s1-82f45bb4608b.json",
+        "verified_at": "2026-08-21T11:18:18.988Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s2-ac7918c69348",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QhvrN5YKbsP1Us4wCRTOjaH1yHRGege8",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s2-ac7918c69348.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QhvrN5YKbsP1Us4wCRTOjaH1yHRGege8",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ce445953f3a241b1f0644c4288feabba753bce286d2af3b168be946e45cf84a8",
+        "bytes": 1107993,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s2-ac7918c69348.json",
+        "verified_at": "2026-08-21T11:18:19.941Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s3-34855d4c80e7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qx9uHYTErSUVU3M8UsF_tjiRaB5O7Qmi",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s3-34855d4c80e7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qx9uHYTErSUVU3M8UsF_tjiRaB5O7Qmi",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c9877b57ba344a92643572fe1d79752e0ddd2c4addf1b7477b680410deb01b12",
+        "bytes": 1165882,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s3-34855d4c80e7.json",
+        "verified_at": "2026-08-21T11:18:20.973Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s4-11a3b59f334a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s4-11a3b59f334a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-ldentdkEp8YMkNInUFoVwbpbyYztVsJ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "05def1d1d6e301ff2a4ebc789f1c8d39bb35f0a332ad567bb55f63abc8ce5279",
+        "bytes": 991197,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s4-11a3b59f334a.json",
+        "verified_at": "2026-08-21T11:18:21.989Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10K8pUfEApsaLiQf-KByOLZQIZUAx3rMF",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "95d5df5715b3e2ffa2caa94d453178ec9cbf21645471a5c3ed628c11e0fe5314",
+        "bytes": 1041232,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s5-5cd0cc254b0f.json",
+        "verified_at": "2026-08-21T11:18:23.181Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s6-17b69a701f4a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s6-17b69a701f4a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ww6lSYx6EU8iu6AY7G4iX6_1IvwCDBlV",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8dbb240f324655865f59263323aa5faeee32c952812d4ed43a928bb938550dbf",
+        "bytes": 1165021,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s6-17b69a701f4a.json",
+        "verified_at": "2026-08-21T11:18:24.298Z"
+      }
+    },
+    {
+      "request_id": "reddit-voluntary-overtime-labor-board-s7-94bb214c2003",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+        "filename": "20260821__reddit-voluntary-overtime-labor-board-s7-94bb214c2003.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1B-ZZ8lWjnPRvMFxn5VPA11dVB16ZBBk9",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2c0e37e370cd56f7502543b8a22f70dfb1cf49058ae1a67713580fd3712b5566",
+        "bytes": 1281155,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-voluntary-overtime-labor-board-s7-94bb214c2003.json",
+        "verified_at": "2026-08-21T11:18:25.552Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s0-b98bbd3e8e0b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+        "filename": "20260821__reddit-blender-serial-number-security-s0-b98bbd3e8e0b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1yR6UaC-h5LVWXBdZK2MAImLclC6EULre",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f990963dc71ae55e7d6a9b48c75054d47411cd1fd1c68bb282390bb97fb2b274",
+        "bytes": 1363456,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s0-b98bbd3e8e0b.json",
+        "verified_at": "2026-08-21T11:18:26.577Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s1-42b370728a44",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+        "filename": "20260821__reddit-blender-serial-number-security-s1-42b370728a44.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=15fotaM27l3qHomUBDtPT5VV6Yc60LWe1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0465c951a7956651d228da7172d559e46731dd29658df380e5e76405f7e4e8b7",
+        "bytes": 1285258,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s1-42b370728a44.json",
+        "verified_at": "2026-08-21T11:18:27.498Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s2-043314068d0d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+        "filename": "20260821__reddit-blender-serial-number-security-s2-043314068d0d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Xc70Tnvpp8mm7WSujiEzHThOo-rl4T9n",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "076378e56df53c4645f3b3a3680d84265f2adafd9981a5796afd53c0fe8cc4ee",
+        "bytes": 1503942,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s2-043314068d0d.json",
+        "verified_at": "2026-08-21T11:18:28.622Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s3-ffd9dcbada3b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+        "filename": "20260821__reddit-blender-serial-number-security-s3-ffd9dcbada3b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Sohvpdt6NpvsvQ_qbNZfIxcxq65GPjMk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "59cc4f03eda4da982e1028e3acf9cb759027b49ebf37aa15bf2c0188be3b1b31",
+        "bytes": 1155752,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s3-ffd9dcbada3b.json",
+        "verified_at": "2026-08-21T11:18:29.769Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s4-f0231707f79f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+        "filename": "20260821__reddit-blender-serial-number-security-s4-f0231707f79f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1G2R7rImw-uc0kXP9Nk43bshII5erptY9",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d366373f60b06899484c923bdac3dd426bacf78ea097882d442188a7c85d24bd",
+        "bytes": 1327635,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s4-f0231707f79f.json",
+        "verified_at": "2026-08-21T11:18:30.736Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s5-b0ca345b2040",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+        "filename": "20260821__reddit-blender-serial-number-security-s5-b0ca345b2040.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1AuY4kkPMQ7nQCrEBmDPRspDiG-O4KR_w",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "98c0bdf2b8f5d4040cd907b0ae23a47c8cd3c8997c090a51ef3449134b494f36",
+        "bytes": 863848,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s5-b0ca345b2040.json",
+        "verified_at": "2026-08-21T11:18:31.843Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s6-e2238c2f71d1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+        "filename": "20260821__reddit-blender-serial-number-security-s6-e2238c2f71d1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1gF_LaAiZkvXSNya-oqDb7p-aohQdYONY",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "082bc4d98c2b81afe9392c3e8c20aa0b1adeacd7d898d38d5a0f526c4c035a03",
+        "bytes": 1158649,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s6-e2238c2f71d1.json",
+        "verified_at": "2026-08-21T11:18:33.145Z"
+      }
+    },
+    {
+      "request_id": "reddit-blender-serial-number-security-s7-e3c1d44af3c4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+        "filename": "20260821__reddit-blender-serial-number-security-s7-e3c1d44af3c4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1z1e2ej8V80mbOj43pnv3PVUGJorAiMnx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ac60f87c1276fc94d007b30a671c3ad8d99f41255584ec71f89fcf0e82b1d019",
+        "bytes": 1066240,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260821/media-progress/reddit-blender-serial-number-security-s7-e3c1d44af3c4.json",
+        "verified_at": "2026-08-21T11:18:34.185Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-china-japan-car-exports",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title immediately frames China overtaking Japan in the car-export race."
+    },
+    {
+      "slug": "graph-vinyl-buried-cd",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names vinyl overtaking CDs after their 34-year lead."
+    },
+    {
+      "slug": "graph-opioid-deaths-vs-car-crashes",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title states the exact opioid-deaths versus car-crash-deaths crossover and should remain completely straight."
+    },
+    {
+      "slug": "graph-wind-passed-hydro",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly promises the specific U.S. wind-over-hydro crossover."
+    },
+    {
+      "slug": "reddit-voluntary-overtime-labor-board",
+      "script": "Voluntary means unpaid? My manager scheduled unpaid weekend inventory counts as \"voluntary team spirit.\" Skip one, lose the good shifts for a month. So I saved every text ordering us in on days off and every pay stub showing zero overtime. After four months, I had four weekends documented — timestamps, texts, badge scans. Very spirited paperwork. I mailed the whole packet to our state labor board as a wage complaint and named the entire inventory team. Two weeks later, an investigator called the store. Our district manager arrived unannounced with printed labor code sections. Then my manager had to explain to his boss why six employees had four months of unpaid overtime. Within the month, the company cut backdated checks with interest for every person on that weekend list. How voluntary did those checks look?",
+      "editor_note": "Punched up to a three-word question hook, compressed the evidence escalation, added one dry paperwork aside, and landed on the backdated-check reversal while preserving every fact, number, shot phrase, and query."
+    },
+    {
+      "slug": "reddit-blender-serial-number-security",
+      "script": "She grabbed the wrong employee? I was off in sweatpants, holding protein bars, when a woman grabbed my arm in the electronics aisle. She demanded to know why the store wouldn't take her opened blender back without a box. I told her three times I did not work there. She decided I was the slowest employee she had ever met. So I walked her straight to the actual return counter and told the real employee she needed a manager override because she was very insistent. Then I stepped back. The employee checked the blender's serial number. It matched one reported stolen from the store two towns over the week before. Security was already walking over when her gift receipt story started. I put down my protein bars and picked a different checkout line. Who did that blender actually belong to?",
+      "editor_note": "Punched up to a five-word question hook, tightened the mistaken-employee escalation, kept the crime story completely straight, and landed on the stolen blender while preserving every fact, number, shot phrase, and query."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Grew 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The numbers refused to cooperate.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast was left waiting.",
+      "question": "Which shift changed the story most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Grew 3.0x Since 1990",
+      "hook": "Since 1990, one energy source tripled. It wasn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "The overlooked energy story is built from what people once treated as waste.",
+      "question": "Which shift stands out most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to keep accelerating forever. Instead, the curve nearly stopped.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration everyone assumed would continue.",
+      "question": "Which change surprised you most — rural, city, or growth?"
+    }
+  ]
+}

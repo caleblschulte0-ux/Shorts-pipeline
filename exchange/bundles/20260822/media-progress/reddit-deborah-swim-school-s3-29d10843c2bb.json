@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260822",
+  "bundle": {
+    "identity": "4c54686d100ff09e3a7378863a65b43c0dd5ba0dd525fe43365d0a61544a2ef2",
+    "path": "exchange/bundles/20260822/bundle.json"
+  },
+  "request_id": "reddit-deborah-swim-school-s3-29d10843c2bb",
+  "safe_request_id": "reddit-deborah-swim-school-s3-29d10843c2bb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "df08e846d0a8f6a105d9ff822ff8b19d88df63736a6c49c29e651d2c72ae7f82",
+  "prompt_used": "An editorial illustration for a short-form video: woman walking confidently. It accompanies the narration: \"Patricia walked over\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+    "filename": "20260822__reddit-deborah-swim-school-s3-29d10843c2bb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18jiOrKLllpm8pwaT9frAkvdahOcbn9jw",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "09b35f9e33dfcaadb190533d8e349b4107087378a08c02ad8063ee019fd8184b",
+    "bytes": 1185689,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-22T11:16:39.070Z",
+  "error": null,
+  "retryable": false
+}

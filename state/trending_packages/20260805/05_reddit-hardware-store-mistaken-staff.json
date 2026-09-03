@@ -1,0 +1,121 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "reddit-hardware-store-mistaken-staff",
+  "title": "The Customer Insisted I Worked There. Fine.",
+  "hashtags": [
+    "idontworkherelady",
+    "reddit",
+    "storytime",
+    "retail",
+    "hardwarestore",
+    "pettyrevenge",
+    "customerservice",
+    "karma",
+    "funny",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending"
+  ],
+  "script": "Fourth time that hour, a stranger grabbed my arm demanding to know where the drywall screws were. I don't work at this hardware store, I just wear a lot of orange. She cut off my \"I don't work here\" with \"don't play games, I need help now.\" Fine. I walked her confidently to aisle twelve, pointed past the pool noodles, and told her drywall screws come in bulk boxes near the register, technically true since I'd seen a promo bin there that morning. She marched off triumphant. Ten minutes later an actual employee found her arguing with a cashier about being sent to buy pool floats for a bathroom renovation. Store security pulled the aisle camera and the whole break room had a good laugh at customer service's expense. I finished my paint run in total peace. Nobody has grabbed my arm at that store since. I stopped wearing orange there entirely.",
+  "shots": [
+    {
+      "phrase": "grabbed my arm demanding",
+      "query": "person grabbing arm store aisle",
+      "mascot_pose": "shock",
+      "image_url": "https://images.pexels.com/photos/11608887/pexels-photo-11608887.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "I don't work at this hardware store",
+      "query": "hardware store aisle shelves",
+      "mascot_pose": "idle",
+      "pin_query": "hardware store",
+      "pin_context": "retail building supplies",
+      "news_query": "hardware store",
+      "news_angle": "The narrator was mistaken for an employee at the hardware store.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Hagebau.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "don't play games, I need help now",
+      "query": "frustrated customer talking",
+      "mascot_pose": "idle",
+      "image_url": "https://images.pexels.com/photos/5700201/pexels-photo-5700201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "drywall screws come in bulk boxes",
+      "query": "box of screws hardware",
+      "mascot_pose": "idle",
+      "pin_query": "drywall screws",
+      "pin_context": "hardware store building materials",
+      "news_query": "drywall screws",
+      "news_angle": "The customer insisted on finding drywall screws in the hardware store.",
+      "image_url": "https://live.staticflickr.com/3742/9419150700_26acdf146d_b.jpg"
+    },
+    {
+      "phrase": "pool noodles",
+      "query": "pool noodles floats display",
+      "mascot_pose": "idle",
+      "pin_query": "pool noodles",
+      "pin_context": "swimming pool toys",
+      "news_query": "pool noodles",
+      "news_angle": "The narrator pointed past the pool noodles to direct the customer to the drywall screws.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Noodle_%282780523440%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "arguing with a cashier",
+      "query": "cashier checkout counter",
+      "mascot_pose": "laugh",
+      "pin_query": "cashier",
+      "pin_context": "store employee checkout",
+      "news_query": "cashier",
+      "news_angle": "The customer argued with a cashier about being sent to buy pool floats for a bathroom renovation.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Cashier_at_her_register.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "pulled the aisle camera",
+      "query": "security camera footage screen",
+      "mascot_pose": "idle",
+      "pin_query": "aisle camera",
+      "pin_context": "retail security surveillance",
+      "news_query": "aisle camera",
+      "news_angle": "The aisle camera footage was used to investigate the customer's complaint.",
+      "image_url": "https://live.staticflickr.com/5578/14776302171_4dd0f7851c_b.jpg"
+    },
+    {
+      "phrase": "stopped wearing orange there entirely",
+      "query": "orange work vest hanging",
+      "mascot_pose": "dismiss",
+      "pin_query": "orange",
+      "pin_context": "clothing color",
+      "news_query": "orange",
+      "news_angle": "The narrator wore a lot of orange, which led customers to mistake them for a store employee.",
+      "image_url": "https://live.staticflickr.com/181/484275757_91cdc2eb39.jpg"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "grabbed my arm demanding",
+      "text": "NOT STAFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "technically true",
+      "text": "TECHNICALLY TRUE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "arguing with a cashier",
+      "text": "WRONG AISLE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a good laugh at customer service's expense",
+      "text": "CAUGHT ON CAMERA",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "playful"
+}

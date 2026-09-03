@@ -11,8 +11,9 @@ Two sources, both read (a connector-limited writer gets more than one shot):
     exchange/bundles/<date>/response.json   -> "authored": [ {package}, ... ]
     exchange/bundles/<date>/authored/*.json -> one package per file
 
-Nothing is trusted. Every package runs the same structural gate the reserve
-bank and the renderers use, and anything that fails is QUARANTINED with its
+Nothing is trusted. Every package runs the same structural gate
+(`shared/package_schema.py`) every other producer is held to, and anything
+that fails is QUARANTINED with its
 reasons into `exchange/bundles/<date>/authored_report.json` rather than
 promoted. A slate of four good packages ships; a broken fifth does not sink
 it, and does not silently render either.

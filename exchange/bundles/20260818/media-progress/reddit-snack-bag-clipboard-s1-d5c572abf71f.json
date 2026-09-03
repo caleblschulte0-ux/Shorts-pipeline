@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260818",
+  "bundle": {
+    "identity": "9a55abc3a2c7785cff9bbd89e8370d54272908b76a65816f480813b45fd9ed6e",
+    "path": "exchange/bundles/20260818/bundle.json"
+  },
+  "request_id": "reddit-snack-bag-clipboard-s1-d5c572abf71f",
+  "safe_request_id": "reddit-snack-bag-clipboard-s1-d5c572abf71f",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-snack-bag-clipboard",
+  "shot_index": 1,
+  "prompt_sha256": "f1e34441f9ef55ff9da01080ecc70c768f563415598937f9f68811ce951b14d6",
+  "prompt_used": "An editorial illustration for a short-form video: store exit doors. It accompanies the narration: \"walked out without paying\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1y6n0JhwoJfWNwc5d1ss2RXZTM0fjxzy6",
+    "filename": "20260818__reddit-snack-bag-clipboard-s1-d5c572abf71f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1y6n0JhwoJfWNwc5d1ss2RXZTM0fjxzy6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "111f6e21a30ff461b4a923275a03ff8fa79ee1447802808def90289f6e9f63c3",
+    "bytes": 1207774,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-18T11:15:01.000Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,36 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260817",
+  "bundle": {
+    "identity": "83c01c51d8a3c663dd1719afdfbd8fa8561b4ed87fe0144f6d0488a228ad26fe",
+    "path": "exchange/bundles/20260817/bundle.json"
+  },
+  "request_id": "reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a",
+  "safe_request_id": "reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a",
+  "request_kind": "bundle_request",
+  "package_id": "reddit-quiet-hours-vacuum",
+  "shot_index": 2,
+  "prompt_sha256": "07129c891a19c6311052f486af06b0fb83fda689abb1e8d453c3b6ccff747d29",
+  "prompt_used": "An editorial illustration for a short-form video: smartphone voice recording. It accompanies the narration: \"emailed management with timestamps and a recording\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+    "filename": "20260817__reddit-quiet-hours-vacuum-s2-9b9e2dd0c31a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1OUEVZg_4ERolecIJo9RGz0nf-Dpvs_z_",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a343105fb160b7afce5fc474b4d0ece3a89dc8f3d9b47b3f36c68646bab133fc",
+    "bytes": 961265,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-17T11:06:53Z",
+  "error": null,
+  "retryable": false
+}

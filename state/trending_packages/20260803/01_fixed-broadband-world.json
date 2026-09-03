@@ -1,0 +1,55 @@
+{
+  "format": "graph_race",
+  "slug": "fixed-broadband-world",
+  "title": "Broadband Passed Landlines in 20 Years",
+  "hook": "Broadband passed landlines.",
+  "y_label": "Subscriptions",
+  "duration": 13,
+  "source": "World Bank, Fixed broadband subscriptions (IT.NET.BBND) and fixed telephone subscriptions (IT.MLT.MAIN), 2005-2025; broadband values reported, landline values approximately interpolated between reported 2006/2015/2025 points: https://data.worldbank.org/indicator/IT.NET.BBND and https://data.worldbank.org/indicator/IT.MLT.MAIN",
+  "years": [
+    2005,
+    2009,
+    2013,
+    2017,
+    2021,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Fixed broadband",
+      "color": "#3088ff",
+      "icon": "World Bank",
+      "values": [
+        219600000,
+        468100000,
+        692400000,
+        1027000000,
+        1330000000,
+        1654000000
+      ]
+    },
+    {
+      "name": "Fixed telephones",
+      "color": "#ffaa30",
+      "icon": "World Bank",
+      "values": [
+        1213000000,
+        1168100000,
+        1072600000,
+        999800000,
+        907400000,
+        815000000
+      ]
+    }
+  ],
+  "hashtags": [
+    "broadband",
+    "landline",
+    "internet",
+    "technology",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "driving electronic",
+  "_authored_by": "chatgpt-takeover"
+}

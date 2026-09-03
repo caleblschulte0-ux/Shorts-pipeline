@@ -2,12 +2,11 @@
 
 The chain normally runs: Claude Routine authors 6 packages -> Phase A judges
 the media -> ChatGPT fills gaps and punches up scripts -> Phase B -> render.
-Every one of those first steps needs a live Claude subscription. If it lapses,
-the Routine never fires, `daily.yml`'s in-CI brain step also fails, and the
-reserve bank (`shared/package_buffer.py`) covers the day only while it has
-stock.
+Every one of those first steps needs a live Claude subscription. If it
+lapses, the Routine never fires and `daily.yml`'s in-CI brain step fails too,
+so the day has no slate at all.
 
-This module is the next line: when Phase A finds the day still short, it
+This module is the answer: when Phase A finds the day short, it
 writes an AUTHORING REQUEST into the same `bundle.json` ChatGPT already reads
 at 6:00 AM Central. ChatGPT sees `mode: "author"`, writes the missing
 packages into its `response.json`, and Phase B validates and promotes them
@@ -36,11 +35,34 @@ if str(ROOT) not in sys.path:
 
 from shared import channel_registry as _reg      # noqa: E402
 from shared import levity as _levity             # noqa: E402
-from shared import package_buffer as _buf        # noqa: E402
+from shared import package_schema as _sch        # noqa: E402
 
 
 def _levity_moves() -> list:
     return _levity.MOVES
+
+
+def _drama_gate_rule() -> str:
+    """The graph_race data-drama rule, read off the gate itself.
+
+    `engines.chart_race.assess()` is the code that actually refuses a spec;
+    quoting its thresholds by value here is how the brief spent a week
+    telling authors "1,000 / 3x" while the gate enforced 50 / 5.0x."""
+    try:
+        from engines import chart_race as _cr            # noqa: PLC0415
+        return (f"BIG MOVING NUMBERS — a HARD renderer gate "
+                f"(engines/chart_race.assess), not a preference: the chart "
+                f"is REFUSED if the leader peaks under {_cr.MIN_PEAK:g} "
+                f"after unit scaling, or if the biggest swing is under "
+                f"{_cr.MIN_SWING:g}x ({_cr.CROSSOVER_SWING:g}x only when "
+                f"two MOVING series genuinely trade the lead — a flat "
+                f"reference line crossing does not count). Verify before "
+                f"submitting: python -c \"from engines import chart_race; "
+                f"print(chart_race.assess(<spec>))\".")
+    except Exception:                                    # noqa: BLE001
+        return ("BIG MOVING NUMBERS — a HARD renderer gate: run "
+                "engines/chart_race.assess() on your spec before "
+                "submitting; the thresholds live there, not here.")
 
 
 def _levity_never() -> list:
@@ -49,7 +71,7 @@ def _levity_never() -> list:
 SCHEMA = "chatgpt-authoring-request/v1"
 
 # THE SLATE IS NOT DECLARED HERE. `SLATE_MIX` used to be a copy of a constant
-# in package_buffer, which was itself a copy of a heading in
+# in the package validator, which was itself a copy of a heading in
 # CLAUDE_ROUTINE_INSTRUCTIONS.md — three copies of one ruling, and when the
 # operator changed it only a fourth place (daily.yml's prompt) was updated.
 # The takeover then kept asking ChatGPT for a retired format.
@@ -77,12 +99,12 @@ FORMAT_SPECS = {
             "UNIVERSAL premises — workplace justice, petty/pro revenge, "
             "entitled customers or neighbours, scams turned around, karma. "
             "NO weddings, NO relationship/breakup/cheating drama.",
-            "6-8 `shots`: {phrase, query, mascot_pose}. Every `phrase` must "
+            "6-8 `shots`: {phrase, query}. Every `phrase` must "
             "be an EXACT substring of `script`. `query` is mood b-roll.",
             "3-5 `punches`: {phrase, text, color}. `phrase` an EXACT "
             "substring of `script`; `text` SHORT CAPS; color one of "
             "#ff3030 / #ffaa30 / #50ff80.",
-            "At most 3 non-idle mascot poses.",
+            "Do not add the Data/Explainer mascot; Trending is a separate channel.",
         ],
     },
     "text_card": {
@@ -118,10 +140,13 @@ FORMAT_SPECS = {
             "`icon`: a 2-letter country code (\"US\", \"CN\") for countries, "
             "otherwise a brand/org name to look up (\"Netflix\"). Omit only "
             "for abstract categories.",
-            "BIG NUMBERS — a HARD renderer gate, not a preference: the "
-            "chart is REFUSED if the leader peaks under 1,000 or grows less "
-            "than 3x (1.6x when there is a lead change). A line creeping "
-            "from 12 to 40 is an instant reject.",
+            # GENERATED from the gate's own constants, never typed. The
+            # typed version said "peaks under 1,000 / grows less than 3x"
+            # long after the real gate moved to 50 / 5.0x — the 2026-08-06
+            # Routine caught the drift itself and had to go read the code.
+            # A brief that mis-states a gate trains the author to write
+            # packages the renderer then refuses.
+            _drama_gate_rule(),
             "Prefer a dramatic crossover or collapse mid-video.",
             "`source` must cite real, defensible numbers. Approximate is "
             "fine; FABRICATION IS NOT. `hook` (<=32 chars) is optional but "
@@ -293,8 +318,7 @@ def build_request(date: str, channel: str, *, have_packages: list[dict] | None
         "schema": SCHEMA,
         "date": str(date),
         "channel": channel,
-        "reason": reason or ("the Claude authoring Routine did not run and "
-                             "the reserve bank could not cover the day"),
+        "reason": reason or "the Claude authoring Routine did not run",
         "authored_already": len(have_packages),
         "target": int(target) if target is not None else registry_target,
         "registry_target": registry_target,
@@ -379,12 +403,12 @@ def validate_authored(pkg: dict, *, known_titles: set[str] | None = None,
                       channel: str = "trending") -> list[str]:
     """Problems that disqualify a ChatGPT-authored package from promotion.
 
-    Deliberately the SAME structural gate the reserve bank uses, so the
-    brief, the bank, and the renderer all agree on what a valid package is.
-    The evergreen/staleness gate is NOT applied — a takeover slate is for
-    today, so "this morning" is correct language there and only wrong in
-    the bank."""
-    problems = _buf.structural_problems(pkg)
+    Deliberately the SAME structural gate (`shared/package_schema.py`) every
+    other producer is held to, so the brief, the validator and the renderer
+    all agree on what a valid package is. The staleness gate is NOT applied
+    here — a takeover slate renders the same day, so "this morning" is
+    correct language in it."""
+    problems = _sch.structural_problems(pkg)
     # THE RETIREMENT GATE. A retired format must not reach a slate no matter
     # who wrote it — a remembered instruction, a README example, or an old
     # constant. Structural validity is not the question; authorisation is.

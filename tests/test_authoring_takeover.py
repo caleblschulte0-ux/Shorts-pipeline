@@ -23,7 +23,7 @@ sys.path.append(str(ROOT / "scripts"))   # APPEND: see note below
 
 from shared import authoring_brief as brief          # noqa: E402
 from shared import exchange_bundle as xb             # noqa: E402
-from tests.test_package_buffer import (               # noqa: E402
+from tests.test_package_schema import (               # noqa: E402
     graph_pkg, reddit_pkg, text_card_pkg)
 
 import ingest_authored as ing                        # noqa: E402
@@ -82,10 +82,21 @@ class TestBrief(unittest.TestCase):
 
     def test_brief_names_the_graph_drama_gate(self):
         """The renderer hard-refuses small numbers. If the brief doesn't say
-        so, ChatGPT writes charts that are silently dropped."""
+        so, ChatGPT writes charts that are silently dropped.
+
+        This used to pin the thresholds by VALUE ("1,000", "3x") — which is
+        the disease, not the cure: the gate moved to 50 / 5.0x and both this
+        test and the brief kept agreeing on the stale numbers. The 2026-08-06
+        Routine had to go read the engine's code to learn the real bar. The
+        rule is now GENERATED from the gate's constants; what this test pins
+        is that the generation stays live."""
+        from engines import chart_race as cr
         rules = " ".join(brief.FORMAT_SPECS["graph_race"]["rules"]).lower()
-        self.assertIn("1,000", rules)
-        self.assertIn("3x", rules)
+        self.assertIn(f"{cr.MIN_PEAK:g}", rules)
+        self.assertIn(f"{cr.MIN_SWING:g}x", rules)
+        self.assertIn(f"{cr.CROSSOVER_SWING:g}x", rules)
+        self.assertIn("chart_race.assess", rules,
+                      "the brief must point at the gate, not paraphrase it")
 
     def test_do_not_repeat_reads_real_recent_titles(self):
         req = brief.build_request("20260801", "trending")
@@ -257,23 +268,24 @@ class TestIngest(IngestTestCase):
 
 
 class TestGateIsTheSameEverywhere(unittest.TestCase):
-    """The brief, the reserve bank, and the ingest must agree on validity —
+    """The brief, the validator, and the ingest must agree on validity —
     if they drift, we ask for one thing and accept another."""
 
     def test_validate_authored_uses_the_shared_structural_gate(self):
-        from shared import package_buffer as buf
+        from shared import package_schema as buf
         bad = text_card_pkg(slug="xray-card")
         bad["highlights"].append("not in the text")
         self.assertEqual(brief.validate_authored(bad),
                          buf.structural_problems(bad))
 
-    def test_takeover_allows_todays_language_the_bank_refuses(self):
-        """The bank needs evergreen; a takeover slate is FOR today, so
-        'this morning' is correct there and must not be rejected."""
-        from shared import package_buffer as buf
+    def test_takeover_allows_todays_language_the_staleness_gate_refuses(self):
+        """The staleness gate wants language that keeps; a takeover slate is
+        FOR today, so 'this morning' is correct there and promotion must not
+        reject it. Two gates, deliberately different, on purpose."""
+        from shared import package_schema as buf
         pkg = text_card_pkg(slug="breaking-thing")
         pkg["text"] = "It happened this morning.\n\n" + pkg["text"]
-        self.assertFalse(buf.eligible(pkg)[0])          # bank: refused
+        self.assertFalse(buf.eligible(pkg)[0])          # staleness: refused
         self.assertEqual(brief.validate_authored(pkg), [])  # takeover: fine
 
 
@@ -283,8 +295,8 @@ if __name__ == "__main__":
 
 class TestSubscriptionIsFullyDead(unittest.TestCase):
     """The scenario the takeover actually exists for: no Claude Routine, no
-    in-CI brain, an empty reserve bank — and, in the worst case, no Phase A
-    either, so no bundle. ChatGPT is the only thing still running.
+    in-CI brain — and, in the worst case, no Phase A either, so no bundle.
+    ChatGPT is the only thing still running.
 
     Runs the REAL scripts as subprocesses against a scratch date, because
     what matters here is the process exit path, not a mocked function."""
@@ -454,7 +466,11 @@ class TestAuthoredMediaVerification(unittest.TestCase):
         report = self._cover(pkg)
         self.assertEqual(report["media"]["fulfilled"], 1)
         self.assertEqual(pkg["shots"][0]["media_origin"], "chatgpt_authored")
-        self.assertTrue(Path(pkg["shots"][0]["image_url"]).exists())
+        self.assertEqual(pkg["shots"][0]["image_url"], url)
+        self.assertEqual(pkg["shots"][0]["media_sha256"], sha)
+        self.assertNotIn("/home/runner/", pkg["shots"][0]["image_url"],
+                         "a disposable Phase B runner path reached the "
+                         "renderer package")
 
     def test_a_wrong_hash_is_refused(self):
         url, _ = self._png("tampered.png")
@@ -500,3 +516,240 @@ class TestAuthoredMediaVerification(unittest.TestCase):
         for shot in pkg["shots"]:
             self.assertTrue(shot.get("image_url"),
                             "a verified ChatGPT image was erased")
+
+
+class TestPhaseBPersistFailuresAreLoud(unittest.TestCase):
+    """Doctor finding 5a7b4694a767, ruled `doing`: Phase B's exit 0 IS the
+    "ready to render" signal (module docstring), yet a per-package
+    `atomic_write_json` failure was a ::warning:: and a lost
+    phase_b_report.json was silently discarded — so daily.yml rendered the
+    STALE pre-Phase-B packages with no audit record and everything green.
+    These are fault-injection tests: the write layer is made to fail and
+    the exit code has to tell the truth.
+
+    Same real-subprocess-shaped setup as TestSubscriptionIsFullyDead (the
+    no-bundle rescue path), but run in-process so `atomic_write_json` can
+    be monkeypatched per test."""
+
+    DATE = "29991229"
+
+    def setUp(self):
+        import exchange_phase_b as pb
+        self.pb = pb
+        self.bundle = ROOT / "exchange" / "bundles" / self.DATE
+        self.day = ROOT / "state" / "trending_packages" / self.DATE
+        self._clean()
+        self.bundle.mkdir(parents=True)
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug="persist-alpha"),
+                          text_card_pkg(slug="persist-bravo")]}))
+
+    def tearDown(self):
+        self._clean()
+
+    def _clean(self):
+        shutil.rmtree(self.bundle, ignore_errors=True)
+        shutil.rmtree(self.day, ignore_errors=True)
+
+    def _run(self, fail_when=None):
+        """Run Phase B in-process. `fail_when(Path) -> bool` injects an
+        OSError into exactly the writes it matches; everything else uses
+        the real atomic_write_json."""
+        import contextlib
+        import io
+        from unittest import mock
+        real = self.pb.atomic_write_json
+
+        def wrapped(path, obj):
+            if fail_when is not None and fail_when(Path(path)):
+                raise OSError("disk full (injected by test)")
+            return real(path, obj)
+
+        argv = ["exchange_phase_b.py", "--date", self.DATE,
+                "--no-self-fill", "--no-punchup"]
+        with mock.patch.object(self.pb, "atomic_write_json", wrapped), \
+                mock.patch.object(sys, "argv", argv), \
+                contextlib.redirect_stdout(io.StringIO()) as buf:
+            rc = self.pb.main()
+        return rc, buf.getvalue()
+
+    def test_all_writes_landing_is_exit_zero_and_ready(self):
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("— ready to render", out)
+        self.assertTrue((self.bundle / "phase_b_report.json").exists(),
+                        "the audit record must exist on a green exit")
+
+    def test_one_failed_package_write_is_nonzero_and_names_the_path(self):
+        rc, out = self._run(fail_when=lambda p: "persist-alpha" in p.name)
+        self.assertNotEqual(rc, 0, "a lost package write exited green")
+        self.assertIn("persist-alpha", out,
+                      "the failed path must be named, not summarized")
+        self.assertIn("NOT ready to render", out)
+        self.assertNotIn("— ready to render", out,
+                         "the success banner printed on a failed persist")
+
+    def test_a_lost_audit_record_is_nonzero(self):
+        rc, out = self._run(
+            fail_when=lambda p: p.name == "phase_b_report.json")
+        self.assertNotEqual(rc, 0, "a lost phase_b_report.json exited green")
+        self.assertIn("phase_b_report.json", out)
+        self.assertIn("NOT ready to render", out)
+
+
+class TestAuthoredShotCheckpointRecovery(unittest.TestCase):
+    """Doctor finding ee3bb63e4024, ruled `doing`: the media worker
+    checkpoints a verified image for a shot inside a package ChatGPT
+    authored, and the finalizer's response then omits that shot's `media`
+    pointer. The old recovery rebuilt the pointer into idx["media"] — a map
+    only the bundle.requests loop reads, where an authored shot never
+    appears — so the verified image was ignored and the shot fell to stock
+    self-fill. End-to-end, through the real Phase B main(): the checkpoint
+    alone must be enough to fill the shot, through the identical byte-level
+    fetch, and the audit trail must say it came from recovery.
+
+    Same in-process shape as TestPhaseBPersistFailuresAreLoud, plus a real
+    PNG served over file:// so the sha256/decode/placeholder gates
+    genuinely run."""
+
+    DATE = "29991230"
+    SLUG = "recovered-lunch-thief"
+    IDENTITY = "ab" * 32          # the BUNDLE_ID sidecar Phase A would write
+
+    def setUp(self):
+        import exchange_phase_b as pb
+        from shared import media_checkpoint as mc
+        self.pb, self.mc = pb, mc
+        self.bundle = ROOT / "exchange" / "bundles" / self.DATE
+        self.day = ROOT / "state" / "trending_packages" / self.DATE
+        self.tmp = Path(tempfile.mkdtemp(prefix="authrec-"))
+        self._saved_cache = pb.MEDIA_CACHE
+        pb.MEDIA_CACHE = self.tmp / "cache"
+        self._clean()
+        (self.bundle / "media-progress").mkdir(parents=True)
+        # A minimal bundle + its identity sidecar: recovery must be held to
+        # the current bundle identity, so the fixture provides one.
+        (self.bundle / "bundle.json").write_text(json.dumps(
+            {"schema": "x", "date": self.DATE, "mode": "author",
+             "packages": [], "requests": []}))
+        (self.bundle / "BUNDLE_ID").write_text(self.IDENTITY + "\n")
+        # The finalizer authored the package but OMITTED shot.media — the
+        # exact silence this recovery exists for.
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [reddit_pkg(slug=self.SLUG)]}))
+
+    def tearDown(self):
+        self.pb.MEDIA_CACHE = self._saved_cache
+        self._clean()
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def _clean(self):
+        shutil.rmtree(self.bundle, ignore_errors=True)
+        shutil.rmtree(self.day, ignore_errors=True)
+
+    def _png(self) -> tuple[str, str, int]:
+        """A real, colorful PNG on disk: (file:// url, sha256, bytes)."""
+        import hashlib
+        from PIL import Image
+        im = Image.new("RGB", (64, 64))
+        im.putdata([(x * 3 % 256, y * 5 % 256, (x + y) % 256)
+                    for y in range(64) for x in range(64)])
+        path = self.tmp / "recovered.png"
+        im.save(path)
+        blob = path.read_bytes()
+        return f"file://{path}", hashlib.sha256(blob).hexdigest(), len(blob)
+
+    def _write_checkpoint(self, shot_index=0, **over):
+        mc = self.mc
+        url, sha, nbytes = self._png()
+        rid = mc.authored_shot_request_id(self.SLUG, shot_index)
+        cp = {
+            "schema": mc.SCHEMA, "schema_version": mc.SCHEMA_VERSION,
+            "date": self.DATE, "bundle": {"identity": self.IDENTITY},
+            "request_id": rid, "safe_request_id": mc.safe_request_id(rid),
+            "request_kind": "authored_shot", "package_id": self.SLUG,
+            "shot_index": shot_index, "status": "verified",
+            "drive": {"file_id": "1recoveredFILE", "folder_id": "1folder",
+                      "filename": mc.deterministic_filename(self.DATE, rid),
+                      "download_url": url, "sharing": "anyone_with_link"},
+            "image": {"sha256": sha, "bytes": nbytes, "format": "png",
+                      "width": 64, "height": 64},
+        }
+        cp.update(over)
+        (self.bundle / "media-progress"
+         / f"{mc.safe_request_id(rid)}.json").write_text(json.dumps(cp))
+        return url, sha
+
+    def _run(self):
+        import contextlib
+        import io
+        from unittest import mock
+        argv = ["exchange_phase_b.py", "--date", self.DATE,
+                "--no-self-fill", "--no-punchup"]
+        with mock.patch.object(sys, "argv", argv), \
+                contextlib.redirect_stdout(io.StringIO()) as buf:
+            rc = self.pb.main()
+        return rc, buf.getvalue()
+
+    def _promoted(self) -> dict:
+        files = sorted(self.day.glob("*.json"))
+        self.assertEqual(len(files), 1, files)
+        return json.loads(files[0].read_text())
+
+    def test_a_checkpoint_alone_fills_the_shot_the_response_left_bare(self):
+        url, sha = self._write_checkpoint()
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("recovered 1 authored-shot pointer(s)", out)
+        shot = self._promoted()["shots"][0]
+        self.assertEqual(shot.get("image_url"), url,
+                         "the verified image never reached the shot — "
+                         "recovered into a map no consumer reads")
+        self.assertEqual(shot.get("media_sha256"), sha)
+        self.assertEqual(shot.get("media_origin"),
+                         "chatgpt_authored_recovered",
+                         "the audit trail must say this came from "
+                         "checkpoint recovery, not from the response")
+        self.assertNotIn("media", shot,
+                         "the transport pointer must be consumed, exactly "
+                         "as an explicit one is")
+
+    def test_a_package_or_shot_identity_mismatch_never_attaches(self):
+        """A checkpoint claiming the wrong package is a refusal, not a
+        guess — the shot stays bare rather than wearing someone else's
+        picture."""
+        _, sha = self._write_checkpoint(package_id="a-different-package")
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("REFUSED recovered authored-shot checkpoint", out)
+        shot = self._promoted()["shots"][0]
+        self.assertNotEqual(shot.get("media_sha256"), sha,
+                            "mismatched-identity media reached the shot")
+        self.assertNotEqual(shot.get("media_origin"),
+                            "chatgpt_authored_recovered")
+
+    def test_a_response_pointer_is_never_overridden_by_a_checkpoint(self):
+        """Recovery fills silence only. Where the finalizer DID answer, its
+        pointer is the one consumed — even when a checkpoint also exists."""
+        url, sha = self._write_checkpoint()
+        pkg = reddit_pkg(slug=self.SLUG)
+        pkg["shots"][0]["media"] = {
+            "status": "fulfilled",
+            "drive": {"file_id": "1recoveredFILE", "folder_id": "1folder",
+                      "filename": self.mc.deterministic_filename(
+                          self.DATE,
+                          self.mc.authored_shot_request_id(self.SLUG, 0)),
+                      "download_url": url, "sharing": "anyone_with_link"},
+            "image": {"sha256": sha, "bytes": (self.tmp / "recovered.png"
+                                               ).stat().st_size,
+                      "format": "png", "width": 64, "height": 64}}
+        (self.bundle / "response.json").write_text(json.dumps(
+            {"authored": [pkg]}))
+        rc, out = self._run()
+        self.assertEqual(rc, 0, out)
+        self.assertIn("recovered 0 authored-shot pointer(s)", out,
+                      "recovery attached over a shot the response answered")
+        shot = self._promoted()["shots"][0]
+        self.assertEqual(shot.get("media_origin"), "chatgpt_authored",
+                         "the response's own pointer must win, and be "
+                         "labelled as declared, not recovered")

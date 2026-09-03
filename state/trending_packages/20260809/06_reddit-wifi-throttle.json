@@ -1,0 +1,93 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "reddit-wifi-throttle",
+  "title": "He Kept Stealing My WiFi. I Just Started Throttling It.",
+  "hashtags": [
+    "pettyrevenge",
+    "wifi",
+    "neighbor",
+    "karma",
+    "revenge",
+    "reddit",
+    "storytime",
+    "truestory",
+    "fyp",
+    "shorts",
+    "viral",
+    "trending",
+    "technology",
+    "homeowner",
+    "internet"
+  ],
+  "script": "My neighbor had been stealing my WiFi for a year before I finally said something. He said sure, no problem, he'd stop, then I watched his laptop show up on my router that same night. So I stopped saying anything and just throttled his device to dial-up speeds instead, three hours every evening, right when he sat down to stream something. A week later he complained to me that his internet had gotten terrible lately and asked if mine was doing the same thing. I told him mine worked perfectly fine, which was true, because it was mine. This went on for two months before he finally broke down and bought his own plan. The week his new router showed up, my network usage dropped in half, and I finally understood exactly how much of my bandwidth he had been eating the whole time.",
+  "shots": [
+    {
+      "phrase": "stealing my WiFi for a year",
+      "query": "wifi router glowing lights",
+      "image_url": "https://pixabay.com/get/g0461310b0f1d77dc53484a7256972bda8f7c17367aa50f749cbca759f03f12bbc4d6af52f66936bd1e076d0df41cc5f37e4bf2a48fc1d6ea1bdff9f6d7fd883d_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "his laptop show up on my router",
+      "query": "laptop screen network list",
+      "pin_query": "laptop",
+      "pin_context": "computer device technology",
+      "news_query": "laptop",
+      "news_angle": "The neighbor's laptop showing up on the router after being told to stop using the WiFi.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Laptop_collage.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "throttled his device to dial-up speeds",
+      "query": "slow loading buffering screen",
+      "image_url": "https://pixabay.com/get/gc20cba2d022516368684745a6679ab62b634b85e8403ef56df30cccb4fe920f20f50572d1e79cc00db793a918d8e2e43b75238de9ca37102ec23c8d842dd4440_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "three hours every evening",
+      "query": "clock evening living room",
+      "image_url": "https://pixabay.com/get/gb436bbbb0825d93db1bb29bcdc7b5cfbe4f46fa9e422e279cd2c63f72dc69576d1c36c9e5f18ad3905db358fe9416365f26c033311a555a3f8b3d0d9d50dc4aa_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "his internet had gotten terrible lately",
+      "query": "frustrated man laptop",
+      "image_url": "https://pixabay.com/get/g4b9eae3d0179bceff0b30d658aef97b230aa98ce5e5c1674445880b8b6f441444821b0dd9c9080f4ab470a03728757865bc26fbf3dbba1ef960c26413dbe47fc_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "bought his own plan",
+      "query": "internet bill paperwork",
+      "image_url": "https://pixabay.com/get/g3f57c50a2f8cf847ee04e40da562313a4a39caeb364f5fde9fb9add278cbf9c8452dc288ab111f0858033f4b51c3d40159c09acd5c0c7c820b4308d775e223e5_1280.jpg",
+      "media_origin": "self_fill"
+    },
+    {
+      "phrase": "my network usage dropped in half",
+      "query": "router lights dashboard",
+      "image_url": "https://pixabay.com/get/gc151d8d41bc2edf7ba4dbe45e912ffb8716f2b79adb29231350fbad01a371b4ba6f56a91754b93551d4247fb64d58f69da4ea8ef84ec6c28ba52ce3bb0e29ea7_1280.jpg",
+      "media_origin": "self_fill"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "stealing my WiFi for a year",
+      "text": "1 YEAR STOLEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "throttled his device to dial-up speeds",
+      "text": "DIAL-UP SPEED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "This went on for two months",
+      "text": "2 MONTHS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "my network usage dropped in half",
+      "text": "USAGE HALVED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "dark"
+}

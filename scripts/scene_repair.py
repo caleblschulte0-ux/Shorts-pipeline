@@ -43,9 +43,15 @@ PLANS_DIR = REPO / "state" / "scene_plans"
 # different scenes: different depiction × different performance family, all
 # compatible with the scene's meaning.
 KIND_OPTIONS = {
-    "part_to_whole": ["stack", "stack", "pictorial_race"],
+    # A duplicated kind is NOT a wasted slot (the perf rotates per slot), but
+    # it cannot answer the judge's actual 08-22/23 complaint — "three
+    # identical bar races" is STRUCTURAL sameness. Where a genuinely
+    # different renderer exists for the shape, offer it: waffle_grid and
+    # bubbles render under a locked plan (plan_locked skips the auto-route
+    # that would fold them back into stack/race).
+    "part_to_whole": ["stack", "waffle_grid", "pictorial_race"],
     "two_value": ["comparison", "stack", "pictorial_race"],
-    "ranking": ["pictorial_race", "rank", "stack"],
+    "ranking": ["pictorial_race", "rank", "bubbles"],
     "trend": ["trend", "trend", "pictorial_race"],
 }
 
@@ -80,7 +86,8 @@ def semantic_candidates(insight, shape: str) -> list[dict]:
                                  "direction": intent["direction"]}})
     for j, viz in enumerate(KIND_OPTIONS.get(shape, KIND_OPTIONS["ranking"])):
         spec = md.performance_for(viz, claim, target,
-                                  used_families=used, seed=j)
+                                  used_families=used, seed=j,
+                                  require_contact=True)
         # SEMANTIC GATE: the selected performance must genuinely support this
         # shape (performance_for enforces it) — record the declaration.
         used.add(spec.get("family", spec["action"]))
@@ -114,11 +121,53 @@ def shape_of(insight) -> str:
     return "ranking"
 
 
-def failing_scene(verdict: dict, n_segs: int) -> int:
-    """The scene to repair. PRIMARY source: the judge's STRUCTURED
-    weakest_scene diagnosis (id/index emitted directly by the showrunner).
-    Prose parsing ('segN' in auto-fail text) and the last-segment default are
-    EMERGENCY fallbacks only, and are loudly logged as such."""
+def measured_failures(slug: str, n_segs: int) -> list[tuple[int, float]]:
+    """Segments whose OWN measured temporal gate failed, worst first.
+
+    `studio_render._scene_metrics` already encodes every scene and grades it
+    with the reviewer's own detector, writing
+    `output/scenes/<slug>/segment_<i>/metrics.json`. That evidence existed on
+    disk and nothing read it: on 2026-08-11 all four explainer stories were
+    blocked BEFORE vision review (so there is no `weakest_scene` and no
+    `segN` prose to parse), the repair fell through to its last-segment
+    default, and every one of them "repaired" segment 2 — which was passing
+    at 24.0 fps — while segment 0, measuring 0.8-1.4, was never touched.
+    A measurement beats a default.
+    """
+    out: list[tuple[int, float]] = []
+    d = REPO / "output" / "scenes" / slug
+    for i in range(n_segs):
+        f = d / f"segment_{i}" / "metrics.json"
+        if not f.exists():
+            continue
+        try:
+            m = json.loads(f.read_text())
+        except Exception:  # noqa: BLE001 — a junk sidecar is not a diagnosis
+            continue
+        gate = m.get("gate") or (m.get("verdict") or {}).get("gate")
+        fps = (m.get("effective_fps")
+               if m.get("effective_fps") is not None
+               else (m.get("temporal") or {}).get("effective_fps"))
+        if gate and gate != "pass":
+            out.append((i, float(fps or 0.0)))
+    return sorted(out, key=lambda t: t[1])
+
+
+def failing_scene(verdict: dict, n_segs: int, slug: str = "") -> int:
+    """The scene to repair. PRIMARY source: the scene's OWN MEASUREMENT when
+    a scene actually failed its temporal gate — that is evidence, and it is
+    the only source available at all when the video was blocked before vision
+    review. Then the judge's STRUCTURED weakest_scene diagnosis (id/index
+    emitted directly by the showrunner). Prose parsing ('segN' in auto-fail
+    text) and the last-segment default are EMERGENCY fallbacks only, and are
+    loudly logged as such."""
+    if slug:
+        meas = measured_failures(slug, n_segs)
+        if meas:
+            i, fps = meas[0]
+            print(f"[scene_repair] measured failure: seg{i} at {fps} "
+                  f"effective fps — repairing the scene that FAILED", flush=True)
+            return i
     ws = verdict.get("weakest_scene")
     if isinstance(ws, dict):
         idx = ws.get("index")
@@ -167,18 +216,32 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
     attach = json.loads(ap.read_text()) if ap.exists() else {}
     contact = attach.get("contact_frames", 0) / max(1, len(fs))
     # cadence: encode tiny mp4 and run the reviewer's own temporal detector
+    # CADENCE IS MEASURED ON THE COMPOSITED SCENE, NOT THE RAW BUILD.
+    # Candidates are rendered at ~60 frames while the real beat is up to
+    # 1200, so a raw-build cadence score was measuring something the shipped
+    # video never is: every candidate scored fps_score 1.0 on 2026-08-11 and
+    # then shipped at 1.0 effective fps. The camera float is duration-
+    # independent (shared/camera_float.py), so including it makes the short
+    # proxy honest about the long beat.
     fps_score = 0.5
     ff = _ffmpeg()
     if ff:
         try:
+            from shared import camera_float as _cf
+            # Composited exactly like the master: layer at rest, whole-frame
+            # CAMERA BREATH over the finished frame (the per-layer float is
+            # gone — it was half of the "weird shaking" the operator called
+            # out). Half-scale proxy, so the amplitude halves with it.
+            _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
             mp4 = build_dir / f"{tag}.mp4"
             subprocess.run(
                 [ff, "-y", "-loglevel", "error",
                  "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
                  "-framerate", "30", "-i", str(build_dir / f"{tag}_build%02d.png"),
                  "-filter_complex",
-                 "[1:v]scale=540:-1,format=rgba[c];"
-                 "[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 f"[1:v]scale=540:-1,format=rgba[c];"
+                 f"[0:v][c]overlay=0:0:shortest=1,"
+                 f"{_cf.crop_vf(540, 960, amp=_A)},format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=120)
             from scripts.showrunner_review import _temporal_evidence
             with tempfile.TemporaryDirectory() as td:
@@ -235,7 +298,18 @@ def vision_rank(bdir: Path, survivors: list[dict], claim: str) -> dict | None:
             for pick, ph in ((0, "start"), (len(fs) // 2, "mid"),
                              (len(fs) - 1, "end")):
                 if fs:
-                    labeled.append((f"candidate_{c['index']}@{ph}", fs[pick]))
+                    # (path, label, seconds) — the SAME shape the judge
+                    # unpacks (`for p, lab, ts in labeled`). This used to
+                    # append (label, path): two items, reversed, so every
+                    # call died on "not enough values to unpack (expected
+                    # 3, got 2)" and vision ranking NEVER ran. Every repair
+                    # in production fell to "DEGRADED: objective-only", and
+                    # the objective score saturates at exactly 1.0 for all
+                    # three candidates — so repair was picking blind, and
+                    # picked the same trend+drag_line every single time.
+                    labeled.append((fs[pick],
+                                    f"candidate_{c['index']}@{ph}",
+                                    pick / 30.0))
         grades, backend = sr._judge(
             _RANK_PROMPT.format(n=len(survivors), claim=claim[:200]), labeled)
         if grades.get("winner"):
@@ -255,7 +329,7 @@ def propose(slug: str, verdict: dict, frames: int = 60,
     with tempfile.TemporaryDirectory() as td:
         st = story.build(story_cfg, cfg, Path(td), REPO)
         segs = [s for s in st.segments if getattr(s, "insight", None)]
-        idx = failing_scene(verdict, len(segs))
+        idx = failing_scene(verdict, len(segs), slug=slug)
         base = segs[idx].insight
         shape = shape_of(base)
         cands = semantic_candidates(base, shape)
@@ -288,6 +362,31 @@ def propose(slug: str, verdict: dict, frames: int = 60,
             survivors = sorted(results, key=lambda r: -r["score"])[:1]
             print("[scene_repair] no candidate passed the objective gate — "
                   "keeping the least-bad for diagnosis")
+        # STORY-LEVEL DISTINCTNESS. Repair sees one scene at a time, so on
+        # 2026-08-16 it converged three scenes of the same story onto
+        # rank+shoved_bar / rank+discover one repair at a time — and the
+        # showrunner blocked the result for exactly that: "three
+        # near-identical template charts". A candidate whose depiction is
+        # already on ANOTHER scene of this story only survives when nothing
+        # distinct passed the objective gate — the same rule the authoring
+        # director enforces, applied at the repair seam it could not see.
+        _elsewhere = {getattr(s.insight, "kind", "")
+                      for j, s in enumerate(segs)
+                      if j != idx and getattr(s, "insight", None)}
+        _pf_prev = PLANS_DIR / f"{slug}.json"
+        if _pf_prev.exists():
+            try:
+                for _k, _v in json.loads(_pf_prev.read_text()).items():
+                    if _k != str(idx) and isinstance(_v, dict):
+                        _elsewhere.add(_v.get("viz", ""))
+            except Exception:  # noqa: BLE001 — a junk plan is not a blocker
+                pass
+        _distinct = [r for r in survivors if r["viz"] not in _elsewhere]
+        if _distinct and len(_distinct) < len(survivors):
+            print(f"[scene_repair] dropped "
+                  f"{len(survivors) - len(_distinct)} candidate(s) whose "
+                  f"depiction is already used elsewhere in this story")
+            survivors = _distinct
         ranking = vision_rank(bdir, survivors, claim) if len(survivors) > 1 \
             else None
         if ranking:

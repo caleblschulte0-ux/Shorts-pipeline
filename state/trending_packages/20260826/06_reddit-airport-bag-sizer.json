@@ -1,0 +1,131 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-airport-bag-sizer",
+  "title": "The Bag Sizer Doesn't Know Who You Are",
+  "script": "Zero exceptions\u2014for whom? Corporate's new rule: every carry-on gets the metal sizer or gets checked and charged. My supervisor drilled it into us: zero exceptions, three times. Then a man in a suit arrived, bag too big, and dropped his boss's name like it was a boarding pass. My supervisor started waving him through. I asked her to confirm the rule in front of him\u2014she'd repeated it that morning. That policy needed a personality test. She couldn't contradict herself, so the bag went to the sizer, didn't fit, and got checked and charged like everyone else's. He missed his connection complaining to a manager for twenty minutes. Corporate pulled the boarding footage, saw her waving other bags through all week, and the exceptions stopped that day\u2014for everyone, sizer and all. Was his boss's name too big for the sizer?",
+  "shots": [
+    {
+      "phrase": "the metal sizer",
+      "query": "airport bag size checker frame",
+      "pin_query": "Bag sizer",
+      "pin_context": "airport carry-on luggage size checker",
+      "news_query": "Bag sizer",
+      "news_angle": "The bag sizer is used to enforce a new corporate rule requiring every carry-on to be checked for size.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1pbkjmBlzw8fKaLrtQXL2sR0v9sGbJN8k",
+      "media_origin": "chatgpt",
+      "media_file_id": "1pbkjmBlzw8fKaLrtQXL2sR0v9sGbJN8k",
+      "media_sha256": "0a05e5a519f37acdff67cddc31c93f8cb7930f8f713f5ca782a7944b3d33a463",
+      "media_bytes": 1050648
+    },
+    {
+      "phrase": "My supervisor drilled it into us",
+      "query": "airport gate staff briefing",
+      "image_url": "https://drive.google.com/uc?export=download&id=1qarTHLfpKaLrc_dfZnSobxr2Ja5xKcde",
+      "media_origin": "chatgpt",
+      "media_file_id": "1qarTHLfpKaLrc_dfZnSobxr2Ja5xKcde",
+      "media_sha256": "34ed7ed07bd5aac0ba7a01e1ea32d9be8ea16ace1db96c8ef66680e8a2644bc8",
+      "media_bytes": 1133052
+    },
+    {
+      "phrase": "dropped his boss's name",
+      "query": "businessman suit airport terminal",
+      "image_url": "https://drive.google.com/uc?export=download&id=1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+      "media_origin": "chatgpt",
+      "media_file_id": "1GIJyz57EejJ0u8Qu5jVuD3zhafaHUkBT",
+      "media_sha256": "2f9ec911a1ecfd47936cf888b06b24f181f67c9cea6e00e3b6697c0027e57b0d",
+      "media_bytes": 1296662
+    },
+    {
+      "phrase": "started waving him through",
+      "query": "airport gate agent waving",
+      "image_url": "https://drive.google.com/uc?export=download&id=1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+      "media_origin": "chatgpt",
+      "media_file_id": "1X0s_JOmE5IJeAt_w0OGQAmYL77PK7cuj",
+      "media_sha256": "b5f78687f5dee3c32cfe7067d2d66c8852cbdd058ec11bd7e92704db8231a75e",
+      "media_bytes": 1158636
+    },
+    {
+      "phrase": "the bag went to the sizer",
+      "query": "carry on bag metal frame",
+      "image_url": "https://drive.google.com/uc?export=download&id=1FiDWRNHIR9jUI3Mk-0mvpPlEvow8AN_1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1FiDWRNHIR9jUI3Mk-0mvpPlEvow8AN_1",
+      "media_sha256": "7d56d254d867403036785e15771b4ebba415dce85ed78ddd4e1ae60f7430ca19",
+      "media_bytes": 1468246
+    },
+    {
+      "phrase": "missed his connection",
+      "query": "departure board airport terminal",
+      "image_url": "https://drive.google.com/uc?export=download&id=17Gz9mAYVLtqC5ThpiM9vTRny8BCpEhug",
+      "media_origin": "chatgpt",
+      "media_file_id": "17Gz9mAYVLtqC5ThpiM9vTRny8BCpEhug",
+      "media_sha256": "673528c1d36e1427b2be37faba9d24a1b8b47dc08e2c18387d81fce1ccfc9679",
+      "media_bytes": 1367547
+    },
+    {
+      "phrase": "pulled the boarding footage",
+      "query": "security camera airport monitor",
+      "pin_query": "Boarding footage",
+      "pin_context": "airport security camera video",
+      "news_query": "Boarding footage",
+      "news_angle": "Corporate pulls the boarding footage to investigate a complaint, revealing a supervisor's inconsistent enforcement of the rules.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1HRBDTdatEMIugmiqjvXhgYcUtVPStf-X",
+      "media_origin": "chatgpt",
+      "media_file_id": "1HRBDTdatEMIugmiqjvXhgYcUtVPStf-X",
+      "media_sha256": "0ff034a0dfc019fd7c46fd2577e9251fbe55556a877be98fcaa96b8e4ba965a8",
+      "media_bytes": 1289666
+    },
+    {
+      "phrase": "the exceptions stopped that day",
+      "query": "airport gate line boarding",
+      "image_url": "https://drive.google.com/uc?export=download&id=1H2pdbns_Y8ZZ-hIyaxv08caz8heKH2ea",
+      "media_origin": "chatgpt",
+      "media_file_id": "1H2pdbns_Y8ZZ-hIyaxv08caz8heKH2ea",
+      "media_sha256": "5f05c69934919bee243beed0dd29829fdf75a0302e56f27a1679ebd3365d0c89",
+      "media_bytes": 1271604
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "zero exceptions",
+      "text": "ZERO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "dropped his boss's name",
+      "text": "NAME DROP",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "didn't fit, and got checked and charged",
+      "text": "DIDN'T FIT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "missed his connection",
+      "text": "MISSED HIS FLIGHT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the exceptions stopped that day",
+      "text": "RULE ENFORCED",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "maliciouscompliance",
+    "airport",
+    "airline",
+    "travel",
+    "gateagent",
+    "karma",
+    "reddit",
+    "storytime",
+    "worklife",
+    "shorts",
+    "viral"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "punched_up": true
+}

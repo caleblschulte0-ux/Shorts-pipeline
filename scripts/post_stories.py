@@ -43,13 +43,48 @@ STATE_DIR = REPO / "state"
 LOG_PATH = STATE_DIR / "explainer_posted_log.json"
 
 
+def _recent_gate_blocks(hours: int = 48) -> set:
+    """Slugs the showrunner BLOCKED within the last `hours`, read from its
+    durable ledger. Used only to reorder the default queue — a blocked story
+    keeps its place in line, at the back. Any unreadable line or timestamp
+    is skipped: this must never be able to fail a posting run.
+
+    The window MUST exceed the gap between same-slot runs (~24h cron), or
+    the rotation never fires for the run that needs it: at 20h, the 08-22
+    evening blocks (19:52-21:53Z) had all expired by the 08-23 evening run
+    (cutoff 23:49Z the day before), so the two daily slots each promoted
+    the other's freshly-blocked slugs to the front — the same four stories
+    re-rendered and re-blocked ~18 times over two days while ~40 untried
+    stories waited. 48h covers both slots seeing both days' blocks."""
+    out: set = set()
+    try:
+        cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+        ledger = STATE_DIR / "showrunner_verdicts.jsonl"
+        for line in ledger.read_text().splitlines():
+            try:
+                row = json.loads(line)
+                if row.get("verdict") != "block" or not row.get("slug"):
+                    continue
+                ts = datetime.fromisoformat(str(row.get("ts")))
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=timezone.utc)
+                if ts >= cutoff:
+                    out.add(str(row["slug"]))
+            except Exception:  # noqa: BLE001 — one bad row is not a blocker
+                continue
+    except OSError:
+        pass
+    return out
+
+
 def _load_log(path: Path = LOG_PATH) -> dict:
-    if path.exists():
-        try:
-            return json.loads(path.read_text())
-        except json.JSONDecodeError:
-            pass
-    return {"posted": {}}
+    # FAIL CLOSED on corruption (fsutil.CorruptStateError): this dict is the
+    # explainer channel's only dedupe state, and the old JSONDecodeError
+    # swallow meant a truncated file read as "nothing posted" — every slug
+    # re-uploads and _save_log then overwrites the real history. Missing
+    # file = first run = honest empty default, unchanged.
+    from shared.fsutil import load_state_json
+    return load_state_json(path, {"posted": {}}, expect_type=dict)
 
 
 def _save_log(log: dict, path: Path = LOG_PATH) -> None:
@@ -162,6 +197,22 @@ def main() -> int:
     cfg = json.loads(args.config.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     slugs = args.slugs or list(stories)
+    # ROTATE PAST THE STICKY LOSERS. The default candidate list is config
+    # order, and --max-per-run renders only its first N unposted entries —
+    # THE SAME N EVERY RUN until one posts. On 2026-08-15 the four lead
+    # candidates scored 39-48, got re-rendered and re-blocked by three
+    # consecutive runs, and the channel posted NOTHING while ~40 untried
+    # stories waited behind them. A story the showrunner blocked in the
+    # last day is sent to the BACK of the queue — never skipped (the
+    # standing ruling: it goes through and tries again; if everything was
+    # recently blocked the order degrades to exactly the old behaviour),
+    # just no longer allowed to starve stories that have never had a turn.
+    if not args.slugs:
+        recently_blocked = _recent_gate_blocks()
+        if recently_blocked:
+            slugs.sort(key=lambda s: s in recently_blocked)  # stable sort
+            print(f"[post_stories] {len(recently_blocked)} recently-blocked "
+                  f"stor(y/ies) rotated to the back of the queue", flush=True)
     unknown = [s for s in slugs if s not in stories]
     if unknown:
         print(f"unknown slugs: {unknown}\navailable: {list(stories)}",
@@ -173,6 +224,29 @@ def main() -> int:
     uploader = None
     rendered = 0
     when = datetime.now(timezone.utc) + timedelta(hours=args.start_in_hours)
+
+    # PER-DAY cap, not just per-RUN. `--max-per-run` alone cannot hold the
+    # registry's daily count when the workflow fires twice in a day (a cron
+    # AND a chained trigger, or a manual re-run after a partial): the posted
+    # log dedupes SLUGS, so a second run simply posts the NEXT four stories
+    # — different videos, same day, 8/4. Count what already went out today
+    # and shrink this run's budget by it. `--force` re-posts are exempt: an
+    # operator explicitly re-shipping a fixed video is not a scheduling bug.
+    if args.max_per_run and not args.force:
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        posted_today = sum(
+            1 for e in log["posted"].values()
+            if str(e.get("at", "")).startswith(today))
+        if posted_today:
+            budget = max(0, args.max_per_run - posted_today)
+            print(f"[post_stories] {posted_today} already posted today — "
+                  f"this run's budget is {budget} (per-day cap "
+                  f"{args.max_per_run})", flush=True)
+            args.max_per_run = budget
+            if budget == 0:
+                print("[post_stories] the day is full — nothing to do",
+                      flush=True)
+                return 0
 
     # FAIL-CLOSED publish control. Publishing is FROZEN unless explicitly opted
     # into; nothing here can silently upload. See scripts/editorial_gate.py.
@@ -190,6 +264,19 @@ def main() -> int:
                   f"skipping (use --force to repost)")
             continue
 
+        # Check the run's render budget FIRST — before the editorial gate.
+        # `pre_render_verdict` is an LLM call (rate-limited on the free Groq
+        # tier); running it on every backlog story ahead of this check burns
+        # the whole run's rate-limit budget reviewing stories that get
+        # deferred anyway, and starves the ones that would actually render
+        # (see the 2026-08-06/07 explainer.yml failures: "done: 0/5 ok"
+        # after dozens of "[groq] 429 rate-limited" retries). Deferred
+        # stories still get reviewed — on the run where they're actually up.
+        if args.max_per_run and rendered >= args.max_per_run:
+            print(f"[{slug}] deferred to next run (hit --max-per-run="
+                  f"{args.max_per_run})")
+            continue
+
         # PRE-RENDER editorial gate (#2 real data, #3 premise bar). A story that
         # can never publish — synthetic numbers, or a searchable-noun premise —
         # is HELD before we spend a render on it. Previews (--dry-run) still
@@ -203,11 +290,6 @@ def main() -> int:
                                 "error": "editorial_hold",
                                 "reasons": pre["reasons"]})
                 continue
-
-        if args.max_per_run and rendered >= args.max_per_run:
-            print(f"[{slug}] deferred to next run (hit --max-per-run="
-                  f"{args.max_per_run})")
-            continue
         rendered += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
@@ -261,15 +343,51 @@ def main() -> int:
                 print(f"[{slug}] repair {repairs} could not plan a fix: "
                       f"{str(e)[:120]}", flush=True)
                 break
+            # KEEP THE BEST CUT, NOT THE LAST ONE.
+            #
+            # This re-rendered over `out` and replaced the verdict
+            # unconditionally, so a repair that landed WORSE threw away a
+            # better video — and the docstring above ("a repair that lands
+            # worse simply keeps the video held, exactly as before") was
+            # describing behaviour the code did not have. Measured on the
+            # 2026-08-12 explainer slate, where repair moved:
+            #
+            #     urban   53 -> 48      hydro   48 -> 39
+            #     hunger  44 -> 35      macao   56 -> 69
+            #
+            # three of four downhill, each one discarding the better cut.
+            # The gate still decides everything; we just stop throwing away
+            # its best judgment. A repair only sticks if it scores higher.
+            import shutil as _sh
+            _prev_score = (verdict or {}).get("score")
+            _keep = out.with_suffix(".prerepair.mp4")
+            try:
+                _sh.copy2(out, _keep)
+            except Exception:                        # noqa: BLE001
+                _keep = None
             studio_render.render(slug, out, config_path=args.config)
-            gate = _gate.run(out, slug=slug, context=ctx,
-                             will_upload=will_upload)
-            blocked = gate["blocked"]
-            verdict = gate["verdict"]
-            print(f"[{slug}] after repair {repairs}: "
-                  f"{'BLOCK' if blocked else 'SHIP'} "
-                  f"score={verdict.get('score')} — "
-                  f"{verdict.get('one_line') or gate['reason']}", flush=True)
+            new_gate = _gate.run(out, slug=slug, context=ctx,
+                                 will_upload=will_upload)
+            _new_score = (new_gate.get("verdict") or {}).get("score")
+            _better = (_new_score is not None and _prev_score is not None
+                       and _new_score > _prev_score)
+            if _better or _prev_score is None:
+                gate, blocked = new_gate, new_gate["blocked"]
+                verdict = new_gate["verdict"]
+                print(f"[{slug}] after repair {repairs}: "
+                      f"{'BLOCK' if blocked else 'SHIP'} "
+                      f"score={_new_score} — "
+                      f"{verdict.get('one_line') or gate['reason']}",
+                      flush=True)
+            else:
+                print(f"[{slug}] repair {repairs} scored {_new_score} vs "
+                      f"{_prev_score} — REVERTING to the better cut",
+                      flush=True)
+                if _keep and _keep.exists():
+                    _sh.move(str(_keep), str(out))
+                    _gate.log(gate, slug)      # re-assert the kept verdict
+            if _keep and Path(_keep).exists():
+                Path(_keep).unlink(missing_ok=True)
 
         if args.dry_run:
             print(f"[{slug}] dry-run: rendered, not uploading")

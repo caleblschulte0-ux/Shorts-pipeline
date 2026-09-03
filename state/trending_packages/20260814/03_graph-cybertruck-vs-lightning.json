@@ -1,0 +1,54 @@
+{
+  "format": "graph_race",
+  "slug": "graph-cybertruck-vs-lightning",
+  "title": "The Electric Truck Lead Just Flipped Twice",
+  "hook": "The lead flipped twice.",
+  "y_label": "US annual deliveries (units)",
+  "duration": 13,
+  "source": "Ford F-150 Lightning US annual deliveries: 2022 approx. 15,617 (first partial year); 2023 approx. 24,165; 2024 33,510; 2025 approx. 27,300 (CarBuzz/Electrek reporting). Tesla Cybertruck deliveries: 2022 0 (not yet launched); 2023 approx. 3,900 (limited late-2023 ramp after Nov 2023 launch, industry-tracker estimate); 2024 39,442 (surpassed Lightning for the first time in Q2 2024); 2025 approx. 21,500 global (InsideEVs/Forbes/Electrek reporting on the sales reversal). Ford ended F-150 Lightning production in Dec 2025/Jan 2026 (Electrek); Cybertruck Q1 2026 fell to 3,519 units, its worst quarter yet.",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Ford F-150 Lightning",
+      "color": "#00539b",
+      "icon": "Ford",
+      "values": [
+        15617,
+        24165,
+        33510,
+        27300
+      ]
+    },
+    {
+      "name": "Tesla Cybertruck",
+      "color": "#cccccc",
+      "icon": "Tesla",
+      "values": [
+        0,
+        3900,
+        39442,
+        21500
+      ]
+    }
+  ],
+  "hashtags": [
+    "cybertruck",
+    "f150lightning",
+    "tesla",
+    "ford",
+    "ev",
+    "electrictruck",
+    "cars",
+    "automotive",
+    "elonmusk",
+    "evsales",
+    "pickuptruck"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

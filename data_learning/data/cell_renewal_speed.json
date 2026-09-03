@@ -1,0 +1,21 @@
+{
+  "key": "cell_renewal_speed",
+  "title": "How long different tissues take to fully renew themselves",
+  "unit": "days",
+  "geography": "Human body",
+  "time_coverage": "current biology",
+  "source": {
+    "name": "Cell turnover rate research (Karolinska Institute / cell biology literature)",
+    "publisher": "Peer-reviewed cell biology studies, as compiled by Scientific American and standard cell-biology references",
+    "url": "https://www.scientificamerican.com/article/our-bodies-replace-billions-of-cells-every-day/",
+    "officiality": "secondary",
+    "access_date": "2026-08-09"
+  },
+  "notes": "Stomach lining epithelial cells renew every 2-9 days (using ~5 as a midpoint); skin's outer layer renews roughly every 2-4 weeks (~28 days); red blood cells live about 120 days; the human skeleton is fully remodeled roughly every 10 years (~3,650 days). Figures are commonly cited ranges/midpoints, not exact for every individual.",
+  "points": [
+    {"label": "Stomach lining", "value": 5},
+    {"label": "Skin", "value": 28},
+    {"label": "Red blood cells", "value": 120},
+    {"label": "Skeleton", "value": 3650}
+  ]
+}

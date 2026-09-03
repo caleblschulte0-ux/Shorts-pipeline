@@ -1,0 +1,63 @@
+{
+  "format": "graph_race",
+  "slug": "graph-nokia-vs-iphone",
+  "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+  "hook": "100 million, then nearly zero",
+  "y_label": "Smartphones shipped per year (millions)",
+  "duration": 13,
+  "source": "Nokia smartphone (Symbian, then early Lumia) unit shipments and Apple iPhone fiscal-year unit sales, compiled from IDC/Gartner/Strategy Analytics quarterly trackers and company reports. Nokia shipped a then-record ~100 million smartphones in 2010 (IDC); its global smartphone share halved from 33% in 2010 to 16% in 2011 as Apple became the world's largest smartphone vendor by volume in Q4 2011 (Strategy Analytics: Apple 37M vs Nokia 19.6M that quarter). Nokia's full-year total collapsed to roughly 30-35 million by 2012-2013 as Symbian was wound down and Lumia never scaled; Apple's iPhone unit sales are from Apple's 10-K filings (FY2008-FY2013). Figures approximate and rounded to the nearest million.",
+  "years": [
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013
+  ],
+  "series": [
+    {
+      "name": "Nokia",
+      "color": "#124191",
+      "icon": "Nokia",
+      "values": [
+        61,
+        68,
+        100,
+        78,
+        35,
+        30
+      ]
+    },
+    {
+      "name": "iPhone",
+      "color": "#a3a3a3",
+      "icon": "Apple",
+      "values": [
+        11.63,
+        20.73,
+        39.99,
+        72.29,
+        125.05,
+        150.26
+      ]
+    }
+  ],
+  "hashtags": [
+    "nokia",
+    "iphone",
+    "apple",
+    "smartphones",
+    "symbian",
+    "techhistory",
+    "applehistory",
+    "iphonehistory",
+    "mobilephones",
+    "smartphonewars",
+    "mobiletech",
+    "techcollapse",
+    "stevejobs",
+    "2010s"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

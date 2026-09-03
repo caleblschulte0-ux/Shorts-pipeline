@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-cremation-passed-burial",
+  "title": "Cremation Just Passed Burial In America",
+  "hook": "Fire beat dirt in America.",
+  "y_label": "Share of US deaths (%)",
+  "duration": 13,
+  "source": "Cremation Association of North America (CANA) historical rate data: 6% in 1975, 10% in 1981, 19.6% in 1995, 26.2% in 2001. National Funeral Directors Association (NFDA) Cremation and Burial Report: cremation 48.5% / burial 45.4% in 2015 (the first year cremation edged past burial nationally), and a projected 61.9% cremation / 38.1% burial in 2024. 2020 figures (56% cremation / ~40% burial) are NFDA's own trend-line estimate for that year. Burial-share figures for 1975/1995/2001/2020 are the remainder after cremation and a small 'other' disposition share, so they are approximate.",
+  "years": [
+    1975,
+    1995,
+    2001,
+    2015,
+    2020,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Burial",
+      "color": "#8a6d3b",
+      "icon": "",
+      "values": [
+        94,
+        80.4,
+        73.8,
+        45.4,
+        40,
+        38.1
+      ]
+    },
+    {
+      "name": "Cremation",
+      "color": "#ff6b3d",
+      "icon": "",
+      "values": [
+        6,
+        19.6,
+        26.2,
+        48.5,
+        56,
+        61.9
+      ]
+    }
+  ],
+  "hashtags": [
+    "cremation",
+    "funeral",
+    "burial",
+    "deathpositive",
+    "americanculture",
+    "nfda",
+    "statistics",
+    "culture",
+    "didyouknow",
+    "data",
+    "trends",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

@@ -154,7 +154,12 @@ class Candidate:
                 "article_url": self.article_url,
                 "published_at": self.published_at,
                 "source_class": self.source_class,
-                "license": self.license}
+                "license": self.license,
+                # The LLM-rerank bonus is the one score component that
+                # isn't cheaply recomputable from source facts (it costs
+                # an API call) — cache it explicitly so cache reads can
+                # add it back on top of freshly recomputed dynamic score.
+                "llm_bonus": round(self.boosts.get("llm_bonus", 0.0), 3)}
 
 
 # ---------- cache + quota ----------
@@ -1305,6 +1310,19 @@ if _SOCIAL_ENABLED:
         ("ddg", p_ddg),
     ])
 
+#: How long search() waits for the provider fan-out before abandoning the
+#: stragglers. A constant (not a literal buried in the loop) so tests can
+#: shrink it and so the outcome ledger below can name the window it enforced.
+SEARCH_WINDOW_S: float = 15.0
+
+#: Per-provider terminal ledger of the most recent search() fan-out:
+#: {name: "completed" | "failed" | "timed_out" | "cancelled"}. Doctor
+#: finding e02d4cf673bd: providers abandoned at the window used to have NO
+#: terminal record at all, while their threads lived on and could touch the
+#: shared quota state after the run — this makes every started provider end
+#: in a recorded state a caller or a debugging session can consult.
+LAST_SEARCH_OUTCOMES: dict[str, str] = {}
+
 
 # ---------- orchestrator ----------
 
@@ -1365,6 +1383,33 @@ def _verify(candidates: list[Candidate]) -> list[Candidate]:
     return keep
 
 
+def _title_has_word(title_l: str, word: str) -> bool:
+    """Does a lowercased article title contain `word` as a WHOLE token?
+
+    Doctor finding ab128687aaf7: this used to be a raw substring test, so a
+    search for "Elon Musk" happily kept "Muskox herd expands" and "Muskrat
+    population grows" — an explicitly wrong subject admitted into the scored
+    candidate set, which the downstream ranker then has to be lucky about.
+    A surname is a word, not a character sequence.
+
+    Tokenisation keeps apostrophes INSIDE a token (so "O'Brien" survives as
+    one token and "Musk's" can be recognised as a possessive of "Musk") and
+    treats everything else — hyphens, punctuation, whitespace — as a
+    boundary, so "Musk-led venture" still matches on its own merits. A
+    trailing possessive ('s / bare ') is stripped before comparison; both
+    the ASCII and the curly apostrophe forms appear in real headlines."""
+    for tok in re.findall(r"[a-z0-9'’]+", title_l):
+        # Normalise the curly apostrophe news CMSes love, then strip a
+        # possessive suffix — "musk's" and "musk’" both mean "musk" here.
+        tok = tok.replace("’", "'")
+        if tok.endswith("'s"):
+            tok = tok[:-2]
+        tok = tok.rstrip("'")
+        if tok == word:
+            return True
+    return False
+
+
 def _prefilter(candidates: list[Candidate],
                entity: str = "") -> list[Candidate]:
     """Apply junk-URL rejection + numeric boosts that don't need an
@@ -1387,13 +1432,19 @@ def _prefilter(candidates: list[Candidate],
     ent_tokens = [w for w in re.findall(r"[a-z']+", ent_norm)
                   if w not in _stop]
     required_word = ent_tokens[-1] if ent_tokens else ""
+    # Symmetry with _title_has_word: an entity given possessively
+    # ("Musk's Neuralink") still means the surname is "musk".
+    if required_word.endswith("'s"):
+        required_word = required_word[:-2]
+    required_word = required_word.rstrip("'")
     out: list[Candidate] = []
     for c in candidates:
         if _JUNK_URL.search(c.url):
             continue
         if required_word and c.article_title:
-            title_l = c.article_title.lower()
-            if required_word not in title_l:
+            # Whole-token match, not substring — "Musk" must never be
+            # satisfied by "Muskox" (doctor finding ab128687aaf7).
+            if not _title_has_word(c.article_title.lower(), required_word):
                 continue
         # Base score per source — trusts news-search APIs more than
         # social, social more than image hosts, image hosts more than
@@ -1559,6 +1610,7 @@ def _llm_rerank(candidates: list[Candidate], story_angle: str,
         seen.add(idx)
         top[idx].score += bonuses[slot]
         top[idx].boosts["llm_rank"] = slot
+        top[idx].boosts["llm_bonus"] = bonuses[slot]
     # Return the merged list (top reranked + tail unchanged).
     merged = top + candidates[10:]
     merged.sort(key=lambda c: c.score, reverse=True)
@@ -1581,18 +1633,45 @@ def search(story_angle: str, entities: list[str],
                 print(f"  [media_funnel] cache HIT for "
                       f"{primary!r} on {story_slug!r}: "
                       f"{len(cached)} candidates")
-            return [Candidate(**{k: v for k, v in c.items()
-                                  if k in {"url", "source", "score",
-                                           "article_title", "article_url",
-                                           "published_at",
-                                           "source_class", "license"}})
-                    for c in cached]
+            # Only source facts (url/source/article_title/article_url/
+            # published_at/source_class/license) are trustworthy from a
+            # cache written up to 48h ago. Score is time-dependent — the
+            # recent-use penalty, freshness/staleness age, and same-host
+            # boost all depend on "now", not "when this was cached" — so
+            # it is recomputed via _prefilter on every read instead of
+            # being restored verbatim. The one component that isn't
+            # cheaply recomputable (the paid LLM-rerank bonus) is cached
+            # separately and re-added on top.
+            raw = [Candidate(**{k: v for k, v in c.items()
+                                 if k in {"url", "source",
+                                          "article_title", "article_url",
+                                          "published_at",
+                                          "source_class", "license"}})
+                   for c in cached]
+            rescored = _prefilter(raw, entity=primary)
+            bonus_by_url = {c["url"]: c.get("llm_bonus", 0.0)
+                             for c in cached}
+            for c in rescored:
+                c.score += bonus_by_url.get(c.url, 0.0)
+            rescored.sort(key=lambda c: c.score, reverse=True)
+            return rescored
 
     # 1. Fan out — every provider for the PRIMARY entity. Other
     # entities are used only to disambiguate inside the LLM rerank
     # (we don't pay for separate searches per entity to stay inside
     # daily free tiers).
     all_candidates: list[Candidate] = []
+    # Every provider this run STARTED reaches a recorded terminal state
+    # here: completed / failed / timed_out / cancelled. Doctor finding
+    # e02d4cf673bd: after the latency window expired, abandoned providers
+    # simply vanished from the run's record — their threads kept running,
+    # could still mutate the shared quota ledger minutes later, and nothing
+    # tied that write back to a search that had already returned. Python
+    # threads cannot be killed, so a timed-out provider is still honestly
+    # a background straggler — but now it is a NAMED one, in a ledger the
+    # caller (and the debug log) can read, instead of an unattributable
+    # ghost.
+    outcomes: dict[str, str] = {}
     # Don't use the `with` context manager — its __exit__ waits for
     # every submitted future to finish, so one slow provider (Tavily,
     # 30s+ on a bad day) blocks the orchestrator long after we've
@@ -1600,16 +1679,19 @@ def search(story_angle: str, entities: list[str],
     # stragglers get abandoned instead of stalling the pipeline.
     ex = concurrent.futures.ThreadPoolExecutor(
         max_workers=len(_PROVIDERS))
+    futures: dict = {}
     try:
         futures = {ex.submit(fn, primary, story_angle): name
                    for name, fn in _PROVIDERS}
         try:
             for fut in concurrent.futures.as_completed(
-                    futures, timeout=15):
+                    futures, timeout=SEARCH_WINDOW_S):
                 name = futures[fut]
                 try:
                     cs = fut.result() or []
+                    outcomes[name] = "completed"
                 except Exception as e:  # noqa: BLE001
+                    outcomes[name] = "failed"
                     if verbose:
                         print(f"  [media_funnel] {name} failed: "
                               f"{type(e).__name__}: {str(e)[:80]}")
@@ -1620,10 +1702,29 @@ def search(story_angle: str, entities: list[str],
         except concurrent.futures.TimeoutError:
             pending = [futures[f] for f in futures if not f.done()]
             if verbose and pending:
-                print(f"  [media_funnel] 15s window expired, "
-                      f"abandoning slow providers: {', '.join(pending)}")
+                print(f"  [media_funnel] {SEARCH_WINDOW_S}s window "
+                      f"expired, abandoning slow providers: "
+                      f"{', '.join(pending)}")
     finally:
         ex.shutdown(wait=False, cancel_futures=True)
+        # Terminal bookkeeping AFTER shutdown: cancel_futures has now
+        # cancelled everything that never started, and whatever is left is
+        # a thread mid-flight we chose not to wait for. Recorded before the
+        # result is finalized so no started provider ever lacks a verdict.
+        for fut, name in futures.items():
+            if name not in outcomes:
+                outcomes[name] = ("cancelled" if fut.cancelled()
+                                  else "timed_out")
+        global LAST_SEARCH_OUTCOMES
+        LAST_SEARCH_OUTCOMES = dict(outcomes)
+        stragglers = sorted(n for n, s in outcomes.items()
+                            if s == "timed_out")
+        if verbose:
+            print("  [media_funnel] provider outcomes: "
+                  + ", ".join(f"{n}={s}"
+                              for n, s in sorted(outcomes.items()))
+                  + ("  (timed_out providers may still write quota "
+                     "state in the background)" if stragglers else ""))
 
     # 1b. URL dedup across providers (Wikidata/Commons/Openverse overlap;
     # with 18 providers this saves a pile of duplicate HEAD verifies).
