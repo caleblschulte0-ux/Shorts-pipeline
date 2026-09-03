@@ -5500,13 +5500,70 @@
       "director_cut": true
     },
     "clip-20260903-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/HappyInventiveWatercressVoteNay-YBEMlTYwg4CqzVzB",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/QlGG-V4aBKo",
       "title": "Kaicenat: Kai Cenat Gets Punched On Stream And Chat Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-09-03T15:04:50.633684+00:00",
+      "ts": "2026-09-03T15:04:55.796395+00:00",
+      "uploaded_at": "2026-09-03T15:04:55.796412+00:00",
+      "publish_at": "2026-09-03T17:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/HappyInventiveWatercressVoteNay-YBEMlTYwg4CqzVzB",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "WAIT DID HE JUST PUNCH KAI",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3031,
+      "banger": 0.7,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-lachrymoseacceptablealbatrossralpherz-0-knhc6g8elvxrx2": {
+      "source_url": "https://www.twitch.tv/xqc/clip/LachrymoseAcceptableAlbatrossRalpherZ-0-kNHC6G8eLVxRx2",
+      "streamer": "xqc",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (gaming chat, no visible event)",
+      "ts": "2026-09-03T15:05:41.366037+00:00"
+    },
+    "rejected-trappedminiaturefloofcharlietheunicorn-vxxkeg7asazg7wte": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/TrappedMiniatureFloofCharlietheUnicorn-VXXKeg7AsAZg7Wte",
+      "streamer": "sodapoppin",
+      "title": "Oh no! Oh yes! Oh no!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine gameplay, no clear payoff)",
+      "ts": "2026-09-03T15:07:55.909297+00:00"
+    },
+    "rejected-tamevivaciousjuicefunrun-xsm9fvwyunkoag8o": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TameVivaciousJuiceFunRun-xSm9fVWyUNkOAg8O",
+      "streamer": "jynxzi",
+      "title": "Ron said what?",
+      "qa_rejected": true,
+      "ts": "2026-09-03T15:08:05.717200+00:00"
+    },
+    "rejected-peppydeterminedwatermelonrulefive-qlny3mms28yt5bco": {
+      "source_url": "https://www.twitch.tv/forsen/clip/PeppyDeterminedWatermelonRuleFive-QLnY3mMs28yt5BcO",
+      "streamer": "forsen",
+      "title": "oblivious streamer sucks hard at videogames",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay complaint, no event)",
+      "ts": "2026-09-03T15:09:05.543500+00:00"
+    },
+    "clip-20260903-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jinnytty/clip/FriendlyImpartialCrabsGingerPower-diSxcfVUmqytzz4b",
+      "story_key": null,
+      "streamer": "jinnytty",
+      "title": "Jinnytty Says She's A Strong Independent Woman... Then This Happens \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-09-03T15:12:05.188442+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
