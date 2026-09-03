@@ -1,0 +1,41 @@
+{
+ "slug": "undersea-cables-carry-internet",
+ "ts": "20260903T124345Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg4:end the mascot holds one identical arms-out pose perched on the bar tip, drifting row to row (seg0:mid, seg1:mid, seg3:mid, seg4:mid are the same sticker at different heights) \u2014 no setup\u2192action\u2192payoff bit.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "weak_hook_slow_chart_build_with_text_collision",
+  "visible_evidence": "hook@0.3 opens on a half-drawn bar-race with three empty stubs and the caption 'Satellites don't' printed straight across the '2000' row label and its bar; at hook@0.8 and hook@1.5 the word 'run the' sits grey-on-grey inside the 2000 bar, and at seg0:mid 'internet. This' again overlaps the '2000' tick \u2014 first 2.6s are a slow chart build, not an event. The chart's own kicker 'll2000 PULLS AHEAD' also contradicts the frame, where 2000 has the shortest bar.",
+  "root_cause": "The hook has no dedicated opening beat \u2014 it is the first 2.6s of the seg0 bar race, with the hook caption burned into the chart's own title/label band and the 'PULLS AHEAD' subtitle keyed to the first category rather than the leading one.",
+  "repair_goal": "Give the hook its own event in the first 0.5s \u2014 the 1.48M km cable snapping across frame / the 2024 bar rocketing past the others \u2014 move the hook caption clear of the year-label column into the lower third, and set the kicker to the actual leader so the words and the bars agree."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "get_buried"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}

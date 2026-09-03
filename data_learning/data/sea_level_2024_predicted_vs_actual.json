@@ -16,10 +16,10 @@
     {
       "label": "Actual (measured)",
       "value": 5.9
+    },
+    {
+      "label": "Expected (from long-term trend)",
+      "value": 4.3
     }
-  ],
-  "baseline": {
-    "label": "Expected (from long-term trend)",
-    "value": 4.3
-  }
+  ]
 }

@@ -16,10 +16,10 @@
     {
       "label": "After Red Sea attacks (2024)",
       "value": 291
+    },
+    {
+      "label": "Normal, pre-crisis route traffic",
+      "value": 100
     }
-  ],
-  "baseline": {
-    "label": "Normal, pre-crisis route traffic",
-    "value": 100
-  }
+  ]
 }

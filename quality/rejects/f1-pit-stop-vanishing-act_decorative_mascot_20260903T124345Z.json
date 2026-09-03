@@ -1,0 +1,41 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260903T124345Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg2:start (t=16.8s) through payoff@-0.4 (t=38.43s) Data holds one standing pose parked on top of the yellow bar \u2014 he is carried upward by the bar rather than performing any setup->action->payoff tied to 1.8s or 20 crew.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "repeated_template_no_demonstration",
+  "visible_evidence": "seg3:start (t=26.17s) is pixel-for-pixel the same two-column 'vs' layout as seg2:start ten seconds earlier \u2014 same ghost tracks, same 'vs' glyph, same mascot pose on the yellow column, only the header and footer labels changed; the values 20 and 3 stay invisible until seg4 (t=34s+), so the beat runs ~8s showing nothing but a growing blank column, and the footer labels 'Modern crew'/'1950s crew' collide with the source line beneath them.",
+  "root_cause": "The scene planner assigned the generic two-bar comparison template to both seg2 and seg3, so the crew stat inherits the identical composition and camera as the previous beat and the count itself is never demonstrated \u2014 a crew of twenty is a countable thing rendered as one anonymous rectangle.",
+  "repair_goal": "Re-stage seg3 as a distinct countable demonstration: 20 discrete crew figures/icons popping in around a car in a burst versus 3 for the 1950s side, with Data running one specific job in the swarm (a setup->action->payoff bit, e.g. slamming a wheel gun) \u2014 different layout, different framing, and the 20 vs 3 counts legible within the first second of the beat rather than at 34s."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}
