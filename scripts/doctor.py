@@ -612,6 +612,40 @@ def evidence_pack() -> dict:
         if (ROOT / "retro").is_dir() else []
     perf["retro_briefs"] = [f"retro/{d}/brief.json" for d in retro_dirs[-3:]]
     perf["format_scoreboard"] = "python scripts/format_scoreboard.py"
+
+    # ---- LONG-FORM (operator ruling 2026-08-25) ------------------------
+    # "I want long form videos to start posting." The doctor is the standing
+    # managing editor, and long-form is now a publishing format — but it was
+    # invisible in this pack, so the reviewer had no way to argue about it.
+    # It is deliberately NOT folded into `channel_performance` above: those
+    # entries are per-DAY shorts cadence, and long-form is weekly and long,
+    # so averaging it into a daily table would misreport both.
+    try:
+        lf = _load(ROOT / "state" / "longform_log.json", {}) or {}
+        posted = [e for e in (lf.get("posted") or []) if isinstance(e, dict)]
+        perf["longform"] = {
+            "total_posted": len(posted),
+            "recent": [{"at": str(e.get("at", ""))[:10],
+                        "title": str(e.get("title", ""))[:70],
+                        "format": e.get("format", "legacy_vertical_concat"),
+                        "duration_s": e.get("duration_s"),
+                        "showrunner_score": e.get("showrunner_score"),
+                        "url": e.get("url")}
+                       for e in posted[-6:]],
+            "renderer": "data_learning/longform_render.py (1920x1080 "
+                        "watch-page, chapters + custom thumbnail)",
+            "builder": "scripts/build_longform.py",
+            "workflow": ".github/workflows/longform.yml (Sun 17:00 UTC)",
+            "gate": "shared/showrunner_gate.run(), fail-closed before upload",
+            "verdicts": "state/showrunner_verdicts.jsonl, slug 'longform:<slug>'",
+            "note": "Publishing was re-enabled 2026-08-25 (16:9 watch-page + "
+                    "fail-closed gate), reversing the 2026-08-05 hold. Every "
+                    "entry before that date was the retired vertical "
+                    "concatenation of six Shorts and is NOT comparable.",
+        }
+    except Exception as exc:                             # noqa: BLE001
+        perf["longform"] = {"error": f"{type(exc).__name__}: {exc}"}
+
     pack["channel_performance"] = perf
 
     # What is already decided — so the doctor does not re-file it.

@@ -32,7 +32,6 @@ if str(REPO) not in sys.path:
 from data_learning import ambient, charts, mascot, story           # noqa: E402
 from data_learning.demo_render import (                            # noqa: E402
     _ass_time, _chunks, _dur, _hex_to_ass, _run)
-from shared import camera_float as _cf                             # noqa: E402
 
 W, H, FPS = 1080, 1920, 30
 KOKORO_MODEL = REPO / "kokoro_models" / "kokoro-v1.0.onnx"
@@ -1228,14 +1227,14 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
-        # MEASURE WHAT SHIPS. The proxy composites the build exactly the way
-        # the master does: layer at rest, then the whole-frame CAMERA BREATH
-        # (shared/camera_float.py) over the finished frame — measuring the
-        # raw build alone was how candidates scored fps 1.0 and shipped at
-        # 1.0, and measuring a per-layer float we no longer ship would be
-        # the same mistake with the sign flipped. Half-scale proxy, so the
-        # amplitude halves with it.
-        _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
+        # MEASURE WHAT SHIPS — and what ships no longer floats (2026-08-25
+        # ruling: the camera shake is out). The rule this probe exists for is
+        # unchanged and now cuts the other way: measuring motion the master
+        # does not have would let a beat that is actually static score as
+        # lively, which is exactly the "fps 1.0 measured, 1.0 shipped" bug
+        # with the sign flipped. So the proxy composites the build at rest,
+        # full stop, and a beat that measures short is a beat that needs more
+        # REAL motion.
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
@@ -1243,8 +1242,7 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                  "-framerate", "30", "-i", pat,
                  "-filter_complex",
                  f"[1:v]scale=540:-1,format=rgba[c];"
-                 f"[0:v][c]overlay=0:0:shortest=1,"
-                 f"{_cf.crop_vf(540, 960, amp=_A)},format=yuv420p",
+                 f"[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
             with _tf.TemporaryDirectory() as td:
                 ev = _temporal_evidence(mp4, Path(td))
@@ -1915,16 +1913,26 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # watched the shipped videos and called it "a weird shaking
             # motion". Both tunings chased one number and shipped the other.
             #
-            # The gate's per-frame budget is now carried by the WHOLE-FRAME
-            # camera breath applied just before the captions (one slow
-            # coherent drift, measured in shared/camera_float.py), so the
-            # mascot idle only has to look alive: a gentle sub-0.2 Hz hover,
-            # ~15 px/s^2 — seventy times calmer than the jiggle. His glide
-            # between beats and his performed bits are unchanged.
-            xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+12*sin(1.1*t)")
-            ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+9*sin(0.9*t)")
+            # A third tuning moved the budget onto a whole-frame camera
+            # breath and left the mascot a gentle hover. Calmer, still fake,
+            # and the operator called it out again on 2026-08-25: rip the
+            # camera shake out all the way. Both are gone.
+            #
+            # The budget is carried by REAL motion now — struggle reps
+            # through the whole beat (charts._perf_phase) and an anchor that
+            # WALKS the ranking instead of parking when the build finishes
+            # (charts._tour_index). If a beat measures short, it needs more
+            # of that, not a wobble. His glide between beats and his
+            # performed bits are unchanged.
+            # NO HOVER OSCILLATION either (2026-08-25 ruling: "no semblance
+            # of the camera shake"). This 12px/9px sine pair was the last
+            # survivor of the shake family — a sprite bobbing on the spot in
+            # its own phase, which is what made two oscillations read as
+            # "weird shaking" in the first place. His MOTION is his glide to
+            # the beat's anchor (the piecewise below) and the performance
+            # baked into the sprite; neither needs a bob to be alive.
+            xe = f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
+            ye = f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
@@ -1932,16 +1940,28 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
-        # CAMERA BREATH — the one motion source the temporal gate can always
-        # see, applied ONCE to the finished composite. A slow Lissajous crop
-        # of an oversized frame: every layer (background, charts, mascot)
-        # drifts together like a breathing camera, so there is no per-layer
-        # wobble to read as shake, and a beat whose content goes fully still
-        # still measures ~16 effective fps (constants + the measured ladder:
-        # shared/camera_float.py). Applied BEFORE the subtitles so captions
-        # stay pinned and pixel-crisp while the frame moves under them.
-        fc.append(f"[{prev}]{_cf.crop_vf(W, H)}[flt]")
-        fc.append(f"[flt]ass='{ass_esc}'[v]")
+        # NO CAMERA MOTION. Operator ruling 2026-08-25, verbatim: "that
+        # camera shake that keeps plaguing our videos — rip it out all the
+        # way, it's a cancer, I want no semblance of the camera shake to
+        # exist."
+        #
+        # It was here for one reason: the temporal grade measures per-frame
+        # pixel change, and a chart that finishes drawing and then HOLDS
+        # reads as duplicate frames. Rather than make the content move, a
+        # whole-frame Lissajous drift was added to manufacture the motion the
+        # detector wanted. That is gaming a gate, and the operator could see
+        # it — twice ("a weird shaking"), through two retunes that only ever
+        # traded amplitude against frequency.
+        #
+        # The honest fix is the one the content now supports: the mascot
+        # performs struggle reps through the whole beat (`_perf_phase`) and
+        # his anchor TOURS the ranking instead of parking once the build
+        # finishes (`charts._tour_index`), so real motion is present in
+        # frames that used to be static. If a beat still measures short, the
+        # answer is more REAL motion in that beat — never a camera that
+        # shakes to fool the meter. Captions were already pinned; with no
+        # crop they simply stay where they are drawn.
+        fc.append(f"[{prev}]ass='{ass_esc}'[v]")
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs,
                "-filter_complex", ";".join(fc),

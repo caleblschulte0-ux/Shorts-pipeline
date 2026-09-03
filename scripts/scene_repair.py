@@ -220,19 +220,18 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
     # Candidates are rendered at ~60 frames while the real beat is up to
     # 1200, so a raw-build cadence score was measuring something the shipped
     # video never is: every candidate scored fps_score 1.0 on 2026-08-11 and
-    # then shipped at 1.0 effective fps. The camera float is duration-
-    # independent (shared/camera_float.py), so including it makes the short
-    # proxy honest about the long beat.
+    # then shipped at 1.0 effective fps.
+    #
+    # That was fixed by adding the camera float to the proxy. The float is
+    # GONE now (operator ruling 2026-08-25 — no camera shake, at all), so the
+    # proxy composites at rest, which is again exactly what ships. The
+    # duration mismatch it was papering over is real and is now answered by
+    # real motion instead: the mascot works through the whole beat and his
+    # anchor tours the ranking rather than parking when the build finishes.
     fps_score = 0.5
     ff = _ffmpeg()
     if ff:
         try:
-            from shared import camera_float as _cf
-            # Composited exactly like the master: layer at rest, whole-frame
-            # CAMERA BREATH over the finished frame (the per-layer float is
-            # gone — it was half of the "weird shaking" the operator called
-            # out). Half-scale proxy, so the amplitude halves with it.
-            _A = round(_cf.FLOAT_A / 2)          # 540-wide proxy = half scale
             mp4 = build_dir / f"{tag}.mp4"
             subprocess.run(
                 [ff, "-y", "-loglevel", "error",
@@ -240,8 +239,7 @@ def score_candidate(build_dir: Path, tag: str, frames: int) -> dict:
                  "-framerate", "30", "-i", str(build_dir / f"{tag}_build%02d.png"),
                  "-filter_complex",
                  f"[1:v]scale=540:-1,format=rgba[c];"
-                 f"[0:v][c]overlay=0:0:shortest=1,"
-                 f"{_cf.crop_vf(540, 960, amp=_A)},format=yuv420p",
+                 f"[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=120)
             from scripts.showrunner_review import _temporal_evidence
             with tempfile.TemporaryDirectory() as td:

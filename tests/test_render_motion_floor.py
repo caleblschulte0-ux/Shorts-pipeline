@@ -48,47 +48,63 @@ def idle_terms() -> list[tuple[float, float]]:
                                    SRC)]
 
 
-class TestTheMascotIdleIsMeasurable(unittest.TestCase):
+class TestTheMotionBudgetIsCarriedByRealMotion(unittest.TestCase):
+    """WHERE THE PER-FRAME BUDGET LIVES — third and final answer.
 
-    def test_the_breath_is_in_the_final_chain(self):
-        """RETUNED 2026-08-16: the per-frame budget moved OFF the mascot
-        idle and onto the whole-frame CAMERA BREATH. The first fix for the
-        11-day outage put ~6 px/frame on the idle — gate satisfied, but 6.0
-        rad/s is a 0.95 Hz jiggle at ~1080 px/s^2, stacked on a card float
-        at a different frequency, and the operator watched the result and
-        called it "this weird fucking shaking motion". Both constraints are
-        pinned now: the gate budget on the breath, an acceleration ceiling
-        on everything that oscillates."""
-        self.assertIn("_cf.crop_vf(W, H)", SRC,
-                      "the whole-frame camera breath is gone — with a calm "
-                      "idle, nothing else clears the temporal gate on a "
-                      "still beat")
+    1. Originally on the mascot IDLE at 0.26 px/frame: invisible to the
+       detector, eleven days of zero posts.
+    2. Then on a 6 px/frame idle: gate satisfied, and the operator watched
+       it and called it "this weird fucking shaking motion".
+    3. Then on a whole-frame CAMERA BREATH: calmer, still fake, and the
+       operator called it out again on 2026-08-25 — *"rip it out all the
+       way, it's a cancer, I want no semblance of the camera shake to
+       exist."*
 
-    def test_the_breath_clears_the_gate_budget(self):
-        from shared import camera_float as cf
-        self.assertGreaterEqual(
-            cf.px_per_frame(cf.FLOAT_A, cf.FLOAT_WX, FPS),
-            cf.MIN_PX_PER_FRAME)
+    All three tried to satisfy a motion DETECTOR without giving a viewer
+    anything more to look at. The budget now comes from motion that is
+    actually part of the show:
 
-    def test_there_is_still_an_idle_at_all(self):
-        self.assertTrue(idle_terms(),
-                        "the mascot's hover is gone — a frozen host reads "
-                        "as a sticker even while the frame drifts")
+      * `charts._perf_phase` — struggle reps across the whole beat, so the
+        sprite changes nearly every frame instead of one arc smeared over
+        fifteen seconds;
+      * `charts._tour_index` / `_tour_tip` — the host WALKS the ranking and
+        keeps moving after the build finishes, which is exactly the window
+        the float existed to cover.
 
-    def test_no_oscillating_layer_reads_as_shake(self):
-        """Acceleration = A*C^2 px/s^2 is what the eye objects to. The
-        jiggle the operator called out measured ~1080; the breath sits
-        under 200. Every sinusoid in this renderer stays an order of
-        magnitude below the jiggle — met by LOWERING FREQUENCY, never by
-        making the motion invisible (that is the other ditch, and it cost
-        eleven days of zero posts)."""
-        for amp, coeff in idle_terms():
-            accel = amp * coeff * coeff
-            self.assertLessEqual(
-                accel, 120,
-                f"{amp}*sin({coeff}*t) accelerates at {accel:.0f} px/s^2 — "
-                f"a visible jiggle; 'weird shaking' shipped the last time "
-                f"this crept up")
+    The rule that survives all three attempts, and the reason this file is
+    still here: a beat that measures short needs MORE REAL MOTION. Never a
+    camera that moves to fool the meter.
+    """
+
+    def test_no_camera_breath_in_the_final_chain(self):
+        self.assertNotIn("crop_vf", SRC,
+                         "the camera float is retired (2026-08-25 ruling)")
+        self.assertNotIn("camera_float", SRC)
+
+    def test_no_idle_oscillator_survives(self):
+        """The sprite bob was the last of the family. Two oscillations in
+        different phases is what read as shaking in the first place."""
+        self.assertEqual(idle_terms(), [],
+                         f"a time-driven idle is back: {idle_terms()}")
+
+    def test_the_performance_still_animates_every_frame(self):
+        """Without reps the beat really is a still image — this is the
+        replacement for the idle, and it is limb motion inside the sprite
+        rather than the sprite sliding around."""
+        charts = (ROOT / "data_learning" / "charts.py").read_text()
+        self.assertIn("def _perf_phase(", charts)
+        body = charts.split("def _bake_host(", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("_perf_phase(phase)", body)
+
+    def test_the_host_keeps_moving_after_the_build_finishes(self):
+        """The specific window the float was covering: `reveal` saturates at
+        `full_by` and then sits at 1.0, so anything derived from it stops.
+        The tour runs on beat progress instead."""
+        charts = (ROOT / "data_learning" / "charts.py").read_text()
+        build = charts.split("def render_story_build(", 1)[1].split("\ndef ", 1)[0]
+        self.assertIn("_TOUR = f / max(1, frames)", build)
+        from data_learning import charts as C
+        self.assertGreater(C._tour_index(5, 0.1), C._tour_index(5, 0.5))
 
     def test_the_jiggle_values_cannot_come_back(self):
         for dead in ("+30*sin(6.0*t)", "+34*sin(5.4*t)"):
@@ -99,7 +115,7 @@ class TestTheMascotIdleIsMeasurable(unittest.TestCase):
     def test_the_invisible_values_cannot_come_back_either(self):
         """The opposite ditch: the ORIGINAL idle moved 0.26 px/frame,
         invisible to the detector, and the channel posted nothing for
-        eleven days."""
+        eleven days. Neither ditch is the answer — real motion is."""
         for dead in ("+6*sin(1.3*t)", "+9*sin(2.1*t)"):
             self.assertNotIn(dead, SRC)
 
