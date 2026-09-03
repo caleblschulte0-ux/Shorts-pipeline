@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-heat-wave-dress-code-s2-24b4303fddf8",
+  "safe_request_id": "reddit-heat-wave-dress-code-s2-24b4303fddf8",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "15ab385aabf969b4d8c8d84a532d2ac135121aefb1c599291a69c055cd38d7e2",
+  "prompt_used": "An editorial illustration for a short-form video: formal suit tie hanging. It accompanies the narration: \"pressed slacks, a collared dress shirt, a tie\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+    "filename": "20260824__reddit-heat-wave-dress-code-s2-24b4303fddf8.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_rJPKaznc_QtGajCDI62WfE6nB4U6VHc",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "49189aa82386a4d64b2ae2fc32cb3d3c54bf59ebdf6406a5501c72fd77e8128f",
+    "bytes": 1166327,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:19:06.399Z",
+  "error": null,
+  "retryable": false
+}

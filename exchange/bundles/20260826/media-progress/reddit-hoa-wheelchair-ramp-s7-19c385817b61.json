@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260826",
+  "bundle": {
+    "identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "path": "exchange/bundles/20260826/bundle.json"
+  },
+  "request_id": "reddit-hoa-wheelchair-ramp-s7-19c385817b61",
+  "safe_request_id": "reddit-hoa-wheelchair-ramp-s7-19c385817b61",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7458726b11c2165a2a4c620d11427b99de43efb4d4711d2c929ed8f4838cb638",
+  "prompt_used": "An editorial illustration for a short-form video: empty chair conference table. It accompanies the narration: \"the president resigned two meetings later\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1dVlUPmiOfQ-cyo8JZzDTH11vW4hDNDNp",
+    "filename": "20260826__reddit-hoa-wheelchair-ramp-s7-19c385817b61.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1dVlUPmiOfQ-cyo8JZzDTH11vW4hDNDNp",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f541f044807bf415f57e7a73baae27b32bf7efee769d48c06844a75daa4f6878",
+    "bytes": 1117877,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-26T12:16:24.138Z",
+  "error": null,
+  "retryable": false
+}

@@ -1,0 +1,41 @@
+{
+ "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+ "ts": "20260827T002430Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 through payoff@-0.4 Data holds the same lab-coat pose hovering at the tip of the top bar (f00, f07, f13, f19) \u2014 he drifts with the bar but never sets up or lands a bit tied to grain, school or farmland.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "layout_collision_and_overflow",
+  "visible_evidence": "At seg4:start/mid and payoff@-1.8 a large closing callout box lands on top of the chart header \u2014 'Cereal production' and the '1972 TOPS THE LIST' kicker are cut in half and the entire 1972 row is hidden behind it; simultaneously the value labels run off the right edge ('2822286\u2026' and '2093026046' are clipped at the frame boundary at seg4:mid), and they render as raw counts (1644081590) contradicting the script's 'million metric tons'.",
+  "root_cause": "The closing-line card is anchored to the top of the canvas with no reserved safe zone or chart offset, and the bar value labels are drawn outside the bar with no right-margin clamp or unit scaling, so the longest numbers exceed the frame width.",
+  "repair_goal": "Place the closing card in the empty lower third (or push the chart down / fade the header) so no title or data row is occluded, and clamp value labels inside the frame using the same scaled units as the narration (1,644.1 million metric tons), so the final beat reads cleanly end to end."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "rank",
+   "perf": "shoved_bar"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "rank",
+   "performance": "race_sprint"
+  }
+ ]
+}

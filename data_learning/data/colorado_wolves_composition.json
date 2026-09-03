@@ -1,0 +1,19 @@
+{
+  "key": "colorado_wolves_composition",
+  "title": "Colorado's current wolf population, adults vs pups",
+  "unit": "wolves",
+  "geography": "Colorado, United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Colorado wolf restoration program updates",
+    "publisher": "Colorado Parks and Wildlife (CPW)",
+    "url": "https://cpw.state.co.us/bringing-wolves-back-colorado",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "CPW's minimum count of 32 wolves in 2025 includes 18 adults and 14 pups born that spring across four established packs -- evidence the reintroduced population is breeding, not just surviving.",
+  "points": [
+    {"label": "Adults", "value": 18},
+    {"label": "Pups born this year", "value": 14}
+  ]
+}

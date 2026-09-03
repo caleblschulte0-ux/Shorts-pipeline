@@ -129,24 +129,53 @@ def fetch_media(request_id: str, entry: dict | None = None) -> Path | None:
     Verification is not optional: SHA-256 against the producer's claim, a full
     pixel decode, and a placeholder check. A mismatch returns None so the
     caller self-fills rather than pinning a corrupt or substituted image.
+
+    That same claim also gates reusing a file already on disk. Bundle
+    request IDs are content-addressed from slug/shot/prompt (and an
+    authored shot's ID from slug/shot alone) with NO DATE, so an identical
+    ask on a later production day resolves to the same cache path even
+    though the mutable Drive object behind it may since have changed. A
+    cache hit used to be returned unconditionally, before the current
+    entry's claimed hash was even read — so pin_verified_media would then
+    stamp TODAY's Drive URL/hash onto the package as if today's bytes had
+    been the ones downloaded and verified, when only yesterday's were. A
+    cached file is now trusted only when it hashes to the CURRENT entry's
+    claim; anything else — no current claim, or a hash that disagrees — is
+    treated as no cache at all and re-fetched.
     """
     import hashlib
     import io
     import urllib.request
 
-    # Already on disk from a previous run?
-    for ext in ("png", "jpg", "jpeg", "webp", "mp4"):
-        p = MEDIA_CACHE / f"{request_id}.{ext}"
-        if p.exists() and p.stat().st_size:
-            return p
-
-    if not isinstance(entry, dict) or entry.get("status") not in ("fulfilled",
-                                                                  "partial"):
-        return None
-    drive = entry.get("drive") or {}
-    img = entry.get("image") or {}
+    valid_entry = (isinstance(entry, dict)
+                   and entry.get("status") in ("fulfilled", "partial"))
+    drive = (entry.get("drive") or {}) if valid_entry else {}
+    img = (entry.get("image") or {}) if valid_entry else {}
     fid = (drive.get("file_id") or "").strip()
     claim = (img.get("sha256") or "").strip().lower()
+
+    # Already on disk from a previous run — but only trust it against what
+    # the CURRENT entry claims. See the docstring above for why the request
+    # ID alone is not enough evidence.
+    if valid_entry and claim:
+        for ext in ("png", "jpg", "jpeg", "webp", "mp4"):
+            p = MEDIA_CACHE / f"{request_id}.{ext}"
+            if not (p.exists() and p.stat().st_size):
+                continue
+            try:
+                cached_sha = hashlib.sha256(p.read_bytes()).hexdigest()
+            except Exception as exc:                     # noqa: BLE001
+                print(f"[phase-b] {request_id}: cached file unreadable "
+                      f"({exc}) — refetching")
+                continue
+            if cached_sha == claim:
+                return p
+            print(f"[phase-b] {request_id}: cached file does not match "
+                  f"today's claim (cached {cached_sha[:12]}…, claim "
+                  f"{claim[:12]}…) — stale cache, refetching")
+
+    if not valid_entry:
+        return None
 
     urls = [u for u in (
         drive.get("download_url"),

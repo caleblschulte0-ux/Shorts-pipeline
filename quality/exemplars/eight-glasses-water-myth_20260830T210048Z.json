@@ -1,0 +1,206 @@
+{
+ "slug": "eight-glasses-water-myth",
+ "ts": "20260830T210048Z",
+ "score": 91,
+ "dimensions": {
+  "hook": 3,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.027,
+  "effective_fps": 23.4,
+  "max_dup_run": 4,
+  "max_dup_at_s": 35.08,
+  "duration_s": 43.96
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "comparison",
+   "performance": {
+    "action": "hoist_stack",
+    "family": "carry",
+    "goal": "bear the growing total's weight \u2014 What's actually recommended (all fluid)",
+    "target": "What's actually recommended (all fluid)",
+    "selection_input": {
+     "claim": "What's actually recommended (all fluid) leads the 8-glasses myth vs modern fluid guidance at 3.2 liters, far above The 8-glasses myth (water only) at 1.9.",
+     "relationships": [
+      "dominance",
+      "imbalance",
+      "surprise"
+     ],
+     "direction": "stable_high",
+     "shape": "ranking",
+     "used_families": []
+    },
+    "contact": "arms pressed overhead on the fill's underside",
+    "cause": "holds the growing pile up",
+    "consequence": "the load buckles him, he barely heaves it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": {
+    "action": "drag_line",
+    "family": "pull",
+    "goal": "resist a growing value and lose \u2014 From drinks",
+    "target": "From drinks",
+    "selection_input": {
+     "claim": "From drinks is the largest share of where your daily fluid actually comes from at 80.0 percent.",
+     "relationships": [
+      "dominance",
+      "surprise"
+     ],
+     "direction": "stable_high",
+     "shape": "part_to_whole",
+     "used_families": [
+      "carry"
+     ]
+    },
+    "contact": "both fists clamped on the object's tip",
+    "cause": "hauls DOWN trying to stop the rise",
+    "consequence": "the data keeps rising and DRAGS HIM airborne",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": {
+    "action": "shoved_bar",
+    "family": "push",
+    "goal": "hold the leader back and be overpowered \u2014 Men",
+    "target": "Men",
+    "selection_input": {
+     "claim": "Men leads recommended daily fluid intake by sex at 3.7 liters, far above Women at 2.7.",
+     "relationships": [
+      "dominance"
+     ],
+     "direction": "stable_high",
+     "shape": "ranking",
+     "used_families": [
+      "carry",
+      "pull"
+     ]
+    },
+    "contact": "both hands braced on the bar's advancing face",
+    "cause": "pushes back to hold the leader",
+    "consequence": "the bar outgrows him \u2014 skids, then LAUNCHED off it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  }
+ ],
+ "why_it_worked": "A well-executed video with clear, engaging data demonstrations and an actively performing mascot.",
+ "render_ref": "preview-renders branch @ 20260830T210048Z"
+}

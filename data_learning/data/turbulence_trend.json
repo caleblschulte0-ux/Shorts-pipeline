@@ -1,0 +1,22 @@
+{
+  "key": "turbulence_trend",
+  "title": "Severe clear-air turbulence over the North Atlantic (annual hours)",
+  "unit": "hours",
+  "geography": "North Atlantic flight corridor",
+  "time_coverage": "1979-2020",
+  "source": {
+    "name": "Reanalysis of clear-air turbulence trends",
+    "publisher": "University of Reading (Prosser, Williams, Marlton) — Geophysical Research Letters",
+    "url": "https://doi.org/10.1029/2023GL103814",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate, order-of-magnitude figures; the study reports roughly a 55% increase in annual severe clear-air turbulence duration on this route between 1979 and 2020.",
+  "points": [
+    {"label": "1979", "value": 17.7, "period": "1979"},
+    {"label": "1990", "value": 20.0, "period": "1990"},
+    {"label": "2000", "value": 22.0, "period": "2000"},
+    {"label": "2010", "value": 24.5, "period": "2010"},
+    {"label": "2020", "value": 27.4, "period": "2020"}
+  ]
+}

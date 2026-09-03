@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s2-d2233909594c",
+  "safe_request_id": "reddit-thermostat-admin-s2-d2233909594c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5476e3ab44fb0d2d6b176c7b3e873c72d6629c8438a2c28b4eabc4f25cccaebb",
+  "prompt_used": "An editorial illustration for a short-form video: office worker written up. It accompanies the narration: \"a temp near the vent got blamed and written up for tampering\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1B20TkECw-06YZisfLXoschIJTFwI35xa",
+    "filename": "20260828__reddit-thermostat-admin-s2-d2233909594c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1B20TkECw-06YZisfLXoschIJTFwI35xa",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "80e48cdf42115a1c047cf34b47742993ae64f47f14eaf9155a717cd0c32bf1fc",
+    "bytes": 1718182,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:17:25Z",
+  "retryable": false
+}

@@ -1,0 +1,620 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260829",
+  "status": "fulfilled",
+  "owner": "chatgpt",
+  "mode": "takeover",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "ce3cb772f437e74c7284709e35c60e25e195fbfa",
+    "production_date": "20260829",
+    "bundle_sha256": "ec41aea5d649c311d0cfe23861440d6b6011ef4d75a81698c32d4508a49738a6"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "graph-tiktok-shop-passed-etsy",
+      "title": "A 2-Year-Old App Just Passed Etsy",
+      "hook": "Etsy took 19 years. TikTok took 2.",
+      "y_label": "Global GMV ($ billions)",
+      "duration": 13,
+      "source": "Etsy Inc. 10-K filings, total marketplace Gross Merchandise Sales: 2019 $4.97B, 2020 $10.28B, 2021 $13.51B, 2022 $13.31B, 2023 $13.2B, 2024 $12.6B, 2025 $11.9B. TikTok Shop global Gross Merchandise Value, per company disclosures and reporting by Reuters/Momentum Works/Retail TouchPoints: estimated $4.4B in 2022, $11B in 2023, $33.2B in 2024, and $66B in 2025.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Etsy",
+          "color": "#f45800",
+          "icon": "Etsy",
+          "values": [
+            4.97,
+            10.28,
+            13.51,
+            13.31,
+            13.2,
+            12.6,
+            11.9
+          ]
+        },
+        {
+          "name": "TikTok Shop",
+          "color": "#25f4ee",
+          "icon": "TikTok",
+          "values": [
+            0,
+            0,
+            0,
+            4.4,
+            11,
+            33.2,
+            66
+          ]
+        }
+      ],
+      "hashtags": [
+        "tiktokshop",
+        "etsy",
+        "ecommerce",
+        "onlineshopping",
+        "smallbusiness",
+        "retail",
+        "socialcommerce",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-asteroids-catalogued",
+      "title": "We've Now Found 40,000 Asteroids Near Earth",
+      "hook": "Space just got a lot less empty.",
+      "y_label": "Cumulative near-Earth asteroids catalogued",
+      "duration": 13,
+      "source": "NASA Center for Near-Earth Object Studies (CNEOS) and ESA Planetary Defence Office milestone announcements: the 10,000th near-Earth object was catalogued in June 2013, the 30,000th in October 2022, and the 40,000th in November 2025. Earlier and intermediate totals are conservative estimates interpolated from the published discovery-rate curve; PHA counts are approximate catalogue running totals.",
+      "years": [
+        2000,
+        2010,
+        2013,
+        2018,
+        2022,
+        2025
+      ],
+      "series": [
+        {
+          "name": "Near-Earth Asteroids",
+          "color": "#f5c518",
+          "icon": "NASA",
+          "values": [
+            900,
+            7000,
+            10000,
+            19000,
+            30000,
+            40000
+          ]
+        },
+        {
+          "name": "Potentially Hazardous",
+          "color": "#e74c3c",
+          "icon": "PHA",
+          "values": [
+            150,
+            1000,
+            1400,
+            1900,
+            2300,
+            2500
+          ]
+        }
+      ],
+      "hashtags": [
+        "asteroid",
+        "nasa",
+        "space",
+        "planetarydefense",
+        "astronomy",
+        "science",
+        "cneos",
+        "esa",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-dota-prize-pool-collapse",
+      "title": "Esports' Biggest Prize Ever Just Collapsed",
+      "hook": "It was $40 million. Then Valve changed one thing.",
+      "y_label": "Tournament prize pool ($ millions)",
+      "duration": 13,
+      "source": "Valve compendium/battle-pass disclosures and reporting by Tips.GG and GosuGamers for Dota 2 The International: 2015 $18.4M, 2018 $25.5M, 2019 $34.3M, 2021 $40.0M, 2022 $18.9M, 2023 $3.0M, 2024 $2.8M. Riot Games and tournament reporting for League of Legends Worlds: 2015 $2.13M, 2018 $6.45M, and about $2.2-2.3M in 2019-2024.",
+      "years": [
+        2015,
+        2018,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Dota 2: The International",
+          "color": "#e74c3c",
+          "icon": "Dota 2",
+          "values": [
+            18.4,
+            25.5,
+            34.3,
+            40,
+            18.9,
+            3,
+            2.8
+          ]
+        },
+        {
+          "name": "LoL Worlds",
+          "color": "#1abc9c",
+          "icon": "League of Legends",
+          "values": [
+            2.13,
+            6.45,
+            2.25,
+            2.225,
+            2.25,
+            2.3,
+            2.23
+          ]
+        }
+      ],
+      "hashtags": [
+        "dota2",
+        "theinternational",
+        "esports",
+        "leagueoflegends",
+        "gaming",
+        "prizepool",
+        "valve",
+        "riotgames",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "format": "graph_race",
+      "slug": "graph-nokia-vs-iphone",
+      "title": "Nokia Ruled Smartphones. Then Apple Ended It",
+      "hook": "100 million, then nearly zero",
+      "y_label": "Smartphones shipped per year (millions)",
+      "duration": 13,
+      "source": "Nokia smartphone shipments and Apple iPhone fiscal-year unit sales compiled from IDC, Gartner, Strategy Analytics, and company reports. Nokia shipped about 100 million smartphones in 2010; its share halved from 33% in 2010 to 16% in 2011 and shipments fell to roughly 30-35 million by 2012-2013. Apple iPhone unit sales are from Apple 10-K filings. Figures are approximate and rounded to the nearest million.",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "series": [
+        {
+          "name": "Nokia",
+          "color": "#124191",
+          "icon": "Nokia",
+          "values": [
+            61,
+            68,
+            100,
+            78,
+            35,
+            30
+          ]
+        },
+        {
+          "name": "iPhone",
+          "color": "#a3a3a3",
+          "icon": "Apple",
+          "values": [
+            11.63,
+            20.73,
+            39.99,
+            72.29,
+            125.05,
+            150.26
+          ]
+        }
+      ],
+      "hashtags": [
+        "nokia",
+        "iphone",
+        "apple",
+        "smartphones",
+        "symbian",
+        "techhistory",
+        "mobilephones",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "subreddit": "MaliciousCompliance",
+      "slug": "paper-approval-mountain",
+      "title": "His Paper-Only Rule Cost More Than the Supplies",
+      "hashtags": [
+        "maliciouscompliance",
+        "workplace",
+        "office",
+        "paperwork",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "Every purchase needed a printed approval sheet. Our new manager said digital approvals were too easy to miss, so before ordering anything we had to print the request, the email thread, and every attachment. Fine. We followed that rule with the devotion it clearly deserved. A replacement keyboard produced fourteen pages. A software renewal arrived with a seventy-page license. By Wednesday, stacks of approval paper covered the supply counter, and Facilities delivered three more boxes of paper just to approve buying two boxes of paper. That little circle of life was apparently billable. Then the toner bill reached Finance. They compared it with our actual purchases and found the paperwork cost more than the supplies it approved. The manager called an efficiency meeting, pulled down the rule, and restored the digital form. The recycling bins got the final approval: no attachment required.",
+      "shots": [
+        {
+          "phrase": "Every purchase needed a printed approval sheet",
+          "query": "manager posting printed approval rule",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1vwUzt_pziPylIuIpFmdYQB8M4_K9P9sZ",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1vwUzt_pziPylIuIpFmdYQB8M4_K9P9sZ",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "63ce8db6b35dc40b873db615896167c74a30e900921681626f30e1a80c660731",
+              "bytes": 2254097,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "print the request, the email thread, and every attachment",
+          "query": "office worker printing long email thread",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1LJiZgpswXFV-WyRRCqRAYc2J7NOuo5EN",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1LJiZgpswXFV-WyRRCqRAYc2J7NOuo5EN",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "9b2448ff8f25edaef2981b02054626a24a4f4a0ab31c0b5dd4705c8473bf1347",
+              "bytes": 2047620,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "stacks of approval paper",
+          "query": "stacks of printed approval forms",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1CUQOKQYLQEXf1a1Jxp7dcXVwdZBtjhgo",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1CUQOKQYLQEXf1a1Jxp7dcXVwdZBtjhgo",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6540a4877b52fc665298bacce0db15a61e5c7e28eba0e668e0493d6d070413ee",
+              "bytes": 2325232,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "three more boxes of paper",
+          "query": "employees moving printer paper boxes",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1XwI0aloAbrBcQ--540gC-GqnwFROvnRd",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1XwI0aloAbrBcQ--540gC-GqnwFROvnRd",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "779cf2837620a077a470736f2aa68ad275a240011d0143162392b57ebfef23e6",
+              "bytes": 2191538,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "the toner bill reached Finance",
+          "query": "finance employee reviewing toner expense",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "16fcnp9NmExnB5PEfDIBfCd9KqHf4iUwt",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=16fcnp9NmExnB5PEfDIBfCd9KqHf4iUwt",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "d7601126e2faf3bc77f1ad49166671fdd89bcb3f5bb618f693451552354c7933",
+              "bytes": 2017865,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "pulled down the rule",
+          "query": "manager removing paper-only rule",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1m1Up8ji1wWxoVvxmj0Ht6MjI0_bw8d0A",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-paper-approval-mountain-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1m1Up8ji1wWxoVvxmj0Ht6MjI0_bw8d0A",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "6f1198efa72181567916ca5675f2e4e1b58b529015fc8e78900fbee172093655",
+              "bytes": 1829452,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "printed approval sheet",
+          "text": "PRINT EVERYTHING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fourteen pages",
+          "text": "14 PAGES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "cost more than the supplies",
+          "text": "PAPER COST MORE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "no attachment required",
+          "text": "RULE DELETED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dry office tension into playful payoff",
+      "_authored_by": "chatgpt-takeover"
+    },
+    {
+      "subreddit": "TalesFromTheCustomer",
+      "slug": "gym-sales-tour-cancel",
+      "title": "The Gym Hid Cancellation. I Booked a Sales Tour.",
+      "hashtags": [
+        "talesfromthecustomer",
+        "gym",
+        "membership",
+        "customerservice",
+        "karma",
+        "redditstories",
+        "shorts"
+      ],
+      "script": "My gym only accepted cancellations in person between ten and two on weekdays. I worked across town during exactly those hours, which apparently made me a lifelong athlete. Emails got the same copied policy. Then I noticed the gym offered free membership consultations until eight at night. So I booked the last sales tour on Thursday, arrived with my cancellation letter, and listened politely through the pitch. When the salesperson asked what goal brought me in, I slid the letter across the desk and said, “Ending monthly cardio.” He called the manager, who insisted cancellations were handled by the daytime office. I pointed to the appointment confirmation promising help with any membership question. That sentence did more exercise than I had all month. They processed the cancellation before the tour ended and printed my confirmation. The next week, the website quietly added an online cancellation form. Apparently the easiest retention strategy had been hiding the exit.",
+      "shots": [
+        {
+          "phrase": "only accepted cancellations in person",
+          "query": "gym cancellation policy binder",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1MdODtCpc2ZuCPsKnBKnWZ42R1R5J0glD",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s0.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1MdODtCpc2ZuCPsKnBKnWZ42R1R5J0glD",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "5ab8337b2e68e7e3c526cb8999f1d1021493822febcd4682344e1c6252cdf23b",
+              "bytes": 1952496,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "between ten and two on weekdays",
+          "query": "gym clock closed office",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1OgCuql52Jbc0rNH3NSwMNsMoxfq1gk-1",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s1.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1OgCuql52Jbc0rNH3NSwMNsMoxfq1gk-1",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "5c54640993b925e0899e5cf6aad755cfc46b7c015230239f86a71b1b5b38c878",
+              "bytes": 1692048,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "booked the last sales tour",
+          "query": "gym membership appointment",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "10GgLSTcpRRqaIlIOkcpSzYupIOzfiswt",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s2.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=10GgLSTcpRRqaIlIOkcpSzYupIOzfiswt",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "88fd400de08d74e7a767835c66d9652af4a8b7e97f91963bdc44e7776a46032b",
+              "bytes": 1891254,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "slid the letter across the desk",
+          "query": "evening gym cancellation letter",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1QdDfnjs7o8OzHtdLWBQqZDoOHNvOuebG",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s3.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1QdDfnjs7o8OzHtdLWBQqZDoOHNvOuebG",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "cba554e99ab7171ba89850f6db005890feadacaa860726d5892374142e77ed96",
+              "bytes": 1768424,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "He called the manager",
+          "query": "gym salesperson calling manager",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1E_A_B-T2xwp58PqXf_cHBGWJXA2KER_u",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s4.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1E_A_B-T2xwp58PqXf_cHBGWJXA2KER_u",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "9dde18311b452e84d146ef70eb1f06c53b6bdd12db8d5a116e1ab5a8f1355f67",
+              "bytes": 1956109,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        },
+        {
+          "phrase": "printed my confirmation",
+          "query": "gym cancellation confirmation",
+          "media": {
+            "status": "fulfilled",
+            "drive": {
+              "file_id": "1d4rsOpq72Urq2kWUAVpCJMDCWCUzPQY1",
+              "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+              "filename": "20260829__authored-gym-sales-tour-cancel-s5.png",
+              "download_url": "https://drive.google.com/uc?export=download&id=1d4rsOpq72Urq2kWUAVpCJMDCWCUzPQY1",
+              "sharing": "anyone_with_link"
+            },
+            "image": {
+              "sha256": "27d075565eda6740d632f605b3e9ba926ba9d7e2297c32cb47de61a5cc594f84",
+              "bytes": 2075218,
+              "format": "png",
+              "width": 1254,
+              "height": 1254
+            }
+          }
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "lifelong athlete",
+          "text": "LIFELONG MEMBER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "free membership consultations",
+          "text": "FREE SALES TOUR",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Ending monthly cardio.",
+          "text": "ENDING CARDIO",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "processed the cancellation",
+          "text": "CANCELED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "light bureaucratic tension into satisfying payoff",
+      "_authored_by": "chatgpt-takeover"
+    }
+  ],
+  "editorial": {
+    "packages_reviewed": 6,
+    "punched_up": 2,
+    "kept": 4,
+    "notes": [
+      "Authored and punch-edited both Reddit stories to 142 and 156 words with exact shot and punch phrase preservation.",
+      "Kept four renderer-native graph races because their source notes, arrays, hooks, titles, and movement gates were already specific and defensible."
+    ]
+  },
+  "audit": {
+    "media_checkpoints_recovered": 0,
+    "authored_shot_checkpoints": 12,
+    "drive_objects_byte_verified": 12,
+    "media_gaps_unfilled": 0,
+    "authored_packages": 6,
+    "graph_races": 4,
+    "reddit_stories": 2,
+    "validation_errors": 0
+  },
+  "blocked": [],
+  "notes": [
+    "Recovered from an upstream no-bundle day under the repository's no-bundle takeover contract.",
+    "All twelve Reddit shot images were generated, uploaded to Drive, downloaded back, SHA-256 verified, PNG-decoded locally, and checkpointed before closure."
+  ]
+}

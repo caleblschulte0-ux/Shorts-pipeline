@@ -1,0 +1,37 @@
+{
+ "slug": "fish-catch-has-barely-grown-since-1993-with-94403126-metric-",
+ "ts": "20260824T111248Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg3:start (t=26.52) to payoff@-0.4 (t=39.40) Data is parked on the same 2013 bubble doing a generic lean/kick, and in seg0-seg1 he merely slides alongside the bars (seg1:mid t=10.86) \u2014 no setup->action->payoff tied to the fish-catch ceiling.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start (t=26.52) shows a title, a subtitle, five tiny pink dots and nothing else \u2014 the top third and bottom 40% of the frame are blank navy; by seg3:end (t=31.94) the bubbles have grown but are all visually the same size (11.1 vs 14.9 reads as no difference), and the mascot sits on the 2013 bubble occluding its own label ('11.1' half-hidden in seg3:end and every later frame).",
+  "root_cause": "The scene switched from the horizontal bar-race layout to a sparse bubble grid whose values span only 11.1-14.9, so area scaling produces near-identical circles clustered in the middle of a full-height 9:16 panel with no background structure, no axis, and no growth read; the mascot was placed on top of the first bubble rather than given a beat.",
+  "repair_goal": "Rebuild seg3 to fill the frame and make the 11% -> 17% growth legible: use the same full-width bar/fill treatment as seg0-seg2 (or a stacked/filling metaphor such as a globe filling to 17%), anchor the elements to the panel edges so no third of the frame is empty, exaggerate the scale mapping so 11.1 and 14.9 are clearly different, and move Data off the 2013 label into an actual bit tied to the stat (e.g. pushing the fill line up and being stopped by the ceiling) so nothing occludes a number."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "block_wall"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260829",
+  "bundle": {
+    "identity": "takeover-ce3cb772f437e74c7284709e35c60e25e195fbfa",
+    "path": "exchange/bundles/20260829/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-29T12:15:20Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-paper-approval-mountain-s4",
+  "safe_request_id": "authored-paper-approval-mountain-s4",
+  "prompt_sha256": "478bbfa0346c8486c5e5bc7bdc6c88e6dbc6cf92a188105c5c3e6a6915821a1b",
+  "prompt_used": "finance employee reviewing toner expense",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "16fcnp9NmExnB5PEfDIBfCd9KqHf4iUwt",
+    "filename": "20260829__authored-paper-approval-mountain-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=16fcnp9NmExnB5PEfDIBfCd9KqHf4iUwt",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d7601126e2faf3bc77f1ad49166671fdd89bcb3f5bb618f693451552354c7933",
+    "bytes": 2017865,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "paper-approval-mountain",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

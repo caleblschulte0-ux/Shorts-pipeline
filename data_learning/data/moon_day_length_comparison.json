@@ -1,0 +1,19 @@
+{
+  "key": "moon_day_length_comparison",
+  "title": "Earth-Moon distance: 1.4 billion years ago vs today (km)",
+  "unit": "kilometers",
+  "geography": "Earth-Moon system",
+  "time_coverage": "1.4 billion years ago vs 2026",
+  "source": {
+    "name": "TimeOptMCMC astrochronology reconstruction of Precambrian rock layers",
+    "publisher": "Meyers & Malinverno, Proceedings of the National Academy of Sciences (2018)",
+    "url": "https://lamont.columbia.edu/news/days-earth-are-getting-longer-you-can-thank-moon-not-seasons",
+    "officiality": "reference",
+    "access_date": "2026-08-25"
+  },
+  "notes": "The 2018 PNAS study (Meyers, Univ. of Wisconsin; Malinverno, Columbia's Lamont-Doherty Earth Observatory) dated 1.4-billion-year-old rock layers and derived an Earth-Moon distance of 340,900 km and a 18.68-hour day at that time, versus today's ~384,400 km average distance.",
+  "points": [
+    {"label": "1.4 billion years ago", "value": 340900},
+    {"label": "Today", "value": 384400}
+  ]
+}

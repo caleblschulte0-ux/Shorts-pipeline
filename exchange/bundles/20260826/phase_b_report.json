@@ -1,0 +1,114 @@
+{
+  "date": "20260826",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "8e822366cecfcd8b1b3a0f458446bb39354e4de9c247ee0326aa5dc1b16ef7a0",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "details": [
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s1-dc71ee610336",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s1-dc71ee610336.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s3-27cdcd2691e8.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s4-c63fe8330fc6.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s5-da0d5930ab4a.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s6-38f6d7100c74",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s6-38f6d7100c74.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s7-19c385817b61",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s7-19c385817b61.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s0-502a21bb5ac6.png"
+    },
+    {
+      "request_id": "reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-hoa-wheelchair-ramp-s2-2f4d9041d0fd.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s1-40d18cc032be",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s1-40d18cc032be.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s2-1a942d1fbebf",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s2-1a942d1fbebf.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s3-1f315449a073",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s3-1f315449a073.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s4-c93f23e626db",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s4-c93f23e626db.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s5-d9a89a0b72cd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s5-d9a89a0b72cd.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s7-5596b2333541",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s7-5596b2333541.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s0-1abd378ed2ea",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s0-1abd378ed2ea.png"
+    },
+    {
+      "request_id": "reddit-airport-bag-sizer-s6-3b2e2fbe03ef",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-airport-bag-sizer-s6-3b2e2fbe03ef.png"
+    }
+  ]
+}

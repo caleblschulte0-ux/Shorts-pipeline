@@ -1,0 +1,16 @@
+{
+  "schema": "chatgpt-media-worker-failure/v1",
+  "date": "20260829",
+  "worker": "media",
+  "status": "failed",
+  "step": "read_bundle",
+  "bundle_path": "exchange/bundles/20260829/bundle.json",
+  "heartbeat_commit": "d497092941893bf364ba62793ed9ca65c126d0b9",
+  "observed_at": "2026-08-29T11:02:24Z",
+  "error": {
+    "code": "BUNDLE_MISSING",
+    "message": "exchange/bundles/20260829/bundle.json and BUNDLE_ID are absent on main; state/trending_packages/20260829 and state/third_packages/20260829 are also absent, and no Exchange Phase A run exists to recover. The worker cannot discover or safely invent media requests."
+  },
+  "retryable": true,
+  "next_step": "Finalizer recovery should re-check for a valid bundle; if it appears, run the Media contract completely before finalization."
+}

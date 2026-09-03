@@ -1,0 +1,45 @@
+{
+ "slug": "the-world-has-less-land-than-it-did-in-2013",
+ "ts": "20260828T040244Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start and seg3:mid (f13, f14) waste the entire top ~40% of the frame \u2014 nothing between the 'Crop production index' title and the 100 gridline but flat navy, with the curve crushed into the lower third.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void_and_decorative_mascot",
+  "visible_evidence": "seg3:start (f13) and seg3:mid (f14): top 40% of the frame is empty dark navy, the crop area chart is already fully drawn and barely changes between the two frames, and Data stands motionless dead-centre with his lab coat covering the 1991-2001 section of the curve \u2014 the exact leap the narration is describing ('20.8 in 1972, jumped to 89.3').",
+  "root_cause": "The crop segment reuses a static pre-drawn area chart with no build animation and no vertical composition: the chart occupies only the lower two-thirds while the mascot is parked at chart centre instead of being blocked away from the data path, so he occludes the story beat rather than performing it.",
+  "repair_goal": "Animate the crop curve drawing left-to-right in sync with the narration (1972 -> 2001 -> 2020) and let Data physically climb/get launched by the rising line, moving him off the curve's path to the left margin at the start and up to the 100 marker at the end; expand the plot area upward to fill the empty top third."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  },
+  "2": {
+   "viz": "trend",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": "shoved_bar"
+  }
+ ]
+}

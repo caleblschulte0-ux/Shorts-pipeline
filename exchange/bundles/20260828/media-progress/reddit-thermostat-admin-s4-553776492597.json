@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s4-553776492597",
+  "safe_request_id": "reddit-thermostat-admin-s4-553776492597",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2f929f0652be9ee5b949d7399e4b04df6a3afaf664683366632bf6a8c714e11c",
+  "prompt_used": "An editorial illustration for a short-form video: hvac technician repair. It accompanies the narration: \"facilities quietly replaced two malfunctioning units\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+    "filename": "20260828__reddit-thermostat-admin-s4-553776492597.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1W6zNDWXeOXSisptvKhiG7HkYhRjdBzPP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "30d5bbcdbb2b26df1999863145fc876b4f7f1268246ac68825757650e4b87809",
+    "bytes": 2111452,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:17:51Z",
+  "retryable": false
+}

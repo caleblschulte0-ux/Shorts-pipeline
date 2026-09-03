@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-msc-overtakes-maersk",
+  "title": "MSC Just Ended Maersk's 25-Year Reign",
+  "hook": "A New Shipping Giant Emerged",
+  "y_label": "Container fleet capacity (million TEU)",
+  "duration": 13,
+  "source": "Alphaliner container-fleet rankings as reported by maritime trade press (Riviera Maritime Media, Marine Insight, Splash247/Lloyd's List coverage of Alphaliner data). MSC overtook Maersk in January 2022 to become the world's largest container shipping line by deployed capacity, ending Maersk's roughly 25-year run at #1; figures are approximate fleet-capacity snapshots.",
+  "years": [
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Maersk",
+      "color": "#42B0D5",
+      "values": [
+        2.86,
+        3.09,
+        4.15,
+        4.14,
+        4.28,
+        4.3
+      ]
+    },
+    {
+      "name": "MSC",
+      "color": "#F7A81B",
+      "values": [
+        2.49,
+        2.71,
+        3.19,
+        3.63,
+        4.29,
+        5.9
+      ]
+    }
+  ],
+  "hashtags": [
+    "msc",
+    "maersk",
+    "shipping",
+    "containership",
+    "logistics",
+    "supplychain",
+    "cargo",
+    "globaltrade",
+    "dataviz",
+    "business",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

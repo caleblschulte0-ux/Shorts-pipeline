@@ -1,0 +1,118 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "reddit-not-an-employee",
+  "title": "She Reported Me To An Employee. I Wasn't One.",
+  "script": "She grabbed the wrong employee? A woman grabbed my arm in the paint aisle because I was wearing a red hoodie. The store uniform was red too, so apparently employment is color-coded. I told her twice I didn't work there. She called me a liar, then flagged down an actual employee in an orange vest. He looked at my hoodie, hers too, and asked which one of us needed a stepladder. She pointed at me. I said neither of us worked there. He laughed so hard he had to lean on a shelf, then paged security over the intercom for an aisle nine altercation, both parties in red. Store cameras caught the whole thing. Corporate posted the clip internally for de-escalation training: her face blurred and mine left in, on purpose. Which red hoodie became the training video?",
+  "shots": [
+    {
+      "phrase": "grabbed my arm in the paint aisle",
+      "query": "hardware store aisle",
+      "image_url": "https://drive.google.com/uc?export=download&id=11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+      "media_origin": "chatgpt",
+      "media_file_id": "11DsusWJgT_EmfxYqetB1qP3INf0gbmQI",
+      "media_sha256": "378dfd7d86dff6b89f1a5d12acef9835a9e0bd0adfff7605d7cf8ebc90eef92e",
+      "media_bytes": 1912682
+    },
+    {
+      "phrase": "wearing a red hoodie",
+      "query": "red hoodie person",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+      "media_sha256": "18dce50f4864a7bd04fd911bd019e780763870df3f06ca3fae9c54a5459c899d",
+      "media_bytes": 1822890
+    },
+    {
+      "phrase": "flagged down an actual employee in an orange vest",
+      "query": "store employee vest",
+      "image_url": "https://drive.google.com/uc?export=download&id=1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+      "media_origin": "chatgpt",
+      "media_file_id": "1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+      "media_sha256": "6c5a4eb5350d1cc944454d421dd51f31583ad1e1136ac86a5a39c5037ebe19f7",
+      "media_bytes": 2302971
+    },
+    {
+      "phrase": "asked which one of us needed a stepladder",
+      "query": "stepladder hardware store",
+      "image_url": "https://drive.google.com/uc?export=download&id=1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+      "media_origin": "chatgpt",
+      "media_file_id": "1O0NQmw47qIEfXDntL3hH5oeZRXB2ff1k",
+      "media_sha256": "e66c03786a2dc4019c3adadcd6bfad4a20dac5d41fb0c2ae10fa0eb1edee72cb",
+      "media_bytes": 1927962
+    },
+    {
+      "phrase": "laughed so hard he had to lean on a shelf",
+      "query": "man laughing store aisle",
+      "image_url": "https://drive.google.com/uc?export=download&id=1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+      "media_origin": "chatgpt",
+      "media_file_id": "1okJn-O1khL3DagpDkftCeP7i7mTK8eRs",
+      "media_sha256": "12c0b7cc23e74de51b99615fa77e5e663410df291a1e58c8eaf0931f0544ac4c",
+      "media_bytes": 2049973
+    },
+    {
+      "phrase": "paged security over the intercom",
+      "query": "store intercom speaker",
+      "image_url": "https://drive.google.com/uc?export=download&id=1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+      "media_origin": "chatgpt",
+      "media_file_id": "1KT-fqkjkdjeNfa5Y4GaK9Pi7rFNnPl0u",
+      "media_sha256": "1f038f3cdef4315ffbb79dd572b81a1b8dfa029aa2a5db980d514ec8b2301046",
+      "media_bytes": 2135383
+    },
+    {
+      "phrase": "Store cameras caught the whole thing",
+      "query": "security camera retail store",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Zw0CZ_GXClVJPyyM2IUftKBq4zvX7IVI",
+      "media_sha256": "6f24e5e15b786f51de28583226d02eb731eb899ceccc49bb737c8e3ee5e6ce1b",
+      "media_bytes": 2197481
+    },
+    {
+      "phrase": "her face blurred and mine left in",
+      "query": "blurred face security footage",
+      "image_url": "https://drive.google.com/uc?export=download&id=1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+      "media_origin": "chatgpt",
+      "media_file_id": "1cMsfJwqr8z2MrkjkArk6phdnpppUJ3lX",
+      "media_sha256": "baca31eb875b4d74201658ebfc35db1121e2c0037600bc8f7339dd3a8e70271c",
+      "media_bytes": 1545406
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "wearing a red hoodie",
+      "text": "NOT STAFF",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "asked which one of us needed a stepladder",
+      "text": "BUSTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "laughed so hard he had to lean on a shelf",
+      "text": "DEAD",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "posted the clip internally",
+      "text": "WENT VIRAL",
+      "color": "#50ff80"
+    }
+  ],
+  "hashtags": [
+    "idontworkherelady",
+    "reddit",
+    "storytime",
+    "retail",
+    "funny",
+    "viral",
+    "karma",
+    "mallstory",
+    "customerservice",
+    "shorts",
+    "fyp"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto",
+  "punched_up": true
+}

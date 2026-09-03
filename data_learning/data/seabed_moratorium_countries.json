@@ -1,0 +1,19 @@
+{
+  "key": "seabed_moratorium_countries",
+  "title": "Countries calling for a deep-sea mining pause or ban (count)",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "Momentum for a Moratorium -- government positions tracker",
+    "publisher": "Deep Sea Conservation Coalition (DSCC)",
+    "url": "https://deep-sea-conservation.org/solutions/no-deep-sea-mining/momentum-for-a-moratorium/",
+    "officiality": "reference",
+    "access_date": "2026-08-25"
+  },
+  "notes": "The DSCC's public tracker of governments backing a moratorium, precautionary pause, or ban on deep-sea mining counted 24 countries in 2024, growing to 37 by mid-2025 (including additions announced around the June 2025 UN Ocean Conference) -- even as the ISA had still not finished its exploitation regulations.",
+  "points": [
+    {"label": "2024", "value": 24, "period": "2024"},
+    {"label": "2025", "value": 37, "period": "2025"}
+  ]
+}

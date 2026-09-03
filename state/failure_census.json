@@ -2,117 +2,86 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 24,
+   "count": 7,
    "stories": {
-    "world-cereal-land-just-sank-below-its-1972-level": 8,
+    "the-world-has-less-land-than-it-did-in-2013": 2,
+    "world-renewable-power-was-still-only-19-7-after-two-decades": 2,
     "urban-growth-just-hit-a-50-year-low-of-1-36": 2,
-    "fish-catch-has-barely-grown-since-1993-with-94403126-metric-": 2,
-    "cereal-production-is-1-5x-higher-than-in-1972": 3,
-    "global-health-spending-exceeds-1300-per-person": 3,
-    "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990": 3,
-    "population-growth-fell-54-since-1972": 3
+    "global-health-spending-exceeds-1300-per-person": 1
    },
    "timestamps": [
-    "2026-08-22T21:37:12+00:00",
-    "2026-08-22T21:37:12+00:00",
-    "2026-08-22T21:53:19+00:00",
-    "2026-08-22T21:53:19+00:00",
-    "2026-08-23T13:21:13+00:00",
-    "2026-08-23T13:38:18+00:00",
-    "2026-08-23T13:46:07+00:00",
-    "2026-08-23T13:54:28+00:00",
-    "2026-08-23T14:07:22+00:00",
-    "2026-08-23T14:07:22+00:00",
-    "2026-08-23T14:21:04+00:00",
-    "2026-08-23T19:49:52+00:00",
-    "2026-08-23T19:58:35+00:00",
-    "2026-08-23T20:06:43+00:00",
-    "2026-08-23T20:16:47+00:00",
-    "2026-08-23T20:27:51+00:00",
-    "2026-08-23T20:38:53+00:00",
-    "2026-08-23T20:47:44+00:00",
-    "2026-08-23T20:57:29+00:00",
-    "2026-08-23T21:06:59+00:00",
-    "2026-08-23T21:22:38+00:00",
-    "2026-08-23T21:22:38+00:00",
-    "2026-08-23T21:35:29+00:00",
-    "2026-08-23T21:48:21+00:00"
+    "2026-08-24T23:03:50+00:00",
+    "2026-08-24T23:21:22+00:00",
+    "2026-08-24T23:31:23+00:00",
+    "2026-08-24T23:48:34+00:00",
+    "2026-08-25T13:39:33+00:00",
+    "2026-08-25T13:56:12+00:00",
+    "2026-08-25T14:12:00+00:00"
    ],
    "examples": [
-    "decorative_mascot: Data bobs over the bars in identical arms-up poses at hook@0.3, seg0:mid, seg1:mid and seg3:mid, and in seg2:start/mid he just stands in the empty bottom-left corner of the map \u2014 no",
-    "empty_void: seg2:start is ~60% dead navy space \u2014 five tiny unlabeled dots stacked in a column, a near-black world map with no highlighted country, and a small mascot at the bottom edge.",
-    "decorative_mascot: Data merely glides over the bars and never acts on a stat: he floats mid-caption at hook@0.8, drifts right by seg1:end, stands idle at bottom-left of the map for the entire fertiliz"
+    "decorative_mascot: From hook@0.3 to seg1:end (t=0.3-24.0s, roughly the first 40% of the video) Data holds the same arms-out standing pose and merely drifts across the bar stack (hook@1.5, seg0:mid, se",
+    "decorative_mascot: Data hovers in the same mid-right spot with identical arm-out pose across seg0:start, seg1:mid, seg2:end and seg3:mid \u2014 he never sets up or pays off any bit tied to a stat; at seg3:",
+    "decorative_mascot: Data holds the same walking/reaching pose and merely slides along the bar tip or line \u2014 identical silhouette at hook@0.3, seg0:mid, seg1:end, seg2:start, seg2:end, seg3:mid and payo"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 8,
+   "count": 5,
    "stories": {
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 2,
-    "fish-catch-has-barely-grown-since-1993-with-94403126-metric-": 2,
-    "cereal-production-is-1-5x-higher-than-in-1972": 1,
-    "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990": 1,
-    "population-growth-fell-54-since-1972": 2
+    "the-world-has-less-land-than-it-did-in-2013": 1,
+    "dubai_s_airport_quietly_buried_heathrow": 1,
+    "msc_just_ended_maersk_s_25_year_reign": 1,
+    "pakistan_quietly_passed_brazil_in_popula": 1,
+    "the_sign_said_beat_any_price__so_i_did_": 1
    },
    "timestamps": [
-    "2026-08-23T13:21:13+00:00",
-    "2026-08-23T13:38:18+00:00",
-    "2026-08-23T13:46:07+00:00",
-    "2026-08-23T13:54:28+00:00",
-    "2026-08-23T14:21:04+00:00",
-    "2026-08-23T20:16:47+00:00",
-    "2026-08-23T20:57:29+00:00",
-    "2026-08-23T21:06:59+00:00"
+    "2026-08-24T23:21:22+00:00",
+    "2026-08-25T14:30:49+00:00",
+    "2026-08-25T14:32:37+00:00",
+    "2026-08-25T14:34:25+00:00",
+    "2026-08-25T14:40:46+00:00"
    ],
    "examples": [
-    "empty_void: seg3:start is ~60% empty dark canvas \u2014 the top half below the title holds nothing and five tiny dots sit in the lower third; the void persists through seg3:end and payoff@-1.8 where the bo",
-    "empty_void: seg3:start wastes roughly the top 45% and bottom 20% of the frame on flat empty navy while five tiny dim dots sit mid-frame; the same layout at seg3:mid/seg3:end leaves the whole lower thi",
-    "empty_void: seg3:start and seg3:mid leave the entire upper ~45% of the frame (below the title, above the 2013 row) as flat dark space with five tiny 20px bubbles floating in it; seg3:start's bubbles c"
+    "empty_void: seg3:start/seg3:mid leave the entire top half (y\u2248150\u2013380) blank navy above the flat 20.8 line, and the bar-race frames (seg2:start) leave wide empty gutters right of every unfilled track.",
+    "empty_void: hook@0.3 and hook@0.8 are almost entirely black \u2014 one ~1cm red stub near the top-left is the only mark in the plot area, gridlines invisible, and the whole lower two-thirds of the frame is",
+    "empty_void: hook@0.3 and hook@0.8 are ~90% black \u2014 two ~1cm line stubs pinned to the top-left with the entire 0\u20132.5M plot region empty; that lower ~60% of the plot stays dead black through mid5 (t=12."
    ],
    "recurred_after_fix": false
   },
-  "bare_number": {
-   "count": 5,
+  "junk_imagery": {
+   "count": 1,
    "stories": {
-    "world-cereal-land-just-sank-below-its-1972-level": 2,
-    "urban-growth-just-hit-a-50-year-low-of-1-36": 2,
-    "population-growth-fell-54-since-1972": 1
+    "the_sign_said_beat_any_price__so_i_did_": 1
    },
    "timestamps": [
-    "2026-08-22T21:37:12+00:00",
-    "2026-08-23T13:21:13+00:00",
-    "2026-08-23T13:38:18+00:00",
-    "2026-08-23T20:47:44+00:00",
-    "2026-08-23T21:22:38+00:00"
+    "2026-08-25T14:40:46+00:00"
    ],
    "examples": [
-    "bare_number_card: seg2:end is a barely-visible flat map plus a right-hand column of raw numbers (Slovenia 101756, Malawi 59978, Costa Rica 23435...) with no physical demonstration of the quantity.",
-    "bare_number_card: seg3:mid and seg3:end show 2.6 / 2.8 / 2.2 / 2.3 / 2.1 as five near-identical purple discs \u2014 the disc size does not encode the value, so it is numbers on blobs, not a demonstration; ",
-    "bare_number_card: seg3:mid and seg3:end are five plain purple circles containing '2.6 / 2.8 / 2.2 / 2.3 / 2.1' on flat background \u2014 numbers printed in blobs, no stacking, filling, racing or shrinking "
+    "junk_imagery: mid5/payoff@-1.8/payoff@-0.4 hold a German-language decorative wall plaque reading 'Auf ist, wenn auf ist.' over an English price-match story, and mid2 is a blank black ECCO monitor scre"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 2
   },
   "data_demo": {
-   "median": 2,
-   "min": 1,
-   "max": 3
+   "median": 3,
+   "min": 2,
+   "max": 4
   },
   "mascot": {
-   "median": 1,
+   "median": 2,
    "min": 1,
-   "max": 1
+   "max": 4
   },
   "craft": {
    "median": 1,
    "min": 1,
-   "max": 1
+   "max": 2
   },
   "pace": {
    "median": 2,
@@ -122,34 +91,34 @@
   "payoff": {
    "median": 1,
    "min": 1,
-   "max": 1
+   "max": 2
   },
   "temporal_craft": {
    "median": 2,
    "min": 2,
-   "max": 2
+   "max": 3
   }
  },
  "scores": [
+  61,
   43,
-  43,
-  35,
-  35,
-  48,
-  43,
-  48,
-  48,
-  39,
-  43,
-  43,
-  43,
-  48,
   52,
+  52,
+  43,
+  53,
+  52,
+  48,
+  57,
   39,
-  39,
-  39,
-  39,
-  39,
-  35
+  43,
+  61,
+  61,
+  74,
+  69,
+  65,
+  70,
+  74,
+  66,
+  56
  ]
 }

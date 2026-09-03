@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "graph-obesity-passes-underweight",
+  "title": "The World Now Has More Obese Adults Than Underweight Ones",
+  "hook": "That Flipped In Just A Few Decades",
+  "y_label": "Share of global adults (%)",
+  "duration": 13,
+  "source": "WHO Global Health Observatory and NCD Risk Factor Collaboration (NCD-RisC) age-standardized adult prevalence estimates, 1975-2022. Approximate, order-of-magnitude figures; global obesity prevalence overtook underweight prevalence in the mid-2000s and the gap has kept widening.",
+  "years": [
+    1975,
+    1985,
+    1995,
+    2005,
+    2010,
+    2016,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Obese",
+      "color": "#e74c3c",
+      "values": [
+        4.5,
+        5.5,
+        7.0,
+        9.8,
+        11.5,
+        13.1,
+        16.0
+      ]
+    },
+    {
+      "name": "Underweight",
+      "color": "#4a90e2",
+      "values": [
+        14.0,
+        12.8,
+        11.2,
+        9.3,
+        8.7,
+        8.1,
+        7.5
+      ]
+    }
+  ],
+  "hashtags": [
+    "obesity",
+    "publichealth",
+    "worldhealth",
+    "nutrition",
+    "who",
+    "globalhealth",
+    "dataviz",
+    "health",
+    "medicine",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

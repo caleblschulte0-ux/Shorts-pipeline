@@ -1,0 +1,20 @@
+{
+  "key": "moon_eclipse_timescale",
+  "title": "Deep-time distances: dinosaurs vs the last total solar eclipse (million years)",
+  "unit": "million years",
+  "geography": "Earth",
+  "time_coverage": "230 million years ago to 600 million years in the future",
+  "source": {
+    "name": "Orbital dynamics modeling of lunar recession and eclipse geometry",
+    "publisher": "Eos (American Geophysical Union)",
+    "url": "https://eos.org/features/the-end-of-the-eclipse",
+    "officiality": "reference",
+    "access_date": "2026-08-25"
+  },
+  "notes": "The 600-million-year horizon for the last possible total solar eclipse is a widely cited estimate among researchers modeling the Moon's 3.8 cm/year recession (reported by AGU's Eos and multiple science outlets). The dinosaur-era dates (first dinosaurs ~230 million years ago in the Triassic; non-avian dinosaur extinction 66 million years ago via the Chicxulub impact) are well-established paleontological benchmarks used here for scale comparison, not derived from the eclipse study itself.",
+  "points": [
+    {"label": "Dinosaurs went extinct", "value": 66},
+    {"label": "First dinosaurs appeared", "value": 230},
+    {"label": "Last total solar eclipse (future)", "value": 600}
+  ]
+}

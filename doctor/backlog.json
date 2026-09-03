@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-backlog/v1",
-  "updated": "20260823",
+  "updated": "20260831",
   "items": {
     "a5318d0404da": {
       "title": "Doctor evidence file is absent from main",
@@ -1135,6 +1135,656 @@
       "signature": "2b0e2fafca9b",
       "last_seen": "20260823",
       "first_seen": "20260823"
+    },
+    "03ed6ae9f195": {
+      "title": "The full unit gate discards unittest failures",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "ci/merge-gate-exit-status",
+      "files": [
+        ".github/workflows/auto-merge.yml"
+      ],
+      "observation": "The auto-merge job runs the full tests/ suite as `python -m unittest ... 2>&1 | tail -40` without enabling pipefail or checking PIPESTATUS. Bash therefore returns tail's zero status when unittest fails, the following steps continue, and the automerge job may squash-merge a branch whose unit suite is red. Replacing unittest with a process that exits 7 reproduces a pipeline status of zero under the same command shape.",
+      "proposal": "Enable pipefail for the step or capture the unittest output and explicitly propagate the test process status before printing its tail. Add a workflow-contract test that executes a deliberately failing producer through the exact reporting wrapper and requires the wrapper to return nonzero, so future log-format changes cannot reopen the bypass.",
+      "evidence": ".github/workflows/auto-merge.yml lines 123-124 define the required Full unit suite step as `python -m unittest discover -s tests -v 2>&1 | tail -40` with no `set -o pipefail`; the job's scripts-suite step at lines 135-152 demonstrates the correct pattern by capturing each subprocess and explicitly setting `fail=1`. Running `bash -c 'python -c \"raise SystemExit(7)\" 2>&1 | tail -40'` on main returns status 0.",
+      "signature": "03ed6ae9f195",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "abfb291b5f65": {
+      "title": "Two explainer guardrail modules execute zero tests",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "explainer/viz-test-collection",
+      "files": [
+        "data_learning/tests/test_viz_director.py",
+        "data_learning/tests/test_viz_scene.py",
+        ".github/workflows/preview_explainer.yml"
+      ],
+      "observation": "The viz-director and viz-scene files contain free-function tests for no-bare-number selection, depiction fallbacks, unsafe mechanic rejection, and real frame rendering, but neither has unittest classes nor a script main. The repository's required suite discovers only tests/, while preview_explainer.yml invokes three other data_learning test files by name. Consequently unittest discovery under data_learning/tests collects zero tests from these modules, and `python -m` imports each module and exits successfully without executing a single assertion.",
+      "proposal": "Convert both modules to unittest-compatible cases or give them an explicit runner, then invoke them from the required explainer preflight. Add a collection-count assertion for the data_learning suite so a zero-test success is itself a failure.",
+      "evidence": "data_learning/tests/test_viz_director.py and data_learning/tests/test_viz_scene.py define only `test_*` functions and have no `if __name__ == '__main__'` runner; .github/workflows/preview_explainer.yml lines 53-60 runs showrunner scoring, repair loop, and mascot primitives but not either viz module. On current main, `python -m unittest discover -s data_learning/tests -p 'test_viz*.py' -v` reports `Ran 0 tests`, while both `PYTHONPATH=. python -m data_learning.tests.test_viz_director` and the equivalent viz_scene command exit 0 with no output.",
+      "signature": "abfb291b5f65",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "808fcf2f9b8e": {
+      "title": "Expression visual proof is not a pre-merge renderer gate",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "explainer/expression-ci-order",
+      "files": [
+        ".github/workflows/expression-tests.yml",
+        "data_learning/pro_render.py",
+        "scripts/test_expressions.py",
+        "scripts/test_expressions_render.py"
+      ],
+      "observation": "The heavy expression tests are deliberately excluded from the auto-merge scripts suite and delegated to Expression Tests, but that separate workflow is not an upstream dependency of the squash merge. Its pull_request paths also omit data_learning/pro_render.py and scripts/test_expressions_render.py even though the push paths and comments identify the production renderer and render tests as part of this contract. A PR changing pro_render can therefore merge before any measured expression render runs; the visual proof starts only after the change has reached main.",
+      "proposal": "Make the expression suite a reusable required workflow called by the merge gate, or add a required pre-merge job that the automerge job explicitly needs. Align pull-request paths with the full push path set, including pro_render.py and test_expressions_render.py, and retain artifact upload for diagnosis after the status has been made merge-blocking.",
+      "evidence": ".github/workflows/expression-tests.yml lines 20-35 include data_learning/pro_render.py in push paths but omit it from pull_request paths, and likewise omit scripts/test_expressions_render.py from both PR coverage and the declared commands. Lines 53-66 contain the actual render and measured-pixel proof. scripts/test_expressions.py and scripts/test_expressions_render.py are explicitly skipped by the main scripts-suite loop documented in .github/workflows/auto-merge.yml lines 130-142, leaving the separate workflow as their only intended gate.",
+      "signature": "808fcf2f9b8e",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "268b809a2bbb": {
+      "title": "Govern every test file with an executable owner",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "testing/suite-ownership",
+      "files": [
+        "tests/test_repo_layout.py",
+        "data_learning/tests/test_pipeline.py",
+        "scripts/test_pipeline_health.py",
+        "experiments/curiosity_nextgen/tests/test_autonomous_core.py"
+      ],
+      "observation": "The repository now has four incompatible test topologies: 63 unittest files under tests/, 41 standalone scripts/test_*.py programs, five data_learning test modules with mixed custom-main and pytest-style conventions, and eleven curiosity-nextgen modules discovered only by a channel-specific workflow. There is no repository-level assertion that every test-shaped file belongs to a runner or that its runner collected at least one test. The two currently orphaned viz modules are the concrete consequence: they look like tests in review but buy no protection.",
+      "proposal": "Define a declarative test-suite inventory that maps every test directory or file to its runner, dependency class, and required workflow. Extend the repository-layout gate to fail on an unowned test file, and make every runner emit and validate a nonzero collection count. Migrate incrementally toward one invocation convention while keeping expensive render suites as named shards rather than silently skipping them.",
+      "evidence": "tests/test_repo_layout.py checks Python placement and imports but has no test-owner inventory; data_learning/tests/test_pipeline.py implements its own `_main` collector, scripts/test_pipeline_health.py is a directly executed standalone test program, and experiments/curiosity_nextgen/tests/test_autonomous_core.py relies on a separate unittest-discovery command in curiosity-ci.yml. A filesystem count on current main finds 63 tests/test_*.py files, 41 scripts/test_*.py files, five data_learning/tests/test_*.py files, and eleven experiments/curiosity_nextgen/tests/test_*.py files, while no file records ownership across those runners.",
+      "signature": "268b809a2bbb",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "a703af75ca3d": {
+      "title": "Give Plaqueboymax a bounded second-slot test",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/third-creator-allocation",
+      "files": [
+        "state/analytics_third/latest.json",
+        "docs/THIRD_INTERNET_PLAYBOOK.md"
+      ],
+      "observation": "Third's August 23 analytics contain one creator with a repeated signal that clears the playbook's learning floor: three Plaqueboymax clips are each older than 24 hours, have 99-208 views and 51-116 engaged views, and retain 90.1%-93.7% on average. Their median velocity is 0.35 views per hour versus the channel's 0.04 all-video median. Other current top creators have only one clip each that meets all three maturity thresholds, so they are promising examples but not yet repeat evidence.",
+      "proposal": "For a bounded next-sample experiment, allow a second Plaqueboymax post on days with two genuinely separate events while preserving the existing six-slot target, one-creator default, novelty checks, and every quality gate. Tag the allocation decision, stop after five additional mature qualifying clips, and compare creator-level median velocity and retention before making any permanent source-priority change.",
+      "evidence": "state/analytics_third/latest.json was fetched at 2026-08-23T12:18:57Z and records the three qualifying Plaqueboymax videos: `No Budget` at 117 views/53 engaged/90.1% retention/0.46 VPH, `Five Gifted` at 208/116/93.7%/0.35, and `Get Feisty` at 99/51/93.6%/0.35; the same snapshot reports a channel median of 0.04 VPH. docs/THIRD_INTERNET_PLAYBOOK.md lines 230-238 permit a second same-streamer post for a separate major event, and lines 265-274 require at least 24 hours, 50 views, and 25 engaged views before learning from a video.",
+      "signature": "a703af75ca3d",
+      "last_seen": "20260824",
+      "first_seen": "20260824"
+    },
+    "2fc5cbb21cca": {
+      "title": "Phase B can finish without creating the Daily render",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "pipeline/phase-b-render-handoff",
+      "files": [
+        ".github/workflows/daily.yml",
+        ".github/workflows/exchange_phase_b.yml"
+      ],
+      "observation": "The August 23 no_posts_trending alarm is a failed handoff, not a missing bundle. Scheduled Phase B run 32643778540 completed its consume, commit, and Hand off to render steps successfully and wrote exchange/bundles/20260823/phase_b_report.json, but the repository's Actions history contains no Daily Shorts workflow_run for August 23. The second Phase B candidate also completed successfully after skipping its apply steps. daily.yml relies on workflow_run as the only automatic post-exchange trigger, while exchange_phase_b.yml merely prints that completion will render and never verifies that a downstream run exists. Removing the earlier direct dispatch therefore converted a premature-render bug into a silent no-render day.",
+      "proposal": "Make a real, non-skipped Phase B application establish a verifiable render handoff: after the report and package commit succeeds, explicitly dispatch Daily Shorts with Actions write permission or emit an equivalent authenticated repository event, capture the downstream run ID, and fail Phase B if GitHub does not accept the handoff. Keep daily.yml's workflow_run route as an idempotent fallback and keep its phase_b_report preflight, so neither route can render before the finalized exchange or double-publish. Add a workflow-contract test that distinguishes the applied candidate from the scheduled no-op and requires exactly one accepted downstream handoff for the applied path.",
+      "evidence": ".github/workflows/daily.yml lines 31-52 declares workflow_run on Exchange Phase B as the sole automatic route after exchange; .github/workflows/exchange_phase_b.yml lines 181-203 commits the applied bundle and then only echoes that daily.yml will run. GitHub Actions run https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/32643778540 shows every Phase B step, including commit and handoff, succeeded on 2026-08-23; run 32646462573 shows the later no-op candidate succeeded with apply/handoff skipped. The August 23 Actions history has no Daily Shorts run, exchange/bundles/20260823/phase_b_report.json records 15 fulfilled media items, and doctor/evidence.json raises no_posts_trending with zero posts.",
+      "new_evidence_since": "After commit e9a8284 shipped the settled e524811347c4 fix by removing auto-merge's direct Daily dispatch, the first complete August 23 Phase B application succeeded but created no Daily Shorts run and trending shipped zero.",
+      "signature": "2fc5cbb21cca",
+      "last_seen": "20260825",
+      "first_seen": "20260825"
+    },
+    "47afe3adb739": {
+      "title": "Camera float crops chart text beyond the renderer safe area",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "trending/chart-camera-safe-area",
+      "files": [
+        "engines/chart_race.py",
+        "shared/camera_float.py",
+        "state/showrunner_verdicts.jsonl"
+      ],
+      "observation": "Graph-race layout is measured before a full-frame scale-and-moving-crop transform. The title is allowed to occupy 92% of the original 1080-pixel width, leaving 43 pixels per side, but camera_float now uses amplitude 44, scales to 1168 pixels, and moves a 1080-pixel crop from x=0 to x=88. The comments still claim a 20-pixel/1.9% edge cost. In all four August 24 graph-race reviews, the showrunner reported edge clipping: titles, y-axis ticks, hook text, series badges, or payoff labels were cut; three of those videos nevertheless shipped because clipping is not an auto-fail.",
+      "proposal": "Make graph layout consume the camera transform's actual worst-case inset before drawing: either render into an explicit overscan/padded canvas whose content safe box survives the moving crop, or derive title, axes, hook, and tip-label bounds from the maximum transformed crop. Preserve the calibrated motion floor rather than lowering float amplitude blindly. Add a post-transform frame test at both horizontal extrema that requires every title, axis label, hook, badge, and payoff label to remain inside the output frame.",
+      "evidence": "engines/chart_race.py lines 593-615 fits the title to W*0.92 and fixes the axes before applying shared.camera_float.crop_vf at lines 821-835; its line 827 still says the transform costs 20 pixels. shared/camera_float.py lines 73-88 retunes FLOAT_A to 44, while lines 118-126 scale 1080 to 1168 and move the 1080 crop across x=0..88; its docstring still calls that 1.9%. state/showrunner_verdicts.jsonl entries at 2026-08-24T12:10:44Z, 12:12:35Z, 12:14:31Z, and 12:16:31Z report clipped edge content on every graph race, including the Sports Betting title in 8 of 12 sampled frames and Peloton's hook, ticks, and payoff labels.",
+      "signature": "47afe3adb739",
+      "protected": [
+        "touches state/showrunner_verdicts.jsonl \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260825",
+      "first_seen": "20260825"
+    },
+    "8d1b5d1e1f69": {
+      "title": "Explainer gate proves facts but not a coherent story",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "explainer/story-coherence-gate",
+      "files": [
+        "scripts/editorial_gate.py",
+        "data_learning/niche.config.json"
+      ],
+      "observation": "The pre-render editorial gate independently proves source provenance and grades only the title plus hook; it never checks whether the segments support that premise or each other. The active queue therefore contains real-data anthologies masquerading as single stories: the renewable-power title surrounds its renewable segment with irrigation and broadband, the rail title opens on mobile subscriptions and farm methane, and the shrinking-land title follows land area with external health spending and crop production. This is a material contributor to the current 18-renders/zero-ships quality crisis: after the recent mascot and variety fixes, August 24 reviews still blocked these videos for opening on the wrong subject, repeating unrelated charts, and failing to demonstrate the headline claim.",
+      "proposal": "Add a fail-closed story-coherence verdict before render and at authoring intake. Require the hook, closing, and every segment to declare how they advance one thesis; reject packages where the headline subject appears only in a late segment or where a segment has no checkable semantic bridge to that thesis. Use deterministic entity/topic overlap as the minimum floor and an adversarial semantic judge for ambiguous bridges, persist per-segment reasons, and send rejected stories back through authoring instead of spending three full renders on scene repair that cannot fix the script's premise.",
+      "evidence": "scripts/editorial_gate.py lines 69-96 validates each segment's source and lines 113-183 grades only title/hook premise; pre_render_verdict at lines 189-197 combines those two checks and has no segment-coherence result. data_learning/niche.config.json stories world-renewable-power-was-still-only-19-7-after-two-decades, the-us-still-has-148-553-km-of-rail-more-than-china, and the-world-has-less-land-than-it-did-in-2013 contain the unrelated segment sequences described. doctor/evidence.json records 18 renders and zero ships for August 23; opening the current main-branch verdict ledger at timestamps 2026-08-24T23:03:50Z through 2026-08-25T00:11:53Z shows the promised topic absent, visuals contradicting hooks, and unrelated irrigation/mobile/health charts preceding title claims; two slugs consumed all three repair attempts.",
+      "signature": "8d1b5d1e1f69",
+      "last_seen": "20260825",
+      "first_seen": "20260825"
+    },
+    "9f547a4372a9": {
+      "title": "Renderer audits cannot locate the element the reviewer saw fail",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "render/diagnostic-manifest",
+      "files": [
+        "make_graph_race.py",
+        "make_reddit_story.py",
+        "make_explainer_stacked.py"
+      ],
+      "observation": "All three active renderer families emit different best-effort sidecars after the video is already complete. Graph race records only format, engine, and series names and silently discards an audit-write failure; Reddit records only subreddit, title-end, and duration; the explainer records media-source choices. None records timed semantic beats plus the screen bounds of titles, axes, labels, mascot contacts, or shot windows. The showrunner can say a Peloton payoff label left the frame or a renewable segment contradicted the hook, but repair code has no renderer-authored coordinate/claim manifest to map that diagnosis back to the responsible element.",
+      "proposal": "Define one versioned render-manifest contract produced during planning and finalized after encoding. For each timed scene, record its semantic claim, source package fields, asset hashes, renderer/engine version, safe region, and the planned/observed bounds of important text and visual elements; bind the manifest to the output hash. Make the showrunner and repair loop cite stable element IDs from that manifest while retaining frame evidence and the sovereign final review. Migrate format by format, beginning with graph-race labels and explainer segment claims, and make a missing or unwritable manifest a named production outcome rather than silent diagnostic loss.",
+      "evidence": "make_graph_race.py lines 76-83 writes a four-field audit and swallows every write error; make_reddit_story.py lines 487-498 writes only subreddit/title timing/duration and continues after failure; make_explainer_stacked.py lines 2520-2536 writes shot source records and likewise continues. The August 24 state/showrunner_verdicts.jsonl diagnoses exact clipped labels, wrong-subject segments, and repeated shot windows in prose, but none of those three sidecars contains element bounds, semantic segment claims, stable element IDs, or an output digest with which to target the diagnosis.",
+      "signature": "9f547a4372a9",
+      "last_seen": "20260825",
+      "first_seen": "20260825"
+    },
+    "9d5a03472328": {
+      "title": "Test explicit rivalry titles on truthful graph crossovers",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/trending-graph-title-doctrine",
+      "files": [
+        "state/analytics/latest.json",
+        "CLAUDE_ROUTINE_INSTRUCTIONS.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "Trending's analytics snapshot is stale for current mix management, but it contains a repeated mature title signal that does not depend on guessing format identity. Among 58 public videos at least 72 hours old, the 16 titles using an explicit rivalry/crossover cue such as vs, passed, overtook, outnumbers, beat, buried, or ahead have median velocity 0.025 views per hour; the other 42 have median 0.0. The leading mature examples are The Switch Buried the PS5 in Sales at 0.19, Starlink Now Outnumbers Every Other Satellite at 0.13, and Biggest Lottery Jackpots Ever: Mega Millions vs Powerball at 0.11. Current graph authoring requires real swing/crossover data but has no measured title experiment tied to that payoff.",
+      "proposal": "Without changing the registered 4 graph-race / 2 Reddit mix, run a bounded ten-video graph-title test: when the data contains a real named rivalry and visible crossover, title the video as an explicit A-passed-B contest; otherwise keep the existing truthful title and do not manufacture conflict. Tag the arm in package metadata, compare mature median VPH and retention against ten eligible controls, and adopt the wording pattern only if the repeat advantage survives the current production-reliability and format-attribution repairs.",
+      "evidence": "state/analytics/latest.json was fetched at 2026-08-13T12:18:16Z and contains 58 public videos at least 72 hours old; grouping the titles by the explicit rivalry/crossover cues listed above yields n=16 at median 0.025 VPH versus n=42 at median 0.0, with the three named videos at 0.19, 0.13, and 0.11. CLAUDE_ROUTINE_INSTRUCTIONS.md lines 149-165 already requires authored graph races to contain a real swing/crossover, while config/channel_registry.json keeps graph_race at four of six trending slots; the proposal changes title doctrine only and leaves cadence, mix, and every gate intact.",
+      "signature": "9d5a03472328",
+      "last_seen": "20260825",
+      "first_seen": "20260825"
+    },
+    "7414ad03de3e": {
+      "title": "Phase B cache hits bypass current Drive-byte verification",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/media-cache-attestation",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/exchange_bundle.py",
+        "shared/media_checkpoint.py"
+      ],
+      "observation": "fetch_media returns the first non-empty cache/exchange/<request_id> file before it inspects the current response entry, claimed SHA-256, format, pixel decode, or Drive bytes. Bundle request IDs are content-addressed from slug, shot index, and prompt but intentionally omit the production date, so an identical ask on a later date reuses the same cache path; authored-shot IDs are even broader, using only normalized package slug and shot index. After this early return, pin_verified_media writes the current response entry's Drive URL and hash into the package. The old cache file is therefore used as proof that a different current Drive object verified, even though the current object was never downloaded. Checkpoint agreement does not close this gap because it proves that the response and checkpoint make the same claim, not that the mutable Drive object still contains those bytes at Phase B time.",
+      "proposal": "Make every cache hit pass the same attestation as a download. Key cached files by date plus claimed SHA-256, or store a sidecar containing request ID, date, file ID, byte count, format, dimensions, and SHA-256; on lookup, hash and decode the cached bytes and require exact agreement with the current pointer before returning. If any field differs, discard only that cache candidate and fetch the current Drive object. Add tests for an identical request ID on two dates with different file IDs/hashes, a corrupt non-empty cache file, and a Drive object whose bytes no longer match its checkpoint claim.",
+      "evidence": "scripts/exchange_phase_b.py fetch_media checks MEDIA_CACHE/<request_id>.<ext> and returns any non-empty file before reading entry.status, drive.file_id, or image.sha256; its download branch performs SHA-256, HTML, decode, and placeholder checks only after that early return. The same file's pin_verified_media then persists metadata from the current entry rather than the cached file. shared/exchange_bundle.py request_key hashes slug|shot_index|prompt without date, and shared/media_checkpoint.py authored_shot_request_id uses only package ID plus shot index. The cache is global at cache/exchange rather than date-scoped.",
+      "signature": "7414ad03de3e",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "7f087a105388": {
+      "title": "Phase A filters out every registry-shaped Third package",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "exchange/third-package-discovery",
+      "files": [
+        "scripts/exchange_phase_a.py",
+        "config/channel_registry.json"
+      ],
+      "observation": "Phase A explicitly accepts --channel third and maps it to state/third_packages, but its is_package predicate recognizes only script, text, series, shots, subreddit, broll_query, or segments. The live registry defines Third's active clip format by source_url presence and requires only slug plus source_url. A valid Third capture recipe can therefore be read successfully and still be logged as a non-package, leaving the Third branch with an empty slate even though canonical packages exist.",
+      "proposal": "Add source_url to the package markers and pin the contract with focused tests: a registry-valid {slug, source_url} Third package must load, report/config files must remain excluded, and a malformed source_url-free object must not count. Prefer deriving the test fixture from the registry's active clip required_fields so the detector cannot silently drift again.",
+      "evidence": "scripts/exchange_phase_a.py exposes third in PACKAGE_DIRS and the argparse channel choices, but _PACKAGE_MARKERS omits source_url and load_packages discards any object for which is_package is false. config/channel_registry.json revision 5 declares third.formats.clip.detect as source_url present and required_fields as slug and source_url. Repository search returned no source_url coverage around is_package.",
+      "signature": "7f087a105388",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "34e98321286f": {
+      "title": "Phase B's durable report omits cross-channel and recovery outcomes",
+      "horizon": "short_term",
+      "severity": "medium",
+      "area": "exchange/phase-b-audit-completeness",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/media_checkpoint.py"
+      ],
+      "observation": "Phase B computes applied/rejected results for explainer and curiosity and stores them temporarily under authored['other_channels'], but the final report reconstructs authored with only trending promoted/rejected counts and drops that field. Checkpoints refused during recovered_media and recovered_authored_media are likewise printed to workflow logs but never added to report.checkpoints.rejected_detail or report.details. The durable phase_b_report can therefore claim a clean trending exchange while providing no record that another channel rewrite was rejected or that a recovery candidate failed its contract.",
+      "proposal": "Define and validate a complete phase_b_report schema before the report is considered ready to render. Persist per-channel applied/rejected counts and reasons, explicit-versus-recovered pointer origin, every recovered checkpoint refusal, and totals that reconcile to the bundle plus authored shots. Make the console output a rendering of that structure instead of a separate evidence channel, and add a test that deletes workflow logs and can still reconstruct every Phase B decision from the report alone.",
+      "evidence": "scripts/exchange_phase_b.py assigns authored['other_channels'] after ingest_explainer and ingest_curiosity, then builds report['authored'] from only len(authored.promoted) and len(authored.rejected). The _recovered_refused and _auth_refused loops emit warnings but do not append those problems to report; report.checkpoints is populated only from validate_response_media. shared/media_checkpoint.py recovered_media and recovered_authored_media deliberately expose refused_out, confirming these are structured outcomes available to persist rather than unstructured exceptions.",
+      "signature": "34e98321286f",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "363113a0188b": {
+      "title": "Repeated Phase B runs overwrite the exchange's only decision history",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/reconciliation-history",
+      "files": [
+        "scripts/exchange_phase_b.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "Phase B is intentionally repeatable through DONE-triggered, scheduled-backstop, and manual repair paths, but every application writes the same exchange/bundles/<date>/phase_b_report.json. A later successful repair atomically replaces the report that recorded an earlier refusal, self-fill, or partial promotion. The package files also represent only the latest state. Git history can sometimes recover the overwritten report, but it is not a first-class execution identity and is unavailable to runtime consumers such as the retro, alarm, and repair logic. This makes idempotent recovery operationally useful while making its causal history hard to audit.",
+      "proposal": "Introduce immutable Phase B attempt records under exchange/bundles/<date>/phase-b-runs/<run_identity>.json and keep phase_b_report.json as a validated latest pointer/summary. Bind each attempt to the bundle identity, response/DONE hashes, trigger kind, input checkpoint set, prior-attempt identity, output package hashes, and decision totals. Preserve idempotency by allowing a no-change attempt to reference the prior result without duplicating package writes, and teach retros/alarms to consume the ordered attempt chain.",
+      "evidence": "scripts/exchange_phase_b.py documents multiple entry modes (--backstop, --require-done, manual dry/run) and always writes xb.bundle_dir(date)/phase_b_report.json with atomic_write_json. shared/exchange_bundle.py exposes a single per-date directory and has no Phase B run-identity or append-only attempt primitive. The August 22-24 retro briefs read only one exchange summary per date, so they cannot distinguish the first application from a later repair using repository state alone.",
+      "signature": "363113a0188b",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "0aa9d12e55a8": {
+      "title": "Test concrete search-intent titles on Third clips",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/third-search-title-doctrine",
+      "files": [
+        "state/analytics_third/latest.json",
+        "docs/THIRD_INTERNET_PLAYBOOK.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "Third's current analytics show that discovery is search-led rather than Shorts-feed-led: YT_SEARCH accounts for 2,977 attributed views versus 264 from SHORTS, an 11.3-to-1 ratio. The leading search terms are concrete names and moments, including caternado, bad bitch boat, Kai Cenat bad bitch boat, Rayasianboy, Plaqueboymax, and Sodapoppin chiropractor. Several current low performers use vague pronoun-heavy titles such as 'can't believe what happened' or 'what she just did,' which preserve surprise but contribute little searchable context. The registered six-clip cadence and the existing story-arm/reliability experiments should remain unchanged while this metadata question is isolated.",
+      "proposal": "Run a bounded 24-mature-clip title experiment without changing selection, edit, cadence, or upload slots. For twelve eligible clips, require a truthful title containing the streamer plus the concrete searchable action, object, or named moment; use twelve matched controls under current title doctrine. Tag the arm in package/analytics metadata and compare 72-hour search views, total VPH, and retention so search gains cannot hide a weaker opening. Adopt the pattern only if search lift repeats without lowering retention or triggering sensational wording.",
+      "evidence": "state/analytics_third/latest.json fetched 2026-08-25 reports traffic_sources YT_SEARCH=2977 and SHORTS=264, and its search_terms are dominated by named streamers and specific moments. The same snapshot contains 96 public videos, enough for matched metadata analysis, while its story arm has only two mature examples and remains too thin for a format ruling. config/channel_registry.json revision 5 keeps Third at six clip packages per day, so this proposal changes title metadata only and does not overlap the active story-arm or cadence backlog.",
+      "signature": "0aa9d12e55a8",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "4754c87f0f7e": {
+      "title": "Finished-video QA drops defects that continue through EOF",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "quality/video-qa-tail-spans",
+      "files": [
+        "shared/video_qa.py"
+      ],
+      "observation": "The ffmpeg span parser appends a black, freeze, or silence interval only when it sees the matching *_end token. If a defect begins near the end and continues through the final frame, ffmpeg can emit the start without an end, leaving the parser's local start value set when the loop exits. _collect_spans then returns without closing it. qa_report consequently reports a zero or understated fraction, and passes can approve a video whose entire payoff is black, frozen, or silent.",
+      "proposal": "Pass the probed media duration into _collect_spans and close any still-open start at duration, clamped to [0, duration]. Add focused fixtures for black_start, freeze_start, and silence_start without matching end tokens, plus a normal closed interval and malformed ordering. Keep passes fail-closed and make the new tests assert that a tail defect can cross the existing fraction thresholds and hold upload.",
+      "evidence": "shared/video_qa.py _collect_spans initializes spans and start, appends only in the `which == end and start is not None` branch, and returns spans without inspecting a remaining start. qa_report already knows the ffprobe duration but calls _collect_spans(err, kind) without it, then derives black_frac, freeze_frac, and silence_frac solely from those returned pairs. Repository test inventory in retro/20260825/brief.json contains no dedicated test_video_qa.py; test_clip_qa_fail_closed.py covers caller failure semantics rather than EOF span parsing.",
+      "signature": "4754c87f0f7e",
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "0bf9780d6272": {
+      "title": "Punch-up title and hook claims are not validated",
+      "horizon": "small_fix",
+      "severity": "high",
+      "area": "exchange/punchup-title-hook-claims",
+      "files": [
+        "shared/punchup_guard.py",
+        "config/channel_registry.json",
+        "tests/test_punchup_multiplicity.py"
+      ],
+      "observation": "The registry allows ChatGPT to mutate title and hook while declaring numbers, percentages, money, dates, years, and named entities protected. punchup_guard.check compares numeric claims and proper nouns only between original.script and rewritten.script. apply then copies rewritten title and hook through PUNCHUP_FIELDS without checking either field. A rewrite can therefore preserve the script perfectly while adding an unsupported number or entity to the title or hook, and the guard marks it punched_up.",
+      "proposal": "Validate every allowed claim-bearing mutation before merge. Compare title-to-title and hook-to-hook numeric/entity counters in addition to script-to-script, preserving field boundaries so a dropped title claim cannot be hidden by adding it to the script. Add tests where an unchanged script accompanies an unsupported title percentage, a dropped hook entity, and a valid wording-only title change. Continue failing closed to the original package on any mismatch.",
+      "evidence": "shared/punchup_guard.py check assigns o_script and r_script and performs both numeric_claims and proper_nouns comparisons only on those strings. PUNCHUP_FIELDS includes script, title, hook, hashtags, and punches, and apply copies every truthy rewritten value after check succeeds. config/channel_registry.json revision 5 lists title and hook among allowed editorial mutations while its trending and explainer protected_fields include quantitative claims and named entities. tests/test_punchup_multiplicity.py exercises repeated claims in script only and constructs fixtures with no title or hook.",
+      "signature": "0bf9780d6272",
+      "protected": [
+        "touches shared/punchup_guard.py \u2014 it stops rewrites inventing facts"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "3de32f29a8e4": {
+      "title": "Cadence probe failures become neutral publish evidence",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "quality/showrunner-temporal-evidence",
+      "files": [
+        "scripts/showrunner_review.py",
+        "shared/showrunner_gate.py",
+        "tests/test_showrunner_gate.py",
+        "tests/test_render_motion_floor.py"
+      ],
+      "observation": "showrunner_review catches every cadence-analysis exception inside _temporal_evidence and returns a dictionary with effective_fps and duplicate_ratio still None. temporal_hard_fail explicitly returns no failure for that unknown state, and temporal_grade awards a neutral 2. The vision judge can then return an explicit ship score, which shared.showrunner_gate correctly accepts because no exception escaped the reviewer. The outer gate is fail-closed on reviewer failure, but the inner measurement failure has already been converted into apparently valid evidence.",
+      "proposal": "Make temporal evidence carry an explicit analyzable/valid flag and require it on publish. If frame extraction, PIL decoding, milestone loading, or cadence calculation fails, return a structured temporal block before the vision call; preview runs may retain their documented fail-open iteration behavior through showrunner_gate. Add tests for ffmpeg failure, too-few frames, milestone import failure, and a normal measured pass, and assert that only the publish path blocks unknown cadence.",
+      "evidence": "scripts/showrunner_review.py _temporal_evidence initializes cadence fields to None, catches Exception into ev.error, and returns. temporal_hard_fail says unknown evidence returns None and also returns None if active_phase loading fails; temporal_grade maps None to 2. review_video still calls the vision judge and can return ship. shared/showrunner_gate.py sees a complete verdict rather than an error and permits a literal ship with a bounded score. tests/test_showrunner_gate.py covers exceptions that escape review_video, and tests/test_render_motion_floor.py covers measured motion thresholds, but neither covers a swallowed subprobe failure.",
+      "signature": "3de32f29a8e4",
+      "protected": [
+        "touches scripts/showrunner_review.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches scripts/showrunner_review.py \u2014 the showrunner's BLOCK is sovereign",
+        "touches shared/showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches tests/test_showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "4490f7560fed": {
+      "title": "Quality gates need one versioned measurement contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "quality/unified-evidence-contract",
+      "files": [
+        "shared/video_qa.py",
+        "scripts/showrunner_review.py",
+        "shared/showrunner_gate.py",
+        "data_learning/quality_milestones.py"
+      ],
+      "observation": "Finished-video QA and the showrunner both measure black or empty frames, frozen or static intervals, audio or cadence, and runtime, but they expose different shapes and different unknown-evidence rules. video_qa returns None and its caller fails closed, while showrunner motion and temporal helpers swallow errors into partial dictionaries; threshold ownership is split between DEFAULT_POLICY, constants in showrunner_review, and the active quality milestone. The August 23, 24, and 25 retro briefs repeatedly report empty_void, decorative_mascot, and dead_air failures, yet there is no durable measurement identity proving which detector version and thresholds produced each verdict.",
+      "proposal": "Define a versioned quality-evidence record generated once per render and consumed by technical QA, showrunner scoring, repair, alarm, and retro. Include media hash, duration, detector versions, threshold-set identity, analyzability for every measurement, raw spans, cadence facts, and explicit unknown reasons. Make all publish consumers fail closed on required unknowns, store the record beside the verdict, and derive human summaries from it. Migrate incrementally by adapting current helpers to the shared record without changing any existing block threshold until parity tests pass.",
+      "evidence": "shared/video_qa.py owns DEFAULT_POLICY and black/freezing/silence ffmpeg parsing; scripts/showrunner_review.py separately owns BLOCK_MOTION_THRESH, motion sampling, cadence sampling, and milestone-dependent temporal thresholds; shared/showrunner_gate.py persists the reviewer's verdict but not a technical detector contract; data_learning/quality_milestones.py supplies another threshold identity. retro/20260823/brief.json, retro/20260824/brief.json, and retro/20260825/brief.json show recurring empty_void/dead_air/decorative_mascot classes across separate runs, demonstrating that this evidence is operationally consumed over time.",
+      "signature": "4490f7560fed",
+      "protected": [
+        "touches scripts/showrunner_review.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one",
+        "touches scripts/showrunner_review.py \u2014 the showrunner's BLOCK is sovereign",
+        "touches shared/showrunner_gate.py \u2014 the showrunner is the permanent quality authority; code may only ever ADD blocks, never remove one"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "90428377a85b": {
+      "title": "Test a sub-40-second explainer cut without changing cadence",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/explainer-duration",
+      "files": [
+        "state/analytics_explainer/latest.json",
+        "data_learning/niche.config.json",
+        "docs/DIRECTOR.md",
+        "config/channel_registry.json"
+      ],
+      "observation": "The latest explainer snapshot has 34 videos mature enough for retention. Estimating runtime as average_view_duration divided by average_view_percentage, the 16 videos at or below 40 seconds have 47.7% median retention; the 18 above 40 seconds have 29.2%. Median views are similar at 86 versus 91, so the retention gap is not just a views-volume artifact. The strongest short examples include Hottest Planets at about 27 seconds and 117.2% retention, Largest Star Ever Found at about 17 seconds and 110.8%, and The Largest Living Thing at about 39 seconds and 89.3%. This is enough for a bounded duration test, not enough to change the four-per-day registry cadence.",
+      "proposal": "Run a 24-mature-video matched experiment: twelve eligible explainers cut to 28-40 seconds and twelve controls under current duration doctrine, matched by topic family, segment count, and publish slot. Keep the registered four-per-day cadence, quality thresholds, and factual payload unchanged. Tag the arm in story and analytics metadata; judge at 72 hours on retention, average view duration, VPH, and quality-block rate. Adopt a shorter default only if retention improves without reducing absolute watch time or factual legibility.",
+      "evidence": "state/analytics_explainer/latest.json fetched 2026-08-25 contains 34 usable_for_retention videos. Computing estimated runtime from its average_view_duration_s and average_view_percentage yields n=16 at <=40 seconds with median retention 47.7% and median views 86, versus n=18 above 40 seconds with median retention 29.2% and median views 91. The same snapshot's top short examples are Hottest Planets, Largest Star Ever Found, and The Largest Living Thing. config/channel_registry.json revision 5 keeps explainer at four data stories per day; the proposal isolates duration rather than changing volume or format mix.",
+      "signature": "90428377a85b",
+      "protected": [
+        "touches docs/DIRECTOR.md \u2014 the rubric the showrunner judges against"
+      ],
+      "last_seen": "20260826",
+      "first_seen": "20260826"
+    },
+    "9a7e1bcece21": {
+      "title": "A package-level media-judge crash becomes an empty gap list",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "funnel/media-judge-package-failure",
+      "files": [
+        "funnel/media_judge.py",
+        "scripts/exchange_phase_a.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "judge_shot fails closed to an unknown verdict and judge_package normally includes unknown in gaps, but judge_package's outer exception handler returns shot_count 0, empty verdicts, and gaps []. exchange_phase_a does not inspect report.error; build_bundle sorts report.gaps and therefore emits no request for the affected package. A malformed shot collection, non-dict shot, or any unexpected package-loop failure can be represented downstream as no missing media rather than unjudged media.",
+      "proposal": "On a package-level exception, preserve the package's shot cardinality and synthesize one unknown verdict and AI-media gap per shot, with the exception class and bounded message recorded at report level. Make Phase A refuse or explicitly quarantine any report carrying error when it cannot enumerate the shots. Add an adversarial test that forces the package loop to raise and asserts the resulting bundle contains requests or blocks, never zero gaps.",
+      "evidence": "funnel/media_judge.py judge_package normally counts unknown as a gap, but its final broad except returns {shot_count: 0, verdicts: [], gaps: [], error: 'judge_package failed'}. scripts/exchange_phase_a.py appends that report without checking error and passes it to shared/exchange_bundle.py. build_bundle reads report.get('gaps') or [] and creates requests only from those entries, so the error shape deterministically produces no media request.",
+      "signature": "9a7e1bcece21",
+      "last_seen": "20260828",
+      "first_seen": "20260828"
+    },
+    "aab2495524a2": {
+      "title": "Topic-video cache treats any nonempty partial file as valid media",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "funnel/topic-video-cache-validation",
+      "files": [
+        "funnel/topic_video.py"
+      ],
+      "observation": "_download returns an existing cache path whenever its size is greater than zero, without probing the container. On a new download it writes directly to the final path; when a server ignores Range, the loop stops after the byte cap and still returns the truncated file as long as it exceeds 10 KB. An interrupted process can likewise leave a positive-size final file. Every later call treats that artifact as a successful cache hit, so an undecodable clip can persist until manual cache eviction.",
+      "proposal": "Download to a unique temporary path, enforce the byte cap before committing a chunk, run a bounded ffprobe decode/container check, then atomically replace the cache path only on success. On cache hit, probe once or store and verify a validation sidecar keyed by size/hash. Add fixtures for an interrupted write, a server that ignores Range, a moov-at-end MP4, and a valid cached clip.",
+      "evidence": "funnel/topic_video.py _download begins with `if dest.exists() and dest.stat().st_size > 0: return dest`, opens dest itself with wb, breaks when written exceeds MAX_BYTES, and accepts any final size at or above 10,000 bytes. The function performs no ffprobe or decode check before returning or reusing the path.",
+      "signature": "aab2495524a2",
+      "last_seen": "20260828",
+      "first_seen": "20260828"
+    },
+    "4e9af949a9c9": {
+      "title": "Entity enrichment discards the evidence the media judge needs",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "funnel/entity-media-judge-evidence",
+      "files": [
+        "funnel/entity_media.py",
+        "funnel/media_judge.py",
+        "scripts/exchange_phase_a.py"
+      ],
+      "observation": "Entity enrichment does real work to identify an entity, disambiguate it with context, resolve a URL, and verify the URL is an image, but it persists only shot.image_url. Production Phase A calls judge_package with media_by_shot=None, whose pinned-media fallback deliberately constructs only {url}. That drops the entity, context, dimensions, source class, and license before scoring. The judge then sees no textual overlap, unverified resolution, and unverified provenance, so verified enrichment can be downgraded as weak and trigger an unnecessary generated replacement.",
+      "proposal": "Persist a compact media evidence object beside image_url when enrichment resolves or verifies a shot: candidate subject/title, provider, source_class, license, verified dimensions, verification time, and canonical URL. Teach judge_package's pinned fallback to consume that object while keeping legacy bare URLs unverified. Add an end-to-end test from enrich_package through judge_package proving a verified entity image is judged from real metadata and a bare URL still cannot self-certify.",
+      "evidence": "funnel/entity_media.py resolve_entity_media returns only str|None and enrich_package assigns only target['image_url'] after entity/context resolution; verify_shot_urls likewise retains only the chosen URL. scripts/exchange_phase_a.py calls media_judge.judge_package(pkg, None). funnel/media_judge.py documents that this is the production path and its fallback for image_url returns only {'url': shot['image_url']}, while scoring depends on title/query/entity text, width/height, source_class, and license-adjacent provenance.",
+      "signature": "4e9af949a9c9",
+      "last_seen": "20260828",
+      "first_seen": "20260828"
+    },
+    "8d777dcd5eda": {
+      "title": "Media evidence needs a typed validity contract across the exchange",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "exchange/typed-media-evidence-contract",
+      "files": [
+        "funnel/entity_media.py",
+        "funnel/media_judge.py",
+        "funnel/topic_video.py",
+        "shared/exchange_bundle.py"
+      ],
+      "observation": "The current media path communicates success through incompatible incidental shapes: a URL string from entity enrichment, a Path or None from topic video, a verdict dict from the shot judge, and a package report whose error state is optional. Missing, invalid, unknown, and verified-but-metadata-poor media can all collapse to empty values at a boundary. As more providers and recovery paths are added, each consumer must rediscover whether an asset was acquired, decoded, attributable, and actually judged.",
+      "proposal": "Define a versioned MediaEvidence record shared across acquisition, cache, enrichment, judging, and bundle assembly. Require asset identity/hash, media kind, subject/context, provider and license lane, byte/decode verification, dimensions or duration, acquisition outcome, judge validity, and explicit unknown reason. Adapt existing functions at their boundaries first, keep current scoring thresholds unchanged, and add contract tests proving that no invalid or unknown state serializes as an empty-success shape.",
+      "evidence": "funnel/entity_media.py exposes resolve_entity_media as str|None; funnel/topic_video.py exposes _download as Path|None and accepts positive-size cache files; funnel/media_judge.py returns detailed per-shot verdicts but an outer failure becomes an empty report; shared/exchange_bundle.py infers work exclusively from report.gaps and otherwise serializes media health from optional dict fields. These four current-main interfaces encode validity differently and lose information between them.",
+      "signature": "8d777dcd5eda",
+      "last_seen": "20260828",
+      "first_seen": "20260828"
+    },
+    "4589e347920b": {
+      "title": "Separate precise-number reach from explainer retention before scaling it",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "strategy/explainer-precise-number-packaging",
+      "files": [
+        "state/analytics_explainer/latest.json",
+        "data_learning/niche.config.json",
+        "config/channel_registry.json"
+      ],
+      "observation": "The latest explainer snapshot has one exceptional reach result: Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons has 504 views at 8.17 VPH after 61.7 hours, versus 1.75 VPH for the next video and 0.38 VPH for the next older comparison. But the fish video's average view percentage is only 25.9% with 10 seconds average view duration. One title may have earned distribution without earning sustained viewing, and the sample is too thin to treat a long raw number as a new channel doctrine.",
+      "proposal": "Keep the registered four-per-day cadence and current topic mix. For the next twelve comparable World Bank-style stories, tag six truthful titles with a human-readable magnitude and six with the exact raw figure, matched by topic family, duration arm, and publish slot. Judge at 72 hours on impressions-to-views or VPH for reach plus average view percentage and absolute view duration for story hold. Scale precise-number packaging only if its reach lift repeats without a retention loss; otherwise retain the underlying fish/supply topic insight without copying the title form.",
+      "evidence": "state/analytics_explainer/latest.json fetched 2026-08-28T04:02:44Z reports the fish video at age 61.7h, 504 views, 8.17 views_per_hour, 25.9 average_view_percentage, and 10.0 average_view_duration_s. The next VPH result is a 22.3h cereal-land video at 1.75 VPH and is not yet retention-usable; the next older result is the US rail video at 0.38 VPH. config/channel_registry.json revision 5 keeps explainer at four data stories per day, so this proposal isolates packaging rather than changing cadence or weakening quality gates.",
+      "signature": "4589e347920b",
+      "last_seen": "20260828",
+      "first_seen": "20260828"
+    },
+    "69a0ad32a52f": {
+      "title": "Required judges can unanimously reject and still advance",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "explainer/quality-policy",
+      "files": [
+        "data_learning/judge_policy.py"
+      ],
+      "observation": "The binding policy blocks a required judge only when its verdict is missing, failed, or abstained. It never blocks pass=false. If taste, technical, and factual all return status ok with pass=false, there is no dissent, so a high overall score with no separate hard finding reaches advance=true despite unanimous rejection.",
+      "proposal": "Require every required judge verdict to carry pass=true before advancement. Treat pass=false and a missing/non-boolean pass field as explicit blockers, and add adversarial tests for unanimous reject, one reject among passes, and malformed pass values.",
+      "evidence": "data_learning/judge_policy.py:312-321 checks only missing/failed/abstained required verdicts; lines 276-290 define dissent only as disagreement; lines 352-361 add a blocker for disagreement but not unanimous false; line 363 returns advance as not blockers.",
+      "signature": "69a0ad32a52f",
+      "last_seen": "20260829",
+      "first_seen": "20260829"
+    },
+    "e61446f7bc2a": {
+      "title": "One-shot explainer packages crash after being written",
+      "horizon": "small_fix",
+      "severity": "low",
+      "area": "explainer/legacy-generator",
+      "files": [
+        "data_learning/generate.py",
+        "data_learning/qa.py"
+      ],
+      "observation": "The explainer QA contract accepts any nonempty shots list, but the success logger unconditionally reads shots[1]. A valid one-shot package is written and counted successful, then raises IndexError before the batch summary or remaining packages run.",
+      "proposal": "Derive the chart note with a bounds-safe search for any shot carrying image_url, and add a one-shot package regression test proving generation finishes and reports the correct chart state.",
+      "evidence": "data_learning/qa.py:24-34 rejects only an empty shots list and imposes no two-shot minimum. data_learning/generate.py:148-153 writes the accepted package and increments n_ok, then reads pkg['shots'][1] unconditionally for chart_note.",
+      "signature": "e61446f7bc2a",
+      "last_seen": "20260829",
+      "first_seen": "20260829"
+    },
+    "02da0ae2137f": {
+      "title": "Story validation can truncate away its only payoff",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "third/story-director",
+      "files": [
+        "third_capture/story_director.py"
+      ],
+      "observation": "validate_edl proves that some incoming beat is a payoff or climax before it truncates the beat list to MAX_BEATS=5. A six-beat response whose only payoff is beat six can therefore satisfy the payoff check, lose that beat during cleaning, and still pass when beat five is merely a reaction.",
+      "proposal": "Validate narrative structure on the cleaned, bounded beat list: require at least one retained payoff/climax and prove the terminal reaction follows a retained payoff. Add a six-beat adversarial fixture with the sole payoff beyond MAX_BEATS.",
+      "evidence": "third_capture/story_director.py:31 sets MAX_BEATS=5; lines 205-208 compute payoffish over the full unbounded input; line 215 truncates to five beats; lines 272-276 accept a terminal reaction without rechecking that a payoff/climax survived.",
+      "signature": "02da0ae2137f",
+      "last_seen": "20260829",
+      "first_seen": "20260829"
+    },
+    "f85f65be87b6": {
+      "title": "Provider fallback cache has no freshness contract",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "explainer/media-resilience",
+      "files": [
+        "data_learning/stock_cache.py"
+      ],
+      "observation": "The provider fallback cache persists only provider, query, and candidate lists, with no schema version, fetch time, expiry, or candidate verification history. Whenever a live provider fails or returns empty, any old nonempty record remains eligible indefinitely, so dead CDN URLs and superseded licensing metadata can repeatedly re-enter production.",
+      "proposal": "Migrate the fallback to a versioned cache record with fetched_at, expiry policy, source/license provenance, and per-candidate verification outcomes. Evict repeatedly dead candidates while preserving the rule that successful live results always outrank fallback data.",
+      "evidence": "data_learning/stock_cache.py:38-48 accepts any parseable nonempty candidates list; lines 51-60 write only provider, query, and candidates; lines 65-87 reuse that record on every live failure or empty response without checking age or prior candidate failures.",
+      "signature": "f85f65be87b6",
+      "last_seen": "20260829",
+      "first_seen": "20260829"
+    },
+    "8bbdf9ac8a33": {
+      "title": "Current performance evidence supports no new direction change",
+      "horizon": "strategy",
+      "severity": "low",
+      "area": "channel-management/evidence",
+      "files": [
+        "doctor/evidence.json",
+        "state/analytics_explainer/latest.json",
+        "state/analytics_third/latest.json",
+        "config/channel_registry.json"
+      ],
+      "observation": "August 28 delivery recovered sharply, but it is not a stable performance read: doctor/evidence.json records trending moving from zero posts on August 27 to nine on August 28, while the newest explainer result has 334 views at 49.42 VPH after only 6.8 hours. The mature fish-catch result has 504 views at 5.95 VPH after 84.7 hours but remains one story, and Third's leading mature videos remain tightly clustered around roughly one VPH.",
+      "proposal": "Keep the registered cadence and format mix unchanged. Let the already-filed reliability repairs and declared title/story experiments accumulate mature samples before making another registry or doctrine change; the next strategy read should compare repeated results, not the recovery spike or one young explainer.",
+      "evidence": "doctor/evidence.json channel_performance shows trending 0 posts on 2026-08-27 and 9 on 2026-08-28, with active strategy/reliability backlog. state/analytics_explainer/latest.json records the 6.8-hour baby-name result and 84.7-hour fish-catch result; state/analytics_third/latest.json shows the mature top Third titles near one VPH. config/channel_registry.json is the current cadence/mix authority.",
+      "signature": "8bbdf9ac8a33",
+      "last_seen": "20260829",
+      "first_seen": "20260829"
+    },
+    "cc8333959d84": {
+      "title": "Auto-pause state can disappear while Daily keeps going",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "trending/durable-backoff-state",
+      "files": [
+        ".github/workflows/daily.yml"
+      ],
+      "observation": "Both branches that change the bounded auto-pause state append `|| true` to ci_commit_state.sh. A rejected push or transient commit failure therefore leaves only runner-local failure_count.txt or auto_pause_day.txt changes, yet preflight still emits skip=auto or resumes the run. The next firing reads the old committed state and can repeat the wrong branch, defeating the promised one-day pause and automatic retry semantics.",
+      "proposal": "Make persistence of auto_pause_day.txt and failure_count.txt a required preflight outcome. If the state commit fails, stop before publishing or claiming a durable pause, emit a named infrastructure failure, and add an executable test covering rejected persistence on both the pause and resume branches.",
+      "evidence": ".github/workflows/daily.yml:153-174 writes the pause/resume files, calls scripts/ci_commit_state.sh with `|| true` in both branches, and then sets the control output without checking that main contains the new state.",
+      "signature": "cc8333959d84",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "a2d4a0aea829": {
+      "title": "Four runbooks still publish retired Phase B times",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "operations/phase-b-runbooks",
+      "files": [
+        "README.md",
+        "docs/FALLBACKS.md",
+        "exchange/README.md",
+        "CLAUDE_ROUTINE_INSTRUCTIONS.md"
+      ],
+      "observation": "The live Phase B workflow now uses paired UTC crons plus an America/Chicago gate for 08:30 Central, but operator-facing instructions still name two retired schedules: README.md says 06:15 UTC, while FALLBACKS, exchange/README, and CLAUDE_ROUTINE_INSTRUCTIONS say 12:45 UTC. FALLBACKS also contradicts itself by later documenting the current DST-aware 08:30 rule.",
+      "proposal": "Replace every retired fixed-UTC claim with the canonical 08:30 America/Chicago contract, link the prose to exchange_phase_b.yml as the executable authority, and add a lightweight documentation test that rejects the retired 06:15 UTC and 12:45 UTC phrases in active runbooks.",
+      "evidence": ".github/workflows/exchange_phase_b.yml:69-71 schedules 13:30 and 14:30 UTC candidates and gates them in America/Chicago. README.md:32-33 says 06:15 UTC; docs/FALLBACKS.md:85-86 says 12:45 UTC while line 220 says DST-aware 08:30; exchange/README.md:450-452 and CLAUDE_ROUTINE_INSTRUCTIONS.md:73-82 still say 12:45 UTC.",
+      "signature": "a2d4a0aea829",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "694ab7c3e1d4": {
+      "title": "Retro can publish green after losing its evidence pack",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "retro/workflow-integrity",
+      "files": [
+        ".github/workflows/retro.yml",
+        "scripts/build_retro.py",
+        "scripts/review_proposals.py"
+      ],
+      "observation": "Advance-experiments, failure-census, brief construction, and proposal triage all use continue-on-error=true. The final commit step is fail-closed only around whatever files happen to exist, so build_retro.py and review_proposals.py can both fail while ci_commit_state.sh finds old or unrelated state and the workflow still finishes green. That turns absence of the day's brief or triage into a silent success.",
+      "proposal": "Keep analytics refresh best-effort, but make brief construction and triage required for the modes that invoke them. Add an explicit artifact gate before commit that checks the resolved date, freshness, schema, and required brief/triage files; fail only after preserving diagnostics so a missing daily review is visible and retryable.",
+      "evidence": ".github/workflows/retro.yml:128-181 marks experiment advance, failure census, Build the brief, and Triage proposals continue-on-error; lines 194-211 commit without first asserting fresh outputs. scripts/build_retro.py documents required retro/<date>/brief.json and brief.md outputs, while scripts/review_proposals.py documents triage.json as its durable result.",
+      "signature": "694ab7c3e1d4",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "b507d603aefb": {
+      "title": "Workflow dependencies still float on mutable action tags",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "ci/supply-chain-reproducibility",
+      "files": [
+        ".github/workflows/daily.yml",
+        ".github/workflows/retro.yml",
+        ".github/workflows/doctor.yml",
+        ".github/workflows/exchange_phase_b.yml"
+      ],
+      "observation": "Production, review, diagnosis, and exchange workflows invoke actions/checkout@v4 and actions/setup-python@v5 by mutable major-version tags. A compromised or unexpectedly changed upstream tag can alter code executed with contents:write permissions without any repository commit changing, making an incident hard to reproduce or audit.",
+      "proposal": "Adopt a repository-wide action pinning policy: replace mutable tags with reviewed full commit SHAs, retain the human-readable release in comments, and use Dependabot or Renovate to propose auditable update pull requests with the normal workflow tests.",
+      "evidence": ".github/workflows/daily.yml, .github/workflows/retro.yml, .github/workflows/doctor.yml, and .github/workflows/exchange_phase_b.yml all use actions/checkout@v4 and/or actions/setup-python@v5 while their jobs hold write-capable repository permissions.",
+      "signature": "b507d603aefb",
+      "last_seen": "20260830",
+      "first_seen": "20260830"
+    },
+    "5187e34e11f3": {
+      "title": "Dead-authoring days still have no timely Phase A guarantee",
+      "horizon": "bug",
+      "severity": "high",
+      "area": "exchange/phase-a-liveness",
+      "files": [
+        ".github/workflows/exchange_phase_a.yml",
+        "scripts/exchange_phase_a.py"
+      ],
+      "observation": "The Phase A workflow has three paths, but only its single 09:45 UTC cron is independent of an upstream package write or Auto-merge run. Its own comments record GitHub cron drift measured in hours. On both August 29 and August 30 the Media worker reached the handoff with no bundle or package slate; the August 30 failure artifact explicitly says no current-date Phase A artifact or commit existed. The advertised backstop therefore does not guarantee that a dead-authoring day becomes a bundle before Media starts.",
+      "proposal": "Add a fail-closed, idempotent readiness watchdog before the Media handoff. It should check main for the current-date bundle identity, dispatch Phase A when absent, wait for a completed Phase A run or a durable named refusal, and publish that outcome as repository state. Keep bundle freeze semantics so duplicate triggers are harmless, and test both the no-upstream-authoring and delayed-cron cases.",
+      "evidence": ".github/workflows/exchange_phase_a.yml:10-54 makes workflow_run and push depend on upstream activity, while the only independent path is cron 45 9 and the comments acknowledge multi-hour drift. Commit ba29df54138255c2515eb3077e5e8dfc records August 30 BUNDLE_MISSING with no bundle, BUNDLE_ID, packages, Phase A artifact, or current-date Drive media; August 29 required a Finalizer takeover after the same shape.",
+      "signature": "5187e34e11f3",
+      "last_seen": "20260831",
+      "first_seen": "20260831"
+    },
+    "f7633072ef78": {
+      "title": "Phase A trigger topology has no regression test",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "tests/phase-a-workflow-contract",
+      "files": [
+        ".github/workflows/exchange_phase_a.yml",
+        "tests/test_authoring_takeover.py"
+      ],
+      "observation": "The takeover suite thoroughly tests package validation and recovery after authoring is already requested, but no test references exchange_phase_a.yml or asserts that a no-authoring day can reach that takeover path. The workflow's trigger comments are currently the only specification for workflow_run, push, and scheduled backstop behavior, so removing or weakening the independent path would leave the full unit suite green.",
+      "proposal": "Add a focused workflow-contract test that parses exchange_phase_a.yml, proves at least one trigger is independent of upstream authoring, asserts the current-date calculation and bundle commit path, and pins the readiness-watchdog behavior from the liveness finding. Run it inside the existing full unit suite.",
+      "evidence": "Repository code search found no reference to exchange_phase_a.yml, its 09:45 backstop, or its workflow_run topology under tests/. tests/test_authoring_takeover.py begins at the already-authored bundle/Phase B boundary and does not exercise the Phase A workflow triggers.",
+      "signature": "f7633072ef78",
+      "last_seen": "20260831",
+      "first_seen": "20260831"
+    },
+    "d486c2fbfdaf": {
+      "title": "Render-handoff test proves strings, not failure behavior",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "tests/phase-b-handoff-execution",
+      "files": [
+        ".github/workflows/exchange_phase_b.yml",
+        "tests/test_phase_b_render_handoff.py"
+      ],
+      "observation": "The regression test for the critical Phase B-to-Daily handoff parses YAML and searches for an endpoint substring, an HTTP-versus-204 regex, and an `exit 1` within 400 characters. It never executes the shell branch or mocks the API. A refactor can leave those tokens in comments or an unreachable branch while a rejected dispatch exits zero, and every asserted test still passes.",
+      "proposal": "Extract the dispatch-and-verify logic into a small script with an injectable HTTP client, then test 204 success, 401/403/404/422 failure, timeout, malformed response, and missing token as executable cases. Leave one thin YAML wiring assertion that the workflow invokes that tested script only after a real non-dry-run apply.",
+      "evidence": "tests/test_phase_b_render_handoff.py:test_a_rejected_dispatch_fails_the_job only inspects HANDOFF['run'] text with a regex and nearby-substring check; the file contains no subprocess execution, HTTP mock, or asserted process status. This weakens the active critical repair 2fc5cbb21cca without duplicating its implementation scope.",
+      "signature": "d486c2fbfdaf",
+      "last_seen": "20260831",
+      "first_seen": "20260831"
+    },
+    "500b791bc671": {
+      "title": "Executable direct pushes to main bypass the full suite",
+      "horizon": "long_term",
+      "severity": "medium",
+      "area": "ci/main-branch-test-coverage",
+      "files": [
+        ".github/workflows/auto-merge.yml"
+      ],
+      "observation": "The only workflow that installs Pillow, PyYAML, NumPy, Matplotlib, and ffmpeg and runs unittest discovery is Auto-merge claude PRs, whose jobs are gated to Claude pull-request branches. A human, PAT, or other authorized direct push can change Python or workflow code on main without running the full suite; exchange_phase_a.yml explicitly documents that such direct pushes are supported as an operational path.",
+      "proposal": "Create a scoped push-to-main verification workflow for changes under Python source, tests, and .github/workflows. Reuse the same pinned test environment and commands as the pull-request gate, skip state-only and report-only commits, and surface failures without creating a recursive state commit. Longer term, make the required check a branch-protection invariant for every executable change path.",
+      "evidence": ".github/workflows/auto-merge.yml is triggered only by pull_request and every sanity/tests job requires startsWith(github.head_ref, 'claude/'); its full suite installs the production test dependencies and ffmpeg. No equivalent push-to-main full-suite trigger is declared there, while .github/workflows/exchange_phase_a.yml:35-42 explicitly accepts human/PAT pushes to main.",
+      "signature": "500b791bc671",
+      "last_seen": "20260831",
+      "first_seen": "20260831"
     }
   }
 }

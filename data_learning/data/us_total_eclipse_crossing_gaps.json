@@ -1,0 +1,21 @@
+{
+  "key": "us_total_eclipse_crossing_gaps",
+  "title": "Years until the next total eclipse to cross the contiguous US",
+  "unit": "years",
+  "geography": "United States",
+  "time_coverage": "1979-2045",
+  "source": {
+    "name": "Five Millennium Catalog of Solar Eclipses",
+    "publisher": "NASA Goddard Space Flight Center (Eclipse Website)",
+    "url": "https://eclipse.gsfc.nasa.gov/SEcat5/SEcatalog.html",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Value = years between that total eclipse and the next one to cross the contiguous United States. Total eclipses touched the US in 1979 (Pacific Northwest), 2017 (Oregon to South Carolina), and 2024 (Texas to Maine); the next will be 2044 (Montana/North Dakota/South Dakota only) and then 2045 (California to Florida, coast to coast).",
+  "points": [
+    {"label": "1979", "value": 38, "period": "1979"},
+    {"label": "2017", "value": 7, "period": "2017"},
+    {"label": "2024", "value": 20, "period": "2024"},
+    {"label": "2044", "value": 1, "period": "2044"}
+  ]
+}

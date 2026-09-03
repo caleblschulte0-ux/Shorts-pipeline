@@ -1,0 +1,38 @@
+{
+ "checked_at": "2026-08-29T18:26:40+00:00",
+ "date": "20260828",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20260828/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "FAILED-reddit-thermostat-admin-s1-591b8e80f1a0.json",
+  "STARTED.json",
+  "reddit-not-an-employee-s0-5ec22059359c.json",
+  "reddit-not-an-employee-s1-2705af537350.json",
+  "reddit-not-an-employee-s2-e46d94003e53.json",
+  "reddit-not-an-employee-s3-bed564995838.json",
+  "reddit-not-an-employee-s4-c80db87f1d69.json",
+  "reddit-not-an-employee-s5-1b3a4dbe1d26.json",
+  "reddit-not-an-employee-s6-d59b3180dcd9.json",
+  "reddit-not-an-employee-s7-31062aa61a5c.json",
+  "reddit-thermostat-admin-s0-785397445532.json",
+  "reddit-thermostat-admin-s1-591b8e80f1a0.json",
+  "reddit-thermostat-admin-s2-d2233909594c.json",
+  "reddit-thermostat-admin-s3-5c9ef048ebe6.json",
+  "reddit-thermostat-admin-s4-553776492597.json",
+  "reddit-thermostat-admin-s5-92858138f45e.json",
+  "reddit-thermostat-admin-s6-8df57b83f8af.json",
+  "reddit-thermostat-admin-s7-d40ec9090171.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}

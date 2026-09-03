@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s5-92858138f45e",
+  "safe_request_id": "reddit-thermostat-admin-s5-92858138f45e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4ec9811fc924eec6040ed58ec9bbe30324c3a016661e916309f46e3f1cdbbeda",
+  "prompt_used": "An editorial illustration for a short-form video: hr office meeting. It accompanies the narration: \"HR read the log twice\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+    "filename": "20260828__reddit-thermostat-admin-s5-92858138f45e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10WUaPF1gDnuJlt_rMCKMyphJK-zke6b8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "28d2144bb1ab666f7bb9994e63b8a4800bbcd25cc760df29ac0e4217908a5927",
+    "bytes": 1642840,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:18:01Z",
+  "retryable": false
+}

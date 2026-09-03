@@ -1,0 +1,19 @@
+{
+  "key": "seaborne_trade_share",
+  "title": "Share of world trade volume carried by sea",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "recent (annual)",
+  "source": {
+    "name": "Review of Maritime Transport",
+    "publisher": "United Nations Conference on Trade and Development (UNCTAD)",
+    "url": "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport",
+    "officiality": "official",
+    "access_date": "2026-08-28"
+  },
+  "notes": "UNCTAD estimates that around 80% of world merchandise trade by volume is carried by sea, the large majority of manufactured goods moving in containers.",
+  "points": [
+    {"label": "By sea", "value": 80},
+    {"label": "Everything else", "value": 20}
+  ]
+}

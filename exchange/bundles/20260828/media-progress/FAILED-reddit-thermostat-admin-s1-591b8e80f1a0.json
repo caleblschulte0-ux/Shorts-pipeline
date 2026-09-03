@@ -1,0 +1,24 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s1-591b8e80f1a0",
+  "safe_request_id": "reddit-thermostat-admin-s1-591b8e80f1a0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7c87d4a91ebf3b9ba25d18a041aaf8fb4491c6e291bd5a22e369be16c320efb3",
+  "prompt_used": "An editorial illustration for a short-form video: cold office worker shivering. It accompanies the narration: \"kept it at sixty two degrees\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "failed",
+  "attempt": 1,
+  "worker": "media",
+  "verified_at": "2026-08-28T11:17:14Z",
+  "error": {
+    "code": "MEDIA_WORKER_FAILURE",
+    "step": "upload_verify_checkpoint",
+    "message": "Error: Drive upload failed"
+  },
+  "retryable": true
+}

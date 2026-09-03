@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "35d904a835e9c23249dea4ab4dff6a0f3ce42073c075de6a22867e5daf9cc650",
+  "prompt_used": "An editorial illustration for a short-form video: marker writing paper bag. It accompanies the narration: \"wrote my name on the bag\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s3-ca542a379c4d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Y4TfmP5kRhTs0I4gKalGm06K9cdINsyU",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "81636c7103ef63116510fdef6231b57bddfb444db7a5c6e85e6e7f0f34db7ce2",
+    "bytes": 1391480,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:20:46.747Z",
+  "error": null,
+  "retryable": false
+}

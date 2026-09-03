@@ -1,0 +1,203 @@
+{
+ "slug": "world-coal-power-fell-below-its-1990-level",
+ "ts": "20260825T180501Z",
+ "score": 95,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.004,
+  "effective_fps": 23.9,
+  "max_dup_run": 2,
+  "max_dup_at_s": 5.25,
+  "duration_s": 51.5
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": {
+    "action": "catch_fall",
+    "family": "catch",
+    "goal": "arrest a falling value \u2014 1990",
+    "target": "1990",
+    "selection_input": {
+     "claim": "Electricity production from coal sources fell from 37.4 in 1990 to 15 in 2024.",
+     "relationships": [
+      "decrease"
+     ],
+     "direction": "falling",
+     "shape": "trend",
+     "used_families": []
+    },
+    "contact": "arms under the falling value",
+    "cause": "catches the drop",
+    "consequence": "impact squashes him into a squat; he holds it",
+    "data_affects_mascot": true,
+    "mascot_affects_data": true,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": {
+    "action": "race_sprint",
+    "family": "race",
+    "goal": "race a fast-moving value \u2014 1972",
+    "target": "1972",
+    "selection_input": {
+     "claim": "Food production index climbed from 16.9 in 1972 to 100 in 2020.",
+     "relationships": [
+      "increase"
+     ],
+     "direction": "rising",
+     "shape": "ranking",
+     "used_families": [
+      "catch"
+     ]
+    },
+    "contact": "sprinting flush with the advancing edge",
+    "cause": "races the data to the mark",
+    "consequence": "loses ground and dives across",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  },
+  {
+   "id": "segment_2",
+   "kind": "trend",
+   "performance": {
+    "action": "drag_line",
+    "family": "pull",
+    "goal": "resist a growing value and lose \u2014 2010",
+    "target": "2010",
+    "selection_input": {
+     "claim": "Secure Internet servers climbed from 185.2 in 2010 to 16,381 in 2024.",
+     "relationships": [
+      "increase"
+     ],
+     "direction": "rising",
+     "shape": "trend",
+     "used_families": [
+      "catch",
+      "race"
+     ]
+    },
+    "contact": "both fists clamped on the object's tip",
+    "cause": "hauls DOWN trying to stop the rise",
+    "consequence": "the data keeps rising and DRAGS HIM airborne",
+    "data_affects_mascot": true,
+    "mascot_affects_data": false,
+    "beats": [
+     {
+      "phase": "setup",
+      "pose": "anticipate",
+      "contact": "approach"
+     },
+     {
+      "phase": "objective",
+      "pose": "engage",
+      "contact": "both_hands"
+     },
+     {
+      "phase": "effort",
+      "pose": "work",
+      "repetitions": 2
+     },
+     {
+      "phase": "reversal",
+      "pose": "turn"
+     },
+     {
+      "phase": "consequence",
+      "pose": "affected"
+     },
+     {
+      "phase": "payoff",
+      "pose": "land"
+     },
+     {
+      "phase": "recovery",
+      "pose": "settle"
+     }
+    ]
+   }
+  }
+ ],
+ "why_it_worked": "The video features engaging data demonstrations with an active mascot and strong visual craft, though the initial data points could be revealed sooner.",
+ "render_ref": "preview-renders branch @ 20260825T180501Z"
+}

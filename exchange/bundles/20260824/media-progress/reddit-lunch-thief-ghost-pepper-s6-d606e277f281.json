@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s6-d606e277f281",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s6-d606e277f281",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7c38fcc6e3a8115a234cd51c51879d96a277d93e06c6f7896f6ada1c025a0604",
+  "prompt_used": "An editorial illustration for a short-form video: flustered woman office face. It accompanies the narration: \"red-faced, eyes streaming\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s6-d606e277f281.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QdzGJSvm-30DA36KI1Ye-Hnw4jg5cI7K",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c0343463328371e4516916547edbc898e02338016a59bd2084416f99d3a44e48",
+    "bytes": 1327073,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:21:53.544Z",
+  "error": null,
+  "retryable": false
+}

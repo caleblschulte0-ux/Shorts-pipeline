@@ -215,15 +215,19 @@ def main() -> int:
                     thumbnail=thumb if thumb.exists() else None)
     url = getattr(res, "url", None) or str(res)
     print(f"[longform] uploaded -> {url}", flush=True)
-
-    from shared.fsutil import load_state_json
-    log = load_state_json(LONGFORM_LOG, default={"posted": []}) or {"posted": []}
+    # Strict read (CorruptStateError on corruption): this append + write-back
+    # is exactly where a corrupt-read-as-empty ledger gets REPLACED by a
+    # one-entry log, and the longform dedupe history is gone on the next
+    # push. Missing file = first longform ever = honest empty default.
+    # Atomic write for the same reason — a torn ledger IS a corrupt one.
+    from shared.fsutil import atomic_write_json, load_state_json
+    log = load_state_json(LONGFORM_LOG, {"posted": []}, expect_type=dict)
     log.setdefault("posted", []).append({
         "url": url, "title": title, "slug": slug, "slugs": [slug],
         "format": "long_form_16x9", "duration_s": round(dur, 1),
         "showrunner_score": (gate.get("verdict") or {}).get("score"),
         "at": datetime.now(timezone.utc).isoformat()})
-    LONGFORM_LOG.write_text(json.dumps(log, indent=2))
+    atomic_write_json(LONGFORM_LOG, log)
     return 0
 
 

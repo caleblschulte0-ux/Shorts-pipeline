@@ -1,0 +1,45 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260831T003236Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: The mascot consistently slides along the bars and points, but does not perform a unique 'bit' (setup->action->payoff) tied to the specific data in any segment, making its role largely decorative. (e.g., seg0:start, seg1:start, seg2:start, seg3:start)",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "The mascot's actions in seg0 (and subsequent segments) are limited to sliding and pointing along the filling bar, lacking a distinct, expressive performance (setup->action->payoff) that interprets the specific data point.",
+  "root_cause": "The mascot's animation is designed for consistent guidance rather than varied, performative bits tied to individual data points or their implications.",
+  "repair_goal": "Enhance the mascot's performance in seg0 to include a distinct, expressive action (setup->action->payoff) that visually interprets the 'Population ages 65 and above' data point, rather than merely pointing."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "catch_fall"
+  }
+ ]
+}

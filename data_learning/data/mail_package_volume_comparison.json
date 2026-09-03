@@ -1,0 +1,19 @@
+{
+  "key": "mail_package_volume_comparison",
+  "title": "USPS shipping/package volume: 2008 vs 2020 peak (billion pieces)",
+  "unit": "billion",
+  "geography": "United States",
+  "time_coverage": "2008 vs 2020",
+  "source": {
+    "name": "USPS Office of Inspector General -- historical mail volume analysis",
+    "publisher": "USPS Office of Inspector General (OIG)",
+    "url": "https://www.uspsoig.gov/reports/white-papers/analysis-historical-mail-volume-trends",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "USPS shipping and package volume more than doubled from 3.3 billion pieces in FY2008 to 7.3 billion pieces in FY2020, driven by e-commerce growth; FY2025 volume was 6.8 billion, still more than double the 2008 level.",
+  "points": [
+    {"label": "2008", "value": 3.3},
+    {"label": "2020 (peak)", "value": 7.3}
+  ]
+}

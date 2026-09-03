@@ -1,0 +1,19 @@
+{
+  "key": "eclipse_global_vs_single_spot_frequency",
+  "title": "How often a total solar eclipse occurs, somewhere vs one spot (years)",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "Long-run average (2000 BCE - 3000 CE catalog)",
+  "source": {
+    "name": "Five Millennium Catalog of Solar Eclipses",
+    "publisher": "NASA Goddard Space Flight Center (Eclipse Website)",
+    "url": "https://eclipse.gsfc.nasa.gov/SEsaros/SEperiodicity.html",
+    "officiality": "reference",
+    "access_date": "2026-08-24"
+  },
+  "notes": "A total solar eclipse occurs SOMEWHERE on Earth roughly once every 18 months (1.5 years). But because the path of totality is so narrow, any ONE fixed spot only sees a repeat, on average, once every 375 years -- a figure originally derived by astronomer Jean Meeus (1982) and commonly cited against NASA's eclipse catalog data; NASA's own 5,000-year mapping of every totality path refines the global figure to roughly 366 years.",
+  "points": [
+    {"label": "Somewhere on Earth", "value": 1.5},
+    {"label": "One specific spot", "value": 375}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "wns_states_affected",
+  "title": "US states with confirmed white-nose syndrome in bats",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "2007-2025",
+  "source": {
+    "name": "White-nose syndrome surveillance records",
+    "publisher": "U.S. Geological Survey / National Park Service",
+    "url": "https://www.usgs.gov/programs/biological-threats-and-invasive-species-research-program/science/fish-wildlife-disease-6",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; count of US states with confirmed white-nose syndrome in bats. First found in one New York cave in winter 2006-2007; 32 states by 2018 per USGS; 35 states by 2025 per USGS/NPS tracking.",
+  "points": [
+    {"label": "2007", "value": 1, "period": "2007"},
+    {"label": "2018", "value": 32, "period": "2018"},
+    {"label": "2025", "value": 35, "period": "2025"}
+  ]
+}

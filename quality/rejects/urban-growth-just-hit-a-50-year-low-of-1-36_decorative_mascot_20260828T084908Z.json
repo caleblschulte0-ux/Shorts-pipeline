@@ -1,0 +1,45 @@
+{
+ "slug": "urban-growth-just-hit-a-50-year-low-of-1-36",
+ "ts": "20260828T084908Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the same forward-lean/slide pose hovering in the gap right of the 1972 bar in hook@0.3, seg0:mid, seg1:mid, seg2:start, seg3:mid and seg4:mid \u2014 he never touches, pushes, measures or reacts to a bar, so there is no setup->action->payoff tied to any stat.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "non_hook_template_repeat",
+  "visible_evidence": "hook@0.3 to seg0:end is a slow build of five nearly empty grey bars titled 'Population ages 65 and above' with the stale annotation '1972 PULLS AHEAD'; at t=0.3s only stubs of purple exist and the mascot sits inert behind the caption, and this exact layout then repeats unchanged for seg1 (seg1:start), seg2 (seg2:start), seg3 (seg3:start) and seg4 \u2014 three unrelated metrics rendered as one identical template for 96s.",
+  "root_cause": "The scene plan assigns the generic bar-race renderer to every segment with no per-scene visual concept, and the opening beat starts from zero-length bars, so the first two seconds are a chart loading rather than an event; the '1972 PULLS AHEAD' label is a hard-coded leader caption that is meaningless for a rising series.",
+  "repair_goal": "Open seg0 cold on an already-loaded state with a visible physical demonstration of the ageing share (e.g. a filling column of people/blocks that visibly overflows between 1972 and 2025) and give Data a bit that acts on it \u2014 he plants at the 1972 bar and gets shoved back as it grows \u2014 so the first 2s contain an action, and differentiate seg0's treatment from the bar-race used in seg1/seg2."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "catch_fall"
+  }
+ ]
+}

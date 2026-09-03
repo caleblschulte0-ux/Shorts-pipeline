@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260824",
+  "bundle": {
+    "identity": "a692087a8dc0cd11ce35ae107c613a9c59a229f79051570c1ac94d4eb6153050",
+    "path": "exchange/bundles/20260824/bundle.json"
+  },
+  "request_id": "reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf",
+  "safe_request_id": "reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c7b7943814c2d9ca82b4867f02a4dc35bc033fe60c987f2506f31cde54cd974f",
+  "prompt_used": "An editorial illustration for a short-form video: water cooler office drinking. It accompanies the narration: \"chugging every cup of water\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+    "filename": "20260824__reddit-lunch-thief-ghost-pepper-s5-af5eb454cfdf.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Roy73OarrF4HsyZkTsD0JZhBD9TpHYV-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "72638b78227acc5de236464e2cf1eb160cc518f57569a1261022f4bbe527a368",
+    "bytes": 1363957,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-08-24T11:21:46.837Z",
+  "error": null,
+  "retryable": false
+}

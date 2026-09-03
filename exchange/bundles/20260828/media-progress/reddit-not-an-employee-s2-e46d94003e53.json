@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s2-e46d94003e53",
+  "safe_request_id": "reddit-not-an-employee-s2-e46d94003e53",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fba7d4d3b54d501803be7b9da50b4e530e9655daf970f8714ca033710d0cd23b",
+  "prompt_used": "An editorial illustration for a short-form video: store employee vest. It accompanies the narration: \"flagged down an actual employee in an orange vest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+    "filename": "20260828__reddit-not-an-employee-s2-e46d94003e53.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1z1fh7oqajDcRN7E5LewCx5HZYDqQL5ZK",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6c5a4eb5350d1cc944454d421dd51f31583ad1e1136ac86a5a39c5037ebe19f7",
+    "bytes": 2302971,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:12:57Z",
+  "retryable": false
+}

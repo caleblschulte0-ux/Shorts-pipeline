@@ -4721,6 +4721,783 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (confused rambling, nothing visibly happe)",
       "ts": "2026-08-23T12:18:50.916350+00:00"
+    },
+    "rejected-triumphantbombasticbubbleteachocolaterain-o_0-851_n0lg8icf": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TriumphantBombasticBubbleteaChocolateRain-o_0-851_n0Lg8ICF",
+      "streamer": "kaicenat",
+      "title": "LEEKED",
+      "qa_rejected": true,
+      "ts": "2026-08-24T11:40:01.895276+00:00"
+    },
+    "clip-20260824-1": {
+      "url": "https://youtube.com/shorts/WBtzd7Z2HA8",
+      "title": "Jynxzi Reacts To This INSANE Standoff Scene",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T11:44:12.256423+00:00",
+      "uploaded_at": "2026-08-24T11:44:12.256451+00:00",
+      "publish_at": "2026-08-24T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TallFunPandaDAESuppy-fzBTU9Q97KP8ut0Z",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "THIS SCENE HAD JYNXZI SHOOK",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3281,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 26.5
+      },
+      "director_cut": true
+    },
+    "rejected-muddyfunyogurtnotlikethis-dcyp3wdyjhovsmke": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/MuddyFunYogurtNotLikeThis-DcYP3WDYjhOvsMKE",
+      "streamer": "stableronaldo",
+      "title": "laiys almost beats bep's ass for tryna take his job",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (title exaggerates, frames show nothing h)",
+      "ts": "2026-08-24T11:44:57.670140+00:00"
+    },
+    "rejected-wimpyrenownednarwhalbabyrage-qu6ivsniw4fcwate": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WimpyRenownedNarwhalBabyRage-qU6IVsNiW4fcWAte",
+      "streamer": "xqc",
+      "title": "forsen",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (small talk about streamer, nothing happe)",
+      "ts": "2026-08-24T11:46:01.745638+00:00"
+    },
+    "clip-20260824-2": {
+      "url": "https://youtube.com/shorts/F-kLtcLZ3Jc",
+      "title": "Ludwig Grinds 100 Hours Just To Gain Two Elo",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T11:51:00.161769+00:00",
+      "uploaded_at": "2026-08-24T11:51:00.161799+00:00",
+      "publish_at": "2026-08-24T18:30:00Z",
+      "source_url": "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
+      "streamer": "ludwig",
+      "series": "fail",
+      "hook": "100 HOURS FOR JUST TWO ELO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 24989,
+      "banger": 0.4,
+      "cut": {
+        "start": 2.6,
+        "end": 23.3
+      },
+      "director_cut": true
+    },
+    "rejected-wealthyobliviousreindeerninjagrumpy-14yyxsgmzrrx_ujm": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/WealthyObliviousReindeerNinjaGrumpy-14yYXsgMzrRx_ujm",
+      "streamer": "kaicenat",
+      "title": "Kai enjoying the outdoors \ud83d\ude04",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static game NPC, nothing happens)",
+      "ts": "2026-08-24T11:51:56.060972+00:00"
+    },
+    "rejected-artsyanimatedoryxbrainslug-loyvpgnzexj6abk-": {
+      "source_url": "https://www.twitch.tv/forsen/clip/ArtsyAnimatedOryxBrainSlug-LOyVpgNzEXj6ABK-",
+      "streamer": "forsen",
+      "title": "GANK",
+      "qa_rejected": true,
+      "ts": "2026-08-24T11:52:09.764424+00:00"
+    },
+    "rejected-strangeuglycockroachsobayed-wfvkyts59zqavkwr": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/StrangeUglyCockroachSoBayed-wFvkyTs59zQaVKwr",
+      "streamer": "caseoh_",
+      "title": "Heinous Hasbrowns",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just setup/measuring talk)",
+      "ts": "2026-08-24T11:53:18.631878+00:00"
+    },
+    "rejected-superperfecthamsteryouwhy-wkaazllnfpj2lde_": {
+      "source_url": "https://www.twitch.tv/cinna/clip/SuperPerfectHamsterYouWHY-WKaAzllNFpj2Lde_",
+      "streamer": "cinna",
+      "title": "Cinna Reacts To A Freaky PC Prank And Instantly Knows Who Did It",
+      "qa_rejected": true,
+      "ts": "2026-08-24T12:04:20.522720+00:00"
+    },
+    "clip-20260824-4": {
+      "url": "https://youtube.com/shorts/_Q7SSGp_WgI",
+      "title": "Agent00 Can't Believe What Happened To His Chair",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:07:15.049414+00:00",
+      "uploaded_at": "2026-08-24T12:07:15.049437+00:00",
+      "publish_at": "2026-08-24T21:30:00Z",
+      "source_url": "https://www.twitch.tv/agent00/clip/AffluentPreciousJackalRuleFive-BKxho37D7VzcAItR",
+      "streamer": "agent00",
+      "series": "chaos",
+      "hook": "WHAT HAPPENED TO HIS CHAIR",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7324,
+      "banger": 0.35,
+      "cut": {
+        "start": 0.0,
+        "end": 9.15
+      },
+      "director_cut": true
+    },
+    "clip-20260824-5": {
+      "url": "https://youtube.com/shorts/xgUJqRY6YTw",
+      "title": "Rayasianboy Loses It Then Cancels The Whole Meetup",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:12:52.788958+00:00",
+      "uploaded_at": "2026-08-24T12:12:52.788978+00:00",
+      "publish_at": "2026-08-24T23:00:00Z",
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/RockySuaveJayVoteNay-N3CPsPCu_SKJH7uK",
+      "streamer": "rayasianboy",
+      "series": "chaos",
+      "hook": "HE JUST CANCELED THE MEETUP",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1991,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260824-6": {
+      "url": "https://youtube.com/shorts/Ni-spiaz7Fk",
+      "title": "Jynxzi Watches Joel Get Killed In This Scene",
+      "kind": "twitch_clip",
+      "ts": "2026-08-24T12:40:20.087043+00:00",
+      "uploaded_at": "2026-08-24T12:40:20.087085+00:00",
+      "publish_at": "2026-08-25T00:30:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RealSmokyWasabiStoneLightning-jHuAlQ9OIQFQYZ0Z",
+      "streamer": "jynxzi",
+      "series": "drama",
+      "hook": "PLEASE DON'T SHOOT JOEL",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2570,
+      "banger": 0.5,
+      "cut": {
+        "start": 30.0,
+        "end": 58.4
+      },
+      "director_cut": true
+    },
+    "rejected-crackypunchyhumanpeanutbutterjellytime-hn33ohk3q5cu8gkn": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/CrackyPunchyHumanPeanutButterJellyTime-hN33Ohk3Q5CU8gkN",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Makes A Big Announcement! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just talking, announcing tryouts, no eve)",
+      "ts": "2026-08-25T11:41:52.534467+00:00"
+    },
+    "rejected-crazygracefulmosquitocoolcat-7kzgakprfm30wqk9": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/CrazyGracefulMosquitoCoolCat-7kzgaKprFm30wqk9",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Can't Believe Timmy Got Called This In Class",
+      "qa_rejected": true,
+      "ts": "2026-08-25T11:45:39.102932+00:00"
+    },
+    "clip-20260825-2": {
+      "url": "https://youtube.com/shorts/YuWRFsHvIsw",
+      "title": "Stableronaldo Fakes Being Drunk Then Suddenly Bails Mid-Bit",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T11:48:37.834002+00:00",
+      "uploaded_at": "2026-08-25T11:48:37.834028+00:00",
+      "publish_at": "2026-08-25T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/TallSuccessfulPotatoNononoCat-SOMFZIIggI4Mz1ZH",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE FAKED DRUNK THEN JUST BAILED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2662,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 17.0
+      },
+      "director_cut": true
+    },
+    "clip-20260825-3": {
+      "url": "https://youtube.com/shorts/0U0hAgmJ97E",
+      "title": "Sypherpk 'Me Rolling Out Of Bed' Bit Has Chat Losing It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T11:52:27.965576+00:00",
+      "uploaded_at": "2026-08-25T11:52:27.965597+00:00",
+      "publish_at": "2026-08-25T20:00:00Z",
+      "source_url": "https://www.twitch.tv/sypherpk/clip/SquareAdorableTireMikeHogu-Iq9bMsE97eeIeC_Y",
+      "streamer": "sypherpk",
+      "series": "chaos",
+      "hook": "SYPHERPK ROLLING OUT OF BED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2671,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 16.03
+      },
+      "director_cut": true
+    },
+    "clip-20260825-4": {
+      "url": "https://youtube.com/shorts/KMDC4LcQyfE",
+      "title": "Stableronaldo Confession Has Chat Losing It",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T11:57:43.668050+00:00",
+      "uploaded_at": "2026-08-25T11:57:43.668068+00:00",
+      "publish_at": "2026-08-25T21:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CallousSparklyLardUncleNox-kRwL0i4Taa9CB8-J",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE JUST ADMITTED THIS LIVE",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 15709,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 6.47
+      },
+      "director_cut": true
+    },
+    "rejected-speedybraveratvotenay-ubcmpse1vrtnwwsl": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SpeedyBraveRatVoteNay-UbCmpSE1VrtNWwSl",
+      "streamer": "jynxzi",
+      "title": "Sasageyo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (anime dub reaction, no real event)",
+      "ts": "2026-08-25T12:00:52.613210+00:00"
+    },
+    "rejected-coldbloodedcoldbloodedcard4head--imtunwnjjzwvmep": {
+      "source_url": "https://www.twitch.tv/timthetatman/clip/ColdbloodedColdbloodedCard4Head--imTUnwnjjzWvMeP",
+      "streamer": "timthetatman",
+      "title": "W PLAY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay navigation, no event)",
+      "ts": "2026-08-25T12:19:55.710742+00:00"
+    },
+    "clip-20260825-6": {
+      "url": "https://youtube.com/shorts/ZxmO29gcCKM",
+      "title": "Lacy Sets A Rule For wrap \u2014 He Breaks It Instantly",
+      "kind": "twitch_clip",
+      "ts": "2026-08-25T12:51:38.907461+00:00",
+      "uploaded_at": "2026-08-25T12:51:38.907481+00:00",
+      "publish_at": "2026-08-26T00:30:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/OptimisticBlatantSageMcaT-Y1O_f1OFa7kurE5_",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "HE WASN'T SUPPOSED TO SHOOT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2033,
+      "banger": 0.5,
+      "cut": {
+        "start": 5.9,
+        "end": 27.1
+      },
+      "director_cut": true
+    },
+    "rejected-darlinggracefuljellyfishkappa-f9us2-8us21f6kk6": {
+      "source_url": "https://www.twitch.tv/xqc/clip/DarlingGracefulJellyfishKappa-f9us2-8US21f6kk6",
+      "streamer": "xqc",
+      "title": "Jeffrey?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (onstage monologue, no visible event)",
+      "ts": "2026-08-26T11:43:24.793329+00:00"
+    },
+    "clip-20260826-1": {
+      "url": "https://youtube.com/shorts/lFeoL1O5qVQ",
+      "title": "Alinity Swaps Places And Makes Someone Else The Streamer",
+      "kind": "twitch_clip",
+      "ts": "2026-08-26T11:45:59.709996+00:00",
+      "uploaded_at": "2026-08-26T11:45:59.710016+00:00",
+      "publish_at": "2026-08-26T17:00:00Z",
+      "source_url": "https://www.twitch.tv/alinity/clip/VictoriousBelovedTaroHotPokket-L5G9cDvj0iv9wvEF",
+      "streamer": "alinity",
+      "series": "wholesome",
+      "hook": "SHE MADE HIM THE STREAMER",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 30879,
+      "banger": 0.5,
+      "cut": {
+        "start": 4.8,
+        "end": 21.5
+      },
+      "director_cut": true
+    },
+    "rejected-heartlessobservantbaconpmstwin-xz57rpybxozn7vwq": {
+      "source_url": "https://www.twitch.tv/xqc/clip/HeartlessObservantBaconPMSTwin-Xz57rpyBXOZN7VWq",
+      "streamer": "xqc",
+      "title": "Yoooooo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (offensive poll, no real event)",
+      "ts": "2026-08-26T11:47:01.747126+00:00"
+    },
+    "rejected-cutefairpuffinaliens-9xeic0bccpq6dntj": {
+      "source_url": "https://www.twitch.tv/lacy/clip/CuteFairPuffinAliens-9xEic0BcCpQ6DNtj",
+      "streamer": "lacy",
+      "title": "d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.12 < 0.35 (mundane interview chat, no event)",
+      "ts": "2026-08-26T11:48:36.328149+00:00"
+    },
+    "rejected-attractivenurturingsnailklappa-glzrw-jq3qcz7am0": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AttractiveNurturingSnailKlappa-glZrw-jQ3qcZ7AM0",
+      "streamer": "kaicenat",
+      "title": "kai runs away after being caught with la peace",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (static gameplay walk, no visible chase)",
+      "ts": "2026-08-26T11:49:35.434844+00:00"
+    },
+    "rejected-blindingspicyswanwholewheat-_ypgi0fj-dx-acwg": {
+      "source_url": "https://www.twitch.tv/xqc/clip/BlindingSpicySwanWholeWheat-_yPGI0fj-dX-AcWG",
+      "streamer": "xqc",
+      "title": "xqc comes out",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (static rant, no visible event)",
+      "ts": "2026-08-26T11:50:26.658725+00:00"
+    },
+    "rejected-scrumptiousgrotesquebeefnotatk-wpvnfpia89cw4oai": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ScrumptiousGrotesqueBeefNotATK-WPVnFpIA89CW4oAI",
+      "streamer": "stableronaldo",
+      "title": "ron leaks his revenue on twich",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (confused menu talk, no event)",
+      "ts": "2026-08-26T11:51:35.359864+00:00"
+    },
+    "rejected-gleamingminiaturecaterpillarvotenay-cwiem6uj8c8yfpv6": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GleamingMiniatureCaterpillarVoteNay-CwIeM6uj8c8yFPv6",
+      "streamer": "caseoh_",
+      "title": "IM DEAD LOLLLL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (spilled drink, no clear payoff)",
+      "ts": "2026-08-26T11:53:08.280501+00:00"
+    },
+    "rejected-benevolenthumblehornetampenergy-ff8o7r_sppznk3ty": {
+      "source_url": "https://www.twitch.tv/alinity/clip/BenevolentHumbleHornetAMPEnergy-ff8O7r_sppzNK3Ty",
+      "streamer": "alinity",
+      "title": "right way",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (sponsor ad read, mattress promo)",
+      "ts": "2026-08-26T12:28:04.195595+00:00"
+    },
+    "clip-20260826-4": {
+      "url": "https://youtube.com/shorts/HbB6xlzHgxo",
+      "title": "Deshaefrost Reveals Her Wild Backup Plan If Streaming Fails \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-08-26T12:46:25.550810+00:00",
+      "uploaded_at": "2026-08-26T12:46:25.550830+00:00",
+      "publish_at": "2026-08-26T21:30:00Z",
+      "source_url": "https://www.twitch.tv/deshaefrost/clip/AgileDaintyAuberginePhilosoraptor-LPmCJMEFYKV4qNDC",
+      "streamer": "deshaefrost",
+      "series": "chaos",
+      "hook": "HER BACKUP PLAN IS WILD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2020,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.3,
+        "end": 22.0
+      },
+      "director_cut": true
+    },
+    "rejected-piliablebombasticmulejkanstyle-dgivm3srw7iuijif": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PiliableBombasticMuleJKanStyle-DGiVm3sRW7iuiJiF",
+      "streamer": "stableronaldo",
+      "title": "chop",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine GTA RP, no event)",
+      "ts": "2026-08-26T12:47:18.605979+00:00"
+    },
+    "rejected-animatedtolerantopossumcoolcat-zgrctnmqm1-ufar9": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AnimatedTolerantOpossumCoolCat-zGrcTnMQm1-UfAR9",
+      "streamer": "caseoh_",
+      "title": "goober",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static gameplay, no visible event)",
+      "ts": "2026-08-26T12:48:44.200208+00:00"
+    },
+    "rejected-optimisticsucculenttrufflevohiyo-p9tpzzhh7nrgbcss": {
+      "source_url": "https://www.twitch.tv/lirik/clip/OptimisticSucculentTruffleVoHiYo-P9TPZzhh7nrgbcSs",
+      "streamer": "lirik",
+      "title": "Damn bro...",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (routine gameplay walk, no event)",
+      "ts": "2026-08-26T12:50:02.517918+00:00"
+    },
+    "clip-20260826-6": {
+      "url": "https://youtube.com/shorts/mtol7rC9poQ",
+      "title": "Stableronaldo Can't Believe This Knockout Just Happened",
+      "kind": "twitch_clip",
+      "ts": "2026-08-26T12:57:27.245549+00:00",
+      "uploaded_at": "2026-08-26T12:57:27.245570+00:00",
+      "publish_at": "2026-08-27T00:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HungryVibrantNewtItsBoshyTime-OrZDvvPD74UFfJCJ",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "HE GOT KNOCKED OUT COLD",
+      "experiment_arm": "clip",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 1521,
+      "banger": 0.65,
+      "cut": {
+        "start": 21.5,
+        "end": 53.7
+      },
+      "director_cut": true
+    },
+    "clip-20260828-1": {
+      "url": "https://youtube.com/shorts/luedQHf9v-U",
+      "title": "Kaicenat: Kai Cenat Loses It When The GTA 6 Reveal Crashes On Him",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T21:27:53.156777+00:00",
+      "uploaded_at": "2026-08-28T21:27:53.156801+00:00",
+      "publish_at": "2026-08-28T23:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AltruisticInquisitiveBibimbapDoubleRainbow-LNYO5Alg-RoKSC2m",
+      "streamer": "kaicenat",
+      "series": "rage",
+      "hook": "THE REVEAL JUST CRASHED ON HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4958,
+      "banger": 0.8,
+      "cut": {
+        "start": 0.0,
+        "end": 47.67
+      },
+      "director_cut": true
+    },
+    "rejected-succulentexuberantbaboonbloodtrail-g88xuasm16xzim-b": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SucculentExuberantBaboonBloodTrail-G88XUASm16xziM-B",
+      "streamer": "jasontheween",
+      "title": "tried grabbing phone",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just walking, talking, no event)",
+      "ts": "2026-08-28T21:29:36.160336+00:00"
+    },
+    "clip-20260828-2": {
+      "url": "https://youtube.com/shorts/jBaUFAQeLEE",
+      "title": "Stableronaldo Randomly Confesses His Love For Poppy",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T21:31:36.853986+00:00",
+      "uploaded_at": "2026-08-28T21:31:36.854009+00:00",
+      "publish_at": "2026-08-29T00:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/LongClearAirGuitarTebowing-eaThKvIacFCA-IBx",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "HE JUST CONFESSED HIS LOVE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3289,
+      "banger": 0.5,
+      "cut": {
+        "start": 21.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20260828-3": {
+      "url": "https://youtube.com/shorts/9o-_G8FNFkc",
+      "title": "Cinna Broke The #2 All-Time Sub Record And Got The Sweetest Surprise",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T21:34:51.934918+00:00",
+      "uploaded_at": "2026-08-28T21:34:51.934940+00:00",
+      "publish_at": "2026-08-29T02:00:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/YummyCalmDadNerfBlueBlaster-XAG45PAgfWnhftfC",
+      "streamer": "cinna",
+      "series": "wholesome",
+      "hook": "SHE HIT THE #2 ALL-TIME SUB RECORD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3819,
+      "banger": 0.5,
+      "cut": {
+        "start": 3.9,
+        "end": 24.5
+      },
+      "director_cut": true
+    },
+    "rejected-scarysnappyqueleagiveplz-tuhxxzopkl_9gypc": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/ScarySnappyQueleaGivePLZ-tUhXXZOPKl_9gYPC",
+      "streamer": "caseoh_",
+      "title": "case what was that",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine word game, no reaction shown)",
+      "ts": "2026-08-28T21:35:45.006506+00:00"
+    },
+    "rejected-obliqueinquisitiveayeayeonehand-x70bvdga9tsv5jgi": {
+      "source_url": "https://www.twitch.tv/alinity/clip/ObliqueInquisitiveAyeayeOneHand-x70bVDGA9Tsv5jgI",
+      "streamer": "alinity",
+      "title": "box",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (just talking about box weight)",
+      "ts": "2026-08-28T21:36:40.952895+00:00"
+    },
+    "rejected-artisticmoderngnathotpokket-z7aocxx9j2otgzqz": {
+      "source_url": "https://www.twitch.tv/lacy/clip/ArtisticModernGnatHotPokket-Z7AOCxx9j2oTgZQZ",
+      "streamer": "lacy",
+      "title": "holy switch up",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (mundane admission transaction, no event)",
+      "ts": "2026-08-28T21:52:19.804105+00:00"
+    },
+    "clip-20260828-5": {
+      "url": "https://youtube.com/shorts/jI352c0PHtA",
+      "title": "Kaicenat: Kai Cenat Can't Believe What Emily Just Did",
+      "kind": "twitch_clip",
+      "ts": "2026-08-28T22:23:11.236145+00:00",
+      "uploaded_at": "2026-08-28T22:23:11.236160+00:00",
+      "publish_at": "2026-08-29T05:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/MoldyStrangeAlfalfaTebowing-o7Up4O1hnQQBmh1_",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "CHAT WON'T STOP HYPING UP EMILY",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2700,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 35.38
+      },
+      "director_cut": true
+    },
+    "rejected-averageinexpensiveanteaterbabyrage-u3ps9mdoqs8twqib": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AverageInexpensiveAnteaterBabyRage-u3ps9mDoQs8twqIB",
+      "streamer": "xqc",
+      "title": "Annual 2k scan",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (menu/setup talk, no event)",
+      "ts": "2026-08-28T22:24:40.448087+00:00"
+    },
+    "rejected-clearlitigiousburritotwitchrpg-gpou4pbpoqk7bs_a": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/ClearLitigiousBurritoTwitchRPG-GpOU4pBPOqk7bS_a",
+      "streamer": "ohnepixel",
+      "title": "ludwig gulp",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confused reaction, no visible event)",
+      "ts": "2026-08-28T22:25:17.162515+00:00"
+    },
+    "rejected-seductivepleasantorcaklappa-ryhzs02w-old6svc": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/SeductivePleasantOrcaKlappa-ryHZS02W-OLd6Svc",
+      "streamer": "erobb221",
+      "title": "The Erobb221 Clip Everyone's Talking About",
+      "qa_rejected": true,
+      "ts": "2026-08-29T15:39:09.693794+00:00"
+    },
+    "rejected-thoughtfulpoornarwhalpastathat-xib58jlnhviyyg69": {
+      "source_url": "https://www.twitch.tv/lirik/clip/ThoughtfulPoorNarwhalPastaThat-xIb58jlnHviYYg69",
+      "streamer": "lirik",
+      "title": "Lirik Experiences the Horror of Modern Warfare",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (routine gameplay walk, no event)",
+      "ts": "2026-09-02T15:08:00.604734+00:00"
+    },
+    "rejected-callousironiccougarunsane-qw1rinksbj3md7fh": {
+      "source_url": "https://www.twitch.tv/agent00/clip/CallousIronicCougarUnSane-qw1RiNKSbJ3mD7fH",
+      "streamer": "agent00",
+      "title": "what the flip",
+      "qa_rejected": true,
+      "ts": "2026-09-02T15:08:09.936419+00:00"
+    },
+    "clip-20260902-1": {
+      "url": "https://youtube.com/shorts/u4_31GXVfR8",
+      "title": "Jynxzi Jokes He's Learning Spanish From This Game",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:10:56.385284+00:00",
+      "uploaded_at": "2026-09-02T15:10:56.385303+00:00",
+      "publish_at": "2026-09-02T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AmusedSpikyIcecreamRitzMitz-mTPghh_U_jCtbOY_",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "HE'S LEARNING SPANISH FROM THIS GAME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 31677,
+      "banger": 0.55,
+      "cut": {
+        "start": 4.0,
+        "end": 15.97
+      },
+      "director_cut": true
+    },
+    "clip-20260902-2": {
+      "url": "https://youtube.com/shorts/3m7AgDc8JVs",
+      "title": "Stableronaldo Takes A HUGE Fall After Getting Tangled With Los",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:15:19.540573+00:00",
+      "uploaded_at": "2026-09-02T15:15:19.540590+00:00",
+      "publish_at": "2026-09-02T18:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DelightfulPuzzledWoodpeckerDAESuppy-84AiDvojhEM72vRi",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "THEY GOT TANGLED AND HE FELL",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4188,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 27.3
+      },
+      "director_cut": true
+    },
+    "rejected-abnegateacceptabledurianbloodtrail--1aaxhzrxkn5esuc": {
+      "source_url": "https://www.twitch.tv/xqc/clip/AbnegateAcceptableDurianBloodTrail--1aAXHZrxKn5eSuC",
+      "streamer": "xqc",
+      "title": "documentaries",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (streamer discusses documentary, no visib)",
+      "ts": "2026-09-02T15:17:20.702893+00:00"
+    },
+    "rejected-dependablesecretivepicklestheringer-78crrzspizrlri-h": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DependableSecretivePicklesTheRinger-78cRRzsPiZrLRI-h",
+      "streamer": "kaicenat",
+      "title": "wtf is he doing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confusing beef talk, no visible event)",
+      "ts": "2026-09-02T15:18:07.247451+00:00"
+    },
+    "clip-20260902-4": {
+      "url": "https://youtube.com/shorts/wWnl-QK1wRg",
+      "title": "Junko Cracks Stableronaldo Up With This WILD Line",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:21:31.290025+00:00",
+      "uploaded_at": "2026-09-02T15:21:31.290042+00:00",
+      "publish_at": "2026-09-02T21:30:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SplendidWealthySushiBibleThump-qP14QQVTeueFo5Jn",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "JUNKO SAID SOMETHING THAT BROKE RON",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2485,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.0,
+        "end": 15.5
+      },
+      "director_cut": true
+    },
+    "clip-20260902-5": {
+      "url": "https://youtube.com/shorts/O1em8PB49Ec",
+      "title": "Jynxzi Can't Believe He Sold For The Third Time",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T15:26:19.671388+00:00",
+      "uploaded_at": "2026-09-02T15:26:19.671409+00:00",
+      "publish_at": "2026-09-02T23:00:00Z",
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnthusiasticFrozenCockroachStoneLightning-PXtNcttuiQ8fE8gW",
+      "streamer": "jynxzi",
+      "series": "fail",
+      "hook": "HE SOLD FOR THE THIRD TIME",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3151,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 23.5
+      },
+      "director_cut": true
+    },
+    "rejected-slickfrailpotnotlikethis-ezhzpnpekjibkqo_": {
+      "source_url": "https://www.twitch.tv/moistcr1tikal/clip/SlickFrailPotNotLikeThis-EZHzpNPeKJIbkqO_",
+      "streamer": "moistcr1tikal",
+      "title": "Euthanasio",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague crew talk, no visible event)",
+      "ts": "2026-09-02T15:56:29.717301+00:00"
+    },
+    "clip-20260902-6": {
+      "url": "https://youtube.com/shorts/uJgfOsP5sJM",
+      "title": "Cinna Hits 100K Subs And Opens His Surprise Gift Live",
+      "kind": "twitch_clip",
+      "ts": "2026-09-02T16:19:11.200411+00:00",
+      "uploaded_at": "2026-09-02T16:19:11.200431+00:00",
+      "publish_at": "2026-09-03T00:30:00Z",
+      "source_url": "https://www.twitch.tv/cinna/clip/CrepuscularElatedDonutPJSalt-WqgSn9TW8QO0aYYv",
+      "streamer": "cinna",
+      "series": "wholesome",
+      "hook": "CINNA GETS A GIFT FOR 100K SUBS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3282,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
     }
   }
 }

@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "graph-betting-overtakes-lottery",
+  "title": "Sports Betting Just Passed The Lottery",
+  "hook": "Bigger Than The Lottery Now",
+  "y_label": "Amount wagered per year (billion USD)",
+  "duration": 13,
+  "source": "US legal sports betting handle (total amount wagered) from the American Gaming Association, as compiled by Legal Sports Report/Covers: $13.0B (2019), $21.5B (2020), $57.75B (2021), $93.2B (2022), $119.84B (2023), $149.6B (2024). US lottery ticket sales (traditional draw and instant games) from La Fleur's Magazine/NASPL fiscal-year reports: $80.8B (2019), $80.9B (2020), $94.9B (2021), $108.0B (2022), $113.34B (2023), $113.3B (2024). Sports betting handle overtook lottery sales for the first time in 2023, three years after most states began legalizing mobile sportsbooks.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Sports Betting",
+      "color": "#1E8E3E",
+      "values": [
+        13.0,
+        21.5,
+        57.75,
+        93.2,
+        119.84,
+        149.6
+      ]
+    },
+    {
+      "name": "Lottery Sales",
+      "color": "#C9A227",
+      "values": [
+        80.8,
+        80.9,
+        94.9,
+        108.0,
+        113.34,
+        113.3
+      ]
+    }
+  ],
+  "hashtags": [
+    "sportsbetting",
+    "lottery",
+    "gambling",
+    "powerball",
+    "megamillions",
+    "draftkings",
+    "fanduel",
+    "vegas",
+    "money",
+    "finance",
+    "business",
+    "dataviz"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

@@ -1,0 +1,19 @@
+{
+  "key": "mail_firstclass_comparison",
+  "title": "First-Class Mail volume: 2008 vs 2023 (billion pieces)",
+  "unit": "billion",
+  "geography": "United States",
+  "time_coverage": "2008 vs 2023",
+  "source": {
+    "name": "USPS Office of Inspector General -- historical mail volume analysis",
+    "publisher": "USPS Office of Inspector General (OIG)",
+    "url": "https://www.uspsoig.gov/reports/white-papers/analysis-historical-mail-volume-trends",
+    "officiality": "official",
+    "access_date": "2026-08-25"
+  },
+  "notes": "First-Class Mail volume -- the letters and bills category, USPS's traditional core product -- fell 50%, from 92 billion pieces in FY2008 to 46 billion in FY2023, even as the Postal Service's package business grew.",
+  "points": [
+    {"label": "2008", "value": 92},
+    {"label": "2023", "value": 46}
+  ]
+}

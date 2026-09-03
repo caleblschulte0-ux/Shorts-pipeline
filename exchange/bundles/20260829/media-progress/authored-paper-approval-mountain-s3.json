@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260829",
+  "bundle": {
+    "identity": "takeover-ce3cb772f437e74c7284709e35c60e25e195fbfa",
+    "path": "exchange/bundles/20260829/takeover.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "verified_at": "2026-08-29T12:15:20Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-paper-approval-mountain-s3",
+  "safe_request_id": "authored-paper-approval-mountain-s3",
+  "prompt_sha256": "7995268051e611e6d7f177f76578b16e014cbcfb29af055bd5f5b29f2837c977",
+  "prompt_used": "employees moving printer paper boxes",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1XwI0aloAbrBcQ--540gC-GqnwFROvnRd",
+    "filename": "20260829__authored-paper-approval-mountain-s3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1XwI0aloAbrBcQ--540gC-GqnwFROvnRd",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "779cf2837620a077a470736f2aa68ad275a240011d0143162392b57ebfef23e6",
+    "bytes": 2191538,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "package_id": "paper-approval-mountain",
+  "shot_index": 3,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

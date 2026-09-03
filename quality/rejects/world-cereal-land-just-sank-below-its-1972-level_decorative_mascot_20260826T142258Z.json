@@ -1,0 +1,37 @@
+{
+ "slug": "world-cereal-land-just-sank-below-its-1972-level",
+ "ts": "20260826T142258Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data hovers in the same mid-right slot over the bars from hook@0.3 to seg2:end doing nothing tied to the stat; at seg3:start/seg3:mid he only spins a hoop and at payoff@-1.8 he is cropped to legs behind the speech bubble \u2014 no setup->action->payoff at any beat.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "occluded_payoff_layout_contradicting_the_data",
+  "visible_evidence": "At seg4:start the yellow callout 'The land shrank. Somehow the grain didn't.' covers the chart title and the entire 1972 row, and at payoff@-1.8 and seg4:end the mascot is sliced to two legs and a sleeve behind the bubble's top edge; meanwhile the bars underneath still climb to their maximum at 2014 (724,692,671), so the visible chart says land GREW while the payoff line says it shrank \u2014 the 415,702,088 collapse the title promises is never drawn as a bar.",
+  "root_cause": "The closing callout is composited at fixed top-center over the still-running bar race instead of being staged after a final beat, and the cereal series was truncated at 2014 so the 2024 drop has no bar to animate down to.",
+  "repair_goal": "Stage the payoff as its own beat: let the 2014 bar visibly retract to the 2024 value of 415,702,088 hectares below the 1972 bar, move the callout into the cleared lower-right space so the title and 1972 row stay visible, and give Data a physical action on that shrink (he rides the bar end down and lands) so the words, the chart, and the mascot agree."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_2",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  }
+ ]
+}

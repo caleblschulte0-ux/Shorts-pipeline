@@ -1,84 +1,16 @@
 [
   {
-    "topic": "Airbus Overtook Boeing After The 737 MAX Crisis",
-    "title": "Airbus Overtook Boeing After The 737 MAX Crisis",
+    "topic": "Esports' Biggest Prize Ever Just Collapsed",
+    "title": "Esports' Biggest Prize Ever Just Collapsed",
     "format": "graph_race",
-    "publish_at": "2026-08-22T13:00:00Z",
+    "publish_at": "2026-08-29T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/mIx9MUcLo0c",
+    "video_url": "https://youtube.com/shorts/-0N5BfVD-UQ",
     "error": null,
-    "elapsed_seconds": 132.5,
-    "package_path": "state/trending_packages/20260822/01_graph-airbus-overtakes-boeing.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-092633_airbus_overtook_boeing_after_the_737_max.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Shopify Overtook eBay In Total Sales",
-    "title": "Shopify Overtook eBay In Total Sales",
-    "format": "graph_race",
-    "publish_at": "2026-08-22T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/mlZ6julPK5E",
-    "error": null,
-    "elapsed_seconds": 117.3,
-    "package_path": "state/trending_packages/20260822/02_graph-shopify-overtakes-ebay.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-092846_shopify_overtook_ebay_in_total_sales.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 79
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "Modelo Just Dethroned Bud Light As America's #1",
-    "title": "Modelo Just Dethroned Bud Light As America's #1",
-    "format": "graph_race",
-    "publish_at": "2026-08-22T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.",
-    "elapsed_seconds": 105.4,
-    "package_path": "state/trending_packages/20260822/03_graph-modelo-overtakes-budlight.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-093043_modelo_just_dethroned_bud_light_as_ameri.mp4",
+    "elapsed_seconds": 116.5,
+    "package_path": "state/trending_packages/20260829/03_graph-dota-prize-pool-collapse.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-123353_esports__biggest_prize_ever_just_collaps.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -95,61 +27,27 @@
       "loudness_lufs": -22.8
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: An honest, cleanly-sourced race chart with a real crossover payoff, but it opens on a near-empty black grid with a fading hook banner and leaves most of the frame as dead black space throughout.",
-      "score": 74
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Netflix Just Passed Cable In Total Subscribers",
-    "title": "Netflix Just Passed Cable In Total Subscribers",
-    "format": "graph_race",
-    "publish_at": "2026-08-22T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/CDaAHFbdRWk",
-    "error": null,
-    "elapsed_seconds": 119.8,
-    "package_path": "state/trending_packages/20260822/04_graph-netflix-overtakes-cable.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-093228_netflix_just_passed_cable_in_total_subsc.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 78
+      "score": 100
     },
     "channel": "default"
   },
   {
-    "topic": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
-    "title": "She Name-Dropped The Owner. The Owner Was Twelve Feet Away.",
+    "topic": "His Paper-Only Rule Cost More Than the Supplies",
+    "title": "His Paper-Only Rule Cost More Than the Supplies",
     "format": "reddit",
-    "publish_at": "2026-08-22T17:30:00Z",
+    "publish_at": "2026-08-29T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/3xjKJE76n38",
+    "video_url": "https://youtube.com/shorts/P844xpGQxq0",
     "error": null,
-    "elapsed_seconds": 247.5,
-    "package_path": "state/trending_packages/20260822/05_reddit-deborah-swim-school.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-093505_she_name_dropped_the_owner__the_owner_wa.mp4",
+    "elapsed_seconds": 206.9,
+    "package_path": "state/trending_packages/20260829/05_paper-approval-mountain.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-123606_his_paper_only_rule_cost_more_than_the_s.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 56.633,
+      "duration": 54.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,7 +58,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.9
+      "loudness_lufs": -26.3
     },
     "qa": {
       "ok": true,
@@ -170,25 +68,25 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 70
+      "score": 100
     },
     "channel": "default"
   },
   {
-    "topic": "The Only Manager Who Could Cancel My Gym Never Showed.",
-    "title": "The Only Manager Who Could Cancel My Gym Never Showed.",
+    "topic": "The Gym Hid Cancellation. I Booked a Sales Tour.",
+    "title": "The Gym Hid Cancellation. I Booked a Sales Tour.",
     "format": "reddit",
-    "publish_at": "2026-08-22T19:00:00Z",
+    "publish_at": "2026-08-29T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co",
-    "elapsed_seconds": 175.1,
-    "package_path": "state/trending_packages/20260822/06_reddit-gym-tuesday-cancellation.json",
-    "source": "brain",
-    "video_path": "output/daily_20260822-093914_the_only_manager_who_could_cancel_my_gym.mp4",
+    "error": "showrunner_block: showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
+    "elapsed_seconds": 208.3,
+    "package_path": "state/trending_packages/20260829/06_gym-sales-tour-cancel.json",
+    "source": "chatgpt",
+    "video_path": "output/daily_20260829-123927_the_gym_hid_cancellation__i_booked_a_sal.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 55.533,
+      "duration": 58.667,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,33 +97,58 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.1
+      "loudness_lufs": -24.7
     },
     "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "Frames 2 and 3 do not adhere to the described format where the TOP half is a story illustration and the BOTTOM half is gameplay. Instead, the gameplay occupies almost the entire frame, indicating a co"
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
-    "quarantined": true
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The video effectively tells a Reddit story with engaging visuals, but the presence of a mascot in this format is a rubric violation.",
+      "score": 82
+    },
+    "blocked": true
   },
   {
-    "topic": "d",
+    "topic": "keith urban",
     "angle": null,
-    "publish_at": "2026-08-22T19:00:00Z",
+    "publish_at": "2026-08-29T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 0.2,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 25.3,
     "backfill": true
   },
   {
-    "topic": "npb",
+    "topic": "texas longhorns football",
     "angle": null,
-    "publish_at": "2026-08-22T20:30:00Z",
+    "publish_at": null,
     "ok": false,
     "video_url": null,
-    "error": "HTTPError: HTTP Error 404: Not Found",
-    "elapsed_seconds": 1.1,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 0.3,
+    "backfill": true
+  },
+  {
+    "topic": "atlanta weather",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 0.9,
+    "backfill": true
+  },
+  {
+    "topic": "persian gulf oil flows recovery",
+    "angle": null,
+    "publish_at": null,
+    "ok": false,
+    "video_url": null,
+    "error": "HTTPError: HTTP Error 401: Unauthorized",
+    "elapsed_seconds": 1.0,
     "backfill": true
   }
 ]

@@ -1,0 +1,20 @@
+{
+  "key": "turbulence_categories_comparison",
+  "title": "Increase in North Atlantic turbulence duration, 1979-2020 (%)",
+  "unit": "percent",
+  "geography": "North Atlantic flight corridor",
+  "time_coverage": "1979-2020",
+  "source": {
+    "name": "Reanalysis of clear-air turbulence trends",
+    "publisher": "University of Reading (Prosser, Williams, Marlton) — Geophysical Research Letters",
+    "url": "https://doi.org/10.1029/2023GL103814",
+    "officiality": "reference",
+    "access_date": "2026-08-26"
+  },
+  "notes": "Approximate figures; increase in annual turbulence duration by severity category, 1979 to 2020.",
+  "points": [
+    {"label": "Light Turbulence", "value": 17},
+    {"label": "Moderate Turbulence", "value": 37},
+    {"label": "Severe Turbulence", "value": 55}
+  ]
+}

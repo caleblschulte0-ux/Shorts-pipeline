@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-not-an-employee-s1-2705af537350",
+  "safe_request_id": "reddit-not-an-employee-s1-2705af537350",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2be8c655e389c555ee10a8eca6d837096dfc1dc4008ca8de004a963d15044e63",
+  "prompt_used": "An editorial illustration for a short-form video: red hoodie person. It accompanies the narration: \"wearing a red hoodie\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+    "filename": "20260828__reddit-not-an-employee-s1-2705af537350.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Te74jJ6xRRChxyf0vXCyjHuXZKF_WJAa",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "18dce50f4864a7bd04fd911bd019e780763870df3f06ca3fae9c54a5459c899d",
+    "bytes": 1822890,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:12:46Z",
+  "retryable": false
+}

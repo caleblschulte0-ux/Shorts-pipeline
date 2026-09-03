@@ -1,0 +1,21 @@
+{
+  "key": "gulf_dead_zone_annual_size",
+  "title": "Gulf of Mexico summer hypoxic 'dead zone' size (square miles)",
+  "unit": "square miles",
+  "geography": "Gulf of Mexico (off Louisiana/Texas)",
+  "time_coverage": "2017-2024 (annual summer surveys)",
+  "source": {
+    "name": "Gulf of Mexico Hypoxia Survey",
+    "publisher": "NOAA National Centers for Coastal Ocean Science (NCCOS) / LUMCON",
+    "url": "https://coastalscience.noaa.gov/news/above-average-summer-2024-dead-zone-measured-in-gulf-of-mexico/",
+    "officiality": "official",
+    "access_date": "2026-08-24"
+  },
+  "notes": "Annual mid-summer shelfwide survey has run since 1985. 2017 (8,776 sq mi) is the largest zone ever measured -- roughly the size of New Jersey. 2024's 6,705 sq mi was the 12th largest in 38 years of measurement, well above the 37-year historical average of 5,205 sq mi.",
+  "points": [
+    {"label": "2017", "value": 8776, "period": "2017"},
+    {"label": "2021", "value": 4880, "period": "2021"},
+    {"label": "2023", "value": 3058, "period": "2023"},
+    {"label": "2024", "value": 6705, "period": "2024"}
+  ]
+}

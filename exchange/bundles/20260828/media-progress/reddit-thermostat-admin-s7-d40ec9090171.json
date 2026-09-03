@@ -1,0 +1,33 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260828",
+  "bundle": {
+    "identity": "fec1066afdcc2812abe9db0f14d9fafcdea0a6795e15b87290a45d27975ce5c6",
+    "path": "exchange/bundles/20260828/bundle.json"
+  },
+  "request_id": "reddit-thermostat-admin-s7-d40ec9090171",
+  "safe_request_id": "reddit-thermostat-admin-s7-d40ec9090171",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "11e5f5839897e8d5a17abd3baa0cef4f77a19387e93c93cbea3df2fae2f1b15b",
+  "prompt_used": "An editorial illustration for a short-form video: thermostat wall display. It accompanies the narration: \"locked at a very reasonable seventy one degrees\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+    "filename": "20260828__reddit-thermostat-admin-s7-d40ec9090171.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1QaHXjhBToUpdhEzyyDyfIsM8W1TzwDzr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "00d0b9fe9054c15a20c48450644cb63265d5163b0b2e708bb83a3b9680beb060",
+    "bytes": 1792454,
+    "format": "png",
+    "width": 1254,
+    "height": 1254
+  },
+  "verified_at": "2026-08-28T11:18:22Z",
+  "retryable": false
+}

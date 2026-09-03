@@ -14,9 +14,7 @@ and the repo file disagreed, and a session obeys its prompt.)
 | App task | Paste exactly this |
 |---|---|
 | Claude — morning routine (~4:20 AM CT) | `Read doctor/PROMPTS.md section 3 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
-| ChatGPT — "Shorts Daily Media" (6:00 AM CT) | `Read doctor/PROMPTS.md section 4 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
-| ChatGPT — "Shorts Daily Finalizer" (7:00 AM CT) | `Read doctor/PROMPTS.md section 5 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
-| ChatGPT — "Shorts Doctor" (daily read) | `Read doctor/PROMPTS.md section 1 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY.` |
+| ChatGPT — "Shorts Control" (11:00 PM, 6:00 AM, 7:00 AM CT) | `Read doctor/PROMPTS.md section 6 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY. That file is your entire job; a run that skips any numbered step in it FAILED.` |
 | Claude — "Shorts Doctor triage" | `Read doctor/PROMPTS.md section 2 in caleblschulte0-ux/Shorts-pipeline (main) and execute it COMPLETELY.` |
 
 The two doctor tasks (1 and 2) may already carry their full prompts from
@@ -419,3 +417,65 @@ FINISH by stating: checkpoints recovered, gaps filled, packages punched
 up vs kept (with reasons), the response.json commit SHA, and the DONE
 commit SHA. No SHAs = the run failed, say so plainly.
 ```
+
+---
+
+## 6. The consolidated ChatGPT scheduled task — "Shorts Control"
+
+This is one scheduled task with three independent daily firings in
+America/Chicago: 11:00 PM, 6:00 AM, and 7:00 AM. It replaces only the
+three former ChatGPT tasks named Shorts Doctor, Shorts Daily Media, and
+Shorts Daily Finalizer. The Claude tasks are unchanged.
+
+```text
+You are the TIME ROUTER for the GitHub repository
+caleblschulte0-ux/Shorts-pipeline. The repository is the only shared
+memory. Never infer completion from conversation context.
+
+STEP 0 — RESOLVE THE FIRING
+Determine the current date and hour in America/Chicago, then select exactly
+one primary contract:
+
+  * 22:00 through 05:59 -> execute section 1, Shorts Doctor.
+  * 06:00 through 06:59 -> execute section 4, Media Worker.
+  * 07:00 through 21:59 -> execute section 5, Finalizer.
+
+The wider Doctor window allows a delayed 11:00 PM firing to finish after
+midnight. The wider Finalizer window allows a delayed 7:00 AM firing to
+recover instead of silently choosing the wrong job.
+
+STEP 1 — PRESERVE THE FIREWALLS
+  * A Doctor failure NEVER blocks a later Media or Finalizer firing.
+    Doctor writes only doctor/reports/<date>.json and must never touch the
+    exchange bundle.
+  * Media executes section 4 only. It must write STARTED first and
+    checkpoints immediately, and it must NEVER write response.json or DONE.
+  * Finalizer executes section 5 only after reading today's media-progress
+    directory. It must recover verified checkpoints, fill only genuine gaps,
+    commit response.json, read it back, and only then commit DONE separately.
+  * Never regenerate media that has a verified checkpoint. The checkpoint is
+    authoritative even if this task's earlier firing has no remembered context.
+
+STEP 2 — DELAY AND MISFIRE RECOVERY
+At or after 07:00 Central, inspect today's bundle before finalizing:
+  * If both response.json and DONE already exist, read them back, verify they
+    belong to today's bundle, report an idempotent no-op, and change nothing.
+  * If Media never fired or left no usable checkpoints, execute section 4
+    completely first, then execute section 5 completely in the same run.
+  * If STARTED, checkpoints, or FAILED notes exist, execute section 5
+    normally; section 5 owns recovery and gap filling.
+  * If response.json exists without DONE, verify response.json and resume
+    section 5 at the separate DONE commit. Do not rewrite a valid response.
+  * If DONE exists without a valid response.json, do not touch DONE. Report
+    the invariant violation plainly and stop; downstream state needs repair.
+
+At 06:00 Central, execute section 4 only even if yesterday had a failure.
+At the Doctor firing, execute section 1 only. Do not let one role spill into
+another role's files merely because they share a scheduled-task identity.
+
+STEP 3 — EXECUTE THE SELECTED CONTRACT
+Read the selected numbered section fresh from main and execute every numbered
+step completely. Its detailed contract wins over summaries in this router.
+Finish with the evidence and commit SHAs that selected section requires.
+```
+

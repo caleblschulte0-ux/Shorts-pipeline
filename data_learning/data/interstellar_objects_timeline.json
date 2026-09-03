@@ -1,0 +1,20 @@
+{
+  "key": "interstellar_objects_timeline",
+  "title": "Confirmed interstellar objects found (cumulative count)",
+  "unit": "index",
+  "geography": "Global",
+  "time_coverage": "2017-2025",
+  "source": {
+    "name": "Interstellar object confirmations",
+    "publisher": "NASA / Minor Planet Center",
+    "url": "https://science.nasa.gov/solar-system/comets/3i-atlas/3i-atlas-facts-and-faqs/",
+    "officiality": "official",
+    "access_date": "2026-09-02"
+  },
+  "notes": "Illustrative; cumulative count of objects confirmed on a hyperbolic (interstellar) trajectory through our solar system, per NASA/Minor Planet Center records: 1I/'Oumuamua (2017), 2I/Borisov (2019), 3I/ATLAS (2025).",
+  "points": [
+    {"label": "2017", "value": 1, "period": "2017"},
+    {"label": "2019", "value": 2, "period": "2019"},
+    {"label": "2025", "value": 3, "period": "2025"}
+  ]
+}
