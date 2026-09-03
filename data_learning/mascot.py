@@ -73,10 +73,13 @@ def _bob_loop(out_path: Path, base: Image.Image, size: int, fps: int,
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
         for i in range(n):
-            t = i / n
-            bob = (1 - math.cos(t * 2 * math.pi)) * 0.5 * (size * 0.022)
+            # NO BREATHING BOB. This raised and lowered the whole sprite on a
+            # cosine every loop, so the host visibly vibrated in place for the
+            # length of the video. The loop is now positionally still; a pose
+            # that should move is animated as a PERFORMANCE by
+            # mascot_director.build_scene_loop, not by nudging the sprite.
             canvas = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-            canvas.alpha_composite(base, (0, max(0, int(bob))))
+            canvas.alpha_composite(base, (0, 0))
             canvas.save(td / f"m{i:04d}.png")
         subprocess.run(
             ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps),

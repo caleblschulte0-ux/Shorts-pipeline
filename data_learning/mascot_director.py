@@ -1816,7 +1816,12 @@ def _a_pose(t, spec):
     front = _draw(p["front"], p.get("front_at", [200, 250])) if p.get("front") else ""
     look = (0, 3) if p.get("lower") in ("seated", "ride") else (0, 0)
     eyes, mouth = _expr(p.get("expr", "happy"), look=look)
-    bob = _s(t) * float(p.get("bob", 3))
+    # The rig no longer rides a continuous sine. `bob` was _s(t) * amplitude,
+    # i.e. the entire character oscillating vertically every frame of every
+    # scene — the vibration that read as camera shake. Action animators still
+    # return one-shot bobs (a crouch, a drive, a victory hop) because those are
+    # the performance; this idle term is not.
+    bob = 0.0
     return (arms, lower, back, front, eyes, mouth, bob)
 
 

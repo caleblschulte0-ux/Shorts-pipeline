@@ -1779,14 +1779,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # KEN BURNS: the hook image is a still, so a static hold of it for the
             # whole hook window is the #1 swipe-away trigger. Push in slowly
             # (zoompan) so the first frame is ALWAYS moving — never a frozen photo.
-            zframes = max(1, int((he + 0.6) * FPS))
-            # HARD, fast push-in (1.12 -> ~1.6) so frame 1 is already moving with
-            # energy — a slow drift reads as a static slide and gets swiped.
+            # NO PUSH-IN. This was a zoompan from 1.12 to 1.6 across the hook,
+            # full-frame. zoompan truncates its pan expressions to whole pixels
+            # every frame, so an aggressive zoom makes the entire image judder —
+            # the handheld shake that opened every video on this channel. The
+            # hook photo is now a STATIC fill; the hook's motion comes from the
+            # chart build, the captions and the host, none of which move the
+            # frame itself.
             fc.append(
-                f"[{hook_idx}:v]scale={int(W*1.6)}:{int(H*1.6)}:"
-                f"force_original_aspect_ratio=increase,crop={int(W*1.6)}:{int(H*1.6)},"
-                f"zoompan=z='min(zoom+0.0032,1.6)':d={zframes}:fps={FPS}:"
-                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s={W}x{H},"
+                f"[{hook_idx}:v]scale={W}:{H}:"
+                f"force_original_aspect_ratio=increase,crop={W}:{H},"
                 f"eq=brightness=-0.14:saturation=1.12:contrast=1.06,format=rgba,"
                 f"fade=t=out:st={max(0.1, he - 0.5):.2f}:d=0.5:alpha=1[hookimg]")
             fc.append(
@@ -1855,10 +1857,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # A data beat sweeps in from its own entry point (onto the datum);
             # otherwise Data glides from where he last was.
             start = entries.get(k, prev_tl)
-            xe = (f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-                  f"+6*sin(1.3*t)")
-            ye = (f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
-                  f"+9*sin(2.1*t)")
+            # NO IDLE OSCILLATION. These carried +6*sin(1.3*t) horizontally and
+            # +9*sin(2.1*t) vertically, evaluated every frame for the entire
+            # video: the host drifted in a continuous two-axis wobble that reads
+            # as a handheld camera. Data now travels a deliberate path and then
+            # holds still; the motion in a beat comes from the performance, not
+            # from the frame breathing. Do not reintroduce a periodic term here
+            # (tests/test_no_camera_shake.py fails the build if you do).
+            xe = f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
+            ye = f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
