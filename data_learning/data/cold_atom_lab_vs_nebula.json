@@ -1,0 +1,25 @@
+{
+  "key": "cold_atom_lab_vs_nebula",
+  "title": "Boomerang Nebula vs. NASA's Cold Atom Lab (Kelvin)",
+  "unit": "kelvin",
+  "geography": "Deep space vs. the International Space Station",
+  "time_coverage": "current",
+  "source": {
+    "name": "Cold Atom Laboratory Chills Atoms to New Lows",
+    "publisher": "NASA / JPL",
+    "url": "https://www.nasa.gov/missions/station/iss-research/cold-atom-laboratory/cold-atom-laboratory-chills-atoms-to-new-lows/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "NASA's Cold Atom Lab aboard the ISS chills atoms to under 100 picokelvin (1x10^-10 K) -- NASA describes this as about a billion times colder than the vacuum of deep space.",
+  "points": [
+    {
+      "label": "Boomerang Nebula",
+      "value": 1.0
+    },
+    {
+      "label": "NASA Cold Atom Lab (ISS)",
+      "value": 1e-10
+    }
+  ]
+}

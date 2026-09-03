@@ -1,0 +1,25 @@
+{
+  "key": "cape_of_good_hope_transit_index",
+  "title": "Ship transits around the Cape of Good Hope (index, pre-crisis = 100)",
+  "unit": "index",
+  "geography": "Southern Africa shipping route",
+  "time_coverage": "before vs. after Red Sea attacks began (late 2023)",
+  "source": {
+    "name": "Red Sea Bypass Contributed to Containers Lost in 2024",
+    "publisher": "World Shipping Council / South African Maritime Safety Authority",
+    "url": "https://www.worldshipping.org/regulatory-filings/estimate-of-containers-lost-at-sea-2024-update",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "WSC's 2024 update reports a 191% increase in Cape of Good Hope transits as ships avoided Houthi attacks in the Red Sea. Indexed to a pre-crisis baseline of 100 for comparability.",
+  "points": [
+    {
+      "label": "After Red Sea attacks (2024)",
+      "value": 291
+    }
+  ],
+  "baseline": {
+    "label": "Normal, pre-crisis route traffic",
+    "value": 100
+  }
+}

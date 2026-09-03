@@ -1,0 +1,27 @@
+{
+  "key": "sea_level_rise_rate",
+  "title": "Rate of global sea level rise (mm/year)",
+  "unit": "millimeters per year",
+  "geography": "Global (satellite altimetry)",
+  "time_coverage": "1993 vs. 2024",
+  "source": {
+    "name": "Satellite Record of Sea Level Rise From 1993 to 2024",
+    "publisher": "NASA / JPL",
+    "url": "https://www.jpl.nasa.gov/news/nasa-analysis-shows-unexpected-amount-of-sea-level-rise-in-2024/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "NASA/JPL satellite altimetry record (TOPEX/Poseidon through Sentinel-6). The rate of global mean sea level rise was about 2.1 mm/year in 1993 and has roughly doubled to about 4.5 mm/year by 2024.",
+  "points": [
+    {
+      "label": "1993",
+      "value": 2.1,
+      "period": "1993"
+    },
+    {
+      "label": "2024",
+      "value": 4.5,
+      "period": "2024"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "podcast_weekly_reach_share",
+  "title": "Share of Americans who listen to a podcast weekly",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "The Infinite Dial 2025",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/the-infinite-dial-2025/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "Edison Research's Infinite Dial 2025 found 40% of Americans (about 115 million people) listen to a podcast weekly. Presented as a share of the roughly 333 million US population.",
+  "points": [
+    {
+      "label": "Listen to a podcast weekly",
+      "value": 35
+    },
+    {
+      "label": "Don't",
+      "value": 65
+    }
+  ]
+}

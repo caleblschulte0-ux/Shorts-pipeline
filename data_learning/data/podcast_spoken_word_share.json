@@ -1,0 +1,25 @@
+{
+  "key": "podcast_spoken_word_share",
+  "title": "Podcasts' share of US spoken-word audio listening (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2015 vs. 2025",
+  "source": {
+    "name": "Share of Ear",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "Edison Research's Share of Ear tracks how Americans split their spoken-word audio time. In 2015, 10% of spoken-word listening time went to podcasts (75% to AM/FM radio). By Q4 2025, podcasts reached 40%.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 10
+    },
+    {
+      "label": "2025",
+      "value": 40
+    }
+  ]
+}

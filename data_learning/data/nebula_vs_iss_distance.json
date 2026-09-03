@@ -1,0 +1,25 @@
+{
+  "key": "nebula_vs_iss_distance",
+  "title": "Distance to the Boomerang Nebula vs. the ISS (miles)",
+  "unit": "miles",
+  "geography": "Deep space vs. low Earth orbit",
+  "time_coverage": "current",
+  "source": {
+    "name": "Boomerang Nebula distance; International Space Station altitude",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "The Boomerang Nebula is about 5,000 light-years away, roughly 2.94x10^16 miles. The ISS orbits at about 250 miles altitude. Rounded for on-screen clarity.",
+  "points": [
+    {
+      "label": "Boomerang Nebula",
+      "value": 29400000000000000
+    },
+    {
+      "label": "NASA's Cold Atom Lab (ISS)",
+      "value": 250
+    }
+  ]
+}

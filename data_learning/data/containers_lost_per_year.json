@@ -1,0 +1,32 @@
+{
+  "key": "containers_lost_per_year",
+  "title": "Shipping containers lost at sea per year",
+  "unit": "containers",
+  "geography": "Global",
+  "time_coverage": "2022-2024 (annual)",
+  "source": {
+    "name": "Containers Lost at Sea report",
+    "publisher": "World Shipping Council",
+    "url": "https://www.worldshipping.org/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "World Shipping Council annual survey. 2023's 221 was the lowest since the survey began in 2008; 2024's rise was driven largely by Red Sea rerouting.",
+  "points": [
+    {
+      "label": "2022",
+      "value": 661,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 221,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 576,
+      "period": "2024"
+    }
+  ]
+}

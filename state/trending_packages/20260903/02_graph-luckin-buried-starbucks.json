@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-luckin-buried-starbucks",
+  "title": "The Coffee Startup That Buried Starbucks In China",
+  "hook": "Two coffee chains. One winner.",
+  "y_label": "Stores open in China",
+  "duration": 13,
+  "source": "Store counts in mainland China for Starbucks and Luckin Coffee, compiled from company earnings reports and public filings (Luckin's 2023-2024 counts from its SEC 20-F filings; Starbucks China count from company disclosures). Luckin briefly overtook Starbucks' store count in 2019, stumbled after its 2020 accounting scandal, then resumed explosive growth to more than triple Starbucks' footprint by 2024. Figures approximate, rounded to the nearest store.",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Starbucks China",
+      "color": "#00704A",
+      "icon": "Starbucks",
+      "values": [
+        3521,
+        4123,
+        4706,
+        5557,
+        6019,
+        6975,
+        7596
+      ]
+    },
+    {
+      "name": "Luckin Coffee",
+      "color": "#003DA5",
+      "icon": "Luckin Coffee",
+      "values": [
+        2073,
+        4507,
+        4292,
+        6024,
+        8214,
+        16218,
+        22340
+      ]
+    }
+  ],
+  "hashtags": [
+    "luckincoffee",
+    "starbucks",
+    "china",
+    "coffee",
+    "business",
+    "retail",
+    "markschart",
+    "brands",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

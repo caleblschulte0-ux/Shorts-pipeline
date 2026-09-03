@@ -1,0 +1,25 @@
+{
+  "key": "containers_2024_vs_15yr_avg",
+  "title": "2024 container losses vs. the 15-year average",
+  "unit": "containers/year",
+  "geography": "Global",
+  "time_coverage": "2008-2024",
+  "source": {
+    "name": "Containers Lost at Sea report",
+    "publisher": "World Shipping Council",
+    "url": "https://www.worldshipping.org/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "WSC reports a 15-year (2008-2022) average of about 1,566 containers lost per year, driven up by outlier years like 2011-2013. 2024's 576 sits well below that long-run average.",
+  "points": [
+    {
+      "label": "2024",
+      "value": 576
+    }
+  ],
+  "baseline": {
+    "label": "15-year average (2008-2022)",
+    "value": 1566
+  }
+}

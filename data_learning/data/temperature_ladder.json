@@ -1,0 +1,29 @@
+{
+  "key": "temperature_ladder",
+  "title": "How cold known places get (Kelvin)",
+  "unit": "kelvin",
+  "geography": "Earth and deep space",
+  "time_coverage": "current",
+  "source": {
+    "name": "Cosmic microwave background temperature; Boomerang Nebula temperature",
+    "publisher": "NASA / Harvard-Smithsonian Center for Astrophysics",
+    "url": "https://www.jpl.nasa.gov/news/the-coolest-experiment-in-the-universe/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "Room temperature ~293K (20C). Deep space's cosmic microwave background sits at 2.7K, leftover heat from the Big Bang. The Boomerang Nebula, 5,000 light-years away, measures about 1K -- colder than deep space itself because its gas is expanding and cooling faster than the CMB can reheat it.",
+  "points": [
+    {
+      "label": "Room temperature",
+      "value": 293
+    },
+    {
+      "label": "Deep space (cosmic background)",
+      "value": 2.7
+    },
+    {
+      "label": "Boomerang Nebula",
+      "value": 1.0
+    }
+  ]
+}
