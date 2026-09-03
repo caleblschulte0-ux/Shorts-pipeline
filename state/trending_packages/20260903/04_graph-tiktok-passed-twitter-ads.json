@@ -1,0 +1,62 @@
+{
+  "format": "graph_race",
+  "slug": "graph-tiktok-passed-twitter-ads",
+  "title": "TikTok's Ad Business Passed Twitter's In 2 Years",
+  "hook": "Zero to $28 billion in ads",
+  "y_label": "Global ad revenue ($ billions)",
+  "duration": 13,
+  "source": "Global advertising revenue for TikTok and Twitter/X, compiled from eMarketer estimates and company disclosures. TikTok's ad business passed Twitter's in 2022 and kept climbing even as X's revenue fell after 2022; 2025 figures are projected. Figures approximate, rounded to the nearest hundred million.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Twitter / X",
+      "color": "#1d9bf0",
+      "icon": "X",
+      "values": [
+        3.0,
+        3.2,
+        5.58,
+        4.4,
+        3.4,
+        2.5,
+        2.3
+      ]
+    },
+    {
+      "name": "TikTok",
+      "color": "#EE1D52",
+      "icon": "TikTok",
+      "values": [
+        0.05,
+        0.5,
+        3.88,
+        11.64,
+        16.2,
+        23.58,
+        28.0
+      ]
+    }
+  ],
+  "hashtags": [
+    "tiktok",
+    "twitter",
+    "adrevenue",
+    "socialmedia",
+    "business",
+    "advertising",
+    "markschart",
+    "data",
+    "technology",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

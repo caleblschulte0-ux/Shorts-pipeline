@@ -1,0 +1,64 @@
+{
+  "format": "graph_race",
+  "slug": "graph-nvidia-passed-apple",
+  "title": "Apple Ruled Markets For Decades. Nvidia Just Passed It.",
+  "hook": "From nothing to $4.5 trillion",
+  "y_label": "Market capitalization ($ billions)",
+  "duration": 13,
+  "source": "Year-end (2025: most recent available) market capitalization for Apple and Nvidia, compiled from public market data and company disclosures. Nvidia first closed above Apple's market cap in June 2024 and has led for most of 2025, including becoming the first company to cross $4 trillion in July 2025. Figures are approximate, rounded to the nearest billion.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Apple",
+      "color": "#a3a3a3",
+      "icon": "Apple",
+      "values": [
+        1300,
+        2255,
+        2913,
+        2066,
+        2994,
+        3505,
+        3900
+      ]
+    },
+    {
+      "name": "Nvidia",
+      "color": "#76b900",
+      "icon": "Nvidia",
+      "values": [
+        144,
+        322,
+        735,
+        359,
+        1223,
+        3434,
+        4540
+      ]
+    }
+  ],
+  "hashtags": [
+    "nvidia",
+    "apple",
+    "stockmarket",
+    "ai",
+    "markschart",
+    "marketcap",
+    "investing",
+    "technology",
+    "wallstreet",
+    "stocks",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

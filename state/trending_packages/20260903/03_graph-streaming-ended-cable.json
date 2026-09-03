@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-streaming-ended-cable",
+  "title": "Cable Ruled TV For Decades. Streaming Just Ended It.",
+  "hook": "Cable's reign just ended",
+  "y_label": "Share of US TV viewing (%)",
+  "duration": 13,
+  "source": "Share of total US television viewing time by distributor type, from Nielsen's The Gauge and Total Audience Report. Streaming overtook cable's individual share around 2022 and, in May 2025, overtook combined cable plus broadcast viewing for the first time since Nielsen began tracking (44.8% streaming vs. 44.2% cable+broadcast). Some intermediate years are interpolated between Nielsen's published data points; figures approximate.",
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Cable TV",
+      "color": "#6b7280",
+      "values": [
+        36,
+        38,
+        39,
+        30,
+        28,
+        26,
+        24.1
+      ]
+    },
+    {
+      "name": "Streaming",
+      "color": "#3b82f6",
+      "values": [
+        19,
+        23,
+        26,
+        38,
+        41,
+        43,
+        44.8
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "cabletv",
+    "cordcutting",
+    "youtube",
+    "netflix",
+    "television",
+    "media",
+    "nielsen",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

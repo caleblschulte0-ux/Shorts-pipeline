@@ -1,0 +1,74 @@
+{
+  "subreddit": "ProRevenge",
+  "slug": "airline-bump-federal-compensation",
+  "title": "The Airline Bumped Me. I Knew The Federal Rule.",
+  "hashtags": [
+    "prorevenge",
+    "airline",
+    "overbooked",
+    "flightdelay",
+    "dot",
+    "consumerrights",
+    "aviation",
+    "travel",
+    "redditstories",
+    "karma",
+    "airtravel",
+    "boardingpass",
+    "shorts"
+  ],
+  "script": "My flight was overbooked, and the gate agent picked me to get bumped for checking in last. She offered a $200 voucher and a seat the next morning. I said no thanks, and asked for the compensation the airline has to pay by federal law when your flight leaves without you. She insisted the voucher was the only option. I pulled up the exact rule on my phone and read her the payout for a domestic delay under two hours: four times my fare, paid on the spot, cash or check, never a coupon. Her supervisor showed up already annoyed, ready to repeat the same voucher script. I read him the regulation number instead. He vanished for ten minutes and came back with a check for $1,700 and an apology that sounded rehearsed. Then he mentioned the next flight still had free upgrades. I took the aisle seat in first class, ordered the steak, and toasted the gate agent who tried to hand me a coupon instead of the law.",
+  "shots": [
+    {
+      "phrase": "My flight was overbooked",
+      "query": "airport departure board delay"
+    },
+    {
+      "phrase": "a $200 voucher",
+      "query": "airline travel voucher paper"
+    },
+    {
+      "phrase": "the exact rule on my phone",
+      "query": "hand holding phone reading"
+    },
+    {
+      "phrase": "Her supervisor showed up",
+      "query": "airport gate agent counter"
+    },
+    {
+      "phrase": "a check for $1,700",
+      "query": "bank check payment closeup"
+    },
+    {
+      "phrase": "free upgrades",
+      "query": "first class airplane cabin seat"
+    },
+    {
+      "phrase": "ordered the steak",
+      "query": "airplane first class meal tray"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "$200 voucher",
+      "text": "$200 VOUCHER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "four times my fare",
+      "text": "4X FARE, CASH",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "a check for $1,700",
+      "text": "$1,700 CHECK",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "free upgrades",
+      "text": "FIRST CLASS",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "airport tension escalating into a satisfying payoff"
+}

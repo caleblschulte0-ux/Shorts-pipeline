@@ -25117,6 +25117,239 @@
           }
         }
       ]
+    },
+    {
+      "slug": "container-losses-red-sea-reroute",
+      "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
+      "hook": "Why Cargo Ships Started Losing Containers Again",
+      "closing": "Somewhere out there, a container of sneakers is still floating.",
+      "question": "What do you think was inside the last one? Drop it below.",
+      "caption": "Container losses at sea nearly tripled in 2024 after Houthi attacks forced ships around Africa's roughest waters instead of the Suez Canal. It's still far below the 15-year average — for now. What do you think was inside the last one? 👇",
+      "hashtags": [
+        "shipping",
+        "cargoships",
+        "redsea",
+        "suezcanal",
+        "supplychain",
+        "logistics",
+        "maritime",
+        "globaltrade",
+        "didyouknow",
+        "dataviz",
+        "economy",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "containers_lost_per_year",
+          "params": {
+            "file": "containers_lost_per_year.json"
+          },
+          "insight_type": "trend",
+          "topic": "containers lost at sea per year",
+          "role": "1 · THE SPIKE",
+          "say": "In 2023, ships lost a record-low 221 containers at sea. By 2024 that jumped to 576 — more than double. Something changed out on the water."
+        },
+        {
+          "source": "offline",
+          "key": "cape_of_good_hope_transit_index",
+          "params": {
+            "file": "cape_of_good_hope_transit_index.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "Cape of Good Hope ship traffic",
+          "role": "2 · THE REASON",
+          "say": "Houthi attacks in the Red Sea pushed captains to reroute around Africa's Cape of Good Hope instead — transits there jumped 191%, straight through some of the roughest ocean on Earth."
+        },
+        {
+          "source": "offline",
+          "key": "containers_2024_vs_15yr_avg",
+          "params": {
+            "file": "containers_2024_vs_15yr_avg.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "2024 losses vs. the historical average",
+          "role": "3 · THE TWIST",
+          "say": "Even that spike is still way below the 15-year average of 1,566 lost a year. Shipping got dramatically safer overall — this is just how fast a war can chip away at that."
+        }
+      ]
+    },
+    {
+      "slug": "coldest-place-in-the-universe-is-human-made",
+      "title": "The Coldest Place In The Universe Isn't In Space (3 Charts)",
+      "hook": "The Coldest Place In The Universe Isn't In Space",
+      "closing": "The universe's coldest place also has the best view.",
+      "question": "Could you survive one second at absolute zero? Guess below.",
+      "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
+      "hashtags": [
+        "nasa",
+        "space",
+        "physics",
+        "coldatomlab",
+        "iss",
+        "spacestation",
+        "absolutezero",
+        "quantum",
+        "science",
+        "didyouknow",
+        "mindblown",
+        "dataviz",
+        "spacefacts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "temperature_ladder",
+          "params": {
+            "file": "temperature_ladder.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "topic": "how cold known places get",
+          "role": "1 · HOW COLD SPACE GETS",
+          "say": "Room temperature is about 293 Kelvin. Deep space itself sits at 2.7 Kelvin, warmed slightly by leftover heat from the Big Bang. One nebula, 5,000 light-years away, is even colder than that."
+        },
+        {
+          "source": "offline",
+          "key": "cold_atom_lab_vs_nebula",
+          "params": {
+            "file": "cold_atom_lab_vs_nebula.json"
+          },
+          "insight_type": "comparison",
+          "topic": "Boomerang Nebula vs. NASA's Cold Atom Lab",
+          "role": "2 · THE UPSET",
+          "say": "NASA built something colder. Its Cold Atom Lab, on the space station, chills atoms to under 100 picokelvin -- a billionth of a billionth of a degree above zero. That's a billion times colder than deep space."
+        },
+        {
+          "source": "offline",
+          "key": "nebula_vs_iss_distance",
+          "params": {
+            "file": "nebula_vs_iss_distance.json"
+          },
+          "insight_type": "comparison",
+          "topic": "how far away the coldest known spots really are",
+          "role": "3 · THE TWIST",
+          "say": "The Boomerang Nebula sits 5,000 light-years away, about 30 quadrillion miles. NASA's freezer is 250 miles straight up. The coldest place in the known universe is orbiting right over your head."
+        }
+      ]
+    },
+    {
+      "slug": "sea-level-rise-rate-doubled",
+      "title": "The Ocean Is Rising Faster Than Scientists Predicted (3 Charts)",
+      "hook": "The Ocean Is Rising Faster Than Predicted",
+      "closing": "Buy beachfront property. Or don't. Your call.",
+      "question": "Would you still buy a house on the coast? Drop it below.",
+      "caption": "The rate of sea level rise has doubled since 1993 -- and 2024 rose even faster than NASA predicted. By 2050, coastal high-tide flooding could hit 65 days a year nationally. Would you still buy beachfront property? 👇",
+      "hashtags": [
+        "sealevelrise",
+        "climatechange",
+        "nasa",
+        "noaa",
+        "climate",
+        "coastalflooding",
+        "oceanscience",
+        "environment",
+        "didyouknow",
+        "dataviz",
+        "science",
+        "climatedata"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "sea_level_rise_rate",
+          "params": {
+            "file": "sea_level_rise_rate.json"
+          },
+          "insight_type": "trend",
+          "topic": "rate of sea level rise",
+          "role": "1 · THE RATE",
+          "say": "In 1993, satellites measured the ocean rising about 2.1 millimeters a year. By 2024 that rate had roughly doubled to 4.5 millimeters a year. The ocean isn't just rising -- it's rising faster."
+        },
+        {
+          "source": "offline",
+          "key": "sea_level_2024_predicted_vs_actual",
+          "params": {
+            "file": "sea_level_2024_predicted_vs_actual.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "topic": "2024's rate: predicted vs. actual",
+          "role": "2 · THE MISS",
+          "say": "Scientists expected about 4.3 millimeters of rise in 2024. The ocean rose 5.9 millimeters instead -- mostly because warmer water simply takes up more space. Even the models are running behind."
+        },
+        {
+          "source": "offline",
+          "key": "us_high_tide_flood_days",
+          "params": {
+            "file": "us_high_tide_flood_days.json"
+          },
+          "insight_type": "trend",
+          "topic": "US high-tide flooding days per year",
+          "role": "3 · THE CONSEQUENCE",
+          "say": "That extra water shows up as flooding. US coastal cities now see about 10 high-tide flood days a year, versus 3 back in 2000 -- and NOAA projects up to 65 a year by 2050."
+        }
+      ]
+    },
+    {
+      "slug": "podcasts-passed-radio-spoken-word",
+      "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
+      "hook": "Podcasts Just Beat Radio For The First Time",
+      "closing": "Radio had a hundred-year head start. Didn't matter.",
+      "question": "Do you listen to more podcasts or radio? Tell me below.",
+      "caption": "Podcasts just passed AM/FM radio in spoken-word listening for the first time ever -- 40% to 39%. Radio spent a century building its audience; podcasts matched it in twenty years. Which do you listen to more? 👇",
+      "hashtags": [
+        "podcasts",
+        "radio",
+        "amfm",
+        "audio",
+        "media",
+        "spokenword",
+        "edisonresearch",
+        "didyouknow",
+        "dataviz",
+        "podcasting",
+        "listening",
+        "technology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "podcast_spoken_word_share",
+          "params": {
+            "file": "podcast_spoken_word_share.json"
+          },
+          "insight_type": "comparison",
+          "topic": "podcasts' share of spoken-word listening",
+          "role": "1 · THE CLIMB",
+          "say": "In 2015, podcasts were just 10% of Americans' spoken-word listening time. AM/FM radio owned the rest. By 2025 podcasts had climbed to 40% -- a quadrupling in a decade."
+        },
+        {
+          "source": "offline",
+          "key": "podcast_vs_radio_q4_2025",
+          "params": {
+            "file": "podcast_vs_radio_q4_2025.json"
+          },
+          "insight_type": "comparison",
+          "topic": "the crossover moment",
+          "role": "2 · THE CROSSOVER",
+          "say": "By the end of 2025, podcasts made up 40% of all spoken-word listening. AM/FM radio's talk programming fell to 39%. For the first time since anyone started measuring, podcasts won."
+        },
+        {
+          "source": "offline",
+          "key": "podcast_weekly_reach_share",
+          "params": {
+            "file": "podcast_weekly_reach_share.json"
+          },
+          "insight_type": "share",
+          "topic": "how many Americans listen weekly",
+          "role": "3 · THE SCALE",
+          "say": "That's not a niche hobby anymore -- about 115 million Americans, roughly 35% of the country, now listen to a podcast every single week. Radio spent a century building that audience."
+        }
+      ]
     }
   ],
   "videos": [

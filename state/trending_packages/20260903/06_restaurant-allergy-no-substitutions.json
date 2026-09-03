@@ -1,0 +1,74 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "restaurant-allergy-no-substitutions",
+  "title": "The Menu Said No Substitutions. I Had An Allergy.",
+  "hashtags": [
+    "maliciouscompliance",
+    "restaurant",
+    "foodallergy",
+    "healthcode",
+    "customerservice",
+    "redditstories",
+    "karma",
+    "dining",
+    "consumerrights",
+    "foodsafety",
+    "waitstaff",
+    "allergyawareness",
+    "shorts"
+  ],
+  "script": "The new manager taped a sign to the host stand: no substitutions, no exceptions, kitchen's final answer. I have a shellfish allergy, and that week's pasta special came tossed in shrimp stock unless you asked for a swap. I asked anyway, politely, and the server just pointed at the sign like it settled everything. So I asked to see the allergen menu every restaurant is required to keep on hand. She had no idea where it was. I asked for the manager, who repeated the sign policy word for word like he'd rehearsed it in the mirror. I mentioned that refusing a documented allergy accommodation isn't a substitutions dispute, it's a liability the health department would love to hear about. He went quiet, then walked to the kitchen himself. Five minutes later my pasta came out with the shrimp stock swapped for vegetable broth, no charge, and a laminated allergen binder appeared at the host stand by the following week.",
+  "shots": [
+    {
+      "phrase": "taped a sign to the host stand",
+      "query": "restaurant host stand sign"
+    },
+    {
+      "phrase": "a shellfish allergy",
+      "query": "seafood pasta dish closeup"
+    },
+    {
+      "phrase": "pointed at the sign",
+      "query": "waiter pointing restaurant sign"
+    },
+    {
+      "phrase": "the allergen menu every restaurant is required to keep on hand",
+      "query": "restaurant menu binder paperwork"
+    },
+    {
+      "phrase": "repeated the sign policy word for word",
+      "query": "restaurant manager talking customer"
+    },
+    {
+      "phrase": "walked to the kitchen himself",
+      "query": "restaurant kitchen chef cooking"
+    },
+    {
+      "phrase": "a laminated allergen binder",
+      "query": "binder on restaurant host counter"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no substitutions, no exceptions",
+      "text": "NO EXCEPTIONS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "shellfish allergy",
+      "text": "ALLERGY",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "liability the health department would love to hear about",
+      "text": "HEALTH CODE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "no charge",
+      "text": "NO CHARGE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "quiet standoff tension resolving into a calm win"
+}

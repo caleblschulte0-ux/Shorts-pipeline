@@ -363,9 +363,13 @@ def full_frame_beat(src: Path, ss: float, dur: float, out: Path,
     # to fill, then the push.
     vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
           f"crop={W * 2}:{H * 2},"
-          # NO PUSH — the frame is locked (operator ruling). zoompan judders.
-          f"null,"
-          f"d=1:s={W}x{H}:fps={FPS},format=yuv420p")
+          # NO PUSH — the frame is locked (operator ruling). zoompan judders
+          # even at a fixed zoom, so this drops zoompan entirely rather than
+          # relying on a z=1 pass-through — but the leftover d=/s=/fps=
+          # options from that were still being handed to the `null` filter,
+          # which accepts none of them and refused to parse.
+          f"scale={W}:{H}:flags=lanczos,"
+          f"fps={FPS},format=yuv420p")
     # A SHOT MUST BE EXACTLY AS LONG AS ITS BEAT. `-t` on a source that runs
     # out early yields a SHORT clip and ffmpeg exits 0 — so the concat comes up
     # short and every clip after it drifts off its narration, silently. Stock
@@ -435,9 +439,13 @@ def image_beat(src: Path, dur: float, out: Path,
     # cost is paid once and `-t` truncation is unnecessary.
     vf = (f"scale={W * 2}:{H * 2}:force_original_aspect_ratio=increase,"
           f"crop={W * 2}:{H * 2},setsar=1,"
-          # NO PUSH/PAN — the frame is locked (operator ruling).
-          f"null,"
-          f"d={frames}:s={W}x{H}:fps={FPS},format=yuv420p")
+          # NO PUSH/PAN — the frame is locked (operator ruling). zoompan also
+          # duplicated the single input frame into `frames` output frames via
+          # its d= option; `loop` takes over that job so a still fed once
+          # (no `-loop 1` input, see the PERF note above) still fills `dur`.
+          f"loop=loop={frames}:size=1:start=0,"
+          f"scale={W}:{H}:flags=lanczos,"
+          f"fps={FPS},format=yuv420p")
     subprocess.run(
         ["ffmpeg", "-y", "-loglevel", "error", "-i", str(src),
          "-vf", vf, "-an", "-frames:v", str(frames), "-r", str(FPS),

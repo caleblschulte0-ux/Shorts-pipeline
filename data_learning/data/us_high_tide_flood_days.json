@@ -1,0 +1,32 @@
+{
+  "key": "us_high_tide_flood_days",
+  "title": "US median high-tide flooding days per year",
+  "unit": "days/year",
+  "geography": "United States (national median)",
+  "time_coverage": "2000, 2024, 2050 (projected)",
+  "source": {
+    "name": "Annual High Tide Flooding Outlook",
+    "publisher": "NOAA",
+    "url": "https://tidesandcurrents.noaa.gov/high-tide-flooding/annual-outlook.html",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "NOAA's 2024-2025 Annual High Tide Flooding Outlook reports a national median of about 7 more high-tide flooding days per year than in 2000 (a 250%+ increase), and projects 45-85 days/year nationally by 2050 on the current sea-level-rise trend. The 2050 figure is a NOAA projection, not an observed value.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 3,
+      "period": "2000"
+    },
+    {
+      "label": "2024",
+      "value": 10,
+      "period": "2024"
+    },
+    {
+      "label": "2050 (NOAA projection)",
+      "value": 65,
+      "period": "2050"
+    }
+  ]
+}

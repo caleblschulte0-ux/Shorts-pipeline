@@ -1,0 +1,25 @@
+{
+  "key": "podcast_vs_radio_q4_2025",
+  "title": "Q4 2025: podcasts vs. AM/FM radio, share of spoken-word listening (%)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Q4 2025",
+  "source": {
+    "name": "Share of Ear, Q4 2025",
+    "publisher": "Edison Research",
+    "url": "https://www.edisonresearch.com/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "In Q4 2025, Edison Research found podcasts reached 40% of spoken-word audio listening time versus 39% for AM/FM radio's spoken-word programming -- the first time podcasts have led since Edison began tracking in 2014.",
+  "points": [
+    {
+      "label": "AM/FM radio (spoken word)",
+      "value": 39
+    },
+    {
+      "label": "Podcasts",
+      "value": 40
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "sea_level_2024_predicted_vs_actual",
+  "title": "2024 sea level rise: predicted vs. actual (mm)",
+  "unit": "millimeters",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "NASA Analysis Shows Unexpected Amount of Sea Level Rise in 2024",
+    "publisher": "NASA / JPL",
+    "url": "https://www.jpl.nasa.gov/news/nasa-analysis-shows-unexpected-amount-of-sea-level-rise-in-2024/",
+    "officiality": "official",
+    "access_date": "2026-09-03"
+  },
+  "notes": "Based on the long-term trend, NASA scientists expected roughly 4.3mm of sea level rise in 2024; satellites measured 5.9mm, mostly attributed to thermal expansion as oceans warm.",
+  "points": [
+    {
+      "label": "Actual (measured)",
+      "value": 5.9
+    }
+  ],
+  "baseline": {
+    "label": "Expected (from long-term trend)",
+    "value": 4.3
+  }
+}
