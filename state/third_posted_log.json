@@ -5598,13 +5598,45 @@
       "ts": "2026-09-03T15:49:41.611606+00:00"
     },
     "clip-20260903-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/InquisitiveEnjoyableGoldfishMVGame-MjttO_28lOFbV-0l",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/LE6wci9PvD8",
       "title": "Sodapoppin Can't Stop Laughing At This Shirt Design",
       "kind": "twitch_clip",
-      "ts": "2026-09-03T16:02:26.695821+00:00",
+      "ts": "2026-09-03T16:02:30.910502+00:00",
+      "uploaded_at": "2026-09-03T16:02:30.910524+00:00",
+      "publish_at": "2026-09-03T21:30:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/InquisitiveEnjoyableGoldfishMVGame-MjttO_28lOFbV-0l",
+      "streamer": "sodapoppin",
+      "series": "chaos",
+      "hook": "THIS SHIRT DESIGN BROKE HIM",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 18952,
+      "banger": 0.35,
+      "cut": {
+        "start": 0.0,
+        "end": 22.6
+      },
+      "director_cut": true
+    },
+    "rejected-goldenspeedytubersbabyrage-0vxt1vzizbs6hc1l": {
+      "source_url": "https://www.twitch.tv/xqc/clip/GoldenSpeedyTubersBabyRage-0vxT1VziZBS6hc1l",
+      "streamer": "xqc",
+      "title": "hermione",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (confused guessing game, no visible event)",
+      "ts": "2026-09-03T16:04:20.567511+00:00"
+    },
+    "clip-20260903-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/nickmercs/clip/CautiousThirstyScallionFailFish-Rs8l9hPbN5aN0Whz",
+      "story_key": null,
+      "streamer": "nickmercs",
+      "title": "Nickmercs Can't Believe How BAD This Guy Was \ud83d\udc80",
+      "kind": "twitch_clip",
+      "ts": "2026-09-03T16:08:05.750653+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
