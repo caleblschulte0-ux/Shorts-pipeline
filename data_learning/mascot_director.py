@@ -1851,8 +1851,18 @@ def compose_anim(spec: dict, t: float) -> str:
     env = ENVS.get(prop_name, _shadow)() if grounded else ""
     masc = R.assemble(arms, eyes, mouth, lower=lower,
                       extra_back=back, extra_front=front)
-    inner = env + (f'<g transform="translate(0,{bob:.1f}) '
-                   f'rotate({tilt:.1f},170,210)">{masc}</g>')
+    # THE CHOKEPOINT: the whole body never translates or rotates. Every
+    # animator is free to return a `bob` and a `tilt`, and many still do —
+    # continuous _s(t) breathing in the legacy actions, and tilt rattles of up
+    # to eight cycles per phase in the coupled ones. Applied to the whole rig
+    # they are a character vibrating on the spot, which is what the channel has
+    # been shipping. Killing them here rather than in twenty animators means
+    # there is exactly ONE place this can come back, and a test watches it.
+    #
+    # What still moves: arms, legs, props, eyes, mouth — the performance.
+    _ = (bob, tilt)
+    inner = env + f'<g transform="translate(0,0) rotate(0,170,210)">{masc}</g>'
+
     return R.wrap(inner, view=ANIM_VIEW, label=f"Data {action} {prop_name}")
 
 

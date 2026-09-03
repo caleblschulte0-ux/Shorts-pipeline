@@ -114,6 +114,56 @@ def test_posed_rig_has_zero_idle_bob_at_every_phase():
         assert bob == 0.0, f"_a_pose returns bob={bob} at t={t} — rig oscillates"
 
 
+# --------------------------------------------------------------------------- #
+# 6: the chokepoint — the whole body never translates or rotates
+# --------------------------------------------------------------------------- #
+def test_no_animator_can_move_the_whole_body():
+    """Every animator, every phase: the rig's group transform must be identity.
+
+    This is the guarantee that matters, because it does not depend on auditing
+    twenty animators. Many of them still RETURN a bob/tilt — continuous _s(t)
+    breathing in the legacy actions, tilt rattles of up to eight cycles per
+    phase in the coupled ones — and compose_anim must refuse to apply them.
+    """
+    import re as _re
+    from data_learning import mascot_director as md
+
+    actions = sorted(md.ANIMATORS) + ["pose"]
+    bad = []
+    for action in actions:
+        spec = {"action": action, "prop": "price_tag", "text": "9",
+                "pose": {"lh": [150, 252, -8], "rh": [190, 252, 8],
+                         "motion": {"limb": "both", "amp": 6}, "bob": 8}}
+        for i in range(9):
+            svg = md.compose_anim(spec, i / 8.0)
+            for tx, ty in _re.findall(r"translate\(([-\d.]+),\s*([-\d.]+)\)", svg):
+                if float(tx) or float(ty):
+                    bad.append(f"{action}@{i/8.0}: translate({tx},{ty})")
+            for rot in _re.findall(r"rotate\(([-\d.]+),", svg):
+                if float(rot):
+                    bad.append(f"{action}@{i/8.0}: rotate({rot})")
+    assert not bad, f"whole-body motion is back: {bad[:4]}"
+
+
+def test_body_pixels_do_not_move_between_phases():
+    """Pixel proof: the legs/feet band is byte-identical across a full phase
+    cycle. Arms may (and should) move; the body may not."""
+    import io
+    from PIL import Image, ImageChops
+    from data_learning import mascot_director as md
+    spec = {"action": "present", "prop": "price_tag", "text": "9"}
+    frames = []
+    for i in range(9):
+        png = md._rasterise(md.compose_anim(spec, i / 8.0), 300)
+        frames.append(Image.open(io.BytesIO(png)).convert("RGBA"))
+    w, h = frames[0].size
+    band = (0, int(h * 0.80), w, h)          # legs + feet: body, never arms
+    ref = frames[0].crop(band)
+    moved = [i for i, f in enumerate(frames[1:], 1)
+             if ImageChops.difference(ref, f.crop(band)).getbbox() is not None]
+    assert not moved, f"body band shifts at phases {moved} — the rig still moves"
+
+
 def _main() -> int:
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

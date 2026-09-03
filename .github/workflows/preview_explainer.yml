@@ -65,6 +65,9 @@ jobs:
           # checks, no deps — run before we spend minutes rendering.
           python3 data_learning/tests/test_showrunner_scoring.py
           python3 data_learning/tests/test_repair_loop.py
+          # No frame-level oscillation may reach a render (see the test's
+          # docstring for the five that used to).
+          python3 data_learning/tests/test_no_camera_shake.py
 
       - name: Install system deps (ffmpeg only — no Blender for a fast preview)
         run: |
