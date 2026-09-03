@@ -1,14 +1,14 @@
 {
  "checked_at": "2026-09-03T16:23:55+00:00",
- "date": "20260902",
+ "date": "20260903",
  "deadline_central": 8,
  "deadline_passed": true,
  "expected": [
-  "exchange/bundles/20260902/response.json",
-  "exchange/bundles/20260902/DONE"
+  "exchange/bundles/20260903/response.json",
+  "exchange/bundles/20260903/DONE"
  ],
  "found": [],
- "headline": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260902 (a bundle exists for this date).",
+ "headline": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the finalizer task left nothing in the repo for 20260903 (a bundle exists for this date).",
  "ok": false,
  "partial": false,
  "required": true,

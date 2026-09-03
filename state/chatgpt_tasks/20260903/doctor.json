@@ -1,0 +1,17 @@
+{
+ "checked_at": "2026-09-03T16:23:55+00:00",
+ "date": "20260903",
+ "deadline_central": 23,
+ "deadline_passed": false,
+ "expected": [
+  "doctor/reports/20260903.json"
+ ],
+ "found": [],
+ "headline": "doctor: pending",
+ "ok": false,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "pending",
+ "task": "doctor",
+ "why_required": "the doctor is a daily read"
+}
