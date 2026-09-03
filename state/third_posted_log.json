@@ -5653,14 +5653,27 @@
       "director_cut": true
     },
     "clip-20260903-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/VenomousEasyArtichokeVoHiYo-Qvad1szLQGEeSQq8",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/8mGK8k1Ccb4",
       "title": "Kaicenat: Kai Cenat Randomly Shows Everyone A Buffalo On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-09-03T16:12:42.608718+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-03T16:12:46.831993+00:00",
+      "uploaded_at": "2026-09-03T16:12:46.832010+00:00",
+      "publish_at": "2026-09-04T00:30:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/VenomousEasyArtichokeVoHiYo-Qvad1szLQGEeSQq8",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "KAI JUST SHOWED US A BUFFALO",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 13788,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 15.1
+      },
+      "director_cut": true
     }
   }
 }
