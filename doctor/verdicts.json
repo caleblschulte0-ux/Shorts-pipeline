@@ -959,16 +959,22 @@
       "revisit_after": "20260927"
     },
     "69a0ad32a52f": {
-      "verdict": "in_progress",
+      "verdict": "done",
       "date": "20260904",
-      "because": "picked up",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed by reading judge_policy.py:276-373. Unanimous pass=false from all required judges produces no blocker: the required-judge loop (312-321) only checks missing/failed/abstained status, hard_blockers (340) only fires on findings with severity=blocker or an auto-fail defect code, and dissent() (276-290) returns empty when all judges agree even if they unanimously agree pass=false. A high overall_10 with unanimous reject can reach advance=true. This is a real fail-open path in the binding gate; fixing it is in scope and small (require pass=True from every required judge)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260904",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "29bf6d4"
     },
     "cc8333959d84": {
       "verdict": "doing",
