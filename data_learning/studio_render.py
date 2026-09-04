@@ -821,6 +821,52 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
         return None
 
 
+# --------------------------------------------------------------------------- #
+# SHOT CUTTING — the edit, not the motion
+# --------------------------------------------------------------------------- #
+def _shot_plan(s0: float, s1: float, target: float = 3.0,
+               max_shots: int = 4) -> list[tuple[float, float]]:
+    """Cut one narrated beat into SHOTS of roughly `target` seconds.
+
+    A beat used to be one shot: a single chart card held for the whole
+    sentence, which on this channel is 8-12 seconds. That is the actual
+    complaint — "we sit on one chart as it slowly moves for twenty seconds" —
+    and it is also why every previous session reached for camera movement and
+    frantic mascot arms: with one shot per beat there is nothing else in the
+    edit to carry attention.
+
+    Shorts that hold attention cut every 2-4 seconds. This returns the cut
+    points; the caller decides the framing of each shot.
+    """
+    dur = max(0.0, s1 - s0)
+    n = max(1, min(max_shots, int(round(dur / target))))
+    if n == 1:
+        return [(s0, s1)]
+    step = dur / n
+    return [(s0 + k * step, s0 + (k + 1) * step if k < n - 1 else s1)
+            for k in range(n)]
+
+
+def _punch_crop(anchor: dict, vw: int, vh: int, zoom: float = 1.55) -> str:
+    """A STATIC punch-in framing centred on one datum, as an ffmpeg crop.
+
+    Static is the whole point: the framing changes at the CUT, never during
+    the shot. `anchor` is a chart label box in build-PNG pixels; charts render
+    the card at SERIES_W x SERIES_H inches at SERIES_DPI, so the anchor's
+    position is used as a fraction of that space and mapped onto the scaled
+    card.
+    """
+    from data_learning import charts as _ch
+    src_w = float(_ch.SERIES_W * _ch.SERIES_DPI)
+    src_h = float(_ch.SERIES_H * _ch.SERIES_DPI)
+    fx = min(1.0, max(0.0, float(anchor.get("cx", src_w / 2)) / src_w))
+    fy = min(1.0, max(0.0, float(anchor.get("cy", src_h / 2)) / src_h))
+    cw, chh = int(vw / zoom), int(vh / zoom)
+    cx = int(min(max(fx * vw - cw / 2, 0), max(0, vw - cw)))
+    cy = int(min(max(fy * vh - chh / 2, 0), max(0, vh - chh)))
+    return f"crop={cw}:{chh}:{cx}:{cy},scale={vw}:{vh}"
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
                     accent: str = "&H4FD1F5&", hook_visual: bool = False,
                     chart_hook: bool = False) -> None:
@@ -1860,6 +1906,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
         # rings/mascot still anchor. No static 12s hold any more.
+        # Punch-in shots are a cut to the DATA. The host is not composited
+        # over them (see the mascot block): cutting to a number and leaving a
+        # character floating on top of it is the "mascot doing something to
+        # fill space" problem, not an edit.
+        punch_windows: list[tuple[float, float]] = []
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
                 continue
@@ -1886,16 +1937,38 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # finished composite just before the captions burn in (see the
             # CAMERA BREATH step below) — same measured pixels per frame,
             # less than half the acceleration, one coherent camera.
+            # THE BEAT IS CUT INTO SHOTS. One card held for a whole narrated
+            # sentence (8-12s on this channel) is the boredom the operator
+            # named, and the reason earlier sessions reached for camera moves
+            # and busy mascot arms: with one shot per beat the edit has
+            # nothing to work with. Now each beat plays as 2-4 shots of ~3s —
+            # WIDE to establish, PUNCH-IN on the datum being spoken, WIDE for
+            # the payoff — with a hard CUT between them. Framing is static
+            # inside a shot; only the cut moves. That is an edit, not motion.
+            shots = _shot_plan(s0, s1)
+            anchors = list(getattr(seg, "anchors", None) or [])
+            n = len(shots)
             fc.append(
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
                 f"scale={vw}:{vh},format=rgba,"
                 f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
-                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
-            fc.append(
-                f"[{prev}][g{i}]overlay=x={vx}:y={vy}:"
-                f"enable='between(t,{s0:.2f},{s1:.2f})'[b{i}]")
-            prev = f"b{i}"
+                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1"
+                + (f",split={n}" + "".join(f"[q{i}_{k}]" for k in range(n))
+                   if n > 1 else f"[q{i}_0]"))
+            for k, (a0, a1) in enumerate(shots):
+                # first and last shot stay WIDE; the middle shots punch in on
+                # a datum, rotating through the anchors this chart published.
+                punch = (anchors and 0 < k < n - 1)
+                framing = (_punch_crop(anchors[(k - 1) % len(anchors)], vw, vh)
+                           if punch else "null")
+                if punch:
+                    punch_windows.append((a0, a1))
+                fc.append(f"[q{i}_{k}]{framing}[g{i}_{k}]")
+                fc.append(
+                    f"[{prev}][g{i}_{k}]overlay=x={vx}:y={vy}:"
+                    f"enable='between(t,{a0:.2f},{a1:.2f})'[b{i}_{k}]")
+                prev = f"b{i}_{k}"
         # Mascots — Data TRAVELS. He glides from his previous spot to this
         # beat's spot across the WHOLE beat (not a quick slide-then-park), so
         # his x/y is always changing — he's never static in one place. A gentle
@@ -1951,9 +2024,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             ye = f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
+            # HOLD HIM OFF THE PUNCH-INS. When the edit cuts to a datum, the
+            # frame is the datum — a host composited on top of a close-up is
+            # the mascot filling space, which is exactly what the arms were
+            # doing before there was an edit to carry the beat.
+            _off_shots = "".join(
+                f"*not(between(t,{a0:.2f},{a1:.2f}))"
+                for a0, a1 in punch_windows if a0 < w1 and a1 > w0)
             fc.append(f"[{gi}:v]format=rgba,scale={Sk}:{Sk}[mk{k}]")
             fc.append(f"[{prev}][mk{k}]overlay=x='({xe})-{off}':y='({ye})-{off}':"
-                      f"eval=frame:enable='between(t,{w0:.2f},{w1:.2f})'[mb{k}]")
+                      f"eval=frame:"
+                      f"enable='between(t,{w0:.2f},{w1:.2f}){_off_shots}'[mb{k}]")
             prev = f"mb{k}"
             prev_tl = (tlx, tly)
         # NO CAMERA MOTION. Operator ruling 2026-08-25, verbatim: "that
