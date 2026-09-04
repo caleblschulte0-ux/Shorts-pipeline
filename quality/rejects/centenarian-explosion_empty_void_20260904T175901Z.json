@@ -1,0 +1,32 @@
+{
+ "slug": "centenarian-explosion",
+ "ts": "20260904T175901Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start is almost entirely dead navy: two empty ghost bar outlines, the map clipped off the top edge, the mascot sliced in half by the left frame edge, a truncated 'es o...' label and a '77' cropped by the bottom; seg3:end repeats the fault with a huge blank left half and the mascot a",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg2:start the transition zoom pushes the layout past the frame: title and map are cropped off the top, the two bars are unfilled outlines with no values, the row label reads 'es o...', the mascot is bisected by the left edge, and the '77' figure is half-cut at the bottom \u2014 roughly two thirds of the frame is empty background.",
+  "root_cause": "The scene-entry zoom/pan is scaled and offset beyond the safe area, so the chart is oversized and off-centre while the bars are still at zero fill \u2014 the composition is framed for the end state, not the entry state.",
+  "repair_goal": "Keep the whole US-vs-Japan chart inside the safe area for the entire scene: cap the entry zoom so title, map, both bar rows and their full labels stay on-frame, start the bars with visible fill rather than empty outlines, and keep the mascot fully within the frame."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "geo_world",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "race_sprint"
+  }
+ ]
+}

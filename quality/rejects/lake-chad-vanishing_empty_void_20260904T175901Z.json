@@ -1,0 +1,32 @@
+{
+ "slug": "lake-chad-vanishing",
+ "ts": "20260904T175901Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start (t=29.53s) is a near-empty 'demand vs supply' panel \u2014 a pinhead 3.3 dot on the right, a small mascot mid-frame, and the entire upper half plus right third dead; seg3:mid still leaves the top ~40% blank with two small circles low in the frame.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start shows the 'demand vs supply' panel with one tiny 3.3 dot at right, a barely-begun green circle, and a vast unused dark region above and around them; by seg3:mid the two circles still occupy only the lower-middle third while the top 40% of the panel is empty, and the source footer collides with the '2024'/'1963' labels. The mascot is straddling the green circle rather than doing anything with it.",
+  "root_cause": "The bubble-comparison scene scales both circles off a 19M maximum inside a full-height 9:16 panel, so the small 1963 bubble and the slow-growing 2024 bubble leave most of the frame unfilled, and the scene has no secondary motion, label, or mascot action to occupy that space during the build.",
+  "repair_goal": "Fill and compose the seg3 frame: enlarge/reposition the bubbles so the 2024 circle dominates the upper-middle of the panel with the 1963 dot beside it for direct contrast, add the '6x the mouths, a fraction of the water' label into the empty upper band, and give Data an actual bit against the growth (e.g. shoved/lifted by the expanding 2024 circle) instead of perching on it. Keep the source footer clear of the year labels."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "pull_down_win"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  }
+ ]
+}
