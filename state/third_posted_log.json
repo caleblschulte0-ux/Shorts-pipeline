@@ -5754,13 +5754,45 @@
       "director_cut": true
     },
     "clip-20260904-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/DependableApatheticAlmondRitzMitz--AnH595hNYVcnBoN",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/eo08Y9qnLTE",
       "title": "Lirik Wild Way Of Making Quick Cash In Wardogs",
       "kind": "twitch_clip",
-      "ts": "2026-09-04T16:05:15.668350+00:00",
+      "ts": "2026-09-04T16:05:20.411768+00:00",
+      "uploaded_at": "2026-09-04T16:05:20.411788+00:00",
+      "publish_at": "2026-09-04T21:30:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/DependableApatheticAlmondRitzMitz--AnH595hNYVcnBoN",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "HIS SHADY CASH TRICK IN WARDOGS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4355,
+      "banger": 0.35,
+      "cut": {
+        "start": 0.0,
+        "end": 39.0
+      },
+      "director_cut": true
+    },
+    "rejected-obliviousculturedsalmontebowing-q1cp_pfwx5bdsxsg": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/ObliviousCulturedSalmonTebowing-Q1cp_pfwX5BdSXsG",
+      "streamer": "extraemily",
+      "title": "Emily on No Pixel",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just talking, no real event)",
+      "ts": "2026-09-04T16:07:58.342625+00:00"
+    },
+    "clip-20260904-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/GracefulBigWoodcockTakeNRG-lIdxw9mUSrliYxhd",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "you sleep you drown",
+      "kind": "twitch_clip",
+      "ts": "2026-09-04T16:10:04.816401+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
