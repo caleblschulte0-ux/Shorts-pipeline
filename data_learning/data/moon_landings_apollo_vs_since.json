@@ -1,0 +1,19 @@
+{
+  "key": "moon_landings_apollo_vs_since",
+  "title": "Crewed Moon landings: Apollo era vs. every year since",
+  "unit": "landings",
+  "geography": "Worldwide",
+  "time_coverage": "1969-1972 vs 1973-2024",
+  "source": {
+    "name": "Apollo program mission log",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/history/apollo-missions/",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; NASA's Apollo program landed astronauts on the Moon 6 times between 1969 and 1972 (Apollo 11, 12, 14, 15, 16, 17). No crewed landing has happened since.",
+  "points": [
+    {"label": "1969-1972 (Apollo era)", "value": 6},
+    {"label": "1973-2024 (since)", "value": 0}
+  ]
+}

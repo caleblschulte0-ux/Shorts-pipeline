@@ -1,0 +1,77 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "upsell-script-district-manager",
+  "title": "I Upsold My Own District Manager For Ten Minutes",
+  "hashtags": [
+    "maliciouscompliance",
+    "retail",
+    "coffeeshop",
+    "workplace",
+    "customerservice",
+    "manager",
+    "corporate",
+    "redditstories",
+    "karma",
+    "job",
+    "barista",
+    "shorts"
+  ],
+  "script": "The corporate office rolled out a mandatory script: upsell every single customer, no exceptions, or write a formal explanation. The regulars hated it, but the rule was the rule. One evening a man in a plain jacket bought a coffee, and I ran the full script anyway, pastry, size upgrade, loyalty card, the seasonal blend, the extended warranty on our reusable cups. He tried to leave twice. I kept following the checklist, word for word, like training told me to. He finally bought all of it just to escape, then asked for the district manager's name. It turned out he was the district manager, on a surprise visit to watch the new policy. Two days later the office emailed the region walking the mandatory script back to offer once, respect a no. My manager posted that memo next to my name, calling it the incident that fixed the policy. I still have the receipt for his seasonal blend, his cup warranty, and the loyalty card he never once activated.",
+  "shots": [
+    {
+      "phrase": "mandatory script: upsell every single customer",
+      "query": "cashier register coffee shop"
+    },
+    {
+      "phrase": "a man in a plain jacket bought a coffee",
+      "query": "customer ordering coffee counter"
+    },
+    {
+      "phrase": "the seasonal blend, the extended warranty on our reusable cups",
+      "query": "coffee cup reusable warranty display"
+    },
+    {
+      "phrase": "He tried to leave twice",
+      "query": "man walking out door annoyed"
+    },
+    {
+      "phrase": "the district manager's name",
+      "query": "name tag manager badge"
+    },
+    {
+      "phrase": "walking the mandatory script back",
+      "query": "email inbox laptop screen"
+    },
+    {
+      "phrase": "posted that memo next to my name",
+      "query": "office bulletin board memo"
+    },
+    {
+      "phrase": "the loyalty card he never once activated",
+      "query": "loyalty card stack counter"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "no exceptions",
+      "text": "NO EXCEPTIONS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "He tried to leave twice",
+      "text": "TRIED TO LEAVE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "he was the district manager",
+      "text": "THE DISTRICT MANAGER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "fixed the policy",
+      "text": "POLICY FIXED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "awkward comedic tension building into a satisfying payoff"
+}

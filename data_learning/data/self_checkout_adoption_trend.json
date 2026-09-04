@@ -1,0 +1,20 @@
+{
+  "key": "self_checkout_adoption_trend",
+  "title": "Share of large US grocery chains offering self-checkout",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2000-2023",
+  "source": {
+    "name": "Self-checkout adoption surveys",
+    "publisher": "Food Marketing Institute (FMI) / retail technology industry surveys",
+    "url": "https://www.fmi.org/",
+    "officiality": "secondary",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; compiled from industry retail-technology adoption surveys (FMI, NCR, RetailWire) tracking the share of large US grocery chains with self-checkout lanes.",
+  "points": [
+    {"label": "2000", "value": 6, "period": "2000"},
+    {"label": "2012", "value": 33, "period": "2012"},
+    {"label": "2023", "value": 92, "period": "2023"}
+  ]
+}

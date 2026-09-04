@@ -1,0 +1,19 @@
+{
+  "key": "chickenpox_deaths_before_after",
+  "title": "US chickenpox deaths per year, before vs. after the vaccine",
+  "unit": "deaths per year",
+  "geography": "United States",
+  "time_coverage": "early 1990s vs 2020s",
+  "source": {
+    "name": "Varicella mortality surveillance",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/vaccines/pubs/pinkbook/varicella.html",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; CDC cites roughly 100-150 US deaths per year from chickenpox before the 1995 vaccine, falling to single digits most years since routine two-dose vaccination began.",
+  "points": [
+    {"label": "Before vaccine (early 1990s)", "value": 105},
+    {"label": "After vaccine (2020s)", "value": 5}
+  ]
+}

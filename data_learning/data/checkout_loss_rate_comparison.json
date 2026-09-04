@@ -1,0 +1,19 @@
+{
+  "key": "checkout_loss_rate_comparison",
+  "title": "Retail loss rate: staffed checkout vs. self-checkout",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2020s",
+  "source": {
+    "name": "Retail loss prevention / shrink studies",
+    "publisher": "National Retail Federation (NRF) Retail Security Survey and industry loss-prevention research",
+    "url": "https://nrf.com/research/national-retail-security-survey",
+    "officiality": "secondary",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; industry loss-prevention research has repeatedly found self-checkout lanes carry a notably higher shrink/loss rate than staffed lanes, commonly cited in the range shown here.",
+  "points": [
+    {"label": "Staffed checkout", "value": 1.6},
+    {"label": "Self-checkout", "value": 4.0}
+  ]
+}

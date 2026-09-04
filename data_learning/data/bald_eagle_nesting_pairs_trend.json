@@ -1,0 +1,20 @@
+{
+  "key": "bald_eagle_nesting_pairs_trend",
+  "title": "US bald eagle nesting pairs (lower 48 states)",
+  "unit": "nesting pairs",
+  "geography": "United States (lower 48 states)",
+  "time_coverage": "1963-2020",
+  "source": {
+    "name": "Bald eagle population status reports",
+    "publisher": "U.S. Fish and Wildlife Service (USFWS)",
+    "url": "https://www.fws.gov/species/bald-eagle-haliaeetus-leucocephalus",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; USFWS's widely cited historical nesting-pair counts: an all-time low of 417 pairs in 1963 (DDT era), climbing past the 2007 delisting to an estimated 71,467 pairs by 2020.",
+  "points": [
+    {"label": "1963 (all-time low)", "value": 417, "period": "1963"},
+    {"label": "2006 (year before delisting)", "value": 9789, "period": "2006"},
+    {"label": "2020", "value": 71467, "period": "2020"}
+  ]
+}
