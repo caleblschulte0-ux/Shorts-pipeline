@@ -18955,8 +18955,8 @@
           },
           "insight_type": "comparison",
           "role": "2 · WHY IT SPREADS",
-          "topic": "credential theft by password habit",
-          "say": "Here's why one breach becomes ten: 32 percent of people who reuse passwords get hit again within a year, compared to just 17 percent who don't.",
+          "topic": "credential theft by password manager use",
+          "say": "Here's why one breach becomes ten: 32 percent of people without a password manager get breached again within a year, compared to just 17 percent of people who use one.",
           "scene": {
             "mechanic": "shield-breach-wash",
             "concept": "two security shields side by side, each washed red from the bottom up to its own breach-within-a-year rate",
