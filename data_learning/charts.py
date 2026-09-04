@@ -1682,6 +1682,20 @@ def _story_bignum(fig, plt, insight: Insight, reveal: float = 1.0):
 # ("Manhattan, NY" -> new york). Non-city labels (National avg, Rural Midwest)
 # simply don't match and are skipped.
 METRO_COORDS: dict[str, tuple[float, float]] = {
+    # Added 2026-09-04 after a shipped video captioned "SAN JOSE LEADS THE MAP"
+    # over a map with no San Jose on it: a metro with no coordinate is dropped
+    # from the plot while the heading still names it. Metro centres, which is
+    # all a pin needs at national scale.
+    "san jose": (-121.89, 37.34), "sacramento": (-121.49, 38.58),
+    "riverside": (-117.40, 33.95), "san antonio": (-98.49, 29.42),
+    "charlotte": (-80.84, 35.23), "columbus": (-82.99, 39.96),
+    "indianapolis": (-86.16, 39.77), "kansas city": (-94.58, 39.10),
+    "salt lake": (-111.89, 40.76), "st. louis": (-90.20, 38.63),
+    "pittsburgh": (-79.996, 40.44), "baltimore": (-76.61, 39.29),
+    "raleigh": (-78.64, 35.78), "cleveland": (-81.69, 41.50),
+    "milwaukee": (-87.91, 43.04), "oklahoma city": (-97.52, 35.47),
+    "boise": (-116.20, 43.62), "honolulu": (-157.86, 21.31),
+    "anchorage": (-149.90, 61.22),
     "new york": (-73.97, 40.78), "manhattan": (-73.97, 40.78),
     "los angeles": (-118.24, 34.05), "san francisco": (-122.42, 37.77),
     "chicago": (-87.63, 41.88), "dallas": (-96.80, 32.78),
@@ -1719,7 +1733,10 @@ def place_scope_for(labels) -> str | None:
         return "geo_us"
     if world_r >= 0.6:
         return "geo_world"
-    if city_r >= 0.4:
+    # A map that can place only 40% of the points shows 40% of the story while
+    # the heading speaks for all of it. If most metros cannot be pinned, a
+    # ranking reads the data honestly and a map does not.
+    if city_r >= 0.8:
         return "geo_city"
     return None
 
@@ -1752,16 +1769,108 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
             ax.add_patch(_Poly(ring, closed=True, facecolor=base,
                                edgecolor=CARD_EDGE, linewidth=0.4, zorder=2))
     specs = []
-    for p, (lon, lat) in sorted(pts, key=lambda x: x[0].value):
+    # PINS LAND ONE AT A TIME, in rank order, ending on the leader.
+    #
+    # They used to all appear together and grow on a single shared `t`: three
+    # small dots swelling slightly on a dark map, then nothing for the rest of
+    # the beat. It looked empty, it gave the viewer no reading order, and it
+    # measured 4.2 effective fps against an 11.0 floor — the whole segment was
+    # a near-still frame. Staggering costs nothing and fixes all three: each
+    # pin pops with its label, the eye is led low-to-high, and the frame keeps
+    # changing for the entire beat because something new keeps arriving.
+    ordered = sorted(pts, key=lambda x: x[0].value)
+    n_pins = max(1, len(ordered))
+    # Occupied boxes in data coords. The host is baked at the winning pin and
+    # is the biggest object on the map, so he is reserved FIRST — otherwise the
+    # leader's label lands on him, which is the one label that matters most.
+    _taken: list[tuple[float, float, float, float]] = []
+    if pts:
+        _wp, (_wlon, _wlat) = max(pts, key=lambda x: x[0].value)
+        _taken.append((_wlon - 5.5, _wlat - 4.0, _wlon + 5.5, _wlat + 4.5))
+    for i, (p, (lon, lat)) in enumerate(ordered):
         col = cmap(norm(p.value))
-        r = 120 + 460 * (norm(p.value)) * t
+        # This pin's own progress. The whole stagger completes by 60% of the
+        # beat, NOT at the end: the leader lands last, and the subtitle is
+        # already claiming "SAN JOSE LEADS THE MAP" from frame one. Finishing
+        # on the buzzer meant the beat ended with the leader still arriving and
+        # the highest value ON SCREEN belonging to somebody else — the caption
+        # and the picture disagreeing. Land them all early, then hold the
+        # complete picture while the narration lands the point.
+        tt = min(1.0, t / 0.6)
+        ti = max(0.0, min(1.0, (tt - i / n_pins) * n_pins * 1.6))
+        # a small overshoot so it LANDS rather than fading up
+        pop = ti * (2.0 - ti)
+        # floor the size well above the old 120: the smallest metro was a
+        # speck at phone size, which is why the map read as three dots.
+        r = (260 + 520 * norm(p.value)) * pop
+        if r <= 0:
+            continue
         ax.scatter([lon], [lat], s=r, color=col, edgecolors="white",
-                   linewidths=1.5, zorder=4, alpha=0.95)
-        txt = ax.text(lon, lat + 1.4, f"{p.label.split(',')[0]}  {_vfmt(p.value)}",
-                      ha="center", va="bottom", fontsize=21, color=TEXT,
-                      fontweight="bold", zorder=5, alpha=_lblalpha(reveal),
+                   linewidths=1.8, zorder=4, alpha=0.95)
+        # KEEP THE LABEL ON THE CARD. Centred on the pin, a west-coast metro
+        # ran off the left edge and rendered as "eattle  6.8". Anchor the text
+        # to the inside of the frame when the pin is near an edge.
+        if lon < -114:
+            ha, lx = "left", lon + 0.8
+        elif lon > -76:
+            ha, lx = "right", lon - 0.8
+        else:
+            ha, lx = "center", lon
+        # DON'T STACK LABELS ON TOP OF EACH OTHER. The west coast puts San
+        # Jose, Los Angeles and Seattle within a few degrees, and the host
+        # stands on the leader's pin — so "San Jose 11.3" printed through
+        # "Denver 5.4" and the host wore "Los Angeles 9.7" across his chest.
+        # Nudge each label up the card until it clears everything already
+        # placed (including the host's own box).
+        text = f"{p.label.split(',')[0]}  {_vfmt(p.value)}"
+        # Label extent in DEGREES, calibrated from the card's real geometry —
+        # the first version guessed 0.62 deg/char and missed every collision,
+        # because `set_aspect(1/cos(37))` compresses longitude: the axes box is
+        # 0.92*SERIES_W*SERIES_DPI = 1012 px wide over 59 deg of longitude
+        # (17.2 px/deg), while a 21pt glyph at this DPI is ~32 px tall and
+        # ~17.6 px wide. So a character is a whole degree, not two thirds of
+        # one, and a label is ~1.6 deg tall.
+        w_deg = 1.02 * len(text)
+        h_deg = 1.6
+        x0 = lx if ha == "left" else (lx - w_deg if ha == "right"
+                                      else lx - w_deg / 2)
+        lift = 3.2 if (pts and p is max(pts, key=lambda x: x[0].value)[0]) else 1.4
+        y = lat + lift
+        for _ in range(8):
+            box = (x0, y, x0 + w_deg, y + h_deg)
+            if not any(box[0] < o[2] and o[0] < box[2]
+                       and box[1] < o[3] and o[1] < box[3] for o in _taken):
+                break
+            y += h_deg + 0.5               # try the next line up
+        _taken.append((x0, y, x0 + w_deg, y + h_deg))
+        txt = ax.text(lx, y, text,
+                      ha=ha, va="bottom", fontsize=21, color=TEXT,
+                      fontweight="bold", zorder=6,
+                      alpha=max(0.0, min(1.0, (ti - 0.25) / 0.5)),
                       path_effects=_shadow())
         specs.append((p.value, "art", txt, None))
+    # FILL THE VOID WITH THE POINT, NOT WITH AIR. The US map is a wide shape
+    # in a tall card, so once it fills the width there is a band of empty navy
+    # above it — the "empty frame" the review gate keeps naming, and a third of
+    # the screen saying nothing. Put the comparison the chart is actually
+    # making there: leader vs the bottom of the same set, computed from the
+    # plotted points so it can never disagree with the pins.
+    if len(ordered) >= 2:
+        _lo_p, _hi_p = ordered[0][0], ordered[-1][0]
+        if _lo_p.value > 0:
+            _ratio = _hi_p.value / _lo_p.value
+            _line = (f"{_hi_p.label.split(',')[0]} costs {_ratio:.1f}x "
+                     f"{_lo_p.label.split(',')[0]}")
+            # Sits just under the subtitle, ABOVE the band that punch-in
+            # shots crop away (studio_render._punch_crop's head guard) — a
+            # close-up must not show half of this line.
+            fig.text(0.5, 0.775, _line, ha="center", va="center",
+                     fontsize=30, color=TEXT, fontweight="bold",
+                     # early enough to be READ during the wide shots,
+                     # before the closing card takes the top of the frame
+                     alpha=max(0.0, min(1.0, (t - 0.18) / 0.22)),
+                     path_effects=_shadow())
+
     # THE HOST performs at the WINNING metro's pin (clamped on-card) — this
     # beat used to have no bake at all, so the drifting overlay covered it.
     if pts:
@@ -1832,7 +1941,19 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
     star = insight.items[0]
     if insight.kind == "geo_city":
         low = "lowest" in insight.main_insight.lower()
-        _heading(fig, insight.topic, f"{star.label.split(',')[0]} "
+        # NAME A METRO THAT IS ACTUALLY ON THE MAP. `star` is the top item of
+        # the DATASET, but the renderer can only pin a metro it has a
+        # coordinate for — so a dropped leader shipped "San Jose leads the
+        # map" over a map whose highest pin was Los Angeles. Adding the
+        # coordinate fixes that case; this makes the class of bug impossible,
+        # because the caption now defers to what actually gets drawn.
+        placed = [p for p in insight.items if _metro_coord(p.label)]
+        if placed:
+            shown = (min(placed, key=lambda q: q.value) if low
+                     else max(placed, key=lambda q: q.value))
+        else:
+            shown = star
+        _heading(fig, insight.topic, f"{shown.label.split(',')[0]} "
                  f"{'sits lowest' if low else 'leads the map'}")
         ax, specs = _story_geo_city(fig, plt, insight, "", reveal)
         _footer(fig, insight)

@@ -13,7 +13,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.046"
+     "detail": "diff f1->f3 = 0.052"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -60,7 +60,7 @@
     },
     "seg1.causal_interaction_declared": {
      "ok": true,
-     "detail": "the load buckles him, he barely heaves it"
+     "detail": "pressed down until only an arm pops out"
     },
     "seg1.data_affects_mascot": {
      "ok": true,
@@ -89,7 +89,7 @@
    "pass": true,
    "families": [
     "push",
-    "carry"
+    "get_buried"
    ]
   },
   {
@@ -105,7 +105,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.048"
+     "detail": "diff f1->f3 = 0.051"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -152,7 +152,7 @@
     },
     "seg1.causal_interaction_declared": {
      "ok": true,
-     "detail": "is dwarfed, then awed"
+     "detail": "pressed down until only an arm pops out"
     },
     "seg1.data_affects_mascot": {
      "ok": true,
@@ -181,7 +181,7 @@
    "pass": true,
    "families": [
     "block",
-    "get_overwhelmed"
+    "get_buried"
    ]
   },
   {
@@ -197,7 +197,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.081"
+     "detail": "diff f1->f3 = 0.083"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -336,7 +336,7 @@
     },
     "seg1.causal_interaction_declared": {
      "ok": true,
-     "detail": "the data keeps rising and DRAGS HIM airborne"
+     "detail": "loses ground and dives across"
     },
     "seg1.data_affects_mascot": {
      "ok": true,
@@ -367,7 +367,7 @@
     },
     "seg2.causal_interaction_declared": {
      "ok": true,
-     "detail": "loses ground and dives across"
+     "detail": "the data keeps rising and DRAGS HIM airborne"
     },
     "seg2.data_affects_mascot": {
      "ok": true,
@@ -396,8 +396,8 @@
    "pass": true,
    "families": [
     "block",
-    "pull",
-    "race"
+    "race",
+    "pull"
    ]
   },
   {
@@ -413,7 +413,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.081"
+     "detail": "diff f1->f3 = 0.082"
     },
     "seg0.mascot.contact_required": {
      "ok": true,
@@ -429,7 +429,7 @@
     },
     "seg0.causal_interaction_declared": {
      "ok": true,
-     "detail": "the revealed value startles him into a double-take \u2014 then he"
+     "detail": "pressed down until only an arm pops out"
     },
     "seg0.data_affects_mascot": {
      "ok": true,
@@ -519,7 +519,7 @@
    },
    "pass": true,
    "families": [
-    "discover",
+    "get_buried",
     "block",
     "carry"
    ]
@@ -537,7 +537,7 @@
     },
     "hook.primary_action_before_s": {
      "ok": true,
-     "detail": "diff f1->f3 = 0.018"
+     "detail": "diff f1->f3 = 0.066"
     },
     "seg0.mascot.contact_required": {
      "ok": true,

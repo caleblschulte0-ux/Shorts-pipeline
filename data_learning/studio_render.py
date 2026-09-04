@@ -870,6 +870,17 @@ def _punch_crop(anchor: dict, vw: int, vh: int, zoom: float = 1.55) -> str:
     cw, chh = int(vw / zoom), int(vh / zoom)
     cx = int(min(max(fx * vw - cw / 2, 0), max(0, vw - cw)))
     cy = int(min(max(fy * vh - chh / 2, 0), max(0, vh - chh)))
+    # KEEP THE HEADING OUT OF THE SHOT INSTEAD OF SLICING IT.
+    #
+    # A crop anchored on a datum cut straight through the card's top band, so
+    # punch-ins shipped with the title rendered as "cost in years of" and a
+    # comparison line ending mid-number. A close-up of one data point has no
+    # business showing half a headline: start the crop BELOW the heading, and
+    # the shot is the data, cleanly. If the card is too short to do that, fall
+    # back to the top rather than clip.
+    head = int(vh * 0.26)   # heading + subtitle + the comparison line
+    if head + chh <= vh:
+        cy = max(cy, head)
     return f"crop={cw}:{chh}:{cx}:{cy},scale={vw}:{vh}"
 
 
