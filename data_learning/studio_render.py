@@ -1358,6 +1358,80 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
             print(f"[studio] scene{i} metrics failed: {e}", flush=True)
 
 
+# A SECOND WAY TO SHOW THE SAME NUMBER.
+#
+# A video had four "things" in it: three chart cards and a host. Cutting the
+# same card into tighter framings does not add a fourth — a punch-in is the
+# same subject, closer, and the operator called it: "the jump cut zoom ins are
+# not it ... there is like 4 things and then movement, that's not good enough,
+# we need 7-8 things".
+#
+# So each beat now carries TWO depictions of its own number and cuts between
+# them: the chart, then the same figure as a stack of objects, a share grid, a
+# ranked race. Three beats become six distinct visuals; with the hook image and
+# the closing card that is eight things in a 35-second video, and every one of
+# them is the data rather than a decoration.
+#
+# Only contact-verified kinds appear here (viz_director._CONTACT_OK): the host
+# must be able to physically attach to whatever is on screen.
+_ALT_DEPICTION = {
+    "trend":          ("stack", "pictograph", "bars"),
+    "timeline":       ("trend", "stack"),
+    "bars":           ("pictograph", "stack", "waffle_grid"),
+    "rank":           ("pictorial_race", "pictograph", "bars"),
+    "pictorial_race": ("bars", "pictograph", "stack"),
+    "comparison":     ("stack", "bars", "pictograph"),
+    "share":          ("waffle_grid", "pictograph"),
+    "waffle_grid":    ("pictograph", "stack"),
+    "pictograph":     ("stack", "bars"),
+    "stack":          ("pictograph", "bars"),
+    "bubbles":        ("pictograph", "bars"),
+    "geo_us":         ("pictorial_race", "bars"),
+    # The kinds this channel ACTUALLY renders: an authored element-kit scene
+    # and the metro map. Both were missing, which is why the first version of
+    # this produced no second depiction at all on a real video.
+    "scene":          ("trend", "pictorial_race", "bars", "pictograph"),
+    "geo_city":       ("pictorial_race", "bars", "pictograph"),
+    "geo_world":      ("pictorial_race", "bars"),
+}
+
+
+def _alt_candidates_for(insight) -> tuple:
+    """Alternates chosen from the DATA's shape, not just the current kind.
+
+    The lookup table alone missed every real video: the kinds actually in play
+    were `scene` (an authored element-kit depiction) and `geo_city` (the metro
+    map), neither of which is a chart name. Shape is the durable question —
+    a run of years wants a line, a handful of named things wants a race.
+    """
+    items = list(getattr(insight, "items", []) or [])
+    labels = [str(getattr(p, "label", "")) for p in items]
+    years = sum(1 for l in labels if l[:4].isdigit() and len(l) <= 7)
+    if years >= max(3, len(labels) * 0.6):          # a time series
+        return ("trend", "bars", "stack")
+    if 2 <= len(items) <= 6:                        # a small ranking
+        return ("pictorial_race", "bars", "pictograph")
+    return ("bars", "pictograph", "stack")
+
+
+def _alt_depiction_kind(kind: str, used: set, insight=None) -> str | None:
+    """A DIFFERENT contact-verified way to draw the same insight, avoiding the
+    kinds this video has already shown so the second visual is a real change of
+    subject rather than a near-repeat."""
+    cands = list(_ALT_DEPICTION.get(str(kind), ()))
+    if insight is not None:
+        for c in _alt_candidates_for(insight):
+            if c not in cands:
+                cands.append(c)
+    for cand in cands:
+        if cand != kind and cand not in used:
+            return cand
+    for cand in cands:
+        if cand != kind:
+            return cand
+    return None
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
            config_path: Path | None = None) -> Path:
     """`config_path` lets a sibling channel (e.g. curiosity) render from its
@@ -1432,6 +1506,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         lead_payoff = receipt is None
         last_i = len(st.segments) - 1
         chart_dir = work / "charts"
+        # Kinds already on screen in THIS video, so a second depiction is a
+        # genuine change of subject and not the neighbouring beat's chart again.
+        _kinds_used: set = {str(getattr(sg, "insight", None)
+                                and sg.insight.kind or "")
+                            for sg in st.segments}
         disp_start: dict = {}                 # per-seg chart DISPLAY start (s0)
         disp_end: dict = {}                   # per-seg chart DISPLAY end (s1)
         for i, seg in enumerate(st.segments):
@@ -1466,6 +1545,38 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     seg.chart_path = str(cpath)
             except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
                 print(f"[studio] 30fps re-render seg{i} skipped: {e}", flush=True)
+            # THE SECOND DEPICTION of this same number (see _ALT_DEPICTION).
+            #
+            # SAME frame count as the primary, not half. The first version
+            # rendered it at nfr//2 reasoning that it only occupies about half
+            # the beat — but both depictions are laid on the timeline from the
+            # beat's START, so a half-length build simply RAN OUT partway and
+            # tpad cloned its last frame. Measured: a 3.0s frozen stretch
+            # beginning exactly on a shot boundary at t=27.58s, 73 duplicate
+            # frames against a ceiling of 45 — the gate would have blocked
+            # every video this shipped in.
+            # Best effort — a beat with one visual is the old behaviour, not a
+            # failure, so anything that goes wrong here just skips it.
+            alt_kind = _alt_depiction_kind(getattr(seg.insight, "kind", ""),
+                                           _kinds_used, seg.insight)
+            if alt_kind:
+                _orig_kind = seg.insight.kind
+                try:
+                    seg.insight.kind = alt_kind
+                    apath, _ = charts.render_story_build(
+                        seg.insight, chart_dir, f"{slug}_seg{i:02d}_alt",
+                        frames=nfr)
+                    if apath:
+                        seg.alt_chart_path = str(apath)
+                        seg.alt_kind = alt_kind
+                        _kinds_used.add(alt_kind)
+                        print(f"[studio] seg{i} second depiction: "
+                              f"{_orig_kind} + {alt_kind}", flush=True)
+                except Exception as e:  # noqa: BLE001
+                    print(f"[studio] seg{i} alt depiction skipped: {e}",
+                          flush=True)
+                finally:
+                    seg.insight.kind = _orig_kind
 
         # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
         # reviewer's own cadence detector + the build-time temporal gate on it,
@@ -1802,6 +1913,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             receipt_idx = idx
             idx += 1
         seg_idx = {}
+        # input index of each beat's SECOND depiction, and the windows it is
+        # on screen for (recorded so the run can report how many distinct
+        # visuals a video actually contained).
+        alt_idx: dict = {}
+        alt_windows: list = []
         import glob as _glob
         for i, seg in enumerate(st.segments):
             if seg.chart_path:
@@ -1830,6 +1946,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
                 seg_idx[i] = idx
                 idx += 1
+                # The beat's SECOND depiction, if one was rendered. Played at
+                # the same 30fps so nothing resamples; it covers only the shots
+                # it appears in, so it is rendered at half the frame count and
+                # tpad holds its last frame for the remainder.
+                _alt = getattr(seg, "alt_chart_path", None)
+                if _alt:
+                    inputs += ["-framerate", f"{cfps:.2f}", "-i", _alt]
+                    alt_idx[i] = idx
+                    idx += 1
         masc_input = []
         for mv in mascot_movs:
             inputs += ["-stream_loop", "-1", "-i", str(mv)]
@@ -1923,10 +2048,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # final frame for the rest of the beat. setpts shifts the clip so its
         # frame 0 lands at s0; the final frame is the exact static chart, so the
         # rings/mascot still anchor. No static 12s hold any more.
-        # Punch-in shots are a cut to the DATA. The host is not composited
-        # over them (see the mascot block): cutting to a number and leaving a
-        # character floating on top of it is the "mascot doing something to
-        # fill space" problem, not an edit.
+        # The host stays on screen across BOTH depictions of a beat — he is
+        # one of the video's subjects, not an overlay to hide. (This used to
+        # hold him off the punch-in shots; there are no punch-ins now.)
         punch_windows: list[tuple[float, float]] = []
         for i, seg in enumerate(st.segments):
             if i not in seg_idx:
@@ -1954,48 +2078,66 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # finished composite just before the captions burn in (see the
             # CAMERA BREATH step below) — same measured pixels per frame,
             # less than half the acceleration, one coherent camera.
-            # THE BEAT IS CUT INTO SHOTS. One card held for a whole narrated
-            # sentence (8-12s on this channel) is the boredom the operator
-            # named, and the reason earlier sessions reached for camera moves
-            # and busy mascot arms: with one shot per beat the edit has
-            # nothing to work with. Now each beat plays as 2-4 shots of ~3s —
-            # WIDE to establish, PUNCH-IN on the datum being spoken, WIDE for
-            # the payoff — with a hard CUT between them. Framing is static
-            # inside a shot; only the cut moves. That is an edit, not motion.
+            # THE BEAT CUTS BETWEEN TWO DEPICTIONS, not two framings.
+            #
+            # The first version of this cut the beat into shots of the SAME
+            # card, tightening the crop on the datum being spoken. That is one
+            # subject with movement on it, and the operator was right that it
+            # reads as a jump-cut zoom rather than as more content: "there is
+            # like 4 things and then movement, that's not good enough".
+            #
+            # Now a beat alternates its chart with a SECOND depiction of the
+            # same number (a stack of objects, a share grid, a ranked race).
+            # Both are full-frame and static — no crop, no push — so what
+            # changes at the cut is WHAT YOU ARE LOOKING AT.
             shots = _shot_plan(s0, s1)
-            anchors = list(getattr(seg, "anchors", None) or [])
             n = len(shots)
+            alt = getattr(seg, "alt_chart_path", None)
+            if alt and n > 1:
+                ai = alt_idx.get(i)
+            else:
+                ai = None
             fc.append(
                 f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                 f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
                 f"scale={vw}:{vh},format=rgba,"
                 f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
-                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1"
-                + (f",split={n}" + "".join(f"[q{i}_{k}]" for k in range(n))
-                   if n > 1 else f"[q{i}_0]"))
-            for k, (a0, a1) in enumerate(shots):
-                # SHOT GRAMMAR: establish, then alternate detail and wide.
-                #
-                #   WIDE  PUNCH  WIDE  PUNCH  WIDE ...  and always WIDE last.
-                #
-                # Every middle shot being a punch-in was the first version, and
-                # on a long beat that is seven close-ups in a row — a different
-                # monotony, not a fix. Alternating gives the beat a rhythm and
-                # keeps re-establishing what the close-up is a close-up OF.
-                punch = bool(anchors) and 0 < k < n - 1 and (k % 2 == 1)
-                if punch:
-                    # rotate the subject, and vary how tight the framing is, so
-                    # two close-ups in one story are not the same shot twice.
-                    anchor = anchors[(k // 2) % len(anchors)]
-                    zoom = 1.45 if (k // 2) % 2 == 0 else 1.7
-                    framing = _punch_crop(anchor, vw, vh, zoom=zoom)
-                else:
-                    framing = "null"
-                if punch:
-                    punch_windows.append((a0, a1))
-                fc.append(f"[q{i}_{k}]{framing}[g{i}_{k}]")
+                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
+            if ai is not None:
                 fc.append(
-                    f"[{prev}][g{i}_{k}]overlay=x={vx}:y={vy}:"
+                    f"[{ai}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
+                    f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
+                    f"scale={vw}:{vh},format=rgba[ga{i}]")
+            # Shot 0 establishes on the chart; then alternate. The beat always
+            # ENDS on the primary depiction so the payoff lands on the chart
+            # the narration has been building toward.
+            #
+            # ffmpeg consumes a filter output label EXACTLY ONCE, so each
+            # source is split into as many copies as it has shots. The first
+            # version of this reused [g0] for every shot and ffmpeg refused the
+            # whole graph (exit 234) — the render simply produced nothing.
+            plan = [(k, (a0, a1),
+                     (ai is not None and k % 2 == 1 and k != n - 1))
+                    for k, (a0, a1) in enumerate(shots)]
+            n_alt = sum(1 for _, _, is_alt in plan if is_alt)
+            n_pri = len(plan) - n_alt
+            if n_pri > 1:
+                fc.append(f"[g{i}]split={n_pri}"
+                          + "".join(f"[p{i}_{j}]" for j in range(n_pri)))
+            if ai is not None and n_alt > 1:
+                fc.append(f"[ga{i}]split={n_alt}"
+                          + "".join(f"[q{i}_{j}]" for j in range(n_alt)))
+            pj = qj = 0
+            for k, (a0, a1), is_alt in plan:
+                if is_alt:
+                    lab = (f"q{i}_{qj}" if n_alt > 1 else f"ga{i}")
+                    qj += 1
+                    alt_windows.append((a0, a1))
+                else:
+                    lab = (f"p{i}_{pj}" if n_pri > 1 else f"g{i}")
+                    pj += 1
+                fc.append(
+                    f"[{prev}][{lab}]overlay=x={vx}:y={vy}:"
                     f"enable='between(t,{a0:.2f},{a1:.2f})'[b{i}_{k}]")
                 prev = f"b{i}_{k}"
         # Mascots — Data TRAVELS. He glides from his previous spot to this

@@ -1871,6 +1871,30 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
                      alpha=max(0.0, min(1.0, (t - 0.18) / 0.22)),
                      path_effects=_shadow())
 
+    # THE LEADER KEEPS BEING MARKED after the pins have all landed.
+    #
+    # The stagger deliberately finishes by 60% of the beat so the leader is up
+    # while the narration makes its point — but that left the last 40% of the
+    # build as identical frames, and with the beat's final shot sitting on this
+    # card that measured as a 3.0s frozen stretch (73 frames against a ceiling
+    # of 45). This ring grows from the moment the last pin lands until the beat
+    # ends: one slow, one-way expansion that says "this is the one", so the
+    # frame keeps changing because something is still being SAID, not because
+    # the camera is moving.
+    if pts:
+        _lp, (_llon, _llat) = max(pts, key=lambda x: x[0].value)
+        _rt = max(0.0, min(1.0, (t - 0.55) / 0.45))
+        if _rt > 0:
+            for _k in range(2):
+                _grow = _rt + _k * 0.35
+                if _grow > 1.0:
+                    continue
+                ax.scatter([_llon], [_llat],
+                           s=900 + 5200 * _grow, facecolors="none",
+                           edgecolors=cmap(norm(_lp.value)),
+                           linewidths=max(0.6, 3.2 * (1.0 - _grow)),
+                           alpha=max(0.0, 0.55 * (1.0 - _grow)), zorder=3)
+
     # THE HOST performs at the WINNING metro's pin (clamped on-card) — this
     # beat used to have no bake at all, so the drifting overlay covered it.
     if pts:
