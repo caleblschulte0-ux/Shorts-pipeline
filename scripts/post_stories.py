@@ -146,6 +146,41 @@ def _description(cfg: dict) -> str:
     return (_human_body(cfg) + _desc_suffix(cfg))[:5000]
 
 
+# Outcomes a run can have. A gate HOLD is the fail-closed review working as
+# designed; it is not a fault and must never be reported as one.
+HELD_REASONS = {"editorial_hold", "showrunner_block"}
+
+
+def classify_results(results: list[dict]) -> dict:
+    """Split a run's per-story results into posted / held / faults / dry.
+
+    This exists as a named function because the exit code used to be
+    `0 if ok == len(results) else 1`: one story held by the review gate turned
+    a three-video day red, so every run looked the same and a genuinely dead
+    run (2026-09-04, runner reclaimed mid-job) was indistinguishable from a
+    healthy one. The rule is now explicit and tested.
+    """
+    posted = [r for r in results
+              if r.get("ok") and str(r.get("url", "")).startswith("http")]
+    held = [r for r in results
+            if not r.get("ok") and r.get("error") in HELD_REASONS]
+    faults = [r for r in results
+              if not r.get("ok") and r.get("error") not in HELD_REASONS]
+    dry = [r for r in results if r.get("ok") and r not in posted]
+    return {"posted": posted, "held": held, "faults": faults, "dry": dry}
+
+
+def exit_code_for(buckets: dict) -> int:
+    """1 means SOMETHING IS BROKEN. Nothing else."""
+    if buckets["faults"]:
+        return 1
+    if buckets["posted"] or buckets["held"] or buckets["dry"]:
+        return 0
+    # Nothing uploaded, nothing held, nothing rendered: the run did nothing and
+    # cannot say why. That is a fault.
+    return 1
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
@@ -469,9 +504,57 @@ def main() -> int:
         _save_log(log, args.log)
         results.append({"slug": slug, "ok": True, "url": url})
 
-    ok = sum(1 for r in results if r["ok"])
-    print(f"\ndone: {ok}/{len(results)} ok")
-    return 0 if ok == len(results) else 1
+    # ------------------------------------------------------------------ #
+    # HONEST OUTCOME. This used to be `0 if ok == len(results) else 1`, so a
+    # run that uploaded three videos and had a fourth HELD BY THE GATE exited
+    # red — identical, at a glance, to a run that crashed in the first minute.
+    # Every explainer run was red for days; on 2026-09-04 a run genuinely died
+    # (the GitHub runner was reclaimed mid-job) and nothing distinguished it
+    # from the healthy ones.
+    #
+    # A gate hold is the system WORKING — it is the whole point of the
+    # fail-closed review. It is not a fault and must not be reported as one.
+    # The exit code now means "something is broken", nothing else. Whether the
+    # channel actually posted today is a separate question, asked separately
+    # (see the workflow's day-level check), because a quiet day and a broken
+    # day need different reactions.
+    # ------------------------------------------------------------------ #
+    _b = classify_results(results)
+    posted, held, faults, dry = (_b["posted"], _b["held"],
+                                 _b["faults"], _b["dry"])
+
+    print(f"\ndone: {len(posted)} posted, {len(held)} held by the gate, "
+          f"{len(faults)} faults"
+          + (f", {len(dry)} dry-run/frozen" if dry else ""))
+    for r in held:
+        print(f"   held  {r['slug']}: {r.get('error')}")
+    for r in faults:
+        print(f"   FAULT {r['slug']}: {str(r.get('error'))[:160]}")
+
+    # GitHub annotations + a run summary, so the Actions page tells the truth
+    # without anyone opening the log.
+    import os as _os
+    if _os.environ.get("GITHUB_ACTIONS"):
+        for r in faults:
+            print(f"::error title=post-failed::{r['slug']}: "
+                  f"{str(r.get('error'))[:200]}")
+        if held and not posted:
+            print("::warning title=all-held::the review gate held every story "
+                  "this run — nothing published, nothing broken")
+        summary = _os.environ.get("GITHUB_STEP_SUMMARY")
+        if summary:
+            with open(summary, "a", encoding="utf-8") as fh:
+                fh.write(f"### explainer: {len(posted)} posted, {len(held)} "
+                         f"held, {len(faults)} faults\n\n")
+                for r in posted:
+                    fh.write(f"- posted **{r['slug']}** — {r['url']}\n")
+                for r in held:
+                    fh.write(f"- held `{r['slug']}` ({r.get('error')})\n")
+                for r in faults:
+                    fh.write(f"- **FAULT** `{r['slug']}` — "
+                             f"{str(r.get('error'))[:160]}\n")
+
+    return exit_code_for(_b)
 
 
 if __name__ == "__main__":

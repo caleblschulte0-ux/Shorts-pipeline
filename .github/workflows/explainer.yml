@@ -642,6 +642,39 @@ jobs:
 
       # Pull view/like counts for the channel's published videos so the daily
       # routine learns which hooks/topics land (feedback loop, channel #3).
+      - name: Did the channel actually post today?
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        run: |
+          # THE QUESTION THE EXIT CODE CANNOT ANSWER.
+          #
+          # A gate hold is not a fault, so post_stories no longer exits red for
+          # one — which is right, and which would otherwise hide a dry day. So
+          # ask the business question separately and loudly: did anything reach
+          # the channel today? On 2026-09-04 the 09:32 run was killed when the
+          # GitHub runner was reclaimed mid-job, and it looked exactly like the
+          # three healthy-but-red runs before it. This is the line that would
+          # have said so.
+          python3 - <<'PY'
+          import json, os, datetime
+          p = "state/explainer_posted_log.json"
+          today = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+          try:
+              posted = json.load(open(p)).get("posted", {})
+          except Exception as e:
+              print(f"::error title=posted-log-unreadable::{e}")
+              raise SystemExit(0)
+          n = sum(1 for v in posted.values()
+                  if str(v.get("at", "")).startswith(today))
+          if n:
+              print(f"::notice title=posted-today::{n} video(s) reached the "
+                    f"channel on {today}")
+          else:
+              print(f"::error title=nothing-posted-today::0 videos reached the "
+                    f"channel on {today}. Either every story was held by the "
+                    f"review gate, or this run never got far enough to try — "
+                    f"check the run summary above to tell which.")
+          PY
+
       - name: Fetch explainer analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         continue-on-error: true
