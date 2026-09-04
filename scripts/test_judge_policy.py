@@ -136,7 +136,41 @@ def main():
     assert not d["advance"] and any("personality" in b for b in d["blockers"])
     print("ok 13. personality floor still enforced")
 
-    print("judge policy: 13/13 checks pass")
+    # 14. doctor finding 69a0ad32a52f: required judges UNANIMOUSLY saying
+    #     "ok, and I reject this" (status ok, pass=False) used to produce no
+    #     blocker at all — missing/failed/abstained were the only checks, and
+    #     unanimous agreement (even unanimous rejection) never counts as
+    #     dissent. A 9.5/10 overall with no separate hard finding used to
+    #     advance despite every required judge rejecting it.
+    unanimous_reject = {n: {"status": "ok", "pass": False}
+                        for n in OK_JUDGES}
+    d = jp.decide(combined(9.5, 5, verdicts=unanimous_reject), pol)
+    assert not d["advance"], d
+    assert not d["dissent"], d  # unanimous agreement is never dissent
+    assert all(any(n in b for b in d["blockers"]) for n in OK_JUDGES), d
+    print("ok 14a. unanimous required-judge rejection (pass=False) FAILS CLOSED")
+
+    # ...one reject among passes is caught the same way, independent of the
+    #    dissent path (which also fires here, but the per-judge blocker must
+    #    name the rejecting judge regardless).
+    one_reject = {**OK_JUDGES, "factual": {"status": "ok", "pass": False}}
+    d = jp.decide(combined(9.5, 5, verdicts=one_reject), pol)
+    assert not d["advance"] and any("factual" in b and "did not pass" in b
+                                    for b in d["blockers"]), d
+    print("ok 14b. one required-judge reject among passes FAILS CLOSED")
+
+    # ...a required judge that spoke (status ok) but never set `pass` at all,
+    #    or set something non-boolean, is treated the same as a reject —
+    #    missing evidence is not consent, spoken or not.
+    for bad_pass in (None, "true", 1, {}):
+        v = {**OK_JUDGES, "technical": {"status": "ok", "pass": bad_pass}}
+        d = jp.decide(combined(9.5, 5, verdicts=v), pol)
+        assert not d["advance"], (bad_pass, d)
+        assert any("technical" in b and "did not pass" in b
+                  for b in d["blockers"]), (bad_pass, d)
+    print("ok 14c. a missing/non-boolean required pass FAILS CLOSED")
+
+    print("judge policy: 14/14 checks pass")
 
 
 if __name__ == "__main__":

@@ -309,8 +309,16 @@ def decide(combined: dict, policy: dict | None = None) -> dict:
 
     blockers: list[str] = []
 
-    # 1. required judges must have spoken. A judge that failed or abstained is
-    #    recorded as such and FAILS CLOSED — missing evidence is not consent.
+    # 1. required judges must have spoken, AND passed. A judge that failed or
+    #    abstained is recorded as such and FAILS CLOSED — missing evidence is
+    #    not consent. Nor is a spoken `pass=False`: doctor finding
+    #    69a0ad32a52f found that a required judge saying "ok, and I reject
+    #    this" produced no blocker at all here (only missing/failed/abstained
+    #    did), so three required judges could unanimously reject a film and
+    #    still advance on a high overall score with no separate hard finding.
+    #    A missing or non-boolean `pass` is treated the same as an explicit
+    #    reject — a required judge that spoke but did not say "pass: true"
+    #    has not passed it.
     for name in pol["required_judges"]:
         v = verdicts.get(name)
         if v is None:
@@ -319,6 +327,9 @@ def decide(combined: dict, policy: dict | None = None) -> dict:
         elif str(v.get("status", "ok")) in ("failed", "abstained"):
             blockers.append(f"required judge {name!r} {v.get('status')}"
                             f" ({str(v.get('error', ''))[:80]}) — FAILS CLOSED")
+        elif v.get("pass") is not True:
+            blockers.append(f"required judge {name!r} did not pass "
+                            f"(pass={v.get('pass')!r}) — FAILS CLOSED")
 
     # 2. the professional-quality score is REQUIRED and BINDING.
     if overall is None:

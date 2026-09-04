@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260828",
+  "updated": "20260904",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -957,6 +957,91 @@
       "because": "This is the correct long-term direction (a versioned MediaEvidence record), but it generalizes exactly the two shape problems just ruled doing in 9a7e1bcece21 (package-failure gaps) and 4e9af949a9c9 (entity evidence loss). Designing the typed contract before those two land risks touching judge_package's interface twice. Revisit once both are merged and we can see what the adapters actually need; park 30 days.",
       "history": [],
       "revisit_after": "20260927"
+    },
+    "69a0ad32a52f": {
+      "verdict": "in_progress",
+      "date": "20260904",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed by reading judge_policy.py:276-373. Unanimous pass=false from all required judges produces no blocker: the required-judge loop (312-321) only checks missing/failed/abstained status, hard_blockers (340) only fires on findings with severity=blocker or an auto-fail defect code, and dissent() (276-290) returns empty when all judges agree even if they unanimously agree pass=false. A high overall_10 with unanimous reject can reach advance=true. This is a real fail-open path in the binding gate; fixing it is in scope and small (require pass=True from every required judge)."
+        }
+      ]
+    },
+    "cc8333959d84": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at .github/workflows/daily.yml:153-174 (auto-resume) and 163-171 (first-paused-day): both call scripts/ci_commit_state.sh with a trailing || true, so a rejected/failed state push leaves the local failure_count.txt/auto_pause_day.txt writes uncommitted while the job still reports skip=auto or skip= and proceeds as if the durable state landed. Next run reads stale committed state from main. Real gap in the auto-pause backoff guarantee; needs a preflight that treats a failed state commit as a named infra failure rather than swallowing it. Queued, not this run's build (picking the earlier-filed judge_policy bug first per ranking).",
+      "history": []
+    },
+    "5187e34e11f3": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed: .github/workflows/exchange_phase_a.yml has only one trigger independent of upstream authoring (schedule cron 45 9 UTC); workflow_run and push both depend on something upstream having already run/pushed. The workflow's own comments document multi-hour cron drift. Real gap, but the proposed fix (a fail-closed idempotent readiness watchdog with durable refusal state) is a multi-file, multi-workflow feature \u2014 too large for one session alongside everything else ruled today. Queued for a dedicated session.",
+      "history": []
+    },
+    "02da0ae2137f": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at third_capture/story_director.py:205-208: payoffish is computed over the FULL unbounded edl['beats'] before the list is truncated to MAX_BEATS=5 at line 215. The terminal-beat check at 271-276 only requires the last retained beat's role to be payoff/climax/reaction, never rechecking that a payoff/climax actually survived truncation. A 6-beat EDL whose only payoff is beat 6 can pass. Real bug, in scope for a future session (validation must run on the cleaned/bounded list, not the raw input).",
+      "history": []
+    },
+    "694ab7c3e1d4": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at .github/workflows/retro.yml: build_retro.py, review_proposals.py and the failure-census/advance-experiments steps are all continue-on-error: true, and the 'Commit brief + triage + summary' step (~198-214) commits whatever paths exist with no check that today's brief.json/triage.json were actually produced fresh. A silent failure in build_retro.py or review_proposals.py can still finish green with a stale or missing brief. Real gap; fix needs an explicit artifact-freshness gate before the commit step.",
+      "history": []
+    },
+    "d486c2fbfdaf": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at tests/test_phase_b_render_handoff.py:71-81 (test_a_rejected_dispatch_fails_the_job): it only regex-matches the YAML step body text for 'HTTP...!=...204' and 'exit 1' nearby, never executes the shell branch or mocks the dispatch API. A refactor that leaves those tokens in an unreachable branch or a comment would still pass. Real test-quality gap on a critical handoff; fix is to extract the dispatch/verify logic into a script with an injectable HTTP client and test real status codes.",
+      "history": []
+    },
+    "a2d4a0aea829": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed: README.md:33 still says 06:15 UTC and docs/FALLBACKS.md:86, exchange/README.md:451, CLAUDE_ROUTINE_INSTRUCTIONS.md:75/82 still say 12:45 UTC, while the live schedule (exchange_phase_b.yml) is paired UTC crons gated to 08:30 America/Chicago (also correctly documented at docs/FALLBACKS.md:220, so the doc contradicts itself). Small, mechanical, real \u2014 fixing now.",
+      "history": []
+    },
+    "f7633072ef78": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed: no test under tests/ parses exchange_phase_a.yml or asserts its trigger topology (workflow_run/push/schedule independence). tests/test_split_worker.py and tests/test_gap_coverage.py reference exchange_phase_a.py's Python logic (slate counting) but not the .yml workflow contract. Real coverage gap directly adjacent to the liveness bug (5187e34e11f3); worth a session on its own to write the workflow-contract test.",
+      "history": []
+    },
+    "f85f65be87b6": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at data_learning/stock_cache.py:47-60: save() writes only provider/query/candidates with no fetched_at/expiry/schema version, and wrap() (63-87) reuses any cached nonempty record on live failure regardless of age. Real long-term gap (dead CDN urls/stale licensing can re-enter indefinitely) but the right fix is a versioned cache-record migration plus eviction policy \u2014 a design task, not a quick patch.",
+      "history": []
+    },
+    "b507d603aefb": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed: daily.yml, retro.yml, doctor.yml and exchange_phase_b.yml all pin actions/checkout and actions/setup-python by mutable major-version tags while running with contents:write. Legitimate supply-chain hardening; queued as a long-term repo-wide pinning + Dependabot/Renovate policy change rather than a one-off edit to avoid an unreviewed partial pin.",
+      "history": []
+    },
+    "500b791bc671": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed: .github/workflows/auto-merge.yml only triggers on pull_request and gates every job to startsWith(github.head_ref,'claude/'); exchange_phase_a.yml:38-42 explicitly documents direct human/PAT pushes to main as a supported path with no equivalent full-suite gate. Real coverage gap; fix is a new scoped push-to-main verification workflow reusing the PR gate's test environment \u2014 a new workflow file, queued rather than rushed.",
+      "history": []
+    },
+    "e61446f7bc2a": {
+      "verdict": "doing",
+      "date": "20260904",
+      "because": "Confirmed at data_learning/qa.py:33-34 (only rejects an empty shots list, no two-shot minimum) and data_learning/generate.py:166 (pkg['shots'][1] read unconditionally after a package is already written and counted ok). A valid one-shot package crashes the whole batch with IndexError. generate.py has no callers outside data_learning/ itself (manual CLI per data_learning/README.md, not wired into any workflow), so this is low-blast-radius but still a real, cheap-to-fix crash. Queued.",
+      "history": []
+    },
+    "8bbdf9ac8a33": {
+      "verdict": "later",
+      "date": "20260904",
+      "because": "Agreed with the finding's own conclusion: keep the registered cadence/mix unchanged for now. The trending recovery (0->9 posts) is one day and the leading explainer result is only 6.8h old; neither is a stable enough sample to justify a registry change, and there is nothing to build here beyond what the finding itself recommends (no action). Parking for revisit once more mature samples accumulate rather than settling it as not_doing, since the direction call itself may look different in a few weeks.",
+      "history": [],
+      "revisit_after": "20261004"
     }
   }
 }
