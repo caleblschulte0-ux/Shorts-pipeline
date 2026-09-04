@@ -379,6 +379,18 @@ jobs:
           PY
           )"
           BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
+          # ONLY THE STORIES THIS RUN WILL ACTUALLY POST.
+          #
+          # On 2026-09-04 this step was handed 74 slugs — the entire un-posted
+          # backlog — for a run whose cap is 4. Directing 70 stories nobody is
+          # about to render burns the step's 720s budget on work that is stale
+          # before it is used, and it stretches the job, which is the window a
+          # reclaimed runner can kill (it killed that very run at 09:44).
+          # post_stories renders in queue order, so the head of the queue is
+          # what to direct.
+          BRAIN_CAP="${BRAIN_CAP:-4}"
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr ' ' '\n' | head -n "$BRAIN_CAP" | tr '\n' ' ')"
+          BRAIN_SLUGS="$(echo "$BRAIN_SLUGS" | tr -s ' ' | sed 's/^ *//;s/ *$//')"
           if [ -z "$BRAIN_SLUGS" ]; then echo "every target already has authored scenes; skipping brain"; exit 0; fi
           echo "brain targets: $BRAIN_SLUGS"
           npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || \

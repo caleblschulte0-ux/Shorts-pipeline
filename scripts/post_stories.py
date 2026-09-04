@@ -146,6 +146,44 @@ def _description(cfg: dict) -> str:
     return (_human_body(cfg) + _desc_suffix(cfg))[:5000]
 
 
+def _persist_posted_log_now(log_path: Path, slug: str) -> None:
+    """Push the posted log to git IMMEDIATELY after an upload. Best effort.
+
+    An upload is irreversible and external: the video is on YouTube the moment
+    the API returns. The record of it has to be just as durable, and until now
+    it was not — `_save_log` writes the runner's LOCAL disk, and the git push
+    lived in a final workflow step. When a runner is reclaimed mid-job (GitHub
+    did exactly that to the 09:32 run on 2026-09-04) the disk goes with it, so
+    videos already live on the channel disappear from the dedupe log and the
+    next run posts them again.
+
+    CLAUDE.md calls the posted logs sacred for this reason: "losing an entry
+    means a duplicate upload". This closes the window from "the rest of the
+    run" to "one upload".
+
+    Never raises. The upload already happened; failing here must not abort the
+    run or mask the URL we just printed. The end-of-run persist still runs and
+    is now a no-op in the happy path.
+    """
+    import os as _os
+    import subprocess as _sp
+    if not _os.environ.get("GITHUB_ACTIONS"):
+        return
+    script = REPO / "scripts" / "ci_commit_state.sh"
+    if not script.exists():
+        return
+    try:
+        r = _sp.run(["bash", str(script),
+                     f"explainer: posted {slug} [skip ci]", str(log_path)],
+                    capture_output=True, text=True, timeout=180)
+        if r.returncode != 0:
+            print(f"[{slug}] WARNING: could not persist the posted log now "
+                  f"(rc={r.returncode}); the end-of-run persist must catch it: "
+                  f"{(r.stderr or r.stdout)[-200:]}", flush=True)
+    except Exception as e:  # noqa: BLE001 — never break a run over bookkeeping
+        print(f"[{slug}] WARNING: posted-log persist raised: {e}", flush=True)
+
+
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
 # designed; it is not a fault and must never be reported as one.
 HELD_REASONS = {"editorial_hold", "showrunner_block"}
@@ -502,6 +540,9 @@ def main() -> int:
             "publish_at": publish_at,
         }
         _save_log(log, args.log)
+        # Durable BEFORE the next render starts — a reclaimed runner between
+        # here and the end of the run would otherwise cost a duplicate upload.
+        _persist_posted_log_now(args.log, slug)
         results.append({"slug": slug, "ok": True, "url": url})
 
     # ------------------------------------------------------------------ #
