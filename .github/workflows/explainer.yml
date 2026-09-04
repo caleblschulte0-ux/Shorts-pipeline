@@ -195,6 +195,9 @@ jobs:
           # fails the run before a single frame is rendered if any of them is
           # back. Do not skip it; fix the oscillator.
           python3 data_learning/tests/test_no_camera_shake.py
+          # And the edit stays CUT — shot length is a held invariant, not a
+          # side effect of how long a narrated sentence happened to be.
+          python3 tests/test_edit_pacing.py
 
       # Translation cache (audit Ticket 3): moved out of git into cache/,
       # persisted between runs via actions/cache (evolving-cache pattern).

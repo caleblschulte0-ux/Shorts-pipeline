@@ -583,6 +583,32 @@ def _s(t, ph=0.0):
     return math.sin(2 * math.pi * (t + ph))
 
 
+
+def _gesture(t: float, ph: float = 0.0) -> float:
+    """A periodic limb move with DWELL, in -1..1 — a gesture, not a pump.
+
+    The arms used to ride `_s(t)` = sin(2*pi*t): constant speed, never still,
+    a metronome for the whole video. That was the mascot compensating for an
+    edit that had nothing else going on, and the operator named it directly.
+
+    This holds at each extreme instead: reach (15% of the cycle), HOLD (35%),
+    return (15%), HOLD (35%). Still exactly periodic, so the sprite loop still
+    tiles seamlessly, but roughly seventy percent of frames the limb is parked
+    where a real gesture would park it. The beat's motion is the EDIT now.
+    """
+    u = (t + ph) % 1.0
+    if u < 0.15:                      # reach out
+        k = u / 0.15
+    elif u < 0.50:                    # hold, arm extended
+        k = 1.0
+    elif u < 0.65:                    # return
+        k = 1.0 - (u - 0.50) / 0.15
+    else:                             # hold, arm at rest
+        k = 0.0
+    k = k * k * (3.0 - 2.0 * k)       # smoothstep the two moves
+    return k * 2.0 - 1.0
+
+
 def _shadow():
     return ('<ellipse cx="170" cy="366" rx="116" ry="18" fill="#000000" '
             'opacity="0.26"/>')
@@ -1815,7 +1841,8 @@ def _a_pose(t, spec):
     lh = list(p.get("lh", [150, 252, -8]))     # left  wrist [x, y, bend]
     rh = list(p.get("rh", [190, 252, 8]))      # right wrist [x, y, bend]
     m = p.get("motion", {}) or {}
-    osc = _s(t) * float(m.get("amp", 5))
+    # a gesture with dwell, not a continuous sweep (see _gesture)
+    osc = _gesture(t) * float(m.get("amp", 5))
     limb = m.get("limb", "bob")
     if limb in ("l", "both"):
         lh[1] = lh[1] + osc

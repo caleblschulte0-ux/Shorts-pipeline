@@ -825,7 +825,7 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
 # SHOT CUTTING — the edit, not the motion
 # --------------------------------------------------------------------------- #
 def _shot_plan(s0: float, s1: float, target: float = 3.0,
-               max_shots: int = 4) -> list[tuple[float, float]]:
+               max_shots: int = 10) -> list[tuple[float, float]]:
     """Cut one narrated beat into SHOTS of roughly `target` seconds.
 
     A beat used to be one shot: a single chart card held for the whole
@@ -837,6 +837,12 @@ def _shot_plan(s0: float, s1: float, target: float = 3.0,
 
     Shorts that hold attention cut every 2-4 seconds. This returns the cut
     points; the caller decides the framing of each shot.
+
+    The cap is deliberately generous. It was 4, which quietly reintroduced the
+    problem on the beats that needed help most: a 20s sentence became four 5s
+    shots and a 26s one became 6.5s shots — slower than the 3s target on
+    exactly the beats a viewer is most likely to leave. Shot LENGTH is the
+    thing being held constant here, not shot count.
     """
     dur = max(0.0, s1 - s0)
     n = max(1, min(max_shots, int(round(dur / target))))
@@ -1957,11 +1963,23 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 + (f",split={n}" + "".join(f"[q{i}_{k}]" for k in range(n))
                    if n > 1 else f"[q{i}_0]"))
             for k, (a0, a1) in enumerate(shots):
-                # first and last shot stay WIDE; the middle shots punch in on
-                # a datum, rotating through the anchors this chart published.
-                punch = (anchors and 0 < k < n - 1)
-                framing = (_punch_crop(anchors[(k - 1) % len(anchors)], vw, vh)
-                           if punch else "null")
+                # SHOT GRAMMAR: establish, then alternate detail and wide.
+                #
+                #   WIDE  PUNCH  WIDE  PUNCH  WIDE ...  and always WIDE last.
+                #
+                # Every middle shot being a punch-in was the first version, and
+                # on a long beat that is seven close-ups in a row — a different
+                # monotony, not a fix. Alternating gives the beat a rhythm and
+                # keeps re-establishing what the close-up is a close-up OF.
+                punch = bool(anchors) and 0 < k < n - 1 and (k % 2 == 1)
+                if punch:
+                    # rotate the subject, and vary how tight the framing is, so
+                    # two close-ups in one story are not the same shot twice.
+                    anchor = anchors[(k // 2) % len(anchors)]
+                    zoom = 1.45 if (k // 2) % 2 == 0 else 1.7
+                    framing = _punch_crop(anchor, vw, vh, zoom=zoom)
+                else:
+                    framing = "null"
                 if punch:
                     punch_windows.append((a0, a1))
                 fc.append(f"[q{i}_{k}]{framing}[g{i}_{k}]")
