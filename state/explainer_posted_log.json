@@ -1355,6 +1355,46 @@
       "title": "99% Of The Internet Runs Through The Ocean Floor",
       "at": "2026-09-04T15:16:04.900383+00:00",
       "publish_at": "2026-09-04T15:46:43Z"
+    },
+    "centenarian-explosion": {
+      "url": "https://youtube.com/shorts/X5KI4OAzmK4",
+      "title": "Why 100th Birthdays Are About To Get Normal (3 Charts)",
+      "at": "2026-09-04T17:41:30.560117+00:00",
+      "publish_at": "2026-09-04T18:30:36Z",
+      "n_beats": 3,
+      "story_structure": "trend+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 46.9,
+      "hook": "stake",
+      "topic_category": "demographics",
+      "ending_type": "consequence",
+      "depictions": [
+        "viz:trend",
+        "mechanic:birthday-candle-duel",
+        "mechanic:future-crowd-surge"
+      ],
+      "words_first_10s": 14,
+      "scene_changes_before_5s": 2
+    },
+    "lake-chad-vanishing": {
+      "url": "https://youtube.com/shorts/7V_sBsdst_o",
+      "title": "The Lake That Basically Disappeared (3 Charts)",
+      "at": "2026-09-04T17:49:50.016309+00:00",
+      "publish_at": "2026-09-05T00:30:36Z",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 43.8,
+      "hook": "shock_stat",
+      "topic_category": "environment",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:lake-shoreline-recede",
+        "scene:kit",
+        "mechanic:population-swell-grid"
+      ],
+      "words_first_10s": 14,
+      "scene_changes_before_5s": 2
     }
   }
 }
