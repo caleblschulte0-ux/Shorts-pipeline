@@ -5731,13 +5731,36 @@
       "director_cut": true
     },
     "clip-20260904-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/BlatantDepressedDelicataTakeNRG-PWsRj3oVWyfKhSH_",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/2ODhf9ADq0o",
       "title": "Kaicenat: Kai Cenat Reacts With A Wild 'GYAAAT' Out Of Nowhere",
       "kind": "twitch_clip",
-      "ts": "2026-09-04T15:59:54.734359+00:00",
+      "ts": "2026-09-04T16:00:01.864489+00:00",
+      "uploaded_at": "2026-09-04T16:00:01.864511+00:00",
+      "publish_at": "2026-09-04T20:00:00Z",
+      "source_url": "https://www.twitch.tv/kaicenat/clip/BlatantDepressedDelicataTakeNRG-PWsRj3oVWyfKhSH_",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "KAI JUST LET OUT A WILD ONE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3587,
+      "banger": 0.6,
+      "cut": {
+        "start": 0.0,
+        "end": 9.4
+      },
+      "director_cut": true
+    },
+    "clip-20260904-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/DependableApatheticAlmondRitzMitz--AnH595hNYVcnBoN",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Wild Way Of Making Quick Cash In Wardogs",
+      "kind": "twitch_clip",
+      "ts": "2026-09-04T16:05:15.668350+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
