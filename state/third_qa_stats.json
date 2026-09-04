@@ -3,236 +3,6 @@
     {
       "date": "20260808",
       "dry_run": false,
-      "ts": "2026-08-08T12:52:08+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 125,
-        "with_retention": 107,
-        "with_curve": 15,
-        "fetched_at": "2026-08-08T09:10:50.279737+00:00"
-      },
-      "brain": {
-        "ok": 29,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260808-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "flex reveal, mild curiosity pull",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "expensive skin sniper kill, visible reac",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ohnepixel $50K Skin In Action Has The Crowd Screaming"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "sharp band goes nearly all-black at 8.1s and 13.5s (game death/loading fade), leaving only the tiny facecam visible",
-                "unexplained blurred white bar/box overlay in the sharp band at 11.7-15.3s that reads as an unfinished graphic rather tha"
-              ]
-            }
-          },
-          "took_s": 264.9
-        },
-        {
-          "slug": "clip-20260808-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "no info, unclear content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.35,
-              "why": "routine gameplay talk, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Loses It Screaming At Him Not To Die"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "at 27.1s the sharp band shows a headless torso (head cropped above frame) \u2014 minor, isolated single frame"
-              ]
-            }
-          },
-          "took_s": 302.2
-        },
-        {
-          "slug": "clip-20260808-3",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (talk about reaction, no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, no event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "talk about reaction, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 55.9
-        },
-        {
-          "slug": "clip-20260808-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "kaicenat/kaicenat-agent-call-2026w32",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                },
-                {
-                  "cluster": "jasontheween/jasontheween-about-camera-2026w32",
-                  "outcome": "not_a_story",
-                  "why": "director found no genuine arc"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.65,
-              "why": "caught-in-act reaction moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.65,
-              "why": "Visible reaction, playful physical confr",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Plaqueboymax Gets Caught Lookin' And It's Instant Chaos"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 987.7
-        }
-      ]
-    },
-    {
-      "date": "20260808",
-      "dry_run": false,
       "ts": "2026-08-08T12:58:21+00:00",
       "feedback": {
         "snapshot": true,
@@ -7079,6 +6849,320 @@
             }
           },
           "took_s": 165.4
+        }
+      ]
+    },
+    {
+      "date": "20260904",
+      "dry_run": false,
+      "ts": "2026-09-04T16:12:18+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 13,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 96,
+        "with_retention": 74,
+        "with_curve": 15,
+        "fetched_at": "2026-09-04T12:51:56.387709+00:00"
+      },
+      "brain": {
+        "ok": 31,
+        "fail": 6
+      },
+      "dead_sources": {
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260904-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.65,
+              "why": "visible big gambling win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "genuine shocked reaction, big win",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Bet Green By Accident And Walked Away With $8,000"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.88,
+              "problems": []
+            }
+          },
+          "took_s": 325.3
+        },
+        {
+          "slug": "clip-20260904-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague reactions, no clear visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Reacts To A Moment That Syncs Up Perfectly"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "at 0.8s the animated 'WAIT' stamp overlaps/garbles with the 'WAIT FOR THIS SYNC' caption directly below it"
+              ]
+            }
+          },
+          "took_s": 151.4
+        },
+        {
+          "slug": "clip-20260904-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "stableronaldo/stableronaldo-chain-charact-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.6,
+              "why": "visible reaction, unclear cause",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "vague setup talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Reacts With A Wild 'GYAAAT' Out Of Nowhere"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 1168.1
+        },
+        {
+          "slug": "clip-20260904-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "vague money-making claim, no event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "streamer pays viewer to jump moving vehi",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lirik Wild Way Of Making Quick Cash In Wardogs"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.82,
+              "problems": [
+                "brief near-blank/flash sharp-band frame at 26.2s (likely intentional edit effect, not broken)"
+              ]
+            }
+          },
+          "took_s": 318.5
+        },
+        {
+          "slug": "clip-20260904-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "unclear payoff, generic phrase",
+              "blind": false
+            },
+            "content": {
+              "why": "no transcript and no frames \u2014 nothing to judge",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "you sleep you drown",
+              "raw": "you sleep you drown",
+              "kept_raw": true
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 130.1
+        },
+        {
+          "slug": "clip-20260904-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "no context, unclear stakes",
+              "blind": false
+            },
+            "content": {
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": false,
+              "verdict": "unavailable"
+            },
+            "title": {
+              "source": "floor",
+              "title": "The Lirik Clip Everyone's Talking About",
+              "raw": "Drop them",
+              "kept_raw": false
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 129.7
         }
       ]
     }

@@ -5804,14 +5804,22 @@
       "banger": 0.55
     },
     "clip-20260904-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/AttractiveShortJellyfishOSkomodo-HbBgJj2s-LHOFyuA",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/dPIlbgaBQFk",
       "title": "The Lirik Clip Everyone's Talking About",
       "kind": "twitch_clip",
-      "ts": "2026-09-04T16:12:14.743138+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-04T16:12:18.066651+00:00",
+      "uploaded_at": "2026-09-04T16:12:18.066673+00:00",
+      "publish_at": "2026-09-05T00:30:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/AttractiveShortJellyfishOSkomodo-HbBgJj2s-LHOFyuA",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2851,
+      "banger": 0.5
     }
   }
 }
