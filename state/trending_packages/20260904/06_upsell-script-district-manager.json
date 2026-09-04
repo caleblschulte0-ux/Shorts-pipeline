@@ -28,7 +28,12 @@
     },
     {
       "phrase": "the seasonal blend, the extended warranty on our reusable cups",
-      "query": "coffee cup reusable warranty display"
+      "query": "coffee cup reusable warranty display",
+      "pin_query": "Seasonal Blend",
+      "pin_context": "coffee product limited edition beverage",
+      "news_query": "Seasonal Blend",
+      "news_angle": "A seasonal blend coffee being upsold to the district manager during his incognito visit.",
+      "image_url": "https://live.staticflickr.com/3834/9886306393_6b53f8eb52.jpg"
     },
     {
       "phrase": "He tried to leave twice",
@@ -36,7 +41,12 @@
     },
     {
       "phrase": "the district manager's name",
-      "query": "name tag manager badge"
+      "query": "name tag manager badge",
+      "pin_query": "District Manager",
+      "pin_context": "corporate manager retail business executive",
+      "news_query": "District Manager",
+      "news_angle": "The District Manager observing a new upsell policy incognito, then being subjected to it by an employee.",
+      "image_url": "https://live.staticflickr.com/2521/3986744552_657401410f_b.jpg"
     },
     {
       "phrase": "walking the mandatory script back",
@@ -44,11 +54,21 @@
     },
     {
       "phrase": "posted that memo next to my name",
-      "query": "office bulletin board memo"
+      "query": "office bulletin board memo",
+      "pin_query": "Policy Memo",
+      "pin_context": "corporate communication internal document policy change",
+      "news_query": "Policy Memo",
+      "news_angle": "A corporate memo being posted next to an employee's name, acknowledging an incident that fixed a mandatory upsell policy.",
+      "image_url": "https://live.staticflickr.com/4016/4384082355_577ba30e5c_b.jpg"
     },
     {
       "phrase": "the loyalty card he never once activated",
-      "query": "loyalty card stack counter"
+      "query": "loyalty card stack counter",
+      "pin_query": "Loyalty Card",
+      "pin_context": "retail rewards program customer card",
+      "news_query": "Loyalty Card",
+      "news_angle": "A loyalty card being aggressively upsold to a customer who turns out to be the district manager, and never activated.",
+      "image_url": "https://live.staticflickr.com/3383/3658873057_013b7ed338_b.jpg"
     }
   ],
   "punches": [
