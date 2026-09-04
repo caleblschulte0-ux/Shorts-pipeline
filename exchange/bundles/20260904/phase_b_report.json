@@ -1,0 +1,111 @@
+{
+  "date": "20260904",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 14,
+    "unfilled": 2,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "f8f2b1ed3507b836f2b0d244801e8d4fe9a6ff25f3c50142e28109f7b937af36",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "freelance-logo-reuse-invoice-s0-f20f1dd4f6a3",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g610a0b53742b4a53d1a8402fad3b07dd0f9100bb7375b7960c2e36dcd4cccaa2cd23c04d5196284e7676821e22f7c59bdefb6e3767ae237242bdf8ee75cd01cd_1280.jpg"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s1-81c1a4a454d3",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gf89cff0353bd483166ed0b6d0ae78207aa2388fca00ecf161d447ac90385e72b817e7021b8f79e9903a09bb4270b5c4401d18dabe8cac59a32b19e228fb78f86_1280.jpg"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s2-77f062ab8899",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s3-c8f9d0a4a0a3",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gcbdc01b2e68b8202741f9f7ea58e541615918457cd38d45c287f66323edcc7f35a26184d713c5930057e5556f1b3997dafae0b90105d64896c1fa79180a5d204_1280.jpg"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s4-f89c3bb1fbb4",
+      "outcome": "self_fill",
+      "url": "https://ids.si.edu/ids/deliveryService?id=NMAAHC-2011_104_78_002"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s5-3110b2bb6532",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gdb2ed0d290ca4d6e0a0d966acb1953c88454a593440512ee2ef9cac27eb4a8f0c135fc47a23f8cd4c81ec55046c8d6b428745be716f42e05613ddd5c75a2a148_1280.jpg"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s6-67bc3a790694",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "freelance-logo-reuse-invoice-s7-2ba382c7d460",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/4249027/pexels-photo-4249027.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s0-8a19d5a61517",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0526c6f14a8e0ad595de5de1cb7593a459e72495726ed8b1f722715a2e6c76f4bd00385784e6c882835229d8126fd633bca15ec27612095345315c7c8f6af4c3_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s1-02376a812997",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g29e078522fe621ac8039cc3690f4abf630278892d5f9b46eb83abaeba7537786820a57fd7a89f6862eafc396690aa1fc78e39773d7fc76cd2bfacd9ed3c5acbc_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s3-8421557eb66b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g64e321f9a904e895feaa6a285bb5e5c1875b9557c0794c3434506db9c94084597c91a16ad89b75e450be8fe74a01fc42ebb65497bec62e0afe9fe0696f52626e_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s5-527a4467543b",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g6723d08bf4c4fdb5b653146d2574d2ed4377d9cb245ac74d4f753f6ef948b83d937428073f5fe4d7b1fc265ebf6dd7029d85c91cf9f015ff79e63d3930b0bc69_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s2-78489a66c5dd",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/25583645/pexels-photo-25583645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s4-68a40eca2bd9",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g66c4c69cb422df2472c8c7af9437b9fd4b1adf05ba757f53046783a6d79523b1dd9fb20964fda9f48f0e818c5ced87c9a27cab1e445deec95ad46b7b0a51ad31_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s6-41564a327ab1",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g4bdf1781de141c505765056c89d4fcbd1fe8d9ef98967db07c7e69c46964cfb8d8c90e54e2b9f399e28ed5239001df5b0e556a25a3fb99b359aa8583e5c8e3a9_1280.jpg"
+    },
+    {
+      "request_id": "upsell-script-district-manager-s7-aaf320c935e8",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc38d6cdc4b62e6bcc0c13faba5b7f7d8f9422b9261376a1931f46043ee8bc53f8f7eda6f0ddb3b32dcba5efa56612525123ef62a01597a46b67b59a644bdc179_1280.jpg"
+    }
+  ]
+}

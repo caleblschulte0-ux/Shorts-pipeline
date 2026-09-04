@@ -21,11 +21,15 @@
   "shots": [
     {
       "phrase": "hired me to design her shop's logo and brand kit",
-      "query": "graphic designer laptop logo sketch"
+      "query": "graphic designer laptop logo sketch",
+      "image_url": "https://pixabay.com/get/g610a0b53742b4a53d1a8402fad3b07dd0f9100bb7375b7960c2e36dcd4cccaa2cd23c04d5196284e7676821e22f7c59bdefb6e3767ae237242bdf8ee75cd01cd_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "refused the second payment",
-      "query": "unpaid invoice red stamp"
+      "query": "unpaid invoice red stamp",
+      "image_url": "https://pixabay.com/get/gf89cff0353bd483166ed0b6d0ae78207aa2388fca00ecf161d447ac90385e72b817e7021b8f79e9903a09bb4270b5c4401d18dabe8cac59a32b19e228fb78f86_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "using my exact logo",
@@ -33,15 +37,21 @@
     },
     {
       "phrase": "one line she never read",
-      "query": "contract fine print signature"
+      "query": "contract fine print signature",
+      "image_url": "https://pixabay.com/get/gcbdc01b2e68b8202741f9f7ea58e541615918457cd38d45c287f66323edcc7f35a26184d713c5930057e5556f1b3997dafae0b90105d64896c1fa79180a5d204_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "an invoice for $12,000",
-      "query": "invoice document dollar amount"
+      "query": "invoice document dollar amount",
+      "image_url": "https://ids.si.edu/ids/deliveryService?id=NMAAHC-2011_104_78_002",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Her lawyer called it outrageous",
-      "query": "lawyer office phone call"
+      "query": "lawyer office phone call",
+      "image_url": "https://pixabay.com/get/gdb2ed0d290ca4d6e0a0d966acb1953c88454a593440512ee2ef9cac27eb4a8f0c135fc47a23f8cd4c81ec55046c8d6b428745be716f42e05613ddd5c75a2a148_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the full $12,000 landed in my account",
@@ -49,7 +59,9 @@
     },
     {
       "phrase": "a five-star review",
-      "query": "five star rating review screen"
+      "query": "five star rating review screen",
+      "image_url": "https://images.pexels.com/photos/4249027/pexels-photo-4249027.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [

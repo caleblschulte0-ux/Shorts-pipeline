@@ -20,11 +20,15 @@
   "shots": [
     {
       "phrase": "mandatory script: upsell every single customer",
-      "query": "cashier register coffee shop"
+      "query": "cashier register coffee shop",
+      "image_url": "https://pixabay.com/get/g0526c6f14a8e0ad595de5de1cb7593a459e72495726ed8b1f722715a2e6c76f4bd00385784e6c882835229d8126fd633bca15ec27612095345315c7c8f6af4c3_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "a man in a plain jacket bought a coffee",
-      "query": "customer ordering coffee counter"
+      "query": "customer ordering coffee counter",
+      "image_url": "https://pixabay.com/get/g29e078522fe621ac8039cc3690f4abf630278892d5f9b46eb83abaeba7537786820a57fd7a89f6862eafc396690aa1fc78e39773d7fc76cd2bfacd9ed3c5acbc_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the seasonal blend, the extended warranty on our reusable cups",
@@ -33,11 +37,14 @@
       "pin_context": "coffee product limited edition beverage",
       "news_query": "Seasonal Blend",
       "news_angle": "A seasonal blend coffee being upsold to the district manager during his incognito visit.",
-      "image_url": "https://live.staticflickr.com/3834/9886306393_6b53f8eb52.jpg"
+      "image_url": "https://images.pexels.com/photos/25583645/pexels-photo-25583645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "He tried to leave twice",
-      "query": "man walking out door annoyed"
+      "query": "man walking out door annoyed",
+      "image_url": "https://pixabay.com/get/g64e321f9a904e895feaa6a285bb5e5c1875b9557c0794c3434506db9c94084597c91a16ad89b75e450be8fe74a01fc42ebb65497bec62e0afe9fe0696f52626e_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the district manager's name",
@@ -46,11 +53,14 @@
       "pin_context": "corporate manager retail business executive",
       "news_query": "District Manager",
       "news_angle": "The District Manager observing a new upsell policy incognito, then being subjected to it by an employee.",
-      "image_url": "https://live.staticflickr.com/2521/3986744552_657401410f_b.jpg"
+      "image_url": "https://pixabay.com/get/g66c4c69cb422df2472c8c7af9437b9fd4b1adf05ba757f53046783a6d79523b1dd9fb20964fda9f48f0e818c5ced87c9a27cab1e445deec95ad46b7b0a51ad31_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "walking the mandatory script back",
-      "query": "email inbox laptop screen"
+      "query": "email inbox laptop screen",
+      "image_url": "https://pixabay.com/get/g6723d08bf4c4fdb5b653146d2574d2ed4377d9cb245ac74d4f753f6ef948b83d937428073f5fe4d7b1fc265ebf6dd7029d85c91cf9f015ff79e63d3930b0bc69_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "posted that memo next to my name",
@@ -59,7 +69,8 @@
       "pin_context": "corporate communication internal document policy change",
       "news_query": "Policy Memo",
       "news_angle": "A corporate memo being posted next to an employee's name, acknowledging an incident that fixed a mandatory upsell policy.",
-      "image_url": "https://live.staticflickr.com/4016/4384082355_577ba30e5c_b.jpg"
+      "image_url": "https://pixabay.com/get/g4bdf1781de141c505765056c89d4fcbd1fe8d9ef98967db07c7e69c46964cfb8d8c90e54e2b9f399e28ed5239001df5b0e556a25a3fb99b359aa8583e5c8e3a9_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the loyalty card he never once activated",
@@ -68,7 +79,8 @@
       "pin_context": "retail rewards program customer card",
       "news_query": "Loyalty Card",
       "news_angle": "A loyalty card being aggressively upsold to a customer who turns out to be the district manager, and never activated.",
-      "image_url": "https://live.staticflickr.com/3383/3658873057_013b7ed338_b.jpg"
+      "image_url": "https://pixabay.com/get/gc38d6cdc4b62e6bcc0c13faba5b7f7d8f9422b9261376a1931f46043ee8bc53f8f7eda6f0ddb3b32dcba5efa56612525123ef62a01597a46b67b59a644bdc179_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
