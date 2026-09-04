@@ -1,0 +1,19 @@
+{
+  "key": "chickenpox_vaccination_coverage",
+  "title": "Share of US toddlers vaccinated against varicella by age 2",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "National Immunization Survey-Child",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/vaccines/imz-managers/coverage/childvaxview/index.html",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; CDC ChildVaxView estimates roughly 91% coverage for one dose of varicella vaccine among children by age 2.",
+  "points": [
+    {"label": "Vaccinated by age 2", "value": 91},
+    {"label": "Not yet vaccinated", "value": 9}
+  ]
+}

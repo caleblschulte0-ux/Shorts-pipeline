@@ -1,0 +1,20 @@
+{
+  "key": "nasa_budget_share_trend",
+  "title": "NASA's budget as a share of total US federal spending",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1966-2024",
+  "source": {
+    "name": "Historical Tables, Budget of the U.S. Government",
+    "publisher": "White House Office of Management and Budget (OMB) / NASA budget history",
+    "url": "https://www.nasa.gov/wp-content/uploads/2023/09/fy-2024-budget-request-summary.pdf",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; NASA's share of the federal budget peaked around 1966 during the Apollo program buildup and has fallen to roughly its current level since, per widely cited OMB historical budget figures.",
+  "points": [
+    {"label": "1966 (Apollo buildup)", "value": 4.4, "period": "1966"},
+    {"label": "1972 (Apollo ends)", "value": 1.6, "period": "1972"},
+    {"label": "2024", "value": 0.4, "period": "2024"}
+  ]
+}

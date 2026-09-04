@@ -1,0 +1,22 @@
+{
+  "key": "bald_eagle_pairs_by_state",
+  "title": "Bald eagle nesting pairs by state (lower 48)",
+  "unit": "nesting pairs",
+  "geography": "United States (lower 48 states)",
+  "time_coverage": "2020",
+  "source": {
+    "name": "State bald eagle nesting-pair estimates",
+    "publisher": "U.S. Fish and Wildlife Service (USFWS) / state wildlife agencies",
+    "url": "https://www.fws.gov/species/bald-eagle-haliaeetus-leucocephalus",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; Minnesota has long led the lower 48 states in nesting bald eagle pairs, compiled from USFWS and state wildlife agency reporting.",
+  "points": [
+    {"label": "Minnesota", "value": 9800},
+    {"label": "Wisconsin", "value": 1700},
+    {"label": "Florida", "value": 1500},
+    {"label": "Ohio", "value": 800}
+  ],
+  "baseline": {"label": "1963 national total", "value": 417}
+}

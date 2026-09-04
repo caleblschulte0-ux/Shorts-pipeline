@@ -1,0 +1,20 @@
+{
+  "key": "chickenpox_cases_trend",
+  "title": "Estimated US chickenpox cases per year (millions)",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "1990-2019",
+  "source": {
+    "name": "Varicella surveillance and vaccination impact estimates",
+    "publisher": "U.S. Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/vaccines/pubs/pinkbook/varicella.html",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; pre-vaccine era case counts are CDC's widely cited national estimate of about 4 million cases per year. The varicella vaccine was licensed in 1995 and a routine second dose was added in 2006, driving the collapse in cases toward near-elimination levels by the late 2010s.",
+  "points": [
+    {"label": "1990 (pre-vaccine)", "value": 4.0, "period": "1990"},
+    {"label": "2000", "value": 0.8, "period": "2000"},
+    {"label": "2019 (two-dose era)", "value": 0.15, "period": "2019"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "bald_eagle_1963_vs_2020",
+  "title": "US bald eagle nesting pairs, 1963 vs. 2020",
+  "unit": "nesting pairs",
+  "geography": "United States (lower 48 states)",
+  "time_coverage": "1963 vs 2020",
+  "source": {
+    "name": "Bald eagle population status reports",
+    "publisher": "U.S. Fish and Wildlife Service (USFWS)",
+    "url": "https://www.fws.gov/species/bald-eagle-haliaeetus-leucocephalus",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; the same USFWS all-time-low and 2020 estimates used in the trend chart, restated as a direct before/after comparison.",
+  "points": [
+    {"label": "1963", "value": 417},
+    {"label": "2020", "value": 71467}
+  ]
+}

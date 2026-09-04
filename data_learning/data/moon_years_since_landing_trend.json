@@ -1,0 +1,20 @@
+{
+  "key": "moon_years_since_landing_trend",
+  "title": "Years since the last crewed Moon landing",
+  "unit": "years",
+  "geography": "Worldwide",
+  "time_coverage": "1980-2024",
+  "source": {
+    "name": "Apollo program mission log",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/history/apollo-missions/",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; simple elapsed-time count from Apollo 17, the last crewed Moon landing, in December 1972.",
+  "points": [
+    {"label": "1980", "value": 8, "period": "1980"},
+    {"label": "2000", "value": 28, "period": "2000"},
+    {"label": "2024", "value": 52, "period": "2024"}
+  ]
+}

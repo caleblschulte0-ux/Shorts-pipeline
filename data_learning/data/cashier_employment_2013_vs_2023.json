@@ -1,0 +1,19 @@
+{
+  "key": "cashier_employment_2013_vs_2023",
+  "title": "US cashier employment, 2013 vs. 2023",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2013 vs 2023",
+  "source": {
+    "name": "Occupational Employment and Wage Statistics",
+    "publisher": "U.S. Bureau of Labor Statistics (BLS)",
+    "url": "https://www.bls.gov/oes/current/oes412011.htm",
+    "officiality": "official",
+    "access_date": "2026-09-04"
+  },
+  "notes": "Illustrative; BLS Occupational Employment and Wage Statistics estimates for cashiers, showing the decline as self-checkout and e-commerce spread.",
+  "points": [
+    {"label": "2013", "value": 3.5},
+    {"label": "2023", "value": 3.0}
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-vaping-overtook-smoking-teens",
+  "title": "Cigarettes Lost To A Rechargeable Battery",
+  "hook": "One habit replaced another",
+  "y_label": "Percent of US high schoolers, current use",
+  "duration": 13,
+  "source": "CDC National Youth Tobacco Survey (NYTS) and MMWR reports, current (past-30-day) use among US high school students, 2011-2024. E-cigarette use overtook cigarette smoking around 2014-2015 and peaked in 2019 before declining. Figures are approximate as published.",
+  "years": [2011, 2015, 2018, 2019, 2020, 2024],
+  "series": [
+    {
+      "name": "Cigarettes",
+      "color": "#a3a3a3",
+      "icon": null,
+      "values": [15.8, 9.3, 8.1, 5.8, 4.6, 1.4]
+    },
+    {
+      "name": "E-Cigarettes",
+      "color": "#2ecc71",
+      "icon": null,
+      "values": [1.5, 16.0, 20.8, 27.5, 19.6, 7.8]
+    }
+  ],
+  "hashtags": [
+    "vaping",
+    "ecigarettes",
+    "smoking",
+    "publichealth",
+    "cdc",
+    "teens",
+    "health",
+    "data",
+    "graph",
+    "nicotine",
+    "statistics",
+    "shorts"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}
