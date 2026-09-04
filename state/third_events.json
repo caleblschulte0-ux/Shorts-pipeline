@@ -1262,6 +1262,69 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-03"
+    },
+    "xqc-about-discuss-2026w36": {
+      "event_id": "xqc-about-discuss-2026w36",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "discuss",
+        "older",
+        "post"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/AbstruseBelovedHyenaCharlietheUnicorn-w88q1RZaLlwXT1p7",
+        "https://www.twitch.tv/xqc/clip/SneakyBlindingLadiesDancingBanana-qh45jnWRMJnXubYw"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-04"
+    },
+    "cinna-camera-group-2026w36": {
+      "event_id": "cinna-camera-group-2026w36",
+      "people": [
+        "cinna"
+      ],
+      "actions": [
+        "camera",
+        "group",
+        "people",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/cinna/clip/HonestRamshackleCoffeePeanutButterJellyTime-5IKYJzjVLbhPq0AI",
+        "https://www.twitch.tv/cinna/clip/EncouragingPluckyWebFreakinStinkin-qivg_rzhmkvQ6l8E"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-04"
+    },
+    "stableronaldo-chain-charact-2026w36": {
+      "event_id": "stableronaldo-chain-charact-2026w36",
+      "people": [
+        "stableronaldo"
+      ],
+      "actions": [
+        "chain",
+        "charact",
+        "fall",
+        "structure"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-04",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/stableronaldo/clip/EnthusiasticTastyTapirBrainSlug-U3x1sWrJFLtXGPId",
+        "https://www.twitch.tv/stableronaldo/clip/DelightfulPuzzledWoodpeckerDAESuppy-84AiDvojhEM72vRi"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-04"
     }
   }
 }
