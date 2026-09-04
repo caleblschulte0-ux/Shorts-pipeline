@@ -1,84 +1,16 @@
 [
   {
-    "topic": "Apple Ruled Markets For Decades. Nvidia Just Passed It.",
-    "title": "Apple Ruled Markets For Decades. Nvidia Just Passed It.",
+    "topic": "China Led For 70 Years. India Just Passed It.",
+    "title": "China Led For 70 Years. India Just Passed It.",
     "format": "graph_race",
-    "publish_at": "2026-09-03T17:30:00Z",
+    "publish_at": "2026-09-04T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/UCBI8bKyR-g",
+    "video_url": "https://youtube.com/shorts/-Sdsh0vCVxQ",
     "error": null,
-    "elapsed_seconds": 114.0,
-    "package_path": "state/trending_packages/20260903/01_graph-nvidia-passed-apple.json",
+    "elapsed_seconds": 119.5,
+    "package_path": "state/trending_packages/20260904/01_graph-india-passed-china-population.json",
     "source": "brain",
-    "video_path": "output/daily_20260903-171500_apple_ruled_markets_for_decades__nvidia_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 82
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "The Coffee Startup That Buried Starbucks In China",
-    "title": "The Coffee Startup That Buried Starbucks In China",
-    "format": "graph_race",
-    "publish_at": "2026-09-03T19:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "elapsed_seconds": 48.5,
-    "package_path": "state/trending_packages/20260903/02_graph-luckin-buried-starbucks.json",
-    "source": "brain",
-    "video_path": "output/daily_20260903-171654_the_coffee_startup_that_buried_starbucks.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.5 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "score": 0
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Cable Ruled TV For Decades. Streaming Just Ended It.",
-    "title": "Cable Ruled TV For Decades. Streaming Just Ended It.",
-    "format": "graph_race",
-    "publish_at": "2026-09-03T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/NTuKjFWe6bg",
-    "error": null,
-    "elapsed_seconds": 112.9,
-    "package_path": "state/trending_packages/20260903/03_graph-streaming-ended-cable.json",
-    "source": "brain",
-    "video_path": "output/daily_20260903-171742_cable_ruled_tv_for_decades__streaming_ju.mp4",
+    "video_path": "output/daily_20260904-170608_china_led_for_70_years__india_just_passe.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -102,17 +34,17 @@
     "channel": "default"
   },
   {
-    "topic": "TikTok's Ad Business Passed Twitter's In 2 Years",
-    "title": "TikTok's Ad Business Passed Twitter's In 2 Years",
+    "topic": "Cigarettes Lost To A Rechargeable Battery",
+    "title": "Cigarettes Lost To A Rechargeable Battery",
     "format": "graph_race",
-    "publish_at": "2026-09-03T20:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/yd3e0EMjwro",
-    "error": null,
-    "elapsed_seconds": 96.8,
-    "package_path": "state/trending_packages/20260903/04_graph-tiktok-passed-twitter-ads.json",
+    "publish_at": "2026-09-04T19:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good two-series race with a real crossover, wasted by a dead, glitchy first two seconds and a '#1' payoff pinned on a series that is itself collapsing.",
+    "elapsed_seconds": 116.5,
+    "package_path": "state/trending_packages/20260904/02_graph-vaping-overtook-smoking-teens.json",
     "source": "brain",
-    "video_path": "output/daily_20260903-171935_tiktok_s_ad_business_passed_twitter_s_in.mp4",
+    "video_path": "output/daily_20260904-170808_cigarettes_lost_to_a_rechargeable_batter.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -126,69 +58,30 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default"
-  },
-  {
-    "topic": "The Airline Bumped Me. I Knew The Federal Rule.",
-    "title": "The Airline Bumped Me. I Knew The Federal Rule.",
-    "format": "reddit",
-    "publish_at": "2026-09-04T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Two of the five story shots are unrelated stock (a paper boat, a breakfast tray) and the worst of them sits on the closing punchline, so the story's cause-and-effect is never actually shown.",
-    "elapsed_seconds": 176.6,
-    "package_path": "state/trending_packages/20260903/05_airline-bump-federal-compensation.json",
-    "source": "brain",
-    "video_path": "output/daily_20260903-172121_the_airline_bumped_me__i_knew_the_federa.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 51.267,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.6
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "loudness_lufs": -22.8
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Two of the five story shots are unrelated stock (a paper boat, a breakfast tray) and the worst of them sits on the closing punchline, so the story's cause-and-effect is never actually shown.",
-      "score": 65
+      "reason": "showrunner BLOCK: A genuinely good two-series race with a real crossover, wasted by a dead, glitchy first two seconds and a '#1' payoff pinned on a series that is itself collapsing.",
+      "score": 69
     },
     "blocked": true
   },
   {
-    "topic": "The Menu Said No Substitutions. I Had An Allergy.",
-    "title": "The Menu Said No Substitutions. I Had An Allergy.",
-    "format": "reddit",
-    "publish_at": "2026-09-04T13:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean split-screen craft and unbroken motion, but the shot illustrations drift off-topic \u2014 a road sign and a coffee shop stand in for a restaurant allergy confrontation.",
-    "elapsed_seconds": 168.8,
-    "package_path": "state/trending_packages/20260903/06_restaurant-allergy-no-substitutions.json",
+    "topic": "One Whale Boomed. Another Is Vanishing.",
+    "title": "One Whale Boomed. Another Is Vanishing.",
+    "format": "graph_race",
+    "publish_at": "2026-09-04T19:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/Nxjv6uqtouM",
+    "error": null,
+    "elapsed_seconds": 134.2,
+    "package_path": "state/trending_packages/20260904/03_graph-humpback-vs-right-whale.json",
     "source": "brain",
-    "video_path": "output/daily_20260903-172409_the_menu_said_no_substitutions__i_had_an.mp4",
+    "video_path": "output/daily_20260904-171004_one_whale_boomed__another_is_vanishing_.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 53.033,
+      "duration": 14.375,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,7 +92,75 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.9
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "Point-And-Shoot Cameras Didn't Survive The Phone",
+    "title": "Point-And-Shoot Cameras Didn't Survive The Phone",
+    "format": "graph_race",
+    "publish_at": "2026-09-04T20:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/-ESCPH34JZ8",
+    "error": null,
+    "elapsed_seconds": 116.2,
+    "package_path": "state/trending_packages/20260904/04_graph-interchangeable-lens-outlived-compact.json",
+    "source": "brain",
+    "video_path": "output/daily_20260904-171218_point_and_shoot_cameras_didn_t_survive_t.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.2
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 74
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Reused My Logo For Free. I Sent The Real Bill.",
+    "title": "She Reused My Logo For Free. I Sent The Real Bill.",
+    "format": "reddit",
+    "publish_at": "2026-09-05T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The last twelve seconds are a frozen, off-topic food-delivery screenshot and the story ends mid-sentence, so the payoff never lands.",
+    "elapsed_seconds": 196.5,
+    "package_path": "state/trending_packages/20260904/05_freelance-logo-reuse-invoice.json",
+    "source": "brain",
+    "video_path": "output/daily_20260904-171439_she_reused_my_logo_for_free__i_sent_the_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 56.9,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
     },
     "qa": {
       "ok": true,
@@ -208,39 +169,78 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Clean split-screen craft and unbroken motion, but the shot illustrations drift off-topic \u2014 a road sign and a coffee shop stand in for a restaurant allergy confrontation.",
-      "score": 70
+      "reason": "showrunner BLOCK: The last twelve seconds are a frozen, off-topic food-delivery screenshot and the story ends mid-sentence, so the payoff never lands.",
+      "score": 49
     },
     "blocked": true
   },
   {
-    "topic": "supervolcano",
+    "topic": "I Upsold My Own District Manager For Ten Minutes",
+    "title": "I Upsold My Own District Manager For Ten Minutes",
+    "format": "reddit",
+    "publish_at": "2026-09-05T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Clean, always-moving reddit-story build, but two of the six illustration shots (a charm necklace, an antique apothecary) have nothing to do with a coffee-shop upsell, and the ending holds the worst of them while the punchline caption never completes.",
+    "elapsed_seconds": 203.5,
+    "package_path": "state/trending_packages/20260904/06_upsell-script-district-manager.json",
+    "source": "brain",
+    "video_path": "output/daily_20260904-171732_i_upsold_my_own_district_manager_for_ten.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 53.667,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.3
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Clean, always-moving reddit-story build, but two of the six illustration shots (a charm necklace, an antique apothecary) have nothing to do with a coffee-shop upsell, and the ending holds the worst of them while the punchline caption never completes.",
+      "score": 74
+    },
+    "blocked": true
+  },
+  {
+    "topic": "zelda ocarina of time remake",
     "angle": null,
-    "publish_at": "2026-09-04T13:00:00Z",
+    "publish_at": "2026-09-05T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.8,
+    "elapsed_seconds": 0.7,
     "backfill": true
   },
   {
-    "topic": "keith mackenzie betty ebay truck sale",
+    "topic": "andrea yates",
     "angle": null,
-    "publish_at": "2026-09-04T14:30:00Z",
+    "publish_at": "2026-09-05T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 1.1,
+    "elapsed_seconds": 0.6,
     "backfill": true
   },
   {
-    "topic": "grand theft auto vi",
+    "topic": "acquittal",
     "angle": null,
-    "publish_at": "2026-09-04T16:00:00Z",
+    "publish_at": "2026-09-05T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.5,
+    "elapsed_seconds": 2.0,
     "backfill": true
   }
 ]
