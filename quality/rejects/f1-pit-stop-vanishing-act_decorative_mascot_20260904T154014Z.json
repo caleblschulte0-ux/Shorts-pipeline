@@ -1,0 +1,41 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260904T154014Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg2:start through seg4:end (f10, f13, f15, f17, f19) Data stands centered on the yellow bar in an identical arms-out/arms-up idle with no setup->action->payoff tied to 1.8s vs 0.27s or 20 vs 3; he is a sticker riding the bar, not performing.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "hook@0.3 through hook@2.2 (f00-f06): a house/home icon is stamped on the 'Current record' bar cap, the yellow 'Current record' label is overprinted directly on top of the mascot and that icon, and the giant burned-in caption ('A pit' / 'stop used' / 'to take' / 'a minute.') is laid across the middle of the 1950s bar so the chart reads as a slow build under obstructed text.",
+  "root_cause": "The row-icon slot resolved to an unrelated stock/emoji glyph instead of an F1-relevant mark, and the hook caption plus the row label are drawn in the same band as the bars with no collision offset, so three layers stack in one region.",
+  "repair_goal": "Replace the house icon with an F1/pit-relevant mark (or drop the icon entirely), move the hook caption out of the bar band to the lower third, and offset the 'Current record' row label clear of the mascot and bar cap so the first 2s opens on unobstructed motion."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}

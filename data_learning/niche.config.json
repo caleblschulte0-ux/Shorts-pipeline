@@ -25418,7 +25418,7 @@
       "slug": "chickenpox-vaccine-collapse",
       "title": "One Vaccine Nearly Wiped Out Chickenpox (3 Charts)",
       "hook": "One vaccine nearly ended a childhood disease.",
-      "closing": "One shot. One disease, almost erased.",
+      "closing": "That 9% gap is exactly how a nearly-erased disease comes back.",
       "question": "Did you get chickenpox, or just the vaccine? Tell me below.",
       "caption": "Before 1995, an estimated 4 million American kids caught chickenpox every year -- it was basically a rite of passage. One vaccine later, cases collapsed by over 95% and deaths dropped from over 100 a year to single digits. Did you get chickenpox, or just the vaccine? 👇",
       "hashtags": [
@@ -25445,7 +25445,12 @@
           "insight_type": "trend",
           "topic": "chickenpox cases per year",
           "role": "1 · THE RITE OF PASSAGE",
-          "say": "Before 1995, doctors estimated 4 million American kids caught chickenpox every single year. It was so common, parents used to plan pox parties to get it over with."
+          "say": "Before 1995, doctors estimated 4 million American kids caught chickenpox every single year. It was so common, parents used to plan pox parties to get it over with.",
+          "scene": {
+            "mechanic": "kid-spot-fade",
+            "concept": "three children stand at 1990/2000/2019, each scattered with red pox dots whose density falls from covered to almost clear",
+            "code": "top = RTOP + 40\nkid_w, kid_h = 240, 620\ncx_positions = [RX0+150, (RX0+RX1)//2, RX1-150]\nlabels_txt = ['1990', '2000', '2019']\nfor i in range(3):\n    img = subject_image('child portrait')\n    cx0 = cx_positions[i]\n    if img is not None:\n        paste(img, cx0-kid_w//2, top, kid_w, kid_h)\n    v = values[i]\n    frac = clamp(v / vmax)\n    ndots = int(4 + frac * 50)\n    stagger = clamp((reveal - i*0.15) / 0.55)\n    shown = int(ndots * stagger)\n    for j in range(shown):\n        seedv = i*97 + j*13 + 1\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        fy = (math.sin(seedv*78.233) * 12543.123) % 1.0\n        px = cx0 - kid_w//2 + fx*kid_w\n        py = top + fy*kid_h\n        d.ellipse([px-7, py-7, px+7, py+7], fill=rgba(WARN, 230))\n    text(f'{v:g}M', cx0, top+kid_h+30, size=42, color=TEXT, center=True)\n    text(labels_txt[i], cx0, top+kid_h+72, size=30, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25457,7 +25462,12 @@
           "use_baseline": false,
           "topic": "deaths before vs after the vaccine",
           "role": "2 · THE QUIET COST",
-          "say": "That wasn't harmless. Chickenpox killed around 105 Americans a year before the vaccine. Since routine vaccination began, that number has fallen to about 5 deaths a year."
+          "say": "That wasn't harmless. Chickenpox killed around 105 Americans a year before the vaccine. Since routine vaccination began, that number has fallen to about 5 deaths a year.",
+          "scene": {
+            "mechanic": "candle-wall-snuffout",
+            "concept": "a wall of lit candles (one per ~5 deaths a year) mostly snuffs out as the death rate collapses after the vaccine",
+            "code": "candle = subject_image('lit candle')\ntotal_before = values[0]\ntotal_after = values[1]\nper = 5.0\nn_before = max(1, int(round(total_before/per)))\nn_after = max(1, int(round(total_after/per)))\ncols, rows = 7, 3\ncw, ch = 130, 170\ngx0 = RX0 + 20\ngy0 = RTOP + 90\ncount_shown = min(n_before, cols*rows)\nsnuff_t = clamp((reveal-0.5)/0.45)\nstill_lit = n_before - int((n_before-n_after) * snuff_t)\nstill_lit = max(min(n_after, count_shown), still_lit)\nfor i in range(count_shown):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col*cw\n    y = gy0 + row*ch\n    lit = i < still_lit\n    if candle is not None:\n        paste(candle, x, y, cw-16, ch-16)\n    if not lit:\n        d.rectangle([x, y, x+cw-16, y+ch-16], fill=rgba((12,12,12), 190))\ngy_bottom = gy0 + rows*ch\ntext(f'{int(total_before)} deaths a year before the vaccine', (RX0+RX1)//2, gy0-40, size=32, color=WARN, center=True)\ntext(f'now: {int(total_after)} a year', (RX0+RX1)//2, gy_bottom+40, size=44, color=HIGHLIGHT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25468,7 +25478,12 @@
           "insight_type": "share",
           "topic": "how many kids are vaccinated",
           "role": "3 · WHY IT WORKED",
-          "say": "The fix was one shot, given twice. Today 91% of American toddlers are vaccinated by age 2, which is exactly why an entire childhood disease nearly disappeared."
+          "say": "The fix was one shot, given twice. Today 91% of American toddlers are vaccinated by age 2, which is exactly why an entire childhood disease nearly disappeared.",
+          "scene": {
+            "mechanic": "dose-shield-fill",
+            "concept": "a shield fills bottom-up with the vaccinated share, a thin unfilled sliver on top showing who is still unprotected",
+            "code": "shield = subject_image('shield')\nsx = (RX0+RX1)//2\nsw, sh = 380, 620\nsy = RTOP + 40\ndenom = values[0] + values[1]\nfrac = clamp(values[0]/denom) if denom else 0.0\nlit_frac = clamp(frac*reveal)\nif shield is not None:\n    paste(shield, sx-sw//2, sy, sw, sh)\nfill_h = int(sh*lit_frac)\nfy0 = sy + sh - fill_h\nd.rectangle([sx-sw//2+40, fy0, sx+sw//2-40, sy+sh-30], fill=rgba(HIGHLIGHT, 190))\npct = int(round(values[0]*clamp(reveal)))\ntext(f'{pct}%', sx, sy+sh//2, size=90, color=TEXT, center=True)\ntext('of toddlers vaccinated by age 2', sx, sy+sh+40, size=36, color=TEXT, center=True)\ntext(f'{int(values[1])}% still not', sx, sy+sh+86, size=30, color=WARN, center=True)\n"
+          }
         }
       ]
     },
@@ -25476,7 +25491,7 @@
       "slug": "bald-eagle-population-rebound",
       "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
       "hook": "America's own symbol almost went extinct.",
-      "closing": "From 417 pairs to over 71,000. Look up.",
+      "closing": "From 417 to over 71,000 -- the next one might already be circling above you.",
       "question": "Have you ever spotted a bald eagle in the wild? Tell me below.",
       "caption": "In 1963, the bald eagle -- America's national symbol -- was down to just 417 nesting pairs in the lower 48 states. After DDT was banned and the species got federal protection, that number climbed past 71,000 pairs by 2020. Have you ever spotted one? 👇",
       "hashtags": [
@@ -25503,7 +25518,12 @@
           "insight_type": "trend",
           "topic": "bald eagle nesting pairs over time",
           "role": "1 · THE ALL-TIME LOW",
-          "say": "In 1963, America's national symbol hit an all-time low of just 417 nesting pairs, wiped out by a pesticide called DDT. It was on the edge of disappearing."
+          "say": "In 1963, America's national symbol hit an all-time low of just 417 nesting pairs, wiped out by a pesticide called DDT. It was on the edge of disappearing.",
+          "scene": {
+            "mechanic": "eagle-sky-swarm",
+            "concept": "a nearly empty sky in 1963 fills with real bald eagle cutouts as the nesting-pair count climbs across three eras",
+            "code": "eagle = subject_image('bald eagle flying')\ntop = RTOP + 40\nband_h = 760\ncols_x = [RX0+160, (RX0+RX1)//2, RX1-160]\nlabels_txt = ['1963', '2006', '2020']\nfor i in range(3):\n    v = values[i]\n    frac = clamp(v/vmax)\n    ndots = max(1, int(1 + frac*36))\n    stagger = clamp((reveal - i*0.15)/0.55)\n    shown = int(ndots*stagger)\n    cx0 = cols_x[i]\n    for j in range(shown):\n        seedv = i*53 + j*29 + 1\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        fy = (math.sin(seedv*93.911) * 23421.63) % 1.0\n        ex = cx0 - 110 + fx*220\n        ey = top + 20 + fy*(band_h-140)\n        if eagle is not None:\n            paste(eagle, ex-24, ey-18, 48, 36)\n        else:\n            d.ellipse([ex-8, ey-8, ex+8, ey+8], fill=rgba(HIGHLIGHT, 220))\n    text(f'{int(v):,}', cx0, top+band_h-46, size=38, color=TEXT, center=True)\n    text(labels_txt[i], cx0, top+band_h-8, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25516,7 +25536,44 @@
           "use_baseline": true,
           "topic": "states with the most nesting pairs today",
           "role": "2 · WHERE THEY CAME BACK",
-          "say": "Once DDT was banned in 1972, the recovery took off. Minnesota alone now hosts about 9,800 nesting pairs, more than twenty times the entire country's 1963 total."
+          "say": "Once DDT was banned in 1972, the recovery took off. Minnesota alone now hosts about 9,800 nesting pairs, more than twenty times the entire country's 1963 total.",
+          "scene": {
+            "title": true,
+            "elements": [
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bald eagle",
+                "data": {
+                  "value_from": "item:0"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bald eagle",
+                "data": {
+                  "value_from": "item:1"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bald eagle",
+                "data": {
+                  "value_from": "item:2"
+                }
+              },
+              {
+                "type": "object",
+                "region": "ground-row",
+                "subject": "bald eagle",
+                "data": {
+                  "value_from": "item:3"
+                }
+              }
+            ]
+          }
         },
         {
           "source": "offline",
@@ -25528,7 +25585,12 @@
           "use_baseline": false,
           "topic": "1963 vs 2020, side by side",
           "role": "3 · THE FULL COMEBACK",
-          "say": "Put it side by side: 417 pairs in 1963, over 71,000 by 2020. That's one of the biggest wildlife comebacks in American history, and it's still growing."
+          "say": "Put it side by side: 417 pairs in 1963, over 71,000 by 2020. That's one of the biggest wildlife comebacks in American history, and it's still growing.",
+          "scene": {
+            "mechanic": "empty-sky-to-flock",
+            "concept": "a lone eagle on the left (1963) against a sky that fills with a flock of real eagle cutouts on the right (2020)",
+            "code": "eagle = subject_image('bald eagle flying')\nmid = (RX0+RX1)//2\ntop = RTOP + 60\nbot = RTOP + 900\nleft_cx = (RX0+mid-20)//2\nright_x0, right_x1 = mid+20, RX1\nif eagle is not None:\n    ew, eh = 170, 120\n    paste(eagle, left_cx-ew//2, (top+bot)//2-eh//2, ew, eh)\ntext(f'{int(values[0])}', left_cx, bot+30, size=48, color=WARN, center=True)\ntext('1963', left_cx, bot+74, size=30, color=TEXT, center=True)\nndots = 42\nshown = int(ndots*clamp(reveal))\nfor j in range(shown):\n    seedv = j*31 + 1\n    fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n    fy = (math.sin(seedv*78.233) * 19412.5) % 1.0\n    ex = right_x0 + fx*(right_x1-right_x0)\n    ey = top + fy*(bot-top)\n    if eagle is not None:\n        paste(eagle, ex-28, ey-20, 56, 40)\ntext(f'{int(values[1]):,}', (right_x0+right_x1)//2, bot+30, size=48, color=HIGHLIGHT, center=True)\ntext('2020', (right_x0+right_x1)//2, bot+74, size=30, color=TEXT, center=True)\nd.line([mid, top-20, mid, bot+20], fill=rgba(TEXT, 120), width=3)\n"
+          }
         }
       ]
     },
@@ -25563,7 +25625,12 @@
           "insight_type": "trend",
           "topic": "self-checkout adoption in grocery stores",
           "role": "1 · THE TAKEOVER",
-          "say": "In 2000, only 6% of big grocery chains had self-checkout lanes. By 2023, that number was over 92%, almost every major chain now pushes you to scan it yourself."
+          "say": "In 2000, only 6% of big grocery chains had self-checkout lanes. By 2023, that number was over 92%, almost every major chain now pushes you to scan it yourself.",
+          "scene": {
+            "mechanic": "kiosk-takeover-row",
+            "concept": "three lanes of checkout icons per era flip from cashier photos to self-checkout kiosk photos as the adoption share climbs",
+            "code": "kiosk = subject_image('self-checkout kiosk')\ncashier = subject_image('cashier')\nlabels_txt = ['2000', '2012', '2023']\ncols_x = [RX0+170, (RX0+RX1)//2, RX1-170]\nlanes = 8\nlane_w = 34\nlane_h = 620\ntop = RTOP + 70\nfor i in range(3):\n    v = values[i]\n    frac = clamp(v/100.0)\n    self_count = int(round(lanes*frac))\n    stagger = clamp((reveal - i*0.1)/0.6)\n    shown = int(lanes*stagger)\n    cx0 = cols_x[i]\n    x0 = cx0 - (lanes*lane_w)//2\n    for j in range(shown):\n        x = x0 + j*lane_w\n        is_self = j < self_count\n        img = kiosk if is_self else cashier\n        if img is not None:\n            paste(img, x, top, lane_w-4, lane_h)\n        else:\n            col = HIGHLIGHT if is_self else WARN\n            d.rectangle([x, top, x+lane_w-4, top+lane_h], fill=rgba(col, 200))\n    text(f'{int(v)}%', cx0, top+lane_h+34, size=40, color=HIGHLIGHT, center=True)\n    text(labels_txt[i], cx0, top+lane_h+76, size=28, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25575,7 +25642,12 @@
           "use_baseline": false,
           "topic": "US cashier employment, 2013 vs 2023",
           "role": "2 · THE JOB THAT SHRANK",
-          "say": "That swap has a cost. US cashier employment fell from about 3.5 million workers in 2013 to roughly 3 million by 2023, even as the population kept growing."
+          "say": "That swap has a cost. US cashier employment fell from about 3.5 million workers in 2013 to roughly 3 million by 2023, even as the population kept growing.",
+          "scene": {
+            "mechanic": "shrinking-cashier-crowd",
+            "concept": "a full grid of real cashier photos thins out as US cashier employment falls from 2013 to 2023",
+            "code": "cashier = subject_image('cashier')\ncols, rows = 8, 4\ntotal_cells = cols*rows\nv0, v1 = values[0], values[1]\nfrac_after = v1/v0 if v0 else 1.0\ngx0 = RX0 + 40\ngy0 = RTOP + 60\ncw, ch = 115, 190\nshrink_t = clamp((reveal-0.35)/0.55)\nstill = total_cells - int(total_cells*(1-frac_after)*shrink_t)\nfor i in range(total_cells):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col*cw\n    y = gy0 + row*ch\n    active = i < still\n    if cashier is not None:\n        paste(cashier, x, y, cw-14, ch-16)\n    if not active:\n        d.rectangle([x, y, x+cw-14, y+ch-16], fill=rgba((15,15,15), 205))\ngy_bottom = gy0 + rows*ch\ntext(f'{v0:.1f}M cashiers in 2013', (RX0+RX1)//2, gy0-30, size=32, color=TEXT, center=True)\ntext(f'{v1:.1f}M by 2023', (RX0+RX1)//2, gy_bottom+40, size=42, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25587,7 +25659,12 @@
           "use_baseline": false,
           "topic": "theft rate: staffed vs self-checkout",
           "role": "3 · THE TWIST",
-          "say": "Here's the catch: retail loss-prevention data shows self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% at a staffed register. The savings aren't free."
+          "say": "Here's the catch: retail loss-prevention data shows self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% at a staffed register. The savings aren't free.",
+          "scene": {
+            "mechanic": "leaking-register-drawer",
+            "concept": "two open cash registers leak coins at a rate proportional to their loss percentage, self-checkout leaking far more",
+            "code": "register = subject_image('cash register')\ntop = RTOP + 60\nlx = RX0 + 250\nrx = RX1 - 250\nrw, rh = 220, 200\nif register is not None:\n    paste(register, lx-rw//2, top, rw, rh)\n    paste(register, rx-rw//2, top, rw, rh)\nlabels_txt = ['Staffed', 'Self-checkout']\nvals = [values[0], values[1]]\ncenters = [lx, rx]\ndrip_bot = top + rh + 260\nfor i in range(2):\n    v = vals[i]\n    cx0 = centers[i]\n    nparticles = max(2, int(v*6))\n    shown = int(nparticles*clamp(reveal))\n    for j in range(shown):\n        seedv = i*71 + j*17 + 1\n        tfrac = ((seedv*9301+49297) % 233280)/233280.0\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        px = cx0 - 40 + fx*80\n        py = top + rh + tfrac*260\n        d.ellipse([px-6, py-6, px+6, py+6], fill=rgba(WARN, 230))\n    text(f'{v:.1f}%', cx0, drip_bot+30, size=42, color=WARN, center=True)\n    text(labels_txt[i], cx0, drip_bot+74, size=28, color=TEXT, center=True)\n"
+          }
         }
       ]
     },
@@ -25622,7 +25699,12 @@
           "insight_type": "trend",
           "topic": "NASA's share of the federal budget",
           "role": "1 · WHY WE WENT",
-          "say": "In 1966, at the height of the Space Race, NASA got 4.4% of the entire federal budget. That kind of money is exactly what put 12 men on the Moon."
+          "say": "In 1966, at the height of the Space Race, NASA got 4.4% of the entire federal budget. That kind of money is exactly what put 12 men on the Moon.",
+          "scene": {
+            "mechanic": "budget-rocket-fuel-gauge",
+            "concept": "three fuel gauges under a rocket drain from full to almost empty as NASA's budget share collapses across three eras",
+            "code": "rocket = subject_image('rocket launching')\ncols_x = [RX0+170, (RX0+RX1)//2, RX1-170]\nlabels_txt = ['1966', '1972', '2024']\ntop = RTOP + 40\ngauge_h = 640\ngauge_w = 60\nfor i in range(3):\n    v = values[i]\n    frac = clamp(v/vmax)\n    cx0 = cols_x[i]\n    gx0 = cx0 - gauge_w//2\n    gy1 = top + gauge_h\n    fill_h = int(gauge_h*frac*clamp(reveal))\n    gy0 = gy1 - fill_h\n    d.rounded_rectangle([gx0, top, gx0+gauge_w, gy1], 14, outline=rgba(TEXT, 200), width=3)\n    d.rounded_rectangle([gx0, gy0, gx0+gauge_w, gy1], 14, fill=rgba(HIGHLIGHT, 220))\n    rw, rh = 120, 150\n    if rocket is not None:\n        paste(rocket, cx0-rw//2, gy0-rh+24, rw, rh)\n    text(f'{v}%', cx0, gy1+30, size=36, color=TEXT, center=True)\n    text(labels_txt[i], cx0, gy1+70, size=26, color=TEXT, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25634,7 +25716,12 @@
           "use_baseline": false,
           "topic": "Moon landings, Apollo era vs since",
           "role": "2 · THEN IT STOPPED",
-          "say": "Between 1969 and 1972, that funding bought 6 crewed Moon landings. Since 1972, zero. Not one human has left low Earth orbit in over 50 years."
+          "say": "Between 1969 and 1972, that funding bought 6 crewed Moon landings. Since 1972, zero. Not one human has left low Earth orbit in over 50 years.",
+          "scene": {
+            "mechanic": "footprint-trail-stops",
+            "concept": "six astronaut-on-the-moon photos land in a row for the Apollo era, then a bare stretch of lunar ground for the zero landings since",
+            "code": "astro = subject_image('astronaut on the moon')\ntop = RTOP + 40\ncols = 6\ncw = 150\nn1 = int(values[0])\nn2 = int(values[1])\ngx0 = RX0 + 10\nshown1 = int(cols*clamp(reveal/0.7))\nfor i in range(min(n1, cols)):\n    if i >= shown1:\n        break\n    x = gx0 + i*cw\n    if astro is not None:\n        paste(astro, x, top, cw-16, 210)\ntext(f'{n1} landings, 1969-1972', (RX0+RX1)//2, top+230, size=34, color=HIGHLIGHT, center=True)\nrow2_y = top + 320\nd.line([RX0+20, row2_y+90, RX1-20, row2_y+90], fill=rgba(TEXT, 140), width=4)\ntext('1973 - 2024', (RX0+RX1)//2, row2_y+20, size=32, color=TEXT, center=True)\ntext(f'{n2} landings', (RX0+RX1)//2, row2_y+120, size=50, color=WARN, center=True)\n"
+          }
         },
         {
           "source": "offline",
@@ -25645,7 +25732,12 @@
           "insight_type": "trend",
           "topic": "years since the last Moon landing",
           "role": "3 · THE GAP KEEPS GROWING",
-          "say": "NASA's budget never went back to Apollo levels, today it's under half a percent. So the gap just keeps climbing, 52 years and counting since anyone stood on the Moon."
+          "say": "NASA's budget never went back to Apollo levels, today it's under half a percent. So the gap just keeps climbing, 52 years and counting since anyone stood on the Moon.",
+          "scene": {
+            "mechanic": "growing-gap-clock",
+            "concept": "a ring sweeps around the Moon as an elapsed-years counter climbs, landing on the current gap since Apollo 17",
+            "code": "moon = subject_image('the moon')\ncx = (RX0+RX1)//2\ncy = RTOP + 340\nr = 240\nif moon is not None:\n    paste(moon, cx-r, cy-r, r*2, r*2)\nvfinal = values[-1]\nsweep = clamp(reveal) * 360\nd.arc([cx-r-36, cy-r-36, cx+r+36, cy+r+36], start=-90, end=-90+sweep, fill=rgba(WARN, 230), width=16)\ncur_years = int(vfinal*clamp(reveal))\ntext(f'{cur_years}', cx, cy, size=130, color=TEXT, center=True)\ntext('years since anyone walked on the Moon', cx, cy+r+70, size=32, color=TEXT, center=True)\nlabels_txt = ['1980', '2000', '2024']\nlx0 = RX0 + 40\nly0 = cy+r+120\nfor i in range(3):\n    text(f'{labels_txt[i]}: {int(values[i])}y', lx0 + i*300, ly0, size=26, color=TEXT, center=False)\n"
+          }
         }
       ]
     }

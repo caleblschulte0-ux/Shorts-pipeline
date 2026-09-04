@@ -127,12 +127,6 @@
     "starred": true
   },
   {
-    "mechanic": "hitchhike-highway",
-    "concept": "one subject hops a short trail down a highway on its own while a second rides a vehicle nearly the full length of the road - natural spread vs human-aided jump",
-    "topic": "Lanternfly natural vs human-aided spread rate",
-    "starred": false
-  },
-  {
     "mechanic": "house-vs-school-growth",
     "concept": "two real buildings grow side by side, each scaled directly to its own share - the bigger building visibly overtaking the smaller one",
     "topic": "Homeschool vs private school share",
@@ -264,14 +258,6 @@
     "concept": "a phone checkout screen sits at center while a swarm of tiny receipt icons floods around it, sparse for 2019's 16.8 million loans and dense enough to bury the phone for 2021's 180 million",
     "code": "phone = subject_image('smartphone checkout screen photo')\nreceipt = subject_image('small receipt icon')\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2\npw, ph = 220, 400\nif phone is not None:\n    paste(phone, cx - pw // 2, cy - ph // 2, pw, ph)\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\ndensity = lerp(v0, v1, clamp(reveal)) if n > 1 else v0\ncount = max(4, int(clamp(density / max(v0, v1)) * 90))\nfor k in range(count):\n    ang = (k * 137.5) % 360\n    rad = 160 + (k % 9) * 30\n    x = cx + int(rad * math.cos(math.radians(ang)))\n    y = cy + int(rad * math.sin(math.radians(ang)))\n    if RX0 < x < RX1 and RTOP < y < RBOT:\n        if receipt is not None:\n            paste(receipt, x - 14, y - 14, 28, 28)\n        else:\n            d.ellipse([x - 8, y - 8, x + 8, y + 8], fill=rgba(WARN, 180))\ntext(labels[0], RX0 + 30, RTOP + 60, size=22, color=TEXT)\ntext(f'{v0:.1f}M loans (2019)', RX0 + 30, RTOP + 92, size=26, color=TEXT)\ntext(labels[1] if n > 1 else '2021', RX0 + 30, RBOT - 90, size=22, color=WARN)\ntext(f'{v1:.0f}M loans (2021)', RX0 + 30, RBOT - 58, size=32, color=WARN)\n",
     "topic": "BNPL loan count 2019 vs 2021",
-    "starred": false
-  },
-  {
-    "sig": "vault-tonnage-columns-climb",
-    "mechanic": "vault-tonnage-columns-climb",
-    "concept": "a bank vault door glows in the corner while a row of gold-bar columns climbs year by year across the frame, the tallest column (the year of peak buying) ringed in gold",
-    "code": "bar = subject_image('gold bar')\ndoor = subject_image('bank vault door')\nbase_y = RBOT - 90\ncols = n\ncw = (RX1 - RX0) / cols\npeak_i = values.index(max(values))\nif door is not None:\n    dw = 220\n    paste(door, RX1 - dw - 10, RTOP + 30, dw, dw)\nfor i in range(cols):\n    v = values[i]\n    frac = clamp(v / vmax)\n    local_reveal = clamp(reveal * cols - i)\n    h = max(1, int(frac * 620 * local_reveal))\n    x0 = RX0 + i * cw\n    cxc = x0 + cw / 2\n    if bar is not None:\n        paste(bar, int(x0 + 6), base_y - h, int(cw - 12), h)\n    else:\n        d.rounded_rectangle([x0 + 6, base_y - h, x0 + cw - 6, base_y], radius=8, fill=rgba(HIGHLIGHT, 220))\n    if i == peak_i:\n        d.rounded_rectangle([x0, base_y - h - 10, x0 + cw, base_y + 6], radius=10, outline=rgba(ACCENT, 230), width=6)\n    text(labels[i], cxc, base_y + 30, size=24, color=TEXT, center=True)\n    text(str(int(v)) + 't', cxc, base_y - h - 26, size=26, color=ACCENT if i == peak_i else TEXT, center=True)\ntext('central bank net gold purchases (tonnes/yr)', RX0 + 20, RTOP + 50, size=30, color=TEXT)\n",
-    "topic": "central bank gold purchases by year",
     "starred": false
   },
   {
@@ -425,13 +411,6 @@
     "code": "SEE data_learning/niche.config.json:third-interstellar-visitor:interstellar_objects_timeline"
   },
   {
-    "mechanic": "comet-speedway-race",
-    "starred": false,
-    "topic": "third-interstellar-visitor",
-    "concept": "three real comet cutouts race down parallel lanes, each stopping at a finish position proportional to its peak km/h",
-    "code": "SEE data_learning/niche.config.json:third-interstellar-visitor:interstellar_object_speeds"
-  },
-  {
     "mechanic": "bat-colony-collapse-columns",
     "starred": false,
     "topic": "bat-fungus-collapse",
@@ -444,5 +423,26 @@
     "topic": "unclaimed-money-states-hold",
     "concept": "a bank vault fills to the brim with cash for the total held, then only a thin trickle drains out the door for what actually got returned",
     "code": "SEE data_learning/niche.config.json:unclaimed-money-states-hold:unclaimed_property_returned_vs_total"
+  },
+  {
+    "mechanic": "eagle-sky-swarm",
+    "concept": "a nearly empty sky fills with real bald-eagle cutouts as the nesting-pair count climbs across three eras (417 -> 9,789 -> 71,467)",
+    "code": "eagle = subject_image('bald eagle flying')\ntop = RTOP + 40\nband_h = 760\ncols_x = [RX0+160, (RX0+RX1)//2, RX1-160]\nlabels_txt = ['1963', '2006', '2020']\nfor i in range(3):\n    v = values[i]\n    frac = clamp(v/vmax)\n    ndots = max(1, int(1 + frac*36))\n    stagger = clamp((reveal - i*0.15)/0.55)\n    shown = int(ndots*stagger)\n    cx0 = cols_x[i]\n    for j in range(shown):\n        seedv = i*53 + j*29 + 1\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        fy = (math.sin(seedv*93.911) * 23421.63) % 1.0\n        ex = cx0 - 110 + fx*220\n        ey = top + 20 + fy*(band_h-140)\n        if eagle is not None:\n            paste(eagle, ex-24, ey-18, 48, 36)\n        else:\n            d.ellipse([ex-8, ey-8, ex+8, ey+8], fill=rgba(HIGHLIGHT, 220))\n    text(f'{int(v):,}', cx0, top+band_h-46, size=38, color=TEXT, center=True)\n    text(labels_txt[i], cx0, top+band_h-8, size=28, color=TEXT, center=True)\n",
+    "topic": "bald-eagle-population-rebound",
+    "starred": true
+  },
+  {
+    "mechanic": "candle-wall-snuffout",
+    "concept": "a wall of lit candles, one per ~5 deaths a year, mostly snuffs out as the death rate collapses after a vaccine",
+    "code": "candle = subject_image('lit candle')\ntotal_before = values[0]\ntotal_after = values[1]\nper = 5.0\nn_before = max(1, int(round(total_before/per)))\nn_after = max(1, int(round(total_after/per)))\ncols, rows = 7, 3\ncw, ch = 130, 170\ngx0 = RX0 + 20\ngy0 = RTOP + 90\ncount_shown = min(n_before, cols*rows)\nsnuff_t = clamp((reveal-0.5)/0.45)\nstill_lit = n_before - int((n_before-n_after) * snuff_t)\nstill_lit = max(min(n_after, count_shown), still_lit)\nfor i in range(count_shown):\n    col = i % cols\n    row = i // cols\n    x = gx0 + col*cw\n    y = gy0 + row*ch\n    lit = i < still_lit\n    if candle is not None:\n        paste(candle, x, y, cw-16, ch-16)\n    if not lit:\n        d.rectangle([x, y, x+cw-16, y+ch-16], fill=rgba((12,12,12), 190))\ngy_bottom = gy0 + rows*ch\ntext(f'{int(total_before)} deaths a year before the vaccine', (RX0+RX1)//2, gy0-40, size=32, color=WARN, center=True)\ntext(f'now: {int(total_after)} a year', (RX0+RX1)//2, gy_bottom+40, size=44, color=HIGHLIGHT, center=True)\n",
+    "topic": "chickenpox-vaccine-collapse",
+    "starred": true
+  },
+  {
+    "mechanic": "growing-gap-clock",
+    "concept": "a ring sweeps around a real photo of the subject as an elapsed-time counter climbs, landing on the current gap since a milestone event",
+    "code": "moon = subject_image('the moon')\ncx = (RX0+RX1)//2\ncy = RTOP + 340\nr = 240\nif moon is not None:\n    paste(moon, cx-r, cy-r, r*2, r*2)\nvfinal = values[-1]\nsweep = clamp(reveal) * 360\nd.arc([cx-r-36, cy-r-36, cx+r+36, cy+r+36], start=-90, end=-90+sweep, fill=rgba(WARN, 230), width=16)\ncur_years = int(vfinal*clamp(reveal))\ntext(f'{cur_years}', cx, cy, size=130, color=TEXT, center=True)\ntext('years since anyone walked on the Moon', cx, cy+r+70, size=32, color=TEXT, center=True)\nlabels_txt = ['1980', '2000', '2024']\nlx0 = RX0 + 40\nly0 = cy+r+120\nfor i in range(3):\n    text(f'{labels_txt[i]}: {int(values[i])}y', lx0 + i*300, ly0, size=26, color=TEXT, center=False)\n",
+    "topic": "fifty-years-since-moon-landing",
+    "starred": false
   }
 ]

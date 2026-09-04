@@ -3826,6 +3826,186 @@
       "franchise": "3 Charts",
       "notes": "backfilled ledger entry; a twin-rate curve ride, age-based odds columns, then an embryo-dish drain showing IVF's twin share actually falling -- inverts the assumed cause (older mothers) mid-story.",
       "timeline": []
+    },
+    {
+      "slug": "chickenpox-vaccine-collapse",
+      "directed_at": "2026-09-04",
+      "video_id": null,
+      "topic_category": "body",
+      "hook_type": "shock_stat",
+      "hook_text": "One vaccine nearly ended a childhood disease.",
+      "words_first_10s": 24,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:kid-spot-fade",
+        "mechanic:candle-wall-snuffout",
+        "mechanic:dose-shield-fill"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Vaccine Wins",
+      "notes": "No prior ledger entries for this slug. Bet: make the abstract case-count collapse visceral by showing it ON a child (spot density thinning across 3 eras), then reframe the same collapse as lives (a candle wall mostly snuffed out) before landing on the mechanism (a shield filling to 91%). Closing rewritten from a flat recap into a forward-looking risk (the unvaccinated 9% is how it could return) per the escalate/consequence ending rule.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'One vaccine nearly ended a childhood disease' over a child's pox-spot dot buildup"
+        },
+        {
+          "t": 9,
+          "event": "visual_swap",
+          "detail": "kid-spot-fade: 1990/2000/2019 children, spot density thins 4M -> 0.8M -> 0.15M cases"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "candle-wall-snuffout: 105 lit candles collapse to 5 as vaccine-era deaths fall"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "dose-shield-fill: a shield fills to 91% vaccinated, 9% unfilled sliver on top"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "closing: the 9% gap is exactly how the disease could come back"
+        }
+      ]
+    },
+    {
+      "slug": "bald-eagle-population-rebound",
+      "directed_at": "2026-09-04",
+      "video_id": null,
+      "topic_category": "nature",
+      "hook_type": "shock_stat",
+      "hook_text": "America's own symbol almost went extinct.",
+      "words_first_10s": 20,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:eagle-sky-swarm",
+        "scene:object-rows",
+        "mechanic:empty-sky-to-flock"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Wildlife Comebacks",
+      "notes": "No prior ledger entries. Bet: use the same real-eagle cutout across all three segments but change the MECHANIC each time (a sky filling with eagles over 3 eras, then a real-photo rank row of states, then a stark split-screen 1963-vs-2020 flock build) so the subject stays recognizable while the depiction still varies per the house rule. Closing rewritten from a bare number recap to a proximity-consequence line ('might already be circling above you').",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'America's own symbol almost went extinct' over a near-empty 1963 sky"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "eagle-sky-swarm: sky fills with eagle cutouts across 1963/2006/2020"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "real-photo ground-row ranking: Minnesota's 9,800 pairs dwarf the 1963 national total"
+        },
+        {
+          "t": 25,
+          "event": "visual_swap",
+          "detail": "empty-sky-to-flock: one eagle (1963) vs a flock of 71,467 building on the right (2020)"
+        },
+        {
+          "t": 32,
+          "event": "payoff",
+          "detail": "closing: the next eagle might already be circling above you"
+        }
+      ]
+    },
+    {
+      "slug": "self-checkout-cashier-jobs",
+      "directed_at": "2026-09-04",
+      "video_id": null,
+      "topic_category": "economy",
+      "hook_type": "stake",
+      "hook_text": "That kiosk replaced somebody's job.",
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:kiosk-takeover-row",
+        "mechanic:shrinking-cashier-crowd",
+        "mechanic:leaking-register-drawer"
+      ],
+      "ending_type": "inversion",
+      "franchise": "Quiet Automation",
+      "notes": "No prior ledger entries. Bet: chain the same visual grammar (rows of real photo icons) across a takeover, a shrinking crowd, and a leaking register so each segment builds on the last while still using a distinct mechanic and image (kiosk/cashier lanes, cashier crowd grid, register + coin leak). Ends on the twist (self-checkout's theft-rate cost) rather than a recap, per doctrine.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'That kiosk replaced somebody's job' over a self-checkout lane replacing a cashier lane"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "kiosk-takeover-row: self-checkout lanes overtake cashier lanes, 6% -> 92%, 2000/2012/2023"
+        },
+        {
+          "t": 17,
+          "event": "visual_swap",
+          "detail": "shrinking-cashier-crowd: an 8x4 grid of cashier photos thins as employment falls 3.5M -> 3.0M"
+        },
+        {
+          "t": 26,
+          "event": "visual_swap",
+          "detail": "leaking-register-drawer: coins leak from two registers, self-checkout's stream far heavier (4.0% vs 1.6%)"
+        },
+        {
+          "t": 33,
+          "event": "payoff",
+          "detail": "closing: the line moved, so did the job"
+        }
+      ]
+    },
+    {
+      "slug": "fifty-years-since-moon-landing",
+      "directed_at": "2026-09-04",
+      "video_id": null,
+      "topic_category": "space",
+      "hook_type": "question",
+      "hook_text": "We stopped going back. Here's why.",
+      "words_first_10s": 19,
+      "scene_changes_before_5s": 3,
+      "depictions": [
+        "mechanic:budget-rocket-fuel-gauge",
+        "mechanic:footprint-trail-stops",
+        "mechanic:growing-gap-clock"
+      ],
+      "ending_type": "consequence",
+      "franchise": "Space Race Aftermath",
+      "notes": "No prior ledger entries. Bet: trace one cause-and-effect chain across three distinct mechanics -- a draining rocket fuel gauge (budget share), a row of moon landings that stops cold (6 vs 0), then a sweeping ring clock counting the growing gap -- rather than three disconnected charts, so the story reads as a single unbroken argument. Closing ('the last footprint is still up there') lands on the eerie permanence of the Apollo site rather than restating the years-since number.",
+      "timeline": [
+        {
+          "t": 0,
+          "event": "hook",
+          "detail": "'We stopped going back. Here's why' over a rocket launch"
+        },
+        {
+          "t": 8,
+          "event": "visual_swap",
+          "detail": "budget-rocket-fuel-gauge: NASA's budget share drains from 4.4% (1966) to 0.4% (2024)"
+        },
+        {
+          "t": 16,
+          "event": "visual_swap",
+          "detail": "footprint-trail-stops: 6 Apollo landings land in a row, then nothing since 1972"
+        },
+        {
+          "t": 24,
+          "event": "visual_swap",
+          "detail": "growing-gap-clock: a ring sweeps around the Moon as the years-since counter climbs to 52"
+        },
+        {
+          "t": 31,
+          "event": "payoff",
+          "detail": "closing: the last footprint is still up there"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,32 @@
+{
+ "slug": "great-wealth-transfer-2048",
+ "ts": "20260904T154014Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data has no setup->action->payoff bit: he perches on whatever shape is nearest and slides \u2014 atop the 105 bubble at seg1:start, leaning on the Millennials bar at seg2:start, standing on the purple bar at seg3:start, then drifting down it unchanged across seg4:start/mid/end.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "broken_typography_overlap",
+  "visible_evidence": "At seg3:start, seg3:mid and again at seg4:start/mid/end the two bar captions are stamped on the same baseline and render as unreadable mush \u2014 'Wealthiest 2% of hou' and 'The other 98% of households' collide into 'ofThe othe 98%' \u2014 they also bleed past the left card edge and sit on top of the source credit line; the kicker 'WEALTHIEST 2% OF HOUSEHOLDS VS THE OTHER 98%' is clipped by the right frame edge in the same frames.",
+  "root_cause": "Both category labels are placed at a fixed centered anchor per bar without measuring text width against the bar column, so long strings overrun their column and overlap each other and the footer; the kicker uses the same unconstrained width and overflows the safe area.",
+  "repair_goal": "Lay out the two comparison labels inside their own bar columns with width-aware wrapping/shrink-to-fit above the source line so 'Wealthiest 2%' and 'The other 98%' are separately legible, keep all text inside the card's safe margins, and put the $62T value on the pink bar as well as the purple so the 'same as the other 98% combined' equality reads visually."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "bubbles",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "race_sprint"
+  }
+ ]
+}
