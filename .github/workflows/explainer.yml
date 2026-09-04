@@ -729,6 +729,24 @@ jobs:
           [ $RC -ne 0 ] && echo "::warning title=exemplar-harvest-failed::rc=$RC"
           exit 0
 
+      - name: What actually retains (attribution report)
+        if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
+        continue-on-error: true
+        run: |
+          # The channel recorded its creative decisions for 92 videos and its
+          # outcomes separately, and the two were never joined — so "what
+          # works?" had no answer and the retro loop reasoned from view counts
+          # alone. This prints retention BY CHOICE (hook type, ending, cuts in
+          # the first 5s, chart structure) into the run summary, with thin
+          # groups labelled as anecdotes rather than findings.
+          python3 scripts/what_works.py --min-views 25 | tee /tmp/ww.txt
+          {
+            echo "### what actually retains"
+            echo '```'
+            cat /tmp/ww.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Persist posted log + analytics
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
         run: |

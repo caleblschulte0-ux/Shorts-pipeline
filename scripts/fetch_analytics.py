@@ -292,7 +292,17 @@ def _entries(log: dict) -> list[dict]:
                         "narrative_score": e.get("narrative_score"),
                         "revision_count": e.get("revision_count"),
                         "used_vod_expansion": e.get("used_vod_expansion"),
-                        "n_beats": e.get("n_beats")})
+                        "n_beats": e.get("n_beats"),
+                        # Explainer writes these at upload time
+                        # (post_stories._creative_facts) so retention can be
+                        # attributed to a CHOICE rather than floating free.
+                        "duration_s": e.get("duration_s"),
+                        "topic_category": e.get("topic_category"),
+                        "ending_type": e.get("ending_type"),
+                        "depictions": e.get("depictions"),
+                        "words_first_10s": e.get("words_first_10s"),
+                        "scene_changes_before_5s":
+                            e.get("scene_changes_before_5s")})
     else:                                         # trending channel
         for e in posted:
             out.append({"url": e.get("video_url"),
@@ -484,6 +494,12 @@ def build_snapshot(posted_log: Path, channel: str = "",
             "revision_count": entry.get("revision_count"),
             "used_vod_expansion": entry.get("used_vod_expansion"),
             "n_beats": entry.get("n_beats"),
+            "duration_s": entry.get("duration_s"),
+            "topic_category": entry.get("topic_category"),
+            "ending_type": entry.get("ending_type"),
+            "depictions": entry.get("depictions"),
+            "words_first_10s": entry.get("words_first_10s"),
+            "scene_changes_before_5s": entry.get("scene_changes_before_5s"),
             "title": s["title"],
             "published_at": s["published_at"],
             "age_hours": round(age, 1),

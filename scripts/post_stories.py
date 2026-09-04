@@ -146,6 +146,69 @@ def _description(cfg: dict) -> str:
     return (_human_body(cfg) + _desc_suffix(cfg))[:5000]
 
 
+def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dict:
+    """What this video WAS, recorded beside the fact that it posted.
+
+    The channel has been writing its creative decisions into
+    state/video_ledger.json for 92 videos — hook_type, words_first_10s,
+    scene_changes_before_5s, depictions, ending_type — and every one of those
+    rows has `video_id: null`. Meanwhile fetch_analytics reads structure off
+    the POSTED LOG entry (`e.get("hook")`, `e.get("n_beats")`, ...), and the
+    explainer log only ever stored url/title/at/publish_at. So retention could
+    never be attributed to anything: 92 videos of creative bookkeeping that
+    could not be joined to a single outcome.
+
+    Both files are keyed by SLUG, so the join needs no new plumbing — the facts
+    just have to be written down at the moment of upload. Field names match
+    what fetch_analytics already carries, so the existing analytics and retro
+    machinery pick them up with no change.
+
+    Never raises: a video that just went public must be logged even if we
+    cannot describe it.
+    """
+    facts: dict = {}
+    try:
+        segs = sc.get("segments") or []
+        facts["n_beats"] = len(segs)
+        kinds = [str(sg.get("viz") or
+                     ("scene" if isinstance(sg.get("scene"), dict) else "auto"))
+                 for sg in segs]
+        facts["story_structure"] = "+".join(kinds) or None
+        if verdict:
+            # The gate's own score, so "did the reviewer's opinion predict the
+            # audience's?" becomes an answerable question.
+            facts["narrative_score"] = verdict.get("score")
+        # duration decides view PERCENTAGE, which is the metric Shorts ranks on
+        try:
+            import subprocess as _sp
+            r = _sp.run(["ffprobe", "-v", "error", "-show_entries",
+                         "format=duration", "-of", "csv=p=0", str(mp4)],
+                        capture_output=True, text=True, timeout=30)
+            if r.returncode == 0 and r.stdout.strip():
+                facts["duration_s"] = round(float(r.stdout.strip()), 1)
+        except Exception:  # noqa: BLE001 — duration is a bonus, not a blocker
+            pass
+        # the creative decisions the director already recorded for this slug
+        try:
+            ledger = json.loads((STATE_DIR / "video_ledger.json").read_text())
+            for row in reversed(ledger.get("videos", [])):
+                if row.get("slug") == slug:
+                    facts["hook"] = row.get("hook_type")
+                    facts["topic_category"] = row.get("topic_category")
+                    facts["ending_type"] = row.get("ending_type")
+                    facts["depictions"] = row.get("depictions")
+                    facts["words_first_10s"] = row.get("words_first_10s")
+                    facts["scene_changes_before_5s"] = \
+                        row.get("scene_changes_before_5s")
+                    break
+        except Exception:  # noqa: BLE001
+            pass
+    except Exception as e:  # noqa: BLE001
+        print(f"[{slug}] could not describe the video for analytics: {e}",
+              flush=True)
+    return {k: v for k, v in facts.items() if v is not None}
+
+
 def _persist_posted_log_now(log_path: Path, slug: str) -> None:
     """Push the posted log to git IMMEDIATELY after an upload. Best effort.
 
@@ -538,6 +601,8 @@ def main() -> int:
             "url": url, "title": sc.get("title"),
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at,
+            # WHAT IT WAS, not just that it happened — see _creative_facts.
+            **_creative_facts(slug, sc, out, verdict),
         }
         _save_log(log, args.log)
         # Durable BEFORE the next render starts — a reclaimed runner between
