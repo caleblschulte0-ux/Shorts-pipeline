@@ -5676,13 +5676,45 @@
       "director_cut": true
     },
     "clip-20260904-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/HardDrabOryxThunBeast-RAbyEsVzjZx8mH45",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/It3xKGg8EHQ",
       "title": "Stableronaldo Bet Green By Accident And Walked Away With $8,000",
       "kind": "twitch_clip",
-      "ts": "2026-09-04T15:03:18.302505+00:00",
+      "ts": "2026-09-04T15:03:23.400256+00:00",
+      "uploaded_at": "2026-09-04T15:03:23.400279+00:00",
+      "publish_at": "2026-09-04T17:00:00Z",
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HardDrabOryxThunBeast-RAbyEsVzjZx8mH45",
+      "streamer": "stableronaldo",
+      "series": "win",
+      "hook": "HE BET GREEN BY ACCIDENT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3985,
+      "banger": 0.65,
+      "cut": {
+        "start": 3.7,
+        "end": 41.8
+      },
+      "director_cut": true
+    },
+    "rejected-carefulcheerfuldovekeyboardcat-_kfrsdabkuqksoe6": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CarefulCheerfulDoveKeyboardCat-_kfRsDABKUqKSoe6",
+      "streamer": "caseoh_",
+      "title": "boo",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (counting beds, no event)",
+      "ts": "2026-09-04T15:05:07.892004+00:00"
+    },
+    "clip-20260904-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/TastyBelovedChoughStrawBeary-2JupwxE1_Y3bMz_l",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Reacts To A Moment That Syncs Up Perfectly",
+      "kind": "twitch_clip",
+      "ts": "2026-09-04T15:07:34.665937+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
