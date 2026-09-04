@@ -6,19 +6,40 @@
   "y_label": "Population (individuals)",
   "duration": 13,
   "source": "Humpback whale recovery compiled from International Whaling Commission (IWC) population status assessments following the 1966 commercial whaling ban; North Atlantic right whale estimates from NOAA Fisheries annual population reports, which recorded a population peak around 2010 followed by decline during the ongoing Unusual Mortality Event. Figures are approximate, rounded.",
-  "years": [1990, 2000, 2010, 2015, 2020, 2023],
+  "years": [
+    1990,
+    2000,
+    2010,
+    2015,
+    2020,
+    2023
+  ],
   "series": [
     {
       "name": "Humpback Whales",
       "color": "#4a90e2",
       "icon": null,
-      "values": [10000, 25000, 50000, 70000, 90000, 100000]
+      "values": [
+        10000,
+        25000,
+        50000,
+        70000,
+        90000,
+        100000
+      ]
     },
     {
       "name": "N. Atlantic Right Whales",
       "color": "#e74c3c",
       "icon": null,
-      "values": [270, 300, 483, 458, 366, 356]
+      "values": [
+        270,
+        300,
+        483,
+        458,
+        366,
+        356
+      ]
     }
   ],
   "hashtags": [

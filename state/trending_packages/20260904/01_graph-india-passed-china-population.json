@@ -6,19 +6,40 @@
   "y_label": "Population (millions)",
   "duration": 13,
   "source": "UN World Population Prospects (2024 revision) and UN DESA historical estimates. India overtook China as the world's most populous country in April 2023. Figures are approximate, rounded to the nearest million.",
-  "years": [1950, 1970, 1990, 2010, 2020, 2023],
+  "years": [
+    1950,
+    1970,
+    1990,
+    2010,
+    2020,
+    2023
+  ],
   "series": [
     {
       "name": "China",
       "color": "#e74c3c",
       "icon": "CN",
-      "values": [554, 822, 1153, 1338, 1412, 1410]
+      "values": [
+        554,
+        822,
+        1153,
+        1338,
+        1412,
+        1410
+      ]
     },
     {
       "name": "India",
       "color": "#f5c518",
       "icon": "IN",
-      "values": [376, 555, 873, 1234, 1396, 1438]
+      "values": [
+        376,
+        555,
+        873,
+        1234,
+        1396,
+        1438
+      ]
     }
   ],
   "hashtags": [

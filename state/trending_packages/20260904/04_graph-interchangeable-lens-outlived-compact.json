@@ -6,19 +6,46 @@
   "y_label": "Worldwide camera shipments (millions)",
   "duration": 13,
   "source": "CIPA (Camera & Imaging Products Association) worldwide digital still camera shipment statistics, compact vs interchangeable-lens categories, 2008-2023. Compact camera shipments collapsed with smartphone adoption while interchangeable-lens cameras held on for enthusiasts. Figures are approximate, compiled from published industry statistics.",
-  "years": [2008, 2010, 2012, 2014, 2016, 2018, 2020, 2023],
+  "years": [
+    2008,
+    2010,
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2023
+  ],
   "series": [
     {
       "name": "Compact Cameras",
       "color": "#a3a3a3",
       "icon": null,
-      "values": [111, 122, 91, 43, 15, 8, 3, 2]
+      "values": [
+        111,
+        122,
+        91,
+        43,
+        15,
+        8,
+        3,
+        2
+      ]
     },
     {
       "name": "Interchangeable-Lens",
       "color": "#4a90e2",
       "icon": null,
-      "values": [9, 12, 19, 18, 16, 11, 9, 8]
+      "values": [
+        9,
+        12,
+        19,
+        18,
+        16,
+        11,
+        9,
+        8
+      ]
     }
   ],
   "hashtags": [
