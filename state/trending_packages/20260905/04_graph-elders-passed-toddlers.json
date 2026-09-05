@@ -1,0 +1,38 @@
+{
+  "format": "graph_race",
+  "slug": "graph-elders-passed-toddlers",
+  "title": "Old People Just Outnumbered The World's Toddlers",
+  "hook": "Humanity crossed a line in 2018",
+  "y_label": "Global population (millions)",
+  "duration": 13,
+  "source": "UN Department of Economic and Social Affairs, World Population Prospects (2024 revision) and UN World Population Ageing reports. Around 2018, people aged 65 and over outnumbered children under age 5 worldwide for the first time in recorded history, and the gap has widened since. Figures approximate, rounded to the nearest million.",
+  "years": [1960, 1980, 2000, 2010, 2018, 2024],
+  "series": [
+    {
+      "name": "Under age 5",
+      "color": "#f5c518",
+      "values": [360, 480, 605, 635, 677, 668]
+    },
+    {
+      "name": "Age 65+",
+      "color": "#e74c3c",
+      "values": [151, 260, 420, 524, 687, 840]
+    }
+  ],
+  "hashtags": [
+    "population",
+    "demographics",
+    "aging",
+    "unitednations",
+    "worldpopulation",
+    "data",
+    "graph",
+    "didyouknow",
+    "statistics",
+    "society",
+    "future",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

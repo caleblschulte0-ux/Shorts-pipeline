@@ -1,0 +1,19 @@
+{
+  "key": "brain_myth_networks_tested",
+  "title": "Brain networks tested vs. networks that matched the left-brain/right-brain myth",
+  "unit": "count",
+  "geography": "United States (study sample)",
+  "time_coverage": "2013 study",
+  "source": {
+    "name": "Nielsen JA, Zielinski BA, Ferguson MA, Lainhart JE, Anderson JS. 'An Evaluation of the Left-Brain vs. Right-Brain Hypothesis with Resting State Functional Connectivity Magnetic Resonance Imaging'",
+    "publisher": "PLOS ONE / University of Utah",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0071275",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "The study scanned 1,011 people's resting-state brain connectivity and analyzed 7 major brain networks for evidence of a global 'left-brained/right-brained' personality dominance. It found no network showed the predicted whole-brain lateralization tied to personality type.",
+  "baseline": {"label": "brain networks tested", "value": 7},
+  "points": [
+    {"label": "networks matching the myth", "value": 0}
+  ]
+}

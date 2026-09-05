@@ -1,0 +1,20 @@
+{
+  "key": "brain_task_lateralization",
+  "title": "How lateralized different brain functions actually are (percent dominant side)",
+  "unit": "percent",
+  "geography": "General population (right-handed adults, where noted)",
+  "time_coverage": "current neuroscience literature",
+  "source": {
+    "name": "Functional lateralization studies (language dominance via fMRI/Wada testing; hemispheric specialization literature)",
+    "publisher": "Peer-reviewed neuroscience research (e.g. Knecht et al., 'Handedness and hemispheric language dominance in healthy humans', Brain, 2000)",
+    "url": "https://academic.oup.com/brain/article/123/12/2512/372521",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Language is strongly left-lateralized in right-handed people (~96% per fMRI/Wada studies). Spatial attention shows a real but weaker right-hemisphere lean. 'Overall personality type' is marked at 50 (no measurable lateralization) to reflect the 2013 University of Utah finding that no whole-brain network dominance correlates with personality/thinking style -- Illustrative placement for that comparison point.",
+  "points": [
+    {"label": "Language (right-handers)", "value": 96},
+    {"label": "Spatial attention", "value": 70},
+    {"label": "Overall personality type", "value": 50}
+  ]
+}

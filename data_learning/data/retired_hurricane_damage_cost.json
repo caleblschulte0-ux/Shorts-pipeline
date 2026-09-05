@@ -1,0 +1,23 @@
+{
+  "key": "retired_hurricane_damage_cost",
+  "title": "Damage cost of notable retired hurricanes (billion dollars)",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2005-2024",
+  "source": {
+    "name": "U.S. Billion-Dollar Weather and Climate Disasters",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "url": "https://www.ncei.noaa.gov/access/billions/",
+    "officiality": "official",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Damage totals vary by source and inflation adjustment; figures here are approximate, rounded to the nearest billion, and marked Illustrative for exact comparability across storms and years.",
+  "baseline": {"label": "a typical named storm", "value": 1},
+  "points": [
+    {"label": "Katrina (2005)", "value": 125},
+    {"label": "Harvey (2017)", "value": 125},
+    {"label": "Ian (2022)", "value": 113},
+    {"label": "Maria (2017)", "value": 90},
+    {"label": "Helene (2024)", "value": 78}
+  ]
+}

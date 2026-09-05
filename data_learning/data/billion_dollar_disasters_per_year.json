@@ -1,0 +1,19 @@
+{
+  "key": "billion_dollar_disasters_per_year",
+  "title": "US billion-dollar weather disasters per year, then vs now",
+  "unit": "count per year",
+  "geography": "United States",
+  "time_coverage": "1980s vs 2019-2023",
+  "source": {
+    "name": "U.S. Billion-Dollar Weather and Climate Disasters",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "url": "https://www.ncei.noaa.gov/access/billions/",
+    "officiality": "official",
+    "access_date": "2026-09-05"
+  },
+  "notes": "NOAA NCEI's cost-of-disasters database tracks all billion-dollar weather and climate disaster types (not hurricanes alone). The 1980s annual average was roughly 3 events/year; the 2019-2023 annual average was over 20/year. Figures approximate, rounded.",
+  "baseline": {"label": "1980s annual average", "value": 3},
+  "points": [
+    {"label": "2019-2023 annual average", "value": 20}
+  ]
+}

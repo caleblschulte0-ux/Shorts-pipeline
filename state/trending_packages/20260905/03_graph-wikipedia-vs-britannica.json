@@ -1,0 +1,40 @@
+{
+  "format": "graph_race",
+  "slug": "graph-wikipedia-vs-britannica",
+  "title": "Wikipedia Buried Every Encyclopedia Before It",
+  "hook": "One line never moved",
+  "y_label": "Number of articles",
+  "duration": 13,
+  "source": "English Wikipedia article-count statistics, Wikimedia Foundation (Wikipedia:Size of Wikipedia); 2026 figure is the current live count. Encyclopaedia Britannica's own reported entry count has held near 120,000 since its final print edition (2010) and its move to online-only (2012). Figures approximate, rounded.",
+  "years": [2005, 2010, 2015, 2020, 2023, 2026],
+  "series": [
+    {
+      "name": "Wikipedia",
+      "color": "#3498db",
+      "icon": "Wikipedia",
+      "values": [500000, 3200000, 5000000, 6100000, 6700000, 7235313]
+    },
+    {
+      "name": "Britannica",
+      "color": "#95a5a6",
+      "icon": "Britannica",
+      "values": [120000, 120000, 120000, 120000, 120000, 120000]
+    }
+  ],
+  "hashtags": [
+    "wikipedia",
+    "britannica",
+    "encyclopedia",
+    "internet",
+    "history",
+    "data",
+    "graph",
+    "knowledge",
+    "internethistory",
+    "didyouknow",
+    "statistics",
+    "shorts"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

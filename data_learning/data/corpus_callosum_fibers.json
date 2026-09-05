@@ -1,0 +1,19 @@
+{
+  "key": "corpus_callosum_fibers",
+  "title": "Nerve fibers connecting the brain's two hemispheres, by pathway (millions)",
+  "unit": "million nerve fibers",
+  "geography": "Human brain",
+  "time_coverage": "current neuroanatomy",
+  "source": {
+    "name": "Neuroanatomy of interhemispheric commissures",
+    "publisher": "Standard neuroanatomy literature (corpus callosum axon-count estimates)",
+    "url": "https://www.ncbi.nlm.nih.gov/books/NBK10981/",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "The corpus callosum, the brain's largest white-matter tract, is well established at roughly 200 million axons connecting the two hemispheres. The anterior commissure figure is a much smaller secondary pathway; its exact axon count varies by source, so it is marked Illustrative here.",
+  "points": [
+    {"label": "Corpus callosum", "value": 200},
+    {"label": "Anterior commissure (Illustrative)", "value": 3}
+  ]
+}

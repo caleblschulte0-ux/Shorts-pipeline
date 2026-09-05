@@ -1,0 +1,19 @@
+{
+  "key": "africa_vs_four_countries",
+  "title": "Africa's land area vs. US + China + India + Japan combined (million km²)",
+  "unit": "million square kilometers",
+  "geography": "World",
+  "time_coverage": "current (land area is fixed)",
+  "source": {
+    "name": "World land area by country/continent",
+    "publisher": "CIA World Factbook",
+    "url": "https://www.cia.gov/the-world-factbook/",
+    "officiality": "official",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Combined land area of the United States (~9.83M km²), China (~9.60M km²), India (~3.29M km²) and Japan (~0.38M km²) is about 23.1 million km², smaller than Africa's ~30.4 million km² — the basis of the widely circulated 'True Size of Africa' comparison.",
+  "baseline": {"label": "US + China + India + Japan", "value": 23.1},
+  "points": [
+    {"label": "Africa", "value": 30.4}
+  ]
+}

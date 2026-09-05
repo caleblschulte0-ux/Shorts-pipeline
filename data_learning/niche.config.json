@@ -25740,6 +25740,248 @@
           }
         }
       ]
+    },
+    {
+      "slug": "map-distortion-true-size",
+      "title": "The Map In Your Head Is Lying To You",
+      "hook": "That map you picture is completely wrong.",
+      "closing": "Africa: still bigger than you think.",
+      "question": "Which country do you think looks the wrong size on a map? Drop it below.",
+      "caption": "Africa is 14 times bigger than Greenland -- they just look the same size on your map. It's not an accident, it's math: the Mercator projection stretches land more the farther it sits from the equator. See how far off your mental map really is. Which country looks wrong to you? 👇",
+      "hashtags": [
+        "maps",
+        "geography",
+        "mercator",
+        "africa",
+        "greenland",
+        "didyouknow",
+        "geographyfacts",
+        "cartography",
+        "worldmap",
+        "truesize",
+        "dataviz",
+        "science",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "greenland_africa_area",
+          "params": {
+            "file": "greenland_africa_area.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 · THE ILLUSION",
+          "topic": "Greenland vs Africa's real size",
+          "say": "On most maps, Greenland looks nearly as big as Africa. Africa is actually 30.4 million square kilometers — 14 times bigger than Greenland's 2.2 million."
+        },
+        {
+          "source": "offline",
+          "key": "mercator_distortion_by_latitude",
+          "params": {
+            "file": "mercator_distortion_by_latitude.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHY IT HAPPENS",
+          "topic": "map distortion by latitude",
+          "say": "Blame the Mercator projection. It stretches area more as you move from the equator toward the poles — by 60 degrees latitude, land looks 4 times bigger than it really is."
+        },
+        {
+          "source": "offline",
+          "key": "africa_vs_four_countries",
+          "params": {
+            "file": "africa_vs_four_countries.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · THE REAL SCALE",
+          "topic": "Africa vs four countries combined",
+          "say": "Put it together and Africa's real land area, 30.4 million square kilometers, is bigger than the US, China, India, and Japan combined at about 23.1 million."
+        }
+      ]
+    },
+    {
+      "slug": "left-brain-right-brain-myth",
+      "title": "You're Not Actually Left-Brained Or Right-Brained",
+      "hook": "Left-brained? Right-brained? Neither is real.",
+      "closing": "Your brain works as one team.",
+      "question": "Ever been told you're 'more right-brained'? Tell me below.",
+      "caption": "A study scanned 1,011 brains looking for 'left-brained' and 'right-brained' personality types. It found zero. Some brain jobs really are lateralized (language leans 96% left) -- but your overall personality isn't one of them. Here's what the science actually shows. Ever been called 'more right-brained'? 👇",
+      "hashtags": [
+        "brain",
+        "neuroscience",
+        "leftbrainrightbrain",
+        "psychology",
+        "brainmyth",
+        "science",
+        "didyouknow",
+        "mythbusting",
+        "sciencefacts",
+        "neurology",
+        "dataviz",
+        "brainfacts",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "brain_task_lateralization",
+          "params": {
+            "file": "brain_task_lateralization.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "1 · WHAT'S ACTUALLY LATERALIZED",
+          "topic": "how one-sided different brain jobs are",
+          "say": "Some brain jobs really do lean one way. In right-handed people, language sits about 96% in the left hemisphere. But your overall personality? That split barely exists."
+        },
+        {
+          "source": "offline",
+          "key": "brain_myth_networks_tested",
+          "params": {
+            "file": "brain_myth_networks_tested.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "2 · THE STUDY THAT TESTED IT",
+          "topic": "the 2013 brain scan that tested the myth",
+          "say": "In 2013, researchers scanned 1,011 brains and checked 7 separate brain networks for a personality link. 0 of the 7 matched the popular left-brain, right-brain idea."
+        },
+        {
+          "source": "offline",
+          "key": "corpus_callosum_fibers",
+          "params": {
+            "file": "corpus_callosum_fibers.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 · WHY",
+          "topic": "how connected the two halves really are",
+          "say": "That's because the two halves aren't separate teams. The corpus callosum alone carries about 200 million nerve fibers, constantly trading signals between them."
+        }
+      ]
+    },
+    {
+      "slug": "religious-nones-rise",
+      "title": "One In Four Americans Now Has No Religion",
+      "hook": "No religion is now America's fastest-growing group.",
+      "closing": "Faith didn't vanish. It just stopped being default.",
+      "question": "Do you consider yourself religious? Tell me below.",
+      "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
+      "hashtags": [
+        "religion",
+        "demographics",
+        "pewresearch",
+        "secularization",
+        "genz",
+        "society",
+        "didyouknow",
+        "faith",
+        "sociology",
+        "dataviz",
+        "statistics",
+        "culture",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_religious_nones_trend",
+          "params": {
+            "file": "us_religious_nones_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE RISE",
+          "topic": "Americans with no religious affiliation",
+          "say": "In 1990, about 8% of Americans claimed no religion. By 2021 that hit 29% — more than 1 in 4 adults."
+        },
+        {
+          "source": "offline",
+          "key": "religious_nones_by_generation",
+          "params": {
+            "file": "religious_nones_by_generation.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "role": "2 · WHY",
+          "topic": "no-religion share by generation",
+          "say": "Why? Each generation is less religious than the one before it. Only 10% of the oldest Americans have no religion. Among Gen Z, it's roughly 1 in 3."
+        },
+        {
+          "source": "offline",
+          "key": "us_religious_affiliation_share",
+          "params": {
+            "file": "us_religious_affiliation_share.json"
+          },
+          "insight_type": "share",
+          "role": "3 · THE NEW MAP",
+          "topic": "US religious affiliation today",
+          "say": "Unaffiliated Americans are now bigger than Catholics, and closing in on Protestants — on track to become the country's single largest religious group within decades."
+        }
+      ]
+    },
+    {
+      "slug": "hurricane-names-retired-growing-list",
+      "title": "Why Some Hurricane Names Get Retired Forever",
+      "hook": "A hurricane name just got retired forever.",
+      "closing": "The list only grows. It never shrinks.",
+      "question": "Do you know anyone whose name got retired? Tell me below.",
+      "caption": "About 100 hurricane names have been permanently retired since 1954 -- and the list is growing faster than ever. It's not about wind speed, it's about damage: Katrina alone cost about $125 billion. Coastlines are more crowded and oceans are warmer, so the list keeps climbing. Know anyone whose name got retired? 👇",
+      "hashtags": [
+        "hurricane",
+        "noaa",
+        "hurricanenames",
+        "climate",
+        "weather",
+        "naturaldisaster",
+        "didyouknow",
+        "stormseason",
+        "dataviz",
+        "climatechange",
+        "weatherfacts",
+        "science",
+        "shorts"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "hurricane_names_retired_cumulative",
+          "params": {
+            "file": "hurricane_names_retired_cumulative.json"
+          },
+          "insight_type": "trend",
+          "role": "1 · THE GROWING LIST",
+          "topic": "cumulative retired Atlantic hurricane names",
+          "say": "By 1954, 1 hurricane name had ever been retired. By 2005 it was 50. By 2024, the list hit 100 names, permanently banned from ever being reused."
+        },
+        {
+          "source": "offline",
+          "key": "retired_hurricane_damage_cost",
+          "params": {
+            "file": "retired_hurricane_damage_cost.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": true,
+          "role": "2 · THE THRESHOLD",
+          "topic": "costliest retired hurricanes",
+          "say": "It's not about wind speed. A name gets retired when a storm is catastrophic enough that reusing it would feel wrong — Katrina alone cost about $125 billion."
+        },
+        {
+          "source": "offline",
+          "key": "billion_dollar_disasters_per_year",
+          "params": {
+            "file": "billion_dollar_disasters_per_year.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 · WHY IT'S ACCELERATING",
+          "topic": "billion-dollar disasters per year, then vs now",
+          "say": "It's not just perception. Coastlines are more crowded and oceans are warmer, so the US now averages over 20 billion-dollar disasters a year, up from about 3 in the 1980s."
+        }
+      ]
     }
   ],
   "videos": [

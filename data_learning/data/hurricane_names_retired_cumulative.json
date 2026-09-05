@@ -1,0 +1,22 @@
+{
+  "key": "hurricane_names_retired_cumulative",
+  "title": "Cumulative number of retired Atlantic hurricane names",
+  "unit": "count",
+  "geography": "Atlantic basin",
+  "time_coverage": "1954-2024",
+  "source": {
+    "name": "List of retired Atlantic tropical cyclone names",
+    "publisher": "NOAA National Hurricane Center",
+    "url": "https://www.nhc.noaa.gov/aboutnames_history.shtml",
+    "officiality": "official",
+    "access_date": "2026-09-05"
+  },
+  "notes": "The Atlantic basin has retired roughly 100 storm names since naming began in 1953 (confirmed total including 2024's Beryl, Helene and Milton). Intermediate-year cumulative counts are approximate, rounded to reflect the well-documented growth of the list.",
+  "points": [
+    {"label": "1954", "value": 1, "period": "1954"},
+    {"label": "1979", "value": 19, "period": "1979"},
+    {"label": "2005", "value": 50, "period": "2005"},
+    {"label": "2017", "value": 76, "period": "2017"},
+    {"label": "2024", "value": 100, "period": "2024"}
+  ]
+}
