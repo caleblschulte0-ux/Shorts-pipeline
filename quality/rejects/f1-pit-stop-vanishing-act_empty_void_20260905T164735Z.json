@@ -1,0 +1,41 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260905T164735Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:mid (t=30.13s) is an almost entirely empty dark panel \u2014 a small mascot left-of-centre and one ~4px pink dot at mid-right, no bubbles, no labels, no values; seg2:mid (t=20.40s) likewise leaves the entire lower half of the panel blank below the two alarm clocks.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3 runs start->mid->end (t=27.35 / 30.13 / 32.91s) from a full two-pill 'MODERN CREW VS 1950S CREW' frame, to a near-blank field holding only the mascot and a single tiny dot, and only then to the 20 vs 3 bubbles \u2014 the middle third of the beat is a dark void with no readable data on screen, and the '3' bubble never carries the word 'handful' the narration uses.",
+  "root_cause": "The beat cross-fades between two different chart forms (the vs-pills of the previous layout and the bubble comparison) by animating both out to zero before the bubbles grow in, so the transition midpoint has no data element left in frame; the bubble growth also starts from ~0 radius rather than from a held baseline.",
+  "repair_goal": "Keep data on screen for the whole of seg3: hold both crew bubbles (and their 'Modern crew' / '1950s crew' labels) in frame from the beat's first second, growing 3 -> 20 rather than fading in from nothing, and fill the dead lower two-thirds with the 20-crew unit grid the narration describes ('each doing one exact job at once') so the mascot has crew members to move among instead of empty background."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}
