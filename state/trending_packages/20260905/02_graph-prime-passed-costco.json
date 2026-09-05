@@ -6,19 +6,40 @@
   "y_label": "Paid members worldwide (millions)",
   "duration": 13,
   "source": "Amazon Prime worldwide member figures from company disclosures and earnings calls (the 2013 figure is a widely cited analyst estimate; Amazon last confirmed a count in April 2021 and has not disclosed one since, so the 2023 figure is a commonly cited analyst estimate, e.g. Consumer Intelligence Research Partners). Costco Wholesale paid member households worldwide from Costco's SEC 10-K filings. Figures approximate, rounded to the nearest million.",
-  "years": [2013, 2015, 2017, 2019, 2021, 2023],
+  "years": [
+    2013,
+    2015,
+    2017,
+    2019,
+    2021,
+    2023
+  ],
   "series": [
     {
       "name": "Amazon Prime",
       "color": "#f5c518",
       "icon": "Amazon",
-      "values": [20, 46, 100, 150, 200, 220]
+      "values": [
+        20,
+        46,
+        100,
+        150,
+        200,
+        220
+      ]
     },
     {
       "name": "Costco",
       "color": "#e74c3c",
       "icon": "Costco",
-      "values": [39, 45, 49, 54, 61, 66]
+      "values": [
+        39,
+        45,
+        49,
+        54,
+        61,
+        66
+      ]
     }
   ],
   "hashtags": [

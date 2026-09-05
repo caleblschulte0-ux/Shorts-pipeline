@@ -18,20 +18,60 @@
   ],
   "script": "My storage facility double-charged my card in March. My bank reversed it as fraud, and their system logged that as nonpayment without ever emailing me. Two months later I got a text: my unit had already gone to public auction the day before. I drove over and the manager just shrugged, said the paperwork was final. But storage auctions have to be posted publicly, so I found the buyer's name pinned on the facility's own bulletin board and called him that night. He'd paid one hundred ten dollars for four totes he hadn't even opened, mostly my late grandmother's dishes and a box of tax records. He sold it all back to me for one hundred fifty dollars, no questions asked. Then I mailed the facility their own lien-sale statute in a certified letter. Their insurance cut me a check for three thousand dollars for wrongful auction, plus a refund of every storage fee I'd ever paid them.",
   "shots": [
-    {"phrase": "double-charged my card in March", "query": "credit card statement closeup"},
-    {"phrase": "gone to public auction the day before", "query": "storage unit auction sign"},
-    {"phrase": "the manager just shrugged", "query": "office manager shrugging desk"},
-    {"phrase": "pinned on the facility's own bulletin board", "query": "bulletin board corkboard flyers"},
-    {"phrase": "four totes he hadn't even opened", "query": "plastic storage totes stacked"},
-    {"phrase": "my late grandmother's dishes", "query": "vintage china dishes stacked"},
-    {"phrase": "a certified letter", "query": "certified mail envelope"},
-    {"phrase": "three thousand dollars for wrongful auction", "query": "insurance check closeup"}
+    {
+      "phrase": "double-charged my card in March",
+      "query": "credit card statement closeup"
+    },
+    {
+      "phrase": "gone to public auction the day before",
+      "query": "storage unit auction sign"
+    },
+    {
+      "phrase": "the manager just shrugged",
+      "query": "office manager shrugging desk"
+    },
+    {
+      "phrase": "pinned on the facility's own bulletin board",
+      "query": "bulletin board corkboard flyers"
+    },
+    {
+      "phrase": "four totes he hadn't even opened",
+      "query": "plastic storage totes stacked"
+    },
+    {
+      "phrase": "my late grandmother's dishes",
+      "query": "vintage china dishes stacked"
+    },
+    {
+      "phrase": "a certified letter",
+      "query": "certified mail envelope"
+    },
+    {
+      "phrase": "three thousand dollars for wrongful auction",
+      "query": "insurance check closeup"
+    }
   ],
   "punches": [
-    {"phrase": "double-charged my card in March", "text": "DOUBLE CHARGED", "color": "#ffaa30"},
-    {"phrase": "gone to public auction the day before", "text": "UNIT AUCTIONED", "color": "#ff3030"},
-    {"phrase": "one hundred fifty dollars", "text": "BOUGHT BACK CHEAP", "color": "#50ff80"},
-    {"phrase": "three thousand dollars for wrongful auction", "text": "$3,000 PAID OUT", "color": "#50ff80"}
+    {
+      "phrase": "double-charged my card in March",
+      "text": "DOUBLE CHARGED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "gone to public auction the day before",
+      "text": "UNIT AUCTIONED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "one hundred fifty dollars",
+      "text": "BOUGHT BACK CHEAP",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "three thousand dollars for wrongful auction",
+      "text": "$3,000 PAID OUT",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "slow-burn tension building into a satisfying payoff"
 }

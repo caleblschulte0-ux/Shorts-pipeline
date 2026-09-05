@@ -5,20 +5,47 @@
   "hook": "BYD quietly took the EV crown",
   "y_label": "Vehicles sold per year (thousands)",
   "duration": 13,
-  "source": "Tesla quarterly delivery reports (battery-electric deliveries only). BYD company sales figures as compiled by CnEVPost/Reuters/InsideEVs (new-energy vehicles: battery-electric + plug-in hybrid combined). Different vehicle-mix definitions — Tesla's pure battery-electric sales stayed close behind BYD's even as BYD's combined new-energy total pulled far ahead from 2022 onward. Figures approximate, rounded to the nearest thousand.",
-  "years": [2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "source": "Tesla quarterly delivery reports (battery-electric deliveries only). BYD company sales figures as compiled by CnEVPost/Reuters/InsideEVs (new-energy vehicles: battery-electric + plug-in hybrid combined). Different vehicle-mix definitions \u2014 Tesla's pure battery-electric sales stayed close behind BYD's even as BYD's combined new-energy total pulled far ahead from 2022 onward. Figures approximate, rounded to the nearest thousand.",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "Tesla",
       "color": "#e74c3c",
       "icon": "Tesla",
-      "values": [103, 245, 367, 500, 936, 1314, 1809, 1789]
+      "values": [
+        103,
+        245,
+        367,
+        500,
+        936,
+        1314,
+        1809,
+        1789
+      ]
     },
     {
       "name": "BYD",
       "color": "#2ecc71",
       "icon": "BYD",
-      "values": [114, 227, 230, 190, 594, 1869, 3024, 4272]
+      "values": [
+        114,
+        227,
+        230,
+        190,
+        594,
+        1869,
+        3024,
+        4272
+      ]
     }
   ],
   "hashtags": [
