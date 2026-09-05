@@ -84,6 +84,36 @@ Always give a real `--because`. It is quoted back to ChatGPT when it tries to
 re-file the item, and a refusal with a reason teaches while a bare "no" just
 gets re-argued in new words.
 
+## Landing a ruling on main: never `[skip ci]` on a claude/* PR
+
+`doctor.py rule` only edits `doctor/verdicts.json` on disk — a session still
+has to commit and push it. That push almost always goes out as a PR from a
+`claude/*` branch (direct pushes to `main` are refused for this token), and
+`auto-merge.yml`'s sanity/tests gate is the *only* thing that can merge that
+PR — there is no human review on these.
+
+**Never put `[skip ci]` in the commit message for that push.** `[skip ci]`
+suppresses every GitHub Actions run for that commit, on `pull_request`
+events exactly as much as on `push` — including `auto-merge.yml`. A
+bookkeeping-only PR (`doctor/verdicts.json` alone, changing nothing
+executable) looks exactly like the kind of commit this repo's other
+automation marks `[skip ci]` (`explainer: update posted log [skip ci]`,
+`watchdog: chatgpt task verdicts ... [skip ci]`) — but those are pushed
+*directly to main by CI itself* and never need a PR gate. Doing the same on
+a `claude/*` PR is self-defeating: the PR sits at `mergeable_state: clean`
+with **zero check runs**, forever, because the one check that could pass it
+never runs. Nothing about that looks alarming in a PR list — it just reads
+as "open, unreviewed" — so it goes unnoticed.
+
+This happened three times before anyone caught it: PR #314 (2026-08-25) sat
+stuck for 11 days, PR #323 (2026-09-02) took an entire day's worth of
+backlog rulings down with it — never reaching main, so the next day's
+session read the backlog as untouched and redid the same triage from
+scratch — and PR #327 (2026-09-04) repeated it a third time before #329
+finally landed both orphaned rulings. If a bookkeeping PR you opened shows
+`mergeable_state: clean` but zero check runs after a minute, check its head
+commit for `[skip ci]` first.
+
 ## The thing that makes it survive — durable verdicts
 
 A reviewer that re-reads the whole repo every morning **will** re-suggest

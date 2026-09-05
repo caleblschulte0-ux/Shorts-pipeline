@@ -799,16 +799,22 @@
       "revisit_after": "20260923"
     },
     "2fc5cbb21cca": {
-      "verdict": "in_progress",
-      "date": "20260825",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260905",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260825",
           "because": "Confirmed live: Actions history shows zero daily.yml runs (workflow_run or otherwise) for 2026-08-23 despite exchange_phase_b run 32643778540 (schedule trigger) completing successfully and writing exchange/bundles/20260823/phase_b_report.json, and a second candidate run 32646462573 also completing successfully. Relying solely on the implicit workflow_run event with no verification that GitHub actually dispatched a downstream run is the root cause of a silent zero-render day. Building now: making a real (non-skipped) Phase B apply explicitly dispatch Daily Shorts and verify the dispatch was accepted, failing loudly if not, while keeping workflow_run as an idempotent fallback."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260825",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "ea4cdbf"
     },
     "47afe3adb739": {
       "verdict": "doing",
