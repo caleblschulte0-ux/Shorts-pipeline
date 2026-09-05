@@ -822,66 +822,63 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
 
 
 # --------------------------------------------------------------------------- #
-# SHOT CUTTING — the edit, not the motion
+# THE EDIT — one visual per span, strictly forward, never revisited
 # --------------------------------------------------------------------------- #
-def _shot_plan(s0: float, s1: float, target: float = 3.0,
-               max_shots: int = 10) -> list[tuple[float, float]]:
-    """Cut one narrated beat into SHOTS of roughly `target` seconds.
+# Three edits have been tried on this channel and the operator has ruled on
+# each, so the history matters more than the code here:
+#
+#   1. ONE CHART PER BEAT, held 8-20 seconds. "we sit on a fucking one chart
+#      as it slowly moves for twenty seconds. Like, that's boring."
+#   2. CUT THE SAME CHART INTO TIGHTER FRAMINGS. "the jump cut zoom ins are
+#      not it ... there is like 4 'things' and then movement, that's not good
+#      enough" — a punch-in is one subject with a camera on it, not a second
+#      thing. The crop helper that did this is DELETED, not parked: it is the
+#      literal thing being complained about and a dead helper gets re-wired by
+#      the next session that finds it.
+#   3. ALTERNATE two depictions across the beat (A-B-A-B). Also refused, and
+#      this one was mine: "we'll open on a fucking graph, and then we'll cut to
+#      a different graph, and then we'll cut back to the original graph ...
+#      and we'll still be talking about the same beat the whole time, and it
+#      just does not roll cohesively."
+#
+# The ruling that replaces all three: "Once we show a graph and explain it and
+# it does its thing, it's gone. We move on to the next one."
+#
+# So the edit is MONOTONIC. A beat is a sequence of spans; each span shows one
+# depiction, full-frame and static; when a span ends that depiction is finished
+# and never comes back. A cut always means a new subject — there is no cut that
+# merely re-frames what you were already looking at, and nothing on screen is
+# ever something you have already seen.
+#
+# SPAN_TARGET is the other half of the ruling ("we're cutting so much for no
+# reason"). At ~3s the edit was chopping a single sentence into four pieces; a
+# visual now gets long enough to be read and understood before it is retired.
+# Calibrated against the real thing, not guessed. This channel's beats have a
+# DISPLAY window of roughly 6-12s (seg0 carries the hook, the last carries the
+# closing), so at 5.5 a mid-length beat rounded down to a single visual and a
+# whole video came out with five. The operator's floor is explicit — "there is
+# like 4 'things' ... we need 7-8 things" — and 4.5 is what actually clears it:
+# measured on housing-affordability-wall, 5 visuals -> 8.
+SPAN_TARGET = 4.5          # seconds one depiction owns the screen
+MAX_SPANS = 3              # per beat, so a 3-beat story tops out at 9 visuals
 
-    A beat used to be one shot: a single chart card held for the whole
-    sentence, which on this channel is 8-12 seconds. That is the actual
-    complaint — "we sit on one chart as it slowly moves for twenty seconds" —
-    and it is also why every previous session reached for camera movement and
-    frantic mascot arms: with one shot per beat there is nothing else in the
-    edit to carry attention.
 
-    Shorts that hold attention cut every 2-4 seconds. This returns the cut
-    points; the caller decides the framing of each shot.
+def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
+    """Split one beat's display window into ``n`` consecutive spans.
 
-    The cap is deliberately generous. It was 4, which quietly reintroduced the
-    problem on the beats that needed help most: a 20s sentence became four 5s
-    shots and a 26s one became 6.5s shots — slower than the 3s target on
-    exactly the beats a viewer is most likely to leave. Shot LENGTH is the
-    thing being held constant here, not shot count.
+    Consecutive and non-overlapping is the whole contract: span k's depiction
+    is built to cover exactly [t0, t1) and is positioned on the timeline at its
+    own t0, so nothing is ever asked to hold a frame it does not have. The
+    earlier design laid every depiction from the BEAT's start, which is how a
+    half-length build ran out and ffmpeg's tpad cloned its last frame for 3.0
+    seconds — 73 duplicate frames against a ceiling of 45.
     """
-    dur = max(0.0, s1 - s0)
-    n = max(1, min(max_shots, int(round(dur / target))))
+    n = max(1, int(n))
     if n == 1:
         return [(s0, s1)]
-    step = dur / n
+    step = (s1 - s0) / n
     return [(s0 + k * step, s0 + (k + 1) * step if k < n - 1 else s1)
             for k in range(n)]
-
-
-def _punch_crop(anchor: dict, vw: int, vh: int, zoom: float = 1.55) -> str:
-    """A STATIC punch-in framing centred on one datum, as an ffmpeg crop.
-
-    Static is the whole point: the framing changes at the CUT, never during
-    the shot. `anchor` is a chart label box in build-PNG pixels; charts render
-    the card at SERIES_W x SERIES_H inches at SERIES_DPI, so the anchor's
-    position is used as a fraction of that space and mapped onto the scaled
-    card.
-    """
-    from data_learning import charts as _ch
-    src_w = float(_ch.SERIES_W * _ch.SERIES_DPI)
-    src_h = float(_ch.SERIES_H * _ch.SERIES_DPI)
-    fx = min(1.0, max(0.0, float(anchor.get("cx", src_w / 2)) / src_w))
-    fy = min(1.0, max(0.0, float(anchor.get("cy", src_h / 2)) / src_h))
-    cw, chh = int(vw / zoom), int(vh / zoom)
-    cx = int(min(max(fx * vw - cw / 2, 0), max(0, vw - cw)))
-    cy = int(min(max(fy * vh - chh / 2, 0), max(0, vh - chh)))
-    # KEEP THE HEADING OUT OF THE SHOT INSTEAD OF SLICING IT.
-    #
-    # A crop anchored on a datum cut straight through the card's top band, so
-    # punch-ins shipped with the title rendered as "cost in years of" and a
-    # comparison line ending mid-number. A close-up of one data point has no
-    # business showing half a headline: start the crop BELOW the heading, and
-    # the shot is the data, cleanly. If the card is too short to do that, fall
-    # back to the top rather than clip.
-    head = int(vh * 0.26)   # heading + subtitle + the comparison line
-    if head + chh <= vh:
-        cy = max(cy, head)
-    return f"crop={cw}:{chh}:{cx}:{cy},scale={vw}:{vh}"
 
 
 def build_story_ass(st: story.Story, windows, events, out: Path,
@@ -1207,15 +1204,20 @@ def _hero_anchor(seg):
     return max(anchors, key=lambda a: a.get("value", 0.0))
 
 
-def _stage_on_data(seg, w0, w1, pose, prev_tl):
+def _stage_on_data(seg, w0, w1, pose, prev_tl, anchors=None):
     """Stage Data ON this beat's winning datum, performing an ANIMATED action on
     it: he SWEEPS in from the smallest datum (setup travel) up onto the winner
     (tallest bar / line peak / biggest slice), where his authored data-action
     (push the bar / ride the line / hoist the slice) loops in place. Feet on the
     element, right edge just LEFT of the tip so he never covers the value number
     (collision rule). ``pose`` is the animated action spec. Returns (seq_tuple,
-    entry_xy) or None if the beat has no anchors."""
-    anchors = getattr(seg, "anchors", None)
+    entry_xy) or None if the beat has no anchors.
+
+    ``anchors`` overrides the beat's own set, so Data is staged on the
+    depiction ACTUALLY on screen for this span. A beat shows several in
+    sequence and their geometry differs completely — the peak of a line is
+    nowhere near the top bar of a race."""
+    anchors = anchors or getattr(seg, "anchors", None)
     if not anchors:
         return None
     isc = 0.62
@@ -1396,6 +1398,46 @@ _ALT_DEPICTION = {
 }
 
 
+# Ways of drawing a figure that are HONEST for a given shape of data, best
+# first. Widening these lists is how a video gets more distinct visuals, so the
+# constraint that keeps them short is worth stating plainly: a depiction must
+# not assert something the data does not say.
+#
+#   * `share` and `waffle_grid` claim the items are PARTS OF A WHOLE. Drawing a
+#     run of years that way says the years sum to something, which is false.
+#   * `trend` claims an ORDERED progression. Drawing a ranking of cities as a
+#     line says Miami comes after Seattle in some sequence, which is false.
+#   * `geo_us` / `geo_world` claim the items are PLACES, so they never appear
+#     as an alternate for non-geographic data — a map of "cost per year" is a
+#     lie with a nice texture.
+#
+# Everything listed under a shape is a fair redraw of that shape. The point of
+# a second and third depiction is to show the SAME truth another way, and a
+# channel whose whole editorial gate is about real, sourced numbers cannot buy
+# variety with a misleading chart.
+_SHAPE_CANDIDATES = {
+    # values over time: any magnitude comparison is fair, sequence included
+    "series": ("trend", "bars", "stack", "comparison", "pictograph"),
+    # named things being compared: anything but a false sequence
+    "ranking": ("pictorial_race", "bars", "rank", "pictograph", "comparison",
+                "bubbles", "waffle_grid", "share", "stack"),
+    "other":   ("bars", "pictograph", "stack", "rank", "bubbles",
+                "comparison"),
+}
+
+
+def _shape_of(insight) -> str:
+    """Which kind of thing this insight IS, independent of how it is drawn."""
+    items = list(getattr(insight, "items", []) or [])
+    labels = [str(getattr(p, "label", "")) for p in items]
+    years = sum(1 for l in labels if l[:4].isdigit() and len(l) <= 7)
+    if years >= max(3, len(labels) * 0.6):
+        return "series"
+    if 2 <= len(items) <= 6:
+        return "ranking"
+    return "other"
+
+
 def _alt_candidates_for(insight) -> tuple:
     """Alternates chosen from the DATA's shape, not just the current kind.
 
@@ -1404,32 +1446,45 @@ def _alt_candidates_for(insight) -> tuple:
     map), neither of which is a chart name. Shape is the durable question —
     a run of years wants a line, a handful of named things wants a race.
     """
-    items = list(getattr(insight, "items", []) or [])
-    labels = [str(getattr(p, "label", "")) for p in items]
-    years = sum(1 for l in labels if l[:4].isdigit() and len(l) <= 7)
-    if years >= max(3, len(labels) * 0.6):          # a time series
-        return ("trend", "bars", "stack")
-    if 2 <= len(items) <= 6:                        # a small ranking
-        return ("pictorial_race", "bars", "pictograph")
-    return ("bars", "pictograph", "stack")
+    return _SHAPE_CANDIDATES[_shape_of(insight)]
 
 
-def _alt_depiction_kind(kind: str, used: set, insight=None) -> str | None:
-    """A DIFFERENT contact-verified way to draw the same insight, avoiding the
-    kinds this video has already shown so the second visual is a real change of
-    subject rather than a near-repeat."""
-    cands = list(_ALT_DEPICTION.get(str(kind), ()))
-    if insight is not None:
-        for c in _alt_candidates_for(insight):
-            if c not in cands:
-                cands.append(c)
-    for cand in cands:
-        if cand != kind and cand not in used:
-            return cand
-    for cand in cands:
-        if cand != kind:
-            return cand
-    return None
+def _depiction_sequence(insight, used: set, dur: float) -> list:
+    """The ORDERED, NON-REPEATING depictions one beat shows, front to back.
+
+    Element 0 is the beat's own chart; the rest are different contact-verified
+    ways to draw the SAME number. Each appears exactly once and is retired when
+    its span ends — the list is the edit, and the edit only ever moves forward.
+
+    ``used`` is every kind already on screen anywhere in this video, so the
+    third visual is a genuine change of subject rather than the neighbouring
+    beat's chart again. Length comes from the beat's duration, not from a fixed
+    count: a short beat stays on one visual rather than being chopped up, which
+    is the "we're cutting so much for no reason" half of the ruling.
+    """
+    kind = str(getattr(insight, "kind", "") or "")
+    n = max(1, min(MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
+    seq = [kind]
+    if n == 1:
+        return seq
+    cands = list(_alt_candidates_for(insight))
+    for c in _ALT_DEPICTION.get(kind, ()):
+        if c not in cands:
+            cands.append(c)
+    # Prefer kinds no beat has shown yet...
+    for c in cands:
+        if len(seq) >= n:
+            break
+        if c and c != kind and c not in seq and c not in used:
+            seq.append(c)
+    # ...but a kind another beat used still beats repeating one inside THIS
+    # beat, which is the thing the viewer actually notices as a bounce-back.
+    for c in cands:
+        if len(seq) >= n:
+            break
+        if c and c not in seq:
+            seq.append(c)
+    return seq
 
 
 def render(slug: str, out_path: Path, voice: str | None = None,
@@ -1521,62 +1576,54 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             end = windows[-1][1] if (i == last_i and lead_payoff) else wi[1]
             disp_start[i] = start
             disp_end[i] = end
-            # EXACTLY ceil(dur*30) frames so the build spans the beat 1:1 at 30fps
-            # (played at cfps=30 below) — no low-fps source resampled into the
-            # 30fps master. Cap 600 (=20s) is a safety bound, not a rate limiter.
             import math as _mfr
-            # Cap 1200 (=40s), raised from 600. The opening segment carries the
-            # hook lead, so its display window is the longest in the video — at
-            # 600 it ran out of frames partway and froze for the remainder,
-            # which is why segment_0 kept measuring under 1 fps while the other
-            # two now sit at 14-16. The cap is a safety bound, and the scene
-            # renderer is ~8x cheaper per frame since the compress_level/resize
-            # fixes, so covering a long window is affordable.
-            nfr = int(max(30, min(1200, _mfr.ceil((end - start) * 30))))
-            # Build LINEARLY across the WHOLE window (no early completion): the
-            # chart + Data keep moving the entire beat, so there is never a
-            # finished-and-held stretch (that was the dead_air / 5fps). Data
-            # climbing the line the whole time IS the hook's motion.
-            try:
-                cpath, _a = charts.render_story_build(
-                    seg.insight, chart_dir, f"{slug}_seg{i:02d}_30", frames=nfr,
-                    hook_lead=(i == 0 and lead_hook))   # opening chart bursts up
-                if cpath:
-                    seg.chart_path = str(cpath)
-            except Exception as e:  # noqa: BLE001 — keep the cheap chart on failure
-                print(f"[studio] 30fps re-render seg{i} skipped: {e}", flush=True)
-            # THE SECOND DEPICTION of this same number (see _ALT_DEPICTION).
+            # THE BEAT'S VISUALS — a forward-only sequence, one per span.
             #
-            # SAME frame count as the primary, not half. The first version
-            # rendered it at nfr//2 reasoning that it only occupies about half
-            # the beat — but both depictions are laid on the timeline from the
-            # beat's START, so a half-length build simply RAN OUT partway and
-            # tpad cloned its last frame. Measured: a 3.0s frozen stretch
-            # beginning exactly on a shot boundary at t=27.58s, 73 duplicate
-            # frames against a ceiling of 45 — the gate would have blocked
-            # every video this shipped in.
-            # Best effort — a beat with one visual is the old behaviour, not a
-            # failure, so anything that goes wrong here just skips it.
-            alt_kind = _alt_depiction_kind(getattr(seg.insight, "kind", ""),
-                                           _kinds_used, seg.insight)
-            if alt_kind:
-                _orig_kind = seg.insight.kind
+            # Each depiction is built for EXACTLY its own span and positioned on
+            # the timeline at its own t0, so no build is ever asked to hold a
+            # frame it does not have. That is also the fix for the freeze: the
+            # previous design laid every depiction from the BEAT's start, so a
+            # build shorter than the beat ran out and ffmpeg's tpad cloned its
+            # last frame for 3.0 seconds (73 duplicates against a ceiling of
+            # 45). Per-span framing makes that unrepresentable rather than
+            # merely fixed.
+            #
+            # Cap 1200 frames (=40s) is a safety bound, not a rate limiter.
+            dur = max(0.0, end - start)
+            kinds = _depiction_sequence(seg.insight, _kinds_used, dur)
+            spans = _visual_spans(start, end, len(kinds))
+            seg.spans = []
+            _orig_kind = seg.insight.kind
+            for j, (kind, (t0, t1)) in enumerate(zip(kinds, spans)):
+                nfr = int(max(30, min(1200, _mfr.ceil((t1 - t0) * 30))))
+                cpath, anc = None, []
                 try:
-                    seg.insight.kind = alt_kind
-                    apath, _ = charts.render_story_build(
-                        seg.insight, chart_dir, f"{slug}_seg{i:02d}_alt",
-                        frames=nfr)
-                    if apath:
-                        seg.alt_chart_path = str(apath)
-                        seg.alt_kind = alt_kind
-                        _kinds_used.add(alt_kind)
-                        print(f"[studio] seg{i} second depiction: "
-                              f"{_orig_kind} + {alt_kind}", flush=True)
-                except Exception as e:  # noqa: BLE001
-                    print(f"[studio] seg{i} alt depiction skipped: {e}",
-                          flush=True)
+                    seg.insight.kind = kind
+                    # Build LINEARLY across the WHOLE span (no early
+                    # completion): the chart keeps moving for as long as it is
+                    # on screen, so there is never a finished-and-held stretch
+                    # (that was the dead_air / 5fps).
+                    cpath, anc = charts.render_story_build(
+                        seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
+                        frames=nfr,
+                        # only the opening visual bursts up out of the hook
+                        hook_lead=(i == 0 and lead_hook and j == 0))
+                except Exception as e:  # noqa: BLE001 — a missing extra visual
+                    print(f"[studio] seg{i} visual {j} ({kind}) skipped: {e}",
+                          flush=True)   # is fewer things, never a failed render
                 finally:
                     seg.insight.kind = _orig_kind
+                if not cpath:
+                    continue
+                seg.spans.append({"kind": kind, "path": str(cpath),
+                                  "anchors": anc, "t0": t0, "t1": t1})
+                _kinds_used.add(kind)
+                if j == 0:
+                    seg.chart_path = str(cpath)
+            if seg.spans:
+                print(f"[studio] seg{i}: "
+                      + " -> ".join(f"{sp['kind']}({sp['t1'] - sp['t0']:.1f}s)"
+                                    for sp in seg.spans), flush=True)
 
         # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
         # reviewer's own cadence detector + the build-time temporal gate on it,
@@ -1733,13 +1780,28 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # Data sweeps up onto THIS beat's winning datum and performs his
                 # authored ANIMATED action ON it (push / ride / hoist) — moves in
                 # place (not a frozen sticker), on-topic (no random prop).
-                staged = _stage_on_data(st.segments[i], wi[0], wi[1],
-                                        _act(st.segments[i]), None)
-                if staged is not None:
-                    _add(staged[0], staged[1])
-                else:                              # no anchor -> fall to the stage
-                    x, y = _spot(i, "")
-                    _add((x, y, wi[0], wi[1], UP_ANGLE, False, spec, 1.0))
+                #
+                # PER SPAN, NOT PER BEAT. A beat now shows a SEQUENCE of
+                # different depictions (see THE EDIT), and each has its own
+                # geometry — the peak of a line is nowhere near the top bar of
+                # a race. Staging once per beat left him standing in mid-air
+                # for every visual after the first, which is precisely what the
+                # showrunner records as `decorative_mascot`. He re-stages on
+                # each depiction as it comes up, so STRICT_CONTACT holds for
+                # every second the video is on screen, not just the first few.
+                sub = [(sp["t0"], sp["t1"], sp.get("anchors"))
+                       for sp in (getattr(st.segments[i], "spans", []) or [])]
+                if not sub:
+                    sub = [(wi[0], wi[1], None)]
+                for t0, t1, anc in sub:
+                    staged = _stage_on_data(st.segments[i], t0, t1,
+                                            _act(st.segments[i]), None,
+                                            anchors=anc)
+                    if staged is not None:
+                        _add(staged[0], staged[1])
+                    else:                          # no anchor -> fall to the stage
+                        x, y = _spot(i, "")
+                        _add((x, y, t0, t1, UP_ANGLE, False, spec, 1.0))
             # CLOSING: Data is the SPEAKER — big and central so his celebration
             # is the payoff and nothing sits frozen.
             close_act = _director.celebrate() if _director else "cheer"
@@ -1912,49 +1974,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             inputs += ["-framerate", f"{rfps:.2f}", "-i", rpat]
             receipt_idx = idx
             idx += 1
-        seg_idx = {}
-        # input index of each beat's SECOND depiction, and the windows it is
-        # on screen for (recorded so the run can report how many distinct
-        # visuals a video actually contained).
-        alt_idx: dict = {}
-        alt_windows: list = []
-        import glob as _glob
+        # Input index of EVERY visual, keyed (segment, span). A beat is a
+        # forward-only sequence of depictions (see THE EDIT above), so this is
+        # one input per thing the viewer ever sees, in the order they see it.
+        span_idx: dict = {}
         for i, seg in enumerate(st.segments):
-            if seg.chart_path:
-                # chart_path is a printf build sequence (..._build%02d.png). Play
-                # it at a framerate that spans MOST of the beat instead of a fixed
-                # 24fps that finishes in <1s and then freezes — that static hold
-                # is what tanks pace / reads as dead air. tpad below covers only a
-                # short tail.
-                nfr = len(_glob.glob(seg.chart_path.replace("%02d", "*"))) or 24
-                wi = windows[1 + i] if 1 + i < len(windows) else None
-                # Span the DISPLAY window (seg0 includes the hook, the last chart
-                # includes the closing) so the build's framerate matches how long
-                # it's shown.
-                _s0 = disp_start.get(i, wi[0] if wi else 0.0)
-                _s1 = disp_end.get(i, wi[1] if wi else 2.0)
-                beat = (_s1 - _s0)
-                # Play at a smooth framerate (>=18fps) so growth doesn't step in
-                # visible jumps; with ~60 build frames this spans typical beats,
-                # and a short settle tail on longer beats stays under dead-air.
-                # EXACTLY 30fps (== the export rate) so no source frame is ever
-                # duplicated/dropped into the master timeline (ChatGPT: "remove
-                # dynamic source FPS completely"). nfr is ceil(beat*30) so the
-                # build spans the beat 1:1 at 30fps; a short settle tail (tpad)
-                # covers rounding. No 18-30 range, no resampling judder.
-                cfps = 30.0
-                inputs += ["-framerate", f"{cfps:.2f}", "-i", seg.chart_path]
-                seg_idx[i] = idx
+            for j, sp in enumerate(getattr(seg, "spans", []) or []):
+                # Each build is a printf sequence (..._build%02d.png) rendered
+                # for EXACTLY its own span, and played at 30fps — the export
+                # rate — so no source frame is ever duplicated or dropped into
+                # the master timeline. A short settle tail (tpad, below) covers
+                # rounding only.
+                inputs += ["-framerate", "30.00", "-i", sp["path"]]
+                span_idx[(i, j)] = idx
                 idx += 1
-                # The beat's SECOND depiction, if one was rendered. Played at
-                # the same 30fps so nothing resamples; it covers only the shots
-                # it appears in, so it is rendered at half the frame count and
-                # tpad holds its last frame for the remainder.
-                _alt = getattr(seg, "alt_chart_path", None)
-                if _alt:
-                    inputs += ["-framerate", f"{cfps:.2f}", "-i", _alt]
-                    alt_idx[i] = idx
-                    idx += 1
         masc_input = []
         for mv in mascot_movs:
             inputs += ["-stream_loop", "-1", "-i", str(mv)]
@@ -2052,16 +2085,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # one of the video's subjects, not an overlay to hide. (This used to
         # hold him off the punch-in shots; there are no punch-ins now.)
         punch_windows: list[tuple[float, float]] = []
+        n_visuals = 0
         for i, seg in enumerate(st.segments):
-            if i not in seg_idx:
+            spans = getattr(seg, "spans", []) or []
+            if not spans:
                 continue
-            gi = seg_idx[i]
-            # s0/s1 are the DISPLAY window — the opening chart leads the hook and
-            # the last chart trails into the closing, so neither bookend is a void.
-            s0 = disp_start.get(i, windows[1 + i][0])
-            s1 = disp_end.get(i, windows[1 + i][1])
             fd = 0.14        # short cross-fade so no frame lands on near-black
-            hold = max(0.5, (s1 - s0)) + 1.0
             # Full-frame viz (diorama, timeline, fill_vessel, ...) are authored
             # at 1080x1920 and fill the whole frame; card charts/maps stay in the
             # top chart region. The registry is charts' single source of truth.
@@ -2078,68 +2107,35 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # finished composite just before the captions burn in (see the
             # CAMERA BREATH step below) — same measured pixels per frame,
             # less than half the acceleration, one coherent camera.
-            # THE BEAT CUTS BETWEEN TWO DEPICTIONS, not two framings.
             #
-            # The first version of this cut the beat into shots of the SAME
-            # card, tightening the crop on the datum being spoken. That is one
-            # subject with movement on it, and the operator was right that it
-            # reads as a jump-cut zoom rather than as more content: "there is
-            # like 4 things and then movement, that's not good enough".
+            # ONE OVERLAY PER SPAN, EACH SOURCE CONSUMED EXACTLY ONCE.
             #
-            # Now a beat alternates its chart with a SECOND depiction of the
-            # same number (a stack of objects, a share grid, a ranked race).
-            # Both are full-frame and static — no crop, no push — so what
-            # changes at the cut is WHAT YOU ARE LOOKING AT.
-            shots = _shot_plan(s0, s1)
-            n = len(shots)
-            alt = getattr(seg, "alt_chart_path", None)
-            if alt and n > 1:
-                ai = alt_idx.get(i)
-            else:
-                ai = None
-            fc.append(
-                f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
-                f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
-                f"scale={vw}:{vh},format=rgba,"
-                f"fade=t=in:st={s0:.2f}:d=0.12:alpha=1,"
-                f"fade=t=out:st={max(s0, s1 - fd):.2f}:d={fd}:alpha=1[g{i}]")
-            if ai is not None:
+            # Every visual is laid at its OWN t0 and enabled only for its own
+            # window, so a depiction is on screen once and then finished. There
+            # is nothing to split and no label to reuse: the earlier alternating
+            # edit reused [g0] across shots and ffmpeg refused the whole graph
+            # (exit 234, no render at all), which cannot happen in this shape.
+            for j, sp in enumerate(spans):
+                gi = span_idx.get((i, j))
+                if gi is None:
+                    continue
+                t0, t1 = float(sp["t0"]), float(sp["t1"])
+                hold = max(0.5, t1 - t0) + 1.0
+                lab = f"v{i}_{j}"
                 fc.append(
-                    f"[{ai}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
-                    f"setpts=PTS-STARTPTS+{s0:.2f}/TB,"
-                    f"scale={vw}:{vh},format=rgba[ga{i}]")
-            # Shot 0 establishes on the chart; then alternate. The beat always
-            # ENDS on the primary depiction so the payoff lands on the chart
-            # the narration has been building toward.
-            #
-            # ffmpeg consumes a filter output label EXACTLY ONCE, so each
-            # source is split into as many copies as it has shots. The first
-            # version of this reused [g0] for every shot and ffmpeg refused the
-            # whole graph (exit 234) — the render simply produced nothing.
-            plan = [(k, (a0, a1),
-                     (ai is not None and k % 2 == 1 and k != n - 1))
-                    for k, (a0, a1) in enumerate(shots)]
-            n_alt = sum(1 for _, _, is_alt in plan if is_alt)
-            n_pri = len(plan) - n_alt
-            if n_pri > 1:
-                fc.append(f"[g{i}]split={n_pri}"
-                          + "".join(f"[p{i}_{j}]" for j in range(n_pri)))
-            if ai is not None and n_alt > 1:
-                fc.append(f"[ga{i}]split={n_alt}"
-                          + "".join(f"[q{i}_{j}]" for j in range(n_alt)))
-            pj = qj = 0
-            for k, (a0, a1), is_alt in plan:
-                if is_alt:
-                    lab = (f"q{i}_{qj}" if n_alt > 1 else f"ga{i}")
-                    qj += 1
-                    alt_windows.append((a0, a1))
-                else:
-                    lab = (f"p{i}_{pj}" if n_pri > 1 else f"g{i}")
-                    pj += 1
+                    f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
+                    f"setpts=PTS-STARTPTS+{t0:.2f}/TB,"
+                    f"scale={vw}:{vh},format=rgba,"
+                    f"fade=t=in:st={t0:.2f}:d=0.12:alpha=1,"
+                    f"fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1"
+                    f"[{lab}]")
                 fc.append(
                     f"[{prev}][{lab}]overlay=x={vx}:y={vy}:"
-                    f"enable='between(t,{a0:.2f},{a1:.2f})'[b{i}_{k}]")
-                prev = f"b{i}_{k}"
+                    f"enable='between(t,{t0:.2f},{t1:.2f})'[b{i}_{j}]")
+                prev = f"b{i}_{j}"
+                n_visuals += 1
+        print(f"[studio] {n_visuals} distinct visuals, each shown once",
+              flush=True)
         # Mascots — Data TRAVELS. He glides from his previous spot to this
         # beat's spot across the WHOLE beat (not a quick slide-then-park), so
         # his x/y is always changing — he's never static in one place. A gentle
