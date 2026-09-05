@@ -1455,6 +1455,46 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "office-vacancy-structural-shift": {
+      "url": "https://youtube.com/shorts/fReGr_FMIEw",
+      "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
+      "at": "2026-09-05T17:21:51.619697+00:00",
+      "publish_at": "2026-09-05T18:13:56Z",
+      "n_beats": 3,
+      "story_structure": "trend+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 42.3,
+      "hook": "inversion",
+      "topic_category": "economy",
+      "ending_type": "consequence",
+      "depictions": [
+        "viz:trend",
+        "scene:kit",
+        "mechanic:empty-desk-lights"
+      ],
+      "words_first_10s": 14,
+      "scene_changes_before_5s": 2
+    },
+    "organ-transplant-waitlist-gap": {
+      "url": "https://youtube.com/shorts/wz02Q9HFaHg",
+      "title": "Organ Transplants Hit A Record. The Waitlist Still Didn't Shrink (3 Charts)",
+      "at": "2026-09-05T17:30:12.464008+00:00",
+      "publish_at": "2026-09-06T00:13:56Z",
+      "n_beats": 3,
+      "story_structure": "trend+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 44.4,
+      "hook": "inversion",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "viz:trend",
+        "mechanic:waitlist-race-track",
+        "scene:kit"
+      ],
+      "words_first_10s": 15,
+      "scene_changes_before_5s": 2
     }
   }
 }
