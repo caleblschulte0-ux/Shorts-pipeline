@@ -160,17 +160,41 @@ jobs:
               # sat out a full day — retry now
               echo "1" > state/failure_count.txt
               rm -f state/auto_pause_day.txt
-              bash scripts/ci_commit_state.sh \
-                "trending: auto-resume after a paused day [skip ci]" \
-                state/failure_count.txt state/auto_pause_day.txt || true
+              # A REJECTED/FAILED PERSIST MUST NOT BE TREATED AS A DURABLE
+              # RESUME. `|| true` here used to swallow a push failure: the
+              # runner's local failure_count.txt/auto_pause_day.txt changed,
+              # but main kept the STALE state, while this step still emitted
+              # skip= and a warning as if the resume had landed. The next
+              # firing would then read that stale committed state off main
+              # and could repeat the wrong branch, defeating the one-day
+              # pause/auto-retry guarantee (doctor finding cc8333959d84).
+              # ci_commit_state.sh already exits non-zero on a real persist
+              # failure (5-attempt push retry exhausted, or a commit
+              # failure) — surface that as a named infra failure instead of
+              # continuing past it.
+              if ! bash scripts/ci_commit_state.sh \
+                    "trending: auto-resume after a paused day [skip ci]" \
+                    state/failure_count.txt state/auto_pause_day.txt; then
+                echo "::error::AUTO-PAUSE STATE PERSIST FAILED — could not commit the auto-resume (failure_count.txt reset to 1, auto_pause_day.txt cleared) to main. Refusing to claim a durable resume; failing this run so the infra fault is visible instead of the next run silently repeating today's decision against stale state. Re-run once the push failure (see ci_commit_state.sh output above) is fixed."
+                exit 1
+              fi
               echo "skip=" >> $GITHUB_OUTPUT
               echo "::warning::AUTO-RESUME: sat out $SAT_OUT, retrying today. Another zero-upload day pauses again tomorrow."
             else
               # first paused day — record it so tomorrow's run can retry
               echo "$TODAY" > state/auto_pause_day.txt
-              bash scripts/ci_commit_state.sh \
-                "trending: auto-pause day $TODAY recorded [skip ci]" \
-                state/auto_pause_day.txt || true
+              # Same fail-closed rule as the resume branch above: a state
+              # commit that never reached main is not a durable pause record,
+              # so a persist failure here must not be swallowed either —
+              # the next run would see no auto_pause_day.txt on main and
+              # re-derive "first paused day" every single day instead of
+              # ever reaching the auto-resume branch.
+              if ! bash scripts/ci_commit_state.sh \
+                    "trending: auto-pause day $TODAY recorded [skip ci]" \
+                    state/auto_pause_day.txt; then
+                echo "::error::AUTO-PAUSE STATE PERSIST FAILED — could not commit auto_pause_day.txt=$TODAY to main. Refusing to claim a durable pause; failing this run so the infra fault is visible instead of tomorrow's run silently re-deciding against stale/absent state. Re-run once the push failure (see ci_commit_state.sh output above) is fixed."
+                exit 1
+              fi
               echo "skip=auto" >> $GITHUB_OUTPUT
               echo "::error::TRENDING IS PAUSED for $TODAY (state/failure_count.txt=$fc). It will retry ITSELF tomorrow — no manual reset needed. To retry sooner: echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push"
             fi

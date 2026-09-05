@@ -967,7 +967,7 @@
     "69a0ad32a52f": {
       "verdict": "done",
       "date": "20260905",
-      "because": "",
+      "because": "Fixed and merged in PR #326 (commit 29bf6d4): judge_policy.decide() now requires pass=True from every required judge (taste/technical/factual); unanimous or single reject blocks advancement instead of relying on dissent(). Regression tests added in scripts/test_judge_policy.py and tests/test_judge_policy_decide.py.",
       "history": [
         {
           "verdict": "doing",
@@ -983,10 +983,16 @@
       "commit": "29bf6d4"
     },
     "cc8333959d84": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed at .github/workflows/daily.yml:153-174 (auto-resume) and 163-171 (first-paused-day): both call scripts/ci_commit_state.sh with a trailing || true, so a rejected/failed state push leaves the local failure_count.txt/auto_pause_day.txt writes uncommitted while the job still reports skip=auto or skip= and proceeds as if the durable state landed. Next run reads stale committed state from main. Real gap in the auto-pause backoff guarantee; needs a preflight that treats a failed state commit as a named infra failure rather than swallowing it. Queued, not this run's build (picking the earlier-filed judge_policy bug first per ranking).",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260905",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed at .github/workflows/daily.yml:153-174 (auto-resume) and 163-171 (first-paused-day): both call scripts/ci_commit_state.sh with a trailing || true, so a rejected/failed state push leaves the local failure_count.txt/auto_pause_day.txt writes uncommitted while the job still reports skip=auto or skip= and proceeds as if the durable state landed. Next run reads stale committed state from main. Real gap in the auto-pause backoff guarantee; needs a preflight that treats a failed state commit as a named infra failure rather than swallowing it. Queued, not this run's build (picking the earlier-filed judge_policy bug first per ranking)."
+        }
+      ]
     },
     "5187e34e11f3": {
       "verdict": "doing",
