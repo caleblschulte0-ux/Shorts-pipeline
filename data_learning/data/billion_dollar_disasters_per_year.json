@@ -12,8 +12,14 @@
     "access_date": "2026-09-05"
   },
   "notes": "NOAA NCEI's cost-of-disasters database tracks all billion-dollar weather and climate disaster types (not hurricanes alone). The 1980s annual average was roughly 3 events/year; the 2019-2023 annual average was over 20/year. Figures approximate, rounded.",
-  "baseline": {"label": "1980s annual average", "value": 3},
   "points": [
-    {"label": "2019-2023 annual average", "value": 20}
+    {
+      "label": "2019-2023 annual average",
+      "value": 20
+    },
+    {
+      "label": "1980s annual average",
+      "value": 3
+    }
   ]
 }

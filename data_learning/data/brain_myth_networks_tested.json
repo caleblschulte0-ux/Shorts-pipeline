@@ -12,8 +12,14 @@
     "access_date": "2026-09-05"
   },
   "notes": "The study scanned 1,011 people's resting-state brain connectivity and analyzed 7 major brain networks for evidence of a global 'left-brained/right-brained' personality dominance. It found no network showed the predicted whole-brain lateralization tied to personality type.",
-  "baseline": {"label": "brain networks tested", "value": 7},
   "points": [
-    {"label": "networks matching the myth", "value": 0}
+    {
+      "label": "brain networks tested",
+      "value": 7
+    },
+    {
+      "label": "networks matching the myth",
+      "value": 0
+    }
   ]
 }
