@@ -5845,13 +5845,50 @@
       "director_cut": true
     },
     "clip-20260905-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/ScrumptiousPunchyCroquetteDoggo-Q5flbu7EjBBio_a_",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/naX7lYEsX0w",
       "title": "Lacy Reacts To This Win With 'Oh My God'",
       "kind": "twitch_clip",
-      "ts": "2026-09-05T14:48:46.856385+00:00",
+      "ts": "2026-09-05T14:48:50.671868+00:00",
+      "uploaded_at": "2026-09-05T14:48:50.671892+00:00",
+      "publish_at": "2026-09-05T18:30:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/ScrumptiousPunchyCroquetteDoggo-Q5flbu7EjBBio_a_",
+      "streamer": "lacy",
+      "series": "win",
+      "hook": "SHE COULD NOT BELIEVE THIS WIN",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3062,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 21.0
+      },
+      "director_cut": true
+    },
+    "rejected-succulentviscouscroquettepjsalt-0ma9euzcle6nqzjl": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/SucculentViscousCroquettePJSalt-0Ma9EUZcLe6nQZjl",
+      "streamer": "northernlion",
+      "title": "Walk your butt",
+      "qa_rejected": true,
+      "ts": "2026-09-05T14:49:02.675442+00:00"
+    },
+    "rejected-delightfulcorrectkoupreykappaclaus-hd4cu1bfyo_la3c4": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/DelightfulCorrectKoupreyKappaClaus-hD4cU1bfyo_LA3c4",
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Rage Baits Erobb With His Own Steam Stats",
+      "qa_rejected": true,
+      "ts": "2026-09-05T14:55:06.930891+00:00"
+    },
+    "clip-20260905-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ScrumptiousSucculentLegPipeHype-WZHDpegVXbYtuSzg",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out",
+      "kind": "twitch_clip",
+      "ts": "2026-09-05T14:58:41.524841+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
