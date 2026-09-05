@@ -395,6 +395,57 @@ class TestPreflightBackoffExecutes(WorkflowShellCase):
                          daily_steps()[PREFLIGHT_STEP]["run"])
 
 
+class TestAutoPauseStatePersistFailsClosed(WorkflowShellCase):
+    """Doctor finding cc8333959d84. Both branches that write the bounded
+    auto-pause state used to call ci_commit_state.sh with a trailing
+    `|| true`: a rejected push or a commit failure left main holding STALE
+    state while this step still emitted `skip=` / `skip=auto` and a message
+    claiming the pause/resume was durable. The next firing then read the old
+    committed state off main and could repeat the wrong branch — silently
+    defeating the one-day pause and the automatic-retry guarantee.
+
+    ci_commit_state.sh itself already exits non-zero on a genuine persist
+    failure (5-attempt push retry exhausted, or `git commit` failing with
+    changes staged) — these tests stub it to fail exactly that way and
+    prove the preflight step now surfaces that as a loud, named
+    infrastructure failure instead of continuing past it."""
+
+    def _make_persist_fail(self):
+        (self.tmp / "scripts" / "ci_commit_state.sh").write_text(
+            '#!/usr/bin/env bash\n'
+            'echo "$@" >> ci_commit_calls.txt\n'
+            'echo "::error::[persist] failed to push state after 5 attempts" >&2\n'
+            'exit 1\n')
+
+    def test_a_rejected_persist_on_the_first_paused_day_fails_closed(self):
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        self._make_persist_fail()
+        proc = self.preflight()
+        self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("AUTO-PAUSE STATE PERSIST FAILED",
+                      proc.stdout + proc.stderr)
+        # the step must fail BEFORE claiming a durable pause — no skip=
+        # output at all, not even the correct-looking "auto"
+        self.assertIsNone(self.skip_output())
+
+    def test_a_rejected_persist_on_auto_resume_fails_closed(self):
+        (self.tmp / "state" / "failure_count.txt").write_text("2\n")
+        (self.tmp / "state" / "auto_pause_day.txt").write_text("19990101")
+        self._make_persist_fail()
+        proc = self.preflight()
+        self.assertNotEqual(proc.returncode, 0, proc.stdout + proc.stderr)
+        self.assertIn("AUTO-PAUSE STATE PERSIST FAILED",
+                      proc.stdout + proc.stderr)
+        # the step must fail BEFORE claiming a durable resume — no skip=
+        # output at all, not even the correct-looking ""
+        self.assertIsNone(self.skip_output())
+
+    def preflight(self, event: str = "workflow_dispatch"):
+        step = daily_steps()[PREFLIGHT_STEP]
+        script = step["run"].replace("${{ github.event_name }}", event)
+        return self.bash(script)
+
+
 class TestTheOrchestratorWritesTheOutcome(unittest.TestCase):
     def test_the_outcome_file_carries_what_the_judgment_needs(self):
         src = (ROOT / "scripts" / "run_trending_daily.py").read_text()
