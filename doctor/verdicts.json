@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260904",
+  "updated": "20260905",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -799,16 +799,22 @@
       "revisit_after": "20260923"
     },
     "2fc5cbb21cca": {
-      "verdict": "in_progress",
-      "date": "20260825",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260905",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260825",
           "because": "Confirmed live: Actions history shows zero daily.yml runs (workflow_run or otherwise) for 2026-08-23 despite exchange_phase_b run 32643778540 (schedule trigger) completing successfully and writing exchange/bundles/20260823/phase_b_report.json, and a second candidate run 32646462573 also completing successfully. Relying solely on the implicit workflow_run event with no verification that GitHub actually dispatched a downstream run is the root cause of a silent zero-render day. Building now: making a real (non-skipped) Phase B apply explicitly dispatch Daily Shorts and verify the dispatch was accepted, failing loudly if not, while keeping workflow_run as an idempotent fallback."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260825",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "ea4cdbf"
     },
     "47afe3adb739": {
       "verdict": "doing",
@@ -959,16 +965,22 @@
       "revisit_after": "20260927"
     },
     "69a0ad32a52f": {
-      "verdict": "in_progress",
-      "date": "20260904",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260905",
+      "because": "",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed by reading judge_policy.py:276-373. Unanimous pass=false from all required judges produces no blocker: the required-judge loop (312-321) only checks missing/failed/abstained status, hard_blockers (340) only fires on findings with severity=blocker or an auto-fail defect code, and dissent() (276-290) returns empty when all judges agree even if they unanimously agree pass=false. A high overall_10 with unanimous reject can reach advance=true. This is a real fail-open path in the binding gate; fixing it is in scope and small (require pass=True from every required judge)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260904",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "29bf6d4"
     },
     "cc8333959d84": {
       "verdict": "doing",
