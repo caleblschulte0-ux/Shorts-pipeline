@@ -1,0 +1,37 @@
+{
+ "slug": "buybacks-beat-dividends",
+ "ts": "20260905T111414Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: He rides/perches on the leading bar with no setup\u2192action\u2192payoff: seg2:mid, seg3:start and seg3:mid are the same 'stand on top of the blue column' pose, and by payoff@-1.8/seg4:end he is a tiny upside-down sticker clipped behind the caption box.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "repeated_composition_with_broken_mascot",
+  "visible_evidence": "seg3:start/mid/end reuse seg2's exact layout \u2014 same 'buybacks vs dividends' title, same two rounded columns, same VS glyph \u2014 with only the year and values changed; the 2021 columns fill barely half the plot so the upper half is empty track, the mascot is inverted head-down on the blue column by seg3:end, and the source line overlaps the 'Buybacks'/'Dividends' axis labels in all three frames.",
+  "root_cause": "Segments 2 and 3 are rendered from the identical paired-column template with no differentiating motion or metaphor, the mascot pose for this beat rotates past vertical, and the footer source string is laid out on top of the category labels instead of below the plot.",
+  "repair_goal": "Give seg3 a distinct demonstration of the 2021 gap (e.g. the buyback column overtaking/overflowing the dividend column, or a delta callout animating between them), scale the columns to use the full plot height, fix the mascot to an upright bit tied to that gap, and move the source line clear of the axis labels."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "race_sprint"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "stretched"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  }
+ ]
+}
