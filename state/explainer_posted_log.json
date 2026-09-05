@@ -1415,6 +1415,46 @@
       ],
       "words_first_10s": 12,
       "scene_changes_before_5s": 2
+    },
+    "airline-bag-fee-unbundling": {
+      "url": "https://youtube.com/shorts/6UiXA5Tw0YU",
+      "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
+      "at": "2026-09-05T10:32:01.583366+00:00",
+      "publish_at": "2026-09-05T10:58:04Z",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 44.0,
+      "hook": "inversion",
+      "topic_category": "economics",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:suitcase-cash-stuff",
+        "mechanic:fuselage-cash-flood",
+        "mechanic:runway-cash-trail-lineup"
+      ],
+      "words_first_10s": 5,
+      "scene_changes_before_5s": 3
+    },
+    "great-wealth-transfer-2048": {
+      "url": "https://youtube.com/shorts/GDCGj6kpbqo",
+      "title": "$124 Trillion Is About To Change Hands",
+      "at": "2026-09-05T10:45:40.301726+00:00",
+      "publish_at": "2026-09-05T16:58:04Z",
+      "n_beats": 3,
+      "story_structure": "scene+share+scene",
+      "narrative_score": 61,
+      "duration_s": 48.6,
+      "hook": "shock_stat",
+      "topic_category": "economics",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:inheritance-fork",
+        "viz:share",
+        "mechanic:concentration-crowd-duel"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   }
 }
