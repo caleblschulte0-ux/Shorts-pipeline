@@ -2824,5 +2824,531 @@
       "music_vibe": "dark",
       "gameplay": "minecraft"
     }
+  },
+  "20260606": {
+    "01_las-vegas-blanket-fort.json": {
+      "version": 8,
+      "slug": "las-vegas-blanket-fort",
+      "title": "High Schoolers Just Built a Blanket Fort So Big It Beat a World Record",
+      "hashtags": [
+        "worldrecord",
+        "guinnessrecord",
+        "lasvegas",
+        "nevada",
+        "blanketfort",
+        "fostercare",
+        "highschool",
+        "clarkcounty",
+        "students",
+        "weirdnews",
+        "achievement",
+        "viral",
+        "guinness",
+        "fyp",
+        "shorts"
+      ],
+      "script": "High school students in Las Vegas just built a blanket fort so massive it officially broke a Guinness World Record. The fort stretched across 14,103 square feet at a local community center \u2014 larger than most houses. Students from West Career and Technical Academy designed it all, using donated sheets and scaffolding. Guinness rules: no gaps bigger than 1 inch, sheets must touch the floor, and people must be able to sit inside. Previous record: 12,291 square feet. Gone.",
+      "shots": [
+        {
+          "phrase": "broke a Guinness World Record",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Welcome_to_fabulous_las_vegas_sign.jpg",
+          "query": "las vegas neon lights sign city nevada landmark"
+        },
+        {
+          "phrase": "14,103 square feet at a local community center",
+          "query": "huge blanket fort indoor massive ceiling sheets draped"
+        },
+        {
+          "phrase": "Students from West Career and Technical Academy",
+          "query": "high school students teamwork building project construction scaffolding"
+        },
+        {
+          "phrase": "no gaps bigger than 1 inch",
+          "query": "measuring tape ruler official measurement careful inspection close-up"
+        },
+        {
+          "phrase": "sheets must touch the floor",
+          "query": "colorful blankets sheets draped floor large indoor space community"
+        },
+        {
+          "phrase": "Previous record: 12,291 square feet",
+          "query": "guinness world records book official certificate achievement gold"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "broke a Guinness World Record",
+          "text": "WORLD RECORD",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "14,103 square feet",
+          "text": "14,103 SQ FT",
+          "color": "#ffaa30",
+          "size": 195,
+          "duration": 2.2
+        },
+        {
+          "phrase": "no gaps bigger than 1 inch",
+          "text": "NOT 1 INCH",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Previous record: 12,291 square feet",
+          "text": "OLD RECORD: GONE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 195,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "minecraft"
+    },
+    "02_tasmanian-devil-escape.json": {
+      "version": 8,
+      "slug": "tasmanian-devil-escape",
+      "title": "An Endangered Tasmanian Devil Escaped a Wildlife Park. Nobody Can Find Her.",
+      "hashtags": [
+        "tasmaniandevil",
+        "australia",
+        "queensland",
+        "wildlifepark",
+        "endangered",
+        "animalnews",
+        "missinganimal",
+        "drone",
+        "wildlifesearch",
+        "weirdnews",
+        "animals",
+        "oddly",
+        "naturenews",
+        "fyp",
+        "shorts"
+      ],
+      "script": "A 2-year-old Tasmanian devil named Mary escaped from a wildlife park in Queensland, Australia \u2014 and has been on the run for 4 days. She's endangered, nocturnal, and can roam 10 miles in a single night. Twelve wildlife experts, thermal imaging drones, and a sniffer dog have searched around the clock. CCTV shows Mary sprinting into the dark just hours before anyone noticed. Tasmanian devils have been extinct on the Australian mainland for 3,000 years. Nobody's found her yet.",
+      "shots": [
+        {
+          "phrase": "Tasmanian devil named Mary escaped",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil.jpg",
+          "query": "tasmanian devil marsupial animal endangered australia wildlife"
+        },
+        {
+          "phrase": "wildlife park in Queensland, Australia",
+          "query": "australia wildlife park animal enclosure zoo queensland subtropical"
+        },
+        {
+          "phrase": "thermal imaging drones",
+          "query": "thermal infrared drone aerial night search wildlife heat signature"
+        },
+        {
+          "phrase": "CCTV shows Mary sprinting into the dark",
+          "query": "security camera night footage dark wildlife park cctv escape"
+        },
+        {
+          "phrase": "extinct on the Australian mainland for 3,000 years",
+          "query": "australia outback wild landscape endangered species nocturnal forest"
+        },
+        {
+          "phrase": "Nobody's found her yet",
+          "query": "missing animal search wildlife tracking sniffer dog rescue team"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "on the run for 4 days",
+          "text": "4 DAYS GONE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.2
+        },
+        {
+          "phrase": "10 miles in a single night",
+          "text": "10 MILES A NIGHT",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.0
+        },
+        {
+          "phrase": "Twelve wildlife experts",
+          "text": "12 EXPERTS",
+          "color": "#ffffff",
+          "size": 185,
+          "duration": 2.0
+        },
+        {
+          "phrase": "extinct on the Australian mainland for 3,000 years",
+          "text": "EXTINCT 3,000 YRS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.4
+        },
+        {
+          "phrase": "Nobody's found her yet",
+          "text": "STILL MISSING",
+          "color": "#ffaa30",
+          "size": 195,
+          "duration": 2.2
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "03_bayville-blank-ballot.json": {
+      "version": 8,
+      "slug": "bayville-blank-ballot",
+      "title": "A Town of 7,000 Is Voting for Mayor \u2014 With a Blank Ballot",
+      "hashtags": [
+        "bayville",
+        "longisland",
+        "newyork",
+        "election",
+        "mayor",
+        "blankvote",
+        "writein",
+        "localelection",
+        "weirdnews",
+        "politics",
+        "oddly",
+        "viral",
+        "voting",
+        "fyp",
+        "shorts"
+      ],
+      "script": "The village of Bayville on Long Island has 7,000 residents and a mayoral election on June 16. There is just one problem: nobody ran. The sitting mayor stepped down. No one else filed by the deadline. Officials say this has never happened before in Bayville's history. On election day, residents will show up to a completely blank ballot. The next mayor will be decided entirely by write-in votes. The job pays $5,000 a year.",
+      "shots": [
+        {
+          "phrase": "village of Bayville on Long Island",
+          "query": "long island new york village suburban town main street neighborhood"
+        },
+        {
+          "phrase": "mayoral election on June 16",
+          "query": "election ballot box voting booth polling station official"
+        },
+        {
+          "phrase": "nobody ran",
+          "query": "empty form blank paper no candidates running office election"
+        },
+        {
+          "phrase": "completely blank ballot",
+          "query": "blank voting ballot empty form paper pen election day"
+        },
+        {
+          "phrase": "write-in votes",
+          "query": "hand writing name on ballot pen election write in candidate"
+        },
+        {
+          "phrase": "job pays $5,000 a year",
+          "query": "small town mayor office government building town hall"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "nobody ran",
+          "text": "NOBODY RAN",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 2.6
+        },
+        {
+          "phrase": "completely blank ballot",
+          "text": "BLANK BALLOT",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.2
+        },
+        {
+          "phrase": "write-in votes",
+          "text": "WRITE IT IN",
+          "color": "#ffffff",
+          "size": 195,
+          "duration": 2.0
+        },
+        {
+          "phrase": "job pays $5,000 a year",
+          "text": "$5K A YEAR",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.0
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "minecraft"
+    },
+    "04_nasdaq-semiconductor-crash.json": {
+      "version": 8,
+      "slug": "nasdaq-semiconductor-crash",
+      "title": "Semiconductor Stocks Just Wiped $1 Trillion in a Single Day",
+      "hashtags": [
+        "nasdaq",
+        "semiconductor",
+        "broadcom",
+        "nvidia",
+        "amd",
+        "micron",
+        "stockmarket",
+        "aichips",
+        "techinvesting",
+        "marketcrash",
+        "investing",
+        "stocks",
+        "wallstreet",
+        "fyp",
+        "shorts"
+      ],
+      "script": "The Nasdaq dropped 4 percent Thursday in one of the worst AI chip selloffs of the year. The trigger: Broadcom held its annual AI chip forecast flat. Investors expected bigger. Micron fell 6 percent. Marvell fell 8. AMD fell 6. Nvidia slid. In one trading session, roughly $1 trillion in market value evaporated from semiconductor stocks. The AI trade isn't broken. But it just got a lot more fragile.",
+      "shots": [
+        {
+          "phrase": "Nasdaq dropped 4 percent Thursday",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASDAQ.JPG",
+          "query": "nasdaq stock market display times square new york trading"
+        },
+        {
+          "phrase": "Broadcom held its annual AI chip forecast flat",
+          "query": "semiconductor chip processor ai technology circuit close-up microscopic"
+        },
+        {
+          "phrase": "Micron fell 6 percent. Marvell fell 8",
+          "query": "stock market red down arrow selloff losses chart falling screen"
+        },
+        {
+          "phrase": "$1 trillion in market value evaporated from semiconductor stocks",
+          "query": "trillion dollars market crash losses stock chart falling red"
+        },
+        {
+          "phrase": "AI trade isn't broken",
+          "query": "artificial intelligence technology data center server racks dark"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Nasdaq dropped 4 percent",
+          "text": "NASDAQ -4%",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "Broadcom held its annual AI chip forecast flat",
+          "text": "FLAT GUIDANCE",
+          "color": "#ffaa30",
+          "size": 190,
+          "duration": 2.2
+        },
+        {
+          "phrase": "$1 trillion in market value evaporated",
+          "text": "$1 TRILLION GONE",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 185,
+          "duration": 2.6
+        },
+        {
+          "phrase": "a lot more fragile",
+          "text": "FRAGILE",
+          "color": "#ffaa30",
+          "size": 220,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    },
+    "05_nasa-x59-sonic-boom.json": {
+      "version": 8,
+      "slug": "nasa-x59-sonic-boom",
+      "title": "NASA's Sonic Boom Killer Just Broke the Sound Barrier for the First Time",
+      "hashtags": [
+        "nasa",
+        "x59",
+        "supersonicflight",
+        "sonicboom",
+        "quesst",
+        "aerospace",
+        "aviation",
+        "lockheedmartin",
+        "concorde",
+        "spacenews",
+        "science",
+        "technology",
+        "airforce",
+        "fyp",
+        "shorts"
+      ],
+      "script": "NASA's experimental X-59 jet crossed Mach 1 for the first time on June 5, 2026. The plane hit Mach 1.1 at 43,000 feet above the California desert. The X-59 is NASA's answer to the Concorde problem: it flies supersonic but generates a quiet thump instead of a boom. If regulators approve, overland supersonic flights could return for the first time in 50 years. Concorde retired in 2003 because the sonic boom was too loud. That excuse just ran out.",
+      "shots": [
+        {
+          "phrase": "NASA's experimental X-59 jet crossed Mach 1",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/NASA%E2%80%99s_X-59_Sits_on_Ramp_(Test).jpg",
+          "query": "nasa experimental supersonic jet aircraft palmdale california ramp"
+        },
+        {
+          "phrase": "Mach 1.1 at 43,000 feet above the California desert",
+          "query": "jet aircraft contrail high altitude blue sky supersonic california desert"
+        },
+        {
+          "phrase": "Concorde problem",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Concorde_F-BVFF.jpg",
+          "query": "concorde supersonic passenger aircraft retired museum aviation history"
+        },
+        {
+          "phrase": "quiet thump instead of a boom",
+          "query": "sound wave shockwave visualization sonic boom cone aircraft"
+        },
+        {
+          "phrase": "overland supersonic flights could return",
+          "query": "supersonic passenger aircraft future travel speed next generation"
+        },
+        {
+          "phrase": "Concorde retired in 2003 because the sonic boom was too loud",
+          "query": "concorde last flight retired 2003 aircraft history aviation museum"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "crossed Mach 1 for the first time",
+          "text": "MACH 1 DONE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 200,
+          "duration": 2.4
+        },
+        {
+          "phrase": "Mach 1.1 at 43,000 feet",
+          "text": "MACH 1.1",
+          "color": "#ffffff",
+          "size": 220,
+          "duration": 2.0
+        },
+        {
+          "phrase": "quiet thump instead of a boom",
+          "text": "A THUMP, NOT BOOM",
+          "color": "#ffaa30",
+          "size": 185,
+          "duration": 2.2
+        },
+        {
+          "phrase": "first time in 50 years",
+          "text": "50 YEARS LATER",
+          "color": "#ffffff",
+          "size": 195,
+          "duration": 2.0
+        },
+        {
+          "phrase": "That excuse just ran out",
+          "text": "EXCUSE: GONE",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818",
+          "size": 195,
+          "duration": 2.4
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "minecraft"
+    },
+    "06_iran-kuwait-missiles.json": {
+      "version": 8,
+      "slug": "iran-kuwait-missiles",
+      "title": "Iran Fired 7 Missiles at Kuwait's Airport. Flights Were Suspended.",
+      "hashtags": [
+        "iran",
+        "kuwait",
+        "middleeast",
+        "missile",
+        "airportstrike",
+        "nucleardeal",
+        "persiangulf",
+        "worldnews",
+        "geopolitics",
+        "breakingnews",
+        "usiran",
+        "war",
+        "diplomacy",
+        "fyp",
+        "shorts"
+      ],
+      "script": "Iran launched 7 ballistic missiles and drones at Kuwait International Airport on Thursday, forcing the suspension of all flights. Terminal 1 took direct hits. Kuwait declared a national emergency. Iran said it was responding to US strikes on its military positions. Tehran is now demanding $24 billion in frozen assets before nuclear talks resume. Iranian officials called the negotiations a complete deadlock. The Persian Gulf just became the most dangerous airspace on Earth.",
+      "shots": [
+        {
+          "phrase": "Kuwait International Airport",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kuwait_International_Airport.jpg",
+          "query": "kuwait international airport terminal middle east aviation hub"
+        },
+        {
+          "phrase": "7 ballistic missiles and drones",
+          "query": "ballistic missile launch military explosion fire sky attack"
+        },
+        {
+          "phrase": "Terminal 1 took direct hits",
+          "query": "airport explosion fire damage destruction aerial military strike"
+        },
+        {
+          "phrase": "$24 billion in frozen assets",
+          "query": "frozen assets sanctions financial embargo international finance money"
+        },
+        {
+          "phrase": "Persian Gulf",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Strait_of_Hormuz_(MODIS_2020-12-04).jpg",
+          "query": "persian gulf strait hormuz aerial satellite view middle east waters"
+        },
+        {
+          "phrase": "most dangerous airspace on Earth",
+          "query": "military jets aircraft warzone danger red sky hostile airspace"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "7 ballistic missiles and drones",
+          "text": "7 MISSILES",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 2.6
+        },
+        {
+          "phrase": "suspension of all flights",
+          "text": "ALL FLIGHTS GROUNDED",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 180,
+          "duration": 2.4
+        },
+        {
+          "phrase": "$24 billion in frozen assets",
+          "text": "$24 BILLION",
+          "color": "#ffaa30",
+          "size": 200,
+          "duration": 2.2
+        },
+        {
+          "phrase": "complete deadlock",
+          "text": "DEADLOCK",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 220,
+          "duration": 2.4
+        },
+        {
+          "phrase": "most dangerous airspace on Earth",
+          "text": "MOST DANGEROUS",
+          "color": "#ff3030",
+          "flash_bg": "#220404",
+          "size": 195,
+          "duration": 2.2
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "minecraft"
+    }
   }
 }
