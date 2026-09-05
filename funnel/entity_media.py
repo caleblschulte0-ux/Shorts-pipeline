@@ -76,7 +76,7 @@ _STOPWORDS = frozenset({
     "what", "who", "which", "how",
     # Prepositions that can start a sentence
     "for", "to", "from", "by", "with", "in", "on", "at", "of",
-    "over", "under",
+    "over", "under", "within",
     # Pronoun forms
     "him", "us", "them",
     # Demonyms / generic group nouns

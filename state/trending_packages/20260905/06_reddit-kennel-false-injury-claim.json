@@ -1,0 +1,37 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "reddit-kennel-false-injury-claim",
+  "title": "She Blamed My Kennel. The Camera Disagreed",
+  "hashtags": [
+    "talesfromthecustomer",
+    "dogboarding",
+    "dogdaycare",
+    "smallbusiness",
+    "falseclaim",
+    "karma",
+    "redditstories",
+    "dogsoftiktok",
+    "receiptsdontlie",
+    "businessowner",
+    "dogmom",
+    "shorts"
+  ],
+  "script": "A regular at my dog boarding business picked up her golden retriever and posted that night that we'd sprained the dog's leg through neglect, tagging every local rescue page. I run cameras in every play yard for insurance, so I pulled the full seventy-two hours of footage before I said a word back. The dog never limped once inside our building. What the timestamps showed was her own car dropping the dog off already favoring that leg, four hours before her booking even started. I sent her the clip privately and asked if she wanted to reconsider the post. She didn't reply, so I sent the same clip to the three rescue pages she'd tagged, with the drop-off timestamp circled in red. Within a day she'd deleted every comment and messaged apologizing, offering to pay for the mix-up. I told her the boarding fee was fine. The five-star review from her old account, though, that could stay exactly where it was.",
+  "shots": [
+    {"phrase": "sprained the dog's leg", "query": "golden retriever leg closeup"},
+    {"phrase": "I run cameras in every play yard", "query": "cctv camera dog daycare"},
+    {"phrase": "seventy-two hours of footage", "query": "security footage playback screen"},
+    {"phrase": "her own car dropping the dog off", "query": "car trunk dog carrier"},
+    {"phrase": "already favoring that leg", "query": "dog limping outside"},
+    {"phrase": "the three rescue pages she'd tagged", "query": "phone screen social media tags"},
+    {"phrase": "deleted every comment", "query": "phone deleting notification screen"},
+    {"phrase": "the five-star review", "query": "five star rating review screen"}
+  ],
+  "punches": [
+    {"phrase": "sprained the dog's leg", "text": "FALSE CLAIM", "color": "#ff3030"},
+    {"phrase": "seventy-two hours of footage", "text": "72 HOURS OF FOOTAGE", "color": "#ffaa30"},
+    {"phrase": "already favoring that leg", "text": "ALREADY INJURED", "color": "#ff3030"},
+    {"phrase": "deleted every comment", "text": "POST DELETED", "color": "#50ff80"}
+  ],
+  "music_vibe": "slow-burn tension building into a satisfying payoff"
+}

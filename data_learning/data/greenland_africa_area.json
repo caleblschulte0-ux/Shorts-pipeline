@@ -1,0 +1,19 @@
+{
+  "key": "greenland_africa_area",
+  "title": "Actual land area: Greenland vs Africa (million km²)",
+  "unit": "million square kilometers",
+  "geography": "World",
+  "time_coverage": "current (land area is fixed)",
+  "source": {
+    "name": "World land area by country/continent",
+    "publisher": "CIA World Factbook",
+    "url": "https://www.cia.gov/the-world-factbook/",
+    "officiality": "official",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Africa's total land area is about 30.4 million km²; Greenland (the world's largest island) is about 2.2 million km². On a standard Mercator map the two appear roughly similar in size because Mercator inflates area near the poles.",
+  "points": [
+    {"label": "Greenland", "value": 2.2},
+    {"label": "Africa", "value": 30.4}
+  ]
+}

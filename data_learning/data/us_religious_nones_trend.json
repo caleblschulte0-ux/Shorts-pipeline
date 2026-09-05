@@ -1,0 +1,21 @@
+{
+  "key": "us_religious_nones_trend",
+  "title": "Share of US adults with no religious affiliation, over time",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1990-2021 (annual survey years)",
+  "source": {
+    "name": "Religious 'nones' trend (General Social Survey / Religious Landscape Study)",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/religion/",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "The share of US adults identifying as atheist, agnostic, or 'nothing in particular' rose from roughly 8% in 1990 to about 29% by 2021, per Pew Research Center's long-running tracking of religious disaffiliation. Figures approximate, rounded.",
+  "points": [
+    {"label": "1990", "value": 8, "period": "1990"},
+    {"label": "2007", "value": 16, "period": "2007"},
+    {"label": "2014", "value": 23, "period": "2014"},
+    {"label": "2021", "value": 29, "period": "2021"}
+  ]
+}

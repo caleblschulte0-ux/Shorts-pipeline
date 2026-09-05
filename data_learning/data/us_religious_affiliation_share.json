@@ -1,0 +1,21 @@
+{
+  "key": "us_religious_affiliation_share",
+  "title": "US adult religious affiliation today (share of population)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "Religious Landscape Study",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/religion/",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Approximate current shares of US adults by religious category, rounded from Pew Research Center's Religious Landscape Study; unaffiliated ('nones') now exceeds Catholic share and is closing the gap with Protestant, the largest single category.",
+  "points": [
+    {"label": "Protestant", "value": 40},
+    {"label": "Unaffiliated", "value": 28},
+    {"label": "Catholic", "value": 20},
+    {"label": "Other faiths", "value": 12}
+  ]
+}

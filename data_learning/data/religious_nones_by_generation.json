@@ -1,0 +1,22 @@
+{
+  "key": "religious_nones_by_generation",
+  "title": "Share with no religious affiliation, by generation",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023-2024 (generational breakdown)",
+  "source": {
+    "name": "Generational religious affiliation breakdown (Religious Landscape Study)",
+    "publisher": "Pew Research Center",
+    "url": "https://www.pewresearch.org/religion/",
+    "officiality": "secondary",
+    "access_date": "2026-09-05"
+  },
+  "notes": "Each successive US generation reports a higher share of religious non-affiliation than the one before it. Figures are approximate, rounded from Pew Research Center's published generational breakdowns; Illustrative rounding.",
+  "points": [
+    {"label": "Silent Generation", "value": 10},
+    {"label": "Baby Boomer", "value": 17},
+    {"label": "Gen X", "value": 25},
+    {"label": "Millennial", "value": 36},
+    {"label": "Gen Z", "value": 34}
+  ]
+}
