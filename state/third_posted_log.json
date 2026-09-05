@@ -5905,14 +5905,45 @@
       "director_cut": true
     },
     "clip-20260905-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/InventiveBoringKangarooWOOP-g5ulLu4T1A5wK0Uz",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/MGWZMMFDSFk",
       "title": "Xqc Goes Off After Controller Player Gets Banned",
       "kind": "twitch_clip",
-      "ts": "2026-09-05T15:03:07.189128+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-05T15:03:10.958650+00:00",
+      "uploaded_at": "2026-09-05T15:03:10.958670+00:00",
+      "publish_at": "2026-09-05T23:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/InventiveBoringKangarooWOOP-g5ulLu4T1A5wK0Uz",
+      "streamer": "xqc",
+      "series": "rage",
+      "hook": "HE SAYS CONTROLLER IS CHEATING",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2755,
+      "banger": 0.55,
+      "cut": {
+        "start": 2.7,
+        "end": 26.5
+      },
+      "director_cut": true
+    },
+    "rejected-confidentmagnificentdaikonkreygasm--4vzi1f9qhhm4xld": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ConfidentMagnificentDaikonKreygasm--4VzI1f9QHHM4xLD",
+      "streamer": "jynxzi",
+      "title": "w",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just talk, future trip plans)",
+      "ts": "2026-09-05T15:04:27.543849+00:00"
+    },
+    "rejected-cautiouscovertllamacorgiderp-m09qjl7y8io62zon": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/CautiousCovertLlamaCorgiDerp-M09QJl7Y8io62zON",
+      "streamer": "ohnepixel",
+      "title": "no way",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confused rambling, no visible event)",
+      "ts": "2026-09-05T15:06:21.895646+00:00"
     }
   }
 }

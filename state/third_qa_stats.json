@@ -1,136 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260808",
-      "dry_run": false,
-      "ts": "2026-08-08T12:58:21+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 17,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 125,
-        "with_retention": 107,
-        "with_curve": 15,
-        "fetched_at": "2026-08-08T09:10:50.279737+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:lospollostv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:buddha": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260808-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260808-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260808-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "wide",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "visible fall, physical mishap",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "blurry motion suggests visible fall",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Silky Falls While His Team Fights For The Lead"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": []
-            }
-          },
-          "took_s": 155.0
-        },
-        {
-          "slug": "clip-20260808-4",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20260809",
       "dry_run": false,
       "ts": "2026-08-09T12:26:02+00:00",
@@ -7163,6 +7033,314 @@
             }
           },
           "took_s": 129.7
+        }
+      ]
+    },
+    {
+      "date": "20260905",
+      "dry_run": false,
+      "ts": "2026-09-05T15:06:21+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 99,
+        "with_retention": 74,
+        "with_curve": 14,
+        "fetched_at": "2026-09-05T11:56:04.398996+00:00"
+      },
+      "brain": {
+        "ok": 42,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:buddha": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20260905-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction, no clear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "reacting to tweet, no clear visible even",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Lays Out The Difference Everyone's Arguing About"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 207.5
+        },
+        {
+          "slug": "clip-20260905-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "xqc/xqc-about-argu-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                },
+                {
+                  "cluster": "kaicenat/kaicenat-about-asks-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director found no genuine arc"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.65,
+              "why": "implies visible win moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "routine gameplay run, vague reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Reacts To This Win With 'Oh My God'"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": []
+            }
+          },
+          "took_s": 860.0
+        },
+        {
+          "slug": "clip-20260905-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: audio dead for 3.4s at 33.0s; render_qa: freeze: 2.4s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: sharp band is solid black from ~24s to ~39s (frames at 24.1s, 27.8s, 31.5s, 35.2",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "insider streamer beef joke",
+              "blind": false
+            },
+            "content": {
+              "score": 0.35,
+              "why": "just talking, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Sodapoppin Rage Baits Erobb With His Own Steam Stats"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "audio dead for 3.4s at 33.0s",
+                "render_qa: freeze: 2.4s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.9,
+              "problems": [
+                "sharp band is solid black from ~24s to ~39s (frames at 24.1s, 27.8s, 31.5s, 35.2s, 38.9s) \u2014 nearly a third of the clip s"
+              ]
+            }
+          },
+          "took_s": 301.5
+        },
+        {
+          "slug": "clip-20260905-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear what happened",
+              "blind": false
+            },
+            "content": {
+              "score": 0.6,
+              "why": "girlfriend reveal drama, no visible reac",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Won't Let Chat Meet His Girlfriend \u2014 Then This Slips Out"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 157.8
+        },
+        {
+          "slug": "clip-20260905-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "reaction clip, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.6,
+              "why": "streamer justifies cheating claim, chat ",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Goes Off After Controller Player Gets Banned"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": []
+            }
+          },
+          "took_s": 154.8
+        },
+        {
+          "slug": "clip-20260905-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (confused rambling, no visible event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague reaction, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "confused rambling, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 41.4
         }
       ]
     }
