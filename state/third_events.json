@@ -1325,6 +1325,70 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-04"
+    },
+    "kaicenat-approach-cenat-2026w36": {
+      "event_id": "kaicenat-approach-cenat-2026w36",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "approach",
+        "cenat",
+        "kaicenat",
+        "person"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/HappyInventiveWatercressVoteNay-YBEMlTYwg4CqzVzB",
+        "https://www.twitch.tv/kaicenat/clip/VenomousEasyArtichokeVoHiYo-Qvad1szLQGEeSQq8"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-05"
+    },
+    "xqc-about-argu-2026w36": {
+      "event_id": "xqc-about-argu-2026w36",
+      "people": [
+        "xqc"
+      ],
+      "actions": [
+        "about",
+        "argu",
+        "bann",
+        "controll"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/xqc/clip/InventiveBoringKangarooWOOP-g5ulLu4T1A5wK0Uz",
+        "https://www.twitch.tv/shroud/clip/BlindingMuddyButterflyTooSpicy-5E2zd9vuQdaIj4ci"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-05"
+    },
+    "kaicenat-about-asks-2026w36": {
+      "event_id": "kaicenat-about-asks-2026w36",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "asks",
+        "emily",
+        "named"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-05",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/extraemily/clip/PunchyPoliteElephantGrammarKing-jsMEk56ae2jUnEtM",
+        "https://www.twitch.tv/kaicenat/clip/DependableSecretivePicklesTheRinger-78cRRzsPiZrLRI-h",
+        "https://www.twitch.tv/agent00/clip/DelightfulGracefulPlumThunBeast-HJpA9Aapn0OJPjbd"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-05"
     }
   }
 }
