@@ -1,0 +1,111 @@
+{
+  "date": "20260905",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 14,
+    "unfilled": 2,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "6cab580933e438b2c7d4d6d6ef92e72b846f928737c1feaa83160e6f513b76d7",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-storage-auction-buyback-s0-c6d03bba74da",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd53bd447b5e4e6922ba70d745c63dc76ae90a9922be7408ba0441d7675cd09c444e07378e904b30d014a3267a408c7837b5f27ee02fa0b97a4db0444a5051304_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s1-7f98f452d3da",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g4d155423057cf1f180bf454ac80879d06ce5aaa6211a7a6d7973f6f1d2e94bae6bbe71d657eafe874192bffb75af18c9dd3544154c6cd69b80086132bf025773_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s2-13154af3a795",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g965b768b459f9d2cf58db0502f3a22128feb55a61aec30322054ef46bb0d2b28b5edd8e5417c1b0fbb9ab79624b53c787a7ab872a0bb17c62fa54ff5288ddd1b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s3-c270077e5a3d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g04f84715eb366ae0ba512883df7ef4485ff9672a17c7b431d72dc1cc31ae5d171cab425748fe8a6b0dd58667cc9a9c22111c6abf5905fcceae7c17af77781261_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s4-6b02909f6f4d",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga753a66dddfe72699371bbfd9ec6401dde868d5123bd1d3a38a82b70b38cc3d9afc22e45b1469747df4e0ecfae74ed0e3399cc86b9ca2c67ff544d218bf1d51b_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s5-8e059d040b02",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g63418254f4bbb29a27b3b957cc8e480c6e07230c6ecf529198748856c4c95cd8a8caa13d4af4fcb2f7ecdaf3f29d90623ae50b5cc88743e451a12ba38b14a4a2_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s6-e20fcfe10658",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g651a1be094f89ceabac4fb4f27ba242545f1fba574184eec3eefefb9016c7b787fefb57ae9873f2477d09bed338d32a4bdbf817b3f041e1047a28196b9c4c181_1280.jpg"
+    },
+    {
+      "request_id": "reddit-storage-auction-buyback-s7-17e58d462a3f",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g3f3129c2f1eb46bcb54bb32496966de2b6204bb41bc139cbeff676028425e52e53277f9622f1e17522d60e14a7c449f5a4e4308d9f946983338a845f31eb5211_1280.jpg"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s0-c3f384613dba",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s1-bdddcb31a9c5",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/37443358/pexels-photo-37443358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s2-2d06301e8931",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g64c9c895e4109a21cbaba39a4acbb0a176c2cbe5c420f8c4299d1f0bd9c3bd7ccd3805bd3a2d0c338061a52749b892e124daa596ecb85c824b8cb10f2a849895_1280.jpg"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s3-3525167a1aca",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ge9bb130a2d68bb0fe2d0da9db86cbee986652243865b968072e5b487531fa368189125658257de0a01735b6becd435a29a9f2f56811e9f245f24cdb8cb76b65a_1280.jpg"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s4-f82d8abd14af",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g6dd080d031fc1184bda52ac9e6e4e3d8249697fa40531325d11039a75104ad66ec13d691e9b5f3df7260e26e3583f6164999b59edd0cda4bd129f72d49300184_1280.jpg"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s5-68a35254723a",
+      "outcome": "unfilled"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s6-2d2da077033e",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g449b0d1440790293a7c022a6b9b2a9e96425072e9caf4974f4704c31e8a46b77ec4017c1bca2d9e0efcc4308c8280153e7b8adadd968fec35965155a294f718e_1280.jpg"
+    },
+    {
+      "request_id": "reddit-kennel-false-injury-claim-s7-c1cfa73011a6",
+      "outcome": "self_fill",
+      "url": "https://images.pexels.com/photos/15879815/pexels-photo-15879815.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    }
+  ]
+}

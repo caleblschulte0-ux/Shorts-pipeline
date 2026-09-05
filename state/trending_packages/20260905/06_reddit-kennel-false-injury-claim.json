@@ -24,19 +24,27 @@
     },
     {
       "phrase": "I run cameras in every play yard",
-      "query": "cctv camera dog daycare"
+      "query": "cctv camera dog daycare",
+      "image_url": "https://images.pexels.com/photos/37443358/pexels-photo-37443358.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "seventy-two hours of footage",
-      "query": "security footage playback screen"
+      "query": "security footage playback screen",
+      "image_url": "https://pixabay.com/get/g64c9c895e4109a21cbaba39a4acbb0a176c2cbe5c420f8c4299d1f0bd9c3bd7ccd3805bd3a2d0c338061a52749b892e124daa596ecb85c824b8cb10f2a849895_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "her own car dropping the dog off",
-      "query": "car trunk dog carrier"
+      "query": "car trunk dog carrier",
+      "image_url": "https://pixabay.com/get/ge9bb130a2d68bb0fe2d0da9db86cbee986652243865b968072e5b487531fa368189125658257de0a01735b6becd435a29a9f2f56811e9f245f24cdb8cb76b65a_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "already favoring that leg",
-      "query": "dog limping outside"
+      "query": "dog limping outside",
+      "image_url": "https://pixabay.com/get/g6dd080d031fc1184bda52ac9e6e4e3d8249697fa40531325d11039a75104ad66ec13d691e9b5f3df7260e26e3583f6164999b59edd0cda4bd129f72d49300184_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the three rescue pages she'd tagged",
@@ -44,11 +52,15 @@
     },
     {
       "phrase": "deleted every comment",
-      "query": "phone deleting notification screen"
+      "query": "phone deleting notification screen",
+      "image_url": "https://pixabay.com/get/g449b0d1440790293a7c022a6b9b2a9e96425072e9caf4974f4704c31e8a46b77ec4017c1bca2d9e0efcc4308c8280153e7b8adadd968fec35965155a294f718e_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "the five-star review",
-      "query": "five star rating review screen"
+      "query": "five star rating review screen",
+      "image_url": "https://images.pexels.com/photos/15879815/pexels-photo-15879815.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
