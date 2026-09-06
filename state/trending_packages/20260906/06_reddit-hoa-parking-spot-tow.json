@@ -2,26 +2,82 @@
   "subreddit": "pettyrevenge",
   "slug": "reddit-hoa-parking-spot-tow",
   "title": "She Kept Stealing My Spot. I Called A Tow Truck.",
-  "hashtags": ["pettyrevenge", "hoa", "parking", "karma", "condoliving",
-               "towed", "redditstories", "revenge", "neighbors",
-               "satisfying", "shorts", "propertymanagement", "parkingwars"],
+  "hashtags": [
+    "pettyrevenge",
+    "hoa",
+    "parking",
+    "karma",
+    "condoliving",
+    "towed",
+    "redditstories",
+    "revenge",
+    "neighbors",
+    "satisfying",
+    "shorts",
+    "propertymanagement",
+    "parkingwars"
+  ],
   "script": "My condo assigns numbered parking spots, and mine sits closest to the elevator. My neighbor started parking there anyway, always with some excuse about just running in for a minute. I asked her nicely twice. The third time, instead of arguing again, I called the towing number printed right on our HOA's own signage, since unauthorized vehicles in an assigned spot are covered in the contract every owner signs. The tow truck showed up while she was upstairs grabbing a package, and by the time she came back down, her car was already on the flatbed heading across town. She pounded on my door insisting I'd ruined her morning, since she had a flight to catch in ninety minutes. I told her I'd been parked in my own numbered spot the entire time, which technically wasn't my problem to solve. She missed the flight, paid two hundred forty dollars to spring her car from impound, and rebooked the ticket at full price.",
   "shots": [
-    {"phrase": "numbered parking spots", "query": "parking lot numbered spots"},
-    {"phrase": "running in for a minute", "query": "woman rushing sidewalk"},
-    {"phrase": "called the towing number", "query": "phone call closeup"},
-    {"phrase": "tow truck showed up", "query": "tow truck flatbed"},
-    {"phrase": "already on the flatbed heading across town", "query": "car on tow truck"},
-    {"phrase": "pounded on my door", "query": "knocking on door"},
-    {"phrase": "flight to catch in ninety minutes", "query": "airport departure board"},
-    {"phrase": "spring her car from impound", "query": "impound lot fence"}
+    {
+      "phrase": "numbered parking spots",
+      "query": "parking lot numbered spots"
+    },
+    {
+      "phrase": "running in for a minute",
+      "query": "woman rushing sidewalk"
+    },
+    {
+      "phrase": "called the towing number",
+      "query": "phone call closeup"
+    },
+    {
+      "phrase": "tow truck showed up",
+      "query": "tow truck flatbed"
+    },
+    {
+      "phrase": "already on the flatbed heading across town",
+      "query": "car on tow truck"
+    },
+    {
+      "phrase": "pounded on my door",
+      "query": "knocking on door"
+    },
+    {
+      "phrase": "flight to catch in ninety minutes",
+      "query": "airport departure board"
+    },
+    {
+      "phrase": "spring her car from impound",
+      "query": "impound lot fence"
+    }
   ],
   "punches": [
-    {"phrase": "I asked her nicely twice", "text": "ASKED TWICE", "color": "#ffaa30"},
-    {"phrase": "already on the flatbed heading across town", "text": "CAR TOWED", "color": "#ff3030"},
-    {"phrase": "flight to catch in ninety minutes", "text": "90 MINUTES", "color": "#ffaa30"},
-    {"phrase": "She missed the flight", "text": "FLIGHT MISSED", "color": "#ff3030"},
-    {"phrase": "paid two hundred forty dollars", "text": "$240 IMPOUND FEE", "color": "#50ff80"}
+    {
+      "phrase": "I asked her nicely twice",
+      "text": "ASKED TWICE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "already on the flatbed heading across town",
+      "text": "CAR TOWED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "flight to catch in ninety minutes",
+      "text": "90 MINUTES",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "She missed the flight",
+      "text": "FLIGHT MISSED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "paid two hundred forty dollars",
+      "text": "$240 IMPOUND FEE",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "slow-burn petty tension building into a satisfying payoff"
 }

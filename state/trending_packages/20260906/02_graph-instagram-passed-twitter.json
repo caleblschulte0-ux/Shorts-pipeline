@@ -6,16 +6,60 @@
   "y_label": "Monthly active users (millions)",
   "duration": 13,
   "source": "Instagram's own publicly announced monthly-active-user milestones: 30 million at the 2012 Facebook acquisition, 100 million (Feb 2013), 300 million (Dec 2014), 400 million (Sept 2015), 500 million (June 2016), 800 million (Sept 2017), 1 billion (June 2018). Twitter's year-end monthly active users are its investor-reported figures as widely compiled (185 million in 2012 rising to 330 million in 2017, dipping to 321 million in 2018). Figures approximate to the reporting year.",
-  "years": [2012, 2013, 2014, 2015, 2016, 2017, 2018],
-  "series": [
-    {"name": "Instagram", "color": "#e1306c", "icon": "Instagram",
-     "values": [30, 100, 300, 400, 500, 800, 1000]},
-    {"name": "Twitter", "color": "#1da1f2", "icon": "Twitter",
-     "values": [185, 241, 288, 305, 318, 330, 321]}
+  "years": [
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
   ],
-  "hashtags": ["instagram", "twitter", "socialmedia", "users", "tech",
-               "apps", "data", "graph", "statistics", "x", "facebook",
-               "growth", "shorts"],
+  "series": [
+    {
+      "name": "Instagram",
+      "color": "#e1306c",
+      "icon": "Instagram",
+      "values": [
+        30,
+        100,
+        300,
+        400,
+        500,
+        800,
+        1000
+      ]
+    },
+    {
+      "name": "Twitter",
+      "color": "#1da1f2",
+      "icon": "Twitter",
+      "values": [
+        185,
+        241,
+        288,
+        305,
+        318,
+        330,
+        321
+      ]
+    }
+  ],
+  "hashtags": [
+    "instagram",
+    "twitter",
+    "socialmedia",
+    "users",
+    "tech",
+    "apps",
+    "data",
+    "graph",
+    "statistics",
+    "x",
+    "facebook",
+    "growth",
+    "shorts"
+  ],
   "music_vibe": "hiphop",
   "bottom_theme": "auto"
 }

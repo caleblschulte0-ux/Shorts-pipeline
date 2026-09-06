@@ -6,16 +6,63 @@
   "y_label": "US recorded music revenue ($ millions)",
   "duration": 13,
   "source": "RIAA Year-End Music Industry Revenue Reports (US recorded music revenue by format, retail dollars). Vinyl revenue surpassed CD revenue in 2020 -- the first time that happened since 1986 -- and has kept growing since. Figures approximate to the nearest reported million.",
-  "years": [2015, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
-  "series": [
-    {"name": "Vinyl", "color": "#8e44ad", "icon": null,
-     "values": [416, 395, 419, 504, 626, 1000, 1200, 1350]},
-    {"name": "CD", "color": "#95a5a6", "icon": null,
-     "values": [1500, 1100, 698, 615, 483, 584, 483, 537]}
+  "years": [
+    2015,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
   ],
-  "hashtags": ["vinyl", "cd", "music", "riaa", "vinylrecords",
-               "musicindustry", "retro", "nostalgia", "records", "data",
-               "graph", "streaming", "shorts"],
+  "series": [
+    {
+      "name": "Vinyl",
+      "color": "#8e44ad",
+      "icon": null,
+      "values": [
+        416,
+        395,
+        419,
+        504,
+        626,
+        1000,
+        1200,
+        1350
+      ]
+    },
+    {
+      "name": "CD",
+      "color": "#95a5a6",
+      "icon": null,
+      "values": [
+        1500,
+        1100,
+        698,
+        615,
+        483,
+        584,
+        483,
+        537
+      ]
+    }
+  ],
+  "hashtags": [
+    "vinyl",
+    "cd",
+    "music",
+    "riaa",
+    "vinylrecords",
+    "musicindustry",
+    "retro",
+    "nostalgia",
+    "records",
+    "data",
+    "graph",
+    "streaming",
+    "shorts"
+  ],
   "music_vibe": "cinematic",
   "bottom_theme": "auto"
 }

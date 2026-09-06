@@ -6,16 +6,63 @@
   "y_label": "Share of US electricity generation (percent)",
   "duration": 13,
   "source": "US Energy Information Administration, Electric Power Annual -- share of total US utility-scale electricity generation by fuel source. Natural gas overtook coal as the leading source around 2015-2016 and has kept extending its lead since, while coal's share kept falling. Figures approximate as published.",
-  "years": [2010, 2012, 2014, 2016, 2018, 2020, 2022, 2023],
-  "series": [
-    {"name": "Coal", "color": "#3d3d3d", "icon": null,
-     "values": [45, 37, 39, 30, 27, 19, 20, 16]},
-    {"name": "Natural Gas", "color": "#3498db", "icon": null,
-     "values": [24, 30, 27, 34, 35, 40, 40, 43]}
+  "years": [
+    2010,
+    2012,
+    2014,
+    2016,
+    2018,
+    2020,
+    2022,
+    2023
   ],
-  "hashtags": ["naturalgas", "coal", "energy", "electricity", "eia",
-               "climate", "powerplants", "fossilfuels", "data", "graph",
-               "statistics", "us", "shorts"],
+  "series": [
+    {
+      "name": "Coal",
+      "color": "#3d3d3d",
+      "icon": null,
+      "values": [
+        45,
+        37,
+        39,
+        30,
+        27,
+        19,
+        20,
+        16
+      ]
+    },
+    {
+      "name": "Natural Gas",
+      "color": "#3498db",
+      "icon": null,
+      "values": [
+        24,
+        30,
+        27,
+        34,
+        35,
+        40,
+        40,
+        43
+      ]
+    }
+  ],
+  "hashtags": [
+    "naturalgas",
+    "coal",
+    "energy",
+    "electricity",
+    "eia",
+    "climate",
+    "powerplants",
+    "fossilfuels",
+    "data",
+    "graph",
+    "statistics",
+    "us",
+    "shorts"
+  ],
   "music_vibe": "dark",
   "bottom_theme": "auto"
 }

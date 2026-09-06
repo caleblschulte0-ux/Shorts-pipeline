@@ -2,27 +2,87 @@
   "subreddit": "IDontWorkHereLady",
   "slug": "reddit-hardware-store-fake-return",
   "title": "She Demanded A Refund. I Don't Work Here.",
-  "hashtags": ["idontworkherelady", "hardwarestore", "retailstory",
-               "returnfraud", "karma", "pettyrevenge", "redditstories",
-               "retail", "storeemployee", "shorts", "satisfying", "fraud",
-               "consumerprotection"],
+  "hashtags": [
+    "idontworkherelady",
+    "hardwarestore",
+    "retailstory",
+    "returnfraud",
+    "karma",
+    "pettyrevenge",
+    "redditstories",
+    "retail",
+    "storeemployee",
+    "shorts",
+    "satisfying",
+    "fraud",
+    "consumerprotection"
+  ],
   "script": "I wear an olive-green jacket that happens to match my hardware store's uniform, so customers mistake me for staff constantly. Normally I just point them toward someone with a name tag, but one afternoon a woman cornered me by the paint aisle, waving a receipt-less pressure washer and demanding a full cash refund. The nozzle was scorched and the tank still smelled like gasoline. I used to manage a store exactly like this one, so instead of walking away I asked her, straight-faced, whether she'd logged the serial number in the resale fraud database, since returning a used unit as new voids the manufacturer warranty for every future buyer. Her face went white. She started backing toward the exit right as an actual employee walked up wearing the real uniform, asking what was going on. I just shrugged and said she seemed confused about the return policy. Security walked her out empty-handed, and the store comped my paint as a thank-you.",
   "shots": [
-    {"phrase": "olive-green jacket", "query": "green work jacket"},
-    {"phrase": "receipt-less pressure washer", "query": "pressure washer nozzle"},
-    {"phrase": "scorched and the tank still smelled like gasoline", "query": "gas can closeup"},
-    {"phrase": "resale fraud database", "query": "database computer screen"},
-    {"phrase": "Her face went white", "query": "shocked woman face"},
-    {"phrase": "an actual employee walked up wearing the real uniform", "query": "hardware store employee apron"},
-    {"phrase": "Security walked her out empty-handed", "query": "security guard escort"},
-    {"phrase": "comped my paint", "query": "paint cans shelf"}
+    {
+      "phrase": "olive-green jacket",
+      "query": "green work jacket"
+    },
+    {
+      "phrase": "receipt-less pressure washer",
+      "query": "pressure washer nozzle"
+    },
+    {
+      "phrase": "scorched and the tank still smelled like gasoline",
+      "query": "gas can closeup"
+    },
+    {
+      "phrase": "resale fraud database",
+      "query": "database computer screen"
+    },
+    {
+      "phrase": "Her face went white",
+      "query": "shocked woman face"
+    },
+    {
+      "phrase": "an actual employee walked up wearing the real uniform",
+      "query": "hardware store employee apron"
+    },
+    {
+      "phrase": "Security walked her out empty-handed",
+      "query": "security guard escort",
+      "pin_query": "Security",
+      "pin_context": "She Demanded A Refund. I Don't Work Here.",
+      "news_query": "Security",
+      "news_angle": "She Demanded A Refund. I Don't Work Here.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+    },
+    {
+      "phrase": "comped my paint",
+      "query": "paint cans shelf"
+    }
   ],
   "punches": [
-    {"phrase": "demanding a full cash refund", "text": "REFUND DEMAND", "color": "#ffaa30"},
-    {"phrase": "voids the manufacturer warranty", "text": "WARRANTY VOID", "color": "#ff3030"},
-    {"phrase": "Her face went white", "text": "BUSTED", "color": "#ff3030"},
-    {"phrase": "Security walked her out empty-handed", "text": "ESCORTED OUT", "color": "#ff3030"},
-    {"phrase": "comped my paint", "text": "FREE PAINT", "color": "#50ff80"}
+    {
+      "phrase": "demanding a full cash refund",
+      "text": "REFUND DEMAND",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "voids the manufacturer warranty",
+      "text": "WARRANTY VOID",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Her face went white",
+      "text": "BUSTED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "Security walked her out empty-handed",
+      "text": "ESCORTED OUT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "comped my paint",
+      "text": "FREE PAINT",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "deadpan suspicion building into a public callout"
 }
