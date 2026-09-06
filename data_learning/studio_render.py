@@ -862,6 +862,23 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
 SPAN_TARGET = 4.5          # seconds one depiction owns the screen
 MAX_SPANS = 3              # per beat, so a 3-beat story tops out at 9 visuals
 
+# A CHART NOBODY SEES FINISHED IS A CHART NOBODY CAN READ.
+#
+# The build used to reach its finished state on the LAST FRAME of its window
+# and then cut away, and the value labels faded in over the last 20% on top of
+# that. With a 12-20s beat that still left a few seconds of readable chart. At
+# four seconds it left well under one, fading, and the operator watched a whole
+# video of charts caught mid-build: "I'm a smart fucking person ... what the
+# fuck am I looking at?" The charts were fine. They were only ever legible in
+# frames nobody was shown — a defect I introduced by shortening the spans
+# without touching the ramp that fills them.
+#
+# So the build completes at READ_BY of its span and the rest is READING TIME.
+# The frame does not freeze: the host keeps performing on the finished chart
+# (his tour is driven by beat progress, not by the reveal, precisely so it
+# outlives the build) and the next visual is only a couple of seconds away.
+READ_BY = 0.45
+
 
 def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
     """Split one beat's display window into ``n`` consecutive spans.
@@ -1398,31 +1415,68 @@ _ALT_DEPICTION = {
 }
 
 
-# Ways of drawing a figure that are HONEST for a given shape of data, best
+# Ways of showing a figure that are HONEST for a given shape of data, best
 # first. Widening these lists is how a video gets more distinct visuals, so the
 # constraint that keeps them short is worth stating plainly: a depiction must
 # not assert something the data does not say.
 #
-#   * `share` and `waffle_grid` claim the items are PARTS OF A WHOLE. Drawing a
-#     run of years that way says the years sum to something, which is false.
+#   * `share`, `waffle_grid` and `stack` claim the items are PARTS OF A WHOLE.
+#     All three are gone from every list. A ranking of five metros by
+#     house-price-to-income shipped with the subtitle "San Jose is 27% of the
+#     whole", and a run of mortgage rates by year shipped "2019 IS 9% OF THE
+#     WHOLE" — those numbers do not sum to anything, so the sentences are not
+#     merely odd, they are false, and they are rendered at 40pt under the
+#     title. The first pass here dropped `share` and `waffle_grid` and left
+#     `stack`, which makes the identical claim; caught by reading the rendered
+#     frames rather than the code. They remain available as a PRIMARY kind for
+#     data that genuinely is a composition — this list is only about what a
+#     beat may be redrawn AS.
 #   * `trend` claims an ORDERED progression. Drawing a ranking of cities as a
 #     line says Miami comes after Seattle in some sequence, which is false.
-#   * `geo_us` / `geo_world` claim the items are PLACES, so they never appear
-#     as an alternate for non-geographic data — a map of "cost per year" is a
-#     lie with a nice texture.
+#   * `geo_*` claims the items are PLACES, so it never appears as an alternate
+#     for non-geographic data — a map of "cost per year" is a lie with a nice
+#     texture.
 #
-# Everything listed under a shape is a fair redraw of that shape. The point of
-# a second and third depiction is to show the SAME truth another way, and a
-# channel whose whole editorial gate is about real, sourced numbers cannot buy
-# variety with a misleading chart.
+# NOT EVERYTHING HAS TO BE A CHART. Operator: "you don't have to do a fucking
+# chart every time. Right? Like, there's millions of ways to convey data." The
+# first version of this list was nine chart types, so a video that got its
+# variety from here got nine flavours of the same idea. The full-frame
+# renderers were sitting right there unused because I had required every
+# alternate to be in viz_director._CONTACT_OK — a set that describes CHART
+# couplings, while these bake the host in themselves (the primary depiction on
+# this channel, `scene`, is one of them and always has been).
+#
+#   fill_vessel   the number, huge, in a filling gauge ring — the single most
+#                 readable thing this system can draw
+#   orbit         items as orbiting bodies, each labelled with its value
+#   timeline      a value's position on a real number line
+#
+# Chosen by rendering all eight full-frame renderers on real data and looking
+# at the output: these three are fast (0.2-0.3s), need no network, and put the
+# number on screen at size. `diorama`, `mechanic`, `scene` and `race` need
+# generated imagery — 54-89s per build with HTTP 500s in the middle — so they
+# stay primary-only rather than becoming an alternate that can time out.
+_SELF_HOSTED = ("fill_vessel", "orbit", "timeline")
+
+# Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
+# — and so may never be chosen as an alternate for data that is not one. Held
+# as a set rather than by curating each list, because the shape lists are not
+# the only source of candidates: `_ALT_DEPICTION` below is a legacy kind->kind
+# lookup that also feeds them, and pruning the lists alone left `stack` coming
+# in through the back door and rendering "2019 IS 9% OF THE WHOLE" over a run
+# of mortgage rates. A false claim at 40pt under the title is worse than a
+# repeated chart, so this is a filter on the pool and not an ordering hint.
+_ASSERTS_A_WHOLE = frozenset({"share", "waffle_grid", "stack"})
+
 _SHAPE_CANDIDATES = {
     # values over time: any magnitude comparison is fair, sequence included
-    "series": ("trend", "bars", "stack", "comparison", "pictograph"),
+    "series": ("trend", "bars", "timeline", "fill_vessel", "comparison",
+               "pictograph"),
     # named things being compared: anything but a false sequence
-    "ranking": ("pictorial_race", "bars", "rank", "pictograph", "comparison",
-                "bubbles", "waffle_grid", "share", "stack"),
-    "other":   ("bars", "pictograph", "stack", "rank", "bubbles",
-                "comparison"),
+    "ranking": ("pictorial_race", "bars", "fill_vessel", "rank", "orbit",
+                "pictograph", "comparison", "bubbles"),
+    "other":   ("bars", "fill_vessel", "pictograph", "orbit", "rank",
+                "bubbles", "comparison"),
 }
 
 
@@ -1449,18 +1503,40 @@ def _alt_candidates_for(insight) -> tuple:
     return _SHAPE_CANDIDATES[_shape_of(insight)]
 
 
+def _family(kind: str) -> str:
+    """A chart, or a figure. The distinction the VIEWER makes.
+
+    Axes-and-marks (`bars`, `trend`, `pictorial_race`) all read as "a chart",
+    however different they are to draw. A gauge with the number at 200pt, or
+    metros orbiting a sun, reads as something else entirely. Alternating
+    between the two is what stops a beat from being three charts in a row.
+    """
+    # Every full-frame renderer counts, not just the three usable as
+    # alternates: `scene` is the primary depiction on most beats and it is a
+    # figure, so calling it a chart made the alternation start on the wrong
+    # foot and hand the beat two figures in a row.
+    return ("figure" if (kind in _SELF_HOSTED
+                         or kind in charts.FULLFRAME_RENDERERS) else "chart")
+
+
 def _depiction_sequence(insight, used: set, dur: float) -> list:
     """The ORDERED, NON-REPEATING depictions one beat shows, front to back.
 
-    Element 0 is the beat's own chart; the rest are different contact-verified
-    ways to draw the SAME number. Each appears exactly once and is retired when
-    its span ends — the list is the edit, and the edit only ever moves forward.
+    Element 0 is the beat's own chart; the rest are different ways to show the
+    SAME number. Each appears exactly once and is retired when its span ends —
+    the list is the edit, and the edit only ever moves forward.
 
-    ``used`` is every kind already on screen anywhere in this video, so the
-    third visual is a genuine change of subject rather than the neighbouring
-    beat's chart again. Length comes from the beat's duration, not from a fixed
-    count: a short beat stays on one visual rather than being chopped up, which
-    is the "we're cutting so much for no reason" half of the ruling.
+    Two preferences, in order. FAMILY ALTERNATION first: after a chart, prefer
+    a figure, and after a figure, prefer a chart. Without it the ranked
+    candidate lists just hand back their first three entries, which are chart,
+    chart, chart — the shape of the bug the operator named ("you don't have to
+    do a fucking chart every time"). Then NOVELTY: prefer kinds no beat has
+    shown yet, so the third visual is a genuine change of subject rather than
+    the neighbouring beat's chart again.
+
+    Length comes from the beat's duration, not a fixed count: a short beat
+    stays on one visual rather than being chopped up, which is the "we're
+    cutting so much for no reason" half of the ruling.
     """
     kind = str(getattr(insight, "kind", "") or "")
     n = max(1, min(MAX_SPANS, int(round(max(0.0, dur) / SPAN_TARGET))))
@@ -1471,19 +1547,30 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     for c in _ALT_DEPICTION.get(kind, ()):
         if c not in cands:
             cands.append(c)
-    # Prefer kinds no beat has shown yet...
-    for c in cands:
-        if len(seq) >= n:
+    cands = [c for c in cands
+             if c and c != kind and c not in _ASSERTS_A_WHOLE]
+
+    def _pick(want_family, avoid_used):
+        for c in cands:
+            if c in seq:
+                continue
+            if want_family and _family(c) != want_family:
+                continue
+            if avoid_used and c in used:
+                continue
+            return c
+        return None
+
+    while len(seq) < n:
+        want = "figure" if _family(seq[-1]) == "chart" else "chart"
+        # Alternate family AND stay novel; then give up novelty (another beat's
+        # kind still beats a third chart in a row); then give up alternation
+        # rather than return a short sequence.
+        c = (_pick(want, True) or _pick(want, False)
+             or _pick(None, True) or _pick(None, False))
+        if c is None:
             break
-        if c and c != kind and c not in seq and c not in used:
-            seq.append(c)
-    # ...but a kind another beat used still beats repeating one inside THIS
-    # beat, which is the thing the viewer actually notices as a bounce-back.
-    for c in cands:
-        if len(seq) >= n:
-            break
-        if c and c not in seq:
-            seq.append(c)
+        seq.append(c)
     return seq
 
 
@@ -1605,7 +1692,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # (that was the dead_air / 5fps).
                     cpath, anc = charts.render_story_build(
                         seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
-                        frames=nfr,
+                        frames=nfr, full_by=READ_BY,
                         # only the opening visual bursts up out of the hook
                         hook_lead=(i == 0 and lead_hook and j == 0))
                 except Exception as e:  # noqa: BLE001 — a missing extra visual
