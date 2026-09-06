@@ -46,6 +46,11 @@ KINDS = {
     "share":          {"image": False, "novelty": False},   # donut
     "comparison":     {"image": False, "novelty": False},   # versus columns
     # A canonical SCENE the director attaches (resolves to kind "scene"):
+    # An ISOTYPE — N copies of one icon, counting them IS the number. `image`
+    # is FALSE and that is the point: it draws from the offline icon library,
+    # so unlike every other subject-bearing scene it costs no image budget,
+    # cannot time out, and can therefore be reached on any story.
+    "units_scene":    {"image": False, "novelty": True,  "repeatable": True},
     "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %
     "rank_scene":     {"image": True,  "novelty": True,  "repeatable": True},
     "race":           {"image": True,  "novelty": True,  "repeatable": True},
@@ -55,7 +60,8 @@ KINDS = {
 }
 
 # Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
-_SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene"}
+_SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene",
+                   "units_scene": "units_scene"}
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.

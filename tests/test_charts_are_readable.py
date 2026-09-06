@@ -182,10 +182,22 @@ class NotEverythingIsAChart(unittest.TestCase):
         fams = [sr._family(k) for k in seq]
         self.assertIn("figure", fams[1:], f"all charts: {seq}")
 
-    def test_the_figure_forms_are_real_renderers(self):
+    def test_every_figure_form_actually_resolves_to_a_renderer(self):
+        """Either it IS a full-frame renderer, or it is a scene TOKEN whose
+        builder attaches a spec that `scene` renders. A name in neither camp
+        silently falls back to a chart, which is how this pool ends up all
+        charts again without anything looking broken."""
         import data_learning.charts as c
         for kind in sr._SELF_HOSTED:
-            self.assertIn(kind, c.FULLFRAME_RENDERERS)
+            self.assertTrue(
+                kind in c.FULLFRAME_RENDERERS or kind in sr._SCENE_TOKENS,
+                f"{kind!r} renders nothing — it will degrade to a chart")
+
+    def test_every_scene_token_has_a_builder_that_exists(self):
+        from data_learning import viz_scene as vs
+        for token, builder in sr._SCENE_TOKENS.items():
+            self.assertTrue(callable(getattr(vs, builder, None)),
+                            f"{token!r} names a builder that is not there")
 
     def test_the_slow_image_renderers_stay_out_of_the_pool(self):
         """`diorama`, `mechanic`, `scene` and `race` need generated imagery —

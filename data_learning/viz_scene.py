@@ -47,10 +47,16 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
     "bottom": (RX0, _MIDY, RX1, RBOT),
 }
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
-          "number", "bar", "bubble", "caption"}
+          "unit_figures", "number", "bar", "bubble", "caption"}
 _HOLISTIC = {"orbit_group", "timeline_axis"}       # render all items, own the box
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
-_DATA_TYPES = {"object", "fill_object", "stack", "number", "bar", "bubble"}
+# Elements drawn from the OFFLINE icon library only. They never reach the
+# generative provider, so they cost no image budget and cannot time out — the
+# reason the scene kit had so little offline range is that every one of its
+# subject-bearing types went through `scene_media`.
+_ICON_TYPES = {"unit_figures"}
+_DATA_TYPES = {"object", "fill_object", "stack", "unit_figures",
+               "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
 _JUST_NUMERIC = __import__("re").compile(r"[\d\s.,:%+\-/]+")
 _ROW_REGIONS = {"ground-row"} | {f"grid-{i}" for i in range(1, 5)}
@@ -98,7 +104,7 @@ def _color_for(label, insight):
 # genuine holistic time depiction. These types are rejected outright.
 _BANNED_TYPES = {"bar", "bubble"}
 # Elements that count as a real, subject-bearing depiction.
-_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC
+_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC | _ICON_TYPES
 
 
 def validate(spec, insight) -> bool:
@@ -123,8 +129,10 @@ def validate(spec, insight) -> bool:
         if t in _DATA_TYPES and _resolve((el.get("data") or {}).get("value_from"),
                                          insight) is None:
             return False
-        if t == "stack" and not charts._num_or_none((el.get("data") or {})
-                                                    .get("per_value")):
+        if t in ("stack", "unit_figures") and not charts._num_or_none(
+                (el.get("data") or {}).get("per_value")):
+            return False
+        if t in _ICON_TYPES and not str(el.get("subject", "")).strip():
             return False
     # QUALITY GATE: a scene must SHOW something — at least one image/subject
     # element or a holistic time depiction. An abstract-only scene (just a
@@ -514,6 +522,138 @@ def draw_fill_object(d, canvas, box, cutout, value, label, color, reveal, unit="
             "w": 240.0, "h": 140.0}
 
 
+def unit_plan(value: float, per_value: float, cap: int = 60) -> tuple:
+    """How many figures to draw, and what each one is worth.
+
+    An isotype is only readable in a narrow band of counts: three icons is a
+    weak picture and ninety is wallpaper you cannot count. The AUTHORED
+    `per_value` is honoured when it lands in that band; when it does not, the
+    unit is re-scaled to a round number (1, 2, 5, 10, 25, 50, ...) that does.
+    The value never changes — only how it is packaged — and the legend states
+    the unit, so the picture stays exactly as true as the number.
+    """
+    per = abs(float(per_value or 0)) or 1.0
+    v = abs(float(value))
+    # ALWAYS a round unit. Honouring the authored `per_value` produced legends
+    # like "each = $24.9K", which is a worse thing to read than the raw number
+    # it was meant to make friendly. A count is only easier than a figure when
+    # the unit is something a person holds in their head.
+    best = None
+    step = 10.0 ** -6
+    while step <= max(v, 1.0) * 10.0:
+        for mult in (1.0, 2.0, 5.0):
+            cand = step * mult
+            k = int(round(v / cand))
+            if 6 <= k <= cap:
+                # Prefer counts near 18 — enough to read as "a lot", few enough
+                # to actually count, and it tiles into a tidy block.
+                score = abs(k - 18)
+                if best is None or score < best[0]:
+                    best = (score, k, cand)
+        step *= 10.0
+    if best is not None:
+        return best[1], best[2]
+    k = int(round(v / per))
+    return max(1, min(cap, k)), per
+
+
+def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
+                      reveal, unit=""):
+    """AN ISOTYPE: N copies of one thing, where counting them IS the number.
+
+    This is the oldest non-chart way to show a quantity and the channel had no
+    version of it. `stack` is the closest thing and it tiles at most EIGHT
+    copies up a single column, which reads as a totem rather than a count.
+
+    The figures appear one at a time across the build, so the count is
+    something the viewer watches happen rather than a block that fades in —
+    which is also honest motion for the whole span, not a decoration bolted on
+    to satisfy the cadence gate.
+    """
+    bx0, by0, bx1, by1 = box
+    n, per = unit_plan(value, per_value)
+    # The scene's TOPIC caption is drawn at y=250 by render_scene, and the first
+    # version of this started the grid at by0+120 — so the title landed on the
+    # first row of houses. Start below it; the value line goes above it.
+    top = max(by0 + 120, 320)
+    bot = by1 - 110                              # room for the legend
+    bw, bh = max(1, bx1 - bx0), max(1, bot - top)
+    # Choose a column count whose cell is as square as possible, so the block
+    # reads as a group rather than a line or a tower.
+    best, cols = None, 1
+    for c in range(1, min(n, 12) + 1):
+        rows = -(-n // c)
+        cw, chh = bw / c, bh / rows
+        score = abs(cw - chh) + max(0.0, 90.0 - min(cw, chh)) * 4
+        if best is None or score < best:
+            best, cols = score, c
+    rows = -(-n // cols)
+    cell_w, cell_h = bw / cols, bh / rows
+    side = int(min(cell_w, cell_h) * 0.84)
+    if side < 12:
+        return None
+    icon = _fit(cutout, side, side) if cutout is not None else None
+    gx = bx0 + (bw - cols * cell_w) / 2.0
+    gy = top + (bh - rows * cell_h) / 2.0
+    shown_f = max(0.0, min(1.0, reveal)) * n
+    shown = int(shown_f)
+    last = shown_f - shown                       # the one currently arriving
+    cx_last = cy_last = None
+    for k in range(min(shown + 1, n)):
+        rr, cc = divmod(k, cols)
+        x = int(gx + cc * cell_w + (cell_w - side) / 2.0)
+        y = int(gy + rr * cell_h + (cell_h - side) / 2.0)
+        if k == shown:                           # part-way in: fade it up
+            if last <= 0.02:
+                break
+            if icon is not None:
+                ghost = icon.copy()
+                ghost.putalpha(ghost.getchannel("A").point(
+                    lambda a, _l=last: int(a * _l)))
+                canvas.alpha_composite(ghost, (x, y))
+            else:
+                d.ellipse([x, y, x + side, y + side],
+                          fill=_rgba(color, int(235 * last)))
+            cx_last, cy_last = x + side // 2, y + side // 2
+            break
+        if icon is not None:
+            canvas.alpha_composite(icon, (x, y))
+        else:
+            d.ellipse([x, y, x + side, y + side], fill=_rgba(color, 235))
+        cx_last, cy_last = x + side // 2, y + side // 2
+    # THE LEGEND IS THE HONESTY. Without "each = 50" the picture is a pile of
+    # icons that could mean anything, which is the "what am I looking at"
+    # failure in its purest form.
+    each = charts._ulabel(per, unit)
+    d.text((_cx(box), bot + 34), f"each  =  {each}", font=_pil_font(44),
+           fill=_rgba(TEXT, int(255 * min(1.0, reveal * 2))), anchor="mm")
+    total = charts._ulabel(value, unit, group=True)
+    d.text((_cx(box), by0 + 58), f"{label}   {total}", font=_pil_font(60),
+           fill=_rgba(color, int(255 * min(1.0, max(0.0, reveal - 0.25) * 2))),
+           anchor="mm")
+    if cx_last is None:
+        return None
+    # BAKE THE HOST ONTO THE COUNT.
+    #
+    # `render_scene` sets `insight.host_baked = True` for every scene, which
+    # suppresses the travelling overlay — so an element that draws no host
+    # ships a beat with NO host at all. The first render of this did exactly
+    # that, and a hostless beat is what the showrunner records as the mascot
+    # being decorative or missing.
+    #
+    # He stands on the figure that just landed, so he ADVANCES along the block
+    # as the count grows: contact for STRICT_CONTACT, and honest motion for the
+    # whole build rather than a sprite parked in a corner.
+    host = charts._host_pose("point")
+    if host is not None:
+        mh = int(max(150, min(300, side * 1.7)))
+        mw = int(host.width * mh / host.height)
+        hx = int(min(max(cx_last + side * 0.55, 8), W - mw - 8))
+        hy = int(cy_last - side // 2 - mh + side * 0.30)
+        canvas.alpha_composite(_fit(host, mw, mh), (hx, max(0, hy)))
+    return (value, "art", cx_last, cy_last)
+
+
 def draw_stack(d, canvas, box, cutout, value, per_value, label, color, reveal, unit=""):
     """Stack N=value/per_value copies of a cut-out to depict a magnitude."""
     bx0, by0, bx1, by1 = box
@@ -847,6 +987,48 @@ def fill_scene(insight) -> dict:
                           "data": {"value_from": "star"}, "anim": "fill"}]}
 
 
+def units_scene(insight) -> dict:
+    """A COUNT of one thing, drawn as that thing, N times.
+
+    The channel's offline scene vocabulary was two builders plus a bare
+    timeline axis, so every time-series story got the identical picture and
+    every ranking fell through to a chart. This one costs no image budget and
+    cannot time out — it draws from the deterministic icon library — so it can
+    be reached on any story, which is the whole point of it existing.
+
+    `per_value` is a first guess only; `unit_plan` re-scales it to whatever
+    puts the count in a readable band, and the legend states the result.
+    """
+    star = max(insight.items, key=lambda p: abs(p.value)) if insight.items else None
+    if star is None:
+        return {}
+    subject = icon_subject(insight)
+    return {"title": True,
+            "elements": [{"type": "unit_figures", "region": "full",
+                          "subject": subject,
+                          "data": {"value_from": "star",
+                                   "per_value": abs(star.value) / 18.0 or 1.0},
+                          "anim": "count"}]}
+
+
+def icon_subject(insight) -> str:
+    """The noun this story is COUNTING, chosen so the icon library answers.
+
+    Tries the topic, then the headline claim, then the item labels — the first
+    that maps to a real icon wins, because an isotype of the wrong object is
+    worse than a chart. Falls back to a plain marker, which `draw_unit_figures`
+    renders as dots: still a count, still readable, just less charming.
+    """
+    from . import icons
+    for cand in (getattr(insight, "topic", ""),
+                 getattr(insight, "main_insight", ""),
+                 *[getattr(p, "label", "") for p in (insight.items or [])[:3]]):
+        text = str(cand or "").strip()
+        if text and icons.icon_png(text, 64):
+            return text
+    return "marker"
+
+
 def object_scene(insight) -> dict:
     """A ranking of REAL THINGS: one `object` per item (its own label as the
     photo subject) in a ground-row. render_scene turns this into big vertical
@@ -984,6 +1166,19 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             subj = str(el.get("subject", ""))
             cuts[i] = _load_cutout(subj, slug, f"s{i}")     # silhouette mask
             photos[i] = _load_photo(subj, slug, f"pf{i}")   # real fill content
+        elif t in _ICON_TYPES:
+            # OFFLINE ONLY. An isotype needs dozens of copies of ONE glyph; a
+            # generated cut-out would be a 54-89s round trip (with 500s) for a
+            # picture that gets drawn at 90px. The deterministic icon is both
+            # the right look and the reason this element can be used freely.
+            from . import icons as _ic
+            from PIL import Image as _Im
+            cp = _ic.icon_png(str(el.get("subject", "")), 256)
+            if cp:
+                try:
+                    cuts[i] = _Im.open(cp).convert("RGBA")
+                except Exception:  # noqa: BLE001 — a drawn dot still counts
+                    cuts[i] = None
         elif t in _IMAGE_TYPES:
             cuts[i] = _load_cutout(str(el.get("subject", "")), slug, f"s{i}")
     # `object`/`stack` need SOME image (photo or cut-out). If every element is one
@@ -1023,6 +1218,16 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 if lv:
                     draw_number(d, box, lv[1], lv[0], _color_for(lv[0], insight),
                                 lr, insight.unit)
+            elif t == "unit_figures":
+                lv = _resolve((el.get("data") or {}).get("value_from"), insight)
+                if not lv:
+                    continue
+                per = charts._num_or_none((el.get("data") or {}).get("per_value"))
+                an = draw_unit_figures(d, canvas, box, cuts.get(i), lv[1], per,
+                                       lv[0], _color_for(lv[0], insight), lr,
+                                       insight.unit)
+                if f == frames and an:
+                    anchors.append(an)
             elif t in ("object", "fill_object", "stack", "bar", "bubble"):
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
