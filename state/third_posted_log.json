@@ -5969,13 +5969,45 @@
       "director_cut": true
     },
     "clip-20260906-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/InexpensiveAggressiveOrcaSwiftRage-oE8QyKt3g0kwQi-Y",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/JB2IffmfRPc",
       "title": "Ohnepixel Gets Called Out For Having Three Wives In Chat",
       "kind": "twitch_clip",
-      "ts": "2026-09-06T14:17:51.171285+00:00",
+      "ts": "2026-09-06T14:17:56.376407+00:00",
+      "uploaded_at": "2026-09-06T14:17:56.376425+00:00",
+      "publish_at": "2026-09-06T18:30:00Z",
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/InexpensiveAggressiveOrcaSwiftRage-oE8QyKt3g0kwQi-Y",
+      "streamer": "ohnepixel",
+      "series": "wholesome",
+      "hook": "HE ADMITS TO TWO GIRLFRIENDS",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 14332,
+      "banger": 0.65,
+      "cut": {
+        "start": 0.0,
+        "end": 26.68
+      },
+      "director_cut": true
+    },
+    "rejected-sneakyblindingladiesdancingbanana-qh45jnwrmjnxubyw": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SneakyBlindingLadiesDancingBanana-qh45jnWRMJnXubYw",
+      "streamer": "xqc",
+      "title": "CAUGHT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (title exaggerates; just calm interview c)",
+      "ts": "2026-09-06T14:21:32.370281+00:00"
+    },
+    "clip-20260906-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/GorgeousSuccessfulArmadilloFunRun-00lOTDNuFwPjkYk3",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy EXPOSES Ron For What He Did While She Was Asleep",
+      "kind": "twitch_clip",
+      "ts": "2026-09-06T14:24:50.838088+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
