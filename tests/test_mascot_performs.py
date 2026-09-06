@@ -57,14 +57,24 @@ class TestThePayoffStillLands(unittest.TestCase):
 
 class TestTheStruggleActuallyStruggles(unittest.TestCase):
 
-    def test_four_reps_before_the_finale(self):
-        """Count direction changes across [0, 0.8): four ping-pong reps is
-        seven reversals. Fewer means the reps degraded back toward the
-        single fifteen-second shove."""
+    def test_one_rep_before_the_finale(self):
+        """ONE ping-pong rep across [0, 0.8) — one direction change.
+
+        This test asserted FOUR (seven reversals), and it was right for the
+        pipeline it was written against: a beat was 10-18 seconds, the arc
+        crossed once, and the showrunner called him "a sticker" in three
+        videos. Both halves of that premise are gone. A visual is ~6s now and
+        each one gets its OWN action, so a single committed effort already is a
+        rep every few seconds — and four reps inside six seconds is eight
+        direction changes of the whole body, which the operator watched and
+        called a seizure.
+
+        The floor that mattered is kept, one test down: he must not degrade
+        back into a statue."""
         xs = [P(i / 1000) for i in range(800)]
         flips = sum(1 for a, b, c in zip(xs, xs[1:], xs[2:])
                     if (b - a) * (c - b) < 0)
-        self.assertEqual(flips, 7)
+        self.assertEqual(flips, 1)
 
     def test_the_climax_is_saved_for_the_finale(self):
         """The struggle caps at 0.85 — the audience sees the full climax
@@ -74,17 +84,20 @@ class TestTheStruggleActuallyStruggles(unittest.TestCase):
         self.assertLessEqual(peak, 0.85 + 1e-9)
         self.assertGreater(peak, 0.80)
 
-    def test_the_tempo_is_working_pace_not_a_blur(self):
-        """One rep spans a fifth of the struggle = ~2.4s of a 15s beat and
-        ~1.2s of a 6s one. The bound that matters: per-frame phase motion
-        at 30fps on the LONGEST beat stays well above the sticker regime."""
+    def test_the_tempo_is_a_working_pace_not_a_statue_and_not_a_blur(self):
+        """The struggle still has to MOVE, and it must not blur.
+
+        The old bound was one-sided (>= 5x the raw arc) because the only
+        failure anyone had seen was the statue. Four reps satisfied it and were
+        a seizure, so the bound is now a WINDOW: fast enough that the pose is
+        clearly progressing, slow enough that it is not vibrating."""
         beat_s, fps = 18.0, 30.0
         dt = 1.0 / (beat_s * fps)          # phase step per frame
         deltas = [abs(P(t + dt) - P(t))
                   for t in [i / 500 for i in range(int(0.8 * 500))]]
-        self.assertGreater(sum(deltas) / len(deltas), 5 * dt,
-                           "reps move the pose less than 5x the raw arc — "
-                           "that is the statue again")
+        rate = sum(deltas) / len(deltas) / dt
+        self.assertGreater(rate, 1.5, "the pose barely moves — the statue again")
+        self.assertLess(rate, 4.0, "the pose is vibrating, not performing")
 
     def test_no_wrap_glitch(self):
         """The largest single-frame phase jump anywhere must stay small —

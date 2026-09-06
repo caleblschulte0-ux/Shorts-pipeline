@@ -859,8 +859,14 @@ def _build_hook_receipt(story_cfg: dict, work: Path, slug: str,
 # whole video came out with five. The operator's floor is explicit — "there is
 # like 4 'things' ... we need 7-8 things" — and 4.5 is what actually clears it:
 # measured on housing-affordability-wall, 5 visuals -> 8.
-SPAN_TARGET = 4.5          # seconds one depiction owns the screen
-MAX_SPANS = 3              # per beat, so a 3-beat story tops out at 9 visuals
+# Retuned down from 3 visuals per beat at 4.5s. Eight things in 31 seconds was
+# over-packed — "we're trying to force too much into too little amount of time
+# ... the whole video felt like the guy was on crack." At 6.5s a 12s beat takes
+# two visuals instead of three and each gets six seconds to build and be read,
+# which lands a video at 5-6 depictions plus the hook and the closing card.
+# Still well clear of the four it started at; the count was never the point.
+SPAN_TARGET = 6.5          # seconds one depiction owns the screen
+MAX_SPANS = 2              # per beat, so a 3-beat story tops out at 6 visuals
 
 # A CHART NOBODY SEES FINISHED IS A CHART NOBODY CAN READ.
 #

@@ -207,6 +207,87 @@ class HeIsCalm(unittest.TestCase):
         self.assertNotIn("seconds=2.2", _STUDIO)
 
 
+class NoTremor(unittest.TestCase):
+    """The periodic-motion ban had a hole exactly the width of a hand.
+
+    tests/test_no_camera_shake.py reads `bob` and `tilt` — the body transform —
+    and passed the whole time the pose primitives carried
+    `math.sin(t * math.pi * 14) * 3.0` ON THE HAND COORDINATES: seven full
+    oscillations of both fists inside a single visual. Stacked on top of
+    `_perf_phase` running FOUR ping-pong reps of the entire arc, that is what
+    the operator watched: "he needs to not be doing so much constant random,
+    like, jerking around ... it looks like he's having a seizure the whole
+    time."
+
+    So the rule is stated where it can be checked: inside one visual, no part
+    of him may oscillate more than about once. A single strain-and-release is
+    an action; six are a symptom.
+    """
+
+    _SRC = (_REPO / "data_learning" / "mascot_director.py").read_text()
+
+    # A multi-phase action legitimately changes direction at each phase
+    # boundary (resist -> tug -> land is three), so the bound is set above that
+    # and below the tremors: the worst offenders measured TWELVE.
+    _MAX_REVERSALS = 6
+
+    @staticmethod
+    def _reversals(seq):
+        sg = [1 if seq[i + 1] > seq[i] else (-1 if seq[i + 1] < seq[i] else 0)
+              for i in range(len(seq) - 1)]
+        sg = [x for x in sg if x]
+        return sum(1 for i in range(len(sg) - 1) if sg[i] != sg[i + 1])
+
+    def test_no_hand_oscillates_more_than_an_action_would(self):
+        """MEASURED, not pattern-matched. The first version of this test read
+        the source for `math.pi * N` and was simply wrong — `sin(x*pi*2)` is
+        ONE cycle, not two — so it flagged honest single-swing poses and would
+        have been "fixed" by loosening it. Counting direction changes in the
+        rendered hand path asks the real question and cannot be argued with."""
+        worst = {}
+        for name, fn in _primitives():
+            xs, ys = [], []
+            for i in range(61):
+                try:
+                    svg = _flat(fn(i / 60.0, "price_tag"))
+                except Exception:  # noqa: BLE001
+                    break
+                hands = list(_hands(svg))
+                if hands:
+                    xs.append(hands[0][0])
+                    ys.append(hands[0][1])
+            if len(ys) > 5:
+                r = max(self._reversals(xs), self._reversals(ys))
+                if r > self._MAX_REVERSALS:
+                    worst[name] = r
+        self.assertEqual(worst, {}, f"hands vibrating rather than acting: {worst}")
+
+    def test_the_performance_arc_runs_about_once_per_visual(self):
+        """`_perf_phase` reps. Four meant eight direction reversals of the
+        whole body inside one ~6s visual."""
+        import inspect
+        from data_learning import charts as _ch
+        src = inspect.getsource(_ch._perf_phase)
+        line = [l for l in src.splitlines() if "u = (t / 0.8)" in l]
+        self.assertTrue(line, "the struggle rep count moved — re-pin it")
+        reps = float(line[0].split("*")[-1].strip())
+        self.assertLessEqual(reps, 1.0, f"{reps} reps per visual is flailing")
+
+    def test_the_phase_still_lands_on_the_payoff(self):
+        """Calmer must not mean broken: phase 1.0 has to be the climax pose or
+        the action never resolves."""
+        from data_learning import charts as _ch
+        self.assertAlmostEqual(_ch._perf_phase(1.0), 1.0, places=6)
+        self.assertAlmostEqual(_ch._perf_phase(0.0), 0.0, places=6)
+
+    def test_the_arc_is_not_flattened_to_nothing(self):
+        """A pose that never moves would pass every assertion above and ship a
+        statue — the defect this channel spent eleven days on."""
+        from data_learning import charts as _ch
+        vals = [_ch._perf_phase(i / 40.0) for i in range(41)]
+        self.assertGreater(max(vals) - min(vals), 0.5, "the host stopped acting")
+
+
 class HeDoesNotSlide(unittest.TestCase):
     def test_the_host_holds_one_position_for_a_whole_span(self):
         """His overlay x/y must be constants. A `_piecewise` there is the
