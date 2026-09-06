@@ -1,0 +1,19 @@
+{
+  "key": "us_male_height_1914_2014",
+  "title": "Average height of American men (centimeters)",
+  "unit": "centimeters",
+  "geography": "United States",
+  "time_coverage": "1914 vs 2014",
+  "source": {
+    "name": "A century of trends in adult human height",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), eLife",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "reference",
+    "access_date": "2026-09-06"
+  },
+  "notes": "NCD-RisC's 2016 eLife study pooled 18.6 million adults across 200 countries, tracking cohorts who turned 18 from 1914 to 2014. American men gained about 6 centimeters over the century, from roughly 171cm to 177cm.",
+  "points": [
+    {"label": "1914", "value": 171},
+    {"label": "2014", "value": 177}
+  ]
+}

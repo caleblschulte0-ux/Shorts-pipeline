@@ -1,0 +1,20 @@
+{
+  "key": "smartphone_ownership_age8_trend",
+  "title": "Share of 8-year-olds who own a smartphone",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2015-2021",
+  "source": {
+    "name": "The Common Sense Census: Media Use by Tweens and Teens",
+    "publisher": "Common Sense Media",
+    "url": "https://www.commonsensemedia.org/research",
+    "officiality": "secondary",
+    "access_date": "2026-09-06"
+  },
+  "notes": "Common Sense Media's recurring national census of children's media use. Smartphone ownership among 8-year-olds nearly tripled across three survey waves: 11% (2015), 19% (2019), 31% (2021).",
+  "points": [
+    {"label": "2015", "value": 11, "period": "2015"},
+    {"label": "2019", "value": 19, "period": "2019"},
+    {"label": "2021", "value": 31, "period": "2021"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "displaced_hosted_by_income_level",
+  "title": "Share of displaced people hosted, by host-country income level",
+  "unit": "percent",
+  "geography": "Worldwide",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Global Trends: Forced Displacement in 2024",
+    "publisher": "UNHCR (UN Refugee Agency)",
+    "url": "https://www.unhcr.org/global-trends-report-2024",
+    "officiality": "official",
+    "access_date": "2026-09-06"
+  },
+  "notes": "UNHCR reports that low- and middle-income countries host over 73% of the world's refugees and other people in need of international protection, not high-income nations.",
+  "baseline": {"label": "high-income countries", "value": 27},
+  "points": [
+    {"label": "low & middle income countries", "value": 73},
+    {"label": "high-income countries", "value": 27}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "refugee_hosting_countries_2024",
+  "title": "Top refugee-hosting countries (millions of refugees)",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Global Trends: Forced Displacement in 2024",
+    "publisher": "UNHCR (UN Refugee Agency)",
+    "url": "https://www.unhcr.org/global-trends-report-2024",
+    "officiality": "official",
+    "access_date": "2026-09-06"
+  },
+  "notes": "As of end-2024, Iran overtook Turkiye as the world's largest refugee-hosting country, with Germany third. Together with Colombia and Uganda, these five countries host about one-third of the world's refugees.",
+  "points": [
+    {"label": "Iran", "value": 3.5},
+    {"label": "Turkiye", "value": 2.9},
+    {"label": "Germany", "value": 2.7}
+  ]
+}

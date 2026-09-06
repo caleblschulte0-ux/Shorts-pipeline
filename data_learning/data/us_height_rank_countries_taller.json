@@ -1,0 +1,19 @@
+{
+  "key": "us_height_rank_countries_taller",
+  "title": "Countries with taller average male height than the US",
+  "unit": "count",
+  "geography": "Worldwide",
+  "time_coverage": "1914 vs 2014",
+  "source": {
+    "name": "A century of trends in adult human height",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), eLife",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "reference",
+    "access_date": "2026-09-06"
+  },
+  "notes": "American men ranked 3rd tallest in the world in 1914 and fell to 37th by 2014 (out of ~200 countries/territories studied). Expressed here as the count of nations that out-height the US for clarity: 2 nations taller in 1914 (rank 3rd), 36 nations taller in 2014 (rank 37th) -- the same published ranking, restated as a count so a bigger bar means a bigger fall.",
+  "points": [
+    {"label": "1914", "value": 2},
+    {"label": "2014", "value": 36}
+  ]
+}

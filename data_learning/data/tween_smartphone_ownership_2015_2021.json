@@ -1,0 +1,19 @@
+{
+  "key": "tween_smartphone_ownership_2015_2021",
+  "title": "Smartphone ownership among 8-to-12-year-olds",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2015 vs 2021",
+  "source": {
+    "name": "The Common Sense Census: Media Use by Tweens and Teens",
+    "publisher": "Common Sense Media",
+    "url": "https://www.commonsensemedia.org/research",
+    "officiality": "secondary",
+    "access_date": "2026-09-06"
+  },
+  "notes": "Overall smartphone ownership among the full 8-12 tween age band rose from 24% in 2015 to 43% in 2021, nearly doubling in six years.",
+  "points": [
+    {"label": "2015", "value": 24},
+    {"label": "2021", "value": 43}
+  ]
+}
