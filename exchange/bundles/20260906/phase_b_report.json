@@ -1,0 +1,108 @@
+{
+  "date": "20260906",
+  "channel": "trending",
+  "done_marker": false,
+  "had_response": false,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 0,
+    "self_filled": 15,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "a1b970058113a900e1c6d09aac640e5be0d47598490eeef12d89cb215c9cde34",
+    "required": false,
+    "checked": 0,
+    "ok": 0,
+    "rejected": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 0,
+    "rejected": 0,
+    "absent": 6
+  },
+  "details": [
+    {
+      "request_id": "reddit-hardware-store-fake-return-s0-5f7b37610d84",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gffec6f94cfbbfc92cd53e03082e5ef4e6781f53899a1c47167e3ae1183b37ed5f90a23f2935a087a929ab4a9641906ada6a51c4091f166f5c8b05234cbafe162_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s3-a5279141edab",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g00b4e8e1a21538abfe0b2e6ce3d8c9fd018cc739e64c98e79aebb451b1df16c9ea907337b6137d6778a93c8412f493238949076ae6783316717222ef0daf4040_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s4-7abb3df49d81",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gfba950c6294c8515065c39604708d35e0d7f7106e18a769143dbc7053f2a4ee0af97fd545b93587eaec1dd941fcfa29808bcfbf68cb8ae89fd5d7c042a2fd977_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s5-1e8fce27d120",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g5645b30307660354a221dfd5270128a0b439a7fca97529073ac0f10bb474e06e9f4894ef7d3a3e0f4f95485ef199214789a39a2f2a4f52bd02a2e4781bd11788_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s7-2b01e99cb920",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gd454e617e0df5f6a0d84d3eaac39532dcad88ef9eaef3659117efa27d33bf809b05764ca484e3704496d514e321563d4716b14ed69f98bede2706dbb23b327c5_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s6-c386f44adcca",
+      "outcome": "self_fill",
+      "url": "https://live.staticflickr.com/2623/32217192013_a333f9abc6_b.jpg"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s2-5f464618a40a",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gb66234f95c3cb506e16c38f280d806e8c50f5db59fe2ed51b5e81aa5464681a8de89a3600317eb767e39a48feb99483d611313b70aa050741e484e3b8486221a_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s0-c23c3b2ae0d5",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/gc2882652b0ad5b438c0b4a6210887e8dc070fd90c2a3cf7e904c4150f1cc1a44f52c2acf92cf878eb6eeca3845077dbcbac1b7808d87bf5f7be7bb8bc19095a7_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s1-82c85b7114d8",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga6a75376b04addaa6c049ed59621901c50b0e229b7f2eb83ffdc6581152307b29e989f223a1740c9f256d37b1419c4371379a75fe6b4f6e40a47013e035ec310_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s2-107f1a8f3bcd",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0433f91dc6eaa81f327cd8b49790af857c8f1efe152fefc8815b5ed84aadeaf7efe58ea385bb711a52b582c8c5c6a42d31b56c407bcebdc2711c3db63ceb21ed_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s3-9e141f0d8fad",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g15ac6b581e90b2b3e00175fc3af8cc3b597fab69a6ffb09e91dce7c51922800bdaeb295d21384e6e9f445b4942eabfc758f8996fad5eb9b5852db3e8b0a8ee1a_1280.png"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s4-ba6930150fcc",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g0a527f02dfe24b39bc7ccfcfc669e7f7d4205646cbc52c2ad1785a59a223e1cf858c64a6f58988605c87694ab722b61fe5eb228c0da2c69aeab11c1f2be553cf_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s5-2e50e9ecad51",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/ga1bfdc5056f13aa68c63fbc8438dfa6dbf4e029ba5e4923fe2a4b1df44440832e1d86fa668f5add381514b548b817d6e910573e6e3ba8393235c6e1737383ff4_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s6-f2b490e1839c",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g793f0891e42f311bfac0a9b48ed6dbec4360ba6c0ccb6aebf0fa2482bbf507a3d9a7f02de22ede3bfa1d28fa0dd1753943b23d9cae18d5268d27e4fcc06e41e3_1280.jpg"
+    },
+    {
+      "request_id": "reddit-hoa-parking-spot-tow-s7-d5433e0401ce",
+      "outcome": "self_fill",
+      "url": "https://pixabay.com/get/g69c1b378e1a792ac7b5c9ddb43ec7a9f1b4ac500e5537e96492b342a1fddb956b8c7c6a67e3bbdd16fa456045640359b924542a35177552f3b7a2661cabd2e34_1280.jpg"
+    }
+  ]
+}

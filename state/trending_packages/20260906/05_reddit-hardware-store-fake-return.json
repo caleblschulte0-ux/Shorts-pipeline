@@ -21,7 +21,9 @@
   "shots": [
     {
       "phrase": "olive-green jacket",
-      "query": "green work jacket"
+      "query": "green work jacket",
+      "image_url": "https://pixabay.com/get/gffec6f94cfbbfc92cd53e03082e5ef4e6781f53899a1c47167e3ae1183b37ed5f90a23f2935a087a929ab4a9641906ada6a51c4091f166f5c8b05234cbafe162_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "receipt-less pressure washer",
@@ -39,7 +41,8 @@
       "pin_context": "fuel petroleum liquid",
       "news_query": "Gasoline",
       "news_angle": "The tank of the returned pressure washer still smelled like gasoline, indicating it had been used.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Gasoline_in_mason_jar.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://pixabay.com/get/gb66234f95c3cb506e16c38f280d806e8c50f5db59fe2ed51b5e81aa5464681a8de89a3600317eb767e39a48feb99483d611313b70aa050741e484e3b8486221a_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "resale fraud database",
@@ -47,15 +50,21 @@
       "pin_query": "Resale fraud database",
       "pin_context": "product return policy tracking system",
       "news_query": "Resale fraud database",
-      "news_angle": "The narrator asks the woman if she logged the pressure washer's serial number in the resale fraud database, implying she was committing fraud."
+      "news_angle": "The narrator asks the woman if she logged the pressure washer's serial number in the resale fraud database, implying she was committing fraud.",
+      "image_url": "https://pixabay.com/get/g00b4e8e1a21538abfe0b2e6ce3d8c9fd018cc739e64c98e79aebb451b1df16c9ea907337b6137d6778a93c8412f493238949076ae6783316717222ef0daf4040_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Her face went white",
-      "query": "shocked woman face"
+      "query": "shocked woman face",
+      "image_url": "https://pixabay.com/get/gfba950c6294c8515065c39604708d35e0d7f7106e18a769143dbc7053f2a4ee0af97fd545b93587eaec1dd941fcfa29808bcfbf68cb8ae89fd5d7c042a2fd977_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "an actual employee walked up wearing the real uniform",
-      "query": "hardware store employee apron"
+      "query": "hardware store employee apron",
+      "image_url": "https://pixabay.com/get/g5645b30307660354a221dfd5270128a0b439a7fca97529073ac0f10bb474e06e9f4894ef7d3a3e0f4f95485ef199214789a39a2f2a4f52bd02a2e4781bd11788_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "Security walked her out empty-handed",
@@ -64,11 +73,14 @@
       "pin_context": "She Demanded A Refund. I Don't Work Here.",
       "news_query": "Security",
       "news_angle": "She Demanded A Refund. I Don't Work Here.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/20151030_Syrians_and_Iraq_refugees_arrive_at_Skala_Sykamias_Lesvos_Greece_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://live.staticflickr.com/2623/32217192013_a333f9abc6_b.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "comped my paint",
-      "query": "paint cans shelf"
+      "query": "paint cans shelf",
+      "image_url": "https://pixabay.com/get/gd454e617e0df5f6a0d84d3eaac39532dcad88ef9eaef3659117efa27d33bf809b05764ca484e3704496d514e321563d4716b14ed69f98bede2706dbb23b327c5_1280.jpg",
+      "media_origin": "self_fill"
     }
   ],
   "punches": [
