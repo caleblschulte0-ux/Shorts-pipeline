@@ -6001,13 +6001,45 @@
       "ts": "2026-09-06T14:21:32.370281+00:00"
     },
     "clip-20260906-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/GorgeousSuccessfulArmadilloFunRun-00lOTDNuFwPjkYk3",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/NvNGiBPY_vE",
       "title": "Lacy EXPOSES Ron For What He Did While She Was Asleep",
       "kind": "twitch_clip",
-      "ts": "2026-09-06T14:24:50.838088+00:00",
+      "ts": "2026-09-06T14:24:55.811333+00:00",
+      "uploaded_at": "2026-09-06T14:24:55.811352+00:00",
+      "publish_at": "2026-09-06T21:30:00Z",
+      "source_url": "https://www.twitch.tv/lacy/clip/GorgeousSuccessfulArmadilloFunRun-00lOTDNuFwPjkYk3",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "LACY CAUGHT RON WITH HIS PANTS DOWN",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2058,
+      "banger": 0.75,
+      "cut": {
+        "start": 0.9,
+        "end": 30.2
+      },
+      "director_cut": true
+    },
+    "rejected-proudplacidpoxcorgiderp-itzocanpzcrt3d8l": {
+      "source_url": "https://www.twitch.tv/emiru/clip/ProudPlacidPoxCorgiDerp-iTZoCANPzcRt3D8l",
+      "streamer": "emiru",
+      "title": "LO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static game clip, no real event)",
+      "ts": "2026-09-06T14:25:58.725866+00:00"
+    },
+    "clip-20260906-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/FurtiveBoredKangarooUncleNox-Po_T1Z9sxrkDaC8H",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Reacts And The Crowd Goes Wild",
+      "kind": "twitch_clip",
+      "ts": "2026-09-06T14:28:40.804100+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
