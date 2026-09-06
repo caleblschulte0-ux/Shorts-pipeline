@@ -1,0 +1,21 @@
+{
+  "key": "smartphone_ownership_by_age",
+  "title": "Share of kids who own a smartphone, by age",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2021",
+  "source": {
+    "name": "The Common Sense Census: Media Use by Tweens and Teens, 2021",
+    "publisher": "Common Sense Media",
+    "url": "https://www.commonsensemedia.org/research",
+    "officiality": "secondary",
+    "access_date": "2026-09-06"
+  },
+  "notes": "2021 Common Sense Census data. Smartphone ownership climbs steeply through childhood: 31% by age 8, 42% by age 10, 71% by age 12, and 91% by age 14.",
+  "points": [
+    {"label": "Age 8", "value": 31},
+    {"label": "Age 10", "value": 42},
+    {"label": "Age 12", "value": 71},
+    {"label": "Age 14", "value": 91}
+  ]
+}

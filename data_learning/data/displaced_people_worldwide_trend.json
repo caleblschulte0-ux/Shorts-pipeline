@@ -1,0 +1,21 @@
+{
+  "key": "displaced_people_worldwide_trend",
+  "title": "People forcibly displaced worldwide (millions)",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2013-2024",
+  "source": {
+    "name": "Global Trends: Forced Displacement",
+    "publisher": "UNHCR (UN Refugee Agency)",
+    "url": "https://www.unhcr.org/global-trends-report-2024",
+    "officiality": "official",
+    "access_date": "2026-09-06"
+  },
+  "notes": "UNHCR's annual Global Trends report. Forced displacement (refugees, asylum-seekers, internally displaced people) has set a new record every year for 12 consecutive years: 51.2 million (2013), 70.8 million (2018), 117.3 million (2023), 123.2 million (2024).",
+  "points": [
+    {"label": "2013", "value": 51.2, "period": "2013"},
+    {"label": "2018", "value": 70.8, "period": "2018"},
+    {"label": "2023", "value": 117.3, "period": "2023"},
+    {"label": "2024", "value": 123.2, "period": "2024"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "height_gain_leaders_vs_us",
+  "title": "Height gained over the century, by nation (centimeters)",
+  "unit": "centimeters",
+  "geography": "South Korea, Iran, United States",
+  "time_coverage": "1914-2014",
+  "source": {
+    "name": "A century of trends in adult human height",
+    "publisher": "NCD Risk Factor Collaboration (NCD-RisC), eLife",
+    "url": "https://elifesciences.org/articles/13410",
+    "officiality": "reference",
+    "access_date": "2026-09-06"
+  },
+  "notes": "South Korean women (+20.2cm) and Iranian men (+16.5cm) posted the largest height gains of any nation in the NCD-RisC study, versus a roughly 6cm gain for American men over the same century.",
+  "points": [
+    {"label": "South Korean women", "value": 20.2},
+    {"label": "Iranian men", "value": 16.5},
+    {"label": "American men", "value": 6}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "bird_population_change_by_group",
+  "title": "Population change since 1970 by bird group (percent)",
+  "unit": "percent",
+  "geography": "United States & Canada",
+  "time_coverage": "1970-2019",
+  "source": {
+    "name": "Decline of the North American avifauna",
+    "publisher": "Rosenberg et al., Science (Cornell Lab of Ornithology / American Bird Conservancy)",
+    "url": "https://www.science.org/doi/10.1126/science.aaw1313",
+    "officiality": "reference",
+    "access_date": "2026-09-06"
+  },
+  "notes": "Grassland birds lost 53% of their population (largest proportional loss of any biome); shorebirds lost roughly 37%. Wetland birds were the only biome to gain overall, led by a 56% increase in waterfowl -- credited to decades of wetland restoration funded by hunting license and duck stamp fees plus the 1972 DDT ban.",
+  "points": [
+    {"label": "Grassland birds", "value": -53},
+    {"label": "Shorebirds", "value": -37},
+    {"label": "Waterfowl (ducks & geese)", "value": 56}
+  ]
+}

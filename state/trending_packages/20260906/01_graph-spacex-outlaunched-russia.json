@@ -1,0 +1,21 @@
+{
+  "format": "graph_race",
+  "slug": "graph-spacex-outlaunched-russia",
+  "title": "SpaceX Now Out-Launches Russia's Entire Program",
+  "hook": "SpaceX out-launched Russia",
+  "y_label": "Orbital launches per year",
+  "duration": 13,
+  "source": "SpaceX company launch totals (Wikipedia/SpaceNews orbital launch logs: 13 launches in 2019 rising to 134 in 2024). Russia figures are that country's total annual orbital launch attempts across every provider (CSIS Aerospace Security Project, Space Stats, TASS/Roscosmos year-end statements: 12-22 a year). A company vs. a nation isn't apples-to-apples, but that's the point of the chart -- one US company's cadence overtook an entire nation's space program's cadence in five years. Figures approximate as publicly reported.",
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {"name": "SpaceX", "color": "#4a90e2", "icon": "SpaceX",
+     "values": [13, 25, 31, 61, 96, 134]},
+    {"name": "Russia", "color": "#cc2936", "icon": "RU",
+     "values": [22, 12, 16, 21, 22, 17]}
+  ],
+  "hashtags": ["spacex", "russia", "rocketlaunch", "space", "launches",
+               "roscosmos", "elonmusk", "spacerace", "aerospace", "nasa",
+               "falcon9", "data", "graph", "shorts"],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

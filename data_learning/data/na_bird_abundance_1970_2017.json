@@ -1,0 +1,19 @@
+{
+  "key": "na_bird_abundance_1970_2017",
+  "title": "Total breeding bird abundance, US & Canada (billion birds)",
+  "unit": "billion",
+  "geography": "United States & Canada",
+  "time_coverage": "1970 vs 2017",
+  "source": {
+    "name": "Decline of the North American avifauna",
+    "publisher": "Rosenberg et al., Science (Cornell Lab of Ornithology / American Bird Conservancy)",
+    "url": "https://www.science.org/doi/10.1126/science.aaw1313",
+    "officiality": "reference",
+    "access_date": "2026-09-06"
+  },
+  "notes": "Landmark 2019 Science study synthesizing 48 years of monitoring data (529 species, 76% of North American breeding birds). Net loss of nearly 3 billion birds, a 29% decline from the 1970 baseline.",
+  "points": [
+    {"label": "1970", "value": 10.1, "period": "1970"},
+    {"label": "2017", "value": 7.2, "period": "2017"}
+  ]
+}
