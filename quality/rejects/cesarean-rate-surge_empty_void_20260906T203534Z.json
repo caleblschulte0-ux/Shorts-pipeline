@@ -1,0 +1,32 @@
+{
+ "slug": "cesarean-rate-surge",
+ "ts": "20260906T203534Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end park a hairline timeline and a small mascot in the top third and leave the entire bottom ~60% of the frame empty dark gradient with a stray teal ellipse; seg2:mid/end repeat it below the arc gauge.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid (t=9.98s) and seg1:end (t=13.68s): one thin 1px year axis with tick labels 1970-2024, a small '32.9%' and a small mascot all crammed into the upper third; the lower ~60% of the vertical frame is bare gradient containing only a detached teal shadow ellipse with no mascot standing on it.",
+  "root_cause": "The timeline/scrubber scene is composed at a horizontal-video aspect and centred on one axis line, so the 9:16 canvas is never filled; the mascot's ground-shadow is drawn at its own fixed anchor rather than following the mascot up onto the puck, leaving an orphan artifact in the dead space.",
+  "repair_goal": "Rebuild seg1 to use the full 9:16 frame: scale the year axis to the mid-band and grow a stacked column of era values (1970 5.5 -> 1988 24.7 -> 2024 32.4) filling the lower two-thirds as the puck passes each year, so the rise is physically demonstrated rather than a number floating over a line; parent the mascot's shadow to the mascot so no orphan ellipse remains."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "stack",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "geo_us",
+   "performance": "race_sprint"
+  }
+ ]
+}

@@ -12,9 +12,14 @@
     "access_date": "2026-09-06"
   },
   "notes": "Twelve familiar bird families -- including sparrows, warblers, blackbirds and finches -- accounted for 90% of the net 3-billion-bird loss, meaning the crisis is concentrated in common, everyday backyard species rather than rare ones.",
-  "baseline": {"label": "all other families combined", "value": 10},
   "points": [
-    {"label": "12 common families (sparrows, warblers, blackbirds, finches...)", "value": 90},
-    {"label": "all other families combined", "value": 10}
+    {
+      "label": "12 common families (sparrows, warblers, blackbirds, finches...)",
+      "value": 90
+    },
+    {
+      "label": "all other families combined",
+      "value": 10
+    }
   ]
 }

@@ -1,0 +1,45 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260906T203534Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start(f11) is two faint circle outlines and one tiny green dot with the entire lower half of the frame blank; seg4:start(f16) through payoff@-0.4(f20) leave everything below the gauge empty.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg2:start(f11) shows a ~5px green dot centred in two barely-visible ring outlines, one ghosted label 'Pit stop record 1.8' half-faded at the top, no mascot, and the bottom ~55% of the frame completely empty; by seg2:end(f12) it is still only two labelled dots ('Human reaction time 0.3', 'Pit stop record 1.8') floating on the same rings, so ~6s of the video (16.8-22.9s) carries almost no visual content.",
+  "root_cause": "The 'seven reaction times fit inside one pit stop' beat was rendered as an abstract orbital scatter, which encodes neither the ratio nor the count \u2014 dot radius is arbitrary, nothing repeats seven times, and the layout uses only the upper third of a 9:16 frame.",
+  "repair_goal": "Replace the orbit with a literal repetition demonstration filling the frame: one 1.8s pit-stop bar/track laid across the width, then 6-7 discrete 0.27s reaction-time blocks snapping into it one at a time until they overflow, with Data physically stacking or being buried by the blocks so the count is seen rather than labelled."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}

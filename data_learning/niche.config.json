@@ -26041,11 +26041,12 @@
           "params": {
             "file": "bird_loss_concentration_12_families.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "3 \u00b7 WHICH BIRDS",
           "topic": "share of the loss in common families",
-          "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing."
+          "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing.",
+          "ascending": false
         }
       ]
     },
@@ -26231,11 +26232,12 @@
           "params": {
             "file": "displaced_hosted_by_income_level.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "role": "3 \u00b7 WHO CARRIES IT",
           "topic": "who hosts the displaced, by income level",
-          "say": "And 73 percent of the world's displaced people are hosted by low and middle income countries, not wealthy ones. The countries with the least are carrying the most."
+          "say": "And 73 percent of the world's displaced people are hosted by low and middle income countries, not wealthy ones. The countries with the least are carrying the most.",
+          "ascending": false
         }
       ]
     }

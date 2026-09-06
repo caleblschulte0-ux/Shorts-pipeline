@@ -1,0 +1,37 @@
+{
+ "slug": "melatonin-kids-er-surge",
+ "ts": "20260906T203534Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data only stands inside or perches on top of whatever bar is already there \u2014 parked in the purple column at seg0:mid, perched on the arc at seg1:mid, standing in the column at seg2:mid \u2014 and he is entirely ABSENT from seg4/payoff; no setup-action-payoff bit anywhere.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_and_broken_payoff",
+  "visible_evidence": "seg4:start/mid and payoff@-1.8/-0.4: bottom half of frame is dead gradient; the scene title is occluded and clipped to 'ou...es' behind the speech bubble; orbit labels collide ('Hospitalized' overprinting 'Intensive care' at seg4:mid); mascot is missing entirely; and the numbers contradict the previous scene \u2014 'Sent home 71.6% / Hospitalized 14.7%' here vs 'Sent home 82% / Hospitalized 17%' on seg3:end.",
+  "root_cause": "The closing beat falls back to a generic orbit/bubble layout that neither reuses seg3's proportion metaphor nor its normalization, places all marks in the upper third, and drops the performer \u2014 so the punchline lands as a floating legend rather than a demonstration.",
+  "repair_goal": "Rebuild seg4 as a continuation of seg3's stacked column: keep the same 82/17/1 normalization (or restate seg3 to 71.6/14.7/1 so one set of numbers holds), fill the frame vertically, un-occlude the title, separate the three labels, and put Data in the scene physically clamping a child-proof cap onto the bottle so the 'the fix is a cap' closing line has an action to land on."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_1",
+   "kind": "stack",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_2",
+   "kind": "stack",
+   "performance": "block_wall"
+  }
+ ]
+}
