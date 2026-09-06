@@ -5946,13 +5946,36 @@
       "ts": "2026-09-05T15:06:21.895646+00:00"
     },
     "clip-20260906-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/BoringRoughFerret4Head-mxEnHdOPkSQUrXBk",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/iW3Y3MTFqog",
       "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
       "kind": "twitch_clip",
-      "ts": "2026-09-06T14:13:37.416527+00:00",
+      "ts": "2026-09-06T14:13:42.323465+00:00",
+      "uploaded_at": "2026-09-06T14:13:42.323486+00:00",
+      "publish_at": "2026-09-06T17:00:00Z",
+      "source_url": "https://www.twitch.tv/jasontheween/clip/BoringRoughFerret4Head-mxEnHdOPkSQUrXBk",
+      "streamer": "jasontheween",
+      "series": "chaos",
+      "hook": "SHE SENT HIM THIS AI TWEET",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2798,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 21.4
+      },
+      "director_cut": true
+    },
+    "clip-20260906-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/InexpensiveAggressiveOrcaSwiftRage-oE8QyKt3g0kwQi-Y",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Gets Called Out For Having Three Wives In Chat",
+      "kind": "twitch_clip",
+      "ts": "2026-09-06T14:17:51.171285+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
