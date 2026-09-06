@@ -1,16 +1,16 @@
 [
   {
-    "topic": "BYD Passed Tesla To Lead The Global EV Race",
-    "title": "BYD Passed Tesla To Lead The Global EV Race",
+    "topic": "SpaceX Now Out-Launches Russia's Entire Program",
+    "title": "SpaceX Now Out-Launches Russia's Entire Program",
     "format": "graph_race",
-    "publish_at": "2026-09-05T17:30:00Z",
+    "publish_at": "2026-09-06T17:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/hEMsmhd4Oo8",
+    "video_url": "https://youtube.com/shorts/8MjLa42a3_g",
     "error": null,
-    "elapsed_seconds": 128.5,
-    "package_path": "state/trending_packages/20260905/01_graph-byd-passed-tesla-ev.json",
+    "elapsed_seconds": 103.7,
+    "package_path": "state/trending_packages/20260906/01_graph-spacex-outlaunched-russia.json",
     "source": "brain",
-    "video_path": "output/daily_20260905-161713_byd_passed_tesla_to_lead_the_global_ev_r.mp4",
+    "video_path": "output/daily_20260906-162909_spacex_now_out_launches_russia_s_entire_.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -29,22 +29,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 78
+      "score": 82
     },
     "channel": "default"
   },
   {
-    "topic": "Amazon Prime Passed Costco And Never Looked Back",
-    "title": "Amazon Prime Passed Costco And Never Looked Back",
+    "topic": "Instagram Passed Twitter's Users In 2 Years",
+    "title": "Instagram Passed Twitter's Users In 2 Years",
     "format": "graph_race",
-    "publish_at": "2026-09-05T19:00:00Z",
+    "publish_at": "2026-09-06T19:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/3JPNifvjIrk",
+    "video_url": "https://youtube.com/shorts/4C-IafFx6h4",
     "error": null,
-    "elapsed_seconds": 117.2,
-    "package_path": "state/trending_packages/20260905/02_graph-prime-passed-costco.json",
+    "elapsed_seconds": 97.7,
+    "package_path": "state/trending_packages/20260906/02_graph-instagram-passed-twitter.json",
     "source": "brain",
-    "video_path": "output/daily_20260905-161922_amazon_prime_passed_costco_and_never_loo.mp4",
+    "video_path": "output/daily_20260906-163053_instagram_passed_twitter_s_users_in_2_ye.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -58,7 +58,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -25.2
+      "loudness_lufs": -25.0
     },
     "showrunner": {
       "blocked": false,
@@ -68,17 +68,17 @@
     "channel": "default"
   },
   {
-    "topic": "Wikipedia Buried Every Encyclopedia Before It",
-    "title": "Wikipedia Buried Every Encyclopedia Before It",
+    "topic": "Vinyl Records Passed CD Sales In America",
+    "title": "Vinyl Records Passed CD Sales In America",
     "format": "graph_race",
-    "publish_at": "2026-09-05T20:30:00Z",
+    "publish_at": "2026-09-06T20:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, honest one-runaway-line race whose contrast (7.2M vs a Britannica rail frozen at 120K) genuinely lands \u2014 but the hook card blocks the very line it is describing and the last two seconds coast on a plateau instead of paying off.",
-    "elapsed_seconds": 126.7,
-    "package_path": "state/trending_packages/20260905/03_graph-wikipedia-vs-britannica.json",
+    "error": "showrunner_block: showrunner BLOCK: A clean, real graph race with a genuine crossover payoff, blocked by third-party brand logos (SEGA, 'Vinyl Cache') used as the data markers plus a static text-card hook.",
+    "elapsed_seconds": 179.2,
+    "package_path": "state/trending_packages/20260906/03_graph-vinyl-passed-cd.json",
     "source": "brain",
-    "video_path": "output/daily_20260905-162119_wikipedia_buried_every_encyclopedia_befo.mp4",
+    "video_path": "output/daily_20260906-163230_vinyl_records_passed_cd_sales_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,137 +96,137 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, honest one-runaway-line race whose contrast (7.2M vs a Britannica rail frozen at 120K) genuinely lands \u2014 but the hook card blocks the very line it is describing and the last two seconds coast on a plateau instead of paying off.",
-      "score": 65
-    },
-    "blocked": true
-  },
-  {
-    "topic": "Old People Just Outnumbered The World's Toddlers",
-    "title": "Old People Just Outnumbered The World's Toddlers",
-    "format": "graph_race",
-    "publish_at": "2026-09-05T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A structurally correct graph race with a genuine crossover payoff, undercut by a dead-start hook, an illegible overlay, and a uniformly black, judder-y canvas.",
-    "elapsed_seconds": 122.9,
-    "package_path": "state/trending_packages/20260905/04_graph-elders-passed-toddlers.json",
-    "source": "brain",
-    "video_path": "output/daily_20260905-162326_old_people_just_outnumbered_the_world_s_.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A structurally correct graph race with a genuine crossover payoff, undercut by a dead-start hook, an illegible overlay, and a uniformly black, judder-y canvas.",
-      "score": 69
-    },
-    "blocked": true
-  },
-  {
-    "topic": "They Auctioned My Storage Unit By Mistake",
-    "title": "They Auctioned My Storage Unit By Mistake",
-    "format": "reddit",
-    "publish_at": "2026-09-05T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Clean reddit-story shell, but the illustration track is unrelated stock (a skull-and-dagger still life, a kitten) frozen for ~10s at a time, so the story is never actually shown.",
-    "elapsed_seconds": 191.6,
-    "package_path": "state/trending_packages/20260905/05_reddit-storage-auction-buyback.json",
-    "source": "brain",
-    "video_path": "output/daily_20260905-162529_they_auctioned_my_storage_unit_by_mistak.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 50.2,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Clean reddit-story shell, but the illustration track is unrelated stock (a skull-and-dagger still life, a kitten) frozen for ~10s at a time, so the story is never actually shown.",
-      "score": 53
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Blamed My Kennel. The Camera Disagreed",
-    "title": "She Blamed My Kennel. The Camera Disagreed",
-    "format": "reddit",
-    "publish_at": "2026-09-05T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The payoff is illustrated with a screenshot of the Pexels app store page \u2014 the stock provider's own UI shipped as the punchline shot.",
-    "elapsed_seconds": 222.1,
-    "package_path": "state/trending_packages/20260905/06_reddit-kennel-false-injury-claim.json",
-    "source": "brain",
-    "video_path": "output/daily_20260905-162909_she_blamed_my_kennel__the_camera_disagre.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.833,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -26.4
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The payoff is illustrated with a screenshot of the Pexels app store page \u2014 the stock provider's own UI shipped as the punchline shot.",
+      "reason": "showrunner BLOCK: A clean, real graph race with a genuine crossover payoff, blocked by third-party brand logos (SEGA, 'Vinyl Cache') used as the data markers plus a static text-card hook.",
       "score": 62
     },
     "blocked": true
   },
   {
-    "topic": "dylan raiola",
+    "topic": "Natural Gas Overtook Coal As America's Power Source",
+    "title": "Natural Gas Overtook Coal As America's Power Source",
+    "format": "graph_race",
+    "publish_at": "2026-09-06T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A real, honest EIA race with a genuine crossover, sunk by illegible corporate-logo series markers and a chart floating in a half-empty black frame.",
+    "elapsed_seconds": 88.6,
+    "package_path": "state/trending_packages/20260906/04_graph-gas-overtook-coal.json",
+    "source": "brain",
+    "video_path": "output/daily_20260906-163529_natural_gas_overtook_coal_as_america_s_p.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A real, honest EIA race with a genuine crossover, sunk by illegible corporate-logo series markers and a chart floating in a half-empty black frame.",
+      "score": 57
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Demanded A Refund. I Don't Work Here.",
+    "title": "She Demanded A Refund. I Don't Work Here.",
+    "format": "reddit",
+    "publish_at": "2026-09-06T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story is legible but the illustrations are keyword-matched stock that has nothing to do with a store refund \u2014 a boat hull, a watering can and a page of CSS \u2014 and the first 2.5s is a motionless post card over black.",
+    "elapsed_seconds": 178.9,
+    "package_path": "state/trending_packages/20260906/05_reddit-hardware-store-fake-return.json",
+    "source": "brain",
+    "video_path": "output/daily_20260906-163732_she_demanded_a_refund__i_don_t_work_here.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.6,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.0
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is legible but the illustrations are keyword-matched stock that has nothing to do with a store refund \u2014 a boat hull, a watering can and a page of CSS \u2014 and the first 2.5s is a motionless post card over black.",
+      "score": 52
+    },
+    "blocked": true
+  },
+  {
+    "topic": "She Kept Stealing My Spot. I Called A Tow Truck.",
+    "title": "She Kept Stealing My Spot. I Called A Tow Truck.",
+    "format": "reddit",
+    "publish_at": "2026-09-06T20:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions carry the story fine, but the top photo track is a bag of unrelated stock \u2014 a garbled tuk-tuk cutout on black, an airport departure board, and a cat \u2014 so the cause/effect beats are never actually illustrated.",
+    "elapsed_seconds": 209.4,
+    "package_path": "state/trending_packages/20260906/06_reddit-hoa-parking-spot-tow.json",
+    "source": "brain",
+    "video_path": "output/daily_20260906-163958_she_kept_stealing_my_spot__i_called_a_to.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 52.767,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.4
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The gameplay and captions carry the story fine, but the top photo track is a bag of unrelated stock \u2014 a garbled tuk-tuk cutout on black, an airport departure board, and a cat \u2014 so the cause/effect beats are never actually illustrated.",
+      "score": 61
+    },
+    "blocked": true
+  },
+  {
+    "topic": "joao pedro",
     "angle": null,
-    "publish_at": "2026-09-05T20:30:00Z",
+    "publish_at": "2026-09-06T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 1.1,
+    "elapsed_seconds": 0.9,
     "backfill": true
   },
   {
-    "topic": "keelon russell",
+    "topic": "lamine yamal",
     "angle": null,
-    "publish_at": "2026-09-06T13:00:00Z",
+    "publish_at": "2026-09-07T13:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
@@ -234,23 +234,23 @@
     "backfill": true
   },
   {
-    "topic": "apple cup 2026",
+    "topic": "national weather service september map",
     "angle": null,
-    "publish_at": "2026-09-06T14:30:00Z",
+    "publish_at": "2026-09-07T14:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.8,
+    "elapsed_seconds": 0.5,
     "backfill": true
   },
   {
-    "topic": "natalie portman",
+    "topic": "harvey elliott",
     "angle": null,
-    "publish_at": "2026-09-06T16:00:00Z",
+    "publish_at": "2026-09-07T16:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.8,
+    "elapsed_seconds": 0.7,
     "backfill": true
   }
 ]
