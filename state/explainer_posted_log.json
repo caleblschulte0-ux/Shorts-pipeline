@@ -1495,6 +1495,26 @@
       ],
       "words_first_10s": 15,
       "scene_changes_before_5s": 2
+    },
+    "cesarean-rate-surge": {
+      "url": "https://youtube.com/shorts/RJrLzx0pU4Q",
+      "title": "Why 1 In 3 US Babies Are Born By Surgery (3 Charts)",
+      "at": "2026-09-06T20:08:48.921116+00:00",
+      "publish_at": "2026-09-06T20:35:59Z",
+      "n_beats": 3,
+      "story_structure": "scene+scene+geo_us",
+      "narrative_score": 62,
+      "duration_s": 44.3,
+      "hook": "stake",
+      "topic_category": "body",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:bassinet-row-surgical-fill",
+        "mechanic:hospital-corridor-fork",
+        "viz:geo_us"
+      ],
+      "words_first_10s": 20,
+      "scene_changes_before_5s": 3
     }
   }
 }
