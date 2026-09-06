@@ -25985,6 +25985,259 @@
           "ascending": false
         }
       ]
+    },
+    {
+      "slug": "north-american-bird-collapse",
+      "title": "North America Lost 3 Billion Birds Since 1970",
+      "hook": "The birds outside your window are disappearing.",
+      "closing": "Turns out silence was the warning the whole time.",
+      "question": "Have you noticed fewer birds where you live? Tell me below.",
+      "caption": "North America has lost 3 billion birds -- 29% of all birds -- since 1970, and just 12 common families make up 90% of that loss. It's not rare species vanishing, it's the birds in your backyard. Proof it's fixable: waterfowl are up 56% thanks to conservation. Have you noticed fewer birds around you? \ud83d\udc47",
+      "hashtags": [
+        "birds",
+        "birdwatching",
+        "wildlife",
+        "conservation",
+        "nature",
+        "climatechange",
+        "biodiversity",
+        "ecology",
+        "backyardbirds",
+        "extinction",
+        "dataviz",
+        "didyouknow",
+        "science",
+        "naturefacts",
+        "environment"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "na_bird_abundance_1970_2017",
+          "params": {
+            "file": "na_bird_abundance_1970_2017.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SCALE",
+          "topic": "total North American bird abundance",
+          "say": "In 1970, North America had about 10.1 billion breeding birds. By 2017 it was down to 7.2 billion -- nearly 3 billion gone, a 29 percent drop in under 50 years."
+        },
+        {
+          "source": "offline",
+          "key": "bird_population_change_by_group",
+          "params": {
+            "file": "bird_population_change_by_group.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": false,
+          "role": "2 \u00b7 NOT EVEN",
+          "topic": "population change by bird group",
+          "say": "But losses weren't even. Grassland birds fell 53 percent and shorebirds fell 37 percent -- while waterfowl actually grew 56 percent, thanks to decades of wetland conservation funded by hunters."
+        },
+        {
+          "source": "offline",
+          "key": "bird_loss_concentration_12_families",
+          "params": {
+            "file": "bird_loss_concentration_12_families.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 \u00b7 WHICH BIRDS",
+          "topic": "share of the loss in common families",
+          "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing."
+        }
+      ]
+    },
+    {
+      "slug": "kids-phones-getting-younger",
+      "title": "Smartphones Just Got a Lot Younger",
+      "hook": "Elementary schoolers are getting smartphones now.",
+      "closing": "The unboxing age keeps dropping. Ask any 8-year-old.",
+      "question": "How old were you when you got your first phone? Comment below.",
+      "caption": "In 2015, just 11% of 8-year-olds owned a smartphone. By 2021 it was 31% -- and 71% of kids already have one by age 12. Little kids are getting phones years earlier than their older siblings did. How old were you when you got yours? \ud83d\udc47",
+      "hashtags": [
+        "kids",
+        "smartphones",
+        "parenting",
+        "screentime",
+        "genalpha",
+        "technology",
+        "phones",
+        "children",
+        "growingup",
+        "digitalparenting",
+        "dataviz",
+        "didyouknow",
+        "tech",
+        "society",
+        "familytech"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "smartphone_ownership_age8_trend",
+          "params": {
+            "file": "smartphone_ownership_age8_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE YOUNGEST KIDS",
+          "topic": "8-year-olds who own a smartphone",
+          "say": "In 2015, just 11 percent of 8-year-olds had their own smartphone. By 2019 it was 19 percent, and by 2021 it hit 31 percent -- nearly tripling in six years."
+        },
+        {
+          "source": "offline",
+          "key": "smartphone_ownership_by_age",
+          "params": {
+            "file": "smartphone_ownership_by_age.json"
+          },
+          "insight_type": "rank",
+          "ascending": true,
+          "use_baseline": false,
+          "role": "2 \u00b7 HOW FAST IT RAMPS",
+          "topic": "smartphone ownership by age",
+          "say": "By age 10, 42 percent of kids already have their own phone. By 12 it's 71 percent. By 14, 91 percent -- nine in 10 teenagers are carrying one."
+        },
+        {
+          "source": "offline",
+          "key": "tween_smartphone_ownership_2015_2021",
+          "params": {
+            "file": "tween_smartphone_ownership_2015_2021.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE WHOLE GENERATION",
+          "topic": "smartphone ownership among 8-12-year-olds",
+          "say": "Across ages 8 to 12, ownership nearly doubled -- 24 percent in 2015 to 43 percent in 2021. It didn't just arrive earlier for one kid. It arrived earlier for an entire generation."
+        }
+      ]
+    },
+    {
+      "slug": "us-height-ranking-fall",
+      "title": "Americans Used To Be The Tallest People On Earth (3 Charts)",
+      "hook": "Americans used to be the tallest on Earth.",
+      "closing": "Turns out tall was never really about genetics.",
+      "question": "Are you taller or shorter than your grandparents? Tell me below.",
+      "caption": "A century ago, American men were the third-tallest in the world. Today the US ranks 37th, as South Korea, Iran and others raced ahead on better childhood nutrition and healthcare. Height isn't just genetics -- it's basically a scoreboard for how a country raises its kids. Are you taller than your grandparents were? \ud83d\udc47",
+      "hashtags": [
+        "height",
+        "tallest",
+        "genetics",
+        "nutrition",
+        "publichealth",
+        "generations",
+        "dataviz",
+        "didyouknow",
+        "science",
+        "humanbody",
+        "worldranking",
+        "growth",
+        "statistics",
+        "americans",
+        "biology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "us_male_height_1914_2014",
+          "params": {
+            "file": "us_male_height_1914_2014.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "1 \u00b7 A REAL GAIN",
+          "topic": "average height of American men",
+          "say": "In 1914, the average American man stood about 171 centimeters. By 2014 that reached 177 -- a real gain, but a modest one compared to what was coming next."
+        },
+        {
+          "source": "offline",
+          "key": "height_gain_leaders_vs_us",
+          "params": {
+            "file": "height_gain_leaders_vs_us.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 \u00b7 EVERYONE ELSE SPED UP",
+          "topic": "height gained over the century, by nation",
+          "say": "Compare that to South Korean women, who gained 20.2 centimeters over the same century, or Iranian men, up 16.5. America's growth practically stalled while other nations transformed."
+        },
+        {
+          "source": "offline",
+          "key": "us_height_rank_countries_taller",
+          "params": {
+            "file": "us_height_rank_countries_taller.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": false,
+          "role": "3 \u00b7 THE RANKING FLIPPED",
+          "topic": "countries now taller than the US",
+          "say": "And the ranking flipped. In 1914, only 2 countries had taller men than America. By 2014, 36 did. Height isn't genetics -- it's a scoreboard for how well a country feeds its kids."
+        }
+      ]
+    },
+    {
+      "slug": "global-displacement-record",
+      "title": "More People Are Displaced Right Now Than Ever Recorded",
+      "hook": "The countries taking in refugees aren't who you'd guess.",
+      "closing": "Every year now breaks the record before the last one.",
+      "question": "Which country would you guess hosts the most refugees? Tell me below.",
+      "caption": "123.2 million people are now forcibly displaced worldwide -- a record for the 12th year in a row. The country hosting the most isn't a rich Western nation, it's Iran, and low- and middle-income countries host 73% of the total. Which country would you guess hosts the most? \ud83d\udc47",
+      "hashtags": [
+        "refugees",
+        "displacement",
+        "unhcr",
+        "migration",
+        "globalcrisis",
+        "humanrights",
+        "geopolitics",
+        "worldnews",
+        "dataviz",
+        "didyouknow",
+        "society",
+        "statistics",
+        "asylum",
+        "conflict",
+        "worldpopulation"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "displaced_people_worldwide_trend",
+          "params": {
+            "file": "displaced_people_worldwide_trend.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE RECORD",
+          "topic": "people forcibly displaced worldwide",
+          "say": "In 2013, 51.2 million people were displaced worldwide. By 2018, 70.8 million. By 2024, 123.2 million -- a record for the 12th year straight."
+        },
+        {
+          "source": "offline",
+          "key": "refugee_hosting_countries_2024",
+          "params": {
+            "file": "refugee_hosting_countries_2024.json"
+          },
+          "insight_type": "rank",
+          "ascending": false,
+          "use_baseline": false,
+          "role": "2 \u00b7 NOT WHO YOU'D GUESS",
+          "topic": "countries hosting the most refugees",
+          "say": "Iran now hosts the most refugees, nearly 3.5 million -- more than Turkey's 2.9 million or Germany's 2.7 million. It's rarely the countries you'd guess."
+        },
+        {
+          "source": "offline",
+          "key": "displaced_hosted_by_income_level",
+          "params": {
+            "file": "displaced_hosted_by_income_level.json"
+          },
+          "insight_type": "comparison",
+          "use_baseline": true,
+          "role": "3 \u00b7 WHO CARRIES IT",
+          "topic": "who hosts the displaced, by income level",
+          "say": "And 73 percent of the world's displaced people are hosted by low and middle income countries, not wealthy ones. The countries with the least are carrying the most."
+        }
+      ]
     }
   ],
   "videos": [
