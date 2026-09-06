@@ -1693,7 +1693,6 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             except Exception:  # noqa: BLE001
                 return "shock"
 
-        entries: dict = {}                 # seq index -> glide start (sweep-in)
         if _clean:
             # MASCOT-FIRST composition. Data is the camera: the video is built
             # around WHERE HE IS and WHAT HE'S DOING. He is NEVER parked — each
@@ -1736,14 +1735,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 except Exception:  # noqa: BLE001
                     hook_perf = gap_fill
             seq = []
-            # entries[k] = where Data's glide STARTS for seq[k] (his sweep-in
-            # point); absent -> he glides from his previous spot. Set for data
-            # beats so he sweeps UP onto the datum (a moving bit + smooth cadence).
-            entries: dict = {}
-
-            def _add(entry_tuple, entry_xy=None):
-                if entry_xy is not None:
-                    entries[len(seq)] = entry_xy
+            # Data no longer glides — he is PLACED at each cut (see the
+            # overlay loop). `_stage_on_data` still returns the old sweep-in
+            # point; it is accepted and ignored so the staging helpers keep one
+            # signature.
+            def _add(entry_tuple, _entry_xy=None):
                 seq.append(entry_tuple)
 
             # When the opening chart leads the hook, Data performs ON it from
@@ -2136,59 +2132,40 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 n_visuals += 1
         print(f"[studio] {n_visuals} distinct visuals, each shown once",
               flush=True)
-        # Mascots — Data TRAVELS. He glides from his previous spot to this
-        # beat's spot across the WHOLE beat (not a quick slide-then-park), so
-        # his x/y is always changing — he's never static in one place. A gentle
-        # bob rides on top. In CLEAN this traces a path around the frame; in
-        # legacy it still walks between numbers.
-        prev_tl = home
+        # Mascots — Data IS PLACED, HE DOES NOT SLIDE.
+        #
+        # He used to glide from his previous spot to each new one, sweeping in
+        # over the first ~30% of the window. With three beats that was three
+        # moves. The monotonic edit re-stages him on every SPAN so he stays in
+        # contact with whichever depiction is actually on screen — and that
+        # turned three glides into eight, one every four seconds. The operator
+        # watched it: "the fucking mascot's tweaking out all over the screen
+        # all the time."
+        #
+        # Every span boundary is a HARD CUT to a new chart, and a cut is the
+        # one moment repositioning is free — the viewer expects everything to
+        # change. So he is simply THERE, in position, when the new visual
+        # arrives. No travel, no sweep-in, no easing across the cut.
+        #
+        # The reason this is safe now and would not have been before: the glide
+        # existed to keep something moving, because a chart that finished
+        # building and then held was scored as a frozen frame. That is no
+        # longer true — each depiction is built across exactly its own span, so
+        # the charts carry 23.9 effective fps on their own (the floor is 11).
+        # Data's motion is his PERFORMANCE — the sprite is an animated loop of
+        # him acting on the data — which is the motion that was worth having
+        # all along. The frantic version was compensation for a static frame,
+        # and the operator named that too, months ago: "making the mascot moves
+        # its arm a lot to account for the fact that there's not enough
+        # motion."
         for k, (tlx, tly, w0, w1, _a, _f, _p, sc) in enumerate(seq):
             gi = masc_input[k]
-            # Glide across nearly the WHOLE beat (settle only the last ~8%), and
-            # ride a continuous 2D idle on top — a vertical bob plus a small
-            # horizontal sway — so Data is NEVER globally static, even when he's
-            # "parked". A static host is what the temporal grade reads as a held
-            # frame (the payoff's static pose). Keep him alive every frame.
-            # Sweep in FAST (arrive by ~30% of the beat), then hold position and
-            # PERFORM the animated action for the rest — so the sampled frames
-            # catch him ACTING on the data, not endlessly sliding across it.
-            arrive = w0 + max(0.4, (w1 - w0) * 0.30)
-            # A data beat sweeps in from its own entry point (onto the datum);
-            # otherwise Data glides from where he last was.
-            start = entries.get(k, prev_tl)
-            # THE IDLE IS A HOVER NOW, NOT THE GATE'S MOTION SOURCE.
-            #
-            # History, because this line has been retuned twice and each
-            # tuning was right about one constraint and wrong about another.
-            # The original `6*sin(1.3*t)` moved 0.26 px/frame — invisible to
-            # the temporal grade, and the channel posted nothing for eleven
-            # days. The fix cranked it to `30*sin(6.0*t)`: 6 px/frame, gate
-            # satisfied — but 6.0 rad/s is 0.95 Hz at ~1080 px/s^2 of
-            # acceleration, a visible one-per-second jiggle stacked on a
-            # card float wobbling at a different frequency. The operator
-            # watched the shipped videos and called it "a weird shaking
-            # motion". Both tunings chased one number and shipped the other.
-            #
-            # A third tuning moved the budget onto a whole-frame camera
-            # breath and left the mascot a gentle hover. Calmer, still fake,
-            # and the operator called it out again on 2026-08-25: rip the
-            # camera shake out all the way. Both are gone.
-            #
-            # The budget is carried by REAL motion now — struggle reps
-            # through the whole beat (charts._perf_phase) and an anchor that
-            # WALKS the ranking instead of parking when the build finishes
-            # (charts._tour_index). If a beat measures short, it needs more
-            # of that, not a wobble. His glide between beats and his
-            # performed bits are unchanged.
-            # NO HOVER OSCILLATION either (2026-08-25 ruling: "no semblance
-            # of the camera shake"). This 12px/9px sine pair was the last
-            # survivor of the shake family — a sprite bobbing on the spot in
-            # its own phase, which is what made two oscillations read as
-            # "weird shaking" in the first place. His MOTION is his glide to
-            # the beat's anchor (the piecewise below) and the performance
-            # baked into the sprite; neither needs a bob to be alive.
-            xe = f"({_piecewise([(w0, start[0]), (arrive, tlx)], 1)})"
-            ye = f"({_piecewise([(w0, start[1]), (arrive, tly)], 1)})"
+            # NO HOVER OSCILLATION (2026-08-25 ruling: "no semblance of the
+            # camera shake"). A sprite bobbing on the spot in its own phase is
+            # what made two oscillations read as "weird shaking" in the first
+            # place. His position is a constant for the whole span.
+            xe = f"{tlx:.0f}"
+            ye = f"{tly:.0f}"
             Sk = int(round(S * sc))
             off = (Sk - S) // 2            # keep the bigger sprite centred on target
             # HOLD HIM OFF THE PUNCH-INS. When the edit cuts to a datum, the
@@ -2203,7 +2180,6 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"eval=frame:"
                       f"enable='between(t,{w0:.2f},{w1:.2f}){_off_shots}'[mb{k}]")
             prev = f"mb{k}"
-            prev_tl = (tlx, tly)
         # NO CAMERA MOTION. Operator ruling 2026-08-25, verbatim: "that
         # camera shake that keeps plaguing our videos — rip it out all the
         # way, it's a cancer, I want no semblance of the camera shake to

@@ -20,6 +20,7 @@ new arm coordinates, nothing more.
 from __future__ import annotations
 
 import sys
+import math
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -51,7 +52,51 @@ def limb(sx, sy, wx, wy, bend, w_out, w_in, hand_r, inner=TEAL, hand=TEAL):
     return s
 
 
+# THE FACE IS NOT A SURFACE FOR HANDS.
+#
+# Operator, after watching a batch: "his hands, they're always covering his
+# face." Measured across every pose primitive the director can produce, 15 of
+# 32 put a hand inside the head disc at some point in their arc — `_a_stretched`
+# ends with a hand 6px from the centre of his face, and `_a_overwhelmed` puts
+# BOTH there. The poses were authored one at a time against a mental picture of
+# the rig, and nothing ever checked them against the head.
+#
+# So the constraint lives at the ONE place an arm is drawn rather than in 32
+# hand-tuned coordinate sets: every pose in the system — the presets, the
+# brain-authored ones, and all the contact animations — routes through `arm()`.
+# Fixing the coordinates one by one would leave the next authored pose free to
+# do it again.
+HEAD_C = (CX, 114.0)               # the head circle, from head() below
+HEAD_R = 58.0
+HAND_R = 19.0
+# A hand may TOUCH the edge of his head — hands on the head is a real gesture —
+# but never cross onto the face.
+# Rounded UP to a whole pixel: the wrist coordinates are rounded to integers
+# for the SVG path, and pushing to the exact threshold left hands sitting
+# 0.1-0.4px inside it — 53 sub-pixel violations that a >= test still catches.
+FACE_KEEPOUT = float(math.ceil(HEAD_R + HAND_R * 0.55))
+
+
+def _off_face(wx, wy):
+    """Move a wrist out of the face, keeping the gesture's meaning.
+
+    The push follows the gesture's DOMINANT axis: a hand reaching sideways is
+    sent further out to the side, a hand reaching overhead further up. A radial
+    push (the obvious implementation) rotates the gesture instead, and for the
+    overhead grips it would also slide the hand off the chart element it is
+    baked onto — those poses put both fists on a line's tip, and STRICT_CONTACT
+    is judging exactly that contact.
+    """
+    dx, dy = wx - HEAD_C[0], wy - HEAD_C[1]
+    if (dx * dx + dy * dy) ** 0.5 >= FACE_KEEPOUT:
+        return wx, wy
+    if abs(dx) > abs(dy):          # reaching sideways -> further out sideways
+        return round(HEAD_C[0] + (FACE_KEEPOUT if dx >= 0 else -FACE_KEEPOUT)), wy
+    return wx, round(HEAD_C[1] + (FACE_KEEPOUT if dy > 0 else -FACE_KEEPOUT))
+
+
 def arm(sx, sy, wx, wy, bend):
+    wx, wy = _off_face(wx, wy)
     return limb(sx, sy, wx, wy, bend, 32, 23, 19, inner=COAT, hand=TEAL)
 
 
