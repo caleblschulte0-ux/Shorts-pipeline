@@ -194,10 +194,21 @@ class TestTheNumbersAreVisibleEarly(BubbleCase):
     def test_a_third_of_the_way_in_the_numbers_are_fully_there(self):
         self.assertTrue(all(a == 1.0 for a in self.alphas(0.33)))
 
-    def test_the_global_ladder_would_still_be_hiding_them(self):
-        """Pin the defect so the fix is measured against the real thing."""
-        self.assertEqual(C._lblalpha(0.33), 0.0)
-        self.assertEqual(C._lblalpha(0.7), 0.0)
+    def test_the_global_ladder_no_longer_hides_them_late_either(self):
+        """This test used to pin the DEFECT — `_lblalpha(0.7) == 0.0` — as the
+        contrast the bubble-specific fix was measured against. The ladder has
+        since been fixed at the source: it ran 0.8 -> 1.0 of the reveal, which
+        was fine when a chart owned a 12-20s beat and put the numbers on screen
+        for under a second once a visual was cut to ~4s. The operator read a
+        whole video of charts caught mid-build and asked "what the fuck am I
+        looking at?".
+
+        So the assertion is inverted rather than deleted: bubbles still show
+        their numbers earlier than everything else (the test above), and the
+        global ladder must no longer be hiding a number at 70% of the build.
+        """
+        self.assertEqual(C._lblalpha(0.33), 0.0, "still ride the inflation")
+        self.assertEqual(C._lblalpha(0.7), 1.0, "the ladder is hiding numbers")
 
     def test_they_are_not_simply_on_from_frame_zero(self):
         """They should ride the inflation, not ignore it."""

@@ -138,7 +138,7 @@ def _draw_bars(ax, insight: Insight):
     ax.set_xticks([])
     vmax = max(values) if values else 1
     for yi, v in zip(y, values):
-        ax.text(v + vmax * 0.015, yi, _vfmt(v), va="center",
+        ax.text(v + vmax * 0.015, yi, _ulabel(v, insight.unit), va="center",
                 fontsize=22, color=TEXT, fontweight="bold")
     ax.set_xlim(0, vmax * 1.18)
     _title(ax, insight)
@@ -186,16 +186,40 @@ def _vfmt(v: float) -> str:
     return f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}"
 
 
+# Units the World Bank / FRED datasets in this channel actually publish, and
+# what a viewer needs to see next to the number. "the chart subtitle carries
+# the unit" was the old rule and it does not survive a four-second visual: the
+# operator read a finished chart and asked "449 what?" — which is the correct
+# question, because the answer was in a different part of the frame in a
+# smaller, dimmer font, if at all.
+_UNIT_SUFFIX = {
+    "years": " yrs", "year": " yrs",
+    "months": " mo", "days": " days", "hours": " hrs",
+    "people": "", "count": "", "number": "",
+    "ratio": "x", "times": "x", "multiple": "x",
+}
+
+
 def _ulabel(v: float, unit: str) -> str:
-    """Value label with a unit cue: percent -> trailing %, plain dollars ->
-    leading $, anything else (index, ratio, $-thousands, counts) -> bare
-    number (the chart subtitle carries the unit)."""
+    """Value label carrying its unit, because the number alone is not an
+    answer. Percent -> trailing %, dollars -> leading $, thousands/millions/
+    billions of dollars -> $ with the magnitude suffix ($449K), a known
+    physical unit -> its short form (11.3 yrs)."""
     n = _vfmt(v)
     u = (unit or "").strip().lower()
     if u in ("percent", "%", "rate", "pct"):
         return n + "%"
     if u in ("dollars", "dollar", "usd", "$"):
         return "$" + n
+    # "thousand dollars" is how FRED publishes median home price: the value is
+    # 449 and the thing on screen has to read $449K, not 449.
+    for word, suffix in (("thousand", "K"), ("million", "M"),
+                         ("billion", "B"), ("trillion", "T")):
+        if word in u:
+            return ("$" + n + suffix) if "dollar" in u else (n + suffix)
+    for key, suffix in _UNIT_SUFFIX.items():
+        if u == key or u.startswith(key + " "):
+            return n + suffix
     return n
 
 
@@ -450,6 +474,20 @@ def _clamp_host(ax, x, y, img_hw, zoom, align):
         return float(x), float(y)
 
 
+def _beat() -> float:
+    """How far through the VISUAL we are, 0..1 — as opposed to how far the
+    build has got.
+
+    These stopped being the same thing when the build was made to finish early
+    so the finished chart could be READ. `reveal` saturates at `full_by` and
+    then sits at 1.0, so a host whose pose is driven by it freezes mid-gesture
+    for the rest of the visual — and a frozen host on a finished chart is the
+    whole frame holding still, which is what dropped the segments to 10.8 fps
+    against a floor of 11.0 the first time this was tried.
+    """
+    return max(0.0, min(1.0, float(_TOUR)))
+
+
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     """Composite Data performing ``action`` at data point (x, y) on ``ax``. The
     pose animates with ``phase``; ``align`` (0.5, ~0) puts his FEET at the point
@@ -467,6 +505,44 @@ def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
     ab = AnnotationBbox(OffsetImage(img, zoom=zoom), (x, y), frameon=False,
                         box_alignment=align, zorder=8, pad=0, annotation_clip=False)
     ax.add_artist(ab)
+
+
+def _seg_label(insight: Insight, p, share: float) -> str:
+    """A stacked segment's label. A SHARE of the column is only meaningful when
+    the column is a real whole — the same rule as the subtitle, applied to the
+    segments, because "2024 16%" beside a mortgage rate is the identical false
+    claim in a smaller font. When the items are points in time, the segment
+    carries its own VALUE, which is the thing the viewer wants anyway.
+    """
+    if _is_time_series(insight):
+        return f"{p.label}  {_ulabel(p.value, insight.unit)}"
+    return f"{p.label}  {share:.0f}%"
+
+
+def _is_time_series(insight: Insight) -> bool:
+    """Are these items points in TIME rather than parts of something?
+
+    Used to stop a composition chart making a composition CLAIM about data that
+    has none. Years do not sum: "2019 IS 9% OF THE WHOLE" rendered at 40pt
+    under the title of a mortgage-rate chart is a false statement, and it
+    shipped because the subtitle is generated from the chart KIND with no
+    reference to what the data is.
+    """
+    labels = [str(getattr(p, "label", "")) for p in (insight.items or [])]
+    if not labels:
+        return False
+    yrs = sum(1 for l in labels
+              if len(l) <= 7 and l[:4].isdigit() and 1800 <= int(l[:4]) <= 2200)
+    return yrs >= max(2, len(labels) * 0.6)
+
+
+def _whole_subtitle(insight: Insight, star) -> str:
+    """The subtitle for a composition chart — only claiming a share when the
+    data actually composes into a whole."""
+    if _is_time_series(insight):
+        return f"{star.label}: {_ulabel(star.value, insight.unit)}"
+    total = sum(abs(p.value) for p in insight.items) or 1.0
+    return f"{star.label} is {abs(star.value) / total * 100:.0f}% of the whole"
 
 
 def _ordered_items(insight: Insight) -> list:
@@ -534,8 +610,8 @@ def _draw_bars_state(ax, insight: Insight, k: int):
         ax.barh(yi, shown, color=_color_for(p, insight, revealed),
                 height=0.62, zorder=3)
         if revealed:
-            ax.text(v + vmax * 0.015, yi, _vfmt(v), va="center",
-                    fontsize=24, color=TEXT, fontweight="bold")
+            ax.text(v + vmax * 0.015, yi, _ulabel(v, insight.unit),
+                    va="center", fontsize=24, color=TEXT, fontweight="bold")
     ax.set_yticks(y)
     ax.set_yticklabels(labels, fontsize=24, color=TEXT)
     ax.invert_yaxis()
@@ -558,7 +634,8 @@ def _draw_trend_state(ax, insight: Insight, k: int):
     ax.set_ylim(min(values) - (max(values) - min(values)) * 0.12 - 0.2,
                 max(values) * 1.12 + 0.2)
     if kk >= 1:
-        ax.text(x[kk - 1], values[kk - 1], "  " + _vfmt(values[kk - 1]),
+        ax.text(x[kk - 1], values[kk - 1],
+                "  " + _ulabel(values[kk - 1], insight.unit),
                 va="center", fontsize=26, color=TEXT, fontweight="bold")
     ax.grid(axis="y", color="#1b2540", linewidth=1, zorder=0)
 
@@ -655,9 +732,17 @@ def _bar_lw(n: int, frac: float = 0.58) -> float:
 
 
 def _lblalpha(reveal: float) -> float:
-    """Number labels fade in over the last 20% of the build so they 'land'
-    as the bar/line reaches them."""
-    return max(0.0, min(1.0, (reveal - 0.8) / 0.2))
+    """Number labels fade in as the bar/line reaches them — and they have to be
+    UP long enough to read.
+
+    This used to run 0.8 -> 1.0 of the reveal, which was fine when a chart owned
+    a 12-20s beat. A visual now owns about four seconds, so the same fraction
+    put the numbers on screen for well under a second, fading, immediately
+    before the cut. That is what "what the fuck am I looking at" was: the charts
+    were legible only in frames nobody was shown. Together with `full_by` below,
+    the finished, labelled chart is now up for most of its span.
+    """
+    return max(0.0, min(1.0, (reveal - 0.45) / 0.2))
 
 
 def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
@@ -683,13 +768,13 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         # Winner (i==0) carries the mascot on its tip, so its number lives INSIDE
         # the bar (white) — clear of the pushing host; the rest label outside.
         if i == 0 and tip > vmax * 0.30:
-            t = ax.text(vmax * 0.03, i, _vfmt(v), va="center", ha="left",
-                        fontsize=30, color="white", fontweight="bold", zorder=6,
-                        alpha=_lblalpha(reveal))
+            t = ax.text(vmax * 0.03, i, _ulabel(v, insight.unit), va="center",
+                        ha="left", fontsize=30, color="white",
+                        fontweight="bold", zorder=6, alpha=_lblalpha(reveal))
         else:
-            t = ax.text(v + vmax * 0.02, i, _vfmt(v), va="center", fontsize=30,
-                        color=TEXT, fontweight="bold", zorder=4,
-                        alpha=_lblalpha(reveal))
+            t = ax.text(v + vmax * 0.02, i, _ulabel(v, insight.unit),
+                        va="center", fontsize=30, color=TEXT,
+                        fontweight="bold", zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
     ax.set_yticks(range(n))
     ax.set_yticklabels([p.label for p in items], fontsize=27, color=TEXT)
@@ -718,7 +803,7 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     _wtip = max(_tour_tip(values, _row) * max(0.0, min(1.0, reveal)),
                 vmax * 0.02)
     _act_b = _perf_action(insight, "rank")
-    _bake_host(ax, _wtip, _row, _act_b, reveal,
+    _bake_host(ax, _wtip, _row, _act_b, _beat(),
                zoom=0.9, align=_perf_align(_act_b, (0.28, 0.5)))
     insight.host_baked = True
     return ax, arts
@@ -789,7 +874,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
     _act_c = _perf_action(insight, "comparison")
-    _bake_host(ax, xs[0], _htip, _act_c, reveal,
+    _bake_host(ax, xs[0], _htip, _act_c, _beat(),
                zoom=0.8, align=_perf_align(_act_c, (0.5, 0.78)))
     insight.host_baked = True
     return ax, arts
@@ -898,7 +983,7 @@ def _story_trend(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # sprite, ~0.80 up) is baked ONTO the tip, so the line visibly acts on him —
     # contact + cause + consequence, not a sprite surfing above the line.
     _act_t = _perf_action(insight, "trend")
-    _bake_host(ax, xd[-1], yd[-1], _act_t, reveal,
+    _bake_host(ax, xd[-1], yd[-1], _act_t, _beat(),
                zoom=1.15, align=_perf_align(_act_t, (0.5, 0.80)))
     insight.host_baked = True
     return ax, arts
@@ -955,7 +1040,7 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     # mascot-less (kind is in BAKED_CHART_KINDS, so the overlay is suppressed).
     _max = fig.add_axes([0.66, 0.14, 0.32, 0.56])
     _max.set_axis_off(); _max.set_xlim(0, 1); _max.set_ylim(0, 1)
-    _bake_host(_max, 0.5, 0.12, "lift_arc", reveal, zoom=0.55, align=(0.5, 0.0))
+    _bake_host(_max, 0.5, 0.12, "lift_arc", _beat(), zoom=0.55, align=(0.5, 0.0))
     insight.host_baked = True
     return ax, arts
 
@@ -1186,12 +1271,12 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
         if i == 0:
             # The host performs AT this tip — the value rides INSIDE the
             # bar so his body never covers the number.
-            t2 = bax.text(tip - span * 0.015, i, _vfmt(v), ha="right",
+            t2 = bax.text(tip - span * 0.015, i, _ulabel(v, insight.unit), ha="right",
                           va="center", fontsize=26, color="white",
                           fontweight="bold", zorder=4, alpha=la,
                           path_effects=_shadow())
         else:
-            t2 = bax.text(tip, i, " " + _vfmt(v), ha="left", va="center",
+            t2 = bax.text(tip, i, " " + _ulabel(v, insight.unit), ha="left", va="center",
                           fontsize=26, color=col, fontweight="bold", zorder=4,
                           alpha=la)
         specs.append((v, "art", t2, None))
@@ -1200,7 +1285,7 @@ def _story_geo(fig, plt, insight: Insight, subtitle: str, reveal: float, scope: 
     if ranked:
         _act_g = _perf_action(insight, "rank")
         _bake_host(bax, max((ranked[0][1] - floor) * t, span * 0.02), 0,
-                   _act_g, reveal,
+                   _act_g, _beat(),
                    zoom=0.78, align=_perf_align(_act_g, (0.28, 0.5)))
     insight.host_baked = True
     return ax, specs
@@ -1277,7 +1362,7 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         ax.text(-0.4, y + 0.40, p.label, ha="left", va="center", fontsize=24,
                 color=(color if p.label == insight.highlight_label else TEXT),
                 fontweight="bold", zorder=4)
-        ax.text(full + 0.3, y, _vfmt(v), ha="left", va="center", fontsize=27,
+        ax.text(full + 0.3, y, _ulabel(v, insight.unit), ha="left", va="center", fontsize=27,
                 color=color, fontweight="bold", zorder=4, alpha=_lblalpha(reveal))
     specs = []
     if values:
@@ -1291,7 +1376,7 @@ def _story_pictograph(fig, plt, insight: Insight, subtitle: str, reveal: float =
         # COUPLE THE HOST: Data braces against the biggest row's advancing edge
         # and is shoved along as the row of icons outgrows him.
         _bake_host(ax, float(_mshown - 1), float(n - 1 - _mr),
-                   "shoved_bar", reveal, zoom=1.0, align=(0.28, 0.5))
+                   "shoved_bar", _beat(), zoom=1.0, align=(0.28, 0.5))
     insight.host_baked = True
     return ax, specs
 
@@ -1366,7 +1451,7 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # COUPLE THE HOST: Data stands under the growing fill with arms pressed up on
     # its underside — the pile presses DOWN on him (buckle -> heave) as it fills.
     _bake_host(ax, float(_fc), float(9 - _fr),
-               "hoist_stack", reveal, zoom=0.85, align=(0.5, 0.80))
+               "hoist_stack", _beat(), zoom=0.85, align=(0.5, 0.80))
     insight.host_baked = True
     return ax, specs
 
@@ -1465,7 +1550,7 @@ def _story_pictorial_race(fig, plt, insight: Insight, subtitle: str,
     # and is shoved along as it outgrows him (his left-side hands baked onto the
     # bar tip) — the bar drives him, not a sprite perched on the cap.
     _act_r = _perf_action(insight, "pictorial_race")
-    _bake_host(ax, _ttip, n - 1 - _row, _act_r, reveal,
+    _bake_host(ax, _ttip, n - 1 - _row, _act_r, _beat(),
                zoom=1.0, align=_perf_align(_act_r, (0.28, 0.5)))
     insight.host_baked = True
     return ax, specs
@@ -1502,7 +1587,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
         ax.add_patch(FancyBboxPatch((cx0, _gy), cx1 - cx0, sh,
                      boxstyle="round,pad=0,rounding_size=1.4",
                      facecolor=gcol, edgecolor="none", alpha=0.16, zorder=1))
-        gt = ax.text(cx1 + 0.03, _gy + sh / 2.0, f"{p.label}  {sh:.0f}%",
+        gt = ax.text(cx1 + 0.03, _gy + sh / 2.0, _seg_label(insight, p, sh),
                      ha="left", va="center", fontsize=23, color=gcol,
                      fontweight="bold", zorder=2, alpha=0.22)
         _gy += sh
@@ -1519,7 +1604,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
             top_y = vis_top
             if vis_top >= y0 + sh * 0.55:       # label once the segment is mostly in
                 tt = ax.text(cx1 + 0.03, y0 + sh / 2.0,
-                             f"{p.label}  {sh:.0f}%", ha="left", va="center",
+                             _seg_label(insight, p, sh), ha="left", va="center",
                              fontsize=23, color=col, fontweight="bold",
                              zorder=5, alpha=la, path_effects=_shadow())
                 specs.append((p.value, "art", tt, None))
@@ -1528,7 +1613,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     # it stacks (vertical drag — a real bit, not a horizontal slide).
     _act_s = _perf_action(insight, "stack")
     _bake_host(ax, (cx0 + cx1) / 2.0, top_y, _act_s,
-               reveal, zoom=0.92, align=_perf_align(_act_s, (0.5, 0.80)))
+               _beat(), zoom=0.92, align=_perf_align(_act_s, (0.5, 0.80)))
     insight.host_baked = True
     return ax, specs
 
@@ -1630,7 +1715,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
         # "equal-size blobs that only reveal numbers at the very end".
         # Fade with the inflation instead, complete by a third of the way in.
         _balpha = max(0.0, min(1.0, (t - 0.05) / 0.28))
-        tt = ax.text(cx, cy, _vfmt(p.value), ha="center", va="center",
+        tt = ax.text(cx, cy, _ulabel(p.value, insight.unit), ha="center", va="center",
                      color="#0B1020", fontsize=fs, fontweight="bold",
                      zorder=4, alpha=_balpha)
         ax.text(cx, cy - r - 3.2, p.label, ha="center", va="top", color=TEXT,
@@ -1643,7 +1728,7 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
     # pushed UP as it inflates — contact + cause + consequence on the bubble.
     _act_bb = _perf_action(insight, "trend")
     _bake_host(ax, _star_top[0], _star_top[1], _act_bb,
-               reveal, zoom=0.8, align=_perf_align(_act_bb, (0.5, 0.80)))
+               _beat(), zoom=0.8, align=_perf_align(_act_bb, (0.5, 0.80)))
     insight.host_baked = True
     return ax, specs
 
@@ -1822,7 +1907,7 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
         # "Denver 5.4" and the host wore "Los Angeles 9.7" across his chest.
         # Nudge each label up the card until it clears everything already
         # placed (including the host's own box).
-        text = f"{p.label.split(',')[0]}  {_vfmt(p.value)}"
+        text = f"{p.label.split(',')[0]}  {_ulabel(p.value, insight.unit)}"
         # Label extent in DEGREES, calibrated from the card's real geometry —
         # the first version guessed 0.62 deg/char and missed every collision,
         # because `set_aspect(1/cos(37))` compresses longitude: the axes box is
@@ -1900,7 +1985,7 @@ def _story_geo_city(fig, plt, insight: Insight, subtitle: str, reveal: float):
     if pts:
         top_p, (tlon, tlat) = max(pts, key=lambda x: x[0].value)
         _act_c = _perf_action(insight, "rank")
-        _bake_host(ax, tlon, tlat, _act_c, reveal,
+        _bake_host(ax, tlon, tlat, _act_c, _beat(),
                    zoom=0.62, align=_perf_align(_act_c, (0.5, 0.04)))
     insight.host_baked = True
     return ax, specs
@@ -1926,7 +2011,8 @@ def _story_callouts(fig, plt, insight: Insight, subtitle: str, reveal: float):
         ax.text(0.04, y + 0.045, p.label, ha="left", va="center",
                 fontsize=30 if i == 0 else 26, color=TEXT, fontweight="bold",
                 path_effects=_shadow(), zorder=4)
-        big = ax.text(0.04, y - 0.05, _vfmt(p.value), ha="left", va="center",
+        big = ax.text(0.04, y - 0.05, _ulabel(p.value, insight.unit),
+                      ha="left", va="center",
                       fontsize=78 if i == 0 else 56, color=color,
                       fontweight="bold", alpha=a, path_effects=_shadow(), zorder=5)
         specs.append((p.value, "art", big, None))
@@ -2009,13 +2095,11 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_geo(fig, plt, insight, subtitle, reveal, scope)
     elif insight.kind == "stack":
-        _tot = sum(abs(p.value) for p in insight.items) or 1.0
-        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
+        subtitle = _whole_subtitle(insight, star)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_stack(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "waffle_grid":
-        _tot = sum(abs(p.value) for p in insight.items) or 1.0
-        subtitle = f"{star.label} is {abs(star.value) / _tot * 100:.0f}% of the whole"
+        subtitle = _whole_subtitle(insight, star)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "pictorial_race":
@@ -2306,7 +2390,7 @@ def _render_diorama(insight: Insight, out_dir: Path, slug: str, frames: int = 16
             side = pl.get("mode") == "side"
             nfont = big_num_font if side else num_font
             lfont = big_lab_font if side else lab_font
-            num = _vfmt(pl["value"])
+            num = _ulabel(pl["value"], insight.unit)
             nb = draw.textbbox((0, 0), num, font=nfont)
             nw, nh = nb[2] - nb[0], nb[3] - nb[1]
             if pl.get("num_pos"):                   # side layout: explicit anchor
@@ -2438,7 +2522,7 @@ def _render_race(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
                 tipx = cx
             # number rides just ahead of the racer as it settles
             na = max(0.0, min(1.0, (lr - 0.5) / 0.5))
-            num = _vfmt(p.value)
+            num = _ulabel(p.value, insight.unit)
             d.text((min(tipx + 18, x1 - 120), lcy - 40), num, font=num_font,
                    fill=_rgba(HIGHLIGHT if p.label == insight.highlight_label
                               else ACCENT, int(255 * na)),
@@ -2753,7 +2837,7 @@ def _render_orbit(insight: Insight, out_dir: Path, slug: str, frames: int = 16):
             bx, by = cx + rad * _m.cos(ang), cy + rad * _m.sin(ang)
             col = HIGHLIGHT if p.label == insight.highlight_label else ACCENT
             d.ellipse([bx - 28, by - 28, bx + 28, by + 28], fill=_rgba(col, int(255 * na)))
-            txt = f"{p.label} {_vfmt(p.value)}"
+            txt = f"{p.label} {_ulabel(p.value, insight.unit)}"
             tw = d.textbbox((0, 0), txt, font=lab_font)
             lx = min(max(bx + 36, 20), W - 20 - (tw[2] - tw[0]))
             d.text((lx, by - 18), txt, font=lab_font,
@@ -2839,7 +2923,9 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             # beat (frame 1 is already big motion + the coupled mascot in action —
             # not a slow build the gate dings), then eases to a steady draw. Still
             # ends on the exact static chart; still never freezes (0.7x tail moves).
-            hf = f / frames
+            # ...and it honours `full_by` too, or the opening chart would be
+            # the one visual in the video that never finishes before it cuts.
+            hf = min(1.0, (f / frames) / max(0.05, full_by))
             r = (hf / 0.22) * 0.46 if hf < 0.22 else 0.46 + (hf - 0.22) / 0.78 * 0.54
         if f == frames:
             r = 1.0                         # final frame == static chart

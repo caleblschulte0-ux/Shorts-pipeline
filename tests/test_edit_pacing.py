@@ -124,13 +124,16 @@ class Monotonic(unittest.TestCase):
         long = srd._depiction_sequence(_years(), set(), 20.0)
         self.assertGreater(len(long), len(short))
 
-    def test_every_depiction_is_contact_verified(self):
+    def test_every_depiction_can_hold_the_host(self):
         """STRICT_CONTACT: the host physically attaches to whatever is on
-        screen, and he now re-stages on each depiction as it comes up — so a
-        kind the coupling does not support would leave him in mid-air."""
+        screen, and he re-stages on each depiction as it comes up — so a kind
+        that can neither couple to a chart nor bake him in itself would leave
+        him in mid-air."""
         for ins in (_years(), _ranking()):
             for kind in srd._depiction_sequence(ins, set(), 20.0)[1:]:
-                self.assertIn(kind, vd._CONTACT_OK, f"{kind!r} unsupported")
+                self.assertTrue(kind in vd._CONTACT_OK
+                                or kind in srd._SELF_HOSTED,
+                                f"{kind!r} cannot hold the host")
 
     def test_it_prefers_kinds_no_other_beat_has_shown(self):
         seq = srd._depiction_sequence(_years(), {"trend"}, 20.0)
@@ -165,10 +168,18 @@ class HonestRedraws(unittest.TestCase):
         for shape in ("series", "ranking", "other"):
             self.assertGreaterEqual(len(srd._SHAPE_CANDIDATES[shape]), 5)
 
-    def test_every_candidate_is_contact_verified(self):
+    def test_every_candidate_can_carry_the_host(self):
+        """Originally this required every candidate to be in
+        `viz_director._CONTACT_OK`. That set describes CHART couplings, so the
+        requirement quietly forced every alternate to be a chart — nine
+        flavours of the same idea, which is what the operator hit: "you don't
+        have to do a fucking chart every time." The full-frame renderers bake
+        the host in themselves (`scene`, the primary on most beats, is one),
+        so they satisfy the real constraint by a different route."""
         for cands in srd._SHAPE_CANDIDATES.values():
             for c in cands:
-                self.assertIn(c, vd._CONTACT_OK)
+                self.assertTrue(c in vd._CONTACT_OK or c in srd._SELF_HOSTED,
+                                f"{c!r} has no way to hold the host")
 
 
 class TheZoomIsGone(unittest.TestCase):
