@@ -1241,6 +1241,13 @@ def _stage_on_data(seg, w0, w1, pose, prev_tl, anchors=None):
     sequence and their geometry differs completely — the peak of a line is
     nowhere near the top bar of a race."""
     anchors = anchors or getattr(seg, "anchors", None)
+    # A FULL-FRAME SCENE returns its anchors as 4-tuples, not the label dicts
+    # the card charts produce, and this reads them with `.get`. Passing a
+    # scene's anchors straight in would raise inside the overlay loop and take
+    # the whole render with it — it has not happened only because scenes also
+    # set `host_baked`, which skips this path. That is a coincidence, not a
+    # guarantee, so drop anything that is not a label dict.
+    anchors = [a for a in (anchors or []) if isinstance(a, dict)]
     if not anchors:
         return None
     isc = 0.62
@@ -1462,7 +1469,13 @@ _ALT_DEPICTION = {
 # number on screen at size. `diorama`, `mechanic`, `scene` and `race` need
 # generated imagery — 54-89s per build with HTTP 500s in the middle — so they
 # stay primary-only rather than becoming an alternate that can time out.
-_SELF_HOSTED = ("fill_vessel", "orbit", "timeline")
+_SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene")
+
+# Pseudo-kinds that are not renderers but a SCENE the director attaches. They
+# resolve to kind "scene" with `insight.scene` set by their builder — see
+# viz_director._SCENE_BUILDERS, which is the same mechanism and the reason this
+# is a lookup rather than a special case for one name.
+_SCENE_TOKENS = {"units_scene": "units_scene"}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
 # — and so may never be chosen as an alternate for data that is not one. Held
@@ -1476,13 +1489,13 @@ _ASSERTS_A_WHOLE = frozenset({"share", "waffle_grid", "stack"})
 
 _SHAPE_CANDIDATES = {
     # values over time: any magnitude comparison is fair, sequence included
-    "series": ("trend", "bars", "timeline", "fill_vessel", "comparison",
-               "pictograph"),
+    "series": ("trend", "units_scene", "bars", "timeline", "fill_vessel",
+               "comparison", "pictograph"),
     # named things being compared: anything but a false sequence
-    "ranking": ("pictorial_race", "bars", "fill_vessel", "rank", "orbit",
-                "pictograph", "comparison", "bubbles"),
-    "other":   ("bars", "fill_vessel", "pictograph", "orbit", "rank",
-                "bubbles", "comparison"),
+    "ranking": ("pictorial_race", "units_scene", "bars", "fill_vessel", "rank",
+                "orbit", "pictograph", "comparison", "bubbles"),
+    "other":   ("bars", "units_scene", "fill_vessel", "pictograph", "orbit",
+                "rank", "bubbles", "comparison"),
 }
 
 
@@ -1692,6 +1705,13 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 cpath, anc = None, []
                 try:
                     seg.insight.kind = kind
+                    if kind in _SCENE_TOKENS:
+                        # A scene token is a BUILDER, not a renderer: attach the
+                        # spec it produces and render as kind "scene".
+                        from data_learning import viz_scene as _vs
+                        seg.insight.scene = getattr(
+                            _vs, _SCENE_TOKENS[kind])(seg.insight)
+                        seg.insight.kind = "scene"
                     # Build LINEARLY across the WHOLE span (no early
                     # completion): the chart keeps moving for as long as it is
                     # on screen, so there is never a finished-and-held stretch
