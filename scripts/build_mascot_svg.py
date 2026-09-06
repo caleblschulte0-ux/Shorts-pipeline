@@ -96,8 +96,12 @@ def _off_face(wx, wy):
 
 
 def arm(sx, sy, wx, wy, bend):
+    # A wrist inside the head disc is a hand you cannot SEE, now that arms are
+    # drawn behind the head (see assemble) — so the keep-out still earns its
+    # place: a hidden hand is a gesture that silently does not happen.
     wx, wy = _off_face(wx, wy)
-    return limb(sx, sy, wx, wy, bend, 32, 23, 19, inner=COAT, hand=TEAL)
+    return limb(sx, sy, round(wx), round(wy), bend, 32, 23, 19,
+                inner=COAT, hand=TEAL)
 
 
 def horns():
@@ -334,8 +338,28 @@ def assemble(arms: str, eyes: str, mouth: str, lower: str | None = None,
     behind the body (a mount, a chair), ``extra_front`` in front (a held
     prop). Colours stay flat here; the caller can gradient-swap if wanted."""
     low = lower if lower is not None else lower_stand()
-    return (extra_back + horns() + low + torso() + coat() + neck() + head() +
-            cheeks() + eyes + glasses() + mouth + tie() + arms + extra_front)
+    # ARMS GO BEHIND THE HEAD.
+    #
+    # They used to be drawn last, over everything — so any arm that reached up
+    # ran its 32px sleeve straight across his face, and on the overhead grips
+    # (both fists clamped together above him) BOTH did. The operator watched a
+    # video I had just called fixed: "he had his hands in front of his face
+    # that whole video."
+    #
+    # The first attempt at this measured the arm path against the head disc and
+    # bent the elbow / slid the wrist until it cleared. It worked and it was
+    # the wrong fix: clearing an overhead reach needed the hands flung out to
+    # the edges of the frame, which destroys the pose AND slides the hands off
+    # the chart element they are baked onto for STRICT_CONTACT.
+    #
+    # Drawing order costs nothing and cannot fail. Sleeves still sit over the
+    # torso and coat, where they belong; the head simply occludes whatever
+    # passes behind it, which is how a character reaching up actually looks.
+    # No pose moves by a pixel, so every contact point is exactly where the
+    # chart baked it.
+    return (extra_back + horns() + low + torso() + coat() + tie() + arms +
+            neck() + head() + cheeks() + eyes + glasses() + mouth +
+            extra_front)
 
 
 def wrap(inner: str, view: str = "-60 -40 460 470", extra_defs: str = "",

@@ -1909,14 +1909,30 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # Data is baked into the chart this beat (e.g. riding the gauge)
                 # — overlay nothing, but keep the index aligned with a blank mov.
                 mascot.build_blank_loop(mv, size=Sk)
-            elif isinstance(act, dict):
+            # ONE DELIBERATE ACTION PER VISUAL, NOT A LOOP OF ONE.
+            #
+            # This was a flat 2.2s. A pose primitive is a complete dramatic arc
+            # — setup, action, payoff — so 2.2s meant he performed that whole
+            # arc, start to finish, roughly twice per visual and about fourteen
+            # times across a 31.5s video. Nothing in the narration cycles that
+            # fast; he was just going. The operator, watching: "he was still
+            # tweaking out and moving too much and too fast without reason."
+            #
+            # The action now takes exactly as long as the thing it is about is
+            # on screen, so it plays ONCE and lands. That is also why it needs
+            # no floor beyond a sane minimum: the reason it was short is gone.
+            # A frantic host used to be the only thing keeping the frame from
+            # scoring as frozen, and the charts carry that on their own now
+            # (23.9 effective fps against a floor of 11).
+            _span = max(2.5, min(12.0, float(_w1) - float(_w0)))
+            if isinstance(act, dict):
                 # director spec → Data doing a scene-specific action with a prop.
-                # 30fps so his body/prop motion matches the smooth ffmpeg glide
-                # (was 20fps → he slid smoothly but his pose stuttered).
-                mascot.build_scene_loop(mv, act, size=Sk, seconds=2.2,
+                # 30fps so his body/prop motion is as smooth as everything else
+                # (was 20fps → his pose stuttered).
+                mascot.build_scene_loop(mv, act, size=Sk, seconds=_span,
                                         flip=flip, fps=30)
             else:
-                mascot.build_mascot_loop(mv, size=Sk, seconds=2.2,
+                mascot.build_mascot_loop(mv, size=Sk, seconds=_span,
                                          point_angle=float(angle), flip=flip,
                                          pose=act)
             mascot_movs.append(mv)

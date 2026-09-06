@@ -373,6 +373,15 @@ _PERF_RULES: list[tuple[str, str]] = [
 
 _VIEW = (60.0, 40.0, 400.0, 470.0)   # x0,y0,x1,y1 sane bounds for hands/props
 
+# Bounds on the whole-body transform. Applied once, in compose_anim, to every
+# pose the system can produce — see the note there for the measurements that
+# set them. Damping preserves the SHAPE of an authored action (its timing, its
+# direction, where it peaks) while cutting the amplitude to something a host
+# does rather than something that happens to him.
+BODY_DAMP = 0.45
+TILT_MAX = 12.0          # degrees off vertical
+BOB_MAX = 12.0           # pixels in rig space
+
 
 def validate_pose(spec: dict) -> bool:
     """Structural + bounds check on a 'pose' spec so a bad brain output can't
@@ -1894,6 +1903,29 @@ def compose_anim(spec: dict, t: float) -> str:
     env = ENVS.get(prop_name, _shadow)() if grounded else ""
     masc = R.assemble(arms, eyes, mouth, lower=lower,
                       extra_back=back, extra_front=front)
+    # WHOLE-BODY TILT AND BOB ARE DAMPED AND BOUNDED.
+    #
+    # A crouch, a drive, a progressive lean are the PERFORMANCE. What was
+    # shipping was closer to a seizure, and measuring it made that plain — over
+    # one visual, `_a_race_sprint` whipped the body through 56 degrees at
+    # 248 deg/s, `_a_discover` snapped at 513 deg/s, and `_a_balance_beam`
+    # reversed direction five times, which is a swing, not an act. The operator
+    # watching: "he was still tweaking out and moving too much and too fast
+    # without reason."
+    #
+    # Each primitive was authored on its own against a mental picture of how
+    # big a lean reads, and nothing ever compared them or bounded the result —
+    # the same failure as the hands, in a different dimension. So the bound
+    # lives HERE, at the one place a body transform is written, instead of in
+    # 32 sets of hand-tuned constants: the amplitudes keep their shape and
+    # their timing, scaled into a range that reads as acting.
+    #
+    # This is not the periodic-motion ban (a continuous breath, a tilt that
+    # rattles inside one phase) — tests/test_no_camera_shake.py still fails the
+    # build for those, and it passed the whole time these were shipping.
+    # Vibration and flailing are different defects; this is the second one.
+    tilt = max(-TILT_MAX, min(TILT_MAX, tilt * BODY_DAMP))
+    bob = max(-BOB_MAX, min(BOB_MAX, bob * BODY_DAMP))
     # Whole-body bob/tilt are applied — a crouch, a drive, a progressive lean
     # are the PERFORMANCE and they move once, in one direction, within a beat.
     # What is banned is the PERIODIC form: a continuous _s(t) breath, or a tilt

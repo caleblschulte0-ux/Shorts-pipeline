@@ -123,6 +123,90 @@ class HandsOffTheFace(unittest.TestCase):
             self.assertEqual(rig._off_face(wx, wy), (wx, wy))
 
 
+class ArmsGoBehindTheHead(unittest.TestCase):
+    """The wrist keep-out alone was not enough, and the next render proved it:
+    the hands were overhead exactly as asked and the ARMS reaching up to them
+    ran across his face. An arm is a 32px stroke, not its endpoint."""
+
+    def test_the_head_is_drawn_after_the_arms(self):
+        src = inspect.getsource(rig.assemble)
+        body = src[src.index("return ("):]
+        self.assertLess(body.index("arms"), body.index("head()"),
+                        "arms are drawn over the face again")
+
+    def test_the_torso_is_still_drawn_before_the_arms(self):
+        """Behind the HEAD, not behind the body — sleeves belong over the
+        coat."""
+        src = inspect.getsource(rig.assemble)
+        body = src[src.index("return ("):]
+        self.assertLess(body.index("coat()"), body.index("arms"))
+
+    def test_a_raised_arm_is_occluded_rather_than_flung_aside(self):
+        """The rejected fix bent the elbow and slid the wrist until the arm
+        cleared the head — which needed the hands out at the frame edges,
+        wrecking the pose and sliding the hands off the chart element they are
+        baked onto for STRICT_CONTACT. Drawing order moves nothing."""
+        self.assertFalse(hasattr(rig, "_clear_arm"))
+        wx, wy = rig._off_face(156, 45)          # a fist clamped overhead
+        self.assertLess(abs(wx - 156), 40, "the overhead grip was flung aside")
+
+
+class HeIsCalm(unittest.TestCase):
+    """Measured, because "too much movement" is otherwise a matter of taste and
+    every previous tuning was done by eye. Over one visual the shipped poses
+    whipped the body through 56 degrees at 248 deg/s (`_a_race_sprint`), snapped
+    at 513 deg/s (`_a_discover`), and reversed direction five times
+    (`_a_balance_beam`) — a swing, not an act."""
+
+    _ROT = re.compile(r"rotate\(([-\d.]+),170,210\)")
+    _TR = re.compile(r"translate\(0,([-\d.]+)\)")
+
+    def _composed(self, fn_name):
+        spec = {"action": fn_name.replace("_a_", ""), "prop": "price_tag"}
+        for i in range(41):
+            yield md.compose_anim(spec, i / 40.0)
+
+    def test_no_pose_tilts_the_body_past_the_bound(self):
+        for name, _fn in _primitives():
+            for svg in self._composed(name):
+                for m in self._ROT.finditer(svg):
+                    self.assertLessEqual(abs(float(m.group(1))), md.TILT_MAX,
+                                         f"{name} tilts past TILT_MAX")
+
+    def test_no_pose_bobs_past_the_bound(self):
+        for name, _fn in _primitives():
+            for svg in self._composed(name):
+                for m in self._TR.finditer(svg):
+                    self.assertLessEqual(abs(float(m.group(1))), md.BOB_MAX,
+                                         f"{name} bobs past BOB_MAX")
+
+    def test_the_bound_is_applied_at_the_one_place_a_transform_is_written(self):
+        """32 primitives were each authored against a mental picture of how big
+        a lean reads, and nothing compared them. Same failure as the hands, in
+        a different dimension — so the same shape of fix."""
+        src = inspect.getsource(md.compose_anim)
+        self.assertIn("TILT_MAX", src)
+        self.assertIn("BOB_MAX", src)
+        self.assertIn("BODY_DAMP", src)
+
+    def test_damping_keeps_the_shape_of_an_action(self):
+        """A bound that flattened every pose to zero would 'pass' this file and
+        ship a mannequin. Damping is proportional, so a big authored lean is
+        still bigger than a small one."""
+        self.assertGreater(md.BODY_DAMP, 0.0)
+        self.assertLess(md.BODY_DAMP, 1.0)
+        big = max(-md.TILT_MAX, min(md.TILT_MAX, 20.0 * md.BODY_DAMP))
+        small = max(-md.TILT_MAX, min(md.TILT_MAX, 4.0 * md.BODY_DAMP))
+        self.assertGreater(big, small)
+
+    def test_the_action_lasts_as_long_as_the_visual_it_is_about(self):
+        """It was a flat 2.2s, so a complete dramatic arc — setup, action,
+        payoff — ran about twice per visual and fourteen times per video.
+        Nothing in the narration cycles that fast."""
+        self.assertIn("seconds=_span", _STUDIO)
+        self.assertNotIn("seconds=2.2", _STUDIO)
+
+
 class HeDoesNotSlide(unittest.TestCase):
     def test_the_host_holds_one_position_for_a_whole_span(self):
         """His overlay x/y must be constants. A `_piecewise` there is the
