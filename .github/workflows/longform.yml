@@ -38,6 +38,19 @@ jobs:
       group: explainer-longform
       cancel-in-progress: false
     steps:
+      - name: Pre-flight — kill switch
+        # longform was the LAST publishing workflow that
+        # ignored PAUSED, and it uploads to the EXPLAINER
+        # channel — so pausing the pipeline stopped every
+        # cron except the weekly one that posts to the
+        # channel being paused. Same hole CLAUDE.md records
+        # for the 2026-08-06 disabled-channel bug: the
+        # registry said off and one workflow kept shipping.
+        run: |
+          if [ -f PAUSED ]; then
+            echo "Pipeline paused: PAUSED file exists in repo root."
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

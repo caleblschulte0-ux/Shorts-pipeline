@@ -890,6 +890,21 @@ MAX_SPANS = 2              # per beat, so a 3-beat story tops out at 6 visuals
 # 0.62 still leaves 2.2-3.0s to read, which is MORE than the old setting gave,
 # while the build keeps moving for most of the visual.
 READ_BY = 0.62
+# ...but as a FRACTION it scales the wrong way. A 5.8s visual at 0.62 holds a
+# finished chart for 2.2s; the same fraction on a 7.9s visual holds it for 3.0,
+# and the per-segment measurement (once it was measuring the shipped pixels)
+# put that beat at a duplicate ratio of 0.500 on its own while the video passed
+# at 0.367. Reading time is a HUMAN quantity — it does not grow because the
+# sentence ran long — so the still tail is capped in seconds and the build
+# simply keeps going on a longer visual.
+MAX_STILL_TAIL = 2.2       # seconds a finished chart may sit before the cut
+
+
+def _full_by(span: float) -> float:
+    """What fraction of a visual the build gets, so its tail is bounded."""
+    if span <= 0:
+        return READ_BY
+    return float(min(0.85, max(READ_BY, 1.0 - MAX_STILL_TAIL / span)))
 
 
 def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
@@ -1295,11 +1310,28 @@ def _piecewise(kfs, axis: int) -> str:
 # --------------------------------------------------------------------------
 # Composite.
 # --------------------------------------------------------------------------
-def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
-    """Encode each scene's chart build alone (tiny 540x960 proxy) and measure it
-    with the SAME temporal detector + hard gate the reviewer uses. One JSON per
-    scene under output/scenes/ — the scene-level metrics + verdict that make
-    repair scene-addressable (fix the failing scene, not the whole video)."""
+def _scene_metrics(st, slug: str, work: Path, out_path: Path,
+                   spans: list | None = None) -> None:
+    """Measure each segment AS IT SHIPS and write a scene-addressable verdict.
+
+    This used to encode the segment's chart build ALONE — the PNG sequence over
+    a flat colour, no host, no captions, none of the other visuals — and then
+    judge it with `temporal_hard_fail`, which is the FULL-VIDEO gate. So it was
+    measuring one layer of a composite and grading it against the threshold for
+    the finished thing, and it read `gate=fail` on segments of videos the real
+    gate passed comfortably: 9.6 and 10.9 fps per segment against a floor of
+    11.0, on a master that measured 15.2.
+
+    That is not just noisy logging. The repair loop reads these to decide which
+    SCENE to re-plan, so a systematically pessimistic probe sends it to fix
+    scenes that are fine, and a green master with three red segments tells the
+    next session nothing it can act on. Same defect class as a run that exited
+    red whatever happened.
+
+    So it now cuts each segment's window out of the FINISHED master and
+    measures that. The number means what it says, and it is comparable with the
+    whole-video number because it is the same measurement of the same pixels.
+    """
     import glob as _g
     import json as _sj
     import subprocess as _sp
@@ -1312,12 +1344,17 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
             temporal_hard_fail
     except Exception:  # noqa: BLE001
         return
+    if not out_path.exists():
+        return
     for i, seg in enumerate(st.segments):
         if not seg.chart_path:
             continue
         pat = seg.chart_path
         n = len(_g.glob(pat.replace("%02d", "*")))
         if n < 2:
+            continue
+        win = (spans[i] if spans and i < len(spans) else None)
+        if not win or (win[1] - win[0]) < 0.5:
             continue
         mp4 = work / f"scene_{i:02d}.mp4"
         import shutil as _sh
@@ -1328,22 +1365,12 @@ def _scene_metrics(st, slug: str, work: Path, out_path: Path) -> None:
                 _ff = imageio_ffmpeg.get_ffmpeg_exe()
             except Exception:  # noqa: BLE001
                 return
-        # MEASURE WHAT SHIPS — and what ships no longer floats (2026-08-25
-        # ruling: the camera shake is out). The rule this probe exists for is
-        # unchanged and now cuts the other way: measuring motion the master
-        # does not have would let a beat that is actually static score as
-        # lively, which is exactly the "fps 1.0 measured, 1.0 shipped" bug
-        # with the sign flipped. So the proxy composites the build at rest,
-        # full stop, and a beat that measures short is a beat that needs more
-        # REAL motion.
         try:
             _sp.run(
                 [_ff, "-y", "-loglevel", "error",
-                 "-f", "lavfi", "-i", "color=c=0x10131C:s=540x960:r=30",
-                 "-framerate", "30", "-i", pat,
-                 "-filter_complex",
-                 f"[1:v]scale=540:-1,format=rgba[c];"
-                 f"[0:v][c]overlay=0:0:shortest=1,format=yuv420p",
+                 "-ss", f"{win[0]:.2f}", "-t", f"{win[1] - win[0]:.2f}",
+                 "-i", str(out_path),
+                 "-vf", "scale=540:-1", "-an",
                  "-pix_fmt", "yuv420p", str(mp4)], check=True, timeout=180)
             with _tf.TemporaryDirectory() as td:
                 ev = _temporal_evidence(mp4, Path(td))
@@ -1750,7 +1777,7 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # (that was the dead_air / 5fps).
                     cpath, anc = charts.render_story_build(
                         seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
-                        frames=nfr, full_by=READ_BY,
+                        frames=nfr, full_by=_full_by(t1 - t0),
                         # only the opening visual bursts up out of the hook
                         hook_lead=(i == 0 and lead_hook and j == 0))
                 except Exception as e:  # noqa: BLE001 — a missing extra visual
@@ -1775,10 +1802,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # writing output/scenes/{slug}_sceneN.json. When a video fails, the
         # repair loop reads these to target the failing SCENE instead of
         # re-rolling the whole video; they also make every scene debuggable.
-        try:
-            _scene_metrics(st, slug, work, out_path)
-        except Exception as e:  # noqa: BLE001 — metrics never fail a render
-            print(f"[studio] scene metrics skipped: {e}", flush=True)
+        # (scene metrics run AFTER the master exists — see the call below the
+        # final encode; measuring the build alone graded one layer of a
+        # composite against the finished video's threshold.)
 
         bokeh = ambient.make_bokeh_strip(work / "bokeh.png", seed=theme["seed"])
         footmask = work / "foot_mask.png"
@@ -2382,6 +2408,18 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # an extra layer stapled on around the body — redundant with the body's
         # own hero-number hook and outro. Removed, so there is exactly one
         # format: flat dark bg, one real chart, Data, narration, captions.
+
+    # SCENE-ADDRESSABLE METRICS, measured on the FINISHED master so the number
+    # is the same measurement the whole-video gate makes. The repair loop reads
+    # these to target the failing SCENE instead of re-rolling the whole video.
+    try:
+        _spans = [(disp_start.get(i, windows[1 + i][0]),
+                   disp_end.get(i, windows[1 + i][1]))
+                  if 1 + i < len(windows) else None
+                  for i in range(len(st.segments))]
+        _scene_metrics(st, slug, work, out_path, _spans)
+    except Exception as e:  # noqa: BLE001 — metrics never fail a render
+        print(f"[studio] scene metrics skipped: {e}", flush=True)
 
     # Render manifest: the actual beat windows so the showrunner samples frames
     # at real scene boundaries (hook / each segment / payoff) instead of blind
