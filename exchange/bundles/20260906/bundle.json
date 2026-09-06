@@ -299,7 +299,7 @@
   "done_marker": "exchange/bundles/20260906/DONE",
   "counts": {
     "packages": 6,
-    "requests": 16,
+    "requests": 15,
     "animations": 0,
     "to_author": 0,
     "channels_needing_a_brain": 1
@@ -377,15 +377,15 @@
           "shot_index": 1,
           "phrase": "receipt-less pressure washer",
           "query": "pressure washer nozzle",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "strong"
         },
         {
           "shot_index": 2,
           "phrase": "scorched and the tank still smelled like gasoline",
           "query": "gas can closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
@@ -424,21 +424,20 @@
         }
       ],
       "media_health": {
-        "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "strong": 1,
+        "weak": 2,
+        "missing": 5,
         "unknown": 0
       },
-      "strong_fraction": 0.0,
+      "strong_fraction": 0.125,
       "requested": [
         "reddit-hardware-store-fake-return-s0-5f7b37610d84",
-        "reddit-hardware-store-fake-return-s1-d6d3353bfe1b",
-        "reddit-hardware-store-fake-return-s2-5f464618a40a",
         "reddit-hardware-store-fake-return-s3-a5279141edab",
         "reddit-hardware-store-fake-return-s4-7abb3df49d81",
         "reddit-hardware-store-fake-return-s5-1e8fce27d120",
         "reddit-hardware-store-fake-return-s7-2b01e99cb920",
-        "reddit-hardware-store-fake-return-s6-c386f44adcca"
+        "reddit-hardware-store-fake-return-s6-c386f44adcca",
+        "reddit-hardware-store-fake-return-s2-5f464618a40a"
       ]
     },
     {
@@ -533,58 +532,6 @@
       "shot_index": 0,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: green work jacket. It accompanies the narration: \"olive-green jacket\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-hardware-store-fake-return-s1-d6d3353bfe1b",
-      "safe_request_id": "reddit-hardware-store-fake-return-s1-d6d3353bfe1b",
-      "drive_filename": "20260906__reddit-hardware-store-fake-return-s1-d6d3353bfe1b.png",
-      "prompt_sha256": "d38f44b3ef672cb21f03197847aa41fc294d1e5882a107e043d256177bfb374d",
-      "checkpoint_path": "exchange/bundles/20260906/media-progress/reddit-hardware-store-fake-return-s1-d6d3353bfe1b.json",
-      "slug": "reddit-hardware-store-fake-return",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: pressure washer nozzle. It accompanies the narration: \"receipt-less pressure washer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-hardware-store-fake-return-s2-5f464618a40a",
-      "safe_request_id": "reddit-hardware-store-fake-return-s2-5f464618a40a",
-      "drive_filename": "20260906__reddit-hardware-store-fake-return-s2-5f464618a40a.png",
-      "prompt_sha256": "daa700c203302b61e7855ee516c8a89a6193b690e64f7e45718b30fcdfeb0a8d",
-      "checkpoint_path": "exchange/bundles/20260906/media-progress/reddit-hardware-store-fake-return-s2-5f464618a40a.json",
-      "slug": "reddit-hardware-store-fake-return",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: gas can closeup. It accompanies the narration: \"scorched and the tank still smelled like gasoline\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -728,6 +675,34 @@
       "height": 1080,
       "why": [
         "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "reddit-hardware-store-fake-return-s2-5f464618a40a",
+      "safe_request_id": "reddit-hardware-store-fake-return-s2-5f464618a40a",
+      "drive_filename": "20260906__reddit-hardware-store-fake-return-s2-5f464618a40a.png",
+      "prompt_sha256": "daa700c203302b61e7855ee516c8a89a6193b690e64f7e45718b30fcdfeb0a8d",
+      "checkpoint_path": "exchange/bundles/20260906/media-progress/reddit-hardware-store-fake-return-s2-5f464618a40a.json",
+      "slug": "reddit-hardware-store-fake-return",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: gas can closeup. It accompanies the narration: \"scorched and the tank still smelled like gasoline\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (17% term overlap)",
         "resolution unverified (no width/height reported)",
         "unverified provenance (unverified)"
       ],

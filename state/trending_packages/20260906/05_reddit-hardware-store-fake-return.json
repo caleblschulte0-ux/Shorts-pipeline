@@ -25,15 +25,29 @@
     },
     {
       "phrase": "receipt-less pressure washer",
-      "query": "pressure washer nozzle"
+      "query": "pressure washer nozzle",
+      "pin_query": "Pressure washer",
+      "pin_context": "power tool cleaning equipment",
+      "news_query": "Pressure washer",
+      "news_angle": "A woman attempts to return a used and damaged pressure washer to a hardware store without a receipt.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/H%C3%B6gtryckstv%C3%A4tt_-_Pressure_washer_-_Ystad-2011.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "scorched and the tank still smelled like gasoline",
-      "query": "gas can closeup"
+      "query": "gas can closeup",
+      "pin_query": "Gasoline",
+      "pin_context": "fuel petroleum liquid",
+      "news_query": "Gasoline",
+      "news_angle": "The tank of the returned pressure washer still smelled like gasoline, indicating it had been used.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Gasoline_in_mason_jar.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "resale fraud database",
-      "query": "database computer screen"
+      "query": "database computer screen",
+      "pin_query": "Resale fraud database",
+      "pin_context": "product return policy tracking system",
+      "news_query": "Resale fraud database",
+      "news_angle": "The narrator asks the woman if she logged the pressure washer's serial number in the resale fraud database, implying she was committing fraud."
     },
     {
       "phrase": "Her face went white",
