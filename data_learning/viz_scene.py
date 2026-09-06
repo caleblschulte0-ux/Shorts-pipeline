@@ -25,6 +25,7 @@ chain degrades to another DEPICTION (never bare numbers).
 """
 from __future__ import annotations
 
+import math as _math
 import re
 from pathlib import Path
 
@@ -47,16 +48,19 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
     "bottom": (RX0, _MIDY, RX1, RBOT),
 }
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
-          "unit_figures", "number", "bar", "bubble", "caption"}
+          "unit_figures", "balance", "dot_field", "number", "bar", "bubble",
+          "caption"}
 _HOLISTIC = {"orbit_group", "timeline_axis"}       # render all items, own the box
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
 # reason the scene kit had so little offline range is that every one of its
 # subject-bearing types went through `scene_media`.
-_ICON_TYPES = {"unit_figures"}
-_DATA_TYPES = {"object", "fill_object", "stack", "unit_figures",
-               "number", "bar", "bubble"}
+_ICON_TYPES = {"unit_figures", "dot_field"}
+# Drawn entirely from primitives — no subject, no icon, no network at all.
+_DRAWN_TYPES = {"balance"}
+_DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
+               "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
 _JUST_NUMERIC = __import__("re").compile(r"[\d\s.,:%+\-/]+")
 _ROW_REGIONS = {"ground-row"} | {f"grid-{i}" for i in range(1, 5)}
@@ -104,7 +108,7 @@ def _color_for(label, insight):
 # genuine holistic time depiction. These types are rejected outright.
 _BANNED_TYPES = {"bar", "bubble"}
 # Elements that count as a real, subject-bearing depiction.
-_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC | _ICON_TYPES
+_RICH_TYPES = _IMAGE_TYPES | _HOLISTIC | _ICON_TYPES | _DRAWN_TYPES
 
 
 def validate(spec, insight) -> bool:
@@ -134,6 +138,22 @@ def validate(spec, insight) -> bool:
             return False
         if t in _ICON_TYPES and not str(el.get("subject", "")).strip():
             return False
+        if t == "dot_field":
+            lv = _resolve((el.get("data") or {}).get("value_from"), insight)
+            if lv is None or one_in_n(lv[1])[1] <= 0:
+                return False       # below ~0.5% there is no honest denominator
+        if t == "balance":
+            dat = el.get("data") or {}
+            # `_resolve(None)` returns the STAR, so an omitted `vs_from` would
+            # silently weigh the biggest item against itself and draw a level
+            # beam with the same number on both pans — a confident picture of
+            # nothing. The key has to be there AND name a different item.
+            if "vs_from" not in dat:
+                return False
+            a = _resolve(dat.get("value_from"), insight)
+            b = _resolve(dat.get("vs_from"), insight)
+            if a is None or b is None or a[0] == b[0]:
+                return False
     # QUALITY GATE: a scene must SHOW something — at least one image/subject
     # element or a holistic time depiction. An abstract-only scene (just a
     # number/caption, or the old bar) is rejected so the director re-picks an
@@ -247,6 +267,43 @@ def _stagger(reveal, i, n):
 # --------------------------------------------------------------------------- #
 def _cx(box):
     return (box[0] + box[2]) // 2
+
+
+_SCENE_HOST_CACHE: dict = {}
+
+
+def scene_host(action: str, phase: float):
+    """The host as a PIL image, ANIMATED — the pose for this point in the beat.
+
+    Every scene element reached for `charts._host_pose`, which loads ONE fixed
+    expression PNG. So in a scene the host has always been a literal sticker:
+    the charts give him a performance arc through `_bake_host`, and the scene
+    kit — the half of the system meant to be the expressive one — pinned him to
+    a single frame for the whole beat.
+
+    That is a look problem and a cadence problem at once. It is what pushed a
+    video with two scene visuals to a duplicate ratio of 0.462 against a
+    ceiling of 0.45: once an element finishes revealing, a static host means
+    the entire frame is static.
+    """
+    key = (action, round(max(0.0, min(1.0, phase)) * 60) / 60)
+    if key in _SCENE_HOST_CACHE:
+        return _SCENE_HOST_CACHE[key]
+    img = None
+    try:
+        import io
+        from PIL import Image as _PImage
+        from . import mascot_director as _md
+        svg = _md.compose_anim({"action": action, "prop": "none",
+                                "ground": True},
+                               charts._perf_phase(key[1]))
+        img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
+    except Exception:  # noqa: BLE001 — a scene must never die over the host
+        img = charts._host_pose(action)
+    if len(_SCENE_HOST_CACHE) > 400:
+        _SCENE_HOST_CACHE.clear()
+    _SCENE_HOST_CACHE[key] = img
+    return img
 
 
 def draw_caption(d, box, text, reveal, size=42, color=TEXT):
@@ -595,32 +652,46 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     icon = _fit(cutout, side, side) if cutout is not None else None
     gx = bx0 + (bw - cols * cell_w) / 2.0
     gy = top + (bh - rows * cell_h) / 2.0
-    shown_f = max(0.0, min(1.0, reveal)) * n
-    shown = int(shown_f)
-    last = shown_f - shown                       # the one currently arriving
+    # A CASCADE, NOT A METRONOME.
+    #
+    # One icon popping in per slot left every frame between arrivals identical
+    # to the last — 22 figures over 5.8s is an arrival every ~8 frames, so
+    # seven frames in eight were duplicates and the video hit a duplicate ratio
+    # of 0.465 against a 0.45 ceiling. Each figure now FADES over a window that
+    # overlaps its neighbours', so three or four are always in flight and no
+    # two frames of the fill are the same. It also simply looks better: a
+    # cascade rather than a tick.
+    prog = max(0.0, min(1.0, reveal))
+    # Starts spread across 88% of the visual, each fade about one slot long.
+    # An overlap of 3 was the first try and it was worse than the pop it
+    # replaced: with three figures sharing every fade, each one's per-frame
+    # change fell under the detector's threshold and the last icons crawled to
+    # full opacity, leaving a 29-frame still stretch at the end. One snappy
+    # arrival at a time is both the stronger signal and the better cascade.
+    fill_by = 0.88
+    span = fill_by / max(1, n)
+    overlap = 1.3                                # figures fading at any moment
     cx_last = cy_last = None
-    for k in range(min(shown + 1, n)):
+    for k in range(n):
+        a = (prog - k * span) / (span * overlap)
+        if a <= 0.0:
+            break
+        a = min(1.0, a)
         rr, cc = divmod(k, cols)
         x = int(gx + cc * cell_w + (cell_w - side) / 2.0)
         y = int(gy + rr * cell_h + (cell_h - side) / 2.0)
-        if k == shown:                           # part-way in: fade it up
-            if last <= 0.02:
-                break
-            if icon is not None:
-                ghost = icon.copy()
-                ghost.putalpha(ghost.getchannel("A").point(
-                    lambda a, _l=last: int(a * _l)))
-                canvas.alpha_composite(ghost, (x, y))
-            else:
-                d.ellipse([x, y, x + side, y + side],
-                          fill=_rgba(color, int(235 * last)))
-            cx_last, cy_last = x + side // 2, y + side // 2
-            break
         if icon is not None:
-            canvas.alpha_composite(icon, (x, y))
+            im = icon
+            if a < 0.995:
+                im = icon.copy()
+                im.putalpha(im.getchannel("A").point(
+                    lambda v, _a=a: int(v * _a)))
+            canvas.alpha_composite(im, (x, y))
         else:
-            d.ellipse([x, y, x + side, y + side], fill=_rgba(color, 235))
-        cx_last, cy_last = x + side // 2, y + side // 2
+            d.ellipse([x, y, x + side, y + side],
+                      fill=_rgba(color, int(235 * a)))
+        if a > 0.5:
+            cx_last, cy_last = x + side // 2, y + side // 2
     # THE LEGEND IS THE HONESTY. Without "each = 50" the picture is a pile of
     # icons that could mean anything, which is the "what am I looking at"
     # failure in its purest form.
@@ -644,13 +715,197 @@ def draw_unit_figures(d, canvas, box, cutout, value, per_value, label, color,
     # He stands on the figure that just landed, so he ADVANCES along the block
     # as the count grows: contact for STRICT_CONTACT, and honest motion for the
     # whole build rather than a sprite parked in a corner.
-    host = charts._host_pose("point")
+    host = scene_host("point", reveal)
     if host is not None:
         mh = int(max(150, min(300, side * 1.7)))
         mw = int(host.width * mh / host.height)
         hx = int(min(max(cx_last + side * 0.55, 8), W - mw - 8))
         hy = int(cy_last - side // 2 - mh + side * 0.30)
         canvas.alpha_composite(_fit(host, mw, mh), (hx, max(0, hy)))
+    return (value, "art", cx_last, cy_last)
+
+
+def balance_tilt(a: float, b: float, limit: float = 26.0) -> float:
+    """Beam angle in degrees for a vs b, positive = a is heavier (a side down).
+
+    tanh of the LOG ratio, so the tilt reads proportionally at every scale: a
+    2x difference and a 200x difference must not both bottom the beam out, or
+    the picture stops carrying information the moment it is most interesting.
+    Equal values sit dead level, which is itself the finding on a "these are
+    the same" beat.
+    """
+    a, b = abs(float(a)), abs(float(b))
+    if a <= 0 or b <= 0:
+        return 0.0 if a == b else (limit if a > b else -limit)
+    return float(limit * _math.tanh(_math.log(a / b)))
+
+
+def draw_balance(d, canvas, box, value, other, label, other_label, color,
+                 reveal, unit="", cutout=None):
+    """A SET OF SCALES: two pans, tipping by how the numbers actually compare.
+
+    A comparison drawn as two bars asks the viewer to measure two lengths
+    against an axis. A balance states the same fact as a physical outcome —
+    this side went down — which needs no axis, no gridline and no reading.
+    It is the clearest non-chart form the kit has for exactly two numbers, and
+    it is the shape a two-item beat kept being forced into a chart to show.
+    """
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    pivot_y = by0 + int((by1 - by0) * 0.38)
+    arm = int(min((bx1 - bx0) * 0.36, 350))
+    # Level, then settle into the true tilt — the tip IS the reveal, so the
+    # element animates for the whole span without anything decorative added.
+    #
+    # LINEAR, not cubic-out. An ease-out is nearly stationary over its last
+    # third, which put a 6-second visual's back half a fraction of a degree
+    # from still. A scale coming to rest slowly is also simply what one does.
+    ease = max(0.0, min(1.0, reveal))
+    ang = _math.radians(balance_tilt(value, other) * ease)
+    dx, dy = _math.cos(ang) * arm, _math.sin(ang) * arm
+    # HEAVY SIDE GOES DOWN. The first version had the signs the other way and
+    # drew $449K riding UP over $270K — a picture that states the opposite of
+    # the data, which is the worst thing this kit can do and is invisible to
+    # every test that only asks whether something rendered.
+    lx, ly = int(cx - dx), int(pivot_y + dy)          # left pan hangs here
+    rx, ry = int(cx + dx), int(pivot_y - dy)
+    # the stand
+    d.polygon([(cx, pivot_y), (cx - 46, by1 - 150), (cx + 46, by1 - 150)],
+              fill=_rgba(TEXT, 90))
+    d.line([(cx - 120, by1 - 150), (cx + 120, by1 - 150)],
+           fill=_rgba(TEXT, 120), width=12)
+    d.line([(lx, ly), (rx, ry)], fill=_rgba(TEXT, 220), width=14)
+    d.ellipse([cx - 18, pivot_y - 18, cx + 18, pivot_y + 18],
+              fill=_rgba(TEXT, 230))
+    hi = value >= other
+    for (px, py, val, lab, heavy) in ((lx, ly, value, label, hi),
+                                      (rx, ry, other, other_label, not hi)):
+        col = color if heavy else ACCENT
+        d.line([(px, py), (px, py + 78)], fill=_rgba(TEXT, 150), width=6)
+        pan_w = 210
+        d.rounded_rectangle([px - pan_w // 2, py + 78, px + pan_w // 2, py + 118],
+                            radius=18, fill=_rgba(col, 235))
+        # The numbers are up almost immediately. They used to fade in over
+        # reveal 0.2-0.7, which left the first fifth of the visual as a nearly
+        # level beam with two empty pans — a frame that tells you nothing while
+        # the narration is already talking about the comparison.
+        na = max(0.0, min(1.0, (reveal - 0.04) / 0.16))
+        # The figures COUNT UP as the pans settle, so the largest text on the
+        # card is changing every frame of the tip rather than fading in once.
+        # It lands on the exact value and holds it — a mid-count that outlived
+        # the animation would be a number the script never says.
+        shown_v = val * (1.0 - (1.0 - ease) ** 2)
+        d.text((px, py + 168), charts._ulabel(shown_v, unit, group=True),
+               font=_pil_font(72), fill=_rgba(col, int(255 * na)), anchor="mm")
+        d.text((px, py + 234), str(lab)[:18], font=_pil_font(44),
+               fill=_rgba(TEXT, int(230 * na)), anchor="mm")
+    # THE HOST RIDES THE HEAVY PAN. `render_scene` marks every scene
+    # host_baked, which suppresses the travelling overlay — so an element that
+    # draws no host ships a beat with none at all.
+    host = scene_host("cheer" if hi else "point", reveal)
+    if host is not None:
+        mh = 230
+        mw = int(host.width * mh / host.height)
+        hx, hy = (lx, ly) if hi else (rx, ry)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(max(hx - mw // 2, 8), W - mw - 8)), int(hy + 78 - mh)))
+    return (value, "art", int(lx), int(ly + 98))
+
+
+def one_in_n(pct: float, cap: int = 100) -> tuple:
+    """A percentage as "k out of n", with n a number people say out loud.
+
+    6.8% is a figure; "7 in 100" is a mental picture, and "1 in 15" is a
+    sentence. Tries the denominators people actually use, smallest first, and
+    keeps the first whose rounding error is under half a person — so the
+    picture is never a rounder claim than the data supports. Falls back to
+    /100, which is what a percentage already is.
+    """
+    p = abs(float(pct))
+    if p <= 0:
+        return 0, 0
+    for n in (10, 20, 25, 50, 100):
+        k = int(round(p * n / 100.0))
+        if k < 1:
+            continue                       # nothing lit is not a picture
+        shown = k * 100.0 / n
+        # The picture may ROUND, it may not RESTATE. Half a percentage point,
+        # absolute — a RELATIVE bound was the first attempt and it let 66.7%
+        # render as "7 in 10" and 33.3% as "8 in 25", because 5% of a big
+        # percentage is a lot of percentage points. The exact figure is printed
+        # underneath either way.
+        if abs(shown - p) <= 0.5:
+            return k, n
+    # Below about half a percent there is no denominator a person says out
+    # loud that also fits on screen. Refuse rather than draw "0 in 100", which
+    # is what the first version did for 0.4%.
+    return 0, 0
+
+
+def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
+                   unit="", denom=None):
+    """"k IN n": a field of figures with k of them lit.
+
+    The form a rate WANTS. A percentage on a bar asks the viewer to hold an
+    abstraction; a field of a hundred people with seven of them coloured in is
+    the same fact as a thing you can see and count, and it is the classic
+    non-chart depiction the kit had no version of.
+    """
+    bx0, by0, bx1, by1 = box
+    k, n = one_in_n(value) if denom is None else (
+        int(round(abs(value) * denom / 100.0)), int(denom))
+    if n <= 0 or k < 0:
+        return None
+    top, bot = max(by0 + 120, 320), by1 - 110
+    bw, bh = max(1, bx1 - bx0), max(1, bot - top)
+    cols = int(round(_math.sqrt(n * bw / max(1.0, bh))))
+    cols = max(1, min(n, cols))
+    rows = -(-n // cols)
+    cell_w, cell_h = bw / cols, bh / rows
+    side = int(min(cell_w, cell_h) * 0.78)
+    if side < 8:
+        return None
+    icon = _fit(cutout, side, side) if cutout is not None else None
+    gx = bx0 + (bw - cols * cell_w) / 2.0
+    gy = top + (bh - rows * cell_h) / 2.0
+    lit_now = max(0.0, min(1.0, reveal * 1.35)) * k    # the lit ones fill in
+    cx_last = cy_last = None
+    for i in range(n):
+        rr, cc = divmod(i, cols)
+        x = int(gx + cc * cell_w + (cell_w - side) / 2.0)
+        y = int(gy + rr * cell_h + (cell_h - side) / 2.0)
+        lit = i < int(lit_now)
+        # LIT AND UNLIT MUST NOT BE THE SAME PICTURE AT DIFFERENT OPACITY.
+        # The first version ghosted the icon to 20% alpha and the field read as
+        # a hundred identical houses — the one thing the form exists to show
+        # (which ones) was the thing you could not see. The unlit are now a
+        # flat dim disc: a different SHAPE, not a fainter copy.
+        if lit and icon is not None:
+            canvas.alpha_composite(icon, (x, y))
+        elif lit:
+            d.ellipse([x, y, x + side, y + side], fill=_rgba(color, 240))
+        else:
+            pad = int(side * 0.14)
+            d.ellipse([x + pad, y + pad, x + side - pad, y + side - pad],
+                      fill=_rgba(TEXT, 38))
+        if lit:
+            cx_last, cy_last = x + side // 2, y + side // 2
+    na = max(0.0, min(1.0, (reveal - 0.2) / 0.4))
+    d.text((_cx(box), by0 + 58), f"{k} in {n}", font=_pil_font(78),
+           fill=_rgba(color, int(255 * na)), anchor="mm")
+    d.text((_cx(box), bot + 40), f"{label}   {charts._ulabel(value, unit)}",
+           font=_pil_font(44), fill=_rgba(TEXT, int(235 * na)), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None and cx_last is not None:
+        mh = int(max(150, min(280, side * 2.2)))
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(max(cx_last + side * 0.6, 8), W - mw - 8)),
+             int(max(0, cy_last - side // 2 - mh + side * 0.3))))
+    if cx_last is None:
+        return None
     return (value, "art", cx_last, cy_last)
 
 
@@ -852,7 +1107,7 @@ def _draw_climb(d, canvas, insight, items, periods, reveal):
         d.ellipse([hx - rad, hy - rad, hx + rad, hy + rad], fill=_rgba(HIGHLIGHT, a))
     # Data's act varies with the demonstration: he POINTS OUT the stacking bill
     # (bars) vs. CHEERS/rides the climbing line (area) — a distinct bit per beat.
-    host = charts._host_pose("point" if bars else "cheer")
+    host = scene_host("point" if bars else "cheer", r)
     mh = 268        # a strong presence, but not so big it collides with text
     if host is not None:
         mw = int(host.width * mh / host.height)
@@ -933,7 +1188,7 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
     # Data rides the dot along the axis (composited straight into the beat).
-    host = charts._host_pose("cheer")
+    host = scene_host("cheer", r)
     if host is not None:
         from PIL import Image as _Im
         mh = 250
@@ -1009,6 +1264,78 @@ def units_scene(insight) -> dict:
                           "data": {"value_from": "star",
                                    "per_value": abs(star.value) / 18.0 or 1.0},
                           "anim": "count"}]}
+
+
+# "7 in 100" only means anything when the percentage is a SHARE OF A COUNTABLE
+# POPULATION. The first version keyed off the unit alone and produced a field of
+# a hundred houses with seven lit for a 6.8% MORTGAGE INTEREST RATE — which is
+# not seven houses in a hundred, or seven of anything. A percent sign is not a
+# licence to draw a population; an interest rate, a growth rate, a change and a
+# yield are all percentages of something that cannot be counted out in figures.
+_SHARE_PHRASE = re.compile(
+    r"\b(share|proportion|percent(age)? of|of all|of every|of american|"
+    r"of household|of adult|of women|of men|of children|of worker|"
+    r"of student|of famil|of people|of population|of voter|of driver|"
+    r"of home|of car|of job)\w*", re.I)
+
+
+def rate_scene(insight) -> dict:
+    """A share of a population as "k in n" — never any other kind of percent.
+
+    Lighting 7 of 100 figures says "seven of every hundred OF THEM". That is
+    true of a prevalence, a turnout or an ownership share, and false of an
+    interest rate, a growth rate or a yield, so the claim has to say which one
+    it is before this form is allowed.
+    """
+    unit = (getattr(insight, "unit", "") or "").strip().lower()
+    if unit not in ("percent", "%", "rate", "pct"):
+        return {}
+    text = f"{getattr(insight, 'topic', '')} {getattr(insight, 'main_insight', '')}"
+    if not _SHARE_PHRASE.search(text or ""):
+        return {}
+    star = max(insight.items, key=lambda p: abs(p.value)) if insight.items else None
+    if star is None or one_in_n(star.value)[1] <= 0:
+        return {}
+    # THE FIGURES ARE WHAT THE SHARE IS A SHARE OF.
+    #
+    # `icon_subject` picks by topic keyword and handed "teen licensing" an ICE
+    # CUBE, which is a confident picture of nothing. What the field is counting
+    # is stated right there in the share phrase that allowed this form at all,
+    # so read it from there and default to people — because a share of a
+    # population is a share of people unless it says otherwise.
+    # Scan the WHOLE claim, not just the matched phrase: "Share of households
+    # that own" matches on "share" and the noun is three words later, so
+    # reading only the match handed a households story a field of people.
+    low = (text or "").lower()
+    subject = "people"
+    for word, noun in (("household", "household"), ("home", "household"),
+                       ("driver", "car"), ("car", "car"), ("worker", "worker"),
+                       ("job", "worker"), ("student", "student")):
+        if word in low:
+            subject = noun
+            break
+    return {"title": True,
+            "elements": [{"type": "dot_field", "region": "full",
+                          "subject": subject,
+                          "data": {"value_from": "star"}, "anim": "fill"}]}
+
+
+def balance_scene(insight) -> dict:
+    """Two numbers, weighed against each other.
+
+    Only ever built for a genuine PAIR. Putting five metros on a two-pan scale
+    would mean silently dropping three of them, which is a chart that lies by
+    omission rather than a picture.
+    """
+    items = list(insight.items or [])
+    if len(items) < 2:
+        return {}
+    hi, lo = items[0], items[-1]
+    return {"title": True,
+            "elements": [{"type": "balance", "region": "full",
+                          "data": {"value_from": "item:0",
+                                   "vs_from": f"item:{len(items) - 1}"},
+                          "anim": "grow"}]}
 
 
 def icon_subject(insight) -> str:
@@ -1218,6 +1545,23 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 if lv:
                     draw_number(d, box, lv[1], lv[0], _color_for(lv[0], insight),
                                 lr, insight.unit)
+            elif t == "dot_field":
+                lv = _resolve((el.get("data") or {}).get("value_from"), insight)
+                if not lv:
+                    continue
+                an = draw_dot_field(d, canvas, box, cuts.get(i), lv[1], lv[0],
+                                    _color_for(lv[0], insight), lr, insight.unit)
+                if f == frames and an:
+                    anchors.append(an)
+            elif t == "balance":
+                lv = _resolve((el.get("data") or {}).get("value_from"), insight)
+                rv = _resolve((el.get("data") or {}).get("vs_from"), insight)
+                if not (lv and rv):
+                    continue
+                an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
+                                  _color_for(lv[0], insight), lr, insight.unit)
+                if f == frames and an:
+                    anchors.append(an)
             elif t == "unit_figures":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:

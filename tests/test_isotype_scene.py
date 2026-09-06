@@ -147,14 +147,177 @@ class ItIsReachableInAVideo(unittest.TestCase):
         self.assertIn('seg.insight.kind = "scene"', src)
 
 
+class TheBalanceStatesTheTruth(unittest.TestCase):
+    """Two numbers weighed against each other. A comparison drawn as two bars
+    asks the viewer to measure two lengths against an axis; a balance states
+    the same fact as a physical outcome, which needs no axis at all."""
+
+    def test_the_heavier_side_goes_down(self):
+        """THE ONE THAT MATTERS. The first version had the signs inverted and
+        drew $449K riding UP over $270K — a picture stating the opposite of the
+        data, and invisible to any test that only asks whether it rendered."""
+        import math
+        for a, b in ((449, 270), (270, 449), (11.3, 5.4), (1, 10)):
+            dy = math.sin(math.radians(vs.balance_tilt(a, b))) * 300
+            left_y, right_y = 500 + dy, 500 - dy       # as drawn
+            if a > b:
+                self.assertGreater(left_y, right_y, f"{a} vs {b} floats up")
+            else:
+                self.assertGreater(right_y, left_y, f"{a} vs {b} floats up")
+
+    def test_equal_values_sit_level(self):
+        self.assertEqual(vs.balance_tilt(5.0, 5.0), 0.0)
+
+    def test_the_tilt_never_bottoms_out(self):
+        """tanh of the log ratio: a 2x gap and a 200x gap must not look the
+        same, or the picture stops carrying information exactly where it gets
+        interesting."""
+        two, big, huge = (vs.balance_tilt(2, 1), vs.balance_tilt(20, 1),
+                          vs.balance_tilt(2000, 1))
+        self.assertLess(two, big)
+        self.assertLessEqual(big, huge)
+        self.assertLessEqual(huge, 26.0)
+
+    def test_a_zero_or_missing_side_does_not_explode(self):
+        for a, b in ((0, 5), (5, 0), (0, 0)):
+            self.assertIsInstance(vs.balance_tilt(a, b), float)
+
+    def test_it_needs_a_second_number_to_weigh_against(self):
+        ins = _housing()
+        self.assertFalse(vs.validate(
+            {"elements": [{"type": "balance", "region": "full",
+                           "data": {"value_from": "star"}}]}, ins))
+
+    def test_it_is_refused_when_there_is_no_pair(self):
+        one = _Ins("only", [_Pt("A", 1.0)], "count")
+        self.assertEqual(vs.balance_scene(one), {})
+
+    def test_it_weighs_the_top_against_the_bottom(self):
+        """Deterministic ends, never a cherry-picked middle pair — and both
+        sides are labelled, so the viewer is told exactly what is on the
+        scales rather than being shown 'the data' with three items dropped."""
+        five = _Ins("cost", [_Pt(n, v) for n, v in
+                             (("A", 11.3), ("B", 9.7), ("C", 8.2),
+                              ("D", 6.8), ("E", 5.4))], "years")
+        el = vs.balance_scene(five)["elements"][0]
+        self.assertEqual(el["data"]["value_from"], "item:0")
+        self.assertEqual(el["data"]["vs_from"], "item:4")
+
+
+class TheDotFieldOnlyDrawsRealShares(unittest.TestCase):
+    """"7 in 100" only means something when the percentage is a share of a
+    countable population. The first version keyed off the UNIT alone and drew a
+    hundred houses with seven lit for a 6.8% mortgage INTEREST RATE — which is
+    not seven houses in a hundred, or seven of anything."""
+
+    def _pct(self, topic, main, value=24.5):
+        return _Ins(topic, [_Pt("2026", value)], "percent", main)
+
+    def test_an_interest_rate_is_not_a_population(self):
+        self.assertEqual(
+            vs.rate_scene(self._pct("mortgage rates", "Rates doubled")), {})
+
+    def test_a_growth_rate_is_not_a_population(self):
+        self.assertEqual(
+            vs.rate_scene(self._pct("gdp growth", "Growth hit 3.1%")), {})
+
+    def test_a_real_share_is_drawn(self):
+        self.assertTrue(vs.rate_scene(
+            self._pct("teen licensing",
+                      "Share of 17-year-olds with a license")))
+
+    def test_a_non_percent_unit_is_refused(self):
+        ins = _Ins("home prices", [_Pt("2026", 449.0)], "thousand dollars",
+                   "Share of households priced out")
+        self.assertEqual(vs.rate_scene(ins), {})
+
+    def test_the_figures_are_what_the_share_is_a_share_of(self):
+        """`icon_subject` picks by topic keyword and handed "teen licensing" an
+        ICE CUBE. What the field counts is named in the share phrase that
+        allowed the form at all."""
+        el = vs.rate_scene(self._pct(
+            "teen licensing", "Share of 17-year-olds with a license"))["elements"][0]
+        self.assertEqual(el["subject"], "people")
+        el2 = vs.rate_scene(self._pct(
+            "ownership", "Share of households that own"))["elements"][0]
+        self.assertEqual(el2["subject"], "household")
+
+    def test_the_picture_may_round_but_not_restate(self):
+        """A RELATIVE error bound was the first attempt and it let 66.7% render
+        as "7 in 10" and 33.3% as "8 in 25" — five percent of a big percentage
+        is a lot of percentage points."""
+        for pct in (6.72, 3.9, 12.5, 25.0, 33.3, 45.6, 66.7, 99.0, 1.0, 2.0):
+            k, n = vs.one_in_n(pct)
+            self.assertGreater(n, 0, f"{pct} refused unexpectedly")
+            self.assertLessEqual(abs(k * 100.0 / n - pct), 0.5,
+                                 f"{pct}% drawn as {k} in {n}")
+
+    def test_nothing_lit_is_not_a_picture(self):
+        """0.4% used to come back as "0 in 100" — a field of a hundred with
+        none of them lit, which says nothing at all."""
+        for pct in (0.4, 0.05, 0.0):
+            self.assertEqual(vs.one_in_n(pct), (0, 0))
+
+    def test_lit_and_unlit_are_different_shapes(self):
+        """They were the same icon at 20% alpha and the field read as a hundred
+        identical figures — the one thing the form exists to show was the thing
+        you could not see."""
+        import inspect
+        src = inspect.getsource(vs.draw_dot_field)
+        self.assertIn("ellipse", src, "the unlit must not be a fainter copy")
+
+
+class ThePoolOnlyOffersWhatCanBeBuilt(unittest.TestCase):
+    def test_a_refusing_builder_is_not_offered(self):
+        """A token whose builder returns nothing fails validation and the
+        render degrades to a chart: a slot spent, no variety, and nothing
+        anywhere saying why."""
+        rate_only = _Ins("mortgage rates", [_Pt("2026", 6.8)], "percent",
+                         "Rates doubled")
+        self.assertFalse(sr._buildable("rate_scene", rate_only))
+        one_item = _Ins("solo", [_Pt("A", 1.0)], "count", "One thing")
+        self.assertFalse(sr._buildable("balance_scene", one_item))
+
+    def test_a_plain_renderer_is_always_offered(self):
+        self.assertTrue(sr._buildable("bars", _housing()))
+
+    def test_the_new_forms_are_reachable_in_a_real_sequence(self):
+        seq = sr._depiction_sequence(
+            _Ins("cost", [_Pt("A", 11.3), _Pt("B", 6.8)], "years", "A tops",
+                 kind="bars"), set(), 12.0)
+        self.assertTrue(any(k in sr._SCENE_TOKENS for k in seq),
+                        f"no non-chart form reachable: {seq}")
+
+
 class TheHostIsOnIt(unittest.TestCase):
+    def test_the_balance_bakes_a_host_too(self):
+        import inspect
+        self.assertIn("scene_host", inspect.getsource(vs.draw_balance))
+
+    def test_the_scene_host_is_animated_not_a_sticker(self):
+        """Every scene element reached for `charts._host_pose`, which loads ONE
+        fixed expression PNG — so in a scene the host was a literal sticker for
+        the whole beat, while the charts gave him a performance arc. The scene
+        kit is the half of the system meant to be expressive."""
+        import inspect
+        src = inspect.getsource(vs)
+        body = src.split("def scene_host", 1)[1]
+        self.assertIn("compose_anim", body.split("def draw_caption")[0])
+        for fn in (vs.draw_unit_figures, vs.draw_balance, vs.draw_dot_field):
+            self.assertNotIn("_host_pose", inspect.getsource(fn),
+                             f"{fn.__name__} still pins a single frame")
+
+    def test_the_dot_field_bakes_a_host_too(self):
+        import inspect
+        self.assertIn("scene_host", inspect.getsource(vs.draw_dot_field))
+
     def test_the_element_bakes_a_host(self):
         """`render_scene` sets host_baked for EVERY scene, which suppresses the
         travelling overlay — so an element that draws no host ships a beat with
         no host at all. The first version of this did, and a hostless beat is
         what the showrunner records as the mascot missing."""
         import inspect
-        self.assertIn("_host_pose", inspect.getsource(vs.draw_unit_figures))
+        self.assertIn("scene_host", inspect.getsource(vs.draw_unit_figures))
 
     def test_scene_anchors_cannot_crash_the_overlay(self):
         """A full-frame scene returns 4-tuples, not the label dicts the card

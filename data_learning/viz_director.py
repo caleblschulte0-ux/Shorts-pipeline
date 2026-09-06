@@ -51,6 +51,12 @@ KINDS = {
     # so unlike every other subject-bearing scene it costs no image budget,
     # cannot time out, and can therefore be reached on any story.
     "units_scene":    {"image": False, "novelty": True,  "repeatable": True},
+    # A pair weighed on a set of scales. Drawn from primitives only — no
+    # subject, no icon, no network — so it is never rationed either.
+    "balance_scene":  {"image": False, "novelty": True,  "repeatable": True},
+    # A share of a population as "k in n". Only offered for data that IS a
+    # share of something countable — see viz_scene.rate_scene.
+    "rate_scene":     {"image": False, "novelty": True,  "repeatable": True},
     "fill_scene":     {"image": True,  "novelty": True},     # subject filled to %
     "rank_scene":     {"image": True,  "novelty": True,  "repeatable": True},
     "race":           {"image": True,  "novelty": True,  "repeatable": True},
@@ -61,7 +67,9 @@ KINDS = {
 
 # Pseudo-kinds that resolve to an attached `ins.scene` (kind becomes "scene").
 _SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene",
-                   "units_scene": "units_scene"}
+                   "units_scene": "units_scene",
+                   "balance_scene": "balance_scene",
+                   "rate_scene": "rate_scene"}
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.

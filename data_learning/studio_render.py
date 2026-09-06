@@ -883,7 +883,13 @@ MAX_SPANS = 2              # per beat, so a 3-beat story tops out at 6 visuals
 # The frame does not freeze: the host keeps performing on the finished chart
 # (his tour is driven by beat progress, not by the reveal, precisely so it
 # outlives the build) and the next visual is only a couple of seconds away.
-READ_BY = 0.45
+# RETUNED with the slower pacing. 0.45 was set when a visual was 3.8 seconds,
+# where it bought 2.1s of finished chart. Spans are 5.8-7.9s now, so the same
+# fraction holds a still frame for over three seconds — and measured across a
+# whole video that put the duplicate ratio at 0.464 against a 0.45 ceiling.
+# 0.62 still leaves 2.2-3.0s to read, which is MORE than the old setting gave,
+# while the build keeps moving for most of the visual.
+READ_BY = 0.62
 
 
 def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
@@ -1469,13 +1475,16 @@ _ALT_DEPICTION = {
 # number on screen at size. `diorama`, `mechanic`, `scene` and `race` need
 # generated imagery — 54-89s per build with HTTP 500s in the middle — so they
 # stay primary-only rather than becoming an alternate that can time out.
-_SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene")
+_SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
+                "balance_scene", "rate_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
 # viz_director._SCENE_BUILDERS, which is the same mechanism and the reason this
 # is a lookup rather than a special case for one name.
-_SCENE_TOKENS = {"units_scene": "units_scene"}
+_SCENE_TOKENS = {"units_scene": "units_scene",
+                 "balance_scene": "balance_scene",
+                 "rate_scene": "rate_scene"}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
 # — and so may never be chosen as an alternate for data that is not one. Held
@@ -1489,13 +1498,15 @@ _ASSERTS_A_WHOLE = frozenset({"share", "waffle_grid", "stack"})
 
 _SHAPE_CANDIDATES = {
     # values over time: any magnitude comparison is fair, sequence included
-    "series": ("trend", "units_scene", "bars", "timeline", "fill_vessel",
-               "comparison", "pictograph"),
+    "series": ("trend", "units_scene", "bars", "rate_scene", "balance_scene",
+               "timeline", "fill_vessel", "comparison", "pictograph"),
     # named things being compared: anything but a false sequence
-    "ranking": ("pictorial_race", "units_scene", "bars", "fill_vessel", "rank",
-                "orbit", "pictograph", "comparison", "bubbles"),
-    "other":   ("bars", "units_scene", "fill_vessel", "pictograph", "orbit",
-                "rank", "bubbles", "comparison"),
+    "ranking": ("pictorial_race", "units_scene", "bars", "rate_scene",
+                "balance_scene", "fill_vessel", "rank", "orbit", "pictograph",
+                "comparison", "bubbles"),
+    "other":   ("bars", "units_scene", "rate_scene", "balance_scene",
+                "fill_vessel", "pictograph", "orbit", "rank", "bubbles",
+                "comparison"),
 }
 
 
@@ -1538,6 +1549,26 @@ def _family(kind: str) -> str:
                          or kind in charts.FULLFRAME_RENDERERS) else "chart")
 
 
+def _buildable(kind: str, insight) -> bool:
+    """Would this candidate actually produce something for THIS data?
+
+    The scene builders refuse honestly — `rate_scene` will not draw a
+    population share for an interest rate, `balance_scene` will not put a
+    single item on a two-pan scale. Without asking them first, the pool hands
+    a beat a token whose builder returns nothing, the scene fails validation,
+    and the render quietly degrades to a chart: a slot spent, no variety, and
+    nothing anywhere saying why.
+    """
+    builder = _SCENE_TOKENS.get(kind)
+    if not builder:
+        return True
+    try:
+        from data_learning import viz_scene as _vs
+        return bool(getattr(_vs, builder)(insight))
+    except Exception:  # noqa: BLE001 — a broken builder is just not offered
+        return False
+
+
 def _depiction_sequence(insight, used: set, dur: float) -> list:
     """The ORDERED, NON-REPEATING depictions one beat shows, front to back.
 
@@ -1567,7 +1598,8 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
         if c not in cands:
             cands.append(c)
     cands = [c for c in cands
-             if c and c != kind and c not in _ASSERTS_A_WHOLE]
+             if c and c != kind and c not in _ASSERTS_A_WHOLE
+             and _buildable(c, insight)]
 
     def _pick(want_family, avoid_used):
         for c in cands:
