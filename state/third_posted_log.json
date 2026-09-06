@@ -5944,6 +5944,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (confused rambling, no visible event)",
       "ts": "2026-09-05T15:06:21.895646+00:00"
+    },
+    "clip-20260906-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/BoringRoughFerret4Head-mxEnHdOPkSQUrXBk",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Reacts To The AI Tweet Of Rae That Went Viral",
+      "kind": "twitch_clip",
+      "ts": "2026-09-06T14:13:37.416527+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
