@@ -1,0 +1,95 @@
+name: Exchange readiness watchdog (guarantee a Phase A bundle exists)
+
+# Doctor finding 5187e34e11f3: exchange_phase_a.yml has exactly one trigger
+# independent of upstream authoring activity — workflow_run and push both
+# require something upstream to have already run/pushed — a single
+# `schedule: cron: '45 9 * * *'`. That file's own comments document GitHub
+# cron drift measured in HOURS, and on 2026-08-29 and 2026-08-30 the ChatGPT
+# 06:00 Central media worker reached its handoff with no bundle and no Phase
+# A artifact at all for the day — invisible in the Actions tab because a
+# Phase A run that never fires leaves nothing red to look at.
+#
+# This job cannot make GitHub's own cron scanner exact, but it does not rely
+# on scheduling luck the way a single passive cron does: the moment IT runs,
+# it checks whether a bundle exists and, if not, calls workflow_dispatch on
+# Phase A directly (an ordinary API call, not subject to the cron-scan delay)
+# and WAITS for that run to finish. A second independent schedule entry also
+# narrows the "both crons drift by hours" window versus relying on one.
+#
+# 10:15 UTC is chosen to run AFTER the existing 09:45 UTC Phase A backstop
+# (itself scheduled after the Routine's observed ~09:19 UTC run) and well
+# before ChatGPT's 6:00 AM Central media worker in EITHER DST state
+# (11:00 UTC in summer CDT, 12:00 UTC in winter CST) — see
+# exchange_phase_b.yml's own comment block for why that boundary moves.
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Bundle date (YYYYMMDD, default today UTC)'
+        required: false
+        default: ''
+      channel:
+        required: false
+        default: 'trending'
+  schedule:
+    - cron: '15 10 * * *'
+
+permissions:
+  contents: write   # commit a durable outcome record when it had to act
+  actions: write    # dispatch exchange_phase_a.yml directly
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    # Phase A's own job timeout is 45 minutes; give this one enough room to
+    # dispatch it and wait out that full run plus its own poll overhead.
+    timeout-minutes: 50
+    concurrency:
+      group: exchange-readiness-watchdog-${{ inputs.channel || 'trending' }}
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Pre-flight — kill switch
+        run: |
+          set -e
+          [ -f PAUSED ] && { echo "Pipeline paused (PAUSED file)"; exit 1; }
+          exit 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install python deps
+        run: pip install -q requests
+
+      - name: Check readiness, dispatch + wait if needed
+        id: watchdog
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          python scripts/exchange_readiness_watchdog.py \
+            --date "$DATE" --channel "${{ inputs.channel || 'trending' }}" \
+            --repo "${{ github.repository }}" --timeout 1500
+
+      - name: Commit outcome record (only written when the watchdog had to act)
+        if: always()
+        run: |
+          set -e
+          DATE="${{ inputs.date }}"
+          [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
+          bash scripts/ci_commit_state.sh \
+            "exchange: readiness watchdog outcome for $DATE [skip ci]" \
+            "exchange/bundles/$DATE/PHASE_A_WATCHDOG.json"

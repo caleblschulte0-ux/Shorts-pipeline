@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20260905",
+  "updated": "20260906",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -884,16 +884,22 @@
       "history": []
     },
     "4754c87f0f7e": {
-      "verdict": "in_progress",
-      "date": "20260827",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260906",
+      "because": "Confirmed already shipped: PR #320 (commit d8fdd0e3, merged 2026-08-27) fixed shared/video_qa._collect_spans to close a dangling start at the probed duration instead of dropping it, with tests/test_video_qa.py covering the EOF case directly. This item was left marked in_progress after the merge \u2014 closing the bookkeeping gap now; no further work needed.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260827",
           "because": "Verified: _collect_spans in shared/video_qa.py never closes a start with no matching end, so a black/freeze/silence defect running through EOF is silently dropped from black_frac/freeze_frac/silence_frac and can pass a genuinely broken render. Fixing this in the same session (rule zero)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260827",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "d8fdd0e3"
     },
     "0bf9780d6272": {
       "verdict": "doing",
@@ -983,22 +989,34 @@
       "commit": "29bf6d4"
     },
     "cc8333959d84": {
-      "verdict": "in_progress",
-      "date": "20260905",
-      "because": "picked up",
+      "verdict": "done",
+      "date": "20260906",
+      "because": "Confirmed already shipped: commit e9d4e00 (PR #330, merged 2026-09-05) made both the auto-pause and auto-resume branches in .github/workflows/daily.yml treat a failed scripts/ci_commit_state.sh push as a named infra failure (exit 1) instead of swallowing it with || true, with tests/test_production_outcome.py::TestAutoPauseStatePersistFailsClosed covering both branches. That commit already referenced this finding but left the verdict at in_progress instead of done \u2014 closing the bookkeeping gap now.",
       "history": [
         {
           "verdict": "doing",
           "date": "20260904",
           "because": "Confirmed at .github/workflows/daily.yml:153-174 (auto-resume) and 163-171 (first-paused-day): both call scripts/ci_commit_state.sh with a trailing || true, so a rejected/failed state push leaves the local failure_count.txt/auto_pause_day.txt writes uncommitted while the job still reports skip=auto or skip= and proceeds as if the durable state landed. Next run reads stale committed state from main. Real gap in the auto-pause backoff guarantee; needs a preflight that treats a failed state commit as a named infra failure rather than swallowing it. Queued, not this run's build (picking the earlier-filed judge_policy bug first per ranking)."
+        },
+        {
+          "verdict": "in_progress",
+          "date": "20260905",
+          "because": "picked up"
         }
-      ]
+      ],
+      "commit": "e9d4e00"
     },
     "5187e34e11f3": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: .github/workflows/exchange_phase_a.yml has only one trigger independent of upstream authoring (schedule cron 45 9 UTC); workflow_run and push both depend on something upstream having already run/pushed. The workflow's own comments document multi-hour cron drift. Real gap, but the proposed fix (a fail-closed idempotent readiness watchdog with durable refusal state) is a multi-file, multi-workflow feature \u2014 too large for one session alongside everything else ruled today. Queued for a dedicated session.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20260906",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: .github/workflows/exchange_phase_a.yml has only one trigger independent of upstream authoring (schedule cron 45 9 UTC); workflow_run and push both depend on something upstream having already run/pushed. The workflow's own comments document multi-hour cron drift. Real gap, but the proposed fix (a fail-closed idempotent readiness watchdog with durable refusal state) is a multi-file, multi-workflow feature \u2014 too large for one session alongside everything else ruled today. Queued for a dedicated session."
+        }
+      ]
     },
     "02da0ae2137f": {
       "verdict": "doing",
