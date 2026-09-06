@@ -863,7 +863,10 @@ def _lp(a, b, f):
     return a + (b - a) * f
 
 
-_ARC_REPS = 3          # effort cycles during the action zone (visible reps)
+# ONE effort cycle per visual. Three was tuned when a beat was 10-18s and
+# the host had to carry the frame; visuals are ~6s now and each gets its own
+# action, so three reps inside one is the flailing the operator described.
+_ARC_REPS = 1          # effort cycles during the action zone (visible reps)
 
 # Phase boundaries come from the ONE scene-timeline owner (scene_timeline.py) so
 # the mascot, the chart reveal, and the manifest all agree on when setup ends
@@ -1005,11 +1008,26 @@ def _a_hoist_stack(t, _prop):
     His hands (sprite top) are baked onto the fill frontier, so the growing data
     presses down ON him."""
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
-    tremble = math.sin(t * math.pi * 14) * 3.0
+    # NO TREMOR. A sine at 12-14 half-cycles across one visual is six or
+    # seven full oscillations of the hands while the beat plays — the
+    # "jerking around ... looks like he's having a seizure" the operator
+    # named. It survived the 2026-08-25 periodic-motion purge because the
+    # guard read `bob` and `tilt` and these ride on HAND COORDINATES.
+    # Strain is carried by the pose arc itself, which is enough.
+    tremble = 0.0
     lh = [150, 58, 16]; rh = [190, 58, -16]           # fists pressed up overhead
     lh[0] += tremble; rh[0] += tremble
     if p < _T_RESIST:                                  # TAKE IT
-        lower = _braced_legs(crouch=0.2); expr = "strain"; bob = 2.0
+        # He SETTLES under the load across this zone. It used to be three
+        # constants, and the only thing moving was the tremor — so removing the
+        # tremor left a genuinely frozen third of the action, which
+        # test_mascot_primitives caught immediately. Taking a weight is a slow
+        # one-way sink, which is both the honest motion and the calm one.
+        s = p / max(1e-6, _T_RESIST)
+        lower = _braced_legs(crouch=0.12 + s * 0.10); expr = "strain"
+        bob = 0.5 + s * 1.8
+        lh[1] += s * 5.0
+        rh[1] += s * 5.0
     elif p < _T_EFFORT:                                 # BUCKLE (sink under load)
         s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
         lower = _braced_legs(crouch=0.2 + s * 0.7, sway=6); expr = "strain"
@@ -1035,7 +1053,13 @@ def _a_shoved_bar(t, _prop):
     His hands (left side of the sprite) are baked onto the bar tip, so the bar's
     growth visibly drives him."""
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
-    tremble = math.sin(t * math.pi * 12) * 2.5
+    # NO TREMOR. A sine at 12-14 half-cycles across one visual is six or
+    # seven full oscillations of the hands while the beat plays — the
+    # "jerking around ... looks like he's having a seizure" the operator
+    # named. It survived the 2026-08-25 periodic-motion purge because the
+    # guard read `bob` and `tilt` and these ride on HAND COORDINATES.
+    # Strain is carried by the pose arc itself, which is enough.
+    tremble = 0.0
     if p < _T_RESIST:                                  # DIG IN — deep crouch, back arched
         s = p / _T_RESIST
         lh = [66 - tremble, 210, -24]; rh = [92 - tremble, 252, -18]
@@ -1048,7 +1072,9 @@ def _a_shoved_bar(t, _prop):
         expr = "strain"; tilt = 10 - s * 14; bob = 2.0 - s * 4
     else:                                               # LAUNCHED — flung UP off the bar
         s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
-        fl = math.sin(s * math.pi * 2.5) * 16
+        # ONE arc, not 1.25 oscillations: a launch is a launch, not a
+        # flutter. `s` already runs 0->1 across the phase.
+        fl = s * 16.0
         lh = [116 + fl, int(96 - s * 42), 8]; rh = [150 + fl, int(70 - s * 42), -8]
         lower = _dangle_legs(kick=fl + s * 10, spread=1.3)
         expr = "shock"; tilt = -10 + fl * 0.6; bob = -s * 26      # big upward launch
@@ -1073,7 +1099,7 @@ def _a_drag_line(t, _prop):
     grip_y = 46
     lh = [156, grip_y, 18]
     rh = [184, grip_y, -18]
-    strain = math.sin(t * math.pi * 12) * 3.0          # trembling effort
+    strain = math.sin(t * math.pi) * 3.0  # one swell, was multi-cycle jitter
     lh[0] += strain; rh[0] += strain
     if p < _T_RESIST:                                   # RESIST: heels dug in
         s = p / _T_RESIST
@@ -1090,7 +1116,9 @@ def _a_drag_line(t, _prop):
         bob = 4.0 - s * 6.0
     else:                                               # DRAGGED: airborne swing
         s = (p - _T_EFFORT) / (1.0 - _T_EFFORT)
-        sw = math.sin(s * math.pi * 3) * 14             # swinging under the line
+        # A swing under the line, ONCE — this was 1.5 full cycles of the
+        # legs inside one phase, which is a kick-flail, not a swing.
+        sw = math.sin(s * math.pi) * 14
         lower = _dangle_legs(kick=sw, spread=0.6)
         expr = "shock"
         tilt = sw                                       # swings side to side
@@ -1108,10 +1136,16 @@ def _a_pull_down_win(t, _prop):
       YIELD  the value gives way — he sinks with it, still gripping, surprised.
       LANDED grounded, fists thrown up, a big win grin (payoff = victory)."""
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
-    tremble = math.sin(t * math.pi * 12) * 3.0
+    # NO TREMOR. A sine at 12-14 half-cycles across one visual is six or
+    # seven full oscillations of the hands while the beat plays — the
+    # "jerking around ... looks like he's having a seizure" the operator
+    # named. It survived the 2026-08-25 periodic-motion purge because the
+    # guard read `bob` and `tilt` and these ride on HAND COORDINATES.
+    # Strain is carried by the pose arc itself, which is enough.
+    tremble = 0.0
     if p < _T_RESIST:                                  # BRACE + haul (pumping)
         s = p / _T_RESIST
-        tug = (1.0 - math.cos(s * math.pi * 2 * 2)) * 0.5   # 2 downward tugs
+        tug = (1.0 - math.cos(s * math.pi * 2)) * 0.5       # ONE downward tug
         lh = [156 + tremble, int(46 + tug * 26), 18]
         rh = [184 + tremble, int(46 + tug * 26), -18]
         lower = _braced_legs(crouch=0.75 - tug * 0.25, sway=14)
@@ -1158,7 +1192,7 @@ def _a_balance_beam(t, _prop):
         tilt = 0.0; bob = 2.0; expr = "think"
         lower = _braced_legs(crouch=0.15, sway=2)
     elif z == 1:                                 # wobble builds to a near-fall
-        w = math.sin(s * math.pi * 5) * (6 + s * 16)
+        w = math.sin(s * math.pi) * (6 + s * 16)  # one swell, was multi-cycle jitter
         lh = [70, 200 - w, -20]; rh = [270, 200 + w, 20]
         tilt = w * 0.8; bob = 2.0 + abs(w) * 0.2; expr = "shock"
         lower = _braced_legs(crouch=0.2 + abs(w) * 0.01, sway=4 + abs(w) * 0.5)
@@ -1186,7 +1220,7 @@ def _a_catch_fall(t, _prop):
         bob = 2.0 + imp * 14; tilt = 0.0  # was a 8-cycle rattle: body vibration, not acting
         expr = "strain"
     else:                                        # holds it aloft, trembling
-        tr = math.sin(s * math.pi * 10) * 3
+        tr = math.sin(s * math.pi) * 3  # one swell, was multi-cycle jitter
         lh = [122 + tr, 66, -14]; rh = [218 + tr, 66, 14]
         lower = _braced_legs(crouch=0.35 - s * 0.2)
         bob = 6.0 - s * 4; tilt = tr * 0.5; expr = "laugh"
@@ -1206,7 +1240,7 @@ def _a_block_wall(t, _prop):
         tilt = s * 18; bob = 1 + s * 3
         expr = "strain"
     elif z == 1:
-        sk = math.sin(s * math.pi * 4) * 6
+        sk = math.sin(s * math.pi) * 6  # one swell, was multi-cycle jitter
         lh = [58 + sk, 250, -24]; rh = [78 + sk, 198, -18]
         lower = _braced_legs(crouch=0.55 + s * 0.2, sway=20 + sk)
         tilt = 20 + s * 4; bob = 4 + s * 4; expr = "strain"
@@ -1271,7 +1305,7 @@ def _a_race_sprint(t, _prop):
     """RACE the advancing value: full sprint lean with pumping arms, loses
     ground, dives across at the end (objective: beat the data to the mark)."""
     z, s = _zone(t)
-    pump = math.sin(t * math.pi * 14) * 26
+    pump = math.sin(t * math.pi) * 26  # one swell, was multi-cycle jitter
     if z == 0:                                    # crouch start
         lh = [110, 250 - s * 30, -18]; rh = [230, 210 + s * 30, 18]
         lower = _braced_legs(crouch=0.6, sway=10); bob = 4; tilt = 8 * s
@@ -1422,7 +1456,7 @@ def _a_fail_recover(t, _prop):
         lower = _braced_legs(crouch=0.6 - s * 0.4, sway=10 - s * 6)
         bob = 12 - s * 10; tilt = 26 - s * 24; expr = "strain"
     else:                                          # dust-off, stand tall
-        du = math.sin(s * math.pi * 3) * 8
+        du = math.sin(s * math.pi) * 8  # one swell, was multi-cycle jitter
         lh = [140 + du, 240, -8]; rh = [216, 96, 14]
         lower = _braced_legs(crouch=0.05)
         bob = -s * 2; tilt = 0.0; expr = "happy"
@@ -1441,7 +1475,7 @@ def _a_stack_tiles(t, _prop):
         lower = _braced_legs(crouch=0.2 + s * 0.4); bob = 2 + s * 8
         tilt = 4 * s; expr = "think"
     elif z == 1:                                   # place cycles (squat-lift)
-        cyc = (1.0 - math.cos(s * math.pi * 2 * 3)) * 0.5
+        cyc = (1.0 - math.cos(s * math.pi * 2)) * 0.5   # one squat-lift, not 3
         lh = [128, 250 - cyc * 160, -12]; rh = [212, 250 - cyc * 160, 12]
         lower = _braced_legs(crouch=0.55 - cyc * 0.45, sway=6)
         bob = 8 - cyc * 10; tilt = 0.0  # was a 6-cycle rattle: body vibration, not acting

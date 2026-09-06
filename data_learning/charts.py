@@ -200,12 +200,16 @@ _UNIT_SUFFIX = {
 }
 
 
-def _ulabel(v: float, unit: str) -> str:
+def _ulabel(v: float, unit: str, group: bool = False) -> str:
     """Value label carrying its unit, because the number alone is not an
     answer. Percent -> trailing %, dollars -> leading $, thousands/millions/
     billions of dollars -> $ with the magnitude suffix ($449K), a known
     physical unit -> its short form (11.3 yrs)."""
-    n = _vfmt(v)
+    # `group` is for the renderers that show ONE number at 180pt, where
+    # 20,570 reads and 20570 does not. Everything else stays ungrouped so a
+    # bar label does not grow a comma the axis has no room for.
+    n = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
+         else f"{v:,.1f}") if group else _vfmt(v)
     u = (unit or "").strip().lower()
     if u in ("percent", "%", "rate", "pct"):
         return n + "%"
@@ -416,13 +420,20 @@ def _perf_phase(phase: float) -> float:
         # the beat's last fifth, landing phase 1.0 exactly on the payoff
         # pose. ~3s at a 15s beat — the decisive push after the struggle.
         return (t - 0.8) / 0.2
-    # THE STRUGGLE: four ping-pong reps (strain toward the climax, get
-    # pushed back, strain again) across the first 80% of the beat. Ping-pong
-    # rather than modulo because the arcs are not seamless loops — a %-wrap
-    # snaps the pose from climax back to setup in one frame, which reads as
-    # a glitch; the mirror reads as effort and release. Capped at 0.85 so
-    # the true climax is seen only once, in the finale.
-    u = (t / 0.8) * 4.0
+    # THE STRUGGLE: ONE strain-and-release across the first 80% of the beat,
+    # then the finale. This was FOUR reps — eight direction reversals of the
+    # whole body inside a single visual, on top of the hand tremors, and
+    # together they are what the operator watched: "he needs to not be doing
+    # so much constant random, like, jerking around ... it looks like he's
+    # having a seizure the whole time."
+    #
+    # Four was tuned when a beat was 10-18 seconds and the arc crossing once
+    # left him a statue. Visuals are ~6s now and each gets its own action, so
+    # a single committed effort IS a rep every few seconds. Ping-pong rather
+    # than modulo stays: the arcs are not seamless loops, so a %-wrap snaps
+    # the pose from climax back to setup in one frame and reads as a glitch.
+    # Capped at 0.85 so the true climax is seen only once, in the finale.
+    u = (t / 0.8) * 1.0
     frac = u - int(u)
     return 0.85 * (1.0 - abs(1.0 - 2.0 * frac))
 
@@ -1743,13 +1754,7 @@ def _story_bignum(fig, plt, insight: Insight, reveal: float = 1.0):
     shown = star.value * eased
 
     def _fmt(v: float) -> str:
-        s = f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer() else f"{v:,.1f}"
-        u = (insight.unit or "").strip().lower()
-        if u in ("percent", "%", "rate", "pct"):
-            return s + "%"
-        if u in ("usd", "dollars", "$"):
-            return "$" + s
-        return s
+        return _ulabel(v, insight.unit, group=True)
 
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_axis_off()
@@ -2579,13 +2584,7 @@ def _render_timeline(insight: Insight, out_dir: Path, slug: str, frames: int = 1
     _u = (insight.unit or "").lower()
 
     def _fmtv(v):
-        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
-             else f"{v:,.1f}")
-        if _u in ("percent", "%", "rate", "pct"):
-            return s + "%"
-        if _u in ("dollars", "usd", "$"):
-            return "$" + s
-        return s
+        return _ulabel(v, _u, group=True)
     val_txt = _fmtv(star.value)
 
     title_font, num_font = _pil_font(56), _pil_font(72)
@@ -2668,13 +2667,7 @@ def _render_fill_vessel(insight: Insight, out_dir: Path, slug: str, frames: int 
     track = "#22314C"
 
     def fmt(v):
-        s = (f"{v:,.0f}" if abs(v) >= 100 or float(v).is_integer()
-             else f"{v:,.1f}")
-        if is_pct:
-            return s + "%"
-        if unit in ("dollars", "usd", "$"):
-            return "$" + s
-        return s
+        return _ulabel(v, insight.unit, group=True)
 
     def _cap(d, angle, color):
         rad = math.radians(angle)
