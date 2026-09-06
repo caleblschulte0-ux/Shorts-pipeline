@@ -1,0 +1,32 @@
+{
+ "slug": "cesarean-rate-surge",
+ "ts": "20260906T175038Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:start and seg1:mid leave the bottom ~55% of the vertical frame completely empty except one unexplained floating cyan ellipse; seg2:mid and seg3:end likewise dead below the mid-line.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:start (t=6.42s) and seg1:mid (t=10.08s): a thin year timeline sits in the upper third with the mascot on the scrubber, and everything from ~y=400 down is bare gradient \u2014 the only object in that half is a stray unfilled cyan ellipse at lower-right that belongs to no data. The 32.9%/2009 callout is also the sole readout while the VO is still on 5.5% and 24.7%.",
+  "root_cause": "The timeline layout is authored at chart-strip proportions and centered high in a 9:16 frame, so no element is assigned to the lower half; the leftover cyan ellipse is an orphaned highlight ring with no anchor.",
+  "repair_goal": "Fill the lower half of seg1 with the data it is narrating \u2014 expand the timeline to full frame height with a rising 1970->2024 value column or ghost bars for 5.5% / 24.7% / 32.4% under the scrubber so the mascot's walk visibly builds something, and remove the unanchored cyan ellipse."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "stack",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "geo_us",
+   "performance": "race_sprint"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "slug": "mail-volume-collapse",
+ "ts": "20260906T175038Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data holds the same arms-raised standing pose in every beat \u2014 hook@0.3 through seg4:end \u2014 merely sliding between bars (seg0:mid, seg2:start, seg3:start) and standing on the timeline axis at seg1:start; no setup->action->payoff bit is tied to any stat.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void_bare_number",
+  "visible_evidence": "At seg1:start (t=5.03s) and seg1:mid (t=7.90s) the frame is a thin timeline axis in the upper quarter with a ghosted grey '213'/'2006' duplicated under the live label, the mascot standing on top of the '2006' axis tick and obscuring it, a stray cyan ellipse floating in blank space, and a huge green '213'/'109' jammed into the caption bar at the very bottom \u2014 the entire middle and lower two-thirds of the 9:16 frame is empty. Only at seg1:end (t=10.77s) does the actual area chart appear.",
+  "root_cause": "The scene's intro/counter state is rendering as a separate near-empty layout for ~5 of its ~6 seconds instead of the composed chart, with duplicated number layers (ghost label + odometer + caption number) and no layout box constraining the timeline to the full frame.",
+  "repair_goal": "Kill the standalone counter/timeline intro state and hold the composed area chart (as at seg1:end) for the whole scene: bring the 213B->109B line in as an animated draw that fills the frame vertically, show the number once as a value flag riding the line's head, remove the ghost duplicate label and the stray cyan ellipse, and give Data a real bit \u2014 e.g. he starts atop the 2006 peak and rides/slides down the collapsing line, landing beside 109B."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "get_buried"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  }
+ ]
+}

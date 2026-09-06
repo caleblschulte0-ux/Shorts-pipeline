@@ -1,0 +1,41 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260906T175038Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Across hook@0.3 \u2192 seg4:end Data only perches on or stands inside whatever bar/ring is on screen (riding the '1950s' bar at seg1:end, standing in the yellow column at seg2:start and seg3:start, parked beside the '20' bar at payoff@-1.8) \u2014 he changes position but never runs a setup\u2192",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:mid (t=28.13s) is almost entirely empty dark gradient: a washed-out '0.8' with 'Modern crew' under it and a half-faded mascot at the left, no other content in the frame. It resolves at seg3:end to a ring gauge reading '18.3 Modern crew' \u2014 a decimal count of people, with the mascot overlapping the digits \u2014 and the '20 vs 3' column pair at seg3:start already made this exact point 5 seconds earlier.",
+  "root_cause": "The scene renders a count-up gauge transition designed for a continuous quantity onto a headcount (20 crew), so the mid-transition frames show meaningless fractional values on a near-empty canvas, and the gauge duplicates the comparison the columns at seg3:start already delivered.",
+  "repair_goal": "Replace the gauge/count-up with a populated visual for '20 vs a handful': fill the frame with 20 discrete crew figures assembling around a car against 3 for the 1950s, so every frame in the scene carries content and the number is demonstrated by countable bodies rather than a decimal dial."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}
