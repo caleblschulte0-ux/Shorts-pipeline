@@ -1,0 +1,32 @@
+{
+ "slug": "container-ships-floating-cities",
+ "ts": "20260906T103723Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg2:start (20.02s), seg2:mid (24.18s) and seg2:end (28.34s) are pixel-identical charts - the two pills are already at final height at 20.0s and hold ~12s with only the mascot's idle drift.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "static_beat_no_demonstration",
+  "visible_evidence": "seg2:start/mid/end are the same frame: two rounded pills labelled 2022 and 1990 already at full height with a static 'VS' between them, unchanged for the whole ~12s beat; the mascot merely stands inside the purple pill.",
+  "root_cause": "The comparison bars finish their grow-in before the beat's first sampled frame, so the scene has no animation budget left and the 1.2M -> 25.8M boxes claim is never demonstrated - the pills carry no unit, no count, nothing that accumulates.",
+  "repair_goal": "Re-time seg2 so the 1990 and 2022 quantities build across the beat (fill/stack in counted units of boxes rather than snapping to final height), and give Data one act tied to the 21x growth - e.g. loading the small 1990 pill, then being buried as the 2022 pill overtakes him - so the scene has setup, action and payoff instead of a 12s hold."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "hoist_stack"
+  },
+  {
+   "id": "segment_2",
+   "kind": "stack",
+   "performance": "block_wall"
+  }
+ ]
+}

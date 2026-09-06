@@ -1,0 +1,41 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260906T103723Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:mid (t=30.31s) is an entirely blank navy gradient with only a caption \u2014 no chart, no mascot, no element at all; and payoff@-0.4 leaves the bottom half of the card empty with a thumbnail-sized mascot in the corner.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:mid (t=30.31s) renders as a completely empty dark gradient with nothing but the burned-in caption 'versus a handful'; seg3:start is two mostly-blank grey pill columns with a 'vs' and no values, and at seg3:end the source line runs through the waffle grid while 'Modern crew'/'1950s crew' legend swatches float unattached in the right third.",
+  "root_cause": "The scene transitions by fading the entire chart layer out and rebuilding it (bar-columns \u2192 waffle), so the crossfade midpoint has zero content, and the waffle layout does not reserve space for the legend or the source footer.",
+  "repair_goal": "Keep a continuous element on screen across the seg3 transition \u2014 carry the 20 crew squares in as the columns break apart rather than fading to nothing \u2014 and lay the waffle grid so it fills the frame with the legend inline and clear of the source line."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "pictorial_race",
+   "performance": "drag_line"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_2",
+   "kind": "comparison",
+   "performance": "stretched"
+  }
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "slug": "cesarean-rate-surge",
+ "ts": "20260906T103723Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:start (t=38.12s) is a speech bubble in the top quarter and roughly 75% of the frame below it is empty gradient with nothing but 6px source text \u2014 the closing beat opens on a wasted frame.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_and_layout_collision",
+  "visible_evidence": "seg4:start: closing bubble at top, entire lower three-quarters empty dark gradient. seg4:mid\u2192payoff@-0.4: the bubble then sits ON TOP of the still-live state bar chart, its tail covering the Mississippi bar and clipping that label to 'M', while two separate source-credit blocks and the 'COMMENT BELOW' CTA stack over each other at the bottom.",
+  "root_cause": "The closing card is composited as an independent overlay with its own timing rather than being staged into the seg3 chart layout \u2014 it fades in over an empty background before the chart returns, and no reserved region or chart shrink is applied when it lands, so bubble, chart, subtitle, CTA and duplicated source lines all claim the same pixels.",
+  "repair_goal": "Stage the payoff inside the frame it belongs to: hold the state chart visible through the whole closing beat, shrink/shift it so the bubble occupies dedicated space with the Mississippi row fully readable, drop the duplicate source block, and give Data a final beat (e.g. stepping the Mississippi bar down toward the US average) so the last 6 seconds carry motion instead of an empty gradient."
+ },
+ "scene_plan": {},
+ "scenes": [
+  {
+   "id": "segment_0",
+   "kind": "stack",
+   "performance": "shoved_bar"
+  },
+  {
+   "id": "segment_1",
+   "kind": "comparison",
+   "performance": "block_wall"
+  },
+  {
+   "id": "segment_2",
+   "kind": "geo_us",
+   "performance": "race_sprint"
+  }
+ ]
+}
