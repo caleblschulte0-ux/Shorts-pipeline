@@ -81,9 +81,23 @@ class ReadingTime(unittest.TestCase):
         self.assertGreaterEqual(sr.READ_BY, 0.25, "no time left to build")
 
     def test_the_renderer_is_told_to_finish_early(self):
-        """`full_by` existed the whole time and nothing passed it."""
+        """`full_by` existed the whole time and nothing passed it. It is now
+        computed PER SPAN rather than passed as the bare constant, because a
+        fraction scales the wrong way: the same 0.62 that holds a 5.8s visual
+        for 2.2s holds a 7.9s one for 3.0."""
         src = (_REPO / "data_learning" / "studio_render.py").read_text()
-        self.assertIn("full_by=READ_BY", src)
+        self.assertIn("full_by=_full_by(", src)
+
+    def test_the_still_tail_is_bounded_in_seconds_not_fraction(self):
+        """Reading time is a HUMAN quantity — it does not grow because the
+        sentence ran long. Measured on the shipped pixels, a 7.9s visual at a
+        flat fraction sat at a duplicate ratio of 0.500 on its own."""
+        for span in (4.0, 5.8, 7.9, 12.0):
+            tail = (1.0 - sr._full_by(span)) * span
+            self.assertLessEqual(round(tail, 2), sr.MAX_STILL_TAIL + 0.01,
+                                 f"{span}s visual holds still for {tail:.1f}s")
+        self.assertGreaterEqual((1.0 - sr._full_by(5.8)) * 5.8, 1.5,
+                                "no time left to read")
 
     def test_a_visual_is_readable_for_at_least_a_second_and_a_half(self):
         for dur in (4.0, 8.0, 12.0, 20.0):

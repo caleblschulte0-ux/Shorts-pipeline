@@ -135,10 +135,31 @@ class TestTheProxiesMeasureWhatShips(unittest.TestCase):
     static beat score as lively, which is the original 'fps 1.0 measured,
     1.0 shipped' bug with the sign flipped."""
 
-    def test_the_studio_proxy_composites_at_rest(self):
-        seg = STUDIO.split("MEASURE WHAT SHIPS", 1)[1][:1200]
-        self.assertNotIn("crop_vf", seg)
-        self.assertIn("overlay=0:0:shortest=1,format=yuv420p", seg)
+    def test_the_studio_proxy_measures_the_finished_master(self):
+        """This used to check that the proxy composited the chart build over a
+        flat colour "at rest" — the strongest available approximation of what
+        ships, back when the proxy ran before the master existed.
+
+        It measures the MASTER now: it cuts each segment's own window out of
+        the finished video. That serves this class's whole purpose better than
+        the composite did, because it is not an approximation at all. The old
+        proxy graded ONE LAYER (no host, no captions, none of the other
+        visuals) against `temporal_hard_fail`, which is the FULL-VIDEO
+        threshold, and read 9.6 and 10.9 fps per segment against a floor of
+        11.0 on a master that measured 15.2. The repair loop reads these to
+        pick which scene to re-plan, so it was being sent to fix scenes that
+        were fine.
+        """
+        seg = STUDIO.split("measure each segment AS IT SHIPS", 1)
+        if len(seg) == 1:
+            seg = STUDIO.split("Measure each segment AS IT SHIPS", 1)
+        self.assertEqual(len(seg), 2, "the studio proxy lost its docstring")
+        body = seg[1][:2600]
+        self.assertIn("str(out_path)", body,
+                      "the proxy must read the finished master")
+        self.assertNotIn("crop_vf", body)
+        self.assertNotIn("color=c=", body,
+                         "a synthetic background is the old approximation")
 
     def test_the_repair_proxy_composites_at_rest(self):
         seg = REPAIR.split("fps_score = 0.5", 1)[1][:1200]

@@ -21,8 +21,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -247,9 +249,76 @@ def _persist_posted_log_now(log_path: Path, slug: str) -> None:
         print(f"[{slug}] WARNING: posted-log persist raised: {e}", flush=True)
 
 
+# --------------------------------------------------------------------------
+# NEAR-DUPLICATE GUARD
+# --------------------------------------------------------------------------
+# The posted log deduped on SLUG and nothing else, so two stories that were
+# different rows in the config but the same VIDEO to a viewer both shipped.
+# Auditing the log found 25 such pairs, including straight repeats:
+#
+#   2026-06-28  Human Brain Capacity          (posted twice the same day)
+#   2026-06-28 / 2026-07-07  Space Debris Removal
+#   2026-07-01 / 2026-07-10  Space Exploration Milestones
+#   2026-08-21  World Hydropower Fell Below Its 1990 Level
+#   2026-08-25  World Coal Power Fell Below Its 1990 Level
+#
+# That last pair is the shape the current forge produces: one template, one
+# noun swapped. YouTube's repetitious-content policy is aimed squarely at it,
+# and the operator is being penalised right now.
+#
+# Two measures, because they fail differently. Sequence ratio catches a
+# reworded title; a significant-word overlap catches the template-with-one-swap
+# that reads as a low ratio because the swapped word is long. Calibrated
+# against the real 234-upload log: this refuses 16 of them (7%), which is the
+# repeats and not the legitimately distinct stories.
+# Calibrated against the real 234-upload log. 0.80/0.70 refused 16 (7%) but let
+# "Human Memory Capacity" through four days after "Human Brain Capacity";
+# 0.75/0.60 refuses 24 (10%) and catches it. The extra eight it takes are all
+# one template with a noun swapped — "Caffeine Content Revealed" after "Sugar
+# Content Revealed", "Longest Rivers On Earth" after "Tallest Trees on Earth" —
+# which is exactly the pattern being penalised, even when the underlying data
+# is genuinely different. The error costs are not symmetric: a false refusal
+# costs one video from a queue that holds hundreds, a false accept costs
+# channel standing.
+_DUP_SEQ = 0.75
+_DUP_JACCARD = 0.60
+_DUP_STOP = frozenset(
+    "the a an of in on to for is are and or its it how why what when we you "
+    "your our new most all than that this has have was were be been at by "
+    "with from about into over under more less just now still".split())
+
+
+def _sig_words(title: str) -> set:
+    words = re.sub(r"[^a-z0-9 ]", " ", (title or "").lower()).split()
+    return {w for w in words if w not in _DUP_STOP and len(w) > 2}
+
+
+def duplicate_of(title: str, posted_titles) -> str | None:
+    """The already-posted title this one repeats, or None.
+
+    Returns the OTHER title rather than a bool so the hold can name it — a
+    refusal that says which video it collided with is actionable; one that says
+    "too similar" sends someone reading the whole log.
+    """
+    if not (title or "").strip():
+        return None
+    mine = _sig_words(title)
+    for other in posted_titles:
+        if not (other or "").strip():
+            continue
+        if difflib.SequenceMatcher(None, title.lower(),
+                                   other.lower()).ratio() >= _DUP_SEQ:
+            return other
+        theirs = _sig_words(other)
+        union = mine | theirs
+        if union and len(mine & theirs) / len(union) >= _DUP_JACCARD:
+            return other
+    return None
+
+
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
 # designed; it is not a fault and must never be reported as one.
-HELD_REASONS = {"editorial_hold", "showrunner_block"}
+HELD_REASONS = {"editorial_hold", "showrunner_block", "duplicate_hold"}
 
 
 def classify_results(results: list[dict]) -> dict:
@@ -399,6 +468,22 @@ def main() -> int:
             print(f"[{slug}] already posted -> {log['posted'][slug].get('url')}, "
                   f"skipping (use --force to repost)")
             continue
+
+        # NEAR-DUPLICATE OF SOMETHING ALREADY UP. Checked before the render
+        # budget and before the editorial gate: it costs nothing, it can never
+        # become un-true later in the run, and a repeat is the one refusal that
+        # protects the CHANNEL rather than the video.
+        if not args.force:
+            _dup = duplicate_of(
+                sc.get("title") or slug,
+                [e.get("title") for e in log["posted"].values()])
+            if _dup:
+                print(f"[{slug}] NOT POSTING — too close to a video already "
+                      f"up: {_dup!r}. The story is fine; the PACKAGING "
+                      f"repeats. Retitle it and it ships.")
+                results.append({"slug": slug, "ok": False,
+                                "error": "duplicate_hold", "duplicate_of": _dup})
+                continue
 
         # Check the run's render budget FIRST — before the editorial gate.
         # `pre_render_verdict` is an LLM call (rate-limited on the free Groq
