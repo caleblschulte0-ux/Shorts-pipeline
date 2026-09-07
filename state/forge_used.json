@@ -3,6 +3,7 @@
   "AG.CON.FERT.PT.ZS",
   "AG.CON.FERT.ZS",
   "AG.LND.AGRI.K2",
+  "AG.LND.ARBL.HA",
   "AG.LND.ARBL.HA.PC",
   "AG.LND.CREL.HA",
   "AG.LND.CROP.ZS",
@@ -22,6 +23,7 @@
   "EG.ELC.RNEW.ZS",
   "EG.FEC.RNEW.ZS",
   "EG.USE.COMM.CL.ZS",
+  "EG.USE.COMM.FO.ZS",
   "EG.USE.CRNW.ZS",
   "EG.USE.ELEC.KH.PC",
   "EG.USE.PCAP.KG.OE",
@@ -65,5 +67,5 @@
   "SP.URB.TOTL",
   "SP.URB.TOTL.IN.ZS"
  ],
- "updated": "2026-08-07"
+ "updated": "2026-09-07"
 }

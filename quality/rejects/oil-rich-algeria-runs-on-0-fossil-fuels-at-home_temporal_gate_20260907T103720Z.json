@@ -1,0 +1,14 @@
+{
+ "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
+ "ts": "20260907T103720Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: duplicate_ratio 0.465 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+ "weakest_scene": {},
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
