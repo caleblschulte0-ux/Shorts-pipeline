@@ -1,0 +1,25 @@
+{
+  "key": "metric_mars_orbiter_altitude",
+  "title": "Mars Climate Orbiter: planned vs. actual altitude at Mars (km)",
+  "unit": "km",
+  "geography": "Mars orbit",
+  "time_coverage": "1999",
+  "source": {
+    "name": "Mars Climate Orbiter Mishap Investigation Board report",
+    "publisher": "NASA / Jet Propulsion Laboratory",
+    "url": "https://en.wikipedia.org/wiki/Mars_Climate_Orbiter",
+    "officiality": "official",
+    "access_date": "2026-09-07"
+  },
+  "notes": "NASA's $327.6 million Mars Climate Orbiter was lost in September 1999 after ground software produced thruster data in pound-force seconds while the navigation team's model expected newton-seconds. The spacecraft was supposed to enter orbit at roughly 226 km altitude; the investigation found it instead dropped to about 57 km, low enough for atmospheric forces to destroy it.",
+  "points": [
+    {
+      "label": "Planned altitude",
+      "value": 226
+    },
+    {
+      "label": "Actual altitude",
+      "value": 57
+    }
+  ]
+}

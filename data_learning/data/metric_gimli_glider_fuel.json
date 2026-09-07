@@ -1,0 +1,25 @@
+{
+  "key": "metric_gimli_glider_fuel",
+  "title": "Gimli Glider: fuel believed loaded vs. fuel actually needed (lb)",
+  "unit": "lb",
+  "geography": "Canada",
+  "time_coverage": "1983",
+  "source": {
+    "name": "Air Canada Flight 143 investigation",
+    "publisher": "Aviation Safety Board of Canada",
+    "url": "https://en.wikipedia.org/wiki/Gimli_Glider",
+    "officiality": "official",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Air Canada Flight 143, July 23, 1983: ground crew used the wrong fuel-density conversion factor while switching to metric, loading 20,400 lb of fuel instead of the roughly 45,000 lb needed. Both engines flamed out at 41,000 feet; the crew glided the Boeing 767 to a dead-stick landing at a former air base in Gimli, Manitoba. All 69 aboard survived.",
+  "points": [
+    {
+      "label": "Fuel actually loaded",
+      "value": 20400
+    },
+    {
+      "label": "Fuel actually needed",
+      "value": 45000
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "subreddit": "entitledparents",
+  "slug": "reddit-bakery-empty-box-refund",
+  "title": "She Ate The Cake, Then Demanded A Refund",
+  "hashtags": [
+    "entitledparents",
+    "bakery",
+    "customercomplaint",
+    "refund",
+    "karma",
+    "smallbusiness",
+    "redditstories",
+    "pettyrevenge",
+    "shorts",
+    "satisfying",
+    "customerservice"
+  ],
+  "script": "A woman stormed up to my bakery counter waving a nearly empty cake box, insisting the custom birthday cake we'd made tasted wrong and demanding a full refund, while her toddler still had blue frosting smeared across his face. Our return policy, taped right there on the counter in plain sight, says custom orders are only refundable if at least eighty percent of the cake comes back for inspection. I opened the box, counted maybe two slices left inside, and asked her, very politely, where the rest of the cake had gone if it tasted so wrong. She stammered something about the kids eating it out of habit before she noticed the sign. I photographed the mostly empty box for our records, pointed at the laminated policy sign, and told her we'd be happy to refund the missing eighty percent she could still produce. She grabbed the box back, muttered something about leaving a review, and left without the refund or the rest of the cake.",
+  "shots": [
+    {
+      "phrase": "a nearly empty cake box",
+      "query": "empty bakery box"
+    },
+    {
+      "phrase": "blue frosting smeared across his face",
+      "query": "toddler messy face frosting"
+    },
+    {
+      "phrase": "taped right there on the counter",
+      "query": "store policy sign counter"
+    },
+    {
+      "phrase": "counted maybe two slices left inside",
+      "query": "leftover cake slices"
+    },
+    {
+      "phrase": "I photographed the mostly empty box",
+      "query": "phone photographing box"
+    },
+    {
+      "phrase": "the laminated policy sign",
+      "query": "laminated sign"
+    },
+    {
+      "phrase": "left without the refund or the rest of the cake",
+      "query": "customer leaving store upset"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "demanding a full refund",
+      "text": "REFUND DEMAND",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "counted maybe two slices left inside",
+      "text": "ONLY 2 SLICES LEFT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "I photographed the mostly empty box",
+      "text": "EVIDENCE LOGGED",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "left without the refund or the rest of the cake",
+      "text": "REFUND DENIED",
+      "color": "#ff3030"
+    }
+  ],
+  "music_vibe": "polite deadpan counter-service standoff that ends in defeat"
+}

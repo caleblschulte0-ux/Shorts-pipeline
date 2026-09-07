@@ -1,0 +1,25 @@
+{
+  "key": "metric_holdout_population_share",
+  "title": "Share of world population in countries without official metric adoption",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Countries that don't use the metric system",
+    "publisher": "NIST / CIA World Factbook compilation; UN population estimates",
+    "url": "https://www.nist.gov/blogs/taking-measure/busting-myths-about-metric-system",
+    "officiality": "illustrative",
+    "access_date": "2026-09-07"
+  },
+  "notes": "The United States, Liberia, and Myanmar are the only countries that have never officially adopted the metric system (NIST, CIA World Factbook). Their combined population is roughly 410 million against a world population of about 8.1 billion in 2026 -- about 5%. Illustrative: the percentage is calculated here from those two separately-sourced official figures, not quoted directly from a single publisher.",
+  "points": [
+    {
+      "label": "Non-metric countries (US, Liberia, Myanmar)",
+      "value": 5
+    },
+    {
+      "label": "Rest of the world",
+      "value": 95
+    }
+  ]
+}
