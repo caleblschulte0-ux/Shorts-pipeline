@@ -998,12 +998,15 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     road_y = int((max(by0 + 240, 380) + (by1 - 160)) / 2)
     d.rounded_rectangle([bx0 + 30, road_y, bx1 - 30, road_y + 90], radius=12,
                         fill=_rgba(TEXT, 55))
-    e = settle(reveal)
-    # dashes stream past — he is moving, the NUMBER is not
-    for k in range(-1, 14):
-        x = bx0 + 40 + ((k * 96) - e * 96 * 6) % (bx1 - bx0 - 80)
-        d.rounded_rectangle([int(x), road_y + 40, int(x + 54), road_y + 52],
-                            radius=6, fill=_rgba(charts.CARD, 200))
+    # DASHES STREAM PAST AT A CONSTANT SPEED — he is moving, the NUMBER is
+    # not. Scrolled on `settle` they slowed to a crawl by the end and the
+    # visual measured a 47-frame frozen run; a road that slows down is also
+    # the wrong claim, because the finding is that time passes steadily and
+    # the number does not change.
+    for k in range(-1, 16):
+        x = bx0 + 40 + ((k * 96) - reveal * 96 * 15) % (bx1 - bx0 - 80)
+        d.rounded_rectangle([int(x), road_y + 38, int(x + 62), road_y + 54],
+                            radius=8, fill=_rgba(charts.CARD, 210))
     mid = sum(vals) / len(vals)
     host = scene_host("point", reveal)
     if host is not None:
@@ -1095,7 +1098,12 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     # point — read as a small pause in a bar. The near deck is a built roadway
     # that stops in mid-air, the far bank is raised, and the drop below is dark.
     deck_y = y + 40
-    d.rectangle([x0, deck_y + 34, x1, by1 - 40], fill=_rgba(charts.CARD, 90))
+    # A DROP, not a wall. Filled to the bottom of the safe box this was a
+    # 1,500px dark rectangle under a thin deck — it read as the background
+    # changing colour rather than as a gap with a bottom to fall to.
+    _chasm = min(300, int((by1 - deck_y) * 0.42))
+    d.rectangle([x0, deck_y + 34, x1, deck_y + 34 + _chasm],
+                fill=_rgba(charts.CARD, 90))
     d.rounded_rectangle([x0, deck_y, edge, deck_y + 34], radius=8,
                         fill=_rgba(color, 245))
     for px in range(x0 + 30, edge - 10, 66):        # pilings under what exists
@@ -1284,13 +1292,19 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
     span = (hi - lo) or 1.0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 460, 660)
-    R = int(min((bx1 - bx0) * 0.34, 300))
+    cy = int(by0 + (by1 - by0) * 0.42)
+    R = int(min((bx1 - bx0) * 0.42, (by1 - by0) * 0.30))
     e = settle(reveal)
     d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=_rgba(TEXT, 110),
               width=9)
-    d.polygon([(cx, cy), (cx - 70, by1 - 110), (cx + 70, by1 - 110)],
-              fill=_rgba(TEXT, 70))
+    # The A-frame stands the wheel up; it does not run the height of the
+    # frame. Drawn to the bottom of the safe box it was a white wedge taller
+    # than the wheel itself and the eye read it before anything else.
+    _gy = cy + R + 90
+    d.polygon([(cx, cy), (cx - 78, _gy), (cx + 78, _gy)],
+              fill=_rgba(TEXT, 60))
+    d.rounded_rectangle([cx - 130, _gy, cx + 130, _gy + 18], radius=9,
+                        fill=_rgba(TEXT, 90))
     n = len(vals)
     turn = e * 2.0 * _math.pi          # a full revolution across the visual
     for k, v in enumerate(vals):
@@ -1333,8 +1347,11 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
     span = (hi - lo) or (abs(mean) * 0.02) or 1.0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 430, 640)
-    R = int(min((bx1 - bx0) * 0.33, 290))
+    # SCALED TO THE BOX. The caps here were set against a 1100-tall safe box;
+    # a lone machine now owns a 1480-tall one, and a fixed 290px radius left
+    # the board floating in the top third of the frame.
+    cy = int(by0 + (by1 - by0) * 0.46)
+    R = int(min((bx1 - bx0) * 0.42, (by1 - by0) * 0.30))
     for k, rr in enumerate((R, int(R * 0.68), int(R * 0.36))):
         d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],
                   outline=_rgba(TEXT, 90 + k * 40), width=6)
@@ -1351,6 +1368,22 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         py = int(cy + _math.sin(ang) * rad)
         d.ellipse([px - 17, py - 17, px + 17, py + 17],
                   fill=_rgba(color, int(240 * a)))
+    # ANOTHER DART, ALWAYS IN THE AIR. Landed darts do not move, so the board
+    # filled and then held: a 0.908 duplicate ratio and a 47-frame frozen run.
+    # A throw on a loop is also the honest reading — every one of them lands
+    # in the same small group, which is the finding.
+    for k in range(2):
+        t_ = (reveal * 1.6 + k * 0.5) % 1.0
+        j = (k * 3) % max(1, len(vals))
+        ang = j * 2.399963
+        rad = R * 0.82 * abs(vals[j] - mean) / span
+        tx = cx + _math.cos(ang) * rad
+        ty = cy + _math.sin(ang) * rad
+        fx = tx + (bx1 - 40 - tx) * (1.0 - t_)
+        fy = ty - (ty - (by0 + 150)) * (1.0 - t_)
+        r_ = 17 + 16 * (1.0 - t_)
+        d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
+                  fill=_rgba(HIGHLIGHT, 235))
     host = scene_host("think", reveal)
     if host is not None:
         mh = 200
@@ -1393,24 +1426,39 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
             glyph = _PImg.open(cp).convert("RGBA")
         except Exception:  # noqa: BLE001
             glyph = None
+    # A LINE THAT SNAKES. One row against the bottom of the frame capped the
+    # queue at whatever fitted across and left the middle of a 1480-tall box
+    # empty — the picture of a backlog has to be able to get LONGER, so it
+    # wraps, the way a real queue folds back on itself.
+    n_wait = max(1, int(round(1 + frac * 29)))
     host = scene_host("point", reveal)
-    mh = 250
-    mw = int(host.width * mh / host.height) if host is not None else 160
-    hx = bx0 + 70
+    mh = 280
+    mw = int(host.width * mh / host.height) if host is not None else 170
+    hx = bx0 + 60
     if host is not None:
         canvas.alpha_composite(_fit(host, mw, mh), (hx, ground - mh))
-    sz = 92
+    sz = 96
+    cols = max(3, int((bx1 - 40 - (hx + mw + 20)) // (sz + 12)))
+    rowh = sz + 34
+    first_top = ground - sz
     for k in range(n_wait):
-        x = hx + mw + 16 + k * (sz + 10)
-        if x + sz > bx1 - 20:
+        gx, gy = k % cols, k // cols
+        # rows fold back the way a queue does, so the tail is beside the head
+        if gy % 2:
+            gx = cols - 1 - gx
+        x = hx + mw + 20 + gx * (sz + 12)
+        y = first_top - gy * rowh
+        if y < by0 + 190:
             break
         if glyph is not None:
-            canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), ground - sz))
+            canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
-            d.ellipse([x, ground - sz, x + sz, ground], fill=_rgba(ACCENT, 235))
-    d.text(((bx0 + bx1) // 2, by0 + 58),
+            d.ellipse([x, y, x + sz, y + sz], fill=_rgba(ACCENT, 235))
+    d.text(((bx0 + bx1) // 2, by0 + 78),
            f"{lab}   {charts._ulabel(v, unit, group=True)} waiting",
            font=_pil_font(62), fill=_rgba(color, 255), anchor="mm")
+    d.text(((bx0 + bx1) // 2, ground + 62), "and the line keeps growing",
+           font=_pil_font(40), fill=_rgba(TEXT, 210), anchor="mm")
     return (v, "art", hx + mw, ground - sz)
 
 
@@ -2619,15 +2667,26 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
     hi = max(abs(v), abs(bv)) * 1.2 or 1.0
     bar_y = int(bot - (bot - top) * (abs(bv) / hi))
     e = settle(reveal)
-    # the hurdle itself
-    d.line([(bx0 + 90, bar_y), (bx1 - 90, bar_y)], fill=_rgba(WARN, 240),
-           width=14)
-    for xx in (bx0 + 110, bx1 - 110):
-        d.line([(xx, bar_y), (xx, bot)], fill=_rgba(WARN, 150), width=8)
-    d.text((bx1 - 96, bar_y - 34),
+    # THE GROUND, then a hurdle STANDING ON IT.
+    #
+    # Drawn full-width with legs to the floor, the hurdle was a 470px staple
+    # across the whole frame and his value was a thin line floating above it —
+    # two unrelated horizontals rather than a thing and the bar it cleared. A
+    # hurdle is a short bar on legs, and it needs a ground to stand on before
+    # any of it means anything.
+    _cx = (bx0 + bx1) // 2
+    _hw = int((bx1 - bx0) * 0.30)
+    d.line([(bx0 + 40, bot), (bx1 - 40, bot)], fill=_rgba(TEXT, 90), width=6)
+    for xx in (_cx - _hw + 14, _cx + _hw - 14):
+        d.line([(xx, bar_y), (xx, bot)], fill=_rgba(WARN, 170), width=11)
+    d.line([(_cx - _hw, bar_y), (_cx + _hw, bar_y)], fill=_rgba(WARN, 245),
+           width=18)
+    # Pinned to the FRAME. Hung off the bar, both labels ran off the edge —
+    # "US average 5.9 yrs" became "US averag" and his own value "1.3 yrs".
+    d.text((bx1 - 24, bar_y - 34),
            f"{getattr(base, 'label', 'baseline')}  "
-           f"{charts._ulabel(bv, unit)}", font=_pil_font(38),
-           fill=_rgba(WARN, 235), anchor="rm")
+           f"{charts._ulabel(bv, unit)}", font=_pil_font(36),
+           fill=_rgba(WARN, 240), anchor="rm")
     # HE RUNS AT IT AND JUMPS IT.
     #
     # The first version slid him up to his value over the whole visual. The
@@ -2663,14 +2722,20 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(hx - mw // 2), int(hy - mh)))
-    d.line([(bx0 + 130, val_y), (bx1 - 130, val_y)],
-           fill=_rgba(color, 200), width=6)
+    # HIS HEIGHT, marked where he actually is rather than ruled across the
+    # frame — a full-width line reads as a second hurdle.
+    d.line([(_cx - _hw - 60, val_y), (_cx + _hw + 60, val_y)],
+           fill=_rgba(color, 210), width=7)
+    d.text((bx0 + 24, val_y - 34), charts._ulabel(v, unit),
+           font=_pil_font(42), fill=_rgba(color, 245), anchor="lm")
     d.text(((bx0 + bx1) // 2, by0 + 58),
            f"{getattr(star, 'label', '')}   {charts._ulabel(v, unit)}",
            font=_pil_font(70), fill=_rgba(color, 255), anchor="mm")
-    d.text(((bx0 + bx1) // 2, bot + 52),
-           "clears it" if cleared else "does not clear it",
-           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    _by = abs(abs(v) - abs(bv))
+    d.text((_cx, bot + 62),
+           (f"clears it by {charts._ulabel(_by, unit)}" if cleared
+            else f"{charts._ulabel(_by, unit)} short of it"),
+           font=_pil_font(46), fill=_rgba(TEXT, 230), anchor="mm")
     return (v, "art", (bx0 + bx1) // 2, val_y)
 
 
@@ -2721,6 +2786,24 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
                f"{getattr(p, 'label', '')[:14]}  {charts._ulabel(v, unit)}",
                font=lab_f, fill=_rgba(TEXT, int(240 * a)), anchor="lm")
         last_xy = (int(cx), my)
+    # PEOPLE FALLING THROUGH IT. Stages that narrow and then hold measured a
+    # 0.908 duplicate ratio and a 50-frame frozen run — and a funnel with
+    # nothing falling through it is a shape, not a process. Only the share
+    # that survives reaches the bottom; the rest stop at the stage that lost
+    # them, which is the caption drawn instead of written.
+    _keep = max(1, int(round(14 * vals[-1] / (vals[0] or 1.0))))
+    for k in range(14):
+        t_ = (reveal * 1.5 + k / 14.0) % 1.0
+        py = top + t_ * (bot - top)
+        idx = max(0, min(n - 1, int((py - top) / sh)))
+        if k >= _keep and idx >= 1:
+            # stops at the stage it was lost in
+            py = top + (idx - 0.35) * sh
+        wv = full_w * (vals[idx] / vmax)
+        px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
+            8.0, wv * 0.6)
+        d.ellipse([px - 10, py - 10, px + 10, py + 10],
+                  fill=_rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last_xy is not None:
         mh = 190
@@ -2822,6 +2905,30 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(28), fill=_rgba(TEXT, int(195 * a)), anchor="mm")
         last = (bxm, split_y + 90)
         x += w + 12
+    # PRODUCT IN THE PIPES. A split that appears and then holds measured a
+    # 0.916 duplicate ratio and a 54-frame frozen run — and a pipe with
+    # nothing moving through it is a diagram of plumbing, not a picture of a
+    # flow. Each particle runs down the trunk and out through the branch it
+    # belongs to, so the split is something you watch happen.
+    if last is not None:
+        _x = bx0 + 60
+        _mid = []
+        for _v in vals:
+            _w = max(26, int(span * (_v / tot)))
+            _mid.append(_x + _w // 2)
+            _x += _w + 12
+        for k in range(12):
+            t_ = (reveal * 1.7 + k / 12.0) % 1.0
+            j = k % len(_mid)
+            if t_ < 0.45:
+                px = cx
+                py = top + (split_y - top) * (t_ / 0.45)
+            else:
+                u = (t_ - 0.45) / 0.55
+                px = cx + (_mid[j] - cx) * min(1.0, u * 2.0)
+                py = split_y + (bot - split_y) * u
+            d.ellipse([px - 11, py - 11, px + 11, py + 11],
+                      fill=_rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last is not None:
         # Beside the trunk, not inside it — a wide trunk with him in the middle
@@ -3894,6 +4001,102 @@ def _load_photo(subject, slug, tag):
         return None
 
 
+# Machines that can honestly draw a NEGATIVE value, because they encode
+# POSITION against the series' own range rather than SIZE. Everything else
+# turns a value into a height, a length, an area or a count of objects, and a
+# negative one of those does not exist: `centre` and `skyline` raised outright
+# ("y1 must be greater than or equal to y0") and the rest would have drawn
+# `abs(v)`, which is worse — a net migration of -5 rendered the same size as
+# +5 is a sign flip nobody can see.
+#
+# A machine outside this set refuses a series containing a negative and the
+# beat falls back to a chart, which has an axis and can put a bar below zero.
+_SIGN_SAFE = {"road", "coaster", "spotlight", "wheel", "darts", "fan",
+              "tape", "elevator", "timeline_axis"}
+
+_MACHINE_FAILED: set = set()
+
+
+def machine_may_draw(kind: str, insight) -> bool:
+    """Whether this machine is allowed to draw this data at all.
+
+    Separate from the machine's own refusal (too few items, no baseline, a
+    ratio it cannot tile) so the DRY PROBE below and the frame loop cannot
+    disagree about which elements are live.
+    """
+    if kind in _SIGN_SAFE:
+        return True
+    try:
+        return not any(float(getattr(q, "value", 0) or 0) < 0
+                       for q in (getattr(insight, "items", None) or []))
+    except (TypeError, ValueError):
+        return False
+
+
+def _finite(v) -> bool:
+    """A value a picture can be drawn from."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return False
+    return f == f and f not in (float("inf"), float("-inf"))
+
+
+def drawable_insight(insight):
+    """The insight with every UNDRAWABLE item removed, or None if too few are
+    left to draw anything.
+
+    A NaN reaches a machine as a width, gets `int()`-ed, and raises — 38 of
+    the 42 machines died on it in a fuzz sweep, and a raise inside a render is
+    a lost video, not a bad picture. An infinity is the same story one line
+    later. Neither is exotic: a rate with a zero denominator, a division in a
+    transform, a source that ships `null` as `NaN` all produce them.
+
+    Filtering here rather than in forty draw functions is the point. A machine
+    that is then left with too little to say returns None on its own and the
+    beat falls back to a chart, which is the honest outcome — better a chart
+    than a frame that never renders.
+
+    Returns the ORIGINAL object when everything is finite, so the normal path
+    costs one scan and no copy.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    keep = [p for p in items if _finite(getattr(p, "value", None))]
+    base = getattr(insight, "baseline", None)
+    bad_base = base is not None and not _finite(getattr(base, "value", None))
+    if len(keep) == len(items) and not bad_base:
+        return insight
+    if not keep:
+        return None
+    import copy as _copy
+    out = _copy.copy(insight)
+    out.items = keep
+    if bad_base:
+        out.baseline = None
+    return out
+
+
+def _guarded(label: str, fn, *a, **kw):
+    """Call a draw function; on failure return None instead of killing the
+    render.
+
+    This is the same contract the engines layer already runs on (`maybe_*()`
+    returns a result or None, never raises), and for the same reason: a beat
+    that cannot draw its picture should fall back to one that can, not take
+    the day's video with it. It is a NET, not a licence — every catch is
+    reported once per process so a real bug is visible in the run log rather
+    than silently absorbed.
+    """
+    try:
+        return fn(*a, **kw)
+    except Exception as e:  # noqa: BLE001
+        if label not in _MACHINE_FAILED:
+            _MACHINE_FAILED.add(label)
+            print(f"[viz] machine {label!r} refused to draw "
+                  f"({type(e).__name__}: {str(e)[:120]}) — falling back")
+        return None
+
+
 def _as_anchor(an):
     """One anchor shape, whatever the draw function hands back.
 
@@ -3929,6 +4132,10 @@ def _as_anchor(an):
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
+    # Undrawable values are stripped ONCE, before anything is pruned or drawn.
+    insight = drawable_insight(insight)
+    if insight is None:
+        return None
     spec = prune(getattr(insight, "scene", None), insight)
     if spec is None:
         return None
@@ -4020,6 +4227,32 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             and all(cuts.get(i) is None and photos.get(i) is None
                     for i in range(len(els))):
         return None
+    # DRY PROBE — will ANYTHING draw?
+    #
+    # A machine refuses by returning None: too few items, no baseline, a ratio
+    # it cannot tile honestly. That is the right behaviour and it used to be
+    # safe, because a refusing element sat in a scene beside others. A lone
+    # machine that refuses renders a sequence of EMPTY FRAMES instead, and a
+    # black beat is worse than a crash: nothing raises, no gate reads it, and
+    # it ships. Probing once at full reveal costs one draw per element and
+    # turns that into an honest fallback to a chart.
+    if els and all(e.get("type") in _MACHINE_DRAW for e in els):
+        from PIL import Image as _PIm, ImageDraw as _PIDraw
+        _probe = _PIm.new("RGBA", (W, H), (0, 0, 0, 0))
+        _pd = _PIDraw.Draw(_probe)
+        _live = False
+        for i, el in enumerate(els):
+            t = el.get("type")
+            if not machine_may_draw(t, insight):
+                continue
+            if _guarded(t, _MACHINE_DRAW[t], _pd, _probe, boxes[i], insight,
+                        _color_for(insight.items[0].label, insight)
+                        if insight.items else HIGHLIGHT, 1.0,
+                        insight.unit) is not None:
+                _live = True
+                break
+        if not _live:
+            return None
     vmax = max((p.value for p in insight.items), default=1.0) or 1.0
     n = len(els)
     anchors: list = []
@@ -4040,10 +4273,12 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             t = el.get("type")
             box = boxes[i]
             if t in _MACHINE_DRAW:
+                if not machine_may_draw(t, insight):
+                    continue                # a size cannot be negative
                 _fn = _MACHINE_DRAW[t]
-                an = _fn(d, canvas, box, insight,
-                         _color_for(insight.items[0].label, insight)
-                         if insight.items else HIGHLIGHT, lr, insight.unit)
+                an = _guarded(t, _fn, d, canvas, box, insight,
+                              _color_for(insight.items[0].label, insight)
+                              if insight.items else HIGHLIGHT, lr, insight.unit)
                 if f == frames and _as_anchor(an):
                     anchors.append(_as_anchor(an))
             elif t == "race_track":

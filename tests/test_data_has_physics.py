@@ -398,11 +398,33 @@ class TheHonestyOfTheNewMachines(unittest.TestCase):
         import inspect
         self.assertIn("make it to the end", inspect.getsource(vs.draw_funnel))
 
-    def test_the_hurdle_says_whether_it_cleared(self):
+    def test_the_hurdle_says_whether_it_cleared_AND_BY_HOW_MUCH(self):
+        """It used to say only "clears it" / "does not clear it". The margin
+        is the interesting half — 11.3 against an average of 5.9 is not the
+        same story as 6.0 against 5.9, and the picture cannot show that
+        difference at a glance when the bar is nearly the same height."""
         import inspect
         src = inspect.getsource(vs.draw_hurdle)
-        self.assertIn("clears it", src)
-        self.assertIn("does not clear it", src)
+        self.assertIn("clears it by", src)
+        self.assertIn("short of it", src)
+        self.assertIn("abs(abs(v) - abs(bv))", src)
+
+    def test_the_hurdle_stands_on_a_GROUND(self):
+        """Drawn full-width with legs to the floor it was a staple across the
+        whole frame, and his value a line floating above it: two unrelated
+        horizontals rather than a thing and the bar it cleared."""
+        import inspect
+        src = inspect.getsource(vs.draw_hurdle)
+        self.assertIn("THE GROUND", src)
+
+    def test_no_machine_label_is_hung_off_a_moving_edge(self):
+        """Both of the hurdle's labels ran off the frame when they were
+        anchored to the bar, whose x moves with the box. Pinned to bx0/bx1
+        they cannot clip."""
+        import inspect
+        src = inspect.getsource(vs.draw_hurdle)
+        self.assertIn("bx1 - 24", src)
+        self.assertIn("bx0 + 24", src)
 
     def test_the_pipes_shares_are_the_widths(self):
         """Width IS the encoding, so the branches add up to the trunk by
@@ -512,8 +534,22 @@ class MotionMustBeVISIBLE(unittest.TestCase):
         # catches a machine that is grossly still, not one that is marginal.
         FRAMES = 120
         CEILING = 35
+        # EVERY machine, not a sample of them. The case list below started as
+        # four and grew batch by batch, which meant a machine was only ever
+        # measured if somebody remembered to add it — and on 2026-09-07 a
+        # sweep of all forty-two found four that had never been measured and
+        # were failing: darts (47), funnel (50), pipes (54) and road (47), all
+        # at production frame size. Three were staged reveals that finished
+        # and held; road scrolled its dashes on `settle`, so they slowed to a
+        # crawl exactly when the eye had nothing else to watch.
+        #
+        # `MACHINES_MEASURED_ELSEWHERE` is empty on purpose. If a machine
+        # cannot be given a sample here it does not get measured, and a
+        # machine nobody measures is one that ships frozen.
         stages = [("Applied", 12000), ("Screened", 9800),
                   ("Interviewed", 2100), ("Offered", 1700), ("Hired", 1500)]
+        zig = [(str(2016 + k), v) for k, v in
+               enumerate([99, 101, 97, 100, 98, 101, 97, 99])]
         cases = (("tower", vs.tower_scene, _ins(years), None),
                  ("staircase", vs.staircase_scene, _ins(years), None),
                  ("race", vs.race_scene, _ins(cities), None),
@@ -563,7 +599,46 @@ class MotionMustBeVISIBLE(unittest.TestCase):
                   _ins([("Djokovic", 24), ("Nadal", 22),
                         ("Federer", 20)]), None),
                  ("basket", vs.basket_scene,
-                  _ins([("1999", 34), ("2026", 19)]), None))
+                  _ins([("1999", 34), ("2026", 19)]), None),
+                 # The seventeen that had no sample until 2026-09-07. Four of
+                 # them were failing the moment they were measured.
+                 ("bridge", vs.bridge_scene, _ins([("Now", 76)]),
+                  ("Target", 100)),
+                 ("burden", vs.burden_scene,
+                  _ins([(str(2016 + k), 22.0 + k * 1.6) for k in range(8)]),
+                  None),
+                 ("centre", vs.centre_scene, _ins(cities), None),
+                 ("coaster", vs.coaster_scene, _ins(zig), None),
+                 ("conveyor", vs.conveyor_scene, _ins([("Parcels", 1400)]),
+                  None),
+                 ("darts", vs.darts_scene,
+                  _ins([("A", 100), ("B", 102), ("C", 101), ("D", 99),
+                        ("E", 100), ("F", 101)]), None),
+                 ("elevator", vs.elevator_scene,
+                  _ins([(str(2016 + k), 96.0 - k * 7) for k in range(8)]),
+                  None),
+                 ("funnel", vs.funnel_scene, _ins(stages), None),
+                 ("gauge", vs.gauge_scene, _ins([("Rate", 22.9)]), None),
+                 ("pipes", vs.pipes_scene,
+                  _ins([("Rent", 34), ("Food", 22), ("Transit", 18),
+                        ("Other", 26)]), None),
+                 ("queue", vs.queue_scene,
+                  _ins([(str(2016 + k), 200.0 + k * 180) for k in range(8)]),
+                  None),
+                 ("road", vs.road_scene,
+                  _ins([(str(2016 + k), 50.0 + (k % 2) * 0.2)
+                        for k in range(8)]), None),
+                 ("skyline", vs.skyline_scene,
+                  _ins([("Tokyo", 37.4), ("Delhi", 9.2), ("Cairo", 7.8),
+                        ("Lima", 4.1)]), None),
+                 ("spotlight", vs.spotlight_scene, _ins(zig), None),
+                 ("tape", vs.tape_scene, _ins([("2016", 42), ("2026", 97)]),
+                  None),
+                 ("thermometer", vs.thermometer_scene, _ins([("Now", 88)]),
+                  ("Limit", 100)),
+                 ("wheel", vs.wheel_scene,
+                  _ins([(str(2016 + k), v) for k, v in
+                        enumerate([10, 60, 12, 58, 11, 62, 13, 59])]), None))
         worst = {}
         for name, build, ins, base in cases:
             if base:

@@ -196,7 +196,8 @@ def _machine_candidates(ins) -> list[str]:
             if tok not in _SCENE_BUILDERS:
                 continue
             try:
-                if getattr(viz_scene, _SCENE_BUILDERS[tok])(ins):
+                built = getattr(viz_scene, _SCENE_BUILDERS[tok])(ins)
+                if built and _will_draw(built, ins):
                     out.append(tok)
             except Exception:              # noqa: BLE001
                 continue
@@ -570,6 +571,46 @@ def _scene_signature(sc) -> str | None:
     if types and types <= _GENERIC_SCENE_TYPES:
         return "scene:" + "+".join(sorted(t for t in types if t))
     return None
+
+
+def _will_draw(scene, ins) -> bool:
+    """Ask the machine itself, not just its builder.
+
+    A builder only counts items. The DRAW function is where the real refusals
+    live — a nest needs a ratio between about 2 and 150, a chair needs a
+    genuine shortage, a shelf needs a tally short enough to count — and it
+    signals them by returning None.
+
+    Without this the director picks a machine that will refuse, the render
+    falls back to a chart, and the beat quietly loses both the machine it
+    chose and the runner-up it never got offered. Probing costs one draw per
+    candidate at assign time and means the machine that is picked is one that
+    will actually appear.
+    """
+    try:
+        from PIL import Image, ImageDraw
+        els = (scene or {}).get("elements") or []
+        if not els or any(e.get("type") not in viz_scene._MACHINE_DRAW
+                          for e in els):
+            return True                    # not a machine scene; not ours to judge
+        canvas = Image.new("RGBA", (viz_scene.W, viz_scene.H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        box = (viz_scene.RX0, viz_scene.RTOP, viz_scene.RX1,
+               viz_scene.MACHINE_BOT)
+        safe = viz_scene.drawable_insight(ins)
+        if safe is None:
+            return False
+        for el in els:
+            t = el.get("type")
+            if not viz_scene.machine_may_draw(t, safe):
+                continue
+            if viz_scene._guarded(t, viz_scene._MACHINE_DRAW[t], d, canvas,
+                                  box, safe, charts.HIGHLIGHT, 1.0,
+                                  safe.unit) is not None:
+                return True
+        return False
+    except Exception:                      # noqa: BLE001 — never break assign
+        return True
 
 
 def _renders_here(sc, ins) -> bool:
