@@ -1558,7 +1558,11 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "tape_scene", "bridge_scene", "centre_scene",
                 "coaster_scene", "thermometer_scene", "wheel_scene",
                 "darts_scene", "queue_scene", "bottleneck_scene",
-                "leaky_scene", "inout_scene", "sorter_scene", "chain_scene")
+                "leaky_scene", "inout_scene", "sorter_scene", "chain_scene",
+                "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
+                "slider_scene", "density_scene", "nest_scene",
+                "chairs_scene", "hourglass_scene", "trophies_scene",
+                "basket_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1573,6 +1577,9 @@ _SCENE_TOKENS = {t: t for t in (
     "centre_scene", "coaster_scene", "thermometer_scene",
     "wheel_scene", "darts_scene", "queue_scene", "bottleneck_scene",
     "leaky_scene", "inout_scene", "sorter_scene", "chain_scene",
+    "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
+    "slider_scene", "density_scene", "nest_scene", "chairs_scene",
+    "hourglass_scene", "trophies_scene", "basket_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1703,6 +1710,28 @@ _MACHINES = {
     "routing":     ("sorter_scene", "pipes_scene"),
     # each step hands to the next, so the worst one sets the pace
     "chain":       ("chain_scene", "conveyor_scene", "funnel_scene"),
+    # ONE TRIAL, not a share of a population. The dot field lights k figures
+    # in n and asserts a countable population; a chance is a single spin. The
+    # doors are the same claim told long, and only fit a genuine "1 in n".
+    "probability": ("spinner_scene", "doors_scene"),
+    # a PROJECTION is not a measurement, and must not join the same line
+    "forecast":    ("fan_scene",),
+    # the finding is that they move TOGETHER, which two bars cannot say
+    "correlation": ("gears_scene", "balance_scene"),
+    # every unit of one is a unit of the other you did not get
+    "tradeoff":    ("slider_scene", "balance_scene"),
+    # the same square, packed differently — the box must NOT also scale
+    "density":     ("density_scene", "rate_scene"),
+    # how many of the small one fit in the big one, tiled by AREA
+    "scale":       ("nest_scene", "skyline_scene"),
+    # more claimants than there are places, drawn as people left standing
+    "scarcity":    ("chairs_scene", "queue_scene"),
+    # a length of TIME, as sand that will not stop falling
+    "duration":    ("hourglass_scene", "tape_scene"),
+    # a tally where the objects are the point: one cup, one title
+    "record":      ("trophies_scene", "units_scene"),
+    # what the same money actually buys, which is never the price
+    "buying_power": ("basket_scene", "units_scene"),
     "other":       (),
 }
 
@@ -1719,7 +1748,8 @@ _MACHINES = {
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
-                        "cycle", "spread", "queue", "routing"})
+                        "cycle", "spread", "queue", "routing",
+                        "probability", "record"})
 
 
 def _machines_for(insight) -> tuple:

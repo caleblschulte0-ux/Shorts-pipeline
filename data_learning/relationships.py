@@ -61,6 +61,15 @@ RETENTION = "retention"        # what is kept versus what leaks away
 INFLOW_OUTFLOW = "in_out"      # what comes in against what goes out
 ROUTING = "routing"            # where a total is sent, by destination
 CHAIN = "chain"                # named steps a thing passes through in order
+SCALE = "scale"                # how many times one thing fits in the other
+SCARCITY = "scarcity"          # more claimants than there are places
+DURATION = "duration"          # how LONG something takes or lasts
+RECORD = "record"              # a tally of titles, medals, championships
+BUYING_POWER = "buying_power"  # what a fixed amount of money actually gets
+PROBABILITY = "probability"    # the chance of one thing happening, once
+FORECAST = "forecast"          # a series with a PROJECTED point on the end
+CORRELATION = "correlation"    # two quantities that move together
+TRADEOFF = "tradeoff"          # more of one is necessarily less of the other
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -94,6 +103,48 @@ _BOTTLENECK = re.compile(
 _CHAIN = re.compile(
     r"\b(supply chain|from farm|farm to|factory to|port to|end to end|"
     r"journey|passes through|route from)\b", re.I)
+# THE UNCERTAINTY FAMILY. All four need the claim to say so: a probability
+# and a percentage are the same number, a projection and a measurement are the
+# same number, and only the words separate them. Drawing a measured value as a
+# forecast, or the reverse, is a lie about provenance rather than a bad
+# picture — so the shape alone never decides any of these.
+_PROB = re.compile(
+    r"\b(chance|chances|odds|likelihood|probabilit\w*|risk of|"
+    r"(1|one) in \d|coin ?flip|lottery)\b", re.I)
+_FORECAST = re.compile(
+    r"\b(project\w*|forecast\w*|expected to|on track to|set to (hit|reach|"
+    r"pass)|estimated to reach|will reach|predict\w*)\b", re.I)
+_CORREL = re.compile(
+    r"\b(correlat\w*|hand in hand|in lockstep|moves? with|move together|"
+    r"tracks? (closely|with)|linked to|rises? with|falls? with|"
+    r"the more .* the more)\b", re.I)
+_TRADEOFF = re.compile(
+    r"\b(trade[- ]?offs?|at the (cost|expense) of|in exchange for|"
+    r"comes at the|one or the other|you cannot have both|"
+    r"every .* (means|costs) (one )?(fewer|less))\b", re.I)
+# BATCH FIVE. Same rule as the rest: the claim decides. Every one of these is
+# a plain ranking by shape, and drawing a ranking as a shortage or a scale
+# comparison invents a relationship the data never described.
+_DENSITY = re.compile(
+    r"\b(densit\w*|per square (km|kilometre|kilometer|mile|foot|feet|metre|"
+    r"meter)|per (acre|hectare)|packed into|crowded|people per)\b", re.I)
+_SCALE = re.compile(
+    r"\b(times (bigger|larger|smaller|more|as (big|large|many|much|long))|"
+    r"fits? inside|would fit|\d+x (bigger|larger|the))\b", re.I)
+_SCARCITY = re.compile(
+    r"\b(for every|per (opening|place|seat|slot|spot|bed|home|unit)|"
+    r"shortage|waiting list|applicants? per|competing for|chasing|"
+    r"not enough)\b", re.I)
+_DURATION = re.compile(
+    r"\b(how long|takes? .{0,12}(years|days|hours|months|weeks)|"
+    r"waiting time|wait of|it would take|to save (up )?for|"
+    r"(years|days|months) to)\b", re.I)
+_RECORD = re.compile(
+    r"\b(titles?|championships?|medals?|trophies|trophy|grand slams?|"
+    r"world cups?)\b", re.I)
+_BUYING = re.compile(
+    r"\b(buys?|would buy|worth of|for the price of|purchasing power|"
+    r"goes further|gets you|what .{0,20}(buys|gets))\b", re.I)
 _STAGE = re.compile(
     r"\b(stage|step|round|funnel|applied|accepted|enrolled|graduat\w*|"
     r"survive\w*|remain\w*|left|reach\w*|qualif\w*|shortlist\w*|"
@@ -192,6 +243,35 @@ def _cyclic(values: list) -> bool:
     return max(runs) <= 2.5 * min(runs)     # comparable in size
 
 
+def _year_of(label) -> int | None:
+    """The four-digit year a label starts with, or None."""
+    t = str(label or "").strip()
+    if len(t) >= 4 and t[:4].isdigit():
+        y = int(t[:4])
+        if 1800 <= y <= 2200:
+            return y
+    return None
+
+
+def _has_projected_tail(labels: list) -> bool:
+    """True when the LAST point is dated later than every other point AND is
+    separated from them by more than the series' own step.
+
+    The gap is what makes it a projection rather than simply the most recent
+    year. A decade of annual figures ending in 2035 is a forecast; the same
+    decade ending in 2025 is data.
+    """
+    yrs = [_year_of(x) for x in labels]
+    if len(yrs) < 3 or any(y is None for y in yrs):
+        return False
+    steps = [b - a for a, b in zip(yrs, yrs[1:])]
+    if any(x <= 0 for x in steps[:-1]):
+        return False
+    body = steps[:-1]
+    typical = sum(body) / len(body)
+    return typical > 0 and steps[-1] >= 2 * typical
+
+
 def _direction(values: list) -> tuple:
     """(net change as a fraction of the start, number of direction reversals).
 
@@ -247,7 +327,25 @@ def _classify(insight) -> str:
         except (TypeError, ValueError):
             pass
 
+    text_low = text.lower()
+
+    # A CHANCE IS NOT A PERCENTAGE, even though it is written as one. "12% of
+    # households own one" is a share you can count out; "a 12% chance" is one
+    # trial that either happens or does not, and the dot field — which lights
+    # 12 figures in 100 — asserts the first while the claim says the second.
+    # Only the words can tell them apart, so the words decide.
+    if _PROB.search(text_low):
+        return PROBABILITY
+
     if is_time_series(insight):
+        # A PROJECTION IS NOT A MEASUREMENT. When the claim says forecast AND
+        # the last point is dated later than everything measured, the last
+        # point is somebody's estimate and must not be drawn as another
+        # observation on the same line. That is a lie about provenance, which
+        # is worse than an ugly picture — the fan says outright where the data
+        # stops.
+        if _FORECAST.search(text_low) and _has_projected_tail(labels):
+            return FORECAST
         # FLAT FIRST. [50, 50.2, 50.1, 50.3, 50.2] has a direction change at
         # every step and a range that is entirely noise; measured against its
         # own span every wobble looks decisive, so flatness has to be judged
@@ -321,6 +419,24 @@ def _classify(insight) -> str:
         return CHAIN
     if len(values) >= 3 and _ROUTE.search(text_l):
         return ROUTING
+    # TWO QUANTITIES THAT MOVE TOGETHER, and two that cannot both go up. Both
+    # need the claim: by shape these are a pair of numbers and nothing else.
+    if len(values) >= 2 and _TRADEOFF.search(text_l):
+        return TRADEOFF
+    if len(values) >= 2 and _CORREL.search(text_l):
+        return CORRELATION
+    if len(values) >= 2 and _DENSITY.search(text_l):
+        return DENSITY
+    if len(values) >= 2 and _SCALE.search(text_l):
+        return SCALE
+    if len(values) >= 2 and _SCARCITY.search(text_l):
+        return SCARCITY
+    if len(values) >= 2 and _BUYING.search(text_l):
+        return BUYING_POWER
+    if len(values) >= 2 and _RECORD.search(text_l):
+        return RECORD
+    if len(values) >= 2 and _DURATION.search(text_l):
+        return DURATION
 
     # FUNNEL vs BOTTLENECK, decided on the per-stage SURVIVAL RATES rather
     # than the raw drops. A hiring funnel's biggest drop is also its first

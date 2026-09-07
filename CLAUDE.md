@@ -88,6 +88,42 @@ single source of truth; `assets/mascot/host/*.svg|png` are generated from it
 character, so change it only on an explicit request — and regenerate the
 assets in the same commit.
 
+## The explainer picks its picture from what the data SAYS (docs/DATA_MACHINES.md)
+
+Operator direction, 2026-09-07: *"speed becomes motion, imbalance becomes
+weight, progress becomes distance ... data has physics."* The channel used to
+pick its visual from the chart KIND — a `rank` insight got bars, a `trend` got
+a line — which is a rendering decision dressed as an editorial one, and it is
+why every video looked like the last.
+
+`data_learning/relationships.py` asks the editorial question first and returns
+ONE relationship; `studio_render._MACHINES` maps that to the pictures that say
+it; `viz_scene._MACHINE_DRAW` draws them. **A chart is the FALLBACK, not the
+default.** 42 machines, 38 relationships, all offline and host-baked.
+
+Four rules, all of which were learned the hard way and are held by
+`tests/test_data_has_physics.py`:
+
+- **A relationship is a CLAIM, drawn at 200pt.** `share` says these are parts
+  of one whole; this channel once shipped "2019 IS 9% OF THE WHOLE" over a run
+  of mortgage rates. Every classifier refuses when unsure, and OTHER — draw a
+  chart — is always an acceptable answer.
+- **Where the shape is ambiguous the CLAIM decides, not the numbers.** Stages
+  that shrink are a funnel, a ranking, a bottleneck, a supply chain and a set
+  of sorting bins all at once by shape alone. A probability and a share are
+  both "23%". A projection and a measurement are both a point on a line.
+- **Motion must be MEASURED, not asserted.** The cadence gate reads a 45-frame
+  near-identical run as a freeze, and a slow glide across a whole visual is a
+  sub-pixel change per frame. Five machines were geometrically perfect and
+  measured as frozen. `MotionMustBeVISIBLE` renders 120 frames of every
+  machine and diffs them with the gate's own detector.
+- **One easing curve** — `viz_scene.settle()`. Four machines rolled their own
+  ease-out and all four asymptoted into a still frame.
+
+A new machine goes through the checklist at the bottom of
+`docs/DATA_MACHINES.md`, which also records what is deliberately NOT built
+(a network map needs edge data no source returns) and why.
+
 ## `config/channel_registry.json` is the ONLY place channel policy lives
 
 How many videos a channel ships, in which formats, which formats are retired,

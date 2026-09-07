@@ -541,6 +541,47 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "the weakest drawn as a thread and marked 'it breaks here'. region "
            "'full'. For a dependency where every step must hold and the worst "
            "one sets the pace.\n"
+           # THE UNCERTAINTY MACHINES. All four are the same numbers as
+           # something else and a different CLAIM, so only use one when the
+           # claim really is that: a chance is not a share, a projection is
+           # not a measurement.
+           "  spinner     — a CHANCE as a wheel with one slice lit, spinning. "
+           "region 'full'. For the probability of one event ('a 23% chance'), "
+           "NEVER for a share of a population — that is dot_field. It never "
+           "lands, because landing would show an outcome nobody measured.\n"
+           "  doors       — the same chance told long: a wall of n doors "
+           "opened one at a time, all empty but one. region 'full'. Only for "
+           "a genuine '1 in n' with n up to 50.\n"
+           "  fan         — measured points solid, then a widening cone to a "
+           "PROJECTED point, with the line where the data stops drawn and "
+           "labelled. region 'full'. Only when the last point really is a "
+           "projection dated well past the measured ones.\n"
+           "  gears       — two meshed gears turning together, sized by their "
+           "values. region 'full'. For two quantities that MOVE TOGETHER. Say "
+           "'move together', never 'drives': it is a correlation.\n"
+           "  slider      — one track, two ends, one handle: every unit of "
+           "one is a unit of the other you did not get. region 'full'. For a "
+           "real trade-off, not for any two numbers.\n"
+           # PHYSICAL COMPARISONS. Each needs the claim to say so — every one
+           # of them is a plain ranking by the numbers alone.
+           "  density     — the SAME square twice, packed differently. region "
+           "'full'. For a per-square-km / per-acre figure. The box never "
+           "changes size: only the crowd inside it does.\n"
+           "  nest        — the small thing tiled inside the big thing until "
+           "it fills it, with the count. region 'full'. For 'X times bigger', "
+           "when the ratio is between about 2 and 150.\n"
+           "  chairs      — more people than seats, with the ones left "
+           "standing. region 'full'. For a shortage: applicants per opening, "
+           "families per home.\n"
+           "  hourglass   — a LENGTH OF TIME as sand, one glass per item, the "
+           "pile left at the bottom being the number. region 'full'. Only "
+           "when the unit really is time.\n"
+           "  trophies    — a tally where the objects are the point: one cup, "
+           "one title. region 'full'. For titles / medals / championships, up "
+           "to about 30.\n"
+           "  basket      — what the same money actually BUYS, as two baskets "
+           "filled from one note. region 'full'. For cost of living and "
+           "purchasing power, where the price is not the story.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

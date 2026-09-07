@@ -55,13 +55,17 @@ _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
           "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
           "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+          "spinner", "doors", "fan", "gears", "slider",
+          "density", "nest", "chairs", "hourglass", "trophies", "basket",
           "number", "bar", "bubble", "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
              "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
              "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
              "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
-             "queue", "bottleneck", "leaky", "inout", "sorter", "chain"}
+             "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+             "spinner", "doors", "fan", "gears", "slider",
+             "density", "nest", "chairs", "hourglass", "trophies", "basket"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -73,7 +77,10 @@ _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "burden", "gauge", "skyline", "tower", "hurdle", "funnel",
                 "conveyor", "pipes", "spotlight", "road", "tape", "bridge",
                 "centre", "coaster", "thermometer", "wheel", "darts",
-                "queue", "bottleneck", "leaky", "inout", "sorter", "chain"}
+                "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+                "spinner", "doors", "fan", "gears", "slider",
+                "density", "nest", "chairs", "hourglass", "trophies",
+                "basket"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -1758,6 +1765,747 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[weak], "art", wx, y)
 
 
+def _chance_of(insight) -> float | None:
+    """The probability this insight is about, as a fraction of one.
+
+    Refuses far more than it accepts, on purpose. A chance drawn from the
+    wrong number is not a rough picture, it is a different claim: a spinner
+    with a third of its face lit says "one time in three" whatever the caption
+    underneath it says.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if not items:
+        return None
+    unit = (getattr(insight, "unit", "") or "").lower()
+    v = abs(float(getattr(items[0], "value", 0) or 0))
+    if "percent" in unit or "%" in unit or "rate" in unit:
+        p = v / 100.0
+    elif 0.0 < v <= 1.0:
+        p = v
+    elif len(items) >= 2:
+        tot = sum(abs(float(getattr(q, "value", 0) or 0)) for q in items)
+        p = (v / tot) if tot else 0.0
+    else:
+        return None
+    return p if 0.0 < p < 1.0 else None
+
+
+def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
+    """A SPINNER whose lit slice IS the chance. For PROBABILITY.
+
+    A percentage and a probability are written the same way and are not the
+    same claim: "12% of households own one" is a share you could count out,
+    "a 12% chance" is one trial that either happens or does not. The dot field
+    lights 12 figures in 100 and asserts the first. A wheel with one slice is
+    a single spin, which is the second.
+
+    It keeps spinning rather than landing. Landing it would show an OUTCOME —
+    a win or a loss the data never reported — and the honest statement is the
+    size of the slice, not what came up.
+    """
+    p = _chance_of(insight)
+    if p is None:
+        return None
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    cy = int((max(by0 + 300, 460) + (by1 - 250)) / 2)
+    r = int(min((bx1 - bx0) * 0.32, (by1 - by0) * 0.22, 260))
+    # It slows but never stops: `settle` takes the spin from fast to a drift.
+    spin = -90.0 + (1.0 - settle(reveal)) * 900.0 + reveal * 260.0
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=_rgba(charts.CARD, 255),
+              outline=_rgba(TEXT, 120), width=8)
+    d.pieslice([cx - r + 8, cy - r + 8, cx + r - 8, cy + r - 8],
+               spin, spin + 360.0 * p, fill=_rgba(color, 245))
+    d.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=_rgba(TEXT, 255))
+    d.polygon([(cx, cy - r - 40), (cx - 26, cy - r + 12),
+               (cx + 26, cy - r + 12)], fill=_rgba(WARN, 255))
+    k, n = one_in_n(p * 100.0)
+    d.text((cx, by0 + 78), f"{p * 100:.1f}% chance", font=_pil_font(62),
+           fill=_rgba(color, 255), anchor="mm")
+    if k and n:
+        d.text((cx, cy + r + 92), f"about {k} in {n}", font=_pil_font(46),
+               fill=_rgba(TEXT, 230), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 210
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(min(bx1 - mw - 16, cx + r + 20)),
+                                int(cy - mh // 2)))
+    return (p * 100.0, "art", cx, cy)
+
+
+def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
+    """A WALL OF DOORS, one of them the one. For PROBABILITY, small odds.
+
+    "1 in 25" as a number is a shrug. Twenty-five doors, opened one after
+    another and every one of them empty until the last, is how long it
+    actually takes — which is the part of a small probability nobody feels
+    from the percentage.
+    """
+    p = _chance_of(insight)
+    if p is None:
+        return None
+    k, n = one_in_n(p * 100.0)
+    if not n or n > 50 or k != 1:
+        return None                        # only a genuine "1 in n" is doors
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 270, 430), by1 - 240
+    cols = min(10, max(4, int(_math.ceil(_math.sqrt(n * 1.6)))))
+    rows = int(_math.ceil(n / cols))
+    cw = min((bx1 - bx0 - 60) / cols, 130.0)
+    ch = min((bot - top) / max(1, rows), 150.0)
+    x0 = (bx0 + bx1) / 2 - cw * cols / 2
+    y0 = top
+    lucky = (n - 1) // 2                   # deterministic, not drawn at random
+    opened = int(settle(reveal) * n)
+    for i in range(n):
+        c, rr = i % cols, i // cols
+        x, y = x0 + c * cw, y0 + rr * ch
+        rect = [int(x + 6), int(y + 6), int(x + cw - 6), int(y + ch - 6)]
+        if i == lucky and opened > i:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(color, 245))
+        elif opened > i:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(charts.CARD, 255),
+                                outline=_rgba(TEXT, 90), width=4)
+        else:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(ACCENT, 210))
+            d.ellipse([int(x + cw - 30), int(y + ch / 2 - 6),
+                       int(x + cw - 18), int(y + ch / 2 + 6)],
+                      fill=_rgba(charts.CARD, 220))
+    d.text(((bx0 + bx1) // 2, by0 + 78), f"1 in {n}", font=_pil_font(66),
+           fill=_rgba(color, 255), anchor="mm")
+    d.text(((bx0 + bx1) // 2, bot + 90), f"{p * 100:.1f}% chance",
+           font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 20)))
+    return (float(n), "art", int(x0 + (lucky % cols) * cw + cw / 2),
+            int(y0 + (lucky // cols) * ch + ch / 2))
+
+
+def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
+    """MEASURED points solid, the PROJECTION as a widening cone. For FORECAST.
+
+    Drawing a projection as one more dot on the same line is a lie about
+    provenance: it says somebody measured 2035. The cone says where the data
+    stops and that the further out it goes the less it knows, which is the
+    honest shape of a forecast and the reason this is not just a trend line.
+    """
+    items = _pts(insight, cap=10)
+    if len(items) < 4:
+        return None
+    vals = [float(getattr(q, "value", 0) or 0) for q in items]
+    labs = [_label_of(q) for q in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or (abs(hi) or 1.0)
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 300, 470), by1 - 260
+    n = len(items)
+    # the last point is the projection; everything before it is measurement
+    # X BY YEAR, not by index. Evenly spaced, a projection seventeen years
+    # out sits one step past a run of annual figures and looks like next year
+    # — the cone would then be claiming near-term precision it does not have.
+    yrs = []
+    for lb in labs:
+        t = lb.strip()
+        yrs.append(int(t[:4]) if len(t) >= 4 and t[:4].isdigit() else None)
+    if all(y is not None for y in yrs) and yrs[-1] > yrs[0]:
+        rng = float(yrs[-1] - yrs[0])
+        fr = [(y - yrs[0]) / rng for y in yrs]
+    else:
+        fr = [i / (n - 1) for i in range(n)]
+    xs = [bx0 + 70 + (bx1 - bx0 - 200) * f for f in fr]
+    ys = [bot - (bot - top) * ((v - lo) / span) for v in vals]
+    e = settle(reveal)
+    shown = 1 + int(e * (n - 2))           # never reveals past the measured end
+    d.line([(xs[i], ys[i]) for i in range(shown + 1)],
+           fill=_rgba(color, 245), width=10, joint="curve")
+    for i in range(shown + 1):
+        d.ellipse([xs[i] - 11, ys[i] - 11, xs[i] + 11, ys[i] + 11],
+                  fill=_rgba(color, 250))
+    fa = max(0.0, min(1.0, (reveal - 0.55) / 0.4))
+    if fa > 0.0:
+        # the cone: it starts at the last MEASURED point and opens outward
+        sx, sy = xs[-2], ys[-2]
+        ex = sx + (xs[-1] - sx) * fa
+        ey = sy + (ys[-1] - sy) * fa
+        # Wide enough to read as a RANGE. A sliver says the projection is
+        # precise, which is the one thing a forecast is not.
+        w = abs(ys[-1] - ys[-2]) * 0.55 + 0.14 * (bot - top)
+        d.polygon([(sx, sy), (ex, ey - w * fa), (ex, ey + w * fa)],
+                  fill=_rgba(color, 70))
+        d.line([(sx, sy), (ex, ey)], fill=_rgba(color, 200), width=7)
+        # The tip breathes through the range it is claiming — the picture is
+        # a spread of outcomes, and a still dot at the end is a prediction.
+        by_ = ey + w * fa * 0.62 * _math.sin(reveal * 8.0)
+        d.ellipse([ex - 15, by_ - 15, ex + 15, by_ + 15],
+                  outline=_rgba(color, 240), width=7)
+        for kk in range(5):
+            t_ = (reveal * 1.7 + kk / 5.0) % 1.0
+            px_ = sx + (ex - sx) * t_
+            py_ = sy + (ey - sy) * t_
+            d.ellipse([px_ - 8, py_ - 8, px_ + 8, py_ + 8],
+                      fill=_rgba(color, 150))
+        d.text((int(xs[-1]), int(by0 + 210)),
+               f"{labs[-1]}: about {charts._ulabel(vals[-1], unit)}",
+               font=_pil_font(38), fill=_rgba(color, int(245 * fa)),
+               anchor="rm")
+    # the line where measurement ends, drawn and stated
+    d.line([(xs[-2], top - 20), (xs[-2], bot + 30)],
+           fill=_rgba(WARN, 160), width=5)
+    # Pinned to the FRAME, not to the divider. Spacing the x axis by year
+    # pushes the divider wherever the projection's distance puts it, and a
+    # label hung off it ran off the left edge as "neasured to 2023" — a
+    # clipped provenance note is the one label that must never clip.
+    d.text((bx0 + 24, int(bot + 68)), f"measured to {labs[-2]}",
+           font=_pil_font(34), fill=_rgba(WARN, 230), anchor="lm")
+    d.text((bx1 - 24, int(bot + 68)), "projected", font=_pil_font(34),
+           fill=_rgba(TEXT, 190), anchor="rm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "the data stops here",
+           font=_pil_font(52), fill=_rgba(TEXT, 235), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 160)))
+    return (vals[-2], "art", int(xs[-2]), int(ys[-2]))
+
+
+def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
+    """TWO MESHED GEARS turning together. For CORRELATION.
+
+    Two bars side by side say which is bigger, which is not the finding. The
+    finding is that they MOVE TOGETHER, and two gears in mesh is that sentence
+    as a mechanism — you can see that one cannot turn without the other.
+
+    The caption says "move together" and never "drives", because the data is
+    a correlation and a gear train looks like causation if you let it.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    if a_v <= 0 or b_v <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    cy = int((max(by0 + 320, 480) + (by1 - 250)) / 2)
+    big = int(min((bx1 - bx0) * 0.24, 250))
+    small = max(90, int(big * min(1.0, min(a_v, b_v) / max(a_v, b_v))))
+    ra, rb = (big, small) if a_v >= b_v else (small, big)
+    gap = 26
+    # The PAIR is centred: its extent is 2ra + 2rb + gap, and centring on
+    # (ra + rb + gap) put the second gear and its label off the right edge.
+    ax = int((bx0 + bx1) / 2 - (2 * ra + 2 * rb + gap) / 2 + ra)
+    bxx = ax + ra + rb + gap
+    ang = reveal * 300.0
+
+    def _gear(cx_, r_, teeth, phase, col, spin):
+        d.ellipse([cx_ - r_, cy - r_, cx_ + r_, cy + r_],
+                  fill=_rgba(col, 235))
+        d.ellipse([cx_ - r_ // 3, cy - r_ // 3, cx_ + r_ // 3, cy + r_ // 3],
+                  fill=_rgba(charts.CARD, 255))
+        for t in range(teeth):
+            a_ = _math.radians(phase + spin + t * 360.0 / teeth)
+            tx, ty = cx_ + _math.cos(a_) * r_, cy + _math.sin(a_) * r_
+            d.ellipse([tx - r_ * 0.15, ty - r_ * 0.15,
+                       tx + r_ * 0.15, ty + r_ * 0.15], fill=_rgba(col, 235))
+
+    _gear(ax, ra, 10, 0.0, color, ang)
+    _gear(bxx, rb, 10, 18.0, ACCENT, -ang * ra / max(1, rb))
+    lab_f = _pil_font(34)
+    for cx_, r_, p_, col in ((ax, ra, items[0], color),
+                             (bxx, rb, items[-1], ACCENT)):
+        d.text((cx_, cy + r_ + 52), _label_of(p_)[:14], font=lab_f,
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((cx_, cy + r_ + 100),
+               charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
+                              group=True),
+               font=_pil_font(42), fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "they move together",
+           font=_pil_font(56), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 150)))
+    return (a_v, "art", ax, cy)
+
+
+def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
+    """ONE TRACK, two ends, and a handle you cannot move without cost. For
+    TRADEOFF.
+
+    Two bars invite you to read "this one is bigger". The point of a trade-off
+    is that the two numbers are not independent — every unit of one is a unit
+    of the other you did not get — and a single handle on a single track is
+    the only shape that says so. The hatching on each side runs INWARD, so
+    both sides are visibly pushing.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    tot = a_v + b_v
+    if tot <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    x0, x1 = bx0 + 90, bx1 - 90
+    cy = int((by0 + by1) / 2) + 30
+    th = 74
+    e = settle(reveal)
+    hx = x0 + (x1 - x0) * (0.5 + (a_v / tot - 0.5) * e)
+    d.rounded_rectangle([x0, cy - th, hx, cy + th], radius=14,
+                        fill=_rgba(color, 235))
+    d.rounded_rectangle([hx, cy - th, x1, cy + th], radius=14,
+                        fill=_rgba(WARN, 235))
+    # Hatching that runs toward the handle from both ends: two sides pushing.
+    ph = (reveal * 220.0) % 44.0
+    for x in range(int(x0), int(hx), 44):
+        sx = x + ph
+        if sx < hx - 6:
+            d.line([(sx, cy - th + 6), (sx + 26, cy + th - 6)],
+                   fill=_rgba(charts.CARD, 90), width=8)
+    for x in range(int(x1), int(hx), -44):
+        sx = x - ph
+        if sx > hx + 6:
+            d.line([(sx, cy - th + 6), (sx - 26, cy + th - 6)],
+                   fill=_rgba(charts.CARD, 90), width=8)
+    d.rounded_rectangle([hx - 16, cy - th - 34, hx + 16, cy + th + 34],
+                        radius=14, fill=_rgba(TEXT, 250))
+    lab_f = _pil_font(36)
+    for xx, p_, col, anc in ((x0 + 8, items[0], color, "lm"),
+                             (x1 - 8, items[-1], WARN, "rm")):
+        d.text((xx, cy - th - 96), _label_of(p_)[:16], font=lab_f,
+               fill=_rgba(TEXT, 235), anchor=anc)
+        d.text((xx, cy + th + 104),
+               charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
+                              group=True),
+               font=_pil_font(46), fill=_rgba(col, 245), anchor=anc)
+    d.text(((bx0 + bx1) // 2, by0 + 96), "you cannot have both",
+           font=_pil_font(54), fill=_rgba(TEXT, 240), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by1 - 130),
+           f"{a_v / tot * 100:.0f}% one way, {b_v / tot * 100:.0f}% the other",
+           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 190
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(bx1 - mw - 16, max(bx0 + 16, hx - mw // 2))),
+             int(cy - th - mh - 130)))
+    return (a_v, "art", int(hx), cy)
+
+
+def draw_density(d, canvas, box, insight, color, reveal, unit=""):
+    """THE SAME SQUARE, packed differently. For DENSITY.
+
+    Two bars for "people per square kilometre" compare two numbers. Two
+    identical squares, one nearly solid with dots and one nearly empty, is the
+    thing the number is measuring — and the squares have to be IDENTICAL,
+    because scaling the box as well as the packing would double-count the
+    difference and overstate it.
+    """
+    items = _ordered_items(insight)[:3]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    e = settle(reveal)
+    side = int(min(((bx1 - bx0) - 50 * (n + 1)) / n, (by1 - by0) * 0.40, 420))
+    gap = ((bx1 - bx0) - side * n) / (n + 1)
+    top = max(by0 + 280, 430)
+    # A FIXED grid, so the box is the "one square kilometre" and only the
+    # filling changes. The busiest panel is full; the rest are its fraction.
+    cells = 14
+    step = side / cells
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = int(bx0 + gap * (i + 1) + side * i)
+        d.rounded_rectangle([x, top, x + side, top + side], radius=10,
+                            outline=_rgba(TEXT, 120), width=6)
+        want = int(round(cells * cells * (v / vmax)))
+        shown = int(want * min(1.0, e * n - i + 0.35))
+        for c in range(max(0, shown)):
+            gx, gy = c % cells, c // cells
+            # a slow drift, so the crowd is alive rather than a texture
+            jx = 3.0 * _math.sin(reveal * 6.0 + c * 0.7)
+            jy = 3.0 * _math.cos(reveal * 5.0 + c * 1.1)
+            cxp = x + step * (gx + 0.5) + jx
+            cyp = top + step * (gy + 0.5) + jy
+            r_ = step * 0.32
+            d.ellipse([cxp - r_, cyp - r_, cxp + r_, cyp + r_],
+                      fill=_rgba(color if i == 0 else ACCENT, 235))
+        d.text((x + side // 2, top + side + 44), _label_of(p)[:14],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((x + side // 2, top + side + 96),
+               charts._ulabel(v, unit, group=True), font=_pil_font(44),
+               fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
+           font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 180
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 40)))
+    return (vals[0], "art", int(bx0 + gap + side // 2), top + side // 2)
+
+
+def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
+    """HOW MANY OF THE SMALL ONE FIT IN THE BIG ONE. For SCALE.
+
+    "340 times bigger" is a number nobody has a feel for. The small shape
+    tiled inside the big one until it fills it is the same claim as a count
+    you can see — and the tiling is by AREA, because that is what "times
+    bigger" means when it is drawn as a box.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    big_v, small_v = max(a_v, b_v), min(a_v, b_v)
+    big_p = items[0] if a_v >= b_v else items[-1]
+    small_p = items[-1] if a_v >= b_v else items[0]
+    if small_v <= 0:
+        return None
+    ratio = big_v / small_v
+    # Above ~150 the tiles are specks and nobody counts them; below 1.5 there
+    # is no scale story. Outside that band the depiction falls through to
+    # something that can carry it (the skyline), rather than drawing a grid
+    # whose count nobody can check.
+    if ratio < 1.5 or ratio > 150:
+        return None
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    side = int(min((bx1 - bx0) * 0.72, (by1 - by0) * 0.44, 600))
+    top = max(by0 + 300, 460)
+    e = settle(reveal)
+    # Tiles ACROSS is ceil(sqrt(ratio)), because the claim is about AREA —
+    # and the tile COUNT is the ratio itself, rounded, never the full grid.
+    # Filling the square exactly would draw 81 tiles for "76 times over" and
+    # hide the outline of the thing they are supposed to fit inside.
+    total = max(1, int(round(ratio)))
+    across = max(1, int(_math.ceil(_math.sqrt(total))))
+    cell = side / across
+    shown = int(total * e)
+    for k in range(shown):
+        gx, gy = k % across, k // across
+        x = cx - side / 2 + gx * cell
+        y = top + gy * cell
+        d.rounded_rectangle([x + 2, y + 2, x + cell - 2, y + cell - 2],
+                            radius=max(2, int(cell * 0.16)),
+                            fill=_rgba(ACCENT, 225))
+    # The container is drawn LAST. Under the tiles it vanished at full
+    # reveal, and the thing they are supposed to fit inside is half the claim.
+    d.rounded_rectangle([cx - side // 2, top, cx + side // 2, top + side],
+                        radius=14, outline=_rgba(color, 245), width=10)
+    d.text((cx, top + side // 2), f"{total:,}", font=_pil_font(90),
+           fill=_rgba(TEXT, 105), anchor="mm")
+    d.text((cx, by0 + 90),
+           f"{_label_of(small_p)[:16]} fits in {_label_of(big_p)[:16]}",
+           font=_pil_font(46), fill=_rgba(TEXT, 240), anchor="mm")
+    na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
+    d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
+           font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 12, cx - side // 2 - mw - 20)),
+                                int(top + side - mh)))
+    return (big_v, "art", cx, top + side // 2)
+
+
+def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
+    """MORE PEOPLE THAN SEATS. For SCARCITY.
+
+    "Forty applicants per opening" as two bars is two numbers. A row of chairs
+    with a crowd behind it is the shortage itself, and the figures left
+    standing are the finding rather than a subtraction the viewer has to do in
+    their head. The ratio drawn is the ratio measured — the crowd is scaled
+    down against however many chairs fit, never rounded to "a lot".
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    seekers, seats = max(a_v, b_v), min(a_v, b_v)
+    seek_p = items[0] if a_v >= b_v else items[-1]
+    seat_p = items[-1] if a_v >= b_v else items[0]
+    if seats <= 0 or seekers <= seats:
+        return None
+    per = seekers / seats
+    # Chairs are chosen so the crowd stays countable: one chair for a steep
+    # ratio, more when the ratio is shallow enough that a single pair would
+    # not read as a shortage at all.
+    chairs = 1 if per >= 8 else (2 if per >= 4 else 4)
+    people = min(44, max(chairs + 1, int(round(chairs * per))))
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    seat_y = by1 - 300
+    cw_ = min(160.0, ((bx1 - bx0) - 120) / chairs)
+    sx0 = cx - cw_ * chairs / 2
+    for i in range(chairs):
+        x = sx0 + i * cw_
+        w = cw_ * 0.72
+        # back, seat, two legs — a chair, not an L
+        d.rounded_rectangle([x + 8, seat_y - 108, x + 30, seat_y + 8],
+                            radius=8, fill=_rgba(color, 240))
+        d.rounded_rectangle([x + 8, seat_y, x + w, seat_y + 26], radius=8,
+                            fill=_rgba(color, 240))
+        d.rounded_rectangle([x + 12, seat_y + 24, x + 30, seat_y + 92],
+                            radius=6, fill=_rgba(color, 240))
+        d.rounded_rectangle([x + w - 22, seat_y + 24, x + w - 4, seat_y + 92],
+                            radius=6, fill=_rgba(color, 240))
+    cols = min(11, max(6, int(_math.ceil(_math.sqrt(people * 2.2)))))
+    rows = int(_math.ceil(people / cols))
+    pw = min(((bx1 - bx0) - 60) / cols, 86.0)
+    rh = min(96.0, (seat_y - 160 - max(by0 + 250, 400)) / max(1, rows))
+    px0 = cx - pw * cols / 2
+    top = max(by0 + 250, 400)
+    for k in range(int(people * min(1.0, e * 1.3))):
+        gx, gy = k % cols, k // cols
+        # the crowd shuffles: it is a queue for something, not a diagram
+        jx = 5.0 * _math.sin(reveal * 6.0 + k * 0.9)
+        x = px0 + gx * pw + jx
+        y = top + gy * rh
+        got = k < chairs
+        col = color if got else ACCENT
+        hr = pw * 0.17
+        d.ellipse([x + pw * 0.5 - hr, y, x + pw * 0.5 + hr, y + hr * 2],
+                  fill=_rgba(col, 240))
+        d.rounded_rectangle([x + pw * 0.5 - hr * 1.35, y + hr * 2.1,
+                             x + pw * 0.5 + hr * 1.35, y + rh * 0.88],
+                            radius=12, fill=_rgba(col, 240))
+    # SOMEBODY IS ALWAYS WALKING UP AND BEING TURNED AWAY. Without this the
+    # crowd is a static block once it has filled in: a 5px shuffle spread over
+    # 120 frames is a quarter of a pixel a frame, and the cadence gate
+    # measured it as a 54-frame freeze. It is also the story — the queue does
+    # not stop because the chairs ran out.
+    walk_y0 = top + rows * rh + 40
+    for k in range(3):
+        t_ = (reveal * 1.5 + k / 3.0) % 1.0
+        wx = cx - 300 + (bx1 - 40 - (cx - 300)) * t_
+        wy = walk_y0 + (seat_y - 30 - walk_y0) * min(1.0, t_ * 1.8)
+        hr = 22
+        col = ACCENT if t_ > 0.55 else color
+        d.ellipse([wx - hr, wy - hr * 2.4, wx + hr, wy - hr * 0.4],
+                  fill=_rgba(col, 235))
+        d.rounded_rectangle([wx - hr * 1.2, wy - hr * 0.2, wx + hr * 1.2,
+                             wy + hr * 2.1], radius=14, fill=_rgba(col, 235))
+    d.text((cx, by0 + 92), f"{per:,.0f} for every 1", font=_pil_font(56),
+           fill=_rgba(TEXT, 240), anchor="mm")
+    na = max(0.0, min(1.0, (reveal - 0.5) / 0.3))
+    d.text((cx, by1 - 170),
+           f"{charts._ulabel(seats, unit, group=True)} {_label_of(seat_p)[:14]}"
+           f", {charts._ulabel(seekers, unit, group=True)} "
+           f"{_label_of(seek_p)[:14]}",
+           font=_pil_font(42), fill=_rgba(color, int(250 * na)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 180
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx1 - mw - 16), int(seat_y - mh - 20)))
+    return (seekers, "art", cx, int(seat_y))
+
+
+def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
+    """SAND RUNNING. For DURATION.
+
+    "It takes 11.3 years" is a number; sand that will not stop falling is the
+    length of it. Two of them side by side is a comparison of waits rather
+    than of quantities, which is the claim when the unit is time.
+    """
+    items = _ordered_items(insight)[:2]
+    if not items:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    e = settle(reveal)
+    gw = int(min(((bx1 - bx0) - 120) / n, 320))
+    gh = int(min((by1 - by0) * 0.42, 420))
+    top = max(by0 + 300, 460)
+    gap = ((bx1 - bx0) - gw * n) / (n + 1)
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = bx0 + gap * (i + 1) + gw * i
+        mx, my = x + gw / 2, top + gh / 2
+        col = color if i == 0 else ACCENT
+        d.polygon([(x, top), (x + gw, top), (mx, my)],
+                  outline=_rgba(TEXT, 130), width=7)
+        d.polygon([(x, top + gh), (x + gw, top + gh), (mx, my)],
+                  outline=_rgba(TEXT, 130), width=7)
+        # THE AMOUNT OF SAND IS THE DURATION, and both glasses run at the
+        # same rate. A first version drained the short wait faster, which is
+        # true of a real hourglass and useless here: both ended empty, so the
+        # final frame — the one people look at — showed no difference at all.
+        # Now the pile that is left in the bottom is the number.
+        share = v / vmax
+        half = gh / 2.0
+        up = half * share * (1.0 - e)
+        if up > 3:
+            wtop = (gw / 2.0) * (up / half)
+            d.polygon([(mx - wtop, my - up), (mx + wtop, my - up), (mx, my)],
+                      fill=_rgba(col, 235))
+        lh = half * share * e
+        if lh > 3:
+            wbot = (gw / 2.0) * (lh / half)
+            d.polygon([(mx, top + gh - lh), (mx - wbot, top + gh - 6),
+                       (mx + wbot, top + gh - 6)], fill=_rgba(col, 235))
+        if up > 3:                          # grains only while it is running
+            for k in range(4):
+                t_ = (reveal * 3.0 + k / 4.0) % 1.0
+                sy = my + 8 + t_ * (half - 20)
+                d.ellipse([mx - 6, sy - 6, mx + 6, sy + 6],
+                          fill=_rgba(col, 235))
+        d.text((mx, top + gh + 52), _label_of(p)[:14], font=_pil_font(34),
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((mx, top + gh + 106), charts._ulabel(v, unit),
+               font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "how long it takes",
+           font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 30)))
+    return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
+
+
+def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
+    """A SHELF, and the count is the number of trophies on it. For RECORD.
+
+    A tally of titles is one of the few counts where the objects are the
+    point: bars say 23 and 6, a shelf says one of them needed a bigger shelf.
+    Each trophy is one title, so the row length is checkable.
+    """
+    items = _ordered_items(insight)[:4]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax > 30:
+        return None                        # too many to count is not a shelf
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    top = max(by0 + 260, 420)
+    rowh = min((by1 - 190 - top) / n, 190.0)
+    e = settle(reveal)
+    # Room reserved for BOTH the name on the left and the count on the right;
+    # the top row's trophies ran under its own number before this.
+    tw = min(((bx1 - bx0) - 300 - 170) / max(1.0, vmax), 62.0)
+    for i, (p, v) in enumerate(zip(items, vals)):
+        y = top + i * rowh
+        col = color if i == 0 else ACCENT
+        d.text((bx0 + 24, y + rowh * 0.42), _label_of(p)[:12],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="lm")
+        x0 = bx0 + 300
+        shown = int(round(v * max(0.0, min(1.0, e * n - i))))
+        for k in range(shown):
+            x = x0 + k * tw
+            # cup, stem, base — small, but unmistakably a trophy
+            cw_ = max(10.0, tw - 8)
+            d.pieslice([x + 3, y + 14, x + 3 + cw_, y + 14 + cw_ * 1.15],
+                       0, 180, fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 3, y + 12, x + 3 + cw_, y + 24],
+                                radius=4, fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 3 + cw_ / 2 - 4, y + 14 + cw_ * 0.55,
+                                 x + 3 + cw_ / 2 + 4, y + 84], radius=3,
+                                fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 6, y + 82, x + tw - 8, y + 96],
+                                radius=4, fill=_rgba(col, 240))
+        d.line([(x0 - 8, y + rowh - 22), (bx1 - 20, y + rowh - 22)],
+               fill=_rgba(TEXT, 90), width=5)
+        d.text((bx1 - 24, y + rowh * 0.42), f"{v:,.0f}", font=_pil_font(42),
+               fill=_rgba(col, 245), anchor="rm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "one cup, one title",
+           font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
+    host = scene_host("cheer", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 30), int(by1 - mh - 30)))
+    return (vals[0], "art", int(bx0 + 300), int(top + rowh * 0.4))
+
+
+def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
+    """WHAT THE SAME MONEY ACTUALLY BUYS. For BUYING_POWER.
+
+    The number that matters in a cost-of-living story is never the price, it
+    is what is left in the basket. Two baskets filled from the same note say
+    that in one picture, and nobody has to divide anything.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    e = settle(reveal)
+    n = 2
+    bw = int(min(((bx1 - bx0) - 140) / n, 420))
+    bh = int(min((by1 - by0) * 0.34, 350))
+    top = max(by0 + 300, 470)
+    gap = ((bx1 - bx0) - bw * n) / (n + 1)
+    cap = 24
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = int(bx0 + gap * (i + 1) + bw * i)
+        col = color if i == 0 else ACCENT
+        d.polygon([(x, top), (x + bw, top), (x + bw - 30, top + bh),
+                   (x + 30, top + bh)], outline=_rgba(TEXT, 130), width=8)
+        goods = max(1, int(round(cap * v / vmax)))
+        shown = int(goods * min(1.0, e * 1.4))
+        cols = 6
+        cw = (bw - 90) / cols
+        for k in range(shown):
+            gx, gy = k % cols, k // cols
+            wob = 4.0 * _math.sin(reveal * 6.5 + k * 0.8)
+            gxp = x + 45 + gx * cw + wob
+            gyp = top + bh - 40 - gy * 46
+            d.rounded_rectangle([gxp, gyp - 34, gxp + cw - 10, gyp],
+                                radius=7, fill=_rgba(col, 235))
+        d.text((x + bw // 2, top + bh + 52), _label_of(p)[:16],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((x + bw // 2, top + bh + 106),
+               charts._ulabel(v, unit, group=True), font=_pil_font(46),
+               fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "the same money, either side",
+           font=_pil_font(48), fill=_rgba(TEXT, 240), anchor="mm")
+    lost = (1.0 - min(vals) / vmax) * 100.0
+    na = max(0.0, min(1.0, (reveal - 0.55) / 0.3))
+    d.text(((bx0 + bx1) // 2, by1 - 130), f"{lost:.0f}% less in the basket",
+           font=_pil_font(42), fill=_rgba(WARN, int(240 * na)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 150)))
+    return (vals[0], "art", int(bx0 + gap + bw / 2), top + bh // 2)
+
+
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     """A TOWER: an accumulated total, one block at a time, with Data on top.
 
@@ -2915,6 +3663,11 @@ _MACHINE_DRAW.update({
     "darts": draw_darts, "queue": draw_queue,
     "bottleneck": draw_bottleneck, "leaky": draw_leaky, "inout": draw_inout,
     "sorter": draw_sorter, "chain": draw_chain,
+    "spinner": draw_spinner, "doors": draw_doors, "fan": draw_fan,
+    "gears": draw_gears, "slider": draw_slider,
+    "density": draw_density, "nest": draw_nest, "chairs": draw_chairs,
+    "hourglass": draw_hourglass, "trophies": draw_trophies,
+    "basket": draw_basket,
 })
 
 tower_scene = _machine_scene("tower", 1)
@@ -2937,6 +3690,17 @@ leaky_scene = _machine_scene("leaky", 2)
 inout_scene = _machine_scene("inout", 2)
 sorter_scene = _machine_scene("sorter", 2)
 chain_scene = _machine_scene("chain", 3)
+spinner_scene = _machine_scene("spinner", 1)
+doors_scene = _machine_scene("doors", 1)
+fan_scene = _machine_scene("fan", 4)
+gears_scene = _machine_scene("gears", 2)
+slider_scene = _machine_scene("slider", 2)
+density_scene = _machine_scene("density", 2)
+nest_scene = _machine_scene("nest", 2)
+chairs_scene = _machine_scene("chairs", 2)
+hourglass_scene = _machine_scene("hourglass", 1)
+trophies_scene = _machine_scene("trophies", 2)
+basket_scene = _machine_scene("basket", 2)
 
 
 def race_scene(insight) -> dict:
