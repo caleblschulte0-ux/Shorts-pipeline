@@ -183,6 +183,46 @@ class TheMachineComesFirstAndTheChartIsTheFallback(unittest.TestCase):
                     f"{k!r} is named as a machine but renders nothing")
 
 
+class AMachineMustNotAsymptote(unittest.TestCase):
+    """The defect that cost two videos, twice, with an identical-looking curve.
+
+    Every machine animates by driving geometry with the reveal, and the obvious
+    choice — an ease-out — has a slope at the end of nearly zero. The last
+    third of the visual then moves by fractions of a pixel per frame, which is
+    below the cadence detector's threshold and is, correctly, read as a frozen
+    frame. The balance shipped it as a cubic; the race shipped it as a square.
+    """
+
+    def test_it_starts_at_zero_and_ends_at_one(self):
+        self.assertAlmostEqual(vs.settle(0.0), 0.0, places=6)
+        self.assertAlmostEqual(vs.settle(1.0), 1.0, places=6)
+
+    def test_it_is_still_moving_at_the_end(self):
+        end = (vs.settle(1.0) - vs.settle(0.9)) / 0.1
+        self.assertGreater(end, 0.5, f"end slope {end:.2f} — it stalls")
+
+    def test_it_never_goes_backwards(self):
+        vals = [vs.settle(i / 50.0) for i in range(51)]
+        for a, b in zip(vals, vals[1:]):
+            self.assertGreaterEqual(b, a)
+
+    def test_it_still_has_some_shape(self):
+        """Pure linear would pass every assertion above and look like a loading
+        bar. It should leave the blocks faster than it arrives."""
+        start = (vs.settle(0.1) - vs.settle(0.0)) / 0.1
+        end = (vs.settle(1.0) - vs.settle(0.9)) / 0.1
+        self.assertGreater(start, end)
+
+    def test_no_machine_rolls_its_own_easing(self):
+        """Each one that did got this wrong independently."""
+        import inspect
+        for fn in (vs.draw_race, vs.draw_gauge, vs.draw_balance):
+            src = inspect.getsource(fn)
+            self.assertNotIn("** 2", src, f"{fn.__name__} eases by hand")
+            self.assertNotIn("** 3", src, f"{fn.__name__} eases by hand")
+            self.assertIn("settle(", src, f"{fn.__name__} is not on the curve")
+
+
 class TheRace(unittest.TestCase):
     """Rank becomes position, and the gap becomes literal distance."""
 

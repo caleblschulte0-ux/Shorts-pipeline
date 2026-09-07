@@ -763,10 +763,9 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
     # Level, then settle into the true tilt — the tip IS the reveal, so the
     # element animates for the whole span without anything decorative added.
     #
-    # LINEAR, not cubic-out. An ease-out is nearly stationary over its last
-    # third, which put a 6-second visual's back half a fraction of a degree
-    # from still. A scale coming to rest slowly is also simply what one does.
-    ease = max(0.0, min(1.0, reveal))
+    # See `settle`: linear-ish and still moving at the end. A cubic-out here
+    # left a 6-second visual's back half a fraction of a degree from still.
+    ease = settle(reveal)
     ang = _math.radians(balance_tilt(value, other) * ease)
     dx, dy = _math.cos(ang) * arm, _math.sin(ang) * arm
     # HEAVY SIDE GOES DOWN. The first version had the signs the other way and
@@ -800,7 +799,10 @@ def draw_balance(d, canvas, box, value, other, label, other_label, color,
         # card is changing every frame of the tip rather than fading in once.
         # It lands on the exact value and holds it — a mid-count that outlived
         # the animation would be a number the script never says.
-        shown_v = val * (1.0 - (1.0 - ease) ** 2)
+        # On the SAME curve as the tip. This had its own ease-out, so the
+        # largest text on the card stopped changing before the pans did — the
+        # identical defect one line away from where it was just fixed.
+        shown_v = val * ease
         d.text((px, py + 168), charts._ulabel(shown_v, unit, group=True),
                font=_pil_font(72), fill=_rgba(col, int(255 * na)), anchor="mm")
         d.text((px, py + 234), str(lab)[:18], font=_pil_font(44),
@@ -1109,7 +1111,7 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     # the red zone — the last fifth of the dial
     d.arc([cx - R, cy - R, cx + R, cy + R], a0 + sweep * 0.8, a0 + sweep,
           fill=_rgba(WARN, 200), width=26)
-    e = 1.0 - (1.0 - max(0.0, min(1.0, reveal))) ** 2
+    e = settle(reveal)
     ang = _math.radians(a0 + sweep * (abs(v) / vmax) * e)
     nx, ny = cx + _math.cos(ang) * (R - 40), cy + _math.sin(ang) * (R - 40)
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
@@ -1126,6 +1128,23 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(cx + R * 0.55), int(cy - mh * 0.2)))
     return (v, "art", int(nx), int(ny))
+
+
+def settle(reveal: float) -> float:
+    """A machine's motion curve: 0 to 1, and STILL MOVING at the end.
+
+    Every machine here animates by driving some geometry with the reveal, and
+    the obvious choice — an ease-out — is wrong for this pipeline. Its slope at
+    the end is nearly zero, so the last third of a visual moves by fractions of
+    a pixel per frame, which is below the cadence detector's threshold and is,
+    correctly, read as a frozen frame. It cost the balance a video and then the
+    race a video, with an identical-looking curve each time.
+
+    So: mostly linear, with enough shape to read as a surge out of the blocks.
+    The end slope is what matters and it is tested.
+    """
+    r = max(0.0, min(1.0, float(reveal)))
+    return 0.72 * r + 0.28 * (1.0 - (1.0 - r) ** 2)
 
 
 def draw_race(d, canvas, box, insight, color, reveal, unit=""):
@@ -1161,7 +1180,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     x1 = int(bx1 - 40)                   # the finish line
     # Ease so the field surges out of the blocks and settles into its order,
     # rather than sliding at a constant rate like a loading bar.
-    e = 1.0 - (1.0 - max(0.0, min(1.0, reveal))) ** 2
+    e = settle(reveal)
     runner = scene_host("cheer", reveal)
     rh = int(max(96, min(170, lane_h * 0.86)))
     rw = int(runner.width * rh / runner.height) if runner is not None else rh
