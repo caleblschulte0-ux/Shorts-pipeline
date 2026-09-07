@@ -1,0 +1,408 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260907",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "17980926a888fcc00878a6727507b568d7ef3aff",
+    "production_date": "20260907",
+    "bundle_sha256": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7"
+  },
+  "media": [
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s0-ace85273208f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qEWhVT2wuPywOV6hUiH2Nf2EnMl2ji6o",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s0-ace85273208f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qEWhVT2wuPywOV6hUiH2Nf2EnMl2ji6o",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "ebbe63ef434f58d9aefadebb149d7455575220eceb35e7d4436f60f1b9b85e89",
+        "bytes": 1123090,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s0-ace85273208f.json",
+        "verified_at": "2026-09-07T11:23:16.767Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s1-a72c43694826",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s1-a72c43694826.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "591bd78895f360f58b2dc4deae759fc2cae5358e942990bea5c69a0b305ea0d2",
+        "bytes": 1101320,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s1-a72c43694826.json",
+        "verified_at": "2026-09-07T11:23:20.943Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s2-4433fdb19fd8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "148VFTIFXR8fd05KHI3TLC_83VEdCASl7",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s2-4433fdb19fd8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=148VFTIFXR8fd05KHI3TLC_83VEdCASl7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "b58ae6c238d67e030fe4cdedb4b6bdbf23095798ea1f37cbb280a9777c6e3bf5",
+        "bytes": 1042558,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s2-4433fdb19fd8.json",
+        "verified_at": "2026-09-07T11:23:24.338Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s4-f424544e5546",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Q-8Fk8kKrBcBmAhBZ7-GCXrAD09EIrJ1",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s4-f424544e5546.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Q-8Fk8kKrBcBmAhBZ7-GCXrAD09EIrJ1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8eba471fab1aad67e2377390caeca471575d773af903771297ec5613b796ee1f",
+        "bytes": 1255990,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s4-f424544e5546.json",
+        "verified_at": "2026-09-07T11:23:27.889Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "78df288d20bef8655fc1c078c0c490ebe067c86309bb75b21540271cb8c35a88",
+        "bytes": 1579028,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a.json",
+        "verified_at": "2026-09-07T11:23:31.989Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a37af03dce980c5c386a6928d66096c4361f5030818a9b547334168ff8ced52e",
+        "bytes": 1265304,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0.json",
+        "verified_at": "2026-09-07T11:23:35.674Z"
+      }
+    },
+    {
+      "request_id": "reddit-landlord-notary-clause-backfire-s3-4199a47ee774",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1grehw6iEbvN0ogeZT4vblTFT2Sj1RpPU",
+        "filename": "20260907__reddit-landlord-notary-clause-backfire-s3-4199a47ee774.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1grehw6iEbvN0ogeZT4vblTFT2Sj1RpPU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2fcd89f6f4bc38a0c7fbdd48455e12fbdcf70d27e833eef24e52eda450551534",
+        "bytes": 1259064,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-landlord-notary-clause-backfire-s3-4199a47ee774.json",
+        "verified_at": "2026-09-07T11:23:38.828Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s0-a3193ce6d108",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "142KROuKgpu1PfBnKXN0P0C24EwfWwL3S",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s0-a3193ce6d108.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=142KROuKgpu1PfBnKXN0P0C24EwfWwL3S",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fe3a37f5ae95c5a08c295e8e9a85d39ddecbf4e122318ea54dd9459a6641f733",
+        "bytes": 1106569,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s0-a3193ce6d108.json",
+        "verified_at": "2026-09-07T11:23:42.163Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s1-0c67c1e3766f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s1-0c67c1e3766f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c78081d084c32b0039a2f70ae37c7834023ec81124cf89e446c384565cb89f9f",
+        "bytes": 1346507,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s1-0c67c1e3766f.json",
+        "verified_at": "2026-09-07T11:23:45.856Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s2-96d1cf401018",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1m7j5H-RVX15hJhzAQEDXxhW6L4PO2ROu",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s2-96d1cf401018.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1m7j5H-RVX15hJhzAQEDXxhW6L4PO2ROu",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d85c0d3e139fcbbcbedec9a188ca35d79df74c607e597f408cec3bcf4a66fbce",
+        "bytes": 1401234,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s2-96d1cf401018.json",
+        "verified_at": "2026-09-07T11:23:49.552Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s3-fea08200c2e6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1jVmoF0h84WcWSxfrWfE4nm9PDVTwYJzy",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s3-fea08200c2e6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1jVmoF0h84WcWSxfrWfE4nm9PDVTwYJzy",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8a94d37e53b8a2f8318dbfda644e9b75285e650065648bde8da87e0454a23eff",
+        "bytes": 1561416,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s3-fea08200c2e6.json",
+        "verified_at": "2026-09-07T11:23:54.231Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s4-b84238633be5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1rjteF0t-5KQ-B_U4E4VYmat-F9T9vFIo",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s4-b84238633be5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1rjteF0t-5KQ-B_U4E4VYmat-F9T9vFIo",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3d2db0f63d595341591fabc895a854af0a8681d452bf9c53c7dd21c46ab0e4c9",
+        "bytes": 1058010,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s4-b84238633be5.json",
+        "verified_at": "2026-09-07T11:23:57.149Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s5-63ef619c9875",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1bGv9gUP7kbioRr-YnuUqwupb2AEBm1Wx",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s5-63ef619c9875.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1bGv9gUP7kbioRr-YnuUqwupb2AEBm1Wx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "fb766348ed5c84f63864cd93d5f453a82f0670f34d0d350d28d0321deacdb65a",
+        "bytes": 1302536,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s5-63ef619c9875.json",
+        "verified_at": "2026-09-07T11:24:00.410Z"
+      }
+    },
+    {
+      "request_id": "reddit-bakery-empty-box-refund-s6-e24eeb566387",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+        "filename": "20260907__reddit-bakery-empty-box-refund-s6-e24eeb566387.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1d7d7931aae5d86e5a2c49f378ed815b57df8520806ae2eeede1913a8372b291",
+        "bytes": 1355079,
+        "format": "png",
+        "width": 1080,
+        "height": 1080
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260907/media-progress/reddit-bakery-empty-box-refund-s6-e24eeb566387.json",
+        "verified_at": "2026-09-07T11:24:04.188Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-norway-ev-buried-gas-cars",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names Norway's EV crossover above gas cars."
+    },
+    {
+      "slug": "graph-china-passed-us-exports",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names China's export crossover above the United States."
+    },
+    {
+      "slug": "graph-bottled-water-buried-soda",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names bottled water's crossover above soda in America."
+    },
+    {
+      "slug": "graph-solar-cheaper-than-coal",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title already names solar power's cost crossover below coal."
+    },
+    {
+      "slug": "reddit-landlord-notary-clause-backfire",
+      "script": "He enforced what clause? My landlord refused to fix a dead furnace in January, then cited an obscure lease clause: every tenant message had to be hand-delivered and notarized. The heat, apparently, needed paperwork. Fine. I found a notary two blocks away, got the demand stamped, then hand-delivered it to his office with a witness present. The same clause gave him twenty-four hours; after that, I could hire an emergency HVAC company and deduct the full cost from rent. He missed the deadline. I paid eleven hundred dollars, sent the notarized invoice, and reduced the following rent payment by that exact amount. He tried filing for eviction. The judge read his favorite clause, dismissed the case in about four minutes, and ordered him to cover my legal filing fees too. Was the landlord's notarized clause worth it?",
+      "editor_note": "Punched up to a four-word question hook, compressed the lease mechanics, added one dry paperwork aside, and landed on the landlord's own notarized clause while preserving every claim and shot phrase."
+    },
+    {
+      "slug": "reddit-bakery-empty-box-refund",
+      "script": "She returned how much cake? A woman stormed to my bakery counter waving a nearly empty cake box and demanding a full refund because it tasted wrong. Her toddler had blue frosting smeared across his face. The evidence was subtle. Our return policy, taped right there on the counter, refunds custom orders only if at least eighty percent comes back for inspection. I opened the box and counted maybe two slices left inside. Asked where the rest went, she said the kids ate it before she noticed the sign. I photographed the mostly empty box, pointed to the laminated policy sign, and offered to refund the missing eighty percent she could still produce. She grabbed it, threatened a review, and left without the refund or the rest of the cake. Where did the rest of the cake go?",
+      "editor_note": "Punched up to a five-word question hook, tightened the empty-box escalation, added one dry evidence aside, and landed on the missing cake while preserving every claim and shot phrase."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Climbed 1.5x Since 1972",
+      "hook": "The 1970s warned the world would run out of food. The numbers did the opposite.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it reached 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it reached 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The famine everyone predicted never arrived. School advanced, grain climbed, and the forecast quietly missed the harvest.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste-Based Energy Grew 3.0x Since 1990",
+      "hook": "One energy source has tripled since 1990, and it isn't solar or wind. The answer is what we discard.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it reached 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it reached 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it reached 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things people once treated as useless.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever. Instead, the curve nearly stopped climbing.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What nearly vanished is the acceleration people assumed would continue.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
+
