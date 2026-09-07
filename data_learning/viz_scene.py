@@ -25,6 +25,7 @@ chain degrades to another DEPICTION (never bare numbers).
 """
 from __future__ import annotations
 
+import hashlib as _hashlib
 import math as _math
 import re
 from pathlib import Path
@@ -1483,6 +1484,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
     drops = [a - b for a, b in zip(vals, vals[1:])]
     worst = drops.index(max(drops)) + 1 if drops else 0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "bottleneck")
     top, bot = max(by0 + 240, 400), by1 - 150
     n = len(items)
     seg = (bot - top) / n
@@ -1525,8 +1527,7 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
             continue                       # stopped at the pinch
         wv = full * (vals[idx] / vmax)
         px = cx + ((k * 37 % 11) / 10.0 - 0.5) * max(6.0, wv * 0.55)
-        d.ellipse([px - 9, py - 9, px + 9, py + 9],
-                  fill=_rgba(charts.CARD, 215))
+        particle(d, _st["particle"], px, py, 9, _rgba(charts.CARD, 215))
     na = max(0.0, min(1.0, (reveal - 0.5) / 0.28))
     if na > 0.0:
         d.text((int(cx - full / 2 - 40), wy), "here", font=_pil_font(48),
@@ -1564,6 +1565,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
         return None
     frac = max(0.0, min(1.0, kept_v / top_v))
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "leaky")
     cx = (bx0 + bx1) // 2
     e = settle(reveal)
     top, bot = max(by0 + 250, 400), by1 - 210
@@ -1590,7 +1592,7 @@ def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
         t_ = (reveal * 2.6 + k * 0.09) % 1.0
         px = int(hx + 20 + t_ * 150)
         py = int(hy + 12 + t_ * t_ * (by1 - 130 - hy))
-        d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=_rgba(ACCENT, 205))
+        particle(d, _st["particle"], px, py, 10, _rgba(ACCENT, 205))
     cur = top_v - (top_v - kept_v) * e
     d.text((cx, by0 + 66),
            f"{charts._ulabel(cur, unit, group=True)} left of "
@@ -1708,6 +1710,7 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
     tot = sum(vals) or 1.0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "sorter")
     cx = (bx0 + bx1) // 2
     e = settle(reveal)
     chute_y = max(by0 + 260, 420)
@@ -1743,9 +1746,7 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
         tgt = centres[k % n]
         px = int(cx + (tgt - cx) * t_)
         py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
-        s = 14
-        d.rounded_rectangle([px - s, py - s, px + s, py + s], radius=4,
-                            fill=_rgba(HIGHLIGHT, 225))
+        particle(d, _st["particle"], px, py, 14, _rgba(HIGHLIGHT, 225))
     host = scene_host("point", reveal)
     if host is not None:
         mh = 210
@@ -1772,6 +1773,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     vmax = max(vals) or 1.0
     weak = vals.index(min(vals))
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "chain")
     cx = (bx0 + bx1) // 2
     n = len(items)
     e = settle(reveal)
@@ -1820,8 +1822,7 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
         if px > x0 + weak * slot + lw / 2 and k >= keep:
             continue
         py = y + 6 * _math.sin(reveal * 7.0 + (px - x0) / slot * 1.3)
-        d.rounded_rectangle([px - 18, py - 18, px + 18, py + 18], radius=6,
-                            fill=_rgba(TEXT, 215))
+        particle(d, _st["particle"], px, py, 18, _rgba(TEXT, 215))
     wa = max(0.0, min(1.0, (reveal - 0.55) / 0.28))
     wx = int(x0 + weak * slot + lw / 2)
     if wa > 0.0:
@@ -2752,6 +2753,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
     vals = [float(getattr(p, "value", 0) or 0) for p in items]
     vmax = max(vals) or 1.0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "funnel")
     top, bot = max(by0 + 200, 340), by1 - 100
     n = len(items)
     sh = (bot - top) / n
@@ -2802,8 +2804,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         wv = full_w * (vals[idx] / vmax)
         px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
             8.0, wv * 0.6)
-        d.ellipse([px - 10, py - 10, px + 10, py + 10],
-                  fill=_rgba(charts.CARD, 215))
+        particle(d, _st["particle"], px, py, 10, _rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last_xy is not None:
         mh = 190
@@ -2872,6 +2873,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
     tot = sum(vals) or 1.0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "pipes")
     top, bot = max(by0 + 200, 340), by1 - 110
     cx = (bx0 + bx1) // 2
     trunk_w = int((bx1 - bx0) * 0.17)
@@ -2927,8 +2929,8 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                 u = (t_ - 0.45) / 0.55
                 px = cx + (_mid[j] - cx) * min(1.0, u * 2.0)
                 py = split_y + (bot - split_y) * u
-            d.ellipse([px - 11, py - 11, px + 11, py + 11],
-                      fill=_rgba(charts.CARD, 215))
+            particle(d, _st["particle"], px, py, 11,
+                     _rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last is not None:
         # Beside the trunk, not inside it — a wide trunk with him in the middle
@@ -3322,6 +3324,12 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     bot = by1 - 90
     n = len(items)
     lane_h = (bot - top) / n
+    # STAGING. Which LANE the leader runs in is arbitrary — position along the
+    # TRACK is the ranking, not the row — so it is free to vary, and this is
+    # the machine that most needs it: 195 of the 930 configured beats are a
+    # race, and until now every one of them was the identical picture.
+    _st = stage(insight, "race_track")
+    _order = list(range(n))[::-1] if _st["flip"] else list(range(n))
     # Room for the longest NAME on the left and for the leader's VALUE on the
     # right. The first version guessed both and clipped both — "Los Angeles"
     # rendered as "os Angeles" and the leader's "11.3 yrs" ran off the edge.
@@ -3342,7 +3350,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
                     fill=_rgba(TEXT, 190 if (k // 26) % 2 == 0 else 60))
     lead_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
-        cy = int(top + lane_h * (i + 0.5))
+        cy = int(top + lane_h * (_order[i] + 0.5))
         d.line([(x0, cy + rh // 2 - 2), (x1, cy + rh // 2 - 2)],
                fill=_rgba(TEXT, 40), width=4)
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
@@ -4074,6 +4082,76 @@ def drawable_insight(insight):
     if bad_base:
         out.baseline = None
     return out
+
+
+# --------------------------------------------------------------------------- #
+# PROCEDURAL STAGING — the same machine, staged differently per story
+# --------------------------------------------------------------------------- #
+# The relationship router fixed WHICH picture a beat gets. It did not touch HOW
+# that picture is composed, and `race_scene` alone is 195 of the 930 configured
+# beats — drawn, until now, with the identical layout every single time. A
+# library of 42 rigid pictures is a bigger template than a library of 6.
+#
+# THE RULE, and it is the whole reason this is safe: staging may change how a
+# machine is ARRANGED and never what it CLAIMS. The value-to-geometry mapping,
+# every number, every label and every caption are identical across variants.
+# What moves is the framing — which way the race runs, which side the host
+# stands, whether there is a ground line, what the moving particles are shaped
+# like. `tests/test_machines_are_pliable.py` renders the same insight at every
+# variant and fails if a single drawn NUMBER differs.
+_PARTICLES = ("dot", "square", "chevron")
+
+
+def variant(insight, kind: str, n: int) -> int:
+    """A stable 0..n-1 for this story and this machine.
+
+    Deterministic, so a re-render is identical and a diff of two runs is
+    meaningful; keyed on the TOPIC as well as the kind, so a story that uses
+    one machine twice does not get the same staging twice.
+    """
+    if n <= 1:
+        return 0
+    key = f"{getattr(insight, 'topic', '') or ''}|{kind}"
+    return int(_hashlib.sha1(key.encode()).hexdigest()[:8], 16) % n
+
+
+def stage(insight, kind: str) -> dict:
+    """Every staging choice for one machine on one story, in one place.
+
+    A dict rather than scattered `variant()` calls so a machine reads its
+    staging in a line, and so a test can enumerate what is allowed to vary.
+    """
+    v = variant(insight, kind, 12)
+    return {
+        "v": v,
+        # which way the eye travels. Both directions are equally true of a
+        # ranking or a climb; neither is true of a TIME series, so machines
+        # that walk through time ignore this.
+        "flip": bool(v & 1),
+        # which side the host watches from
+        "host_side": "right" if v & 2 else "left",
+        # a ground line under the composition, or open space
+        "ground": bool(v & 4),
+        # what the moving product looks like
+        "particle": _PARTICLES[v % len(_PARTICLES)],
+    }
+
+
+def particle(d, kind: str, x, y, r, colour):
+    """Draw one unit of moving product in the story's particle shape.
+
+    Purely cosmetic: the COUNT of particles and where they stop is the claim,
+    and neither depends on this.
+    """
+    x, y, r = float(x), float(y), float(r)
+    if kind == "square":
+        d.rounded_rectangle([x - r, y - r, x + r, y + r],
+                            radius=max(2.0, r * 0.28), fill=colour)
+    elif kind == "chevron":
+        d.polygon([(x, y - r), (x + r, y), (x, y + r), (x - r * 0.35, y)],
+                  fill=colour)
+    else:
+        d.ellipse([x - r, y - r, x + r, y + r], fill=colour)
 
 
 def _guarded(label: str, fn, *a, **kw):

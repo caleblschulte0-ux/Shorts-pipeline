@@ -948,10 +948,27 @@ def run_one(topic, publish_at: str | None, *, dry_run: bool,
         # story from the title alone. Pull the actual article text first.
         _research(topic)
 
-        # 1. Groq writes the script package (with validation + retry).
+        # 1. A BRAIN writes the script package (with validation + retry).
+        #
+        # NOT pinned to Groq. `_call_llm` walks the configured backends until
+        # one ANSWERS — free before paid — but only when the caller does not
+        # name one; an explicit `backend=` is exact by design, so it gets that
+        # backend's error and nothing else.
+        #
+        # This line pinned it, and it has now cost the channel two days. Its
+        # own docstring records the first: 2026-08-11, all four backfill
+        # attempts died on `HTTP Error 429` while Gemini sat configured and
+        # idle. The chain was fixed that day; this caller was not. On
+        # 2026-09-07 the same failure arrived as `HTTP Error 401` — an
+        # expired Groq key — and killed all three backfill attempts in under
+        # two seconds each, so three slots the showrunner had correctly
+        # emptied could not be re-authored and the day shipped 3 of 6.
+        #
+        # The backfill is the LAST unattended chance to fill a slot. It is
+        # the one place that must never depend on a single provider.
         print(f"[{topic.query!r}] generating script...", flush=True)
         pkg = script_generator.generate(
-            topic.query, topic.headlines, topic.snippets, backend="groq",
+            topic.query, topic.headlines, topic.snippets,
         )
 
         # Save the package alongside so we can re-render or audit later.

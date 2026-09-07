@@ -249,3 +249,37 @@ class FfmpegShape(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TheClosingIsNotSixSecondsOfNOTHING(unittest.TestCase):
+    """The closing card is a fifth of the video. It may not be a still.
+
+    `_close_baked` suppresses the closing celebration overlay when the recap
+    chart behind the payoff already bakes a host into itself — right, and it
+    used to be tested WITHOUT asking whether that chart is on screen during
+    the closing at all.
+
+    That was harmless while only `timeline_axis` baked a host. The moment the
+    data machines started baking their own (they must, or a machine gets a
+    second mascot standing beside it during its beat), almost every video lost
+    its closing celebration and ended on six seconds of a still mascot under a
+    speech bubble over an empty frame. Measured on the finished mp4 with the
+    showrunner's own detector: a 2.46-second frozen run against a 45-frame
+    ceiling — the longest in the batch, and the only thing holding a video out
+    of the gate.
+
+    The condition is `lead_payoff`: the recap chart only reaches the closing
+    when there is no receipt to lead it.
+    """
+
+    def test_the_closing_overlay_is_only_suppressed_when_a_chart_is_there(self):
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        self.assertIn("_close_baked = (lead_payoff and bool(st.segments)", src)
+
+    def test_the_empty_payoff_still_gets_a_BIG_central_host(self):
+        """When nothing is behind the payoff, the mascot IS the payoff."""
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        self.assertIn("close_scale = 1.0 if lead_payoff else 1.55", src)
+        self.assertIn("close_y = stage_y if lead_payoff else", src)

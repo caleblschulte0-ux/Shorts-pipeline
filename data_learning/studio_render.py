@@ -2246,8 +2246,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # With a recap chart behind the payoff, Data sweeps ON it (beside its
             # star datum) rather than standing below; otherwise he is the big
             # central celebration.
-            # If the recap chart bakes the host in, add NO closing overlay.
-            _close_baked = bool(st.segments) and _seg_is_baked(st.segments[-1])
+            # If the recap chart bakes the host in, add NO closing overlay —
+            # but ONLY when that chart is actually on screen during the
+            # closing, which is exactly the `lead_payoff` case.
+            #
+            # Without that condition this suppressed the closing celebration
+            # for almost every video the moment the data machines started
+            # baking their own host (they must, or a machine gets a second
+            # mascot beside it during its beat). The result was six seconds of
+            # a still mascot under a speech bubble over an empty frame: the
+            # single longest frozen run in the batch (2.46s, against a
+            # 45-frame ceiling) and a fifth of the video spent on a card with
+            # nothing happening in it.
+            _close_baked = (lead_payoff and bool(st.segments)
+                            and _seg_is_baked(st.segments[-1]))
             staged_close = None
             if lead_payoff and st.segments and not _close_baked:
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],

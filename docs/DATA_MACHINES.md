@@ -236,6 +236,30 @@ Forecast language over a run of measurements is just a writer being loose.
 | `record` | `trophies_scene`, `units_scene` | one cup, one title. Refuses above 30 — too many to count is not a shelf. |
 | `buying_power` | `basket_scene`, `units_scene` | two baskets filled from the same note. The price is never the story; what is left in the basket is. |
 
+## Staging: the same machine, arranged differently
+
+The router fixed WHICH picture a beat gets. It did not touch HOW that picture
+is composed — and `race_track` alone is 195 of the 930 configured beats, drawn
+with the identical layout every time until 2026-09-07. A library of 42 rigid
+pictures is a bigger template than a library of six, not a smaller one.
+
+`viz_scene.stage(insight, kind)` returns every staging choice for one machine
+on one story, keyed on the topic so it is deterministic (a re-render is
+identical) and different per story. Machines read it in a line.
+
+**The rule that makes it safe: staging may change how a machine is ARRANGED,
+never what it CLAIMS.** The value-to-geometry mapping, every number, every
+label and every caption are identical across variants. What varies is framing
+— which lane the leader runs in, which side the host watches from, whether
+there is a ground line, what shape the moving product is.
+`tests/test_machines_are_pliable.py` renders the same insight at every variant
+and fails if a single drawn number moves.
+
+Two things it must never touch, and a test holds each: a machine that walks
+through TIME ignores `flip` (time runs one way), and an ordering that IS the
+ranking is not free to reverse — a race's lanes are arbitrary, a sorter's bins
+are not.
+
 ## What is deliberately NOT built
 
 - **A network / subway map.** It needs edge data — who connects to whom — and
