@@ -12,7 +12,7 @@
     "mechanic": "shockwave-duel",
     "concept": "two subjects face off, each emitting expanding sound rings whose count and reach scale with its decibel value",
     "code": "\ncy = 600\nwimg = images.get(labels[0])\njimg = images.get(labels[1])\nfor i in range(2):\n    v = values[i]\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    col = HIGHLIGHT if i == 0 else ACCENT\n    rings = int(clamp(v / vmax) * 6.0 * reveal) + 1\n    for k in range(rings):\n        rr = 60 + k * 52\n        a = int(190.0 * (1.0 - k / (rings + 1.0)) * reveal)\n        d.ellipse([cxs - rr, cy - rr, cxs + rr, cy + rr],\n                  outline=rgba(col, a), width=6)\nimg = wimg\nfor i in range(2):\n    img = wimg if i == 0 else jimg\n    cxs = RX0 + 240 if i == 0 else RX1 - 240\n    if img is not None:\n        asp = img.width / img.height\n        w = 330\n        h = int(w / asp)\n        if h > 300:\n            h = 300\n            w = int(h * asp)\n        paste(img, cxs - w // 2, cy - h // 2, w, h)\n    col = HIGHLIGHT if i == 0 else ACCENT\n    na = clamp((reveal - 0.4) / 0.6)\n    text(str(int(values[i])) + ' dB', cxs, cy - 330, size=70, color=col, center=True)\n    text(labels[i], cxs, cy + 210, size=40, center=True)\nmid = clamp((reveal - 0.7) / 0.3)\nif mid > 0:\n    text('1.5x LOUDER', (RX0 + RX1) // 2, 950, size=54, color=WARN, center=True)\n",
-    "topic": "Loudest Animals — whale vs jet engine",
+    "topic": "Loudest Animals \u2014 whale vs jet engine",
     "starred": true
   },
   {
@@ -184,7 +184,7 @@
     "sig": "a88a30436c88",
     "mechanic": "mission-bone-gauge",
     "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
-    "code": "v0 = values[0]; v1 = values[1]\nsuit = subject_image('astronaut spacesuit')\ncx0 = RX0 + 240; cx1 = RX1 - 240\ntop = RTOP + 220; bot = RBOT - 80\ngw = 160\nfor cx, v, col, lab in ((cx0, v0, WARN, 'ISS · 6 months'), (cx1, v1, HIGHLIGHT, 'Mars · 30 months')):\n    d.rounded_rectangle([cx - gw // 2, top, cx + gw // 2, bot], radius=40, outline=rgba(TEXT, 180), width=6)\n    frac = clamp(v / 35.0) * reveal\n    fh = int((bot - top) * frac)\n    if fh > 12:\n        d.rounded_rectangle([cx - gw // 2 + 6, bot - fh, cx + gw // 2 - 6, bot - 6], radius=30, fill=rgba(col, 210))\n    if suit is not None:\n        paste(suit, cx - 70, top - 170, 140, 150)\n    text(lab, cx, top - 190, size=24, color=col, center=True)\n    text(f'{v:.0f}% bone lost', cx, bot + 20, size=26, color=col, center=True)",
+    "code": "v0 = values[0]; v1 = values[1]\nsuit = subject_image('astronaut spacesuit')\ncx0 = RX0 + 240; cx1 = RX1 - 240\ntop = RTOP + 220; bot = RBOT - 80\ngw = 160\nfor cx, v, col, lab in ((cx0, v0, WARN, 'ISS \u00b7 6 months'), (cx1, v1, HIGHLIGHT, 'Mars \u00b7 30 months')):\n    d.rounded_rectangle([cx - gw // 2, top, cx + gw // 2, bot], radius=40, outline=rgba(TEXT, 180), width=6)\n    frac = clamp(v / 35.0) * reveal\n    fh = int((bot - top) * frac)\n    if fh > 12:\n        d.rounded_rectangle([cx - gw // 2 + 6, bot - fh, cx + gw // 2 - 6, bot - 6], radius=30, fill=rgba(col, 210))\n    if suit is not None:\n        paste(suit, cx - 70, top - 170, 140, 150)\n    text(lab, cx, top - 190, size=24, color=col, center=True)\n    text(f'{v:.0f}% bone lost', cx, bot + 20, size=26, color=col, center=True)",
     "topic": "Space Doesn't Just Float You. It Hollows You.",
     "starred": false
   },
@@ -192,7 +192,7 @@
     "sig": "297d8df3b0ce",
     "mechanic": "brain-speckle-accumulate",
     "concept": "a real brain cut-out speckles with plastic-particle dots that multiply from the 2016 density to the 2024 density, denser and more saturated as reveal advances",
-    "code": "v0 = values[0]; v1 = values[-1]\nbrain = subject_image('human brain')\nbx, by, bw, bh = RX0 + 140, RTOP + 160, RX1 - RX0 - 280, 620\nif brain is not None:\n    paste(brain, bx, by, bw, bh)\nelse:\n    d.ellipse([bx, by, bx + bw, by + bh], outline=rgba(TEXT, 200), width=6)\nfrac = lerp(v0, v1, reveal) / v1\ndots = max(6, int(140 * frac))\nfor i in range(dots):\n    seed = (i * 977) % 1000 / 1000.0\n    seed2 = (i * 613 + 41) % 1000 / 1000.0\n    px = bx + int(bw * seed)\n    py = by + int(bh * seed2)\n    d.ellipse([px - 5, py - 5, px + 5, py + 5], fill=rgba(WARN, 220))\ntext(str(int(v0)) + ' µg/g (2016)', RX0 + 20, RTOP + 60, size=32, color=TEXT)\ntext(str(int(v1)) + ' µg/g (2024)', RX0 + 20, RTOP + 110, size=40, color=WARN)",
+    "code": "v0 = values[0]; v1 = values[-1]\nbrain = subject_image('human brain')\nbx, by, bw, bh = RX0 + 140, RTOP + 160, RX1 - RX0 - 280, 620\nif brain is not None:\n    paste(brain, bx, by, bw, bh)\nelse:\n    d.ellipse([bx, by, bx + bw, by + bh], outline=rgba(TEXT, 200), width=6)\nfrac = lerp(v0, v1, reveal) / v1\ndots = max(6, int(140 * frac))\nfor i in range(dots):\n    seed = (i * 977) % 1000 / 1000.0\n    seed2 = (i * 613 + 41) % 1000 / 1000.0\n    px = bx + int(bw * seed)\n    py = by + int(bh * seed2)\n    d.ellipse([px - 5, py - 5, px + 5, py + 5], fill=rgba(WARN, 220))\ntext(str(int(v0)) + ' \u00b5g/g (2016)', RX0 + 20, RTOP + 60, size=32, color=TEXT)\ntext(str(int(v1)) + ' \u00b5g/g (2024)', RX0 + 20, RTOP + 110, size=40, color=WARN)",
     "topic": "plastic-in-your-body",
     "starred": true
   },
@@ -207,7 +207,7 @@
   {
     "sig": "a31c501b03de",
     "mechanic": "piggyback-worker-columns",
-    "concept": "three worker silhouettes each carry a stack of elderly-rider cut-outs on their back sized to that country's 2050 dependency ratio — the stack towers over Japan's worker",
+    "concept": "three worker silhouettes each carry a stack of elderly-rider cut-outs on their back sized to that country's 2050 dependency ratio \u2014 the stack towers over Japan's worker",
     "code": "worker = subject_image('worker silhouette')\nrider = subject_image('elderly person silhouette')\ncols = n\ngw = (RX1 - RX0 - 40) // max(1, cols)\nbase_y = RBOT - 120\nfor i in range(cols):\n    x = RX0 + 20 + i * gw + gw // 2\n    v = values[i]\n    if worker is not None:\n        paste(worker, x - 70, base_y - 150, 140, 150)\n    frac = clamp(v / 100.0) * reveal\n    riders = max(1, int(8 * frac))\n    for r in range(riders):\n        ry = base_y - 150 - r * 46\n        if rider is not None:\n            paste(rider, x - 55, ry, 110, 60)\n    text(str(v), x, base_y + 30, size=40, color=HIGHLIGHT, center=True)\n    text(labels[i], x, base_y + 80, size=24, color=TEXT, center=True)\ntext('elderly per 100 workers, 2050', RX0 + 20, RTOP + 100, size=30, color=TEXT)",
     "topic": "two-speed-aging-world",
     "starred": false
@@ -225,7 +225,7 @@
     "mechanic": "scale-tip-pet-duel",
     "concept": "a balance beam with a dog photo on one pan and a cat photo on the other tips toward cats as the beam settles at 61% vs 59%",
     "code": "dog = subject_image('dog sitting photo')\ncat = subject_image('cat sitting photo')\nv0 = values[0]; v1 = values[1] if n > 1 else values[0]\ncx = (RX0 + RX1) // 2\nfulcrum_y = RTOP + 420\nbeam_len = 380\ntilt = lerp(0, 16 if v1 >= v0 else -16, reveal)\nang = math.radians(tilt)\nlx = cx - int(beam_len * math.cos(ang)); ly = fulcrum_y - int(beam_len * math.sin(ang))\nrx = cx + int(beam_len * math.cos(ang)); ry = fulcrum_y + int(beam_len * math.sin(ang))\nd.polygon([(cx, fulcrum_y - 180), (cx - 28, fulcrum_y), (cx + 28, fulcrum_y)], fill=rgba(TEXT, 220))\nd.line([lx, ly, rx, ry], fill=rgba(TEXT, 230), width=10)\npw, ph = 180, 160\nif dog is not None:\n    paste(dog, lx - pw // 2, ly + 10, pw, ph)\nif cat is not None:\n    paste(cat, rx - pw // 2, ry + 10, pw, ph)\ntext(labels[0], lx, ly + ph + 34, size=26, color=TEXT, center=True)\ntext(f'{v0:.0f}%', lx, ly + ph + 66, size=32, color=TEXT, center=True)\ntext(labels[1] if n > 1 else 'Cats', rx, ry + ph + 34, size=26, color=WARN, center=True)\ntext(f'{v1:.0f}%', rx, ry + ph + 66, size=36, color=WARN, center=True)\ntext('overweight', cx, RTOP + 60, size=28, color=TEXT, center=True)\n",
-    "topic": "Pets — dogs vs cats overweight share",
+    "topic": "Pets \u2014 dogs vs cats overweight share",
     "starred": false
   },
   {
@@ -266,34 +266,6 @@
     "concept": "a landing-station hub with a real cable-coil icon radiates more cable spokes outward year by year, each spoke ending in a lit node, until the web fills the frame",
     "code": "cable_icon = subject_image('undersea fiber optic cable coil')\ncx, cy = (RX0 + RX1) // 2, (RTOP + RBOT) // 2 - 30\nhub_r = 70\nd.ellipse([cx - hub_r, cy - hub_r, cx + hub_r, cy + hub_r], fill=rgba(ACCENT, 220))\nif cable_icon is not None:\n    paste(cable_icon, cx - 60, cy - 60, 120, 120)\nn_shown = max(1, int(n * clamp(reveal * 1.2)))\nfor i in range(n_shown):\n    v = values[i]\n    frac = clamp(v / vmax)\n    ang = -math.pi / 2 + i * (2 * math.pi / max(n, 1))\n    length = 120 + frac * 420\n    ex = cx + length * math.cos(ang)\n    ey = cy + length * math.sin(ang)\n    local_reveal = clamp(reveal * 1.2 * n - i)\n    lx = lerp(cx, ex, local_reveal)\n    ly = lerp(cy, ey, local_reveal)\n    d.line([cx, cy, lx, ly], fill=rgba(HIGHLIGHT, 200), width=10)\n    d.ellipse([lx - 14, ly - 14, lx + 14, ly + 14], fill=rgba(WARN, 230))\n    text(labels[i], lx, ly - 40, size=26, color=TEXT, center=True)\n    text(str(int(v)), lx, ly + 30, size=30, color=ACCENT, center=True)\ntext('active submarine cable systems', RX0 + 20, RTOP + 60, size=32, color=TEXT)\ntext(str(int(values[-1])) + ' systems -- up 38 in a year', RX0 + 20, RBOT - 40, size=32, color=HIGHLIGHT)\n",
     "topic": "active submarine cable systems by year",
-    "starred": false
-  },
-  {
-    "mechanic": "reaction-blink-race",
-    "concept": "one pit stop's duration divides into a strip of human-reaction-time blinks, filling one by one to show how many blinks fit inside the stop",
-    "code": "reaction = 0.27\npit = values[0]\ncount = pit / reaction\ncx = (RX0 + RX1) // 2\nbar_x0 = RX0 + 60\nbar_w = RX1 - RX0 - 120\nbar_y = RTOP + 220\nd.rounded_rectangle([bar_x0, bar_y, bar_x0 + bar_w, bar_y + 74], radius=20, outline=rgba(TEXT, 180), width=4)\nseg_w = bar_w / count\nfull_segs = int(clamp(reveal) * count)\neye = subject_image('blinking eye icon')\nfor k in range(full_segs):\n    sx = bar_x0 + k * seg_w\n    d.rectangle([sx, bar_y, sx + seg_w - 4, bar_y + 74], fill=rgba(HIGHLIGHT if k % 2 == 0 else ACCENT, 190))\n    ex = sx + seg_w / 2\n    if eye is not None:\n        paste(eye, ex - 18, bar_y + 84, 36, 24)\npartial = clamp(reveal) * count - full_segs\nif partial > 0 and full_segs < count:\n    sx = bar_x0 + full_segs * seg_w\n    d.rectangle([sx, bar_y, sx + seg_w * partial - 4, bar_y + 74], fill=rgba(WARN, 190))\ntext('one pit stop', cx, bar_y - 60, size=34, color=TEXT, center=True)\ntext(f'{pit:.2f}s = {count:.1f} human reaction times', cx, bar_y + 170, size=28, color=WARN, center=True)\ncrew = subject_image('F1 pit crew changing tire')\ncw = 280\nch = 180\nif crew is not None:\n    paste(crew, cx - cw // 2, bar_y + 230, cw, ch)",
-    "topic": "records",
-    "starred": false
-  },
-  {
-    "mechanic": "pin-walks-off-the-map",
-    "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
-    "code": "pin = subject_image('map location pin marker')\ncx = RX0 + 130\ncy = RTOP + 190\nvlast = values[-1] or 1.0\nd.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=rgba(HIGHLIGHT))\ntext('you are here', cx + 46, cy - 26, size=32, color=HIGHLIGHT)\nfor i in range(n):\n    if reveal < (i + 0.4) / n:\n        continue\n    py = cy + 190 + i * 200\n    px = cx + int((RX1 - 250 - cx) * (values[i] / vlast))\n    d.line([cx, py, px, py], fill=rgba(WARN, 170), width=7)\n    if pin is not None:\n        paste(pin, px - 38, py - 96, 76, 96)\n    else:\n        d.ellipse([px - 24, py - 24, px + 24, py + 24], fill=rgba(WARN))\n    text(labels[i], RX0 + 20, py + 22, size=28, color=TEXT)\n    text(str(values[i]) + ' km off', px - 40, py - 148, size=32, color=WARN)",
-    "topic": "science",
-    "starred": false
-  },
-  {
-    "mechanic": "photo-avalanche-clock",
-    "concept": "a stopwatch marking 2 minutes while a cascade of photo thumbnails rains down at the millions-per-2-minutes rate, next to one small tidy vintage photo stack representing the entire 1800s",
-    "code": "cx = (RX0 + RX1) // 2\nwatch = subject_image('stopwatch icon')\nwx = RX0 + 140\nwy = RTOP + 100\nif watch is not None:\n    paste(watch, wx - 70, wy, 140, 140)\ntext('2 MINUTES', wx, wy + 150, size=25, color=ACCENT, center=True)\nphoto = subject_image('polaroid photo stack')\ncascade_n = int(26 * reveal)\nfor i in range(cascade_n):\n    px = RX0 + 300 + (i * 53) % 460\n    py = RTOP + 160 + (i * 97) % 780\n    if photo is not None:\n        paste(photo, px, py, 60, 60)\ntext(str(values[0]) + 'M photos', RX0 + 260, RTOP + 40, size=33, color=HIGHLIGHT)\nold = subject_image('vintage sepia photograph 1800s')\nox = RX1 - 220\noy = RBOT - 260\nif old is not None:\n    paste(old, ox, oy, 180, 180)\ntext(str(values[1]) + 'M total', ox + 90, oy + 190, size=27, color=WARN, center=True)\ntext('all of the 1800s', ox + 90, oy + 222, size=21, color=TEXT, center=True)\n",
-    "topic": "tech",
-    "starred": false
-  },
-  {
-    "mechanic": "atom-scale-zoom",
-    "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
-    "code": "cx = (RX0 + RX1) // 2\ntop_y = 380\nbig = values[0]\nsmall = values[1]\nbig_s = 480\nsmall_s = max(18, big_s * (small / big) ** 0.35)\nbx = cx - 260\nsx = cx + 200\nimg = images.get(labels[0])\nif img is None:\n    img = subject_image('silicon chip die macro')\nbw = int(lerp(40, big_s, reveal))\nif img is not None:\n    paste(img, bx - bw // 2, top_y - bw // 2, bw, bw)\nelse:\n    d.rounded_rectangle([bx - bw // 2, top_y - bw // 2, bx + bw // 2, top_y + bw // 2], fill=rgba(ACCENT, 220))\ntext(labels[0], bx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(big)) + ' nm', bx, top_y - big_s // 2 - 40, size=36, color=HIGHLIGHT, center=True)\nsw = int(lerp(6, small_s, reveal))\nd.ellipse([sx - sw // 2, top_y - sw // 2, sx + sw // 2, top_y + sw // 2], fill=rgba(WARN, 230))\ntext(labels[1], sx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(small)) + ' nm', sx, top_y - big_s // 2 - 40, size=36, color=WARN, center=True)\nif reveal > 0.6:\n    text('a handful of atoms wide', cx, RTOP + 10, size=32, center=True)\n",
-    "topic": "tech",
     "starred": false
   },
   {
@@ -390,20 +362,6 @@
     "starred": false
   },
   {
-    "mechanic": "delivery-truck-box-stack-grow",
-    "concept": "two USPS trucks each stacking a tower of shipping boxes behind them, the 2020 tower more than double the 2008 one",
-    "code": "truck = subject_image('USPS delivery truck')\nbox = subject_image('cardboard shipping box')\ncx0 = RX0 + (RX1 - RX0) // 4\ncx1 = RX0 + 3 * (RX1 - RX0) // 4\nbase_y = RBOT - 110\nfor i in range(2):\n    cx = cx0 if i == 0 else cx1\n    if truck is not None:\n        paste(truck, cx - 100, base_y - 120, 200, 120)\n    frac = clamp(values[i] / vmax)\n    h = 500.0 * frac * clamp(reveal)\n    rows = max(1, int(h // 60))\n    for r in range(rows):\n        by = base_y - 130 - r * 60\n        if box is not None:\n            paste(box, cx - 40, by - 50, 80, 55)\n    text(labels[i], cx, base_y + 30, size=24, color=TEXT, center=True)\n    text(f'{values[i]:.1f}B pkgs', cx, base_y - 150 - h, size=32, color=HIGHLIGHT, center=True)\n",
-    "topic": "mail-volume-collapse",
-    "starred": false
-  },
-  {
-    "mechanic": "letter-stack-thin-shrink",
-    "concept": "a tall stack of stamped letters below a mail slot thins to roughly half height as First-Class volume falls from 92 to 46 billion pieces",
-    "code": "letter = subject_image('stamped letter envelope')\nslot = subject_image('brass mail slot')\ncx = (RX0 + RX1) // 2\ntop_y = RTOP + 160\nif slot is not None:\n    paste(slot, cx - 140, top_y, 280, 60)\nfrac = lerp(values[0] / vmax, values[1] / vmax, clamp(reveal))\nh = 800.0 * frac\nrows = max(1, int(h // 26))\nfor r in range(rows):\n    ly = top_y + 90 + r * 26\n    if letter is not None:\n        paste(letter, cx - 100, ly, 200, 24)\nlbl = labels[0] if reveal < 0.5 else labels[1]\nv = lerp(values[0], values[1], clamp(reveal))\ntext(lbl, cx, top_y - 60, size=40, color=HIGHLIGHT, center=True)\ntext(f'{v:.0f}B letters', cx, top_y + 90 + h + 40, size=34, color=WARN, center=True)\n",
-    "topic": "mail-volume-collapse",
-    "starred": false
-  },
-  {
     "mechanic": "portal-comet-count",
     "starred": false,
     "topic": "third-interstellar-visitor",
@@ -444,5 +402,53 @@
     "code": "moon = subject_image('the moon')\ncx = (RX0+RX1)//2\ncy = RTOP + 340\nr = 240\nif moon is not None:\n    paste(moon, cx-r, cy-r, r*2, r*2)\nvfinal = values[-1]\nsweep = clamp(reveal) * 360\nd.arc([cx-r-36, cy-r-36, cx+r+36, cy+r+36], start=-90, end=-90+sweep, fill=rgba(WARN, 230), width=16)\ncur_years = int(vfinal*clamp(reveal))\ntext(f'{cur_years}', cx, cy, size=130, color=TEXT, center=True)\ntext('years since anyone walked on the Moon', cx, cy+r+70, size=32, color=TEXT, center=True)\nlabels_txt = ['1980', '2000', '2024']\nlx0 = RX0 + 40\nly0 = cy+r+120\nfor i in range(3):\n    text(f'{labels_txt[i]}: {int(values[i])}y', lx0 + i*300, ly0, size=26, color=TEXT, center=False)\n",
     "topic": "fifty-years-since-moon-landing",
     "starred": false
+  },
+  {
+    "sig": "feather-toll-climb",
+    "mechanic": "feather-toll-climb",
+    "concept": "a poultry photo tops a rising feather pile whose height climbs year by year to the cumulative US bird toll",
+    "code": "v1 = values[-1]\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nmax_h = 520\nbird = subject_image('chicken')\nbh = 0\nif bird is not None:\n    bw = 200\n    bh = int(bw * bird.height / bird.width)\n    paste(bird, cx - bw // 2, RTOP + 10, bw, bh)\ngap = (RX1 - RX0 - 120) // max(1, n - 1)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * n - i)\n    h = int(max_h * frac * stage)\n    x = RX0 + 60 + i * gap\n    if h > 0:\n        w = 26\n        d.rounded_rectangle([x - w // 2, base_y - h, x + w // 2, base_y], radius=10,\n                             fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n        for fy in range(base_y - h, base_y, 34):\n            d.ellipse([x - 20, fy, x + 20, fy + 22], fill=rgba(TEXT, 160))\n    text(lab, x, base_y + 14, size=26, color=TEXT, center=True)\n    if stage >= 1:\n        text(str(int(v)), x, base_y - h - 34, size=28,\n             color=WARN if i == n - 1 else HIGHLIGHT, center=True)\nd.line([RX0 + 30, base_y, RX1 - 30, base_y], fill=rgba(TEXT, 140), width=4)\ntext(f\"{int(v1)}M birds lost\", cx, RTOP + 20 + bh + 10, size=40, color=WARN, center=True)",
+    "topic": "bird-flu-species-jump",
+    "starred": true
+  },
+  {
+    "sig": "banned-barrel-drain",
+    "mechanic": "banned-barrel-drain",
+    "concept": "a chemical barrel drains from full down to the 1 percent still-in-use level, then a BANNED stamp lands",
+    "code": "barrel = subject_image('chemical barrel')\ncx = (RX0 + RX1) // 2\nbw, bh = 280, 460\nbx, by = cx - bw // 2, RTOP + 120\nstill_frac = values[1] / 100.0\ndrained = clamp(reveal)\nfrac_now = lerp(1.0, still_frac, drained)\nfill_image(barrel, frac_now, bx, by, bw, bh, direction='up', color=WARN)\nd.rounded_rectangle([bx, by, bx + bw, by + bh], radius=24, outline=rgba(TEXT, 160), width=5)\ntext(f\"{int(round(frac_now * 100))}% still in use\", cx, by + bh + 40, size=36, color=WARN, center=True)\nif drained > 0.6:\n    stamp_a = clamp((drained - 0.6) / 0.3)\n    d.ellipse([cx - 140, by - 40, cx + 140, by + 220],\n              outline=rgba(HIGHLIGHT, int(230 * stamp_a)), width=10)\n    text('BANNED', cx, by + 70, size=44, color=HIGHLIGHT, center=True)\n    text(f\"{int(values[0])}% phased out\", cx, by + 130, size=30, color=TEXT, center=True)",
+    "topic": "ozone-hole-recovery",
+    "starred": false
+  },
+  {
+    "sig": "recovery-vessel-row",
+    "mechanic": "recovery-vessel-row",
+    "concept": "three vessels, one per region photo, fill bottom-up to how many years each still has left until full recovery",
+    "code": "cols = n\ngap = 40\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\nsubjects = ['world map', 'arctic ice', 'antarctica glacier']\ntop = RTOP + 60\nimg_h = 170\nvessel_h = 480\nvessel_y = top + img_h + 20\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    img = subject_image(subjects[i % len(subjects)])\n    if img is not None:\n        iw = box_w - 10\n        ih = min(img_h, int(iw * img.height / img.width))\n        paste(img, x0 + 5, top, iw, ih)\n    vw = box_w - 40\n    vx = x0 + 20\n    d.rounded_rectangle([vx, vessel_y, vx + vw, vessel_y + vessel_h], radius=16,\n                         outline=rgba(TEXT, 200), width=5)\n    frac = clamp(v / vmax) * reveal\n    fh = int(vessel_h * frac)\n    d.rounded_rectangle([vx + 6, vessel_y + vessel_h - fh, vx + vw - 6, vessel_y + vessel_h - 6],\n                         radius=12, fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n    text(lab, cx, vessel_y + vessel_h + 22, size=22, color=TEXT, center=True)\n    text(f\"{int(v)}y left\", cx, vessel_y + vessel_h + 52, size=28,\n         color=WARN if i == n - 1 else HIGHLIGHT, center=True)",
+    "topic": "ozone-hole-recovery",
+    "starred": false
+  },
+  {
+    "sig": "shield-breach-wash",
+    "mechanic": "shield-breach-wash",
+    "concept": "two security shields side by side, each washed red from the bottom up to its own breach-within-a-year rate",
+    "code": "cols = n\ngap = 60\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\ntop = RTOP + 60\nsh_h = 480\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    shield = subject_image('security shield padlock')\n    if shield is not None:\n        paste(shield, x0 + 10, top, box_w - 20, sh_h)\n    else:\n        d.rounded_rectangle([x0 + 10, top, x0 + box_w - 10, top + sh_h], radius=30,\n                             outline=rgba(TEXT, 200), width=6)\n    frac = clamp(v / 100.0) * reveal\n    ch = int(sh_h * frac)\n    d.rectangle([x0 + 10, top + sh_h - ch, x0 + box_w - 10, top + sh_h],\n                fill=rgba(WARN, 120))\n    for k in range(int(6 * frac)):\n        cxk = x0 + 30 + (k * 41) % (box_w - 60)\n        cyk = top + sh_h - (k * 67) % max(1, ch) - 10\n        d.line([cxk - 14, cyk - 14, cxk + 14, cyk + 14], fill=rgba(TEXT, 230), width=3)\n        d.line([cxk - 14, cyk + 14, cxk + 14, cyk - 14], fill=rgba(TEXT, 230), width=3)\n    text(lab, cx, top + sh_h + 26, size=22, color=TEXT, center=True)\n    text(f\"{int(v)}% breached\", cx, top + sh_h + 58, size=30, color=WARN, center=True)",
+    "topic": "data-breach-exposure",
+    "starred": false
+  },
+  {
+    "sig": "breach-target-board",
+    "mechanic": "breach-target-board",
+    "concept": "one target board per industry, real sector icon at the bullseye, dart hits raining in scaled to its breach count",
+    "code": "cols = n\ngap = 30\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\nsubjects = ['bank building', 'hospital', 'office briefcase', 'factory']\ntop = RTOP + 40\ntarget_r = min(box_w, 300) // 2 - 10\ncy = top + target_r + 60\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    for ring, alpha_col in ((1.0, rgba(TEXT, 90)), (0.66, rgba(WARN, 110)), (0.33, rgba(WARN, 180))):\n        rr = int(target_r * ring)\n        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], outline=alpha_col, width=4)\n    icon = subject_image(subjects[i % len(subjects)])\n    if icon is not None:\n        iw = int(target_r * 1.1)\n        paste(icon, cx - iw // 2, cy - iw // 2, iw, iw)\n    darts = max(1, int(10 * clamp(v / vmax) * reveal))\n    for k in range(darts):\n        ang = (k * 2.4) % 6.283\n        rad = target_r * (0.15 + 0.75 * ((k * 53) % 100) / 100.0)\n        dx = cx + int(rad * math.cos(ang))\n        dy = cy + int(rad * math.sin(ang))\n        d.line([dx - 3, dy - 12, dx + 3, dy + 12], fill=rgba(HIGHLIGHT, 230), width=5)\n        d.ellipse([dx - 5, dy - 5, dx + 5, dy + 5], fill=rgba(HIGHLIGHT, 230))\n    text(lab, cx, cy + target_r + 30, size=20, color=TEXT, center=True)\n    text(str(int(v)), cx, cy + target_r + 58, size=32,\n         color=WARN if i == 0 else TEXT, center=True)",
+    "topic": "data-breach-exposure",
+    "starred": true
+  },
+  {
+    "sig": "body-clock-dials",
+    "mechanic": "body-clock-dials",
+    "concept": "four tissue photos sit inside round clock dials arranged 2x2, each hand sweeping to a log-scaled position so a 5-day stomach barely ticks while a 3,650-day skeleton nearly completes a full lap",
+    "code": "subs = ['human stomach organ', 'human skin close up', 'red blood cells microscope',\n        'human skeleton bone']\ncols = 2\ngw = (RX1 - RX0) // cols\ngh = 480\ngy0 = RTOP + 60\nfor i in range(n):\n    col_i = i % cols\n    row_i = i // cols\n    cx = RX0 + gw * col_i + gw // 2\n    cy = gy0 + gh * row_i + gh // 2\n    r = 150\n    d.ellipse([cx - r, cy - r, cx + r, cy + r], outline=rgba(TEXT, 150), width=6)\n    img = subject_image(subs[i] if i < len(subs) else labels[i])\n    if img is not None:\n        paste(img, cx - 90, cy - 90, 180, 180)\n    v = values[i]\n    frac = math.log(v + 1) / math.log(vmax + 1)\n    ang = -90 + 360 * frac * reveal\n    rad = ang * math.pi / 180\n    hx = cx + int((r - 10) * math.cos(rad))\n    hy = cy + int((r - 10) * math.sin(rad))\n    d.line([cx, cy, hx, hy], fill=rgba(HIGHLIGHT, 255), width=8)\n    d.ellipse([cx - 10, cy - 10, cx + 10, cy + 10], fill=rgba(HIGHLIGHT, 255))\n    text(labels[i], cx, cy + r + 20, size=25, color=TEXT, center=True)\n    text(str(int(v)) + ' days', cx, cy + r + 54, size=29, color=ACCENT, center=True)\n",
+    "topic": "body-renewal-clock",
+    "starred": true
   }
 ]

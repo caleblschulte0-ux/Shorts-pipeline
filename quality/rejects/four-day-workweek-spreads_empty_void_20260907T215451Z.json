@@ -1,0 +1,16 @@
+{
+ "slug": "four-day-workweek-spreads",
+ "ts": "20260907T215451Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid/seg1:end leave the entire lower two-thirds as blank blue gradient, and seg4:start through payoff@-0.4 leave roughly the bottom third below 'each = 5%' completely empty.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "broken_framing_bare_number",
+  "visible_evidence": "At seg1:mid (t=9.32s) and seg1:end (t=12.63s) the camera has pushed in so far that the headline is cropped on both sides ('PLOYERS TRIALING A FOUR-DAY WI'), the radial gauge arc is mostly outside the frame, the mascot is buried under and overlapped by the oversized '14.8%'/'21.7%' numerals, and the bottom two-thirds is empty gradient \u2014 the beat reads as a bare number card, not a demonstration.",
+  "root_cause": "The zoom/scale on this scene overshoots the safe area: the gauge geometry and title are laid out for the full card but rendered at a magnification that pushes them past the frame edges, leaving only the value readout and a mascot collision.",
+  "repair_goal": "Pull the seg1 zoom back so the full gauge arc, uncropped headline and 2022->2024 comparison are inside frame, keep the numeral scaled below the mascot so it never overlaps him, and let the arc visibly sweep from 14% to 22% so the number is read off a moving demonstration instead of standing alone."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,14 @@
+{
+ "slug": "sea-level-rise-rate-doubled",
+ "ts": "20260907T215451Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 96 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=44.92s of 51.38s (~4.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {
+  "2": {
+   "viz": "trend",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

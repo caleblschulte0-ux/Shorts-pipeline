@@ -1,0 +1,25 @@
+{
+ "slug": "buybacks-beat-dividends",
+ "ts": "20260907T215451Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end leave roughly the bottom two-thirds of the 9:16 frame flat dark with only a 2px rule and a thumbnail-sized mascot occupying it; seg3:end is worse \u2014 one lone bill tile top-left, ghosted 'each = $50B' text, and the entire lower 70% empty.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void_bare_number",
+  "visible_evidence": "At seg1:mid the whole composition is a single horizontal timeline sitting at ~45% height with tick labels 2007\u20132025, the words '$1,000B' and '2025' in low-contrast grey overlapping the ticks, and Data shrunk to ~8% of frame height straddling the line; everything below y\u2248350 is empty gradient. seg1:end repeats the identical layout with the marker parked at the right end \u2014 two near-identical beats spending 8s of a 50s video on one unillustrated number.",
+  "root_cause": "The scene plan hands this beat a 'timeline scrub' visual that is intrinsically a 1-D line in a 16:9 mental model, so it renders as a thin band in a vertical frame with no secondary element authored to occupy the lower two-thirds, and the value is drawn as a floating label instead of a quantity with physical extent.",
+  "repair_goal": "Replace the bare timeline with a vertical-native demonstration of the 2007\u21922025 climb that fills the frame: stack or grow the value downward through the empty region (e.g. a column that fills bottom-to-top past 2007's $589B mark to $1T, or accumulating unit blocks), keep the year label attached to the growing element rather than free-floating, raise label contrast off the dark gradient, and give Data an action tied to the growth (pushing/riding the fill upward and reacting when it crosses $1T) rather than perching on a line."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
