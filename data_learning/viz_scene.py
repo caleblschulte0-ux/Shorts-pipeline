@@ -29,6 +29,8 @@ import math as _math
 import re
 from pathlib import Path
 
+from PIL import Image as _PImg
+
 from . import charts
 from .charts import (ACCENT, HIGHLIGHT, TEXT, WARN, _fullframe, _ordered_items,
                      _pil_font, _rgba, _sci, _vfmt)
@@ -48,9 +50,12 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
     "bottom": (RX0, _MIDY, RX1, RBOT),
 }
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
-          "unit_figures", "balance", "dot_field", "race_track", "number",
-          "bar", "bubble", "caption"}
-_HOLISTIC = {"orbit_group", "timeline_axis", "race_track"}   # all items, own the box
+          "unit_figures", "balance", "dot_field", "race_track", "staircase",
+          "elevator", "burden", "gauge", "number", "bar", "bubble",
+          "caption"}
+# Machines that read the WHOLE insight and own their box.
+_HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
+             "elevator", "burden", "gauge"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -58,7 +63,8 @@ _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # subject-bearing types went through `scene_media`.
 _ICON_TYPES = {"unit_figures", "dot_field"}
 # Drawn entirely from primitives — no subject, no icon, no network at all.
-_DRAWN_TYPES = {"balance", "race_track"}
+_DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
+                "burden", "gauge"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -909,6 +915,219 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
     return (value, "art", cx_last, cy_last)
 
 
+def _series_points(insight, cap: int = 8):
+    """The data points a time machine walks through, oldest first, capped."""
+    items = list(getattr(insight, "items", None) or [])
+    if len(items) > cap:                       # keep the ends, thin the middle
+        step = (len(items) - 1) / (cap - 1)
+        items = [items[int(round(i * step))] for i in range(cap)]
+    return items
+
+
+def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
+    """A STAIRCASE: progress becomes height, and Data climbs it.
+
+    For a series that rises. A line chart asks the viewer to read a slope; a
+    staircase says "he had to climb this", and the climb is the same motion the
+    cadence gate wants — he is moving for the whole visual because the data is.
+    """
+    items = _series_points(insight)
+    if len(items) < 3:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1.0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 200, 340), by1 - 120
+    n = len(items)
+    w = (bx1 - bx0 - 160) / n
+    x0 = bx0 + 80
+    # Steps rise as the reveal walks along them, so the staircase BUILDS.
+    e = max(0.0, min(1.0, reveal))
+    shown = e * n
+    top_xy = None
+    for i, (p, v) in enumerate(zip(items, vals)):
+        a = max(0.0, min(1.0, shown - i))
+        if a <= 0.0:
+            break
+        # A floor of 12% keeps the first step visible on a series whose low
+        # point is its start — otherwise the climb begins from nothing and the
+        # first third of the visual is an empty frame.
+        frac = 0.12 + 0.88 * ((v - lo) / span)
+        h = (bot - top) * frac * a
+        sx = int(x0 + i * w)
+        sy = int(bot - h)
+        d.rounded_rectangle([sx + 6, sy, int(sx + w - 6), bot], radius=10,
+                            fill=_rgba(color if i == n - 1 else ACCENT,
+                                       int(235 * a)))
+        if a > 0.6:
+            # The last step carries the host, so its value moves to the side
+            # rather than sitting under his feet where he covers it.
+            vx = int(sx + w / 2) if i < n - 1 else int(sx - 12)
+            va = "mm" if i < n - 1 else "rm"
+            d.text((vx, sy - 30), charts._ulabel(v, unit),
+                   font=_pil_font(34), fill=_rgba(TEXT, 235), anchor=va)
+            d.text((int(sx + w / 2), bot + 34),
+                   str(getattr(p, "label", ""))[:6], font=_pil_font(30),
+                   fill=_rgba(TEXT, 190), anchor="mm")
+            top_xy = (int(sx + w / 2), sy)
+    host = scene_host("climb", reveal)
+    if host is not None and top_xy is not None:
+        mh = int(min(280, (bot - top) * 0.34))
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(max(top_xy[0] - mw // 2, 8), W - mw - 8)),
+             int(top_xy[1] - mh + 10)))
+    return (vals[-1], "art", top_xy[0], top_xy[1]) if top_xy else None
+
+
+def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
+    """AN ELEVATOR: the value is a floor, and Data rides it down.
+
+    For a series that falls. A descending line is a fact; a lift dropping past
+    labelled floors is a place he ends up, and the car is travelling for the
+    whole visual.
+    """
+    items = _series_points(insight, cap=6)
+    if len(items) < 3:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1.0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 200, 340), by1 - 110
+    sx0 = int((bx0 + bx1) / 2 - 190)
+    sx1 = sx0 + 380
+    d.rounded_rectangle([sx0, top, sx1, bot], radius=18,
+                        outline=_rgba(TEXT, 90), width=5)
+    for i, (p, v) in enumerate(zip(items, vals)):
+        fy = int(bot - (bot - top) * ((v - lo) / span) * 0.86 - 40)
+        d.line([(sx0 + 10, fy), (sx1 - 10, fy)], fill=_rgba(TEXT, 55), width=3)
+        d.text((sx1 + 22, fy), f"{getattr(p, 'label', '')}  "
+               f"{charts._ulabel(v, unit)}", font=_pil_font(32),
+               fill=_rgba(TEXT, 200), anchor="lm")
+    # The car travels through the whole series, ending on the last value.
+    e = max(0.0, min(1.0, reveal))
+    pos = e * (len(vals) - 1)
+    i0 = min(int(pos), len(vals) - 2)
+    frac = pos - i0
+    v = vals[i0] + (vals[i0 + 1] - vals[i0]) * frac
+    cy = int(bot - (bot - top) * ((v - lo) / span) * 0.86 - 40)
+    ch = 150
+    d.rounded_rectangle([sx0 + 16, cy - ch // 2, sx1 - 16, cy + ch // 2],
+                        radius=14, fill=_rgba(color, 235))
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = ch - 18
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int((sx0 + sx1) / 2 - mw // 2), cy - mh // 2))
+    return (vals[-1], "art", int((sx0 + sx1) / 2), cy)
+
+
+def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
+    """A LOAD HE HOLDS UP: a cost is weight, and the weight is on him.
+
+    For money going up. "$480K" is a number; a slab pressing down on him that
+    grows until he is buckling is the same number as a feeling, which is the
+    whole reason to have a mascot.
+
+    It is a load ABOVE him rather than a pack on his back, and that is a rig
+    constraint honestly accommodated rather than fought. Three versions tried
+    to put bricks on his back — beside him, overlapping him, in a pack behind
+    him — and every one read as a bar chart standing next to a mascot, because
+    the sprite faces FORWARD and a front-facing character cannot wear a
+    rucksack. He can visibly strain under something on top of him, and the
+    director already has the pose for it (`hoist_stack`: arms pressed overhead
+    against the underside of a load).
+    """
+    items = _series_points(insight, cap=10)
+    if len(items) < 2:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    ground = by1 - 130
+    e = max(0.0, min(1.0, reveal))
+    pos = e * (len(vals) - 1)
+    i0 = min(int(pos), len(vals) - 2)
+    v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
+    lab = getattr(items[min(int(round(pos)), len(items) - 1)], "label", "")
+    frac = (v - lo) / ((hi - lo) or 1.0)
+    # The slab is the LOAD: its thickness is the value against the range, so
+    # the picture is the increase. The exact figure is in the line above.
+    n_slabs = max(1, int(round(1 + frac * 7)))
+    host = scene_host("hoist_stack", reveal)
+    mh = 430
+    mw = int(host.width * mh / host.height) if host is not None else 280
+    # He SINKS as it gets heavier — the knees give, so the load descends on him
+    # rather than the frame just gaining bricks at the top.
+    sink = int(70 * frac)
+    hy = ground - mh + sink
+    if host is not None:
+        canvas.alpha_composite(_fit(host, mw, mh), (int(cx - mw // 2), hy))
+    # The load sits ON HIS HANDS. `hoist_stack` puts them at y=45 in the rig's
+    # 0-470 space — about a tenth of the way down the sprite — so anchoring the
+    # stack to the image's top edge left a visible gap between him and the
+    # thing he is supposed to be holding up.
+    sw, sh, gap = int(mw * 1.55), 34, 7
+    hands_y = hy + int(mh * 0.095)
+    for k in range(n_slabs):
+        sy = hands_y - sh - k * (sh + gap)
+        d.rounded_rectangle([int(cx - sw // 2), sy, int(cx + sw // 2), sy + sh],
+                            radius=9,
+                            fill=_rgba(color if k == n_slabs - 1 else ACCENT, 240),
+                            outline=_rgba(charts.CARD, 255), width=3)
+    d.text((cx, by0 + 58), f"{lab}   {charts._ulabel(v, unit, group=True)}",
+           font=_pil_font(76), fill=_rgba(color, 255), anchor="mm")
+    d.text((cx, ground + 52), "what he's carrying", font=_pil_font(38),
+           fill=_rgba(TEXT, 200), anchor="mm")
+    return (v, "art", cx, hy - 18)
+
+
+def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
+    """A DIAL: a rate is a needle, and it sweeps.
+
+    A percentage on a bar is an abstraction. A needle climbing toward a red
+    zone is a speed, and it is moving every frame it is on screen.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if not items:
+        return None
+    star = max(items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
+    v = float(getattr(star, "value", 0) or 0)
+    vmax = max(abs(v) * 1.35, 1e-6)
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    cy = max(by0 + 430, 620)
+    R = int(min((bx1 - bx0) * 0.36, 320))
+    a0, sweep = 200.0, 140.0                    # a车-style dial, open at the top
+    d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
+          fill=_rgba(TEXT, 70), width=26)
+    # the red zone — the last fifth of the dial
+    d.arc([cx - R, cy - R, cx + R, cy + R], a0 + sweep * 0.8, a0 + sweep,
+          fill=_rgba(WARN, 200), width=26)
+    e = 1.0 - (1.0 - max(0.0, min(1.0, reveal))) ** 2
+    ang = _math.radians(a0 + sweep * (abs(v) / vmax) * e)
+    nx, ny = cx + _math.cos(ang) * (R - 40), cy + _math.sin(ang) * (R - 40)
+    d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
+    d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
+    shown = v * e
+    d.text((cx, cy + 96), charts._ulabel(shown, unit, group=True),
+           font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
+    d.text((cx, cy + 176), str(getattr(star, "label", ""))[:22],
+           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 230
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(cx + R * 0.55), int(cy - mh * 0.2)))
+    return (v, "art", int(nx), int(ny))
+
+
 def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     """A RACE: rank becomes position, and the gap becomes literal distance.
 
@@ -1400,6 +1619,24 @@ def rate_scene(insight) -> dict:
                           "data": {"value_from": "star"}, "anim": "fill"}]}
 
 
+def _machine_scene(kind: str, need: int = 3):
+    def build(insight) -> dict:
+        if len(list(getattr(insight, "items", None) or [])) < need:
+            return {}
+        return {"title": True,
+                "elements": [{"type": kind, "region": "full", "anim": "grow"}]}
+    return build
+
+
+# Each takes the whole insight and needs no parameters — the relationship
+# router already decided this is the right picture, so there is nothing left
+# for a builder to choose.
+staircase_scene = _machine_scene("staircase", 3)
+elevator_scene = _machine_scene("elevator", 3)
+burden_scene = _machine_scene("burden", 2)
+gauge_scene = _machine_scene("gauge", 1)
+
+
 def race_scene(insight) -> dict:
     """A ranking, run as a race. Needs a real field — two runners is a duel and
     belongs on the scales, one is not a race at all."""
@@ -1625,7 +1862,15 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 continue
             t = el.get("type")
             box = boxes[i]
-            if t == "race_track":
+            if t in ("staircase", "elevator", "burden", "gauge"):
+                _fn = {"staircase": draw_staircase, "elevator": draw_elevator,
+                       "burden": draw_burden, "gauge": draw_gauge}[t]
+                an = _fn(d, canvas, box, insight,
+                         _color_for(insight.items[0].label, insight)
+                         if insight.items else HIGHLIGHT, lr, insight.unit)
+                if f == frames and an:
+                    anchors.append(an)
+            elif t == "race_track":
                 an = draw_race(d, canvas, box, insight,
                                _color_for(insight.items[0].label, insight)
                                if insight.items else HIGHLIGHT, lr, insight.unit)

@@ -1015,7 +1015,13 @@ def _a_hoist_stack(t, _prop):
     # guard read `bob` and `tilt` and these ride on HAND COORDINATES.
     # Strain is carried by the pose arc itself, which is enough.
     tremble = 0.0
-    lh = [150, 58, 16]; rh = [190, 58, -16]           # fists pressed up overhead
+    # WIDE, so the arms clear the head. Moving arms BEHIND the head fixed
+    # them covering his face and broke this: an overhead reach whose
+    # wrists converge near the centre draws its arms straight up through
+    # x=150-190, and the head spans 112-228 — so the whole limb vanished
+    # and only the hands peeked over his hair. Reaching outside the head
+    # is also what holding something wide up actually looks like.
+    lh = [104, 58, 16]; rh = [236, 58, -16]      # fists up, clear of the head
     lh[0] += tremble; rh[0] += tremble
     if p < _T_RESIST:                                  # TAKE IT
         # He SETTLES under the load across this zone. It used to be three
@@ -1097,8 +1103,14 @@ def _a_drag_line(t, _prop):
     p = 0.0 if t < 0.0 else 1.0 if t > 1.0 else t
     # fists clamped together overhead — the grip point (baked onto the line tip)
     grip_y = 46
-    lh = [156, grip_y, 18]
-    rh = [184, grip_y, -18]
+    # WIDE, so the arms clear the head. Moving arms BEHIND the head fixed
+    # them covering his face and broke this: an overhead reach whose
+    # wrists converge near the centre draws its arms straight up through
+    # x=150-190, and the head spans 112-228 — so the whole limb vanished
+    # and only the hands peeked over his hair. Reaching outside the head
+    # is also what holding something wide up actually looks like.
+    lh = [108, grip_y, 18]
+    rh = [232, grip_y, -18]
     strain = math.sin(t * math.pi) * 3.0  # one swell, was multi-cycle jitter
     lh[0] += strain; rh[0] += strain
     if p < _T_RESIST:                                   # RESIST: heels dug in
@@ -1146,13 +1158,13 @@ def _a_pull_down_win(t, _prop):
     if p < _T_RESIST:                                  # BRACE + haul (pumping)
         s = p / _T_RESIST
         tug = (1.0 - math.cos(s * math.pi * 2)) * 0.5       # ONE downward tug
-        lh = [156 + tremble, int(46 + tug * 26), 18]
-        rh = [184 + tremble, int(46 + tug * 26), -18]
+        lh = [108 + tremble, int(46 + tug * 26), 18]
+        rh = [232 + tremble, int(46 + tug * 26), -18]
         lower = _braced_legs(crouch=0.75 - tug * 0.25, sway=14)
         expr = "strain"; tilt = -14 + tug * 5; bob = 6.0 - tug * 5.0
     elif p < _T_EFFORT:                                 # YIELD: it comes down
         s = (p - _T_RESIST) / (_T_EFFORT - _T_RESIST)
-        lh = [152, int(46 + s * 40), 14]; rh = [188, int(46 + s * 40), -14]
+        lh = [106, int(46 + s * 40), 14]; rh = [234, int(46 + s * 40), -14]
         lower = _braced_legs(crouch=0.75 - s * 0.55, sway=10)
         expr = "shock"; tilt = -14 + s * 14; bob = 4.0 - s * 4.0
     else:                                               # LANDED: victory

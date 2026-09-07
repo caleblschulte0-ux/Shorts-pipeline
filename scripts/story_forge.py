@@ -460,6 +460,20 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "gap between them becomes literal distance. Every runner is Data. "
            "region 'full', no other fields — it reads the whole insight. Two "
            "items is a duel (use balance), one is not a race.\n"
+           # THE TIME MACHINES. Each reads the whole insight and takes no
+           # parameters — the relationship decides them, so there is nothing
+           # left for the writer to choose but WHICH.
+           "  staircase   — a rising series as steps Data CLIMBS. Progress "
+           "becomes height. region 'full'. Use when the numbers go up.\n"
+           "  elevator    — a falling series as a lift descending past "
+           "labelled floors. The value is a floor. region 'full'. Use when "
+           "the numbers go down.\n"
+           "  burden      — a cost as WEIGHT: a slab stack he holds over his "
+           "head, growing until he buckles. region 'full'. Use for money "
+           "going up, where the point is what it costs someone.\n"
+           "  gauge       — a rate as a NEEDLE sweeping toward a red zone. "
+           "region 'full'. Use for a speed or a per-unit figure, not a "
+           "quantity.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

@@ -1550,16 +1550,19 @@ _ALT_DEPICTION = {
 # generated imagery — 54-89s per build with HTTP 500s in the middle — so they
 # stay primary-only rather than becoming an alternate that can time out.
 _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
-                "balance_scene", "rate_scene", "race_scene")
+                "balance_scene", "rate_scene", "race_scene",
+                "staircase_scene", "elevator_scene", "burden_scene",
+                "gauge_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
 # viz_director._SCENE_BUILDERS, which is the same mechanism and the reason this
 # is a lookup rather than a special case for one name.
-_SCENE_TOKENS = {"units_scene": "units_scene",
-                 "balance_scene": "balance_scene",
-                 "rate_scene": "rate_scene",
-                 "race_scene": "race_scene"}
+_SCENE_TOKENS = {t: t for t in (
+    "units_scene", "balance_scene", "rate_scene", "race_scene",
+    "staircase_scene", "elevator_scene", "burden_scene",
+    "gauge_scene",
+)}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
 # — and so may never be chosen as an alternate for data that is not one. Held
@@ -1625,23 +1628,42 @@ def _alt_candidates_for(insight) -> tuple:
 # series that zig-zags is honestly a line, and drawing it as a climb would be
 # a picture of a story the data does not tell.
 _MACHINES = {
+    # rank -> position, and the gap becomes distance
     "rank":      ("race_scene", "units_scene", "orbit"),
+    # two things -> weight
     "duel":      ("balance_scene", "units_scene"),
-    "growth":    ("units_scene", "timeline", "fill_vessel"),
-    "decline":   ("timeline", "fill_vessel", "units_scene"),
-    "burden":    ("units_scene", "balance_scene", "fill_vessel"),
+    # rising -> a climb he has to make
+    "growth":    ("staircase_scene", "units_scene", "timeline"),
+    # falling -> a lift going down past labelled floors
+    "decline":   ("elevator_scene", "timeline", "fill_vessel"),
+    # money going up -> weight on his back
+    "burden":    ("burden_scene", "staircase_scene", "balance_scene"),
+    # a share of a countable whole -> figures, some lit
     "share":     ("rate_scene", "fill_vessel"),
+    # one item dwarfing the rest -> looked up at, not raced
     "dominance": ("units_scene", "balance_scene"),
+    # a rate -> a needle that sweeps (see `is_rate`, applied below)
+    "rate":      ("gauge_scene", "rate_scene"),
     "volatile":  (),                    # a line is the honest picture
     "other":     (),
 }
 
 
 def _machines_for(insight) -> tuple:
-    """The physical forms that fit what this data is SAYING, best first."""
+    """The physical forms that fit what this data is SAYING, best first.
+
+    A RATE is appended rather than substituted, because it co-occurs: a
+    percentage that is also climbing is two true things at once, and a dial
+    beside a staircase is a fair second way to show the same beat.
+    """
     try:
         from data_learning import relationships as _rel
-        return _MACHINES.get(_rel.classify(insight), ())
+        out = list(_MACHINES.get(_rel.classify(insight), ()))
+        if _rel.is_rate(insight):
+            for k in _MACHINES["rate"]:
+                if k not in out:
+                    out.append(k)
+        return tuple(out)
     except Exception:  # noqa: BLE001 — no router, no machines, still a chart
         return ()
 
@@ -2484,6 +2506,17 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 n_visuals += 1
         print(f"[studio] {n_visuals} distinct visuals, each shown once",
               flush=True)
+        # Beat map, so a frozen stretch found by the gate can be located
+        # against the thing that owns that second instead of guessed at. Three
+        # rounds of this session's cadence work were spent inferring which
+        # layer a freeze belonged to from its timestamp alone.
+        print("[studio] beat map: " + " | ".join(
+            f"{a:.1f}-{b:.1f}s seg{i}"
+            for i, (a, b) in enumerate(
+                [(disp_start.get(k, 0.0), disp_end.get(k, 0.0))
+                 for k in range(len(st.segments))]))
+            + f" | closing {windows[-1][0]:.1f}-{windows[-1][1]:.1f}s"
+            + f" | payoff_recap={'yes' if lead_payoff else 'NO'}", flush=True)
         # Mascots — Data IS PLACED, HE DOES NOT SLIDE.
         #
         # He used to glide from his previous spot to each new one, sweeping in
