@@ -6088,14 +6088,36 @@
       "ts": "2026-09-07T16:28:26.325101+00:00"
     },
     "clip-20260907-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/IgnorantOutstandingSandstormSSSsss-5ApDlAbTzyC3vMtT",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/8XfSeriOLpE",
       "title": "Sodapoppin Elevator Plan Goes Completely Wrong",
       "kind": "twitch_clip",
-      "ts": "2026-09-07T16:33:00.136733+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-07T16:33:06.035296+00:00",
+      "uploaded_at": "2026-09-07T16:33:06.035321+00:00",
+      "publish_at": "2026-09-07T17:00:00Z",
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/IgnorantOutstandingSandstormSSSsss-5ApDlAbTzyC3vMtT",
+      "streamer": "sodapoppin",
+      "series": "fail",
+      "hook": "THE PLAN DOES NOT GO AS PLANNED",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5596,
+      "banger": 0.5,
+      "cut": {
+        "start": 7.8,
+        "end": 43.2
+      },
+      "director_cut": true
+    },
+    "rejected-gorgeousquaintyamwow-fqp7b7k62t5cg07d": {
+      "source_url": "https://www.twitch.tv/lacy/clip/GorgeousQuaintYamWow-FQP7B7K62t5cG07d",
+      "streamer": "lacy",
+      "title": "..",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (just standing, talking, no event)",
+      "ts": "2026-09-07T16:56:02.648945+00:00"
     }
   }
 }
