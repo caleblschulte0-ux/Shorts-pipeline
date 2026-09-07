@@ -51,8 +51,11 @@ class _Pt:
 
 
 class _Ins:
-    def __init__(self, kind, items, unit=""):
+    def __init__(self, kind, items, unit="", topic="", main=""):
         self.kind, self.items, self.unit = kind, items, unit
+        self.topic, self.main_insight = topic, main
+        self.baseline = None
+        self.highlight_label = items[0].label if items else ""
 
 
 def _years(unit="percent"):
@@ -208,8 +211,18 @@ class ChartsMustNotLie(unittest.TestCase):
         self.assertIn("2019", sub)
 
     def test_a_real_composition_still_gets_its_share(self):
-        """The bound must not flatten the honest case too."""
-        parts = _Ins("stack", [_Pt("A", 50), _Pt("B", 30), _Pt("C", 20)], "")
+        """The bound must not flatten the honest case too.
+
+        The fixture used to be three bare numbers with `kind="stack"`, which
+        encoded exactly the assumption the guard now rejects: that anything
+        which is not a run of years composes. `kind` cannot be the evidence —
+        the director CHOSE the stack, and in the "EGGS IS 37% OF THE WHOLE"
+        case it chose it wrongly. A real composition is parts that add to a
+        hundred, or a claim that says so; this is both.
+        """
+        parts = _Ins("stack", [_Pt("Rent", 50), _Pt("Food", 30),
+                               _Pt("Other", 20)], "percent",
+                     topic="share of every household budget")
         self.assertIn("of the whole", ch._whole_subtitle(parts, parts.items[0]))
 
     def test_the_segment_labels_follow_the_same_rule(self):
@@ -222,8 +235,23 @@ class ChartsMustNotLie(unittest.TestCase):
         self.assertIn(ch._ulabel(yrs.items[0].value, yrs.unit), lab)
 
     def test_a_real_composition_segment_still_shows_its_share(self):
-        parts = _Ins("stack", [_Pt("A", 50), _Pt("B", 30)], "")
+        parts = _Ins("stack", [_Pt("Rent", 62), _Pt("Food", 38)], "percent",
+                     topic="share of every household budget")
         self.assertIn("16%", ch._seg_label(parts, parts.items[0], 16.0))
+
+    def test_percentages_that_do_not_sum_are_RATES_and_never_compose(self):
+        """The second form of the oldest bug in this channel, found live on
+        2026-09-07: eggs +37%, coffee +21%, beef +18%, bread +14%, milk +11%
+        rendered "EGGS IS 37% OF THE WHOLE". Not a time series, so the years
+        guard let it through. Eggs are 37% of nothing — they are a 37% price
+        increase."""
+        jumps = _Ins("stack", [_Pt("Eggs", 37), _Pt("Coffee", 21),
+                               _Pt("Beef", 18), _Pt("Bread", 14),
+                               _Pt("Milk", 11)], "percent",
+                     topic="price jump since 2020")
+        self.assertNotIn("of the whole", ch._whole_subtitle(jumps,
+                                                            jumps.items[0]))
+        self.assertNotIn("19", ch._seg_label(jumps, jumps.items[1], 19.0))
 
     def test_composition_depictions_are_never_chosen_for_other_data(self):
         for ins in (_years(), _cities()):

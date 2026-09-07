@@ -1060,6 +1060,113 @@ class EveryMachineIsWiredEndToEnd(unittest.TestCase):
                          "a drawn element type is never dispatched")
 
 
+class APictureMayNotClaimAWholeThatIsNotThere(unittest.TestCase):
+    """The oldest bug in this channel, caught twice and fixed once.
+
+    First form: "2019 IS 9% OF THE WHOLE" over a run of mortgage rates. Years
+    do not sum. That was guarded — by a TIME-SERIES test, which is only half
+    the rule.
+
+    Second form, found in a live render on 2026-09-07: "EGGS IS 37% OF THE
+    WHOLE" over eggs +37%, coffee +21%, beef +18%, bread +14%, milk +11% —
+    six independent price increases. Not a time series, so the guard let it
+    through; the director's `is_share` test was "the unit is a percent and
+    there are at least three of them", the chart auto-routed to a stacked
+    column, and the claim printed at 40pt. Eggs are 37% of nothing. They are a
+    37% price increase.
+
+    Percentages that do not sum are RATES, and rates never compose. The test
+    lives in ONE place so the code that CHOOSES the chart and the code that
+    writes the claim on it cannot disagree.
+
+    Not a one-off: of the 133 percent-unit datasets with three or more items
+    in `data_learning/data/`, 110 were eligible for that routing and do not
+    compose. The 23 that do all sum to a hundred.
+    """
+
+    JUMPS = [("Eggs", 37), ("Coffee", 21), ("Beef", 18), ("Bread", 14),
+             ("Milk", 11), ("All groceries", 10)]
+
+    def _pct(self, pairs, topic):
+        return _Ins([_Pt(a, b) for a, b in pairs], "percent", topic, topic)
+
+    def test_price_increases_do_not_compose(self):
+        self.assertFalse(rel.composes(
+            self._pct(self.JUMPS, "price jump since 2020")))
+
+    def test_parts_that_add_to_a_hundred_DO_compose(self):
+        self.assertTrue(rel.composes(
+            self._pct([("Rent", 34), ("Food", 22), ("Transport", 18),
+                       ("Other", 26)], "household budget")))
+
+    def test_a_claim_that_says_composition_composes(self):
+        self.assertTrue(rel.composes(
+            self._pct([("Owners", 62), ("Renters", 38)],
+                      "share of all households")))
+
+    def test_percentages_that_overshoot_a_hundred_do_not_compose(self):
+        """"Infant care as share of income" sums to 118 across states: each
+        item is a share of its OWN state's income, not of one pie. It says
+        "share of" and does not compose, which is why the arithmetic decides
+        and not the wording."""
+        self.assertFalse(rel.composes(
+            self._pct([("MA", 41), ("CA", 33), ("NY", 26), ("TX", 18)],
+                      "infant care as a share of income")))
+
+    def test_a_named_SUBSET_is_not_the_whole_either(self):
+        """Three types totalling 8% of men are not a pie. Claiming "N% of the
+        whole" would measure against a whole the picture never shows."""
+        self.assertFalse(rel.composes(
+            self._pct([("Deutan", 5), ("Protan", 2), ("Tritan", 1)],
+                      "red-green colour blindness by type")))
+
+    def test_years_still_do_not_compose(self):
+        self.assertFalse(rel.composes(
+            self._pct([("2019", 9), ("2020", 12), ("2021", 15)],
+                      "the mortgage rate")))
+
+    def test_a_dominant_slice_of_a_REAL_whole_still_composes(self):
+        """`composes` is not `classify() == SHARE`. A composition where one
+        slice dwarfs the rest comes back DOMINANCE and still adds to one."""
+        ins = self._pct([("Housing", 71), ("Food", 12), ("Transport", 9),
+                         ("Other", 8)], "a breakdown of the budget")
+        self.assertEqual(rel.classify(ins), rel.DOMINANCE)
+        self.assertTrue(rel.composes(ins))
+
+    def test_the_subtitle_refuses_the_claim(self):
+        from data_learning import charts
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        sub = charts._whole_subtitle(jumps, jumps.items[0])
+        self.assertNotIn("of the whole", sub.lower())
+        self.assertIn("Eggs", sub)
+
+    def test_the_segment_labels_refuse_it_too(self):
+        """The same false claim in a smaller font is the same false claim.
+
+        Coffee is a 21% price increase and 19% of the stacked column. The
+        segment must read 21 — its own value — and never 19, which is a
+        number nobody measured.
+        """
+        from data_learning import charts
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        coffee = jumps.items[1]
+        share = abs(coffee.value) / sum(abs(p.value) for p in jumps.items) * 100
+        self.assertAlmostEqual(share, 19.0, delta=1.0)
+        lab = charts._seg_label(jumps, coffee, share)
+        self.assertIn("21", lab)
+        self.assertNotIn("19", lab)
+
+    def test_the_director_does_not_CHOOSE_a_composition_for_them(self):
+        """Refusing to print the claim is not enough — a stacked column is a
+        composition claim in geometry before it is one in words."""
+        from data_learning import viz_director
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        self.assertFalse(viz_director._features(jumps)["is_share"])
+        real = self._pct([("Rent", 34), ("Food", 22), ("Transport", 18),
+                          ("Other", 26)], "household budget")
+        self.assertTrue(viz_director._features(real)["is_share"])
+
+
 class TheRegistryDocTellsTheTruth(unittest.TestCase):
     """`docs/DATA_MACHINES.md` is the map a future session reads before it
     touches any of this. A doc that lists a machine the code does not have —

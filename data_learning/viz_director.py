@@ -18,6 +18,7 @@ import os
 import re
 
 from . import charts
+from . import relationships as _rel
 from . import viz_scene  # noqa: F401  (registers the "scene" full-frame renderer)
 
 # --- Vocabulary --------------------------------------------------------------
@@ -73,6 +74,14 @@ _SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene",
                    "balance_scene": "balance_scene",
                    "rate_scene": "rate_scene",
                    "race_scene": "race_scene"}
+# EVERY DATA MACHINE, reachable from here too. Token and builder share a name
+# (`staircase_scene` -> `viz_scene.staircase_scene`), so this is generated
+# rather than curated — a hand-written copy is a second source of truth and
+# would go stale the first time a machine is added.
+_SCENE_BUILDERS.update({
+    _t: _t for _t in dir(viz_scene)
+    if _t.endswith("_scene") and callable(getattr(viz_scene, _t, None))
+})
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.
@@ -145,6 +154,19 @@ def _deterministic_candidates(f: dict) -> list[str]:
         det += ["fill_vessel"]          # the radial gauge (Data rides it)
     else:
         det += ["pictorial_race"]       # ranked rounded bars w/ icon caps
+    # THE MACHINES, after the chart the beat would have had and before the
+    # terminal guarantee. Appending rather than leading keeps the PRIMARY
+    # depiction exactly what it was — this pool is drawn on by the "one line
+    # chart per video" post-pass, which only fires on a REPEAT, so a machine
+    # enters only where a second identical chart would otherwise stand.
+    #
+    # It also closes a gap that turned up when the false-composition guard
+    # landed: `waffle_grid` and `share` used to pad this pool for any percent
+    # data, and for a percent TIME SERIES they were the "2019 IS 9% OF THE
+    # WHOLE" claim. Removing them left four time-series beats with only two
+    # honest alternatives, so the fourth kept its line. The machines are the
+    # honest alternatives, and there are plenty of them.
+    det = det + _machine_candidates(f.get("insight"))
     seen, out = set(), []
     for k in det:
         if k not in seen and renderable(k):
@@ -152,6 +174,32 @@ def _deterministic_candidates(f: dict) -> list[str]:
             out.append(k)
     out.append("bubbles")
     return out
+
+
+def _machine_candidates(ins) -> list[str]:
+    """The data machines that fit what this insight is SAYING, best first.
+
+    Asks the same router `studio_render` asks, so the two cannot disagree
+    about which picture says the thing — and asks each builder whether it can
+    actually serve this data, because a machine that hands back an empty scene
+    would strand the beat.
+    """
+    if ins is None:
+        return []
+    try:
+        from . import studio_render as _sr
+        out = []
+        for tok in _sr._MACHINES.get(_rel.classify(ins), ()):
+            if tok not in _SCENE_BUILDERS:
+                continue
+            try:
+                if getattr(viz_scene, _SCENE_BUILDERS[tok])(ins):
+                    out.append(tok)
+            except Exception:              # noqa: BLE001
+                continue
+        return out
+    except Exception:                      # noqa: BLE001 — never break assign
+        return []
 
 
 # --- Feature extraction ------------------------------------------------------
@@ -188,7 +236,18 @@ def _features(ins) -> dict:
         "age": bool(_AGE_KW.search(topic)),
         "scale": bool(_SCALE_KW.search(topic)),
         "speed": unit_class == "speed" or bool(_SPEED_KW.search(topic)),
-        "is_share": ins.kind == "share" or (unit_class == "pct" and n >= 3),
+        # A PERCENT UNIT IS NOT A COMPOSITION. "unit is a percent and there
+        # are at least three of them" said share for eggs +37%, coffee +21%,
+        # beef +18% — six independent price increases — so the chart routed
+        # to a stacked column and printed "EGGS IS 37% OF THE WHOLE" over
+        # data where eggs are 37% of nothing. `relationships.composes` is the
+        # test: parts that add to a hundred, or a claim that says composition.
+        # The insight itself, so the candidate pool can ask the relationship
+        # router. Everything else here is a scalar the pool reads directly.
+        "insight": ins,
+        "is_share": (ins.kind == "share"
+                     or (unit_class == "pct" and n >= 3
+                         and _rel.composes(ins))),
     }
 
 

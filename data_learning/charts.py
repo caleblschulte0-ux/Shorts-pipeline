@@ -525,9 +525,25 @@ def _seg_label(insight: Insight, p, share: float) -> str:
     claim in a smaller font. When the items are points in time, the segment
     carries its own VALUE, which is the thing the viewer wants anyway.
     """
-    if _is_time_series(insight):
+    if not _composes(insight):
         return f"{p.label}  {_ulabel(p.value, insight.unit)}"
     return f"{p.label}  {share:.0f}%"
+
+
+def _composes(insight: Insight) -> bool:
+    """May this picture claim the items add up to one whole?
+
+    The time-series guard this replaces caught only half the problem. Years do
+    not sum — that was the "2019 IS 9% OF THE WHOLE" case — but neither do six
+    independent price increases, and those are not years. `relationships`
+    holds the one test, so the director (which CHOOSES the chart) and this
+    file (which writes the claim on it) cannot disagree about what composes.
+    """
+    from . import relationships as _rel
+    try:
+        return _rel.composes(insight)
+    except Exception:                      # noqa: BLE001 — never break a render
+        return False
 
 
 def _is_time_series(insight: Insight) -> bool:
@@ -550,7 +566,7 @@ def _is_time_series(insight: Insight) -> bool:
 def _whole_subtitle(insight: Insight, star) -> str:
     """The subtitle for a composition chart — only claiming a share when the
     data actually composes into a whole."""
-    if _is_time_series(insight):
+    if not _composes(insight):
         return f"{star.label}: {_ulabel(star.value, insight.unit)}"
     total = sum(abs(p.value) for p in insight.items) or 1.0
     return f"{star.label} is {abs(star.value) / total * 100:.0f}% of the whole"

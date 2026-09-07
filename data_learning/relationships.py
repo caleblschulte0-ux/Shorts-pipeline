@@ -484,6 +484,70 @@ def _classify(insight) -> str:
     return OTHER
 
 
+# A PERCENTAGE OF CHANGE IS NEVER A SHARE, whatever the numbers happen to add
+# up to. Eggs +37, coffee +21, beef +18, bread +14, milk +11 sum to 101 — near
+# enough to a hundred that the "parts that add up ARE a whole" shortcut fired
+# on a coincidence and printed the claim anyway. The vocabulary of change is
+# the veto, and it is checked before that shortcut.
+_CHANGE = re.compile(
+    r"\b(jump\w*|rise|rises|rose|rising|increase\w*|up \d|growth|grew|"
+    r"surge\w*|climb\w*|soar\w*|since \d{4}|change\w*|higher|inflation|"
+    r"fell|fall\w*|drop\w*|decline\w*|down \d)\b", re.I)
+_COMPOSE = re.compile(
+    r"\b(made up of|consists? of|composition|breakdown (of|by)|"
+    r"split between|divided (among|between)|out of every|parts? of|"
+    r"where .{0,20}(goes|went)|by (category|type|source|destination))\b", re.I)
+
+
+def composes(insight) -> bool:
+    """Do these items ADD UP TO ONE WHOLE?
+
+    The test a composition picture must pass before it may say "X is N% of the
+    whole", print a share beside a segment, or be CHOSEN at all. Deliberately
+    conservative: refusing to claim a whole is always safe, and claiming one
+    falsely is a sentence at 40pt that the data does not support.
+
+    It is NOT the same question as `classify() == SHARE`. A real composition
+    where one slice dwarfs the others comes back DOMINANCE and still composes,
+    and this has to say yes to it.
+
+    The case that made it necessary: "price jump since 2020" over eggs +21%,
+    coffee +21%, beef +18%, bread +14%, milk +11%. Six percentages, so the
+    director's `is_share` test — unit is a percent and there are at least
+    three of them — said composition, the chart auto-routed to a stacked
+    column, and the subtitle read "EGGS IS 37% OF THE WHOLE". Eggs are 37% of
+    nothing. They are a 37% price increase. Percentages that do not sum are
+    RATES, and rates never compose.
+    """
+    values = _values(insight)
+    if len(values) < 2 or any(v < 0 for v in values):
+        return False
+    if is_time_series(insight):
+        return False                       # years do not sum
+    text = f"{getattr(insight, 'topic', '')} " \
+           f"{getattr(insight, 'main_insight', '')}"
+    unit = (getattr(insight, "unit", "") or "").strip().lower()
+    if _CHANGE.search(text):
+        return False                       # a change is never a share
+    if unit in ("percent", "%", "pct", "share"):
+        # ARITHMETIC, NOT JUDGEMENT. A set of percentages is parts of one
+        # whole exactly when it adds to a hundred; no wording can make it so
+        # when it does not. Swept over the live catalogue, the claim-only test
+        # was still letting through "Infant care as share of income" (sums to
+        # 118 — each item is a share of its OWN state's income, not of one
+        # pie) and "Share of population under pristine dark skies, by country"
+        # (174). Both say "share of"; neither composes.
+        #
+        # A subset that sums to well under a hundred is refused for the same
+        # reason from the other side: three named types totalling 8% are not
+        # the whole, so "X is N% of the whole" would be measuring against a
+        # pie the picture does not show.
+        return 95.0 <= sum(values) <= 105.0
+    # Counts, currencies, anything else: no arithmetic to check against, so
+    # the claim has to say composition and the default is no.
+    return bool(_SHARE_OF.search(text) or _COMPOSE.search(text))
+
+
 def is_frequency(insight) -> bool:
     """A count PER unit of time — events, not a quantity. A conveyor's items
     per second is only honest when the number really is a rate of arrival."""
