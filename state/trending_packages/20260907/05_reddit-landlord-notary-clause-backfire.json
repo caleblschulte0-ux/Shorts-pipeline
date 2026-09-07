@@ -32,7 +32,12 @@
     },
     {
       "phrase": "an emergency HVAC company",
-      "query": "hvac technician furnace"
+      "query": "hvac technician furnace",
+      "pin_query": "HVAC",
+      "pin_context": "He Made Me Notarize Everything. So I Did.",
+      "news_query": "HVAC",
+      "news_angle": "He Made Me Notarize Everything. So I Did.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/HVAC_system_diagram.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
     },
     {
       "phrase": "paid eleven hundred dollars",
