@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7",
+    "path": "exchange/bundles/20260907/bundle.json"
+  },
+  "request_id": "reddit-bakery-empty-box-refund-s6-e24eeb566387",
+  "safe_request_id": "reddit-bakery-empty-box-refund-s6-e24eeb566387",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "dc6b3ad99ce5596954ee3ff5b05a89d5cc7b6dc1b40bdee49064d88f72bd7b64",
+  "prompt_used": "An editorial illustration for a short-form video: customer leaving store upset. It accompanies the narration: \"left without the refund or the rest of the cake\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+    "filename": "20260907__reddit-bakery-empty-box-refund-s6-e24eeb566387.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1d7d7931aae5d86e5a2c49f378ed815b57df8520806ae2eeede1913a8372b291",
+    "bytes": 1355079,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-09-07T11:24:04.188Z",
+  "error": null,
+  "retryable": false
+}
