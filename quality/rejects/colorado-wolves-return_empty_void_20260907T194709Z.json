@@ -1,0 +1,25 @@
+{
+ "slug": "colorado-wolves-return",
+ "ts": "20260907T194709Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:start/mid/end put the seesaw in the top ~40% and leave the entire bottom half of the 1080x1920 frame as empty gradient with nothing in it; seg4:start has the same dead band from below the dot grid to the source line.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void_and_broken_layout",
+  "visible_evidence": "At seg1:start and seg1:mid the chart title is clipped off BOTH edges of the frame \u2014 it reads 'olorado wolves, first release vs toda' \u2014 and the seesaw with its two tiny pans (24.1/32.0 vs 7.5/10.0) sits entirely in the top third while the lower ~55% of the frame is bare dark gradient with only a caption crossing it.",
+  "root_cause": "The seesaw/balance scene is rendered at a wider-than-frame layout scale with no vertical fit: the title is laid out for a landscape canvas so it overflows horizontally, and the balance graphic is anchored to the top instead of being scaled to fill the 9:16 safe area.",
+  "repair_goal": "Re-fit seg1 to the vertical frame: wrap or shrink the title so it sits fully inside the safe margins, and scale/center the seesaw so the beam, both pans and the mascot occupy the middle 60-70% of the frame instead of the top third \u2014 no dead band below the fulcrum."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

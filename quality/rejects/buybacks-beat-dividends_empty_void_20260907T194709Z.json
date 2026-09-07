@@ -1,0 +1,21 @@
+{
+ "slug": "buybacks-beat-dividends",
+ "ts": "20260907T194709Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg1:mid and seg1:end put a hairline timeline and a thumbnail-sized mascot in the upper third with the entire bottom ~60% of the frame empty; seg2:mid and seg2:end repeat it with two faint lollipop rows.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg1:mid (t=11.71s) and seg1:end (t=16.30s) show a 1px horizontal 2007-2025 axis at ~45% height with one label ($1,000B / 2025) and a tiny mascot straddling it; everything below the axis is bare gradient, and the narration's other two figures (589B, 806B) are never drawn.",
+  "root_cause": "The scene renders a single-point timeline sized for a wide frame into a 9:16 canvas, so the viz occupies one thin band and the three-value growth story collapses to one plotted marker.",
+  "repair_goal": "Rebuild seg1 as a full-height demonstration of the growth: plot all three years (589B -> 806B -> 1T) as elements that grow/stack down the frame, filling the lower two thirds, with the mascot performing one act against the rising value instead of perching on the axis."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

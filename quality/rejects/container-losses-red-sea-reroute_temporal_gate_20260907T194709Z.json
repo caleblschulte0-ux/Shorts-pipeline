@@ -1,0 +1,9 @@
+{
+ "slug": "container-losses-red-sea-reroute",
+ "ts": "20260907T194709Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 108 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=37.08s of 44.17s (~4.5s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}
