@@ -1188,7 +1188,7 @@ def _draw_flat_timeline(d, canvas, box, insight, reveal):
     for rad, alpha in ((48, 60), (34, 120), (23, 255)):
         d.ellipse([mx - rad, axis_y - rad, mx + rad, axis_y + rad], fill=_rgba(HIGHLIGHT, alpha))
     # Data rides the dot along the axis (composited straight into the beat).
-    host = scene_host("cheer", r)
+    host = scene_host("cheer", reveal)
     if host is not None:
         from PIL import Image as _Im
         mh = 250

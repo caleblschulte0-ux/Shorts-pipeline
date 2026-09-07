@@ -646,8 +646,8 @@ firehoses uploads gets throttled). Of the 4, **at most 1 may be finance/money**
 not four flavors of the same subject.
 
 These are a DIFFERENT format from the packages in Part 1: chart-driven
-"X in 3 Charts" breakdowns rendered by `data_learning/studio_render.py`
-(three connected charts + a mascot + the round-robin "satisfying" bottom
+data breakdowns rendered by `data_learning/studio_render.py` (two to four
+connected measurements + a mascot + the round-robin "satisfying" bottom
 strip) — NOT the stacked/stock-image format, and NOT the
 `"channel":"explainer"` package route above. For this channel's identity,
 prefer THESE data-graph stories over routing a Part-1 package to explainer.
@@ -885,11 +885,60 @@ Templates: `data_learning/data/*.json` and the `"stories"` array in
    - **comparison** → percent points incl. the baseline value, plus a
      `"baseline"` block (renders high-vs-low + a baseline line).
 
+### TITLES MUST NOT SHARE A TEMPLATE
+
+Every video this channel has posted ends its title "(3 Charts)" and runs
+exactly three beats. Four uploads a day of one template is the shape YouTube's
+repetitious-content policy is written about, and the channel is being penalised
+for it now. An audit of the 234 uploads found 25 near-duplicate title pairs,
+including two the same day and this, four days apart:
+
+    World Hydropower Fell Below Its 1990 Level
+    World Coal Power Fell Below Its 1990 Level
+
+So, for the four stories in a day:
+
+- **No shared suffix.** Do not append "(3 Charts)", "(Explained)" or any other
+  fixed tail. The count of charts is not interesting to a viewer.
+- **No shared frame.** Not four "Why X ...", not four "The Real Cost Of ...".
+  Vary the grammar: a question, a flat statement, a number, a contradiction.
+- **Nothing that reads as a slot-fill of an earlier title.** If swapping one
+  noun in a title you have already shipped produces the one you are writing,
+  write a different one. `post_stories.py` refuses these at upload now
+  (`duplicate_of`), so a template title costs the whole video.
+- **Beat count varies with the data**, two to four. Take the measurements the
+  story actually needs; do not pad to three.
+
+### SO MUST THE SHAPE OF THE VIDEO
+
+The title is the most visible template but it is not the only one. Measured
+across the 96 videos in `state/video_ledger.json`:
+
+    ending_type   consequence 64,  inversion 20,  escalation 11,  question 1
+    hook_type     shock_stat  49,  inversion 24,  stake      12,  question 11
+
+Two thirds of every video ever posted ends the same way, and half open the same
+way. Across the four stories in a day:
+
+- **No two share an `ending_type`**, and do not make all four `consequence`.
+  A video can end on a consequence, an inversion, an escalation, or a question
+  back to the viewer — one of each is a good day.
+- **At most two share a `hook_type`.** `shock_stat` is the default reach and it
+  is already half the catalogue.
+- **The description must not end the same way either.** Of 151 captions, 23
+  end "...the data 👇" and 13 end "...me below 👇". The openings are already
+  varied — 151 near-distinct first lines — so this is the one line to watch.
+  Hashtags are fine and need no attention: 294 distinct sets across 297
+  stories, checked.
+- These are recorded per upload, so the mix is checkable after the fact: run
+  `python3 scripts/what_works.py` to see what the channel has actually been
+  shipping before you write four more of the same.
+
 2. **Story block** — append to `"stories"` in `niche.config.json`:
    ```json
    {
      "slug": "kebab-case-unique",
-     "title": "Hooky Title (3 Charts)",
+     "title": "Hooky Title — NO shared suffix, see the rule below",
      "hook": "One-line scroll-stopper. Watch how they connect.",
      "closing": "SHORT quirky one-liner (<=12 words) — the mascot says it in a speech bubble at the end. Make it land.",
      "question": "Engagement CTA spoken + shown at the very end. A PERSONAL, easy-to-answer question that begs a reply, then 'comment/tell me/drop it below'. e.g. 'How many hours do you actually sleep? Drop it below.' Keep it one short sentence, no emojis (it's spoken).",

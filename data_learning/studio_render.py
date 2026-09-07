@@ -17,6 +17,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib as _hashlib
 import json
 import math
 import re
@@ -897,7 +898,20 @@ READ_BY = 0.62
 # at 0.367. Reading time is a HUMAN quantity — it does not grow because the
 # sentence ran long — so the still tail is capped in seconds and the build
 # simply keeps going on a longer visual.
-MAX_STILL_TAIL = 2.2       # seconds a finished chart may sit before the cut
+# 1.6s, not 2.2. The gate's ceiling on a frozen stretch is 45 frames and it
+# samples at 24fps — so 2.2s IS 53 frames, over the ceiling by construction
+# whenever nothing else in the frame moves. The three-beat video got away with
+# it because the host and captions were still going; a two- or four-beat one
+# did not, and both failed on a closing tail. A budget that only holds when
+# something else happens to be moving is not a budget.
+MAX_STILL_TAIL = 1.6       # seconds a finished chart may sit before the cut
+# ...and TIGHTER during the closing, because the tail budget is really a budget
+# for "how long may THIS layer hold while the rest of the frame carries it".
+# Mid-video the host is performing and the captions turn over. The closing has
+# neither: the card lands its last reveal (the CTA) at 62% and after that only
+# the recap moves. A two-beat and a four-beat video both failed there on a tail
+# that was fine everywhere else — 47 and 79 frozen frames against a 45 ceiling.
+CLOSING_STILL_TAIL = 0.8
 # Where the recap goes during the closing. The card is a 900x320 bubble ending
 # at y=470; the foot band with the question and CTA starts at 1683. This sits
 # between them, centred, in space these frames were leaving empty.
@@ -905,11 +919,19 @@ RECAP_SCALE = 0.62
 RECAP_Y = 520
 
 
-def _full_by(span: float) -> float:
-    """What fraction of a visual the build gets, so its tail is bounded."""
+def _full_by(span: float, tail: float = MAX_STILL_TAIL) -> float:
+    """What fraction of a visual the build gets, so its tail is bounded.
+
+    There is NO upper clamp, and that is deliberate. It had one (0.85, then
+    0.92) meant to guarantee some reading time — but `1 - tail/span` already
+    guarantees exactly `tail` seconds of it at every length, and the clamp only
+    ever fired on LONG spans, where it broke the very bound it sat next to: at
+    0.92 a 30-second visual holds for 2.4s, 58 frames against a ceiling of 45.
+    A cap that turns a bounded tail into an unbounded one is worse than none.
+    """
     if span <= 0:
         return READ_BY
-    return float(min(0.85, max(READ_BY, 1.0 - MAX_STILL_TAIL / span)))
+    return float(max(READ_BY, 1.0 - tail / span))
 
 
 def _visual_spans(s0: float, s1: float, n: int) -> list[tuple[float, float]]:
@@ -1632,6 +1654,22 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     cands = [c for c in cands
              if c and c != kind and c not in _ASSERTS_A_WHOLE
              and _buildable(c, insight)]
+    # ROTATE THE PREFERENCE, or the ranked list is itself a template.
+    #
+    # Simulated across the 74 un-posted stories: every single one picked
+    # units_scene, then balance_scene, then fill_vessel — because a fixed
+    # ranking plus a per-story `used` set produces the same three in the same
+    # order every time. Better than three charts, and still a fingerprint:
+    # every video would open its second beat on an isotype.
+    #
+    # Rotating by the beat's own topic varies it story to story AND beat to
+    # beat while staying deterministic, so a re-render is identical and the
+    # novelty/family rules below are untouched.
+    if len(cands) > 1:
+        _r = int(_hashlib.sha1(
+            str(getattr(insight, "topic", "") or kind).encode()
+        ).hexdigest()[:8], 16) % len(cands)
+        cands = cands[_r:] + cands[:_r]
 
     def _pick(want_family, avoid_used):
         for c in cands:
@@ -1782,7 +1820,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     # (that was the dead_air / 5fps).
                     cpath, anc = charts.render_story_build(
                         seg.insight, chart_dir, f"{slug}_seg{i:02d}_v{j}",
-                        frames=nfr, full_by=_full_by(t1 - t0),
+                        frames=nfr,
+                        full_by=_full_by(
+                            t1 - t0,
+                            CLOSING_STILL_TAIL
+                            if (windows and t1 - windows[-1][0] > 0.35)
+                            else MAX_STILL_TAIL),
                         # only the opening visual bursts up out of the hook
                         hook_lead=(i == 0 and lead_hook and j == 0))
                 except Exception as e:  # noqa: BLE001 — a missing extra visual

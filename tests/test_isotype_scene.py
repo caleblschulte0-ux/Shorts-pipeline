@@ -27,6 +27,7 @@ Runs with pytest OR standalone:
 """
 from __future__ import annotations
 
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -285,8 +286,55 @@ class ThePoolOnlyOffersWhatCanBeBuilt(unittest.TestCase):
         seq = sr._depiction_sequence(
             _Ins("cost", [_Pt("A", 11.3), _Pt("B", 6.8)], "years", "A tops",
                  kind="bars"), set(), 12.0)
-        self.assertTrue(any(k in sr._SCENE_TOKENS for k in seq),
+        # A non-chart FORM, not a scene token specifically: `fill_vessel` and
+        # `orbit` are full-frame renderers rather than scene builders and they
+        # satisfy this just as well. The first version named the wrong set and
+        # broke the moment the picker's rotation chose a different figure.
+        self.assertTrue(any(sr._family(k) == "figure" for k in seq[1:]),
                         f"no non-chart form reachable: {seq}")
+
+
+class TheBrainKnowsWhatItCanCompose(unittest.TestCase):
+    """An element the brain is never told about might as well not exist.
+
+    Three offline forms were added to the scene vocabulary — registered,
+    validated, rendered, tested — and the forge's ELEMENT KIT prompt still
+    listed only the old ones, so the brain could not compose with the only
+    elements that reliably work. Exactly the failure CLAUDE.md's rule zero is
+    about: a capability nothing calls is not a capability.
+    """
+
+    _FORGE = (_REPO / "scripts" / "story_forge.py").read_text()
+    _RAW = _FORGE[_FORGE.index("kit = ("):_FORGE.index("ELEMENT KIT")]
+    # The prompt is built by concatenating adjacent string literals, so a
+    # phrase like "interest rate" is split across a source line and a raw grep
+    # misses it. Rejoin the literals to get the text the brain actually sees.
+    _KIT = re.sub(r'"\s*\n\s*(#[^\n]*\n\s*)?"', "", _RAW)
+
+    def test_every_offline_element_is_offered_to_the_brain(self):
+        for kind in sorted(vs._ICON_TYPES | vs._DRAWN_TYPES):
+            self.assertIn(kind, self._KIT,
+                          f"{kind!r} exists but the brain is never told")
+
+    def test_every_element_it_offers_actually_exists(self):
+        """The other direction: a kit that names something the validator
+        rejects sends every scene using it into the fallback chain."""
+        import re as _re
+        named = set(_re.findall(r"^\s+\"  ([a-z_]+) ", self._KIT, _re.M))
+        for kind in named:
+            if kind in ("region", "needs", "data"):
+                continue
+            self.assertIn(kind, vs._TYPES, f"kit offers unknown {kind!r}")
+
+    def test_the_dot_field_warning_survives_in_the_prompt(self):
+        """The rule that makes it honest — a percentage is not automatically a
+        population — has to reach the thing writing the scene, not just the
+        validator that refuses it afterwards."""
+        self.assertIn("interest rate", self._KIT)
+        self.assertIn("NEVER", self._KIT)
+
+    def test_the_balance_pair_requirement_is_stated(self):
+        self.assertIn("vs_from", self._KIT)
 
 
 class TheHostIsOnIt(unittest.TestCase):

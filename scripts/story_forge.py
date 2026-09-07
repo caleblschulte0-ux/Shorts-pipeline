@@ -437,6 +437,25 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "needs subject + data.value_from.\n"
            "  timeline_axis / orbit_group — region 'full', for time or "
            "distances.\n"
+           # THE OFFLINE FORMS. These need no generated imagery — they draw
+           # from the icon library or from primitives — so they always render,
+           # in a fraction of a second, and cost nothing if the image provider
+           # is down. They were added to the kit and NOT to this prompt, which
+           # meant the brain could not compose with the only elements that
+           # reliably work.
+           "  unit_figures — N copies of one icon in a block; COUNTING them is "
+           "the number ('22 houses, each $20K'). needs subject + "
+           "data.value_from + data.per_value (a rough guess; it is rescaled "
+           "to a round unit).\n"
+           "  balance     — two values on a set of scales, heavier side down. "
+           "The clearest way to say 'this one is bigger' without an axis. "
+           "needs data.value_from AND data.vs_from, naming two DIFFERENT "
+           "items.\n"
+           "  dot_field   — a share of a population as 'k in n' figures, some "
+           "lit. ONLY for a percentage that is a share of something you could "
+           "count out (prevalence, ownership, turnout). NEVER for an interest "
+           "rate, a growth rate or a yield — those are not a proportion of "
+           "anything. needs subject + data.value_from.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "
@@ -600,6 +619,17 @@ def _load_used() -> dict:
         return {"indicators": []}
 
 
+def _stable_hash(text: str) -> int:
+    """A deterministic small integer for a string.
+
+    `hash()` is salted per process in Python 3, so using it here would give the
+    same theme a different shape on every run — which is worse than a fixed
+    template, because a story that re-forges would silently change length.
+    """
+    import hashlib
+    return int(hashlib.sha1((text or "").encode()).hexdigest()[:8], 16)
+
+
 def _unposted(cfg: dict) -> int:
     try:
         posted = set(json.loads(POSTED_LOG.read_text()).get("posted", {}))
@@ -676,12 +706,28 @@ def forge(count: int, dry_run: bool = False) -> int:
         if made >= count:
             break
         specs = pool[theme]
+        # HOW MANY BEATS THIS STORY GETS.
+        #
+        # Every video this channel has ever posted is exactly three. Combined
+        # with a fixed "(3 Charts)" title suffix and four uploads a day, that
+        # is a template, and a template at volume is what YouTube's
+        # repetitious-content policy is written about — the operator is being
+        # penalised for it right now.
+        #
+        # Keyed on the theme AND this attempt's leading indicator, so it is
+        # stable for a given story (one that re-forges keeps its shape) while
+        # still varying WITHIN a theme — keying on the theme alone would have
+        # given every health story ever made the identical length, which is a
+        # smaller template but still a template. Weighted toward 3 because that
+        # is the length the writing is tuned for: 2, 3, 3, 4.
+        target = (2, 3, 3, 4)[_stable_hash(
+            theme + (specs[0]["id"] if specs else "")) % 4]
         dss, tried, seen_fam = [], 0, set()
-        while specs and len(dss) < 3 and tried < 40:
+        while specs and len(dss) < target and tried < 40:
             spec = specs.pop(0)
             tried += 1
-            # Three segments must be three DIFFERENT measurements: sibling
-            # indicators (same family stem) render as the same chart 3x.
+            # Each segment must be a DIFFERENT measurement: sibling indicators
+            # (same family stem) render as the same chart twice over.
             fam = ".".join(spec["id"].split(".")[:2])
             if fam in seen_fam:
                 continue
@@ -693,19 +739,23 @@ def forge(count: int, dry_run: bool = False) -> int:
             used_keys.add(ds["key"])
             seen_fam.add(fam)
             dss.append(ds)
-        if len(dss) < 3:
+        if len(dss) < 2:
             # A thin theme's series are still REAL, fetched data — bank them
             # instead of throwing the fetch away; they become a cross-theme
-            # story below rather than a wasted API round trip.
+            # story below rather than a wasted API round trip. Two is the floor:
+            # one measurement is a stat, not a story you can build to.
             print(f"[{theme}] only {len(dss)} usable series — banked")
             leftovers += dss
             continue
         keep(dss, theme)
-    # Cross-theme fill: three banked series that each cleared the same quality
-    # checks. Coherence comes from the words the brain writes over them.
-    while made < count and len(leftovers) >= 3:
-        keep(leftovers[:3], "mixed")
-        leftovers = leftovers[3:]
+    # Cross-theme fill: banked series that each cleared the same quality
+    # checks. Coherence comes from the words the brain writes over them. The
+    # count varies here too — a mixed story is not automatically a three.
+    while made < count and len(leftovers) >= 2:
+        n_mix = min(len(leftovers), (2, 3, 3, 4)[_stable_hash(
+            leftovers[0].get("key", "")) % 4])
+        keep(leftovers[:n_mix], "mixed")
+        leftovers = leftovers[n_mix:]
     print(f"\nforged {made} real-data stor{'y' if made == 1 else 'ies'} "
           f"({'dry run' if dry_run else 'written'})")
     return made
