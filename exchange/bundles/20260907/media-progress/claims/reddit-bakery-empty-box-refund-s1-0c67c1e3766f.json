@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7"
+  },
+  "request_id": "reddit-bakery-empty-box-refund-s1-0c67c1e3766f",
+  "safe_request_id": "reddit-bakery-empty-box-refund-s1-0c67c1e3766f",
+  "worker": "media",
+  "worker_run_id": "media-20260907-060402-cdt",
+  "created_at": "2026-09-07T11:09:45.247Z",
+  "expires_at": "2026-09-07T11:24:45.247Z",
+  "lease_seconds": 900
+}
