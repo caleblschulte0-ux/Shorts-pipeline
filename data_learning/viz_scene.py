@@ -52,12 +52,14 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "unit_figures", "balance", "dot_field", "race_track", "staircase",
           "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
-          "funnel", "conveyor", "pipes", "spotlight", "number", "bar",
+          "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
+          "bridge", "centre", "coaster", "thermometer", "number", "bar",
           "bubble", "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
              "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
-             "funnel", "conveyor", "pipes", "spotlight"}
+             "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
+             "bridge", "centre", "coaster", "thermometer"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -67,7 +69,8 @@ _ICON_TYPES = {"unit_figures", "dot_field"}
 # Drawn entirely from primitives — no subject, no icon, no network at all.
 _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "burden", "gauge", "skyline", "tower", "hurdle", "funnel",
-                "conveyor", "pipes", "spotlight"}
+                "conveyor", "pipes", "spotlight", "road", "tape", "bridge",
+                "centre", "coaster", "thermometer"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -933,6 +936,297 @@ def _series_points(insight, cap: int = 8):
 # new one and forgetting to dispatch it — which sends every scene using it
 # silently into the chart fallback — is not possible.
 _MACHINE_DRAW: dict = {}
+
+
+def _pts(insight, cap=10):
+    return _series_points(insight, cap=cap)
+
+
+def draw_road(d, canvas, box, insight, color, reveal, unit=""):
+    """A ROAD, dead flat, with Data cruising it. For STABLE.
+
+    "It has not moved in twenty years" is a finding, and a flat line is the one
+    picture that makes it look like nothing HAPPENED rather than like nothing
+    CHANGED. A road he is driving along says the number is live and going
+    nowhere, which is the actual claim.
+    """
+    items = _pts(insight)
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    if not vals:
+        return None
+    bx0, by0, bx1, by1 = box
+    road_y = int((max(by0 + 240, 380) + (by1 - 160)) / 2)
+    d.rounded_rectangle([bx0 + 30, road_y, bx1 - 30, road_y + 90], radius=12,
+                        fill=_rgba(TEXT, 55))
+    e = settle(reveal)
+    # dashes stream past — he is moving, the NUMBER is not
+    for k in range(-1, 14):
+        x = bx0 + 40 + ((k * 96) - e * 96 * 6) % (bx1 - bx0 - 80)
+        d.rounded_rectangle([int(x), road_y + 40, int(x + 54), road_y + 52],
+                            radius=6, fill=_rgba(charts.CARD, 200))
+    mid = sum(vals) / len(vals)
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 270
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int((bx0 + bx1) / 2 - mw // 2),
+                                int(road_y - mh + 14)))
+    d.text(((bx0 + bx1) // 2, by0 + 58), charts._ulabel(mid, unit, group=True),
+           font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
+    lo_l = getattr(items[0], "label", "")
+    hi_l = getattr(items[-1], "label", "")
+    d.text(((bx0 + bx1) // 2, road_y + 150),
+           f"{lo_l} to {hi_l} — barely moved", font=_pil_font(42),
+           fill=_rgba(TEXT, 225), anchor="mm")
+    return (mid, "art", (bx0 + bx1) // 2, road_y)
+
+
+def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
+    """A MEASURING TAPE pulled between two values. For DELTA.
+
+    Before-and-after says what the two numbers were. A tape says how far apart
+    they are, which is the thing the sentence is usually about — and Data pulls
+    it, so the gap is something that had to be dragged open.
+    """
+    items = _pts(insight)
+    if len(items) < 2:
+        return None
+    a = float(getattr(items[0], "value", 0) or 0)
+    b = float(getattr(items[-1], "value", 0) or 0)
+    bx0, by0, bx1, by1 = box
+    y = int((max(by0 + 250, 400) + (by1 - 200)) / 2)
+    e = settle(reveal)
+    x0 = bx0 + 90
+    x1 = int(x0 + (bx1 - 90 - x0) * e)
+    d.rounded_rectangle([x0, y - 22, x1, y + 22], radius=10,
+                        fill=_rgba(color, 235))
+    for k in range(0, max(1, (x1 - x0) // 46)):
+        tx = x0 + 24 + k * 46
+        d.line([(tx, y - 22), (tx, y - 6)], fill=_rgba(charts.CARD, 200),
+               width=4)
+    d.text((x0, y - 62), f"{getattr(items[0], 'label', '')}  "
+           f"{charts._ulabel(a, unit)}", font=_pil_font(40),
+           fill=_rgba(TEXT, 235), anchor="lm")
+    na = max(0.0, min(1.0, (reveal - 0.35) / 0.3))
+    d.text((x1, y - 62), f"{getattr(items[-1], 'label', '')}  "
+           f"{charts._ulabel(b, unit)}", font=_pil_font(40),
+           fill=_rgba(color, int(255 * na)), anchor="rm")
+    d.text(((bx0 + bx1) // 2, y + 96),
+           f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
+           font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 230
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(x1 - mw // 2), y + 30))
+    return (b, "art", x1, y)
+
+
+def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
+    """A BRIDGE that does not reach. For GAP — how far short of a line.
+
+    The hurdle asks whether it cleared. This asks how far away it still is, and
+    draws the distance as distance: he stands at the end of what has been built
+    and looks across at the target.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    base = getattr(insight, "baseline", None)
+    if not items or base is None:
+        return None
+    v = float(getattr(max(items, key=lambda p: abs(float(
+        getattr(p, "value", 0) or 0))), "value", 0) or 0)
+    bv = float(getattr(base, "value", 0) or 0)
+    if bv == 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    y = int((max(by0 + 260, 420) + (by1 - 200)) / 2)
+    x0, x1 = bx0 + 70, bx1 - 70
+    frac = max(0.0, min(1.0, abs(v) / abs(bv))) * settle(reveal)
+    # The deck is `frac` of the distance to the FAR BANK, not to the frame
+    # edge. Scaling it to the frame put the far bank inside the span the deck
+    # was measured against, and a 24% shortfall came out as a 60px nick — too
+    # small to draw the measurement across, so the number never appeared.
+    far_x = x1 - 130
+    edge = int(x0 + (far_x - x0) * frac)
+    # THE CHASM HAS TO LOOK LIKE A CHASM. The first version drew both decks at
+    # the same height with a few tick marks between, and the gap — the whole
+    # point — read as a small pause in a bar. The near deck is a built roadway
+    # that stops in mid-air, the far bank is raised, and the drop below is dark.
+    deck_y = y + 40
+    d.rectangle([x0, deck_y + 34, x1, by1 - 40], fill=_rgba(charts.CARD, 90))
+    d.rounded_rectangle([x0, deck_y, edge, deck_y + 34], radius=8,
+                        fill=_rgba(color, 245))
+    for px in range(x0 + 30, edge - 10, 66):        # pilings under what exists
+        d.line([(px, deck_y + 34), (px, deck_y + 120)],
+               fill=_rgba(color, 120), width=8)
+    d.rounded_rectangle([far_x, deck_y - 26, x1, deck_y + 34], radius=8,
+                        fill=_rgba(WARN, 235))
+    d.text((x1, deck_y - 76), f"{getattr(base, 'label', 'target')}  "
+           f"{charts._ulabel(bv, unit)}", font=_pil_font(36),
+           fill=_rgba(WARN, 240), anchor="rm")
+    d.text((x0, deck_y - 52), charts._ulabel(v, unit), font=_pil_font(46),
+           fill=_rgba(color, 245), anchor="lm")
+    na = max(0.0, min(1.0, (reveal - 0.4) / 0.3))
+    # the measured gap, drawn across the gap
+    if far_x - edge > 40:
+        gy = deck_y + 78
+        d.line([(edge + 8, gy), (far_x - 8, gy)],
+               fill=_rgba(TEXT, int(200 * na)), width=5)
+        for ax_, dx_ in ((edge + 8, 16), (far_x - 8, -16)):
+            d.line([(ax_, gy), (ax_ + dx_, gy - 12)],
+                   fill=_rgba(TEXT, int(200 * na)), width=5)
+            d.line([(ax_, gy), (ax_ + dx_, gy + 12)],
+                   fill=_rgba(TEXT, int(200 * na)), width=5)
+        d.text(((edge + far_x) // 2, gy + 60),
+               f"{charts._ulabel(abs(bv - v), unit, group=True)} short",
+               font=_pil_font(56), fill=_rgba(TEXT, int(245 * na)), anchor="mm")
+    y = deck_y
+    host = scene_host("think", reveal)
+    if host is not None:
+        mh = 240
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(edge - mw + 20), int(y - mh)))
+    return (v, "art", edge, y)
+
+
+def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
+    """LINED UP, SHORTEST TO TALLEST, with Data walking to the middle.
+
+    For CENTRE — an average or a median. A number labelled "average" is a
+    claim; a row of things with him standing at the one in the middle is the
+    definition, acted out.
+    """
+    items = sorted(list(getattr(insight, "items", None) or []),
+                   key=lambda p: float(getattr(p, "value", 0) or 0))[:9]
+    if len(items) < 3:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    vmax = max(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 230, 380), by1 - 130
+    n = len(items)
+    w = (bx1 - bx0 - 120) / n
+    e = settle(reveal)
+    mid_i = n // 2
+    for i, (p, v) in enumerate(zip(items, vals)):
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            break
+        h = (bot - top) * (v / vmax) * min(1.0, a * 2.0)
+        sx = int(bx0 + 60 + i * w)
+        d.rounded_rectangle([sx + 8, int(bot - h), int(sx + w - 8), bot],
+                            radius=8,
+                            fill=_rgba(color if i == mid_i else ACCENT,
+                                       int(235 * a)))
+        d.text((int(sx + w / 2), bot + 30), str(getattr(p, "label", ""))[:8],
+               font=_pil_font(26), fill=_rgba(TEXT, int(190 * a)), anchor="mm")
+    med = vals[mid_i]
+    mx = int(bx0 + 60 + mid_i * w + w / 2)
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 230
+        mw = int(host.width * mh / host.height)
+        # he WALKS to the middle across the reveal
+        start = bx0 + 60
+        hx = start + (mx - start) * e
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(hx - mw // 2), int(bot - mh)))
+    d.text(((bx0 + bx1) // 2, by0 + 58),
+           f"middle:  {charts._ulabel(med, unit, group=True)}",
+           font=_pil_font(66), fill=_rgba(color, 255), anchor="mm")
+    return (med, "art", mx, int(bot - 40))
+
+
+def draw_coaster(d, canvas, box, insight, color, reveal, unit=""):
+    """A ROLLER COASTER track shaped by the series, with Data riding it.
+
+    For VOLATILE, alongside the spotlight. The spotlight says "somewhere in
+    this range"; the coaster says "and here is what the ride felt like". Both
+    are honest about a zig-zag because neither claims it ended anywhere.
+    """
+    items = _pts(insight, cap=12)
+    if len(items) < 4:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1.0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 240, 380), by1 - 150
+    n = len(vals)
+    xs = [bx0 + 70 + (bx1 - bx0 - 140) * k / (n - 1) for k in range(n)]
+    ys = [bot - (bot - top) * ((v - lo) / span) for v in vals]
+    e = settle(reveal)
+    k_end = max(1, int(e * (n - 1)))
+    pts = [(int(x), int(y)) for x, y in zip(xs[:k_end + 1], ys[:k_end + 1])]
+    if len(pts) >= 2:
+        d.line(pts, fill=_rgba(color, 255), width=13, joint="curve")
+        for x, y in pts:                       # the rails' supports
+            d.line([(x, y + 8), (x, bot + 30)], fill=_rgba(TEXT, 45), width=4)
+    cx_, cy_ = pts[-1]
+    host = scene_host("cheer" if ys[k_end] < ys[max(0, k_end - 1)]
+                      else "shock", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(cx_ - mw // 2), int(cy_ - mh + 12)))
+    d.text(((bx0 + bx1) // 2, by0 + 58),
+           f"{charts._ulabel(lo, unit)}  to  {charts._ulabel(hi, unit)}",
+           font=_pil_font(64), fill=_rgba(color, 255), anchor="mm")
+    d.text(((bx0 + bx1) // 2, bot + 88), "and back again",
+           font=_pil_font(40), fill=_rgba(TEXT, 215), anchor="mm")
+    return (vals[k_end], "art", cx_, cy_)
+
+
+def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
+    """A THERMOMETER climbing toward a red zone. For a value approaching a
+    limit — the danger reading of a threshold, where the point is not whether
+    it cleared but that it is getting close.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if not items:
+        return None
+    star = items[-1] if len(items) > 2 else max(
+        items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
+    v = float(getattr(star, "value", 0) or 0)
+    base = getattr(insight, "baseline", None)
+    limit = float(getattr(base, "value", 0) or 0) if base is not None else 0.0
+    top_v = max(abs(v), abs(limit)) * 1.15 or 1.0
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    top, bot = max(by0 + 220, 360), by1 - 190
+    tube_w = 96
+    d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, bot],
+                        radius=tube_w // 2, fill=_rgba(TEXT, 55))
+    d.ellipse([cx - 84, bot - 40, cx + 84, bot + 128], fill=_rgba(TEXT, 55))
+    if limit:
+        ly = int(bot - (bot - top) * (abs(limit) / top_v))
+        d.rounded_rectangle([cx - tube_w // 2, top, cx + tube_w // 2, ly],
+                            radius=tube_w // 2, fill=_rgba(WARN, 90))
+        d.line([(cx - 120, ly), (cx + 120, ly)], fill=_rgba(WARN, 235), width=8)
+        d.text((cx + 136, ly), f"{getattr(base, 'label', 'limit')}  "
+               f"{charts._ulabel(limit, unit)}", font=_pil_font(34),
+               fill=_rgba(WARN, 235), anchor="lm")
+    e = settle(reveal)
+    fy = int(bot - (bot - top) * (abs(v) / top_v) * e)
+    d.rounded_rectangle([cx - tube_w // 2 + 14, fy, cx + tube_w // 2 - 14, bot],
+                        radius=(tube_w - 28) // 2, fill=_rgba(color, 245))
+    d.ellipse([cx - 70, bot - 26, cx + 70, bot + 114], fill=_rgba(color, 245))
+    d.text((cx - 136, fy), charts._ulabel(v * e, unit, group=True),
+           font=_pil_font(52), fill=_rgba(color, 255), anchor="rm")
+    host = scene_host("shock" if (limit and abs(v) > abs(limit)) else "strain",
+                      reveal)
+    if host is not None:
+        mh = 220
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(cx + 150), int(bot - mh + 40)))
+    d.text((cx, by0 + 58), str(getattr(star, "label", ""))[:24],
+           font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
+    return (v, "art", cx, fy)
 
 
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
@@ -2086,7 +2380,9 @@ _MACHINE_DRAW.update({
     "burden": draw_burden, "gauge": draw_gauge, "skyline": draw_skyline,
     "tower": draw_tower, "hurdle": draw_hurdle, "funnel": draw_funnel,
     "conveyor": draw_conveyor, "pipes": draw_pipes,
-    "spotlight": draw_spotlight,
+    "spotlight": draw_spotlight, "road": draw_road, "tape": draw_tape,
+    "bridge": draw_bridge, "centre": draw_centre, "coaster": draw_coaster,
+    "thermometer": draw_thermometer,
 })
 
 tower_scene = _machine_scene("tower", 1)
@@ -2095,6 +2391,12 @@ funnel_scene = _machine_scene("funnel", 3)
 conveyor_scene = _machine_scene("conveyor", 1)
 pipes_scene = _machine_scene("pipes", 2)
 spotlight_scene = _machine_scene("spotlight", 3)
+road_scene = _machine_scene("road", 3)
+tape_scene = _machine_scene("tape", 2)
+bridge_scene = _machine_scene("bridge", 1)
+centre_scene = _machine_scene("centre", 3)
+coaster_scene = _machine_scene("coaster", 4)
+thermometer_scene = _machine_scene("thermometer", 1)
 
 
 def race_scene(insight) -> dict:

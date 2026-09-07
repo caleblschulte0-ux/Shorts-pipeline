@@ -46,6 +46,14 @@ THRESHOLD = "threshold"        # a value measured against a line it must clear
 DROPOFF = "dropoff"            # named stages, each smaller than the last
 FREQUENCY = "frequency"        # a count PER unit of time
 UNCERTAINTY = "uncertainty"    # the range a number lived in, not its direction
+STABLE = "stable"              # it barely moved, and that IS the finding
+DELTA = "delta"                # the SIZE of a change between two points
+GAP = "gap"                    # how far short of a line it falls
+CENTRE = "centre"              # where the middle of a spread sits
+ACCELERATION = "acceleration"  # the rate of change is itself changing
+REVERSAL = "reversal"          # it went one way, then turned and stayed turned
+SPREAD = "spread"              # how tightly the values cluster
+CYCLE = "cycle"                # it repeats
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -89,6 +97,44 @@ def is_time_series(insight) -> bool:
     yrs = sum(1 for l in labels
               if len(l) <= 7 and l[:4].isdigit() and 1800 <= int(l[:4]) <= 2200)
     return yrs >= max(3, len(labels) * 0.6)
+
+
+def _turned(values: list) -> bool:
+    """One direction, then the other, and it stuck.
+
+    Split the series in half and require each half to move materially, in
+    opposite directions. A single reversal inside noise is not a turn — that is
+    what VOLATILE is for.
+    """
+    if len(values) < 6:
+        return False
+    mid = len(values) // 2
+    a, b = values[:mid + 1], values[mid:]
+    span = (max(values) - min(values)) or 1.0
+    da, db = a[-1] - a[0], b[-1] - b[0]
+    return (abs(da) > 0.25 * span and abs(db) > 0.25 * span
+            and (da > 0) != (db > 0))
+
+
+def _accelerating(values: list) -> bool:
+    """Each step bigger than the last, in the same direction, most of the way.
+
+    "Growth" says it rose. ACCELERATION says the rise itself is speeding up,
+    which is a stronger and more interesting claim — so it needs most of the
+    steps to agree, not just the endpoints.
+    """
+    if len(values) < 5:
+        return False
+    steps = [b - a for a, b in zip(values, values[1:])]
+    if not all(x > 0 for x in steps) and not all(x < 0 for x in steps):
+        return False
+    # 1.25 and near-unanimity, not 1.05 and a majority. At the looser bar an
+    # ordinary rise — 10, 14, 19, 25, 33, 41 — came back ACCELERATION, because
+    # almost every growing series speeds up a little. The claim here is that
+    # the rise is COMPOUNDING, which is a stronger thing to say and needs the
+    # steps to agree.
+    growing = sum(1 for a, b in zip(steps, steps[1:]) if abs(b) >= abs(a) * 1.25)
+    return growing >= len(steps) - 1
 
 
 def _direction(values: list) -> tuple:
@@ -153,8 +199,20 @@ def _classify(insight) -> str:
         # against the LEVEL. Nothing to say is a real answer — it gets a line.
         level = sum(abs(v) for v in values) / len(values) or 1.0
         if (max(values) - min(values)) <= 0.03 * level:
-            return OTHER
+            # STABLE is a finding, not an absence. "This has not moved in
+            # twenty years" is a story, and it used to fall through to OTHER
+            # and get a flat line — the one picture that makes it look like
+            # nothing happened rather than like nothing CHANGED.
+            return STABLE
         net, rev = _direction(values)
+        # A TURN. Went one way, then the other, and STAYED — which is a
+        # different claim from a zig-zag: there is a moment where it changed
+        # its mind. Requires a real move each way so noise cannot fake it.
+        if _turned(values):
+            return REVERSAL
+        # The rate of change is itself changing, consistently.
+        if _accelerating(values):
+            return ACCELERATION
         # A trend has to actually go somewhere AND go there mostly one way.
         # Without the reversal test a series that wandered up and down and
         # happened to end high would be drawn as a clean climb, which is a

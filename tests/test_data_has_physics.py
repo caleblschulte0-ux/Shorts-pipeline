@@ -101,9 +101,13 @@ class ItReadsWhatTheDataSays(unittest.TestCase):
             rel.classify(_series([3.9, 3.1, 2.96, 5.34, 6.81, 6.72, 6.6, 6.8])),
             rel.GROWTH)
 
-    def test_a_flat_series_claims_nothing(self):
+    def test_a_flat_series_is_STABLE_which_is_a_finding(self):
+        """This asserted OTHER — draw a chart — which was right while nothing
+        could depict "it did not move". A road he is cruising says the number
+        is live and going nowhere, which is the actual claim; a flat line makes
+        it look like nothing happened rather than like nothing changed."""
         self.assertEqual(rel.classify(_series([50, 50.2, 50.1, 50.3, 50.2])),
-                         rel.OTHER)
+                         rel.STABLE)
 
     def test_two_things_are_a_duel(self):
         self.assertEqual(rel.classify(_things([("Wind", 42), ("Solar", 28)])),
@@ -190,6 +194,8 @@ class TheMachineComesFirstAndTheChartIsTheFallback(unittest.TestCase):
             self.assertNotIn(k, self._DIRECTIONAL,
                              f"{k} claims a direction a zig-zag does not have")
         self.assertIn("spotlight_scene", sr._MACHINES["volatile"])
+        # The coaster joined it later: it shows the shape of the ride without
+        # claiming where the ride ended, which is the same honesty test.
 
     def test_the_rotation_never_puts_a_chart_ahead_of_a_machine(self):
         """THE INVERSION. Rotating one flat list for variety put a bar chart in
@@ -348,8 +354,14 @@ class TheNewRelationshipsAreDetectedFromRealData(unittest.TestCase):
 
     def test_volatile_finally_has_a_picture_that_is_not_a_lie(self):
         """It had NO machine, deliberately, because every form here asserts a
-        direction and a zig-zag has none. A spotlight asserts only a range."""
-        self.assertEqual(sr._MACHINES["volatile"], ("spotlight_scene",))
+        direction and a zig-zag has none. A spotlight asserts only a range, and
+        a coaster only a shape — neither says where it ended up. Pinned as a
+        PROPERTY rather than an exact tuple, so adding another honest form does
+        not break it."""
+        forms = sr._MACHINES["volatile"]
+        self.assertTrue(forms)
+        self.assertTrue(set(forms) <= {"spotlight_scene", "coaster_scene"},
+                        f"a directional form crept into volatile: {forms}")
 
 
 class TheHonestyOfTheNewMachines(unittest.TestCase):
@@ -508,6 +520,88 @@ class MotionMustBeVISIBLE(unittest.TestCase):
                 if best > CEILING:
                     worst[name] = best
         self.assertEqual(worst, {}, f"machines that hold still: {worst}")
+
+
+class BatchOneRelationships(unittest.TestCase):
+    """Six more shapes the router reads off the data itself."""
+
+    def _ser(self, vals):
+        return _series(vals)
+
+    def test_a_flat_series_is_a_FINDING_not_an_absence(self):
+        """"This has not moved in twenty years" is a story. It used to fall
+        through to OTHER and get a flat line — the one picture that makes it
+        look like nothing HAPPENED rather than like nothing CHANGED."""
+        self.assertEqual(rel.classify(self._ser([50, 50.2, 50.1, 50.3, 50.2,
+                                                 50.1])), rel.STABLE)
+        self.assertEqual(sr._MACHINES["stable"], ("road_scene",))
+
+    def test_a_turn_is_not_a_zigzag(self):
+        """One way, then the other, and it STUCK — there is a moment where it
+        changed its mind, which a swinging series does not have."""
+        self.assertEqual(rel.classify(self._ser([10, 30, 55, 80, 60, 35, 12,
+                                                 8])), rel.REVERSAL)
+        self.assertEqual(rel.classify(self._ser([10, 90, 20, 85, 15, 80])),
+                         rel.VOLATILE)
+
+    def test_compounding_is_not_merely_rising(self):
+        """At a looser bar an ordinary rise — 10, 14, 19, 25, 33, 41 — came
+        back ACCELERATION, because almost every growing series speeds up a
+        little. The claim is that the rise is compounding."""
+        self.assertEqual(rel.classify(self._ser([2, 5, 11, 22, 44, 88])),
+                         rel.ACCELERATION)
+        self.assertEqual(rel.classify(self._ser([10, 14, 19, 25, 33, 41])),
+                         rel.GROWTH)
+
+    def test_every_new_relationship_has_a_machine(self):
+        for name in (rel.STABLE, rel.DELTA, rel.GAP, rel.CENTRE,
+                     rel.ACCELERATION, rel.REVERSAL):
+            self.assertTrue(sr._MACHINES.get(name),
+                            f"{name} classifies but draws nothing")
+
+    def test_the_reversal_and_volatile_pictures_claim_no_destination(self):
+        """A turn and a zig-zag both end somewhere the data does not endorse
+        as a trend, so neither may be drawn as a climb."""
+        directional = {"staircase_scene", "burden_scene", "tower_scene",
+                       "race_scene", "skyline_scene", "funnel_scene"}
+        for name in ("reversal", "volatile"):
+            for k in sr._MACHINES[name]:
+                self.assertNotIn(k, directional, f"{name} -> {k}")
+
+
+class BatchOneMachines(unittest.TestCase):
+    def test_the_road_says_it_barely_moved(self):
+        import inspect
+        self.assertIn("barely moved", inspect.getsource(vs.draw_road))
+
+    def test_the_tape_states_the_distance_not_the_ends(self):
+        import inspect
+        self.assertIn("apart", inspect.getsource(vs.draw_tape))
+
+    def test_the_bridge_states_the_shortfall(self):
+        import inspect
+        self.assertIn("short", inspect.getsource(vs.draw_bridge))
+
+    def test_the_bridge_measures_the_gap_against_the_far_bank(self):
+        """Scaling the deck to the FRAME instead put the far bank inside the
+        span the deck was measured against, and a 24% shortfall came out as a
+        60px nick — too small to draw the measurement across, so the number
+        never appeared at all."""
+        import inspect
+        self.assertIn("far_x - x0", inspect.getsource(vs.draw_bridge))
+
+    def test_the_centre_walks_him_to_the_middle(self):
+        import inspect
+        src = inspect.getsource(vs.draw_centre)
+        self.assertIn("sorted(", src)
+        self.assertIn("mid_i", src)
+
+    def test_the_machines_that_need_a_baseline_refuse_without_one(self):
+        no_base = _Ins([_Pt("A", 1.0)], "count", "x", "y")
+        for fn in (vs.draw_bridge,):
+            import inspect
+            self.assertIn("base is None", inspect.getsource(fn))
+        self.assertIsNotNone(no_base)
 
 
 class EveryMachineIsWiredEndToEnd(unittest.TestCase):

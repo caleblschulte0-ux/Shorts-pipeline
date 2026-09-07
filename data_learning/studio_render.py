@@ -1554,7 +1554,9 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "staircase_scene", "elevator_scene", "burden_scene",
                 "gauge_scene", "skyline_scene", "tower_scene",
                 "hurdle_scene", "funnel_scene", "conveyor_scene",
-                "pipes_scene", "spotlight_scene")
+                "pipes_scene", "spotlight_scene", "road_scene",
+                "tape_scene", "bridge_scene", "centre_scene",
+                "coaster_scene", "thermometer_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1565,7 +1567,8 @@ _SCENE_TOKENS = {t: t for t in (
     "staircase_scene", "elevator_scene", "burden_scene",
     "gauge_scene", "skyline_scene", "tower_scene", "hurdle_scene",
     "funnel_scene", "conveyor_scene", "pipes_scene",
-    "spotlight_scene",
+    "spotlight_scene", "road_scene", "tape_scene", "bridge_scene",
+    "centre_scene", "coaster_scene", "thermometer_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1662,8 +1665,22 @@ _MACHINES = {
     # would assert one. A spotlight says only "it was somewhere in this range
     # and it moved around", which is exactly what is true — so `volatile`
     # finally has a picture that is not a lie, having had none at all.
-    "volatile":    ("spotlight_scene",),
+    # NO DIRECTION TO CLAIM. Both of these say only where the number lived and
+    # that it moved around — neither asserts where it ended up.
+    "volatile":    ("spotlight_scene", "coaster_scene"),
     "uncertainty": ("spotlight_scene",),
+    # it barely moved, and that IS the finding
+    "stable":      ("road_scene",),
+    # the SIZE of a change, drawn as distance
+    "delta":       ("tape_scene", "tower_scene", "fill_vessel"),
+    # how far SHORT of a line it falls
+    "gap":         ("bridge_scene", "hurdle_scene"),
+    # where the middle of a spread sits
+    "centre":      ("centre_scene", "race_scene"),
+    # the rise is compounding, not merely rising
+    "acceleration": ("staircase_scene", "tower_scene", "coaster_scene"),
+    # it went one way, then turned and stayed turned
+    "reversal":    ("coaster_scene", "spotlight_scene", "elevator_scene"),
     "other":       (),
 }
 
@@ -1678,7 +1695,8 @@ _MACHINES = {
 # `used` set means the runner-up only ever appears when a story has two beats
 # of the same relationship. Four machines were effectively dead.
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
-                        "before_after", "share", "duel"})
+                        "before_after", "share", "duel", "delta", "gap",
+                        "centre", "acceleration", "reversal", "volatile"})
 
 
 def _machines_for(insight) -> tuple:
