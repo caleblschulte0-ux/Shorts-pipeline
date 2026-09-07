@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7",
+    "path": "exchange/bundles/20260907/bundle.json"
+  },
+  "request_id": "reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0",
+  "safe_request_id": "reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "aad2a16c45c33531764d9c13751d0e2853a0bc917112c16c14dfe9b1c18b5fc8",
+  "prompt_used": "An editorial illustration for a short-form video: courtroom judge gavel. It accompanies the narration: \"dismissed the case in about four minutes\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+    "filename": "20260907__reddit-landlord-notary-clause-backfire-s6-10b7bcf73ea0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a37af03dce980c5c386a6928d66096c4361f5030818a9b547334168ff8ced52e",
+    "bytes": 1265304,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-09-07T11:23:35.674Z",
+  "error": null,
+  "retryable": false
+}
