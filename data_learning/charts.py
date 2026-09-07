@@ -2149,21 +2149,52 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "pictorial_race":
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'pulls ahead'}"
+        # Same rule as `_superlative`: name the item that actually leads, and
+        # do not call years competitors.
+        subtitle = (_superlative(insight, low) if _is_time_series(insight)
+                    else f"{max(insight.items, key=lambda p: p.value).label} "
+                         f"{'sits lowest' if low else 'pulls ahead'}"
+                    if not low else
+                    f"{min(insight.items, key=lambda p: p.value).label} "
+                    f"sits lowest")
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_pictorial_race(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "bubbles":
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        subtitle = _superlative(insight, low)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_bubbles(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        subtitle = _superlative(insight, low)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_bars(fig, plt, insight, subtitle, reveal)
     _footer(fig, insight)
     return ax, specs
+
+
+def _superlative(insight, low: bool) -> str:
+    """"X tops the list" — for the item that ACTUALLY tops it.
+
+    The subtitle used `items[0]`, which is the strongest item on a RANK
+    insight and the EARLIEST one on a trend. Rendered as bars, a rising series
+    therefore announced "2019 TOPS THE LIST" over a chart whose tallest bar
+    was 2026 and whose highlight was on 2026 — the caption and the picture
+    contradicting each other, in the caption's favour, at 40pt.
+
+    Ranking language is also simply the wrong sentence for a time series:
+    years are not competitors. When the labels are dates it says WHEN the peak
+    is, which is both true and the thing the viewer wants.
+    """
+    items = [p for p in (insight.items or [])
+             if getattr(p, "value", None) is not None]
+    if not items:
+        return ""
+    pick = min(items, key=lambda p: p.value) if low \
+        else max(items, key=lambda p: p.value)
+    if _is_time_series(insight):
+        return f"{'lowest' if low else 'highest'} in {pick.label}"
+    return f"{pick.label} {'sits lowest' if low else 'tops the list'}"
 
 
 def _anchors_from(fig, ax, specs) -> list:

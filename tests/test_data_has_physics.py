@@ -1392,3 +1392,64 @@ class TheRegistryDocTellsTheTruth(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class NoPictureInventsANumber(unittest.TestCase):
+    """Found by watching a finished video, not by a test — which is why this
+    class exists now.
+
+    The spotlight's marker wanders inside the range, because the finding is
+    that the number never settled. It also PRINTED where it happened to be,
+    at 52pt, in the same type as a fact. Three seconds of one beat read
+    "$1,164.9B", "$1,154.2B", "$1,282.5B" — positions in a wobble, not
+    measurements. The two ends of the lane are real and stay labelled.
+
+    And `_superlative`: the subtitle used `items[0]`, which is the strongest
+    item on a ranking and the EARLIEST on a trend. A rising series rendered as
+    bars therefore announced "2019 TOPS THE LIST" over a chart whose tallest
+    bar was 2026 and whose highlight was on 2026 — caption and picture
+    contradicting each other, in the caption's favour.
+    """
+
+    def test_the_spotlight_marker_prints_no_value(self):
+        import inspect
+        src = inspect.getsource(vs.draw_spotlight)
+        self.assertIn("THE MARKER CARRIES NO NUMBER", src)
+        self.assertNotIn("cur = lo + (hi - lo) * wob", src)
+
+    def test_the_spotlight_still_labels_the_REAL_ends(self):
+        import inspect
+        src = inspect.getsource(vs.draw_spotlight)
+        self.assertIn("charts._ulabel(lo, unit)", src)
+        self.assertIn("charts._ulabel(hi, unit)", src)
+
+    def test_a_superlative_names_the_item_that_actually_leads(self):
+        from data_learning import charts as ch
+        rising = _Ins([_Pt(str(2019 + k), v) for k, v in
+                       enumerate([930, 1000, 860, 990, 1130, 1210, 1290,
+                                  1370])],
+                      "usd", "credit card debt", "it climbed")
+        sub = ch._superlative(rising, False)
+        self.assertIn("2026", sub)
+        self.assertNotIn("2019", sub)
+
+    def test_years_are_not_called_competitors(self):
+        """"2026 tops the list" is true and still the wrong sentence: years do
+        not compete with each other."""
+        from data_learning import charts as ch
+        rising = _Ins([_Pt(str(2019 + k), 900 + k * 60) for k in range(8)],
+                      "usd", "credit card debt", "it climbed")
+        self.assertNotIn("tops the list", ch._superlative(rising, False))
+        self.assertIn("highest in", ch._superlative(rising, False))
+
+    def test_a_real_ranking_still_gets_ranking_language(self):
+        from data_learning import charts as ch
+        cities = _Ins([_Pt("San Jose", 11.3), _Pt("LA", 9.7),
+                       _Pt("Miami", 8.2)], "years", "cost", "San Jose leads")
+        self.assertEqual(ch._superlative(cities, False),
+                         "San Jose tops the list")
+        self.assertEqual(ch._superlative(cities, True), "Miami sits lowest")
+
+    def test_it_never_raises_on_empty_or_broken_items(self):
+        from data_learning import charts as ch
+        self.assertEqual(ch._superlative(_Ins([], "", "t", "m"), False), "")

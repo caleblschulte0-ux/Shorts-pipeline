@@ -260,6 +260,24 @@ through TIME ignores `flip` (time runs one way), and an ordering that IS the
 ranking is not free to reverse — a race's lanes are arbitrary, a sorter's bins
 are not.
 
+## Looking at a machine: use the real path
+
+Two things cost an hour each on 2026-09-07 because a preview harness lied,
+and both lies pointed the same way — at a machine that was fine.
+
+- **Draw onto a TRANSPARENT layer and composite it over the background**, the
+  way `render_scene` does. Drawn straight onto an opaque canvas every
+  semi-transparent fill looks solid: the wheel's A-frame read as a bright
+  white wedge and is actually a 24% wash.
+- **Go through `render_scene`, do not call a draw function directly.** The
+  icon-bearing elements get their cut-out loaded by the renderer, so calling
+  `draw_unit_figures(..., cutout=None)` renders 24 plain discs — which is
+  exactly what "the isotype has no object" would look like if it were real.
+  The machine was drawing houses the whole time.
+
+Both times the harness said a good machine was broken. Check the harness
+before changing the machine.
+
 ## What is deliberately NOT built
 
 - **A network / subway map.** It needs edge data — who connects to whom — and

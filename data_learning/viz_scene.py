@@ -2990,9 +2990,14 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
     # own colour it disappeared into the fill entirely.
     d.ellipse([mx - 46, cy - 46, mx + 46, cy + 46], fill=_rgba(WARN, 250),
               outline=_rgba(charts.CARD, 255), width=7)
-    cur = lo + (hi - lo) * wob
-    d.text((mx, cy - lane - 54), charts._ulabel(cur, unit), font=_pil_font(52),
-           fill=_rgba(WARN, int(255 * e)), anchor="mm")
+    # THE MARKER CARRIES NO NUMBER.
+    #
+    # It used to print `lo + (hi - lo) * wob` — where the marker happens to
+    # be — at 52pt. Watching a finished video back, three seconds of one beat
+    # read "$1,164.9B", "$1,154.2B", "$1,282.5B", none of which anybody
+    # measured: they are positions in a wobble, presented in the same type as
+    # a fact. The two ENDS of the lane are real and are labelled; the marker
+    # is the number refusing to settle, and that is all it may say.
     d.text((int(cx - half), cy + lane + 56), charts._ulabel(lo, unit),
            font=_pil_font(44), fill=_rgba(TEXT, 235), anchor="mm")
     d.text((int(cx + half), cy + lane + 56), charts._ulabel(hi, unit),
