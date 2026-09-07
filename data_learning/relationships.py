@@ -41,6 +41,10 @@ SHARE = "share"                # parts of one countable whole
 RATE = "rate"                  # a speed / per-unit figure, not a quantity
 BURDEN = "burden"              # a cost, debt or price someone carries
 DOMINANCE = "dominance"        # one item dwarfs the rest
+THRESHOLD = "threshold"        # a value measured against a line it must clear
+DROPOFF = "dropoff"            # named stages, each smaller than the last
+FREQUENCY = "frequency"        # a count PER unit of time
+UNCERTAINTY = "uncertainty"    # the range a number lived in, not its direction
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -50,6 +54,14 @@ _MONEY = re.compile(
 _RATE_UNIT = re.compile(
     r"\b(per|rate|speed|mph|km/?h|kwh|per capita|per person|per year|"
     r"per hour|percent per|annual rate)\b", re.I)
+_PER_TIME = re.compile(
+    r"\b(per (second|minute|hour|day|week|month|year|capita|person|"
+    r"household|1,?000|100,?000)|a (second|minute|hour|day|year)|"
+    r"annually|each year|every year|per annum)\b", re.I)
+_STAGE = re.compile(
+    r"\b(stage|step|round|funnel|applied|accepted|enrolled|graduat\w*|"
+    r"survive\w*|remain\w*|left|reach\w*|qualif\w*|shortlist\w*|"
+    r"interview\w*|offer\w*|complet\w*|finish\w*|drop\w*)\b", re.I)
 _SHARE_OF = re.compile(
     r"\b(share of|proportion of|percent(age)? of|of all|of every|"
     r"of american\w*|of household\w*|of adult\w*|of people|of population|"
@@ -118,6 +130,20 @@ def _classify(insight) -> str:
     unit = (getattr(insight, "unit", "") or "").strip().lower()
     text = f"{getattr(insight, 'topic', '')} {getattr(insight, 'main_insight', '')}"
 
+    # A BASELINE IS A LINE THE NUMBER HAS TO CLEAR.
+    #
+    # The config already carries one on comparison insights — the national
+    # average, the target, the previous record — and nothing was doing anything
+    # with it but drawing a dashed rule. A value measured against a line it
+    # must clear is a hurdle, and that is a picture before it is a chart.
+    base = getattr(insight, "baseline", None)
+    if base is not None and getattr(base, "value", None) is not None:
+        try:
+            if abs(float(base.value)) > 0:
+                return THRESHOLD
+        except (TypeError, ValueError):
+            pass
+
     if is_time_series(insight):
         # FLAT FIRST. [50, 50.2, 50.1, 50.3, 50.2] has a direction change at
         # every step and a range that is entirely noise; measured against its
@@ -140,6 +166,18 @@ def _classify(insight) -> str:
         return VOLATILE if rev else OTHER
 
     # Not a series: these are THINGS being compared.
+    #
+    # STAGES, each smaller than the last, are a funnel — people falling out at
+    # every step — and that is a different claim from a ranking. It needs BOTH
+    # the shape (monotonically down, and materially so) and the language,
+    # because five cities sorted by cost are also "each smaller than the last"
+    # and are emphatically not a funnel.
+    text_l = (text or "").lower()
+    if len(values) >= 3 and _STAGE.search(text_l):
+        drops = all(b <= a for a, b in zip(values, values[1:]))
+        if drops and values[0] > 0 and values[-1] <= 0.6 * values[0]:
+            return DROPOFF
+
     if len(values) == 2:
         return DUEL
     if 3 <= len(values) <= 8:
@@ -154,6 +192,14 @@ def _classify(insight) -> str:
             return SHARE
         return RANK
     return OTHER
+
+
+def is_frequency(insight) -> bool:
+    """A count PER unit of time — events, not a quantity. A conveyor's items
+    per second is only honest when the number really is a rate of arrival."""
+    text = f"{getattr(insight, 'unit', '')} {getattr(insight, 'topic', '')} " \
+           f"{getattr(insight, 'main_insight', '')}"
+    return bool(_PER_TIME.search(text or ""))
 
 
 def is_rate(insight) -> bool:
@@ -181,4 +227,4 @@ def describe(insight) -> dict:
     rel = classify(insight)
     return {"relationship": rel, "series": is_time_series(insight),
             "rate": is_rate(insight), "burden": is_burden(insight),
-            "n": len(_values(insight))}
+            "frequency": is_frequency(insight), "n": len(_values(insight))}

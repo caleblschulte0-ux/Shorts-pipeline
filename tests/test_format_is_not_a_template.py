@@ -139,8 +139,26 @@ class ThePickerIsNotItselfATemplate(unittest.TestCase):
             self.highlight_label = items[0].label if items else ""
             self.baseline = None
 
-    def _story(self, topic):
-        pts = [self._Pt(str(y), 10 + y % 7) for y in range(2018, 2027)]
+    # Data of DIFFERENT SHAPES, because that is what is supposed to drive the
+    # variety. The first version of this used one zig-zag series for every
+    # topic — which correctly produced one machine for all eighteen, since a
+    # zig-zag is a `volatile` and volatile has exactly one honest picture. The
+    # test was asserting that identical data should yield different pictures,
+    # which is the opposite of the philosophy it exists to defend.
+    _SHAPES = (
+        [10, 14, 19, 25, 33, 41, 52, 66],          # growth
+        [90, 80, 70, 61, 50, 41, 33, 25],          # decline
+        [10, 90, 20, 85, 15, 80, 30, 75],          # volatile
+        [11.3, 9.7, 8.2, 6.8, 5.4],                # a ranking
+        [900, 95, 60, 40, 25],                     # dominance
+        [270, 449],                                # a duel
+    )
+
+    def _story(self, topic, i=0):
+        vals = self._SHAPES[i % len(self._SHAPES)]
+        yearly = len(vals) == 8
+        pts = [self._Pt(str(2018 + k) if yearly else chr(65 + k), v)
+               for k, v in enumerate(vals)]
         return self._Ins("bars", topic, pts, "count")
 
     TOPICS = ("home prices", "mortgage rates", "teen licensing", "sea level",
@@ -155,8 +173,8 @@ class ThePickerIsNotItselfATemplate(unittest.TestCase):
         from data_learning import studio_render as sr
         import collections
         firsts = collections.Counter()
-        for t in self.TOPICS:
-            seq = sr._depiction_sequence(self._story(t), set(), 12.0)
+        for i, t in enumerate(self.TOPICS):
+            seq = sr._depiction_sequence(self._story(t, i), set(), 12.0)
             if len(seq) > 1:
                 firsts[seq[1]] += 1
         total = sum(firsts.values())
@@ -174,9 +192,9 @@ class ThePickerIsNotItselfATemplate(unittest.TestCase):
         import matplotlib
         matplotlib.use("Agg")
         from data_learning import studio_render as sr
-        for t in self.TOPICS[:6]:
-            a = sr._depiction_sequence(self._story(t), set(), 12.0)
-            b = sr._depiction_sequence(self._story(t), set(), 12.0)
+        for i, t in enumerate(self.TOPICS[:6]):
+            a = sr._depiction_sequence(self._story(t, i), set(), 12.0)
+            b = sr._depiction_sequence(self._story(t, i), set(), 12.0)
             self.assertEqual(a, b, t)
 
 

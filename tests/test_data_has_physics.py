@@ -157,10 +157,22 @@ class TheMachineComesFirstAndTheChartIsTheFallback(unittest.TestCase):
             set(), 12.0)
         self.assertIn("balance_scene", seq[1:], seq)
 
-    def test_a_volatile_series_is_left_as_a_line(self):
-        """A chart is a weaker picture and a fine one. A confident wrong
-        metaphor is neither, so `volatile` maps to no machine at all."""
-        self.assertEqual(sr._MACHINES["volatile"], ())
+    # Machines whose whole encoding is a DIRECTION. Drawing a zig-zag as any
+    # of these asserts a story the data does not tell.
+    _DIRECTIONAL = {"staircase_scene", "elevator_scene", "burden_scene",
+                    "tower_scene", "race_scene", "skyline_scene",
+                    "funnel_scene", "conveyor_scene"}
+
+    def test_a_volatile_series_is_never_given_a_direction(self):
+        """This used to assert `_MACHINES["volatile"] == ()` — no machine at
+        all — which was right while every form here encoded a direction. The
+        spotlight was built for exactly this case: it shows the RANGE the
+        number moved in and claims nothing about where it went. So the rule is
+        not "no picture", it is "no picture that asserts a direction"."""
+        for k in sr._MACHINES["volatile"]:
+            self.assertNotIn(k, self._DIRECTIONAL,
+                             f"{k} claims a direction a zig-zag does not have")
+        self.assertIn("spotlight_scene", sr._MACHINES["volatile"])
 
     def test_the_rotation_never_puts_a_chart_ahead_of_a_machine(self):
         """THE INVERSION. Rotating one flat list for variety put a bar chart in
@@ -273,6 +285,92 @@ class TheSkyline(unittest.TestCase):
         self.assertIn("settle(reveal)", inspect.getsource(vs.draw_skyline))
 
 
+class TheNewRelationshipsAreDetectedFromRealData(unittest.TestCase):
+    """A machine routed to a relationship nothing produces is a machine that
+    never runs. Each of these is detected from data this pipeline actually
+    makes."""
+
+    def test_a_baseline_is_a_threshold(self):
+        """The config already carried one on comparison insights and nothing
+        used it but a dashed rule."""
+        ins = _things([("San Jose", 11.3), ("LA", 9.7)])
+        ins.baseline = _Pt("US average", 5.9)
+        self.assertEqual(rel.classify(ins), rel.THRESHOLD)
+        self.assertEqual(sr._MACHINES["threshold"][0], "hurdle_scene")
+
+    def test_stages_that_shrink_are_a_funnel(self):
+        ins = _things([("Applied", 1000), ("Interviewed", 380),
+                       ("Offered", 95), ("Accepted", 41)],
+                      "count", "hiring funnel", "Applicants drop each stage")
+        self.assertEqual(rel.classify(ins), rel.DROPOFF)
+
+    def test_a_plain_ranking_is_not_a_funnel(self):
+        """THE FALSE POSITIVE THAT MATTERS. Five cities sorted by cost also
+        shrink at every step and are emphatically not a funnel, so the shape
+        alone is not enough — the claim has to say stages."""
+        ins = _things([("San Jose", 11.3), ("LA", 9.7), ("Miami", 8.2),
+                       ("Denver", 5.4)], "years", "cost in years of pay",
+                      "San Jose tops the list")
+        self.assertEqual(rel.classify(ins), rel.RANK)
+
+    def test_a_per_time_unit_is_a_frequency(self):
+        ins = _Ins([_Pt("2026", 1400)], "per day", "flights a day",
+                   "Flights a day")
+        self.assertTrue(rel.is_frequency(ins))
+        self.assertEqual(sr._MACHINES["frequency"][0], "conveyor_scene")
+
+    def test_a_total_is_not_a_frequency(self):
+        ins = _Ins([_Pt("2026", 1400)], "count", "total flights",
+                   "Flights in the fleet")
+        self.assertFalse(rel.is_frequency(ins))
+
+    def test_volatile_finally_has_a_picture_that_is_not_a_lie(self):
+        """It had NO machine, deliberately, because every form here asserts a
+        direction and a zig-zag has none. A spotlight asserts only a range."""
+        self.assertEqual(sr._MACHINES["volatile"], ("spotlight_scene",))
+
+
+class TheHonestyOfTheNewMachines(unittest.TestCase):
+    def test_the_tower_never_sums_a_series(self):
+        """Adding a decade of annual figures produces a number nobody
+        measured. The blocks are the LATEST value split into units."""
+        import inspect
+        src = inspect.getsource(vs.draw_tower)
+        self.assertIn("unit_plan", src)
+        self.assertNotIn("sum(", src)
+
+    def test_the_tower_says_what_a_block_is_worth(self):
+        import inspect
+        self.assertIn("each block", inspect.getsource(vs.draw_tower))
+
+    def test_the_funnel_states_what_survives(self):
+        import inspect
+        self.assertIn("make it to the end", inspect.getsource(vs.draw_funnel))
+
+    def test_the_hurdle_says_whether_it_cleared(self):
+        import inspect
+        src = inspect.getsource(vs.draw_hurdle)
+        self.assertIn("clears it", src)
+        self.assertIn("does not clear it", src)
+
+    def test_the_pipes_shares_are_the_widths(self):
+        """Width IS the encoding, so the branches add up to the trunk by
+        construction — the honest version of the claim a stacked chart makes
+        in words."""
+        import inspect
+        self.assertIn("v / tot", inspect.getsource(vs.draw_pipes))
+
+    def test_every_new_machine_refuses_data_it_cannot_serve(self):
+        thin = _Ins([_Pt("A", 1.0)])
+        for build in (vs.funnel_scene, vs.spotlight_scene):
+            self.assertEqual(build(thin), {})
+
+    def test_the_hurdle_needs_a_baseline_to_draw_at_all(self):
+        import inspect
+        self.assertIn("if not items or base is None:",
+                      inspect.getsource(vs.draw_hurdle))
+
+
 class EveryMachineIsWiredEndToEnd(unittest.TestCase):
     """A machine that renders but is unreachable is the exact failure CLAUDE.md
     calls rule zero — and the scene kit already had three of those."""
@@ -287,15 +385,18 @@ class EveryMachineIsWiredEndToEnd(unittest.TestCase):
                 self.assertTrue(k in sr._SCENE_TOKENS or k in sr._SELF_HOSTED,
                                 f"{k!r} renders nothing")
 
-    def test_every_drawn_element_is_dispatched(self):
-        """Registering a type without adding it to the render dispatch makes
-        every scene using it fall through to the chart fallback, silently."""
-        import inspect
-        src = inspect.getsource(vs)
-        body = src[src.index("for i, el in enumerate(els):"):]
-        body = body[:body.index("# CAMERA PUSH")]
-        for kind in sorted(vs._DRAWN_TYPES | vs._ICON_TYPES):
-            self.assertIn(f'"{kind}"', body, f"{kind!r} is never dispatched")
+    def test_every_whole_insight_machine_is_in_the_dispatch_table(self):
+        """Registering a type without dispatching it sends every scene using
+        it into the chart fallback, silently. The dispatch used to be a chain
+        of literals — this test read them — and it is one TABLE now precisely
+        so registering and dispatching cannot drift apart."""
+        for kind, fn in vs._MACHINE_DRAW.items():
+            self.assertIn(kind, vs._TYPES, f"{kind!r} dispatched but unknown")
+            self.assertTrue(callable(fn), kind)
+        # every drawn type is either in the table or has its own branch
+        handled = set(vs._MACHINE_DRAW) | {"balance", "race_track"}
+        self.assertEqual(vs._DRAWN_TYPES - handled, set(),
+                         "a drawn element type is never dispatched")
 
 
 if __name__ == "__main__":

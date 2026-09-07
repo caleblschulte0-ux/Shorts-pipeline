@@ -1552,7 +1552,9 @@ _ALT_DEPICTION = {
 _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "balance_scene", "rate_scene", "race_scene",
                 "staircase_scene", "elevator_scene", "burden_scene",
-                "gauge_scene", "skyline_scene")
+                "gauge_scene", "skyline_scene", "tower_scene",
+                "hurdle_scene", "funnel_scene", "conveyor_scene",
+                "pipes_scene", "spotlight_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1561,7 +1563,9 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
 _SCENE_TOKENS = {t: t for t in (
     "units_scene", "balance_scene", "rate_scene", "race_scene",
     "staircase_scene", "elevator_scene", "burden_scene",
-    "gauge_scene", "skyline_scene",
+    "gauge_scene", "skyline_scene", "tower_scene", "hurdle_scene",
+    "funnel_scene", "conveyor_scene", "pipes_scene",
+    "spotlight_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1629,25 +1633,34 @@ def _alt_candidates_for(insight) -> tuple:
 # a picture of a story the data does not tell.
 _MACHINES = {
     # rank -> position, and the gap becomes distance
-    "rank":      ("race_scene", "units_scene", "orbit"),
+    "rank":        ("race_scene", "units_scene", "orbit"),
     # two things -> weight
-    "duel":      ("balance_scene", "units_scene"),
-    # rising -> a climb he has to make
-    "growth":    ("staircase_scene", "units_scene", "timeline"),
+    "duel":        ("balance_scene", "units_scene"),
+    # rising -> a climb he has to make, or a total built block by block
+    "growth":      ("staircase_scene", "tower_scene", "timeline"),
     # falling -> a lift going down past labelled floors
-    "decline":   ("elevator_scene", "timeline", "fill_vessel"),
-    # money going up -> weight on his back
-    "burden":    ("burden_scene", "staircase_scene", "balance_scene"),
-    # a share of a countable whole -> figures, some lit
-    "share":     ("rate_scene", "fill_vessel"),
-    # one item dwarfing the rest -> looked up at, not raced
-    # one item dwarfing the rest -> a tower you look UP at, with him at its
-    # foot for scale
-    "dominance": ("skyline_scene", "units_scene", "balance_scene"),
-    # a rate -> a needle that sweeps (see `is_rate`, applied below)
-    "rate":      ("gauge_scene", "rate_scene"),
-    "volatile":  (),                    # a line is the honest picture
-    "other":     (),
+    "decline":     ("elevator_scene", "timeline", "fill_vessel"),
+    # money going up -> weight on him
+    "burden":      ("burden_scene", "staircase_scene", "balance_scene"),
+    # a share of a countable whole -> figures lit, or one flow splitting
+    "share":       ("rate_scene", "pipes_scene", "fill_vessel"),
+    # one item dwarfing the rest -> a tower you look UP at
+    "dominance":   ("skyline_scene", "units_scene", "balance_scene"),
+    # a line it has to clear -> a hurdle
+    "threshold":   ("hurdle_scene", "balance_scene", "units_scene"),
+    # stages, each smaller than the last -> a funnel
+    "dropoff":     ("funnel_scene", "race_scene", "units_scene"),
+    # a rate -> a needle that sweeps
+    "rate":        ("gauge_scene", "rate_scene"),
+    # a count PER unit of time -> things arriving on a belt
+    "frequency":   ("conveyor_scene", "gauge_scene"),
+    # NO DIRECTION TO CLAIM. A zig-zag has none, so every other machine here
+    # would assert one. A spotlight says only "it was somewhere in this range
+    # and it moved around", which is exactly what is true — so `volatile`
+    # finally has a picture that is not a lie, having had none at all.
+    "volatile":    ("spotlight_scene",),
+    "uncertainty": ("spotlight_scene",),
+    "other":       (),
 }
 
 
@@ -1661,6 +1674,13 @@ def _machines_for(insight) -> tuple:
     try:
         from data_learning import relationships as _rel
         out = list(_MACHINES.get(_rel.classify(insight), ()))
+        # FREQUENCY and RATE co-occur with everything else: a count per day
+        # that is also climbing is two true things at once, and a belt or a
+        # dial beside a staircase is a fair second way to show the same beat.
+        if _rel.is_frequency(insight):
+            for k in _MACHINES["frequency"]:
+                if k not in out:
+                    out.append(k)
         if _rel.is_rate(insight):
             for k in _MACHINES["rate"]:
                 if k not in out:
