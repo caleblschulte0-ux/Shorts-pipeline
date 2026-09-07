@@ -34,6 +34,7 @@ import re
 # a category nobody maintains.
 RANK = "rank"                  # 3-8 named things, ordered
 DUEL = "duel"                  # exactly two things, weighed against each other
+BEFORE_AFTER = "before_after"  # exactly two POINTS IN TIME — a then and a now
 GROWTH = "growth"              # a series that rises, and the rise is the story
 DECLINE = "decline"            # a series that falls
 VOLATILE = "volatile"          # a series that goes both ways, repeatedly
@@ -125,6 +126,7 @@ def classify(insight) -> str:
 
 def _classify(insight) -> str:
     values = _values(insight)
+    labels = _labels(insight)
     if len(values) < 2:
         return OTHER
     unit = (getattr(insight, "unit", "") or "").strip().lower()
@@ -179,7 +181,17 @@ def _classify(insight) -> str:
             return DROPOFF
 
     if len(values) == 2:
-        return DUEL
+        # TWO YEARS IS NOT TWO THINGS. A then-and-now is a change in one
+        # subject, and it wants to be shown as that subject growing — the
+        # operator's list has a whole row for it ("object physically grows,
+        # stack gains blocks, tank fills"). Measured on the live queue, 123 of
+        # 222 beats came back `duel`, so over half the catalogue was heading
+        # for the same set of scales. Splitting the pair by whether its labels
+        # are DATES is what makes the picture follow the claim.
+        yrs = sum(1 for l in labels
+                  if len(l) <= 7 and l[:4].isdigit()
+                  and 1800 <= int(l[:4]) <= 2200)
+        return BEFORE_AFTER if yrs == 2 else DUEL
     if 3 <= len(values) <= 8:
         top = max(values)
         rest = sorted(values, reverse=True)[1:]

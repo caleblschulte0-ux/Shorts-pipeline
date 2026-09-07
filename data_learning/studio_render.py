@@ -1634,8 +1634,12 @@ def _alt_candidates_for(insight) -> tuple:
 _MACHINES = {
     # rank -> position, and the gap becomes distance
     "rank":        ("race_scene", "units_scene", "orbit"),
-    # two things -> weight
-    "duel":        ("balance_scene", "units_scene"),
+    # two THINGS -> weight, or two lanes side by side
+    "duel":        ("balance_scene", "race_scene", "units_scene"),
+    # a then and a NOW -> the subject itself growing: a stack gaining blocks,
+    # a tank filling, or the two weighed against each other
+    "before_after": ("tower_scene", "fill_vessel", "balance_scene",
+                     "units_scene"),
     # rising -> a climb he has to make, or a total built block by block
     "growth":      ("staircase_scene", "tower_scene", "timeline"),
     # falling -> a lift going down past labelled floors
@@ -1664,6 +1668,19 @@ _MACHINES = {
 }
 
 
+# Relationships where the listed machines are EQUALLY apt, so the order is
+# arbitrary and rotating it is variety rather than a demotion. Everything not
+# here has a definitively right first choice — a duel is a set of scales, a
+# zig-zag is a spotlight — and keeps its order.
+#
+# Measured on the live queue before this existed: `staircase` took all 27
+# growth beats and `tower` took none, because a fixed order plus a per-story
+# `used` set means the runner-up only ever appears when a story has two beats
+# of the same relationship. Four machines were effectively dead.
+_ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
+                        "before_after", "share", "duel"})
+
+
 def _machines_for(insight) -> tuple:
     """The physical forms that fit what this data is SAYING, best first.
 
@@ -1673,7 +1690,13 @@ def _machines_for(insight) -> tuple:
     """
     try:
         from data_learning import relationships as _rel
-        out = list(_MACHINES.get(_rel.classify(insight), ()))
+        _r = _rel.classify(insight)
+        out = list(_MACHINES.get(_r, ()))
+        if _r in _ROTATABLE and len(out) > 1:
+            _k = int(_hashlib.sha1(
+                str(getattr(insight, "topic", "") or _r).encode()
+            ).hexdigest()[:8], 16) % len(out)
+            out = out[_k:] + out[:_k]
         # FREQUENCY and RATE co-occur with everything else: a count per day
         # that is also climbing is two true things at once, and a belt or a
         # dial beside a staircase is a fair second way to show the same beat.

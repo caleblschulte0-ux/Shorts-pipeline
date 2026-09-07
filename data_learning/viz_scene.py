@@ -954,20 +954,33 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     top, bot = max(by0 + 210, 350), by1 - 120
     bh = int(min(72, (bot - top) / max(1, n)) - 6)
     bw = int(min((bx1 - bx0) * 0.42, 380))
+    # A CASCADE, like the isotype. Blocks landing one per slot left every
+    # frame between arrivals identical to the last: measured, 107 of 119 frames
+    # had no change and the longest still run was 43 against a ceiling of 45 —
+    # passing by one frame, which is not passing. Each block now fades over a
+    # window that overlaps its neighbours', so something is always arriving.
     e = settle(reveal)
-    shown = e * n
+    fill_by, overlap = 0.90, 1.4
+    slot = fill_by / max(1, n)
     ty = bot
     for k in range(n):
-        a = max(0.0, min(1.0, shown - k))
+        a = max(0.0, min(1.0, (e - k * slot) / (slot * overlap)))
         if a <= 0.0:
             break
-        by = bot - (k + 1) * (bh + 6)
+        # Blocks DROP into place. Fading them in was measured at 107 of 119
+        # frames with no change and a 53-frame still run; alpha on a small
+        # shape is not enough for a per-frame detector. A block travelling
+        # three of its own heights is, and it is also what stacking looks
+        # like.
+        rest = bot - (k + 1) * (bh + 6)
+        by = int(rest - (1.0 - a) * (bh + 6) * 3.5)
         d.rounded_rectangle([cx - bw // 2, by, cx + bw // 2, by + bh],
                             radius=9,
                             fill=_rgba(color if k == n - 1 else ACCENT,
-                                       int(240 * a)),
-                            outline=_rgba(charts.CARD, int(255 * a)), width=3)
-        ty = by
+                                       int(240 * min(1.0, a * 2.2))),
+                            outline=_rgba(charts.CARD,
+                                          int(255 * min(1.0, a * 2.2))), width=3)
+        ty = min(ty, by) if k else by
     host = scene_host("cheer", reveal)
     if host is not None:
         mh = 190
@@ -1014,16 +1027,41 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
            f"{getattr(base, 'label', 'baseline')}  "
            f"{charts._ulabel(bv, unit)}", font=_pil_font(38),
            fill=_rgba(WARN, 235), anchor="rm")
-    # him, at the height his number actually reaches
-    val_y = int(bot - (bot - top) * (abs(v) / hi) * e)
+    # HE RUNS AT IT AND JUMPS IT.
+    #
+    # The first version slid him up to his value over the whole visual. The
+    # motion was real and it was INVISIBLE to the cadence detector: spread over
+    # 183 frames it is a sub-pixel move per frame in a small part of the
+    # screen, which measured as a two-second frozen stretch on a video that
+    # otherwise passed. The machines that pass — staircase, race, tower — all
+    # have DISCRETE arrivals.
+    #
+    # A jump is also just what a hurdle is. He approaches at ground level,
+    # leaves the floor, arcs over (or into) the bar, and lands at the height
+    # his number actually reaches.
+    val_y = int(bot - (bot - top) * (abs(v) / hi))
     cleared = abs(v) > abs(bv)
-    host = scene_host("cheer" if cleared else "strain", reveal)
+    run_to = (bx0 + bx1) / 2
+    if e < 0.55:                      # the run-up, right to left across frame
+        t_ = e / 0.55
+        hx = bx1 - 200 - (bx1 - 200 - run_to) * t_
+        hy = bot
+        act = "point"
+    elif e < 0.82:                    # the jump: a fast arc
+        t_ = (e - 0.55) / 0.27
+        hx = run_to
+        peak = min(val_y, bar_y) - 70
+        hy = bot + (peak - bot) * _math.sin(t_ * _math.pi / 2.0)
+        act = "cheer" if cleared else "strain"
+    else:                             # landed, at his value
+        hx, hy = run_to, val_y
+        act = "cheer" if cleared else "strain"
+    host = scene_host(act, reveal)
     if host is not None:
         mh = 260
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int((bx0 + bx1) / 2 - mw // 2),
-                                int(val_y - mh * 0.72)))
+                               (int(hx - mw // 2), int(hy - mh)))
     d.line([(bx0 + 130, val_y), (bx1 - 130, val_y)],
            fill=_rgba(color, 200), width=6)
     d.text(((bx0 + bx1) // 2, by0 + 58),
@@ -2060,10 +2098,17 @@ spotlight_scene = _machine_scene("spotlight", 3)
 
 
 def race_scene(insight) -> dict:
-    """A ranking, run as a race. Needs a real field — two runners is a duel and
-    belongs on the scales, one is not a race at all."""
+    """A ranking or a head-to-head, run as a race.
+
+    Two lanes is allowed. An earlier version required three, on the reasoning
+    that a pair belongs on the scales — true, and it left `duel` with exactly
+    one picture while being 104 of the live queue's 222 beats, so half the
+    catalogue was heading for the same set of scales. A drag race is a
+    legitimate way to show two things against each other and the operator's
+    list names it. One item is still not a race.
+    """
     items = list(insight.items or [])
-    if not (3 <= len(items) <= 8):
+    if not (2 <= len(items) <= 8):
         return {}
     return {"title": True,
             "elements": [{"type": "race_track", "region": "full",
