@@ -16,19 +16,34 @@
     "satisfying",
     "eviction"
   ],
-  "script": "My landlord refused to fix a dead furnace in January, then dug up an obscure lease clause saying all tenant communication had to be hand-delivered and notarized, like he wanted an excuse to ignore me. Fine. I found a notary two blocks away, got a written repair demand notarized, and hand-delivered it to his office with a witness present. The same lease also said if he didn't fix a heating failure within twenty-four hours of notarized notice, I could hire someone myself and deduct the full cost from rent. He blew right past the deadline, so I called an emergency HVAC company, paid eleven hundred dollars, and mailed him the notarized invoice along with the following rent payment minus that exact amount. He tried filing for eviction over withheld rent, except the judge read the same clause he'd insisted on enforcing and dismissed the case in about four minutes, ordering him to cover my legal filing fees too.",
+  "script": "He enforced what clause? My landlord refused to fix a dead furnace in January, then cited an obscure lease clause: every tenant message had to be hand-delivered and notarized. The heat, apparently, needed paperwork. Fine. I found a notary two blocks away, got the demand stamped, then hand-delivered it to his office with a witness present. The same clause gave him twenty-four hours; after that, I could hire an emergency HVAC company and deduct the full cost from rent. He missed the deadline. I paid eleven hundred dollars, sent the notarized invoice, and reduced the following rent payment by that exact amount. He tried filing for eviction. The judge read his favorite clause, dismissed the case in about four minutes, and ordered him to cover my legal filing fees too. Was the landlord's notarized clause worth it?",
   "shots": [
     {
       "phrase": "a dead furnace",
-      "query": "broken furnace repair"
+      "query": "broken furnace repair",
+      "image_url": "https://drive.google.com/uc?export=download&id=1qEWhVT2wuPywOV6hUiH2Nf2EnMl2ji6o",
+      "media_origin": "chatgpt",
+      "media_file_id": "1qEWhVT2wuPywOV6hUiH2Nf2EnMl2ji6o",
+      "media_sha256": "ebbe63ef434f58d9aefadebb149d7455575220eceb35e7d4436f60f1b9b85e89",
+      "media_bytes": 1123090
     },
     {
       "phrase": "hand-delivered and notarized",
-      "query": "notary stamp document"
+      "query": "notary stamp document",
+      "image_url": "https://drive.google.com/uc?export=download&id=1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+      "media_origin": "chatgpt",
+      "media_file_id": "1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+      "media_sha256": "591bd78895f360f58b2dc4deae759fc2cae5358e942990bea5c69a0b305ea0d2",
+      "media_bytes": 1101320
     },
     {
       "phrase": "hand-delivered it to his office with a witness present",
-      "query": "delivering documents office"
+      "query": "delivering documents office",
+      "image_url": "https://drive.google.com/uc?export=download&id=148VFTIFXR8fd05KHI3TLC_83VEdCASl7",
+      "media_origin": "chatgpt",
+      "media_file_id": "148VFTIFXR8fd05KHI3TLC_83VEdCASl7",
+      "media_sha256": "b58ae6c238d67e030fe4cdedb4b6bdbf23095798ea1f37cbb280a9777c6e3bf5",
+      "media_bytes": 1042558
     },
     {
       "phrase": "an emergency HVAC company",
@@ -37,19 +52,38 @@
       "pin_context": "He Made Me Notarize Everything. So I Did.",
       "news_query": "HVAC",
       "news_angle": "He Made Me Notarize Everything. So I Did.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9f/HVAC_system_diagram.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original"
+      "image_url": "https://drive.google.com/uc?export=download&id=1grehw6iEbvN0ogeZT4vblTFT2Sj1RpPU",
+      "media_origin": "chatgpt",
+      "media_file_id": "1grehw6iEbvN0ogeZT4vblTFT2Sj1RpPU",
+      "media_sha256": "2fcd89f6f4bc38a0c7fbdd48455e12fbdcf70d27e833eef24e52eda450551534",
+      "media_bytes": 1259064
     },
     {
       "phrase": "paid eleven hundred dollars",
-      "query": "cash payment receipt"
+      "query": "cash payment receipt",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Q-8Fk8kKrBcBmAhBZ7-GCXrAD09EIrJ1",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Q-8Fk8kKrBcBmAhBZ7-GCXrAD09EIrJ1",
+      "media_sha256": "8eba471fab1aad67e2377390caeca471575d773af903771297ec5613b796ee1f",
+      "media_bytes": 1255990
     },
     {
       "phrase": "filing for eviction",
-      "query": "eviction notice paper"
+      "query": "eviction notice paper",
+      "image_url": "https://drive.google.com/uc?export=download&id=1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+      "media_origin": "chatgpt",
+      "media_file_id": "1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+      "media_sha256": "78df288d20bef8655fc1c078c0c490ebe067c86309bb75b21540271cb8c35a88",
+      "media_bytes": 1579028
     },
     {
       "phrase": "dismissed the case in about four minutes",
-      "query": "courtroom judge gavel"
+      "query": "courtroom judge gavel",
+      "image_url": "https://drive.google.com/uc?export=download&id=1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+      "media_origin": "chatgpt",
+      "media_file_id": "1JzG3QFp2B8IYP9dO673Vm2SnABDubw6A",
+      "media_sha256": "a37af03dce980c5c386a6928d66096c4361f5030818a9b547334168ff8ced52e",
+      "media_bytes": 1265304
     }
   ],
   "punches": [
@@ -74,5 +108,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "deadpan bureaucratic payback that snowballs into a courtroom loss"
+  "music_vibe": "deadpan bureaucratic payback that snowballs into a courtroom loss",
+  "punched_up": true
 }

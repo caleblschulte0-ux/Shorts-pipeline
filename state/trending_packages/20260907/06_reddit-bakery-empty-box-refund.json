@@ -15,35 +15,70 @@
     "satisfying",
     "customerservice"
   ],
-  "script": "A woman stormed up to my bakery counter waving a nearly empty cake box, insisting the custom birthday cake we'd made tasted wrong and demanding a full refund, while her toddler still had blue frosting smeared across his face. Our return policy, taped right there on the counter in plain sight, says custom orders are only refundable if at least eighty percent of the cake comes back for inspection. I opened the box, counted maybe two slices left inside, and asked her, very politely, where the rest of the cake had gone if it tasted so wrong. She stammered something about the kids eating it out of habit before she noticed the sign. I photographed the mostly empty box for our records, pointed at the laminated policy sign, and told her we'd be happy to refund the missing eighty percent she could still produce. She grabbed the box back, muttered something about leaving a review, and left without the refund or the rest of the cake.",
+  "script": "She returned how much cake? A woman stormed to my bakery counter waving a nearly empty cake box and demanding a full refund because it tasted wrong. Her toddler had blue frosting smeared across his face. The evidence was subtle. Our return policy, taped right there on the counter, refunds custom orders only if at least eighty percent comes back for inspection. I opened the box and counted maybe two slices left inside. Asked where the rest went, she said the kids ate it before she noticed the sign. I photographed the mostly empty box, pointed to the laminated policy sign, and offered to refund the missing eighty percent she could still produce. She grabbed it, threatened a review, and left without the refund or the rest of the cake. Where did the rest of the cake go?",
   "shots": [
     {
       "phrase": "a nearly empty cake box",
-      "query": "empty bakery box"
+      "query": "empty bakery box",
+      "image_url": "https://drive.google.com/uc?export=download&id=142KROuKgpu1PfBnKXN0P0C24EwfWwL3S",
+      "media_origin": "chatgpt",
+      "media_file_id": "142KROuKgpu1PfBnKXN0P0C24EwfWwL3S",
+      "media_sha256": "fe3a37f5ae95c5a08c295e8e9a85d39ddecbf4e122318ea54dd9459a6641f733",
+      "media_bytes": 1106569
     },
     {
       "phrase": "blue frosting smeared across his face",
-      "query": "toddler messy face frosting"
+      "query": "toddler messy face frosting",
+      "image_url": "https://drive.google.com/uc?export=download&id=12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+      "media_origin": "chatgpt",
+      "media_file_id": "12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+      "media_sha256": "c78081d084c32b0039a2f70ae37c7834023ec81124cf89e446c384565cb89f9f",
+      "media_bytes": 1346507
     },
     {
       "phrase": "taped right there on the counter",
-      "query": "store policy sign counter"
+      "query": "store policy sign counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1m7j5H-RVX15hJhzAQEDXxhW6L4PO2ROu",
+      "media_origin": "chatgpt",
+      "media_file_id": "1m7j5H-RVX15hJhzAQEDXxhW6L4PO2ROu",
+      "media_sha256": "d85c0d3e139fcbbcbedec9a188ca35d79df74c607e597f408cec3bcf4a66fbce",
+      "media_bytes": 1401234
     },
     {
       "phrase": "counted maybe two slices left inside",
-      "query": "leftover cake slices"
+      "query": "leftover cake slices",
+      "image_url": "https://drive.google.com/uc?export=download&id=1jVmoF0h84WcWSxfrWfE4nm9PDVTwYJzy",
+      "media_origin": "chatgpt",
+      "media_file_id": "1jVmoF0h84WcWSxfrWfE4nm9PDVTwYJzy",
+      "media_sha256": "8a94d37e53b8a2f8318dbfda644e9b75285e650065648bde8da87e0454a23eff",
+      "media_bytes": 1561416
     },
     {
       "phrase": "I photographed the mostly empty box",
-      "query": "phone photographing box"
+      "query": "phone photographing box",
+      "image_url": "https://drive.google.com/uc?export=download&id=1rjteF0t-5KQ-B_U4E4VYmat-F9T9vFIo",
+      "media_origin": "chatgpt",
+      "media_file_id": "1rjteF0t-5KQ-B_U4E4VYmat-F9T9vFIo",
+      "media_sha256": "3d2db0f63d595341591fabc895a854af0a8681d452bf9c53c7dd21c46ab0e4c9",
+      "media_bytes": 1058010
     },
     {
       "phrase": "the laminated policy sign",
-      "query": "laminated sign"
+      "query": "laminated sign",
+      "image_url": "https://drive.google.com/uc?export=download&id=1bGv9gUP7kbioRr-YnuUqwupb2AEBm1Wx",
+      "media_origin": "chatgpt",
+      "media_file_id": "1bGv9gUP7kbioRr-YnuUqwupb2AEBm1Wx",
+      "media_sha256": "fb766348ed5c84f63864cd93d5f453a82f0670f34d0d350d28d0321deacdb65a",
+      "media_bytes": 1302536
     },
     {
       "phrase": "left without the refund or the rest of the cake",
-      "query": "customer leaving store upset"
+      "query": "customer leaving store upset",
+      "image_url": "https://drive.google.com/uc?export=download&id=1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+      "media_origin": "chatgpt",
+      "media_file_id": "1D7Ao3AEr004AxwaDihH9jy0WzZuyFkuP",
+      "media_sha256": "1d7d7931aae5d86e5a2c49f378ed815b57df8520806ae2eeede1913a8372b291",
+      "media_bytes": 1355079
     }
   ],
   "punches": [
@@ -68,5 +103,6 @@
       "color": "#ff3030"
     }
   ],
-  "music_vibe": "polite deadpan counter-service standoff that ends in defeat"
+  "music_vibe": "polite deadpan counter-service standoff that ends in defeat",
+  "punched_up": true
 }
