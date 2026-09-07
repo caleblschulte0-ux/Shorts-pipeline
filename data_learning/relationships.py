@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+"""WHAT IS THIS DATA SAYING? — the question asked before any picture is chosen.
+
+The channel picked its visual from the chart KIND: a `rank` insight got a bar
+chart, a `trend` got a line. That is a rendering decision dressed as an
+editorial one, and it is why every video looks like the last: the kinds are
+few, so the pictures are few.
+
+The operator's direction, 2026-09-07: choose the visual from the RELATIONSHIP
+the data expresses, and let the mascot's world carry it physically.
+
+    Speed becomes motion. Imbalance becomes weight. Progress becomes distance.
+    Capacity becomes fill. Rank becomes position. A gap becomes literal space.
+
+So this module answers one question — what relationship is this? — and answers
+it from the DATA, not from whatever chart someone happened to author. Nothing
+here draws anything; it is pure and testable, which matters because every
+picture downstream inherits its judgement.
+
+THE HONESTY RULE. A relationship is a CLAIM about the data, and a wrong claim
+gets drawn at 200pt. `RANK` says these things are commensurable and ordered.
+`GROWTH` says this rose over time and the rise is the point. `SHARE` says these
+are parts of one whole — the claim that already shipped as "2019 IS 9% OF THE
+WHOLE" over a mortgage rate. So each classifier refuses when it is not sure,
+and `OTHER` (draw it as a chart) is always an acceptable answer. A chart is a
+weaker picture and a fine one; a confident wrong metaphor is neither.
+"""
+from __future__ import annotations
+
+import re
+
+# The relationships this channel's data actually expresses. Deliberately not
+# the full list of things data CAN express — a category nothing can produce is
+# a category nobody maintains.
+RANK = "rank"                  # 3-8 named things, ordered
+DUEL = "duel"                  # exactly two things, weighed against each other
+GROWTH = "growth"              # a series that rises, and the rise is the story
+DECLINE = "decline"            # a series that falls
+VOLATILE = "volatile"          # a series that goes both ways, repeatedly
+SHARE = "share"                # parts of one countable whole
+RATE = "rate"                  # a speed / per-unit figure, not a quantity
+BURDEN = "burden"              # a cost, debt or price someone carries
+DOMINANCE = "dominance"        # one item dwarfs the rest
+OTHER = "other"                # say so, and draw a chart
+
+_MONEY = re.compile(
+    r"\b(cost|costs|price|prices|debt|rent|mortgage|bill|bills|spend|"
+    r"spending|expense|fee|fees|tax|taxes|premium|tuition|payment|wage|"
+    r"salary|income|afford|affordab\w*)\b", re.I)
+_RATE_UNIT = re.compile(
+    r"\b(per|rate|speed|mph|km/?h|kwh|per capita|per person|per year|"
+    r"per hour|percent per|annual rate)\b", re.I)
+_SHARE_OF = re.compile(
+    r"\b(share of|proportion of|percent(age)? of|of all|of every|"
+    r"of american\w*|of household\w*|of adult\w*|of people|of population|"
+    r"of worker\w*|of student\w*|of famil\w*|of home\w*|of car\w*)\b", re.I)
+
+
+def _values(insight) -> list:
+    return [float(getattr(p, "value", 0) or 0) for p in
+            (getattr(insight, "items", None) or [])]
+
+
+def _labels(insight) -> list:
+    return [str(getattr(p, "label", "") or "") for p in
+            (getattr(insight, "items", None) or [])]
+
+
+def is_time_series(insight) -> bool:
+    """Are the labels points in TIME? The single most load-bearing question
+    here: it separates "this changed" from "these differ", and every physical
+    metaphor downstream depends on which one it is."""
+    labels = _labels(insight)
+    if len(labels) < 3:
+        return False
+    yrs = sum(1 for l in labels
+              if len(l) <= 7 and l[:4].isdigit() and 1800 <= int(l[:4]) <= 2200)
+    return yrs >= max(3, len(labels) * 0.6)
+
+
+def _direction(values: list) -> tuple:
+    """(net change as a fraction of the start, number of direction reversals).
+
+    Reversals are what separate a trend from a rollercoaster: a series that
+    ends higher having zig-zagged the whole way is not "growth" in any sense a
+    rising tower would honestly depict.
+    """
+    if len(values) < 2 or values[0] == 0:
+        net = 0.0
+    else:
+        net = (values[-1] - values[0]) / abs(values[0])
+    # Only MEANINGFUL moves count as direction changes. Counting every wobble
+    # made [50, 50.2, 50.1, 50.3, 50.2] — a flat line — come back "volatile",
+    # which is a claim about the data ("this swings") that the data does not
+    # support. A reversal has to be worth at least 8% of the whole range.
+    span = (max(values) - min(values)) or 1.0
+    floor = 0.08 * span
+    signs = [1 if b - a > floor else (-1 if a - b > floor else 0)
+             for a, b in zip(values, values[1:])]
+    signs = [s for s in signs if s]
+    rev = sum(1 for a, b in zip(signs, signs[1:]) if a != b)
+    return net, rev
+
+
+def classify(insight) -> str:
+    """The relationship this insight expresses. Never raises; returns OTHER
+    whenever it is not confident."""
+    try:
+        return _classify(insight)
+    except Exception:  # noqa: BLE001 — an unclassifiable insight is a chart
+        return OTHER
+
+
+def _classify(insight) -> str:
+    values = _values(insight)
+    if len(values) < 2:
+        return OTHER
+    unit = (getattr(insight, "unit", "") or "").strip().lower()
+    text = f"{getattr(insight, 'topic', '')} {getattr(insight, 'main_insight', '')}"
+
+    if is_time_series(insight):
+        # FLAT FIRST. [50, 50.2, 50.1, 50.3, 50.2] has a direction change at
+        # every step and a range that is entirely noise; measured against its
+        # own span every wobble looks decisive, so flatness has to be judged
+        # against the LEVEL. Nothing to say is a real answer — it gets a line.
+        level = sum(abs(v) for v in values) / len(values) or 1.0
+        if (max(values) - min(values)) <= 0.03 * level:
+            return OTHER
+        net, rev = _direction(values)
+        # A trend has to actually go somewhere AND go there mostly one way.
+        # Without the reversal test a series that wandered up and down and
+        # happened to end high would be drawn as a clean climb, which is a
+        # picture of a story the data does not tell.
+        if rev >= max(2, len(values) // 3):
+            return VOLATILE
+        if net >= 0.15:
+            return BURDEN if _MONEY.search(text) else GROWTH
+        if net <= -0.15:
+            return DECLINE
+        return VOLATILE if rev else OTHER
+
+    # Not a series: these are THINGS being compared.
+    if len(values) == 2:
+        return DUEL
+    if 3 <= len(values) <= 8:
+        top = max(values)
+        rest = sorted(values, reverse=True)[1:]
+        # One item dwarfing the rest is its own story and its own picture —
+        # a race where one runner is a mile ahead reads as a broken chart,
+        # while a skyscraper among houses reads as the point.
+        if rest and top >= 3.0 * (sum(rest) / len(rest)) and top > 0:
+            return DOMINANCE
+        if unit in ("percent", "%", "pct") and _SHARE_OF.search(text):
+            return SHARE
+        return RANK
+    return OTHER
+
+
+def is_rate(insight) -> bool:
+    """A per-unit figure rather than a quantity. Kept separate from `classify`
+    because it CO-OCCURS: a rate can also be growing, and a speedometer riding
+    a rising trend is two true things at once."""
+    unit = (getattr(insight, "unit", "") or "").strip().lower()
+    if unit in ("percent", "%", "pct", "rate"):
+        return True
+    text = f"{getattr(insight, 'topic', '')} {unit}"
+    return bool(_RATE_UNIT.search(text))
+
+
+def is_burden(insight) -> bool:
+    """Money someone has to find. Also co-occurring: a cost is usually also a
+    trend, and the BURDEN reading is the one a viewer feels."""
+    text = f"{getattr(insight, 'topic', '')} " \
+           f"{getattr(insight, 'main_insight', '')} " \
+           f"{getattr(insight, 'unit', '')}"
+    return bool(_MONEY.search(text))
+
+
+def describe(insight) -> dict:
+    """Everything the picture-chooser needs, in one call."""
+    rel = classify(insight)
+    return {"relationship": rel, "series": is_time_series(insight),
+            "rate": is_rate(insight), "burden": is_burden(insight),
+            "n": len(_values(insight))}

@@ -456,6 +456,10 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "count out (prevalence, ownership, turnout). NEVER for an interest "
            "rate, a growth rate or a yield — those are not a proportion of "
            "anything. needs subject + data.value_from.\n"
+           "  race_track  — 3-8 items as a RACE: rank becomes position and the "
+           "gap between them becomes literal distance. Every runner is Data. "
+           "region 'full', no other fields — it reads the whole insight. Two "
+           "items is a duel (use balance), one is not a race.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

@@ -911,7 +911,11 @@ MAX_STILL_TAIL = 1.6       # seconds a finished chart may sit before the cut
 # neither: the card lands its last reveal (the CTA) at 62% and after that only
 # the recap moves. A two-beat and a four-beat video both failed there on a tail
 # that was fine everywhere else — 47 and 79 frozen frames against a 45 ceiling.
-CLOSING_STILL_TAIL = 0.8
+# 0.35, not 0.8. The closing is the LEAST-covered part of the video — once the
+# card's reveals land there is nothing else in the frame — so the recap behind
+# it has to keep moving almost to the cut. It is also the cheapest place to buy
+# motion honestly: the chart is already there and already building.
+CLOSING_STILL_TAIL = 0.35
 # Where the recap goes during the closing. The card is a 900x320 bubble ending
 # at y=470; the foot band with the question and CTA starts at 1683. This sits
 # between them, centred, in space these frames were leaving empty.
@@ -1073,6 +1077,13 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # with a bounce, so nothing sits static for 4s.
     qs = c0 + 0.40 * cd
     cs = c0 + 0.62 * cd
+    # ...and one LAST reveal, so the card is not silent through its final
+    # third. Everything used to land by 62%: on a 31s video that left ~1.5s of
+    # nothing new, which the host and a still recap could just about carry, and
+    # on a 43s one it left 3.3s — a 79-frame frozen stretch against a ceiling
+    # of 45. The closing failed the gate on exactly the videos whose closing
+    # was longest, which is the wrong way round for a payoff.
+    ls = c0 + 0.86 * cd
     bubble = ("{\\an7\\pos(0,0)\\1c&H241A12&\\3c&H" + acc + "&\\bord4\\shad0"
               "\\fad(250,0)\\p1}"
               + _round_rect_tail(90, 150, 990, 470, 30, 540, (540, 588))
@@ -1114,6 +1125,15 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
                + "&\\b1\\bord5\\3c&H000000&\\shad0\\fad(300,0)"
                "\\fscx82\\fscy82\\t(0,300,\\fscx100\\fscy100)}COMMENT BELOW ▼")
         lines.append(f"Dialogue: 5,{_ass_time(cs)},{_ass_time(c1)},Cap,,0,0,0,,{cta}")
+        # THE LAST BEAT OF THE VIDEO. The CTA gives one more push right at the
+        # end — a real emphasis a viewer reads as "now", and the only thing
+        # still changing in the final second.
+        pulse = ("{\\an5\\pos(540,1836)\\fs54\\c&H" + acc
+                 + "&\\b1\\bord5\\3c&H000000&\\shad0"
+                 "\\fscx100\\fscy100\\t(0,260,\\fscx112\\fscy112)"
+                 "\\t(260,560,\\fscx100\\fscy100)}COMMENT BELOW ▼")
+        lines.append(
+            f"Dialogue: 6,{_ass_time(ls)},{_ass_time(c1)},Cap,,0,0,0,,{pulse}")
     # Dedupe + strip the 'Source:' prefix each footer already carries, so the
     # line reads 'Sources: NOAA ...' ONCE — not 'Sources: Source: X · Source: X'
     # (the duplicate the gate flagged when both segments share a publisher).
@@ -1530,7 +1550,7 @@ _ALT_DEPICTION = {
 # generated imagery — 54-89s per build with HTTP 500s in the middle — so they
 # stay primary-only rather than becoming an alternate that can time out.
 _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
-                "balance_scene", "rate_scene")
+                "balance_scene", "rate_scene", "race_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1538,7 +1558,8 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
 # is a lookup rather than a special case for one name.
 _SCENE_TOKENS = {"units_scene": "units_scene",
                  "balance_scene": "balance_scene",
-                 "rate_scene": "rate_scene"}
+                 "rate_scene": "rate_scene",
+                 "race_scene": "race_scene"}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
 # — and so may never be chosen as an alternate for data that is not one. Held
@@ -1585,6 +1606,44 @@ def _alt_candidates_for(insight) -> tuple:
     a run of years wants a line, a handful of named things wants a race.
     """
     return _SHAPE_CANDIDATES[_shape_of(insight)]
+
+
+# WHAT THE RELATIONSHIP WANTS TO BE DRAWN AS.
+#
+# The operator's direction, 2026-09-07: pick the picture from the RELATIONSHIP
+# the data expresses, not from the chart kind someone authored — speed becomes
+# motion, imbalance becomes weight, rank becomes position, a gap becomes
+# literal space. "Data has physics."
+#
+# So a chart is now the FALLBACK, not the default. This table is consulted
+# first; only if nothing here fits, or nothing here can build for this
+# particular data, does the ranked chart list below get a say.
+#
+# The lists are short on purpose. A machine that does not genuinely say the
+# thing is worse than a bar chart, because a bar chart at least does not claim
+# anything extra — which is why `volatile` maps to a line and always will: a
+# series that zig-zags is honestly a line, and drawing it as a climb would be
+# a picture of a story the data does not tell.
+_MACHINES = {
+    "rank":      ("race_scene", "units_scene", "orbit"),
+    "duel":      ("balance_scene", "units_scene"),
+    "growth":    ("units_scene", "timeline", "fill_vessel"),
+    "decline":   ("timeline", "fill_vessel", "units_scene"),
+    "burden":    ("units_scene", "balance_scene", "fill_vessel"),
+    "share":     ("rate_scene", "fill_vessel"),
+    "dominance": ("units_scene", "balance_scene"),
+    "volatile":  (),                    # a line is the honest picture
+    "other":     (),
+}
+
+
+def _machines_for(insight) -> tuple:
+    """The physical forms that fit what this data is SAYING, best first."""
+    try:
+        from data_learning import relationships as _rel
+        return _MACHINES.get(_rel.classify(insight), ())
+    except Exception:  # noqa: BLE001 — no router, no machines, still a chart
+        return ()
 
 
 def _family(kind: str) -> str:
@@ -1647,13 +1706,23 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     seq = [kind]
     if n == 1:
         return seq
-    cands = list(_alt_candidates_for(insight))
-    for c in _ALT_DEPICTION.get(kind, ()):
-        if c not in cands:
-            cands.append(c)
-    cands = [c for c in cands
-             if c and c != kind and c not in _ASSERTS_A_WHOLE
-             and _buildable(c, insight)]
+    # RELATIONSHIP FIRST, chart as the fallback — in two TIERS, because the
+    # anti-template rotation below must shuffle within a tier and never across
+    # it. Rotating one flat list put a chart ahead of the machine that actually
+    # said the thing, which is the whole philosophy inverted by a line of
+    # variety code.
+    machines = [c for c in _machines_for(insight) if c != kind]
+    fallback = []
+    for c in list(_alt_candidates_for(insight)) + list(
+            _ALT_DEPICTION.get(kind, ())):
+        if c not in machines and c not in fallback:
+            fallback.append(c)
+    def _usable(seq):
+        return [c for c in seq
+                if c and c != kind and c not in _ASSERTS_A_WHOLE
+                and _buildable(c, insight)]
+
+    machines, fallback = _usable(machines), _usable(fallback)
     # ROTATE THE PREFERENCE, or the ranked list is itself a template.
     #
     # Simulated across the 74 un-posted stories: every single one picked
@@ -1665,11 +1734,22 @@ def _depiction_sequence(insight, used: set, dur: float) -> list:
     # Rotating by the beat's own topic varies it story to story AND beat to
     # beat while staying deterministic, so a re-render is identical and the
     # novelty/family rules below are untouched.
-    if len(cands) > 1:
-        _r = int(_hashlib.sha1(
+    def _rotate(seq):
+        if len(seq) < 2:
+            return seq
+        r = int(_hashlib.sha1(
             str(getattr(insight, "topic", "") or kind).encode()
-        ).hexdigest()[:8], 16) % len(cands)
-        cands = cands[_r:] + cands[:_r]
+        ).hexdigest()[:8], 16) % len(seq)
+        return seq[r:] + seq[:r]
+
+    # THE MACHINE ORDER IS EDITORIAL, NOT ARBITRARY — so it is NOT rotated.
+    # For a duel the scales are simply the right picture, and rotating them
+    # away for variety demoted the form that actually said the thing. The
+    # variety comes from the RELATIONSHIPS varying across beats (rank -> race,
+    # duel -> scales, growth -> a count, decline -> a timeline), which is the
+    # data driving the picture, which is the entire point. Only the chart
+    # fallback rotates, because there one bar chart is much like another.
+    cands = machines + _rotate(fallback)
 
     def _pick(want_family, avoid_used):
         for c in cands:

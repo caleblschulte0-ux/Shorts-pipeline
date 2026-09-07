@@ -48,9 +48,9 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
     "bottom": (RX0, _MIDY, RX1, RBOT),
 }
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
-          "unit_figures", "balance", "dot_field", "number", "bar", "bubble",
-          "caption"}
-_HOLISTIC = {"orbit_group", "timeline_axis"}       # render all items, own the box
+          "unit_figures", "balance", "dot_field", "race_track", "number",
+          "bar", "bubble", "caption"}
+_HOLISTIC = {"orbit_group", "timeline_axis", "race_track"}   # all items, own the box
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -58,7 +58,7 @@ _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # subject-bearing types went through `scene_media`.
 _ICON_TYPES = {"unit_figures", "dot_field"}
 # Drawn entirely from primitives — no subject, no icon, no network at all.
-_DRAWN_TYPES = {"balance"}
+_DRAWN_TYPES = {"balance", "race_track"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -909,6 +909,86 @@ def draw_dot_field(d, canvas, box, cutout, value, label, color, reveal,
     return (value, "art", cx_last, cy_last)
 
 
+def draw_race(d, canvas, box, insight, color, reveal, unit=""):
+    """A RACE: rank becomes position, and the gap becomes literal distance.
+
+    A ranked bar chart asks the viewer to compare five lengths against an axis.
+    A race asks them to see who is in front, which they can do before reading
+    anything. It is also the form that solves the cadence problem honestly —
+    the runners are still moving for the whole visual, so nothing has to be
+    kept alive with camera tricks.
+
+    Every runner is Data. The channel's identity is a mascot in a world where
+    numbers are physical, and "five clones racing, ours in the lead" is that,
+    where five coloured rectangles is Bloomberg with a TikTok account.
+    """
+    items = _ordered_items(insight)[:8]
+    if len(items) < 2:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    vmax = max(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    top = max(by0 + 190, 330)
+    bot = by1 - 90
+    n = len(items)
+    lane_h = (bot - top) / n
+    # Room for the longest NAME on the left and for the leader's VALUE on the
+    # right. The first version guessed both and clipped both — "Los Angeles"
+    # rendered as "os Angeles" and the leader's "11.3 yrs" ran off the edge.
+    name_f = _pil_font(38)
+    name_w = max((d.textbbox((0, 0), str(getattr(p, "label", ""))[:16],
+                             font=name_f)[2] for p in items), default=0)
+    x0 = int(bx0 + min(max(name_w + 40, 200), (bx1 - bx0) * 0.42))
+    x1 = int(bx1 - 40)                   # the finish line
+    # Ease so the field surges out of the blocks and settles into its order,
+    # rather than sliding at a constant rate like a loading bar.
+    e = 1.0 - (1.0 - max(0.0, min(1.0, reveal))) ** 2
+    runner = scene_host("cheer", reveal)
+    rh = int(max(96, min(170, lane_h * 0.86)))
+    rw = int(runner.width * rh / runner.height) if runner is not None else rh
+    # the finish line
+    for k in range(0, int(bot - top), 26):
+        d.rectangle([x1, top + k, x1 + 14, top + min(k + 13, int(bot - top))],
+                    fill=_rgba(TEXT, 190 if (k // 26) % 2 == 0 else 60))
+    lead_xy = None
+    for i, (p, v) in enumerate(zip(items, vals)):
+        cy = int(top + lane_h * (i + 0.5))
+        d.line([(x0, cy + rh // 2 - 2), (x1, cy + rh // 2 - 2)],
+               fill=_rgba(TEXT, 40), width=4)
+        px = int(x0 + (v / vmax) * (x1 - x0) * e)
+        lead = (i == 0)
+        col = color if lead else ACCENT
+        d.text((x0 - 22, cy), str(getattr(p, "label", ""))[:16],
+               font=name_f, fill=_rgba(col, 240), anchor="rm")
+        if runner is not None:
+            im = runner
+            if not lead:
+                # The field is ghosted so the leader reads instantly; without
+                # it five identical sprites are a crowd, not a ranking.
+                im = runner.copy()
+                im.putalpha(im.getchannel("A").point(lambda a: int(a * 0.62)))
+            canvas.alpha_composite(_fit(im, rw, rh),
+                                   (int(px - rw // 2), int(cy - rh // 2)))
+        else:
+            d.ellipse([px - 26, cy - 26, px + 26, cy + 26], fill=_rgba(col, 235))
+        na = max(0.0, min(1.0, (reveal - 0.25) / 0.35))
+        vf = _pil_font(44)
+        vtxt = charts._ulabel(v, unit)
+        vw = d.textbbox((0, 0), vtxt, font=vf)[2]
+        # Ahead of the runner, unless that would cross the finish line — then
+        # it rides behind them instead. A runner near the line is exactly the
+        # one whose number the viewer most wants to read.
+        if px + rw // 2 + 16 + vw < x1:
+            d.text((px + rw // 2 + 16, cy), vtxt, font=vf,
+                   fill=_rgba(col, int(255 * na)), anchor="lm")
+        else:
+            d.text((px - rw // 2 - 16, cy), vtxt, font=vf,
+                   fill=_rgba(col, int(255 * na)), anchor="rm")
+        if lead:
+            lead_xy = (px, cy)
+    return (vals[0], "art", lead_xy[0], lead_xy[1]) if lead_xy else None
+
+
 def draw_stack(d, canvas, box, cutout, value, per_value, label, color, reveal, unit=""):
     """Stack N=value/per_value copies of a cut-out to depict a magnitude."""
     bx0, by0, bx1, by1 = box
@@ -1320,6 +1400,17 @@ def rate_scene(insight) -> dict:
                           "data": {"value_from": "star"}, "anim": "fill"}]}
 
 
+def race_scene(insight) -> dict:
+    """A ranking, run as a race. Needs a real field — two runners is a duel and
+    belongs on the scales, one is not a race at all."""
+    items = list(insight.items or [])
+    if not (3 <= len(items) <= 8):
+        return {}
+    return {"title": True,
+            "elements": [{"type": "race_track", "region": "full",
+                          "anim": "travel"}]}
+
+
 def balance_scene(insight) -> dict:
     """Two numbers, weighed against each other.
 
@@ -1534,7 +1625,13 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 continue
             t = el.get("type")
             box = boxes[i]
-            if t == "orbit_group":
+            if t == "race_track":
+                an = draw_race(d, canvas, box, insight,
+                               _color_for(insight.items[0].label, insight)
+                               if insight.items else HIGHLIGHT, lr, insight.unit)
+                if f == frames and an:
+                    anchors.append(an)
+            elif t == "orbit_group":
                 draw_orbit(d, box, insight, r)
             elif t == "timeline_axis":
                 draw_timeline(d, canvas, box, insight, r)
