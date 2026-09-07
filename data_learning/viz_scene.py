@@ -1495,7 +1495,16 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
         hy = bot + (peak - bot) * _math.sin(t_ * _math.pi / 2.0)
         act = "cheer" if cleared else "strain"
     else:                             # landed, at his value
-        hx, hy = run_to, val_y
+        # A dead stop here reads as frozen for the rest of the visual: the
+        # landed pose used to hold (run_to, val_y) unchanged for the whole
+        # remaining ~18% of reveal, and measured 48 straight sub-threshold
+        # frames against the cadence gate's 35-frame ceiling — nearly the
+        # entire tail of the video. A jump lands with a bounce anyway, so a
+        # settle wobble that decays but never fully stops is both the fix
+        # and just what landing looks like.
+        t_ = (e - 0.82) / 0.18
+        bounce = 26.0 * _math.exp(-1.3 * t_) * _math.cos(t_ * 5.0 * _math.pi)
+        hx, hy = run_to, val_y - bounce
         act = "cheer" if cleared else "strain"
     host = scene_host(act, reveal)
     if host is not None:
