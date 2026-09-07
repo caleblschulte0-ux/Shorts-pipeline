@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7",
+    "path": "exchange/bundles/20260907/bundle.json"
+  },
+  "request_id": "reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a",
+  "safe_request_id": "reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1a17fe8c063f8803104ed296452851383b58c852dc356d392f9ddadd1834afd1",
+  "prompt_used": "An editorial illustration for a short-form video: eviction notice paper. It accompanies the narration: \"filing for eviction\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+    "filename": "20260907__reddit-landlord-notary-clause-backfire-s5-cc455cd10b0a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1T9xZf_DCM1LJIKZcrmNsHPB57q-50kDF",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "78df288d20bef8655fc1c078c0c490ebe067c86309bb75b21540271cb8c35a88",
+    "bytes": 1579028,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-09-07T11:23:31.989Z",
+  "error": null,
+  "retryable": false
+}
