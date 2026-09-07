@@ -1,39 +1,40 @@
-# Daily Trending Shorts — 2026-09-06
+# Daily Trending Shorts — 2026-09-07
 
-> **4 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+> **3 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **10**
-- succeeded: **2**
+- queued: **9**
+- succeeded: **3**
 - quarantined (off-topic imagery): **0**
-- failed: **8**
+- failed: **6**
 
 ## Posted
-- **SpaceX Now Out-Launches Russia's Entire Program**
-  - topic: SpaceX Now Out-Launches Russia's Entire Program
-  - publishes: `2026-09-06T17:30:00Z`
-  - https://youtube.com/shorts/8MjLa42a3_g
-  - took: 103.7s
-- **Instagram Passed Twitter's Users In 2 Years**
-  - topic: Instagram Passed Twitter's Users In 2 Years
-  - publishes: `2026-09-06T19:00:00Z`
-  - https://youtube.com/shorts/4C-IafFx6h4
-  - took: 97.7s
+- **China's Exports Blew Past America's**
+  - topic: China's Exports Blew Past America's
+  - publishes: `2026-09-07T13:00:00Z`
+  - https://youtube.com/shorts/OsNM4XvYYdU
+  - took: 118.2s
+- **Bottled Water Buried Soda In America**
+  - topic: Bottled Water Buried Soda In America
+  - publishes: `2026-09-07T14:30:00Z`
+  - https://youtube.com/shorts/Dxfq3nQHUiA
+  - took: 112.5s
+- **He Made Me Notarize Everything. So I Did.**
+  - topic: He Made Me Notarize Everything. So I Did.
+  - publishes: `2026-09-07T16:00:00Z`
+  - https://youtube.com/shorts/BMmPt5ebius
+  - took: 397.5s
 
 ## Failed
-- **Vinyl Records Passed CD Sales In America**
-  - error: `showrunner_block: showrunner BLOCK: A clean, real graph race with a genuine crossover payoff, blocked by third-party brand logos (SEGA, 'Vinyl Cache') used as the data markers plus a static text-card hook.`
-- **Natural Gas Overtook Coal As America's Power Source**
-  - error: `showrunner_block: showrunner BLOCK: A real, honest EIA race with a genuine crossover, sunk by illegible corporate-logo series markers and a chart floating in a half-empty black frame.`
-- **She Demanded A Refund. I Don't Work Here.**
-  - error: `showrunner_block: showrunner BLOCK: The story is legible but the illustrations are keyword-matched stock that has nothing to do with a store refund — a boat hull, a watering can and a page of CSS — and the first 2.5s is a motionless post card over black.`
-- **She Kept Stealing My Spot. I Called A Tow Truck.**
-  - error: `showrunner_block: showrunner BLOCK: The gameplay and captions carry the story fine, but the top photo track is a bag of unrelated stock — a garbled tuk-tuk cutout on black, an airport departure board, and a cat — so the cause/effect beats are never actually illustrated.`
-- **joao pedro**
+- **Norway's EVs Buried Gas Cars On The Road**
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — clean crossover, honest source, real leaderboard flip — sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.`
+- **Solar Power Got Cheaper Than Coal**
+  - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) — too many held frames`
+- **She Ate The Cake, Then Demanded A Refund**
+  - error: `showrunner_block: showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.`
+- **jared kushner**
   - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **lamine yamal**
+- **western**
   - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **national weather service september map**
-  - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **harvey elliott**
+- **jason licht**
   - error: `HTTPError: HTTP Error 401: Unauthorized`
 

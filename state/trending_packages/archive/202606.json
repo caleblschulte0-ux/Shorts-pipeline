@@ -3819,5 +3819,469 @@
       "music_vibe": "dark",
       "gameplay": "subway"
     }
+  },
+  "20260608": {
+    "01_ufc-whitehouse-fight.json": {
+      "version": 8,
+      "slug": "ufc-whitehouse-fight",
+      "title": "UFC Is Fighting on the White House Lawn. A Lawsuit Just Tried to Stop It.",
+      "hashtags": [
+        "ufc",
+        "whitehouse",
+        "ufcfreedom250",
+        "mma",
+        "trump",
+        "lawsuit",
+        "flagday",
+        "nationalparkservice",
+        "danawhite",
+        "fightnight",
+        "sports",
+        "weirdnews",
+        "politics"
+      ],
+      "script": "A pro MMA fight card just got booked on the White House South Lawn. UFC Freedom 250 \u2014 scheduled for Flag Day, June 14 \u2014 was approved for the grounds to mark Trump's 80th birthday and America's 250th anniversary. Then a federal lawsuit dropped, arguing it violates National Park Service rules and never had an environmental review. The White House called it 'obstructionist.' The fighters are still warming up.",
+      "shots": [
+        {
+          "phrase": "pro MMA fight card just got booked",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/PLMMA_Cage-Octagon_MMA.JPG",
+          "query": "UFC MMA octagon fight cage arena empty"
+        },
+        {
+          "phrase": "White House South Lawn",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/White_House_Washington.JPG",
+          "query": "White House Washington DC south lawn exterior"
+        },
+        {
+          "phrase": "Trump's 80th birthday",
+          "query": "birthday celebration event outdoor stage white house"
+        },
+        {
+          "phrase": "federal lawsuit dropped",
+          "query": "federal court filing lawsuit legal documents judge"
+        },
+        {
+          "phrase": "National Park Service rules",
+          "query": "national park service federal land regulation sign"
+        },
+        {
+          "phrase": "fighters are still warming up",
+          "query": "UFC MMA fighters training warmup sparring gym"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "pro MMA fight card just got booked",
+          "text": "UFC ON WHITE HOUSE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Flag Day, June 14",
+          "text": "JUNE 14",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Trump's 80th birthday",
+          "text": "TRUMP'S 80TH",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "federal lawsuit dropped",
+          "text": "LAWSUIT FILED",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "obstructionist",
+          "text": "OBSTRUCTIONIST?",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "02_koala-too-many-australia.json": {
+      "version": 8,
+      "slug": "koala-too-many-australia",
+      "title": "South Australia Has Too Many Koalas. Scientists Want to Sterilize 22%.",
+      "hashtags": [
+        "koala",
+        "australia",
+        "southaustralia",
+        "wildlife",
+        "conservation",
+        "overpopulation",
+        "ecology",
+        "marsupial",
+        "mountloftyranges",
+        "science",
+        "nature",
+        "animals"
+      ],
+      "script": "While koalas are endangered across most of Australia, one patch in South Australia has the opposite problem \u2014 too many. The Mount Lofty Ranges now hold 10 percent of the entire national koala population, and they're eating through the forest faster than it can regrow. Scientists are now calling for mass sterilization of 22 percent of adult females every year. At $34 million over 25 years, it's cheaper than letting them eat themselves to extinction.",
+      "shots": [
+        {
+          "phrase": "koalas are endangered across most of Australia",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Friendly_Female_Koala.JPG",
+          "query": "koala climbing eucalyptus tree Australia wild"
+        },
+        {
+          "phrase": "Mount Lofty Ranges",
+          "query": "South Australia Mount Lofty Ranges forest bushland green hills"
+        },
+        {
+          "phrase": "10 percent of the entire national koala population",
+          "query": "koalas in trees dense population eucalyptus forest"
+        },
+        {
+          "phrase": "eating through the forest faster than it can regrow",
+          "query": "deforestation bare trees eaten stripped bark Australia"
+        },
+        {
+          "phrase": "mass sterilization of 22 percent",
+          "query": "wildlife biologist scientist koala conservation research field"
+        },
+        {
+          "phrase": "eat themselves to extinction",
+          "query": "ecological collapse deforestation barren landscape environmental damage"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "too many",
+          "text": "TOO MANY KOALAS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "10 percent of the entire national koala population",
+          "text": "10% OF ALL KOALAS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "mass sterilization of 22 percent",
+          "text": "MASS STERILIZATION",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "$34 million over 25 years",
+          "text": "$34M FIX",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "eat themselves to extinction",
+          "text": "EXTINCTION RISK",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "minecraft"
+    },
+    "03_potato-head-world-record.json": {
+      "version": 8,
+      "slug": "potato-head-world-record",
+      "title": "A Singapore Teen Just Shattered the Mr. Potato Head World Record",
+      "hashtags": [
+        "worldrecord",
+        "guinness",
+        "mrpotatohead",
+        "singapore",
+        "hasbro",
+        "toy",
+        "speedrunning",
+        "competition",
+        "rubikscube",
+        "guinnessworldrecords",
+        "weird",
+        "funfact"
+      ],
+      "script": "A teenager in Singapore just broke the world record for fastest assembly of a Mr. Potato Head, completing the classic toy in 4.63 seconds. The official Guinness time smashes the previous record and was caught entirely on video. The teen, a competitive Rubik's cube solver, said the fine motor skills transferred directly. Guinness certified it this week. Nobody asked for a Mr. Potato Head world record. Someone made one anyway.",
+      "shots": [
+        {
+          "phrase": "teenager in Singapore",
+          "query": "Singapore teen youth city modern skyline competitive"
+        },
+        {
+          "phrase": "Mr. Potato Head",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mr_Potato_Head_1952.jpg",
+          "query": "Mr Potato Head toy colorful classic Hasbro vintage"
+        },
+        {
+          "phrase": "4.63 seconds",
+          "query": "stopwatch timer competition countdown close hands fast"
+        },
+        {
+          "phrase": "Guinness certified it this week",
+          "query": "Guinness World Records certificate book official award"
+        },
+        {
+          "phrase": "competitive Rubik's cube solver",
+          "query": "rubiks cube speedcubing hands competition solve fast"
+        },
+        {
+          "phrase": "Nobody asked for a Mr. Potato Head world record",
+          "query": "vintage toy collection retro hasbro action figure display"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "fastest assembly of a Mr. Potato Head",
+          "text": "FASTEST EVER",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "4.63 seconds",
+          "text": "4.63 SECONDS",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818"
+        },
+        {
+          "phrase": "Guinness certified it this week",
+          "text": "GUINNESS OFFICIAL",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Nobody asked for a Mr. Potato Head world record",
+          "text": "NOBODY ASKED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Someone made one anyway",
+          "text": "WORLD RECORD",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "04_apple-wwdc-siri-gemini.json": {
+      "version": 8,
+      "slug": "apple-wwdc-siri-gemini",
+      "title": "Apple Rebuilt Siri With Google's AI. Tim Cook Called It Goodbye.",
+      "hashtags": [
+        "apple",
+        "wwdc",
+        "wwdc2026",
+        "siri",
+        "googlegemini",
+        "timcook",
+        "ios27",
+        "google",
+        "ai",
+        "applepark",
+        "machinelearning",
+        "tech",
+        "bigtech"
+      ],
+      "script": "Tim Cook took the stage at Apple Park Monday for the last time as CEO \u2014 and he brought Google with him. Apple announced Siri will now be powered by a custom 1.2-trillion-parameter Google Gemini model, licensed at $1 billion per year. iOS 27 shipped in beta the same afternoon. Cook retires September 1. The man who built Apple into a $3 trillion company just handed Siri to a competitor to finish the job.",
+      "shots": [
+        {
+          "phrase": "Tim Cook took the stage at Apple Park",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tim_Cook_(2017).jpg",
+          "query": "Tim Cook Apple CEO keynote stage presentation"
+        },
+        {
+          "phrase": "last time as CEO",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aerial_view_of_Apple_Park_dllu_(cropped).jpg",
+          "query": "Apple Park Cupertino headquarters aerial ring building"
+        },
+        {
+          "phrase": "1.2-trillion-parameter Google Gemini model",
+          "query": "Google Gemini AI chatbot interface tech logo artificial intelligence"
+        },
+        {
+          "phrase": "$1 billion per year",
+          "query": "billion dollar deal tech contract signing handshake business"
+        },
+        {
+          "phrase": "iOS 27 shipped in beta",
+          "query": "iPhone iOS software update beta developer phone screen"
+        },
+        {
+          "phrase": "handed Siri to a competitor",
+          "query": "Apple Siri voice assistant AI interface iPhone listening"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "last time as CEO",
+          "text": "FINAL KEYNOTE",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "$1 billion per year",
+          "text": "$1B/YEAR",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "1.2-trillion-parameter",
+          "text": "1.2 TRILLION",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Cook retires September 1",
+          "text": "SEPT 1 GOODBYE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "handed Siri to a competitor",
+          "text": "SIRI = GOOGLE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "05_south-korea-first-female-pm.json": {
+      "version": 8,
+      "slug": "south-korea-first-female-pm",
+      "title": "South Korea Just Nominated Its First Female Prime Minister in 20 Years",
+      "hashtags": [
+        "southkorea",
+        "korea",
+        "primeminister",
+        "politics",
+        "women",
+        "history",
+        "naver",
+        "hanseongsu",
+        "asia",
+        "government",
+        "worldnews",
+        "leadership"
+      ],
+      "script": "South Korean President Lee Jae-myung nominated Han Seong-sook as prime minister this week \u2014 if Parliament confirms her, she becomes South Korea's first female prime minister in 20 years. Han, 69, spent years as CEO of Naver, South Korea's largest internet company, before entering politics. The last woman to hold the post was Han Myeong-sook in 2006. Parliament still needs to vote. The nomination itself is already historic.",
+      "shots": [
+        {
+          "phrase": "South Korean President Lee Jae-myung",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Republic_of_Korea_capitol.jpg",
+          "query": "South Korea government building Seoul official National Assembly"
+        },
+        {
+          "phrase": "Han Seong-sook as prime minister",
+          "query": "South Korea female politician official government formal ceremony"
+        },
+        {
+          "phrase": "CEO of Naver",
+          "query": "Naver South Korea technology company internet Seoul office"
+        },
+        {
+          "phrase": "first female prime minister in 20 years",
+          "query": "South Korea parliament government historic first women leadership"
+        },
+        {
+          "phrase": "Han Myeong-sook in 2006",
+          "query": "South Korea 2006 prime minister historic government ceremony"
+        },
+        {
+          "phrase": "nomination itself is already historic",
+          "query": "South Korea Seoul city skyline modern capital government"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "first female prime minister in 20 years",
+          "text": "FIRST IN 20 YEARS",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818"
+        },
+        {
+          "phrase": "Parliament confirms her",
+          "text": "PARLIAMENT DECIDES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "CEO of Naver",
+          "text": "NAVER CEO",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Han Myeong-sook in 2006",
+          "text": "SINCE 2006",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "nomination itself is already historic",
+          "text": "HISTORIC",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_alabama-nitrogen-execution.json": {
+      "version": 8,
+      "slug": "alabama-nitrogen-execution",
+      "title": "A Judge Said Nitrogen Execution Is Legal. The Man Dies June 11.",
+      "hashtags": [
+        "alabama",
+        "execution",
+        "deathrow",
+        "nitrogen",
+        "capitalpunishment",
+        "crimejustice",
+        "supremecourt",
+        "jefferylee",
+        "constitution",
+        "8thamendment",
+        "law",
+        "criminallaw"
+      ],
+      "script": "A federal judge ruled last week that Alabama's nitrogen gas execution method is constitutional \u2014 even though the court found it causes the most severe form of breathing discomfort for 1 to 3 minutes. The ruling came after the first-ever bench trial to examine the method's legality. Death row inmate Jeffery Lee, scheduled for execution June 11, will appeal. 8 men have now been executed by nitrogen in Alabama and Louisiana.",
+      "shots": [
+        {
+          "phrase": "Alabama's nitrogen gas execution method",
+          "query": "Alabama state prison death row execution chamber interior"
+        },
+        {
+          "phrase": "most severe form of breathing discomfort",
+          "query": "medical equipment oxygen mask nitrogen gas breathing lab"
+        },
+        {
+          "phrase": "first-ever bench trial to examine the method's legality",
+          "query": "federal courthouse judge gavel ruling legal trial courtroom"
+        },
+        {
+          "phrase": "Jeffery Lee, scheduled for execution June 11",
+          "query": "prison cell bars death row inmate incarcerated jail"
+        },
+        {
+          "phrase": "8 men have now been executed by nitrogen",
+          "query": "Alabama prison execution site correctional facility exterior"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "nitrogen gas execution method is constitutional",
+          "text": "RULED CONSTITUTIONAL",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "most severe form of breathing discomfort",
+          "text": "SEVERE DISCOMFORT",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "1 to 3 minutes",
+          "text": "1-3 MINUTES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "scheduled for execution June 11",
+          "text": "JUNE 11",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "8 men have now been executed by nitrogen",
+          "text": "8 EXECUTED",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    }
   }
 }

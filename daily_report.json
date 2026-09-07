@@ -1,16 +1,16 @@
 [
   {
-    "topic": "SpaceX Now Out-Launches Russia's Entire Program",
-    "title": "SpaceX Now Out-Launches Russia's Entire Program",
+    "topic": "Norway's EVs Buried Gas Cars On The Road",
+    "title": "Norway's EVs Buried Gas Cars On The Road",
     "format": "graph_race",
-    "publish_at": "2026-09-06T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/8MjLa42a3_g",
-    "error": null,
-    "elapsed_seconds": 103.7,
-    "package_path": "state/trending_packages/20260906/01_graph-spacex-outlaunched-russia.json",
+    "publish_at": "2026-09-07T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 clean crossover, honest source, real leaderboard flip \u2014 sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.",
+    "elapsed_seconds": 120.6,
+    "package_path": "state/trending_packages/20260907/01_graph-norway-ev-buried-gas-cars.json",
     "source": "brain",
-    "video_path": "output/daily_20260906-162909_spacex_now_out_launches_russia_s_entire_.mp4",
+    "video_path": "output/daily_20260907-122124_norway_s_evs_buried_gas_cars_on_the_road.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -27,24 +27,58 @@
       "loudness_lufs": -25.2
     },
     "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: A genuinely good race \u2014 clean crossover, honest source, real leaderboard flip \u2014 sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.",
+      "score": 74
+    },
+    "blocked": true
+  },
+  {
+    "topic": "China's Exports Blew Past America's",
+    "title": "China's Exports Blew Past America's",
+    "format": "graph_race",
+    "publish_at": "2026-09-07T13:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OsNM4XvYYdU",
+    "error": null,
+    "elapsed_seconds": 118.2,
+    "package_path": "state/trending_packages/20260907/02_graph-china-passed-us-exports.json",
+    "source": "brain",
+    "video_path": "output/daily_20260907-122325_china_s_exports_blew_past_america_s.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 14.375,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.8
+    },
+    "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 82
+      "score": 78
     },
     "channel": "default"
   },
   {
-    "topic": "Instagram Passed Twitter's Users In 2 Years",
-    "title": "Instagram Passed Twitter's Users In 2 Years",
+    "topic": "Bottled Water Buried Soda In America",
+    "title": "Bottled Water Buried Soda In America",
     "format": "graph_race",
-    "publish_at": "2026-09-06T19:00:00Z",
+    "publish_at": "2026-09-07T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/4C-IafFx6h4",
+    "video_url": "https://youtube.com/shorts/Dxfq3nQHUiA",
     "error": null,
-    "elapsed_seconds": 97.7,
-    "package_path": "state/trending_packages/20260906/02_graph-instagram-passed-twitter.json",
+    "elapsed_seconds": 112.5,
+    "package_path": "state/trending_packages/20260907/03_graph-bottled-water-buried-soda.json",
     "source": "brain",
-    "video_path": "output/daily_20260906-163053_instagram_passed_twitter_s_users_in_2_ye.mp4",
+    "video_path": "output/daily_20260907-122523_bottled_water_buried_soda_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -63,22 +97,22 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 78
+      "score": 82
     },
     "channel": "default"
   },
   {
-    "topic": "Vinyl Records Passed CD Sales In America",
-    "title": "Vinyl Records Passed CD Sales In America",
+    "topic": "Solar Power Got Cheaper Than Coal",
+    "title": "Solar Power Got Cheaper Than Coal",
     "format": "graph_race",
-    "publish_at": "2026-09-06T20:30:00Z",
+    "publish_at": "2026-09-07T16:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, real graph race with a genuine crossover payoff, blocked by third-party brand logos (SEGA, 'Vinyl Cache') used as the data markers plus a static text-card hook.",
-    "elapsed_seconds": 179.2,
-    "package_path": "state/trending_packages/20260906/03_graph-vinyl-passed-cd.json",
+    "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "elapsed_seconds": 64.4,
+    "package_path": "state/trending_packages/20260907/04_graph-solar-cheaper-than-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260906-163230_vinyl_records_passed_cd_sales_in_america.mp4",
+    "video_path": "output/daily_20260907-122716_solar_power_got_cheaper_than_coal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -96,99 +130,26 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, real graph race with a genuine crossover payoff, blocked by third-party brand logos (SEGA, 'Vinyl Cache') used as the data markers plus a static text-card hook.",
-      "score": 62
+      "reason": "showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "score": 5
     },
     "blocked": true
   },
   {
-    "topic": "Natural Gas Overtook Coal As America's Power Source",
-    "title": "Natural Gas Overtook Coal As America's Power Source",
-    "format": "graph_race",
-    "publish_at": "2026-09-06T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A real, honest EIA race with a genuine crossover, sunk by illegible corporate-logo series markers and a chart floating in a half-empty black frame.",
-    "elapsed_seconds": 88.6,
-    "package_path": "state/trending_packages/20260906/04_graph-gas-overtook-coal.json",
-    "source": "brain",
-    "video_path": "output/daily_20260906-163529_natural_gas_overtook_coal_as_america_s_p.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: A real, honest EIA race with a genuine crossover, sunk by illegible corporate-logo series markers and a chart floating in a half-empty black frame.",
-      "score": 57
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Demanded A Refund. I Don't Work Here.",
-    "title": "She Demanded A Refund. I Don't Work Here.",
+    "topic": "He Made Me Notarize Everything. So I Did.",
+    "title": "He Made Me Notarize Everything. So I Did.",
     "format": "reddit",
-    "publish_at": "2026-09-06T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story is legible but the illustrations are keyword-matched stock that has nothing to do with a store refund \u2014 a boat hull, a watering can and a page of CSS \u2014 and the first 2.5s is a motionless post card over black.",
-    "elapsed_seconds": 178.9,
-    "package_path": "state/trending_packages/20260906/05_reddit-hardware-store-fake-return.json",
+    "publish_at": "2026-09-07T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/BMmPt5ebius",
+    "error": null,
+    "elapsed_seconds": 397.5,
+    "package_path": "state/trending_packages/20260907/05_reddit-landlord-notary-clause-backfire.json",
     "source": "brain",
-    "video_path": "output/daily_20260906-163732_she_demanded_a_refund__i_don_t_work_here.mp4",
+    "video_path": "output/daily_20260907-123024_he_made_me_notarize_everything__so_i_did.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 50.6,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.0
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story is legible but the illustrations are keyword-matched stock that has nothing to do with a store refund \u2014 a boat hull, a watering can and a page of CSS \u2014 and the first 2.5s is a motionless post card over black.",
-      "score": 52
-    },
-    "blocked": true
-  },
-  {
-    "topic": "She Kept Stealing My Spot. I Called A Tow Truck.",
-    "title": "She Kept Stealing My Spot. I Called A Tow Truck.",
-    "format": "reddit",
-    "publish_at": "2026-09-06T20:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The gameplay and captions carry the story fine, but the top photo track is a bag of unrelated stock \u2014 a garbled tuk-tuk cutout on black, an airport departure board, and a cat \u2014 so the cause/effect beats are never actually illustrated.",
-    "elapsed_seconds": 209.4,
-    "package_path": "state/trending_packages/20260906/06_reddit-hoa-parking-spot-tow.json",
-    "source": "brain",
-    "video_path": "output/daily_20260906-163958_she_kept_stealing_my_spot__i_called_a_to.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 52.767,
+      "duration": 48.567,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -207,26 +168,65 @@
       "reason": "gemini unavailable"
     },
     "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 79
+    },
+    "channel": "default"
+  },
+  {
+    "topic": "She Ate The Cake, Then Demanded A Refund",
+    "title": "She Ate The Cake, Then Demanded A Refund",
+    "format": "reddit",
+    "publish_at": "2026-09-07T17:30:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.",
+    "elapsed_seconds": 288.8,
+    "package_path": "state/trending_packages/20260907/06_reddit-bakery-empty-box-refund.json",
+    "source": "brain",
+    "video_path": "output/daily_20260907-123514_she_ate_the_cake__then_demanded_a_refund.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.8,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: The gameplay and captions carry the story fine, but the top photo track is a bag of unrelated stock \u2014 a garbled tuk-tuk cutout on black, an airport departure board, and a cat \u2014 so the cause/effect beats are never actually illustrated.",
-      "score": 61
+      "reason": "showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.",
+      "score": 79
     },
     "blocked": true
   },
   {
-    "topic": "joao pedro",
+    "topic": "jared kushner",
     "angle": null,
-    "publish_at": "2026-09-06T20:30:00Z",
+    "publish_at": "2026-09-07T17:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.9,
+    "elapsed_seconds": 0.8,
     "backfill": true
   },
   {
-    "topic": "lamine yamal",
+    "topic": "western",
     "angle": null,
-    "publish_at": "2026-09-07T13:00:00Z",
+    "publish_at": "2026-09-07T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
@@ -234,23 +234,13 @@
     "backfill": true
   },
   {
-    "topic": "national weather service september map",
+    "topic": "jason licht",
     "angle": null,
-    "publish_at": "2026-09-07T14:30:00Z",
+    "publish_at": "2026-09-07T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.5,
-    "backfill": true
-  },
-  {
-    "topic": "harvey elliott",
-    "angle": null,
-    "publish_at": "2026-09-07T16:00:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.7,
+    "elapsed_seconds": 0.4,
     "backfill": true
   }
 ]
