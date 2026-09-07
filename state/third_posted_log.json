@@ -6077,6 +6077,25 @@
         "end": 52.1
       },
       "director_cut": true
+    },
+    "rejected-ironicproudvelociraptorhoneybadger-wriysbrgdl2j64mq": {
+      "source_url": "https://www.twitch.tv/fanum/clip/IronicProudVelociraptorHoneyBadger-wriYSbrGdL2j64mq",
+      "streamer": "fanum",
+      "title": "fanum almost got into an accident",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (just driving, no visible near-miss)",
+      "ts": "2026-09-07T16:28:26.325101+00:00"
+    },
+    "clip-20260907-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/IgnorantOutstandingSandstormSSSsss-5ApDlAbTzyC3vMtT",
+      "story_key": null,
+      "streamer": "sodapoppin",
+      "title": "Sodapoppin Elevator Plan Goes Completely Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-09-07T16:33:00.136733+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
