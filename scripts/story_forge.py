@@ -474,6 +474,9 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "  gauge       — a rate as a NEEDLE sweeping toward a red zone. "
            "region 'full'. Use for a speed or a per-unit figure, not a "
            "quantity.\n"
+           "  skyline     — one item dwarfing the rest as a TOWER, with Data "
+           "tiny at its foot so the height has a human unit. region 'full'. "
+           "Use when one number is several times every other.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

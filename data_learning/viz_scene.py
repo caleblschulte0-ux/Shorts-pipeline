@@ -51,11 +51,11 @@ REGIONS: dict[str, tuple[int, int, int, int]] = {
 }
 _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "unit_figures", "balance", "dot_field", "race_track", "staircase",
-          "elevator", "burden", "gauge", "number", "bar", "bubble",
+          "elevator", "burden", "gauge", "skyline", "number", "bar", "bubble",
           "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
-             "elevator", "burden", "gauge"}
+             "elevator", "burden", "gauge", "skyline"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -64,7 +64,7 @@ _IMAGE_TYPES = {"object", "fill_object", "stack"}
 _ICON_TYPES = {"unit_figures", "dot_field"}
 # Drawn entirely from primitives — no subject, no icon, no network at all.
 _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
-                "burden", "gauge"}
+                "burden", "gauge", "skyline"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -926,6 +926,74 @@ def _series_points(insight, cap: int = 8):
     return items
 
 
+def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
+    """A SKYLINE: one thing dwarfing the rest, with Data tiny at its foot.
+
+    For `dominance`. A bar chart draws a 20x difference as a long rectangle and
+    a short one, and the viewer reads two lengths. A tower with the mascot
+    standing at the base gives the height a HUMAN UNIT — "that is forty of him"
+    — which is the difference between knowing the ratio and feeling it.
+
+    The host is deliberately small here. Everywhere else in this kit he is the
+    subject; here the point is that the number is bigger than him.
+    """
+    items = _ordered_items(insight)[:7]
+    if len(items) < 2:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    vmax = max(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 200, 340), by1 - 110
+    n = len(items)
+    w = (bx1 - bx0 - 120) / n
+    x0 = bx0 + 60
+    e = settle(reveal)
+    tall_xy = None
+    for i, (p, v) in enumerate(zip(items, vals)):
+        h = (bot - top) * (v / vmax) * e
+        sx = int(x0 + i * w)
+        sy = int(bot - h)
+        lead = (i == 0)
+        d.rounded_rectangle([sx + 10, sy, int(sx + w - 10), bot], radius=8,
+                            fill=_rgba(color if lead else ACCENT, 240))
+        # windows, so it reads as a BUILDING and not a bar
+        rows = int(h // 46)
+        for r_ in range(rows):
+            for c_ in range(2):
+                wx = int(sx + 26 + c_ * (w - 62) / 1.0)
+                wy = int(sy + 22 + r_ * 46)
+                if wy + 18 < bot - 12:
+                    d.rectangle([wx, wy, wx + 16, wy + 18],
+                                fill=_rgba(charts.CARD, 210))
+        na = max(0.0, min(1.0, (reveal - 0.3) / 0.3))
+        # The tallest tower reaches the top of the box, so its value goes
+        # INSIDE near the roof — above it, the label printed over the title.
+        if lead and h > 140:
+            d.text((int(sx + w / 2), sy + 46), charts._ulabel(v, unit),
+                   font=_pil_font(34), fill=_rgba(charts.CARD, int(255 * na)),
+                   anchor="mm")
+        else:
+            d.text((int(sx + w / 2), sy - 26), charts._ulabel(v, unit),
+                   font=_pil_font(34), fill=_rgba(TEXT, int(240 * na)),
+                   anchor="mm")
+        d.text((int(sx + w / 2), bot + 32), str(getattr(p, "label", ""))[:9],
+               font=_pil_font(28), fill=_rgba(TEXT, int(200 * na)), anchor="mm")
+        if lead:
+            tall_xy = (int(sx + w / 2), sy)
+    # Data at the foot of the tallest, small enough that the height means
+    # something. He is the ruler, not the subject.
+    host = scene_host("point", reveal)
+    if host is not None and tall_xy is not None:
+        mh = 140
+        mw = int(host.width * mh / host.height)
+        # IN FRONT of the tallest, not beside it — offsetting by a column
+        # width put him at the foot of the SECOND building, which is the one
+        # comparison this machine exists to make.
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(tall_xy[0] - mw // 2), int(bot - mh)))
+    return (vals[0], "art", tall_xy[0], tall_xy[1]) if tall_xy else None
+
+
 def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
     """A STAIRCASE: progress becomes height, and Data climbs it.
 
@@ -1654,6 +1722,7 @@ staircase_scene = _machine_scene("staircase", 3)
 elevator_scene = _machine_scene("elevator", 3)
 burden_scene = _machine_scene("burden", 2)
 gauge_scene = _machine_scene("gauge", 1)
+skyline_scene = _machine_scene("skyline", 2)
 
 
 def race_scene(insight) -> dict:
@@ -1881,9 +1950,10 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 continue
             t = el.get("type")
             box = boxes[i]
-            if t in ("staircase", "elevator", "burden", "gauge"):
+            if t in ("staircase", "elevator", "burden", "gauge", "skyline"):
                 _fn = {"staircase": draw_staircase, "elevator": draw_elevator,
-                       "burden": draw_burden, "gauge": draw_gauge}[t]
+                       "burden": draw_burden, "gauge": draw_gauge,
+                       "skyline": draw_skyline}[t]
                 an = _fn(d, canvas, box, insight,
                          _color_for(insight.items[0].label, insight)
                          if insight.items else HIGHLIGHT, lr, insight.unit)

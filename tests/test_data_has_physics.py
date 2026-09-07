@@ -249,5 +249,54 @@ class TheRace(unittest.TestCase):
         self.assertIn("scene_host", inspect.getsource(vs.draw_race))
 
 
+class TheSkyline(unittest.TestCase):
+    """One thing dwarfing the rest, with Data tiny at its foot."""
+
+    def test_dominance_reaches_for_it(self):
+        ins = _things([("Ants", 900), ("Termites", 95), ("Humans", 60),
+                       ("Cattle", 40)], "million tonnes", "biomass")
+        self.assertEqual(rel.classify(ins), rel.DOMINANCE)
+        self.assertEqual(sr._MACHINES["dominance"][0], "skyline_scene")
+
+    def test_it_needs_something_to_dwarf(self):
+        self.assertEqual(vs.skyline_scene(_Ins([_Pt("A", 1)])), {})
+
+    def test_the_host_is_deliberately_small_here(self):
+        """Everywhere else in this kit he is the subject. Here the point is
+        that the number is bigger than him — he is the ruler."""
+        import inspect
+        src = inspect.getsource(vs.draw_skyline)
+        self.assertIn("mh = 140", src)
+
+    def test_it_is_on_the_shared_motion_curve(self):
+        import inspect
+        self.assertIn("settle(reveal)", inspect.getsource(vs.draw_skyline))
+
+
+class EveryMachineIsWiredEndToEnd(unittest.TestCase):
+    """A machine that renders but is unreachable is the exact failure CLAUDE.md
+    calls rule zero — and the scene kit already had three of those."""
+
+    def test_every_token_has_a_builder(self):
+        for token, builder in sr._SCENE_TOKENS.items():
+            self.assertTrue(callable(getattr(vs, builder, None)), token)
+
+    def test_every_machine_named_by_the_router_can_render(self):
+        for kinds in sr._MACHINES.values():
+            for k in kinds:
+                self.assertTrue(k in sr._SCENE_TOKENS or k in sr._SELF_HOSTED,
+                                f"{k!r} renders nothing")
+
+    def test_every_drawn_element_is_dispatched(self):
+        """Registering a type without adding it to the render dispatch makes
+        every scene using it fall through to the chart fallback, silently."""
+        import inspect
+        src = inspect.getsource(vs)
+        body = src[src.index("for i, el in enumerate(els):"):]
+        body = body[:body.index("# CAMERA PUSH")]
+        for kind in sorted(vs._DRAWN_TYPES | vs._ICON_TYPES):
+            self.assertIn(f'"{kind}"', body, f"{kind!r} is never dispatched")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

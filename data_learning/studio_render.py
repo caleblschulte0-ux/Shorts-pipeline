@@ -1552,7 +1552,7 @@ _ALT_DEPICTION = {
 _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "balance_scene", "rate_scene", "race_scene",
                 "staircase_scene", "elevator_scene", "burden_scene",
-                "gauge_scene")
+                "gauge_scene", "skyline_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1561,7 +1561,7 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
 _SCENE_TOKENS = {t: t for t in (
     "units_scene", "balance_scene", "rate_scene", "race_scene",
     "staircase_scene", "elevator_scene", "burden_scene",
-    "gauge_scene",
+    "gauge_scene", "skyline_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1641,7 +1641,9 @@ _MACHINES = {
     # a share of a countable whole -> figures, some lit
     "share":     ("rate_scene", "fill_vessel"),
     # one item dwarfing the rest -> looked up at, not raced
-    "dominance": ("units_scene", "balance_scene"),
+    # one item dwarfing the rest -> a tower you look UP at, with him at its
+    # foot for scale
+    "dominance": ("skyline_scene", "units_scene", "balance_scene"),
     # a rate -> a needle that sweeps (see `is_rate`, applied below)
     "rate":      ("gauge_scene", "rate_scene"),
     "volatile":  (),                    # a line is the honest picture
