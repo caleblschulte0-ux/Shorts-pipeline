@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7",
+    "path": "exchange/bundles/20260907/bundle.json"
+  },
+  "request_id": "reddit-bakery-empty-box-refund-s1-0c67c1e3766f",
+  "safe_request_id": "reddit-bakery-empty-box-refund-s1-0c67c1e3766f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e1a19935825c2a29c255577dc5069be0a58cac0c93f757933be4fc8ee15794ea",
+  "prompt_used": "An editorial illustration for a short-form video: toddler messy face frosting. It accompanies the narration: \"blue frosting smeared across his face\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+    "filename": "20260907__reddit-bakery-empty-box-refund-s1-0c67c1e3766f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=12-UeVOxlxTZyPusbmGZFMrfjIAilcHFy",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c78081d084c32b0039a2f70ae37c7834023ec81124cf89e446c384565cb89f9f",
+    "bytes": 1346507,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-09-07T11:23:45.856Z",
+  "error": null,
+  "retryable": false
+}
