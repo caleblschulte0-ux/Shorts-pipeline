@@ -6,11 +6,11 @@
     "publish_at": "2026-09-07T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A genuinely good race \u2014 clean crossover, honest source, real leaderboard flip \u2014 sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.",
-    "elapsed_seconds": 120.6,
+    "error": "showrunner_block: showrunner BLOCK: A genuinely good crossover race \u2014 90 to 5 versus 6 to 88 with a real leaderboard flip \u2014 undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.",
+    "elapsed_seconds": 124.7,
     "package_path": "state/trending_packages/20260907/01_graph-norway-ev-buried-gas-cars.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-122124_norway_s_evs_buried_gas_cars_on_the_road.mp4",
+    "video_path": "output/daily_20260907-124424_norway_s_evs_buried_gas_cars_on_the_road.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -28,8 +28,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A genuinely good race \u2014 clean crossover, honest source, real leaderboard flip \u2014 sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.",
-      "score": 74
+      "reason": "showrunner BLOCK: A genuinely good crossover race \u2014 90 to 5 versus 6 to 88 with a real leaderboard flip \u2014 undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.",
+      "score": 61
     },
     "blocked": true
   },
@@ -39,12 +39,12 @@
     "format": "graph_race",
     "publish_at": "2026-09-07T13:00:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/OsNM4XvYYdU",
+    "video_url": "https://youtube.com/shorts/j2LqyUxwrro",
     "error": null,
-    "elapsed_seconds": 118.2,
+    "elapsed_seconds": 129.5,
     "package_path": "state/trending_packages/20260907/02_graph-china-passed-us-exports.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-122325_china_s_exports_blew_past_america_s.mp4",
+    "video_path": "output/daily_20260907-124629_china_s_exports_blew_past_america_s.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -63,7 +63,7 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 78
+      "score": 82
     },
     "channel": "default"
   },
@@ -73,12 +73,12 @@
     "format": "graph_race",
     "publish_at": "2026-09-07T14:30:00Z",
     "ok": true,
-    "video_url": "https://youtube.com/shorts/Dxfq3nQHUiA",
+    "video_url": "https://youtube.com/shorts/x_dnDM1NHLE",
     "error": null,
-    "elapsed_seconds": 112.5,
+    "elapsed_seconds": 118.3,
     "package_path": "state/trending_packages/20260907/03_graph-bottled-water-buried-soda.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-122523_bottled_water_buried_soda_in_america.mp4",
+    "video_path": "output/daily_20260907-124838_bottled_water_buried_soda_in_america.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -97,7 +97,7 @@
     "showrunner": {
       "blocked": false,
       "reason": "",
-      "score": 82
+      "score": 78
     },
     "channel": "default"
   },
@@ -109,10 +109,10 @@
     "ok": false,
     "video_url": null,
     "error": "showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "elapsed_seconds": 64.4,
+    "elapsed_seconds": 65.8,
     "package_path": "state/trending_packages/20260907/04_graph-solar-cheaper-than-coal.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-122716_solar_power_got_cheaper_than_coal.mp4",
+    "video_path": "output/daily_20260907-125036_solar_power_got_cheaper_than_coal.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 14.375,
@@ -140,16 +140,16 @@
     "title": "He Made Me Notarize Everything. So I Did.",
     "format": "reddit",
     "publish_at": "2026-09-07T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/BMmPt5ebius",
-    "error": null,
-    "elapsed_seconds": 397.5,
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.",
+    "elapsed_seconds": 241.0,
     "package_path": "state/trending_packages/20260907/05_reddit-landlord-notary-clause-backfire.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-123024_he_made_me_notarize_everything__so_i_did.mp4",
+    "video_path": "output/daily_20260907-125152_he_made_me_notarize_everything__so_i_did.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.567,
+      "duration": 47.4,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -160,35 +160,35 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.4
+      "loudness_lufs": -23.9
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 79
+      "blocked": true,
+      "reason": "showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.",
+      "score": 70
     },
-    "channel": "default"
+    "blocked": true
   },
   {
     "topic": "She Ate The Cake, Then Demanded A Refund",
     "title": "She Ate The Cake, Then Demanded A Refund",
     "format": "reddit",
-    "publish_at": "2026-09-07T17:30:00Z",
-    "ok": false,
-    "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.",
-    "elapsed_seconds": 288.8,
+    "publish_at": "2026-09-07T16:00:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/OCBoVlNL3yw",
+    "error": null,
+    "elapsed_seconds": 263.0,
     "package_path": "state/trending_packages/20260907/06_reddit-bakery-empty-box-refund.json",
     "source": "brain",
-    "video_path": "output/daily_20260907-123514_she_ate_the_cake__then_demanded_a_refund.mp4",
+    "video_path": "output/daily_20260907-125555_she_ate_the_cake__then_demanded_a_refund.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 42.8,
+      "duration": 46.133,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -199,48 +199,48 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.5
+      "loudness_lufs": -24.7
     },
     "qa": {
       "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
+      "verdict": "ok",
+      "reason": "short"
     },
     "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.",
-      "score": 79
+      "blocked": false,
+      "reason": "",
+      "score": 75
     },
-    "blocked": true
+    "channel": "default"
   },
   {
-    "topic": "jared kushner",
+    "topic": "western",
     "angle": null,
     "publish_at": "2026-09-07T17:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.8,
+    "elapsed_seconds": 0.4,
     "backfill": true
   },
   {
-    "topic": "western",
+    "topic": "ap top 25",
     "angle": null,
     "publish_at": "2026-09-07T19:00:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.4,
+    "elapsed_seconds": 1.6,
     "backfill": true
   },
   {
-    "topic": "jason licht",
+    "topic": "prince harry news",
     "angle": null,
     "publish_at": "2026-09-07T20:30:00Z",
     "ok": false,
     "video_url": null,
     "error": "HTTPError: HTTP Error 401: Unauthorized",
-    "elapsed_seconds": 0.4,
+    "elapsed_seconds": 0.3,
     "backfill": true
   }
 ]

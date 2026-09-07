@@ -11,30 +11,30 @@
 - **China's Exports Blew Past America's**
   - topic: China's Exports Blew Past America's
   - publishes: `2026-09-07T13:00:00Z`
-  - https://youtube.com/shorts/OsNM4XvYYdU
-  - took: 118.2s
+  - https://youtube.com/shorts/j2LqyUxwrro
+  - took: 129.5s
 - **Bottled Water Buried Soda In America**
   - topic: Bottled Water Buried Soda In America
   - publishes: `2026-09-07T14:30:00Z`
-  - https://youtube.com/shorts/Dxfq3nQHUiA
-  - took: 112.5s
-- **He Made Me Notarize Everything. So I Did.**
-  - topic: He Made Me Notarize Everything. So I Did.
+  - https://youtube.com/shorts/x_dnDM1NHLE
+  - took: 118.3s
+- **She Ate The Cake, Then Demanded A Refund**
+  - topic: She Ate The Cake, Then Demanded A Refund
   - publishes: `2026-09-07T16:00:00Z`
-  - https://youtube.com/shorts/BMmPt5ebius
-  - took: 397.5s
+  - https://youtube.com/shorts/OCBoVlNL3yw
+  - took: 263.0s
 
 ## Failed
 - **Norway's EVs Buried Gas Cars On The Road**
-  - error: `showrunner_block: showrunner BLOCK: A genuinely good race — clean crossover, honest source, real leaderboard flip — sabotaged by two junk logo cutouts glued to the line tips and a hook that is just the chart before it starts.`
+  - error: `showrunner_block: showrunner BLOCK: A genuinely good crossover race — 90 to 5 versus 6 to 88 with a real leaderboard flip — undercut by scraped corporate logos standing in for the two series and a hook that opens on an empty black chart.`
 - **Solar Power Got Cheaper Than Coal**
   - error: `showrunner_block: showrunner BLOCK: blocked before vision review: duplicate_ratio 0.491 > 0.45 (phase-1 ceiling) — too many held frames`
-- **She Ate The Cake, Then Demanded A Refund**
-  - error: `showrunner_block: showrunner BLOCK: Solid reddit-story shell with real changing illustrations, but one blank-paper shot says nothing and the ending is the same photo three times on a mid-sentence caption instead of a payoff.`
-- **jared kushner**
-  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **He Made Me Notarize Everything. So I Did.**
+  - error: `showrunner_block: showrunner BLOCK: Relevant, well-matched story b-roll and clean captions, but the gameplay pane goes to near-black for a large mid-section and the ending holds one gavel still while the caption does all the work.`
 - **western**
   - error: `HTTPError: HTTP Error 401: Unauthorized`
-- **jason licht**
+- **ap top 25**
+  - error: `HTTPError: HTTP Error 401: Unauthorized`
+- **prince harry news**
   - error: `HTTPError: HTTP Error 401: Unauthorized`
 
