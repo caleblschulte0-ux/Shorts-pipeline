@@ -1,0 +1,42 @@
+{
+  "key": "black_hole_collisions",
+  "title": "Cumulative confirmed gravitational-wave black hole mergers detected",
+  "unit": "count",
+  "geography": "Global (LIGO/Virgo/KAGRA observatories)",
+  "time_coverage": "2015-2026",
+  "source": {
+    "name": "Gravitational-Wave Transient Catalog (GWTC)",
+    "publisher": "LIGO Scientific Collaboration / Virgo Collaboration / KAGRA Collaboration",
+    "url": "https://www.ligo.org",
+    "officiality": "official",
+    "access_date": "2026-09-07"
+  },
+  "notes": "First detection (GW150914) announced 2015. GWTC-1 (2019) totaled 11 confident events from the O1/O2 runs. GWTC-3 (2021), covering through the O3 run, brought the running total to about 90. GWTC-5.0, announced by LIGO in 2026, brings the cumulative total of confirmed gravitational-wave events to 390. Figures are the collaboration's own published cumulative catalog counts.",
+  "points": [
+    {
+      "label": "2015",
+      "value": 1,
+      "period": "2015"
+    },
+    {
+      "label": "2017",
+      "value": 3,
+      "period": "2017"
+    },
+    {
+      "label": "2019",
+      "value": 11,
+      "period": "2019"
+    },
+    {
+      "label": "2021",
+      "value": 90,
+      "period": "2021"
+    },
+    {
+      "label": "2026",
+      "value": 390,
+      "period": "2026"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "key": "firefly_light_pollution_index",
+  "title": "Global night-sky brightness index (2011 = 100)",
+  "unit": "index",
+  "geography": "Global (citizen-science sky brightness)",
+  "time_coverage": "2011-2022",
+  "source": {
+    "name": "Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022",
+    "publisher": "Kyba et al., Science (2023), via Globe at Night citizen-science data",
+    "url": "https://www.science.org/doi/10.1126/science.abq7781",
+    "officiality": "illustrative",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Illustrative index compounding the study's measured global average rate of night-sky brightening -- 9.6% per year, 2011-2022, from Globe at Night citizen star-counts -- forward from a 2011 baseline of 100. The 9.6%/year rate itself is the peer-reviewed, published figure; the index path between years is a straight compounding of that rate, not independently measured year by year.",
+  "points": [
+    {
+      "label": "2011",
+      "value": 100,
+      "period": "2011"
+    },
+    {
+      "label": "2013",
+      "value": 120,
+      "period": "2013"
+    },
+    {
+      "label": "2015",
+      "value": 144,
+      "period": "2015"
+    },
+    {
+      "label": "2017",
+      "value": 173,
+      "period": "2017"
+    },
+    {
+      "label": "2019",
+      "value": 208,
+      "period": "2019"
+    },
+    {
+      "label": "2022",
+      "value": 274,
+      "period": "2022"
+    }
+  ]
+}

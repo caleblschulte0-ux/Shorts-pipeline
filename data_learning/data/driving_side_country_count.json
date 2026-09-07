@@ -1,0 +1,25 @@
+{
+  "key": "driving_side_country_count",
+  "title": "Countries and territories by which side of the road they drive on",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "current",
+  "source": {
+    "name": "Left- and right-hand traffic",
+    "publisher": "worldstandards.eu / worldpopulationreview.com compilation of national traffic laws",
+    "url": "https://www.worldstandards.eu/cars/driving-on-the-left/",
+    "officiality": "secondary",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Approximately 76 countries and territories drive on the left (mostly former British territories), versus roughly 163 that drive on the right. Figures approximate as widely compiled and reported; totals vary slightly by source depending on how small territories are counted.",
+  "points": [
+    {
+      "label": "Drive on the right",
+      "value": 163
+    },
+    {
+      "label": "Drive on the left",
+      "value": 76
+    }
+  ]
+}

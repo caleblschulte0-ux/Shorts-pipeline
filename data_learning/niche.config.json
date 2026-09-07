@@ -26240,6 +26240,246 @@
           "ascending": false
         }
       ]
+    },
+    {
+      "slug": "black-holes-in-galaxy",
+      "title": "Our Galaxy Is Hiding Millions Of Black Holes",
+      "hook": "There might be 100 million black holes near us.",
+      "closing": "Somewhere out there, one just went quiet again.",
+      "question": "How many black holes do you think are within 1,000 light-years of us? Guess below.",
+      "caption": "Scientists estimate our galaxy alone might be hiding 100 million black holes -- and we've directly confirmed only about 400 of them. Here's how we went from finding a dozen in a century to hundreds in under ten years, just by learning to feel them collide instead of trying to see them. What's your guess for how close the nearest one really is?",
+      "hashtags": [
+        "blackholes",
+        "space",
+        "astronomy",
+        "science",
+        "milkyway",
+        "gravitationalwaves",
+        "nasa",
+        "physics",
+        "universe",
+        "spacefacts",
+        "ligo",
+        "cosmos",
+        "didyouknow",
+        "mindblown",
+        "astrophysics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "black_hole_collisions",
+          "params": {
+            "file": "black_hole_collisions.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 FIRST CONTACT",
+          "topic": "black hole collisions detected",
+          "say": "In 2015, we felt a black hole collision ripple through space for the first time ever. By now, that count has climbed from 1 confirmed collision to 390."
+        },
+        {
+          "source": "offline",
+          "key": "black_hole_detection_methods",
+          "params": {
+            "file": "black_hole_detection_methods.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 TWO METHODS",
+          "topic": "how we've found them",
+          "say": "For a century, we could only catch a black hole by light -- watching it devour a nearby star. That found about a dozen. Gravitational waves found 390 in under ten years."
+        },
+        {
+          "source": "offline",
+          "key": "black_hole_hidden_total",
+          "params": {
+            "file": "black_hole_hidden_total.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 THE HIDDEN MAJORITY",
+          "topic": "how many are still hidden",
+          "say": "Scientists estimate our galaxy alone holds about 100 million black holes. We've confirmed roughly 400 -- the rest are just out there, silent and completely dark."
+        }
+      ]
+    },
+    {
+      "slug": "fireflies-losing-their-glow",
+      "title": "Where Did All The Fireflies Go?",
+      "hook": "You might be watching the last fireflies.",
+      "closing": "Turn off the porch light. Just this once.",
+      "question": "Have you noticed fewer fireflies where you grew up? Tell me below.",
+      "caption": "Global light pollution is getting about 9.6% brighter every single year -- and it might be one reason 1 in 3 North American firefly species could be at risk of extinction, per a 2021 Xerces Society assessment. We've only formally studied 132 of the roughly 172 known species, so the real number could be worse. Notice fewer fireflies these days?",
+      "hashtags": [
+        "fireflies",
+        "insects",
+        "nature",
+        "wildlife",
+        "lightpollution",
+        "conservation",
+        "biodiversity",
+        "summer",
+        "nightsky",
+        "science",
+        "ecology",
+        "extinctionrisk",
+        "didyouknow",
+        "naturefacts",
+        "environment"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "firefly_light_pollution_index",
+          "params": {
+            "file": "firefly_light_pollution_index.json"
+          },
+          "insight_type": "trend",
+          "role": "1 \u00b7 THE SKY IS BRIGHTER",
+          "topic": "night sky brightness",
+          "say": "Every year, the night sky gets about 9.6 percent brighter with artificial light. Compound that for a decade, and some regions saw their skyglow nearly triple."
+        },
+        {
+          "source": "offline",
+          "key": "firefly_extinction_risk_share",
+          "params": {
+            "file": "firefly_extinction_risk_share.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE COST",
+          "topic": "firefly extinction risk",
+          "say": "A 2021 assessment found 14 percent of North American firefly species already formally threatened. Counting the ones we haven't fully studied, Xerces estimates 1 in 3 species may be at risk."
+        },
+        {
+          "source": "offline",
+          "key": "firefly_species_assessed_share",
+          "params": {
+            "file": "firefly_species_assessed_share.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 THE BLIND SPOT",
+          "topic": "how much we've actually studied",
+          "say": "We've only assessed 132 of the roughly 172 known firefly species in the US and Canada. For the rest, we genuinely don't know if they're already gone."
+        }
+      ]
+    },
+    {
+      "slug": "driving-side-of-the-road",
+      "title": "Only 30% Of The World Still Drives On The Left",
+      "hook": "You'd think every road worked the same.",
+      "closing": "Somewhere, a rental car agency is still confused.",
+      "question": "Have you ever driven on the 'wrong' side abroad? Tell me how it went.",
+      "caption": "Only about 30% of the world's population drives on the left -- and it gets even more lopsided once you count roads instead of people: right-hand traffic covers roughly 75% of the world's roadways. Most left-hand countries are old British colonial networks that were simply never worth the cost of switching. Ever driven on the other side abroad?",
+      "hashtags": [
+        "drivingrules",
+        "roadrules",
+        "geography",
+        "traveltips",
+        "didyouknow",
+        "worldfacts",
+        "trafficlaws",
+        "britishempire",
+        "cartravel",
+        "roadtrip",
+        "data",
+        "statistics",
+        "funfacts",
+        "shorts",
+        "geopolitics"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "driving_side_population_share",
+          "params": {
+            "file": "driving_side_population_share.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 THE SPLIT",
+          "topic": "population by traffic side",
+          "say": "Only about 30 percent of the world's population drives on the left. The other 70 percent, including most of the biggest countries, drives on the right."
+        },
+        {
+          "source": "offline",
+          "key": "driving_side_country_count",
+          "params": {
+            "file": "driving_side_country_count.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 BY THE COUNTRY",
+          "topic": "countries by traffic side",
+          "say": "It's not 50/50 either. About 163 countries and territories drive on the right, versus 76 on the left -- mostly places once tied to the British Empire."
+        },
+        {
+          "source": "offline",
+          "key": "driving_side_road_share",
+          "params": {
+            "file": "driving_side_road_share.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 EVEN THE ROADS AGREE",
+          "topic": "roadway miles by traffic side",
+          "say": "It's even more lopsided in road miles: right-hand traffic covers about 75 percent of the world's roadways. Left-hand traffic survives mostly on networks never worth the cost of switching."
+        }
+      ]
+    },
+    {
+      "slug": "metric-system-holdouts",
+      "title": "The US Is One Of Only Three Countries Not Using The Metric System",
+      "hook": "Ever wonder why America still uses inches?",
+      "closing": "Pick a system. Any system. Just pick one.",
+      "question": "Would you support the US finally switching to metric? Vote below.",
+      "caption": "Only three countries have never officially adopted the metric system: the US, Liberia, and Myanmar -- about 5% of the planet's population. Mixing up units isn't just confusing, it's cost real money and nearly cost real lives: a $327.6 million Mars orbiter in 1999, and a passenger jet that ran out of fuel mid-flight in 1983. Should the US finally switch?",
+      "hashtags": [
+        "metricsystem",
+        "measurement",
+        "science",
+        "unitedstates",
+        "history",
+        "engineering",
+        "nasa",
+        "aviation",
+        "didyouknow",
+        "funfacts",
+        "unitconversion",
+        "sciencefacts",
+        "geography",
+        "shorts",
+        "technology"
+      ],
+      "segments": [
+        {
+          "source": "offline",
+          "key": "metric_holdout_population_share",
+          "params": {
+            "file": "metric_holdout_population_share.json"
+          },
+          "insight_type": "share",
+          "role": "1 \u00b7 THE HOLDOUTS",
+          "topic": "countries without official metric adoption",
+          "say": "Only three countries in the world have never officially adopted the metric system: the United States, Liberia, and Myanmar. Together, that's about 5 percent of the planet's population."
+        },
+        {
+          "source": "offline",
+          "key": "metric_mars_orbiter_altitude",
+          "params": {
+            "file": "metric_mars_orbiter_altitude.json"
+          },
+          "insight_type": "comparison",
+          "role": "2 \u00b7 THE $327 MILLION MISTAKE",
+          "topic": "Mars Climate Orbiter altitude",
+          "say": "In 1999, NASA lost a $327.6 million Mars orbiter because one team calculated in pound-force and another in newtons. It was supposed to pass 226 kilometers above Mars. It hit just 57."
+        },
+        {
+          "source": "offline",
+          "key": "metric_gimli_glider_fuel",
+          "params": {
+            "file": "metric_gimli_glider_fuel.json"
+          },
+          "insight_type": "comparison",
+          "role": "3 \u00b7 THE PLANE THAT RAN DRY",
+          "topic": "Gimli Glider fuel shortfall",
+          "say": "Four years later, a Canadian airliner loaded 20,400 pounds of fuel instead of the 45,000 it needed -- same kind of mix-up. It glided to a landing with everyone aboard alive."
+        }
+      ]
     }
   ],
   "videos": [

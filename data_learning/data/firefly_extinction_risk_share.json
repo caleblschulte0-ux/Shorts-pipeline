@@ -1,0 +1,25 @@
+{
+  "key": "firefly_extinction_risk_share",
+  "title": "Share of North American firefly species at risk of extinction",
+  "unit": "percent",
+  "geography": "United States and Canada",
+  "time_coverage": "2021 assessment",
+  "source": {
+    "name": "Evaluating firefly extinction risk: initial Red List assessments for North America",
+    "publisher": "Xerces Society / IUCN Firefly Specialist Group, PLOS ONE (2021)",
+    "url": "https://xerces.org/press/firefly-species-at-risk",
+    "officiality": "official",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Of 132 species formally assessed (77% of the ~172 described species in the US/Canada), 18 (about 14%) were classified Endangered or Vulnerable. Nearly half of assessed species were data-deficient; if those follow the same pattern as the studied ones, Xerces' own published estimate is that roughly 1 in 3 (29%) North American firefly species may be at risk -- the figure the Society itself led its press release with.",
+  "points": [
+    {
+      "label": "Confirmed threatened (2021 assessment)",
+      "value": 14
+    },
+    {
+      "label": "Projected at risk, data-deficient included",
+      "value": 29
+    }
+  ]
+}

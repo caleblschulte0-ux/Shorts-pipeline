@@ -1,0 +1,69 @@
+{
+  "format": "graph_race",
+  "slug": "graph-bottled-water-buried-soda",
+  "title": "Bottled Water Buried Soda In America",
+  "hook": "Water quietly beat soda",
+  "y_label": "US per-capita consumption (gallons/year)",
+  "duration": 13,
+  "source": "Beverage Marketing Corporation per-capita consumption tracking, as widely reported in US beverage-industry coverage. Bottled water consumption passed soda around 2016, ending soda's decades-long run as America's top-consumed packaged beverage. Figures approximate as publicly reported, rounded to the nearest tenth of a gallon.",
+  "years": [
+    1998,
+    2004,
+    2008,
+    2010,
+    2013,
+    2016,
+    2019,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Soda",
+      "color": "#c0392b",
+      "icon": null,
+      "values": [
+        54,
+        50,
+        46,
+        44,
+        40,
+        38.5,
+        38,
+        37
+      ]
+    },
+    {
+      "name": "Bottled Water",
+      "color": "#2e86de",
+      "icon": null,
+      "values": [
+        14,
+        24,
+        26,
+        28.3,
+        32,
+        39.3,
+        45.5,
+        48
+      ]
+    }
+  ],
+  "hashtags": [
+    "bottledwater",
+    "soda",
+    "beverages",
+    "healthtrends",
+    "nutrition",
+    "consumerhabits",
+    "sodaindustry",
+    "wellness",
+    "data",
+    "graph",
+    "statistics",
+    "usa",
+    "food",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

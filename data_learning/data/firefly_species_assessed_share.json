@@ -1,0 +1,25 @@
+{
+  "key": "firefly_species_assessed_share",
+  "title": "Firefly species formally assessed vs. still unstudied",
+  "unit": "count",
+  "geography": "United States and Canada",
+  "time_coverage": "2021",
+  "source": {
+    "name": "Evaluating firefly extinction risk: initial Red List assessments for North America",
+    "publisher": "Xerces Society / IUCN Firefly Specialist Group, PLOS ONE (2021)",
+    "url": "https://xerces.org/press/firefly-species-at-risk",
+    "officiality": "official",
+    "access_date": "2026-09-07"
+  },
+  "notes": "132 of the roughly 172 described firefly species in the US and Canada (about 77%) had enough data to be formally assessed for extinction risk as of the 2021 study; the rest remain data-deficient.",
+  "points": [
+    {
+      "label": "Species assessed",
+      "value": 132
+    },
+    {
+      "label": "Total described species",
+      "value": 172
+    }
+  ]
+}

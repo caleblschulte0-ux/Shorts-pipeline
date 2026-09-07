@@ -1,0 +1,73 @@
+{
+  "subreddit": "MaliciousCompliance",
+  "slug": "reddit-landlord-notary-clause-backfire",
+  "title": "He Made Me Notarize Everything. So I Did.",
+  "hashtags": [
+    "maliciouscompliance",
+    "landlord",
+    "tenantrights",
+    "rent",
+    "leaseclause",
+    "karma",
+    "redditstories",
+    "housing",
+    "smallclaims",
+    "shorts",
+    "satisfying",
+    "eviction"
+  ],
+  "script": "My landlord refused to fix a dead furnace in January, then dug up an obscure lease clause saying all tenant communication had to be hand-delivered and notarized, like he wanted an excuse to ignore me. Fine. I found a notary two blocks away, got a written repair demand notarized, and hand-delivered it to his office with a witness present. The same lease also said if he didn't fix a heating failure within twenty-four hours of notarized notice, I could hire someone myself and deduct the full cost from rent. He blew right past the deadline, so I called an emergency HVAC company, paid eleven hundred dollars, and mailed him the notarized invoice along with the following rent payment minus that exact amount. He tried filing for eviction over withheld rent, except the judge read the same clause he'd insisted on enforcing and dismissed the case in about four minutes, ordering him to cover my legal filing fees too.",
+  "shots": [
+    {
+      "phrase": "a dead furnace",
+      "query": "broken furnace repair"
+    },
+    {
+      "phrase": "hand-delivered and notarized",
+      "query": "notary stamp document"
+    },
+    {
+      "phrase": "hand-delivered it to his office with a witness present",
+      "query": "delivering documents office"
+    },
+    {
+      "phrase": "an emergency HVAC company",
+      "query": "hvac technician furnace"
+    },
+    {
+      "phrase": "paid eleven hundred dollars",
+      "query": "cash payment receipt"
+    },
+    {
+      "phrase": "filing for eviction",
+      "query": "eviction notice paper"
+    },
+    {
+      "phrase": "dismissed the case in about four minutes",
+      "query": "courtroom judge gavel"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "a dead furnace",
+      "text": "NO HEAT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "paid eleven hundred dollars",
+      "text": "$1,100",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "filing for eviction",
+      "text": "EVICTION FILED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "dismissed the case in about four minutes",
+      "text": "CASE DISMISSED",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "deadpan bureaucratic payback that snowballs into a courtroom loss"
+}

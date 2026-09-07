@@ -1,0 +1,25 @@
+{
+  "key": "black_hole_hidden_total",
+  "title": "Confirmed black holes vs. the estimated total in the Milky Way",
+  "unit": "count",
+  "geography": "Milky Way galaxy",
+  "time_coverage": "2026",
+  "source": {
+    "name": "2017 stellar-mass black hole census of the Milky Way",
+    "publisher": "University of California, Irvine",
+    "url": "https://www.snexplores.org/article/milky-way-galaxy-houses-100-million-black-holes",
+    "officiality": "reference",
+    "access_date": "2026-09-07"
+  },
+  "notes": "UC Irvine astronomers estimated in 2017 that the Milky Way holds roughly 100 million stellar-mass black holes, based on how many massive stars the galaxy has formed over its history (about 1 in 1,000 stars is massive enough to collapse into one). Combined light- and gravitational-wave detections had confirmed roughly 400 individual black holes as of the 2026 GWTC-5.0 catalog.",
+  "points": [
+    {
+      "label": "Confirmed so far",
+      "value": 400
+    },
+    {
+      "label": "Estimated in the Milky Way",
+      "value": 100000000
+    }
+  ]
+}

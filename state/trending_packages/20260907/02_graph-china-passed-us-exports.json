@@ -1,0 +1,69 @@
+{
+  "format": "graph_race",
+  "slug": "graph-china-passed-us-exports",
+  "title": "China's Exports Blew Past America's",
+  "hook": "One nation out-exported the US",
+  "y_label": "Goods exports ($ billions)",
+  "duration": 13,
+  "source": "Total goods (merchandise) exports as compiled from IMF/WTO/UN Comtrade trade statistics. China's annual export value overtook the United States' around 2007 and the gap has kept widening since, as China became the world's dominant manufacturing exporter. Figures approximate, rounded to the nearest reported billion; goods only, excludes services.",
+  "years": [
+    2000,
+    2003,
+    2005,
+    2007,
+    2009,
+    2011,
+    2015,
+    2023
+  ],
+  "series": [
+    {
+      "name": "United States",
+      "color": "#3c3b6e",
+      "icon": "US",
+      "values": [
+        782,
+        724,
+        904,
+        1148,
+        1056,
+        1480,
+        1505,
+        2020
+      ]
+    },
+    {
+      "name": "China",
+      "color": "#de2910",
+      "icon": "CN",
+      "values": [
+        249,
+        438,
+        762,
+        1220,
+        1202,
+        1899,
+        2282,
+        3380
+      ]
+    }
+  ],
+  "hashtags": [
+    "china",
+    "unitedstates",
+    "exports",
+    "globaltrade",
+    "economy",
+    "manufacturing",
+    "geopolitics",
+    "worldeconomy",
+    "supplychain",
+    "data",
+    "graph",
+    "statistics",
+    "business",
+    "shorts"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

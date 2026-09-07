@@ -1,0 +1,25 @@
+{
+  "key": "driving_side_road_share",
+  "title": "Share of the world's roadways by traffic side",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "current",
+  "source": {
+    "name": "Which side of the road do you drive on?",
+    "publisher": "Statista / worldstandards.eu compilation",
+    "url": "https://www.statista.com/chart/9261/which-side-of-the-road-do-you-drive-on/",
+    "officiality": "secondary",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Right-hand-traffic countries account for roughly 75% of the world's roadways, versus about 25% for left-hand-traffic countries -- a slightly bigger skew than the population split, since several large-land-area right-hand countries carry disproportionate road mileage. Figures approximate as widely compiled and reported.",
+  "points": [
+    {
+      "label": "Right-hand traffic roadways",
+      "value": 75
+    },
+    {
+      "label": "Left-hand traffic roadways",
+      "value": 25
+    }
+  ]
+}

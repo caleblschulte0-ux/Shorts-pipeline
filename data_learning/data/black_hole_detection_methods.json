@@ -1,0 +1,25 @@
+{
+  "key": "black_hole_detection_methods",
+  "title": "Black holes confirmed by light vs. by gravitational waves",
+  "unit": "count",
+  "geography": "Milky Way / observable universe",
+  "time_coverage": "pre-2015 vs. 2015-2026",
+  "source": {
+    "name": "UC Irvine stellar-mass black hole census; GWTC catalog",
+    "publisher": "University of California, Irvine; LIGO-Virgo-KAGRA Collaboration",
+    "url": "https://www.ligo.org",
+    "officiality": "reference",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Before gravitational-wave astronomy, only about a dozen stellar-mass black holes had been directly identified via light (X-ray binaries devouring a companion star), per the 2017 UC Irvine census widely reported by ScienceNews/BBC Science Focus. Listening for gravitational-wave collisions instead has confirmed 390 since 2015 (LIGO-Virgo-KAGRA GWTC-5.0, 2026).",
+  "points": [
+    {
+      "label": "Found by light (before 2015)",
+      "value": 12
+    },
+    {
+      "label": "Found by gravity waves (2015-2026)",
+      "value": 390
+    }
+  ]
+}

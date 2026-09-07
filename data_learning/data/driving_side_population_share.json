@@ -1,0 +1,25 @@
+{
+  "key": "driving_side_population_share",
+  "title": "Share of world population by which side of the road they drive on",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "current",
+  "source": {
+    "name": "Which side of the road do you drive on?",
+    "publisher": "Statista / worldstandards.eu compilation of national traffic laws",
+    "url": "https://www.statista.com/chart/9261/which-side-of-the-road-do-you-drive-on/",
+    "officiality": "secondary",
+    "access_date": "2026-09-07"
+  },
+  "notes": "Roughly 30% of the world's population lives in a country that drives on the left; the remaining 70% drives on the right. Figures approximate as widely compiled and reported.",
+  "points": [
+    {
+      "label": "Left-hand traffic",
+      "value": 30
+    },
+    {
+      "label": "Right-hand traffic",
+      "value": 70
+    }
+  ]
+}
