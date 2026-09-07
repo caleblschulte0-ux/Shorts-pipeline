@@ -1515,6 +1515,26 @@
       ],
       "words_first_10s": 20,
       "scene_changes_before_5s": 3
+    },
+    "four-day-workweek-spreads": {
+      "url": "https://youtube.com/shorts/Jyg6N-3xga8",
+      "title": "The Four-Day Workweek Just Passed Its Biggest Test (3 Charts)",
+      "at": "2026-09-07T21:28:14.433575+00:00",
+      "publish_at": "2026-09-07T21:58:38Z",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 38.5,
+      "hook": "stake",
+      "topic_category": "records",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:friday-empty-desk-flip",
+        "mechanic:company-badge-wall-share",
+        "mechanic:gauge-duel-before-after"
+      ],
+      "words_first_10s": 8,
+      "scene_changes_before_5s": 3
     }
   }
 }
