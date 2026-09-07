@@ -898,6 +898,11 @@ READ_BY = 0.62
 # sentence ran long — so the still tail is capped in seconds and the build
 # simply keeps going on a longer visual.
 MAX_STILL_TAIL = 2.2       # seconds a finished chart may sit before the cut
+# Where the recap goes during the closing. The card is a 900x320 bubble ending
+# at y=470; the foot band with the question and CTA starts at 1683. This sits
+# between them, centred, in space these frames were leaving empty.
+RECAP_SCALE = 0.62
+RECAP_Y = 520
 
 
 def _full_by(span: float) -> float:
@@ -2312,9 +2317,46 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     f"fade=t=in:st={t0:.2f}:d=0.12:alpha=1,"
                     f"fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1"
                     f"[{lab}]")
-                fc.append(
-                    f"[{prev}][{lab}]overlay=x={vx}:y={vy}:"
-                    f"enable='between(t,{t0:.2f},{t1:.2f})'[b{i}_{j}]")
+                # THE CLOSING CARD OWNS THE FRAME.
+                #
+                # The last visual runs into the closing window (that is what
+                # `lead_payoff` is for — a recap behind the takeaway beats a
+                # mascot on a void), and the card is a 900x320 bubble at the
+                # TOP of that frame. So the two competed: the card printed over
+                # the chart's heading, clipped the host's head, and the balance
+                # beam ran out from under it. An earlier pass moved the
+                # question and CTA down to the foot band for exactly this
+                # reason and left the bubble where it was.
+                #
+                # Dimming the recap was the first attempt and it was wrong
+                # twice: the card is OPAQUE, so the problem was never text
+                # legibility — it was the card eating the top third of the
+                # picture underneath — and the recap turned out to be what
+                # carried the closing's motion, so fading it to 30% produced a
+                # 54-frame frozen stretch against a 45 ceiling.
+                #
+                # So the recap MOVES instead. During the closing it shrinks and
+                # drops below the card, into the lower half that every one of
+                # these frames was leaving empty anyway. Nothing overlaps,
+                # nothing dims, and the frame finally uses its bottom.
+                _close0 = windows[-1][0] if windows else t1
+                if t1 - _close0 > 0.35 and t0 < _close0:
+                    _rw = int(vw * RECAP_SCALE)
+                    _rh = int(vh * RECAP_SCALE)
+                    _rx = (W - _rw) // 2
+                    fc.append(f"[{lab}]split=2[{lab}a][{lab}b]")
+                    fc.append(f"[{lab}b]scale={_rw}:{_rh}[{lab}d]")
+                    fc.append(
+                        f"[{prev}][{lab}a]overlay=x={vx}:y={vy}:"
+                        f"enable='between(t,{t0:.2f},{_close0:.2f})'"
+                        f"[b{i}_{j}p]")
+                    fc.append(
+                        f"[b{i}_{j}p][{lab}d]overlay=x={_rx}:y={RECAP_Y}:"
+                        f"enable='between(t,{_close0:.2f},{t1:.2f})'[b{i}_{j}]")
+                else:
+                    fc.append(
+                        f"[{prev}][{lab}]overlay=x={vx}:y={vy}:"
+                        f"enable='between(t,{t0:.2f},{t1:.2f})'[b{i}_{j}]")
                 prev = f"b{i}_{j}"
                 n_visuals += 1
         print(f"[studio] {n_visuals} distinct visuals, each shown once",

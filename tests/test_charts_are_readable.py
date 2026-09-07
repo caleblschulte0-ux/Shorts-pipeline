@@ -159,6 +159,48 @@ class UnitsTravelWithTheNumber(unittest.TestCase):
         self.assertEqual(bad, [], f"value labels without units: {bad}")
 
 
+class TheClosingCardDoesNotEatTheRecap(unittest.TestCase):
+    """The last visual runs into the closing window on purpose — a recap behind
+    the takeaway beats a mascot on a void — and the card is an OPAQUE 900x320
+    bubble at the top of that same frame. So the card ate the chart's heading,
+    clipped the host's head, and the balance beam ran out from under it."""
+
+    # The ASS closing bubble, from build_story_ass: _round_rect_tail(90, 150,
+    # 990, 470, ...) with a tail to y=588.
+    CARD_BOTTOM = 470
+    FOOT_BAND_TOP = 1683           # question at 1745, CTA under it, sources
+
+    def test_the_recap_starts_below_the_card(self):
+        self.assertGreater(sr.RECAP_Y, self.CARD_BOTTOM,
+                           "the recap is back under the closing bubble")
+
+    def test_the_recap_ends_above_the_foot_band(self):
+        bottom = sr.RECAP_Y + sr.CHART_H * sr.RECAP_SCALE
+        self.assertLess(bottom, self.FOOT_BAND_TOP,
+                        f"the recap runs to {bottom:.0f}, into the CTA")
+
+    def test_it_is_repositioned_not_dimmed(self):
+        """Dimming was the first attempt and it was wrong twice: the card is
+        opaque, so the problem was never text legibility, and the recap turned
+        out to be what carried the closing's motion — fading it to 30% produced
+        a 54-frame frozen stretch against a 45 ceiling."""
+        src = (_REPO / "data_learning" / "studio_render.py").read_text()
+        blk = src[src.index("THE CLOSING CARD OWNS THE FRAME"):]
+        blk = blk[:blk.index("n_visuals += 1")]
+        self.assertIn("scale=", blk)
+        self.assertNotIn("colorchannelmixer", blk,
+                         "dimming the recap starves the closing of motion")
+
+    def test_a_visual_that_does_not_reach_the_closing_is_untouched(self):
+        """Only the LAST visual runs into the closing. A fix that re-laid every
+        span would move charts nobody complained about."""
+        src = (_REPO / "data_learning" / "studio_render.py").read_text()
+        blk = src[src.index("THE CLOSING CARD OWNS THE FRAME"):]
+        blk = blk[:blk.index("n_visuals += 1")]
+        self.assertIn("t1 - _close0 > 0.35 and t0 < _close0", blk)
+        self.assertIn("else:", blk)
+
+
 class ChartsMustNotLie(unittest.TestCase):
     def test_a_time_series_is_never_called_a_share_of_a_whole(self):
         sub = ch._whole_subtitle(_years(), _years().items[0])

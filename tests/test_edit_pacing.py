@@ -25,6 +25,7 @@ Runs with pytest OR standalone:
 """
 from __future__ import annotations
 
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -204,16 +205,34 @@ class TheZoomIsGone(unittest.TestCase):
 
 
 class FfmpegShape(unittest.TestCase):
-    def test_each_visual_is_consumed_exactly_once(self):
+    def test_no_label_is_ever_consumed_twice(self):
         """ffmpeg consumes a filter output label exactly once. The alternating
-        edit needed split= to fan one source across several shots and got it
-        wrong first (exit 234, no render at all). One-overlay-per-span makes
-        the whole class unrepresentable — so there must be no split= left."""
+        edit fanned one source across several shots by REUSING its label and
+        ffmpeg refused the whole graph (exit 234, no render at all).
+
+        An earlier version of this test banned `split=` outright, which was a
+        proxy for the rule rather than the rule. `split=` is the CORRECT way to
+        show one source twice — it produces two distinct labels — and the
+        closing recap now needs exactly that: the same visual at full size
+        before the closing card, and smaller below it during. What must never
+        happen is the same label appearing as two overlay inputs."""
         blk = _SRC[_SRC.index("ONE OVERLAY PER SPAN"):]
         blk = blk[:blk.index("# Mascots")]
-        self.assertNotIn("split=", blk)
-        self.assertEqual(blk.count("overlay=x="), 1,
-                         "one overlay statement, emitted per span")
+        inputs = re.findall(r"\[\{prev\}\]\[(\{?[A-Za-z_0-9}{]*)\]overlay", blk)
+        inputs += re.findall(r"\[b\{i\}_\{j\}p\]\[(\{?[A-Za-z_0-9}{]*)\]overlay",
+                             blk)
+        self.assertEqual(len(inputs), len(set(inputs)),
+                         f"a label is consumed twice: {inputs}")
+        if "split=" in blk:
+            self.assertIn("split=2[{lab}a][{lab}b]", blk,
+                          "a fan-out must name its branches")
+            # Only the IF branch — the `else:` below it is the non-split path
+            # and consumes the original label correctly. They are mutually
+            # exclusive at runtime, so scanning past the else was the test
+            # reading two alternatives as one graph.
+            fan = blk[blk.index("split="):blk.index("else:")]
+            self.assertNotIn("[{prev}][{lab}]overlay", fan,
+                             "the fan-out branch must consume its own labels")
 
     def test_each_build_is_laid_at_its_own_span_start(self):
         """THE FREEZE. Laying every depiction from the BEAT's start is what
