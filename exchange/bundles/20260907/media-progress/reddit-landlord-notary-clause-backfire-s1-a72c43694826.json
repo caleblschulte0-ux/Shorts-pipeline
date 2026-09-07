@@ -1,0 +1,34 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260907",
+  "bundle": {
+    "identity": "11d91e6f401fe6d2abf71695c6431d8477b57090291243d5e35c480d68592da7",
+    "path": "exchange/bundles/20260907/bundle.json"
+  },
+  "request_id": "reddit-landlord-notary-clause-backfire-s1-a72c43694826",
+  "safe_request_id": "reddit-landlord-notary-clause-backfire-s1-a72c43694826",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "81808a5dc413397b65cced539500718b566a89830108d8134716bb2339430346",
+  "prompt_used": "An editorial illustration for a short-form video: notary stamp document. It accompanies the narration: \"hand-delivered and notarized\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+    "filename": "20260907__reddit-landlord-notary-clause-backfire-s1-a72c43694826.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1c7--jpx2Wp7y-v5VW33FlDv-uGek2AWM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "591bd78895f360f58b2dc4deae759fc2cae5358e942990bea5c69a0b305ea0d2",
+    "bytes": 1101320,
+    "format": "png",
+    "width": 1080,
+    "height": 1080
+  },
+  "verified_at": "2026-09-07T11:23:20.943Z",
+  "error": null,
+  "retryable": false
+}
