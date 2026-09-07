@@ -54,13 +54,14 @@ _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
           "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
           "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
-          "queue", "number", "bar", "bubble", "caption"}
+          "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+          "number", "bar", "bubble", "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
              "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
              "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
              "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
-             "queue"}
+             "queue", "bottleneck", "leaky", "inout", "sorter", "chain"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -72,7 +73,7 @@ _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "burden", "gauge", "skyline", "tower", "hurdle", "funnel",
                 "conveyor", "pipes", "spotlight", "road", "tape", "bridge",
                 "centre", "coaster", "thermometer", "wheel", "darts",
-                "queue"}
+                "queue", "bottleneck", "leaky", "inout", "sorter", "chain"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -1376,6 +1377,387 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
     return (v, "art", hx + mw, ground - sz)
 
 
+def _label_of(p):
+    return str(getattr(p, "label", ""))
+
+
+def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
+    """A PIPE THAT PINCHES at the stage doing the damage. For BOTTLENECK.
+
+    A funnel says people fall out all the way down. A bottleneck says ONE step
+    is the problem, and points at it — which is the difference between a
+    description and a diagnosis. So the pipe does NOT taper monotonically: it
+    can widen again after the pinch, which is exactly the shape a funnel is
+    incapable of drawing and the reason this is a separate machine.
+    """
+    items = _ordered_items(insight)[:6]
+    if len(items) < 3:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    drops = [a - b for a, b in zip(vals, vals[1:])]
+    worst = drops.index(max(drops)) + 1 if drops else 0
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 240, 400), by1 - 150
+    n = len(items)
+    seg = (bot - top) / n
+    e = settle(reveal)
+    # Measured, like the funnel: a clipped stage label is a wrong number on
+    # screen, and the stages that clip are the ones the picture is about.
+    lab_f = _pil_font(32)
+    labs = [f"{_label_of(p)[:13]}  {charts._ulabel(v, unit, group=True)}"
+            for p, v in zip(items, vals)]
+    lab_w = max((d.textbbox((0, 0), t, font=lab_f)[2] for t in labs), default=240)
+    # 300px reserved on the left for the mascot and the "here" callout.
+    full = min((bx1 - bx0) * 0.36, (bx1 - bx0) - lab_w - 340)
+    cx = int(bx0 + 300 + full / 2)
+    for i, (v, lab) in enumerate(zip(vals, labs)):
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            break
+        w0 = full * (v / vmax)
+        w1 = full * ((vals[i + 1] / vmax) if i + 1 < n else (v / vmax))
+        y0, y1 = int(top + i * seg), int(top + (i + 1) * seg)
+        col = WARN if i == worst else (color if i == 0 else ACCENT)
+        d.polygon([(cx - w0 / 2, y0), (cx + w0 / 2, y0),
+                   (cx + w1 / 2, y1), (cx - w1 / 2, y1)],
+                  fill=_rgba(col, int(235 * a)))
+        d.text((int(cx + full / 2 + 24), int((y0 + y1) / 2)), lab,
+               font=lab_f, fill=_rgba(TEXT, int(235 * a)), anchor="lm")
+    wy = int(top + worst * seg + seg / 2)
+    # THE FLOW ITSELF. Without it the picture is five rectangles that arrive
+    # and then hold: measured at a 0.908 duplicate ratio and a 51-frame frozen
+    # run against a 45-frame ceiling — a machine can be geometrically right and
+    # still be a still image. These also carry the claim, because only the
+    # surviving share of them gets past the pinch; the rest stop on that line,
+    # which is the sentence under the picture drawn instead of written.
+    keep = max(1, int(round(14 * vals[-1] / (vals[0] or 1.0))))
+    for k in range(14):
+        t_ = (reveal * 1.5 + k / 14.0) % 1.0
+        py = top + t_ * (bot - top)
+        idx = min(n - 1, int((py - top) / seg))
+        if py > top + (worst + 0.5) * seg and k >= keep:
+            continue                       # stopped at the pinch
+        wv = full * (vals[idx] / vmax)
+        px = cx + ((k * 37 % 11) / 10.0 - 0.5) * max(6.0, wv * 0.55)
+        d.ellipse([px - 9, py - 9, px + 9, py + 9],
+                  fill=_rgba(charts.CARD, 215))
+    na = max(0.0, min(1.0, (reveal - 0.5) / 0.28))
+    if na > 0.0:
+        d.text((int(cx - full / 2 - 40), wy), "here", font=_pil_font(48),
+               fill=_rgba(WARN, int(255 * na)), anchor="rm")
+        d.line([(int(cx - full / 2 - 32), wy), (int(cx - full / 2 - 8), wy)],
+               fill=_rgba(WARN, int(255 * na)), width=6)
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 20), int(bot - mh)))
+    lost = (max(drops) / vals[0] * 100.0) if (drops and vals[0]) else 0.0
+    d.text((int((bx0 + bx1) / 2), bot + 60),
+           f"{lost:.0f}% of them stop right there",
+           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    return (vals[0], "art", cx, wy)
+
+
+def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
+    """A LEAKY BUCKET that DRAINS while you watch. For RETENTION.
+
+    Two bars say 4,800 and 860. A bucket that starts full, springs a leak and
+    settles at a fifth says the same thing as a loss — and because it starts
+    from the whole, the number you are asked to hold is the one the story is
+    about. The count runs down with the water, so the figure on screen is
+    always the level in the bucket rather than a caption beside it.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    top_v = abs(float(getattr(items[0], "value", 0) or 0))
+    kept_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    if top_v <= 0 or kept_v > top_v:
+        return None
+    frac = max(0.0, min(1.0, kept_v / top_v))
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    top, bot = max(by0 + 250, 400), by1 - 210
+    tw, bw_ = int(min((bx1 - bx0) * 0.62, 620)), int(min((bx1 - bx0) * 0.46, 460))
+    # a bucket, not a test tube: wider at the rim than at the base
+    def _wall(y):
+        r = (y - top) / max(1.0, bot - top)
+        return (tw + (bw_ - tw) * r) / 2.0
+    d.line([(cx - tw / 2, top), (cx - bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    d.line([(cx + tw / 2, top), (cx + bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    d.line([(cx - bw_ / 2, bot), (cx + bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    # It STARTS FULL and drains to what is left. Filling up to `frac` instead
+    # would animate the wrong event: nobody joined, they left.
+    lvl = 1.0 - (1.0 - frac) * e
+    wy = int(bot - (bot - top) * lvl)
+    d.polygon([(cx - _wall(wy) + 6, wy), (cx + _wall(wy) - 6, wy),
+               (cx + _wall(bot) - 6, bot - 6), (cx - _wall(bot) + 6, bot - 6)],
+              fill=_rgba(color, 240))
+    # the hole, and everything that has already run out of it
+    hy = int(bot - (bot - top) * 0.34)
+    hx = int(cx + _wall(hy))
+    d.ellipse([hx - 18, hy - 18, hx + 18, hy + 18], fill=_rgba(charts.CARD, 255))
+    for k in range(11):
+        t_ = (reveal * 2.6 + k * 0.09) % 1.0
+        px = int(hx + 20 + t_ * 150)
+        py = int(hy + 12 + t_ * t_ * (by1 - 130 - hy))
+        d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=_rgba(ACCENT, 205))
+    cur = top_v - (top_v - kept_v) * e
+    d.text((cx, by0 + 66),
+           f"{charts._ulabel(cur, unit, group=True)} left of "
+           f"{charts._ulabel(top_v, unit, group=True)}",
+           font=_pil_font(58), fill=_rgba(color, 255), anchor="mm")
+    fa = max(0.0, min(1.0, (reveal - 0.6) / 0.3))
+    if fa > 0.0:
+        d.text((cx, by1 - 140), f"only {frac * 100:.0f}% stay",
+               font=_pil_font(48), fill=_rgba(TEXT, int(235 * fa)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 220
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 12, cx - tw // 2 - mw - 20)),
+                                int(bot - mh)))
+    return (kept_v, "art", cx, wy)
+
+
+def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
+    """TWO PIPES, one filling and one draining, and the LEVEL is the answer.
+
+    For INFLOW_OUTFLOW. Income against expenses is not a ranking of two
+    things; it is a surplus or a shortfall, and that is a third number neither
+    bar shows. Here the water IS that number: pipe WIDTH carries each flow,
+    the water carries what the two of them leave behind, and it is coloured by
+    which way it went.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    # Order is the CLAIM, not the magnitude: the first item is the inflow even
+    # when it is the smaller of the two, which is precisely the case where the
+    # picture has something to say. Sorting them here would make the machine
+    # structurally incapable of drawing a shortfall.
+    inflow = abs(float(getattr(items[0], "value", 0) or 0))
+    outflow = abs(float(getattr(items[-1], "value", 0) or 0))
+    if inflow <= 0 and outflow <= 0:
+        return None
+    in_lab, out_lab = _label_of(items[0]), _label_of(items[-1])
+    surplus = inflow - outflow
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    top, bot = max(by0 + 290, 440), by1 - 190
+    tw = int(min((bx1 - bx0) * 0.44, 420))
+    vmax = max(inflow, outflow) or 1.0
+    net_col = color if surplus >= 0 else WARN
+    d.rounded_rectangle([cx - tw // 2, top, cx + tw // 2, bot], radius=16,
+                        outline=_rgba(TEXT, 140), width=9)
+    level = max(0.07, min(0.88, abs(surplus) / vmax)) * e
+    ly = int(bot - (bot - top) * level)
+    if ly < bot - 12:
+        d.rounded_rectangle([cx - tw // 2 + 11, ly, cx + tw // 2 - 11, bot - 9],
+                            radius=12, fill=_rgba(net_col, 240))
+        # A LIVE SURFACE. Two pipes running into a tank whose water then sits
+        # perfectly flat is a contradiction the eye notices before the mind
+        # does — and it measured as a 38-frame frozen run besides.
+        x_l, x_r = cx - tw // 2 + 11, cx + tw // 2 - 11
+        wave = [(x, ly + 9 * _math.sin(x / 46.0 + reveal * 9.0))
+                for x in range(x_l, x_r + 1, 12)]
+        d.polygon(wave + [(x_r, ly + 26), (x_l, ly + 26)],
+                  fill=_rgba(net_col, 240))
+    lab_f = _pil_font(34)
+
+    def _pipe(y, x_out, thick, col, lab, val, right):
+        """One pipe, as wide as its flow, with product moving along it."""
+        th = max(14, int(thick))
+        x_in = cx - tw // 2 + 8 if not right else cx + tw // 2 - 8
+        d.rounded_rectangle([min(x_in, x_out), y - th // 2,
+                             max(x_in, x_out), y + th // 2],
+                            radius=th // 2, fill=_rgba(col, 235))
+        for k in range(9):
+            t_ = (reveal * 2.2 + k / 9.0) % 1.0
+            px = int(x_out + (x_in - x_out) * t_)
+            r_ = max(6, min(10, th // 3))
+            d.ellipse([px - r_, y - r_, px + r_, y + r_],
+                      fill=_rgba(charts.CARD, 215))
+        txt = f"{lab[:14]}  {charts._ulabel(val, unit, group=True)}"
+        tx = min(x_in, x_out) if not right else max(x_in, x_out)
+        d.text((tx, y - th // 2 - 34), txt, font=lab_f,
+               fill=_rgba(col, 245), anchor="lm" if not right else "rm")
+
+    _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, ACCENT, in_lab, inflow, False)
+    _pipe(bot - 46, bx1 - 30, 46 * outflow / vmax, WARN, out_lab, outflow, True)
+    d.text((cx, by0 + 66),
+           f"{charts._ulabel(abs(surplus), unit, group=True)} "
+           f"{'left over' if surplus >= 0 else 'short'}",
+           font=_pil_font(58), fill=_rgba(net_col, 255), anchor="mm")
+    host = scene_host("cheer" if surplus >= 0 else "strain", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 16, cx - tw // 2 - mw - 24)),
+                                int(bot - mh - 60)))
+    return (abs(surplus), "art", cx, ly)
+
+
+def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
+    """A SORTING MACHINE: one stream arriving, dropped into labelled bins. For
+    ROUTING.
+
+    Routing and composition look identical as numbers — both are parts of one
+    total — but they are different claims. A pie says "this is what it is made
+    of"; a sorter says "this is where it WENT", which is a decision somebody
+    made and can therefore be argued with. Bins fill to their share of the
+    WHOLE, so the four fills add up to one full bin and the geometry cannot
+    overstate anyone. The parcels fall for the entire visual, because the
+    picture is the act of sorting rather than the result of it.
+    """
+    items = _ordered_items(insight)[:4]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    tot = sum(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    chute_y = max(by0 + 260, 420)
+    bin_top, bin_bot = chute_y + 230, by1 - 190
+    n = len(items)
+    span = min((bx1 - bx0) - 120, 210 * n)
+    slot = span / n
+    bw = int(slot * 0.74)
+    x0 = cx - span / 2
+    centres = [int(x0 + i * slot + slot / 2) for i in range(n)]
+    d.polygon([(cx - 170, chute_y - 130), (cx + 170, chute_y - 130),
+               (cx + 48, chute_y), (cx - 48, chute_y)],
+              fill=_rgba(charts.CARD, 255), outline=_rgba(TEXT, 140))
+    d.text((cx, chute_y - 172), "every one of them", font=_pil_font(40),
+           fill=_rgba(TEXT, 225), anchor="mm")
+    for i, (p, v, bxc) in enumerate(zip(items, vals, centres)):
+        share = v / tot
+        a = max(0.0, min(1.0, e * n - i * 0.55))
+        d.rounded_rectangle([bxc - bw // 2, bin_top, bxc + bw // 2, bin_bot],
+                            radius=12, outline=_rgba(TEXT, 120), width=6)
+        fh = int((bin_bot - bin_top - 14) * share * a)
+        if fh > 2:
+            d.rounded_rectangle([bxc - bw // 2 + 8, bin_bot - 7 - fh,
+                                 bxc + bw // 2 - 8, bin_bot - 7], radius=9,
+                                fill=_rgba(color if i == 0 else ACCENT, 240))
+        d.text((bxc, bin_bot + 44), _label_of(p)[:11], font=_pil_font(32),
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((bxc, bin_bot + 92), f"{share * 100:.0f}%", font=_pil_font(42),
+               fill=_rgba(color if i == 0 else ACCENT, int(255 * a)),
+               anchor="mm")
+    for k in range(10):
+        t_ = (reveal * 1.9 + k * 0.1) % 1.0
+        tgt = centres[k % n]
+        px = int(cx + (tgt - cx) * t_)
+        py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
+        s = 14
+        d.rounded_rectangle([px - s, py - s, px + s, py + s], radius=4,
+                            fill=_rgba(HIGHLIGHT, 225))
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 210
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(chute_y - 150)))
+    return (vals[0], "art", centres[0], bin_top)
+
+
+def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
+    """A CHAIN OF LINKS, the weakest one drawn as a thread. For CHAIN.
+
+    A dependency chain is only as good as its worst step, and a bar chart
+    buries that: the worst step is just the shortest bar, indistinguishable
+    from "smallest category". Drawn as interlocking links, the failure is
+    structural — you can see where it will snap — and the caption states the
+    consequence, which is that the whole line runs at that number and not at
+    the average of them.
+    """
+    items = _ordered_items(insight)[:5]
+    if len(items) < 3:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    weak = vals.index(min(vals))
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    n = len(items)
+    e = settle(reveal)
+    slot = min(((bx1 - bx0) - 80) / n, 230.0)
+    lw = slot * 1.22                      # overlap, so the links interlock
+    span = slot * n
+    x0 = cx - span / 2
+    y = int((by0 + by1) / 2) + 30
+    order = list(range(0, n, 2)) + list(range(1, n, 2))   # evens under odds
+    for i in order:
+        v = vals[i]
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            continue
+        th = int(20 + 74 * (v / vmax))
+        lx = int(x0 + i * slot)
+        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        # A loaded chain does not hang still. The sway is small and slow — it
+        # is tension, not the jitter the mascot was pulled back from — but it
+        # is the whole width of the picture, which is what the cadence
+        # detector measures and what makes the thing read as under load.
+        dy = int(6 * _math.sin(reveal * 7.0 + i * 1.3))
+        d.rounded_rectangle([lx, y - th + dy, int(lx + lw), y + th + dy],
+                            radius=th, outline=_rgba(col, int(248 * a)),
+                            width=max(7, th // 3))
+    for i in range(n):
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            break
+        mx = int(x0 + i * slot + lw / 2)
+        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        d.text((mx, y - 132), _label_of(items[i])[:11], font=_pil_font(32),
+               fill=_rgba(TEXT, int(225 * a)), anchor="mm")
+        d.text((mx, y + 138), charts._ulabel(vals[i], unit, group=True),
+               font=_pil_font(38), fill=_rgba(col, int(242 * a)), anchor="mm")
+    # THE LOAD ON THE CHAIN. Links that appear and then hold measured at a
+    # 49-frame frozen run; more to the point, a chain with nothing moving
+    # through it is a diagram of a chain rather than a picture of a
+    # dependency. Only the weakest link's share gets past it, so the pile-up
+    # in front of that link IS the finding.
+    keep = max(1, int(round(12 * vals[weak] / (vmax or 1.0))))
+    span_x = span + lw - slot
+    for k in range(12):
+        t_ = (reveal * 1.4 + k / 12.0) % 1.0
+        px = x0 + t_ * span_x
+        if px > x0 + weak * slot + lw / 2 and k >= keep:
+            continue
+        py = y + 6 * _math.sin(reveal * 7.0 + (px - x0) / slot * 1.3)
+        d.rounded_rectangle([px - 18, py - 18, px + 18, py + 18], radius=6,
+                            fill=_rgba(TEXT, 215))
+    wa = max(0.0, min(1.0, (reveal - 0.55) / 0.28))
+    wx = int(x0 + weak * slot + lw / 2)
+    if wa > 0.0:
+        d.text((wx, y - 250), "it breaks here", font=_pil_font(46),
+               fill=_rgba(WARN, int(255 * wa)), anchor="mm")
+        d.line([(wx, y - 218), (wx, y - 172)], fill=_rgba(WARN, int(255 * wa)),
+               width=7)
+    d.text((cx, by1 - 120),
+           f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
+           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 190
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(bx1 - mw - 16, max(bx0 + 16, wx - mw // 2))),
+             int(y + 190)))
+    return (vals[weak], "art", wx, y)
+
+
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     """A TOWER: an accumulated total, one block at a time, with Data on top.
 
@@ -2531,6 +2913,8 @@ _MACHINE_DRAW.update({
     "bridge": draw_bridge, "centre": draw_centre, "coaster": draw_coaster,
     "thermometer": draw_thermometer, "wheel": draw_wheel,
     "darts": draw_darts, "queue": draw_queue,
+    "bottleneck": draw_bottleneck, "leaky": draw_leaky, "inout": draw_inout,
+    "sorter": draw_sorter, "chain": draw_chain,
 })
 
 tower_scene = _machine_scene("tower", 1)
@@ -2548,6 +2932,11 @@ thermometer_scene = _machine_scene("thermometer", 1)
 wheel_scene = _machine_scene("wheel", 6)
 darts_scene = _machine_scene("darts", 3)
 queue_scene = _machine_scene("queue", 2)
+bottleneck_scene = _machine_scene("bottleneck", 3)
+leaky_scene = _machine_scene("leaky", 2)
+inout_scene = _machine_scene("inout", 2)
+sorter_scene = _machine_scene("sorter", 2)
+chain_scene = _machine_scene("chain", 3)
 
 
 def race_scene(insight) -> dict:

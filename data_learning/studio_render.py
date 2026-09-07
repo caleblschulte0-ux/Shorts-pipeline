@@ -1557,7 +1557,8 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "pipes_scene", "spotlight_scene", "road_scene",
                 "tape_scene", "bridge_scene", "centre_scene",
                 "coaster_scene", "thermometer_scene", "wheel_scene",
-                "darts_scene", "queue_scene")
+                "darts_scene", "queue_scene", "bottleneck_scene",
+                "leaky_scene", "inout_scene", "sorter_scene", "chain_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1570,7 +1571,8 @@ _SCENE_TOKENS = {t: t for t in (
     "funnel_scene", "conveyor_scene", "pipes_scene",
     "spotlight_scene", "road_scene", "tape_scene", "bridge_scene",
     "centre_scene", "coaster_scene", "thermometer_scene",
-    "wheel_scene", "darts_scene", "queue_scene",
+    "wheel_scene", "darts_scene", "queue_scene", "bottleneck_scene",
+    "leaky_scene", "inout_scene", "sorter_scene", "chain_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1689,6 +1691,18 @@ _MACHINES = {
     "spread":      ("darts_scene", "units_scene"),
     # a backlog: a rising number of things WAITING
     "queue":       ("queue_scene", "units_scene"),
+    # ONE step is doing the damage -> a pipe that pinches there. A funnel is
+    # the runner-up and not the lead: a funnel says they leak away all the way
+    # down, which is a description; a pinch names the culprit.
+    "bottleneck":  ("bottleneck_scene", "funnel_scene"),
+    # most of it does not stay -> a bucket with a hole in it
+    "retention":   ("leaky_scene", "funnel_scene", "rate_scene"),
+    # one pipe filling and one draining -> the LEVEL is the story
+    "in_out":      ("inout_scene", "balance_scene"),
+    # where it WENT, not what it is made of -> parcels dropped into bins
+    "routing":     ("sorter_scene", "pipes_scene"),
+    # each step hands to the next, so the worst one sets the pace
+    "chain":       ("chain_scene", "conveyor_scene", "funnel_scene"),
     "other":       (),
 }
 
@@ -1705,7 +1719,7 @@ _MACHINES = {
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
-                        "cycle", "spread", "queue"})
+                        "cycle", "spread", "queue", "routing"})
 
 
 def _machines_for(insight) -> tuple:

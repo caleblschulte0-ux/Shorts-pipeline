@@ -519,6 +519,28 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "  queue       — a backlog as a line of people growing behind Data. "
            "region 'full'. For a rising number of things WAITING, which is a "
            "different feeling from a rising number.\n"
+           # THE FLOW MACHINES. Each is a different CLAIM about the same
+           # numbers, so the words decide them: parts of a whole is a pipe
+           # split, where it WENT is a sorter, what is LEFT is a leaky bucket.
+           "  bottleneck  — stages as a pipe that PINCHES at the one step "
+           "doing the damage, marked 'here'. region 'full'. Use when a single "
+           "stage is the problem; a funnel says they leak away all the way "
+           "down, this names the culprit.\n"
+           "  leaky       — a bucket with a hole: how many were kept out of "
+           "how many started, with the rest running out. region 'full'. For "
+           "RETENTION — enrolled vs finished, signed up vs still there.\n"
+           "  inout       — two pipes, one filling and one draining a tank, "
+           "and the LEVEL is the consequence. region 'full'. For an income "
+           "against an outgoing, an intake against a discharge. Only when the "
+           "two numbers really are a flow in and a flow out.\n"
+           "  sorter      — one stream arriving and dropped into labelled "
+           "bins, each as full as its share. region 'full'. For where "
+           "something WENT (spending by department, waste by destination) — a "
+           "decision somebody made, not what a thing is made of.\n"
+           "  chain       — named steps as chain links, thickness by value, "
+           "the weakest drawn as a thread and marked 'it breaks here'. region "
+           "'full'. For a dependency where every step must hold and the worst "
+           "one sets the pace.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

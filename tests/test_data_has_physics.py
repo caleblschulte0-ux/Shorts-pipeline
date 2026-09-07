@@ -67,6 +67,23 @@ def _things(pairs, unit="years", topic="cost", main="A tops"):
     return _Ins([_Pt(n, v) for n, v in pairs], unit, topic, main)
 
 
+_BOX = (vs.RX0, vs.RTOP, vs.RX1, vs.RBOT)
+
+
+class _pil:
+    """A throwaway canvas + draw handle, for asserting on what a machine
+    REFUSES. Some refusals are only reachable by calling the draw function —
+    the builder cannot know that a pair grew instead of shrank."""
+
+    def __enter__(self):
+        from PIL import Image, ImageDraw
+        self.canvas = Image.new("RGBA", (1080, 1280), (18, 20, 28, 255))
+        return ImageDraw.Draw(self.canvas), self.canvas
+
+    def __exit__(self, *a):
+        return False
+
+
 class ItReadsWhatTheDataSays(unittest.TestCase):
     def test_a_climbing_series_is_growth(self):
         self.assertEqual(rel.classify(_series([10, 14, 19, 25, 33, 41])),
@@ -490,11 +507,30 @@ class MotionMustBeVISIBLE(unittest.TestCase):
         # catches a machine that is grossly still, not one that is marginal.
         FRAMES = 120
         CEILING = 35
+        stages = [("Applied", 12000), ("Screened", 9800),
+                  ("Interviewed", 2100), ("Offered", 1700), ("Hired", 1500)]
         cases = (("tower", vs.tower_scene, _ins(years), None),
                  ("staircase", vs.staircase_scene, _ins(years), None),
                  ("race", vs.race_scene, _ins(cities), None),
                  ("hurdle", vs.hurdle_scene, _ins([("San Jose", 11.3)]),
-                  ("US average", 5.9)))
+                  ("US average", 5.9)),
+                 # The flow family. Every one of these was a staged reveal and
+                 # nothing else when first written: the bottleneck measured a
+                 # 0.908 duplicate ratio and a 51-frame frozen run, the chain
+                 # 49. Geometry that is correct and completely still is a
+                 # still image with a caption, and the gate is right to hold
+                 # it. Each now carries the flow it is describing.
+                 ("bottleneck", vs.bottleneck_scene, _ins(stages), None),
+                 ("leaky", vs.leaky_scene,
+                  _ins([("Enrolled", 4800), ("Finished", 860)]), None),
+                 ("inout", vs.inout_scene,
+                  _ins([("Inflow", 1840), ("Outflow", 1310)]), None),
+                 ("sorter", vs.sorter_scene,
+                  _ins([("Housing", 4200), ("Transit", 2600),
+                        ("Parks", 1400), ("Admin", 900)]), None),
+                 ("chain", vs.chain_scene,
+                  _ins([("Wafer", 940), ("Assembly", 720), ("Test", 210),
+                        ("Ship", 880)]), None))
         worst = {}
         for name, build, ins, base in cases:
             if base:
@@ -645,6 +681,94 @@ class BatchTwoRelationships(unittest.TestCase):
         import inspect
         self.assertIn("abs(v - mean) / span",
                       inspect.getsource(vs.draw_darts))
+
+
+class BatchThreeIsTheFlowFamily(unittest.TestCase):
+    """Five machines that all draw the SAME numbers and make five different
+    claims — which is exactly why the router must read the words.
+
+    Stages that shrink are a funnel, a ranking, a bottleneck, a supply chain
+    and a set of sorting bins all at once by SHAPE. Only the claim separates
+    them, so every one of these classifiers requires the language and falls
+    back to a plain ranking when it is absent. Getting that wrong does not
+    produce an ugly picture; it produces a confident wrong sentence at 42pt.
+    """
+
+    def test_the_claim_decides_and_not_the_shape(self):
+        pairs = [("A", 1000), ("B", 700), ("C", 200), ("D", 120)]
+        self.assertEqual(rel.classify(_things(pairs, main="A tops the list")),
+                         rel.RANK)
+        for claim, want in (
+                ("the bottleneck is stage C", rel.BOTTLENECK),
+                ("only some are retained to the end", rel.RETENTION),
+                ("where the money was routed", rel.ROUTING),
+                ("each step of the supply chain", rel.CHAIN)):
+            self.assertEqual(rel.classify(_things(pairs, main=claim)), want,
+                             claim)
+
+    def test_an_inflow_and_an_outflow_are_not_a_duel(self):
+        self.assertEqual(
+            rel.classify(_things([("Inflow", 1840), ("Outflow", 1310)],
+                                 main="inflow against outflow")),
+            rel.INFLOW_OUTFLOW)
+
+    def test_each_batch_three_relationship_has_a_machine(self):
+        for name in (rel.BOTTLENECK, rel.RETENTION, rel.INFLOW_OUTFLOW,
+                     rel.ROUTING, rel.CHAIN):
+            self.assertTrue(sr._MACHINES.get(name), name)
+
+    def test_the_bottleneck_leads_with_the_bottleneck_not_the_funnel(self):
+        """A funnel is a legitimate runner-up and a wrong lead: it says they
+        leak away all the way down, which is a description. The pinch names a
+        culprit, which is the whole reason the relationship exists."""
+        self.assertEqual(sr._MACHINES[rel.BOTTLENECK][0], "bottleneck_scene")
+
+    def test_the_bucket_drains_rather_than_fills(self):
+        """Filling up to the retained share animates the wrong event. Nobody
+        joined — they left — so the bucket starts whole."""
+        import inspect
+        src = inspect.getsource(vs.draw_leaky)
+        self.assertIn("1.0 - (1.0 - frac) * e", src)
+
+    def test_the_inout_water_is_the_SURPLUS_and_says_which_way(self):
+        import inspect
+        src = inspect.getsource(vs.draw_inout)
+        self.assertIn("surplus = inflow - outflow", src)
+        self.assertIn("left over", src)
+        self.assertIn("short", src)
+
+    def test_the_inout_keeps_the_authored_order_as_the_direction(self):
+        """Taking max() as the inflow makes the machine incapable of drawing a
+        shortfall, which is the case worth drawing."""
+        import inspect
+        self.assertNotIn("max(a_v, b_v)", inspect.getsource(vs.draw_inout))
+
+    def test_the_sorter_bins_add_up_to_one_whole(self):
+        """Filling each bin against the LARGEST would overstate every share."""
+        import inspect
+        src = inspect.getsource(vs.draw_sorter)
+        self.assertIn("share = v / tot", src)
+
+    def test_the_chain_runs_at_its_WORST_link_not_its_average(self):
+        import inspect
+        src = inspect.getsource(vs.draw_chain)
+        self.assertIn("weak = vals.index(min(vals))", src)
+        self.assertIn("the whole line runs at", src)
+
+    def test_the_flow_machines_refuse_data_they_cannot_serve(self):
+        one = _Ins([_Pt("A", 5)], "count", "t", "m")
+        for build in (vs.bottleneck_scene, vs.leaky_scene, vs.inout_scene,
+                      vs.sorter_scene, vs.chain_scene):
+            self.assertFalse(build(one), build)
+
+    def test_the_bucket_refuses_to_keep_more_than_it_started_with(self):
+        """A retention picture drawn from a GROWING pair would overflow, and
+        would be claiming a loss that did not happen."""
+        grew = _Ins([_Pt("Enrolled", 800), _Pt("Finished", 4800)],
+                    "count", "t", "m")
+        with _pil() as (d, canvas):
+            self.assertIsNone(vs.draw_leaky(d, canvas, _BOX, grew,
+                                            vs.HIGHLIGHT, 1.0, "count"))
 
 
 class EveryMachineIsWiredEndToEnd(unittest.TestCase):

@@ -56,6 +56,11 @@ SPREAD = "spread"              # how tightly the values cluster
 CYCLE = "cycle"                # it repeats
 QUEUE = "queue"                # a backlog, growing
 DENSITY = "density"            # the same count packed into different space
+BOTTLENECK = "bottleneck"      # one stage far narrower than the rest
+RETENTION = "retention"        # what is kept versus what leaks away
+INFLOW_OUTFLOW = "in_out"      # what comes in against what goes out
+ROUTING = "routing"            # where a total is sent, by destination
+CHAIN = "chain"                # named steps a thing passes through in order
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -69,6 +74,26 @@ _PER_TIME = re.compile(
     r"\b(per (second|minute|hour|day|week|month|year|capita|person|"
     r"household|1,?000|100,?000)|a (second|minute|hour|day|year)|"
     r"annually|each year|every year|per annum)\b", re.I)
+_FLOW_IN_OUT = re.compile(
+    r"\b(income|revenue|earn\w*|intake|inflow|deposits?|births?|hires?|"
+    r"joiners?|arrivals?)\b.*\b(expense\w*|spend\w*|cost\w*|outflow|"
+    r"withdraw\w*|deaths?|leavers?|departures?|exits?|churn)\b", re.I)
+_RETAIN = re.compile(
+    r"\b(retention|retained|churn|kept|stay\w*|drop out|dropout|leak\w*|"
+    r"lost|renew\w*|cancel\w*|unsubscrib\w*)\b", re.I)
+_ROUTE = re.compile(
+    r"\b(rout(ed|ing|es to)|goes to|sent to|allocated|destination\w*|"
+    r"where .* goes|split between|divided (among|between)|breakdown by|"
+    r"spent on)\b", re.I)
+# Explicit bottleneck language. Kept separate from the stage vocabulary
+# because it is a DIAGNOSIS the writer has already made: if the claim names a
+# chokepoint, draw the chokepoint, whatever shape the numbers happen to be.
+_BOTTLENECK = re.compile(
+    r"\b(bottleneck\w*|choke ?point\w*|held up (at|by)|jam\w*|"
+    r"backed up (at|behind)|the constraint)\b", re.I)
+_CHAIN = re.compile(
+    r"\b(supply chain|from farm|farm to|factory to|port to|end to end|"
+    r"journey|passes through|route from)\b", re.I)
 _STAGE = re.compile(
     r"\b(stage|step|round|funnel|applied|accepted|enrolled|graduat\w*|"
     r"survive\w*|remain\w*|left|reach\w*|qualif\w*|shortlist\w*|"
@@ -280,10 +305,42 @@ def _classify(insight) -> str:
     # because five cities sorted by cost are also "each smaller than the last"
     # and are emphatically not a funnel.
     text_l = (text or "").lower()
+
+    # FLOW SHAPES. Each needs the CLAIM to say so, not just the numbers —
+    # every one of these is also a plain ranking by shape alone, and drawing a
+    # ranking as a supply chain invents a process the data never described.
+    if len(values) >= 3 and _BOTTLENECK.search(text_l):
+        return BOTTLENECK
+    if len(values) >= 2 and _FLOW_IN_OUT.search(text_l):
+        return INFLOW_OUTFLOW
+    if len(values) >= 2 and _RETAIN.search(text_l):
+        return RETENTION
+    # CHAIN before ROUTE: "route from the port" is a journey, not an
+    # allocation, and the chain vocabulary is the more specific of the two.
+    if len(values) >= 3 and _CHAIN.search(text_l):
+        return CHAIN
+    if len(values) >= 3 and _ROUTE.search(text_l):
+        return ROUTING
+
+    # FUNNEL vs BOTTLENECK, decided on the per-stage SURVIVAL RATES rather
+    # than the raw drops. A hiring funnel's biggest drop is also its first
+    # one — 1,000 -> 380 -> 95 -> 41 loses more people at step one than
+    # anywhere else — and it is a funnel, not a bottleneck, because every
+    # stage bleeds. A bottleneck is the shape where the others DON'T: 12,000
+    # -> 9,800 -> 2,100 -> 1,700 -> 1,500 keeps ~80% at every step except one,
+    # which keeps 21%. Comparing drops alone called the funnel a bottleneck
+    # and would have printed "here" over the wrong stage.
     if len(values) >= 3 and _STAGE.search(text_l):
-        drops = all(b <= a for a, b in zip(values, values[1:]))
-        if drops and values[0] > 0 and values[-1] <= 0.6 * values[0]:
-            return DROPOFF
+        falling = all(b <= a for a, b in zip(values, values[1:]))
+        if falling and values[0] > 0:
+            rates = [b / a for a, b in zip(values, values[1:]) if a > 0]
+            if len(rates) == len(values) - 1:
+                k = rates.index(min(rates))
+                others = rates[:k] + rates[k + 1:]
+                if rates[k] <= 0.6 and others and min(others) >= 0.75:
+                    return BOTTLENECK
+            if values[-1] <= 0.6 * values[0]:
+                return DROPOFF
 
     if len(values) == 2:
         # TWO YEARS IS NOT TWO THINGS. A then-and-now is a change in one
