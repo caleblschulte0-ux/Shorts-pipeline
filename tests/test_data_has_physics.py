@@ -604,6 +604,49 @@ class BatchOneMachines(unittest.TestCase):
         self.assertIsNotNone(no_base)
 
 
+class BatchTwoRelationships(unittest.TestCase):
+    def test_a_repeat_is_a_cycle_and_a_crash_is_not(self):
+        """A cycle is a stronger claim than volatility: it says the movement
+        RECURS. A series that crashed once and recovered would otherwise be
+        drawn as a season, which it is not."""
+        self.assertEqual(
+            rel.classify(_series([10, 60, 12, 58, 11, 62, 13, 59, 10, 61])),
+            rel.CYCLE)
+        self.assertNotEqual(
+            rel.classify(_series([60, 58, 59, 10, 12, 55, 57, 58])), rel.CYCLE)
+
+    def test_near_identical_values_are_a_SPREAD_not_a_ranking(self):
+        """"These are all basically the same" is a finding, and a sorted bar
+        chart is the one picture that hides it — five near-identical bars look
+        like a ranking."""
+        self.assertEqual(
+            rel.classify(_things([("A", 100), ("B", 102), ("C", 101),
+                                  ("D", 99), ("E", 100), ("F", 101)])),
+            rel.SPREAD)
+
+    def test_a_real_ranking_is_still_a_ranking(self):
+        self.assertEqual(
+            rel.classify(_things([("A", 11.3), ("B", 9.7), ("C", 8.2),
+                                  ("D", 6.8)])), rel.RANK)
+
+    def test_each_batch_two_relationship_has_a_machine(self):
+        for name in (rel.CYCLE, rel.SPREAD, rel.QUEUE):
+            self.assertTrue(sr._MACHINES.get(name), name)
+
+    def test_the_cycle_machine_actually_turns(self):
+        import inspect
+        src = inspect.getsource(vs.draw_wheel)
+        self.assertIn("2.0 * _math.pi", src, "the wheel does not revolve")
+
+    def test_the_darts_board_is_the_RANGE_not_an_axis(self):
+        """The picture is the CLUSTERING, so the board has to be scaled to the
+        spread. Against an absolute axis six near-identical values land on one
+        another and say nothing."""
+        import inspect
+        self.assertIn("abs(v - mean) / span",
+                      inspect.getsource(vs.draw_darts))
+
+
 class EveryMachineIsWiredEndToEnd(unittest.TestCase):
     """A machine that renders but is unreachable is the exact failure CLAUDE.md
     calls rule zero — and the scene kit already had three of those."""

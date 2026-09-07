@@ -1556,7 +1556,8 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "hurdle_scene", "funnel_scene", "conveyor_scene",
                 "pipes_scene", "spotlight_scene", "road_scene",
                 "tape_scene", "bridge_scene", "centre_scene",
-                "coaster_scene", "thermometer_scene")
+                "coaster_scene", "thermometer_scene", "wheel_scene",
+                "darts_scene", "queue_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1569,6 +1570,7 @@ _SCENE_TOKENS = {t: t for t in (
     "funnel_scene", "conveyor_scene", "pipes_scene",
     "spotlight_scene", "road_scene", "tape_scene", "bridge_scene",
     "centre_scene", "coaster_scene", "thermometer_scene",
+    "wheel_scene", "darts_scene", "queue_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1681,6 +1683,12 @@ _MACHINES = {
     "acceleration": ("staircase_scene", "tower_scene", "coaster_scene"),
     # it went one way, then turned and stayed turned
     "reversal":    ("coaster_scene", "spotlight_scene", "elevator_scene"),
+    # it REPEATS — a stronger claim than volatility, and a wheel is the claim
+    "cycle":       ("wheel_scene", "coaster_scene"),
+    # they are all basically the same, which a sorted bar chart hides
+    "spread":      ("darts_scene", "units_scene"),
+    # a backlog: a rising number of things WAITING
+    "queue":       ("queue_scene", "units_scene"),
     "other":       (),
 }
 
@@ -1696,7 +1704,8 @@ _MACHINES = {
 # of the same relationship. Four machines were effectively dead.
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
-                        "centre", "acceleration", "reversal", "volatile"})
+                        "centre", "acceleration", "reversal", "volatile",
+                        "cycle", "spread", "queue"})
 
 
 def _machines_for(insight) -> tuple:

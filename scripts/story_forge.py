@@ -510,6 +510,15 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "  thermometer — a value climbing toward a limit, with the red zone "
            "shown. region 'full'. Use when the point is that it is getting "
            "CLOSE, not whether it cleared.\n"
+           "  wheel       — a REPEATING series as a ferris wheel turning, one "
+           "car per point. region 'full'. Only when the movement genuinely "
+           "recurs — a crash and a recovery is not a season.\n"
+           "  darts       — values on a dartboard, tight or scattered, for "
+           "when the finding is that they are all nearly the SAME. region "
+           "'full'. A sorted bar chart hides exactly this.\n"
+           "  queue       — a backlog as a line of people growing behind Data. "
+           "region 'full'. For a rising number of things WAITING, which is a "
+           "different feeling from a rising number.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "

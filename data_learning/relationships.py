@@ -54,6 +54,8 @@ ACCELERATION = "acceleration"  # the rate of change is itself changing
 REVERSAL = "reversal"          # it went one way, then turned and stayed turned
 SPREAD = "spread"              # how tightly the values cluster
 CYCLE = "cycle"                # it repeats
+QUEUE = "queue"                # a backlog, growing
+DENSITY = "density"            # the same count packed into different space
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -137,6 +139,34 @@ def _accelerating(values: list) -> bool:
     return growing >= len(steps) - 1
 
 
+def _cyclic(values: list) -> bool:
+    """Up and down and up again, in swings of similar size.
+
+    A cycle is a stronger claim than volatility: it says the movement REPEATS.
+    So it needs at least two full swings and the swings must be comparable —
+    otherwise a series that crashed once and recovered would be drawn as a
+    season, which it is not.
+    """
+    if len(values) < 8:
+        return False
+    span = (max(values) - min(values)) or 1.0
+    signs, runs, cur = [], [], 0
+    for a, b in zip(values, values[1:]):
+        s_ = 1 if b - a > 0.05 * span else (-1 if a - b > 0.05 * span else 0)
+        if s_ == 0:
+            continue
+        if signs and s_ != signs[-1]:
+            runs.append(cur)
+            cur = 0
+        signs.append(s_)
+        cur += abs(b - a)
+    runs.append(cur)
+    runs = [r for r in runs if r > 0.15 * span]
+    if len(runs) < 4:                       # fewer than two full swings
+        return False
+    return max(runs) <= 2.5 * min(runs)     # comparable in size
+
+
 def _direction(values: list) -> tuple:
     """(net change as a fraction of the start, number of direction reversals).
 
@@ -213,6 +243,10 @@ def _classify(insight) -> str:
         # The rate of change is itself changing, consistently.
         if _accelerating(values):
             return ACCELERATION
+        # It repeats. Needs several full swings of similar size, which is what
+        # separates a season from a wobble.
+        if _cyclic(values):
+            return CYCLE
         # A trend has to actually go somewhere AND go there mostly one way.
         # Without the reversal test a series that wandered up and down and
         # happened to end high would be drawn as a clean climb, which is a
@@ -224,6 +258,19 @@ def _classify(insight) -> str:
         if net <= -0.15:
             return DECLINE
         return VOLATILE if rev else OTHER
+
+    # HOW TIGHTLY THE VALUES CLUSTER is its own finding — "these are all
+    # basically the same" and "one of these is nothing like the others" are
+    # different stories from a ranking, and both get lost in a sorted bar
+    # chart. Only claimed when the spread is genuinely extreme in one
+    # direction or the other.
+    if not is_time_series(insight) and len(values) >= 4:
+        mean = sum(values) / len(values)
+        if mean:
+            import statistics as _st
+            cv = _st.pstdev(values) / abs(mean)
+            if cv <= 0.06:
+                return SPREAD
 
     # Not a series: these are THINGS being compared.
     #

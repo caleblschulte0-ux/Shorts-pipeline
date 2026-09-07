@@ -53,13 +53,14 @@ _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "unit_figures", "balance", "dot_field", "race_track", "staircase",
           "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
           "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
-          "bridge", "centre", "coaster", "thermometer", "number", "bar",
-          "bubble", "caption"}
+          "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
+          "queue", "number", "bar", "bubble", "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
              "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
              "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
-             "bridge", "centre", "coaster", "thermometer"}
+             "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
+             "queue"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -70,7 +71,8 @@ _ICON_TYPES = {"unit_figures", "dot_field"}
 _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "burden", "gauge", "skyline", "tower", "hurdle", "funnel",
                 "conveyor", "pipes", "spotlight", "road", "tape", "bridge",
-                "centre", "coaster", "thermometer"}
+                "centre", "coaster", "thermometer", "wheel", "darts",
+                "queue"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -1229,6 +1231,151 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
     return (v, "art", cx, fy)
 
 
+def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
+    """A FERRIS WHEEL turning, with Data in a car. For CYCLE.
+
+    A repeating series drawn as a line makes the viewer find the repetition. A
+    wheel IS the repetition — and it turns for the whole visual, which is the
+    honest motion for data whose whole point is that it keeps coming round.
+    """
+    items = _pts(insight, cap=12)
+    if len(items) < 6:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1.0
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    cy = max(by0 + 460, 660)
+    R = int(min((bx1 - bx0) * 0.34, 300))
+    e = settle(reveal)
+    d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=_rgba(TEXT, 110),
+              width=9)
+    d.polygon([(cx, cy), (cx - 70, by1 - 110), (cx + 70, by1 - 110)],
+              fill=_rgba(TEXT, 70))
+    n = len(vals)
+    turn = e * 2.0 * _math.pi          # a full revolution across the visual
+    for k, v in enumerate(vals):
+        a = turn + k * 2.0 * _math.pi / n - _math.pi / 2
+        px = int(cx + _math.cos(a) * R)
+        py = int(cy + _math.sin(a) * R)
+        d.line([(cx, cy), (px, py)], fill=_rgba(TEXT, 55), width=3)
+        big = 16 + 22 * ((v - lo) / span)
+        d.ellipse([px - big, py - big, px + big, py + big],
+                  fill=_rgba(color if v >= hi - 1e-9 else ACCENT, 235))
+    host = scene_host("cheer", reveal)
+    if host is not None:
+        a = turn - _math.pi / 2
+        px = int(cx + _math.cos(a) * R)
+        py = int(cy + _math.sin(a) * R)
+        mh = 150
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(px - mw // 2), int(py - mh // 2)))
+    d.text((cx, by0 + 58),
+           f"{charts._ulabel(lo, unit)} to {charts._ulabel(hi, unit)}, "
+           f"every year", font=_pil_font(52), fill=_rgba(color, 255),
+           anchor="mm")
+    return (vals[-1], "art", cx, cy - R)
+
+
+def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
+    """A DARTBOARD: how tightly the values cluster. For SPREAD.
+
+    "These are all basically the same" is a finding, and a sorted bar chart is
+    the one picture that hides it — five near-identical bars look like a
+    ranking. Darts in a tight group say it at a glance.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if len(items) < 3:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    mean = sum(vals) / len(vals)
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or (abs(mean) * 0.02) or 1.0
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    cy = max(by0 + 430, 640)
+    R = int(min((bx1 - bx0) * 0.33, 290))
+    for k, rr in enumerate((R, int(R * 0.68), int(R * 0.36))):
+        d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],
+                  outline=_rgba(TEXT, 90 + k * 40), width=6)
+    e = settle(reveal)
+    # Offset from the mean, scaled so the spread fills the board — the picture
+    # is the CLUSTERING, so the board is the range and not an absolute axis.
+    for i, (p, v) in enumerate(zip(items, vals)):
+        a = max(0.0, min(1.0, e * len(vals) - i))
+        if a <= 0.0:
+            break
+        ang = i * 2.399963                       # golden angle, no clumping
+        rad = R * 0.82 * abs(v - mean) / span
+        px = int(cx + _math.cos(ang) * rad)
+        py = int(cy + _math.sin(ang) * rad)
+        d.ellipse([px - 17, py - 17, px + 17, py + 17],
+                  fill=_rgba(color, int(240 * a)))
+    host = scene_host("think", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(cx + R + 20), int(cy + R - mh)))
+    d.text((cx, by0 + 58), "all within "
+           f"{charts._ulabel(span, unit)}", font=_pil_font(58),
+           fill=_rgba(color, 255), anchor="mm")
+    d.text((cx, cy + R + 62), f"{len(vals)} of them, near enough identical",
+           font=_pil_font(38), fill=_rgba(TEXT, 215), anchor="mm")
+    return (mean, "art", cx, cy)
+
+
+def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
+    """A LINE THAT KEEPS GROWING behind him. For QUEUE — a backlog.
+
+    A rising number is growth; a rising number of people WAITING is a queue,
+    and the difference is what it feels like to be at the front of it.
+    """
+    items = _pts(insight, cap=10)
+    if len(items) < 2:
+        return None
+    vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    lo, hi = min(vals), max(vals)
+    bx0, by0, bx1, by1 = box
+    ground = by1 - 150
+    e = settle(reveal)
+    pos = e * (len(vals) - 1)
+    i0 = min(int(pos), len(vals) - 2)
+    v = vals[i0] + (vals[i0 + 1] - vals[i0]) * (pos - i0)
+    lab = getattr(items[min(int(round(pos)), len(items) - 1)], "label", "")
+    frac = (v - lo) / ((hi - lo) or 1.0)
+    n_wait = max(1, int(round(1 + frac * 11)))
+    from . import icons as _ic
+    glyph = None
+    cp = _ic.icon_png("people", 128)
+    if cp:
+        try:
+            glyph = _PImg.open(cp).convert("RGBA")
+        except Exception:  # noqa: BLE001
+            glyph = None
+    host = scene_host("point", reveal)
+    mh = 250
+    mw = int(host.width * mh / host.height) if host is not None else 160
+    hx = bx0 + 70
+    if host is not None:
+        canvas.alpha_composite(_fit(host, mw, mh), (hx, ground - mh))
+    sz = 92
+    for k in range(n_wait):
+        x = hx + mw + 16 + k * (sz + 10)
+        if x + sz > bx1 - 20:
+            break
+        if glyph is not None:
+            canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), ground - sz))
+        else:
+            d.ellipse([x, ground - sz, x + sz, ground], fill=_rgba(ACCENT, 235))
+    d.text(((bx0 + bx1) // 2, by0 + 58),
+           f"{lab}   {charts._ulabel(v, unit, group=True)} waiting",
+           font=_pil_font(62), fill=_rgba(color, 255), anchor="mm")
+    return (v, "art", hx + mw, ground - sz)
+
+
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
     """A TOWER: an accumulated total, one block at a time, with Data on top.
 
@@ -2382,7 +2529,8 @@ _MACHINE_DRAW.update({
     "conveyor": draw_conveyor, "pipes": draw_pipes,
     "spotlight": draw_spotlight, "road": draw_road, "tape": draw_tape,
     "bridge": draw_bridge, "centre": draw_centre, "coaster": draw_coaster,
-    "thermometer": draw_thermometer,
+    "thermometer": draw_thermometer, "wheel": draw_wheel,
+    "darts": draw_darts, "queue": draw_queue,
 })
 
 tower_scene = _machine_scene("tower", 1)
@@ -2397,6 +2545,9 @@ bridge_scene = _machine_scene("bridge", 1)
 centre_scene = _machine_scene("centre", 3)
 coaster_scene = _machine_scene("coaster", 4)
 thermometer_scene = _machine_scene("thermometer", 1)
+wheel_scene = _machine_scene("wheel", 6)
+darts_scene = _machine_scene("darts", 3)
+queue_scene = _machine_scene("queue", 2)
 
 
 def race_scene(insight) -> dict:
