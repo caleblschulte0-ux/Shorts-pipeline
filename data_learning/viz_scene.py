@@ -38,6 +38,9 @@ from .charts import (ACCENT, HIGHLIGHT, TEXT, WARN, _fullframe, _ordered_items,
 W, H = 1080, 1920
 RX0, RX1, RTOP, RBOT = 40, 1040, 80, 1180          # safe box (above the game strip)
 _MIDX, _MIDY = (RX0 + RX1) // 2, (RTOP + RBOT) // 2
+# How far down a lone data machine may draw. The captions and the spoken-number
+# punch own the band below it.
+MACHINE_BOT = 1560
 
 # region name -> pixel box (x0, y0, x1, y1)
 REGIONS: dict[str, tuple[int, int, int, int]] = {
@@ -81,6 +84,18 @@ _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "spinner", "doors", "fan", "gears", "slider",
                 "density", "nest", "chairs", "hourglass", "trophies",
                 "basket"}
+# Element types whose draw function composites the host ITSELF. Declared, and
+# held against the source by `tests/test_data_has_physics.py` in both
+# directions — a machine that bakes him and is missing here renders two
+# mascots, and one listed here that does not bake him renders none.
+_SELF_HOSTING = {"timeline_axis", "balance", "race_track", "unit_figures",
+                 "dot_field", "staircase", "elevator", "burden", "gauge",
+                 "skyline", "tower", "hurdle", "funnel", "conveyor", "pipes",
+                 "spotlight", "road", "tape", "bridge", "centre", "coaster",
+                 "thermometer", "wheel", "darts", "queue", "bottleneck",
+                 "leaky", "inout", "sorter", "chain", "spinner", "doors",
+                 "fan", "gears", "slider", "density", "nest", "chairs",
+                 "hourglass", "trophies", "basket"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -322,6 +337,21 @@ def scene_host(action: str, phase: float):
         img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
     except Exception:  # noqa: BLE001 — a scene must never die over the host
         img = charts._host_pose(action)
+    # CROP TO THE SPRITE. The rasteriser returns a 300x300 square and the host
+    # occupies 134x210 of it — 55% empty either side, 30% top and bottom.
+    # Every machine sizes him by height and anchors to that box, so he came
+    # out a third smaller than asked for and everything positioned against him
+    # landed in the padding: `burden` anchored its load to his hands at 9.5%
+    # of the box height and drew the slabs floating in clear air above his
+    # head, which is the whole point of that machine missed. One crop here
+    # fixes it for all forty of them.
+    try:
+        if img is not None:
+            bb = img.getbbox()
+            if bb and (bb[2] - bb[0]) > 0 and (bb[3] - bb[1]) > 0:
+                img = img.crop(bb)
+    except Exception:  # noqa: BLE001
+        pass
     if len(_SCENE_HOST_CACHE) > 400:
         _SCENE_HOST_CACHE.clear()
     _SCENE_HOST_CACHE[key] = img
@@ -2805,12 +2835,18 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
 
 
 def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
-    """A SPOTLIGHT: the RANGE a number lived in, claiming no direction.
+    """A BAND, and a marker that will not settle inside it. For `volatile`.
 
-    For `volatile`. Everything else in this kit encodes a direction, and a
-    series that zig-zags has none — which is why volatile had no machine at all
-    and got a line. A cone from the low to the high says exactly what is true:
-    it was somewhere in here, and it moved around.
+    Everything else in this kit encodes a direction, and a series that zig-zags
+    has none — which is why volatile had no machine at all and got a line. The
+    honest statement is "it was somewhere in here, and it kept moving", so the
+    picture is the range as a lane and the number as something still moving in
+    it. It never comes to rest, because coming to rest would claim a
+    destination the data does not have.
+
+    Drawn as a cone first, which was the mistake: a triangle with ghosted dots
+    inside reads as a mountain or a beam, and a viewer asked what it meant
+    could not say. A lane with a marker travelling it needs no explaining.
     """
     items = list(getattr(insight, "items", None) or [])
     if len(items) < 3:
@@ -2820,37 +2856,51 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
     if hi <= lo:
         return None
     bx0, by0, bx1, by1 = box
-    top, bot = max(by0 + 230, 370), by1 - 140
-    cx = (bx0 + bx1) // 2
+    cx, cy = (bx0 + bx1) // 2, (by0 + by1) // 2 + 40
     e = settle(reveal)
-    half = int((bx1 - bx0) * 0.40 * e)
-    d.polygon([(cx, top), (cx - half, bot), (cx + half, bot)],
-              fill=_rgba(color, 46))
-    d.line([(cx, top), (cx - half, bot)], fill=_rgba(color, 190), width=6)
-    d.line([(cx, top), (cx + half, bot)], fill=_rgba(color, 190), width=6)
-    # every observation, ghosted inside the cone — the range is not a guess
-    for i, v in enumerate(vals):
+    x0, x1 = bx0 + 150, bx1 - 150
+    half = (x1 - x0) / 2.0
+    lane = int(min(88, (by1 - by0) * 0.075))       # HALF-height of the band
+    # THE LANE — the range, drawn as the space the number is allowed to be in
+    d.rounded_rectangle([int(cx - half * e), cy - lane, int(cx + half * e),
+                         cy + lane], radius=lane,
+                        fill=_rgba(color, 40), outline=_rgba(color, 200),
+                        width=7)
+    # every observation, as a tick on the lane: the range is measured, not a
+    # guess, and the clustering shows where it spent its time
+    for v in vals:
         fx = (v - lo) / (hi - lo)
-        px = int(cx - half + 2 * half * fx)
-        py = int(top + (bot - top) * (0.35 + 0.6 * (i / max(1, len(vals) - 1))))
-        d.ellipse([px - 13, py - 13, px + 13, py + 13],
-                  fill=_rgba(TEXT, int(150 * e)))
-    d.text((int(cx - half), bot + 40), charts._ulabel(lo, unit),
-           font=_pil_font(40), fill=_rgba(TEXT, 235), anchor="mm")
-    d.text((int(cx + half), bot + 40), charts._ulabel(hi, unit),
-           font=_pil_font(40), fill=_rgba(TEXT, 235), anchor="mm")
-    d.text((cx, bot + 92), "the range it moved in", font=_pil_font(38),
-           fill=_rgba(TEXT, 200), anchor="mm")
+        px = int(cx - half * e + 2 * half * e * fx)
+        d.line([(px, cy - lane + 22), (px, cy + lane - 22)],
+               fill=_rgba(TEXT, int(110 * e)), width=5)
+    # THE MARKER — still moving at the end of the visual, because the finding
+    # is that it never settles
+    wob = 0.5 + 0.5 * _math.sin(reveal * 7.0)
+    mx = int(cx - half * e + 2 * half * e * wob)
+    # The marker must READ against the lane it sits in — drawn in the lane's
+    # own colour it disappeared into the fill entirely.
+    d.ellipse([mx - 46, cy - 46, mx + 46, cy + 46], fill=_rgba(WARN, 250),
+              outline=_rgba(charts.CARD, 255), width=7)
+    cur = lo + (hi - lo) * wob
+    d.text((mx, cy - lane - 54), charts._ulabel(cur, unit), font=_pil_font(52),
+           fill=_rgba(WARN, int(255 * e)), anchor="mm")
+    d.text((int(cx - half), cy + lane + 56), charts._ulabel(lo, unit),
+           font=_pil_font(44), fill=_rgba(TEXT, 235), anchor="mm")
+    d.text((int(cx + half), cy + lane + 56), charts._ulabel(hi, unit),
+           font=_pil_font(44), fill=_rgba(TEXT, 235), anchor="mm")
+    d.text((cx, by0 + 110), "it never settled", font=_pil_font(56),
+           fill=_rgba(TEXT, 240), anchor="mm")
+    d.text((cx, cy + lane + 124),
+           f"anywhere between {charts._ulabel(lo, unit)} and "
+           f"{charts._ulabel(hi, unit)}",
+           font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
     host = scene_host("think", reveal)
     if host is not None:
-        # Beside the cone's mouth, not at its apex — at the apex he sat over
-        # the title.
-        mh = 210
+        mh = 230
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(cx - half - mw - 20, bx0 + 16)),
-                                int(bot - mh)))
-    return (vals[-1], "art", cx, (top + bot) // 2)
+                               (int(bx0 + 16), int(cy + lane + 176)))
+    return (vals[-1], "art", mx, cy)
 
 
 def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
@@ -3046,7 +3096,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     lo, hi = min(vals), max(vals)
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    ground = by1 - 130
+    ground = by1 - 170
     e = max(0.0, min(1.0, reveal))
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
@@ -3057,7 +3107,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # the picture is the increase. The exact figure is in the line above.
     n_slabs = max(1, int(round(1 + frac * 7)))
     host = scene_host("hoist_stack", reveal)
-    mh = 430
+    mh = int(min(560, (by1 - by0) * 0.38))
     mw = int(host.width * mh / host.height) if host is not None else 280
     # He SINKS as it gets heavier — the knees give, so the load descends on him
     # rather than the frame just gaining bricks at the top.
@@ -3844,6 +3894,38 @@ def _load_photo(subject, slug, tag):
         return None
 
 
+def _as_anchor(an):
+    """One anchor shape, whatever the draw function hands back.
+
+    The scene kit's anchors are dicts — `{"value", "cx", "cy"}` — and the data
+    machines were written to the CHARTS art-spec contract instead, a
+    `(value, "art", x, y)` tuple. Both are legitimate in their own file and
+    the mismatch was invisible while machines only ever ran as a beat's SECOND
+    visual, which does not resolve anchors. The moment one became a PRIMARY,
+    `story.build` asked it for anchors and every render died on
+    `'tuple' object has no attribute 'get'`.
+
+    Normalising HERE, at the one place anchors are collected, is what stops
+    the next machine reintroducing it — a per-machine fix is a rule someone
+    has to remember.
+    """
+    if an is None:
+        return None
+    if isinstance(an, dict):
+        return an
+    try:
+        value, _kind, cx, cy = an
+        # `w`/`h` are part of the contract, not decoration: `_plan_events`
+        # reads them to size the ring it draws round the number as it is
+        # spoken, and a dict without them raises KeyError mid-render.
+        return {"value": float(value),
+                "cx": float(cx) if cx is not None else 0.0,
+                "cy": float(cy) if cy is not None else 0.0,
+                "w": 220.0, "h": 90.0}
+    except Exception:                      # noqa: BLE001
+        return None
+
+
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
@@ -3851,15 +3933,37 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     if spec is None:
         return None
     els = spec["elements"]
-    # Mechanics that composite Data straight into the beat (he rides the element)
-    # so the travelling overlay must be suppressed to avoid a duplicate host.
-    if any(el.get("type") == "timeline_axis" for el in els):
+    # Mechanics that composite Data straight into the beat (he rides the
+    # element) so the travelling overlay must be suppressed to avoid a
+    # DUPLICATE HOST — two mascots on screen at once.
+    #
+    # This used to name `timeline_axis` alone, which was true when the scene
+    # kit was mostly still pictures. Every data machine draws him itself
+    # (`scene_host`), so the moment a machine became a beat's PRIMARY
+    # depiction the travelling overlay would have put a second one beside it.
+    if any(el.get("type") in _SELF_HOSTING for el in els):
         insight.host_baked = True
     out_dir.mkdir(parents=True, exist_ok=True)
     # A ranking of illustrated things -> big vertical rows (picture + number)
     # that FILL the frame, instead of a cramped bottom row with a dead top third.
     rank_rows = _object_ranking(els)
     boxes = _vlist_layout(els, rank_rows) if rank_rows else _layout(els)
+    # A LONE MACHINE OWNS THE 9:16 FRAME.
+    #
+    # The safe box stops at y=1180 of 1920 — a comment from when a gameplay
+    # strip sat underneath, which the explainer has not had for a long time.
+    # Every machine was therefore drawing inside the top 57% of the frame with
+    # 740px of black below it, which reads as small and timid next to a chart
+    # that fills the card. It did not matter while machines were a beat's
+    # second visual; it matters a great deal now they are the first.
+    #
+    # Only widened for a SINGLE host-baked machine on `full`: a multi-element
+    # scene's regions are relative to the same box and moving them would
+    # re-lay every composition in the config. 1560 leaves the caption band and
+    # the punch number their room at the bottom.
+    if len(els) == 1 and els[0].get("type") in _SELF_HOSTING \
+            and els[0].get("region", "full") in ("full", None, ""):
+        boxes = [(RX0, RTOP, RX1, MACHINE_BOT)]
     side_set = set(rank_rows)
     # Only show the standalone title when NOT a vertical ranking (the rows own
     # the whole frame; the topic is spoken + captioned by the renderer anyway).
@@ -3940,14 +4044,14 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 an = _fn(d, canvas, box, insight,
                          _color_for(insight.items[0].label, insight)
                          if insight.items else HIGHLIGHT, lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "race_track":
                 an = draw_race(d, canvas, box, insight,
                                _color_for(insight.items[0].label, insight)
                                if insight.items else HIGHLIGHT, lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "orbit_group":
                 draw_orbit(d, box, insight, r)
             elif t == "timeline_axis":
@@ -3965,8 +4069,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     continue
                 an = draw_dot_field(d, canvas, box, cuts.get(i), lv[1], lv[0],
                                     _color_for(lv[0], insight), lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "balance":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 rv = _resolve((el.get("data") or {}).get("vs_from"), insight)
@@ -3974,8 +4078,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     continue
                 an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
                                   _color_for(lv[0], insight), lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "unit_figures":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
@@ -3984,8 +4088,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 an = draw_unit_figures(d, canvas, box, cuts.get(i), lv[1], per,
                                        lv[0], _color_for(lv[0], insight), lr,
                                        insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t in ("object", "fill_object", "stack", "bar", "bubble"):
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
@@ -4007,8 +4111,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                                      col, lr, vmax, side=(i in side_set),
                                      phase=r,
                                      photo=photos.get(i))
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
         # CAMERA PUSH. Element reveals finish partway through a beat and every
         # frame after that was identical — per-element "breathing" only covered
         # ranking rows, so a scene built from fill_object/stack/timeline still

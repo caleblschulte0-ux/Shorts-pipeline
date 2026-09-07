@@ -154,19 +154,17 @@ def _deterministic_candidates(f: dict) -> list[str]:
         det += ["fill_vessel"]          # the radial gauge (Data rides it)
     else:
         det += ["pictorial_race"]       # ranked rounded bars w/ icon caps
-    # THE MACHINES, after the chart the beat would have had and before the
-    # terminal guarantee. Appending rather than leading keeps the PRIMARY
-    # depiction exactly what it was — this pool is drawn on by the "one line
-    # chart per video" post-pass, which only fires on a REPEAT, so a machine
-    # enters only where a second identical chart would otherwise stand.
+    # THE MACHINE LEADS. A chart is the FALLBACK, not the default — which is
+    # the whole ruling, and was not true of this function until now: the
+    # machines were appended after the beat's own chart, so they were only
+    # ever reached by the "one line chart per video" post-pass, i.e. on a
+    # REPEAT. A library that only draws when the alternative is the same chart
+    # twice is not a library, it is a tie-breaker.
     #
-    # It also closes a gap that turned up when the false-composition guard
-    # landed: `waffle_grid` and `share` used to pad this pool for any percent
-    # data, and for a percent TIME SERIES they were the "2019 IS 9% OF THE
-    # WHOLE" claim. Removing them left four time-series beats with only two
-    # honest alternatives, so the fourth kept its line. The machines are the
-    # honest alternatives, and there are plenty of them.
-    det = det + _machine_candidates(f.get("insight"))
+    # The chart still follows every machine and `bubbles` still terminates the
+    # list, so a beat is never left without a depiction; and every machine
+    # offered here has been asked whether it can serve THIS data.
+    det = _machine_candidates(f.get("insight")) + det
     seen, out = set(), []
     for k in det:
         if k not in seen and renderable(k):
@@ -189,7 +187,12 @@ def _machine_candidates(ins) -> list[str]:
     try:
         from . import studio_render as _sr
         out = []
-        for tok in _sr._MACHINES.get(_rel.classify(ins), ()):
+        # `_machines_for`, NOT the raw table: it applies the anti-template
+        # rotation for relationships whose machines are equally apt. Reading
+        # `_MACHINES` directly handed every one of the catalogue's 429 duels
+        # the same set of scales — 324 of 930 beats leading on one picture,
+        # which is the template collapse this whole rotation exists to stop.
+        for tok in _sr._machines_for(ins):
             if tok not in _SCENE_BUILDERS:
                 continue
             try:
@@ -537,6 +540,72 @@ def _invent_mechanic(ins):
 # Budget raised 5 -> 12: rankings now show up to 5 REAL photos per segment
 # (cheap cached Wikimedia fetches, unlike AI generations), so a single ranking
 # must not starve the rest of the video into lazy fallbacks.
+# Authored-scene element types that are a GENERIC CHART in scene clothing.
+# A bespoke scene really is distinct by construction — a different subject, a
+# different arrangement — so it is exempt from the no-repeat rule. A scene
+# whose only element is a `timeline_axis` is not: it is the same line with
+# different numbers, and three of them in one video is three line charts.
+_GENERIC_SCENE_TYPES = {"timeline_axis", "stack", "bar", "bubble", "number",
+                        "caption", "orbit_group"}
+
+
+def _scene_signature(sc) -> str | None:
+    """A repeat key for an authored scene, or None if it is genuinely bespoke.
+
+    This closes the gap that kept the data machines off the screen. Pass 0
+    honours an authored scene and does NOT add it to `used`, on the reasoning
+    that bespoke scenes are distinct by construction. For the 122 configured
+    beats authored as a lone `timeline_axis` that reasoning is false, and the
+    consequence was measured by the showrunner itself on 2026-08-24: "three
+    near-identical chart layouts stretched over 96 seconds", scores 26-52.
+
+    Keying the generic ones lets the FIRST keep the author's choice while the
+    second and third fall through to the relationship's machine — a line, then
+    a climb, then a lift going down.
+    """
+    try:
+        types = {e.get("type") for e in (sc.get("elements") or [])}
+    except Exception:                      # noqa: BLE001
+        return None
+    if types and types <= _GENERIC_SCENE_TYPES:
+        return "scene:" + "+".join(sorted(t for t in types if t))
+    return None
+
+
+def _renders_here(sc, ins) -> bool:
+    """Will this authored scene actually draw in THIS configuration?
+
+    `validate` asks whether the scene is well formed. It is not the same
+    question as whether it can be drawn, and the gap between them was costing
+    the channel most of its pictures.
+
+    Measured over the 933 configured explainer beats on 2026-09-07, with
+    VIZ_IMAGES off (the default — the channel moved away from AI-image slop):
+    335 authored scenes prune to nothing and 218 more are image-only, so 553
+    of them validated at assign time, were honoured, and then bailed at draw
+    time to a fallback CHART. Meanwhile a 42-machine offline library sat
+    unreachable, because honouring the scene is what stops the director ever
+    looking for one.
+
+    Refusing here does not lose the beat: it falls through to the candidate
+    pass, which now leads with the machine that says the thing and still ends
+    at a chart. A scene that cannot be drawn is not a choice, it is a chart in
+    a costume.
+    """
+    try:
+        if isinstance(sc, dict) and ("code" in sc or "mechanic" in sc):
+            return True                    # judged by its own dry-render
+        pruned = viz_scene.prune(sc, ins)
+        els = (pruned or {}).get("elements") or []
+        if not els:
+            return False
+        if _images_on():
+            return True
+        return any(e.get("type") not in viz_scene._IMAGE_TYPES for e in els)
+    except Exception:                      # noqa: BLE001 — never break assign
+        return False
+
+
 def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     """Set each insight's final ``kind`` (depiction). Honours a valid authored
     concept; otherwise best-fit by shape. Enforces: never bare numbers, no
@@ -624,11 +693,16 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
                 chosen[i] = "mechanic"
                 images += 2
             continue
-        if sc and viz_scene.validate(sc, inss[i]):
+        if sc and viz_scene.validate(sc, inss[i]) and _renders_here(sc, inss[i]):
+            sig = _scene_signature(sc)
+            if sig and sig in used:
+                continue                   # the same chart twice — fall through
             cost = viz_scene.image_cost(sc)
             if images + cost <= image_budget:
                 chosen[i] = "scene"
                 images += cost
+                if sig:
+                    used.add(sig)
 
     # Pass 1 — honour a valid authored concept (the LLM's creative choice).
     for i in order:

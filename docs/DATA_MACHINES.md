@@ -75,6 +75,54 @@ into a still frame at the end. No machine may define another.
 
 ## The registry
 
+## How a machine reaches the screen
+
+Built is not the same as used. On 2026-09-07, with all 42 machines wired,
+documented and tested, they were reaching almost no beats — the wiring was
+right and the path was blocked three times over. What the path is now, and
+what each gate was doing:
+
+1. **The authored scene, if it can actually be DRAWN.** `validate` asks
+   whether a scene is well formed; that is not the same question. Of the 933
+   configured explainer beats, 550 carried a scene that validated, was
+   honoured, and then bailed at draw time to a fallback chart because it was
+   image-only and the channel runs with images off. `viz_director._renders_here`
+   asks the second question.
+2. **...and only ONCE, if it is a generic one.** A bespoke scene is distinct
+   by construction; a lone `timeline_axis` is the same line with different
+   numbers, and 122 beats are authored that way. The first keeps the author's
+   choice, the rest fall through — which is the showrunner's own 2026-08-24
+   finding ("three near-identical chart layouts stretched over 96 seconds",
+   scores 26-52) fixed at the source.
+3. **Otherwise the MACHINE, chart after it.** `_deterministic_candidates` now
+   leads with `_machine_candidates`, which asks the same router this document
+   describes and asks each builder whether it can serve this data. Appending
+   them after the beat's chart — which is where they started — made them a
+   tie-breaker on a repeated line chart, not a library.
+4. **`bubbles` terminates the list**, so a beat is never left without a
+   depiction.
+
+Measured over the same 933 beats after the change: **77% lead with a machine**,
+16% keep an authored scene that genuinely renders, 7% are charts and maps
+(place data is always better as a map).
+
+Three things that only broke once a machine was a beat's FIRST visual, all
+now held by tests:
+
+- **The anchor contract.** Machines return the charts art-spec tuple
+  `(value, "art", x, y)`; the scene kit's anchors are dicts. Invisible while
+  machines were a second visual, because that path does not resolve anchors.
+  Normalised in `_as_anchor`, at the one place anchors are collected.
+- **Two mascots.** Every machine draws the host itself. `render_scene` named
+  `timeline_axis` alone as host-baked, so the travelling overlay would have
+  put a second one beside every machine. `_SELF_HOSTING` is the set, checked
+  against the source in both directions.
+- **The sprite was 55% padding.** `scene_host` returns a 300x300 raster with
+  the host occupying 134x210 of it. Machines size him by height and anchor to
+  that box, so he came out a third small and `burden` drew its load floating
+  in clear air above his head. Cropped to the content bbox — one fix for all
+  forty.
+
 ### What the LIVE QUEUE actually classifies as
 
 Measured, not guessed, over all 1,089 datasets in `data_learning/data/` on

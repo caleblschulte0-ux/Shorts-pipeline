@@ -1167,6 +1167,113 @@ class APictureMayNotClaimAWholeThatIsNotThere(unittest.TestCase):
         self.assertTrue(viz_director._features(real)["is_share"])
 
 
+class OneMascotPerFrame(unittest.TestCase):
+    """Every machine draws the host itself, so the travelling overlay has to
+    be suppressed on any beat one of them owns — otherwise there are two
+    mascots on screen.
+
+    `render_scene` used to name `timeline_axis` alone, which was true when the
+    scene kit was mostly still pictures. The moment a machine became a beat's
+    PRIMARY depiction that list was wrong for forty of them.
+
+    Held against the SOURCE in both directions, because a declared list is
+    exactly the kind of thing that goes stale the next time a machine lands:
+    one that bakes him and is missing from the set renders two mascots, and
+    one listed that does not bake him renders none.
+    """
+
+    def _bakes(self, fn):
+        import inspect
+        return "scene_host(" in inspect.getsource(fn)
+
+    def _real(self):
+        extra = {"balance": vs.draw_balance, "race_track": vs.draw_race,
+                 "unit_figures": vs.draw_unit_figures,
+                 "dot_field": vs.draw_dot_field}
+        real = {t for t, fn in vs._MACHINE_DRAW.items() if self._bakes(fn)}
+        real |= {t for t, fn in extra.items() if self._bakes(fn)}
+        return real | {"timeline_axis"}
+
+    def test_nothing_declared_that_does_not_bake_him(self):
+        ghosts = sorted(vs._SELF_HOSTING - self._real())
+        self.assertEqual(ghosts, [],
+                         f"declared self-hosting but draws no host: {ghosts}")
+
+    def test_nothing_bakes_him_that_is_not_declared(self):
+        missing = sorted(self._real() - vs._SELF_HOSTING)
+        self.assertEqual(missing, [],
+                         f"bakes the host but would get a second one: {missing}")
+
+    def test_the_suppression_reads_the_set_and_not_one_name(self):
+        import inspect
+        src = inspect.getsource(vs.render_scene)
+        self.assertIn("_SELF_HOSTING", src)
+
+
+class TheMachinesActuallyREACHTheScreen(unittest.TestCase):
+    """A library nothing reaches for is not a library.
+
+    Measured on 2026-09-07, after all 42 machines were built, wired and
+    documented: of the 933 configured explainer beats, 550 carried an authored
+    scene that VALIDATED at assign time, was honoured, and then bailed at draw
+    time to a fallback chart, because it was image-only and the channel runs
+    with images off. Another 122 were authored as a lone `timeline_axis`,
+    which does render — three of them in one video is three line charts, and
+    the showrunner had already said so ("three near-identical chart layouts
+    stretched over 96 seconds", scores 26-52).
+
+    So the machines were reachable only through the "one line chart per video"
+    post-pass — a tie-breaker on a repeat. This class holds the three rules
+    that changed that, because each of them is easy to undo by accident.
+    """
+
+    def test_an_authored_scene_must_actually_RENDER_to_be_honoured(self):
+        """`validate` asks whether a scene is well formed. That is not the
+        same question as whether it can be drawn."""
+        from data_learning import viz_director as vd
+        ins = _things([("A", 5), ("B", 3)])
+        image_only = {"title": True,
+                      "elements": [{"type": "object", "region": "full",
+                                    "subject": "house",
+                                    "data": {"value_from": "star"}}]}
+        drawable = {"title": True,
+                    "elements": [{"type": "timeline_axis", "region": "full"}]}
+        self.assertFalse(vd._renders_here(image_only, ins))
+        self.assertTrue(vd._renders_here(drawable, ins))
+
+    def test_a_generic_authored_scene_may_not_repeat(self):
+        """A bespoke scene is distinct by construction. A lone `timeline_axis`
+        is the same line with different numbers, and three in one video is
+        three line charts."""
+        from data_learning import viz_director as vd
+        generic = {"elements": [{"type": "timeline_axis"}]}
+        bespoke = {"elements": [{"type": "object", "subject": "house"},
+                                {"type": "caption", "text": "x"}]}
+        self.assertIsNotNone(vd._scene_signature(generic))
+        self.assertIsNone(vd._scene_signature(bespoke))
+
+    def test_the_machine_LEADS_and_the_chart_follows(self):
+        """The ruling is that a chart is the fallback. Appending the machines
+        after the beat's own chart made them a tie-breaker instead."""
+        from data_learning import viz_director as vd
+        ins = _things([("San Jose", 11.3), ("LA", 9.7), ("Miami", 8.2),
+                       ("Seattle", 6.8)])
+        cands = vd._candidates(ins, vd._features(ins))
+        self.assertTrue(cands, "no depiction offered at all")
+        self.assertIn(cands[0], vd._SCENE_BUILDERS,
+                      f"a chart still leads: {cands[:4]}")
+
+    def test_the_pool_rotates_so_one_machine_cannot_take_everything(self):
+        """Reading `_MACHINES` directly instead of `_machines_for` skips the
+        anti-template rotation, and handed all 429 of the catalogue's duels
+        the same set of scales."""
+        import inspect
+        src = inspect.getsource(vd_src := __import__(
+            "data_learning.viz_director", fromlist=["x"])._machine_candidates)
+        self.assertIn("_machines_for", src)
+        self.assertNotIn("_MACHINES.get", src)
+
+
 class TheRegistryDocTellsTheTruth(unittest.TestCase):
     """`docs/DATA_MACHINES.md` is the map a future session reads before it
     touches any of this. A doc that lists a machine the code does not have —
@@ -1190,8 +1297,13 @@ class TheRegistryDocTellsTheTruth(unittest.TestCase):
         self.assertEqual(missing, [], f"undocumented relationships: {missing}")
 
     def test_every_machine_the_doc_names_actually_exists(self):
+        """Only the REGISTRY TABLES are scanned — the rows beginning with a
+        pipe. The prose names functions too (`render_scene`), and a first cut
+        of this test flagged that as a missing machine, which is the test
+        being wrong rather than the doc."""
         import re as _re
-        named = set(_re.findall(r"`([a-z_]+_scene)`", self.doc))
+        rows = [ln for ln in self.doc.splitlines() if ln.lstrip().startswith("|")]
+        named = set(_re.findall(r"`([a-z_]+_scene)`", "\n".join(rows)))
         ghosts = sorted(t for t in named if t not in sr._SCENE_TOKENS
                         and t not in sr._SELF_HOSTED)
         self.assertEqual(ghosts, [], f"documented but unbuilt: {ghosts}")
