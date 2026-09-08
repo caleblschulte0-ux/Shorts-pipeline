@@ -6175,13 +6175,63 @@
       "director_cut": true
     },
     "clip-20260908-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/GeniusEagerHorseCeilingCat-q_NXR9-f-vUKTWmA",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/6SmTlyEVJQA",
       "title": "Lirik Michael Myers Catches The Teen Talking Trash And It Actually Hurts",
       "kind": "twitch_clip",
-      "ts": "2026-09-08T15:16:32.103948+00:00",
+      "ts": "2026-09-08T15:16:35.810392+00:00",
+      "uploaded_at": "2026-09-08T15:16:35.810411+00:00",
+      "publish_at": "2026-09-08T20:00:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/GeniusEagerHorseCeilingCat-q_NXR9-f-vUKTWmA",
+      "streamer": "lirik",
+      "series": "win",
+      "hook": "THEY SAID THEY WERE LEAVING",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2635,
+      "banger": 0.6,
+      "cut": {
+        "start": 30.0,
+        "end": 44.2
+      },
+      "director_cut": true
+    },
+    "rejected-seductiveoutstandingwaffleresidentsleeper-7o921365-lujvuyh": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SeductiveOutstandingWaffleResidentSleeper-7O921365-lUJvUYh",
+      "streamer": "kaicenat",
+      "title": "b",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (racial slur, no visible event)",
+      "ts": "2026-09-08T15:17:45.046504+00:00"
+    },
+    "rejected-pricklyadorablehippothetarfu-oku3vljxqewgt0fn": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/PricklyAdorableHippoTheTarFu-OkU3VLJXQewgt0Fn",
+      "streamer": "erobb221",
+      "title": "67 OOOO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (confused reaction to meme, no clear even)",
+      "ts": "2026-09-08T15:19:19.384522+00:00"
+    },
+    "rejected-agilepoisedgoatbcouch-a6om0pzslynzvewj": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AgilePoisedGoatBCouch-A6Om0PZSlynzvewj",
+      "streamer": "jynxzi",
+      "title": "W singing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (singing chat, no event)",
+      "ts": "2026-09-08T15:19:48.949388+00:00"
+    },
+    "clip-20260908-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/SmokyDeadCroquetteResidentSleeper-3rJXkTkOqLD8pzxO",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "Lirik Can't Believe What Just Showed Up In This Game",
+      "kind": "twitch_clip",
+      "ts": "2026-09-08T15:25:44.490631+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
