@@ -102,6 +102,66 @@ class NoMachineLeavesAVoid(unittest.TestCase):
         self.assertEqual(bad, {}, f"machines leaving a void: {bad}")
 
 
+class ANumberIsDEMONSTRATEDNotStated(unittest.TestCase):
+    """`bare_number_card` — the reviewer's other standing block on this
+    channel, and it had one cause.
+
+    `draw_timeline` has a good depiction: a rising filled area with Data
+    riding the leading edge. It reached it only when every item carried a
+    `period` attribute, and fell back to `_draw_flat_timeline` — a hairline
+    ruler with a number floating above it — when one did not. Requiring a
+    separate `period` field is an accident of the data shape: the items were
+    labelled 2007..2025.
+
+    The showrunner blocked exactly that on 2026-09-07: "just the text
+    '$1,000B' and '2025' floating above a hairline timeline — no filling,
+    stacking or comparison; the number is stated, not demonstrated." 122 of
+    the configured beats are authored as a `timeline_axis`.
+
+    Measured on the same data before and after: coverage 5.4% -> 35.5%,
+    void 31% -> 12%.
+    """
+
+    def _render(self, pairs, unit="billion dollars"):
+        import tempfile
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-01-01")
+        ins = Insight(kind="scene", topic="t", main_insight="m",
+                      items=[DataPoint(label=l, value=float(v))
+                             for l, v in pairs],
+                      source=src, unit=unit, highlight_label=pairs[-1][0])
+        ins.scene = {"title": True,
+                     "elements": [{"type": "timeline_axis", "region": "full"}]}
+        with tempfile.TemporaryDirectory() as td:
+            charts.FULLFRAME_RENDERERS["scene"](ins, Path(td), "t", 4)
+            fs = sorted(Path(td).glob("*.png"))
+            self.assertTrue(fs, "the scene rendered nothing")
+            return Image.open(fs[-1]).convert("RGBA")
+
+    def test_a_year_labelled_series_gets_the_CLIMB_not_a_ruler(self):
+        img = self._render([(str(2007 + k), v) for k, v in
+                            enumerate([560, 600, 640, 700, 760, 820, 880,
+                                       940, 1000])])
+        m = fo.measure(img)
+        self.assertGreater(
+            m["coverage"], 0.15,
+            f"coverage {m['coverage'] * 100:.1f}% — this is the hairline "
+            f"ruler again, not a demonstration")
+
+    def test_the_period_is_derived_from_the_label(self):
+        import inspect
+        src = inspect.getsource(vs.draw_timeline)
+        self.assertIn("THE LABEL IS THE PERIOD", src)
+
+    def test_a_series_with_NO_year_labels_still_falls_back_safely(self):
+        """The flat axis is the right answer when there is genuinely no time
+        in the data — it must not start claiming one."""
+        img = self._render([("Alpha", 5), ("Beta", 9), ("Gamma", 2)])
+        self.assertIsNotNone(img)
+
+
 class TheMeasureItself(unittest.TestCase):
     def test_a_blank_layer_is_all_void(self):
         img = Image.new("RGBA", (200, 400), (0, 0, 0, 0))

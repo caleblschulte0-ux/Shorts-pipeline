@@ -3618,6 +3618,23 @@ def draw_timeline(d, canvas, box, insight, reveal):
     value / no periods."""
     items = _ordered_items(insight)
     periods = [charts._num_or_none(getattr(p, "period", None)) for p in items]
+    # THE LABEL IS THE PERIOD when it is a year. Requiring a separate `period`
+    # field is an accident of the data shape, and the cost of it is the whole
+    # point of this machine: without one, "X over time" silently degrades to
+    # `_draw_flat_timeline` — a hairline ruler with a number floating above
+    # it, which is precisely what the showrunner blocked on 2026-09-07 as
+    # "just the text '$1,000B' and '2025' floating above a hairline timeline
+    # — no filling, stacking or comparison; the number is stated, not
+    # demonstrated." Those items were labelled 2007..2025.
+    if not (len(periods) >= 2 and all(v is not None for v in periods)):
+        derived = []
+        for p in items:
+            t = str(getattr(p, "label", "") or "").strip()
+            derived.append(float(t[:4])
+                           if len(t) >= 4 and t[:4].isdigit()
+                           and 1800 <= int(t[:4]) <= 2200 else None)
+        if len(derived) >= 2 and all(v is not None for v in derived):
+            periods = derived
     have_p = len(periods) >= 2 and all(v is not None for v in periods)
     vals = [p.value for p in items]
     if have_p and len({round(v, 4) for v in vals}) >= 2:
