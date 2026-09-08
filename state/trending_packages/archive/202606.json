@@ -4283,5 +4283,628 @@
       "music_vibe": "dark",
       "gameplay": "subway"
     }
+  },
+  "20260609": {
+    "01_mindanao-earthquake-tsunami.json": {
+      "version": 8,
+      "slug": "mindanao-earthquake-tsunami",
+      "title": "A 7.8 Quake Killed 37 in Mindanao. Tsunami Waves Followed.",
+      "hashtags": [
+        "earthquake",
+        "philippines",
+        "mindanao",
+        "tsunami",
+        "sarangani",
+        "generalsantos",
+        "naturaldisaster",
+        "breakingnews",
+        "seismic",
+        "asia",
+        "disaster",
+        "catastrophe",
+        "pacificring"
+      ],
+      "script": "Massive quake! On June 8, a 7.8 magnitude earthquake struck off the coast of Sarangani Province in southern Mindanao, Philippines. At least 37 people were killed, 482 were injured, and 4 are still missing. The shock is the strongest to hit the Philippines in 35 years. General Santos City, home to 722,000 people, took serious structural damage. Buildings collapsed in Digos and Kidapawan. Tsunami waves swept coastal towns for hours. Warnings were issued for Indonesia, Malaysia, Japan, Taiwan, and Papua New Guinea. Hundreds of aftershocks have continued since. Officials are now assessing whether seawall and building infrastructure \u2014 built decades ago \u2014 can handle the next big one. Is Mindanao's coastal infrastructure ready to survive what comes next?",
+      "shots": [
+        {
+          "phrase": "Massive quake",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Ph_mindanao.png",
+          "query": "Philippines Mindanao region map locator earthquake epicenter"
+        },
+        {
+          "phrase": "7.8 magnitude earthquake struck off the coast of Sarangani Province",
+          "query": "earthquake seismograph seismic waves Mindanao Philippines disaster"
+        },
+        {
+          "phrase": "37 people were killed, 482 were injured",
+          "query": "earthquake victims injured rescue workers rubble Philippines"
+        },
+        {
+          "phrase": "strongest to hit the Philippines in 35 years",
+          "query": "earthquake collapsed buildings damaged rubble Philippines city"
+        },
+        {
+          "phrase": "General Santos City, home to 722,000 people",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/General_Santos_City_Hall.jpg",
+          "query": "General Santos City Philippines urban downtown aerial view"
+        },
+        {
+          "phrase": "Buildings collapsed in Digos and Kidapawan",
+          "query": "building collapse earthquake rubble debris Philippines city street"
+        },
+        {
+          "phrase": "Tsunami waves swept coastal towns for hours",
+          "query": "tsunami waves flooding coastal town ocean rushing water Philippines"
+        },
+        {
+          "phrase": "Warnings were issued for Indonesia, Malaysia, Japan, Taiwan, and Papua New Guinea",
+          "query": "tsunami warning map Pacific Asia countries alert coastal nations"
+        },
+        {
+          "phrase": "Hundreds of aftershocks have continued since",
+          "query": "seismograph earthquake aftershocks readings monitor seismic activity"
+        },
+        {
+          "phrase": "Mindanao's coastal infrastructure ready to survive what comes next",
+          "query": "coastal seawall infrastructure Philippines ocean protection breakwater construction"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "7.8 magnitude earthquake",
+          "text": "7.8 MAGNITUDE",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "37 people were killed",
+          "text": "37 DEAD",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "482 were injured",
+          "text": "482 HURT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "strongest to hit the Philippines in 35 years",
+          "text": "WORST IN 35 YRS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "General Santos City, home to 722,000 people",
+          "text": "722K AFFECTED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Hundreds of aftershocks",
+          "text": "STILL SHAKING",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "02_sakurajima-grey-rain-kagoshima.json": {
+      "version": 8,
+      "slug": "sakurajima-grey-rain-kagoshima",
+      "title": "Japan's Volcano Buried a City of 600,000 in Grey Rain",
+      "hashtags": [
+        "sakurajima",
+        "kagoshima",
+        "volcano",
+        "japan",
+        "eruption",
+        "ashfall",
+        "greymud",
+        "volcanoeruption",
+        "naturaldisaster",
+        "kyushu",
+        "jma",
+        "geology",
+        "volcanowatch"
+      ],
+      "script": "Grey rain? Sakurajima, Japan's most active volcano, erupted on June 7 and blanketed Kagoshima City in thick volcanic ash. When the ash mixed with light rainfall, it turned into grey mud that coated streets, cars, and rooftops across a city of 600,000 people. The eruption column reached 1,300 meters above the crater. Kagoshima Airport cancelled flights. Rail services halted. Residents were ordered to wear masks. The Japan Meteorological Agency maintained Volcanic Alert Level 3, restricting access near the summit. Sakurajima has erupted more than 15,000 times since 1955 and sits 5 kilometers from the city center. Locals live with regular ashfall as just a fact of life. Why would anyone choose to live next to the world's most active volcano?",
+      "shots": [
+        {
+          "phrase": "Sakurajima, Japan's most active volcano",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sakurajima_2009.jpg",
+          "query": "Sakurajima volcano Japan eruption smoke plume ash"
+        },
+        {
+          "phrase": "erupted on June 7 and blanketed Kagoshima City in thick volcanic ash",
+          "query": "volcanic ash cloud grey city covered Japan ashfall"
+        },
+        {
+          "phrase": "grey mud that coated streets, cars, and rooftops",
+          "query": "volcanic ash grey mud covered cars streets buildings rooftops"
+        },
+        {
+          "phrase": "city of 600,000 people",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kagoshima_city_from_Shiroyama.jpg",
+          "query": "Kagoshima Japan city skyline harbor bay panorama aerial"
+        },
+        {
+          "phrase": "eruption column reached 1,300 meters above the crater",
+          "query": "volcanic eruption column tall smoke plume Japan crater summit"
+        },
+        {
+          "phrase": "Kagoshima Airport cancelled flights",
+          "query": "Kagoshima airport ash fog disrupted cancelled flights terminal"
+        },
+        {
+          "phrase": "Japan Meteorological Agency maintained Volcanic Alert Level 3",
+          "query": "Japan volcanic alert warning Level 3 official sign announcement"
+        },
+        {
+          "phrase": "15,000 times since 1955",
+          "query": "volcano eruption count historical data active chart records"
+        },
+        {
+          "phrase": "5 kilometers from the city center",
+          "query": "Sakurajima peninsula Kagoshima Bay city proximity aerial map close"
+        },
+        {
+          "phrase": "world's most active volcano",
+          "query": "active volcano erupting lava ash dramatic eruption fire sky"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Sakurajima, Japan's most active volcano",
+          "text": "MOST ACTIVE VOLCANO",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "blanketed Kagoshima City in thick volcanic ash",
+          "text": "ASH BURIED THE CITY",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "city of 600,000 people",
+          "text": "600K COVERED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "eruption column reached 1,300 meters above the crater",
+          "text": "1,300M PLUME",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Kagoshima Airport cancelled flights",
+          "text": "FLIGHTS GROUNDED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "15,000 times since 1955",
+          "text": "15,000 ERUPTIONS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "5 kilometers from the city center",
+          "text": "5KM FROM CITY",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark",
+      "gameplay": "subway"
+    },
+    "03_mary-tasmanian-devil-escaped.json": {
+      "version": 8,
+      "slug": "mary-tasmanian-devil-escaped",
+      "title": "A Tasmanian Devil Named Mary Escaped. 6 Days Later, She's Still Out There.",
+      "hashtags": [
+        "tasmaniandevil",
+        "mary",
+        "queensland",
+        "goldcoast",
+        "wildlifepark",
+        "paradisecountry",
+        "escaped",
+        "australia",
+        "wildlifeescape",
+        "marsupial",
+        "endangered",
+        "animalnews",
+        "weirdnews"
+      ],
+      "script": "She's loose! Mary, a 2-year-old Tasmanian devil, broke out of her enclosure at Paradise Country wildlife park on Queensland's Gold Coast on June 3. Zookeepers say it's a mystery \u2014 they think one abnormally large leap sent her over the fence after midnight. Tracker dogs, thermal drones, and wildlife experts searched for days. On June 8, a resident's home security camera caught Mary alive and roaming nearby bush. Tasmanian devils are critically endangered on Australia's mainland \u2014 fewer than 30 are believed to live in Queensland. Mary is described as shy, but the park warns she can be reactive if cornered or if anyone tries to catch her. Has Australia's most famous fugitive marsupial finally met her match in the Gold Coast suburbs?",
+      "shots": [
+        {
+          "phrase": "Mary, a 2-year-old Tasmanian devil",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tasmanian_Devil_resting.jpg",
+          "query": "Tasmanian devil black fur marsupial wildlife Australia resting"
+        },
+        {
+          "phrase": "Paradise Country wildlife park on Queensland's Gold Coast",
+          "query": "Paradise Country wildlife park Gold Coast Queensland entrance aerial"
+        },
+        {
+          "phrase": "abnormally large leap sent her over the fence after midnight",
+          "query": "wildlife enclosure fence escape night dark security camera"
+        },
+        {
+          "phrase": "Tracker dogs, thermal drones, and wildlife experts searched for days",
+          "query": "tracker dog search drone thermal wildlife team Australia bushland"
+        },
+        {
+          "phrase": "resident's home security camera caught Mary alive",
+          "query": "home security camera night vision suburban neighborhood backyard footage"
+        },
+        {
+          "phrase": "roaming nearby bush",
+          "query": "Australian bushland suburban backyard Queensland wildlife nature scrub"
+        },
+        {
+          "phrase": "critically endangered on Australia's mainland",
+          "query": "Tasmanian devil endangered species conservation awareness Australia wildlife"
+        },
+        {
+          "phrase": "fewer than 30 are believed to live in Queensland",
+          "query": "Tasmanian devil small number count rare Queensland wild mainland"
+        },
+        {
+          "phrase": "reactive if cornered or if anyone tries to catch her",
+          "query": "Tasmanian devil defensive open mouth snarling teeth wildlife"
+        },
+        {
+          "phrase": "Gold Coast suburbs",
+          "query": "Gold Coast Queensland suburb street houses residential neighborhood Australia"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Mary, a 2-year-old Tasmanian devil",
+          "text": "MARY'S STILL OUT!",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "abnormally large leap",
+          "text": "ONE HUGE JUMP",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "home security camera caught Mary alive",
+          "text": "SPOTTED JUNE 8",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818"
+        },
+        {
+          "phrase": "critically endangered",
+          "text": "CRITICALLY ENDANGERED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "fewer than 30 are believed to live in Queensland",
+          "text": "FEWER THAN 30 LEFT",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "Gold Coast suburbs",
+          "text": "STILL ON THE RUN",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "subway"
+    },
+    "04_nashville-zoo-ai-data-center.json": {
+      "version": 8,
+      "slug": "nashville-zoo-ai-data-center",
+      "title": "An AI Company Wants to Build Next to Nashville's Zoo. The Leopards Said No.",
+      "hashtags": [
+        "nashvillezoo",
+        "dcblox",
+        "clouded leopard",
+        "cloudedleopard",
+        "datcenter",
+        "aiexpansion",
+        "nashville",
+        "bradpaisley",
+        "freddieconnell",
+        "zoo",
+        "animalnews",
+        "techvsanimals",
+        "weirdnews"
+      ],
+      "script": "Leopards vs. servers! DC Blox, an AI data center company, proposed a 69,000-square-foot facility next to the Nashville Zoo. The problem: the construction would sit about 50 yards from the zoo's critically endangered clouded leopards, which are notoriously sensitive to mechanical noise \u2014 disrupting the sound levels could end the zoo's breeding program. Over 300,000 people have signed a petition against the project. Country star Brad Paisley called it a nightmare scenario. Nashville Mayor Freddie O'Connell said the application was unusual and asked the city's legal team to investigate. The zoo says stormwater from the data center site already drains onto its grounds. Are clouded leopards really a match for artificial intelligence?",
+      "shots": [
+        {
+          "phrase": "DC Blox, an AI data center company",
+          "query": "AI data center server room cooling racks technology interior"
+        },
+        {
+          "phrase": "69,000-square-foot facility next to the Nashville Zoo",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Nashville_Zoo_at_Grassmere.jpg",
+          "query": "Nashville Zoo Grassmere entrance Tennessee sign gate"
+        },
+        {
+          "phrase": "critically endangered clouded leopards",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Clouded_Leopard.jpg",
+          "query": "clouded leopard spotted cat resting endangered species zoo"
+        },
+        {
+          "phrase": "sensitive to mechanical noise \u2014 disrupting the sound levels could end the zoo's breeding program",
+          "query": "clouded leopard baby cub breeding program zoo conservation enclosure"
+        },
+        {
+          "phrase": "300,000 people have signed a petition against the project",
+          "query": "online petition signing protest community opposition demonstration"
+        },
+        {
+          "phrase": "Country star Brad Paisley called it a nightmare scenario",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Brad_Paisley_(2023).jpg",
+          "query": "Brad Paisley country music singer performer Nashville Tennessee"
+        },
+        {
+          "phrase": "Nashville Mayor Freddie O'Connell said the application was unusual",
+          "query": "Nashville Tennessee city hall mayor government building downtown"
+        },
+        {
+          "phrase": "stormwater from the data center site already drains onto its grounds",
+          "query": "stormwater drainage flooding construction site pipes runoff urban"
+        },
+        {
+          "phrase": "breeding program",
+          "query": "zoo breeding program endangered species enclosure conservation success"
+        },
+        {
+          "phrase": "clouded leopards really a match for artificial intelligence",
+          "query": "server rack data center AI technology infrastructure construction"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Leopards vs. servers",
+          "text": "LEOPARDS VS AI",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "69,000-square-foot facility",
+          "text": "69K SQFT NEXT DOOR",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "50 yards",
+          "text": "50 YARDS AWAY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "300,000 people have signed a petition",
+          "text": "300K PETITION",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Brad Paisley called it a nightmare scenario",
+          "text": "NIGHTMARE!",
+          "color": "#ff3030",
+          "flash_bg": "#220404"
+        },
+        {
+          "phrase": "breeding program",
+          "text": "EXTINCTION RISK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "application was unusual",
+          "text": "MAYOR CALLS FOUL",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "gameplay": "minecraft"
+    },
+    "05_h1b-fee-struck-down.json": {
+      "version": 8,
+      "slug": "h1b-fee-struck-down",
+      "title": "A Federal Judge Just Killed Trump's $100,000 H-1B Visa Tax",
+      "hashtags": [
+        "h1b",
+        "visa",
+        "immigration",
+        "tech",
+        "unconstitutional",
+        "federalcourt",
+        "leosorokin",
+        "trump",
+        "techworkers",
+        "skilledworkers",
+        "uscourts",
+        "executivepower",
+        "uslaw"
+      ],
+      "script": "Unconstitutional! On June 8, U.S. District Judge Leo Sorokin in Boston struck down President Trump's $100,000 supplementary fee on new H-1B visas for skilled workers. Sorokin ruled the charge violated the Administrative Procedure Act \u2014 the Constitution gives only Congress the power to tax, not the executive branch. A coalition of 20 state attorneys general had sued to block it. Employers applying for H-1B workers had been forced to pay the $100,000 surcharge on top of standard filing fees of $2,000 to $5,000. The ruling takes effect immediately. The tech industry, which relies heavily on H-1B visas to hire engineers, breathed a collective sigh of relief. Should Congress get to decide who pays what to bring in a foreign worker?",
+      "shots": [
+        {
+          "phrase": "U.S. District Judge Leo Sorokin in Boston",
+          "query": "federal courthouse Boston Massachusetts United States District Court building"
+        },
+        {
+          "phrase": "struck down President Trump's $100,000 supplementary fee on new H-1B visas",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/H-1B_Stamps.jpg",
+          "query": "H-1B visa stamp passport immigration skilled worker document"
+        },
+        {
+          "phrase": "violated the Administrative Procedure Act",
+          "query": "federal court legal documents APA administrative procedure law books"
+        },
+        {
+          "phrase": "Constitution gives only Congress the power to tax",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/United_States_Capitol_-_west_front.jpg",
+          "query": "US Capitol Congress building Washington DC dome exterior"
+        },
+        {
+          "phrase": "20 state attorneys general had sued to block it",
+          "query": "state attorneys general coalition press conference legal brief signing"
+        },
+        {
+          "phrase": "$100,000 surcharge on top of standard filing fees of $2,000 to $5,000",
+          "query": "large dollar amount fee payment visa application money cost"
+        },
+        {
+          "phrase": "ruling takes effect immediately",
+          "query": "judge gavel courtroom ruling decision legal victory federal"
+        },
+        {
+          "phrase": "tech industry, which relies heavily on H-1B visas to hire engineers",
+          "query": "tech workers engineers Silicon Valley software company office diverse"
+        },
+        {
+          "phrase": "breathed a collective sigh of relief",
+          "query": "tech employees office celebration relief happy workers visa approved"
+        },
+        {
+          "phrase": "Congress get to decide who pays what to bring in a foreign worker",
+          "query": "Congress lawmakers immigration debate vote policy Capitol floor"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "struck down",
+          "text": "STRUCK DOWN",
+          "color": "#50ff80",
+          "flash_bg": "#0d2818"
+        },
+        {
+          "phrase": "$100,000 supplementary fee",
+          "text": "$100K FEE DEAD",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Constitution gives only Congress the power to tax",
+          "text": "UNCONSTITUTIONAL TAX",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "20 state attorneys general",
+          "text": "20 STATE AGs WON",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "$100,000 surcharge on top of standard filing fees of $2,000 to $5,000",
+          "text": "$2K \u2192 $102K STOPPED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "ruling takes effect immediately",
+          "text": "EFFECTIVE NOW",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "tech industry",
+          "text": "TECH EXHALES",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    },
+    "06_xi-kim-north-korea-summit.json": {
+      "version": 8,
+      "slug": "xi-kim-north-korea-summit-2026",
+      "title": "Xi Jinping Just Landed in North Korea. First Time in 7 Years.",
+      "hashtags": [
+        "xijinping",
+        "kimjongun",
+        "northkorea",
+        "pyongyang",
+        "chinanorthkorea",
+        "diplomacy",
+        "summitmeeting",
+        "statecraft",
+        "statevisit",
+        "geopolitics",
+        "worldnews",
+        "chinapolitics",
+        "asianews"
+      ],
+      "script": "First visit! Chinese President Xi Jinping arrived in Pyongyang, North Korea, on June 8 for a rare state visit \u2014 his first in 7 years. Kim Jong Un and his wife Ri Sol Ju welcomed Xi at the airport with a 21-gun salute, a military band, and flowers from North Korean children. Xi called on both nations to deepen strategic cooperation and expand ties in trade, agriculture, and technology. The visit comes just weeks after Xi hosted both Donald Trump and Vladimir Putin in quick succession in Beijing. The 65th anniversary of the China-North Korea mutual defense treaty was a backdrop. China and North Korea have never been closer. Does the world know what exactly Xi and Kim agreed to in Pyongyang?",
+      "shots": [
+        {
+          "phrase": "Chinese President Xi Jinping arrived in Pyongyang, North Korea",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Xi_Jinping_portrait_2019_(cropped).jpg",
+          "query": "Xi Jinping China president official portrait state visit"
+        },
+        {
+          "phrase": "Kim Jong Un and his wife Ri Sol Ju welcomed Xi at the airport",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kim_Jong-un_2019.png",
+          "query": "Kim Jong Un North Korea leader official airport welcome"
+        },
+        {
+          "phrase": "21-gun salute, a military band",
+          "query": "21 gun salute military ceremony North Korea soldiers honor guard"
+        },
+        {
+          "phrase": "flowers from North Korean children",
+          "query": "North Korean children flowers welcome ceremony parade official state"
+        },
+        {
+          "phrase": "expand ties in trade, agriculture, and technology",
+          "query": "China North Korea diplomatic agreement signing trade cooperation flags"
+        },
+        {
+          "phrase": "Xi hosted both Donald Trump and Vladimir Putin in quick succession in Beijing",
+          "query": "Beijing summit diplomatic meeting world leaders China Xi Jinping"
+        },
+        {
+          "phrase": "65th anniversary of the China-North Korea mutual defense treaty",
+          "query": "China North Korea alliance treaty military cooperation flags ceremony"
+        },
+        {
+          "phrase": "China and North Korea have never been closer",
+          "query": "China North Korea border friendship cooperation two flags together"
+        },
+        {
+          "phrase": "Pyongyang",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pyongyang_(8).jpg",
+          "query": "Pyongyang North Korea skyline city buildings tower aerial"
+        },
+        {
+          "phrase": "Xi and Kim agreed to in Pyongyang",
+          "query": "diplomatic summit leaders agreement signing closed door meeting North Korea"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Xi Jinping arrived in Pyongyang, North Korea",
+          "text": "XI IN PYONGYANG",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "first in 7 years",
+          "text": "FIRST IN 7 YEARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "21-gun salute",
+          "text": "21-GUN SALUTE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Xi hosted both Donald Trump and Vladimir Putin",
+          "text": "TRUMP+PUTIN THEN KIM",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "65th anniversary",
+          "text": "65TH ANNIVERSARY",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "China and North Korea have never been closer",
+          "text": "NEVER CLOSER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "strategic cooperation",
+          "text": "SECRET DEAL?",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "gameplay": "subway"
+    }
   }
 }
