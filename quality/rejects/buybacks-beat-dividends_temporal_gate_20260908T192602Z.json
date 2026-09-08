@@ -1,0 +1,18 @@
+{
+ "slug": "buybacks-beat-dividends",
+ "ts": "20260908T192602Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=45.58s of 50.62s (~2.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
