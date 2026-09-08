@@ -21,8 +21,15 @@ split as a balance, then a race, then a set of icons makes it WORSE — it
 looks like variety while saying nothing new, which is how a channel teaches
 people that its videos have no information in them.
 
-So: a beat that restates an earlier beat is dropped, and a story that is
-nothing BUT restatements is refused rather than posted short.
+So there are two places this is caught, and they do different jobs:
+
+* AT RENDER TIME `prune_restatements` drops the restating beats, with a
+  floor so a story never empties. That is salvage — it makes a repetitive
+  story into its least repetitive cut, and it cannot invent a second fact.
+* BEFORE RENDER `one_fact_stretched` refuses the story outright, through
+  `editorial_gate.beats_are_distinct`. Refusing is only the right answer
+  where there is another story in the queue to render instead, which is
+  exactly what is true there and not true in the renderer.
 
 WHAT COUNTS AS A RESTATEMENT is deliberately narrow, because two beats that
 happen to share a shape are usually two real facts:
