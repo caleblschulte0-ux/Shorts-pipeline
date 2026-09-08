@@ -2183,13 +2183,41 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # frame 1 (sweeping onto its star datum) instead of standing below it.
             staged_hook = None
             def _act(seg, phase="action"):
-                # Deterministic, on-topic, ANIMATED action for this chart kind
-                # (push the bar / ride the line / hoist the slice; a celebration
-                # on the payoff). No brain call -> free + no run-to-run variance.
+                # THE DIRECTOR ALREADY CHOSE, PER BEAT — honour it.
+                #
+                # `viz_director.assign` runs `performance_for` over the whole
+                # story with an anti-repetition set, so beat 0 gets block_wall,
+                # beat 1 shoved_bar, beat 2 race_sprint and so on. This
+                # function threw that away and asked `data_action_spec(kind)`
+                # instead, which is keyed on the CHART KIND — and bars,
+                # comparison, rank and pictorial_race all map to `push_bar`,
+                # so a story of three ranking beats got the identical pose
+                # three times. `scene` is not in that map at all, so every
+                # machine beat fell through to `push_bar` too.
+                #
+                # The showrunner blocked a video for exactly this on
+                # 2026-09-07: "Data holds the same arms-out standing pose in
+                # hook@0.3, seg1:mid, seg2:end, seg3:start and seg4:mid — only
+                # rescaled and re-parked on the bar tip".
+                #
+                # The payoff still celebrates: that is the beat landing, not a
+                # repeat.
+                if phase == "payoff":
+                    if _director and hasattr(_director, "data_action_spec"):
+                        return _director.data_action_spec(
+                            getattr(seg, "kind", ""), phase)
+                    return "cheer"
+                ins = getattr(seg, "insight", None)
+                chosen = getattr(ins, "perf_spec", None) if ins else None
+                if isinstance(chosen, dict) and chosen.get("action"):
+                    return chosen
+                chosen = getattr(ins, "perf_override", None) if ins else None
+                if chosen:
+                    return chosen
                 kind = getattr(seg, "kind", "")
                 if _director and hasattr(_director, "data_action_spec"):
                     return _director.data_action_spec(kind, phase)
-                return "cheer" if phase == "payoff" else "point"
+                return "point"
 
             # If the opening chart BAKES the host in (Data rides the drawing
             # line/bar), add NO overlay for the hook — he's already in the chart.
