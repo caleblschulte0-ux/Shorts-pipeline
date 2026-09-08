@@ -1638,3 +1638,260 @@ class AMachineRefusesWhatItCannotDraw(unittest.TestCase):
     def test_the_hourglass_refuses_a_wait_it_cannot_show(self):
         self.assertTrue(vs.hourglass_scene(self._ins([20, 2])))
         self.assertFalse(vs.hourglass_scene(self._ins([3000, 15])))
+
+
+class NoMachineEatsTheCatalogue(unittest.TestCase):
+    """Operator, 2026-09-08: *"we are going to use some graphs and non graphs
+    too much and some not at all."*
+
+    They were right, and it was measurable. Over the 944 real beats in
+    `niche.config.json`, three machines took HALF of them — `units_scene`
+    20%, `race_scene` 16.6%, `balance_scene` 13.9% — while ten machines led
+    nothing at all.
+
+    The cause was not the rotation, which works and is keyed on the story so
+    a re-render is stable. It was the candidate LISTS: `units_scene` was
+    named by ten of forty-one relationships, `balance_scene` by eight,
+    `race_scene` by six. Rotation shares a relationship's beats evenly among
+    its candidates, so a machine listed everywhere wins everywhere.
+
+    The fix was to widen the three crowded relationships with machines that
+    are honest for them and REFUSE what they cannot say — the tape needs two
+    magnitudes it can lay end to end, the nest only draws a ratio between
+    1.5x and 150x, the shelf refuses above thirty trophies. Nothing was
+    forced: a machine that does not fit falls through exactly as before.
+    """
+
+    def _beats(self):
+        import json
+        from data_learning import beat_claims as bc
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        root = Path(__file__).resolve().parent.parent
+        cfg = json.loads((root / "data_learning" / "niche.config.json").read_text())
+        data = root / "data_learning" / "data"
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+        out = []
+        for s in cfg["stories"]:
+            beats = []
+            for seg in (s.get("segments") or []):
+                f = (seg.get("params") or {}).get("file")
+                p = data / f if f else None
+                if not p or not p.exists():
+                    continue
+                d = json.loads(p.read_text())
+                pts = [DataPoint(label=str(x["label"]), value=float(x["value"]))
+                       for x in d.get("points", []) if x.get("value") is not None]
+                if len(pts) < 2:
+                    continue
+                beats.append(Insight(
+                    kind=seg.get("insight_type", "rank"),
+                    topic=seg.get("topic", ""), main_insight=seg.get("say", ""),
+                    items=pts, source=src, unit=d.get("unit", ""),
+                    highlight_label=str(pts[0].label)))
+            if len(beats) > 1:
+                beats = bc.prune_restatements(beats, floor=2)[0]
+            out.extend(beats)
+        return out
+
+    def test_no_three_machines_take_half_the_channel(self):
+        """MEASURED over the real catalogue, because the failure this catches
+        is invisible in any single video: every beat is individually well
+        chosen and the channel still looks like it owns four pictures."""
+        import collections
+        beats = self._beats()
+        self.assertGreater(len(beats), 800, "the catalogue did not load")
+        lead = collections.Counter()
+        for ins in beats:
+            ms = sr._machines_for(ins)
+            lead[ms[0] if ms else "(chart)"] += 1
+        top3 = sum(v for _, v in lead.most_common(3)) / len(beats)
+        # 0.505 before this landed, 0.367 after. 0.45 leaves room for the
+        # catalogue to drift without letting it slide back to half.
+        self.assertLess(top3, 0.45,
+                        f"three machines carry {top3:.1%}: {lead.most_common(4)}")
+
+    def test_no_single_machine_is_named_by_a_quarter_of_the_router(self):
+        """`units_scene` was in ten of forty-one lists. A machine listed
+        everywhere wins everywhere, whatever the rotation does."""
+        import collections
+        cnt = collections.Counter()
+        for ms in sr._MACHINES.values():
+            for m in ms:
+                cnt[m] += 1
+        worst, n = cnt.most_common(1)[0]
+        self.assertLessEqual(n / len(sr._MACHINES), 0.25,
+                             f"{worst} is named by {n} of {len(sr._MACHINES)}")
+
+    def test_the_widened_lists_still_refuse_what_they_cannot_draw(self):
+        """The whole reason widening is safe. If any of the three additions
+        ever stops refusing, a duel of 1 against 2,000,000 gets a measuring
+        tape with one end off the frame."""
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+
+        def _i(pairs):
+            return Insight(kind="comparison", topic="t", main_insight="",
+                           items=[DataPoint(label=a, value=float(b))
+                                  for a, b in pairs],
+                           source=src, unit="count", highlight_label=pairs[0][0])
+        # the nest refuses a ratio it cannot tile
+        self.assertFalse(vs.nest_scene(_i([("A", 1.0), ("B", 1.2)])))
+        # the shelf refuses a tally too long to count
+        self.assertFalse(vs.trophies_scene(_i([("A", 400), ("B", 380)])))
+
+    def test_every_widened_candidate_is_a_machine_that_exists(self):
+        for name in ("duel", "rank", "dominance"):
+            for m in sr._MACHINES[name]:
+                self.assertTrue(
+                    m in sr._SCENE_TOKENS or hasattr(vs, m) or m in ("orbit",),
+                    f"{name} -> {m} names nothing")
+
+
+class ABuilderNeverAcceptsWhatItsDrawingRefuses(unittest.TestCase):
+    """The hole that widening the router opened, and the reason it is worth a
+    sweep rather than three patches.
+
+    `nest_scene` and `trophies_scene` were built by the generic factory,
+    which only ever counted items — while `draw_nest` refuses a ratio outside
+    1.5x..150x and `draw_trophies` refuses a tally over thirty. So the
+    builder said yes, the director spent the beat on that machine, the draw
+    returned None, and the render degraded to a chart: a slot spent, no
+    variety, and nothing anywhere saying why. Invisible in every log.
+
+    It only started to matter when those two were added to `duel`, `rank` and
+    `dominance` — 53% of the catalogue — which is exactly when a latent bug
+    becomes a daily one.
+    """
+
+    def _cases(self):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+
+        def mk(pairs, unit="count", topic="t"):
+            return Insight(kind="comparison", topic=topic, main_insight="",
+                           items=[DataPoint(label=a, value=float(b))
+                                  for a, b in pairs],
+                           source=src, unit=unit,
+                           highlight_label=pairs[0][0])
+        return [
+            ("a pair that barely differs", mk([("A", 100), ("B", 98)])),
+            ("a pair that differs enormously", mk([("A", 1e6), ("B", 1)])),
+            ("a tally too long for a shelf", mk([("A", 400), ("B", 380)])),
+            ("a zero", mk([("A", 50), ("B", 0)])),
+            ("three of a kind", mk([("A", 9), ("B", 6), ("C", 3)])),
+        ]
+
+    def test_every_builder_the_hot_lists_use_agrees_with_its_drawing(self):
+        """The three biggest relationships are 53% of the catalogue. A
+        builder/draw disagreement anywhere in their candidate lists is a
+        chart shipped in place of a machine, every day, silently."""
+        from PIL import Image, ImageDraw
+        from data_learning import charts
+        hot = {m for name in ("duel", "rank", "dominance")
+               for m in sr._MACHINES[name]}
+        bad = []
+        for label, ins in self._cases():
+            for m in sorted(hot):
+                build = getattr(vs, m, None)
+                if not callable(build):
+                    continue          # `orbit` and friends are not scenes
+                spec = build(ins)
+                if not spec:
+                    continue          # refused honestly, nothing to check
+                kind = (spec.get("elements") or [{}])[0].get("type")
+                draw = vs._MACHINE_DRAW.get(kind)
+                if draw is None:
+                    continue
+                img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+                got = vs._guarded(kind, draw, ImageDraw.Draw(img), img, _BOX,
+                                  vs.drawable_insight(ins) or ins,
+                                  charts.HIGHLIGHT, 0.95, ins.unit)
+                if got is None:
+                    bad.append(f"{m} accepted {label} and drew nothing")
+        self.assertEqual(bad, [], "; ".join(bad))
+
+    def test_the_nest_band_has_one_definition(self):
+        import inspect
+        self.assertIn("NEST_MIN", inspect.getsource(vs.draw_nest))
+        self.assertIn("NEST_MIN", inspect.getsource(vs.nest_scene))
+        self.assertNotIn("150", inspect.getsource(vs.draw_nest))
+
+    def test_the_shelf_limit_has_one_definition(self):
+        import inspect
+        self.assertIn("TROPHY_MAX", inspect.getsource(vs.draw_trophies))
+        self.assertIn("TROPHY_MAX", inspect.getsource(vs.trophies_scene))
+
+
+class TheTapeDEPICTSItsNumbers(unittest.TestCase):
+    """A regression found by auditing a change from the same day it landed.
+
+    `tape_scene` was added to `duel` — 30% of the catalogue — to spread the
+    load off three overused machines. Then the tape was measured: it ran from
+    one edge of the frame to the other whatever the numbers were, and printed
+    them as text at each end. A 30/70 pair and a 49/51 pair came out **99.5%
+    identical, pixel for pixel** — same tape, same posts, same ground, only
+    the digits different.
+
+    That is the showrunner's `bare_number_card` verbatim: the number is
+    stated, not demonstrated. It was survivable while the tape only drew
+    `delta`, where the gap IS the whole claim; picking it for a duel because
+    it improved a distribution statistic was choosing a picture for the wrong
+    reason entirely.
+
+    Now the ruler runs 0..max, each post stands at its own value, and the
+    tape spans between them.
+    """
+
+    def _tape(self, pairs, reveal=1.0):
+        from PIL import Image, ImageDraw
+        from data_learning import charts
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+        ins = Insight(kind="comparison", topic="t", main_insight="",
+                      items=[DataPoint(label=a, value=float(b))
+                             for a, b in pairs],
+                      source=src, unit="percent",
+                      highlight_label=pairs[0][0])
+        img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+        vs._guarded("tape", vs._MACHINE_DRAW["tape"], ImageDraw.Draw(img),
+                    img, _BOX, vs.drawable_insight(ins), charts.HIGHLIGHT,
+                    reveal, "percent")
+        return img
+
+    def test_two_different_duels_do_not_draw_the_same_picture(self):
+        try:
+            import numpy as np
+        except ImportError:  # noqa: BLE001
+            self.skipTest("numpy not installed")
+        a = np.asarray(self._tape([("Left", 30), ("Right", 70)]).split()[-1],
+                       dtype=np.float32)
+        b = np.asarray(self._tape([("Left", 49), ("Right", 51)]).split()[-1],
+                       dtype=np.float32)
+        differ = (np.abs(a - b) > 8).mean()
+        # 0.005 before the fix (the digits alone), 0.025 after. The bar is
+        # deliberately just above the text-only floor: what it forbids is a
+        # picture whose GEOMETRY ignores its data.
+        self.assertGreater(differ, 0.012,
+                           f"a 30/70 and a 49/51 draw the same tape ({differ:.3f})")
+
+    def test_the_posts_stand_at_the_VALUES(self):
+        import inspect
+        src = inspect.getsource(vs.draw_tape)
+        self.assertIn("def _pos(", src)
+        self.assertIn("abs(v) / vmax", src)
+        # the old fixed-width span is gone
+        self.assertNotIn("(bx1 - 90 - x0) * e", src)
+
+    def test_it_still_says_how_far_APART(self):
+        """The gap is still the headline — the fix changed how the picture is
+        drawn, not what it claims."""
+        import inspect
+        self.assertIn("apart", inspect.getsource(vs.draw_tape))

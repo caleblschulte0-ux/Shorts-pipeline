@@ -1647,9 +1647,22 @@ def _alt_candidates_for(insight) -> tuple:
 # a picture of a story the data does not tell.
 _MACHINES = {
     # rank -> position, and the gap becomes distance
-    "rank":        ("race_scene", "units_scene", "orbit"),
+    # A SKYLINE IS A RANKING, and a shelf of trophies is a ranking of counts
+    # — trophies refuses above thirty, which is what keeps it honest here.
+    # Both were locked to one rarely-classified relationship each and so led
+    # nothing; a ranking is the second-biggest bucket in the catalogue.
+    "rank":        ("race_scene", "skyline_scene", "trophies_scene",
+                    "units_scene", "orbit"),
     # two THINGS -> weight, or two lanes side by side
-    "duel":        ("balance_scene", "race_scene", "units_scene"),
+    # FIVE, not three. `duel` is 30% of the live catalogue and the three
+    # machines it used to name were also named by most of its neighbours, so
+    # balance/race/units took HALF of every beat the channel drew while ten
+    # machines led nothing at all. The two additions are honest for a pair
+    # and both REFUSE what they cannot say — the tape needs two magnitudes it
+    # can lay end to end, the nest only draws a ratio between 1.5x and 150x —
+    # so a duel they do not fit falls straight through to the other three.
+    "duel":        ("balance_scene", "race_scene", "tape_scene",
+                    "nest_scene", "units_scene"),
     # a then and a NOW -> the subject itself growing: a stack gaining blocks,
     # a tank filling, or the two weighed against each other
     "before_after": ("tower_scene", "fill_vessel", "balance_scene",
@@ -1663,7 +1676,8 @@ _MACHINES = {
     # a share of a countable whole -> figures lit, or one flow splitting
     "share":       ("rate_scene", "pipes_scene", "fill_vessel"),
     # one item dwarfing the rest -> a tower you look UP at
-    "dominance":   ("skyline_scene", "units_scene", "balance_scene"),
+    "dominance":   ("skyline_scene", "nest_scene", "units_scene",
+                    "balance_scene"),
     # a line it has to clear -> a hurdle
     "threshold":   ("hurdle_scene", "balance_scene", "units_scene"),
     # stages, each smaller than the last -> a funnel
