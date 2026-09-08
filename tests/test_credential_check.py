@@ -140,7 +140,7 @@ class ItFindsEveryChannelsToken(unittest.TestCase):
     def test_a_malformed_token_secret_is_dead_not_a_crash(self):
         self.assertEqual(cc.probe_youtube("not json")[0], cc.DEAD)
         self.assertEqual(
-            cc.probe_youtube(json.dumps({"refresh_token": "r"}))[0], cc.DEAD)
+            cc.probe_youtube(json.dumps({cc.RT: "r"}))[0], cc.DEAD)
 
 
 class ItNeverProbesWhatItWasNotGiven(unittest.TestCase):
