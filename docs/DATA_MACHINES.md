@@ -278,6 +278,37 @@ and both lies pointed the same way — at a machine that was fine.
 Both times the harness said a good machine was broken. Check the harness
 before changing the machine.
 
+## The three things the reviewer keeps blocking, as numbers
+
+The showrunner watches every video and its notes are consistent enough to be
+turned into deterministic checks. Each of these was one cause, not a hundred:
+
+| its words | the cause | now |
+|---|---|---|
+| `empty_void` — "the entire lower two-thirds blank blue gradient" | `RBOT` was 1180 of 1920, "above the game strip", a layout this channel has not had for years. 158 configured scenes have >1 element and every one drew in the top 61%. | `RBOT` 1560; `shared/frame_occupancy.py` measures coverage and the largest empty band; `tests/test_the_frame_is_used.py` holds every machine under a 34% ceiling |
+| `bare_number_card` — "the number is stated, not demonstrated" | `draw_timeline` reached its rising filled area only when every item carried a `period` field, and fell back to a hairline ruler without one. The items were labelled 2007..2025. | the label IS the period when it is a year — coverage 5.4% → 35.5% on the blocked data |
+| `decorative_mascot` — "the same arms-out pose in five beats" | `viz_director` already picks a different performance per beat; the renderer's `_act()` threw it away and asked a map keyed on CHART KIND, where bars/comparison/rank all mean `push_bar` — and `scene`, which is every machine beat, was absent entirely | `_act()` honours `perf_spec`; `scene` has its own default |
+
+**Measure with the FURNITURE.** The studio draws the title near the top and
+burns the caption near the bottom of every frame, so measuring a bare machine
+over-reports the void at both ends — the first sweep flagged ten machines that
+are fine in production. Only a gap still empty with the title and caption
+present is real.
+
+## Say the number the picture shows
+
+`shared/beat_match.py`. Over the 858 configured beats that speak a quantity,
+84.5% have their headline number on screen. The 15.5% that do not fail the
+same way every time — the writer converts the measured figure into a bigger
+one the data does not contain ("34 percent — 2.6 billion people" over a chart
+of percentages), and the viewer hears a number they cannot find.
+
+It is an authoring fault, so the story forge feeds it back to the brain inside
+the retry loop it already has, and the prompt states the rule up front. A
+difference, a percentage change, a share of the total and a unit rescale all
+pass — only a number from nowhere fails, and only for the LOUDEST number in
+the line.
+
 ## What is deliberately NOT built
 
 - **A network / subway map.** It needs edge data — who connects to whom — and
