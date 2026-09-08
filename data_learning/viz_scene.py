@@ -1114,6 +1114,12 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     return (mid, "art", (bx0 + bx1) // 2, road_y)
 
 
+# How many yanks the tape opens in. 14 puts a pull roughly every 8 frames of
+# a 120-frame visual — far inside the gate's 45-frame allowance, and slow
+# enough to still read as somebody hauling a tape measure open.
+TAPE_PULLS = 14
+
+
 def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     """A MEASURING TAPE pulled between two values, ON A SCALE. For DELTA.
 
@@ -1168,8 +1174,21 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
         tx = int(lx0 + (lx1 - lx0) * k / 10.0)
         d.line([(tx, _ground - 16), (tx, _ground)],
                fill=_rgba(TEXT, 90), width=4)
-    # THE TAPE, pulled open from the near post to the far one.
-    x1 = int(lo + (hi - lo) * e)
+    # THE TAPE IS PULLED OUT IN YANKS, not slid.
+    #
+    # CI measured a 44-frame frozen run against a 35 ceiling the first time
+    # the tape spanned only the GAP rather than the whole frame: the end
+    # advanced ~3.6px a frame at 1080 wide, which is 0.6px once the cadence
+    # detector downsamples to 192, on a band 8px tall. Geometrically it was
+    # opening the entire visual; to the gate it was a still image — the exact
+    # "slow glide" this test's own docstring warns about, and the same shape
+    # of bug the hourglass had.
+    #
+    # A tape measure is yanked out in pulls anyway, so quantising it is both
+    # the fix and the more honest motion: each pull moves the end a visible
+    # distance at once, which is the DISCRETE arrival every machine that
+    # passes the gate has.
+    x1 = int(lo + (hi - lo) * (_math.floor(e * TAPE_PULLS) / TAPE_PULLS))
     d.rounded_rectangle([lo, y - 22, max(x1, lo + 6), y + 22], radius=10,
                         fill=_rgba(color, 235))
     for k in range(0, max(1, (x1 - lo) // 46)):

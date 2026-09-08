@@ -1890,6 +1890,20 @@ class TheTapeDEPICTSItsNumbers(unittest.TestCase):
         # the old fixed-width span is gone
         self.assertNotIn("(bx1 - 90 - x0) * e", src)
 
+    def test_the_tape_is_YANKED_open_not_slid(self):
+        """CI measured a 44-frame frozen run the first time the tape spanned
+        only the gap rather than the whole frame — the end advanced 3.6px a
+        frame at 1080 wide, which is 0.6px once the detector downsamples, on
+        a band 8px tall. Locally the same machine measured 15, so the source
+        is the only place this is pinned; the rendered check lives in
+        `MotionMustBeVISIBLE`, which is what caught it."""
+        import inspect
+        src = inspect.getsource(vs.draw_tape)
+        self.assertIn("TAPE_PULLS", src)
+        self.assertIn("_math.floor", src)
+        self.assertGreaterEqual(vs.TAPE_PULLS, 8,
+                                "too few pulls and the tape jumps in halves")
+
     def test_it_still_says_how_far_APART(self):
         """The gap is still the headline — the fix changed how the picture is
         drawn, not what it claims."""
