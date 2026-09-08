@@ -6257,14 +6257,27 @@
       "ts": "2026-09-08T15:42:39.679341+00:00"
     },
     "clip-20260908-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/EntertainingSuperCobraMVGame-f6ApbiBsSMkd0NGD",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/BUBzXxA8zDE",
       "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna",
       "kind": "twitch_clip",
-      "ts": "2026-09-08T16:10:40.774134+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-09-08T16:11:05.595841+00:00",
+      "uploaded_at": "2026-09-08T16:11:05.595860+00:00",
+      "publish_at": "2026-09-09T00:30:00Z",
+      "source_url": "https://www.twitch.tv/silky/clip/EntertainingSuperCobraMVGame-f6ApbiBsSMkd0NGD",
+      "streamer": "silky",
+      "series": "wholesome",
+      "hook": "YOU CAN'T JUST START BUSTING OUT",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1823,
+      "banger": 0.55,
+      "cut": {
+        "start": 10.0,
+        "end": 27.0
+      },
+      "director_cut": true
     }
   }
 }
