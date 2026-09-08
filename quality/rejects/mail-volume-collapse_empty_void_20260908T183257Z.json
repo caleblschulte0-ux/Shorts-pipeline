@@ -1,0 +1,25 @@
+{
+ "slug": "mail-volume-collapse",
+ "ts": "20260908T183257Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:mid (f11) and seg2:end (f12) are ~70% empty dark navy \u2014 two hairline baselines, two thumbnail-sized mascots and a dotted strip clipped to the right edge; seg3:end (f15) is one lone blue block in an otherwise blank frame.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "empty_void",
+  "visible_evidence": "At seg2:mid (t=18.42s) and seg2:end (t=21.43s) the 3.3B->7.3B doubling is drawn as two 1px baselines with tiny mascots perched on them and a dotted column jammed against the right edge, plus an unfilled cyan ellipse floating in blank space; the middle and lower thirds of the frame are empty. The same beat opened at seg2:start with a full-mass column comparison, so it visibly degrades.",
+  "root_cause": "The beat's machine renders its values as line/marker geometry rather than mass, so the 2x growth carries no visual weight and the layout occupies a thin horizontal band; a stray unparented ellipse element and an edge-clipped dotted strip are drawn into the leftover space instead of the data.",
+  "repair_goal": "Redraw seg2 as the filled-mass comparison it starts with \u2014 two columns sized to the frame where 7.3B is literally twice the 2008 height, growing on the settle() curve \u2014 remove the stray cyan ellipse and the clipped dotted strip, drop the duplicate thumbnail mascots to a single Data doing one bit at the growing column, and use the full canvas height."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

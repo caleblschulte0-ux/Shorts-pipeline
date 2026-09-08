@@ -1,0 +1,26 @@
+{
+ "slug": "driving-side-of-the-road",
+ "ts": "20260908T183257Z",
+ "score": 91,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 1
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.371,
+  "effective_fps": 15.1,
+  "max_dup_run": 40,
+  "max_dup_at_s": 36.08,
+  "duration_s": 40.46
+ },
+ "scene_plan": {},
+ "scenes": [],
+ "why_it_worked": "A well-paced video with strong data demonstrations and an engaging mascot, though one scene has minor visual craft issues with truncated text.",
+ "render_ref": "preview-renders branch @ 20260908T183257Z"
+}

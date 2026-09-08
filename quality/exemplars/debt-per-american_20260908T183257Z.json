@@ -1,0 +1,35 @@
+{
+ "slug": "debt-per-american",
+ "ts": "20260908T183257Z",
+ "score": 95,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 2
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.286,
+  "effective_fps": 17.1,
+  "max_dup_run": 36,
+  "max_dup_at_s": 41.92,
+  "duration_s": 47.88
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "stack",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": [],
+ "why_it_worked": "A well-crafted and engaging video with strong data demonstrations and an active mascot, effectively communicating the national debt per person.",
+ "render_ref": "preview-renders branch @ 20260908T183257Z"
+}
