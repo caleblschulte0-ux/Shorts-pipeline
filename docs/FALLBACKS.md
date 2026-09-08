@@ -46,6 +46,39 @@ slate. Both looked green in the Actions tab.
 touch it; a missing `ANTHROPIC_API_KEY` does not either, as long as
 `GROQ_API_KEY` or `GEMINI_API_KEY` is set.
 
+### Keys EXPIRE, and an expired key looks exactly like a broken one
+
+On **2026-09-07** every trending backfill attempt died in under two seconds on
+`HTTPError: HTTP Error 401: Unauthorized`, so three slots the showrunner had
+correctly emptied could not be re-authored and the day shipped 3 of 6. The key
+was not revoked or mistyped: Groq keys were issued with a **90-day expiry**,
+and that one had been created about ninety days earlier.
+
+Two things follow, and both are now true:
+
+* **Groq now offers a key that never expires.** Take it. A credential with a
+  timer on it is a scheduled outage nobody has written down, and this one
+  fired on a Sunday with a full slate authored and waiting.
+* **No unattended path may name one provider.** `_call_llm` walks
+  Groq → Gemini → Anthropic until one ANSWERS, but only when the caller does
+  not name a backend — an explicit `backend=` is exact by design. The
+  trending backfill named `"groq"`, so the chain it was standing on could not
+  catch it. That is the second time the same shape has cost a day: on
+  2026-08-11 all four backfill attempts died on `HTTP Error 429` with
+  `GEMINI_API_KEY` configured and idle. The chain was fixed that day; the
+  caller was not, until now.
+  `tests/test_no_single_provider_dependency.py` fails the build if any
+  unattended path pins a backend again.
+
+**When a provider call starts failing instantly and identically, check the key's
+expiry before you debug the code.** A 401 in 0.3 seconds is a credential, not a
+bug — nothing else fails that fast or that consistently.
+
+Rotate at <https://console.groq.com/keys>, then update the `GROQ_API_KEY`
+repository secret. Ten workflows read that exact name (`daily`, `explainer`,
+`story_forge`, `curiosity`, both `exchange` phases, `retitle`, and the two
+previews), so renaming it silently disables all of them.
+
 ### The duplicate-upload trap (fixed)
 
 The stale-slate fallback was actively dangerous once gaps became routine.
@@ -290,7 +323,7 @@ A normal day prints no banner at all.
 |---|---|
 | Claude subscription / `CLAUDE_CODE_OAUTH_TOKEN` | Routine and in-CI brain both dark. ChatGPT authors the day (§6); only if that misses too does Groq write. Explainer publishing needs `GEMINI_API_KEY` for the showrunner. |
 | `GEMINI_API_KEY` | Showrunner has no fallback judge → explainer publishes nothing if Claude is also down. Media judging gets dumber. |
-| `GROQ_API_KEY` | Last-resort writer gone; ranking degrades. Harmless while packages are authored. |
+| `GROQ_API_KEY` | Last-resort writer gone; ranking degrades. Harmless *while packages are authored* — but NOT for the trending backfill, which is the last unattended chance to fill a slot a gate emptied. That path used to name Groq explicitly and lost three slots to an expired key on 2026-09-07; it is unpinned now, so the chain falls through to Gemini and then Anthropic. Prefer a key with no expiry — see above. |
 | ChatGPT task | Policy A: Phase B self-fills, backstop cron renders. A weaker shot beats no video. |
 | Stock provider keys | Narrower search, more gaps, more self-fill work. |
 | YouTube token | Renders still produced; upload fails loudly. |
