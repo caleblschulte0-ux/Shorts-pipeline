@@ -1,0 +1,81 @@
+{
+  "schema": "shorts-doctor-report/v1",
+  "date": "20260907",
+  "summary": "The exchange recovered on September 7: Media and Finalizer both left complete artifacts, Phase B verified 14/14 checkpoints, and the shared Drive exposes 14 distinct downloadable assets. Trending production still finished repair_required at 3/6, so the prior repair alarm remains acknowledged against the active reliability backlog rather than being disguised as a format problem. Monday's renderer review found a more immediate publishing-control defect in long-form: its PAUSED check runs before checkout and therefore cannot see the repository kill switch. The first real post-relaunch long-form attempt also exposed the launch bottleneck: a 47-second, all-still-fallback cut was correctly held at 8.4 effective FPS. The gate should stay unchanged; the renderer needs to clear it. Long-form still has zero comparable 16:9 posts since publishing was re-enabled, so management should establish a small measured launch cohort before drawing a growth conclusion.",
+  "alarm_ack": {
+    "chatgpt_task_failed_finalizer": "The alarm describes the missing 20260906 Finalizer artifact and explicitly assigns recovery to the external scheduled task, not a repository patch. The next required run is healthy: state/chatgpt_tasks/20260907/finalizer.json records status=ok and both response.json and DONE, so re-filing the prior no-show as a code finding would invent a repo owner for an external incident.",
+    "chatgpt_task_failed_media": "The alarm describes the missing 20260906 Media artifact and says the repo side needs no changes. The next required run recovered completely: state/chatgpt_tasks/20260907/media.json records status=ok, exchange/bundles/20260907/phase_b_report.json verifies 14/14 checkpoints, and the Drive folder contains 14 distinct downloadable 20260907 PNGs. No duplicate repository finding is needed.",
+    "production_repair_trending": "Acknowledged against active reliability/mix backlog 33ccbcdc479b and Phase-A liveness backlog 5187e34e11f. The 20260907 production outcome is still repair_required at 3/6 after nine attempts, so this report neither calls the outage fixed nor proposes weakening the showrunner; the existing owners already cover holding the mix and making recovery reliable.",
+    "doctor_reviewer_silent": "This dated report is the missing reviewer artifact. It restores the daily Doctor output with five validated findings and does not duplicate the alarm as a product-code defect because the alarm itself says the repo-side evidence and triage machinery remained healthy."
+  },
+  "findings": [
+    {
+      "title": "Long-form checks the repository kill switch before checkout",
+      "horizon": "bug",
+      "severity": "critical",
+      "area": "longform/publishing-control",
+      "files": [
+        ".github/workflows/longform.yml"
+      ],
+      "observation": "The long-form job tests `[ -f PAUSED ]` as its first step and only checks out the repository in the following step. A fresh hosted runner starts with an empty workspace, so the test cannot observe a PAUSED file committed on main. The workflow can install dependencies, render, pass the showrunner, and upload to the explainer channel while the global repository kill switch is active.",
+      "proposal": "Move checkout ahead of the kill-switch step and add an executable workflow-contract test that runs the preflight against a fixture workspace with and without PAUSED. Keep the check before dependency installation or any render work, and require the PAUSED fixture to exit nonzero before the upload step is reachable.",
+      "evidence": ".github/workflows/longform.yml:41-53 runs the PAUSED file test; actions/checkout@v4 does not run until lines 54-57. Every other live publishing workflow found by repository search places checkout before its PAUSED check, including daily.yml, explainer.yml, third.yml, curiosity.yml, and story_forge.yml. The current source-only test in tests/test_disabled_channels_stay_off.py asserts that longform.yml contains the PAUSED token but does not execute or order the step."
+    },
+    {
+      "title": "Long-form silently publishes without its promised custom thumbnail",
+      "horizon": "small_fix",
+      "severity": "medium",
+      "area": "longform/thumbnail-contract",
+      "files": [
+        "data_learning/longform_render.py",
+        "scripts/build_longform.py",
+        "tests/test_longform_gated.py"
+      ],
+      "observation": "Thumbnail generation catches every exception and continues, while the publisher converts a missing thumbnail into `thumbnail=None`. The path is documented and tested as a watch-page video with a custom thumbnail, but the test only searches for the thumbnail argument. A Pillow/font/write failure can therefore ship the new format without the asset intended to earn its click.",
+      "proposal": "Make a readable 1920x1080 thumbnail a required publish artifact after render while preserving a loud preview-only fallback. Add a focused test that injects thumbnail-generation failure and proves a publish run stops before YouTubeUploader.upload, plus a valid-dimensions case that reaches the uploader.",
+      "evidence": "data_learning/longform_render.py:598-601 catches any make_thumbnail exception and prints `thumbnail skipped`; scripts/build_longform.py:178-184 accepts the missing file and lines 212-215 passes None to the uploader. tests/test_longform_gated.py:test_the_thumbnail_and_chapters_reach_youtube checks only that the source contains `thumbnail=thumb`, so it cannot detect this fail-open branch."
+    },
+    {
+      "title": "The relaunched long-form renderer cannot yet clear its existing motion floor",
+      "horizon": "short_term",
+      "severity": "high",
+      "area": "longform/renderer-motion",
+      "files": [
+        "data_learning/longform_render.py",
+        "scripts/build_longform.py",
+        "tests/test_longform_gated.py"
+      ],
+      "observation": "The September 6 production run rendered the first substantive post-relaunch candidate, but all three beats degraded to still fallback and the 47-second master measured 8.4 effective FPS. The shared showrunner correctly blocked it against the 11.0 floor. The August 30 workflow completed without adding a comparable 16:9 entry to state/longform_log.json, so the relaunched format has still produced no measurable post despite two weekly opportunities.",
+      "proposal": "Raise motion at the renderer so the always-available still treatment clears the existing temporal floor, add a pre-gate cadence probe for each beat and the assembled master, and fail early with beat-level diagnostics when the floor is missed. Pin the September 6 all-still shape as a regression fixture and require the finished candidate to retain the same factual frames while meeting the current 11.0 threshold.",
+      "evidence": "GitHub Actions run 34052953808 logs `beat 1: still fallback`, `beat 2: still fallback`, `beat 3: still fallback`, a 47-second output, and a showrunner BLOCK at effective_fps 8.4 < 11.0. data_learning/longform_render.py:625-655 routes unavailable or failed hero/Manim treatments to _still_beat for every segment; scripts/build_longform.py:186-201 correctly treats the showrunner block as fatal on publish. state/longform_log.json contains only nine retired vertical-concat entries, most recently 2026-08-02."
+    },
+    {
+      "title": "Long-form upload and dedupe state are not one recoverable transaction",
+      "horizon": "long_term",
+      "severity": "high",
+      "area": "longform/idempotent-publishing",
+      "files": [
+        "scripts/build_longform.py",
+        ".github/workflows/longform.yml",
+        "state/longform_log.json"
+      ],
+      "observation": "The builder uploads first, then appends the returned URL to a runner-local ledger. If URL normalization, ledger loading, atomic write, or the later git persistence step fails after YouTube accepts the upload, main still says the slug has never been long-formed. The next weekly run selects the same slug and can publish a duplicate; `if: always()` on persistence cannot reconstruct an entry that was never written locally.",
+      "proposal": "Introduce a durable idempotency/receipt protocol around upload: commit a slug-scoped pending claim before the external call, persist the provider video ID immediately after acceptance, and reconcile pending claims against YouTube before any retry. Make the posted ledger derive from those receipts, with tests for crash-before-upload, accepted-upload-before-local-write, rejected git push, and safe retry without a second publish.",
+      "evidence": "scripts/build_longform.py:212-217 calls YouTubeUploader.upload and prints the URL before importing the state helpers; lines 223-230 then load and write state/longform_log.json. .github/workflows/longform.yml:173-178 persists only that local file after the build step under `if: always()`. pick_slug uses _already_longformed(), which reads only the committed ledger, so an accepted upload missing from that ledger remains eligible."
+    },
+    {
+      "title": "Establish a measured 16:9 launch cohort before expanding long-form",
+      "horizon": "strategy",
+      "severity": "medium",
+      "area": "channel-management/longform-launch",
+      "files": [
+        "doctor/evidence.json",
+        "state/longform_log.json",
+        "scripts/build_longform.py"
+      ],
+      "observation": "The channel evidence lists nine long-form posts, but every one predates the August 25 relaunch and is explicitly labeled retired vertical concatenation. The new 16:9 product has no posted sample, no showrunner score in the ledger, and therefore no impressions, click-through rate, average view duration, or retention curve on which to base a cadence or topic decision. The one September 6 candidate was blocked before upload, so its renderer failure is not audience evidence.",
+      "proposal": "Treat the first three gate-clearing 16:9 uploads as a launch cohort at the existing weekly opportunity. Record impressions, thumbnail CTR, average view duration, 30-second retention, and traffic source at 24 hours and seven days, then compare topic and duration within that cohort before considering more slots. Preserve Shorts cadence and every current long-form quality threshold while collecting the sample.",
+      "evidence": "doctor/evidence.json channel_performance.longform reports total_posted=9 and says every entry before 2026-08-25 is the retired vertical concatenation and NOT comparable. state/longform_log.json contains no long_form_16x9 record and no showrunner_score. GitHub Actions run 34052953808 was blocked before upload, while run 33331419297 completed without changing the long-form ledger."
+    }
+  ]
+}
