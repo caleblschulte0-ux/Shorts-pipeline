@@ -66,6 +66,11 @@ SCARCITY = "scarcity"          # more claimants than there are places
 DURATION = "duration"          # how LONG something takes or lasts
 RECORD = "record"              # a tally of titles, medals, championships
 BUYING_POWER = "buying_power"  # what a fixed amount of money actually gets
+# THE UNIT SAYS WHAT KIND OF QUANTITY THIS IS. Both of these are new because
+# the router was reading the CLAIM and throwing the unit away — see
+# `_unit_family` for the measurement that forced them.
+SPEED = "speed"                # how FAST — a quantity that is already motion
+DISTANCE = "distance"          # how FAR — a quantity that is already a span
 PROBABILITY = "probability"    # the chance of one thing happening, once
 FORECAST = "forecast"          # a series with a PROJECTED point on the end
 CORRELATION = "correlation"    # two quantities that move together
@@ -305,6 +310,65 @@ def classify(insight) -> str:
         return OTHER
 
 
+# WHAT KIND OF QUANTITY THE UNIT DECLARES.
+#
+# Measured over the 1,104 live datasets on 2026-09-08: `duration` classified
+# ONE of them, while 106 are measured in years/hours/days, 60 in miles or
+# feet and 30 in mph. The hourglass, built and wired and tested, was leading
+# roughly one beat in a thousand — and 80% of the queue came back
+# duel/rank/growth/dominance, four relationships sharing five machines.
+#
+# The cause was that every specialised relationship was detected from the
+# CLAIM alone, and a dataset title says "Maximum recorded lifespan by animal
+# (years)", not "how long". The unit is not an inference about the data the
+# way a claim is: it is a declared property of the measurement, published by
+# the source. A pair of numbers whose unit is HOURS is a comparison of
+# durations whatever the headline calls it.
+_UNIT_TIME = {"years", "year", "yrs", "months", "month", "weeks", "week",
+              "days", "day", "hours", "hour", "hrs", "minutes", "minute",
+              "seconds", "second"}
+_UNIT_SPEED = {"mph", "km/h", "kmh", "kph", "knots", "knot", "m/s",
+               "miles per hour", "kilometers per hour"}
+_UNIT_DIST = {"miles", "mile", "feet", "foot", "ft", "km", "kilometers",
+              "kilometres", "kilometer", "meters", "metres", "meter", "yards",
+              "yard", "inches", "inch", "light years"}
+# A HEIGHT IS NOT A JOURNEY. "Tallest buildings" and "deepest point" are also
+# measured in feet, and a measuring tape laid out flat is the wrong picture
+# for both — they belong to the skyline, which `dominance` and `rank` already
+# reach. Vertical claims are handed back rather than drawn as distance.
+_VERTICAL = re.compile(
+    r"\b(tall\w*|height|high\w*|deep\w*|depth|altitude|elevation|"
+    r"above sea level|underwater|below)\b", re.I)
+
+
+def _looks_like_calendar_years(values) -> bool:
+    """Is this column DATES wearing a duration's unit?
+
+    "Deadliest pandemics" is published in years and its values are 1350 and
+    1918 — sand running for 1,918 years is a picture of nothing. Whole
+    numbers that all sit inside the range people write dates in are treated
+    as dates, and the duration rules stand down. It refuses in the safe
+    direction: a genuine span of 1,200 years falls through to a ranking,
+    which is honest if unexciting.
+    """
+    return all(float(v).is_integer() and 1000 <= v <= 2100 for v in values)
+
+
+def _dominant(values) -> bool:
+    """One item at three times the average of the others.
+
+    Defined once and used twice — by the tail of `_classify`, where it is the
+    DOMINANCE test, and by the unit rules, which stand down for it. A race
+    with one runner four thousand times ahead reads as a broken chart, and
+    lightning at 270,000 mph against a peregrine at 240 is exactly that.
+    """
+    if len(values) < 3:
+        return False
+    top = max(values)
+    rest = sorted(values, reverse=True)[1:]
+    return bool(rest) and top > 0 and top >= 3.0 * (sum(rest) / len(rest))
+
+
 def _classify(insight) -> str:
     values = _values(insight)
     labels = _labels(insight)
@@ -438,6 +502,26 @@ def _classify(insight) -> str:
     if len(values) >= 2 and _DURATION.search(text_l):
         return DURATION
 
+    # THE UNIT, once the claim has had its say.
+    #
+    # Deliberately last among the specialised rules: an explicit claim beats a
+    # declared unit every time, so "for every opening" still reaches scarcity
+    # and "what it buys" still reaches the basket even when the numbers are
+    # dollars or hours. What is left is the case this exists for — a dataset
+    # whose title names the subject and puts the unit in brackets.
+    if not _dominant(values):
+        if unit in _UNIT_TIME and len(values) == 2 \
+                and not _looks_like_calendar_years(values):
+            # PAIRS ONLY. The hourglass draws two glasses and the tape has two
+            # ends; a six-item duration ranking sent here would silently drop
+            # four of its rows, which is a worse failure than a bar chart.
+            return DURATION
+        if unit in _UNIT_SPEED and 2 <= len(values) <= 8:
+            return SPEED
+        if unit in _UNIT_DIST and 2 <= len(values) <= 8 \
+                and not _VERTICAL.search(text_l):
+            return DISTANCE
+
     # FUNNEL vs BOTTLENECK, decided on the per-stage SURVIVAL RATES rather
     # than the raw drops. A hiring funnel's biggest drop is also its first
     # one — 1,000 -> 380 -> 95 -> 41 loses more people at step one than
@@ -471,12 +555,10 @@ def _classify(insight) -> str:
                   and 1800 <= int(l[:4]) <= 2200)
         return BEFORE_AFTER if yrs == 2 else DUEL
     if 3 <= len(values) <= 8:
-        top = max(values)
-        rest = sorted(values, reverse=True)[1:]
         # One item dwarfing the rest is its own story and its own picture —
         # a race where one runner is a mile ahead reads as a broken chart,
         # while a skyscraper among houses reads as the point.
-        if rest and top >= 3.0 * (sum(rest) / len(rest)) and top > 0:
+        if _dominant(values):
             return DOMINANCE
         if unit in ("percent", "%", "pct") and _SHARE_OF.search(text):
             return SHARE

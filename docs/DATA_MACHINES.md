@@ -236,6 +236,74 @@ Forecast language over a run of measurements is just a writer being loose.
 | `record` | `trophies_scene`, `units_scene` | one cup, one title. Refuses above 30 — too many to count is not a shelf. |
 | `buying_power` | `basket_scene`, `units_scene` | two baskets filled from the same note. The price is never the story; what is left in the basket is. |
 
+### Batch 6 — the unit says what kind of quantity this is
+
+Measured over the 1,104 live datasets on 2026-09-08, **`duration` classified
+exactly one of them** — while 106 are published in years, hours or days, 60 in
+miles or feet, and 30 in mph. The hourglass was built, wired, documented and
+tested, and it was leading roughly one beat in a thousand. Meanwhile 80% of
+the queue came back `duel` / `rank` / `growth` / `dominance`: four
+relationships sharing five machines.
+
+The cause was that every specialised relationship was detected from the CLAIM
+alone, and a dataset title says *"Maximum recorded lifespan by animal
+(years)"*, not *"how long"*. **A unit is not an inference about the data the
+way a claim is — it is a declared property of the measurement, published by
+the source.** A pair of numbers whose unit is HOURS is a comparison of
+durations whatever the headline calls it.
+
+| relationship | machines | the picture |
+|---|---|---|
+| `speed` | `race_scene` | a speed is ALREADY motion, so it is run rather than drawn: the lanes are the encoding and the fastest is furthest |
+| `distance` | `race_scene`, `tape_scene` | a distance is ALREADY a span, and the race encodes value AS distance travelled — the one picture that needs no translation. The tape is second because "how far apart" is a different sentence from "which is further". |
+
+The unit rules run LAST among the specialised checks, so an explicit claim
+still wins: "for every opening" still reaches scarcity and "what it buys"
+still reaches the basket, whatever the numbers are measured in.
+
+Four refusals hold them honest, and each one is a case that was on screen:
+
+- **A date is not a duration.** "Deadliest pandemics" is published in years
+  and its values are 1350 and 1918. Whole numbers that all sit inside the
+  range people write dates in are treated as dates.
+- **A height is not a journey.** "Tallest buildings" and "deepest point" are
+  also measured in feet, and a tape laid out flat is the wrong picture for
+  both. Vertical claims are left to the skyline, which `dominance` and `rank`
+  already reach.
+- **A runaway leader is not a race.** Lightning at 270,000 mph against a
+  peregrine at 240 is the broken chart `race_scene` warns about in its own
+  docstring, so dominant sets keep the skyline. `_dominant` is defined once
+  and used by both.
+- **Durations route in PAIRS only.** The hourglass draws two glasses and the
+  tape has two ends; a six-item duration ranking sent there would silently
+  drop four rows.
+
+Concentration in the top four relationships: **80.3% → 70.7%.** `duration`
+1 → 54, `speed` 0 → 27, `distance` 0 → 32.
+
+### A machine may not accept rows it will not draw
+
+Every draw function slices its items — the hourglass takes two, the sorter
+four, the chain five — and the builders accepted any number, so the extras
+went to a slice that dropped them silently. **Two of six waits drawn as "the
+comparison" is not a rough picture of the data, it is a different
+comparison**, and nothing downstream could see it happen.
+
+`_machine_scene(kind, need, cap)` now carries the range a machine can honestly
+draw, and it is set only where the picture claims to show the WHOLE set:
+pairs, funnels, chains, routes, compositions. A ranking machine like the
+skyline is left uncapped on purpose — the top seven of twelve cities is an
+editorial trim every ranking makes, and it reads as one.
+
+`_spread_ok(insight, limit)` is the other half: a machine that encodes value
+as SIZE refuses a ratio it cannot show. "Distance to the Boomerang Nebula vs.
+the ISS" is 2.94e16 miles against 250, and any machine that draws a length
+draws the second at zero pixels — a frame that says the ISS is nowhere. The
+race stands down past 500:1, the hourglass past 60:1. A genuine zero is
+allowed through the race (a runner on the start line is readable and is what
+the number says) and refused by the hourglass (an empty glass is
+indistinguishable from a finished one).
+
 ## Staging: the same machine, arranged differently
 
 The router fixed WHICH picture a beat gets. It did not touch HOW that picture

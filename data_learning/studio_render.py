@@ -1732,6 +1732,17 @@ _MACHINES = {
     "record":      ("trophies_scene", "units_scene"),
     # what the same money actually buys, which is never the price
     "buying_power": ("basket_scene", "units_scene"),
+    # A SPEED IS ALREADY MOTION, so it is run rather than drawn: the lanes
+    # ARE the encoding and the fastest is furthest. This is the one place
+    # where the race's own rule about a runaway leader is guaranteed to hold,
+    # because the router hands dominant sets to the skyline instead.
+    "speed":       ("race_scene",),
+    # A DISTANCE IS ALREADY A SPAN, and the race encodes value AS distance
+    # travelled, which makes it the one picture that needs no translation at
+    # all. The tape is second because it states how far APART two numbers are
+    # rather than comparing them — true, and a different sentence. Heights and
+    # depths never arrive here; the router keeps them for the skyline.
+    "distance":    ("race_scene", "tape_scene"),
     "other":       (),
 }
 
@@ -1749,7 +1760,7 @@ _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
                         "cycle", "spread", "queue", "routing",
-                        "probability", "record"})
+                        "probability", "record", "distance"})
 
 
 def _machines_for(insight) -> tuple:
