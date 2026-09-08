@@ -1548,11 +1548,25 @@
       "duration_s": 40.5
     },
     "debt-per-american": {
-      "claimed_at": "2026-09-08T18:32:40.357884+00:00",
+      "url": "https://youtube.com/shorts/zqPXqCMHj0U",
       "title": "Every American Is Now $116,480 In Debt",
+      "at": "2026-09-08T18:32:45.674292+00:00",
       "publish_at": "2026-09-09T00:51:55Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+share+scene",
+      "narrative_score": 95,
+      "duration_s": 47.9,
+      "hook": "shock_stat",
+      "topic_category": "economics",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:cash-stack-climb",
+        "viz:share",
+        "mechanic:budget-money-tower-row"
+      ],
+      "words_first_10s": 9,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -1569,9 +1583,10 @@
       "claimed_at": "2026-09-08T18:32:40.357884+00:00",
       "title": "Every American Is Now $116,480 In Debt",
       "publish_at": "2026-09-09T00:51:55Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "debt-per-american"
+      "url": "https://youtube.com/shorts/zqPXqCMHj0U",
+      "state": "posted",
+      "slug": "debt-per-american",
+      "at": "2026-09-08T18:32:45.674292+00:00"
     }
   ]
 }
