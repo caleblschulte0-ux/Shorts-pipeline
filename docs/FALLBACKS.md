@@ -320,6 +320,54 @@ needs work — never that the gate does.
 
 A normal day prints no banner at all.
 
+## 7b. The credential heartbeat — which key is dead, and only when it is
+
+Operator, 2026-09-08: *"I can't be refreshing the Gemini key all the time."*
+
+They should not have to, and the reason it felt that way is that **every
+preflight in this repo checks whether a credential is SET**. A revoked key is
+a non-empty string, so it passes all of them and dies at the moment it is
+needed — which is exactly how 2026-09-07 went: `GROQ_API_KEY` present, the
+workflow green, the preflight satisfied, three trending slots gone.
+
+`scripts/credential_check.py` makes the cheapest possible LIVE call to each
+credential and reports what came back. `credentials.yml` runs it at 13:10 UTC
+— after authoring, before the first post, so there is still time to act.
+
+**The distinction it exists to make is DEAD vs LIMITED.** A 401 means the key
+is gone and somebody has to mint a new one. A 429 means the key is fine and
+the window is spent; refreshing it changes nothing. Reporting both as "the
+key is broken" is precisely what teaches an operator to rotate keys on a
+schedule to stay ahead of a problem they do not have.
+
+| verdict | what it means | what to do |
+|---|---|---|
+| `ok` | the service answered | nothing |
+| `dead` | 401/403, or a 400 that names the key | replace this one |
+| `limited` | 429 — accepted, then throttled | nothing; the key is fine |
+| `unset` | not configured | nothing, if unused |
+| `unreachable` | 5xx, DNS, timeout, no CLI | says nothing about the key |
+
+Four rules hold it honest, all tested:
+
+- **It alerts on a CHANGE to dead, never on the standing state.** A daily
+  alarm for a key you already know about is how somebody learns to ignore the
+  channel that will one day say something new — the same reasoning `daily.yml`
+  uses for its `phase_b_incomplete` skip.
+- **It reports and never ACTS.** No secret is edited, no channel disabled, no
+  workflow behaviour changed. A checker that can switch things off is a new
+  way for the day to go dark quietly.
+- **A probe that explodes is `unreachable`, not `dead`.** A DNS hiccup
+  reported as a dead key costs a credential rotation nobody needed.
+- **YouTube tokens are DISCOVERED from the environment, not listed**, so a new
+  channel cannot be the one nobody is watching. A dead upload token does not
+  degrade a day, it ends it: the video renders, passes every gate, and has
+  nowhere to go.
+
+The subscription token has no cheap HTTP probe, so it is exercised the way the
+showrunner exercises it — by running the CLI. Without the CLI installed the
+row reads `unreachable`, never `dead`.
+
 ## 8. Summary — what actually breaks
 
 | Secret / subscription gone | Consequence |
