@@ -2509,6 +2509,12 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     return (seekers, "art", cx, int(seat_y))
 
 
+# How many slugs the sand falls in. 16 puts a step roughly every 7 frames of
+# a 120-frame visual and every 9 of a production one — far inside the gate's
+# 45-frame allowance either way, and slow enough to still read as sand.
+_HG_SLUGS = 16
+
+
 def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
     """SAND RUNNING. For DURATION.
 
@@ -2549,22 +2555,40 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
         # Now the pile that is left in the bottom is the number.
         share = v / vmax
         half = gh / 2.0
-        up = half * share * (1.0 - e)
+        # IT DRAINS IN SLUGS, not as a glide.
+        #
+        # Measured, and this is the whole reason the machine is written this
+        # way: a continuous drain moves the sand line about 1.7px a frame at
+        # 1080-wide, which is a THIRD of a pixel once the cadence detector
+        # downsamples to 192 — and the four falling grains are 2px each at
+        # that size. Geometrically the thing was pouring the entire time; to
+        # the gate it was a still image, and CI read a 40-frame frozen run
+        # against a 35-frame ceiling. Quantising the drain gives it the
+        # DISCRETE arrivals every machine that passes has (a step lands, a
+        # runner moves): each slug drops the upper cone and lifts the lower
+        # pile by a visible amount at once.
+        es = _math.floor(e * _HG_SLUGS) / float(_HG_SLUGS)
+        up = half * share * (1.0 - es)
         if up > 3:
             wtop = (gw / 2.0) * (up / half)
             d.polygon([(mx - wtop, my - up), (mx + wtop, my - up), (mx, my)],
                       fill=_rgba(col, 235))
-        lh = half * share * e
+        lh = half * share * es
         if lh > 3:
             wbot = (gw / 2.0) * (lh / half)
             d.polygon([(mx, top + gh - lh), (mx - wbot, top + gh - 6),
                        (mx + wbot, top + gh - 6)], fill=_rgba(col, 235))
-        if up > 3:                          # grains only while it is running
-            for k in range(4):
-                t_ = (reveal * 3.0 + k / 4.0) % 1.0
-                sy = my + 8 + t_ * (half - 20)
-                d.ellipse([mx - 6, sy - 6, mx + 6, sy + 6],
-                          fill=_rgba(col, 235))
+        # THE SLUG IN FLIGHT. It is what carries the eye between two steps,
+        # and it is drawn big enough to survive the downsample: one falling
+        # wedge, not a dusting of pixels.
+        f_ = (e * _HG_SLUGS) % 1.0
+        if e < 0.999 and share > 0.02:
+            fall = my + 10 + f_ * max(half - 30, 20)
+            sw = max(gw * 0.16, 26)
+            d.polygon([(mx - sw / 2, fall), (mx + sw / 2, fall),
+                       (mx + sw / 2 * 0.5, fall + 46),
+                       (mx - sw / 2 * 0.5, fall + 46)],
+                      fill=_rgba(col, 235))
         d.text((mx, top + gh + 52), _label_of(p)[:14], font=_pil_font(34),
                fill=_rgba(TEXT, 230), anchor="mm")
         d.text((mx, top + gh + 106), charts._ulabel(v, unit),
