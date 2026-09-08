@@ -519,6 +519,69 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
            "  queue       — a backlog as a line of people growing behind Data. "
            "region 'full'. For a rising number of things WAITING, which is a "
            "different feeling from a rising number.\n"
+           # THE FLOW MACHINES. Each is a different CLAIM about the same
+           # numbers, so the words decide them: parts of a whole is a pipe
+           # split, where it WENT is a sorter, what is LEFT is a leaky bucket.
+           "  bottleneck  — stages as a pipe that PINCHES at the one step "
+           "doing the damage, marked 'here'. region 'full'. Use when a single "
+           "stage is the problem; a funnel says they leak away all the way "
+           "down, this names the culprit.\n"
+           "  leaky       — a bucket with a hole: how many were kept out of "
+           "how many started, with the rest running out. region 'full'. For "
+           "RETENTION — enrolled vs finished, signed up vs still there.\n"
+           "  inout       — two pipes, one filling and one draining a tank, "
+           "and the LEVEL is the consequence. region 'full'. For an income "
+           "against an outgoing, an intake against a discharge. Only when the "
+           "two numbers really are a flow in and a flow out.\n"
+           "  sorter      — one stream arriving and dropped into labelled "
+           "bins, each as full as its share. region 'full'. For where "
+           "something WENT (spending by department, waste by destination) — a "
+           "decision somebody made, not what a thing is made of.\n"
+           "  chain       — named steps as chain links, thickness by value, "
+           "the weakest drawn as a thread and marked 'it breaks here'. region "
+           "'full'. For a dependency where every step must hold and the worst "
+           "one sets the pace.\n"
+           # THE UNCERTAINTY MACHINES. All four are the same numbers as
+           # something else and a different CLAIM, so only use one when the
+           # claim really is that: a chance is not a share, a projection is
+           # not a measurement.
+           "  spinner     — a CHANCE as a wheel with one slice lit, spinning. "
+           "region 'full'. For the probability of one event ('a 23% chance'), "
+           "NEVER for a share of a population — that is dot_field. It never "
+           "lands, because landing would show an outcome nobody measured.\n"
+           "  doors       — the same chance told long: a wall of n doors "
+           "opened one at a time, all empty but one. region 'full'. Only for "
+           "a genuine '1 in n' with n up to 50.\n"
+           "  fan         — measured points solid, then a widening cone to a "
+           "PROJECTED point, with the line where the data stops drawn and "
+           "labelled. region 'full'. Only when the last point really is a "
+           "projection dated well past the measured ones.\n"
+           "  gears       — two meshed gears turning together, sized by their "
+           "values. region 'full'. For two quantities that MOVE TOGETHER. Say "
+           "'move together', never 'drives': it is a correlation.\n"
+           "  slider      — one track, two ends, one handle: every unit of "
+           "one is a unit of the other you did not get. region 'full'. For a "
+           "real trade-off, not for any two numbers.\n"
+           # PHYSICAL COMPARISONS. Each needs the claim to say so — every one
+           # of them is a plain ranking by the numbers alone.
+           "  density     — the SAME square twice, packed differently. region "
+           "'full'. For a per-square-km / per-acre figure. The box never "
+           "changes size: only the crowd inside it does.\n"
+           "  nest        — the small thing tiled inside the big thing until "
+           "it fills it, with the count. region 'full'. For 'X times bigger', "
+           "when the ratio is between about 2 and 150.\n"
+           "  chairs      — more people than seats, with the ones left "
+           "standing. region 'full'. For a shortage: applicants per opening, "
+           "families per home.\n"
+           "  hourglass   — a LENGTH OF TIME as sand, one glass per item, the "
+           "pile left at the bottom being the number. region 'full'. Only "
+           "when the unit really is time.\n"
+           "  trophies    — a tally where the objects are the point: one cup, "
+           "one title. region 'full'. For titles / medals / championships, up "
+           "to about 30.\n"
+           "  basket      — what the same money actually BUYS, as two baskets "
+           "filled from one note. region 'full'. For cost of living and "
+           "purchasing power, where the price is not the story.\n"
            "  caption     — a short text line (needs text).")
     user = ("DATA (the only numbers you may use):\n" + "\n".join(brief) +
             "\n\nEach scene must DEMONSTRATE its number with a drawable "
@@ -532,7 +595,15 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
             "[{...}]}]} where says AND scenes each have exactly "
             f"{len(dss)} entries, one per dataset in order. Each say speaks "
-            "that dataset's actual numbers in spoken English (~22 words).")
+            "that dataset's actual numbers in spoken English (~22 words).\n\n"
+            "SAY THE NUMBER THE PICTURE SHOWS. Each say line is spoken OVER "
+            "its own beat's chart, so the LOUDEST number in it must be one "
+            "that chart can show: a value from that dataset, a difference "
+            "between two of them, a percentage change, or a share of the "
+            "total. Do NOT convert a rate into a headcount or a price — "
+            "\"34 percent, 2.6 billion people\" over a chart of percentages "
+            "makes the viewer hunt for a number that is not on screen. Say "
+            "\"34 percent, up from 22\" instead.")
     if reject_note:
         user += ("\n\nYour previous title was REJECTED by the editor for this "
                  f"reason — fix exactly this:\n{reject_note}")
@@ -564,6 +635,7 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
     them (up to 3 tries), feeding each rejection back in. A story that only
     passes the deterministic floor gets held at publish and wastes a render."""
     from scripts import editorial_gate as eg
+    from shared import beat_match as bm
     last = None
     for attempt in range(3):
         w = _brain_words(dss, reject_note=last)
@@ -571,10 +643,28 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
             break
         v = eg.premise_ok({"title": w.get("title", ""), "hook": w.get("hook", "")},
                           use_llm=True)
-        if v["ok"]:
+        reasons = list(v["reasons"]) if not v["ok"] else []
+        # BEAT MATCHING. Every `say` line is spoken OVER its own beat's
+        # picture, so the loudest number in it has to be one that picture can
+        # show. Measured over the 858 configured beats that speak a quantity,
+        # 15.5% failed this — and always the same way: the writer converts the
+        # measured figure into a bigger one the data does not contain ("34
+        # percent — 2.6 billion people", "on a 50 thousand dollar car"), and
+        # the viewer hears a number they cannot find on screen.
+        #
+        # Fed back to the brain rather than refused outright: the story is
+        # fine and the SENTENCE is fixable, which is exactly what this retry
+        # loop is for.
+        for i, (ds, say) in enumerate(zip(dss, w.get("says") or [])):
+            vals = [p.get("value") for p in (ds.get("points") or [])
+                    if isinstance(p, dict) and p.get("value") is not None]
+            m = bm.check(str(say), vals, ds.get("unit", ""))
+            if not m["ok"]:
+                reasons.append(f"say[{i}]: {m['why']}")
+        if v["ok"] and not reasons:
             return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
-        last = "; ".join(v["reasons"])[:300]
-        print(f"    [premise] rejected: {last[:120]}")
+        last = "; ".join(reasons)[:300]
+        print(f"    [words] rejected: {last[:140]}")
     return _fallback_words(dss), "deterministic"
 
 

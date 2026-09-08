@@ -525,9 +525,25 @@ def _seg_label(insight: Insight, p, share: float) -> str:
     claim in a smaller font. When the items are points in time, the segment
     carries its own VALUE, which is the thing the viewer wants anyway.
     """
-    if _is_time_series(insight):
+    if not _composes(insight):
         return f"{p.label}  {_ulabel(p.value, insight.unit)}"
     return f"{p.label}  {share:.0f}%"
+
+
+def _composes(insight: Insight) -> bool:
+    """May this picture claim the items add up to one whole?
+
+    The time-series guard this replaces caught only half the problem. Years do
+    not sum — that was the "2019 IS 9% OF THE WHOLE" case — but neither do six
+    independent price increases, and those are not years. `relationships`
+    holds the one test, so the director (which CHOOSES the chart) and this
+    file (which writes the claim on it) cannot disagree about what composes.
+    """
+    from . import relationships as _rel
+    try:
+        return _rel.composes(insight)
+    except Exception:                      # noqa: BLE001 — never break a render
+        return False
 
 
 def _is_time_series(insight: Insight) -> bool:
@@ -550,7 +566,7 @@ def _is_time_series(insight: Insight) -> bool:
 def _whole_subtitle(insight: Insight, star) -> str:
     """The subtitle for a composition chart — only claiming a share when the
     data actually composes into a whole."""
-    if _is_time_series(insight):
+    if not _composes(insight):
         return f"{star.label}: {_ulabel(star.value, insight.unit)}"
     total = sum(abs(p.value) for p in insight.items) or 1.0
     return f"{star.label} is {abs(star.value) / total * 100:.0f}% of the whole"
@@ -1707,8 +1723,32 @@ def _story_bubbles(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.
             _x += 2 * rad[i] + gap
         _y -= row_h[ri] + row_gap
     cy = ymax / 2
+    # BUBBLES FLOAT. Measured through the showrunner's own cadence detector
+    # at 120 frames, this was the one chart over the ceiling — a 0.571
+    # duplicate ratio against 0.45 — because once the inflation finishes at
+    # about a third of the way in, a circle is a circle and nothing else on
+    # the card moves. It is also the TERMINAL fallback: a beat that falls all
+    # the way through the candidate list lands here, so the last resort was
+    # the one depiction most likely to be held.
+    #
+    # Buoyancy is honest motion for this picture in a way a camera push is
+    # not: the RADIUS is the encoding and it does not change, only the
+    # centre.
+    #
+    # Bobbed PER ROW, not per bubble. A per-bubble phase reads livelier and
+    # breaks two things the layout has to keep: the row structure (three items
+    # are one row, five are two — `test_bubbles_use_the_frame` asserts it by
+    # grouping centre-y values) and the label clearance that a second row is
+    # laid out to protect, since each label sits a fixed distance under ITS
+    # circle and independent bobbing walks one row's labels into the next
+    # row's bubbles. A row that rises and falls together keeps both.
+    _row_of = {i: ri for ri, row in enumerate(rows) for i in row}
+
+    def _bob(i):
+        return 3.4 * _m.sin(t * 3.0 * _m.pi + _row_of.get(i, 0) * 1.9)
     for i, (p, r) in enumerate(zip(items, rad)):
         cx, cy = centres[i]
+        cy += _bob(i)
         color = (HIGHLIGHT if p.label == insight.highlight_label
                  else WARN if (insight.baseline and p.label == insight.baseline.label)
                  else ACCENT)
@@ -2109,21 +2149,52 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         ax, specs = _story_waffle(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "pictorial_race":
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'pulls ahead'}"
+        # Same rule as `_superlative`: name the item that actually leads, and
+        # do not call years competitors.
+        subtitle = (_superlative(insight, low) if _is_time_series(insight)
+                    else f"{max(insight.items, key=lambda p: p.value).label} "
+                         f"{'sits lowest' if low else 'pulls ahead'}"
+                    if not low else
+                    f"{min(insight.items, key=lambda p: p.value).label} "
+                    f"sits lowest")
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_pictorial_race(fig, plt, insight, subtitle, reveal)
     elif insight.kind == "bubbles":
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        subtitle = _superlative(insight, low)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_bubbles(fig, plt, insight, subtitle, reveal)
     else:  # rank / outlier
         low = "lowest" in insight.main_insight.lower()
-        subtitle = f"{star.label} {'sits lowest' if low else 'tops the list'}"
+        subtitle = _superlative(insight, low)
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_bars(fig, plt, insight, subtitle, reveal)
     _footer(fig, insight)
     return ax, specs
+
+
+def _superlative(insight, low: bool) -> str:
+    """"X tops the list" — for the item that ACTUALLY tops it.
+
+    The subtitle used `items[0]`, which is the strongest item on a RANK
+    insight and the EARLIEST one on a trend. Rendered as bars, a rising series
+    therefore announced "2019 TOPS THE LIST" over a chart whose tallest bar
+    was 2026 and whose highlight was on 2026 — the caption and the picture
+    contradicting each other, in the caption's favour, at 40pt.
+
+    Ranking language is also simply the wrong sentence for a time series:
+    years are not competitors. When the labels are dates it says WHEN the peak
+    is, which is both true and the thing the viewer wants.
+    """
+    items = [p for p in (insight.items or [])
+             if getattr(p, "value", None) is not None]
+    if not items:
+        return ""
+    pick = min(items, key=lambda p: p.value) if low \
+        else max(items, key=lambda p: p.value)
+    if _is_time_series(insight):
+        return f"{'lowest' if low else 'highest'} in {pick.label}"
+    return f"{pick.label} {'sits lowest' if low else 'tops the list'}"
 
 
 def _anchors_from(fig, ax, specs) -> list:

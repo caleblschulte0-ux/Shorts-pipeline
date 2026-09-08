@@ -1557,7 +1557,12 @@ _SELF_HOSTED = ("fill_vessel", "orbit", "timeline", "units_scene",
                 "pipes_scene", "spotlight_scene", "road_scene",
                 "tape_scene", "bridge_scene", "centre_scene",
                 "coaster_scene", "thermometer_scene", "wheel_scene",
-                "darts_scene", "queue_scene")
+                "darts_scene", "queue_scene", "bottleneck_scene",
+                "leaky_scene", "inout_scene", "sorter_scene", "chain_scene",
+                "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
+                "slider_scene", "density_scene", "nest_scene",
+                "chairs_scene", "hourglass_scene", "trophies_scene",
+                "basket_scene")
 
 # Pseudo-kinds that are not renderers but a SCENE the director attaches. They
 # resolve to kind "scene" with `insight.scene` set by their builder — see
@@ -1570,7 +1575,11 @@ _SCENE_TOKENS = {t: t for t in (
     "funnel_scene", "conveyor_scene", "pipes_scene",
     "spotlight_scene", "road_scene", "tape_scene", "bridge_scene",
     "centre_scene", "coaster_scene", "thermometer_scene",
-    "wheel_scene", "darts_scene", "queue_scene",
+    "wheel_scene", "darts_scene", "queue_scene", "bottleneck_scene",
+    "leaky_scene", "inout_scene", "sorter_scene", "chain_scene",
+    "spinner_scene", "doors_scene", "fan_scene", "gears_scene",
+    "slider_scene", "density_scene", "nest_scene", "chairs_scene",
+    "hourglass_scene", "trophies_scene", "basket_scene",
 )}
 
 # Depictions that ASSERT A COMPOSITION — that the items are parts of one whole
@@ -1689,6 +1698,40 @@ _MACHINES = {
     "spread":      ("darts_scene", "units_scene"),
     # a backlog: a rising number of things WAITING
     "queue":       ("queue_scene", "units_scene"),
+    # ONE step is doing the damage -> a pipe that pinches there. A funnel is
+    # the runner-up and not the lead: a funnel says they leak away all the way
+    # down, which is a description; a pinch names the culprit.
+    "bottleneck":  ("bottleneck_scene", "funnel_scene"),
+    # most of it does not stay -> a bucket with a hole in it
+    "retention":   ("leaky_scene", "funnel_scene", "rate_scene"),
+    # one pipe filling and one draining -> the LEVEL is the story
+    "in_out":      ("inout_scene", "balance_scene"),
+    # where it WENT, not what it is made of -> parcels dropped into bins
+    "routing":     ("sorter_scene", "pipes_scene"),
+    # each step hands to the next, so the worst one sets the pace
+    "chain":       ("chain_scene", "conveyor_scene", "funnel_scene"),
+    # ONE TRIAL, not a share of a population. The dot field lights k figures
+    # in n and asserts a countable population; a chance is a single spin. The
+    # doors are the same claim told long, and only fit a genuine "1 in n".
+    "probability": ("spinner_scene", "doors_scene"),
+    # a PROJECTION is not a measurement, and must not join the same line
+    "forecast":    ("fan_scene",),
+    # the finding is that they move TOGETHER, which two bars cannot say
+    "correlation": ("gears_scene", "balance_scene"),
+    # every unit of one is a unit of the other you did not get
+    "tradeoff":    ("slider_scene", "balance_scene"),
+    # the same square, packed differently — the box must NOT also scale
+    "density":     ("density_scene", "rate_scene"),
+    # how many of the small one fit in the big one, tiled by AREA
+    "scale":       ("nest_scene", "skyline_scene"),
+    # more claimants than there are places, drawn as people left standing
+    "scarcity":    ("chairs_scene", "queue_scene"),
+    # a length of TIME, as sand that will not stop falling
+    "duration":    ("hourglass_scene", "tape_scene"),
+    # a tally where the objects are the point: one cup, one title
+    "record":      ("trophies_scene", "units_scene"),
+    # what the same money actually buys, which is never the price
+    "buying_power": ("basket_scene", "units_scene"),
     "other":       (),
 }
 
@@ -1705,7 +1748,8 @@ _MACHINES = {
 _ROTATABLE = frozenset({"rank", "growth", "decline", "dominance",
                         "before_after", "share", "duel", "delta", "gap",
                         "centre", "acceleration", "reversal", "volatile",
-                        "cycle", "spread", "queue"})
+                        "cycle", "spread", "queue", "routing",
+                        "probability", "record"})
 
 
 def _machines_for(insight) -> tuple:
@@ -2139,13 +2183,41 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # frame 1 (sweeping onto its star datum) instead of standing below it.
             staged_hook = None
             def _act(seg, phase="action"):
-                # Deterministic, on-topic, ANIMATED action for this chart kind
-                # (push the bar / ride the line / hoist the slice; a celebration
-                # on the payoff). No brain call -> free + no run-to-run variance.
+                # THE DIRECTOR ALREADY CHOSE, PER BEAT — honour it.
+                #
+                # `viz_director.assign` runs `performance_for` over the whole
+                # story with an anti-repetition set, so beat 0 gets block_wall,
+                # beat 1 shoved_bar, beat 2 race_sprint and so on. This
+                # function threw that away and asked `data_action_spec(kind)`
+                # instead, which is keyed on the CHART KIND — and bars,
+                # comparison, rank and pictorial_race all map to `push_bar`,
+                # so a story of three ranking beats got the identical pose
+                # three times. `scene` is not in that map at all, so every
+                # machine beat fell through to `push_bar` too.
+                #
+                # The showrunner blocked a video for exactly this on
+                # 2026-09-07: "Data holds the same arms-out standing pose in
+                # hook@0.3, seg1:mid, seg2:end, seg3:start and seg4:mid — only
+                # rescaled and re-parked on the bar tip".
+                #
+                # The payoff still celebrates: that is the beat landing, not a
+                # repeat.
+                if phase == "payoff":
+                    if _director and hasattr(_director, "data_action_spec"):
+                        return _director.data_action_spec(
+                            getattr(seg, "kind", ""), phase)
+                    return "cheer"
+                ins = getattr(seg, "insight", None)
+                chosen = getattr(ins, "perf_spec", None) if ins else None
+                if isinstance(chosen, dict) and chosen.get("action"):
+                    return chosen
+                chosen = getattr(ins, "perf_override", None) if ins else None
+                if chosen:
+                    return chosen
                 kind = getattr(seg, "kind", "")
                 if _director and hasattr(_director, "data_action_spec"):
                     return _director.data_action_spec(kind, phase)
-                return "cheer" if phase == "payoff" else "point"
+                return "point"
 
             # If the opening chart BAKES the host in (Data rides the drawing
             # line/bar), add NO overlay for the hook — he's already in the chart.
@@ -2202,8 +2274,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
             # With a recap chart behind the payoff, Data sweeps ON it (beside its
             # star datum) rather than standing below; otherwise he is the big
             # central celebration.
-            # If the recap chart bakes the host in, add NO closing overlay.
-            _close_baked = bool(st.segments) and _seg_is_baked(st.segments[-1])
+            # If the recap chart bakes the host in, add NO closing overlay —
+            # but ONLY when that chart is actually on screen during the
+            # closing, which is exactly the `lead_payoff` case.
+            #
+            # Without that condition this suppressed the closing celebration
+            # for almost every video the moment the data machines started
+            # baking their own host (they must, or a machine gets a second
+            # mascot beside it during its beat). The result was six seconds of
+            # a still mascot under a speech bubble over an empty frame: the
+            # single longest frozen run in the batch (2.46s, against a
+            # 45-frame ceiling) and a fifth of the video spent on a card with
+            # nothing happening in it.
+            _close_baked = (lead_payoff and bool(st.segments)
+                            and _seg_is_baked(st.segments[-1]))
             staged_close = None
             if lead_payoff and st.segments and not _close_baked:
                 staged_close = _stage_on_data(st.segments[-1], windows[-1][0],

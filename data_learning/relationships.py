@@ -56,6 +56,20 @@ SPREAD = "spread"              # how tightly the values cluster
 CYCLE = "cycle"                # it repeats
 QUEUE = "queue"                # a backlog, growing
 DENSITY = "density"            # the same count packed into different space
+BOTTLENECK = "bottleneck"      # one stage far narrower than the rest
+RETENTION = "retention"        # what is kept versus what leaks away
+INFLOW_OUTFLOW = "in_out"      # what comes in against what goes out
+ROUTING = "routing"            # where a total is sent, by destination
+CHAIN = "chain"                # named steps a thing passes through in order
+SCALE = "scale"                # how many times one thing fits in the other
+SCARCITY = "scarcity"          # more claimants than there are places
+DURATION = "duration"          # how LONG something takes or lasts
+RECORD = "record"              # a tally of titles, medals, championships
+BUYING_POWER = "buying_power"  # what a fixed amount of money actually gets
+PROBABILITY = "probability"    # the chance of one thing happening, once
+FORECAST = "forecast"          # a series with a PROJECTED point on the end
+CORRELATION = "correlation"    # two quantities that move together
+TRADEOFF = "tradeoff"          # more of one is necessarily less of the other
 OTHER = "other"                # say so, and draw a chart
 
 _MONEY = re.compile(
@@ -69,6 +83,68 @@ _PER_TIME = re.compile(
     r"\b(per (second|minute|hour|day|week|month|year|capita|person|"
     r"household|1,?000|100,?000)|a (second|minute|hour|day|year)|"
     r"annually|each year|every year|per annum)\b", re.I)
+_FLOW_IN_OUT = re.compile(
+    r"\b(income|revenue|earn\w*|intake|inflow|deposits?|births?|hires?|"
+    r"joiners?|arrivals?)\b.*\b(expense\w*|spend\w*|cost\w*|outflow|"
+    r"withdraw\w*|deaths?|leavers?|departures?|exits?|churn)\b", re.I)
+_RETAIN = re.compile(
+    r"\b(retention|retained|churn|kept|stay\w*|drop out|dropout|leak\w*|"
+    r"lost|renew\w*|cancel\w*|unsubscrib\w*)\b", re.I)
+_ROUTE = re.compile(
+    r"\b(rout(ed|ing|es to)|goes to|sent to|allocated|destination\w*|"
+    r"where .* goes|split between|divided (among|between)|breakdown by|"
+    r"spent on)\b", re.I)
+# Explicit bottleneck language. Kept separate from the stage vocabulary
+# because it is a DIAGNOSIS the writer has already made: if the claim names a
+# chokepoint, draw the chokepoint, whatever shape the numbers happen to be.
+_BOTTLENECK = re.compile(
+    r"\b(bottleneck\w*|choke ?point\w*|held up (at|by)|jam\w*|"
+    r"backed up (at|behind)|the constraint)\b", re.I)
+_CHAIN = re.compile(
+    r"\b(supply chain|from farm|farm to|factory to|port to|end to end|"
+    r"journey|passes through|route from)\b", re.I)
+# THE UNCERTAINTY FAMILY. All four need the claim to say so: a probability
+# and a percentage are the same number, a projection and a measurement are the
+# same number, and only the words separate them. Drawing a measured value as a
+# forecast, or the reverse, is a lie about provenance rather than a bad
+# picture — so the shape alone never decides any of these.
+_PROB = re.compile(
+    r"\b(chance|chances|odds|likelihood|probabilit\w*|risk of|"
+    r"(1|one) in \d|coin ?flip|lottery)\b", re.I)
+_FORECAST = re.compile(
+    r"\b(project\w*|forecast\w*|expected to|on track to|set to (hit|reach|"
+    r"pass)|estimated to reach|will reach|predict\w*)\b", re.I)
+_CORREL = re.compile(
+    r"\b(correlat\w*|hand in hand|in lockstep|moves? with|move together|"
+    r"tracks? (closely|with)|linked to|rises? with|falls? with|"
+    r"the more .* the more)\b", re.I)
+_TRADEOFF = re.compile(
+    r"\b(trade[- ]?offs?|at the (cost|expense) of|in exchange for|"
+    r"comes at the|one or the other|you cannot have both|"
+    r"every .* (means|costs) (one )?(fewer|less))\b", re.I)
+# BATCH FIVE. Same rule as the rest: the claim decides. Every one of these is
+# a plain ranking by shape, and drawing a ranking as a shortage or a scale
+# comparison invents a relationship the data never described.
+_DENSITY = re.compile(
+    r"\b(densit\w*|per square (km|kilometre|kilometer|mile|foot|feet|metre|"
+    r"meter)|per (acre|hectare)|packed into|crowded|people per)\b", re.I)
+_SCALE = re.compile(
+    r"\b(times (bigger|larger|smaller|more|as (big|large|many|much|long))|"
+    r"fits? inside|would fit|\d+x (bigger|larger|the))\b", re.I)
+_SCARCITY = re.compile(
+    r"\b(for every|per (opening|place|seat|slot|spot|bed|home|unit)|"
+    r"shortage|waiting list|applicants? per|competing for|chasing|"
+    r"not enough)\b", re.I)
+_DURATION = re.compile(
+    r"\b(how long|takes? .{0,12}(years|days|hours|months|weeks)|"
+    r"waiting time|wait of|it would take|to save (up )?for|"
+    r"(years|days|months) to)\b", re.I)
+_RECORD = re.compile(
+    r"\b(titles?|championships?|medals?|trophies|trophy|grand slams?|"
+    r"world cups?)\b", re.I)
+_BUYING = re.compile(
+    r"\b(buys?|would buy|worth of|for the price of|purchasing power|"
+    r"goes further|gets you|what .{0,20}(buys|gets))\b", re.I)
 _STAGE = re.compile(
     r"\b(stage|step|round|funnel|applied|accepted|enrolled|graduat\w*|"
     r"survive\w*|remain\w*|left|reach\w*|qualif\w*|shortlist\w*|"
@@ -167,6 +243,35 @@ def _cyclic(values: list) -> bool:
     return max(runs) <= 2.5 * min(runs)     # comparable in size
 
 
+def _year_of(label) -> int | None:
+    """The four-digit year a label starts with, or None."""
+    t = str(label or "").strip()
+    if len(t) >= 4 and t[:4].isdigit():
+        y = int(t[:4])
+        if 1800 <= y <= 2200:
+            return y
+    return None
+
+
+def _has_projected_tail(labels: list) -> bool:
+    """True when the LAST point is dated later than every other point AND is
+    separated from them by more than the series' own step.
+
+    The gap is what makes it a projection rather than simply the most recent
+    year. A decade of annual figures ending in 2035 is a forecast; the same
+    decade ending in 2025 is data.
+    """
+    yrs = [_year_of(x) for x in labels]
+    if len(yrs) < 3 or any(y is None for y in yrs):
+        return False
+    steps = [b - a for a, b in zip(yrs, yrs[1:])]
+    if any(x <= 0 for x in steps[:-1]):
+        return False
+    body = steps[:-1]
+    typical = sum(body) / len(body)
+    return typical > 0 and steps[-1] >= 2 * typical
+
+
 def _direction(values: list) -> tuple:
     """(net change as a fraction of the start, number of direction reversals).
 
@@ -222,7 +327,25 @@ def _classify(insight) -> str:
         except (TypeError, ValueError):
             pass
 
+    text_low = text.lower()
+
+    # A CHANCE IS NOT A PERCENTAGE, even though it is written as one. "12% of
+    # households own one" is a share you can count out; "a 12% chance" is one
+    # trial that either happens or does not, and the dot field — which lights
+    # 12 figures in 100 — asserts the first while the claim says the second.
+    # Only the words can tell them apart, so the words decide.
+    if _PROB.search(text_low):
+        return PROBABILITY
+
     if is_time_series(insight):
+        # A PROJECTION IS NOT A MEASUREMENT. When the claim says forecast AND
+        # the last point is dated later than everything measured, the last
+        # point is somebody's estimate and must not be drawn as another
+        # observation on the same line. That is a lie about provenance, which
+        # is worse than an ugly picture — the fan says outright where the data
+        # stops.
+        if _FORECAST.search(text_low) and _has_projected_tail(labels):
+            return FORECAST
         # FLAT FIRST. [50, 50.2, 50.1, 50.3, 50.2] has a direction change at
         # every step and a range that is entirely noise; measured against its
         # own span every wobble looks decisive, so flatness has to be judged
@@ -280,10 +403,60 @@ def _classify(insight) -> str:
     # because five cities sorted by cost are also "each smaller than the last"
     # and are emphatically not a funnel.
     text_l = (text or "").lower()
+
+    # FLOW SHAPES. Each needs the CLAIM to say so, not just the numbers —
+    # every one of these is also a plain ranking by shape alone, and drawing a
+    # ranking as a supply chain invents a process the data never described.
+    if len(values) >= 3 and _BOTTLENECK.search(text_l):
+        return BOTTLENECK
+    if len(values) >= 2 and _FLOW_IN_OUT.search(text_l):
+        return INFLOW_OUTFLOW
+    if len(values) >= 2 and _RETAIN.search(text_l):
+        return RETENTION
+    # CHAIN before ROUTE: "route from the port" is a journey, not an
+    # allocation, and the chain vocabulary is the more specific of the two.
+    if len(values) >= 3 and _CHAIN.search(text_l):
+        return CHAIN
+    if len(values) >= 3 and _ROUTE.search(text_l):
+        return ROUTING
+    # TWO QUANTITIES THAT MOVE TOGETHER, and two that cannot both go up. Both
+    # need the claim: by shape these are a pair of numbers and nothing else.
+    if len(values) >= 2 and _TRADEOFF.search(text_l):
+        return TRADEOFF
+    if len(values) >= 2 and _CORREL.search(text_l):
+        return CORRELATION
+    if len(values) >= 2 and _DENSITY.search(text_l):
+        return DENSITY
+    if len(values) >= 2 and _SCALE.search(text_l):
+        return SCALE
+    if len(values) >= 2 and _SCARCITY.search(text_l):
+        return SCARCITY
+    if len(values) >= 2 and _BUYING.search(text_l):
+        return BUYING_POWER
+    if len(values) >= 2 and _RECORD.search(text_l):
+        return RECORD
+    if len(values) >= 2 and _DURATION.search(text_l):
+        return DURATION
+
+    # FUNNEL vs BOTTLENECK, decided on the per-stage SURVIVAL RATES rather
+    # than the raw drops. A hiring funnel's biggest drop is also its first
+    # one — 1,000 -> 380 -> 95 -> 41 loses more people at step one than
+    # anywhere else — and it is a funnel, not a bottleneck, because every
+    # stage bleeds. A bottleneck is the shape where the others DON'T: 12,000
+    # -> 9,800 -> 2,100 -> 1,700 -> 1,500 keeps ~80% at every step except one,
+    # which keeps 21%. Comparing drops alone called the funnel a bottleneck
+    # and would have printed "here" over the wrong stage.
     if len(values) >= 3 and _STAGE.search(text_l):
-        drops = all(b <= a for a, b in zip(values, values[1:]))
-        if drops and values[0] > 0 and values[-1] <= 0.6 * values[0]:
-            return DROPOFF
+        falling = all(b <= a for a, b in zip(values, values[1:]))
+        if falling and values[0] > 0:
+            rates = [b / a for a, b in zip(values, values[1:]) if a > 0]
+            if len(rates) == len(values) - 1:
+                k = rates.index(min(rates))
+                others = rates[:k] + rates[k + 1:]
+                if rates[k] <= 0.6 and others and min(others) >= 0.75:
+                    return BOTTLENECK
+            if values[-1] <= 0.6 * values[0]:
+                return DROPOFF
 
     if len(values) == 2:
         # TWO YEARS IS NOT TWO THINGS. A then-and-now is a change in one
@@ -309,6 +482,70 @@ def _classify(insight) -> str:
             return SHARE
         return RANK
     return OTHER
+
+
+# A PERCENTAGE OF CHANGE IS NEVER A SHARE, whatever the numbers happen to add
+# up to. Eggs +37, coffee +21, beef +18, bread +14, milk +11 sum to 101 — near
+# enough to a hundred that the "parts that add up ARE a whole" shortcut fired
+# on a coincidence and printed the claim anyway. The vocabulary of change is
+# the veto, and it is checked before that shortcut.
+_CHANGE = re.compile(
+    r"\b(jump\w*|rise|rises|rose|rising|increase\w*|up \d|growth|grew|"
+    r"surge\w*|climb\w*|soar\w*|since \d{4}|change\w*|higher|inflation|"
+    r"fell|fall\w*|drop\w*|decline\w*|down \d)\b", re.I)
+_COMPOSE = re.compile(
+    r"\b(made up of|consists? of|composition|breakdown (of|by)|"
+    r"split between|divided (among|between)|out of every|parts? of|"
+    r"where .{0,20}(goes|went)|by (category|type|source|destination))\b", re.I)
+
+
+def composes(insight) -> bool:
+    """Do these items ADD UP TO ONE WHOLE?
+
+    The test a composition picture must pass before it may say "X is N% of the
+    whole", print a share beside a segment, or be CHOSEN at all. Deliberately
+    conservative: refusing to claim a whole is always safe, and claiming one
+    falsely is a sentence at 40pt that the data does not support.
+
+    It is NOT the same question as `classify() == SHARE`. A real composition
+    where one slice dwarfs the others comes back DOMINANCE and still composes,
+    and this has to say yes to it.
+
+    The case that made it necessary: "price jump since 2020" over eggs +21%,
+    coffee +21%, beef +18%, bread +14%, milk +11%. Six percentages, so the
+    director's `is_share` test — unit is a percent and there are at least
+    three of them — said composition, the chart auto-routed to a stacked
+    column, and the subtitle read "EGGS IS 37% OF THE WHOLE". Eggs are 37% of
+    nothing. They are a 37% price increase. Percentages that do not sum are
+    RATES, and rates never compose.
+    """
+    values = _values(insight)
+    if len(values) < 2 or any(v < 0 for v in values):
+        return False
+    if is_time_series(insight):
+        return False                       # years do not sum
+    text = f"{getattr(insight, 'topic', '')} " \
+           f"{getattr(insight, 'main_insight', '')}"
+    unit = (getattr(insight, "unit", "") or "").strip().lower()
+    if _CHANGE.search(text):
+        return False                       # a change is never a share
+    if unit in ("percent", "%", "pct", "share"):
+        # ARITHMETIC, NOT JUDGEMENT. A set of percentages is parts of one
+        # whole exactly when it adds to a hundred; no wording can make it so
+        # when it does not. Swept over the live catalogue, the claim-only test
+        # was still letting through "Infant care as share of income" (sums to
+        # 118 — each item is a share of its OWN state's income, not of one
+        # pie) and "Share of population under pristine dark skies, by country"
+        # (174). Both say "share of"; neither composes.
+        #
+        # A subset that sums to well under a hundred is refused for the same
+        # reason from the other side: three named types totalling 8% are not
+        # the whole, so "X is N% of the whole" would be measuring against a
+        # pie the picture does not show.
+        return 95.0 <= sum(values) <= 105.0
+    # Counts, currencies, anything else: no arithmetic to check against, so
+    # the claim has to say composition and the default is no.
+    return bool(_SHARE_OF.search(text) or _COMPOSE.search(text))
 
 
 def is_frequency(insight) -> bool:

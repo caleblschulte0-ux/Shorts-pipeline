@@ -1865,7 +1865,14 @@ DATA_ACTION = {
     "trend": "ride_line", "timeline": "ride_line",
     "pictorial_race": "push_bar", "rank": "push_bar", "bars": "push_bar",
     "comparison": "push_bar",
-    "waffle_grid": "lift", "share": "lift", "pictograph": "lift",
+    "waffle_grid": "lift",
+    # A data MACHINE beat is kind "scene". Without an entry here every one of
+    # them fell through to `push_bar` — and machines are now the primary
+    # depiction for 77% of beats, so that default was most of the channel
+    # holding one pose. `point` is the honest generic: he is showing you the
+    # thing. The per-beat variety comes from `performance_for`, which the
+    # renderer now honours.
+    "scene": "point", "share": "lift", "pictograph": "lift",
     "bubbles": "climb", "geo_world": "climb", "geo_us": "climb",
     "geo_city": "climb",
 }

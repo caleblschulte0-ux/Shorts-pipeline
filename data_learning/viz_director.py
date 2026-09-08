@@ -18,6 +18,7 @@ import os
 import re
 
 from . import charts
+from . import relationships as _rel
 from . import viz_scene  # noqa: F401  (registers the "scene" full-frame renderer)
 
 # --- Vocabulary --------------------------------------------------------------
@@ -73,6 +74,14 @@ _SCENE_BUILDERS = {"fill_scene": "fill_scene", "rank_scene": "object_scene",
                    "balance_scene": "balance_scene",
                    "rate_scene": "rate_scene",
                    "race_scene": "race_scene"}
+# EVERY DATA MACHINE, reachable from here too. Token and builder share a name
+# (`staircase_scene` -> `viz_scene.staircase_scene`), so this is generated
+# rather than curated — a hand-written copy is a second source of truth and
+# would go stale the first time a machine is added.
+_SCENE_BUILDERS.update({
+    _t: _t for _t in dir(viz_scene)
+    if _t.endswith("_scene") and callable(getattr(viz_scene, _t, None))
+})
 
 # Depictions that are always available (pure matplotlib, no image gen, and their
 # renderer already exists). Used as guaranteed fallbacks + the terminal choice.
@@ -145,6 +154,17 @@ def _deterministic_candidates(f: dict) -> list[str]:
         det += ["fill_vessel"]          # the radial gauge (Data rides it)
     else:
         det += ["pictorial_race"]       # ranked rounded bars w/ icon caps
+    # THE MACHINE LEADS. A chart is the FALLBACK, not the default — which is
+    # the whole ruling, and was not true of this function until now: the
+    # machines were appended after the beat's own chart, so they were only
+    # ever reached by the "one line chart per video" post-pass, i.e. on a
+    # REPEAT. A library that only draws when the alternative is the same chart
+    # twice is not a library, it is a tie-breaker.
+    #
+    # The chart still follows every machine and `bubbles` still terminates the
+    # list, so a beat is never left without a depiction; and every machine
+    # offered here has been asked whether it can serve THIS data.
+    det = _machine_candidates(f.get("insight")) + det
     seen, out = set(), []
     for k in det:
         if k not in seen and renderable(k):
@@ -152,6 +172,38 @@ def _deterministic_candidates(f: dict) -> list[str]:
             out.append(k)
     out.append("bubbles")
     return out
+
+
+def _machine_candidates(ins) -> list[str]:
+    """The data machines that fit what this insight is SAYING, best first.
+
+    Asks the same router `studio_render` asks, so the two cannot disagree
+    about which picture says the thing — and asks each builder whether it can
+    actually serve this data, because a machine that hands back an empty scene
+    would strand the beat.
+    """
+    if ins is None:
+        return []
+    try:
+        from . import studio_render as _sr
+        out = []
+        # `_machines_for`, NOT the raw table: it applies the anti-template
+        # rotation for relationships whose machines are equally apt. Reading
+        # `_MACHINES` directly handed every one of the catalogue's 429 duels
+        # the same set of scales — 324 of 930 beats leading on one picture,
+        # which is the template collapse this whole rotation exists to stop.
+        for tok in _sr._machines_for(ins):
+            if tok not in _SCENE_BUILDERS:
+                continue
+            try:
+                built = getattr(viz_scene, _SCENE_BUILDERS[tok])(ins)
+                if built and _will_draw(built, ins):
+                    out.append(tok)
+            except Exception:              # noqa: BLE001
+                continue
+        return out
+    except Exception:                      # noqa: BLE001 — never break assign
+        return []
 
 
 # --- Feature extraction ------------------------------------------------------
@@ -188,7 +240,18 @@ def _features(ins) -> dict:
         "age": bool(_AGE_KW.search(topic)),
         "scale": bool(_SCALE_KW.search(topic)),
         "speed": unit_class == "speed" or bool(_SPEED_KW.search(topic)),
-        "is_share": ins.kind == "share" or (unit_class == "pct" and n >= 3),
+        # A PERCENT UNIT IS NOT A COMPOSITION. "unit is a percent and there
+        # are at least three of them" said share for eggs +37%, coffee +21%,
+        # beef +18% — six independent price increases — so the chart routed
+        # to a stacked column and printed "EGGS IS 37% OF THE WHOLE" over
+        # data where eggs are 37% of nothing. `relationships.composes` is the
+        # test: parts that add to a hundred, or a claim that says composition.
+        # The insight itself, so the candidate pool can ask the relationship
+        # router. Everything else here is a scalar the pool reads directly.
+        "insight": ins,
+        "is_share": (ins.kind == "share"
+                     or (unit_class == "pct" and n >= 3
+                         and _rel.composes(ins))),
     }
 
 
@@ -478,6 +541,112 @@ def _invent_mechanic(ins):
 # Budget raised 5 -> 12: rankings now show up to 5 REAL photos per segment
 # (cheap cached Wikimedia fetches, unlike AI generations), so a single ranking
 # must not starve the rest of the video into lazy fallbacks.
+# Authored-scene element types that are a GENERIC CHART in scene clothing.
+# A bespoke scene really is distinct by construction — a different subject, a
+# different arrangement — so it is exempt from the no-repeat rule. A scene
+# whose only element is a `timeline_axis` is not: it is the same line with
+# different numbers, and three of them in one video is three line charts.
+_GENERIC_SCENE_TYPES = {"timeline_axis", "stack", "bar", "bubble", "number",
+                        "caption", "orbit_group"}
+
+
+def _scene_signature(sc) -> str | None:
+    """A repeat key for an authored scene, or None if it is genuinely bespoke.
+
+    This closes the gap that kept the data machines off the screen. Pass 0
+    honours an authored scene and does NOT add it to `used`, on the reasoning
+    that bespoke scenes are distinct by construction. For the 122 configured
+    beats authored as a lone `timeline_axis` that reasoning is false, and the
+    consequence was measured by the showrunner itself on 2026-08-24: "three
+    near-identical chart layouts stretched over 96 seconds", scores 26-52.
+
+    Keying the generic ones lets the FIRST keep the author's choice while the
+    second and third fall through to the relationship's machine — a line, then
+    a climb, then a lift going down.
+    """
+    try:
+        types = {e.get("type") for e in (sc.get("elements") or [])}
+    except Exception:                      # noqa: BLE001
+        return None
+    if types and types <= _GENERIC_SCENE_TYPES:
+        return "scene:" + "+".join(sorted(t for t in types if t))
+    return None
+
+
+def _will_draw(scene, ins) -> bool:
+    """Ask the machine itself, not just its builder.
+
+    A builder only counts items. The DRAW function is where the real refusals
+    live — a nest needs a ratio between about 2 and 150, a chair needs a
+    genuine shortage, a shelf needs a tally short enough to count — and it
+    signals them by returning None.
+
+    Without this the director picks a machine that will refuse, the render
+    falls back to a chart, and the beat quietly loses both the machine it
+    chose and the runner-up it never got offered. Probing costs one draw per
+    candidate at assign time and means the machine that is picked is one that
+    will actually appear.
+    """
+    try:
+        from PIL import Image, ImageDraw
+        els = (scene or {}).get("elements") or []
+        if not els or any(e.get("type") not in viz_scene._MACHINE_DRAW
+                          for e in els):
+            return True                    # not a machine scene; not ours to judge
+        canvas = Image.new("RGBA", (viz_scene.W, viz_scene.H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(canvas)
+        box = (viz_scene.RX0, viz_scene.RTOP, viz_scene.RX1,
+               viz_scene.MACHINE_BOT)
+        safe = viz_scene.drawable_insight(ins)
+        if safe is None:
+            return False
+        for el in els:
+            t = el.get("type")
+            if not viz_scene.machine_may_draw(t, safe):
+                continue
+            if viz_scene._guarded(t, viz_scene._MACHINE_DRAW[t], d, canvas,
+                                  box, safe, charts.HIGHLIGHT, 1.0,
+                                  safe.unit) is not None:
+                return True
+        return False
+    except Exception:                      # noqa: BLE001 — never break assign
+        return True
+
+
+def _renders_here(sc, ins) -> bool:
+    """Will this authored scene actually draw in THIS configuration?
+
+    `validate` asks whether the scene is well formed. It is not the same
+    question as whether it can be drawn, and the gap between them was costing
+    the channel most of its pictures.
+
+    Measured over the 933 configured explainer beats on 2026-09-07, with
+    VIZ_IMAGES off (the default — the channel moved away from AI-image slop):
+    335 authored scenes prune to nothing and 218 more are image-only, so 553
+    of them validated at assign time, were honoured, and then bailed at draw
+    time to a fallback CHART. Meanwhile a 42-machine offline library sat
+    unreachable, because honouring the scene is what stops the director ever
+    looking for one.
+
+    Refusing here does not lose the beat: it falls through to the candidate
+    pass, which now leads with the machine that says the thing and still ends
+    at a chart. A scene that cannot be drawn is not a choice, it is a chart in
+    a costume.
+    """
+    try:
+        if isinstance(sc, dict) and ("code" in sc or "mechanic" in sc):
+            return True                    # judged by its own dry-render
+        pruned = viz_scene.prune(sc, ins)
+        els = (pruned or {}).get("elements") or []
+        if not els:
+            return False
+        if _images_on():
+            return True
+        return any(e.get("type") not in viz_scene._IMAGE_TYPES for e in els)
+    except Exception:                      # noqa: BLE001 — never break assign
+        return False
+
+
 def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
     """Set each insight's final ``kind`` (depiction). Honours a valid authored
     concept; otherwise best-fit by shape. Enforces: never bare numbers, no
@@ -565,11 +734,16 @@ def assign(inss: list, *, seed: int = 0, image_budget: int = 12) -> None:
                 chosen[i] = "mechanic"
                 images += 2
             continue
-        if sc and viz_scene.validate(sc, inss[i]):
+        if sc and viz_scene.validate(sc, inss[i]) and _renders_here(sc, inss[i]):
+            sig = _scene_signature(sc)
+            if sig and sig in used:
+                continue                   # the same chart twice — fall through
             cost = viz_scene.image_cost(sc)
             if images + cost <= image_budget:
                 chosen[i] = "scene"
                 images += cost
+                if sig:
+                    used.add(sig)
 
     # Pass 1 — honour a valid authored concept (the LLM's creative choice).
     for i in order:

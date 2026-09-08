@@ -25,6 +25,7 @@ chain degrades to another DEPICTION (never bare numbers).
 """
 from __future__ import annotations
 
+import hashlib as _hashlib
 import math as _math
 import re
 from pathlib import Path
@@ -36,8 +37,26 @@ from .charts import (ACCENT, HIGHLIGHT, TEXT, WARN, _fullframe, _ordered_items,
                      _pil_font, _rgba, _sci, _vfmt)
 
 W, H = 1080, 1920
-RX0, RX1, RTOP, RBOT = 40, 1040, 80, 1180          # safe box (above the game strip)
+# THE SCENE KIT OWNS THE 9:16 FRAME.
+#
+# RBOT was 1180 of 1920 — "above the game strip", from a layout this channel
+# has not had for a long time. Every multi-element scene therefore drew inside
+# the top 61% and left 39% of the frame as empty gradient, which is the
+# showrunner's most-cited block on the data channel and its words for it are
+# exact: "the entire lower two-thirds blank blue gradient", "the seesaw in the
+# top ~40% and the entire bottom half empty", "one lone bill tile top-left and
+# the entire lower 70% empty". 158 of the configured scenes have more than one
+# element and every one of them was drawing into that box.
+#
+# 1560 leaves the burned caption and the source line their band at the bottom.
+# `shared/frame_occupancy.py` measures what this is for, and
+# `tests/test_the_frame_is_used.py` holds it.
+RX0, RX1, RTOP, RBOT = 40, 1040, 80, 1560
 _MIDX, _MIDY = (RX0 + RX1) // 2, (RTOP + RBOT) // 2
+# How far down a lone data machine may draw. Now the same as RBOT — the whole
+# kit uses the frame — and kept as a name because the machines read it and
+# because the two could diverge again if a channel ever needs a strip back.
+MACHINE_BOT = RBOT
 
 # region name -> pixel box (x0, y0, x1, y1)
 REGIONS: dict[str, tuple[int, int, int, int]] = {
@@ -54,13 +73,18 @@ _TYPES = {"object", "fill_object", "stack", "orbit_group", "timeline_axis",
           "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
           "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
           "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
-          "queue", "number", "bar", "bubble", "caption"}
+          "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+          "spinner", "doors", "fan", "gears", "slider",
+          "density", "nest", "chairs", "hourglass", "trophies", "basket",
+          "number", "bar", "bubble", "caption"}
 # Machines that read the WHOLE insight and own their box.
 _HOLISTIC = {"orbit_group", "timeline_axis", "race_track", "staircase",
              "elevator", "burden", "gauge", "skyline", "tower", "hurdle",
              "funnel", "conveyor", "pipes", "spotlight", "road", "tape",
              "bridge", "centre", "coaster", "thermometer", "wheel", "darts",
-             "queue"}
+             "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+             "spinner", "doors", "fan", "gears", "slider",
+             "density", "nest", "chairs", "hourglass", "trophies", "basket"}
 _IMAGE_TYPES = {"object", "fill_object", "stack"}
 # Elements drawn from the OFFLINE icon library only. They never reach the
 # generative provider, so they cost no image budget and cannot time out — the
@@ -72,7 +96,22 @@ _DRAWN_TYPES = {"balance", "race_track", "staircase", "elevator",
                 "burden", "gauge", "skyline", "tower", "hurdle", "funnel",
                 "conveyor", "pipes", "spotlight", "road", "tape", "bridge",
                 "centre", "coaster", "thermometer", "wheel", "darts",
-                "queue"}
+                "queue", "bottleneck", "leaky", "inout", "sorter", "chain",
+                "spinner", "doors", "fan", "gears", "slider",
+                "density", "nest", "chairs", "hourglass", "trophies",
+                "basket"}
+# Element types whose draw function composites the host ITSELF. Declared, and
+# held against the source by `tests/test_data_has_physics.py` in both
+# directions — a machine that bakes him and is missing here renders two
+# mascots, and one listed here that does not bake him renders none.
+_SELF_HOSTING = {"timeline_axis", "balance", "race_track", "unit_figures",
+                 "dot_field", "staircase", "elevator", "burden", "gauge",
+                 "skyline", "tower", "hurdle", "funnel", "conveyor", "pipes",
+                 "spotlight", "road", "tape", "bridge", "centre", "coaster",
+                 "thermometer", "wheel", "darts", "queue", "bottleneck",
+                 "leaky", "inout", "sorter", "chain", "spinner", "doors",
+                 "fan", "gears", "slider", "density", "nest", "chairs",
+                 "hourglass", "trophies", "basket"}
 _DATA_TYPES = {"object", "fill_object", "stack", "unit_figures", "balance",
                "dot_field", "number", "bar", "bubble"}
 _ANIM = {"fade", "rise", "travel", "count", "fill", "grow"}
@@ -314,18 +353,88 @@ def scene_host(action: str, phase: float):
         img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
     except Exception:  # noqa: BLE001 — a scene must never die over the host
         img = charts._host_pose(action)
+    # CROP TO THE SPRITE. The rasteriser returns a 300x300 square and the host
+    # occupies 134x210 of it — 55% empty either side, 30% top and bottom.
+    # Every machine sizes him by height and anchors to that box, so he came
+    # out a third smaller than asked for and everything positioned against him
+    # landed in the padding: `burden` anchored its load to his hands at 9.5%
+    # of the box height and drew the slabs floating in clear air above his
+    # head, which is the whole point of that machine missed. One crop here
+    # fixes it for all forty of them.
+    try:
+        if img is not None:
+            bb = img.getbbox()
+            if bb and (bb[2] - bb[0]) > 0 and (bb[3] - bb[1]) > 0:
+                img = img.crop(bb)
+    except Exception:  # noqa: BLE001
+        pass
     if len(_SCENE_HOST_CACHE) > 400:
         _SCENE_HOST_CACHE.clear()
     _SCENE_HOST_CACHE[key] = img
     return img
 
 
+# The camera push (`_push`) zooms the finished canvas to 1.04 and crops back,
+# which eats about 22px from each edge at full push. Anything drawn closer
+# than this to the frame edge WILL be cropped, and a cropped headline is the
+# most basic readability failure there is.
+PUSH_SAFE = 26
+
+
 def draw_caption(d, box, text, reveal, size=42, color=TEXT):
+    """A caption that FITS. Shrinks, then wraps; it never runs off the frame.
+
+    This centred the text and drew it at whatever width it wanted. A title
+    wider than its box got a negative x and ran off BOTH edges, and then the
+    camera push cropped another ~22px from each side. The showrunner read one
+    back on 2026-09-07 as "the chart title is clipped off BOTH edges of the
+    frame — it reads 'olorado wolves, first release vs toda'", and blocked
+    the video for it. Another was "PLOYERS TRIALING A FOUR-DAY WI".
+
+    Every scene title goes through this one function, so fitting it here fixes
+    the whole class.
+    """
+    text = str(text or "")
+    if not text:
+        return
+    avail = (box[2] - box[0]) - 2 * PUSH_SAFE
+    if avail <= 0:
+        return
+
+    def _w(t, f):
+        b = d.textbbox((0, 0), t, font=f)
+        return b[2] - b[0]
+
+    size = int(size)
     f = _pil_font(size)
-    tb = d.textbbox((0, 0), text, font=f)
-    x = _cx(box) - (tb[2] - tb[0]) // 2
-    d.text((x, box[1]), text, font=f, fill=(248, 250, 252, 255),
-           stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    # 1. shrink, to a floor — below this it is unreadable on a phone anyway
+    while size > 32 and _w(text, f) > avail:
+        size -= 2
+        f = _pil_font(size)
+    lines = [text]
+    if _w(text, f) > avail:
+        # 2. wrap onto two lines at a word boundary, balanced
+        words = text.split()
+        best, best_cost = None, None
+        for k in range(1, len(words)):
+            a, b = " ".join(words[:k]), " ".join(words[k:])
+            cost = max(_w(a, f), _w(b, f))
+            if best_cost is None or cost < best_cost:
+                best, best_cost = (a, b), cost
+        if best and best_cost is not None and best_cost <= avail:
+            lines = list(best)
+        else:
+            # 3. nothing fits: shrink further rather than clip
+            while size > 24 and max(_w(l, f) for l in lines) > avail:
+                size -= 2
+                f = _pil_font(size)
+    cx = _cx(box)
+    y = box[1]
+    for ln in lines:
+        d.text((cx - _w(ln, f) // 2, y), ln, font=f,
+               fill=(248, 250, 252, 255),
+               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        y += int(size * 1.15)
 
 
 def draw_number(d, box, value, label, color, reveal, unit=""):
@@ -957,16 +1066,37 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     if not vals:
         return None
     bx0, by0, bx1, by1 = box
-    road_y = int((max(by0 + 240, 380) + (by1 - 160)) / 2)
+    # The road sits LOW and the series it is about is drawn above it, dead
+    # flat with a dot per year. Pinned to the middle with nothing under it the
+    # frame measured a 33% void — a coin flip against the 34% ceiling, which
+    # is not passing. The line is also the honest half of the claim: you can
+    # SEE it not moving, rather than being told.
+    road_y = int(by0 + (by1 - by0) * 0.62)
     d.rounded_rectangle([bx0 + 30, road_y, bx1 - 30, road_y + 90], radius=12,
                         fill=_rgba(TEXT, 55))
-    e = settle(reveal)
-    # dashes stream past — he is moving, the NUMBER is not
-    for k in range(-1, 14):
-        x = bx0 + 40 + ((k * 96) - e * 96 * 6) % (bx1 - bx0 - 80)
-        d.rounded_rectangle([int(x), road_y + 40, int(x + 54), road_y + 52],
-                            radius=6, fill=_rgba(charts.CARD, 200))
+    # DASHES STREAM PAST AT A CONSTANT SPEED — he is moving, the NUMBER is
+    # not. Scrolled on `settle` they slowed to a crawl by the end and the
+    # visual measured a 47-frame frozen run; a road that slows down is also
+    # the wrong claim, because the finding is that time passes steadily and
+    # the number does not change.
+    for k in range(-1, 16):
+        x = bx0 + 40 + ((k * 96) - reveal * 96 * 15) % (bx1 - bx0 - 80)
+        d.rounded_rectangle([int(x), road_y + 38, int(x + 62), road_y + 54],
+                            radius=8, fill=_rgba(charts.CARD, 210))
     mid = sum(vals) / len(vals)
+    _lo, _hi = min(vals), max(vals)
+    _span = (_hi - _lo) or (abs(mid) * 0.04) or 1.0
+    _band_top = int(by0 + (by1 - by0) * 0.26)
+    _band_bot = road_y - 120
+    _pts_x = [bx0 + 90 + (bx1 - bx0 - 180) * (i / max(1, len(vals) - 1))
+              for i in range(len(vals))]
+    _pts_y = [_band_bot - (_band_bot - _band_top) * ((v - _lo) / _span) * 0.55
+              - (_band_bot - _band_top) * 0.22 for v in vals]
+    _shown = max(2, int(len(vals) * settle(reveal)))
+    d.line(list(zip(_pts_x[:_shown], _pts_y[:_shown])),
+           fill=_rgba(color, 235), width=10, joint="curve")
+    for _x, _y in zip(_pts_x[:_shown], _pts_y[:_shown]):
+        d.ellipse([_x - 12, _y - 12, _x + 12, _y + 12], fill=_rgba(color, 245))
     host = scene_host("point", reveal)
     if host is not None:
         mh = 270
@@ -997,7 +1127,9 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     a = float(getattr(items[0], "value", 0) or 0)
     b = float(getattr(items[-1], "value", 0) or 0)
     bx0, by0, bx1, by1 = box
-    y = int((max(by0 + 250, 400) + (by1 - 200)) / 2)
+    # Centred in the box with the host standing under it — pinned near the
+    # middle it left the bottom half carrying nothing and measured 35% in CI.
+    y = int(by0 + (by1 - by0) * 0.42)
     e = settle(reveal)
     x0 = bx0 + 90
     x1 = int(x0 + (bx1 - 90 - x0) * e)
@@ -1014,15 +1146,31 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     d.text((x1, y - 62), f"{getattr(items[-1], 'label', '')}  "
            f"{charts._ulabel(b, unit)}", font=_pil_font(40),
            fill=_rgba(color, int(255 * na)), anchor="rm")
-    d.text(((bx0 + bx1) // 2, y + 96),
+    # THE TAPE RUNS BETWEEN TWO POSTS, standing on a ground.
+    #
+    # A tape floating at mid-height leaves the bottom of the frame carrying
+    # nothing — measured at 38% void, past the 34% ceiling. Two markers and a
+    # floor is also just what measuring a distance looks like: you put a stake
+    # at each end. The posts are at the two values, so they add no claim.
+    _ground = by1 - 40
+    d.line([(bx0 + 30, _ground), (bx1 - 30, _ground)],
+           fill=_rgba(TEXT, 100), width=8)
+    for _px, _c in ((x0, TEXT), (x1, color)):
+        d.line([(_px, y + 22), (_px, _ground)], fill=_rgba(_c, 150), width=10)
+        d.rounded_rectangle([_px - 40, _ground - 14, _px + 40, _ground + 14],
+                            radius=10, fill=_rgba(_c, 190))
+    d.text(((bx0 + bx1) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
     host = scene_host("strain", reveal)
     if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(x1 - mw // 2), y + 30))
+        mh = int(min(340, max(0, _ground - (y + 150))))
+        if mh > 120:
+            mw = int(host.width * mh / host.height)
+            canvas.alpha_composite(
+                _fit(host, mw, mh),
+                (int(min(bx1 - mw - 20, max(bx0 + 20, x1 - mw // 2))),
+                 int(_ground - mh)))
     return (b, "art", x1, y)
 
 
@@ -1057,7 +1205,12 @@ def draw_bridge(d, canvas, box, insight, color, reveal, unit=""):
     # point — read as a small pause in a bar. The near deck is a built roadway
     # that stops in mid-air, the far bank is raised, and the drop below is dark.
     deck_y = y + 40
-    d.rectangle([x0, deck_y + 34, x1, by1 - 40], fill=_rgba(charts.CARD, 90))
+    # A DROP, not a wall. Filled to the bottom of the safe box this was a
+    # 1,500px dark rectangle under a thin deck — it read as the background
+    # changing colour rather than as a gap with a bottom to fall to.
+    _chasm = min(300, int((by1 - deck_y) * 0.42))
+    d.rectangle([x0, deck_y + 34, x1, deck_y + 34 + _chasm],
+                fill=_rgba(charts.CARD, 90))
     d.rounded_rectangle([x0, deck_y, edge, deck_y + 34], radius=8,
                         fill=_rgba(color, 245))
     for px in range(x0 + 30, edge - 10, 66):        # pilings under what exists
@@ -1246,13 +1399,19 @@ def draw_wheel(d, canvas, box, insight, color, reveal, unit=""):
     span = (hi - lo) or 1.0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 460, 660)
-    R = int(min((bx1 - bx0) * 0.34, 300))
+    cy = int(by0 + (by1 - by0) * 0.42)
+    R = int(min((bx1 - bx0) * 0.42, (by1 - by0) * 0.30))
     e = settle(reveal)
     d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=_rgba(TEXT, 110),
               width=9)
-    d.polygon([(cx, cy), (cx - 70, by1 - 110), (cx + 70, by1 - 110)],
-              fill=_rgba(TEXT, 70))
+    # The A-frame stands the wheel up; it does not run the height of the
+    # frame. Drawn to the bottom of the safe box it was a white wedge taller
+    # than the wheel itself and the eye read it before anything else.
+    _gy = cy + R + 90
+    d.polygon([(cx, cy), (cx - 78, _gy), (cx + 78, _gy)],
+              fill=_rgba(TEXT, 60))
+    d.rounded_rectangle([cx - 130, _gy, cx + 130, _gy + 18], radius=9,
+                        fill=_rgba(TEXT, 90))
     n = len(vals)
     turn = e * 2.0 * _math.pi          # a full revolution across the visual
     for k, v in enumerate(vals):
@@ -1295,8 +1454,11 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
     span = (hi - lo) or (abs(mean) * 0.02) or 1.0
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 430, 640)
-    R = int(min((bx1 - bx0) * 0.33, 290))
+    # SCALED TO THE BOX. The caps here were set against a 1100-tall safe box;
+    # a lone machine now owns a 1480-tall one, and a fixed 290px radius left
+    # the board floating in the top third of the frame.
+    cy = int(by0 + (by1 - by0) * 0.46)
+    R = int(min((bx1 - bx0) * 0.42, (by1 - by0) * 0.30))
     for k, rr in enumerate((R, int(R * 0.68), int(R * 0.36))):
         d.ellipse([cx - rr, cy - rr, cx + rr, cy + rr],
                   outline=_rgba(TEXT, 90 + k * 40), width=6)
@@ -1313,6 +1475,22 @@ def draw_darts(d, canvas, box, insight, color, reveal, unit=""):
         py = int(cy + _math.sin(ang) * rad)
         d.ellipse([px - 17, py - 17, px + 17, py + 17],
                   fill=_rgba(color, int(240 * a)))
+    # ANOTHER DART, ALWAYS IN THE AIR. Landed darts do not move, so the board
+    # filled and then held: a 0.908 duplicate ratio and a 47-frame frozen run.
+    # A throw on a loop is also the honest reading — every one of them lands
+    # in the same small group, which is the finding.
+    for k in range(2):
+        t_ = (reveal * 1.6 + k * 0.5) % 1.0
+        j = (k * 3) % max(1, len(vals))
+        ang = j * 2.399963
+        rad = R * 0.82 * abs(vals[j] - mean) / span
+        tx = cx + _math.cos(ang) * rad
+        ty = cy + _math.sin(ang) * rad
+        fx = tx + (bx1 - 40 - tx) * (1.0 - t_)
+        fy = ty - (ty - (by0 + 150)) * (1.0 - t_)
+        r_ = 17 + 16 * (1.0 - t_)
+        d.ellipse([fx - r_, fy - r_, fx + r_, fy + r_],
+                  fill=_rgba(HIGHLIGHT, 235))
     host = scene_host("think", reveal)
     if host is not None:
         mh = 200
@@ -1355,25 +1533,1192 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
             glyph = _PImg.open(cp).convert("RGBA")
         except Exception:  # noqa: BLE001
             glyph = None
+    # A LINE THAT SNAKES. One row against the bottom of the frame capped the
+    # queue at whatever fitted across and left the middle of a 1480-tall box
+    # empty — the picture of a backlog has to be able to get LONGER, so it
+    # wraps, the way a real queue folds back on itself.
+    n_wait = max(1, int(round(1 + frac * 29)))
     host = scene_host("point", reveal)
-    mh = 250
-    mw = int(host.width * mh / host.height) if host is not None else 160
-    hx = bx0 + 70
+    mh = 280
+    mw = int(host.width * mh / host.height) if host is not None else 170
+    hx = bx0 + 60
     if host is not None:
         canvas.alpha_composite(_fit(host, mw, mh), (hx, ground - mh))
-    sz = 92
+    sz = 96
+    cols = max(3, int((bx1 - 40 - (hx + mw + 20)) // (sz + 12)))
+    rowh = sz + 34
+    first_top = ground - sz
     for k in range(n_wait):
-        x = hx + mw + 16 + k * (sz + 10)
-        if x + sz > bx1 - 20:
+        gx, gy = k % cols, k // cols
+        # rows fold back the way a queue does, so the tail is beside the head
+        if gy % 2:
+            gx = cols - 1 - gx
+        x = hx + mw + 20 + gx * (sz + 12)
+        y = first_top - gy * rowh
+        if y < by0 + 190:
             break
         if glyph is not None:
-            canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), ground - sz))
+            canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
-            d.ellipse([x, ground - sz, x + sz, ground], fill=_rgba(ACCENT, 235))
-    d.text(((bx0 + bx1) // 2, by0 + 58),
+            d.ellipse([x, y, x + sz, y + sz], fill=_rgba(ACCENT, 235))
+    d.text(((bx0 + bx1) // 2, by0 + 78),
            f"{lab}   {charts._ulabel(v, unit, group=True)} waiting",
            font=_pil_font(62), fill=_rgba(color, 255), anchor="mm")
+    d.text(((bx0 + bx1) // 2, ground + 62), "and the line keeps growing",
+           font=_pil_font(40), fill=_rgba(TEXT, 210), anchor="mm")
     return (v, "art", hx + mw, ground - sz)
+
+
+def _label_of(p):
+    return str(getattr(p, "label", ""))
+
+
+def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
+    """A PIPE THAT PINCHES at the stage doing the damage. For BOTTLENECK.
+
+    A funnel says people fall out all the way down. A bottleneck says ONE step
+    is the problem, and points at it — which is the difference between a
+    description and a diagnosis. So the pipe does NOT taper monotonically: it
+    can widen again after the pinch, which is exactly the shape a funnel is
+    incapable of drawing and the reason this is a separate machine.
+    """
+    items = _ordered_items(insight)[:6]
+    if len(items) < 3:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    drops = [a - b for a, b in zip(vals, vals[1:])]
+    worst = drops.index(max(drops)) + 1 if drops else 0
+    bx0, by0, bx1, by1 = box
+    _st = stage(insight, "bottleneck")
+    top, bot = max(by0 + 240, 400), by1 - 150
+    n = len(items)
+    seg = (bot - top) / n
+    e = settle(reveal)
+    # Measured, like the funnel: a clipped stage label is a wrong number on
+    # screen, and the stages that clip are the ones the picture is about.
+    lab_f = _pil_font(32)
+    labs = [f"{_label_of(p)[:13]}  {charts._ulabel(v, unit, group=True)}"
+            for p, v in zip(items, vals)]
+    lab_w = max((d.textbbox((0, 0), t, font=lab_f)[2] for t in labs), default=240)
+    # 300px reserved on the left for the mascot and the "here" callout.
+    full = min((bx1 - bx0) * 0.36, (bx1 - bx0) - lab_w - 340)
+    cx = int(bx0 + 300 + full / 2)
+    for i, (v, lab) in enumerate(zip(vals, labs)):
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            break
+        w0 = full * (v / vmax)
+        w1 = full * ((vals[i + 1] / vmax) if i + 1 < n else (v / vmax))
+        y0, y1 = int(top + i * seg), int(top + (i + 1) * seg)
+        col = WARN if i == worst else (color if i == 0 else ACCENT)
+        d.polygon([(cx - w0 / 2, y0), (cx + w0 / 2, y0),
+                   (cx + w1 / 2, y1), (cx - w1 / 2, y1)],
+                  fill=_rgba(col, int(235 * a)))
+        d.text((int(cx + full / 2 + 24), int((y0 + y1) / 2)), lab,
+               font=lab_f, fill=_rgba(TEXT, int(235 * a)), anchor="lm")
+    wy = int(top + worst * seg + seg / 2)
+    # THE FLOW ITSELF. Without it the picture is five rectangles that arrive
+    # and then hold: measured at a 0.908 duplicate ratio and a 51-frame frozen
+    # run against a 45-frame ceiling — a machine can be geometrically right and
+    # still be a still image. These also carry the claim, because only the
+    # surviving share of them gets past the pinch; the rest stop on that line,
+    # which is the sentence under the picture drawn instead of written.
+    keep = max(1, int(round(14 * vals[-1] / (vals[0] or 1.0))))
+    for k in range(14):
+        t_ = (reveal * 1.5 + k / 14.0) % 1.0
+        py = top + t_ * (bot - top)
+        idx = min(n - 1, int((py - top) / seg))
+        if py > top + (worst + 0.5) * seg and k >= keep:
+            continue                       # stopped at the pinch
+        wv = full * (vals[idx] / vmax)
+        px = cx + ((k * 37 % 11) / 10.0 - 0.5) * max(6.0, wv * 0.55)
+        particle(d, _st["particle"], px, py, 9, _rgba(charts.CARD, 215))
+    na = max(0.0, min(1.0, (reveal - 0.5) / 0.28))
+    if na > 0.0:
+        d.text((int(cx - full / 2 - 40), wy), "here", font=_pil_font(48),
+               fill=_rgba(WARN, int(255 * na)), anchor="rm")
+        d.line([(int(cx - full / 2 - 32), wy), (int(cx - full / 2 - 8), wy)],
+               fill=_rgba(WARN, int(255 * na)), width=6)
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 20), int(bot - mh)))
+    lost = (max(drops) / vals[0] * 100.0) if (drops and vals[0]) else 0.0
+    d.text((int((bx0 + bx1) / 2), bot + 60),
+           f"{lost:.0f}% of them stop right there",
+           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    return (vals[0], "art", cx, wy)
+
+
+def draw_leaky(d, canvas, box, insight, color, reveal, unit=""):
+    """A LEAKY BUCKET that DRAINS while you watch. For RETENTION.
+
+    Two bars say 4,800 and 860. A bucket that starts full, springs a leak and
+    settles at a fifth says the same thing as a loss — and because it starts
+    from the whole, the number you are asked to hold is the one the story is
+    about. The count runs down with the water, so the figure on screen is
+    always the level in the bucket rather than a caption beside it.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    top_v = abs(float(getattr(items[0], "value", 0) or 0))
+    kept_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    if top_v <= 0 or kept_v > top_v:
+        return None
+    frac = max(0.0, min(1.0, kept_v / top_v))
+    bx0, by0, bx1, by1 = box
+    _st = stage(insight, "leaky")
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    top, bot = max(by0 + 250, 400), by1 - 210
+    tw, bw_ = int(min((bx1 - bx0) * 0.62, 620)), int(min((bx1 - bx0) * 0.46, 460))
+    # a bucket, not a test tube: wider at the rim than at the base
+    def _wall(y):
+        r = (y - top) / max(1.0, bot - top)
+        return (tw + (bw_ - tw) * r) / 2.0
+    d.line([(cx - tw / 2, top), (cx - bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    d.line([(cx + tw / 2, top), (cx + bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    d.line([(cx - bw_ / 2, bot), (cx + bw_ / 2, bot)], fill=_rgba(TEXT, 150), width=9)
+    # It STARTS FULL and drains to what is left. Filling up to `frac` instead
+    # would animate the wrong event: nobody joined, they left.
+    lvl = 1.0 - (1.0 - frac) * e
+    wy = int(bot - (bot - top) * lvl)
+    d.polygon([(cx - _wall(wy) + 6, wy), (cx + _wall(wy) - 6, wy),
+               (cx + _wall(bot) - 6, bot - 6), (cx - _wall(bot) + 6, bot - 6)],
+              fill=_rgba(color, 240))
+    # the hole, and everything that has already run out of it
+    hy = int(bot - (bot - top) * 0.34)
+    hx = int(cx + _wall(hy))
+    d.ellipse([hx - 18, hy - 18, hx + 18, hy + 18], fill=_rgba(charts.CARD, 255))
+    for k in range(11):
+        t_ = (reveal * 2.6 + k * 0.09) % 1.0
+        px = int(hx + 20 + t_ * 150)
+        py = int(hy + 12 + t_ * t_ * (by1 - 130 - hy))
+        particle(d, _st["particle"], px, py, 10, _rgba(ACCENT, 205))
+    cur = top_v - (top_v - kept_v) * e
+    d.text((cx, by0 + 66),
+           f"{charts._ulabel(cur, unit, group=True)} left of "
+           f"{charts._ulabel(top_v, unit, group=True)}",
+           font=_pil_font(58), fill=_rgba(color, 255), anchor="mm")
+    fa = max(0.0, min(1.0, (reveal - 0.6) / 0.3))
+    if fa > 0.0:
+        d.text((cx, by1 - 140), f"only {frac * 100:.0f}% stay",
+               font=_pil_font(48), fill=_rgba(TEXT, int(235 * fa)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 220
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 12, cx - tw // 2 - mw - 20)),
+                                int(bot - mh)))
+    return (kept_v, "art", cx, wy)
+
+
+def draw_inout(d, canvas, box, insight, color, reveal, unit=""):
+    """TWO PIPES, one filling and one draining, and the LEVEL is the answer.
+
+    For INFLOW_OUTFLOW. Income against expenses is not a ranking of two
+    things; it is a surplus or a shortfall, and that is a third number neither
+    bar shows. Here the water IS that number: pipe WIDTH carries each flow,
+    the water carries what the two of them leave behind, and it is coloured by
+    which way it went.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    # Order is the CLAIM, not the magnitude: the first item is the inflow even
+    # when it is the smaller of the two, which is precisely the case where the
+    # picture has something to say. Sorting them here would make the machine
+    # structurally incapable of drawing a shortfall.
+    inflow = abs(float(getattr(items[0], "value", 0) or 0))
+    outflow = abs(float(getattr(items[-1], "value", 0) or 0))
+    if inflow <= 0 and outflow <= 0:
+        return None
+    in_lab, out_lab = _label_of(items[0]), _label_of(items[-1])
+    surplus = inflow - outflow
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    top, bot = max(by0 + 290, 440), by1 - 190
+    tw = int(min((bx1 - bx0) * 0.44, 420))
+    vmax = max(inflow, outflow) or 1.0
+    net_col = color if surplus >= 0 else WARN
+    d.rounded_rectangle([cx - tw // 2, top, cx + tw // 2, bot], radius=16,
+                        outline=_rgba(TEXT, 140), width=9)
+    level = max(0.07, min(0.88, abs(surplus) / vmax)) * e
+    ly = int(bot - (bot - top) * level)
+    if ly < bot - 12:
+        d.rounded_rectangle([cx - tw // 2 + 11, ly, cx + tw // 2 - 11, bot - 9],
+                            radius=12, fill=_rgba(net_col, 240))
+        # A LIVE SURFACE. Two pipes running into a tank whose water then sits
+        # perfectly flat is a contradiction the eye notices before the mind
+        # does — and it measured as a 38-frame frozen run besides.
+        x_l, x_r = cx - tw // 2 + 11, cx + tw // 2 - 11
+        wave = [(x, ly + 9 * _math.sin(x / 46.0 + reveal * 9.0))
+                for x in range(x_l, x_r + 1, 12)]
+        d.polygon(wave + [(x_r, ly + 26), (x_l, ly + 26)],
+                  fill=_rgba(net_col, 240))
+    lab_f = _pil_font(34)
+
+    def _pipe(y, x_out, thick, col, lab, val, right):
+        """One pipe, as wide as its flow, with product moving along it."""
+        th = max(14, int(thick))
+        x_in = cx - tw // 2 + 8 if not right else cx + tw // 2 - 8
+        d.rounded_rectangle([min(x_in, x_out), y - th // 2,
+                             max(x_in, x_out), y + th // 2],
+                            radius=th // 2, fill=_rgba(col, 235))
+        for k in range(9):
+            t_ = (reveal * 2.2 + k / 9.0) % 1.0
+            px = int(x_out + (x_in - x_out) * t_)
+            r_ = max(6, min(10, th // 3))
+            d.ellipse([px - r_, y - r_, px + r_, y + r_],
+                      fill=_rgba(charts.CARD, 215))
+        txt = f"{lab[:14]}  {charts._ulabel(val, unit, group=True)}"
+        tx = min(x_in, x_out) if not right else max(x_in, x_out)
+        d.text((tx, y - th // 2 - 34), txt, font=lab_f,
+               fill=_rgba(col, 245), anchor="lm" if not right else "rm")
+
+    _pipe(top + 34, bx0 + 30, 46 * inflow / vmax, ACCENT, in_lab, inflow, False)
+    _pipe(bot - 46, bx1 - 30, 46 * outflow / vmax, WARN, out_lab, outflow, True)
+    d.text((cx, by0 + 66),
+           f"{charts._ulabel(abs(surplus), unit, group=True)} "
+           f"{'left over' if surplus >= 0 else 'short'}",
+           font=_pil_font(58), fill=_rgba(net_col, 255), anchor="mm")
+    host = scene_host("cheer" if surplus >= 0 else "strain", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 16, cx - tw // 2 - mw - 24)),
+                                int(bot - mh - 60)))
+    return (abs(surplus), "art", cx, ly)
+
+
+def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
+    """A SORTING MACHINE: one stream arriving, dropped into labelled bins. For
+    ROUTING.
+
+    Routing and composition look identical as numbers — both are parts of one
+    total — but they are different claims. A pie says "this is what it is made
+    of"; a sorter says "this is where it WENT", which is a decision somebody
+    made and can therefore be argued with. Bins fill to their share of the
+    WHOLE, so the four fills add up to one full bin and the geometry cannot
+    overstate anyone. The parcels fall for the entire visual, because the
+    picture is the act of sorting rather than the result of it.
+    """
+    items = _ordered_items(insight)[:4]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    tot = sum(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    _st = stage(insight, "sorter")
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    chute_y = max(by0 + 260, 420)
+    bin_top, bin_bot = chute_y + 230, by1 - 190
+    n = len(items)
+    span = min((bx1 - bx0) - 120, 210 * n)
+    slot = span / n
+    bw = int(slot * 0.74)
+    x0 = cx - span / 2
+    centres = [int(x0 + i * slot + slot / 2) for i in range(n)]
+    d.polygon([(cx - 170, chute_y - 130), (cx + 170, chute_y - 130),
+               (cx + 48, chute_y), (cx - 48, chute_y)],
+              fill=_rgba(charts.CARD, 255), outline=_rgba(TEXT, 140))
+    d.text((cx, chute_y - 172), "every one of them", font=_pil_font(40),
+           fill=_rgba(TEXT, 225), anchor="mm")
+    for i, (p, v, bxc) in enumerate(zip(items, vals, centres)):
+        share = v / tot
+        a = max(0.0, min(1.0, e * n - i * 0.55))
+        d.rounded_rectangle([bxc - bw // 2, bin_top, bxc + bw // 2, bin_bot],
+                            radius=12, outline=_rgba(TEXT, 120), width=6)
+        fh = int((bin_bot - bin_top - 14) * share * a)
+        if fh > 2:
+            d.rounded_rectangle([bxc - bw // 2 + 8, bin_bot - 7 - fh,
+                                 bxc + bw // 2 - 8, bin_bot - 7], radius=9,
+                                fill=_rgba(color if i == 0 else ACCENT, 240))
+        d.text((bxc, bin_bot + 44), _label_of(p)[:11], font=_pil_font(32),
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((bxc, bin_bot + 92), f"{share * 100:.0f}%", font=_pil_font(42),
+               fill=_rgba(color if i == 0 else ACCENT, int(255 * a)),
+               anchor="mm")
+    for k in range(10):
+        t_ = (reveal * 1.9 + k * 0.1) % 1.0
+        tgt = centres[k % n]
+        px = int(cx + (tgt - cx) * t_)
+        py = int(chute_y + 10 + (bin_bot - 40 - chute_y) * t_ * t_)
+        particle(d, _st["particle"], px, py, 14, _rgba(HIGHLIGHT, 225))
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 210
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(chute_y - 150)))
+    return (vals[0], "art", centres[0], bin_top)
+
+
+def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
+    """A CHAIN OF LINKS, the weakest one drawn as a thread. For CHAIN.
+
+    A dependency chain is only as good as its worst step, and a bar chart
+    buries that: the worst step is just the shortest bar, indistinguishable
+    from "smallest category". Drawn as interlocking links, the failure is
+    structural — you can see where it will snap — and the caption states the
+    consequence, which is that the whole line runs at that number and not at
+    the average of them.
+    """
+    items = _ordered_items(insight)[:5]
+    if len(items) < 3:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    weak = vals.index(min(vals))
+    bx0, by0, bx1, by1 = box
+    _st = stage(insight, "chain")
+    cx = (bx0 + bx1) // 2
+    n = len(items)
+    e = settle(reveal)
+    slot = min(((bx1 - bx0) - 80) / n, 230.0)
+    lw = slot * 1.22                      # overlap, so the links interlock
+    span = slot * n
+    x0 = cx - span / 2
+    y = int((by0 + by1) / 2) + 30
+    order = list(range(0, n, 2)) + list(range(1, n, 2))   # evens under odds
+    for i in order:
+        v = vals[i]
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            continue
+        th = int(20 + 74 * (v / vmax))
+        lx = int(x0 + i * slot)
+        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        # A loaded chain does not hang still. The sway is small and slow — it
+        # is tension, not the jitter the mascot was pulled back from — but it
+        # is the whole width of the picture, which is what the cadence
+        # detector measures and what makes the thing read as under load.
+        dy = int(6 * _math.sin(reveal * 7.0 + i * 1.3))
+        d.rounded_rectangle([lx, y - th + dy, int(lx + lw), y + th + dy],
+                            radius=th, outline=_rgba(col, int(248 * a)),
+                            width=max(7, th // 3))
+    for i in range(n):
+        a = max(0.0, min(1.0, e * n - i))
+        if a <= 0.0:
+            break
+        mx = int(x0 + i * slot + lw / 2)
+        col = WARN if i == weak else (color if i == 0 else ACCENT)
+        d.text((mx, y - 132), _label_of(items[i])[:11], font=_pil_font(32),
+               fill=_rgba(TEXT, int(225 * a)), anchor="mm")
+        d.text((mx, y + 138), charts._ulabel(vals[i], unit, group=True),
+               font=_pil_font(38), fill=_rgba(col, int(242 * a)), anchor="mm")
+    # THE LOAD ON THE CHAIN. Links that appear and then hold measured at a
+    # 49-frame frozen run; more to the point, a chain with nothing moving
+    # through it is a diagram of a chain rather than a picture of a
+    # dependency. Only the weakest link's share gets past it, so the pile-up
+    # in front of that link IS the finding.
+    keep = max(1, int(round(12 * vals[weak] / (vmax or 1.0))))
+    span_x = span + lw - slot
+    for k in range(12):
+        t_ = (reveal * 1.4 + k / 12.0) % 1.0
+        px = x0 + t_ * span_x
+        if px > x0 + weak * slot + lw / 2 and k >= keep:
+            continue
+        py = y + 6 * _math.sin(reveal * 7.0 + (px - x0) / slot * 1.3)
+        particle(d, _st["particle"], px, py, 18, _rgba(TEXT, 215))
+    wa = max(0.0, min(1.0, (reveal - 0.55) / 0.28))
+    wx = int(x0 + weak * slot + lw / 2)
+    if wa > 0.0:
+        d.text((wx, y - 250), "it breaks here", font=_pil_font(46),
+               fill=_rgba(WARN, int(255 * wa)), anchor="mm")
+        d.line([(wx, y - 218), (wx, y - 172)], fill=_rgba(WARN, int(255 * wa)),
+               width=7)
+    d.text((cx, by1 - 120),
+           f"the whole line runs at {charts._ulabel(vals[weak], unit, group=True)}",
+           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 190
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(bx1 - mw - 16, max(bx0 + 16, wx - mw // 2))),
+             int(y + 190)))
+    return (vals[weak], "art", wx, y)
+
+
+def _chance_of(insight) -> float | None:
+    """The probability this insight is about, as a fraction of one.
+
+    Refuses far more than it accepts, on purpose. A chance drawn from the
+    wrong number is not a rough picture, it is a different claim: a spinner
+    with a third of its face lit says "one time in three" whatever the caption
+    underneath it says.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if not items:
+        return None
+    unit = (getattr(insight, "unit", "") or "").lower()
+    v = abs(float(getattr(items[0], "value", 0) or 0))
+    if "percent" in unit or "%" in unit or "rate" in unit:
+        p = v / 100.0
+    elif 0.0 < v <= 1.0:
+        p = v
+    elif len(items) >= 2:
+        tot = sum(abs(float(getattr(q, "value", 0) or 0)) for q in items)
+        p = (v / tot) if tot else 0.0
+    else:
+        return None
+    return p if 0.0 < p < 1.0 else None
+
+
+def draw_spinner(d, canvas, box, insight, color, reveal, unit=""):
+    """A SPINNER whose lit slice IS the chance. For PROBABILITY.
+
+    A percentage and a probability are written the same way and are not the
+    same claim: "12% of households own one" is a share you could count out,
+    "a 12% chance" is one trial that either happens or does not. The dot field
+    lights 12 figures in 100 and asserts the first. A wheel with one slice is
+    a single spin, which is the second.
+
+    It keeps spinning rather than landing. Landing it would show an OUTCOME —
+    a win or a loss the data never reported — and the honest statement is the
+    size of the slice, not what came up.
+    """
+    p = _chance_of(insight)
+    if p is None:
+        return None
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    cy = int((max(by0 + 300, 460) + (by1 - 250)) / 2)
+    r = int(min((bx1 - bx0) * 0.32, (by1 - by0) * 0.22, 260))
+    # It slows but never stops: `settle` takes the spin from fast to a drift.
+    spin = -90.0 + (1.0 - settle(reveal)) * 900.0 + reveal * 260.0
+    d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=_rgba(charts.CARD, 255),
+              outline=_rgba(TEXT, 120), width=8)
+    d.pieslice([cx - r + 8, cy - r + 8, cx + r - 8, cy + r - 8],
+               spin, spin + 360.0 * p, fill=_rgba(color, 245))
+    d.ellipse([cx - 26, cy - 26, cx + 26, cy + 26], fill=_rgba(TEXT, 255))
+    d.polygon([(cx, cy - r - 40), (cx - 26, cy - r + 12),
+               (cx + 26, cy - r + 12)], fill=_rgba(WARN, 255))
+    k, n = one_in_n(p * 100.0)
+    d.text((cx, by0 + 78), f"{p * 100:.1f}% chance", font=_pil_font(62),
+           fill=_rgba(color, 255), anchor="mm")
+    if k and n:
+        d.text((cx, cy + r + 92), f"about {k} in {n}", font=_pil_font(46),
+               fill=_rgba(TEXT, 230), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 210
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(min(bx1 - mw - 16, cx + r + 20)),
+                                int(cy - mh // 2)))
+    return (p * 100.0, "art", cx, cy)
+
+
+def draw_doors(d, canvas, box, insight, color, reveal, unit=""):
+    """A WALL OF DOORS, one of them the one. For PROBABILITY, small odds.
+
+    "1 in 25" as a number is a shrug. Twenty-five doors, opened one after
+    another and every one of them empty until the last, is how long it
+    actually takes — which is the part of a small probability nobody feels
+    from the percentage.
+    """
+    p = _chance_of(insight)
+    if p is None:
+        return None
+    k, n = one_in_n(p * 100.0)
+    if not n or n > 50 or k != 1:
+        return None                        # only a genuine "1 in n" is doors
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 270, 430), by1 - 240
+    cols = min(10, max(4, int(_math.ceil(_math.sqrt(n * 1.6)))))
+    rows = int(_math.ceil(n / cols))
+    cw = min((bx1 - bx0 - 60) / cols, 130.0)
+    ch = min((bot - top) / max(1, rows), 150.0)
+    x0 = (bx0 + bx1) / 2 - cw * cols / 2
+    y0 = top
+    lucky = (n - 1) // 2                   # deterministic, not drawn at random
+    opened = int(settle(reveal) * n)
+    for i in range(n):
+        c, rr = i % cols, i // cols
+        x, y = x0 + c * cw, y0 + rr * ch
+        rect = [int(x + 6), int(y + 6), int(x + cw - 6), int(y + ch - 6)]
+        if i == lucky and opened > i:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(color, 245))
+        elif opened > i:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(charts.CARD, 255),
+                                outline=_rgba(TEXT, 90), width=4)
+        else:
+            d.rounded_rectangle(rect, radius=8, fill=_rgba(ACCENT, 210))
+            d.ellipse([int(x + cw - 30), int(y + ch / 2 - 6),
+                       int(x + cw - 18), int(y + ch / 2 + 6)],
+                      fill=_rgba(charts.CARD, 220))
+    d.text(((bx0 + bx1) // 2, by0 + 78), f"1 in {n}", font=_pil_font(66),
+           fill=_rgba(color, 255), anchor="mm")
+    d.text(((bx0 + bx1) // 2, bot + 90), f"{p * 100:.1f}% chance",
+           font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 20)))
+    return (float(n), "art", int(x0 + (lucky % cols) * cw + cw / 2),
+            int(y0 + (lucky // cols) * ch + ch / 2))
+
+
+def draw_fan(d, canvas, box, insight, color, reveal, unit=""):
+    """MEASURED points solid, the PROJECTION as a widening cone. For FORECAST.
+
+    Drawing a projection as one more dot on the same line is a lie about
+    provenance: it says somebody measured 2035. The cone says where the data
+    stops and that the further out it goes the less it knows, which is the
+    honest shape of a forecast and the reason this is not just a trend line.
+    """
+    items = _pts(insight, cap=10)
+    if len(items) < 4:
+        return None
+    vals = [float(getattr(q, "value", 0) or 0) for q in items]
+    labs = [_label_of(q) for q in items]
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or (abs(hi) or 1.0)
+    bx0, by0, bx1, by1 = box
+    top, bot = max(by0 + 300, 470), by1 - 260
+    n = len(items)
+    # the last point is the projection; everything before it is measurement
+    # X BY YEAR, not by index. Evenly spaced, a projection seventeen years
+    # out sits one step past a run of annual figures and looks like next year
+    # — the cone would then be claiming near-term precision it does not have.
+    yrs = []
+    for lb in labs:
+        t = lb.strip()
+        yrs.append(int(t[:4]) if len(t) >= 4 and t[:4].isdigit() else None)
+    if all(y is not None for y in yrs) and yrs[-1] > yrs[0]:
+        rng = float(yrs[-1] - yrs[0])
+        fr = [(y - yrs[0]) / rng for y in yrs]
+    else:
+        fr = [i / (n - 1) for i in range(n)]
+    xs = [bx0 + 70 + (bx1 - bx0 - 200) * f for f in fr]
+    ys = [bot - (bot - top) * ((v - lo) / span) for v in vals]
+    e = settle(reveal)
+    shown = 1 + int(e * (n - 2))           # never reveals past the measured end
+    d.line([(xs[i], ys[i]) for i in range(shown + 1)],
+           fill=_rgba(color, 245), width=10, joint="curve")
+    for i in range(shown + 1):
+        d.ellipse([xs[i] - 11, ys[i] - 11, xs[i] + 11, ys[i] + 11],
+                  fill=_rgba(color, 250))
+    fa = max(0.0, min(1.0, (reveal - 0.55) / 0.4))
+    if fa > 0.0:
+        # the cone: it starts at the last MEASURED point and opens outward
+        sx, sy = xs[-2], ys[-2]
+        ex = sx + (xs[-1] - sx) * fa
+        ey = sy + (ys[-1] - sy) * fa
+        # Wide enough to read as a RANGE. A sliver says the projection is
+        # precise, which is the one thing a forecast is not.
+        w = abs(ys[-1] - ys[-2]) * 0.55 + 0.14 * (bot - top)
+        d.polygon([(sx, sy), (ex, ey - w * fa), (ex, ey + w * fa)],
+                  fill=_rgba(color, 70))
+        d.line([(sx, sy), (ex, ey)], fill=_rgba(color, 200), width=7)
+        # The tip breathes through the range it is claiming — the picture is
+        # a spread of outcomes, and a still dot at the end is a prediction.
+        by_ = ey + w * fa * 0.62 * _math.sin(reveal * 8.0)
+        d.ellipse([ex - 15, by_ - 15, ex + 15, by_ + 15],
+                  outline=_rgba(color, 240), width=7)
+        for kk in range(5):
+            t_ = (reveal * 1.7 + kk / 5.0) % 1.0
+            px_ = sx + (ex - sx) * t_
+            py_ = sy + (ey - sy) * t_
+            d.ellipse([px_ - 8, py_ - 8, px_ + 8, py_ + 8],
+                      fill=_rgba(color, 150))
+        d.text((int(xs[-1]), int(by0 + 210)),
+               f"{labs[-1]}: about {charts._ulabel(vals[-1], unit)}",
+               font=_pil_font(38), fill=_rgba(color, int(245 * fa)),
+               anchor="rm")
+    # the line where measurement ends, drawn and stated
+    d.line([(xs[-2], top - 20), (xs[-2], bot + 30)],
+           fill=_rgba(WARN, 160), width=5)
+    # Pinned to the FRAME, not to the divider. Spacing the x axis by year
+    # pushes the divider wherever the projection's distance puts it, and a
+    # label hung off it ran off the left edge as "neasured to 2023" — a
+    # clipped provenance note is the one label that must never clip.
+    d.text((bx0 + 24, int(bot + 68)), f"measured to {labs[-2]}",
+           font=_pil_font(34), fill=_rgba(WARN, 230), anchor="lm")
+    d.text((bx1 - 24, int(bot + 68)), "projected", font=_pil_font(34),
+           fill=_rgba(TEXT, 190), anchor="rm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "the data stops here",
+           font=_pil_font(52), fill=_rgba(TEXT, 235), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 160)))
+    return (vals[-2], "art", int(xs[-2]), int(ys[-2]))
+
+
+def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
+    """TWO MESHED GEARS turning together. For CORRELATION.
+
+    Two bars side by side say which is bigger, which is not the finding. The
+    finding is that they MOVE TOGETHER, and two gears in mesh is that sentence
+    as a mechanism — you can see that one cannot turn without the other.
+
+    The caption says "move together" and never "drives", because the data is
+    a correlation and a gear train looks like causation if you let it.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    if a_v <= 0 or b_v <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    cy = int((max(by0 + 320, 480) + (by1 - 250)) / 2)
+    big = int(min((bx1 - bx0) * 0.24, 250))
+    small = max(90, int(big * min(1.0, min(a_v, b_v) / max(a_v, b_v))))
+    ra, rb = (big, small) if a_v >= b_v else (small, big)
+    gap = 26
+    # The PAIR is centred: its extent is 2ra + 2rb + gap, and centring on
+    # (ra + rb + gap) put the second gear and its label off the right edge.
+    ax = int((bx0 + bx1) / 2 - (2 * ra + 2 * rb + gap) / 2 + ra)
+    bxx = ax + ra + rb + gap
+    ang = reveal * 300.0
+
+    def _gear(cx_, r_, teeth, phase, col, spin):
+        d.ellipse([cx_ - r_, cy - r_, cx_ + r_, cy + r_],
+                  fill=_rgba(col, 235))
+        d.ellipse([cx_ - r_ // 3, cy - r_ // 3, cx_ + r_ // 3, cy + r_ // 3],
+                  fill=_rgba(charts.CARD, 255))
+        for t in range(teeth):
+            a_ = _math.radians(phase + spin + t * 360.0 / teeth)
+            tx, ty = cx_ + _math.cos(a_) * r_, cy + _math.sin(a_) * r_
+            d.ellipse([tx - r_ * 0.15, ty - r_ * 0.15,
+                       tx + r_ * 0.15, ty + r_ * 0.15], fill=_rgba(col, 235))
+
+    _gear(ax, ra, 10, 0.0, color, ang)
+    _gear(bxx, rb, 10, 18.0, ACCENT, -ang * ra / max(1, rb))
+    lab_f = _pil_font(34)
+    for cx_, r_, p_, col in ((ax, ra, items[0], color),
+                             (bxx, rb, items[-1], ACCENT)):
+        d.text((cx_, cy + r_ + 52), _label_of(p_)[:14], font=lab_f,
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((cx_, cy + r_ + 100),
+               charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
+                              group=True),
+               font=_pil_font(42), fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "they move together",
+           font=_pil_font(56), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 200
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 150)))
+    return (a_v, "art", ax, cy)
+
+
+def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
+    """ONE TRACK, two ends, and a handle you cannot move without cost. For
+    TRADEOFF.
+
+    Two bars invite you to read "this one is bigger". The point of a trade-off
+    is that the two numbers are not independent — every unit of one is a unit
+    of the other you did not get — and a single handle on a single track is
+    the only shape that says so. The hatching on each side runs INWARD, so
+    both sides are visibly pushing.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    tot = a_v + b_v
+    if tot <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    x0, x1 = bx0 + 90, bx1 - 90
+    cy = int((by0 + by1) / 2) + 30
+    th = 74
+    e = settle(reveal)
+    hx = x0 + (x1 - x0) * (0.5 + (a_v / tot - 0.5) * e)
+    d.rounded_rectangle([x0, cy - th, hx, cy + th], radius=14,
+                        fill=_rgba(color, 235))
+    d.rounded_rectangle([hx, cy - th, x1, cy + th], radius=14,
+                        fill=_rgba(WARN, 235))
+    # Hatching that runs toward the handle from both ends: two sides pushing.
+    ph = (reveal * 220.0) % 44.0
+    for x in range(int(x0), int(hx), 44):
+        sx = x + ph
+        if sx < hx - 6:
+            d.line([(sx, cy - th + 6), (sx + 26, cy + th - 6)],
+                   fill=_rgba(charts.CARD, 90), width=8)
+    for x in range(int(x1), int(hx), -44):
+        sx = x - ph
+        if sx > hx + 6:
+            d.line([(sx, cy - th + 6), (sx - 26, cy + th - 6)],
+                   fill=_rgba(charts.CARD, 90), width=8)
+    d.rounded_rectangle([hx - 16, cy - th - 34, hx + 16, cy + th + 34],
+                        radius=14, fill=_rgba(TEXT, 250))
+    lab_f = _pil_font(36)
+    for xx, p_, col, anc in ((x0 + 8, items[0], color, "lm"),
+                             (x1 - 8, items[-1], WARN, "rm")):
+        d.text((xx, cy - th - 96), _label_of(p_)[:16], font=lab_f,
+               fill=_rgba(TEXT, 235), anchor=anc)
+        d.text((xx, cy + th + 104),
+               charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
+                              group=True),
+               font=_pil_font(46), fill=_rgba(col, 245), anchor=anc)
+    d.text(((bx0 + bx1) // 2, by0 + 96), "you cannot have both",
+           font=_pil_font(54), fill=_rgba(TEXT, 240), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by1 - 130),
+           f"{a_v / tot * 100:.0f}% one way, {b_v / tot * 100:.0f}% the other",
+           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 190
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(
+            _fit(host, mw, mh),
+            (int(min(bx1 - mw - 16, max(bx0 + 16, hx - mw // 2))),
+             int(cy - th - mh - 130)))
+    return (a_v, "art", int(hx), cy)
+
+
+def draw_density(d, canvas, box, insight, color, reveal, unit=""):
+    """THE SAME SQUARE, packed differently. For DENSITY.
+
+    Two bars for "people per square kilometre" compare two numbers. Two
+    identical squares, one nearly solid with dots and one nearly empty, is the
+    thing the number is measuring — and the squares have to be IDENTICAL,
+    because scaling the box as well as the packing would double-count the
+    difference and overstate it.
+    """
+    items = _ordered_items(insight)[:3]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    e = settle(reveal)
+    side = int(min(((bx1 - bx0) - 50 * (n + 1)) / n, (by1 - by0) * 0.40, 420))
+    gap = ((bx1 - bx0) - side * n) / (n + 1)
+    top = max(by0 + 280, 430)
+    # A FIXED grid, so the box is the "one square kilometre" and only the
+    # filling changes. The busiest panel is full; the rest are its fraction.
+    cells = 14
+    step = side / cells
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = int(bx0 + gap * (i + 1) + side * i)
+        d.rounded_rectangle([x, top, x + side, top + side], radius=10,
+                            outline=_rgba(TEXT, 120), width=6)
+        want = int(round(cells * cells * (v / vmax)))
+        shown = int(want * min(1.0, e * n - i + 0.35))
+        for c in range(max(0, shown)):
+            gx, gy = c % cells, c // cells
+            # a slow drift, so the crowd is alive rather than a texture
+            jx = 3.0 * _math.sin(reveal * 6.0 + c * 0.7)
+            jy = 3.0 * _math.cos(reveal * 5.0 + c * 1.1)
+            cxp = x + step * (gx + 0.5) + jx
+            cyp = top + step * (gy + 0.5) + jy
+            r_ = step * 0.32
+            d.ellipse([cxp - r_, cyp - r_, cxp + r_, cyp + r_],
+                      fill=_rgba(color if i == 0 else ACCENT, 235))
+        d.text((x + side // 2, top + side + 44), _label_of(p)[:14],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((x + side // 2, top + side + 96),
+               charts._ulabel(v, unit, group=True), font=_pil_font(44),
+               fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "same space, different crowd",
+           font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 180
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 40)))
+    return (vals[0], "art", int(bx0 + gap + side // 2), top + side // 2)
+
+
+def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
+    """HOW MANY OF THE SMALL ONE FIT IN THE BIG ONE. For SCALE.
+
+    "340 times bigger" is a number nobody has a feel for. The small shape
+    tiled inside the big one until it fills it is the same claim as a count
+    you can see — and the tiling is by AREA, because that is what "times
+    bigger" means when it is drawn as a box.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    big_v, small_v = max(a_v, b_v), min(a_v, b_v)
+    big_p = items[0] if a_v >= b_v else items[-1]
+    small_p = items[-1] if a_v >= b_v else items[0]
+    if small_v <= 0:
+        return None
+    ratio = big_v / small_v
+    # Above ~150 the tiles are specks and nobody counts them; below 1.5 there
+    # is no scale story. Outside that band the depiction falls through to
+    # something that can carry it (the skyline), rather than drawing a grid
+    # whose count nobody can check.
+    if ratio < 1.5 or ratio > 150:
+        return None
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    side = int(min((bx1 - bx0) * 0.72, (by1 - by0) * 0.44, 600))
+    top = max(by0 + 300, 460)
+    e = settle(reveal)
+    # Tiles ACROSS is ceil(sqrt(ratio)), because the claim is about AREA —
+    # and the tile COUNT is the ratio itself, rounded, never the full grid.
+    # Filling the square exactly would draw 81 tiles for "76 times over" and
+    # hide the outline of the thing they are supposed to fit inside.
+    total = max(1, int(round(ratio)))
+    across = max(1, int(_math.ceil(_math.sqrt(total))))
+    cell = side / across
+    shown = int(total * e)
+    for k in range(shown):
+        gx, gy = k % across, k // across
+        x = cx - side / 2 + gx * cell
+        y = top + gy * cell
+        d.rounded_rectangle([x + 2, y + 2, x + cell - 2, y + cell - 2],
+                            radius=max(2, int(cell * 0.16)),
+                            fill=_rgba(ACCENT, 225))
+    # The container is drawn LAST. Under the tiles it vanished at full
+    # reveal, and the thing they are supposed to fit inside is half the claim.
+    d.rounded_rectangle([cx - side // 2, top, cx + side // 2, top + side],
+                        radius=14, outline=_rgba(color, 245), width=10)
+    d.text((cx, top + side // 2), f"{total:,}", font=_pil_font(90),
+           fill=_rgba(TEXT, 105), anchor="mm")
+    d.text((cx, by0 + 90),
+           f"{_label_of(small_p)[:16]} fits in {_label_of(big_p)[:16]}",
+           font=_pil_font(46), fill=_rgba(TEXT, 240), anchor="mm")
+    na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
+    d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
+           font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
+    host = scene_host("point", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(max(bx0 + 12, cx - side // 2 - mw - 20)),
+                                int(top + side - mh)))
+    return (big_v, "art", cx, top + side // 2)
+
+
+def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
+    """MORE PEOPLE THAN SEATS. For SCARCITY.
+
+    "Forty applicants per opening" as two bars is two numbers. A row of chairs
+    with a crowd behind it is the shortage itself, and the figures left
+    standing are the finding rather than a subtraction the viewer has to do in
+    their head. The ratio drawn is the ratio measured — the crowd is scaled
+    down against however many chairs fit, never rounded to "a lot".
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    a_v = abs(float(getattr(items[0], "value", 0) or 0))
+    b_v = abs(float(getattr(items[-1], "value", 0) or 0))
+    seekers, seats = max(a_v, b_v), min(a_v, b_v)
+    seek_p = items[0] if a_v >= b_v else items[-1]
+    seat_p = items[-1] if a_v >= b_v else items[0]
+    if seats <= 0 or seekers <= seats:
+        return None
+    per = seekers / seats
+    # Chairs are chosen so the crowd stays countable: one chair for a steep
+    # ratio, more when the ratio is shallow enough that a single pair would
+    # not read as a shortage at all.
+    chairs = 1 if per >= 8 else (2 if per >= 4 else 4)
+    people = min(44, max(chairs + 1, int(round(chairs * per))))
+    bx0, by0, bx1, by1 = box
+    cx = (bx0 + bx1) // 2
+    e = settle(reveal)
+    seat_y = by1 - 300
+    cw_ = min(160.0, ((bx1 - bx0) - 120) / chairs)
+    sx0 = cx - cw_ * chairs / 2
+    for i in range(chairs):
+        x = sx0 + i * cw_
+        w = cw_ * 0.72
+        # back, seat, two legs — a chair, not an L
+        d.rounded_rectangle([x + 8, seat_y - 108, x + 30, seat_y + 8],
+                            radius=8, fill=_rgba(color, 240))
+        d.rounded_rectangle([x + 8, seat_y, x + w, seat_y + 26], radius=8,
+                            fill=_rgba(color, 240))
+        d.rounded_rectangle([x + 12, seat_y + 24, x + 30, seat_y + 92],
+                            radius=6, fill=_rgba(color, 240))
+        d.rounded_rectangle([x + w - 22, seat_y + 24, x + w - 4, seat_y + 92],
+                            radius=6, fill=_rgba(color, 240))
+    cols = min(11, max(6, int(_math.ceil(_math.sqrt(people * 2.2)))))
+    rows = int(_math.ceil(people / cols))
+    pw = min(((bx1 - bx0) - 60) / cols, 86.0)
+    rh = min(96.0, (seat_y - 160 - max(by0 + 250, 400)) / max(1, rows))
+    px0 = cx - pw * cols / 2
+    top = max(by0 + 250, 400)
+    for k in range(int(people * min(1.0, e * 1.3))):
+        gx, gy = k % cols, k // cols
+        # the crowd shuffles: it is a queue for something, not a diagram
+        jx = 5.0 * _math.sin(reveal * 6.0 + k * 0.9)
+        x = px0 + gx * pw + jx
+        y = top + gy * rh
+        got = k < chairs
+        col = color if got else ACCENT
+        hr = pw * 0.17
+        d.ellipse([x + pw * 0.5 - hr, y, x + pw * 0.5 + hr, y + hr * 2],
+                  fill=_rgba(col, 240))
+        d.rounded_rectangle([x + pw * 0.5 - hr * 1.35, y + hr * 2.1,
+                             x + pw * 0.5 + hr * 1.35, y + rh * 0.88],
+                            radius=12, fill=_rgba(col, 240))
+    # SOMEBODY IS ALWAYS WALKING UP AND BEING TURNED AWAY. Without this the
+    # crowd is a static block once it has filled in: a 5px shuffle spread over
+    # 120 frames is a quarter of a pixel a frame, and the cadence gate
+    # measured it as a 54-frame freeze. It is also the story — the queue does
+    # not stop because the chairs ran out.
+    walk_y0 = top + rows * rh + 40
+    for k in range(3):
+        t_ = (reveal * 1.5 + k / 3.0) % 1.0
+        wx = cx - 300 + (bx1 - 40 - (cx - 300)) * t_
+        wy = walk_y0 + (seat_y - 30 - walk_y0) * min(1.0, t_ * 1.8)
+        hr = 22
+        col = ACCENT if t_ > 0.55 else color
+        d.ellipse([wx - hr, wy - hr * 2.4, wx + hr, wy - hr * 0.4],
+                  fill=_rgba(col, 235))
+        d.rounded_rectangle([wx - hr * 1.2, wy - hr * 0.2, wx + hr * 1.2,
+                             wy + hr * 2.1], radius=14, fill=_rgba(col, 235))
+    d.text((cx, by0 + 92), f"{per:,.0f} for every 1", font=_pil_font(56),
+           fill=_rgba(TEXT, 240), anchor="mm")
+    na = max(0.0, min(1.0, (reveal - 0.5) / 0.3))
+    d.text((cx, by1 - 170),
+           f"{charts._ulabel(seats, unit, group=True)} {_label_of(seat_p)[:14]}"
+           f", {charts._ulabel(seekers, unit, group=True)} "
+           f"{_label_of(seek_p)[:14]}",
+           font=_pil_font(42), fill=_rgba(color, int(250 * na)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 180
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx1 - mw - 16), int(seat_y - mh - 20)))
+    return (seekers, "art", cx, int(seat_y))
+
+
+# How many slugs the sand falls in. 16 puts a step roughly every 7 frames of
+# a 120-frame visual and every 9 of a production one — far inside the gate's
+# 45-frame allowance either way, and slow enough to still read as sand.
+_HG_SLUGS = 16
+
+
+def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
+    """SAND RUNNING. For DURATION.
+
+    "It takes 11.3 years" is a number; sand that will not stop falling is the
+    length of it. Two of them side by side is a comparison of waits rather
+    than of quantities, which is the claim when the unit is time.
+    """
+    items = _ordered_items(insight)[:2]
+    if not items:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    e = settle(reveal)
+    # HEADROOM. These sat at a measured 35% void in CI against a 34% ceiling
+    # while measuring 18% locally — the difference is font metrics moving the
+    # labels a few rows. A machine that close to the line is not passing, it
+    # is coin-flipping, so the glasses now span the box properly.
+    gw = int(min(((bx1 - bx0) - 120) / n, 340))
+    gh = int(min((by1 - by0) * 0.56, 560))
+    top = int(by0 + (by1 - by0) * 0.16)
+    gap = ((bx1 - bx0) - gw * n) / (n + 1)
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = bx0 + gap * (i + 1) + gw * i
+        mx, my = x + gw / 2, top + gh / 2
+        col = color if i == 0 else ACCENT
+        d.polygon([(x, top), (x + gw, top), (mx, my)],
+                  outline=_rgba(TEXT, 130), width=7)
+        d.polygon([(x, top + gh), (x + gw, top + gh), (mx, my)],
+                  outline=_rgba(TEXT, 130), width=7)
+        # THE AMOUNT OF SAND IS THE DURATION, and both glasses run at the
+        # same rate. A first version drained the short wait faster, which is
+        # true of a real hourglass and useless here: both ended empty, so the
+        # final frame — the one people look at — showed no difference at all.
+        # Now the pile that is left in the bottom is the number.
+        share = v / vmax
+        half = gh / 2.0
+        # IT DRAINS IN SLUGS, not as a glide.
+        #
+        # Measured, and this is the whole reason the machine is written this
+        # way: a continuous drain moves the sand line about 1.7px a frame at
+        # 1080-wide, which is a THIRD of a pixel once the cadence detector
+        # downsamples to 192 — and the four falling grains are 2px each at
+        # that size. Geometrically the thing was pouring the entire time; to
+        # the gate it was a still image, and CI read a 40-frame frozen run
+        # against a 35-frame ceiling. Quantising the drain gives it the
+        # DISCRETE arrivals every machine that passes has (a step lands, a
+        # runner moves): each slug drops the upper cone and lifts the lower
+        # pile by a visible amount at once.
+        es = _math.floor(e * _HG_SLUGS) / float(_HG_SLUGS)
+        up = half * share * (1.0 - es)
+        if up > 3:
+            wtop = (gw / 2.0) * (up / half)
+            d.polygon([(mx - wtop, my - up), (mx + wtop, my - up), (mx, my)],
+                      fill=_rgba(col, 235))
+        lh = half * share * es
+        if lh > 3:
+            wbot = (gw / 2.0) * (lh / half)
+            d.polygon([(mx, top + gh - lh), (mx - wbot, top + gh - 6),
+                       (mx + wbot, top + gh - 6)], fill=_rgba(col, 235))
+        # THE SLUG IN FLIGHT. It is what carries the eye between two steps,
+        # and it is drawn big enough to survive the downsample: one falling
+        # wedge, not a dusting of pixels.
+        f_ = (e * _HG_SLUGS) % 1.0
+        if e < 0.999 and share > 0.02:
+            fall = my + 10 + f_ * max(half - 30, 20)
+            sw = max(gw * 0.16, 26)
+            d.polygon([(mx - sw / 2, fall), (mx + sw / 2, fall),
+                       (mx + sw / 2 * 0.5, fall + 46),
+                       (mx - sw / 2 * 0.5, fall + 46)],
+                      fill=_rgba(col, 235))
+        d.text((mx, top + gh + 52), _label_of(p)[:14], font=_pil_font(34),
+               fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((mx, top + gh + 106), charts._ulabel(v, unit),
+               font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "how long it takes",
+           font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 240
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by1 - mh - 20)))
+    d.line([(bx0 + 30, by1 - 16), (bx1 - 30, by1 - 16)],
+           fill=_rgba(TEXT, 90), width=8)
+    return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
+
+
+def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
+    """A SHELF, and the count is the number of trophies on it. For RECORD.
+
+    A tally of titles is one of the few counts where the objects are the
+    point: bars say 23 and 6, a shelf says one of them needed a bigger shelf.
+    Each trophy is one title, so the row length is checkable.
+    """
+    items = _ordered_items(insight)[:4]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax > 30:
+        return None                        # too many to count is not a shelf
+    bx0, by0, bx1, by1 = box
+    n = len(items)
+    top = max(by0 + 260, 420)
+    rowh = min((by1 - 190 - top) / n, 190.0)
+    e = settle(reveal)
+    # Room reserved for BOTH the name on the left and the count on the right;
+    # the top row's trophies ran under its own number before this.
+    tw = min(((bx1 - bx0) - 300 - 170) / max(1.0, vmax), 62.0)
+    for i, (p, v) in enumerate(zip(items, vals)):
+        y = top + i * rowh
+        col = color if i == 0 else ACCENT
+        d.text((bx0 + 24, y + rowh * 0.42), _label_of(p)[:12],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="lm")
+        x0 = bx0 + 300
+        shown = int(round(v * max(0.0, min(1.0, e * n - i))))
+        for k in range(shown):
+            x = x0 + k * tw
+            # cup, stem, base — small, but unmistakably a trophy
+            cw_ = max(10.0, tw - 8)
+            d.pieslice([x + 3, y + 14, x + 3 + cw_, y + 14 + cw_ * 1.15],
+                       0, 180, fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 3, y + 12, x + 3 + cw_, y + 24],
+                                radius=4, fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 3 + cw_ / 2 - 4, y + 14 + cw_ * 0.55,
+                                 x + 3 + cw_ / 2 + 4, y + 84], radius=3,
+                                fill=_rgba(col, 240))
+            d.rounded_rectangle([x + 6, y + 82, x + tw - 8, y + 96],
+                                radius=4, fill=_rgba(col, 240))
+        d.line([(x0 - 8, y + rowh - 22), (bx1 - 20, y + rowh - 22)],
+               fill=_rgba(TEXT, 90), width=5)
+        d.text((bx1 - 24, y + rowh * 0.42), f"{v:,.0f}", font=_pil_font(42),
+               fill=_rgba(col, 245), anchor="rm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "one cup, one title",
+           font=_pil_font(48), fill=_rgba(TEXT, 235), anchor="mm")
+    host = scene_host("cheer", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 30), int(by1 - mh - 30)))
+    return (vals[0], "art", int(bx0 + 300), int(top + rowh * 0.4))
+
+
+def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
+    """WHAT THE SAME MONEY ACTUALLY BUYS. For BUYING_POWER.
+
+    The number that matters in a cost-of-living story is never the price, it
+    is what is left in the basket. Two baskets filled from the same note say
+    that in one picture, and nobody has to divide anything.
+    """
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    vmax = max(vals) or 1.0
+    if vmax <= 0:
+        return None
+    bx0, by0, bx1, by1 = box
+    e = settle(reveal)
+    n = 2
+    bw = int(min(((bx1 - bx0) - 140) / n, 420))
+    bh = int(min((by1 - by0) * 0.34, 350))
+    top = max(by0 + 300, 470)
+    gap = ((bx1 - bx0) - bw * n) / (n + 1)
+    cap = 24
+    for i, (p, v) in enumerate(zip(items, vals)):
+        x = int(bx0 + gap * (i + 1) + bw * i)
+        col = color if i == 0 else ACCENT
+        d.polygon([(x, top), (x + bw, top), (x + bw - 30, top + bh),
+                   (x + 30, top + bh)], outline=_rgba(TEXT, 130), width=8)
+        goods = max(1, int(round(cap * v / vmax)))
+        shown = int(goods * min(1.0, e * 1.4))
+        cols = 6
+        cw = (bw - 90) / cols
+        for k in range(shown):
+            gx, gy = k % cols, k // cols
+            wob = 4.0 * _math.sin(reveal * 6.5 + k * 0.8)
+            gxp = x + 45 + gx * cw + wob
+            gyp = top + bh - 40 - gy * 46
+            d.rounded_rectangle([gxp, gyp - 34, gxp + cw - 10, gyp],
+                                radius=7, fill=_rgba(col, 235))
+        d.text((x + bw // 2, top + bh + 52), _label_of(p)[:16],
+               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        d.text((x + bw // 2, top + bh + 106),
+               charts._ulabel(v, unit, group=True), font=_pil_font(46),
+               fill=_rgba(col, 245), anchor="mm")
+    d.text(((bx0 + bx1) // 2, by0 + 90), "the same money, either side",
+           font=_pil_font(48), fill=_rgba(TEXT, 240), anchor="mm")
+    lost = (1.0 - min(vals) / vmax) * 100.0
+    na = max(0.0, min(1.0, (reveal - 0.55) / 0.3))
+    d.text(((bx0 + bx1) // 2, by1 - 130), f"{lost:.0f}% less in the basket",
+           font=_pil_font(42), fill=_rgba(WARN, int(240 * na)), anchor="mm")
+    host = scene_host("strain", reveal)
+    if host is not None:
+        mh = 170
+        mw = int(host.width * mh / host.height)
+        canvas.alpha_composite(_fit(host, mw, mh),
+                               (int(bx0 + 16), int(by0 + 150)))
+    return (vals[0], "art", int(bx0 + gap + bw / 2), top + bh // 2)
 
 
 def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
@@ -1459,15 +2804,36 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
     hi = max(abs(v), abs(bv)) * 1.2 or 1.0
     bar_y = int(bot - (bot - top) * (abs(bv) / hi))
     e = settle(reveal)
-    # the hurdle itself
-    d.line([(bx0 + 90, bar_y), (bx1 - 90, bar_y)], fill=_rgba(WARN, 240),
-           width=14)
-    for xx in (bx0 + 110, bx1 - 110):
-        d.line([(xx, bar_y), (xx, bot)], fill=_rgba(WARN, 150), width=8)
-    d.text((bx1 - 96, bar_y - 34),
+    # THE GROUND, then a hurdle STANDING ON IT.
+    #
+    # Drawn full-width with legs to the floor, the hurdle was a 470px staple
+    # across the whole frame and his value was a thin line floating above it —
+    # two unrelated horizontals rather than a thing and the bar it cleared. A
+    # hurdle is a short bar on legs, and it needs a ground to stand on before
+    # any of it means anything.
+    _cx = (bx0 + bx1) // 2
+    _hw = int((bx1 - bx0) * 0.30)
+    # A GROUND WITH WEIGHT, and a hurdle built like one.
+    #
+    # Thin rules read as a goalpost floating in the dark: a 6px ground, 11px
+    # posts and an 18px bar leave a frame that is almost all background, which
+    # is the `empty_void` the reviewer blocks for. A hurdle has a bar THICKER
+    # than its uprights and feet on the floor, and the floor is a band rather
+    # than a hairline.
+    d.rectangle([bx0, bot + 8, bx1, by1], fill=_rgba(TEXT, 26))
+    d.line([(bx0 + 20, bot), (bx1 - 20, bot)], fill=_rgba(TEXT, 130), width=10)
+    for xx in (_cx - _hw + 20, _cx + _hw - 20):
+        d.line([(xx, bar_y + 8), (xx, bot)], fill=_rgba(WARN, 190), width=20)
+        d.rounded_rectangle([xx - 46, bot - 12, xx + 46, bot + 12], radius=10,
+                            fill=_rgba(WARN, 200))          # feet
+    d.rounded_rectangle([_cx - _hw, bar_y - 15, _cx + _hw, bar_y + 15],
+                        radius=15, fill=_rgba(WARN, 250))
+    # Pinned to the FRAME. Hung off the bar, both labels ran off the edge —
+    # "US average 5.9 yrs" became "US averag" and his own value "1.3 yrs".
+    d.text((bx1 - 24, bar_y - 34),
            f"{getattr(base, 'label', 'baseline')}  "
-           f"{charts._ulabel(bv, unit)}", font=_pil_font(38),
-           fill=_rgba(WARN, 235), anchor="rm")
+           f"{charts._ulabel(bv, unit)}", font=_pil_font(36),
+           fill=_rgba(WARN, 240), anchor="rm")
     # HE RUNS AT IT AND JUMPS IT.
     #
     # The first version slid him up to his value over the whole visual. The
@@ -1512,14 +2878,22 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(hx - mw // 2), int(hy - mh)))
-    d.line([(bx0 + 130, val_y), (bx1 - 130, val_y)],
-           fill=_rgba(color, 200), width=6)
+    # HIS HEIGHT, marked where he actually is rather than ruled across the
+    # frame — a full-width line reads as a second hurdle.
+    # His height, as a measured rule rather than a hairline.
+    for _x in range(int(_cx - _hw - 60), int(_cx + _hw + 60), 44):
+        d.line([(_x, val_y), (_x + 26, val_y)], fill=_rgba(color, 225),
+               width=10)
+    d.text((bx0 + 24, val_y - 34), charts._ulabel(v, unit),
+           font=_pil_font(42), fill=_rgba(color, 245), anchor="lm")
     d.text(((bx0 + bx1) // 2, by0 + 58),
            f"{getattr(star, 'label', '')}   {charts._ulabel(v, unit)}",
            font=_pil_font(70), fill=_rgba(color, 255), anchor="mm")
-    d.text(((bx0 + bx1) // 2, bot + 52),
-           "clears it" if cleared else "does not clear it",
-           font=_pil_font(42), fill=_rgba(TEXT, 225), anchor="mm")
+    _by = abs(abs(v) - abs(bv))
+    d.text((_cx, bot + 62),
+           (f"clears it by {charts._ulabel(_by, unit)}" if cleared
+            else f"{charts._ulabel(_by, unit)} short of it"),
+           font=_pil_font(46), fill=_rgba(TEXT, 230), anchor="mm")
     return (v, "art", (bx0 + bx1) // 2, val_y)
 
 
@@ -1536,6 +2910,7 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
     vals = [float(getattr(p, "value", 0) or 0) for p in items]
     vmax = max(vals) or 1.0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "funnel")
     top, bot = max(by0 + 200, 340), by1 - 100
     n = len(items)
     sh = (bot - top) / n
@@ -1570,6 +2945,23 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
                f"{getattr(p, 'label', '')[:14]}  {charts._ulabel(v, unit)}",
                font=lab_f, fill=_rgba(TEXT, int(240 * a)), anchor="lm")
         last_xy = (int(cx), my)
+    # PEOPLE FALLING THROUGH IT. Stages that narrow and then hold measured a
+    # 0.908 duplicate ratio and a 50-frame frozen run — and a funnel with
+    # nothing falling through it is a shape, not a process. Only the share
+    # that survives reaches the bottom; the rest stop at the stage that lost
+    # them, which is the caption drawn instead of written.
+    _keep = max(1, int(round(14 * vals[-1] / (vals[0] or 1.0))))
+    for k in range(14):
+        t_ = (reveal * 1.5 + k / 14.0) % 1.0
+        py = top + t_ * (bot - top)
+        idx = max(0, min(n - 1, int((py - top) / sh)))
+        if k >= _keep and idx >= 1:
+            # stops at the stage it was lost in
+            py = top + (idx - 0.35) * sh
+        wv = full_w * (vals[idx] / vmax)
+        px = bx0 + 70 + full_w / 2 + ((k * 41 % 13) / 12.0 - 0.5) * max(
+            8.0, wv * 0.6)
+        particle(d, _st["particle"], px, py, 10, _rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last_xy is not None:
         mh = 190
@@ -1598,9 +2990,12 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
     v = float(getattr(star, "value", 0) or 0)
     bx0, by0, bx1, by1 = box
-    top, bot = max(by0 + 240, 380), by1 - 150
-    belt_y = int((top + bot) / 2)
-    d.rounded_rectangle([bx0 + 40, belt_y, bx1 - 40, belt_y + 46], radius=14,
+    # The belt sits HIGH and what it delivers piles up underneath, so the
+    # lower half of the frame is the consequence rather than empty gradient.
+    # Belt-in-the-middle-and-nothing-else measured a 51% void.
+    belt_y = int(by0 + (by1 - by0) * 0.32)
+    ground = by1 - 60
+    d.rounded_rectangle([bx0 + 40, belt_y, bx1 - 40, belt_y + 52], radius=16,
                         fill=_rgba(TEXT, 60))
     r = max(0.0, min(1.0, reveal))
     # Boxes ride the belt. Their SPACING is fixed and their travel is linear,
@@ -1608,15 +3003,34 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
     n_box, gap = 9, (bx1 - bx0 - 80) / 9.0
     for k in range(n_box + 1):
         x = bx0 + 40 + ((k * gap) + r * gap * 3.0) % (bx1 - bx0 - 80)
-        d.rounded_rectangle([int(x), belt_y - 54, int(x + 62), belt_y - 4],
-                            radius=8, fill=_rgba(color, 235),
+        d.rounded_rectangle([int(x), belt_y - 66, int(x + 74), belt_y - 4],
+                            radius=9, fill=_rgba(color, 235),
                             outline=_rgba(charts.CARD, 255), width=3)
-    host = scene_host("point", reveal)
+    # THE PILE. Items keep arriving, so they keep stacking — the honest
+    # consequence of a rate nobody is keeping up with, and the thing that
+    # makes the lower half of the frame mean something.
+    d.line([(bx0 + 40, ground), (bx1 - 40, ground)],
+           fill=_rgba(TEXT, 80), width=6)
+    # The pile has to REACH the belt, or the band between them is the void
+    # (measured 31% against a 34% ceiling — too close to call a pass).
+    _pw, _ph = 74, 46
+    _cols = max(3, int((bx1 - bx0 - 300) // (_pw + 10)))
+    _rows_needed = max(1, int((ground - (belt_y + 110)) // (_ph + 6)))
+    for kk in range(int(_cols * _rows_needed * settle(reveal))):
+        gx, gy = kk % _cols, kk // _cols
+        px = bx0 + 80 + gx * (_pw + 10) + (gy % 2) * 18
+        py = ground - 10 - (gy + 1) * (_ph + 6)
+        if py < belt_y + 100:
+            break
+        d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
+                            fill=_rgba(ACCENT, 225),
+                            outline=_rgba(charts.CARD, 255), width=3)
+    host = scene_host("strain", reveal)
     if host is not None:
-        mh = 250
+        mh = 300
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 40), int(belt_y - mh + 46)))
+                               (int(bx1 - mw - 50), int(ground - mh)))
     d.text(((bx0 + bx1) // 2, by0 + 58),
            charts._ulabel(v, unit, group=True), font=_pil_font(96),
            fill=_rgba(color, 255), anchor="mm")
@@ -1638,6 +3052,7 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
     tot = sum(vals) or 1.0
     bx0, by0, bx1, by1 = box
+    _st = stage(insight, "pipes")
     top, bot = max(by0 + 200, 340), by1 - 110
     cx = (bx0 + bx1) // 2
     trunk_w = int((bx1 - bx0) * 0.17)
@@ -1671,6 +3086,30 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                font=_pil_font(28), fill=_rgba(TEXT, int(195 * a)), anchor="mm")
         last = (bxm, split_y + 90)
         x += w + 12
+    # PRODUCT IN THE PIPES. A split that appears and then holds measured a
+    # 0.916 duplicate ratio and a 54-frame frozen run — and a pipe with
+    # nothing moving through it is a diagram of plumbing, not a picture of a
+    # flow. Each particle runs down the trunk and out through the branch it
+    # belongs to, so the split is something you watch happen.
+    if last is not None:
+        _x = bx0 + 60
+        _mid = []
+        for _v in vals:
+            _w = max(26, int(span * (_v / tot)))
+            _mid.append(_x + _w // 2)
+            _x += _w + 12
+        for k in range(12):
+            t_ = (reveal * 1.7 + k / 12.0) % 1.0
+            j = k % len(_mid)
+            if t_ < 0.45:
+                px = cx
+                py = top + (split_y - top) * (t_ / 0.45)
+            else:
+                u = (t_ - 0.45) / 0.55
+                px = cx + (_mid[j] - cx) * min(1.0, u * 2.0)
+                py = split_y + (bot - split_y) * u
+            particle(d, _st["particle"], px, py, 11,
+                     _rgba(charts.CARD, 215))
     host = scene_host("point", reveal)
     if host is not None and last is not None:
         # Beside the trunk, not inside it — a wide trunk with him in the middle
@@ -1684,12 +3123,18 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
 
 
 def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
-    """A SPOTLIGHT: the RANGE a number lived in, claiming no direction.
+    """A BAND, and a marker that will not settle inside it. For `volatile`.
 
-    For `volatile`. Everything else in this kit encodes a direction, and a
-    series that zig-zags has none — which is why volatile had no machine at all
-    and got a line. A cone from the low to the high says exactly what is true:
-    it was somewhere in here, and it moved around.
+    Everything else in this kit encodes a direction, and a series that zig-zags
+    has none — which is why volatile had no machine at all and got a line. The
+    honest statement is "it was somewhere in here, and it kept moving", so the
+    picture is the range as a lane and the number as something still moving in
+    it. It never comes to rest, because coming to rest would claim a
+    destination the data does not have.
+
+    Drawn as a cone first, which was the mistake: a triangle with ghosted dots
+    inside reads as a mountain or a beam, and a viewer asked what it meant
+    could not say. A lane with a marker travelling it needs no explaining.
     """
     items = list(getattr(insight, "items", None) or [])
     if len(items) < 3:
@@ -1699,37 +3144,56 @@ def draw_spotlight(d, canvas, box, insight, color, reveal, unit=""):
     if hi <= lo:
         return None
     bx0, by0, bx1, by1 = box
-    top, bot = max(by0 + 230, 370), by1 - 140
-    cx = (bx0 + bx1) // 2
+    cx, cy = (bx0 + bx1) // 2, (by0 + by1) // 2 + 40
     e = settle(reveal)
-    half = int((bx1 - bx0) * 0.40 * e)
-    d.polygon([(cx, top), (cx - half, bot), (cx + half, bot)],
-              fill=_rgba(color, 46))
-    d.line([(cx, top), (cx - half, bot)], fill=_rgba(color, 190), width=6)
-    d.line([(cx, top), (cx + half, bot)], fill=_rgba(color, 190), width=6)
-    # every observation, ghosted inside the cone — the range is not a guess
-    for i, v in enumerate(vals):
+    x0, x1 = bx0 + 150, bx1 - 150
+    half = (x1 - x0) / 2.0
+    lane = int(min(88, (by1 - by0) * 0.075))       # HALF-height of the band
+    # THE LANE — the range, drawn as the space the number is allowed to be in
+    d.rounded_rectangle([int(cx - half * e), cy - lane, int(cx + half * e),
+                         cy + lane], radius=lane,
+                        fill=_rgba(color, 40), outline=_rgba(color, 200),
+                        width=7)
+    # every observation, as a tick on the lane: the range is measured, not a
+    # guess, and the clustering shows where it spent its time
+    for v in vals:
         fx = (v - lo) / (hi - lo)
-        px = int(cx - half + 2 * half * fx)
-        py = int(top + (bot - top) * (0.35 + 0.6 * (i / max(1, len(vals) - 1))))
-        d.ellipse([px - 13, py - 13, px + 13, py + 13],
-                  fill=_rgba(TEXT, int(150 * e)))
-    d.text((int(cx - half), bot + 40), charts._ulabel(lo, unit),
-           font=_pil_font(40), fill=_rgba(TEXT, 235), anchor="mm")
-    d.text((int(cx + half), bot + 40), charts._ulabel(hi, unit),
-           font=_pil_font(40), fill=_rgba(TEXT, 235), anchor="mm")
-    d.text((cx, bot + 92), "the range it moved in", font=_pil_font(38),
-           fill=_rgba(TEXT, 200), anchor="mm")
+        px = int(cx - half * e + 2 * half * e * fx)
+        d.line([(px, cy - lane + 22), (px, cy + lane - 22)],
+               fill=_rgba(TEXT, int(110 * e)), width=5)
+    # THE MARKER — still moving at the end of the visual, because the finding
+    # is that it never settles
+    wob = 0.5 + 0.5 * _math.sin(reveal * 7.0)
+    mx = int(cx - half * e + 2 * half * e * wob)
+    # The marker must READ against the lane it sits in — drawn in the lane's
+    # own colour it disappeared into the fill entirely.
+    d.ellipse([mx - 46, cy - 46, mx + 46, cy + 46], fill=_rgba(WARN, 250),
+              outline=_rgba(charts.CARD, 255), width=7)
+    # THE MARKER CARRIES NO NUMBER.
+    #
+    # It used to print `lo + (hi - lo) * wob` — where the marker happens to
+    # be — at 52pt. Watching a finished video back, three seconds of one beat
+    # read "$1,164.9B", "$1,154.2B", "$1,282.5B", none of which anybody
+    # measured: they are positions in a wobble, presented in the same type as
+    # a fact. The two ENDS of the lane are real and are labelled; the marker
+    # is the number refusing to settle, and that is all it may say.
+    d.text((int(cx - half), cy + lane + 56), charts._ulabel(lo, unit),
+           font=_pil_font(44), fill=_rgba(TEXT, 235), anchor="mm")
+    d.text((int(cx + half), cy + lane + 56), charts._ulabel(hi, unit),
+           font=_pil_font(44), fill=_rgba(TEXT, 235), anchor="mm")
+    d.text((cx, by0 + 110), "it never settled", font=_pil_font(56),
+           fill=_rgba(TEXT, 240), anchor="mm")
+    d.text((cx, cy + lane + 124),
+           f"anywhere between {charts._ulabel(lo, unit)} and "
+           f"{charts._ulabel(hi, unit)}",
+           font=_pil_font(38), fill=_rgba(TEXT, 205), anchor="mm")
     host = scene_host("think", reveal)
     if host is not None:
-        # Beside the cone's mouth, not at its apex — at the apex he sat over
-        # the title.
-        mh = 210
+        mh = 230
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(max(cx - half - mw - 20, bx0 + 16)),
-                                int(bot - mh)))
-    return (vals[-1], "art", cx, (top + bot) // 2)
+                               (int(bx0 + 16), int(cy + lane + 176)))
+    return (vals[-1], "art", mx, cy)
 
 
 def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
@@ -1925,7 +3389,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     lo, hi = min(vals), max(vals)
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    ground = by1 - 130
+    ground = by1 - 170
     e = max(0.0, min(1.0, reveal))
     pos = e * (len(vals) - 1)
     i0 = min(int(pos), len(vals) - 2)
@@ -1936,7 +3400,7 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     # the picture is the increase. The exact figure is in the line above.
     n_slabs = max(1, int(round(1 + frac * 7)))
     host = scene_host("hoist_stack", reveal)
-    mh = 430
+    mh = int(min(560, (by1 - by0) * 0.38))
     mw = int(host.width * mh / host.height) if host is not None else 280
     # He SINKS as it gets heavier — the knees give, so the load descends on him
     # rather than the frame just gaining bricks at the top.
@@ -1977,8 +3441,12 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     vmax = max(abs(v) * 1.35, 1e-6)
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 430, 620)
-    R = int(min((bx1 - bx0) * 0.36, 320))
+    # SIZED TO THE BOX. A dial pinned to y=620 with a 320px radius left the
+    # bottom 58% of the frame carrying nothing — the showrunner's most-cited
+    # block on this channel, and measurable without asking it (see
+    # shared/frame_occupancy.py).
+    cy = int(by0 + (by1 - by0) * 0.44)
+    R = int(min((bx1 - bx0) * 0.44, (by1 - by0) * 0.32))
     a0, sweep = 200.0, 140.0                    # a车-style dial, open at the top
     d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
           fill=_rgba(TEXT, 70), width=26)
@@ -1991,16 +3459,19 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
     d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
     shown = v * e
-    d.text((cx, cy + 96), charts._ulabel(shown, unit, group=True),
-           font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
-    d.text((cx, cy + 176), str(getattr(star, "label", ""))[:22],
-           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    d.text((cx, cy + 118), charts._ulabel(shown, unit, group=True),
+           font=_pil_font(104), fill=_rgba(color, 255), anchor="mm")
+    d.text((cx, cy + 208), str(getattr(star, "label", ""))[:22],
+           font=_pil_font(42), fill=_rgba(TEXT, 220), anchor="mm")
+    # He stands UNDER the dial reading it, at a size that occupies the lower
+    # band, rather than parked beside the arc as a sticker.
     host = scene_host("point", reveal)
     if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx + R * 0.55), int(cy - mh * 0.2)))
+        mh = int(min(360, max(0, (by1 - (cy + 250))) * 0.92))
+        if mh > 120:
+            mw = int(host.width * mh / host.height)
+            canvas.alpha_composite(_fit(host, mw, mh),
+                                   (int(cx - mw // 2), int(by1 - mh - 30)))
     return (v, "art", int(nx), int(ny))
 
 
@@ -2044,6 +3515,12 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     bot = by1 - 90
     n = len(items)
     lane_h = (bot - top) / n
+    # STAGING. Which LANE the leader runs in is arbitrary — position along the
+    # TRACK is the ranking, not the row — so it is free to vary, and this is
+    # the machine that most needs it: 195 of the 930 configured beats are a
+    # race, and until now every one of them was the identical picture.
+    _st = stage(insight, "race_track")
+    _order = list(range(n))[::-1] if _st["flip"] else list(range(n))
     # Room for the longest NAME on the left and for the leader's VALUE on the
     # right. The first version guessed both and clipped both — "Los Angeles"
     # rendered as "os Angeles" and the leader's "11.3 yrs" ran off the edge.
@@ -2064,7 +3541,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
                     fill=_rgba(TEXT, 190 if (k // 26) % 2 == 0 else 60))
     lead_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
-        cy = int(top + lane_h * (i + 0.5))
+        cy = int(top + lane_h * (_order[i] + 0.5))
         d.line([(x0, cy + rh // 2 - 2), (x1, cy + rh // 2 - 2)],
                fill=_rgba(TEXT, 40), width=4)
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
@@ -2219,6 +3696,23 @@ def draw_timeline(d, canvas, box, insight, reveal):
     value / no periods."""
     items = _ordered_items(insight)
     periods = [charts._num_or_none(getattr(p, "period", None)) for p in items]
+    # THE LABEL IS THE PERIOD when it is a year. Requiring a separate `period`
+    # field is an accident of the data shape, and the cost of it is the whole
+    # point of this machine: without one, "X over time" silently degrades to
+    # `_draw_flat_timeline` — a hairline ruler with a number floating above
+    # it, which is precisely what the showrunner blocked on 2026-09-07 as
+    # "just the text '$1,000B' and '2025' floating above a hairline timeline
+    # — no filling, stacking or comparison; the number is stated, not
+    # demonstrated." Those items were labelled 2007..2025.
+    if not (len(periods) >= 2 and all(v is not None for v in periods)):
+        derived = []
+        for p in items:
+            t = str(getattr(p, "label", "") or "").strip()
+            derived.append(float(t[:4])
+                           if len(t) >= 4 and t[:4].isdigit()
+                           and 1800 <= int(t[:4]) <= 2200 else None)
+        if len(derived) >= 2 and all(v is not None for v in derived):
+            periods = derived
     have_p = len(periods) >= 2 and all(v is not None for v in periods)
     vals = [p.value for p in items]
     if have_p and len({round(v, 4) for v in vals}) >= 2:
@@ -2540,6 +4034,13 @@ _MACHINE_DRAW.update({
     "bridge": draw_bridge, "centre": draw_centre, "coaster": draw_coaster,
     "thermometer": draw_thermometer, "wheel": draw_wheel,
     "darts": draw_darts, "queue": draw_queue,
+    "bottleneck": draw_bottleneck, "leaky": draw_leaky, "inout": draw_inout,
+    "sorter": draw_sorter, "chain": draw_chain,
+    "spinner": draw_spinner, "doors": draw_doors, "fan": draw_fan,
+    "gears": draw_gears, "slider": draw_slider,
+    "density": draw_density, "nest": draw_nest, "chairs": draw_chairs,
+    "hourglass": draw_hourglass, "trophies": draw_trophies,
+    "basket": draw_basket,
 })
 
 tower_scene = _machine_scene("tower", 1)
@@ -2557,6 +4058,22 @@ thermometer_scene = _machine_scene("thermometer", 1)
 wheel_scene = _machine_scene("wheel", 6)
 darts_scene = _machine_scene("darts", 3)
 queue_scene = _machine_scene("queue", 2)
+bottleneck_scene = _machine_scene("bottleneck", 3)
+leaky_scene = _machine_scene("leaky", 2)
+inout_scene = _machine_scene("inout", 2)
+sorter_scene = _machine_scene("sorter", 2)
+chain_scene = _machine_scene("chain", 3)
+spinner_scene = _machine_scene("spinner", 1)
+doors_scene = _machine_scene("doors", 1)
+fan_scene = _machine_scene("fan", 4)
+gears_scene = _machine_scene("gears", 2)
+slider_scene = _machine_scene("slider", 2)
+density_scene = _machine_scene("density", 2)
+nest_scene = _machine_scene("nest", 2)
+chairs_scene = _machine_scene("chairs", 2)
+hourglass_scene = _machine_scene("hourglass", 1)
+trophies_scene = _machine_scene("trophies", 2)
+basket_scene = _machine_scene("basket", 2)
 
 
 def race_scene(insight) -> dict:
@@ -2700,22 +4217,246 @@ def _load_photo(subject, slug, tag):
         return None
 
 
+# Machines that can honestly draw a NEGATIVE value, because they encode
+# POSITION against the series' own range rather than SIZE. Everything else
+# turns a value into a height, a length, an area or a count of objects, and a
+# negative one of those does not exist: `centre` and `skyline` raised outright
+# ("y1 must be greater than or equal to y0") and the rest would have drawn
+# `abs(v)`, which is worse — a net migration of -5 rendered the same size as
+# +5 is a sign flip nobody can see.
+#
+# A machine outside this set refuses a series containing a negative and the
+# beat falls back to a chart, which has an axis and can put a bar below zero.
+_SIGN_SAFE = {"road", "coaster", "spotlight", "wheel", "darts", "fan",
+              "tape", "elevator", "timeline_axis"}
+
+_MACHINE_FAILED: set = set()
+
+
+def machine_may_draw(kind: str, insight) -> bool:
+    """Whether this machine is allowed to draw this data at all.
+
+    Separate from the machine's own refusal (too few items, no baseline, a
+    ratio it cannot tile) so the DRY PROBE below and the frame loop cannot
+    disagree about which elements are live.
+    """
+    if kind in _SIGN_SAFE:
+        return True
+    try:
+        return not any(float(getattr(q, "value", 0) or 0) < 0
+                       for q in (getattr(insight, "items", None) or []))
+    except (TypeError, ValueError):
+        return False
+
+
+def _finite(v) -> bool:
+    """A value a picture can be drawn from."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return False
+    return f == f and f not in (float("inf"), float("-inf"))
+
+
+def drawable_insight(insight):
+    """The insight with every UNDRAWABLE item removed, or None if too few are
+    left to draw anything.
+
+    A NaN reaches a machine as a width, gets `int()`-ed, and raises — 38 of
+    the 42 machines died on it in a fuzz sweep, and a raise inside a render is
+    a lost video, not a bad picture. An infinity is the same story one line
+    later. Neither is exotic: a rate with a zero denominator, a division in a
+    transform, a source that ships `null` as `NaN` all produce them.
+
+    Filtering here rather than in forty draw functions is the point. A machine
+    that is then left with too little to say returns None on its own and the
+    beat falls back to a chart, which is the honest outcome — better a chart
+    than a frame that never renders.
+
+    Returns the ORIGINAL object when everything is finite, so the normal path
+    costs one scan and no copy.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    keep = [p for p in items if _finite(getattr(p, "value", None))]
+    base = getattr(insight, "baseline", None)
+    bad_base = base is not None and not _finite(getattr(base, "value", None))
+    if len(keep) == len(items) and not bad_base:
+        return insight
+    if not keep:
+        return None
+    import copy as _copy
+    out = _copy.copy(insight)
+    out.items = keep
+    if bad_base:
+        out.baseline = None
+    return out
+
+
+# --------------------------------------------------------------------------- #
+# PROCEDURAL STAGING — the same machine, staged differently per story
+# --------------------------------------------------------------------------- #
+# The relationship router fixed WHICH picture a beat gets. It did not touch HOW
+# that picture is composed, and `race_scene` alone is 195 of the 930 configured
+# beats — drawn, until now, with the identical layout every single time. A
+# library of 42 rigid pictures is a bigger template than a library of 6.
+#
+# THE RULE, and it is the whole reason this is safe: staging may change how a
+# machine is ARRANGED and never what it CLAIMS. The value-to-geometry mapping,
+# every number, every label and every caption are identical across variants.
+# What moves is the framing — which way the race runs, which side the host
+# stands, whether there is a ground line, what the moving particles are shaped
+# like. `tests/test_machines_are_pliable.py` renders the same insight at every
+# variant and fails if a single drawn NUMBER differs.
+_PARTICLES = ("dot", "square", "chevron")
+
+
+def variant(insight, kind: str, n: int) -> int:
+    """A stable 0..n-1 for this story and this machine.
+
+    Deterministic, so a re-render is identical and a diff of two runs is
+    meaningful; keyed on the TOPIC as well as the kind, so a story that uses
+    one machine twice does not get the same staging twice.
+    """
+    if n <= 1:
+        return 0
+    key = f"{getattr(insight, 'topic', '') or ''}|{kind}"
+    return int(_hashlib.sha1(key.encode()).hexdigest()[:8], 16) % n
+
+
+def stage(insight, kind: str) -> dict:
+    """Every staging choice for one machine on one story, in one place.
+
+    A dict rather than scattered `variant()` calls so a machine reads its
+    staging in a line, and so a test can enumerate what is allowed to vary.
+    """
+    v = variant(insight, kind, 12)
+    return {
+        "v": v,
+        # which way the eye travels. Both directions are equally true of a
+        # ranking or a climb; neither is true of a TIME series, so machines
+        # that walk through time ignore this.
+        "flip": bool(v & 1),
+        # which side the host watches from
+        "host_side": "right" if v & 2 else "left",
+        # a ground line under the composition, or open space
+        "ground": bool(v & 4),
+        # what the moving product looks like
+        "particle": _PARTICLES[v % len(_PARTICLES)],
+    }
+
+
+def particle(d, kind: str, x, y, r, colour):
+    """Draw one unit of moving product in the story's particle shape.
+
+    Purely cosmetic: the COUNT of particles and where they stop is the claim,
+    and neither depends on this.
+    """
+    x, y, r = float(x), float(y), float(r)
+    if kind == "square":
+        d.rounded_rectangle([x - r, y - r, x + r, y + r],
+                            radius=max(2.0, r * 0.28), fill=colour)
+    elif kind == "chevron":
+        d.polygon([(x, y - r), (x + r, y), (x, y + r), (x - r * 0.35, y)],
+                  fill=colour)
+    else:
+        d.ellipse([x - r, y - r, x + r, y + r], fill=colour)
+
+
+def _guarded(label: str, fn, *a, **kw):
+    """Call a draw function; on failure return None instead of killing the
+    render.
+
+    This is the same contract the engines layer already runs on (`maybe_*()`
+    returns a result or None, never raises), and for the same reason: a beat
+    that cannot draw its picture should fall back to one that can, not take
+    the day's video with it. It is a NET, not a licence — every catch is
+    reported once per process so a real bug is visible in the run log rather
+    than silently absorbed.
+    """
+    try:
+        return fn(*a, **kw)
+    except Exception as e:  # noqa: BLE001
+        if label not in _MACHINE_FAILED:
+            _MACHINE_FAILED.add(label)
+            print(f"[viz] machine {label!r} refused to draw "
+                  f"({type(e).__name__}: {str(e)[:120]}) — falling back")
+        return None
+
+
+def _as_anchor(an):
+    """One anchor shape, whatever the draw function hands back.
+
+    The scene kit's anchors are dicts — `{"value", "cx", "cy"}` — and the data
+    machines were written to the CHARTS art-spec contract instead, a
+    `(value, "art", x, y)` tuple. Both are legitimate in their own file and
+    the mismatch was invisible while machines only ever ran as a beat's SECOND
+    visual, which does not resolve anchors. The moment one became a PRIMARY,
+    `story.build` asked it for anchors and every render died on
+    `'tuple' object has no attribute 'get'`.
+
+    Normalising HERE, at the one place anchors are collected, is what stops
+    the next machine reintroducing it — a per-machine fix is a rule someone
+    has to remember.
+    """
+    if an is None:
+        return None
+    if isinstance(an, dict):
+        return an
+    try:
+        value, _kind, cx, cy = an
+        # `w`/`h` are part of the contract, not decoration: `_plan_events`
+        # reads them to size the ring it draws round the number as it is
+        # spoken, and a dict without them raises KeyError mid-render.
+        return {"value": float(value),
+                "cx": float(cx) if cx is not None else 0.0,
+                "cy": float(cy) if cy is not None else 0.0,
+                "w": 220.0, "h": 90.0}
+    except Exception:                      # noqa: BLE001
+        return None
+
+
 @_fullframe("scene")
 def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
     from PIL import Image, ImageDraw
+    # Undrawable values are stripped ONCE, before anything is pruned or drawn.
+    insight = drawable_insight(insight)
+    if insight is None:
+        return None
     spec = prune(getattr(insight, "scene", None), insight)
     if spec is None:
         return None
     els = spec["elements"]
-    # Mechanics that composite Data straight into the beat (he rides the element)
-    # so the travelling overlay must be suppressed to avoid a duplicate host.
-    if any(el.get("type") == "timeline_axis" for el in els):
+    # Mechanics that composite Data straight into the beat (he rides the
+    # element) so the travelling overlay must be suppressed to avoid a
+    # DUPLICATE HOST — two mascots on screen at once.
+    #
+    # This used to name `timeline_axis` alone, which was true when the scene
+    # kit was mostly still pictures. Every data machine draws him itself
+    # (`scene_host`), so the moment a machine became a beat's PRIMARY
+    # depiction the travelling overlay would have put a second one beside it.
+    if any(el.get("type") in _SELF_HOSTING for el in els):
         insight.host_baked = True
     out_dir.mkdir(parents=True, exist_ok=True)
     # A ranking of illustrated things -> big vertical rows (picture + number)
     # that FILL the frame, instead of a cramped bottom row with a dead top third.
     rank_rows = _object_ranking(els)
     boxes = _vlist_layout(els, rank_rows) if rank_rows else _layout(els)
+    # A LONE MACHINE OWNS THE 9:16 FRAME.
+    #
+    # The safe box stops at y=1180 of 1920 — a comment from when a gameplay
+    # strip sat underneath, which the explainer has not had for a long time.
+    # Every machine was therefore drawing inside the top 57% of the frame with
+    # 740px of black below it, which reads as small and timid next to a chart
+    # that fills the card. It did not matter while machines were a beat's
+    # second visual; it matters a great deal now they are the first.
+    #
+    # Only widened for a SINGLE host-baked machine on `full`: a multi-element
+    # scene's regions are relative to the same box and moving them would
+    # re-lay every composition in the config. 1560 leaves the caption band and
+    # the punch number their room at the bottom.
+    if len(els) == 1 and els[0].get("type") in _SELF_HOSTING \
+            and els[0].get("region", "full") in ("full", None, ""):
+        boxes = [(RX0, RTOP, RX1, MACHINE_BOT)]
     side_set = set(rank_rows)
     # Only show the standalone title when NOT a vertical ranking (the rows own
     # the whole frame; the topic is spoken + captioned by the renderer anyway).
@@ -2772,6 +4513,32 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             and all(cuts.get(i) is None and photos.get(i) is None
                     for i in range(len(els))):
         return None
+    # DRY PROBE — will ANYTHING draw?
+    #
+    # A machine refuses by returning None: too few items, no baseline, a ratio
+    # it cannot tile honestly. That is the right behaviour and it used to be
+    # safe, because a refusing element sat in a scene beside others. A lone
+    # machine that refuses renders a sequence of EMPTY FRAMES instead, and a
+    # black beat is worse than a crash: nothing raises, no gate reads it, and
+    # it ships. Probing once at full reveal costs one draw per element and
+    # turns that into an honest fallback to a chart.
+    if els and all(e.get("type") in _MACHINE_DRAW for e in els):
+        from PIL import Image as _PIm, ImageDraw as _PIDraw
+        _probe = _PIm.new("RGBA", (W, H), (0, 0, 0, 0))
+        _pd = _PIDraw.Draw(_probe)
+        _live = False
+        for i, el in enumerate(els):
+            t = el.get("type")
+            if not machine_may_draw(t, insight):
+                continue
+            if _guarded(t, _MACHINE_DRAW[t], _pd, _probe, boxes[i], insight,
+                        _color_for(insight.items[0].label, insight)
+                        if insight.items else HIGHLIGHT, 1.0,
+                        insight.unit) is not None:
+                _live = True
+                break
+        if not _live:
+            return None
     vmax = max((p.value for p in insight.items), default=1.0) or 1.0
     n = len(els)
     anchors: list = []
@@ -2792,18 +4559,20 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
             t = el.get("type")
             box = boxes[i]
             if t in _MACHINE_DRAW:
+                if not machine_may_draw(t, insight):
+                    continue                # a size cannot be negative
                 _fn = _MACHINE_DRAW[t]
-                an = _fn(d, canvas, box, insight,
-                         _color_for(insight.items[0].label, insight)
-                         if insight.items else HIGHLIGHT, lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                an = _guarded(t, _fn, d, canvas, box, insight,
+                              _color_for(insight.items[0].label, insight)
+                              if insight.items else HIGHLIGHT, lr, insight.unit)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "race_track":
                 an = draw_race(d, canvas, box, insight,
                                _color_for(insight.items[0].label, insight)
                                if insight.items else HIGHLIGHT, lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "orbit_group":
                 draw_orbit(d, box, insight, r)
             elif t == "timeline_axis":
@@ -2821,8 +4590,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     continue
                 an = draw_dot_field(d, canvas, box, cuts.get(i), lv[1], lv[0],
                                     _color_for(lv[0], insight), lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "balance":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 rv = _resolve((el.get("data") or {}).get("vs_from"), insight)
@@ -2830,8 +4599,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                     continue
                 an = draw_balance(d, canvas, box, lv[1], rv[1], lv[0], rv[0],
                                   _color_for(lv[0], insight), lr, insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t == "unit_figures":
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
@@ -2840,8 +4609,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                 an = draw_unit_figures(d, canvas, box, cuts.get(i), lv[1], per,
                                        lv[0], _color_for(lv[0], insight), lr,
                                        insight.unit)
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
             elif t in ("object", "fill_object", "stack", "bar", "bubble"):
                 lv = _resolve((el.get("data") or {}).get("value_from"), insight)
                 if not lv:
@@ -2863,8 +4632,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
                                      col, lr, vmax, side=(i in side_set),
                                      phase=r,
                                      photo=photos.get(i))
-                if f == frames and an:
-                    anchors.append(an)
+                if f == frames and _as_anchor(an):
+                    anchors.append(_as_anchor(an))
         # CAMERA PUSH. Element reveals finish partway through a beat and every
         # frame after that was identical — per-element "breathing" only covered
         # ranking rows, so a scene built from fill_object/stack/timeline still

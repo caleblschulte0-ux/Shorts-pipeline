@@ -67,6 +67,23 @@ def _things(pairs, unit="years", topic="cost", main="A tops"):
     return _Ins([_Pt(n, v) for n, v in pairs], unit, topic, main)
 
 
+_BOX = (vs.RX0, vs.RTOP, vs.RX1, vs.RBOT)
+
+
+class _pil:
+    """A throwaway canvas + draw handle, for asserting on what a machine
+    REFUSES. Some refusals are only reachable by calling the draw function —
+    the builder cannot know that a pair grew instead of shrank."""
+
+    def __enter__(self):
+        from PIL import Image, ImageDraw
+        self.canvas = Image.new("RGBA", (1080, 1280), (18, 20, 28, 255))
+        return ImageDraw.Draw(self.canvas), self.canvas
+
+    def __exit__(self, *a):
+        return False
+
+
 class ItReadsWhatTheDataSays(unittest.TestCase):
     def test_a_climbing_series_is_growth(self):
         self.assertEqual(rel.classify(_series([10, 14, 19, 25, 33, 41])),
@@ -381,11 +398,33 @@ class TheHonestyOfTheNewMachines(unittest.TestCase):
         import inspect
         self.assertIn("make it to the end", inspect.getsource(vs.draw_funnel))
 
-    def test_the_hurdle_says_whether_it_cleared(self):
+    def test_the_hurdle_says_whether_it_cleared_AND_BY_HOW_MUCH(self):
+        """It used to say only "clears it" / "does not clear it". The margin
+        is the interesting half — 11.3 against an average of 5.9 is not the
+        same story as 6.0 against 5.9, and the picture cannot show that
+        difference at a glance when the bar is nearly the same height."""
         import inspect
         src = inspect.getsource(vs.draw_hurdle)
-        self.assertIn("clears it", src)
-        self.assertIn("does not clear it", src)
+        self.assertIn("clears it by", src)
+        self.assertIn("short of it", src)
+        self.assertIn("abs(abs(v) - abs(bv))", src)
+
+    def test_the_hurdle_stands_on_a_GROUND(self):
+        """Drawn full-width with legs to the floor it was a staple across the
+        whole frame, and his value a line floating above it: two unrelated
+        horizontals rather than a thing and the bar it cleared."""
+        import inspect
+        src = inspect.getsource(vs.draw_hurdle)
+        self.assertIn("THE GROUND", src)
+
+    def test_no_machine_label_is_hung_off_a_moving_edge(self):
+        """Both of the hurdle's labels ran off the frame when they were
+        anchored to the bar, whose x moves with the box. Pinned to bx0/bx1
+        they cannot clip."""
+        import inspect
+        src = inspect.getsource(vs.draw_hurdle)
+        self.assertIn("bx1 - 24", src)
+        self.assertIn("bx0 + 24", src)
 
     def test_the_pipes_shares_are_the_widths(self):
         """Width IS the encoding, so the branches add up to the trunk by
@@ -468,6 +507,11 @@ class MotionMustBeVISIBLE(unittest.TestCase):
                 i.baseline = DataPoint(label=base[0], value=float(base[1]))
             return i
 
+        def _pct(pairs):
+            i = _ins(pairs)
+            i.unit = "percent"
+            return i
+
         def _block_max(a, b):
             return max(np.abs(a[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]
                               - b[r * 16:(r + 1) * 16, c * 16:(c + 1) * 16]).mean()
@@ -490,11 +534,111 @@ class MotionMustBeVISIBLE(unittest.TestCase):
         # catches a machine that is grossly still, not one that is marginal.
         FRAMES = 120
         CEILING = 35
+        # EVERY machine, not a sample of them. The case list below started as
+        # four and grew batch by batch, which meant a machine was only ever
+        # measured if somebody remembered to add it — and on 2026-09-07 a
+        # sweep of all forty-two found four that had never been measured and
+        # were failing: darts (47), funnel (50), pipes (54) and road (47), all
+        # at production frame size. Three were staged reveals that finished
+        # and held; road scrolled its dashes on `settle`, so they slowed to a
+        # crawl exactly when the eye had nothing else to watch.
+        #
+        # `MACHINES_MEASURED_ELSEWHERE` is empty on purpose. If a machine
+        # cannot be given a sample here it does not get measured, and a
+        # machine nobody measures is one that ships frozen.
+        stages = [("Applied", 12000), ("Screened", 9800),
+                  ("Interviewed", 2100), ("Offered", 1700), ("Hired", 1500)]
+        zig = [(str(2016 + k), v) for k, v in
+               enumerate([99, 101, 97, 100, 98, 101, 97, 99])]
         cases = (("tower", vs.tower_scene, _ins(years), None),
                  ("staircase", vs.staircase_scene, _ins(years), None),
                  ("race", vs.race_scene, _ins(cities), None),
                  ("hurdle", vs.hurdle_scene, _ins([("San Jose", 11.3)]),
-                  ("US average", 5.9)))
+                  ("US average", 5.9)),
+                 # The flow family. Every one of these was a staged reveal and
+                 # nothing else when first written: the bottleneck measured a
+                 # 0.908 duplicate ratio and a 51-frame frozen run, the chain
+                 # 49. Geometry that is correct and completely still is a
+                 # still image with a caption, and the gate is right to hold
+                 # it. Each now carries the flow it is describing.
+                 ("bottleneck", vs.bottleneck_scene, _ins(stages), None),
+                 ("leaky", vs.leaky_scene,
+                  _ins([("Enrolled", 4800), ("Finished", 860)]), None),
+                 ("inout", vs.inout_scene,
+                  _ins([("Inflow", 1840), ("Outflow", 1310)]), None),
+                 ("sorter", vs.sorter_scene,
+                  _ins([("Housing", 4200), ("Transit", 2600),
+                        ("Parks", 1400), ("Admin", 900)]), None),
+                 ("chain", vs.chain_scene,
+                  _ins([("Wafer", 940), ("Assembly", 720), ("Test", 210),
+                        ("Ship", 880)]), None),
+                 # The uncertainty family. The fan is the one to watch: it is
+                 # a staged line reveal and would hold perfectly still the
+                 # moment the cone finished drawing.
+                 ("spinner", vs.spinner_scene, _pct([("Rain", 23.0)]), None),
+                 ("doors", vs.doors_scene, _pct([("Match", 4.0)]), None),
+                 ("fan", vs.fan_scene,
+                  _ins([(str(2016 + k), 62 + k * 3.1) for k in range(8)]
+                       + [("2040", 108.0)]), None),
+                 ("gears", vs.gears_scene,
+                  _ins([("Median rent", 2400), ("Median wage", 3100)]), None),
+                 ("slider", vs.slider_scene,
+                  _ins([("Top speed", 82), ("Range", 148)]), None),
+                 # The physical comparisons. The chairs are the one to watch:
+                 # a 5px crowd shuffle spread over 120 frames is a quarter of
+                 # a pixel a frame and measured as a 54-frame freeze.
+                 ("density", vs.density_scene,
+                  _ins([("Manila", 46000), ("Houston", 1400)]), None),
+                 ("nest", vs.nest_scene,
+                  _ins([("Alaska", 1723000), ("New Jersey", 22600)]), None),
+                 ("chairs", vs.chairs_scene,
+                  _ins([("Applicants", 41000), ("Homes", 1200)]), None),
+                 ("hourglass", vs.hourglass_scene,
+                  _ins([("San Jose", 11.3), ("Detroit", 2.4)]), None),
+                 ("trophies", vs.trophies_scene,
+                  _ins([("Djokovic", 24), ("Nadal", 22),
+                        ("Federer", 20)]), None),
+                 ("basket", vs.basket_scene,
+                  _ins([("1999", 34), ("2026", 19)]), None),
+                 # The seventeen that had no sample until 2026-09-07. Four of
+                 # them were failing the moment they were measured.
+                 ("bridge", vs.bridge_scene, _ins([("Now", 76)]),
+                  ("Target", 100)),
+                 ("burden", vs.burden_scene,
+                  _ins([(str(2016 + k), 22.0 + k * 1.6) for k in range(8)]),
+                  None),
+                 ("centre", vs.centre_scene, _ins(cities), None),
+                 ("coaster", vs.coaster_scene, _ins(zig), None),
+                 ("conveyor", vs.conveyor_scene, _ins([("Parcels", 1400)]),
+                  None),
+                 ("darts", vs.darts_scene,
+                  _ins([("A", 100), ("B", 102), ("C", 101), ("D", 99),
+                        ("E", 100), ("F", 101)]), None),
+                 ("elevator", vs.elevator_scene,
+                  _ins([(str(2016 + k), 96.0 - k * 7) for k in range(8)]),
+                  None),
+                 ("funnel", vs.funnel_scene, _ins(stages), None),
+                 ("gauge", vs.gauge_scene, _ins([("Rate", 22.9)]), None),
+                 ("pipes", vs.pipes_scene,
+                  _ins([("Rent", 34), ("Food", 22), ("Transit", 18),
+                        ("Other", 26)]), None),
+                 ("queue", vs.queue_scene,
+                  _ins([(str(2016 + k), 200.0 + k * 180) for k in range(8)]),
+                  None),
+                 ("road", vs.road_scene,
+                  _ins([(str(2016 + k), 50.0 + (k % 2) * 0.2)
+                        for k in range(8)]), None),
+                 ("skyline", vs.skyline_scene,
+                  _ins([("Tokyo", 37.4), ("Delhi", 9.2), ("Cairo", 7.8),
+                        ("Lima", 4.1)]), None),
+                 ("spotlight", vs.spotlight_scene, _ins(zig), None),
+                 ("tape", vs.tape_scene, _ins([("2016", 42), ("2026", 97)]),
+                  None),
+                 ("thermometer", vs.thermometer_scene, _ins([("Now", 88)]),
+                  ("Limit", 100)),
+                 ("wheel", vs.wheel_scene,
+                  _ins([(str(2016 + k), v) for k, v in
+                        enumerate([10, 60, 12, 58, 11, 62, 13, 59])]), None))
         worst = {}
         for name, build, ins, base in cases:
             if base:
@@ -647,6 +791,322 @@ class BatchTwoRelationships(unittest.TestCase):
                       inspect.getsource(vs.draw_darts))
 
 
+class BatchThreeIsTheFlowFamily(unittest.TestCase):
+    """Five machines that all draw the SAME numbers and make five different
+    claims — which is exactly why the router must read the words.
+
+    Stages that shrink are a funnel, a ranking, a bottleneck, a supply chain
+    and a set of sorting bins all at once by SHAPE. Only the claim separates
+    them, so every one of these classifiers requires the language and falls
+    back to a plain ranking when it is absent. Getting that wrong does not
+    produce an ugly picture; it produces a confident wrong sentence at 42pt.
+    """
+
+    def test_the_claim_decides_and_not_the_shape(self):
+        pairs = [("A", 1000), ("B", 700), ("C", 200), ("D", 120)]
+        self.assertEqual(rel.classify(_things(pairs, main="A tops the list")),
+                         rel.RANK)
+        for claim, want in (
+                ("the bottleneck is stage C", rel.BOTTLENECK),
+                ("only some are retained to the end", rel.RETENTION),
+                ("where the money was routed", rel.ROUTING),
+                ("each step of the supply chain", rel.CHAIN)):
+            self.assertEqual(rel.classify(_things(pairs, main=claim)), want,
+                             claim)
+
+    def test_an_inflow_and_an_outflow_are_not_a_duel(self):
+        self.assertEqual(
+            rel.classify(_things([("Inflow", 1840), ("Outflow", 1310)],
+                                 main="inflow against outflow")),
+            rel.INFLOW_OUTFLOW)
+
+    def test_each_batch_three_relationship_has_a_machine(self):
+        for name in (rel.BOTTLENECK, rel.RETENTION, rel.INFLOW_OUTFLOW,
+                     rel.ROUTING, rel.CHAIN):
+            self.assertTrue(sr._MACHINES.get(name), name)
+
+    def test_the_bottleneck_leads_with_the_bottleneck_not_the_funnel(self):
+        """A funnel is a legitimate runner-up and a wrong lead: it says they
+        leak away all the way down, which is a description. The pinch names a
+        culprit, which is the whole reason the relationship exists."""
+        self.assertEqual(sr._MACHINES[rel.BOTTLENECK][0], "bottleneck_scene")
+
+    def test_the_bucket_drains_rather_than_fills(self):
+        """Filling up to the retained share animates the wrong event. Nobody
+        joined — they left — so the bucket starts whole."""
+        import inspect
+        src = inspect.getsource(vs.draw_leaky)
+        self.assertIn("1.0 - (1.0 - frac) * e", src)
+
+    def test_the_inout_water_is_the_SURPLUS_and_says_which_way(self):
+        import inspect
+        src = inspect.getsource(vs.draw_inout)
+        self.assertIn("surplus = inflow - outflow", src)
+        self.assertIn("left over", src)
+        self.assertIn("short", src)
+
+    def test_the_inout_keeps_the_authored_order_as_the_direction(self):
+        """Taking max() as the inflow makes the machine incapable of drawing a
+        shortfall, which is the case worth drawing."""
+        import inspect
+        self.assertNotIn("max(a_v, b_v)", inspect.getsource(vs.draw_inout))
+
+    def test_the_sorter_bins_add_up_to_one_whole(self):
+        """Filling each bin against the LARGEST would overstate every share."""
+        import inspect
+        src = inspect.getsource(vs.draw_sorter)
+        self.assertIn("share = v / tot", src)
+
+    def test_the_chain_runs_at_its_WORST_link_not_its_average(self):
+        import inspect
+        src = inspect.getsource(vs.draw_chain)
+        self.assertIn("weak = vals.index(min(vals))", src)
+        self.assertIn("the whole line runs at", src)
+
+    def test_the_flow_machines_refuse_data_they_cannot_serve(self):
+        one = _Ins([_Pt("A", 5)], "count", "t", "m")
+        for build in (vs.bottleneck_scene, vs.leaky_scene, vs.inout_scene,
+                      vs.sorter_scene, vs.chain_scene):
+            self.assertFalse(build(one), build)
+
+    def test_the_bucket_refuses_to_keep_more_than_it_started_with(self):
+        """A retention picture drawn from a GROWING pair would overflow, and
+        would be claiming a loss that did not happen."""
+        grew = _Ins([_Pt("Enrolled", 800), _Pt("Finished", 4800)],
+                    "count", "t", "m")
+        with _pil() as (d, canvas):
+            self.assertIsNone(vs.draw_leaky(d, canvas, _BOX, grew,
+                                            vs.HIGHLIGHT, 1.0, "count"))
+
+
+class BatchFourIsTheUncertaintyFamily(unittest.TestCase):
+    """Four relationships that are indistinguishable from their neighbours by
+    the numbers alone, and only separable by the claim.
+
+    A probability and a share are both "23%". A projection and a measurement
+    are both a point on a series. Drawing one as the other is not an ugly
+    picture, it is a lie about what the number IS — so every classifier here
+    requires the language and the shape never decides on its own.
+    """
+
+    def test_a_chance_is_not_a_share(self):
+        """The dot field lights 23 figures in 100 and asserts a population you
+        could count out. "A 23% chance" is one trial. Same number, different
+        claim, and the words are the only thing that separates them."""
+        self.assertEqual(
+            rel.classify(_things([("Rain", 23.0), ("Dry", 77.0)],
+                                 "percent", "weather",
+                                 "the chance of rain tomorrow")),
+            rel.PROBABILITY)
+        self.assertNotEqual(
+            rel.classify(_things([("Own one", 23.0), ("Do not", 77.0)],
+                                 "percent", "ownership",
+                                 "23% of households own one")),
+            rel.PROBABILITY)
+
+    def test_a_projection_needs_BOTH_the_word_and_a_dated_tail(self):
+        """Forecast language over a run of measurements is just a writer being
+        loose. The tail has to actually be dated past the data."""
+        measured = [(str(2016 + i), 62 + i * 3.0) for i in range(8)]
+        self.assertEqual(
+            rel.classify(_Ins([_Pt(a, b) for a, b in
+                               measured + [("2040", 108.0)]],
+                              "millions", "population",
+                              "projected to reach", kind="trend")),
+            rel.FORECAST)
+        self.assertNotEqual(
+            rel.classify(_Ins([_Pt(a, b) for a, b in measured],
+                              "millions", "population",
+                              "projected to reach", kind="trend")),
+            rel.FORECAST)
+
+    def test_a_forecast_is_not_claimed_without_the_word(self):
+        pairs = [(str(2016 + i), 62 + i * 3.0) for i in range(8)] + \
+                [("2040", 108.0)]
+        self.assertNotEqual(
+            rel.classify(_Ins([_Pt(a, b) for a, b in pairs], "millions",
+                              "population", "it went up", kind="trend")),
+            rel.FORECAST)
+
+    def test_moving_together_and_trading_off_both_need_saying(self):
+        pair = [("Median rent", 2400), ("Median wage", 3100)]
+        self.assertEqual(
+            rel.classify(_things(pair, "usd", "cost",
+                                 "rents move with wages")), rel.CORRELATION)
+        self.assertEqual(
+            rel.classify(_things(pair, "usd", "cost",
+                                 "more of one at the cost of the other")),
+            rel.TRADEOFF)
+        self.assertEqual(
+            rel.classify(_things(pair, "usd", "cost", "rent beats wages")),
+            rel.DUEL)
+
+    def test_each_batch_four_relationship_has_a_machine(self):
+        for name in (rel.PROBABILITY, rel.FORECAST, rel.CORRELATION,
+                     rel.TRADEOFF):
+            self.assertTrue(sr._MACHINES.get(name), name)
+
+    def test_the_spinner_never_lands(self):
+        """Landing it shows an OUTCOME — a win or a loss nobody measured. The
+        honest statement is the size of the slice."""
+        import inspect
+        src = inspect.getsource(vs.draw_spinner)
+        self.assertIn("never stops", src)
+        self.assertIn("360.0 * p", src, "the slice is not the probability")
+
+    def test_the_doors_are_only_for_a_real_one_in_n(self):
+        import inspect
+        self.assertIn("k != 1", inspect.getsource(vs.draw_doors))
+
+    def test_the_chance_reader_refuses_what_it_cannot_read(self):
+        self.assertIsNone(vs._chance_of(_Ins([_Pt("A", 4200)], "usd", "t",
+                                             "m")))
+        self.assertIsNone(vs._chance_of(_Ins([], "percent", "t", "m")))
+        self.assertAlmostEqual(
+            vs._chance_of(_Ins([_Pt("Rain", 23.0)], "percent", "t", "m")),
+            0.23, places=6)
+
+    def test_the_fan_says_where_the_data_stops(self):
+        import inspect
+        src = inspect.getsource(vs.draw_fan)
+        self.assertIn("the data stops here", src)
+        self.assertIn("measured to", src)
+        self.assertIn("projected", src)
+
+    def test_the_fan_spaces_its_x_axis_by_YEAR(self):
+        """Evenly spaced, a projection seventeen years out sits one step past
+        a run of annual figures and looks like next year — the cone would be
+        claiming near-term precision it does not have."""
+        import inspect
+        self.assertIn("X BY YEAR", inspect.getsource(vs.draw_fan))
+
+    def test_the_gears_never_claim_causation(self):
+        """A gear train looks like causation if you let it. The data is a
+        correlation, so the words on screen have to stay a correlation."""
+        import inspect
+        src = inspect.getsource(vs.draw_gears)
+        self.assertIn("they move together", src)
+        # Only what is DRAWN. The docstring is allowed to say the word in
+        # order to forbid it.
+        drawn = [ln for ln in src.splitlines() if "d.text(" in ln
+                 or ('"' in ln and "fill=" not in ln and "font=" in ln)]
+        body = src.split('"""', 2)[-1]
+        for word in ("drives", "causes", "caused by", "because of"):
+            self.assertNotIn(f'"{word}', body, drawn)
+
+    def test_the_uncertainty_machines_refuse_data_they_cannot_serve(self):
+        """The BUILDER only counts items, so the refusals that matter here are
+        in the draw functions: a lone dollar figure is not a chance, and two
+        points are not a forecast. Each has to hand back None so the depiction
+        falls through to something true rather than drawing a wheel whose
+        slice means nothing."""
+        money = _Ins([_Pt("Rent", 4200)], "usd", "t", "m")
+        shortsr = _Ins([_Pt("2016", 4), _Pt("2017", 6)], "count", "t", "m")
+        cases = ((vs.draw_spinner, money), (vs.draw_doors, money),
+                 (vs.draw_fan, shortsr),
+                 (vs.draw_gears, _Ins([_Pt("A", 0)], "usd", "t", "m")),
+                 (vs.draw_slider, _Ins([_Pt("A", 0)], "usd", "t", "m")))
+        for fn, ins in cases:
+            with _pil() as (d, canvas):
+                self.assertIsNone(
+                    fn(d, canvas, _BOX, ins, vs.HIGHLIGHT, 1.0, "usd"),
+                    fn.__name__)
+
+    def test_the_doors_refuse_odds_too_long_to_draw(self):
+        """"1 in 4,000" as four thousand doors is a grey rectangle. It falls
+        through to the spinner, which can state any chance."""
+        with _pil() as (d, canvas):
+            rare = _Ins([_Pt("Hit", 0.02)], "percent", "t", "m")
+            self.assertIsNone(vs.draw_doors(d, canvas, _BOX, rare,
+                                            vs.HIGHLIGHT, 1.0, "percent"))
+
+
+class BatchFiveIsThePhysicalComparisons(unittest.TestCase):
+    """The last six: density, scale, scarcity, duration, records, buying power.
+
+    Same discipline as the rest — the claim decides — and one extra rule that
+    only shows up here: several of these encode a value as AREA or as a COUNT
+    OF OBJECTS, and both are easy to overstate by accident. A density panel
+    that scales the box as well as the packing double-counts the difference; a
+    scale grid that fills its square exactly draws 81 tiles for "76 times
+    over". Those are wrong numbers on screen, not rough pictures.
+    """
+
+    def test_the_claim_decides_here_too(self):
+        pairs = [("A", 1000), ("B", 420)]
+        for claim, want in (("people per square km", rel.DENSITY),
+                            ("Tokyo is 12 times bigger", rel.SCALE),
+                            ("40 applicants per opening", rel.SCARCITY),
+                            ("what $100 buys", rel.BUYING_POWER),
+                            ("most grand slam titles", rel.RECORD),
+                            ("how long it takes to save for a home",
+                             rel.DURATION)):
+            self.assertEqual(rel.classify(_things(pairs, main=claim)), want,
+                             claim)
+        self.assertEqual(rel.classify(_things(pairs, main="A tops the list")),
+                         rel.DUEL)
+
+    def test_every_relationship_now_has_a_machine(self):
+        """OTHER is the only one allowed to have none — it means draw a chart,
+        and saying so is the honest answer."""
+        names = {v for k, v in vars(rel).items()
+                 if k.isupper() and isinstance(v, str) and not k.startswith("_")}
+        missing = sorted(n for n in names - {rel.OTHER}
+                         if not sr._MACHINES.get(n))
+        self.assertEqual(missing, [], f"relationships with no picture: {missing}")
+
+    def test_the_density_box_never_scales(self):
+        """Scaling the panel as well as the packing would encode the same
+        difference twice and overstate it."""
+        import inspect
+        src = inspect.getsource(vs.draw_density)
+        self.assertIn("A FIXED grid", src)
+        self.assertIn("cells = 14", src)
+
+    def test_the_scale_grid_draws_the_RATIO_and_not_a_full_square(self):
+        import inspect
+        src = inspect.getsource(vs.draw_nest)
+        self.assertIn("total = max(1, int(round(ratio)))", src)
+        self.assertNotIn("total = across * across", src)
+
+    def test_the_scale_grid_refuses_ratios_it_cannot_draw(self):
+        with _pil() as (d, canvas):
+            near = _Ins([_Pt("A", 1000), _Pt("B", 990)], "count", "t", "m")
+            huge = _Ins([_Pt("A", 1000000), _Pt("B", 1)], "count", "t", "m")
+            self.assertIsNone(vs.draw_nest(d, canvas, _BOX, near,
+                                           vs.HIGHLIGHT, 1.0, "count"))
+            self.assertIsNone(vs.draw_nest(d, canvas, _BOX, huge,
+                                           vs.HIGHLIGHT, 1.0, "count"))
+
+    def test_the_hourglass_leaves_the_duration_ON_SCREEN_at_the_end(self):
+        """Draining the short wait faster is true of a real hourglass and
+        useless here: both end empty, so the final frame — the one people look
+        at — shows no difference at all. The pile left in the bottom is the
+        number."""
+        import inspect
+        src = inspect.getsource(vs.draw_hourglass)
+        self.assertIn("share = v / vmax", src)
+        self.assertIn("lh = half * share * e", src)
+
+    def test_the_shelf_refuses_a_tally_too_long_to_count(self):
+        many = _Ins([_Pt("A", 210), _Pt("B", 140)], "count", "t", "m")
+        with _pil() as (d, canvas):
+            self.assertIsNone(vs.draw_trophies(d, canvas, _BOX, many,
+                                               vs.HIGHLIGHT, 1.0, "count"))
+
+    def test_the_chairs_need_a_real_shortage(self):
+        """Equal numbers are not a shortage, and drawing one would invent the
+        finding."""
+        even = _Ins([_Pt("People", 500), _Pt("Seats", 500)], "count", "t", "m")
+        with _pil() as (d, canvas):
+            self.assertIsNone(vs.draw_chairs(d, canvas, _BOX, even,
+                                             vs.HIGHLIGHT, 1.0, "count"))
+
+    def test_the_basket_states_what_was_LOST(self):
+        import inspect
+        self.assertIn("less in the basket", inspect.getsource(vs.draw_basket))
+
+
 class EveryMachineIsWiredEndToEnd(unittest.TestCase):
     """A machine that renders but is unreachable is the exact failure CLAUDE.md
     calls rule zero — and the scene kit already had three of those."""
@@ -675,5 +1135,321 @@ class EveryMachineIsWiredEndToEnd(unittest.TestCase):
                          "a drawn element type is never dispatched")
 
 
+class APictureMayNotClaimAWholeThatIsNotThere(unittest.TestCase):
+    """The oldest bug in this channel, caught twice and fixed once.
+
+    First form: "2019 IS 9% OF THE WHOLE" over a run of mortgage rates. Years
+    do not sum. That was guarded — by a TIME-SERIES test, which is only half
+    the rule.
+
+    Second form, found in a live render on 2026-09-07: "EGGS IS 37% OF THE
+    WHOLE" over eggs +37%, coffee +21%, beef +18%, bread +14%, milk +11% —
+    six independent price increases. Not a time series, so the guard let it
+    through; the director's `is_share` test was "the unit is a percent and
+    there are at least three of them", the chart auto-routed to a stacked
+    column, and the claim printed at 40pt. Eggs are 37% of nothing. They are a
+    37% price increase.
+
+    Percentages that do not sum are RATES, and rates never compose. The test
+    lives in ONE place so the code that CHOOSES the chart and the code that
+    writes the claim on it cannot disagree.
+
+    Not a one-off: of the 133 percent-unit datasets with three or more items
+    in `data_learning/data/`, 110 were eligible for that routing and do not
+    compose. The 23 that do all sum to a hundred.
+    """
+
+    JUMPS = [("Eggs", 37), ("Coffee", 21), ("Beef", 18), ("Bread", 14),
+             ("Milk", 11), ("All groceries", 10)]
+
+    def _pct(self, pairs, topic):
+        return _Ins([_Pt(a, b) for a, b in pairs], "percent", topic, topic)
+
+    def test_price_increases_do_not_compose(self):
+        self.assertFalse(rel.composes(
+            self._pct(self.JUMPS, "price jump since 2020")))
+
+    def test_parts_that_add_to_a_hundred_DO_compose(self):
+        self.assertTrue(rel.composes(
+            self._pct([("Rent", 34), ("Food", 22), ("Transport", 18),
+                       ("Other", 26)], "household budget")))
+
+    def test_a_claim_that_says_composition_composes(self):
+        self.assertTrue(rel.composes(
+            self._pct([("Owners", 62), ("Renters", 38)],
+                      "share of all households")))
+
+    def test_percentages_that_overshoot_a_hundred_do_not_compose(self):
+        """"Infant care as share of income" sums to 118 across states: each
+        item is a share of its OWN state's income, not of one pie. It says
+        "share of" and does not compose, which is why the arithmetic decides
+        and not the wording."""
+        self.assertFalse(rel.composes(
+            self._pct([("MA", 41), ("CA", 33), ("NY", 26), ("TX", 18)],
+                      "infant care as a share of income")))
+
+    def test_a_named_SUBSET_is_not_the_whole_either(self):
+        """Three types totalling 8% of men are not a pie. Claiming "N% of the
+        whole" would measure against a whole the picture never shows."""
+        self.assertFalse(rel.composes(
+            self._pct([("Deutan", 5), ("Protan", 2), ("Tritan", 1)],
+                      "red-green colour blindness by type")))
+
+    def test_years_still_do_not_compose(self):
+        self.assertFalse(rel.composes(
+            self._pct([("2019", 9), ("2020", 12), ("2021", 15)],
+                      "the mortgage rate")))
+
+    def test_a_dominant_slice_of_a_REAL_whole_still_composes(self):
+        """`composes` is not `classify() == SHARE`. A composition where one
+        slice dwarfs the rest comes back DOMINANCE and still adds to one."""
+        ins = self._pct([("Housing", 71), ("Food", 12), ("Transport", 9),
+                         ("Other", 8)], "a breakdown of the budget")
+        self.assertEqual(rel.classify(ins), rel.DOMINANCE)
+        self.assertTrue(rel.composes(ins))
+
+    def test_the_subtitle_refuses_the_claim(self):
+        from data_learning import charts
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        sub = charts._whole_subtitle(jumps, jumps.items[0])
+        self.assertNotIn("of the whole", sub.lower())
+        self.assertIn("Eggs", sub)
+
+    def test_the_segment_labels_refuse_it_too(self):
+        """The same false claim in a smaller font is the same false claim.
+
+        Coffee is a 21% price increase and 19% of the stacked column. The
+        segment must read 21 — its own value — and never 19, which is a
+        number nobody measured.
+        """
+        from data_learning import charts
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        coffee = jumps.items[1]
+        share = abs(coffee.value) / sum(abs(p.value) for p in jumps.items) * 100
+        self.assertAlmostEqual(share, 19.0, delta=1.0)
+        lab = charts._seg_label(jumps, coffee, share)
+        self.assertIn("21", lab)
+        self.assertNotIn("19", lab)
+
+    def test_the_director_does_not_CHOOSE_a_composition_for_them(self):
+        """Refusing to print the claim is not enough — a stacked column is a
+        composition claim in geometry before it is one in words."""
+        from data_learning import viz_director
+        jumps = self._pct(self.JUMPS, "price jump since 2020")
+        self.assertFalse(viz_director._features(jumps)["is_share"])
+        real = self._pct([("Rent", 34), ("Food", 22), ("Transport", 18),
+                          ("Other", 26)], "household budget")
+        self.assertTrue(viz_director._features(real)["is_share"])
+
+
+class OneMascotPerFrame(unittest.TestCase):
+    """Every machine draws the host itself, so the travelling overlay has to
+    be suppressed on any beat one of them owns — otherwise there are two
+    mascots on screen.
+
+    `render_scene` used to name `timeline_axis` alone, which was true when the
+    scene kit was mostly still pictures. The moment a machine became a beat's
+    PRIMARY depiction that list was wrong for forty of them.
+
+    Held against the SOURCE in both directions, because a declared list is
+    exactly the kind of thing that goes stale the next time a machine lands:
+    one that bakes him and is missing from the set renders two mascots, and
+    one listed that does not bake him renders none.
+    """
+
+    def _bakes(self, fn):
+        import inspect
+        return "scene_host(" in inspect.getsource(fn)
+
+    def _real(self):
+        extra = {"balance": vs.draw_balance, "race_track": vs.draw_race,
+                 "unit_figures": vs.draw_unit_figures,
+                 "dot_field": vs.draw_dot_field}
+        real = {t for t, fn in vs._MACHINE_DRAW.items() if self._bakes(fn)}
+        real |= {t for t, fn in extra.items() if self._bakes(fn)}
+        return real | {"timeline_axis"}
+
+    def test_nothing_declared_that_does_not_bake_him(self):
+        ghosts = sorted(vs._SELF_HOSTING - self._real())
+        self.assertEqual(ghosts, [],
+                         f"declared self-hosting but draws no host: {ghosts}")
+
+    def test_nothing_bakes_him_that_is_not_declared(self):
+        missing = sorted(self._real() - vs._SELF_HOSTING)
+        self.assertEqual(missing, [],
+                         f"bakes the host but would get a second one: {missing}")
+
+    def test_the_suppression_reads_the_set_and_not_one_name(self):
+        import inspect
+        src = inspect.getsource(vs.render_scene)
+        self.assertIn("_SELF_HOSTING", src)
+
+
+class TheMachinesActuallyREACHTheScreen(unittest.TestCase):
+    """A library nothing reaches for is not a library.
+
+    Measured on 2026-09-07, after all 42 machines were built, wired and
+    documented: of the 933 configured explainer beats, 550 carried an authored
+    scene that VALIDATED at assign time, was honoured, and then bailed at draw
+    time to a fallback chart, because it was image-only and the channel runs
+    with images off. Another 122 were authored as a lone `timeline_axis`,
+    which does render — three of them in one video is three line charts, and
+    the showrunner had already said so ("three near-identical chart layouts
+    stretched over 96 seconds", scores 26-52).
+
+    So the machines were reachable only through the "one line chart per video"
+    post-pass — a tie-breaker on a repeat. This class holds the three rules
+    that changed that, because each of them is easy to undo by accident.
+    """
+
+    def test_an_authored_scene_must_actually_RENDER_to_be_honoured(self):
+        """`validate` asks whether a scene is well formed. That is not the
+        same question as whether it can be drawn."""
+        from data_learning import viz_director as vd
+        ins = _things([("A", 5), ("B", 3)])
+        image_only = {"title": True,
+                      "elements": [{"type": "object", "region": "full",
+                                    "subject": "house",
+                                    "data": {"value_from": "star"}}]}
+        drawable = {"title": True,
+                    "elements": [{"type": "timeline_axis", "region": "full"}]}
+        self.assertFalse(vd._renders_here(image_only, ins))
+        self.assertTrue(vd._renders_here(drawable, ins))
+
+    def test_a_generic_authored_scene_may_not_repeat(self):
+        """A bespoke scene is distinct by construction. A lone `timeline_axis`
+        is the same line with different numbers, and three in one video is
+        three line charts."""
+        from data_learning import viz_director as vd
+        generic = {"elements": [{"type": "timeline_axis"}]}
+        bespoke = {"elements": [{"type": "object", "subject": "house"},
+                                {"type": "caption", "text": "x"}]}
+        self.assertIsNotNone(vd._scene_signature(generic))
+        self.assertIsNone(vd._scene_signature(bespoke))
+
+    def test_the_machine_LEADS_and_the_chart_follows(self):
+        """The ruling is that a chart is the fallback. Appending the machines
+        after the beat's own chart made them a tie-breaker instead."""
+        from data_learning import viz_director as vd
+        ins = _things([("San Jose", 11.3), ("LA", 9.7), ("Miami", 8.2),
+                       ("Seattle", 6.8)])
+        cands = vd._candidates(ins, vd._features(ins))
+        self.assertTrue(cands, "no depiction offered at all")
+        self.assertIn(cands[0], vd._SCENE_BUILDERS,
+                      f"a chart still leads: {cands[:4]}")
+
+    def test_the_pool_rotates_so_one_machine_cannot_take_everything(self):
+        """Reading `_MACHINES` directly instead of `_machines_for` skips the
+        anti-template rotation, and handed all 429 of the catalogue's duels
+        the same set of scales."""
+        import inspect
+        src = inspect.getsource(vd_src := __import__(
+            "data_learning.viz_director", fromlist=["x"])._machine_candidates)
+        self.assertIn("_machines_for", src)
+        self.assertNotIn("_MACHINES.get", src)
+
+
+class TheRegistryDocTellsTheTruth(unittest.TestCase):
+    """`docs/DATA_MACHINES.md` is the map a future session reads before it
+    touches any of this. A doc that lists a machine the code does not have —
+    or omits one it does — is the failure CLAUDE.md calls rule zero: it reads
+    as progress and inherits as a lie.
+    """
+
+    @property
+    def doc(self):
+        return (Path(__file__).resolve().parents[1]
+                / "docs" / "DATA_MACHINES.md").read_text(encoding="utf-8")
+
+    def test_the_doc_exists_and_names_the_three_files(self):
+        for f in ("relationships.py", "studio_render.py", "viz_scene.py"):
+            self.assertIn(f, self.doc)
+
+    def test_every_relationship_with_a_machine_is_in_the_doc(self):
+        doc = self.doc
+        missing = sorted(k for k in sr._MACHINES
+                         if k != rel.OTHER and f"`{k}`" not in doc)
+        self.assertEqual(missing, [], f"undocumented relationships: {missing}")
+
+    def test_every_machine_the_doc_names_actually_exists(self):
+        """Only the REGISTRY TABLES are scanned — the rows beginning with a
+        pipe. The prose names functions too (`render_scene`), and a first cut
+        of this test flagged that as a missing machine, which is the test
+        being wrong rather than the doc."""
+        import re as _re
+        rows = [ln for ln in self.doc.splitlines() if ln.lstrip().startswith("|")]
+        named = set(_re.findall(r"`([a-z_]+_scene)`", "\n".join(rows)))
+        ghosts = sorted(t for t in named if t not in sr._SCENE_TOKENS
+                        and t not in sr._SELF_HOSTED)
+        self.assertEqual(ghosts, [], f"documented but unbuilt: {ghosts}")
+
+    def test_every_machine_in_the_router_is_in_the_doc(self):
+        doc = self.doc
+        used = {m for t in sr._MACHINES.values() for m in t}
+        missing = sorted(m for m in used if f"`{m}`" not in doc)
+        self.assertEqual(missing, [], f"undocumented machines: {missing}")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class NoPictureInventsANumber(unittest.TestCase):
+    """Found by watching a finished video, not by a test — which is why this
+    class exists now.
+
+    The spotlight's marker wanders inside the range, because the finding is
+    that the number never settled. It also PRINTED where it happened to be,
+    at 52pt, in the same type as a fact. Three seconds of one beat read
+    "$1,164.9B", "$1,154.2B", "$1,282.5B" — positions in a wobble, not
+    measurements. The two ends of the lane are real and stay labelled.
+
+    And `_superlative`: the subtitle used `items[0]`, which is the strongest
+    item on a ranking and the EARLIEST on a trend. A rising series rendered as
+    bars therefore announced "2019 TOPS THE LIST" over a chart whose tallest
+    bar was 2026 and whose highlight was on 2026 — caption and picture
+    contradicting each other, in the caption's favour.
+    """
+
+    def test_the_spotlight_marker_prints_no_value(self):
+        import inspect
+        src = inspect.getsource(vs.draw_spotlight)
+        self.assertIn("THE MARKER CARRIES NO NUMBER", src)
+        self.assertNotIn("cur = lo + (hi - lo) * wob", src)
+
+    def test_the_spotlight_still_labels_the_REAL_ends(self):
+        import inspect
+        src = inspect.getsource(vs.draw_spotlight)
+        self.assertIn("charts._ulabel(lo, unit)", src)
+        self.assertIn("charts._ulabel(hi, unit)", src)
+
+    def test_a_superlative_names_the_item_that_actually_leads(self):
+        from data_learning import charts as ch
+        rising = _Ins([_Pt(str(2019 + k), v) for k, v in
+                       enumerate([930, 1000, 860, 990, 1130, 1210, 1290,
+                                  1370])],
+                      "usd", "credit card debt", "it climbed")
+        sub = ch._superlative(rising, False)
+        self.assertIn("2026", sub)
+        self.assertNotIn("2019", sub)
+
+    def test_years_are_not_called_competitors(self):
+        """"2026 tops the list" is true and still the wrong sentence: years do
+        not compete with each other."""
+        from data_learning import charts as ch
+        rising = _Ins([_Pt(str(2019 + k), 900 + k * 60) for k in range(8)],
+                      "usd", "credit card debt", "it climbed")
+        self.assertNotIn("tops the list", ch._superlative(rising, False))
+        self.assertIn("highest in", ch._superlative(rising, False))
+
+    def test_a_real_ranking_still_gets_ranking_language(self):
+        from data_learning import charts as ch
+        cities = _Ins([_Pt("San Jose", 11.3), _Pt("LA", 9.7),
+                       _Pt("Miami", 8.2)], "years", "cost", "San Jose leads")
+        self.assertEqual(ch._superlative(cities, False),
+                         "San Jose tops the list")
+        self.assertEqual(ch._superlative(cities, True), "Miami sits lowest")
+
+    def test_it_never_raises_on_empty_or_broken_items(self):
+        from data_learning import charts as ch
+        self.assertEqual(ch._superlative(_Ins([], "", "t", "m"), False), "")

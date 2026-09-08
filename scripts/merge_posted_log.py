@@ -53,15 +53,37 @@ _ID_KEYS = ("catalog_id", "url", "video_url", "id", "slug")
 
 def _identity(entry) -> str:
     if isinstance(entry, dict):
+        # An UPLOAD EVENT is identified by slug + when it was claimed. Falling
+        # through to `slug=` alone would treat two uploads of the same story
+        # as one entry — collapsing precisely the duplicate this list exists
+        # to make visible.
+        if entry.get("claimed_at"):
+            return f"upload={entry.get('slug')}@{entry['claimed_at']}"
         for k in _ID_KEYS:
             if entry.get(k):
                 return f"{k}={entry[k]}"
     return json.dumps(entry, sort_keys=True)
 
 
+# Append-only event lists that must be UNIONED, never replaced. `posted` is
+# keyed by slug and so cannot record two uploads of the same slug — which is
+# how 2026-09-07 put two copies of one video on the data channel and left one
+# entry in the log. `uploads` records every upload EVENT, so a duplicate is
+# visible; letting OURS win here would drop the other side's events and undo
+# exactly that.
+_EVENT_LISTS = ("uploads",)
+
+
 def merge(theirs: dict, ours: dict) -> dict:
     out = dict(theirs)
-    out.update({k: v for k, v in ours.items() if k != "posted"})
+    out.update({k: v for k, v in ours.items()
+                if k != "posted" and k not in _EVENT_LISTS})
+    for key in _EVENT_LISTS:
+        tl = theirs.get(key) if isinstance(theirs.get(key), list) else []
+        ol = ours.get(key) if isinstance(ours.get(key), list) else []
+        if tl or ol:
+            seen = {_identity(e) for e in tl}
+            out[key] = tl + [e for e in ol if _identity(e) not in seen]
     tp, op = theirs.get("posted"), ours.get("posted")
     if isinstance(tp, dict) or isinstance(op, dict):
         merged = dict(tp if isinstance(tp, dict) else {})

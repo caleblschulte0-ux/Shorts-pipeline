@@ -249,3 +249,90 @@ class FfmpegShape(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TheClosingIsNotSixSecondsOfNOTHING(unittest.TestCase):
+    """The closing card is a fifth of the video. It may not be a still.
+
+    `_close_baked` suppresses the closing celebration overlay when the recap
+    chart behind the payoff already bakes a host into itself — right, and it
+    used to be tested WITHOUT asking whether that chart is on screen during
+    the closing at all.
+
+    That was harmless while only `timeline_axis` baked a host. The moment the
+    data machines started baking their own (they must, or a machine gets a
+    second mascot standing beside it during its beat), almost every video lost
+    its closing celebration and ended on six seconds of a still mascot under a
+    speech bubble over an empty frame. Measured on the finished mp4 with the
+    showrunner's own detector: a 2.46-second frozen run against a 45-frame
+    ceiling — the longest in the batch, and the only thing holding a video out
+    of the gate.
+
+    The condition is `lead_payoff`: the recap chart only reaches the closing
+    when there is no receipt to lead it.
+    """
+
+    def test_the_closing_overlay_is_only_suppressed_when_a_chart_is_there(self):
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        self.assertIn("_close_baked = (lead_payoff and bool(st.segments)", src)
+
+    def test_the_empty_payoff_still_gets_a_BIG_central_host(self):
+        """When nothing is behind the payoff, the mascot IS the payoff."""
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        self.assertIn("close_scale = 1.0 if lead_payoff else 1.55", src)
+        self.assertIn("close_y = stage_y if lead_payoff else", src)
+
+
+class TheHostDoesADIFFERENTTHINGEachBeat(unittest.TestCase):
+    """`decorative_mascot` — the reviewer's third standing block, and it had
+    one cause.
+
+    `viz_director.assign` already runs `performance_for` across the whole
+    story with an anti-repetition set: beat 0 gets block_wall, beat 1
+    shoved_bar, beat 2 race_sprint, and so on. The renderer threw all of that
+    away. Its `_act()` asked `data_action_spec(kind)` instead, which is keyed
+    on the CHART KIND — and bars, comparison, rank and pictorial_race all map
+    to `push_bar`, so a story of three ranking beats got the identical pose
+    three times. `scene` was not in that map at all, so every data-machine
+    beat fell through to `push_bar` too, and machines are now the primary
+    depiction for 77% of beats.
+
+    The showrunner blocked a video for exactly this on 2026-09-07: "Data
+    holds the same arms-out standing pose in hook@0.3, seg1:mid, seg2:end,
+    seg3:start and seg4:mid — only rescaled and re-parked on the bar tip; no
+    setup->action->payoff bit is ever tied to a number."
+    """
+
+    def test_the_renderer_honours_the_directors_per_beat_choice(self):
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        self.assertIn("THE DIRECTOR ALREADY CHOSE, PER BEAT", src)
+        self.assertIn('getattr(ins, "perf_spec", None)', src)
+        self.assertIn('getattr(ins, "perf_override", None)', src)
+
+    def test_the_payoff_still_celebrates(self):
+        """Variety must not cost the beat its landing."""
+        src = (_REPO / "data_learning" / "studio_render.py").read_text(
+            encoding="utf-8")
+        block = src[src.index("THE DIRECTOR ALREADY CHOSE"):]
+        self.assertIn('if phase == "payoff":', block)
+
+    def test_a_scene_beat_has_its_own_default(self):
+        """Without one, every machine beat fell through to `push_bar`."""
+        from data_learning import mascot_director as md
+        self.assertIn("scene", md.DATA_ACTION)
+        self.assertNotEqual(md.DATA_ACTION["scene"], "push_bar")
+
+    def test_the_director_really_does_vary_across_a_story(self):
+        from data_learning import mascot_director as md
+        used, seen = set(), []
+        for j in range(5):
+            spec = md.performance_for("scene", "it climbed", "A",
+                                      used_families=used, seed=j,
+                                      require_contact=True)
+            used.add(spec.get("family", spec["action"]))
+            seen.append(spec["action"])
+        self.assertEqual(len(set(seen)), 5,
+                         f"the director repeats itself: {seen}")
