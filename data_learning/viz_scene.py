@@ -1114,52 +1114,102 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     return (mid, "art", (bx0 + bx1) // 2, road_y)
 
 
-def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
-    """A MEASURING TAPE pulled between two values. For DELTA.
+# How many yanks the tape opens in. 14 puts a pull roughly every 8 frames of
+# a 120-frame visual — far inside the gate's 45-frame allowance, and slow
+# enough to still read as somebody hauling a tape measure open.
+TAPE_PULLS = 14
 
-    Before-and-after says what the two numbers were. A tape says how far apart
-    they are, which is the thing the sentence is usually about — and Data pulls
-    it, so the gap is something that had to be dragged open.
+
+def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
+    """A MEASURING TAPE pulled between two values, ON A SCALE. For DELTA.
+
+    Before-and-after says what the two numbers were. A tape says how far
+    apart they are, which is the thing the sentence is usually about — and
+    Data pulls it, so the gap is something that had to be dragged open.
+
+    THE POSTS STAND AT THE VALUES, and that is the whole correction.
+
+    The first version ran the tape from one edge of the frame to the other
+    however big the numbers were, and printed them as text at each end.
+    Measured on 2026-09-08: a 30/70 pair and a 49/51 pair came out **99.5%
+    identical pixel for pixel** — the tape, both posts and the ground in the
+    same places, only the digits different. That is the showrunner's
+    `bare_number_card` exactly: the number is stated, not demonstrated. It
+    was survivable while the tape only drew `delta`, where the gap is the
+    entire claim; it became a real problem the moment the tape was offered
+    to `duel`, which is 30% of the catalogue.
+
+    Now a ruler runs 0..max across the frame, each post stands at its own
+    value, and the tape spans between them. The gap is still the headline —
+    "N apart" — but a wide gap now LOOKS wide, and two pairs with different
+    numbers can no longer draw the same picture.
     """
     items = _pts(insight)
     if len(items) < 2:
         return None
     a = float(getattr(items[0], "value", 0) or 0)
     b = float(getattr(items[-1], "value", 0) or 0)
+    vmax = max(abs(a), abs(b))
+    if vmax <= 0:
+        return None
     bx0, by0, bx1, by1 = box
-    # Centred in the box with the host standing under it — pinned near the
-    # middle it left the bottom half carrying nothing and measured 35% in CI.
     y = int(by0 + (by1 - by0) * 0.42)
     e = settle(reveal)
-    x0 = bx0 + 90
-    x1 = int(x0 + (bx1 - 90 - x0) * e)
-    d.rounded_rectangle([x0, y - 22, x1, y + 22], radius=10,
-                        fill=_rgba(color, 235))
-    for k in range(0, max(1, (x1 - x0) // 46)):
-        tx = x0 + 24 + k * 46
-        d.line([(tx, y - 22), (tx, y - 6)], fill=_rgba(charts.CARD, 200),
-               width=4)
-    d.text((x0, y - 62), f"{getattr(items[0], 'label', '')}  "
-           f"{charts._ulabel(a, unit)}", font=_pil_font(40),
-           fill=_rgba(TEXT, 235), anchor="lm")
-    na = max(0.0, min(1.0, (reveal - 0.35) / 0.3))
-    d.text((x1, y - 62), f"{getattr(items[-1], 'label', '')}  "
-           f"{charts._ulabel(b, unit)}", font=_pil_font(40),
-           fill=_rgba(color, int(255 * na)), anchor="rm")
-    # THE TAPE RUNS BETWEEN TWO POSTS, standing on a ground.
-    #
-    # A tape floating at mid-height leaves the bottom of the frame carrying
-    # nothing — measured at 38% void, past the 34% ceiling. Two markers and a
-    # floor is also just what measuring a distance looks like: you put a stake
-    # at each end. The posts are at the two values, so they add no claim.
     _ground = by1 - 40
+    # The lane IS the scale: its left edge is zero, its right edge is the
+    # larger of the two values. Inset so a post at full value keeps its
+    # label on screen.
+    lx0, lx1 = bx0 + 120, bx1 - 120
+
+    def _pos(v):
+        return int(lx0 + (abs(v) / vmax) * (lx1 - lx0))
+
+    pa, pb = _pos(a), _pos(b)
+    lo, hi = min(pa, pb), max(pa, pb)
+    # THE RULER. Without it the two posts are floating and the frame has no
+    # zero, so "twice as far along" is not readable.
     d.line([(bx0 + 30, _ground), (bx1 - 30, _ground)],
            fill=_rgba(TEXT, 100), width=8)
-    for _px, _c in ((x0, TEXT), (x1, color)):
+    for k in range(11):
+        tx = int(lx0 + (lx1 - lx0) * k / 10.0)
+        d.line([(tx, _ground - 16), (tx, _ground)],
+               fill=_rgba(TEXT, 90), width=4)
+    # THE TAPE IS PULLED OUT IN YANKS, not slid.
+    #
+    # CI measured a 44-frame frozen run against a 35 ceiling the first time
+    # the tape spanned only the GAP rather than the whole frame: the end
+    # advanced ~3.6px a frame at 1080 wide, which is 0.6px once the cadence
+    # detector downsamples to 192, on a band 8px tall. Geometrically it was
+    # opening the entire visual; to the gate it was a still image — the exact
+    # "slow glide" this test's own docstring warns about, and the same shape
+    # of bug the hourglass had.
+    #
+    # A tape measure is yanked out in pulls anyway, so quantising it is both
+    # the fix and the more honest motion: each pull moves the end a visible
+    # distance at once, which is the DISCRETE arrival every machine that
+    # passes the gate has.
+    x1 = int(lo + (hi - lo) * (_math.floor(e * TAPE_PULLS) / TAPE_PULLS))
+    d.rounded_rectangle([lo, y - 22, max(x1, lo + 6), y + 22], radius=10,
+                        fill=_rgba(color, 235))
+    for k in range(0, max(1, (x1 - lo) // 46)):
+        tx = lo + 24 + k * 46
+        d.line([(tx, y - 22), (tx, y - 6)], fill=_rgba(charts.CARD, 200),
+               width=4)
+    na = max(0.0, min(1.0, (reveal - 0.35) / 0.3))
+    # Each post carries its own label, anchored to stay inside the frame.
+    for _px, _c, _p, _v, _al in ((pa, TEXT, items[0], a, 1.0),
+                                 (pb, color, items[-1], b, na)):
         d.line([(_px, y + 22), (_px, _ground)], fill=_rgba(_c, 150), width=10)
         d.rounded_rectangle([_px - 40, _ground - 14, _px + 40, _ground + 14],
                             radius=10, fill=_rgba(_c, 190))
-    d.text(((bx0 + bx1) // 2, y + 110),
+        _tx = min(bx1 - 30, max(bx0 + 30, _px))
+        _anchor = "mm" if bx0 + 200 < _px < bx1 - 200 else (
+            "lm" if _px <= bx0 + 200 else "rm")
+        d.text((_tx, y - 62),
+               f"{getattr(_p, 'label', '')}  {charts._ulabel(_v, unit)}",
+               font=_pil_font(40), fill=_rgba(_c, int(255 * _al)),
+               anchor=_anchor)
+    d.text(((lo + hi) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
     host = scene_host("strain", reveal)
@@ -2346,6 +2396,38 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[0], "art", int(bx0 + gap + side // 2), top + side // 2)
 
 
+# THE BAND THE NEST CAN TILE, defined once.
+#
+# Above ~150 the tiles are specks nobody counts; below 1.5 there is no scale
+# story to tell. It lives here rather than only inside `draw_nest` because
+# `nest_scene` has to refuse the same data the drawing would: a builder that
+# accepts what its own draw function rejects hands the beat a token, fails
+# validation at render time and degrades to a chart — a slot spent, no
+# variety, and nothing anywhere saying why (`studio_render._buildable`).
+NEST_MIN, NEST_MAX = 1.5, 150.0
+
+
+def nest_ratio(insight) -> float | None:
+    """The big-to-small ratio of a pair, or None when there isn't one."""
+    items = _ordered_items(insight)[:2]
+    if len(items) < 2:
+        return None
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    if min(vals) <= 0:
+        return None
+    return max(vals) / min(vals)
+
+
+def nest_scene(insight) -> dict:
+    """Two things, one tiled inside the other — only inside the band that
+    can actually be counted. See `NEST_MIN` / `NEST_MAX`."""
+    r = nest_ratio(insight)
+    if r is None or not (NEST_MIN <= r <= NEST_MAX):
+        return {}
+    return {"title": True,
+            "elements": [{"type": "nest", "region": "full", "anim": "grow"}]}
+
+
 def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     """HOW MANY OF THE SMALL ONE FIT IN THE BIG ONE. For SCALE.
 
@@ -2365,11 +2447,11 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
     if small_v <= 0:
         return None
     ratio = big_v / small_v
-    # Above ~150 the tiles are specks and nobody counts them; below 1.5 there
-    # is no scale story. Outside that band the depiction falls through to
-    # something that can carry it (the skyline), rather than drawing a grid
-    # whose count nobody can check.
-    if ratio < 1.5 or ratio > 150:
+    # The band is `NEST_MIN`..`NEST_MAX`, defined once beside `nest_scene`
+    # so the builder refuses exactly what this refuses. Outside it the
+    # depiction falls through to something that can carry the claim (the
+    # skyline), rather than drawing a grid whose count nobody can check.
+    if ratio < NEST_MIN or ratio > NEST_MAX:
         return None
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
@@ -2606,6 +2688,26 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
 
 
+# A SHELF YOU CAN COUNT. Defined once, beside the machine that draws it, and
+# read by both — a builder that accepts a tally its own draw refuses spends
+# the beat and degrades to a chart.
+TROPHY_MAX = 30
+
+
+def trophies_scene(insight) -> dict:
+    """A tally where the objects are the point. Refuses above `TROPHY_MAX`:
+    too many to count is not a shelf, it is a bar chart made of cups."""
+    items = _ordered_items(insight)[:4]
+    if len(items) < 2:
+        return {}
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    if not vals or max(vals) > TROPHY_MAX or max(vals) <= 0:
+        return {}
+    return {"title": True,
+            "elements": [{"type": "trophies", "region": "full",
+                          "anim": "grow"}]}
+
+
 def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
     """A SHELF, and the count is the number of trophies on it. For RECORD.
 
@@ -2618,7 +2720,7 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
         return None
     vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
     vmax = max(vals) or 1.0
-    if vmax > 30:
+    if vmax > TROPHY_MAX:
         return None                        # too many to count is not a shelf
     bx0, by0, bx1, by1 = box
     n = len(items)
@@ -4086,7 +4188,24 @@ conveyor_scene = _machine_scene("conveyor", 1)
 pipes_scene = _machine_scene("pipes", 2, 5)
 spotlight_scene = _machine_scene("spotlight", 3)
 road_scene = _machine_scene("road", 3)
-tape_scene = _machine_scene("tape", 2)
+def tape_scene(insight) -> dict:
+    """A measuring tape between two values — which needs two values it can
+    actually measure. `draw_tape` refuses a zero or a negative end, so this
+    refuses it too rather than handing the beat a token that dies at draw
+    time."""
+    items = list(getattr(insight, "items", None) or [])
+    if len(items) < 2:
+        return {}
+    for p in (items[0], items[-1]):
+        try:
+            if abs(float(getattr(p, "value", 0) or 0)) <= 0:
+                return {}
+        except (TypeError, ValueError):
+            return {}
+    return {"title": True,
+            "elements": [{"type": "tape", "region": "full", "anim": "grow"}]}
+
+
 bridge_scene = _machine_scene("bridge", 1)
 centre_scene = _machine_scene("centre", 3)
 coaster_scene = _machine_scene("coaster", 4)
@@ -4105,7 +4224,6 @@ fan_scene = _machine_scene("fan", 4)
 gears_scene = _machine_scene("gears", 2, 2)
 slider_scene = _machine_scene("slider", 2, 2)
 density_scene = _machine_scene("density", 2, 3)
-nest_scene = _machine_scene("nest", 2, 2)
 chairs_scene = _machine_scene("chairs", 2, 2)
 def hourglass_scene(insight) -> dict:
     """Two waits, side by side — and only when both can be SEEN running.
@@ -4128,7 +4246,6 @@ def hourglass_scene(insight) -> dict:
     return {"title": True,
             "elements": [{"type": "hourglass", "region": "full",
                           "anim": "grow"}]}
-trophies_scene = _machine_scene("trophies", 2)
 basket_scene = _machine_scene("basket", 2, 2)
 
 

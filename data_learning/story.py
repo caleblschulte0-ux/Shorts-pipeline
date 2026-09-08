@@ -16,7 +16,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import charts, insights, viz_director
+from . import beat_claims, charts, insights, viz_director
 from .insights import Insight
 from .sources import get_source
 from .sources.offline import OfflineSource
@@ -210,6 +210,35 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # Build every insight first, then pick viz at the video level, then render.
     seg_cfgs = list(story_cfg["segments"])
     inss = [_build_insight(seg_cfg) for seg_cfg in seg_cfgs]
+    # ONE FACT IS ONE BEAT.
+    #
+    # Operator, 2026-09-08: "we would say the same thing in 3 different beats
+    # just show it a different way that's dumb af." They were describing
+    # `driving-side-of-the-road`, which had just posted: 30% of people drive
+    # on the left, then 76 countries against 163, then 25% of road miles.
+    # Three datasets, three machines, one fact — and the third beat's own
+    # narration says "it's even more lopsided", which 75/25 is not.
+    #
+    # Drawing one claim three different ways is WORSE than drawing it once
+    # badly: it looks like variety while saying nothing new. Measured over
+    # the catalogue, 21 of 302 stories carry a restated beat.
+    #
+    # The pruner keeps the story's own order and never cuts below two beats
+    # (`beat_claims.prune_restatements`), so a repetitive story becomes its
+    # least repetitive cut rather than an empty slot. Refusing outright
+    # belongs at authoring time, where there is another story to write.
+    if len(inss) > 1:
+        kept, dropped = beat_claims.prune_restatements(
+            inss, floor=2,
+            says=[c.get("say") for c in seg_cfgs])
+        if dropped:
+            keep_ids = {id(k) for k in kept}
+            seg_cfgs = [c for c, i in zip(seg_cfgs, inss) if id(i) in keep_ids]
+            print(f"[{story_cfg.get('slug', '?')}] dropped "
+                  f"{len(dropped)} restated beat(s): "
+                  + "; ".join(str(getattr(d, "topic", "?")) for d in dropped),
+                  flush=True)
+            inss = kept
     # The viz director assigns each segment's DEPICTION (honouring the LLM's
     # authored concept, else best-fit by data shape). Never bare numbers, no
     # repeated depiction in a video, >=1 novelty. Seed by slug for stable variety.
