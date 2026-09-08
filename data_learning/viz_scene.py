@@ -359,12 +359,67 @@ def scene_host(action: str, phase: float):
     return img
 
 
+# The camera push (`_push`) zooms the finished canvas to 1.04 and crops back,
+# which eats about 22px from each edge at full push. Anything drawn closer
+# than this to the frame edge WILL be cropped, and a cropped headline is the
+# most basic readability failure there is.
+PUSH_SAFE = 26
+
+
 def draw_caption(d, box, text, reveal, size=42, color=TEXT):
+    """A caption that FITS. Shrinks, then wraps; it never runs off the frame.
+
+    This centred the text and drew it at whatever width it wanted. A title
+    wider than its box got a negative x and ran off BOTH edges, and then the
+    camera push cropped another ~22px from each side. The showrunner read one
+    back on 2026-09-07 as "the chart title is clipped off BOTH edges of the
+    frame — it reads 'olorado wolves, first release vs toda'", and blocked
+    the video for it. Another was "PLOYERS TRIALING A FOUR-DAY WI".
+
+    Every scene title goes through this one function, so fitting it here fixes
+    the whole class.
+    """
+    text = str(text or "")
+    if not text:
+        return
+    avail = (box[2] - box[0]) - 2 * PUSH_SAFE
+    if avail <= 0:
+        return
+
+    def _w(t, f):
+        b = d.textbbox((0, 0), t, font=f)
+        return b[2] - b[0]
+
+    size = int(size)
     f = _pil_font(size)
-    tb = d.textbbox((0, 0), text, font=f)
-    x = _cx(box) - (tb[2] - tb[0]) // 2
-    d.text((x, box[1]), text, font=f, fill=(248, 250, 252, 255),
-           stroke_width=3, stroke_fill=(5, 8, 15, 255))
+    # 1. shrink, to a floor — below this it is unreadable on a phone anyway
+    while size > 32 and _w(text, f) > avail:
+        size -= 2
+        f = _pil_font(size)
+    lines = [text]
+    if _w(text, f) > avail:
+        # 2. wrap onto two lines at a word boundary, balanced
+        words = text.split()
+        best, best_cost = None, None
+        for k in range(1, len(words)):
+            a, b = " ".join(words[:k]), " ".join(words[k:])
+            cost = max(_w(a, f), _w(b, f))
+            if best_cost is None or cost < best_cost:
+                best, best_cost = (a, b), cost
+        if best and best_cost is not None and best_cost <= avail:
+            lines = list(best)
+        else:
+            # 3. nothing fits: shrink further rather than clip
+            while size > 24 and max(_w(l, f) for l in lines) > avail:
+                size -= 2
+                f = _pil_font(size)
+    cx = _cx(box)
+    y = box[1]
+    for ln in lines:
+        d.text((cx - _w(ln, f) // 2, y), ln, font=f,
+               fill=(248, 250, 252, 255),
+               stroke_width=3, stroke_fill=(5, 8, 15, 255))
+        y += int(size * 1.15)
 
 
 def draw_number(d, box, value, label, color, reveal, unit=""):

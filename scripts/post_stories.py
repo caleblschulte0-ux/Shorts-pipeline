@@ -211,8 +211,13 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
     return {k: v for k, v in facts.items() if v is not None}
 
 
-def _persist_posted_log_now(log_path: Path, slug: str) -> None:
-    """Push the posted log to git IMMEDIATELY after an upload. Best effort.
+def _persist_posted_log_now(log_path: Path, slug: str,
+                            why: str = "posted") -> None:
+    """Push the posted log to git IMMEDIATELY. Best effort.
+
+    Called TWICE per upload now: once to claim the slot before the API call,
+    and once to record the URL after it. The claim is the important one — see
+    the comment at the call site.
 
     An upload is irreversible and external: the video is on YouTube the moment
     the API returns. The record of it has to be just as durable, and until now
@@ -239,7 +244,7 @@ def _persist_posted_log_now(log_path: Path, slug: str) -> None:
         return
     try:
         r = _sp.run(["bash", str(script),
-                     f"explainer: posted {slug} [skip ci]", str(log_path)],
+                     f"explainer: {why} {slug} [skip ci]", str(log_path)],
                     capture_output=True, text=True, timeout=180)
         if r.returncode != 0:
             print(f"[{slug}] WARNING: could not persist the posted log now "
@@ -465,7 +470,21 @@ def main() -> int:
     for slug in slugs:
         sc = stories[slug]
         if not args.force and slug in log["posted"]:
-            print(f"[{slug}] already posted -> {log['posted'][slug].get('url')}, "
+            _rec = log["posted"][slug]
+            if _rec.get("state") == "uploading" or _rec.get("url") is None:
+                # A CLAIM WITH NO URL. Some previous run reached the upload
+                # call and never came back to record the result — the video
+                # may well be live. Re-posting is the one action that cannot
+                # be undone, so this stays held until a person looks.
+                print(f"[{slug}] HELD — a previous run claimed this slot at "
+                      f"{_rec.get('claimed_at')} and never confirmed a URL. "
+                      f"The video may already be on the channel. Check it, "
+                      f"then either delete it or add the URL to the log; "
+                      f"--force overrides.")
+                results.append({"slug": slug, "ok": False,
+                                "error": "unconfirmed_upload_hold"})
+                continue
+            print(f"[{slug}] already posted -> {_rec.get('url')}, "
                   f"skipping (use --force to repost)")
             continue
 
@@ -658,6 +677,33 @@ def main() -> int:
         # the daily upload-limit: once hit, EVERY remaining upload will fail the
         # same way, so stop early rather than burn render time on videos that
         # physically can't post until the cap resets.
+        # CLAIM THE SLOT BEFORE UPLOADING.
+        #
+        # The record used to be written AFTER `upload()` returned. The video
+        # is live on YouTube the moment the API accepts it, so every failure
+        # mode in between — a read timeout on the response, a connection
+        # reset, a retry inside the client, the runner being reclaimed —
+        # leaves a video on the channel that NOTHING recorded. The next run
+        # sees the slug as un-posted and uploads it again.
+        #
+        # That is what happened on 2026-09-07: two of the same video on the
+        # data channel, one entry in the log. The old comment here closed the
+        # window between one upload and the NEXT RENDER; it never closed the
+        # window around the upload itself, which is the only one that matters.
+        #
+        # An orphan is strictly better than a duplicate: a claim with no URL
+        # says "check this slug by hand", and a duplicate says nothing at all
+        # until a person notices it on the channel. `run_third.py` has claimed
+        # its slot this way since 2026-08; this brings the explainer in line.
+        _claim = {
+            "claimed_at": datetime.now(timezone.utc).isoformat(),
+            "title": sc.get("title"), "publish_at": publish_at,
+            "url": None, "state": "uploading",
+        }
+        log["posted"][slug] = _claim
+        log.setdefault("uploads", []).append(dict(_claim, slug=slug))
+        _save_log(log, args.log)
+        _persist_posted_log_now(args.log, slug, why="claim upload slot")
         try:
             res = uploader.upload(
                 file_path=out,
@@ -673,6 +719,26 @@ def main() -> int:
             limit_hit = ("uploadLimitExceeded" in msg
                          or "exceeded the number of videos" in msg)
             print(f"[{slug}] UPLOAD FAILED: {msg}", flush=True)
+            # Release the claim ONLY for errors that cannot have put a video
+            # on the channel. A timeout or a reset may well have — the upload
+            # is accepted server-side before the response comes back — so
+            # those keep the claim and the slug stays held until a person
+            # looks. Refusing to post again is the safe side of this.
+            _certain = ("uploadLimitExceeded" in msg
+                        or "exceeded the number of videos" in msg
+                        or "quotaExceeded" in msg
+                        or "Unauthorized" in msg or "401" in msg
+                        or "403" in msg)
+            if _certain:
+                log["posted"].pop(slug, None)
+                log["uploads"] = [u for u in (log.get("uploads") or [])
+                                  if not (u.get("slug") == slug
+                                          and u.get("url") is None)]
+                _save_log(log, args.log)
+            else:
+                print(f"[{slug}] the claim STAYS — this error can leave a "
+                      f"video live, and a duplicate is worse than a gap. "
+                      f"Check the channel for {slug!r}.", flush=True)
             results.append({"slug": slug, "ok": False, "error": msg})
             if limit_hit:
                 print("[post_stories] YouTube daily upload cap reached — "
@@ -686,9 +752,21 @@ def main() -> int:
             "url": url, "title": sc.get("title"),
             "at": datetime.now(timezone.utc).isoformat(),
             "publish_at": publish_at,
+            "state": "posted",
             # WHAT IT WAS, not just that it happened — see _creative_facts.
             **_creative_facts(slug, sc, out, verdict),
         }
+        # EVERY upload, append-only. `posted` is keyed by SLUG, so a second
+        # upload of the same slug overwrites the first and the log cannot even
+        # REPRESENT the duplicate — which is why 2026-09-07 read as one upload
+        # while two were live. This list can, so a duplicate is detectable
+        # instead of invisible.
+        for _u in reversed(log.get("uploads") or []):
+            if _u.get("slug") == slug and _u.get("url") is None:
+                _u["url"] = url
+                _u["state"] = "posted"
+                _u["at"] = log["posted"][slug]["at"]
+                break
         _save_log(log, args.log)
         # Durable BEFORE the next render starts — a reclaimed runner between
         # here and the end of the run would otherwise cost a duplicate upload.
