@@ -63,7 +63,12 @@ def _series(vals, unit="count", topic="output", main="It moved"):
                 unit, topic, main, kind="trend")
 
 
-def _things(pairs, unit="years", topic="cost", main="A tops"):
+# NEUTRAL BY DEFAULT. This said `unit="years"` while the unit meant nothing to
+# the router; since batch 6 a pair measured in years IS a duration, so a
+# filler unit was quietly asserting one. Tests that want a time unit now say
+# so, and the ones that want "two named things" get a unit that claims
+# nothing.
+def _things(pairs, unit="count", topic="cost", main="A tops"):
     return _Ins([_Pt(n, v) for n, v in pairs], unit, topic, main)
 
 
@@ -1453,3 +1458,183 @@ class NoPictureInventsANumber(unittest.TestCase):
     def test_it_never_raises_on_empty_or_broken_items(self):
         from data_learning import charts as ch
         self.assertEqual(ch._superlative(_Ins([], "", "t", "m"), False), "")
+
+
+class TheUnitSaysWhatKindOfQuantityThisIs(unittest.TestCase):
+    """Batch 6, and the measurement that forced it.
+
+    Over the 1,104 live datasets on 2026-09-08 `duration` classified exactly
+    ONE, while 106 are published in years/hours/days, 60 in miles or feet and
+    30 in mph. The hourglass was built, wired, documented and tested, and it
+    led about one beat in a thousand — because every specialised relationship
+    was detected from the CLAIM, and a dataset title says "Maximum recorded
+    lifespan by animal (years)", not "how long".
+
+    A unit is not an inference the way a claim is. It is a declared property
+    of the measurement, published by the source.
+    """
+
+    def _ins(self, pairs, unit, topic="t"):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+        return Insight(kind="rank", topic=topic, main_insight="",
+                       items=[DataPoint(label=str(a), value=float(b))
+                              for a, b in pairs],
+                       source=src, unit=unit,
+                       highlight_label=str(pairs[0][0]))
+
+    def test_a_pair_measured_in_time_is_a_DURATION(self):
+        self.assertEqual(
+            rel.classify(self._ins([("Apex predator", 20.0),
+                                    ("Prey animal", 1.9)], "hours")),
+            rel.DURATION)
+
+    def test_a_speed_is_a_SPEED_and_a_distance_is_a_DISTANCE(self):
+        self.assertEqual(
+            rel.classify(self._ins([("Peregrine", 240), ("Swift", 105),
+                                    ("Frigatebird", 100)], "mph")),
+            rel.SPEED)
+        self.assertEqual(
+            rel.classify(self._ins([("Arctic tern", 44000),
+                                    ("Sooty shearwater", 22000),
+                                    ("Humpback", 18000)], "miles")),
+            rel.DISTANCE)
+
+    def test_a_DATE_is_not_a_duration(self):
+        """"Deadliest pandemics" is published in years and its values are 1350
+        and 1918. Sand running for 1,918 years is a picture of nothing."""
+        self.assertNotEqual(
+            rel.classify(self._ins([("Black Death", 1350),
+                                    ("Spanish flu", 1918)], "years")),
+            rel.DURATION)
+        # ... and a real span that happens to look like one is refused in the
+        # SAFE direction — it falls through to a ranking, which is honest.
+        self.assertEqual(
+            rel.classify(self._ins([("Bristlecone", 4900),
+                                    ("Oak", 400)], "years")),
+            rel.DURATION)
+
+    def test_a_HEIGHT_is_not_a_journey(self):
+        """Tallest and deepest are measured in feet too, and a measuring tape
+        laid out flat is the wrong picture for both. They belong to the
+        skyline, which dominance and rank already reach."""
+        for topic in ("Tallest buildings in the world",
+                      "Deepest point in each ocean",
+                      "Highest altitude reached"):
+            self.assertNotEqual(
+                rel.classify(self._ins([("A", 2722), ("B", 1500),
+                                        ("C", 1100)], "feet", topic)),
+                rel.DISTANCE, topic)
+
+    def test_a_RUNAWAY_LEADER_keeps_the_skyline(self):
+        """Lightning at 270,000mph against a peregrine at 240 is exactly the
+        broken chart `race_scene` warns about in its own docstring."""
+        self.assertEqual(
+            rel.classify(self._ins([("Lightning", 270000), ("Peregrine", 240),
+                                    ("Cheetah", 70)], "mph")),
+            rel.DOMINANCE)
+
+    def test_the_dominance_test_is_defined_ONCE(self):
+        """It is used by the tail of `_classify` as the DOMINANCE rule and by
+        the unit rules as the thing they stand down for. Two copies drift."""
+        import inspect
+        src = inspect.getsource(rel._classify)
+        self.assertEqual(src.count("_dominant("), 2)
+        self.assertNotIn("3.0 * (sum(rest)", src)
+
+    def test_a_THEN_AND_NOW_is_not_two_waits(self):
+        """Caught by the existing before/after test the moment the unit rules
+        landed: "commute in 2019 vs 2026, in hours" is ONE subject at two
+        dates, and two hourglasses side by side says it is two different
+        waits. The date test is defined once and both rules use it."""
+        self.assertEqual(
+            rel.classify(self._ins([("2019", 27.0), ("2026", 44.0)], "hours")),
+            rel.BEFORE_AFTER)
+        import inspect
+        self.assertEqual(
+            inspect.getsource(rel._classify).count("_dated_pair("), 2)
+
+    def test_durations_route_in_PAIRS_only(self):
+        """The hourglass draws two glasses and the tape has two ends. A
+        six-item duration ranking sent there drops four rows silently."""
+        six = [(str(k), 10.0 + k) for k in range(6)]
+        self.assertNotEqual(rel.classify(self._ins(six, "hours")),
+                            rel.DURATION)
+
+    def test_an_explicit_CLAIM_still_beats_the_unit(self):
+        """The unit rules run last among the specialised checks on purpose."""
+        self.assertEqual(
+            rel.classify(self._ins([("Applicants", 41000), ("Homes", 1200)],
+                                   "years",
+                                   "applicants per opening in the shortage")),
+            rel.SCARCITY)
+
+    def test_both_new_relationships_have_machines_that_exist(self):
+        for name in (rel.SPEED, rel.DISTANCE):
+            machines = sr._MACHINES.get(name)
+            self.assertTrue(machines, f"{name} classifies but draws nothing")
+            for m in machines:
+                self.assertTrue(callable(getattr(vs, m, None)), f"{name}->{m}")
+
+
+class AMachineRefusesWhatItCannotDraw(unittest.TestCase):
+    """Two silent failures, both of which put a false frame on screen.
+
+    Every draw function slices its items, and the builders accepted any
+    number — so the extras went to a slice that dropped them. Two of six waits
+    drawn as "the comparison" is a DIFFERENT comparison, and nothing
+    downstream could see it happen.
+    """
+
+    def _ins(self, vals, unit="hours"):
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-08")
+        return Insight(kind="rank", topic="t", main_insight="",
+                       items=[DataPoint(label=str(i), value=float(v))
+                              for i, v in enumerate(vals)],
+                       source=src, unit=unit, highlight_label="0")
+
+    def test_no_builder_accepts_more_rows_than_its_machine_draws(self):
+        """MEASURED against the draw functions themselves, so a new machine
+        with a `[:n]` slice and no cap is caught the day it lands."""
+        import inspect
+        import re as _re
+        # The rankings, where showing the top n of many IS the picture and
+        # reads as one. Everything else claims to show the whole set.
+        RANKINGS = {"skyline", "trophies"}
+        bad = {}
+        for kind, fn in sorted(vs._MACHINE_DRAW.items()):
+            if kind in RANKINGS:
+                continue
+            m = _re.search(r"_ordered_items\(insight\)\[:(\d+)\]",
+                           inspect.getsource(fn))
+            if not m:
+                continue
+            cap = int(m.group(1))
+            build = getattr(vs, f"{kind}_scene", None)
+            if build is None:
+                continue
+            if build(self._ins([10.0 + k for k in range(cap + 2)])):
+                bad[kind] = cap
+        self.assertEqual(bad, {},
+                         f"builders that accept rows they will drop: {bad}")
+
+    def test_a_ratio_no_picture_can_show_is_refused(self):
+        """2.94e16 miles against 250 draws the second at zero pixels, and the
+        frame then says the ISS is nowhere."""
+        self.assertFalse(vs.race_scene(self._ins([2.94e16, 250], "miles")))
+        self.assertTrue(vs.race_scene(self._ins([44000, 22000], "miles")))
+
+    def test_a_zero_runs_but_does_not_pour(self):
+        """A runner on the start line is readable and is what the number
+        says. An empty hourglass is indistinguishable from a finished one."""
+        self.assertTrue(vs.race_scene(self._ins([70, 0], "mph")))
+        self.assertFalse(vs.hourglass_scene(self._ins([70, 0])))
+
+    def test_the_hourglass_refuses_a_wait_it_cannot_show(self):
+        self.assertTrue(vs.hourglass_scene(self._ins([20, 2])))
+        self.assertFalse(vs.hourglass_scene(self._ins([3000, 15])))

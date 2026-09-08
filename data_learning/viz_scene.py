@@ -4006,9 +4006,45 @@ def rate_scene(insight) -> dict:
                           "data": {"value_from": "star"}, "anim": "fill"}]}
 
 
-def _machine_scene(kind: str, need: int = 3):
+def _spread_ok(insight, limit: float) -> bool:
+    """Can a picture that encodes value as SIZE show this set at all?
+
+    "Distance to the Boomerang Nebula vs. the ISS" is 2.94e16 miles against
+    250. Any machine that draws a length draws the second one at zero pixels,
+    and the frame then says the ISS is nowhere — a claim the data does not
+    make. Past the limit the machine stands down and the next one, or a chart
+    with an axis that can carry it, takes the beat.
+
+    A genuine zero is allowed through: a runner still on the start line is
+    readable and it is what the number says. Only the ratio between two real
+    magnitudes is judged.
+    """
+    vals = [abs(float(getattr(p, "value", 0) or 0))
+            for p in (getattr(insight, "items", None) or [])]
+    vals = [v for v in vals if v > 0]
+    if len(vals) < 2:
+        return True
+    return max(vals) <= limit * min(vals)
+
+
+def _machine_scene(kind: str, need: int = 3, cap: int | None = None):
+    """A machine's scene builder, with the range of rows it can HONESTLY draw.
+
+    `cap` exists because every draw function slices its items — the hourglass
+    takes two, the sorter four, the chain five — and a builder that accepted
+    any number handed the extras to a slice that dropped them silently. Two
+    of six waits drawn as "the comparison" is not a rough picture of the
+    data, it is a different comparison, and nothing downstream could see it
+    happen.
+
+    It is set only where the picture claims to show the WHOLE set: pairs,
+    funnels, chains, routes, compositions. A ranking machine like the skyline
+    is left uncapped on purpose — showing the top seven of twelve cities is
+    an editorial trim every ranking makes, and it reads as one.
+    """
     def build(insight) -> dict:
-        if len(list(getattr(insight, "items", None) or [])) < need:
+        n = len(list(getattr(insight, "items", None) or []))
+        if n < need or (cap is not None and n > cap):
             return {}
         return {"title": True,
                 "elements": [{"type": kind, "region": "full", "anim": "grow"}]}
@@ -4045,9 +4081,9 @@ _MACHINE_DRAW.update({
 
 tower_scene = _machine_scene("tower", 1)
 hurdle_scene = _machine_scene("hurdle", 1)
-funnel_scene = _machine_scene("funnel", 3)
+funnel_scene = _machine_scene("funnel", 3, 6)
 conveyor_scene = _machine_scene("conveyor", 1)
-pipes_scene = _machine_scene("pipes", 2)
+pipes_scene = _machine_scene("pipes", 2, 5)
 spotlight_scene = _machine_scene("spotlight", 3)
 road_scene = _machine_scene("road", 3)
 tape_scene = _machine_scene("tape", 2)
@@ -4058,22 +4094,42 @@ thermometer_scene = _machine_scene("thermometer", 1)
 wheel_scene = _machine_scene("wheel", 6)
 darts_scene = _machine_scene("darts", 3)
 queue_scene = _machine_scene("queue", 2)
-bottleneck_scene = _machine_scene("bottleneck", 3)
-leaky_scene = _machine_scene("leaky", 2)
-inout_scene = _machine_scene("inout", 2)
-sorter_scene = _machine_scene("sorter", 2)
-chain_scene = _machine_scene("chain", 3)
+bottleneck_scene = _machine_scene("bottleneck", 3, 6)
+leaky_scene = _machine_scene("leaky", 2, 2)
+inout_scene = _machine_scene("inout", 2, 2)
+sorter_scene = _machine_scene("sorter", 2, 4)
+chain_scene = _machine_scene("chain", 3, 5)
 spinner_scene = _machine_scene("spinner", 1)
 doors_scene = _machine_scene("doors", 1)
 fan_scene = _machine_scene("fan", 4)
-gears_scene = _machine_scene("gears", 2)
-slider_scene = _machine_scene("slider", 2)
-density_scene = _machine_scene("density", 2)
-nest_scene = _machine_scene("nest", 2)
-chairs_scene = _machine_scene("chairs", 2)
-hourglass_scene = _machine_scene("hourglass", 1)
+gears_scene = _machine_scene("gears", 2, 2)
+slider_scene = _machine_scene("slider", 2, 2)
+density_scene = _machine_scene("density", 2, 3)
+nest_scene = _machine_scene("nest", 2, 2)
+chairs_scene = _machine_scene("chairs", 2, 2)
+def hourglass_scene(insight) -> dict:
+    """Two waits, side by side — and only when both can be SEEN running.
+
+    The sand pile IS the number, so a 60:1 pair leaves the shorter wait a
+    couple of pixels of sand in a glass the same size as its neighbour, which
+    reads as an empty glass rather than as a short wait. It refuses, and the
+    beat falls to the tape or to a chart.
+
+    A zero is refused outright here, unlike the race: "it takes no time at
+    all" drawn as an empty hourglass is indistinguishable from a glass that
+    has finished running.
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if len(items) != 2:
+        return {}
+    vals = [abs(float(getattr(p, "value", 0) or 0)) for p in items]
+    if any(v <= 0 for v in vals) or not _spread_ok(insight, 60.0):
+        return {}
+    return {"title": True,
+            "elements": [{"type": "hourglass", "region": "full",
+                          "anim": "grow"}]}
 trophies_scene = _machine_scene("trophies", 2)
-basket_scene = _machine_scene("basket", 2)
+basket_scene = _machine_scene("basket", 2, 2)
 
 
 def race_scene(insight) -> dict:
@@ -4088,6 +4144,10 @@ def race_scene(insight) -> dict:
     """
     items = list(insight.items or [])
     if not (2 <= len(items) <= 8):
+        return {}
+    # 500:1 is where the back lane stops being a short bar and becomes an
+    # empty lane. See `_spread_ok`.
+    if not _spread_ok(insight, 500.0):
         return {}
     return {"title": True,
             "elements": [{"type": "race_track", "region": "full",
