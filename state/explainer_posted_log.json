@@ -1567,6 +1567,13 @@
       ],
       "words_first_10s": 9,
       "scene_changes_before_5s": 2
+    },
+    "mail-volume-collapse": {
+      "claimed_at": "2026-09-08T20:45:14.908076+00:00",
+      "title": "Letters Are Dying. Packages Are Thriving. (3 Charts)",
+      "publish_at": "2026-09-08T21:18:56Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -1587,6 +1594,14 @@
       "state": "posted",
       "slug": "debt-per-american",
       "at": "2026-09-08T18:32:45.674292+00:00"
+    },
+    {
+      "claimed_at": "2026-09-08T20:45:14.908076+00:00",
+      "title": "Letters Are Dying. Packages Are Thriving. (3 Charts)",
+      "publish_at": "2026-09-08T21:18:56Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "mail-volume-collapse"
     }
   ]
 }
