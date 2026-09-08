@@ -1,551 +1,6 @@
 {
-  "fetched_at": "2026-09-08T19:26:02.072207+00:00",
+  "fetched_at": "2026-09-08T20:45:29.816081+00:00",
   "videos": [
-    {
-      "video_id": "6UiXA5Tw0YU",
-      "url": "https://youtube.com/shorts/6UiXA5Tw0YU",
-      "catalog_id": "airline-bag-fee-unbundling",
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": "inversion",
-      "source_views": null,
-      "banger": null,
-      "story_structure": "scene+scene+scene",
-      "narrative_score": 57,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": 3,
-      "duration_s": 44.0,
-      "topic_category": "economics",
-      "ending_type": "consequence",
-      "depictions": [
-        "mechanic:suitcase-cash-stuff",
-        "mechanic:fuselage-cash-flood",
-        "mechanic:runway-cash-trail-lineup"
-      ],
-      "words_first_10s": 5,
-      "scene_changes_before_5s": 3,
-      "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-      "published_at": "2026-09-05T10:58:36Z",
-      "age_hours": 80.5,
-      "views": 798,
-      "engaged_views": 218,
-      "likes": 3,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": true,
-      "views_per_hour": 9.92,
-      "average_view_percentage": 38.4,
-      "average_view_duration_s": 16.0,
-      "estimated_minutes_watched": 74.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_curve": [
-        [
-          0.01,
-          1.101,
-          0.433
-        ],
-        [
-          0.02,
-          1.101,
-          0.395
-        ],
-        [
-          0.03,
-          1.101,
-          0.359
-        ],
-        [
-          0.04,
-          1.096,
-          0.33
-        ],
-        [
-          0.05,
-          1.092,
-          0.31
-        ],
-        [
-          0.06,
-          1.092,
-          0.297
-        ],
-        [
-          0.07,
-          1.092,
-          0.291
-        ],
-        [
-          0.08,
-          1.092,
-          0.288
-        ],
-        [
-          0.09,
-          1.087,
-          0.287
-        ],
-        [
-          0.1,
-          1.087,
-          0.288
-        ],
-        [
-          0.11,
-          1.014,
-          0.29
-        ],
-        [
-          0.12,
-          0.931,
-          0.294
-        ],
-        [
-          0.13,
-          0.881,
-          0.298
-        ],
-        [
-          0.14,
-          0.817,
-          0.303
-        ],
-        [
-          0.15,
-          0.752,
-          0.309
-        ],
-        [
-          0.16,
-          0.716,
-          0.315
-        ],
-        [
-          0.17,
-          0.688,
-          0.322
-        ],
-        [
-          0.18,
-          0.633,
-          0.329
-        ],
-        [
-          0.19,
-          0.619,
-          0.337
-        ],
-        [
-          0.2,
-          0.596,
-          0.344
-        ],
-        [
-          0.21,
-          0.573,
-          0.352
-        ],
-        [
-          0.22,
-          0.564,
-          0.36
-        ],
-        [
-          0.23,
-          0.541,
-          0.368
-        ],
-        [
-          0.24,
-          0.5,
-          0.375
-        ],
-        [
-          0.25,
-          0.486,
-          0.383
-        ],
-        [
-          0.26,
-          0.454,
-          0.39
-        ],
-        [
-          0.27,
-          0.45,
-          0.397
-        ],
-        [
-          0.28,
-          0.44,
-          0.403
-        ],
-        [
-          0.29,
-          0.431,
-          0.41
-        ],
-        [
-          0.3,
-          0.422,
-          0.415
-        ],
-        [
-          0.31,
-          0.413,
-          0.421
-        ],
-        [
-          0.32,
-          0.408,
-          0.426
-        ],
-        [
-          0.33,
-          0.39,
-          0.43
-        ],
-        [
-          0.34,
-          0.372,
-          0.435
-        ],
-        [
-          0.35,
-          0.353,
-          0.439
-        ],
-        [
-          0.36,
-          0.344,
-          0.443
-        ],
-        [
-          0.37,
-          0.335,
-          0.447
-        ],
-        [
-          0.38,
-          0.335,
-          0.451
-        ],
-        [
-          0.39,
-          0.326,
-          0.455
-        ],
-        [
-          0.4,
-          0.326,
-          0.459
-        ],
-        [
-          0.41,
-          0.317,
-          0.463
-        ],
-        [
-          0.42,
-          0.317,
-          0.467
-        ],
-        [
-          0.43,
-          0.312,
-          0.47
-        ],
-        [
-          0.44,
-          0.307,
-          0.473
-        ],
-        [
-          0.45,
-          0.298,
-          0.476
-        ],
-        [
-          0.46,
-          0.284,
-          0.478
-        ],
-        [
-          0.47,
-          0.28,
-          0.481
-        ],
-        [
-          0.48,
-          0.28,
-          0.483
-        ],
-        [
-          0.49,
-          0.275,
-          0.485
-        ],
-        [
-          0.5,
-          0.266,
-          0.487
-        ],
-        [
-          0.51,
-          0.257,
-          0.489
-        ],
-        [
-          0.52,
-          0.252,
-          0.491
-        ],
-        [
-          0.53,
-          0.252,
-          0.493
-        ],
-        [
-          0.54,
-          0.243,
-          0.494
-        ],
-        [
-          0.55,
-          0.234,
-          0.496
-        ],
-        [
-          0.56,
-          0.234,
-          0.497
-        ],
-        [
-          0.57,
-          0.225,
-          0.498
-        ],
-        [
-          0.58,
-          0.225,
-          0.498
-        ],
-        [
-          0.59,
-          0.225,
-          0.499
-        ],
-        [
-          0.6,
-          0.225,
-          0.499
-        ],
-        [
-          0.61,
-          0.22,
-          0.499
-        ],
-        [
-          0.62,
-          0.22,
-          0.5
-        ],
-        [
-          0.63,
-          0.22,
-          0.5
-        ],
-        [
-          0.64,
-          0.22,
-          0.5
-        ],
-        [
-          0.65,
-          0.211,
-          0.501
-        ],
-        [
-          0.66,
-          0.211,
-          0.502
-        ],
-        [
-          0.67,
-          0.206,
-          0.503
-        ],
-        [
-          0.68,
-          0.193,
-          0.505
-        ],
-        [
-          0.69,
-          0.188,
-          0.509
-        ],
-        [
-          0.7,
-          0.188,
-          0.513
-        ],
-        [
-          0.71,
-          0.188,
-          0.518
-        ],
-        [
-          0.72,
-          0.188,
-          0.524
-        ],
-        [
-          0.73,
-          0.188,
-          0.532
-        ],
-        [
-          0.74,
-          0.188,
-          0.54
-        ],
-        [
-          0.75,
-          0.188,
-          0.55
-        ],
-        [
-          0.76,
-          0.188,
-          0.561
-        ],
-        [
-          0.77,
-          0.184,
-          0.573
-        ],
-        [
-          0.78,
-          0.174,
-          0.587
-        ],
-        [
-          0.79,
-          0.174,
-          0.6
-        ],
-        [
-          0.8,
-          0.17,
-          0.614
-        ],
-        [
-          0.81,
-          0.17,
-          0.626
-        ],
-        [
-          0.82,
-          0.17,
-          0.638
-        ],
-        [
-          0.83,
-          0.165,
-          0.648
-        ],
-        [
-          0.84,
-          0.165,
-          0.657
-        ],
-        [
-          0.85,
-          0.165,
-          0.664
-        ],
-        [
-          0.86,
-          0.165,
-          0.671
-        ],
-        [
-          0.87,
-          0.165,
-          0.676
-        ],
-        [
-          0.88,
-          0.165,
-          0.68
-        ],
-        [
-          0.89,
-          0.165,
-          0.683
-        ],
-        [
-          0.9,
-          0.161,
-          0.686
-        ],
-        [
-          0.91,
-          0.161,
-          0.689
-        ],
-        [
-          0.92,
-          0.156,
-          0.691
-        ],
-        [
-          0.93,
-          0.151,
-          0.692
-        ],
-        [
-          0.94,
-          0.151,
-          0.693
-        ],
-        [
-          0.95,
-          0.147,
-          0.694
-        ],
-        [
-          0.96,
-          0.138,
-          0.694
-        ],
-        [
-          0.97,
-          0.124,
-          0.695
-        ],
-        [
-          0.98,
-          0.124,
-          0.695
-        ],
-        [
-          0.99,
-          0.119,
-          0.694
-        ],
-        [
-          1.0,
-          0.119,
-          0.694
-        ]
-      ],
-      "early_retention": 0.846
-    },
     {
       "video_id": "7V_sBsdst_o",
       "url": "https://youtube.com/shorts/7V_sBsdst_o",
@@ -574,14 +29,14 @@
       "scene_changes_before_5s": 2,
       "title": "The Lake That Basically Disappeared (3 Charts)",
       "published_at": "2026-09-05T00:30:38Z",
-      "age_hours": 90.9,
+      "age_hours": 92.2,
       "views": 901,
       "engaged_views": 388,
       "likes": 8,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 9.91,
+      "views_per_hour": 9.77,
       "average_view_percentage": 37.6,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 119.0,
@@ -1092,6 +547,551 @@
       "early_retention": 0.813
     },
     {
+      "video_id": "6UiXA5Tw0YU",
+      "url": "https://youtube.com/shorts/6UiXA5Tw0YU",
+      "catalog_id": "airline-bag-fee-unbundling",
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": "inversion",
+      "source_views": null,
+      "banger": null,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": 3,
+      "duration_s": 44.0,
+      "topic_category": "economics",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:suitcase-cash-stuff",
+        "mechanic:fuselage-cash-flood",
+        "mechanic:runway-cash-trail-lineup"
+      ],
+      "words_first_10s": 5,
+      "scene_changes_before_5s": 3,
+      "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
+      "published_at": "2026-09-05T10:58:36Z",
+      "age_hours": 81.8,
+      "views": 798,
+      "engaged_views": 218,
+      "likes": 3,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": true,
+      "views_per_hour": 9.76,
+      "average_view_percentage": 38.4,
+      "average_view_duration_s": 16.0,
+      "estimated_minutes_watched": 74.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_curve": [
+        [
+          0.01,
+          1.101,
+          0.433
+        ],
+        [
+          0.02,
+          1.101,
+          0.395
+        ],
+        [
+          0.03,
+          1.101,
+          0.359
+        ],
+        [
+          0.04,
+          1.096,
+          0.33
+        ],
+        [
+          0.05,
+          1.092,
+          0.31
+        ],
+        [
+          0.06,
+          1.092,
+          0.297
+        ],
+        [
+          0.07,
+          1.092,
+          0.291
+        ],
+        [
+          0.08,
+          1.092,
+          0.288
+        ],
+        [
+          0.09,
+          1.087,
+          0.287
+        ],
+        [
+          0.1,
+          1.087,
+          0.288
+        ],
+        [
+          0.11,
+          1.014,
+          0.29
+        ],
+        [
+          0.12,
+          0.931,
+          0.294
+        ],
+        [
+          0.13,
+          0.881,
+          0.298
+        ],
+        [
+          0.14,
+          0.817,
+          0.303
+        ],
+        [
+          0.15,
+          0.752,
+          0.309
+        ],
+        [
+          0.16,
+          0.716,
+          0.315
+        ],
+        [
+          0.17,
+          0.688,
+          0.322
+        ],
+        [
+          0.18,
+          0.633,
+          0.329
+        ],
+        [
+          0.19,
+          0.619,
+          0.337
+        ],
+        [
+          0.2,
+          0.596,
+          0.344
+        ],
+        [
+          0.21,
+          0.573,
+          0.352
+        ],
+        [
+          0.22,
+          0.564,
+          0.36
+        ],
+        [
+          0.23,
+          0.541,
+          0.368
+        ],
+        [
+          0.24,
+          0.5,
+          0.375
+        ],
+        [
+          0.25,
+          0.486,
+          0.383
+        ],
+        [
+          0.26,
+          0.454,
+          0.39
+        ],
+        [
+          0.27,
+          0.45,
+          0.397
+        ],
+        [
+          0.28,
+          0.44,
+          0.403
+        ],
+        [
+          0.29,
+          0.431,
+          0.41
+        ],
+        [
+          0.3,
+          0.422,
+          0.415
+        ],
+        [
+          0.31,
+          0.413,
+          0.421
+        ],
+        [
+          0.32,
+          0.408,
+          0.426
+        ],
+        [
+          0.33,
+          0.39,
+          0.43
+        ],
+        [
+          0.34,
+          0.372,
+          0.435
+        ],
+        [
+          0.35,
+          0.353,
+          0.439
+        ],
+        [
+          0.36,
+          0.344,
+          0.443
+        ],
+        [
+          0.37,
+          0.335,
+          0.447
+        ],
+        [
+          0.38,
+          0.335,
+          0.451
+        ],
+        [
+          0.39,
+          0.326,
+          0.455
+        ],
+        [
+          0.4,
+          0.326,
+          0.459
+        ],
+        [
+          0.41,
+          0.317,
+          0.463
+        ],
+        [
+          0.42,
+          0.317,
+          0.467
+        ],
+        [
+          0.43,
+          0.312,
+          0.47
+        ],
+        [
+          0.44,
+          0.307,
+          0.473
+        ],
+        [
+          0.45,
+          0.298,
+          0.476
+        ],
+        [
+          0.46,
+          0.284,
+          0.478
+        ],
+        [
+          0.47,
+          0.28,
+          0.481
+        ],
+        [
+          0.48,
+          0.28,
+          0.483
+        ],
+        [
+          0.49,
+          0.275,
+          0.485
+        ],
+        [
+          0.5,
+          0.266,
+          0.487
+        ],
+        [
+          0.51,
+          0.257,
+          0.489
+        ],
+        [
+          0.52,
+          0.252,
+          0.491
+        ],
+        [
+          0.53,
+          0.252,
+          0.493
+        ],
+        [
+          0.54,
+          0.243,
+          0.494
+        ],
+        [
+          0.55,
+          0.234,
+          0.496
+        ],
+        [
+          0.56,
+          0.234,
+          0.497
+        ],
+        [
+          0.57,
+          0.225,
+          0.498
+        ],
+        [
+          0.58,
+          0.225,
+          0.498
+        ],
+        [
+          0.59,
+          0.225,
+          0.499
+        ],
+        [
+          0.6,
+          0.225,
+          0.499
+        ],
+        [
+          0.61,
+          0.22,
+          0.499
+        ],
+        [
+          0.62,
+          0.22,
+          0.5
+        ],
+        [
+          0.63,
+          0.22,
+          0.5
+        ],
+        [
+          0.64,
+          0.22,
+          0.5
+        ],
+        [
+          0.65,
+          0.211,
+          0.501
+        ],
+        [
+          0.66,
+          0.211,
+          0.502
+        ],
+        [
+          0.67,
+          0.206,
+          0.503
+        ],
+        [
+          0.68,
+          0.193,
+          0.505
+        ],
+        [
+          0.69,
+          0.188,
+          0.509
+        ],
+        [
+          0.7,
+          0.188,
+          0.513
+        ],
+        [
+          0.71,
+          0.188,
+          0.518
+        ],
+        [
+          0.72,
+          0.188,
+          0.524
+        ],
+        [
+          0.73,
+          0.188,
+          0.532
+        ],
+        [
+          0.74,
+          0.188,
+          0.54
+        ],
+        [
+          0.75,
+          0.188,
+          0.55
+        ],
+        [
+          0.76,
+          0.188,
+          0.561
+        ],
+        [
+          0.77,
+          0.184,
+          0.573
+        ],
+        [
+          0.78,
+          0.174,
+          0.587
+        ],
+        [
+          0.79,
+          0.174,
+          0.6
+        ],
+        [
+          0.8,
+          0.17,
+          0.614
+        ],
+        [
+          0.81,
+          0.17,
+          0.626
+        ],
+        [
+          0.82,
+          0.17,
+          0.638
+        ],
+        [
+          0.83,
+          0.165,
+          0.648
+        ],
+        [
+          0.84,
+          0.165,
+          0.657
+        ],
+        [
+          0.85,
+          0.165,
+          0.664
+        ],
+        [
+          0.86,
+          0.165,
+          0.671
+        ],
+        [
+          0.87,
+          0.165,
+          0.676
+        ],
+        [
+          0.88,
+          0.165,
+          0.68
+        ],
+        [
+          0.89,
+          0.165,
+          0.683
+        ],
+        [
+          0.9,
+          0.161,
+          0.686
+        ],
+        [
+          0.91,
+          0.161,
+          0.689
+        ],
+        [
+          0.92,
+          0.156,
+          0.691
+        ],
+        [
+          0.93,
+          0.151,
+          0.692
+        ],
+        [
+          0.94,
+          0.151,
+          0.693
+        ],
+        [
+          0.95,
+          0.147,
+          0.694
+        ],
+        [
+          0.96,
+          0.138,
+          0.694
+        ],
+        [
+          0.97,
+          0.124,
+          0.695
+        ],
+        [
+          0.98,
+          0.124,
+          0.695
+        ],
+        [
+          0.99,
+          0.119,
+          0.694
+        ],
+        [
+          1.0,
+          0.119,
+          0.694
+        ]
+      ],
+      "early_retention": 0.846
+    },
+    {
       "video_id": "R23olC04wJs",
       "url": "https://youtube.com/shorts/R23olC04wJs",
       "catalog_id": "baby-name-diversity",
@@ -1115,14 +1115,14 @@
       "scene_changes_before_5s": null,
       "title": "The #1 Baby Name Isn't What It Used To Be",
       "published_at": "2026-08-28T20:18:29Z",
-      "age_hours": 263.1,
+      "age_hours": 264.5,
       "views": 1220,
       "engaged_views": 587,
       "likes": 5,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 4.64,
+      "views_per_hour": 4.61,
       "average_view_percentage": 72.0,
       "average_view_duration_s": 30.0,
       "estimated_minutes_watched": 309.0,
@@ -1656,14 +1656,14 @@
       "scene_changes_before_5s": null,
       "title": "One Country's Median Age Is 15. Another's Is 50.",
       "published_at": "2026-09-03T00:28:35Z",
-      "age_hours": 139.0,
+      "age_hours": 140.3,
       "views": 492,
       "engaged_views": 194,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.54,
+      "views_per_hour": 3.51,
       "average_view_percentage": 36.2,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 61.0,
@@ -2197,14 +2197,14 @@
       "scene_changes_before_5s": null,
       "title": "The World Learned To Read. Not Everyone Did.",
       "published_at": "2026-08-29T03:14:06Z",
-      "age_hours": 256.2,
+      "age_hours": 257.5,
       "views": 829,
       "engaged_views": 458,
       "likes": 6,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 3.24,
+      "views_per_hour": 3.22,
       "average_view_percentage": 34.3,
       "average_view_duration_s": 13.0,
       "estimated_minutes_watched": 109.0,
@@ -2738,14 +2738,14 @@
       "scene_changes_before_5s": null,
       "title": "Why 6 In 10 US Pets Are Now Overweight",
       "published_at": "2026-09-02T12:57:01Z",
-      "age_hours": 150.5,
+      "age_hours": 151.8,
       "views": 390,
       "engaged_views": 88,
       "likes": 3,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.59,
+      "views_per_hour": 2.57,
       "average_view_percentage": 31.8,
       "average_view_duration_s": 12.0,
       "estimated_minutes_watched": 25.0,
@@ -3283,14 +3283,14 @@
       "scene_changes_before_5s": 2,
       "title": "Why Teens Aren't Getting Their License Anymore (3 Charts)",
       "published_at": "2026-09-05T06:30:55Z",
-      "age_hours": 84.9,
+      "age_hours": 86.2,
       "views": 219,
       "engaged_views": 66,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.58,
+      "views_per_hour": 2.54,
       "average_view_percentage": 33.2,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 21.0,
@@ -3824,14 +3824,14 @@
       "scene_changes_before_5s": null,
       "title": "Why Password Length Beats Every Trick You Know",
       "published_at": "2026-09-03T12:44:59Z",
-      "age_hours": 126.7,
+      "age_hours": 128.0,
       "views": 243,
       "engaged_views": 89,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.92,
+      "views_per_hour": 1.9,
       "average_view_percentage": 57.5,
       "average_view_duration_s": 26.0,
       "estimated_minutes_watched": 42.0,
@@ -4369,14 +4369,14 @@
       "scene_changes_before_5s": 2,
       "title": "Organ Transplants Hit A Record. The Waitlist Still Didn't Shrink (3 Charts)",
       "published_at": "2026-09-06T00:14:29Z",
-      "age_hours": 67.2,
+      "age_hours": 68.5,
       "views": 118,
       "engaged_views": 21,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.76,
+      "views_per_hour": 1.72,
       "average_view_percentage": 27.2,
       "average_view_duration_s": 12.0,
       "estimated_minutes_watched": 6.0,
@@ -4411,14 +4411,14 @@
       "scene_changes_before_5s": 2,
       "title": "Why 100th Birthdays Are About To Get Normal (3 Charts)",
       "published_at": "2026-09-04T18:30:58Z",
-      "age_hours": 96.9,
+      "age_hours": 98.2,
       "views": 154,
       "engaged_views": 45,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.59,
+      "views_per_hour": 1.57,
       "average_view_percentage": 34.5,
       "average_view_duration_s": 16.0,
       "estimated_minutes_watched": 14.0,
@@ -4952,14 +4952,14 @@
       "scene_changes_before_5s": null,
       "title": "Fish Catch Has Barely Grown Since 1993 With 94403126 Metric Tons",
       "published_at": "2026-08-25T14:23:08Z",
-      "age_hours": 341.0,
+      "age_hours": 342.4,
       "views": 504,
       "engaged_views": 187,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 1.48,
+      "views_per_hour": 1.47,
       "average_view_percentage": 32.4,
       "average_view_duration_s": 12.0,
       "estimated_minutes_watched": 47.0,
@@ -5470,6 +5470,39 @@
       "early_retention": 0.936
     },
     {
+      "video_id": "Et3TxibTEW8",
+      "url": "https://youtube.com/shorts/Et3TxibTEW8",
+      "catalog_id": "driving-side-of-the-road",
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 91,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": 3,
+      "duration_s": 40.5,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Only 30% Of The World Still Drives On The Left",
+      "published_at": "2026-09-08T18:52:05Z",
+      "age_hours": 1.9,
+      "views": 2,
+      "engaged_views": 2,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 1.06
+    },
+    {
       "video_id": "4FUVzs56pzQ",
       "url": "https://youtube.com/shorts/4FUVzs56pzQ",
       "catalog_id": "bnpl-checkout-takeover",
@@ -5493,14 +5526,14 @@
       "scene_changes_before_5s": null,
       "title": "Buy Now Pay Later Is Eating The Checkout Button",
       "published_at": "2026-09-03T06:29:00Z",
-      "age_hours": 133.0,
+      "age_hours": 134.3,
       "views": 132,
       "engaged_views": 13,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.99,
+      "views_per_hour": 0.98,
       "average_view_percentage": 24.7,
       "average_view_duration_s": 10.0,
       "estimated_minutes_watched": 4.0,
@@ -6009,14 +6042,14 @@
       "scene_changes_before_5s": null,
       "title": "The Bug That's Already In 19 States",
       "published_at": "2026-09-01T07:29:26Z",
-      "age_hours": 179.9,
+      "age_hours": 181.3,
       "views": 176,
       "engaged_views": 55,
       "likes": 1,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.98,
+      "views_per_hour": 0.97,
       "average_view_percentage": 35.7,
       "average_view_duration_s": 11.0,
       "estimated_minutes_watched": 13.0,
@@ -6550,14 +6583,14 @@
       "scene_changes_before_5s": null,
       "title": "We Take More Photos Every 2 Minutes Than All Of History",
       "published_at": "2026-08-29T09:14:22Z",
-      "age_hours": 250.2,
+      "age_hours": 251.5,
       "views": 240,
       "engaged_views": 56,
       "likes": 4,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.96,
+      "views_per_hour": 0.95,
       "average_view_percentage": 36.4,
       "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 19.0,
@@ -7091,14 +7124,14 @@
       "scene_changes_before_5s": null,
       "title": "99% Of The Internet Runs Through The Ocean Floor",
       "published_at": "2026-09-04T15:46:53Z",
-      "age_hours": 99.7,
+      "age_hours": 101.0,
       "views": 93,
       "engaged_views": 37,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.93,
+      "views_per_hour": 0.92,
       "average_view_percentage": 30.1,
       "average_view_duration_s": 11.0,
       "estimated_minutes_watched": 8.0,
@@ -7129,7 +7162,7 @@
       "scene_changes_before_5s": null,
       "title": "Getting Into Space Just Got Nearly Impossible",
       "published_at": "2026-09-01T01:29:20Z",
-      "age_hours": 185.9,
+      "age_hours": 187.3,
       "views": 97,
       "engaged_views": 35,
       "likes": 0,
@@ -7167,14 +7200,14 @@
       "scene_changes_before_5s": null,
       "title": "Why So Many Young Adults Still Live With Mom And Dad",
       "published_at": "2026-09-02T18:28:44Z",
-      "age_hours": 145.0,
+      "age_hours": 146.3,
       "views": 65,
       "engaged_views": 27,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 0.45,
+      "views_per_hour": 0.44,
       "average_view_percentage": 33.5,
       "average_view_duration_s": 14.0,
       "estimated_minutes_watched": 7.0,
@@ -7205,7 +7238,7 @@
       "scene_changes_before_5s": null,
       "title": "One Lake Gets Lightning 297 Nights a Year",
       "published_at": "2026-09-01T13:29:41Z",
-      "age_hours": 173.9,
+      "age_hours": 175.3,
       "views": 61,
       "engaged_views": 7,
       "likes": 0,
@@ -7243,7 +7276,7 @@
       "scene_changes_before_5s": null,
       "title": "Probability In Everyday Life",
       "published_at": "2026-07-17T11:43:28Z",
-      "age_hours": 1279.7,
+      "age_hours": 1281.0,
       "views": 229,
       "engaged_views": 55,
       "likes": 0,
@@ -7784,7 +7817,7 @@
       "scene_changes_before_5s": null,
       "title": "We've Found 39,000 Asteroids. That's Not Enough.",
       "published_at": "2026-08-30T00:25:24Z",
-      "age_hours": 235.0,
+      "age_hours": 236.3,
       "views": 39,
       "engaged_views": 15,
       "likes": 1,
@@ -7823,7 +7856,7 @@
       "scene_changes_before_5s": null,
       "title": "World Cereal Land Just Sank Below Its 1972 Level",
       "published_at": "2026-08-27T05:46:28Z",
-      "age_hours": 301.7,
+      "age_hours": 303.0,
       "views": 41,
       "engaged_views": 19,
       "likes": 0,
@@ -7862,7 +7895,7 @@
       "scene_changes_before_5s": null,
       "title": "Driest Places on Earth",
       "published_at": "2026-07-25T15:22:19Z",
-      "age_hours": 1084.1,
+      "age_hours": 1085.4,
       "views": 128,
       "engaged_views": 32,
       "likes": 1,
@@ -8403,7 +8436,7 @@
       "scene_changes_before_5s": null,
       "title": "Heart Beats In Lifetime",
       "published_at": "2026-07-20T13:30:36Z",
-      "age_hours": 1205.9,
+      "age_hours": 1207.2,
       "views": 111,
       "engaged_views": 22,
       "likes": 2,
@@ -8441,7 +8474,7 @@
       "scene_changes_before_5s": null,
       "title": "Macao, Not Monaco, Is Earth's Densest Place \u2014 20,570 People Per Km\u00b2",
       "published_at": "2026-08-14T13:00:13Z",
-      "age_hours": 606.4,
+      "age_hours": 607.8,
       "views": 54,
       "engaged_views": 20,
       "likes": 0,
@@ -8479,7 +8512,7 @@
       "scene_changes_before_5s": null,
       "title": "Deadliest Events in History",
       "published_at": "2026-07-24T15:21:47Z",
-      "age_hours": 1108.1,
+      "age_hours": 1109.4,
       "views": 84,
       "engaged_views": 40,
       "likes": 0,
@@ -8517,7 +8550,7 @@
       "scene_changes_before_5s": null,
       "title": "The US Still Has 148,553 Km Of Rail \u2014 More Than China",
       "published_at": "2026-08-25T05:46:31Z",
-      "age_hours": 349.7,
+      "age_hours": 351.0,
       "views": 27,
       "engaged_views": 12,
       "likes": 0,
@@ -8556,7 +8589,7 @@
       "scene_changes_before_5s": null,
       "title": "Tornado Wind Speed Records",
       "published_at": "2026-07-22T19:24:49Z",
-      "age_hours": 1152.0,
+      "age_hours": 1153.3,
       "views": 74,
       "engaged_views": 27,
       "likes": 0,
@@ -8594,7 +8627,7 @@
       "scene_changes_before_5s": null,
       "title": "Hair Growth Secrets",
       "published_at": "2026-07-24T11:31:22Z",
-      "age_hours": 1111.9,
+      "age_hours": 1113.2,
       "views": 62,
       "engaged_views": 6,
       "likes": 2,
@@ -8632,7 +8665,7 @@
       "scene_changes_before_5s": null,
       "title": "How the World Keeps Its Lights On",
       "published_at": "2026-07-31T02:24:59Z",
-      "age_hours": 953.0,
+      "age_hours": 954.3,
       "views": 60,
       "engaged_views": 16,
       "likes": 0,
@@ -8670,7 +8703,7 @@
       "scene_changes_before_5s": null,
       "title": "Farmland Per Person Dropped From 0.29 To 0.17 Hectares",
       "published_at": "2026-08-14T20:34:03Z",
-      "age_hours": 598.9,
+      "age_hours": 600.2,
       "views": 37,
       "engaged_views": 11,
       "likes": 1,
@@ -8709,7 +8742,7 @@
       "scene_changes_before_5s": null,
       "title": "World Hunger Rose Back To 8.5% After 13 Years Of Falling",
       "published_at": "2026-08-13T22:57:19Z",
-      "age_hours": 620.5,
+      "age_hours": 621.8,
       "views": 30,
       "engaged_views": 12,
       "likes": 0,
@@ -8748,7 +8781,7 @@
       "scene_changes_before_5s": null,
       "title": "World Renewable Power Was Still Only 19.7% After Two Decades",
       "published_at": "2026-08-28T14:18:29Z",
-      "age_hours": 269.1,
+      "age_hours": 270.5,
       "views": 13,
       "engaged_views": 4,
       "likes": 0,
@@ -8787,7 +8820,7 @@
       "scene_changes_before_5s": null,
       "title": "Most Magnetic Materials Known",
       "published_at": "2026-07-17T07:40:44Z",
-      "age_hours": 1283.8,
+      "age_hours": 1285.1,
       "views": 55,
       "engaged_views": 22,
       "likes": 0,
@@ -8825,7 +8858,7 @@
       "scene_changes_before_5s": null,
       "title": "Oldest Written Languages",
       "published_at": "2026-07-21T11:23:16Z",
-      "age_hours": 1184.0,
+      "age_hours": 1185.4,
       "views": 44,
       "engaged_views": 12,
       "likes": 0,
@@ -8864,7 +8897,7 @@
       "scene_changes_before_5s": null,
       "title": "Shifting Sands Mystery",
       "published_at": "2026-07-25T11:32:29Z",
-      "age_hours": 1087.9,
+      "age_hours": 1089.2,
       "views": 41,
       "engaged_views": 7,
       "likes": 1,
@@ -8907,7 +8940,7 @@
       "scene_changes_before_5s": 3,
       "title": "$124 Trillion Is About To Change Hands",
       "published_at": "2026-09-05T16:58:32Z",
-      "age_hours": 74.5,
+      "age_hours": 75.8,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -8946,7 +8979,7 @@
       "scene_changes_before_5s": null,
       "title": "Creepy Creatures Never Stop Growing",
       "published_at": "2026-07-23T15:13:34Z",
-      "age_hours": 1132.2,
+      "age_hours": 1133.5,
       "views": 38,
       "engaged_views": 6,
       "likes": 1,
@@ -8957,45 +8990,6 @@
       "average_view_percentage": 11.7,
       "average_view_duration_s": 6.0,
       "estimated_minutes_watched": 1.0,
-      "shares": 0,
-      "subscribers_gained": 0,
-      "retention_insufficient_data": true
-    },
-    {
-      "video_id": "6hKXyKNTK9E",
-      "url": "https://youtube.com/shorts/6hKXyKNTK9E",
-      "catalog_id": "voyager-signal-delay-growing",
-      "streamer": null,
-      "series": null,
-      "experiment_arm": null,
-      "actual_structure": null,
-      "hook": null,
-      "source_views": null,
-      "banger": null,
-      "story_structure": null,
-      "narrative_score": null,
-      "revision_count": null,
-      "used_vod_expansion": null,
-      "n_beats": null,
-      "duration_s": null,
-      "topic_category": null,
-      "ending_type": null,
-      "depictions": null,
-      "words_first_10s": null,
-      "scene_changes_before_5s": null,
-      "title": "Why NASA Waits Almost Two Days For One Reply",
-      "published_at": "2026-09-03T20:10:45Z",
-      "age_hours": 119.3,
-      "views": 3,
-      "engaged_views": 1,
-      "likes": 0,
-      "comments": 0,
-      "is_public": true,
-      "usable_for_retention": false,
-      "views_per_hour": 0.03,
-      "average_view_percentage": 100.0,
-      "average_view_duration_s": 40.0,
-      "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
       "retention_insufficient_data": true
@@ -9024,7 +9018,7 @@
       "scene_changes_before_5s": null,
       "title": "Thinnest Materials Ever Made",
       "published_at": "2026-07-17T01:40:54Z",
-      "age_hours": 1289.8,
+      "age_hours": 1291.1,
       "views": 30,
       "engaged_views": 12,
       "likes": 0,
@@ -9063,7 +9057,7 @@
       "scene_changes_before_5s": null,
       "title": "Heaviest Things Ever Moved",
       "published_at": "2026-07-21T01:30:41Z",
-      "age_hours": 1193.9,
+      "age_hours": 1195.2,
       "views": 23,
       "engaged_views": 4,
       "likes": 0,
@@ -9102,7 +9096,7 @@
       "scene_changes_before_5s": null,
       "title": "Longest Rivers On Earth",
       "published_at": "2026-07-23T11:21:51Z",
-      "age_hours": 1136.1,
+      "age_hours": 1137.4,
       "views": 23,
       "engaged_views": 5,
       "likes": 0,
@@ -9141,7 +9135,7 @@
       "scene_changes_before_5s": null,
       "title": "Sharp Teeth In The Wild",
       "published_at": "2026-07-23T19:13:27Z",
-      "age_hours": 1128.2,
+      "age_hours": 1129.5,
       "views": 24,
       "engaged_views": 6,
       "likes": 0,
@@ -9180,7 +9174,7 @@
       "scene_changes_before_5s": null,
       "title": "Tree Roots Depth Uncovered",
       "published_at": "2026-07-25T19:22:18Z",
-      "age_hours": 1080.1,
+      "age_hours": 1081.4,
       "views": 22,
       "engaged_views": 5,
       "likes": 1,
@@ -9219,7 +9213,7 @@
       "scene_changes_before_5s": null,
       "title": "The Line That Only Goes Up",
       "published_at": "2026-07-30T14:25:20Z",
-      "age_hours": 965.0,
+      "age_hours": 966.3,
       "views": 23,
       "engaged_views": 3,
       "likes": 0,
@@ -9258,7 +9252,7 @@
       "scene_changes_before_5s": null,
       "title": "Living Alone Just Became the New Normal",
       "published_at": "2026-08-31T18:48:14Z",
-      "age_hours": 192.6,
+      "age_hours": 194.0,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -9268,6 +9262,45 @@
       "views_per_hour": 0.02,
       "average_view_percentage": 17.2,
       "average_view_duration_s": 6.0,
+      "estimated_minutes_watched": 0.0,
+      "shares": 0,
+      "subscribers_gained": 0,
+      "retention_insufficient_data": true
+    },
+    {
+      "video_id": "6hKXyKNTK9E",
+      "url": "https://youtube.com/shorts/6hKXyKNTK9E",
+      "catalog_id": "voyager-signal-delay-growing",
+      "streamer": null,
+      "series": null,
+      "experiment_arm": null,
+      "actual_structure": null,
+      "hook": null,
+      "source_views": null,
+      "banger": null,
+      "story_structure": null,
+      "narrative_score": null,
+      "revision_count": null,
+      "used_vod_expansion": null,
+      "n_beats": null,
+      "duration_s": null,
+      "topic_category": null,
+      "ending_type": null,
+      "depictions": null,
+      "words_first_10s": null,
+      "scene_changes_before_5s": null,
+      "title": "Why NASA Waits Almost Two Days For One Reply",
+      "published_at": "2026-09-03T20:10:45Z",
+      "age_hours": 120.6,
+      "views": 3,
+      "engaged_views": 1,
+      "likes": 0,
+      "comments": 0,
+      "is_public": true,
+      "usable_for_retention": false,
+      "views_per_hour": 0.02,
+      "average_view_percentage": 100.0,
+      "average_view_duration_s": 40.0,
       "estimated_minutes_watched": 0.0,
       "shares": 0,
       "subscribers_gained": 0,
@@ -9297,7 +9330,7 @@
       "scene_changes_before_5s": null,
       "title": "Space Rock Sizes",
       "published_at": "2026-07-11T11:13:19Z",
-      "age_hours": 1424.2,
+      "age_hours": 1425.5,
       "views": 8,
       "engaged_views": 2,
       "likes": 0,
@@ -9336,7 +9369,7 @@
       "scene_changes_before_5s": null,
       "title": "Biggest Craters In Solar System",
       "published_at": "2026-07-19T15:13:46Z",
-      "age_hours": 1228.2,
+      "age_hours": 1229.5,
       "views": 8,
       "engaged_views": 2,
       "likes": 0,
@@ -9375,7 +9408,7 @@
       "scene_changes_before_5s": null,
       "title": "Pyramid Construction Timeline",
       "published_at": "2026-07-21T07:30:50Z",
-      "age_hours": 1187.9,
+      "age_hours": 1189.2,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -9414,7 +9447,7 @@
       "scene_changes_before_5s": null,
       "title": "Largest Numbers Named",
       "published_at": "2026-07-21T19:14:17Z",
-      "age_hours": 1176.2,
+      "age_hours": 1177.5,
       "views": 8,
       "engaged_views": 5,
       "likes": 0,
@@ -9453,7 +9486,7 @@
       "scene_changes_before_5s": null,
       "title": "Tectonic Plates on the Move",
       "published_at": "2026-07-22T13:21:46Z",
-      "age_hours": 1158.1,
+      "age_hours": 1159.4,
       "views": 7,
       "engaged_views": 3,
       "likes": 0,
@@ -9492,7 +9525,7 @@
       "scene_changes_before_5s": null,
       "title": "Lava Production of Volcanoes",
       "published_at": "2026-07-22T19:21:45Z",
-      "age_hours": 1152.1,
+      "age_hours": 1153.4,
       "views": 9,
       "engaged_views": 3,
       "likes": 0,
@@ -9531,7 +9564,7 @@
       "scene_changes_before_5s": null,
       "title": "Lightning Travel Distance",
       "published_at": "2026-07-22T23:24:51Z",
-      "age_hours": 1148.0,
+      "age_hours": 1149.3,
       "views": 9,
       "engaged_views": 1,
       "likes": 0,
@@ -9570,7 +9603,7 @@
       "scene_changes_before_5s": null,
       "title": "Cities Power Consumption",
       "published_at": "2026-07-24T19:22:13Z",
-      "age_hours": 1104.1,
+      "age_hours": 1105.4,
       "views": 9,
       "engaged_views": 3,
       "likes": 0,
@@ -9609,7 +9642,7 @@
       "scene_changes_before_5s": null,
       "title": "Half the Planet, Eight Countries",
       "published_at": "2026-07-30T20:25:07Z",
-      "age_hours": 959.0,
+      "age_hours": 960.3,
       "views": 5,
       "engaged_views": 2,
       "likes": 1,
@@ -9648,7 +9681,7 @@
       "scene_changes_before_5s": null,
       "title": "Hospital Beds Per Person Are Higher Now Than In 1975",
       "published_at": "2026-08-20T19:01:09Z",
-      "age_hours": 456.4,
+      "age_hours": 457.7,
       "views": 4,
       "engaged_views": 1,
       "likes": 0,
@@ -9687,7 +9720,7 @@
       "scene_changes_before_5s": null,
       "title": "Foreign Aid Never Broke 0.32% Of Health Spending",
       "published_at": "2026-08-24T23:46:28Z",
-      "age_hours": 355.7,
+      "age_hours": 357.0,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9726,7 +9759,7 @@
       "scene_changes_before_5s": null,
       "title": "Global Health Spending Exceeds $1300 Per Person",
       "published_at": "2026-08-25T20:23:35Z",
-      "age_hours": 335.0,
+      "age_hours": 336.4,
       "views": 4,
       "engaged_views": 4,
       "likes": 0,
@@ -9765,7 +9798,7 @@
       "scene_changes_before_5s": null,
       "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
       "published_at": "2026-08-25T22:31:03Z",
-      "age_hours": 332.9,
+      "age_hours": 334.2,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -9804,7 +9837,7 @@
       "scene_changes_before_5s": null,
       "title": "The World Has Less Land Than It Did In 2013",
       "published_at": "2026-08-28T08:31:47Z",
-      "age_hours": 274.9,
+      "age_hours": 276.2,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -9843,7 +9876,7 @@
       "scene_changes_before_5s": null,
       "title": "The 8-Glasses-a-Day Rule Was Never Real",
       "published_at": "2026-08-31T12:48:29Z",
-      "age_hours": 198.6,
+      "age_hours": 200.0,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -9882,7 +9915,7 @@
       "scene_changes_before_5s": null,
       "title": "Why Only 10% Of Us Are Left-Handed",
       "published_at": "2026-08-31T15:25:13Z",
-      "age_hours": 196.0,
+      "age_hours": 197.3,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9921,7 +9954,7 @@
       "scene_changes_before_5s": null,
       "title": "Birds Migrate Insanely Far",
       "published_at": "2026-07-12T14:02:05Z",
-      "age_hours": 1397.4,
+      "age_hours": 1398.7,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -9960,7 +9993,7 @@
       "scene_changes_before_5s": null,
       "title": "Birds Fly Nonstop",
       "published_at": "2026-07-12T15:55:45Z",
-      "age_hours": 1395.5,
+      "age_hours": 1396.8,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -9999,7 +10032,7 @@
       "scene_changes_before_5s": null,
       "title": "Elevator Speed Records",
       "published_at": "2026-07-13T11:36:54Z",
-      "age_hours": 1375.8,
+      "age_hours": 1377.1,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10032,7 +10065,7 @@
       "scene_changes_before_5s": null,
       "title": "Mega Ships Size Comparison",
       "published_at": "2026-07-13T15:22:52Z",
-      "age_hours": 1372.1,
+      "age_hours": 1373.4,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10071,7 +10104,7 @@
       "scene_changes_before_5s": null,
       "title": "Crane Heights Comparison",
       "published_at": "2026-07-13T19:23:19Z",
-      "age_hours": 1368.0,
+      "age_hours": 1369.4,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10110,7 +10143,7 @@
       "scene_changes_before_5s": null,
       "title": "Ancient Libraries Uncovered",
       "published_at": "2026-07-13T23:23:02Z",
-      "age_hours": 1364.1,
+      "age_hours": 1365.4,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -10149,7 +10182,7 @@
       "scene_changes_before_5s": null,
       "title": "Longest Lasting Dynasties",
       "published_at": "2026-07-15T11:32:02Z",
-      "age_hours": 1327.9,
+      "age_hours": 1329.2,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10188,7 +10221,7 @@
       "scene_changes_before_5s": null,
       "title": "Scorching Hot Peppers",
       "published_at": "2026-07-15T15:19:22Z",
-      "age_hours": 1324.1,
+      "age_hours": 1325.4,
       "views": 6,
       "engaged_views": 4,
       "likes": 0,
@@ -10227,7 +10260,7 @@
       "scene_changes_before_5s": null,
       "title": "Caffeine Buzz",
       "published_at": "2026-07-15T19:19:34Z",
-      "age_hours": 1320.1,
+      "age_hours": 1321.4,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -10266,7 +10299,7 @@
       "scene_changes_before_5s": null,
       "title": "Oldest Recipes Ever Found",
       "published_at": "2026-07-15T23:19:20Z",
-      "age_hours": 1316.1,
+      "age_hours": 1317.4,
       "views": 2,
       "engaged_views": 1,
       "likes": 0,
@@ -10305,7 +10338,7 @@
       "scene_changes_before_5s": null,
       "title": "Extreme Food Calories",
       "published_at": "2026-07-16T13:41:01Z",
-      "age_hours": 1301.8,
+      "age_hours": 1303.1,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10338,7 +10371,7 @@
       "scene_changes_before_5s": null,
       "title": "Fastest Computers Ever",
       "published_at": "2026-07-16T19:40:53Z",
-      "age_hours": 1295.8,
+      "age_hours": 1297.1,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -10377,7 +10410,7 @@
       "scene_changes_before_5s": null,
       "title": "Magnetic Materials Power",
       "published_at": "2026-07-16T23:27:06Z",
-      "age_hours": 1292.0,
+      "age_hours": 1293.3,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10416,7 +10449,7 @@
       "scene_changes_before_5s": null,
       "title": "Language Extinction Rate",
       "published_at": "2026-07-17T15:29:05Z",
-      "age_hours": 1275.9,
+      "age_hours": 1277.3,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10449,7 +10482,7 @@
       "scene_changes_before_5s": null,
       "title": "Saltiest Bodies of Water",
       "published_at": "2026-07-17T19:28:57Z",
-      "age_hours": 1272.0,
+      "age_hours": 1273.3,
       "views": 2,
       "engaged_views": 0,
       "likes": 0,
@@ -10488,7 +10521,7 @@
       "scene_changes_before_5s": null,
       "title": "Stalactite Growth Rate",
       "published_at": "2026-07-17T23:29:23Z",
-      "age_hours": 1267.9,
+      "age_hours": 1269.3,
       "views": 2,
       "engaged_views": 2,
       "likes": 0,
@@ -10527,7 +10560,7 @@
       "scene_changes_before_5s": null,
       "title": "Volcanic Lava Production",
       "published_at": "2026-07-18T13:43:19Z",
-      "age_hours": 1253.7,
+      "age_hours": 1255.0,
       "views": 6,
       "engaged_views": 2,
       "likes": 0,
@@ -10566,7 +10599,7 @@
       "scene_changes_before_5s": null,
       "title": "Planetary Spin Speed",
       "published_at": "2026-07-18T19:43:18Z",
-      "age_hours": 1247.7,
+      "age_hours": 1249.0,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10605,7 +10638,7 @@
       "scene_changes_before_5s": null,
       "title": "Moon Counts in Our Solar System",
       "published_at": "2026-07-18T19:32:57Z",
-      "age_hours": 1247.9,
+      "age_hours": 1249.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10644,7 +10677,7 @@
       "scene_changes_before_5s": null,
       "title": "Spider Super Strength Revealed",
       "published_at": "2026-07-18T23:32:56Z",
-      "age_hours": 1243.9,
+      "age_hours": 1245.2,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10683,7 +10716,7 @@
       "scene_changes_before_5s": null,
       "title": "Moons In Our Solar System",
       "published_at": "2026-07-19T11:24:36Z",
-      "age_hours": 1232.0,
+      "age_hours": 1233.3,
       "views": 5,
       "engaged_views": 5,
       "likes": 0,
@@ -10722,7 +10755,7 @@
       "scene_changes_before_5s": null,
       "title": "Tree Oxygen Production",
       "published_at": "2026-07-19T19:14:04Z",
-      "age_hours": 1224.2,
+      "age_hours": 1225.5,
       "views": 3,
       "engaged_views": 2,
       "likes": 0,
@@ -10761,7 +10794,7 @@
       "scene_changes_before_5s": null,
       "title": "Poisonous Plants",
       "published_at": "2026-07-19T23:14:05Z",
-      "age_hours": 1220.2,
+      "age_hours": 1221.5,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -10800,7 +10833,7 @@
       "scene_changes_before_5s": null,
       "title": "Loudest Body Sounds",
       "published_at": "2026-07-20T19:30:31Z",
-      "age_hours": 1199.9,
+      "age_hours": 1201.2,
       "views": 3,
       "engaged_views": 0,
       "likes": 0,
@@ -10839,7 +10872,7 @@
       "scene_changes_before_5s": null,
       "title": "Massive Relocations",
       "published_at": "2026-07-20T19:29:40Z",
-      "age_hours": 1199.9,
+      "age_hours": 1201.3,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10872,7 +10905,7 @@
       "scene_changes_before_5s": null,
       "title": "Ancient Wonders",
       "published_at": "2026-07-20T23:29:21Z",
-      "age_hours": 1195.9,
+      "age_hours": 1197.3,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10905,7 +10938,7 @@
       "scene_changes_before_5s": null,
       "title": "Speed of News",
       "published_at": "2026-07-21T15:14:06Z",
-      "age_hours": 1180.2,
+      "age_hours": 1181.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10938,7 +10971,7 @@
       "scene_changes_before_5s": null,
       "title": "Language Disappearance Rate",
       "published_at": "2026-07-21T23:13:57Z",
-      "age_hours": 1172.2,
+      "age_hours": 1173.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -10971,7 +11004,7 @@
       "scene_changes_before_5s": null,
       "title": "Hardest Natural Substances",
       "published_at": "2026-07-24T23:22:15Z",
-      "age_hours": 1100.1,
+      "age_hours": 1101.4,
       "views": 3,
       "engaged_views": 1,
       "likes": 0,
@@ -11010,7 +11043,7 @@
       "scene_changes_before_5s": null,
       "title": "Longest Lasting Seeds",
       "published_at": "2026-07-25T23:22:30Z",
-      "age_hours": 1076.1,
+      "age_hours": 1077.4,
       "views": 4,
       "engaged_views": 3,
       "likes": 0,
@@ -11049,7 +11082,7 @@
       "scene_changes_before_5s": null,
       "title": "Caffeine Content Revealed",
       "published_at": "2026-07-29T13:15:00Z",
-      "age_hours": 990.2,
+      "age_hours": 991.5,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -11088,7 +11121,7 @@
       "scene_changes_before_5s": null,
       "title": "Gigantic Fruits And Veggies",
       "published_at": "2026-07-29T19:15:37Z",
-      "age_hours": 984.2,
+      "age_hours": 985.5,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11127,7 +11160,7 @@
       "scene_changes_before_5s": null,
       "title": "Sugar Content Revealed",
       "published_at": "2026-07-29T19:26:56Z",
-      "age_hours": 984.0,
+      "age_hours": 985.3,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11160,7 +11193,7 @@
       "scene_changes_before_5s": null,
       "title": "Food Travel Distance",
       "published_at": "2026-07-29T23:27:06Z",
-      "age_hours": 980.0,
+      "age_hours": 981.3,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11193,7 +11226,7 @@
       "scene_changes_before_5s": null,
       "title": "Malaria Fell For 18 Years \u2014 Then Jumped Back To 64.0 Per 1,000",
       "published_at": "2026-07-31T08:25:02Z",
-      "age_hours": 947.0,
+      "age_hours": 948.3,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11232,7 +11265,7 @@
       "scene_changes_before_5s": null,
       "title": "World Hydropower Fell Below Its 1990 Level",
       "published_at": "2026-08-21T19:20:43Z",
-      "age_hours": 432.1,
+      "age_hours": 433.4,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11265,7 +11298,7 @@
       "scene_changes_before_5s": null,
       "title": "World Coal Power Fell Below Its 1990 Level",
       "published_at": "2026-08-25T18:55:51Z",
-      "age_hours": 336.5,
+      "age_hours": 337.8,
       "views": 1,
       "engaged_views": 1,
       "likes": 0,
@@ -11304,7 +11337,7 @@
       "scene_changes_before_5s": null,
       "title": "Population growth Fell 54% Since 1972",
       "published_at": "2026-08-26T23:46:28Z",
-      "age_hours": 307.7,
+      "age_hours": 309.0,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -11343,7 +11376,7 @@
       "scene_changes_before_5s": null,
       "title": "Urban Growth Just Hit A 50-Year Low Of 1.36%",
       "published_at": "2026-08-31T00:48:05Z",
-      "age_hours": 210.6,
+      "age_hours": 212.0,
       "views": 1,
       "engaged_views": 0,
       "likes": 0,
@@ -11382,7 +11415,7 @@
       "scene_changes_before_5s": null,
       "title": "Cereal production Is 1.5x Higher Than In 1972",
       "published_at": "2026-08-31T06:48:07Z",
-      "age_hours": 204.6,
+      "age_hours": 206.0,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11415,7 +11448,7 @@
       "scene_changes_before_5s": null,
       "title": "Central Banks Are Hoarding Gold Like It's 1967",
       "published_at": "2026-09-01T20:36:04Z",
-      "age_hours": 166.8,
+      "age_hours": 168.2,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11452,7 +11485,7 @@
       "scene_changes_before_5s": 2,
       "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
       "published_at": "2026-09-05T18:14:19Z",
-      "age_hours": 73.2,
+      "age_hours": 74.5,
       "views": 0,
       "engaged_views": 0,
       "likes": 0,
@@ -11474,47 +11507,63 @@
       "url": "https://youtube.com/shorts/Jyg6N-3xga8",
       "reason": "not_in_api",
       "streamer": null
+    },
+    {
+      "video_id": "zqPXqCMHj0U",
+      "url": "https://youtube.com/shorts/zqPXqCMHj0U",
+      "streamer": null,
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-09-09T00:51:55Z",
+      "experiment_arm": null
+    },
+    {
+      "video_id": "RGcJZQVflbI",
+      "url": "https://youtube.com/shorts/RGcJZQVflbI",
+      "streamer": null,
+      "privacy_status": "private",
+      "scheduled_publish_at": "2026-09-08T21:18:56Z",
+      "experiment_arm": null
     }
   ],
   "summary": {
-    "total_videos": 103,
-    "total_views": 8204,
-    "avg_views_per_video": 79.7,
+    "total_videos": 104,
+    "total_views": 8206,
+    "avg_views_per_video": 78.9,
     "median_views_per_hour": 0.01,
     "top_5_by_vph": [
       {
-        "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
-        "views_per_hour": 9.92,
-        "views": 798,
-        "age_hours": 80.5,
-        "url": "https://youtube.com/shorts/6UiXA5Tw0YU"
-      },
-      {
         "title": "The Lake That Basically Disappeared (3 Charts)",
-        "views_per_hour": 9.91,
+        "views_per_hour": 9.77,
         "views": 901,
-        "age_hours": 90.9,
+        "age_hours": 92.2,
         "url": "https://youtube.com/shorts/7V_sBsdst_o"
       },
       {
+        "title": "Why Your 'Cheap' Flight Isn't Actually Cheap",
+        "views_per_hour": 9.76,
+        "views": 798,
+        "age_hours": 81.8,
+        "url": "https://youtube.com/shorts/6UiXA5Tw0YU"
+      },
+      {
         "title": "The #1 Baby Name Isn't What It Used To Be",
-        "views_per_hour": 4.64,
+        "views_per_hour": 4.61,
         "views": 1220,
-        "age_hours": 263.1,
+        "age_hours": 264.5,
         "url": "https://youtube.com/shorts/R23olC04wJs"
       },
       {
         "title": "One Country's Median Age Is 15. Another's Is 50.",
-        "views_per_hour": 3.54,
+        "views_per_hour": 3.51,
         "views": 492,
-        "age_hours": 139.0,
+        "age_hours": 140.3,
         "url": "https://youtube.com/shorts/MTZK1GHlG3U"
       },
       {
         "title": "The World Learned To Read. Not Everyone Did.",
-        "views_per_hour": 3.24,
+        "views_per_hour": 3.22,
         "views": 829,
-        "age_hours": 256.2,
+        "age_hours": 257.5,
         "url": "https://youtube.com/shorts/V4X9nOKcN3s"
       }
     ],
@@ -11523,35 +11572,35 @@
         "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 73.2,
+        "age_hours": 74.5,
         "url": "https://youtube.com/shorts/fReGr_FMIEw"
       },
       {
         "title": "Central Banks Are Hoarding Gold Like It's 1967",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 166.8,
+        "age_hours": 168.2,
         "url": "https://youtube.com/shorts/xfxcdRqBy8w"
       },
       {
         "title": "Cereal production Is 1.5x Higher Than In 1972",
         "views_per_hour": 0.0,
         "views": 0,
-        "age_hours": 204.6,
+        "age_hours": 206.0,
         "url": "https://youtube.com/shorts/26_xuRNIrjo"
       },
       {
         "title": "Urban Growth Just Hit A 50-Year Low Of 1.36%",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 210.6,
+        "age_hours": 212.0,
         "url": "https://youtube.com/shorts/urq1Jierg8Q"
       },
       {
         "title": "Population growth Fell 54% Since 1972",
         "views_per_hour": 0.0,
         "views": 1,
-        "age_hours": 307.7,
+        "age_hours": 309.0,
         "url": "https://youtube.com/shorts/KsMUbae2iXY"
       }
     ],
@@ -11657,7 +11706,7 @@
       "n_mature_total": 0,
       "enough_data": false
     },
-    "pending_scheduled": 2
+    "pending_scheduled": 4
   },
   "traffic_sources": {
     "SHORTS": 8901,

@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260908T204529Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:end and all of seg4 waste roughly 60% of the frame \u2014 two ~30px mascots on thin rules with a dotted tick column jammed against the right edge and an entirely blank lower half; seg2:mid/seg2:end repeat it below the hourglasses.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void + static decorative payoff",
+  "visible_evidence": "seg4:start, seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 are the same picture: a speech bubble reading 'Blink. You'll miss the whole pit stop.' floating over the leftover seg3 layout \u2014 '1950s crew 3' and 'Modern crew 20' as two tiny motionless mascots on hairlines, a dotted tick strip clipped to the right edge, and a completely blank band from y~520 to the caption. Nothing changes across ~3.5s except caption text and the end card.",
+  "root_cause": "The closing beat reuses the previous scene's finished crew layout as a static backdrop and delivers the punchline as typed text in a bubble instead of staging it; the layout was authored for a wide comparison so it leaves the vertical 9:16 frame two-thirds empty and shrinks the mascots to icons.",
+  "repair_goal": "Rebuild seg4 as its own demonstration that LANDS the 1.8s claim in motion: fill the frame with the 20-strong modern crew swarming a car, a 1.8s clock or hourglass emptying in real time against it, and Data driving the bit (drops the jack -> car gone -> he blinks at empty air) at a size that occupies the mid-frame. No reuse of the seg3 crew chart, no held final frame \u2014 something must resolve on the last beat."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
