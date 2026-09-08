@@ -1432,6 +1432,49 @@
       ],
       "published_versions": [],
       "last_updated": "2026-09-07"
+    },
+    "ludwig-charact-dialogue-2026w36": {
+      "event_id": "ludwig-charact-dialogue-2026w36",
+      "people": [
+        "ludwig"
+      ],
+      "actions": [
+        "charact",
+        "dialogue",
+        "ludwig",
+        "nuzlocke"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-08",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/ludwig/clip/DistinctRoughYakinikuFailFish-12Z1A1CB6Q1w1doL",
+        "https://www.twitch.tv/ludwig/clip/GrossAffluentHyenaCmonBruh-OyJriYmM0gGyAG-0"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-08"
+    },
+    "kaicenat-cenat-charact-2026w36": {
+      "event_id": "kaicenat-cenat-charact-2026w36",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "cenat",
+        "charact",
+        "down",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-09-08",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/VenomousEasyArtichokeVoHiYo-Qvad1szLQGEeSQq8",
+        "https://www.twitch.tv/kaicenat/clip/PoisedFragileVampirePunchTrees-06KxKlDoMeEoqSGw",
+        "https://www.twitch.tv/kaicenat/clip/BlatantDepressedDelicataTakeNRG-PWsRj3oVWyfKhSH_"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-09-08"
     }
   }
 }

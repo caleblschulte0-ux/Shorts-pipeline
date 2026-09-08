@@ -6225,13 +6225,45 @@
       "ts": "2026-09-08T15:19:48.949388+00:00"
     },
     "clip-20260908-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/SmokyDeadCroquetteResidentSleeper-3rJXkTkOqLD8pzxO",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/egbbsgNZuF4",
       "title": "Lirik Can't Believe What Just Showed Up In This Game",
       "kind": "twitch_clip",
-      "ts": "2026-09-08T15:25:44.490631+00:00",
+      "ts": "2026-09-08T15:25:48.785676+00:00",
+      "uploaded_at": "2026-09-08T15:25:48.785695+00:00",
+      "publish_at": "2026-09-08T23:00:00Z",
+      "source_url": "https://www.twitch.tv/lirik/clip/SmokyDeadCroquetteResidentSleeper-3rJXkTkOqLD8pzxO",
+      "streamer": "lirik",
+      "series": "jumpscare",
+      "hook": "IS THAT ACTUALLY A SOUL?",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2973,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 45.3
+      },
+      "director_cut": true
+    },
+    "rejected-sweetstylishbubbleteanomnom-igvqbamsebm06jyj": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/SweetStylishBubbleteaNomNom-IGVQbaMSeBM06JyJ",
+      "streamer": "ohnepixel",
+      "title": "Bodycam is slowly changing ohnePixel",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine gameplay, no clear event)",
+      "ts": "2026-09-08T15:42:39.679341+00:00"
+    },
+    "clip-20260908-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/EntertainingSuperCobraMVGame-f6ApbiBsSMkd0NGD",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Can't Wait His Turn During Tap Dancing Lessons With Yonna",
+      "kind": "twitch_clip",
+      "ts": "2026-09-08T16:10:40.774134+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
