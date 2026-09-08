@@ -1546,6 +1546,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 91,
       "duration_s": 40.5
+    },
+    "debt-per-american": {
+      "claimed_at": "2026-09-08T18:32:40.357884+00:00",
+      "title": "Every American Is Now $116,480 In Debt",
+      "publish_at": "2026-09-09T00:51:55Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -1557,6 +1564,14 @@
       "state": "posted",
       "slug": "driving-side-of-the-road",
       "at": "2026-09-08T18:25:52.925904+00:00"
+    },
+    {
+      "claimed_at": "2026-09-08T18:32:40.357884+00:00",
+      "title": "Every American Is Now $116,480 In Debt",
+      "publish_at": "2026-09-09T00:51:55Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "debt-per-american"
     }
   ]
 }
