@@ -1535,6 +1535,28 @@
       ],
       "words_first_10s": 8,
       "scene_changes_before_5s": 3
+    },
+    "driving-side-of-the-road": {
+      "url": "https://youtube.com/shorts/Et3TxibTEW8",
+      "title": "Only 30% Of The World Still Drives On The Left",
+      "at": "2026-09-08T18:25:52.925904+00:00",
+      "publish_at": "2026-09-08T18:51:55Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 91,
+      "duration_s": 40.5
     }
-  }
+  },
+  "uploads": [
+    {
+      "claimed_at": "2026-09-08T18:25:44.024061+00:00",
+      "title": "Only 30% Of The World Still Drives On The Left",
+      "publish_at": "2026-09-08T18:51:55Z",
+      "url": "https://youtube.com/shorts/Et3TxibTEW8",
+      "state": "posted",
+      "slug": "driving-side-of-the-road",
+      "at": "2026-09-08T18:25:52.925904+00:00"
+    }
+  ]
 }
