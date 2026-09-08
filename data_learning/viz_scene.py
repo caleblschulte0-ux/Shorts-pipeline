@@ -37,11 +37,26 @@ from .charts import (ACCENT, HIGHLIGHT, TEXT, WARN, _fullframe, _ordered_items,
                      _pil_font, _rgba, _sci, _vfmt)
 
 W, H = 1080, 1920
-RX0, RX1, RTOP, RBOT = 40, 1040, 80, 1180          # safe box (above the game strip)
+# THE SCENE KIT OWNS THE 9:16 FRAME.
+#
+# RBOT was 1180 of 1920 — "above the game strip", from a layout this channel
+# has not had for a long time. Every multi-element scene therefore drew inside
+# the top 61% and left 39% of the frame as empty gradient, which is the
+# showrunner's most-cited block on the data channel and its words for it are
+# exact: "the entire lower two-thirds blank blue gradient", "the seesaw in the
+# top ~40% and the entire bottom half empty", "one lone bill tile top-left and
+# the entire lower 70% empty". 158 of the configured scenes have more than one
+# element and every one of them was drawing into that box.
+#
+# 1560 leaves the burned caption and the source line their band at the bottom.
+# `shared/frame_occupancy.py` measures what this is for, and
+# `tests/test_the_frame_is_used.py` holds it.
+RX0, RX1, RTOP, RBOT = 40, 1040, 80, 1560
 _MIDX, _MIDY = (RX0 + RX1) // 2, (RTOP + RBOT) // 2
-# How far down a lone data machine may draw. The captions and the spoken-number
-# punch own the band below it.
-MACHINE_BOT = 1560
+# How far down a lone data machine may draw. Now the same as RBOT — the whole
+# kit uses the frame — and kept as a name because the machines read it and
+# because the two could diverge again if a channel ever needs a strip back.
+MACHINE_BOT = RBOT
 
 # region name -> pixel box (x0, y0, x1, y1)
 REGIONS: dict[str, tuple[int, int, int, int]] = {
@@ -2732,11 +2747,21 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
     # any of it means anything.
     _cx = (bx0 + bx1) // 2
     _hw = int((bx1 - bx0) * 0.30)
-    d.line([(bx0 + 40, bot), (bx1 - 40, bot)], fill=_rgba(TEXT, 90), width=6)
-    for xx in (_cx - _hw + 14, _cx + _hw - 14):
-        d.line([(xx, bar_y), (xx, bot)], fill=_rgba(WARN, 170), width=11)
-    d.line([(_cx - _hw, bar_y), (_cx + _hw, bar_y)], fill=_rgba(WARN, 245),
-           width=18)
+    # A GROUND WITH WEIGHT, and a hurdle built like one.
+    #
+    # Thin rules read as a goalpost floating in the dark: a 6px ground, 11px
+    # posts and an 18px bar leave a frame that is almost all background, which
+    # is the `empty_void` the reviewer blocks for. A hurdle has a bar THICKER
+    # than its uprights and feet on the floor, and the floor is a band rather
+    # than a hairline.
+    d.rectangle([bx0, bot + 8, bx1, by1], fill=_rgba(TEXT, 26))
+    d.line([(bx0 + 20, bot), (bx1 - 20, bot)], fill=_rgba(TEXT, 130), width=10)
+    for xx in (_cx - _hw + 20, _cx + _hw - 20):
+        d.line([(xx, bar_y + 8), (xx, bot)], fill=_rgba(WARN, 190), width=20)
+        d.rounded_rectangle([xx - 46, bot - 12, xx + 46, bot + 12], radius=10,
+                            fill=_rgba(WARN, 200))          # feet
+    d.rounded_rectangle([_cx - _hw, bar_y - 15, _cx + _hw, bar_y + 15],
+                        radius=15, fill=_rgba(WARN, 250))
     # Pinned to the FRAME. Hung off the bar, both labels ran off the edge —
     # "US average 5.9 yrs" became "US averag" and his own value "1.3 yrs".
     d.text((bx1 - 24, bar_y - 34),
@@ -2780,8 +2805,10 @@ def draw_hurdle(d, canvas, box, insight, color, reveal, unit=""):
                                (int(hx - mw // 2), int(hy - mh)))
     # HIS HEIGHT, marked where he actually is rather than ruled across the
     # frame — a full-width line reads as a second hurdle.
-    d.line([(_cx - _hw - 60, val_y), (_cx + _hw + 60, val_y)],
-           fill=_rgba(color, 210), width=7)
+    # His height, as a measured rule rather than a hairline.
+    for _x in range(int(_cx - _hw - 60), int(_cx + _hw + 60), 44):
+        d.line([(_x, val_y), (_x + 26, val_y)], fill=_rgba(color, 225),
+               width=10)
     d.text((bx0 + 24, val_y - 34), charts._ulabel(v, unit),
            font=_pil_font(42), fill=_rgba(color, 245), anchor="lm")
     d.text(((bx0 + bx1) // 2, by0 + 58),
@@ -2888,9 +2915,12 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
         items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
     v = float(getattr(star, "value", 0) or 0)
     bx0, by0, bx1, by1 = box
-    top, bot = max(by0 + 240, 380), by1 - 150
-    belt_y = int((top + bot) / 2)
-    d.rounded_rectangle([bx0 + 40, belt_y, bx1 - 40, belt_y + 46], radius=14,
+    # The belt sits HIGH and what it delivers piles up underneath, so the
+    # lower half of the frame is the consequence rather than empty gradient.
+    # Belt-in-the-middle-and-nothing-else measured a 51% void.
+    belt_y = int(by0 + (by1 - by0) * 0.32)
+    ground = by1 - 60
+    d.rounded_rectangle([bx0 + 40, belt_y, bx1 - 40, belt_y + 52], radius=16,
                         fill=_rgba(TEXT, 60))
     r = max(0.0, min(1.0, reveal))
     # Boxes ride the belt. Their SPACING is fixed and their travel is linear,
@@ -2898,15 +2928,31 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
     n_box, gap = 9, (bx1 - bx0 - 80) / 9.0
     for k in range(n_box + 1):
         x = bx0 + 40 + ((k * gap) + r * gap * 3.0) % (bx1 - bx0 - 80)
-        d.rounded_rectangle([int(x), belt_y - 54, int(x + 62), belt_y - 4],
-                            radius=8, fill=_rgba(color, 235),
+        d.rounded_rectangle([int(x), belt_y - 66, int(x + 74), belt_y - 4],
+                            radius=9, fill=_rgba(color, 235),
                             outline=_rgba(charts.CARD, 255), width=3)
-    host = scene_host("point", reveal)
+    # THE PILE. Items keep arriving, so they keep stacking — the honest
+    # consequence of a rate nobody is keeping up with, and the thing that
+    # makes the lower half of the frame mean something.
+    d.line([(bx0 + 40, ground), (bx1 - 40, ground)],
+           fill=_rgba(TEXT, 80), width=6)
+    _pw, _ph = 74, 46
+    _cols = max(3, int((bx1 - bx0 - 300) // (_pw + 10)))
+    for kk in range(int(30 * settle(reveal))):
+        gx, gy = kk % _cols, kk // _cols
+        px = bx0 + 80 + gx * (_pw + 10) + (gy % 2) * 18
+        py = ground - 10 - (gy + 1) * (_ph + 6)
+        if py < belt_y + 100:
+            break
+        d.rounded_rectangle([px, py, px + _pw, py + _ph], radius=8,
+                            fill=_rgba(ACCENT, 225),
+                            outline=_rgba(charts.CARD, 255), width=3)
+    host = scene_host("strain", reveal)
     if host is not None:
-        mh = 250
+        mh = 300
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx1 - mw - 40), int(belt_y - mh + 46)))
+                               (int(bx1 - mw - 50), int(ground - mh)))
     d.text(((bx0 + bx1) // 2, by0 + 58),
            charts._ulabel(v, unit, group=True), font=_pil_font(96),
            fill=_rgba(color, 255), anchor="mm")
@@ -3317,8 +3363,12 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     vmax = max(abs(v) * 1.35, 1e-6)
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
-    cy = max(by0 + 430, 620)
-    R = int(min((bx1 - bx0) * 0.36, 320))
+    # SIZED TO THE BOX. A dial pinned to y=620 with a 320px radius left the
+    # bottom 58% of the frame carrying nothing — the showrunner's most-cited
+    # block on this channel, and measurable without asking it (see
+    # shared/frame_occupancy.py).
+    cy = int(by0 + (by1 - by0) * 0.44)
+    R = int(min((bx1 - bx0) * 0.44, (by1 - by0) * 0.32))
     a0, sweep = 200.0, 140.0                    # a车-style dial, open at the top
     d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
           fill=_rgba(TEXT, 70), width=26)
@@ -3331,16 +3381,19 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     d.line([(cx, cy), (int(nx), int(ny))], fill=_rgba(color, 255), width=14)
     d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=_rgba(TEXT, 235))
     shown = v * e
-    d.text((cx, cy + 96), charts._ulabel(shown, unit, group=True),
-           font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
-    d.text((cx, cy + 176), str(getattr(star, "label", ""))[:22],
-           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    d.text((cx, cy + 118), charts._ulabel(shown, unit, group=True),
+           font=_pil_font(104), fill=_rgba(color, 255), anchor="mm")
+    d.text((cx, cy + 208), str(getattr(star, "label", ""))[:22],
+           font=_pil_font(42), fill=_rgba(TEXT, 220), anchor="mm")
+    # He stands UNDER the dial reading it, at a size that occupies the lower
+    # band, rather than parked beside the arc as a sticker.
     host = scene_host("point", reveal)
     if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(cx + R * 0.55), int(cy - mh * 0.2)))
+        mh = int(min(360, max(0, (by1 - (cy + 250))) * 0.92))
+        if mh > 120:
+            mw = int(host.width * mh / host.height)
+            canvas.alpha_composite(_fit(host, mw, mh),
+                                   (int(cx - mw // 2), int(by1 - mh - 30)))
     return (v, "art", int(nx), int(ny))
 
 
