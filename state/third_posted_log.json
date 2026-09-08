@@ -6129,13 +6129,36 @@
       "ts": "2026-09-08T15:07:08.757715+00:00"
     },
     "clip-20260908-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/DeliciousLitigiousHerbsTBTacoRight-DLl5etHQJhO-nL7J",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/M0zLhKXPcTo",
       "title": "Xqc Calls Out Hasan's Fans And It Gets Brutal",
       "kind": "twitch_clip",
-      "ts": "2026-09-08T15:10:02.036180+00:00",
+      "ts": "2026-09-08T15:10:06.354620+00:00",
+      "uploaded_at": "2026-09-08T15:10:06.354643+00:00",
+      "publish_at": "2026-09-08T17:00:00Z",
+      "source_url": "https://www.twitch.tv/xqc/clip/DeliciousLitigiousHerbsTBTacoRight-DLl5etHQJhO-nL7J",
+      "streamer": "xqc",
+      "series": "beef",
+      "hook": "HE CALLS THEM BRAIN DEAD",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9191,
+      "banger": 0.5,
+      "cut": {
+        "start": 18.8,
+        "end": 42.9
+      },
+      "director_cut": true
+    },
+    "clip-20260908-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EntertainingPleasantEagleAMPEnergy-mAdUMeNOdbW1bLaf",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi \"What Does He Even Do?\" \u2014 Then This Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-09-08T15:13:16.142198+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
