@@ -341,6 +341,19 @@ _VERTICAL = re.compile(
     r"above sea level|underwater|below)\b", re.I)
 
 
+def _dated_pair(labels) -> bool:
+    """Are both labels of a pair DATES — a then-and-now rather than two things?
+
+    Defined once and used twice: by the tail of `_classify`, where it is the
+    BEFORE_AFTER test, and by the unit rules, which must stand down for it.
+    "Commute in 2019 vs 2026, in hours" is one subject at two dates, and two
+    hourglasses says it is two different waits.
+    """
+    return sum(1 for l in labels
+               if len(l) <= 7 and l[:4].isdigit()
+               and 1800 <= int(l[:4]) <= 2200) == 2
+
+
 def _looks_like_calendar_years(values) -> bool:
     """Is this column DATES wearing a duration's unit?
 
@@ -511,7 +524,8 @@ def _classify(insight) -> str:
     # whose title names the subject and puts the unit in brackets.
     if not _dominant(values):
         if unit in _UNIT_TIME and len(values) == 2 \
-                and not _looks_like_calendar_years(values):
+                and not _looks_like_calendar_years(values) \
+                and not _dated_pair(labels):
             # PAIRS ONLY. The hourglass draws two glasses and the tape has two
             # ends; a six-item duration ranking sent here would silently drop
             # four of its rows, which is a worse failure than a bar chart.
@@ -550,10 +564,7 @@ def _classify(insight) -> str:
         # 222 beats came back `duel`, so over half the catalogue was heading
         # for the same set of scales. Splitting the pair by whether its labels
         # are DATES is what makes the picture follow the claim.
-        yrs = sum(1 for l in labels
-                  if len(l) <= 7 and l[:4].isdigit()
-                  and 1800 <= int(l[:4]) <= 2200)
-        return BEFORE_AFTER if yrs == 2 else DUEL
+        return BEFORE_AFTER if _dated_pair(labels) else DUEL
     if 3 <= len(values) <= 8:
         # One item dwarfing the rest is its own story and its own picture —
         # a race where one runner is a mile ahead reads as a broken chart,

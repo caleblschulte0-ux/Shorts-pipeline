@@ -63,7 +63,12 @@ def _series(vals, unit="count", topic="output", main="It moved"):
                 unit, topic, main, kind="trend")
 
 
-def _things(pairs, unit="years", topic="cost", main="A tops"):
+# NEUTRAL BY DEFAULT. This said `unit="years"` while the unit meant nothing to
+# the router; since batch 6 a pair measured in years IS a duration, so a
+# filler unit was quietly asserting one. Tests that want a time unit now say
+# so, and the ones that want "two named things" get a unit that claims
+# nothing.
+def _things(pairs, unit="count", topic="cost", main="A tops"):
     return _Ins([_Pt(n, v) for n, v in pairs], unit, topic, main)
 
 
@@ -1538,6 +1543,18 @@ class TheUnitSaysWhatKindOfQuantityThisIs(unittest.TestCase):
         src = inspect.getsource(rel._classify)
         self.assertEqual(src.count("_dominant("), 2)
         self.assertNotIn("3.0 * (sum(rest)", src)
+
+    def test_a_THEN_AND_NOW_is_not_two_waits(self):
+        """Caught by the existing before/after test the moment the unit rules
+        landed: "commute in 2019 vs 2026, in hours" is ONE subject at two
+        dates, and two hourglasses side by side says it is two different
+        waits. The date test is defined once and both rules use it."""
+        self.assertEqual(
+            rel.classify(self._ins([("2019", 27.0), ("2026", 44.0)], "hours")),
+            rel.BEFORE_AFTER)
+        import inspect
+        self.assertEqual(
+            inspect.getsource(rel._classify).count("_dated_pair("), 2)
 
     def test_durations_route_in_PAIRS_only(self):
         """The hourglass draws two glasses and the tape has two ends. A
