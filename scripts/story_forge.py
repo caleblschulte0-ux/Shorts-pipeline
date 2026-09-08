@@ -595,7 +595,15 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
             "[{...}]}]} where says AND scenes each have exactly "
             f"{len(dss)} entries, one per dataset in order. Each say speaks "
-            "that dataset's actual numbers in spoken English (~22 words).")
+            "that dataset's actual numbers in spoken English (~22 words).\n\n"
+            "SAY THE NUMBER THE PICTURE SHOWS. Each say line is spoken OVER "
+            "its own beat's chart, so the LOUDEST number in it must be one "
+            "that chart can show: a value from that dataset, a difference "
+            "between two of them, a percentage change, or a share of the "
+            "total. Do NOT convert a rate into a headcount or a price — "
+            "\"34 percent, 2.6 billion people\" over a chart of percentages "
+            "makes the viewer hunt for a number that is not on screen. Say "
+            "\"34 percent, up from 22\" instead.")
     if reject_note:
         user += ("\n\nYour previous title was REJECTED by the editor for this "
                  f"reason — fix exactly this:\n{reject_note}")
@@ -627,6 +635,7 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
     them (up to 3 tries), feeding each rejection back in. A story that only
     passes the deterministic floor gets held at publish and wastes a render."""
     from scripts import editorial_gate as eg
+    from shared import beat_match as bm
     last = None
     for attempt in range(3):
         w = _brain_words(dss, reject_note=last)
@@ -634,10 +643,28 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
             break
         v = eg.premise_ok({"title": w.get("title", ""), "hook": w.get("hook", "")},
                           use_llm=True)
-        if v["ok"]:
+        reasons = list(v["reasons"]) if not v["ok"] else []
+        # BEAT MATCHING. Every `say` line is spoken OVER its own beat's
+        # picture, so the loudest number in it has to be one that picture can
+        # show. Measured over the 858 configured beats that speak a quantity,
+        # 15.5% failed this — and always the same way: the writer converts the
+        # measured figure into a bigger one the data does not contain ("34
+        # percent — 2.6 billion people", "on a 50 thousand dollar car"), and
+        # the viewer hears a number they cannot find on screen.
+        #
+        # Fed back to the brain rather than refused outright: the story is
+        # fine and the SENTENCE is fixable, which is exactly what this retry
+        # loop is for.
+        for i, (ds, say) in enumerate(zip(dss, w.get("says") or [])):
+            vals = [p.get("value") for p in (ds.get("points") or [])
+                    if isinstance(p, dict) and p.get("value") is not None]
+            m = bm.check(str(say), vals, ds.get("unit", ""))
+            if not m["ok"]:
+                reasons.append(f"say[{i}]: {m['why']}")
+        if v["ok"] and not reasons:
             return w, f"brain(attempt {attempt + 1}, judge {v['judge']})"
-        last = "; ".join(v["reasons"])[:300]
-        print(f"    [premise] rejected: {last[:120]}")
+        last = "; ".join(reasons)[:300]
+        print(f"    [words] rejected: {last[:140]}")
     return _fallback_words(dss), "deterministic"
 
 
