@@ -1066,7 +1066,12 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
     if not vals:
         return None
     bx0, by0, bx1, by1 = box
-    road_y = int((max(by0 + 240, 380) + (by1 - 160)) / 2)
+    # The road sits LOW and the series it is about is drawn above it, dead
+    # flat with a dot per year. Pinned to the middle with nothing under it the
+    # frame measured a 33% void — a coin flip against the 34% ceiling, which
+    # is not passing. The line is also the honest half of the claim: you can
+    # SEE it not moving, rather than being told.
+    road_y = int(by0 + (by1 - by0) * 0.62)
     d.rounded_rectangle([bx0 + 30, road_y, bx1 - 30, road_y + 90], radius=12,
                         fill=_rgba(TEXT, 55))
     # DASHES STREAM PAST AT A CONSTANT SPEED — he is moving, the NUMBER is
@@ -1079,6 +1084,19 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
         d.rounded_rectangle([int(x), road_y + 38, int(x + 62), road_y + 54],
                             radius=8, fill=_rgba(charts.CARD, 210))
     mid = sum(vals) / len(vals)
+    _lo, _hi = min(vals), max(vals)
+    _span = (_hi - _lo) or (abs(mid) * 0.04) or 1.0
+    _band_top = int(by0 + (by1 - by0) * 0.26)
+    _band_bot = road_y - 120
+    _pts_x = [bx0 + 90 + (bx1 - bx0 - 180) * (i / max(1, len(vals) - 1))
+              for i in range(len(vals))]
+    _pts_y = [_band_bot - (_band_bot - _band_top) * ((v - _lo) / _span) * 0.55
+              - (_band_bot - _band_top) * 0.22 for v in vals]
+    _shown = max(2, int(len(vals) * settle(reveal)))
+    d.line(list(zip(_pts_x[:_shown], _pts_y[:_shown])),
+           fill=_rgba(color, 235), width=10, joint="curve")
+    for _x, _y in zip(_pts_x[:_shown], _pts_y[:_shown]):
+        d.ellipse([_x - 12, _y - 12, _x + 12, _y + 12], fill=_rgba(color, 245))
     host = scene_host("point", reveal)
     if host is not None:
         mh = 270
@@ -1109,7 +1127,9 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     a = float(getattr(items[0], "value", 0) or 0)
     b = float(getattr(items[-1], "value", 0) or 0)
     bx0, by0, bx1, by1 = box
-    y = int((max(by0 + 250, 400) + (by1 - 200)) / 2)
+    # Centred in the box with the host standing under it — pinned near the
+    # middle it left the bottom half carrying nothing and measured 35% in CI.
+    y = int(by0 + (by1 - by0) * 0.42)
     e = settle(reveal)
     x0 = bx0 + 90
     x1 = int(x0 + (bx1 - 90 - x0) * e)
@@ -1126,15 +1146,31 @@ def draw_tape(d, canvas, box, insight, color, reveal, unit=""):
     d.text((x1, y - 62), f"{getattr(items[-1], 'label', '')}  "
            f"{charts._ulabel(b, unit)}", font=_pil_font(40),
            fill=_rgba(color, int(255 * na)), anchor="rm")
-    d.text(((bx0 + bx1) // 2, y + 96),
+    # THE TAPE RUNS BETWEEN TWO POSTS, standing on a ground.
+    #
+    # A tape floating at mid-height leaves the bottom of the frame carrying
+    # nothing — measured at 38% void, past the 34% ceiling. Two markers and a
+    # floor is also just what measuring a distance looks like: you put a stake
+    # at each end. The posts are at the two values, so they add no claim.
+    _ground = by1 - 40
+    d.line([(bx0 + 30, _ground), (bx1 - 30, _ground)],
+           fill=_rgba(TEXT, 100), width=8)
+    for _px, _c in ((x0, TEXT), (x1, color)):
+        d.line([(_px, y + 22), (_px, _ground)], fill=_rgba(_c, 150), width=10)
+        d.rounded_rectangle([_px - 40, _ground - 14, _px + 40, _ground + 14],
+                            radius=10, fill=_rgba(_c, 190))
+    d.text(((bx0 + bx1) // 2, y + 110),
            f"{charts._ulabel(abs(b - a), unit, group=True)} apart",
            font=_pil_font(64), fill=_rgba(color, int(255 * na)), anchor="mm")
     host = scene_host("strain", reveal)
     if host is not None:
-        mh = 230
-        mw = int(host.width * mh / host.height)
-        canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(x1 - mw // 2), y + 30))
+        mh = int(min(340, max(0, _ground - (y + 150))))
+        if mh > 120:
+            mw = int(host.width * mh / host.height)
+            canvas.alpha_composite(
+                _fit(host, mw, mh),
+                (int(min(bx1 - mw - 20, max(bx0 + 20, x1 - mw // 2))),
+                 int(_ground - mh)))
     return (b, "art", x1, y)
 
 
@@ -2490,9 +2526,13 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
     bx0, by0, bx1, by1 = box
     n = len(items)
     e = settle(reveal)
-    gw = int(min(((bx1 - bx0) - 120) / n, 320))
-    gh = int(min((by1 - by0) * 0.42, 420))
-    top = max(by0 + 300, 460)
+    # HEADROOM. These sat at a measured 35% void in CI against a 34% ceiling
+    # while measuring 18% locally — the difference is font metrics moving the
+    # labels a few rows. A machine that close to the line is not passing, it
+    # is coin-flipping, so the glasses now span the box properly.
+    gw = int(min(((bx1 - bx0) - 120) / n, 340))
+    gh = int(min((by1 - by0) * 0.56, 560))
+    top = int(by0 + (by1 - by0) * 0.16)
     gap = ((bx1 - bx0) - gw * n) / (n + 1)
     for i, (p, v) in enumerate(zip(items, vals)):
         x = bx0 + gap * (i + 1) + gw * i
@@ -2533,10 +2573,12 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(52), fill=_rgba(TEXT, 240), anchor="mm")
     host = scene_host("strain", reveal)
     if host is not None:
-        mh = 170
+        mh = 240
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
-                               (int(bx0 + 16), int(by1 - mh - 30)))
+                               (int(bx0 + 16), int(by1 - mh - 20)))
+    d.line([(bx0 + 30, by1 - 16), (bx1 - 30, by1 - 16)],
+           fill=_rgba(TEXT, 90), width=8)
     return (vals[0], "art", int(bx0 + gap + gw / 2), int(top + gh / 2))
 
 
@@ -2936,9 +2978,12 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
     # makes the lower half of the frame mean something.
     d.line([(bx0 + 40, ground), (bx1 - 40, ground)],
            fill=_rgba(TEXT, 80), width=6)
+    # The pile has to REACH the belt, or the band between them is the void
+    # (measured 31% against a 34% ceiling — too close to call a pass).
     _pw, _ph = 74, 46
     _cols = max(3, int((bx1 - bx0 - 300) // (_pw + 10)))
-    for kk in range(int(30 * settle(reveal))):
+    _rows_needed = max(1, int((ground - (belt_y + 110)) // (_ph + 6)))
+    for kk in range(int(_cols * _rows_needed * settle(reveal))):
         gx, gy = kk % _cols, kk // _cols
         px = bx0 + 80 + gx * (_pw + 10) + (gy % 2) * 18
         py = ground - 10 - (gy + 1) * (_ph + 6)
