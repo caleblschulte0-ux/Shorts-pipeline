@@ -186,15 +186,76 @@ def premise_ok(sc: dict, *, use_llm: bool = True) -> dict:
 # ---------------------------------------------------------------------------
 # Combined pre-render editorial verdict (no video needed)
 # ---------------------------------------------------------------------------
+def beats_are_distinct(sc: dict) -> dict:
+    """Does this story say more than ONE thing?
+
+    Operator, 2026-09-08: *"we would say the same thing in 3 different beats
+    just show it a different way that's dumb af."* The renderer already
+    prunes a restated beat (`data_learning.beat_claims`), but pruning is a
+    salvage: it makes a repetitive story into its least repetitive cut. It
+    cannot invent a second fact.
+
+    HERE is where refusing is the right answer, because here there is another
+    story in the queue to render instead. `driving-side-of-the-road` prunes
+    all the way down to one beat — 30% of people, 76 countries, 25% of road
+    miles are one claim measured three ways — and one fact is not a video.
+
+    Offline and deterministic: it reads the same dataset files
+    `data_provenance` reads, and judges nothing it cannot load. A story whose
+    segments are not resolvable here is not accused of anything.
+    """
+    from data_learning import beat_claims
+    from data_learning.insights import Insight
+    from data_learning.sources.base import DataPoint, Source
+
+    beats = []
+    for seg in sc.get("segments", []):
+        p = _seg_data_path(seg)
+        if p is None:
+            continue
+        try:
+            d = json.loads(p.read_text())
+            pts = [DataPoint(label=str(x["label"]), value=float(x["value"]))
+                   for x in d.get("points", []) if x.get("value") is not None]
+        except Exception:  # noqa: BLE001 — data_provenance reports this
+            continue
+        if len(pts) < 2:
+            continue
+        src = d.get("source") or {}
+        beats.append(Insight(
+            kind=seg.get("insight_type", "auto"), topic=seg.get("topic", ""),
+            main_insight=seg.get("say", ""), items=pts,
+            source=Source(name=str(src.get("name", "")),
+                          publisher=str(src.get("publisher", "")),
+                          url=str(src.get("url", "")),
+                          access_date=str(src.get("access_date", ""))),
+            unit=d.get("unit", ""), highlight_label=str(pts[0].label)))
+    if len(beats) < 2:
+        return {"ok": True, "reasons": []}      # nothing to judge
+    if not beat_claims.one_fact_stretched(beats):
+        return {"ok": True, "reasons": []}
+    kept, dropped = beat_claims.prune_restatements(beats)
+    return {"ok": False, "reasons": [
+        f"one fact stretched over {len(beats)} beats — "
+        f"{len(dropped)} restate the first "
+        f"({', '.join(str(d.topic) for d in dropped) or 'unnamed'}); "
+        f"only {len(kept)} distinct claim(s)"]}
+
+
 def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     """Real-data + premise checks, combined. Run BEFORE rendering so a story
     that can never publish doesn't burn a render."""
     prov = data_provenance(sc)
     prem = premise_ok(sc, use_llm=use_llm)
+    # A story that says one thing three times can never be a good video, and
+    # finding that out costs one file read rather than a render.
+    dist = beats_are_distinct(sc)
     reasons = ([f"data: {r}" for r in prov["reasons"]]
-               + [f"premise: {r}" for r in prem["reasons"]])
-    return {"ok": prov["ok"] and prem["ok"], "reasons": reasons,
-            "data_ok": prov["ok"], "premise_ok": prem["ok"]}
+               + [f"premise: {r}" for r in prem["reasons"]]
+               + [f"beats: {r}" for r in dist["reasons"]])
+    return {"ok": prov["ok"] and prem["ok"] and dist["ok"], "reasons": reasons,
+            "data_ok": prov["ok"], "premise_ok": prem["ok"],
+            "beats_ok": dist["ok"]}
 
 
 if __name__ == "__main__":

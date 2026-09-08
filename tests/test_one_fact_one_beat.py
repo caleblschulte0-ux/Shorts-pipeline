@@ -249,6 +249,66 @@ class TheRenderPathActuallyRunsIt(unittest.TestCase):
         self.assertIn("restated beat", inspect.getsource(story.build))
 
 
+class RefusingHappensWhereThereIsAnotherStoryToRender(unittest.TestCase):
+    """Pruning is salvage; it cannot invent a second fact. Refusing is the
+    right answer only where the queue has another story — which is true in
+    the pre-render gate and false in the renderer.
+
+    `one_fact_stretched` shipped in #338 with NO CALLER, which is the exact
+    thing rule zero forbids: a capability nothing calls is not a capability,
+    and the module docstring claiming stories were "refused" was a lie the
+    next session would have inherited."""
+
+    def test_the_pre_render_gate_calls_it(self):
+        import inspect
+        from scripts import editorial_gate as eg
+        self.assertIn("one_fact_stretched",
+                      inspect.getsource(eg.beats_are_distinct))
+        self.assertIn("beats_are_distinct",
+                      inspect.getsource(eg.pre_render_verdict))
+
+    def test_the_driving_story_is_refused_before_it_renders(self):
+        import json
+        from scripts import editorial_gate as eg
+        cfg = json.loads((Path(__file__).resolve().parent.parent
+                          / "data_learning" / "niche.config.json").read_text())
+        sc = next(s for s in cfg["stories"]
+                  if s["slug"] == "driving-side-of-the-road")
+        v = eg.beats_are_distinct(sc)
+        self.assertFalse(v["ok"])
+        self.assertIn("one fact stretched", v["reasons"][0])
+
+    def test_a_real_story_is_not_accused(self):
+        import json
+        from scripts import editorial_gate as eg
+        cfg = json.loads((Path(__file__).resolve().parent.parent
+                          / "data_learning" / "niche.config.json").read_text())
+        for slug in ("two-americas-cost", "housing-affordability-wall",
+                     "colorblind-by-the-numbers"):
+            sc = next(s for s in cfg["stories"] if s["slug"] == slug)
+            self.assertTrue(eg.beats_are_distinct(sc)["ok"], slug)
+
+    def test_it_judges_nothing_it_cannot_load(self):
+        """A story whose datasets are unresolvable here is reported by
+        `data_provenance`, not accused of being repetitive."""
+        from scripts import editorial_gate as eg
+        self.assertTrue(eg.beats_are_distinct({"segments": []})["ok"])
+        self.assertTrue(eg.beats_are_distinct(
+            {"segments": [{"key": "nope", "params": {"file": "nope.json"}}]}
+        )["ok"])
+
+    def test_only_TWO_stories_in_the_catalogue_are_refused(self):
+        """A gate that starts refusing broadly empties the channel."""
+        import json
+        from scripts import editorial_gate as eg
+        cfg = json.loads((Path(__file__).resolve().parent.parent
+                          / "data_learning" / "niche.config.json").read_text())
+        held = [s["slug"] for s in cfg["stories"]
+                if not eg.beats_are_distinct(s)["ok"]]
+        self.assertLess(len(held), 10, f"refusing too much: {held}")
+        self.assertIn("driving-side-of-the-road", held)
+
+
 class TheCatalogueIsMeasured(unittest.TestCase):
     """The numbers in the module docstring have to stay true, and a change
     that starts eating real beats has to show up as a number moving."""
