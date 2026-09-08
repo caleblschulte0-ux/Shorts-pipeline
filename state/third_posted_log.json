@@ -6118,6 +6118,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.25 < 0.35 (just standing, talking, no event)",
       "ts": "2026-09-07T16:56:02.648945+00:00"
+    },
+    "rejected-billowingawkwardcheesecakeresidentsleeper-reev8jy6l9qfl_xj": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BillowingAwkwardCheesecakeResidentSleeper-ReeV8Jy6L9QFL_Xj",
+      "streamer": "lacy",
+      "title": "lacy crashes out at marlon",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static menu, just ranting)",
+      "ts": "2026-09-08T15:07:08.757715+00:00"
+    },
+    "clip-20260908-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/DeliciousLitigiousHerbsTBTacoRight-DLl5etHQJhO-nL7J",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Calls Out Hasan's Fans And It Gets Brutal",
+      "kind": "twitch_clip",
+      "ts": "2026-09-08T15:10:02.036180+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
