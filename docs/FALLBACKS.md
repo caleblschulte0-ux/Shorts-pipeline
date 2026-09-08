@@ -50,15 +50,18 @@ touch it; a missing `ANTHROPIC_API_KEY` does not either, as long as
 
 On **2026-09-07** every trending backfill attempt died in under two seconds on
 `HTTPError: HTTP Error 401: Unauthorized`, so three slots the showrunner had
-correctly emptied could not be re-authored and the day shipped 3 of 6. The key
-was not revoked or mistyped: Groq keys were issued with a **90-day expiry**,
-and that one had been created about ninety days earlier.
+correctly emptied could not be re-authored and the day shipped 3 of 6. The key was
+about ninety days old and rotating it fixed it immediately. The exact cause is
+NOT confirmed — Groq does not document a key lifetime anywhere public, and the
+expiry setting lives in the authenticated console. Treat "the key aged out" as
+the working theory it is, not as a documented policy.
 
 Two things follow, and both are now true:
 
-* **Groq now offers a key that never expires.** Take it. A credential with a
-  timer on it is a scheduled outage nobody has written down, and this one
-  fired on a Sunday with a full slate authored and waiting.
+* **Groq's console offers a key that never expires — take that option.**
+  (Observed by the operator on 2026-09-07 and not present when the previous
+  key was made; not in any changelog I could find.) A credential with a timer
+  on it is a scheduled outage nobody has written down.
 * **No unattended path may name one provider.** `_call_llm` walks
   Groq → Gemini → Anthropic until one ANSWERS, but only when the caller does
   not name a backend — an explicit `backend=` is exact by design. The
