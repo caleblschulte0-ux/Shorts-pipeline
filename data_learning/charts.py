@@ -269,6 +269,10 @@ _LAST_PERF: dict = {}              # the performance spec chosen for this build
 # is reserved for the winner so the payoff still lands where the narration
 # says it does (and so it agrees with `_perf_phase`'s finale window).
 _TOUR: float = 1.0
+#: True only while `render_story_build` is walking a frame sequence, so
+#: `beat_phase()` can say "there is no beat running" instead of handing back a
+#: stale `_TOUR` from the last render.
+_TOUR_LIVE: bool = False
 TOUR_FINALE = 0.8          # from here on he is on the winner, committing
 
 
@@ -502,6 +506,29 @@ def _beat() -> float:
     against a floor of 11.0 the first time this was tried.
     """
     return max(0.0, min(1.0, float(_TOUR)))
+
+
+def beat_phase():
+    """Beat progress 0..1 while a build is rendering, else None.
+
+    The scene kit needs this for the same reason the charts do, and did not
+    have it. `_beat()` exists because reveal and beat progress stopped being
+    the same thing when the build was made to finish early so the finished
+    picture could be READ: `reveal` saturates at `full_by` and then sits at
+    1.0, so anything driven by it stops moving for the rest of the beat.
+
+    Every scene machine passes its `reveal` to `scene_host`, so the mascot
+    froze for the whole tail of every machine beat — and a still host on a
+    finished picture is the WHOLE FRAME holding still. That is the entire
+    `temporal_gate` block list on this channel: 33 of 228 verdicts, every one
+    of them a frozen run in the closing seconds.
+
+        max_dup_run 79 frames > 45 — a frozen stretch starting at t=30.46s
+        of 38.92s                        buybacks-beat-dividends, 2026-09-09
+        max_dup_run 56 frames > 45 — starting at t=36.25s of 43.04s
+                                         colorado-wolves-return, 2026-09-09
+    """
+    return _TOUR if _TOUR_LIVE else None
 
 
 def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
@@ -3027,8 +3054,9 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
         # `r` saturates at `full_by` and then sits at 1.0, so anything derived
         # from it stops moving for the rest of the beat; `_TOUR` keeps running
         # to 1.0 so the host still has somewhere to be at second twelve.
-        global _TOUR
+        global _TOUR, _TOUR_LIVE
         _TOUR = f / max(1, frames)
+        _TOUR_LIVE = True
         _ATTACH_FRAME.clear()
         fig, plt = _card_base()
         ax, specs = _compose_story(fig, plt, insight, r)
@@ -3038,6 +3066,7 @@ def render_story_build(insight: Insight, out_dir: Path, slug: str,
             anchors = _anchors_from(fig, ax, specs)
         fig.savefig(out_dir / f"{slug}_build{f:02d}.png", transparent=True)
         plt.close(fig)
+    _TOUR_LIVE = False
     # ATTACHMENT SIDECAR: which object Data grips, his full grip motion path,
     # the directed performance, and the scene timeline — the scene's plan-of-
     # record for the manifest, benchmark validator and repair loop.

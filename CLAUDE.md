@@ -112,6 +112,12 @@ Four rules, all of which were learned the hard way and are held by
   that shrink are a funnel, a ranking, a bottleneck, a supply chain and a set
   of sorting bins all at once by shape alone. A probability and a share are
   both "23%". A projection and a measurement are both a point on a line.
+- **Do not edit a source file while the suite is running.** `inspect.getsource`
+  resolves a function by its line number and re-reads the file from disk, so an
+  edit mid-run makes a dozen source-reading tests assert against whatever now
+  sits at those lines — they report failures in functions nobody touched. It
+  looks exactly like a real regression and it cost this session two ten-minute
+  runs before it was recognised.
 - **Motion must be MEASURED, not asserted.** The cadence gate reads a 45-frame
   near-identical run as a freeze, and a slow glide across a whole visual is a
   sub-pixel change per frame. Five machines were geometrically perfect and

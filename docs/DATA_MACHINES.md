@@ -354,6 +354,7 @@ turned into deterministic checks. Each of these was one cause, not a hundred:
 | its words | the cause | now |
 |---|---|---|
 | `empty_void` — "the entire lower two-thirds blank blue gradient" | `RBOT` was 1180 of 1920, "above the game strip", a layout this channel has not had for years. 158 configured scenes have >1 element and every one drew in the top 61%. | `RBOT` 1560; `shared/frame_occupancy.py` measures coverage and the largest empty band; `tests/test_the_frame_is_used.py` holds every machine under a 34% ceiling |
+| `bare_number_card` — "a giant '51,863' on an empty dark field with a decorative unlabeled arc" | `draw_gauge` set its full-scale value to `abs(v) * 1.35`. That is not a scale, it is the reading scaled — so 51,863 and 3 and 0.02 all put the needle at 74% of the sweep, the arc carried no information whatever, and the picture was a number with a ring behind it | the scale must be REAL: an explicit baseline, else 100 for a percentage, else the machine declines the beat. Both ends and the quarter ticks are drawn. `gauge_scene` refuses exactly what `draw_gauge` refuses; `tests/test_a_dial_needs_a_scale.py` renders three readings and asserts the needle lands in three places |
 | `bare_number_card` — "the number is stated, not demonstrated" | `draw_timeline` reached its rising filled area only when every item carried a `period` field, and fell back to a hairline ruler without one. The items were labelled 2007..2025. | the label IS the period when it is a year — coverage 5.4% → 35.5% on the blocked data |
 | `junk_imagery` — "a cartoon HOUSE icon sits on the 'Current record' bar" | `icons.emoji_codepoint` matched `key in label.lower()`, so cur-**RENT**-record picked up the housing key and "intensive **CAR**e" the vehicle one. This is the ONE fatal check — it blocks at any score on any policy — and it took six renders of `f1-pit-stop-vanishing-act` in a week plus `melatonin-kids-er-surge`, every one a story that did not post | a key must be a prefix of a whole TOKEN with only a plain inflection left over (a key of six or more may be a deliberate stem: `vaccin`, `immuniz`, `agricultur`); `tests/test_the_icon_must_be_about_the_label.py` pins the quoted verdicts as named cases |
 | `decorative_mascot` — "the same arms-out pose in five beats" | `viz_director` already picks a different performance per beat; the renderer's `_act()` threw it away and asked a map keyed on CHART KIND, where bars/comparison/rank all mean `push_bar` — and `scene`, which is every machine beat, was absent entirely | `_act()` honours `perf_spec`; `scene` has its own default |
@@ -366,6 +367,18 @@ this channel's 228 verdicts and `junk_imagery` 63 more, and in both cases the
 showrunner described the defect precisely, for weeks, while every test passed.
 When you add a name to any of these tables — an act, a prop, an icon key, a
 machine kind — **add the test that says it resolves**, in the same change.
+
+**A helper used for a case it was not written for is the third form of the
+same bug.** `_stagger`'s `0.8` overlaps CONSECUTIVE elements so the next one
+is already moving; with a single element there is nothing to overlap with, and
+paying the fifth anyway truncated every scene beat to 80% of its span. A beat
+IS one machine now, so that fifth was a held, finished picture — and the host
+was pinned to it too, because the scene kit drives him from the element's
+reveal and `charts._beat()` (which exists for exactly this) never crossed the
+fence. Every one of this channel's 33 `temporal_gate` blocks is a frozen run
+in the closing seconds. Longest frozen run over a 60-frame build, before and
+after: gauge 14→0, funnel 12→0, staircase 8→0, tower 25→7, nest 12→7,
+pipes 4→2.
 
 **Measure with the FURNITURE.** The studio draws the title near the top and
 burns the caption near the bottom of every frame, so measuring a bare machine

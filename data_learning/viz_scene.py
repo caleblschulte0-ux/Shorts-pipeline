@@ -309,8 +309,22 @@ def _vlist_layout(els, rows):
 
 
 def _stagger(reveal, i, n):
-    span = 1.0 / max(1, n)
-    lr = (reveal - i * span) / (span * 0.8)
+    """Element `i` of `n`'s own reveal, so they arrive in sequence.
+
+    The `0.8` overlaps consecutive elements — each finishes a fifth of a span
+    early so the next is already moving. With ONE element there is nothing to
+    overlap with, and it truncated the build to the first 80% of the beat: the
+    picture and the host both reached their final state at r=0.8 and held,
+    identical, for the last fifth.
+
+    That is where `temporal_gate` was coming from. Every one of this channel's
+    33 blocks is a frozen run in the closing seconds — "max_dup_run 79 frames
+    > 45, a frozen stretch starting at t=30.46s of 38.92s" — and a single
+    machine is what a beat renders now that a machine IS the picture.
+    """
+    n = max(1, n)
+    span = 1.0 / n
+    lr = (reveal - i * span) / (span * (0.8 if n > 1 else 1.0))
     lr = max(0.0, min(1.0, lr))
     return 1.0 - (1.0 - lr) ** 2
 
@@ -323,6 +337,14 @@ def _cx(box):
 
 
 _SCENE_HOST_CACHE: dict = {}
+
+#: Beat progress 0..1 while `render_scene` is walking a frame sequence, else
+#: None. The elements' reveal is staggered and eased and lands on the finished
+#: picture before the beat ends — which is correct, the picture has to be
+#: readable — but the HOST must keep performing to the last frame or the whole
+#: frame holds still. `charts._TOUR` is the same idea for the chart path, and
+#: a scene never goes through it: `render_scene` owns its own loop.
+_BEAT_PHASE = None
 
 #: WHAT A MACHINE ASKS FOR, and what it may be given.
 #:
@@ -429,6 +451,19 @@ def scene_host(action: str, phase: float, insight=None, kind: str = ""):
     # installed, including the `tests` CI job. It cost five machines their
     # host there while every one of them was fine locally.
     role, action = action, scene_act(action, insight, kind)
+    # HIS CLOCK IS THE BEAT, NOT THE BUILD.
+    #
+    # Machines pass their `reveal`, which saturates at `full_by` and then sits
+    # at 1.0 so the finished picture can be READ. Driving the pose from it
+    # freezes him for the whole tail of every beat — and a still host on a
+    # finished picture is the WHOLE FRAME holding still. That is the entire
+    # `temporal_gate` block list on this channel: every one of the 33 blocks
+    # is a frozen run in the closing seconds, up to 79 frames against a
+    # ceiling of 45. The charts solved this with `_beat()` and the scene kit
+    # never got it (`charts.beat_phase`).
+    _bp = _BEAT_PHASE if _BEAT_PHASE is not None else charts.beat_phase()
+    if _bp is not None:
+        phase = _bp
     key = (action, round(max(0.0, min(1.0, phase)) * 60) / 60)
     if key in _SCENE_HOST_CACHE:
         return _SCENE_HOST_CACHE[key]
@@ -3968,6 +4003,42 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     return (v, "art", cx, hy - 18)
 
 
+def gauge_full_scale(insight, v: float, unit: str = ""):
+    """The number at the END of the dial, or None if there is not one.
+
+    `vmax = abs(v) * 1.35` — what this used to be — is not a scale. It puts
+    the needle at 74% of the sweep for EVERY possible reading: 51,863 and 3
+    and 0.02 all land in the same place, so the arc carries no information
+    whatever and the picture is a number with a ring behind it. The showrunner
+    read that off the screen without ever seeing the code:
+
+        "a giant '51,863' on an empty dark field with a decorative unlabeled
+         arc"                            melatonin-kids-er-surge, 2026-09-06
+        "a giant numeral over a dark field with a decorative ring and nothing
+         else — the number is the beat, not a demonstration of it"
+        "the gauge arc it should be filling is zoomed almost entirely
+         off-frame"                    four-day-workweek-spreads, 2026-09-07
+
+    `bare_number_card` is an auto-fail and it took 41 of this channel's 228
+    verdicts. A dial is one of the few machines that CANNOT be improvised: a
+    needle means something only against a full scale that is really there.
+
+    So: an explicit baseline or limit is the scale. Failing that, a percentage
+    is out of 100. Failing that there is no scale, and the honest answer is to
+    decline the beat and let it fall through to a machine that can carry the
+    claim — a raw count has no ceiling, and inventing one is the same class of
+    lie as "2019 IS 9% OF THE WHOLE".
+    """
+    base = getattr(insight, "baseline", None)
+    lim = abs(float(getattr(base, "value", 0) or 0)) if base is not None else 0.0
+    if lim > abs(v) * 1.001:
+        return lim
+    u = f"{unit or getattr(insight, 'unit', '') or ''}".lower()
+    if ("percent" in u or "%" in u or "share" in u) and 0.0 < abs(v) <= 100.0:
+        return 100.0
+    return None
+
+
 def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     """A DIAL: a rate is a needle, and it sweeps.
 
@@ -3979,7 +4050,9 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
         return None
     star = max(items, key=lambda p: abs(float(getattr(p, "value", 0) or 0)))
     v = float(getattr(star, "value", 0) or 0)
-    vmax = max(abs(v) * 1.35, 1e-6)
+    vmax = gauge_full_scale(insight, v, unit)
+    if vmax is None:
+        return None
     bx0, by0, bx1, by1 = box
     cx = (bx0 + bx1) // 2
     # SIZED TO THE BOX. A dial pinned to y=620 with a 320px radius left the
@@ -3988,12 +4061,27 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     # shared/frame_occupancy.py).
     cy = int(by0 + (by1 - by0) * 0.44)
     R = int(min((bx1 - bx0) * 0.44, (by1 - by0) * 0.32))
-    a0, sweep = 200.0, 140.0                    # a车-style dial, open at the top
+    a0, sweep = 200.0, 140.0                    # a car-style dial, open at the top
     d.arc([cx - R, cy - R, cx + R, cy + R], a0, a0 + sweep,
           fill=_rgba(TEXT, 70), width=26)
     # the red zone — the last fifth of the dial
     d.arc([cx - R, cy - R, cx + R, cy + R], a0 + sweep * 0.8, a0 + sweep,
           fill=_rgba(WARN, 200), width=26)
+    # THE SCALE IS DRAWN, or the arc is decoration. Ticks at the quarters and
+    # the two ends labelled: without them the needle points at a position on
+    # a ruler nobody can read, which is what the reviewer meant by "a
+    # decorative unlabeled arc" and "a plain purple arc".
+    for _q in (0.0, 0.25, 0.5, 0.75, 1.0):
+        _ta = _math.radians(a0 + sweep * _q)
+        _c, _sn = _math.cos(_ta), _math.sin(_ta)
+        d.line([(cx + _c * (R - 40), cy + _sn * (R - 40)),
+                (cx + _c * (R + 4), cy + _sn * (R + 4))],
+               fill=_rgba(TEXT, 150), width=6)
+    for _q, _val, _anc in ((0.0, 0.0, "rm"), (1.0, vmax, "lm")):
+        _ta = _math.radians(a0 + sweep * _q)
+        d.text((cx + _math.cos(_ta) * (R + 30), cy + _math.sin(_ta) * (R + 30)),
+               charts._ulabel(_val, unit, group=True), font=_pil_font(34),
+               fill=_rgba(TEXT, 200), anchor=_anc)
     e = settle(reveal)
     ang = _math.radians(a0 + sweep * (abs(v) / vmax) * e)
     nx, ny = cx + _math.cos(ang) * (R - 40), cy + _math.sin(ang) * (R - 40)
@@ -4610,7 +4698,22 @@ def _machine_scene(kind: str, need: int = 3, cap: int | None = None):
 staircase_scene = _machine_scene("staircase", 3)
 elevator_scene = _machine_scene("elevator", 3)
 burden_scene = _machine_scene("burden", 2)
-gauge_scene = _machine_scene("gauge", 1)
+def gauge_scene(insight) -> dict:
+    """The builder refuses exactly what the drawing refuses.
+
+    A builder that accepts what `draw_gauge` declines hands the beat a token,
+    fails validation at render time and degrades to a chart — a slot spent, no
+    variety, and nothing anywhere saying why (`studio_render._buildable`).
+    """
+    items = list(getattr(insight, "items", None) or [])
+    if not items:
+        return {}
+    v = max((abs(float(getattr(p, "value", 0) or 0)) for p in items),
+            default=0.0)
+    if gauge_full_scale(insight, v, getattr(insight, "unit", "") or "") is None:
+        return {}
+    return {"title": True,
+            "elements": [{"type": "gauge", "region": "full", "anim": "grow"}]}
 skyline_scene = _machine_scene("skyline", 2)
 
 
@@ -5176,6 +5279,8 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         # ease front-loaded the build so the last ~40% barely moved, which read
         # as a ~4s dead hold. Steady growth keeps visible motion the whole beat.
         r = 1.0 if f == frames else f / frames
+        global _BEAT_PHASE
+        _BEAT_PHASE = f / max(1, frames)
         canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(canvas)
         if show_title:
@@ -5276,6 +5381,7 @@ def render_scene(insight, out_dir: Path, slug: str, frames: int = 16):
         # unaffordable — and an unaffordable beat is why scene segments came
         # out at ~1 effective fps against an 11.0 floor.
         canvas.save(out_dir / f"{slug}_build{f:02d}.png", compress_level=1)
+    _BEAT_PHASE = None            # the beat is over; no stale phase leaks out
     return pattern, anchors
 
 
