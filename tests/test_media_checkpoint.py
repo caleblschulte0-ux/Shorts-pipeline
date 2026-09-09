@@ -590,6 +590,92 @@ class TestClaims(_TempBundles):
         self.assertTrue(got["reclaimed"])
         self.assertEqual(mc.read_claim(DATE, "r1")["worker"], "finalizer")
 
+    # ---- an EXPIRED lease is reclaimed by exactly one worker -----------
+    # `O_CREAT|O_EXCL` protected only the FIRST claim. Two workers that both
+    # observed the same expired lease each read it, each wrote it, and each
+    # was told granted=True — duplicate generation, and whichever finished
+    # last owned the checkpoint (doctor finding 0cc2e7f231ca). The reclaim
+    # is exclusive now too, and the re-read inside the lock is what decides.
+
+    def _expire(self, rid="r1"):
+        past = mc._utcnow() - timedelta(hours=3)
+        mc.create_claim(DATE, rid, worker="media", worker_run_id="dead",
+                        lease_seconds=60, now=past)
+        assert not mc.claim_active(mc.read_claim(DATE, rid))
+
+    def test_two_workers_racing_an_expired_lease_produce_one_winner(self):
+        import threading
+        self._expire()
+        start = threading.Barrier(2)
+        out = []
+
+        def go(run_id):
+            start.wait(timeout=5)
+            out.append(mc.create_claim(DATE, "r1", worker="finalizer",
+                                       worker_run_id=run_id))
+
+        ts = [threading.Thread(target=go, args=(f"w{i}",)) for i in range(2)]
+        for t in ts:
+            t.start()
+        for t in ts:
+            t.join(timeout=10)
+        granted = [r for r in out if r["granted"]]
+        self.assertEqual(len(out), 2)
+        self.assertEqual(len(granted), 1,
+                         f"both workers reclaimed the same lease: {out}")
+        # and the file on disk belongs to the one that was told it won
+        self.assertEqual(mc.read_claim(DATE, "r1")["worker_run_id"],
+                         granted[0]["claim"]["worker_run_id"])
+
+    def test_a_reclaim_in_progress_refuses_the_second_worker(self):
+        """The lock, seen directly: while one worker holds it, the other is
+        told so rather than writing over the top."""
+        self._expire()
+        lock = mc.claim_path(DATE, "r1")
+        lock = lock.with_name(lock.name + ".reclaim")
+        lock.write_text("")
+        got = mc.create_claim(DATE, "r1", worker="finalizer",
+                              worker_run_id="late")
+        self.assertFalse(got["granted"])
+        self.assertIn("reclaiming", got["reason"])
+
+    def test_a_lease_reclaimed_while_we_waited_is_not_taken_twice(self):
+        """The re-read, seen directly: the lock can be released between our
+        observation and our write, and the answer must still be no."""
+        self._expire()
+        first = mc.create_claim(DATE, "r1", worker="media",
+                                worker_run_id="fast")
+        self.assertTrue(first["granted"])
+        second = mc.create_claim(DATE, "r1", worker="finalizer",
+                                 worker_run_id="slow")
+        self.assertFalse(second["granted"])
+        self.assertIn("fast", str(mc.read_claim(DATE, "r1")))
+
+    def test_a_lock_left_by_a_dead_worker_does_not_block_forever(self):
+        """Same rule as the lease itself: a crash must not cost a shot
+        permanently. The stale lock is stolen, and the re-read still guards
+        the write."""
+        import os
+        import time as _t
+        self._expire()
+        lock = mc.claim_path(DATE, "r1")
+        lock = lock.with_name(lock.name + ".reclaim")
+        lock.write_text("")
+        old = _t.time() - (mc.RECLAIM_LOCK_SECONDS + 30)
+        os.utime(lock, (old, old))
+        got = mc.create_claim(DATE, "r1", worker="finalizer",
+                              worker_run_id="alive")
+        self.assertTrue(got["granted"], got["reason"])
+        self.assertTrue(got["reclaimed"])
+        self.assertFalse(lock.exists(), "the reclaim lock was left behind")
+
+    def test_the_lock_file_is_not_mistaken_for_a_claim(self):
+        self._expire()
+        mc.create_claim(DATE, "r1", worker="finalizer", worker_run_id="alive")
+        names = [p.name for p in mc.claims_dir(DATE).iterdir()]
+        self.assertNotIn("r1.json.reclaim", names)
+        self.assertEqual([c["request_id"] for c in mc.expired_claims(DATE)], [])
+
     def test_expired_claims_are_listable(self):
         past = mc._utcnow() - timedelta(hours=3)
         mc.create_claim(DATE, "r1", worker="media", worker_run_id="dead",

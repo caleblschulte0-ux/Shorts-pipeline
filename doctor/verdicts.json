@@ -969,10 +969,16 @@
       "history": []
     },
     "aab2495524a2": {
-      "verdict": "doing",
-      "date": "20260828",
-      "because": "Confirmed: funnel/topic_video.py _download's cache-hit check is only 'st_size > 0', and the download path accepts anything >= 10KB even after a Range-ignoring server truncation or interrupted write, with no decode/container check. A real correctness gap in cache validity. Doing, but ranked behind the media-judge package-failure fix this run.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. Downloads stage to a .part and rename only after decoding; a cache hit is probed before it is trusted and evicted when it fails. shared.video_qa.probe_decodable is the check, tri-state (True/False/None-for-no-ffprobe) and deliberately not routed through the existing _ffprobe helper, which collapses 'tool missing' and 'ffprobe rejected this file' into one None \u2014 opposite answers here. Unknown always means keep going. 11 tests in tests/test_topic_video_cache.py; 9 error against the unfixed file.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260828",
+          "because": "Confirmed: funnel/topic_video.py _download's cache-hit check is only 'st_size > 0', and the download path accepts anything >= 10KB even after a Range-ignoring server truncation or interrupted write, with no decode/container check. A real correctness gap in cache validity. Doing, but ranked behind the media-judge package-failure fix this run."
+        }
+      ]
     },
     "4589e347920b": {
       "verdict": "later",
