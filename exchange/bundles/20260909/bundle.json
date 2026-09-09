@@ -377,8 +377,8 @@
           "shot_index": 1,
           "phrase": "eleven-minute walkthrough video",
           "query": "person filming boxes phone",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
@@ -412,8 +412,8 @@
           "shot_index": 6,
           "phrase": "a check for the clock's full appraised value",
           "query": "bank check envelope",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
@@ -425,18 +425,18 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 1,
-        "missing": 7,
+        "weak": 3,
+        "missing": 5,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "reddit-movers-video-proof-claim-s0-8058fa3e580f",
-        "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
         "reddit-movers-video-proof-claim-s2-d07433115f65",
         "reddit-movers-video-proof-claim-s3-9d51c7eff016",
         "reddit-movers-video-proof-claim-s4-c85c45f06f60",
         "reddit-movers-video-proof-claim-s5-e0817f3f858d",
+        "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
         "reddit-movers-video-proof-claim-s6-75baa41897a0",
         "reddit-movers-video-proof-claim-s7-cec0587abc36"
       ]
@@ -533,32 +533,6 @@
       "shot_index": 0,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: moving boxes truck. It accompanies the narration: \"the antique clock\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
-      "safe_request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
-      "drive_filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
-      "prompt_sha256": "91f569da9f92163502c9bd1b3f7289f5cfa685d4e881a5b7467c39744616d89d",
-      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
-      "slug": "reddit-movers-video-proof-claim",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: person filming boxes phone. It accompanies the narration: \"eleven-minute walkthrough video\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -680,6 +654,34 @@
       "verdict": "missing"
     },
     {
+      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "safe_request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "drive_filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
+      "prompt_sha256": "91f569da9f92163502c9bd1b3f7289f5cfa685d4e881a5b7467c39744616d89d",
+      "checkpoint_path": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
+      "slug": "reddit-movers-video-proof-claim",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: person filming boxes phone. It accompanies the narration: \"eleven-minute walkthrough video\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
       "safe_request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
       "drive_filename": "20260909__reddit-movers-video-proof-claim-s6-75baa41897a0.png",
@@ -701,9 +703,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "reddit-movers-video-proof-claim-s7-cec0587abc36",
