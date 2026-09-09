@@ -112,7 +112,11 @@ def _mechanical(video: Path, led: dict, problems: list[str]) -> None:
         problems.append(f"frozen video at {float(m.group(1)):.1f}s")
 
     # a face crop that lost the face = the wrong-subject/midpoint class
-    if led.get("reframe") == "face":
+    # Only a FACE-driven crop can be judged on face visibility. The action
+    # crop is aimed at motion and runs precisely when no face is trackable,
+    # so asking "is a face visible" of it fails 100% of the time by
+    # construction.
+    if str(led.get("reframe")) in ("face", "closeup", "two_shot"):
         rate = _face_rate(video, dur)
         if rate is not None and rate < FACE_MIN_RATE:
             problems.append(

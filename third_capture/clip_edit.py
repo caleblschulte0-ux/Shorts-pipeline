@@ -990,12 +990,40 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         _bands = list((sp_summary or {}).get("face_bands")
                       or [[0.34, 0.66]])
         _bands.append([0.65, 0.80])                    # caption zone
+        # RESERVE THE HOOK CARD TOO. It was never in this list, so the
+        # emoji's first-choice position (0.15, height 0.16 -> 0.15-0.31)
+        # could land straight on top of the hook whenever a money moment
+        # fell inside the first 3 seconds. Wrapping the hook to two lines
+        # makes it taller, so the overlap has to be declared rather than
+        # left to luck. Computed from the ACTUAL wrapped text, not assumed.
+        _hook_txt, _hook_size = wrap_hook(hook) if hook else ("", 72)
+        _hook_band = None
+        if _hook_txt:
+            _n = len(_hook_txt.split("\n"))
+            _h_px = _n * _hook_size * 1.2 + (_n - 1) * 14
+            _hook_band = [230 / CANVAS_H, (230 + _h_px + 20) / CANVAS_H]
 
-        def _safe_y(cands: list[float], frac_h: float) -> float:
+        def _safe_y(cands: list[float], frac_h: float,
+                    extra: list | None = None) -> float:
+            bands = _bands + (extra or [])
             for c in cands:
-                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in _bands):
+                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in bands):
                     return c
-            return cands[0]
+            # NOTHING FITS: fall back to the least-bad candidate rather than
+            # cands[0]. The old code returned cands[0] unconditionally,
+            # which is how an overlay ended up sitting on whatever it was
+            # supposed to avoid — a "safe zone" that silently gives up is
+            # worse than none, because it reads as deliberate placement.
+            def _overlap(c: float) -> float:
+                return sum(max(0.0, min(c + frac_h, b1) - max(c, b0))
+                           for b0, b1 in bands)
+            return min(cands, key=_overlap)
+
+        # The hook only exists for the first 3s. An overlay that lands
+        # after it is not competing for that space, so reserving the band
+        # unconditionally would push every emoji down for nothing.
+        def _hook_extra(s_t: float) -> list:
+            return [_hook_band] if (_hook_band and s_t < 3.0) else []
 
         emoji_y = _safe_y([0.15, 0.30, 0.50, 0.04], 0.16)
         word_y = _safe_y([0.40, 0.28, 0.55, 0.09], 0.09)
@@ -1047,7 +1075,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             #   - fade in and out. A black rectangle appearing and vanishing
             #     on a hard frame boundary reads as an overlay stuck on top
             #     of someone else's video, which is exactly what it was.
-            htxt, hsize = wrap_hook(hook)
+            htxt, hsize = _hook_txt, _hook_size
             hf = tmp / "hook.txt"
             hf.write_text(htxt)
             _fade = ("if(lt(t,0.25),t/0.25,"
@@ -1180,5 +1208,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             "cut": [t0, t1], "duration_s": round(dur, 2),
             "opening_trim_s": opening_adv, "closing_trim_s": closing_trim,
             "caption_words": len(words), "hook": hook,
-            "reframe": "face" if reframed is not None else "blur",
+            # NAME THE REFRAME BY WHAT IT ACTUALLY IS. This said "face"
+            # for ANY reframe, which was true while every reframe mode was
+            # face-driven (closeup/two_shot/split/stacked). The action crop
+            # is aimed at MOTION and by definition runs when no face is
+            # trackable — labelling it "face" makes clip_qa run its
+            # face-visibility check and reject it for containing no face,
+            # which is every clip the crop exists to serve. Caught by
+            # scripts/smoke_third.py before it reached the channel.
+            "reframe": ("blur" if reframed is None else
+                        (sp_summary or {}).get("layout") or "face"),
             **ledger_ae}

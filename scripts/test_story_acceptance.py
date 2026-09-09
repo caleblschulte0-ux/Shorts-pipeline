@@ -1290,10 +1290,17 @@ def main() -> int:  # noqa: C901
     _floor = _rqsig.parameters["min_active_ratio"].default
     # a 16:9 source fitted into 1080x1920 is 1080x607 = 31.6% BY
     # CONSTRUCTION — a floor above that condemns every render we make
-    check("the letterbox floor cannot fire on a normal 16:9 fit (0.316)",
-          _floor < 0.316)
-    check("...but still catches a frame boxed twice (~0.10-0.18)",
-          _floor > 0.18)
+    # CORRECTED 2026-09-09 by measurement. The house blur-fill padding is
+    # dimmed BLURRED CONTENT, not black, so cropdetect leaves it alone and
+    # a normal render reports ratio 1.00 — not the 0.316 its geometry
+    # suggests. Measured at limit=16: bar-boxed source 0.32, our own
+    # render 1.00. The floor was briefly dropped to 0.22 on the untested
+    # assumption that our style scored 0.32, which disabled detection of
+    # the genuinely bar-boxed sources this engine exists to catch.
+    check("the letterbox floor still catches a bar-boxed source (0.32)",
+          _floor > 0.32)
+    check("...and our own blur-fill render measures 1.00, so it is never "
+          "at risk from that floor", _floor < 1.0)
     check("a failing letterbox probe cannot erase confirmed defects",
           "the {len(problems)} finding(s) above still stand"
           in (REPO / "engines" / "render_qa.py").read_text())
