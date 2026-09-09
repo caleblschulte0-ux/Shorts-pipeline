@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-movers-video-proof-claim-s4-c85c45f06f60",
+  "safe_request_id": "reddit-movers-video-proof-claim-s4-c85c45f06f60",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e1e7f240625d743cc27ee2b153ba3481262bdd4fb3d94aa4b8f16f044bd0f78c",
+  "prompt_used": "An editorial illustration for a short-form video: contract paperwork signing. It accompanies the narration: \"their own certificate of insurance clause\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1MAxgpECn7S4NQ3KJBvmlqOFHpiqwKxER",
+    "filename": "20260909__reddit-movers-video-proof-claim-s4-c85c45f06f60.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1MAxgpECn7S4NQ3KJBvmlqOFHpiqwKxER",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8b835a0c606ad102d56ceeb3334a44a6ebc31e4f7a6f62851eccb2ef8e0d76a6",
+    "bytes": 1822641,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-09-09T11:23:00Z"
+}
