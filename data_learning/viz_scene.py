@@ -1108,8 +1108,9 @@ def draw_road(d, canvas, box, insight, color, reveal, unit=""):
            font=_pil_font(96), fill=_rgba(color, 255), anchor="mm")
     lo_l = getattr(items[0], "label", "")
     hi_l = getattr(items[-1], "label", "")
-    d.text(((bx0 + bx1) // 2, road_y + 150),
-           f"{lo_l} to {hi_l} — barely moved", font=_pil_font(42),
+    _s = f"{lo_l} to {hi_l} — barely moved"
+    _f, _s = fit_text(d, _s, 42, (bx1 - bx0) - 60)
+    d.text(((bx0 + bx1) // 2, road_y + 150), _s, font=_f,
            fill=_rgba(TEXT, 225), anchor="mm")
     return (mid, "art", (bx0 + bx1) // 2, road_y)
 
@@ -1611,9 +1612,10 @@ def draw_queue(d, canvas, box, insight, color, reveal, unit=""):
             canvas.alpha_composite(_fit(glyph, sz, sz), (int(x), int(y)))
         else:
             d.ellipse([x, y, x + sz, y + sz], fill=_rgba(ACCENT, 235))
-    d.text(((bx0 + bx1) // 2, by0 + 78),
-           f"{lab}   {charts._ulabel(v, unit, group=True)} waiting",
-           font=_pil_font(62), fill=_rgba(color, 255), anchor="mm")
+    _s = f"{lab}   {charts._ulabel(v, unit, group=True)} waiting"
+    _f, _s = fit_text(d, _s, 62, (bx1 - bx0) - 60)
+    d.text(((bx0 + bx1) // 2, by0 + 78), _s, font=_f,
+           fill=_rgba(color, 255), anchor="mm")
     d.text(((bx0 + bx1) // 2, ground + 62), "and the line keeps growing",
            font=_pil_font(40), fill=_rgba(TEXT, 210), anchor="mm")
     return (v, "art", hx + mw, ground - sz)
@@ -2888,10 +2890,11 @@ def draw_tower(d, canvas, box, insight, color, reveal, unit=""):
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(cx - mw // 2), int(ty - mh + 8)))
-    d.text((cx, by0 + 58),
-           f"{getattr(star, 'label', '')}   "
-           f"{charts._ulabel(v, unit, group=True)}",
-           font=_pil_font(70), fill=_rgba(color, 255), anchor="mm")
+    _s = (f"{getattr(star, 'label', '')}   "
+          f"{charts._ulabel(v, unit, group=True)}")
+    _f, _s = fit_text(d, _s, 72, (bx1 - bx0) - 60)
+    d.text((cx, by0 + 58), _s,
+           font=_f, fill=_rgba(color, 255), anchor="mm")
     d.text((cx, bot + 46), f"each block  =  {charts._ulabel(per, unit)}",
            font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
     return (v, "art", cx, ty)
@@ -3197,8 +3200,13 @@ def draw_pipes(d, canvas, box, insight, color, reveal, unit=""):
                                        int(235 * a)))
         d.text((bxm, bot + 30), f"{share * 100:.0f}%", font=_pil_font(34),
                fill=_rgba(TEXT, int(235 * a)), anchor="mm")
-        d.text((bxm, bot + 70), str(getattr(p, "label", ""))[:11],
-               font=_pil_font(28), fill=_rgba(TEXT, int(195 * a)), anchor="mm")
+        # Fitted to the BRANCH it names, not the frame: a hard [:11] cut
+        # both truncated names that would have fitted and overflowed ones
+        # that would not.
+        _f, _s = fit_text(d, str(getattr(p, "label", "")), 28,
+                          max(60, int(w) - 8), min_size=18)
+        d.text((bxm, bot + 70), _s, font=_f,
+               fill=_rgba(TEXT, int(195 * a)), anchor="mm")
         last = (bxm, split_y + 90)
         x += w + 12
     # PRODUCT IN THE PIPES. A split that appears and then holds measured a
@@ -3481,6 +3489,41 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
     return (vals[-1], "art", int((sx0 + sx1) / 2), cy)
 
 
+def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26):
+    """The largest font at or below `size` that keeps `text` inside `max_w`.
+
+    Machines centre their headline with `anchor="mm"` at a fixed x, which
+    silently spills a long label out of BOTH edges — the label is not
+    truncated, it is simply drawn past the frame. Measured on the drawn layer
+    on 2026-09-09 with realistic labels ("1990 (pre-vaccine)"), four machines
+    put ink in the outer 6px: burden 1.65%/2.37%, queue 2.22%/1.76%, road
+    1.34%, pipes 0.55%. With short labels every one of them is 0.00%.
+
+    The operator found it by watching a video that had already SHIPPED: "90
+    (pre-vaccine)" and "Not yet vaccinated  9" with the leading digits and
+    the percent sign outside the frame. The showrunner passed it — the gate
+    reads motion and emptiness, and does not read the frame.
+
+    Shrinking rather than ellipsising is deliberate: the label IS the claim's
+    subject, and "1990 (pre-vac..." is a worse answer than the same words two
+    points smaller. Below `min_size` it gives up and ellipsises, because text
+    nobody can read is not a rescue either.
+    """
+    size = max(min_size, int(size))
+    while size > min_size:
+        f = _pil_font(size)
+        if d.textlength(text, font=f) <= max_w:
+            return f, text
+        size -= 2
+    f = _pil_font(min_size)
+    if d.textlength(text, font=f) <= max_w:
+        return f, text
+    cut = text
+    while cut and d.textlength(cut + "…", font=f) > max_w:
+        cut = cut[:-1]
+    return f, (cut + "…") if cut else text
+
+
 def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
     """A LOAD HE HOLDS UP: a cost is weight, and the weight is on him.
 
@@ -3535,8 +3578,9 @@ def draw_burden(d, canvas, box, insight, color, reveal, unit=""):
                             radius=9,
                             fill=_rgba(color if k == n_slabs - 1 else ACCENT, 240),
                             outline=_rgba(charts.CARD, 255), width=3)
-    d.text((cx, by0 + 58), f"{lab}   {charts._ulabel(v, unit, group=True)}",
-           font=_pil_font(76), fill=_rgba(color, 255), anchor="mm")
+    _s = f"{lab}   {charts._ulabel(v, unit, group=True)}"
+    _f, _s = fit_text(d, _s, 76, (bx1 - bx0) - 60)
+    d.text((cx, by0 + 58), _s, font=_f, fill=_rgba(color, 255), anchor="mm")
     d.text((cx, ground + 52), "what he's carrying", font=_pil_font(38),
            fill=_rgba(TEXT, 200), anchor="mm")
     return (v, "art", cx, hy - 18)

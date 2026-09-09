@@ -261,3 +261,82 @@ class CoverageThatDependsOnTHEDATA(unittest.TestCase):
         src = inspect.getsource(vs.draw_nest)
         self.assertNotIn("* 0.44", src)
         self.assertNotIn(", 600)", src)
+
+
+class TextStaysINSIDETheFrame(unittest.TestCase):
+    """The operator watched a video that had already SHIPPED and read back
+    what the gate had passed:
+
+        8s   "90 (pre-vaccine)"        the leading 19 outside the frame
+        28s  "Not yet vaccinated  9"   the percent sign outside the frame
+        20s  two labels printed on top of one another
+
+    The showrunner passed all of it. It reads motion and emptiness; it does
+    not read the frame. Nothing in the suite measured whether text was
+    INSIDE the picture either — `frame_occupancy` asks whether the frame is
+    filled, which a label spilling off the edge technically helps with.
+
+    Measured on the drawn layer with a realistic label ("1990 (pre-vaccine)")
+    rather than the test-friendly "A"/"B", five machines put ink in the outer
+    six pixels: burden 2.37%, queue 2.22%, tower 1.54%, road 1.34%, pipes
+    0.55%. Every one centres its headline with `anchor="mm"` at a fixed x and
+    never asks whether it fits.
+    """
+
+    #: Deliberately awkward, because the short labels the other sweeps use
+    #: are what hid this. The last one is longer than any real dataset label
+    #: — a machine that survives it will survive the catalogue.
+    LABELS = (
+        [("1990 (pre-vaccine)", 4000.0), ("2019 (two-dose era)", 100.0)],
+        [("Before the vaccine was introduced nationally", 4000.0),
+         ("After", 100.0)],
+        [("Massachusetts", 96.5), ("Mississippi", 52.7)],
+    )
+    EDGE_PX = 6
+
+    def test_no_machine_draws_text_off_the_edge_of_the_frame(self):
+        import numpy as np
+        from data_learning.insights import Insight
+        from data_learning.sources.base import DataPoint, Source
+        src = Source(name="X", publisher="Y", url="https://x",
+                     access_date="2026-09-09")
+        bad = {}
+        for kind in sorted(vs._MACHINE_DRAW):
+            for pairs in self.LABELS:
+                ins = Insight(kind="scene", topic="cases per year",
+                              main_insight="m",
+                              items=[DataPoint(label=a, value=float(b))
+                                     for a, b in pairs],
+                              source=src, unit="count",
+                              highlight_label=pairs[0][0])
+                safe = vs.drawable_insight(ins)
+                if safe is None:
+                    continue
+                img = Image.new("RGBA", (1080, 1920), (0, 0, 0, 0))
+                d = ImageDraw.Draw(img)
+                got = vs._guarded(kind, vs._MACHINE_DRAW[kind], d, img, BOX,
+                                  safe, charts.HIGHLIGHT, 0.95, "count")
+                if got is None:
+                    continue
+                a = np.asarray(img.split()[-1], dtype=np.float32) > 8
+                m = self.EDGE_PX
+                worst = max(a[:, :m].mean(), a[:, -m:].mean()) * 100
+                if worst > 0.05:
+                    bad[kind] = max(bad.get(kind, 0), round(worst, 2))
+        self.assertEqual(bad, {}, f"machines drawing past the frame: {bad}")
+
+    def test_the_fitter_shrinks_before_it_truncates(self):
+        """The label IS the claim's subject — "1990 (pre-vac..." is a worse
+        answer than the same words two points smaller."""
+        img = Image.new("RGBA", (1080, 400), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        f, out = vs.fit_text(d, "1990 (pre-vaccine)   4,000", 76, 900)
+        self.assertEqual(out, "1990 (pre-vaccine)   4,000", "it truncated")
+        self.assertLessEqual(d.textlength(out, font=f), 900)
+
+    def test_it_gives_up_and_ellipsises_rather_than_draw_unreadably_small(self):
+        img = Image.new("RGBA", (1080, 400), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img)
+        f, out = vs.fit_text(d, "x" * 400, 76, 300)
+        self.assertTrue(out.endswith("…"))
+        self.assertLessEqual(d.textlength(out, font=f), 300)
