@@ -31,7 +31,11 @@ LOG = ROOT / "state" / "third_posted_log.json"
 
 # One glyph per outcome, so a slate reads at a glance.
 MARK = {"pass": "PASS", "reject": "REJECT", "unavailable": "-- DOWN",
-        "fail": "REJECT", "not_a_story": "no arc", "starved": "STARVED"}
+        "fail": "REJECT", "starved": "STARVED",
+        # an editorial "no" and a malformed plan need different responses:
+        # the first is the gate working, the second is a bug in ours
+        "not_a_story": "no arc (editorial)",
+        "plan_rejected": "PLAN REJECTED (ours, not the director's)"}
 
 
 def _fmt_judge(name: str, v: dict) -> list[str]:

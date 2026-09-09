@@ -1153,10 +1153,21 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 edl = story_director.plan_story(
                     sub, event, guidance=_story_guidance())
                 if not edl:
-                    print(f"[story] {elbl}: director says not a story",
-                          flush=True)
-                    _story_verdict(elbl, "not_a_story",
-                                   "director found no genuine arc")
+                    # NAME THE GATE. plan_story returns None for an
+                    # editorial "not a story" AND for ten different
+                    # structural violations, and this logged all of them
+                    # identically. Across 2026-08-10..09-08 that catch-all
+                    # was recorded 22 times on healthy-brain runs with zero
+                    # stories shipped, and nothing in the durable record
+                    # could say whether the director declined or produced a
+                    # plan that tripped a validator rule — i.e. whether the
+                    # story arm was working correctly or silently broken.
+                    rej = story_director.last_rejection()
+                    why = rej.get("why") or "director found no genuine arc"
+                    print(f"[story] {elbl}: no arc — {why}", flush=True)
+                    _story_verdict(elbl,
+                                   "not_a_story" if rej.get("editorial")
+                                   else "plan_rejected", why)
                     continue
                 plan_urls = [b["source_id"] for b in edl["beats"]]
                 if storyline.story_key(plan_urls) in shipped or \

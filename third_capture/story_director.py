@@ -187,28 +187,58 @@ def _overlaps(s: float, e: float, windows: list) -> bool:
 
 
 def validate_edl(edl: dict, durations: dict[str, float],
-                 windows: dict[str, list] | None = None) -> dict | None:
+                 windows: dict[str, list] | None = None,
+                 reasons: list | None = None) -> dict | None:
     """Hard-validate a director EDL against the playbook's NARRATIVE laws,
     not just syntax (reviewer #8). Returns the cleaned EDL or None.
     `durations` maps source_id -> clip length; `windows` maps source_id ->
     [(start,end)] evidence windows (dialogue/visual/candidate beats) so a
-    cut can be required to land on something that actually happens."""
+    cut can be required to land on something that actually happens.
+
+    `reasons` (optional list) collects WHY a plan was thrown out. Every
+    rejection here used to be indistinguishable from the director saying
+    "this is not a story": the caller logged both as "no genuine arc". Over
+    2026-08-10..09-08 that verdict was recorded 22 times with a healthy
+    brain and not one story shipped, and nothing in the record could say
+    whether the director declined or produced a plan that tripped one of
+    these ten gates. Name the gate."""
     windows = windows or {}
+    rs = reasons if reasons is not None else []
     try:
-        if not edl or not edl.get("is_story"):
+        if not edl:
+            rs.append("no plan returned")
+            return None
+        if not edl.get("is_story"):
+            # the ONLY editorial "no" in this function; everything below is
+            # a malformed plan, which is a different problem with a
+            # different fix
+            rs.append("director judged: not a story")
             return None
         structure = str(edl.get("structure", ""))
         if structure not in STRUCTURES:
+            rs.append(f"unknown structure {structure!r}")
             return None
         premise = str(edl.get("premise", "")).strip()
         central_q = str(edl.get("central_question", "")).strip()
         payoffish = [b for b in (edl.get("beats") or [])
                      if str(b.get("role")) in ("payoff", "climax")]
         if not premise or not central_q or not payoffish:
+            rs.append("missing premise/central_question/payoff beat")
             return None          # §8: premise + question + payoff required
-        # hook must be a real 3-7 word curiosity line
+        # The hook is a 3-7 word curiosity line. AN OVER-LONG HOOK IS A
+        # FORMATTING NIT, NOT AN INCOHERENT STORY — and this function
+        # already says so everywhere else: a malformed context_overlay is
+        # dropped, a bad transition and a bad framing are coerced to
+        # defaults. Only `hook_overlay` threw away an entire validated arc
+        # over a word count. Trim it, the same way the overlay is trimmed.
+        # A hook under 3 words is not a curiosity line and still rejects.
         hook_raw = scrub_text(str(edl.get("hook_overlay", "")).strip())
-        if not (3 <= len(hook_raw.split()) <= 7):
+        _hw = hook_raw.split()
+        if len(_hw) > 7:
+            hook_raw = " ".join(_hw[:7])
+            rs.append(f"hook trimmed {len(_hw)}->7 words (repaired)")
+        elif len(_hw) < 3:
+            rs.append(f"hook too short ({len(_hw)} words)")
             return None
         beats = []
         n_punch = n_replay = n_overlay = 0
@@ -216,22 +246,28 @@ def validate_edl(edl: dict, durations: dict[str, float],
             sid = str(b.get("source_id", ""))
             dur = durations.get(sid)
             if dur is None:
+                rs.append(f"beat references unknown source {sid!r}")
                 return None      # director referenced an unknown source
             s = max(0.0, float(b.get("start", 0)))
             e = min(float(dur), float(b.get("end", 0)))
             if e - s < 1.5:
+                rs.append(f"beat {sid} is {e - s:.2f}s (<1.5s)")
                 return None      # sub-1.5s segments are noise, not beats
             # the cut must land on something that actually happens — a
             # dialogue/visual/candidate window in that source (skipped only
             # when analysis produced no windows for it, to avoid over-reject)
             w = windows.get(sid)
             if w and not _overlaps(s, e, w):
+                rs.append(f"beat {sid} {s:.1f}-{e:.1f}s lands on no "
+                          f"analysed window")
                 return None
             role = str(b.get("role", ""))
             if role not in ROLES:
+                rs.append(f"unknown beat role {role!r}")
                 return None
             purpose = str(b.get("purpose", "")).strip()
             if not purpose:
+                rs.append(f"beat {sid} states no purpose")
                 return None      # §10: every segment states its purpose
             overlay = scrub_text(
                 str(b.get("context_overlay", "")).strip())[:40].upper()
@@ -266,22 +302,29 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "context_overlay": overlay,
                           "effects": effects})
         if len(beats) < 2:
+            rs.append(f"only {len(beats)} valid beat(s)")
             return None
         if n_overlay > max(0, len(beats) - 1):
+            rs.append("a context overlay on every beat = decoration")
             return None          # an overlay on every beat = decoration
         # §8/§20: the story must END on its payoff — not trail off on a
         # context/setup beat (reviewer #8: "could validate while ending on
         # an irrelevant context beat")
         if beats[-1]["role"] not in ("payoff", "climax", "reaction"):
+            rs.append(f"ends on a {beats[-1]['role']!r} beat, not the payoff")
             return None
         # first beat must fit the chosen structure: a cold_open / mystery
         # opens on the strong moment; the timeline structures open on setup
         first_role = beats[0]["role"]
         if structure in ("cold_open", "mystery_reveal"):
             if first_role not in ("climax", "payoff", "reaction"):
+                rs.append(f"{structure} must open strong, opens on "
+                          f"{first_role!r}")
                 return None
         elif structure in ("chronological", "escalation", "before_after"):
             if first_role not in ("setup", "context", "escalation"):
+                rs.append(f"{structure} must open on setup, opens on "
+                          f"{first_role!r}")
                 return None
         # §14 narration: optional, justified, verified-voice only. Key is
         # `over_beat` (reviewer #10) — narration is DUCKED OVER that beat,
@@ -356,6 +399,16 @@ def _brain(user: str, system: str,
     return out
 
 
+# Why the last plan_story() call ended the way it did. Read by run_third
+# so the recorded verdict names the actual gate instead of a catch-all.
+_LAST_REJECTION: dict = {}
+
+
+def last_rejection() -> dict:
+    """{'why': str, 'editorial': bool} for the most recent plan_story()."""
+    return dict(_LAST_REJECTION)
+
+
 def plan_story(reports: list[dict], event: dict | None = None,
                guidance: str = "") -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
@@ -374,11 +427,23 @@ def plan_story(reports: list[dict], event: dict | None = None,
                  f"type={event.get('event_type', '?')}\n\n")
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
     out = _brain(user, _PLAN_SYSTEM)
-    if not out or not out.get("is_story"):
+    rs: list = []
+    if out is None:
+        rs.append("director unreachable")
+        _LAST_REJECTION.clear()
+        _LAST_REJECTION.update(why="; ".join(rs), editorial=False)
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    return validate_edl(out, durations, _windows(reports))
+    edl = validate_edl(out, durations, _windows(reports), reasons=rs)
+    # `editorial` separates "a human editor would also say no" from "the
+    # plan was malformed" — the second is OUR bug and needs a code fix, and
+    # for a month both were logged as "no genuine arc".
+    _LAST_REJECTION.clear()
+    _LAST_REJECTION.update(
+        why="; ".join(rs) or ("accepted" if edl else "rejected, no reason"),
+        editorial=any("not a story" in r for r in rs))
+    return edl
 
 
 def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
