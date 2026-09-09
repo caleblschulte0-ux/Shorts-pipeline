@@ -231,20 +231,26 @@ its timestamp. Read that image file now.
 Clip context: title {title!r}, hook card {hook!r}, series {series!r},
 duration {dur:.1f}s, effects applied: {effects}.
 
-THE HOUSE LAYOUT IS NOT A DEFECT. Most clips are 16:9 source fitted into a
-9:16 canvas: a SHARP band across the middle with a BLURRED, dimmed copy of
-the same frame filling the space above and below it. That padding is
-deliberate, it is supposed to be soft, and it occupies roughly two thirds of
-the frame BY CONSTRUCTION. Judge ONLY the sharp band — "mostly blurry",
-"subject small in frame", "letterboxed" and "only a strip is in focus" are
-descriptions of the house style, NOT problems, and must never be reported as
-such. Report blur only where the SHARP band is itself out of focus.
+THE BLURRED PADDING IS DELIBERATE. Clips are fitted into a 9:16 canvas with
+a SHARP picture across the middle and a BLURRED, dimmed copy of the same
+frame filling the space above and below it. That padding is intentional and
+is supposed to be soft — "letterboxed", "the top and bottom are blurry" and
+"only part of the frame is in focus" describe the house style, not defects,
+and must not be reported as such. Report blur only where the SHARP region is
+itself out of focus.
+
+BUT DO JUDGE HOW MUCH OF THE FRAME THE PICTURE FILLS. The sharp region
+should occupy roughly three quarters of the canvas; the renderer crops
+toward the action to achieve that. If the picture is instead a thin strip
+with the subject tiny and far away, the framing genuinely failed and you
+SHOULD say so — that is the difference between a clip that looks edited and
+one that looks reposted. Small-but-clear is fine; small-and-lost is not.
 
 Judge it like a human editor (a viewer should think "well-edited clip", never
 "where did the person go / why is that emoji on his face / why did it cut"):
-1. Within the sharp band, is a person or the clear subject of the action
+1. Within the sharp region, is a person or the clear subject of the action
    visible in most frames (not cropped half out, not empty space between two
-   people)? A subject that is small but clear is fine.
+   people), and is it framed close enough to read on a phone?
 2. Do overlays (emoji, big word, REPLAY stamp, captions) cover a face or the
    main action?
 3. Any obviously broken frame: black, garbled, stretched, duplicated?

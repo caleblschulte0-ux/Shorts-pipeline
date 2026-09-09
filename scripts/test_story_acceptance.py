@@ -1453,15 +1453,25 @@ def main() -> int:  # noqa: C901
     # — which is a description of the layout, not a defect. It rejected a
     # clip that had just passed the content gate at 0.55.
     _qa_src = (REPO / "third_capture" / "clip_qa.py").read_text()
-    check("the vision critic is told the blur-fill layout is deliberate",
-          "THE HOUSE LAYOUT IS NOT A DEFECT" in _qa_src)
-    check("...and that it must judge the SHARP band, not the padding",
-          "Judge ONLY the sharp band" in _qa_src
-          and "Report blur only where the SHARP band" in _qa_src)
-    check("the house-style phrasings are named so they can't be reported "
-          "as problems",
-          all(p in _qa_src for p in ("mostly blurry", "letterboxed",
-                                     "subject small in frame")))
+    check("the vision critic is told the blurred padding is deliberate",
+          "THE BLURRED PADDING IS DELIBERATE" in _qa_src)
+    check("...and must not report the padding itself as a defect",
+          "letterboxed" in _qa_src
+          and "Report blur only where the SHARP region" in _qa_src)
+    # CORRECTION (same day): this used to also forbid reporting "subject
+    # small in frame". That was wrong. The critic was right to complain —
+    # 52 of the last 97 posted clips were a 31.6% sharp band because
+    # shot_plan gave up on framing whenever no face was trackable, and
+    # silencing the critic hid it instead of fixing it. Now that the
+    # renderer crops toward the action, a tiny subject is a REAL defect
+    # again and the critic must be able to say so, or nothing catches a
+    # regression.
+    check("the critic CAN still call out a frame the picture barely fills "
+          "(silencing it hid the framing bug, it did not fix it)",
+          "SHOULD say so" in _qa_src
+          and "three quarters" in _qa_src)
+    check("...while small-but-clear stays acceptable",
+          "Small-but-clear is fine" in _qa_src)
     check("the critic KEEPS its power to block genuinely broken output",
           all(p in _qa_src for p in ("cropped half out", "black, garbled",
                                      "cover a face")))
@@ -1669,6 +1679,61 @@ def main() -> int:  # noqa: C901
     check("an out-of-whitelist emoji still normalises to none, not to a "
           "default", 'if emoji not in _EMOJI_OK:' in _au_src
           and 'emoji = ""' in _au_src)
+
+    # ====== the picture must FILL the frame ============================
+    # The real reason the output "looks like a repost": classify() returns
+    # "wide" whenever no face is trackable — the common case on a clips
+    # channel — and build() then bailed to the caller's blur-fill of the
+    # WHOLE 16:9 frame. A 16:9 source in 1080x1920 is 1080x607: a 31.6%
+    # sharp band with two thirds blurred padding, on 52 of the last 97
+    # posted clips.
+    import third_capture.shot_plan as _sp
+    _SW, _SH = 1920, 1080
+    _col = [0.1] * _SW
+    for _x in range(1300, 1600):
+        _col[_x] = 9.0
+    _win = _sp.action_window({"sw": _SW, "sh": _SH, "col_energy": _col})
+    check("a wide 16:9 source gets an action crop instead of a thin band",
+          _win is not None)
+    _w, _h, _x, _y = _win
+    check("the crop is TALLER than 16:9 (that is the whole point)",
+          (_h / _w) > (9 / 16))
+    _sharp_before = (1080 * (1080 * 9 / 16)) / (1080 * 1920)
+    _fit_h = min(1920, 1080 * _h / _w)
+    _sharp_after = (1080 * _fit_h) / (1080 * 1920)
+    check(f"sharp picture area rises {_sharp_before:.0%} -> {_sharp_after:.0%}",
+          _sharp_after > 2 * _sharp_before)
+    check("the crop CENTRES on the motion, it does not merely contain it "
+          "(argmax alone ties and returns the leftmost window, putting the "
+          "subject against the edge)",
+          abs((_x + _w / 2) - 1450) < _w * 0.10)
+    check("a FLAT motion profile centres instead of chasing noise",
+          abs((lambda r: r[2] + r[0] / 2)(
+              _sp.action_window({"sw": _SW, "sh": _SH,
+                                 "col_energy": [1.0] * _SW}))
+              - _SW / 2) <= 2)
+    check("a source already 9:16 is left alone",
+          _sp.action_window({"sw": 1080, "sh": 1920,
+                             "col_energy": [1.0] * 1080}) is None)
+    check("a 4:5 source is left alone (too little to gain for a re-encode)",
+          _sp.action_window({"sw": 1080, "sh": 1350,
+                             "col_energy": [1.0] * 1080}) is None)
+    check("no motion profile at all still yields a safe centred crop",
+          _sp.action_window({"sw": _SW, "sh": _SH}) is not None)
+
+    _sp_src = (REPO / "third_capture" / "shot_plan.py").read_text()
+    check("analyze records WHERE the action is, not just whether a face "
+          "persists", "col_energy" in _sp_src and "row_energy" in _sp_src)
+    check("the action crop preserves aspect — _render_single_crop force-"
+          "scales to 1080x1920 and would stretch a 3:4 window 30% wide",
+          "def _render_action_crop" in _sp_src
+          and "_render_action_crop(video, shot, out)" in _sp_src)
+    check("...and blur-fills the remainder so captions still have a band",
+          "gblur=sigma=28" in _sp_src.split(
+              "def _render_action_crop")[1].split("def ")[0])
+    check("the wide branch no longer just gives up",
+          "NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING"
+          in _sp_src)
 
     print()
     if FAILS:
