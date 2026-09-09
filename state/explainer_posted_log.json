@@ -1588,6 +1588,27 @@
       ],
       "words_first_10s": 17,
       "scene_changes_before_5s": 3
+    },
+    "chickenpox-vaccine-collapse": {
+      "url": "https://youtube.com/shorts/VtZAeRp7gPA",
+      "title": "One Vaccine Nearly Wiped Out Chickenpox (3 Charts)",
+      "at": "2026-09-09T18:15:48.524670+00:00",
+      "publish_at": "2026-09-09T18:40:59Z",
+      "state": "posted",
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 45.0,
+      "hook": "shock_stat",
+      "topic_category": "body",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:kid-spot-fade",
+        "mechanic:candle-wall-snuffout",
+        "mechanic:dose-shield-fill"
+      ],
+      "words_first_10s": 24,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -1617,6 +1638,15 @@
       "state": "posted",
       "slug": "mail-volume-collapse",
       "at": "2026-09-08T20:45:21.905502+00:00"
+    },
+    {
+      "claimed_at": "2026-09-09T18:15:41.070154+00:00",
+      "title": "One Vaccine Nearly Wiped Out Chickenpox (3 Charts)",
+      "publish_at": "2026-09-09T18:40:59Z",
+      "url": "https://youtube.com/shorts/VtZAeRp7gPA",
+      "state": "posted",
+      "slug": "chickenpox-vaccine-collapse",
+      "at": "2026-09-09T18:15:48.524670+00:00"
     }
   ]
 }
