@@ -213,6 +213,13 @@ SERIES_WORD = {
 }
 
 
+# How many punch-cut transitions one video may spend. A real edit uses two
+# or three; firing on every cut is the single loudest "amateur" signal in
+# the output. Also capped at one-third of the cuts, so a 4-cut clip gets
+# one, not three.
+TRANSITION_BUDGET = 3
+
+
 @dataclass
 class Style:
     punch: bool = True          # gentle zoom-in on the reaction beat
@@ -441,17 +448,23 @@ def build_edl_edit(words, dur, style: Style, motion) -> EDL:
     peak_ts = [p[0] for p in peaks]
     out_t = 0.0
     first_emitted = False
+    _cut_candidates: list[tuple[int, float, float]] = []
+    _leadin_candidates: list[tuple[float, float]] = []
     for a, b in zip(bounds, bounds[1:]):
         if b - a < 0.15:
             continue
         seg = Segment(src_s=a, src_e=b, grade=style.grade)
-        # PUNCH-CUT transition on every cut except the opening — the flash +
-        # chromatic hit that makes a jump cut read as a deliberate edit. A
-        # whoosh rides each one so the cut is heard as well as seen.
+        # PUNCH-CUT TRANSITIONS ARE BUDGETED, NOT AUTOMATIC.
+        # This used to set trans_in (flash + chromatic hit) and queue a
+        # whoosh on EVERY cut but the first. A transition that fires on
+        # every cut is not emphasis — it is a tic, and it is most of why
+        # the output reads as "random jump cuts" rather than an edit. A
+        # real editor spends this two or three times in a 30-second video,
+        # on the cuts that carry the most change.
+        # The budget is spent later, once every boundary is known and they
+        # can be ranked; here we only record the candidates.
         if first_emitted:
-            seg.trans_in = True
-            if style.sfx:
-                edl.sfx_cues.append((out_t, "whoosh"))
+            _cut_candidates.append((len(edl.segments), out_t, a))
         first_emitted = True
         has_hit = next((tp for tp in peak_ts if a - 0.05 <= tp < b), None)
         in_leadin = any(tp - 1.15 <= a and b <= tp - 0.2 for tp in peak_ts)
@@ -464,8 +477,12 @@ def build_edl_edit(words, dur, style: Style, motion) -> EDL:
         elif in_leadin:
             seg.kind = "punch"
             seg.zoom_to = style.zoom_to
-            if style.sfx:
-                edl.sfx_cues.append((out_t, "whoosh"))
+            # NO automatic whoosh here either. A lead-in punch already
+            # reads visually; adding a swipe to each one put 4+ more
+            # whooshes on top of the transition ones, and a video that
+            # whooshes eight times is a video nobody believes. Sound
+            # emphasis comes out of the same budget, spent below.
+            _leadin_candidates.append((out_t, a))
         elif is_dead(a, b):
             seg.kind = "deadair"
             seg.speed = 1.9
@@ -474,6 +491,33 @@ def build_edl_edit(words, dur, style: Style, motion) -> EDL:
             seg.speed = style.edit_pace
         edl.segments.append(seg)
         out_t += seg.out_dur()
+
+    # ---- spend the transition budget on the cuts that earn it ---------
+    # Rank candidate cuts by how close they land to a detected energy peak:
+    # a transition ON a real change of state reads as intent, the same
+    # effect on a lull reads as noise. Everything else is a plain cut,
+    # which is what most cuts in a good edit are.
+    if _cut_candidates:
+        def _dist(c):
+            _i, _o, src_a = c
+            return min((abs(src_a - tp) for tp in peak_ts), default=1e9)
+        budget = max(1, min(TRANSITION_BUDGET, len(_cut_candidates) // 3))
+        for idx, o_t, _a in sorted(_cut_candidates, key=_dist)[:budget]:
+            if idx < len(edl.segments):
+                edl.segments[idx].trans_in = True
+                if style.sfx:
+                    edl.sfx_cues.append((o_t, "whoosh"))
+
+    # a lead-in punch may take a whoosh only if the transition budget did
+    # not already spend its share on that part of the timeline
+    if _leadin_candidates and style.sfx:
+        spent = len([c for c in edl.sfx_cues if c[1] == "whoosh"])
+        room = max(0, TRANSITION_BUDGET - spent)
+        for o_t, _a in sorted(
+                _leadin_candidates,
+                key=lambda c: min((abs(c[1] - tp) for tp in peak_ts),
+                                  default=1e9))[:room]:
+            edl.sfx_cues.append((o_t, "whoosh"))
 
     # Length cap: ease the connective speed up until under the montage cap.
     max_out = 55.0
@@ -735,21 +779,39 @@ def build(cut: Path, words: list[dict], dur: float, series: str,
             if seg.kind == "money" and money_out is None:
                 money_out = _tcur
             _tcur += od
-        # director's picks win (a slam actually said in the clip beats a
-        # generic hype word); heuristics fill anything the director left blank
-        s = (series or "chaos").lower()
-        emoji = direct.get("emoji") or SERIES_EMOJI.get(s, "mindblown")
-        word = direct.get("slam") or SERIES_WORD.get(s, "WAIT")
-        if money_out is not None:
+        # ---- EMPHASIS IS EARNED, AND IT IS RATIONED --------------------
+        # This block used to fire on EVERY clip that had a money moment:
+        # speed lines, TWO copies of the same emoji at x=0.30 and x=0.70,
+        # and a big slam word. When the author nominated nothing it fell
+        # back to a generic series emoji and a generic hype word — so a
+        # clip with no standout moment still got a 🤯 and the word "WAIT"
+        # pasted over it. That is what makes the output read as clip art
+        # stuck on someone else's footage instead of an edit.
+        #
+        # A real editor's emphasis is rare and motivated. So:
+        #   - the SLAM WORD must be something actually said in the clip
+        #     (author `slam`, verbatim from the transcript). No generic
+        #     hype exclamation — "BROOO" over a clip nobody said "broo" in
+        #     is decoration, not editing.
+        #   - the EMOJI must be nominated by the author for THIS clip, and
+        #     appears ONCE, off-centre, never as a mirrored pair.
+        #   - speed lines only ride an emphasis that actually exists.
+        # Nominating nothing is a valid, common, and CORRECT outcome: the
+        # footage carries the moment on its own.
+        word = str(direct.get("slam") or "").strip()
+        emoji = str(direct.get("emoji") or "").strip()
+        if money_out is not None and (word or emoji):
             m = round(money_out, 3)
-            # speed-lines flash first (behind), emoji burst, then the word slam
-            overlays.append({"type": "lines", "s": m, "e": round(m + 0.45, 3)})
-            overlays.append({"type": "emoji", "name": emoji, "x": 0.30,
-                             "s": m, "e": round(m + 1.4, 3)})
-            overlays.append({"type": "emoji", "name": emoji, "x": 0.70,
-                             "s": round(m + 0.08, 3), "e": round(m + 1.4, 3)})
-            overlays.append({"type": "word", "text": word,
-                             "s": m, "e": round(m + 1.2, 3)})
+            if word:
+                # the peak reads first, the word lands a beat after it
+                overlays.append({"type": "lines", "s": m,
+                                 "e": round(m + 0.35, 3)})
+                overlays.append({"type": "word", "text": word,
+                                 "s": m, "e": round(m + 1.0, 3)})
+            if emoji:
+                overlays.append({"type": "emoji", "name": emoji, "x": 0.72,
+                                 "s": round(m + 0.10, 3),
+                                 "e": round(m + 1.15, 3)})
 
         # The concat's REAL duration drifts ~1% from the predicted
         # edl.out_dur() (minterpolate/setpts frame rounding). Rescale every

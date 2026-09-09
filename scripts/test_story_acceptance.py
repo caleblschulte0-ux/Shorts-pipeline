@@ -1619,6 +1619,57 @@ def main() -> int:  # noqa: C901
     check("the digest names that outcome distinctly",
           "NO SHARED EVENT" in (REPO / "scripts" / "judges.py").read_text())
 
+    # ====== the edit must look EDITED, not decorated ===================
+    # Operator, 2026-09-09: "we do random jump cuts and random Android ass
+    # emojis when we shouldn't... nothing about what we do looks like a
+    # real edit." It was accurate. Every cut but the first fired a punch
+    # transition + a whoosh; every money moment fired speed lines, TWO
+    # copies of the same emoji, and a slam word — falling back to a generic
+    # series emoji and the word "WAIT" when the author nominated nothing.
+    import third_capture.auto_edit as _ae
+    _ae_src = (REPO / "third_capture" / "auto_edit.py").read_text()
+
+    _w = [{"w": f"w{i}", "s": i * 2.0, "e": i * 2.0 + 0.4} for i in range(20)]
+    _m = [(t / 2.0, 0.1) for t in range(80)]
+    for _i, (_t, _v) in enumerate(_m):
+        if abs(_t - 12) < 0.5 or abs(_t - 30) < 0.5:
+            _m[_i] = (_t, 1.0)
+    _edl = _ae.build_edl_edit(_w, 40.0, _ae.Style(edit_mode=True), _m)
+    _tr = [i for i, sg in enumerate(_edl.segments) if sg.trans_in]
+    _wh = [c for c in _edl.sfx_cues if c[1] == "whoosh"]
+    check(f"punch transitions are BUDGETED, not one per cut "
+          f"({len(_tr)} over {len(_edl.segments)} segments)",
+          0 < len(_tr) <= _ae.TRANSITION_BUDGET)
+    check("...and never more than a third of the cuts",
+          len(_tr) <= max(1, (len(_edl.segments) - 1) // 3))
+    check(f"whooshes come out of the SAME budget ({len(_wh)}) — a video "
+          f"that whooshes eight times is one nobody believes",
+          len(_wh) <= _ae.TRANSITION_BUDGET)
+    check("the transitions land on the strongest cuts, not the first ones",
+          _tr != list(range(1, len(_tr) + 1)))
+
+    # emphasis must be nominated by the author for THIS clip
+    check("no generic emoji/word fallback survives in the overlay builder",
+          "SERIES_EMOJI.get(s" not in _ae_src
+          and "SERIES_WORD.get(s" not in _ae_src)
+    check("a clip the author nominated nothing for gets NO overlay "
+          "emphasis at all (the footage carries it)",
+          'if money_out is not None and (word or emoji)' in _ae_src)
+    check("the emoji is never mirrored into a pair",
+          _ae_src.count('"type": "emoji"') == 1)
+    check("speed lines only ride an emphasis that actually exists",
+          _ae_src.index('"type": "lines"') > _ae_src.index('if word:'))
+
+    # and the author contract has to ALLOW nothing, or none of this binds
+    _au_src = (REPO / "third_capture" / "author.py").read_text()
+    check("the author may return NO emoji, and is told to default to it",
+          'DEFAULT TO ""' in _au_src)
+    check("...and is told not to reach for a generic hype word",
+          "never reach for a generic hype" in _au_src)
+    check("an out-of-whitelist emoji still normalises to none, not to a "
+          "default", 'if emoji not in _EMOJI_OK:' in _au_src
+          and 'emoji = ""' in _au_src)
+
     print()
     if FAILS:
         print(f"ACCEPTANCE FAILED ({len(FAILS)}): {FAILS}")
