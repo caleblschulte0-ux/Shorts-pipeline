@@ -16,10 +16,10 @@
     {
       "label": "Farmed",
       "value": 51
+    },
+    {
+      "label": "Wild-Caught",
+      "value": 49
     }
-  ],
-  "baseline": {
-    "label": "Wild-Caught",
-    "value": 49
-  }
+  ]
 }

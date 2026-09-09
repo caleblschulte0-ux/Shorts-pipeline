@@ -1,0 +1,29 @@
+{
+ "slug": "f1-pit-stop-vanishing-act",
+ "ts": "20260909T104631Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In every scene Data only stands: parked by a bar in hook@0.8, standing on the balance pan in seg1:mid, standing inside the yellow capsule in seg2:start and seg3:start, standing on the ruler in seg3:end and seg4:end \u2014 no setup\u2192action\u2192payoff tied to 60s vs 1.8s.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:end (t=32.42s): the crew comparison collapses to a thin horizontal ruler with two hairline uprights and a tiny mascot standing beside it; the top quarter is black, the bottom half is entirely empty, and '17 apart' is the only element with any visual mass. seg4:start (t=35.21s) holds the identical sparse layout for the video's longest duplicate run (1.5s at t=35.9s).",
+  "root_cause": "The gap/ruler machine is drawn at line-weight scale in a 1080x1920 frame \u2014 it uses none of the vertical space it was given, and the beat's only mass (the mascot) is a static standing pose rather than a performer working the 20-vs-3 crew gap.",
+  "repair_goal": "Rebuild seg3 so the crew number is demonstrated with mass, not a hairline: fill the frame with 20 crew marks against 3 (stacking, swarming, or filling the gap between the uprights), scale the ruler and its labels to at least half the frame height, and give Data an action tied to the stat \u2014 e.g. hauling the modern crew's marks in one by one until the 17-apart gap is visibly filled \u2014 so no region of the frame is dead."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "2": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

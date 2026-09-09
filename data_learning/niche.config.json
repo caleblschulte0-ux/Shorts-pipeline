@@ -26616,11 +26616,12 @@
           "params": {
             "file": "farmed_vs_wild_share_2022.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "topic": "farmed vs. wild share, 2022",
           "role": "2 \u00b7 THE FLIP",
-          "say": "Wild catch has barely moved in 30 years; boats already take about as much as the ocean can regrow. In 2022, farms edged ahead: 51 to 49."
+          "say": "Wild catch has barely moved in 30 years; boats already take about as much as the ocean can regrow. In 2022, farms edged ahead: 51 to 49.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -26661,11 +26662,12 @@
           "params": {
             "file": "dst_countries_share_today.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "topic": "who still changes their clocks",
           "role": "1 \u00b7 TODAY",
-          "say": "Only about 70 countries on Earth still spring forward and fall back. That's 36 percent. The other 64 either never bothered, or quit."
+          "say": "Only about 70 countries on Earth still spring forward and fall back. That's 36 percent. The other 64 either never bothered, or quit.",
+          "ascending": false
         },
         {
           "source": "offline",
@@ -26732,11 +26734,12 @@
           "params": {
             "file": "storage_vs_chains_share.json"
           },
-          "insight_type": "comparison",
+          "insight_type": "rank",
           "use_baseline": true,
           "topic": "storage vs. 3 biggest chains combined",
           "role": "2 \u00b7 THE SPLIT",
-          "say": "Stack storage against Starbucks, McDonald's, and Subway combined \u2014 50,600 locations \u2014 and self-storage still wins alone, by 15,000 buildings."
+          "say": "Stack storage against Starbucks, McDonald's, and Subway combined \u2014 50,600 locations \u2014 and self-storage still wins alone, by 15,000 buildings.",
+          "ascending": false
         },
         {
           "source": "offline",

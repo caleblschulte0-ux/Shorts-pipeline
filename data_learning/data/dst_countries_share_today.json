@@ -14,12 +14,12 @@
   "notes": "About 70 of roughly 195 countries/territories currently observe DST.",
   "points": [
     {
+      "label": "Never Adopted / Abandoned It",
+      "value": 64
+    },
+    {
       "label": "Still Observe DST",
       "value": 36
     }
-  ],
-  "baseline": {
-    "label": "Never Adopted / Abandoned It",
-    "value": 64
-  }
+  ]
 }
