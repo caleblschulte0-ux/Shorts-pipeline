@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20260909",
+  "bundle": {
+    "identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "path": "exchange/bundles/20260909/bundle.json"
+  },
+  "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+  "safe_request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "91f569da9f92163502c9bd1b3f7289f5cfa685d4e881a5b7467c39744616d89d",
+  "prompt_used": "An editorial illustration for a short-form video: person filming boxes phone. It accompanies the narration: \"eleven-minute walkthrough video\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1mH1dA6WO3D0xkE_rCXCm5miygNV-Ata8",
+    "filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1mH1dA6WO3D0xkE_rCXCm5miygNV-Ata8",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "15498406746b914e09ccae9d701a849d9eb2f38f59aca61552123e0b2500cf54",
+    "bytes": 1776290,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-09-09T11:23:00Z"
+}
