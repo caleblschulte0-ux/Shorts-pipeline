@@ -168,3 +168,46 @@ class OneCardColourNotTwelve(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class EveryThemeIsChecked(unittest.TestCase):
+    """The palette work landed on `charts.py` first — and the charts are the
+    FALLBACK. The 42 machines, which lead most beats, take their colour from
+    `studio_render.THEMES`, so for a while the validated palette applied to
+    the pictures we draw least.
+
+    Two of the six themes failed the moment they were measured: theme 2 had
+    a rose and a green ΔE 4.6 apart for a colourblind viewer (below even the
+    hard floor), theme 3 a green and a cyan 12.1 apart in ORDINARY vision.
+    One story in three shipped colours a viewer could not separate.
+    """
+
+    def _themes(self):
+        from data_learning import studio_render as sr
+        return sr.THEMES
+
+    def test_every_theme_separates_all_three_of_its_colours(self):
+        bad = {}
+        for i, t in enumerate(self._themes()):
+            v = pal.audit_trio([t["highlight"], t["accent"], t["warn"]])
+            if not v["ok"]:
+                bad[i] = v["problems"]
+        self.assertEqual(bad, {}, f"themes a viewer cannot read: {bad}")
+
+    def test_the_two_themes_that_failed_are_actually_different_now(self):
+        """A guard against a revert that keeps the comment and drops the fix."""
+        themes = self._themes()
+        self.assertNotEqual(themes[2]["accent"], "#FB7185")
+        self.assertNotEqual(themes[3]["highlight"], "#34D399")
+
+    def test_the_pairs_that_failed_still_FAIL_the_check(self):
+        """If these ever pass, the floors were loosened rather than the
+        colours fixed."""
+        self.assertFalse(pal.audit_trio(["#FBBF24", "#FB7185", "#34D399"])["ok"])
+        self.assertFalse(pal.audit_trio(["#34D399", "#22D3EE", "#FBBF24"])["ok"])
+
+    def test_the_themes_are_judged_on_ALL_pairs(self):
+        """Three colours drawn at once: adjacency is meaningless here, and
+        `audit` (adjacent-only) would have cleared theme 3."""
+        import inspect
+        self.assertIn("combinations", inspect.getsource(pal.audit_trio))
