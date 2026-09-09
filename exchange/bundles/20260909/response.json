@@ -1,0 +1,453 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20260909",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 5,
+    "registry_sha256": "f770a999703425ae1df81c8ee4ddaef99858393cd0a35e48846c71573c29829f",
+    "source_commit": "3feed21e7627a74cb41af3dc275fd81de103866c",
+    "production_date": "20260909",
+    "bundle_sha256": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e"
+  },
+  "media": [
+    {
+      "request_id": "reddit-movers-video-proof-claim-s0-8058fa3e580f",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=17So27z0c_OddMtmFRkFsjK4Q02YaBH4x",
+        "file_id": "17So27z0c_OddMtmFRkFsjK4Q02YaBH4x",
+        "filename": "20260909__reddit-movers-video-proof-claim-s0-8058fa3e580f.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2040685,
+        "format": "png",
+        "height": 1672,
+        "sha256": "5aaecb87b83955db96ee32daa962c3c2817791c409b71bd6b728354a1066910c",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s0-8058fa3e580f.json",
+        "verified_at": "2026-09-09T11:20:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1mH1dA6WO3D0xkE_rCXCm5miygNV-Ata8",
+        "file_id": "1mH1dA6WO3D0xkE_rCXCm5miygNV-Ata8",
+        "filename": "20260909__reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1776290,
+        "format": "png",
+        "height": 1672,
+        "sha256": "15498406746b914e09ccae9d701a849d9eb2f38f59aca61552123e0b2500cf54",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.json",
+        "verified_at": "2026-09-09T11:23:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s2-d07433115f65",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1xCHErtLxH0k5poaQi8sLYkRqfJEx-y2Q",
+        "file_id": "1xCHErtLxH0k5poaQi8sLYkRqfJEx-y2Q",
+        "filename": "20260909__reddit-movers-video-proof-claim-s2-d07433115f65.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1897532,
+        "format": "png",
+        "height": 1672,
+        "sha256": "ac1058398c3423be39c8d9db00063d2e1b851261e7b021ab6380bd12c7d427a8",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s2-d07433115f65.json",
+        "verified_at": "2026-09-09T11:23:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s3-9d51c7eff016",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1G4WG-tCyvV_6MGqExGg-Bji1JKKhQQtB",
+        "file_id": "1G4WG-tCyvV_6MGqExGg-Bji1JKKhQQtB",
+        "filename": "20260909__reddit-movers-video-proof-claim-s3-9d51c7eff016.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1878347,
+        "format": "png",
+        "height": 1672,
+        "sha256": "2d6999ee478d02f5868139c120e3567c77503832ffb01c573c09e09d95cf2d69",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s3-9d51c7eff016.json",
+        "verified_at": "2026-09-09T11:23:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s4-c85c45f06f60",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1MAxgpECn7S4NQ3KJBvmlqOFHpiqwKxER",
+        "file_id": "1MAxgpECn7S4NQ3KJBvmlqOFHpiqwKxER",
+        "filename": "20260909__reddit-movers-video-proof-claim-s4-c85c45f06f60.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1822641,
+        "format": "png",
+        "height": 1536,
+        "sha256": "8b835a0c606ad102d56ceeb3334a44a6ebc31e4f7a6f62851eccb2ef8e0d76a6",
+        "width": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s4-c85c45f06f60.json",
+        "verified_at": "2026-09-09T11:23:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s5-e0817f3f858d",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1QayWKOTxQDPRilNXtyRdwoqpkCJKjPut",
+        "file_id": "1QayWKOTxQDPRilNXtyRdwoqpkCJKjPut",
+        "filename": "20260909__reddit-movers-video-proof-claim-s5-e0817f3f858d.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1627563,
+        "format": "png",
+        "height": 1148,
+        "sha256": "383a097c198e6a2fc2b4555b3f680983bd8ef81660c4dab32844090946875854",
+        "width": 1370
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s5-e0817f3f858d.json",
+        "verified_at": "2026-09-09T11:27:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1Kgm1YzdNb4v2X0MjhdO3xNI0cIhiEvn7",
+        "file_id": "1Kgm1YzdNb4v2X0MjhdO3xNI0cIhiEvn7",
+        "filename": "20260909__reddit-movers-video-proof-claim-s6-75baa41897a0.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2134143,
+        "format": "png",
+        "height": 1374,
+        "sha256": "9efc69e014ff1efe83622365da6bc8ebcf5b0801d16ebdc2c85c33705b8b39be",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s6-75baa41897a0.json",
+        "verified_at": "2026-09-09T11:27:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s7-cec0587abc36",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1TJAR4lG4c8laxN3sTHRjbIJhXIs3IY2M",
+        "file_id": "1TJAR4lG4c8laxN3sTHRjbIJhXIs3IY2M",
+        "filename": "20260909__reddit-movers-video-proof-claim-s7-cec0587abc36.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1465898,
+        "format": "png",
+        "height": 1254,
+        "sha256": "9990cb8d7f7fd85ce581cf37e62a21a76fc7651f18c5512cace73c4ed0e01009",
+        "width": 1254
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-movers-video-proof-claim-s7-cec0587abc36.json",
+        "verified_at": "2026-09-09T11:27:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+        "file_id": "19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s0-5d660c4266a1.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 2049241,
+        "format": "png",
+        "height": 1672,
+        "sha256": "983d05a64cf79e14128b310f1709212df161833f30f74de3296d96c7ebe7bb93",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s0-5d660c4266a1.json",
+        "verified_at": "2026-09-09T11:27:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1PQ0ljMtak_BqYl8-Xnip0q215oOGAJJR",
+        "file_id": "1PQ0ljMtak_BqYl8-Xnip0q215oOGAJJR",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s1-42c45dc1eaf5.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1846475,
+        "format": "png",
+        "height": 1672,
+        "sha256": "becf3039ace11ef85c8b91ca79bb559b5f13b5079d078bede65b1ad5b028af49",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s1-42c45dc1eaf5.json",
+        "verified_at": "2026-09-09T11:31:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+        "file_id": "1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s2-c04a65e5cea7.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1651204,
+        "format": "png",
+        "height": 1672,
+        "sha256": "3082646769167ca003481e0f85810ae66d79b5415b53ec2aa69f18b68b39bfa7",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s2-c04a65e5cea7.json",
+        "verified_at": "2026-09-09T11:31:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1qEv3Nm7RXjABIV2uc4zBMcKqH8Zi1OLs",
+        "file_id": "1qEv3Nm7RXjABIV2uc4zBMcKqH8Zi1OLs",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s3-dd17b057109c.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1800961,
+        "format": "png",
+        "height": 1672,
+        "sha256": "3edddf9ff0ed13b437673c95ccb15808e27d1f9d72b42e4a4be431e6d69890d8",
+        "width": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s3-dd17b057109c.json",
+        "verified_at": "2026-09-09T11:31:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1XFFsbrPdOrPXEnXUIn9VQ80523ll3o6k",
+        "file_id": "1XFFsbrPdOrPXEnXUIn9VQ80523ll3o6k",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s4-90a134bf26e6.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1697386,
+        "format": "png",
+        "height": 1374,
+        "sha256": "7c5628d931c85980f5f6c43e4ecbacb91fc3742cc98f1b23f320cc7757300111",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s4-90a134bf26e6.json",
+        "verified_at": "2026-09-09T11:31:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+        "file_id": "1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s5-681143662167.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1551697,
+        "format": "png",
+        "height": 1374,
+        "sha256": "4ebda098736b27c9a6ba69f353c8c701d56d4a201b4001052f7f146c76c9158f",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s5-681143662167.json",
+        "verified_at": "2026-09-09T11:34:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=170iVSNfuYUa4Y2hpTxkpIKWQYmEePxyz",
+        "file_id": "170iVSNfuYUa4Y2hpTxkpIKWQYmEePxyz",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s6-a2840be4db8c.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1685664,
+        "format": "png",
+        "height": 1148,
+        "sha256": "c330b3811410b7828f828845e54271a23427f52d10f3ece21d505381ec9184ee",
+        "width": 1370
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s6-a2840be4db8c.json",
+        "verified_at": "2026-09-09T11:34:00Z"
+      }
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
+      "status": "fulfilled",
+      "drive": {
+        "download_url": "https://drive.google.com/uc?export=download&id=1rVmZzXP9vdtRWjuNEuywyGwbb49C4Ju0",
+        "file_id": "1rVmZzXP9vdtRWjuNEuywyGwbb49C4Ju0",
+        "filename": "20260909__reddit-subcontractor-lien-payback-s7-f79a42e1532d.png",
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "bytes": 1743615,
+        "format": "png",
+        "height": 1374,
+        "sha256": "0f043b25fcae8978fcce56b706f7ccf25c209eea58edb9172feecd116ba45f09",
+        "width": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20260909/media-progress/reddit-subcontractor-lien-payback-s7-f79a42e1532d.json",
+        "verified_at": "2026-09-09T11:34:00Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "graph-mobile-gaming-passed-console-pc",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames mobile gaming overtaking console and PC together."
+    },
+    {
+      "slug": "graph-streaming-buried-music-formats",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title gives the viewer the central reversal: streaming buried physical and download formats."
+    },
+    {
+      "slug": "graph-china-ev-chargers-passed-gas-stations",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names China’s specific EV-charger versus gas-station crossover."
+    },
+    {
+      "slug": "graph-nyc-rideshare-buried-yellow-cabs",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title identifies the New York yellow-cab versus rideshare reversal."
+    },
+    {
+      "slug": "reddit-movers-video-proof-claim",
+      "script": "They lost WHAT? My cross-country movers arrived, and the antique clock I’d wrapped myself was gone from the truck. Their contract required full-value claims to include proof from before loading, so I opened the eleven-minute walkthrough I filmed that morning: every box timestamped, narrated, the clock at the four-minute mark. Their adjuster offered sixty dollars—the depreciated released-value rate. I sent the video back with their own certificate-of-insurance clause. Legal got it within the hour. Two weeks later: a check for the clock’s full appraised value, plus an apology email. Funny how readable a mover’s contract becomes when you have the receipts. Does that sixty-dollar rate survive an eleven-minute video?",
+      "editor_note": "Punched up the four-word hook, moved the proof and lowball offer forward, kept every number, entity, and claim step, then landed the kicker on the eleven-minute video."
+    },
+    {
+      "slug": "reddit-subcontractor-lien-payback",
+      "script": "He thought I’d what? I finished the electrical rough-in on a twelve-unit building for a general contractor who’d stiffed me twice before. After final walkthrough, he ghosted for six weeks—forty-one thousand dollars unpaid. I didn’t call again. I filed a mechanic’s lien within my state’s deadline and mailed notice to him and the property owner. Bad timing for him: the owner was refinancing that month, and the title company would not close with an active lien on the report. The owner demanded it be fixed. The contractor, suddenly allergic to missing paperwork, wired the full amount plus the late fee within two days. Title cleared, I released the lien, refinance closed on schedule. Do unpaid invoices still “disappear” when a lien is on the report?",
+      "editor_note": "Punched up the question hook, front-loaded the unpaid amount, tightened the refinancing pressure, kept every fact and shot beat, and ended on the active lien."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ]
+}
