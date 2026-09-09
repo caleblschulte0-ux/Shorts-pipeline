@@ -1327,8 +1327,10 @@ def draw_centre(d, canvas, box, insight, color, reveal, unit=""):
                             radius=8,
                             fill=_rgba(color if i == mid_i else ACCENT,
                                        int(235 * a)))
-        d.text((int(sx + w / 2), bot + 30), str(getattr(p, "label", ""))[:8],
-               font=_pil_font(26), fill=_rgba(TEXT, int(190 * a)), anchor="mm")
+        _cf, _ct = fit_text(d, str(getattr(p, "label", "")), 26,
+                            max(40, int(w) - 6), min_size=16)
+        d.text((int(sx + w / 2), bot + 30), _ct,
+               font=_cf, fill=_rgba(TEXT, int(190 * a)), anchor="mm")
     med = vals[mid_i]
     mx = int(bx0 + 60 + mid_i * w + w / 2)
     host = scene_host("point", reveal)
@@ -1430,8 +1432,9 @@ def draw_thermometer(d, canvas, box, insight, color, reveal, unit=""):
         mw = int(host.width * mh / host.height)
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int(cx + 150), int(bot - mh + 40)))
-    d.text((cx, by0 + 58), str(getattr(star, "label", ""))[:24],
-           font=_pil_font(44), fill=_rgba(TEXT, 230), anchor="mm")
+    _sf, _sl = fit_text(d, str(getattr(star, "label", "")), 44,
+                        max(200, bx1 - bx0 - 60), min_size=26)
+    d.text((cx, by0 + 58), _sl, font=_sf, fill=_rgba(TEXT, 230), anchor="mm")
     return (v, "art", cx, fy)
 
 
@@ -1649,10 +1652,18 @@ def draw_bottleneck(d, canvas, box, insight, color, reveal, unit=""):
     e = settle(reveal)
     # Measured, like the funnel: a clipped stage label is a wrong number on
     # screen, and the stages that clip are the ones the picture is about.
-    lab_f = _pil_font(32)
-    labs = [f"{_label_of(p)[:13]}  {charts._ulabel(v, unit, group=True)}"
-            for p, v in zip(items, vals)]
-    lab_w = max((d.textbbox((0, 0), t, font=lab_f)[2] for t in labs), default=240)
+    # FITTED, not sliced. `[:13]` turned "1990 (pre-vaccine)" into
+    # "1990 (pre-vac" and, with four links, ran the labels together into one
+    # unreadable line. The reservation logic below is unchanged — it just
+    # measures text a viewer can actually read.
+    _lab_max = int((bx1 - bx0) * 0.34)
+    _labs = [fit_text(d, f"{_label_of(p)}  "
+                         f"{charts._ulabel(v, unit, group=True)}",
+                      32, _lab_max, min_size=22)
+             for p, v in zip(items, vals)]
+    lab_f = _labs[0][0] if _labs else _pil_font(32)
+    labs = [t for _f, t in _labs]
+    lab_w = max((d.textlength(t, font=f) for f, t in _labs), default=240)
     # 300px reserved on the left for the mascot and the "here" callout.
     full = min((bx1 - bx0) * 0.36, (bx1 - bx0) - lab_w - 340)
     cx = int(bx0 + 300 + full / 2)
@@ -1894,7 +1905,9 @@ def draw_sorter(d, canvas, box, insight, color, reveal, unit=""):
             d.rounded_rectangle([bxc - bw // 2 + 8, bin_bot - 7 - fh,
                                  bxc + bw // 2 - 8, bin_bot - 7], radius=9,
                                 fill=_rgba(color if i == 0 else ACCENT, 240))
-        d.text((bxc, bin_bot + 44), _label_of(p)[:11], font=_pil_font(32),
+        _binf, _bint = fit_text(d, _label_of(p), 32, max(70, int(bw) - 10),
+                                min_size=20)
+        d.text((bxc, bin_bot + 44), _bint, font=_binf,
                fill=_rgba(TEXT, 230), anchor="mm")
         d.text((bxc, bin_bot + 92), f"{share * 100:.0f}%", font=_pil_font(42),
                fill=_rgba(color if i == 0 else ACCENT, int(255 * a)),
@@ -1963,7 +1976,13 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
             break
         mx = int(x0 + i * slot + lw / 2)
         col = WARN if i == weak else (color if i == 0 else ACCENT)
-        d.text((mx, y - 132), _label_of(items[i])[:11], font=_pil_font(32),
+        # Fitted to its OWN SLOT, so four links cannot run their names into
+        # one line. `[:11]` cut mid-word and still collided, because the
+        # collision was never about the string length — it was that each
+        # label is centred on a link and the links are `slot` apart.
+        _cf, _ct = fit_text(d, _label_of(items[i]), 32,
+                            max(70, int(slot) - 14), min_size=20)
+        d.text((mx, y - 132), _ct, font=_cf,
                fill=_rgba(TEXT, int(225 * a)), anchor="mm")
         d.text((mx, y + 138), charts._ulabel(vals[i], unit, group=True),
                font=_pil_font(38), fill=_rgba(col, int(242 * a)), anchor="mm")
@@ -1984,6 +2003,9 @@ def draw_chain(d, canvas, box, insight, color, reveal, unit=""):
     wa = max(0.0, min(1.0, (reveal - 0.55) / 0.28))
     wx = int(x0 + weak * slot + lw / 2)
     if wa > 0.0:
+        # Clamped: on a chain whose weakest link is the last one this ran
+        # straight off the right edge.
+        wx = int(min(max(wx, bx0 + 180), bx1 - 180))
         d.text((wx, y - 250), "it breaks here", font=_pil_font(46),
                fill=_rgba(WARN, int(255 * wa)), anchor="mm")
         d.line([(wx, y - 218), (wx, y - 172)], fill=_rgba(WARN, int(255 * wa)),
@@ -2258,7 +2280,9 @@ def draw_gears(d, canvas, box, insight, color, reveal, unit=""):
     lab_f = _pil_font(34)
     for cx_, r_, p_, col in ((ax, ra, items[0], color),
                              (bxx, rb, items[-1], ACCENT)):
-        d.text((cx_, cy + r_ + 52), _label_of(p_)[:14], font=lab_f,
+        _f, _t = fit_text(d, _label_of(p_), 34,
+                          max(120, (bx1 - bx0) // 2 - 40), min_size=20)
+        d.text((cx_, cy + r_ + 52), _t, font=_f,
                fill=_rgba(TEXT, 230), anchor="mm")
         d.text((cx_, cy + r_ + 100),
                charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
@@ -2320,7 +2344,9 @@ def draw_slider(d, canvas, box, insight, color, reveal, unit=""):
     lab_f = _pil_font(36)
     for xx, p_, col, anc in ((x0 + 8, items[0], color, "lm"),
                              (x1 - 8, items[-1], WARN, "rm")):
-        d.text((xx, cy - th - 96), _label_of(p_)[:16], font=lab_f,
+        _f, _t = fit_text(d, _label_of(p_), 36,
+                          max(140, int((x1 - x0) * 0.46)), min_size=22)
+        d.text((xx, cy - th - 96), _t, font=_f,
                fill=_rgba(TEXT, 235), anchor=anc)
         d.text((xx, cy + th + 104),
                charts._ulabel(abs(float(getattr(p_, "value", 0) or 0)), unit,
@@ -2382,8 +2408,10 @@ def draw_density(d, canvas, box, insight, color, reveal, unit=""):
             r_ = step * 0.32
             d.ellipse([cxp - r_, cyp - r_, cxp + r_, cyp + r_],
                       fill=_rgba(color if i == 0 else ACCENT, 235))
-        d.text((x + side // 2, top + side + 44), _label_of(p)[:14],
-               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        _df, _dt = fit_text(d, _label_of(p), 34, max(80, int(side) - 8),
+                            min_size=20)
+        d.text((x + side // 2, top + side + 44), _dt,
+               font=_df, fill=_rgba(TEXT, 230), anchor="mm")
         d.text((x + side // 2, top + side + 96),
                charts._ulabel(v, unit, group=True), font=_pil_font(44),
                fill=_rgba(color if i == 0 else ACCENT, 245), anchor="mm")
@@ -2494,9 +2522,11 @@ def draw_nest(d, canvas, box, insight, color, reveal, unit=""):
                         radius=14, outline=_rgba(color, 245), width=10)
     d.text((cx, top + side // 2), f"{total:,}", font=_pil_font(90),
            fill=_rgba(TEXT, 105), anchor="mm")
-    d.text((cx, by0 + 90),
-           f"{_label_of(small_p)[:16]} fits in {_label_of(big_p)[:16]}",
-           font=_pil_font(46), fill=_rgba(TEXT, 240), anchor="mm")
+    _nest_title = f"{_label_of(small_p)} fits in {_label_of(big_p)}"
+    _ntf, _nest_title = fit_text(d, _nest_title, 46, (bx1 - bx0) - 60,
+                                 min_size=28)
+    d.text((cx, by0 + 90), _nest_title, font=_ntf,
+           fill=_rgba(TEXT, 240), anchor="mm")
     na = max(0.0, min(1.0, (reveal - 0.35) / 0.4))
     d.text((cx, top + side + 78), f"{ratio:,.0f} times over",
            font=_pil_font(60), fill=_rgba(color, int(255 * na)), anchor="mm")
@@ -2592,11 +2622,12 @@ def draw_chairs(d, canvas, box, insight, color, reveal, unit=""):
     d.text((cx, by0 + 92), f"{per:,.0f} for every 1", font=_pil_font(56),
            fill=_rgba(TEXT, 240), anchor="mm")
     na = max(0.0, min(1.0, (reveal - 0.5) / 0.3))
-    d.text((cx, by1 - 170),
-           f"{charts._ulabel(seats, unit, group=True)} {_label_of(seat_p)[:14]}"
-           f", {charts._ulabel(seekers, unit, group=True)} "
-           f"{_label_of(seek_p)[:14]}",
-           font=_pil_font(42), fill=_rgba(color, int(250 * na)), anchor="mm")
+    _s = (f"{charts._ulabel(seats, unit, group=True)} {_label_of(seat_p)}"
+          f", {charts._ulabel(seekers, unit, group=True)} "
+          f"{_label_of(seek_p)}")
+    _f, _s = fit_text(d, _s, 42, (bx1 - bx0) - 60, min_size=26)
+    d.text((cx, by1 - 170), _s, font=_f,
+           fill=_rgba(color, int(250 * na)), anchor="mm")
     host = scene_host("strain", reveal)
     if host is not None:
         mh = 180
@@ -2686,7 +2717,9 @@ def draw_hourglass(d, canvas, box, insight, color, reveal, unit=""):
                        (mx + sw / 2 * 0.5, fall + 46),
                        (mx - sw / 2 * 0.5, fall + 46)],
                       fill=_rgba(col, 235))
-        d.text((mx, top + gh + 52), _label_of(p)[:14], font=_pil_font(34),
+        _hf, _ht = fit_text(d, _label_of(p), 34, max(90, int(gw) - 8),
+                            min_size=20)
+        d.text((mx, top + gh + 52), _ht, font=_hf,
                fill=_rgba(TEXT, 230), anchor="mm")
         d.text((mx, top + gh + 106), charts._ulabel(v, unit),
                font=_pil_font(48), fill=_rgba(col, 245), anchor="mm")
@@ -2748,8 +2781,9 @@ def draw_trophies(d, canvas, box, insight, color, reveal, unit=""):
     for i, (p, v) in enumerate(zip(items, vals)):
         y = top + i * rowh
         col = color if i == 0 else ACCENT
-        d.text((bx0 + 24, y + rowh * 0.42), _label_of(p)[:12],
-               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="lm")
+        _f, _t = fit_text(d, _label_of(p), 34, 300 - 48, min_size=18)
+        d.text((bx0 + 24, y + rowh * 0.42), _t,
+               font=_f, fill=_rgba(TEXT, 230), anchor="lm")
         x0 = bx0 + 300
         shown = int(round(v * max(0.0, min(1.0, e * n - i))))
         for k in range(shown):
@@ -2818,8 +2852,10 @@ def draw_basket(d, canvas, box, insight, color, reveal, unit=""):
             gyp = top + bh - 40 - gy * 46
             d.rounded_rectangle([gxp, gyp - 34, gxp + cw - 10, gyp],
                                 radius=7, fill=_rgba(col, 235))
-        d.text((x + bw // 2, top + bh + 52), _label_of(p)[:16],
-               font=_pil_font(34), fill=_rgba(TEXT, 230), anchor="mm")
+        _bf, _bt = fit_text(d, _label_of(p), 38, max(90, int(bw) - 8),
+                            min_size=22)
+        d.text((x + bw // 2, top + bh + 52), _bt,
+               font=_bf, fill=_rgba(TEXT, 230), anchor="mm")
         d.text((x + bw // 2, top + bh + 106),
                charts._ulabel(v, unit, group=True), font=_pil_font(46),
                fill=_rgba(col, 245), anchor="mm")
@@ -3036,11 +3072,13 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
     # Sized so the widest LABEL fits beside it. "Interviewed 380" ran off the
     # frame and rendered as "Interviewed 3", which is not a clipped label —
     # it is a wrong number on screen.
-    lab_f = _pil_font(34)
-    lab_w = max((d.textbbox((0, 0),
-                            f"{getattr(p, 'label', '')[:14]}  "
-                            f"{charts._ulabel(v, unit)}", font=lab_f)[2]
-                 for p, v in zip(items, vals)), default=200)
+    _lab_max = int((bx1 - bx0) * 0.42)
+    _labs = [fit_text(d, f"{getattr(p, 'label', '')}  "
+                         f"{charts._ulabel(v, unit)}", 34, _lab_max,
+                      min_size=22)
+             for p, v in zip(items, vals)]
+    lab_f = _labs[0][0] if _labs else _pil_font(34)
+    lab_w = max((d.textlength(t, font=f) for f, t in _labs), default=200)
     full_w = min((bx1 - bx0) * 0.44, (bx1 - bx0) - lab_w - 150)
     last_xy = None
     for i, (p, v) in enumerate(zip(items, vals)):
@@ -3059,9 +3097,9 @@ def draw_funnel(d, canvas, box, insight, color, reveal, unit=""):
         # own label — "Interviewed 380" rendered as "rviewed" — and the stages
         # that get clipped are precisely the ones the funnel is about.
         my = int((y0 + y1) / 2)
-        d.text((int(cx + full_w / 2 + 24), my),
-               f"{getattr(p, 'label', '')[:14]}  {charts._ulabel(v, unit)}",
-               font=lab_f, fill=_rgba(TEXT, int(240 * a)), anchor="lm")
+        _ff, _ft = _labs[i]
+        d.text((int(cx + full_w / 2 + 24), my), _ft,
+               font=_ff, fill=_rgba(TEXT, int(240 * a)), anchor="lm")
         last_xy = (int(cx), my)
     # PEOPLE FALLING THROUGH IT. Stages that narrow and then hold measured a
     # 0.908 duplicate ratio and a 50-frame frozen run — and a funnel with
@@ -3152,8 +3190,10 @@ def draw_conveyor(d, canvas, box, insight, color, reveal, unit=""):
     d.text(((bx0 + bx1) // 2, by0 + 58),
            charts._ulabel(v, unit, group=True), font=_pil_font(96),
            fill=_rgba(color, 255), anchor="mm")
-    d.text(((bx0 + bx1) // 2, by0 + 150), str(getattr(star, "label", ""))[:26],
-           font=_pil_font(40), fill=_rgba(TEXT, 220), anchor="mm")
+    _sf, _sl = fit_text(d, str(getattr(star, "label", "")), 40,
+                        max(200, bx1 - bx0 - 60), min_size=24)
+    d.text(((bx0 + bx1) // 2, by0 + 150), _sl,
+           font=_sf, fill=_rgba(TEXT, 220), anchor="mm")
     return (v, "art", (bx0 + bx1) // 2, belt_y)
 
 
@@ -3334,6 +3374,16 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
     if len(items) < 2:
         return None
     vals = [float(getattr(p, "value", 0) or 0) for p in items]
+    # A NEGATIVE IS NOT A BUILDING. `h` scales straight off `v / vmax`, so a
+    # negative value produced a roof BELOW the ground line and PIL raised
+    # "y1 must be greater than or equal to y0" — the whole beat then fell back
+    # to a chart, silently, because `_guarded` catches. Drawing `abs()` would
+    # be worse than the crash: a -40 rendered as a 40-storey tower states the
+    # opposite of the data. A skyline compares magnitudes that exist; a set
+    # containing a decline is a different claim and belongs to a machine that
+    # can say it.
+    if any(v < 0 for v in vals):
+        return None
     vmax = max(vals) or 1.0
     bx0, by0, bx1, by1 = box
     top, bot = max(by0 + 200, 340), by1 - 110
@@ -3369,8 +3419,10 @@ def draw_skyline(d, canvas, box, insight, color, reveal, unit=""):
             d.text((int(sx + w / 2), sy - 26), charts._ulabel(v, unit),
                    font=_pil_font(34), fill=_rgba(TEXT, int(240 * na)),
                    anchor="mm")
-        d.text((int(sx + w / 2), bot + 32), str(getattr(p, "label", ""))[:9],
-               font=_pil_font(28), fill=_rgba(TEXT, int(200 * na)), anchor="mm")
+        _kf, _kt = fit_text(d, str(getattr(p, "label", "")), 28,
+                            max(46, int(w) - 6), min_size=16)
+        d.text((int(sx + w / 2), bot + 32), _kt,
+               font=_kf, fill=_rgba(TEXT, int(200 * na)), anchor="mm")
         if lead:
             tall_xy = (int(sx + w / 2), sy)
     # Data at the foot of the tallest, small enough that the height means
@@ -3430,8 +3482,9 @@ def draw_staircase(d, canvas, box, insight, color, reveal, unit=""):
             va = "mm" if i < n - 1 else "rm"
             d.text((vx, sy - 30), charts._ulabel(v, unit),
                    font=_pil_font(34), fill=_rgba(TEXT, 235), anchor=va)
-            d.text((int(sx + w / 2), bot + 34),
-                   str(getattr(p, "label", ""))[:6], font=_pil_font(30),
+            _tf, _tt = fit_text(d, str(getattr(p, "label", "")), 30,
+                                max(44, int(w) - 6), min_size=16)
+            d.text((int(sx + w / 2), bot + 34), _tt, font=_tf,
                    fill=_rgba(TEXT, 190), anchor="mm")
             top_xy = (int(sx + w / 2), sy)
     host = scene_host("climb", reveal)
@@ -3464,11 +3517,26 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
     sx1 = sx0 + 380
     d.rounded_rectangle([sx0, top, sx1, bot], radius=18,
                         outline=_rgba(TEXT, 90), width=5)
+    # The floor LINE sits at the value; the NAME is spread so two close
+    # values do not print one label over another. See `spread`.
+    _fys = [int(bot - (bot - top) * ((v - lo) / span) * 0.86 - 40)
+            for v in vals]
+    _lf = _pil_font(32)
+    _lys = spread(_fys, 44, top + 20, bot - 12)
+    # The column is what is actually LEFT beside the shaft, not a fraction of
+    # the box — 0.40 of the frame was wider than the gap and put the names
+    # back over the edge the spread had just rescued them from.
+    _lw = max(140, bx1 - (sx1 + 22) - 14)
     for i, (p, v) in enumerate(zip(items, vals)):
-        fy = int(bot - (bot - top) * ((v - lo) / span) * 0.86 - 40)
+        fy, ly = _fys[i], int(_lys[i])
         d.line([(sx0 + 10, fy), (sx1 - 10, fy)], fill=_rgba(TEXT, 55), width=3)
-        d.text((sx1 + 22, fy), f"{getattr(p, 'label', '')}  "
-               f"{charts._ulabel(v, unit)}", font=_pil_font(32),
+        _f, _t = fit_text(d, f"{getattr(p, 'label', '')}  "
+                             f"{charts._ulabel(v, unit)}", 32, _lw,
+                          min_size=22)
+        if abs(ly - fy) > 6:      # the name moved, so say where it belongs
+            d.line([(sx1 - 10, fy), (sx1 + 14, ly)],
+                   fill=_rgba(TEXT, 70), width=2)
+        d.text((sx1 + 22, ly), _t, font=_f,
                fill=_rgba(TEXT, 200), anchor="lm")
     # The car travels through the whole series, ending on the last value.
     e = max(0.0, min(1.0, reveal))
@@ -3487,6 +3555,41 @@ def draw_elevator(d, canvas, box, insight, color, reveal, unit=""):
         canvas.alpha_composite(_fit(host, mw, mh),
                                (int((sx0 + sx1) / 2 - mw // 2), cy - mh // 2))
     return (vals[-1], "art", int((sx0 + sx1) / 2), cy)
+
+
+def spread(positions, min_gap: float, lo: float, hi: float) -> list:
+    """Push labels apart so none lands on top of another, keeping their order.
+
+    A machine that places a label AT its value stacks labels whenever the
+    values are close on a scale a bigger one dominates. `draw_elevator` with
+    4,000 / 530 / 96.5 / 52.7 puts three of the four floors within a few
+    pixels of the bottom, and their labels print over each other — measured
+    on the contact sheet on 2026-09-09, where "Massachusetts 96.5" and
+    "Mississippi 52.7" were one illegible smear.
+
+    Fitting the text cannot fix this and neither can shortening it: the
+    collision is in the POSITIONS, not the strings. A first attempt spent an
+    edit on the wrong cause before the render said so.
+
+    Two passes — forward to open gaps, backward to keep the last one inside
+    `hi` — so the result stays ordered and bounded. The mark still sits at
+    the true value; only its name moves, which is why callers draw a
+    connector when the two separate.
+    """
+    n = len(positions)
+    if n == 0:
+        return []
+    order = sorted(range(n), key=lambda i: positions[i])
+    out = list(map(float, positions))
+    prev = lo - min_gap
+    for i in order:
+        out[i] = max(out[i], prev + min_gap)
+        prev = out[i]
+    prev = hi + min_gap
+    for i in reversed(order):
+        out[i] = min(out[i], prev - min_gap)
+        prev = out[i]
+    return out
 
 
 def fit_text(d, text: str, size: int, max_w: int, min_size: int = 26):
@@ -3620,8 +3723,9 @@ def draw_gauge(d, canvas, box, insight, color, reveal, unit=""):
     shown = v * e
     d.text((cx, cy + 118), charts._ulabel(shown, unit, group=True),
            font=_pil_font(104), fill=_rgba(color, 255), anchor="mm")
-    d.text((cx, cy + 208), str(getattr(star, "label", ""))[:22],
-           font=_pil_font(42), fill=_rgba(TEXT, 220), anchor="mm")
+    _gf, _gl = fit_text(d, str(getattr(star, "label", "")), 42,
+                        max(200, bx1 - bx0 - 60), min_size=24)
+    d.text((cx, cy + 208), _gl, font=_gf, fill=_rgba(TEXT, 220), anchor="mm")
     # He stands UNDER the dial reading it, at a size that occupies the lower
     # band, rather than parked beside the arc as a sticker.
     host = scene_host("point", reveal)
@@ -3683,9 +3787,20 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
     # Room for the longest NAME on the left and for the leader's VALUE on the
     # right. The first version guessed both and clipped both — "Los Angeles"
     # rendered as "os Angeles" and the leader's "11.3 yrs" ran off the edge.
+    # ONE font for every lane, chosen so the LONGEST name fits the gutter.
+    # Sizing each name independently would print a race in five type sizes,
+    # which reads as emphasis nobody meant; `[:16]` cut "Massachusetts" and
+    # every other real place name mid-word.
+    _names = [str(getattr(p, "label", "")) for p in items]
+    _budget = max(160, int((bx1 - bx0) * 0.42) - 40)
     name_f = _pil_font(38)
-    name_w = max((d.textbbox((0, 0), str(getattr(p, "label", ""))[:16],
-                             font=name_f)[2] for p in items), default=0)
+    for _sz in range(38, 21, -2):
+        name_f = _pil_font(_sz)
+        if all(d.textlength(t, font=name_f) <= _budget for t in _names):
+            break
+    _names = [fit_text(d, t, _sz, _budget, min_size=_sz)[1] for t in _names]
+    name_w = max((d.textbbox((0, 0), t, font=name_f)[2] for t in _names),
+                 default=0)
     x0 = int(bx0 + min(max(name_w + 40, 200), (bx1 - bx0) * 0.42))
     x1 = int(bx1 - 40)                   # the finish line
     # Ease so the field surges out of the blocks and settles into its order,
@@ -3706,7 +3821,7 @@ def draw_race(d, canvas, box, insight, color, reveal, unit=""):
         px = int(x0 + (v / vmax) * (x1 - x0) * e)
         lead = (i == 0)
         col = color if lead else ACCENT
-        d.text((x0 - 22, cy), str(getattr(p, "label", ""))[:16],
+        d.text((x0 - 22, cy), _names[i],
                font=name_f, fill=_rgba(col, 240), anchor="rm")
         if runner is not None:
             im = runner
