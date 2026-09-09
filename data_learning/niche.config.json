@@ -26481,45 +26481,7 @@
         }
       ]
     },
-    {
-      "slug": "oil-rich-algeria-runs-on-0-fossil-fuels-at-home",
-      "title": "Oil-Rich Algeria Runs On 0% Fossil Fuels At Home",
-      "hook": "You'd bet an oil giant burns the most fossil fuel \u2014 Algeria's share of it is zero percent.",
-      "closing": "The numbers don't care what you'd guess.",
-      "hashtags": [
-        "datafacts",
-        "geography",
-        "energy",
-        "farmland",
-        "worldbank"
-      ],
-      "question": "Which one caught you off guard?",
-      "segments": [
-        {
-          "source": "offline",
-          "key": "ag_lnd_arbl_ha_rank",
-          "params": {
-            "file": "ag_lnd_arbl_ha_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "1 \u00b7 ARABLE LAND",
-          "topic": "Arable land",
-          "say": "India farms 153,868,700 hectares of arable land, edging out the United States' 151,563,525 hectares, despite being a fraction of its size."
-        },
-        {
-          "source": "offline",
-          "key": "eg_use_comm_fo_zs_rank",
-          "params": {
-            "file": "eg_use_comm_fo_zs_rank.json"
-          },
-          "insight_type": "rank",
-          "role": "2 \u00b7 FOSSIL FUEL ENERGY",
-          "topic": "Fossil fuel energy consumption",
-          "say": "Algeria, a major oil producer, shows 0.0% fossil fuel energy consumption, while tiny Kosovo runs on fossil fuels 86.1% of the time."
-        }
-      ],
-      "words_by": "brain(attempt 2, judge llm-pass)"
-    },
+    
     {
       "slug": "lab-grown-diamond-price-collapse",
       "title": "Lab-Grown Diamonds Just Lost 90% Of Their Value",
