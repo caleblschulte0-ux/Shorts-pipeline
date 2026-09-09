@@ -1,0 +1,47 @@
+{
+  "key": "lab_grown_diamond_price",
+  "title": "Lab-grown diamond wholesale price, 1ct G/VS1 (dollars)",
+  "unit": "dollars",
+  "geography": "Global (US wholesale market)",
+  "time_coverage": "2020-2025 (annual)",
+  "source": {
+    "name": "Lab-grown diamond wholesale pricing trend",
+    "publisher": "Rapaport / diamond industry price reports (BriteCo, Draco Diamond)",
+    "url": "https://brite.co/the-lab-grown-vs-natural-diamond-report/",
+    "officiality": "industry",
+    "access_date": "2026-09-09"
+  },
+  "notes": "1-carat G color, VS1 clarity, excellent-cut wholesale price. Reported ~90% decline 2020-2025 driven by oversupply; interpolated points between the reported 2020 and 2025 anchors.",
+  "points": [
+    {
+      "label": "2020",
+      "value": 4200,
+      "period": "2020"
+    },
+    {
+      "label": "2021",
+      "value": 3400,
+      "period": "2021"
+    },
+    {
+      "label": "2022",
+      "value": 2400,
+      "period": "2022"
+    },
+    {
+      "label": "2023",
+      "value": 1400,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 700,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 380,
+      "period": "2025"
+    }
+  ]
+}

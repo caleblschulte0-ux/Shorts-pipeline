@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "graph-china-ev-chargers-passed-gas-stations",
+  "title": "China's EV Chargers Just Passed Its Gas Stations",
+  "hook": "One of these grew 70x.",
+  "y_label": "China charging points vs. fuel stations (thousands)",
+  "duration": 13,
+  "source": "China Electric Vehicle Charging Infrastructure Promotion Alliance (EVCIPA) public charging-pile counts (2015-2024); China fuel-station counts per Ministry of Commerce estimates, as reported by Reuters and Bloomberg.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Public EV Chargers",
+      "color": "#00d2ff",
+      "values": [
+        50,
+        214,
+        516,
+        1147,
+        1800,
+        2597,
+        3600
+      ]
+    },
+    {
+      "name": "Gas Stations",
+      "color": "#7f8c8d",
+      "values": [
+        95,
+        98,
+        100,
+        103,
+        105,
+        107,
+        110
+      ]
+    }
+  ],
+  "hashtags": [
+    "ev",
+    "electricvehicles",
+    "china",
+    "evcharging",
+    "gasstations",
+    "energy",
+    "data",
+    "shorts",
+    "trending",
+    "future"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

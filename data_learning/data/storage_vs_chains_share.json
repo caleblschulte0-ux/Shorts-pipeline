@@ -1,0 +1,25 @@
+{
+  "key": "storage_vs_chains_share",
+  "title": "Storage facilities vs. three biggest US chains combined (percent of total)",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Self-storage facility count vs. major US chains combined",
+    "publisher": "Storagefront; Self Storage Association industry data",
+    "url": "https://www.storagefront.com/blogs/self-storage-vs-starbucks/",
+    "officiality": "industry",
+    "access_date": "2026-09-09"
+  },
+  "notes": "66,000 storage facilities vs. Starbucks + McDonald's + Subway combined (50,600), as a share of the two totaled together.",
+  "points": [
+    {
+      "label": "Self-Storage Facilities",
+      "value": 57
+    }
+  ],
+  "baseline": {
+    "label": "3 Biggest Chains Combined",
+    "value": 43
+  }
+}

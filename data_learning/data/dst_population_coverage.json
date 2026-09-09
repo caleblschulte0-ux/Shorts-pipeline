@@ -1,0 +1,22 @@
+{
+  "key": "dst_population_coverage",
+  "title": "Population of the world's biggest countries, DST status (billions)",
+  "unit": "billion",
+  "geography": "World (largest countries by population)",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Population of largest countries vs. DST observance",
+    "publisher": "UN population estimates; timeanddate.com DST statistics",
+    "url": "https://www.timeanddate.com/time/dst/statistics.html",
+    "officiality": "estimate",
+    "access_date": "2026-09-09"
+  },
+  "notes": "India, China, and Indonesia — three of the four most populous countries on Earth — have never observed daylight saving time.",
+  "points": [
+    {"label": "India (no DST)", "value": 1.44},
+    {"label": "China (no DST)", "value": 1.41},
+    {"label": "USA (observes DST)", "value": 0.34},
+    {"label": "Indonesia (no DST)", "value": 0.28}
+  ],
+  "baseline": {"label": "USA (observes DST)", "value": 0.34}
+}

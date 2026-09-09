@@ -1,0 +1,25 @@
+{
+  "key": "dst_countries_share_today",
+  "title": "Countries that still observe daylight saving time, 2026 (percent of all countries)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Which countries observe daylight saving time",
+    "publisher": "Pew Research Center; timeanddate.com DST statistics",
+    "url": "https://www.pewresearch.org/short-reads/2023/10/26/most-countries-dont-observe-daylight-saving-time/",
+    "officiality": "official",
+    "access_date": "2026-09-09"
+  },
+  "notes": "About 70 of roughly 195 countries/territories currently observe DST.",
+  "points": [
+    {
+      "label": "Still Observe DST",
+      "value": 36
+    }
+  ],
+  "baseline": {
+    "label": "Never Adopted / Abandoned It",
+    "value": 64
+  }
+}

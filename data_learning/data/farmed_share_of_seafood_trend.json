@@ -1,0 +1,42 @@
+{
+  "key": "farmed_share_of_seafood_trend",
+  "title": "Farmed share of fish destined for human consumption (percent)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1990-2022 (selected years)",
+  "source": {
+    "name": "SOFIA 2024 \u2014 aquaculture share of seafood for direct human consumption",
+    "publisher": "UN Food and Agriculture Organization (FAO)",
+    "url": "https://www.fao.org/3/cd0683en/online/sofia/2024/key-messages.html",
+    "officiality": "official",
+    "access_date": "2026-09-09"
+  },
+  "notes": "2022: a record 57% of aquatic animals destined for human consumption came from farms.",
+  "points": [
+    {
+      "label": "1990",
+      "value": 12,
+      "period": "1990"
+    },
+    {
+      "label": "2000",
+      "value": 25,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 40,
+      "period": "2010"
+    },
+    {
+      "label": "2018",
+      "value": 52,
+      "period": "2018"
+    },
+    {
+      "label": "2022",
+      "value": 57,
+      "period": "2022"
+    }
+  ]
+}

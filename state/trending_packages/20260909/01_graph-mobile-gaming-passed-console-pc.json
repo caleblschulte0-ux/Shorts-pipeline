@@ -1,0 +1,58 @@
+{
+  "format": "graph_race",
+  "slug": "graph-mobile-gaming-passed-console-pc",
+  "title": "Mobile Gaming Just Passed Console And PC Combined",
+  "hook": "Your phone out-earns the PS5.",
+  "y_label": "Global games revenue ($ billions)",
+  "duration": 13,
+  "source": "Newzoo Global Games Market Report estimates (2015-2025) for mobile vs. combined console + PC games revenue, as cited by Newzoo, VentureBeat, and GamesIndustry.biz.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2021,
+    2023,
+    2025
+  ],
+  "series": [
+    {
+      "name": "Mobile",
+      "color": "#25f4ee",
+      "values": [
+        30,
+        46,
+        68,
+        93,
+        92,
+        103
+      ]
+    },
+    {
+      "name": "Console + PC Combined",
+      "color": "#f5c518",
+      "values": [
+        61,
+        68,
+        79,
+        87,
+        94,
+        86
+      ]
+    }
+  ],
+  "hashtags": [
+    "mobilegaming",
+    "gaming",
+    "videogames",
+    "gamingindustry",
+    "console",
+    "pcgaming",
+    "esports",
+    "gamers",
+    "data",
+    "shorts",
+    "trending"
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}
