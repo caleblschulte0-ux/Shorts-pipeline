@@ -20,6 +20,7 @@ if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
 from shared.fit_title import fit_title
+from shared.palette import series_color
 
 from .insights import Insight
 
@@ -31,6 +32,10 @@ HIGHLIGHT = "#4FD1C5"
 ACCENT = "#60A5FA"
 WARN = "#F59E0B"
 BAR_BASE = "#1F2937"
+
+# How many entries the waffle names below its grid. `series_color` reads it
+# so a slice is never coloured without a legend row to say what it is.
+WAFFLE_LEGEND = 5
 
 # --- Viz registry -----------------------------------------------------------
 # Full-frame renderers author a 1080x1920 PNG sequence themselves (like the
@@ -1030,7 +1035,7 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     ax.set_xlim(-1.35, 2.05)
     ax.set_ylim(-1.3, 1.3)
     R, w = 1.0, 0.42
-    palette = [ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399", "#FBBF24"]
+
     sweep = reveal * 360.0
     start = 90.0
     ang = start
@@ -1041,8 +1046,12 @@ def _story_pie(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
         a0 = ang
         a1 = ang - span                        # clockwise
         draw_end = max(a1, start - sweep)       # clip to the swept arc
-        color = HIGHLIGHT if p.label == insight.highlight_label \
-            else palette[pi % len(palette)]
+        # Every wedge here carries a direct label, so colour may run the
+        # full palette — but it must not WRAP. This donut has no item cap
+        # and the catalogue holds datasets of thirteen points.
+        color = series_color(
+            pi, highlight=HIGHLIGHT if p.label == insight.highlight_label
+            else None)
         pi += 1
         if draw_end < a0 - 0.01:
             ax.add_patch(Wedge((0, 0), R, draw_end, a0, width=w,
@@ -1422,10 +1431,13 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     if cells:
         cells[cells.index(max(cells))] += 100 - sum(cells)
     band, colors, labels = [], [], []
-    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+    # WAFFLE_LEGEND is the number of entries drawn below the grid; colour
+    # is capped to it so nothing on screen is coloured without being named.
     for i, (p, c) in enumerate(zip(items, cells)):
-        col = (HIGHLIGHT if p.label == insight.highlight_label
-               else palette[i % len(palette)])
+        col = series_color(
+            i, labelled=WAFFLE_LEGEND,
+            highlight=HIGHLIGHT if p.label == insight.highlight_label
+            else None)
         band += [col] * max(0, c)
         colors.append(col)
         labels.append((p.label, p.value, col))
@@ -1456,7 +1468,7 @@ def _story_waffle(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # Legend chips (label + value) on the right, fading in with the fill.
     specs, la = [], _lblalpha(reveal)
     top = 0.70
-    for lbl, val, col in labels[:5]:
+    for lbl, val, col in labels[:WAFFLE_LEGEND]:
         yy = top
         # A waffle depicts SHARE — so the legend shows each item's % of the
         # total shown, not its raw value with a spurious '%' (that printed
@@ -1598,7 +1610,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     ax.set_axis_off()
     t = max(0.0, min(1.0, reveal))
     filled = t * 100.0
-    palette = [HIGHLIGHT, ACCENT, WARN, "#A78BFA", "#F472B6", "#34D399"]
+
     cx0, cx1 = 0.20, 0.62                       # wider column (was a narrow strip)
     # Faint horizontal reference lines across the FULL card so the space beside
     # the tower reads as chart, not empty (empty_void).
@@ -1610,7 +1622,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     _gy = 0.0
     for i, (p, sh) in enumerate(zip(items, shares)):
         gcol = (HIGHLIGHT if p.label == insight.highlight_label
-                else palette[i % len(palette)])
+                else series_color(i))
         ax.add_patch(FancyBboxPatch((cx0, _gy), cx1 - cx0, sh,
                      boxstyle="round,pad=0,rounding_size=1.4",
                      facecolor=gcol, edgecolor="none", alpha=0.16, zorder=1))
@@ -1622,7 +1634,7 @@ def _story_stack(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0)
     y0, top_y = 0.0, 0.0
     for i, (p, sh) in enumerate(zip(items, shares)):
         col = (HIGHLIGHT if p.label == insight.highlight_label
-               else palette[i % len(palette)])
+               else series_color(i))
         vis_top = min(y0 + sh, filled)
         if vis_top > y0 + 0.4:
             ax.add_patch(FancyBboxPatch((cx0, y0), cx1 - cx0, vis_top - y0,
