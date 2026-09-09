@@ -195,6 +195,29 @@ jobs:
             echo "not Sunday in Chicago (day $DOW) — skipping the rollup"
           fi
 
+      # The outcome, not the steps. Everything above this line is
+      # continue-on-error, and the commit below is fail-closed only around
+      # whatever files happen to exist — so build_retro.py and
+      # review_proposals.py could BOTH fail while ci_commit_state.sh found
+      # older state to commit and the whole run finished green (doctor
+      # finding 694ab7c3e1d4). A missing daily review then looks exactly
+      # like a quiet day.
+      #
+      # This runs BEFORE the commit so it cannot be skipped, and only
+      # RECORDS its verdict — the commit still happens, because a red run
+      # with its diagnostics committed is worth far more than a red run
+      # that threw them away. The failure is raised at the end.
+      - name: Did the day actually produce a review?
+        id: outputs
+        if: steps.when.outputs.go == 'true'
+        continue-on-error: true
+        run: |
+          MODE=nightly
+          [ "${{ github.event_name }}" = "push" ] && MODE=triage
+          [ "${{ inputs.triage_only }}" = "true" ] && MODE=triage
+          python3 scripts/retro_gate.py --date "${{ steps.d.outputs.date }}" \
+            --mode "$MODE"
+
       - name: Commit brief + triage + summary
         if: steps.when.outputs.go == 'true'
         run: |
@@ -236,3 +259,13 @@ jobs:
         run: |
           echo "::notice::Mailbox:"
           python3 scripts/retro_mailbox.py || true
+
+      # Raised last, on purpose: see the note on the gate step above.
+      - name: Fail the run if the review is missing
+        if: >-
+          steps.when.outputs.go == 'true'
+          && steps.outputs.outcome == 'failure'
+        run: |
+          echo "::error::the retro loop finished without producing the day's"\
+               "review — see 'Did the day actually produce a review?' above."
+          exit 1

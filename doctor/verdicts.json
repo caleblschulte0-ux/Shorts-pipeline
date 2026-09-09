@@ -872,10 +872,16 @@
       "commit": "4fb5f08"
     },
     "7f087a105388": {
-      "verdict": "doing",
-      "date": "20260826",
-      "because": "Verified: scripts/exchange_phase_a.py _PACKAGE_MARKERS (script/text/series/shots/subreddit/broll_query/segments) does not include source_url, while config/channel_registry.json revision 5 defines third's active clip format by source_url presence with required_fields [slug, source_url], and a real recipe on disk (state/third_packages/20260707/11_clip.json) carries none of the current markers. is_package() silently drops every genuine Third package. Small, scoped fix.",
-      "history": []
+      "verdict": "done",
+      "date": "20260909",
+      "because": "Fixed and shipped. is_package now consults the registry's own detectors as a union with the marker heuristic: OLD is_package({slug, source_url}) was False, NEW is_package(same, 'third') is True. Union rather than replacement because the markers answer a different question \u2014 'content rather than config' \u2014 which the registry detectors do not: a trending reddit_story is recognised by script+shots before subreddit exists on it. A registry that cannot be read falls back to markers rather than emptying every channel. tests/test_phase_a_sees_third.py derives fixtures FROM config/channel_registry.json for every active format of every channel Phase A accepts, so the detector cannot drift again, and covers the exclusions the widening could have broken.",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260826",
+          "because": "Verified: scripts/exchange_phase_a.py _PACKAGE_MARKERS (script/text/series/shots/subreddit/broll_query/segments) does not include source_url, while config/channel_registry.json revision 5 defines third's active clip format by source_url presence with required_fields [slug, source_url], and a real recipe on disk (state/third_packages/20260707/11_clip.json) carries none of the current markers. is_package() silently drops every genuine Third package. Small, scoped fix."
+        }
+      ]
     },
     "34e98321286f": {
       "verdict": "doing",
