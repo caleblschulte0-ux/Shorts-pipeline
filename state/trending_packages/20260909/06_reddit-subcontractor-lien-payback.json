@@ -18,11 +18,21 @@
   "shots": [
     {
       "phrase": "the electrical rough-in on a twelve-unit building",
-      "query": "electrician wiring construction"
+      "query": "electrician wiring construction",
+      "image_url": "https://drive.google.com/uc?export=download&id=19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+      "media_origin": "chatgpt",
+      "media_file_id": "19zc4LzILGq0BV_byfULcw_K9kWvcyDXF",
+      "media_sha256": "983d05a64cf79e14128b310f1709212df161833f30f74de3296d96c7ebe7bb93",
+      "media_bytes": 2049241
     },
     {
       "phrase": "forty-one thousand dollars unpaid",
-      "query": "unpaid invoice paperwork"
+      "query": "unpaid invoice paperwork",
+      "image_url": "https://drive.google.com/uc?export=download&id=1PQ0ljMtak_BqYl8-Xnip0q215oOGAJJR",
+      "media_origin": "chatgpt",
+      "media_file_id": "1PQ0ljMtak_BqYl8-Xnip0q215oOGAJJR",
+      "media_sha256": "becf3039ace11ef85c8b91ca79bb559b5f13b5079d078bede65b1ad5b028af49",
+      "media_bytes": 1846475
     },
     {
       "phrase": "a mechanic's lien against the property",
@@ -31,15 +41,29 @@
       "pin_context": "legal document construction debt collection",
       "news_query": "mechanic's lien",
       "news_angle": "The narrator filed a mechanic's lien against a property to force payment from a general contractor.",
-      "image_url": "https://live.staticflickr.com/6091/6372375697_7cef21e303_b.jpg"
+      "image_url": "https://drive.google.com/uc?export=download&id=1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+      "media_origin": "chatgpt",
+      "media_file_id": "1JF6gE5boPBdywq0W4rR88Pf_T8ALtvRL",
+      "media_sha256": "3082646769167ca003481e0f85810ae66d79b5415b53ec2aa69f18b68b39bfa7",
+      "media_bytes": 1651204
     },
     {
       "phrase": "the property owner",
-      "query": "office building exterior"
+      "query": "office building exterior",
+      "image_url": "https://drive.google.com/uc?export=download&id=1qEv3Nm7RXjABIV2uc4zBMcKqH8Zi1OLs",
+      "media_origin": "chatgpt",
+      "media_file_id": "1qEv3Nm7RXjABIV2uc4zBMcKqH8Zi1OLs",
+      "media_sha256": "3edddf9ff0ed13b437673c95ccb15808e27d1f9d72b42e4a4be431e6d69890d8",
+      "media_bytes": 1800961
     },
     {
       "phrase": "refinancing the building that same month",
-      "query": "bank loan paperwork"
+      "query": "bank loan paperwork",
+      "image_url": "https://drive.google.com/uc?export=download&id=1XFFsbrPdOrPXEnXUIn9VQ80523ll3o6k",
+      "media_origin": "chatgpt",
+      "media_file_id": "1XFFsbrPdOrPXEnXUIn9VQ80523ll3o6k",
+      "media_sha256": "7c5628d931c85980f5f6c43e4ecbacb91fc3742cc98f1b23f320cc7757300111",
+      "media_bytes": 1697386
     },
     {
       "phrase": "a title company will not close",
@@ -48,15 +72,29 @@
       "pin_context": "real estate ownership legal document",
       "news_query": "property title",
       "news_angle": "The property title was encumbered by a mechanic's lien, preventing the owner's refinancing until it was cleared.",
-      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Property_Law_-_Gavel_and_Block_and_House_Keys.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original"
+      "image_url": "https://drive.google.com/uc?export=download&id=1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+      "media_origin": "chatgpt",
+      "media_file_id": "1LuPrI2-FBYrSlR3-xTloiGtcIyFVKoNd",
+      "media_sha256": "4ebda098736b27c9a6ba69f353c8c701d56d4a201b4001052f7f146c76c9158f",
+      "media_bytes": 1551697
     },
     {
       "phrase": "wired the full amount plus the late fee",
-      "query": "bank transfer laptop"
+      "query": "bank transfer laptop",
+      "image_url": "https://drive.google.com/uc?export=download&id=170iVSNfuYUa4Y2hpTxkpIKWQYmEePxyz",
+      "media_origin": "chatgpt",
+      "media_file_id": "170iVSNfuYUa4Y2hpTxkpIKWQYmEePxyz",
+      "media_sha256": "c330b3811410b7828f828845e54271a23427f52d10f3ece21d505381ec9184ee",
+      "media_bytes": 1685664
     },
     {
       "phrase": "refinance closed on schedule",
-      "query": "handshake office deal"
+      "query": "handshake office deal",
+      "image_url": "https://drive.google.com/uc?export=download&id=1rVmZzXP9vdtRWjuNEuywyGwbb49C4Ju0",
+      "media_origin": "chatgpt",
+      "media_file_id": "1rVmZzXP9vdtRWjuNEuywyGwbb49C4Ju0",
+      "media_sha256": "0f043b25fcae8978fcce56b706f7ccf25c209eea58edb9172feecd116ba45f09",
+      "media_bytes": 1743615
     }
   ],
   "punches": [

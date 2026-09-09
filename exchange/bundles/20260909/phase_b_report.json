@@ -1,0 +1,130 @@
+{
+  "date": "20260909",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "authored": {
+    "promoted": 0,
+    "rejected": 0
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "819169d4eb5c940f431d8286c2b59dc12f71376dacdf38bce8f7990ff94a859e",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "reddit-movers-video-proof-claim-s0-8058fa3e580f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s0-8058fa3e580f.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s2-d07433115f65",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s2-d07433115f65.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s3-9d51c7eff016",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s3-9d51c7eff016.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s4-c85c45f06f60",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s4-c85c45f06f60.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s5-e0817f3f858d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s5-e0817f3f858d.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s1-ae6ad8faf2fb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s1-ae6ad8faf2fb.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s6-75baa41897a0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s6-75baa41897a0.png"
+    },
+    {
+      "request_id": "reddit-movers-video-proof-claim-s7-cec0587abc36",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-movers-video-proof-claim-s7-cec0587abc36.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s0-5d660c4266a1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s0-5d660c4266a1.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s1-42c45dc1eaf5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s1-42c45dc1eaf5.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s3-dd17b057109c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s3-dd17b057109c.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s4-90a134bf26e6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s4-90a134bf26e6.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s6-a2840be4db8c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s6-a2840be4db8c.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s7-f79a42e1532d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s7-f79a42e1532d.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s2-c04a65e5cea7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s2-c04a65e5cea7.png"
+    },
+    {
+      "request_id": "reddit-subcontractor-lien-payback-s5-681143662167",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/reddit-subcontractor-lien-payback-s5-681143662167.png"
+    },
+    {
+      "slug": "reddit-movers-video-proof-claim",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "dropped named entity(ies): support",
+        "INVENTED named entity(ies): does"
+      ]
+    },
+    {
+      "slug": "reddit-subcontractor-lien-payback",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): bad, do"
+      ]
+    }
+  ]
+}
