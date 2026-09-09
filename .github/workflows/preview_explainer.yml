@@ -89,6 +89,24 @@ jobs:
           # progression, no clipping) BEFORE we spend minutes rendering. A
           # primitive that regresses here never reaches production.
           python3 data_learning/tests/test_mascot_primitives.py
+          # 20 rig guardrails — hands off the face, arms behind the head, no
+          # tremor, the calm bounds. A real unittest module that lived in
+          # data_learning/tests, which the required suite does not discover,
+          # and that no workflow named: 20 passing tests run by nothing.
+          python3 data_learning/tests/test_hands_off_the_face.py
+
+      - name: Viz director + scene guardrails (fail fast, pre-render)
+        run: |
+          # NEVER a bare number, no rotation, depiction fallbacks, and the
+          # scene interpreter's sandbox. Both modules sat in the tree for
+          # months executing ZERO assertions: free functions with no runner,
+          # invoked by nothing, collected by no discovery. A guardrail
+          # nothing runs is not a guardrail.
+          python3 data_learning/tests/test_viz_director.py
+          python3 data_learning/tests/test_viz_scene.py
+          # End-to-end insight -> package -> QA logic. 13 checks that were
+          # invoked by nothing.
+          python3 data_learning/tests/test_pipeline.py
 
       - name: Benchmark suite structural gate (fail fast, pre-render)
         run: |

@@ -214,21 +214,8 @@ def test_thumbnail_headline_number():
 
 
 def _main() -> int:
-    fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
-    failed = 0
-    for fn in fns:
-        try:
-            fn()
-            print(f"PASS {fn.__name__}")
-        except AssertionError as e:
-            failed += 1
-            print(f"FAIL {fn.__name__}: {e}")
-        except Exception as e:  # noqa: BLE001
-            failed += 1
-            print(f"ERROR {fn.__name__}: {type(e).__name__}: {e}")
-    print(f"\n{len(fns) - failed}/{len(fns)} passed")
-    return 1 if failed else 0
-
+    from data_learning.tests._runner import run
+    return run(globals(), "pipeline")
 
 if __name__ == "__main__":
     sys.exit(_main())

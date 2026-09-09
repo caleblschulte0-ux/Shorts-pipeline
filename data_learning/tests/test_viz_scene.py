@@ -1,5 +1,10 @@
 """Guardrails for the generative scene interpreter."""
+import sys
 from pathlib import Path
+
+_REPO = Path(__file__).resolve().parents[2]
+if str(_REPO) not in sys.path:
+    sys.path.insert(0, str(_REPO))
 
 from data_learning import charts, viz_director, viz_scene   # noqa: F401
 from data_learning.insights import Insight
@@ -110,3 +115,12 @@ def test_image_cost_counts_cutout_elements():
         {"type": "fill_object", "region": "center", "subject": "globe", "data": {"value_from": "star"}},
     ]}
     assert viz_scene.image_cost(spec) == 2
+
+
+def _main() -> int:
+    from data_learning.tests._runner import run
+    return run(globals(), "viz scene")
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
