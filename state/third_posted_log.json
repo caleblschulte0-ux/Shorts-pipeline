@@ -6280,13 +6280,36 @@
       "director_cut": true
     },
     "clip-20260909-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/AbrasiveSmoggySlothBIRB-N3TX94HmY5lRe3mw",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/YSSIBkPAkqs",
       "title": "Buddha: Lang Mocks The Guy Threatening To 'Post' Him Over Vaping",
       "kind": "twitch_clip",
-      "ts": "2026-09-09T15:12:47.709540+00:00",
+      "ts": "2026-09-09T15:12:52.319055+00:00",
+      "uploaded_at": "2026-09-09T15:12:52.319074+00:00",
+      "publish_at": "2026-09-09T17:00:00Z",
+      "source_url": "https://www.twitch.tv/buddha/clip/AbrasiveSmoggySlothBIRB-N3TX94HmY5lRe3mw",
+      "streamer": "buddha",
+      "series": "beef",
+      "hook": "HE THREATENED TO POST HIM ONLINE",
+      "experiment_arm": "clip",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5060,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 28.7
+      },
+      "director_cut": true
+    },
+    "clip-20260909-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lirik/clip/ObservantDependableYakinikuUWot-b5ISyx7BIq-wTpDJ",
+      "story_key": null,
+      "streamer": "lirik",
+      "title": "THAT'S NOT MICHAEL THAT'S A CAR",
+      "kind": "twitch_clip",
+      "ts": "2026-09-09T15:17:37.476210+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
