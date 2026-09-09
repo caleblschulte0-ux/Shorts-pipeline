@@ -546,7 +546,8 @@ def _bake_host(ax, x, y, action, phase, zoom=0.5, align=(0.5, 0.08)):
         return
     from matplotlib.offsetbox import OffsetImage, AnnotationBbox
     ab = AnnotationBbox(OffsetImage(img, zoom=zoom), (x, y), frameon=False,
-                        box_alignment=align, zorder=8, pad=0, annotation_clip=False)
+                        box_alignment=align, zorder=HOST_Z, pad=0,
+                        annotation_clip=False)
     ax.add_artist(ab)
 
 
@@ -2298,7 +2299,54 @@ def _compose_story(fig, plt, insight: Insight, reveal: float = 1.0):
         _heading(fig, insight.topic, subtitle)
         ax, specs = _story_bars(fig, plt, insight, subtitle, reveal)
     _footer(fig, insight)
+    _numbers_on_top(specs)
     return ax, specs
+
+
+#: `_bake_host` composites the mascot at this zorder.
+HOST_Z = 8
+
+
+def _numbers_on_top(specs) -> None:
+    """THE NUMBER THE BEAT EXISTS TO SHOW OUTRANKS THE MASCOT.
+
+    The host is baked at a data point, and the value label for that same point
+    is drawn at the same place — at zorder 4 to 7, under his zorder 8. So he
+    sat on the one number the beat was about, over and over:
+
+        "Data stands directly over the 1980 bar's value label, hiding the
+         number the beat exists to show ('12 yrs' is occluded)"
+                              fifty-years-since-moon-landing, 2026-09-09
+        "the mascot's body occludes the bars and value labels he is standing
+         on ('United States o...' hidden at hook@1.5)"   algeria, 2026-09-09
+        "seg1:mid sits on the 417 value"      bald-eagle-rebound, 2026-09-09
+
+    `_clamp_host` keeps him inside the card and below the subtitle; it cannot
+    keep him off a label, because the label is AT the datum he is gripping —
+    that contact is the whole point of the bake.
+
+    So the label wins the overlap instead. It is lifted above him and given a
+    dark halo, which is what makes it readable against both a bright column
+    and a teal mascot. Nothing moves; the mascot is still gripping the same
+    tip. `specs` is every value label the composers emit — the same list
+    `_anchors_from` resolves — so this covers all thirteen chart kinds at
+    once rather than thirteen edits that drift apart.
+    """
+    try:
+        from matplotlib import patheffects as _pe
+    except Exception:  # noqa: BLE001 — a chart must never die over a halo
+        return
+    for spec in specs or ():
+        art = spec[2] if len(spec) > 2 else None
+        if art is None or not hasattr(art, "set_zorder"):
+            continue
+        try:
+            art.set_zorder(HOST_Z + 1)
+            art.set_path_effects([
+                _pe.withStroke(linewidth=5, foreground="#0B1020"),
+                _pe.Normal()])
+        except Exception:  # noqa: BLE001
+            continue
 
 
 def _superlative(insight, low: bool) -> str:

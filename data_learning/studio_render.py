@@ -1152,8 +1152,37 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         if _f and _f not in _uniq:
             _uniq.append(_f)
     src = " · ".join(_uniq)
+    # THE STRIP IS ONE LINE, AND THE CITATION HAS TO FIT IT.
+    #
+    # `an2` anchors the block at its BOTTOM, so a line libass wraps grows
+    # UPWARD — straight through the CTA sitting at 1802..1870. The stack
+    # documented above budgets 1880..1898 for this, which is one line at
+    # fs15, and a three-source citation is four:
+    #
+    #     "the 'COMMENT BELOW ▼' CTA is drawn directly on top of the four-line
+    #      source citation, rendering both into unreadable mush at the bottom
+    #      of the screen"        self-checkout-cashier-jobs, 2026-09-09
+    #
+    # There is no room to give it: the foot band is 1683..1920 and the
+    # question and CTA already hold 180 of its 237 pixels. So the line is
+    # bounded instead, shedding the verbose part first — every publisher is
+    # still NAMED, which is what the strip is for; the full provenance
+    # (url, access date, officiality) lives in the dataset and the manifest,
+    # which is where anyone checking it would look.
+    # It sheds in order: the access date, then the dataset name, then it
+    # truncates. A footer is `{publisher} ({name}), accessed {date}`, so the
+    # date goes by pattern and the name is the LAST parenthetical — cutting at
+    # the first comma instead splits "(Cashiers, employment)" and leaves an
+    # unclosed bracket on screen.
+    if len(src) > _CH_SRC:
+        _no_date = [_re_src.sub("", _f).strip() for _f in _uniq]
+        src = " · ".join(_no_date)
+        if len(src) > _CH_SRC:
+            src = " · ".join(_re_name.sub("", _f).strip() for _f in _no_date)
+    if len(src) > _CH_SRC:
+        src = src[:_CH_SRC - 1].rstrip(" ·") + "…"
     src_txt = ("{\\an2\\pos(540,1898)\\fs15\\c&HA5B4C7&\\b0\\bord1\\shad0"
-               "\\fad(200,0)}Sources: " + src)
+               "\\q2\\fad(200,0)}Sources: " + src)
     lines.append(f"Dialogue: 0,{_ass_time(c0)},{_ass_time(c1)},Src,,0,0,0,,{src_txt}")
 
     out.write_text(head + "\n".join(lines) + "\n")
@@ -1189,6 +1218,14 @@ def _phrase_frac(sentence: str, phrase: str) -> float:
     if idx < 0:
         return 0.5
     return len(sentence[:idx].split()) / total
+
+
+#: Characters that fit 1040px at fs15 — ONE line of the sources strip.
+_CH_SRC = 132
+#: `, accessed 2026-09-08` — the first thing the sources strip sheds.
+_re_src = re.compile(r",\s*accessed\s+\S+\s*$")
+#: The LAST parenthetical, which is the dataset name in `Source.footer()`.
+_re_name = re.compile(r"\s*\([^()]*\)\s*$")
 
 
 def _plan_events(st: story.Story, windows):
