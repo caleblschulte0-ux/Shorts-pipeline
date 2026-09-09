@@ -1086,10 +1086,16 @@
       "commit": "3feed21"
     },
     "b9f879c22ed1": {
-      "verdict": "doing",
+      "verdict": "done",
       "date": "20260909",
-      "because": "Verified: shared/media_checkpoint.py contract_problems() mismatch is folded into 'refused' only for media requests (exchange_phase_b.py ~593-604); ingest(), ingest_explainer(), ingest_curiosity() are called unconditionally afterward and ingest_authored.py's collect() re-reads response.json directly with no contract verdict passed in. A stale/mismatched response can promote authored packages while only its media is blocked. Real high-severity isolation gap; queued to fix by threading the contract verdict into all three ingest paths.",
-      "history": []
+      "because": "Built in this session. exchange_phase_b.main() now computes contract_refused ONCE, unconditionally, before any consumer of response.json runs, and a declared mismatch refuses the whole response together: media pointers (as before), authored packages, explainer rewrites, curiosity entries and the script punch-up. Recorded durably as report['contract_refused'] plus authored['contract_refused'] and punchup['contract_refused'], so a refused day is distinguishable in phase_b_report.json from a day that simply had no ChatGPT content. tests/test_contract_isolation.py is the adversarial case the finding asked for: a stale response carrying otherwise-valid authored packages, explainer words and curiosity entries, asserted refused \u2014 plus an AST check that each ingest and the punch-up sit behind the same guard and that the guard is at nesting depth 0 (a NameError path would fail OPEN, the worst outcome for an admission decision).",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: shared/media_checkpoint.py contract_problems() mismatch is folded into 'refused' only for media requests (exchange_phase_b.py ~593-604); ingest(), ingest_explainer(), ingest_curiosity() are called unconditionally afterward and ingest_authored.py's collect() re-reads response.json directly with no contract verdict passed in. A stale/mismatched response can promote authored packages while only its media is blocked. Real high-severity isolation gap; queued to fix by threading the contract verdict into all three ingest paths."
+        }
+      ]
     },
     "f08a10274ea9": {
       "verdict": "doing",

@@ -592,13 +592,28 @@ def main() -> int:
         require_checkpoint=require_cp)
     refused = {r["request_id"]: r["problems"]
                for r in validation.get("rejected") or []}
-    if validation.get("contract_problems"):
+    # ---- ONE ADMISSION DECISION FOR THE WHOLE RESPONSE -------------------
+    # A declared contract mismatch means this response answers a DIFFERENT
+    # PLAN — a different registry revision, source commit, or production
+    # date. That used to refuse only the media pointers, and then ingest(),
+    # ingest_explainer(), ingest_curiosity() and the punch-up all ran anyway,
+    # re-reading the same response.json with no idea it had been rejected.
+    # So a stale response could not supply a single image and could still
+    # promote a whole authored slate against today (doctor b9f879c22ed1).
+    #
+    # Media and words come from the same file and are trusted or refused
+    # together.
+    contract_refused = list(validation.get("contract_problems") or [])
+    if contract_refused:
         # The whole response answers a different plan. Every pointer in it is
         # suspect, so none are used and the day self-fills.
         for why in validation["contract_problems"]:
             print(f"::error::[phase-b] CONTRACT MISMATCH — {why}")
-        print("[phase-b] refusing every media pointer in this response: it "
-              "was written against a different contract snapshot")
+        print("[phase-b] refusing this ENTIRE response — media pointers, "
+              "authored packages, explainer rewrites, curiosity entries and "
+              "script punch-ups alike: it was written against a different "
+              "contract snapshot. The day self-fills and renders Claude's "
+              "own packages.")
         for r in bundle.get("requests") or []:
             refused.setdefault(r["request_id"],
                                list(validation["contract_problems"]))
@@ -622,7 +637,11 @@ def main() -> int:
     # loading the slate — validated first, so a malformed package is
     # quarantined with reasons instead of reaching a renderer.
     authored = {"promoted": [], "rejected": []}
-    if not args.no_ingest:
+    if contract_refused:
+        authored["contract_refused"] = contract_refused
+        print("[phase-b] skipping ingest of authored packages, explainer "
+              "rewrites and curiosity entries — contract mismatch")
+    if not args.no_ingest and not contract_refused:
         from ingest_authored import (ingest, ingest_curiosity,  # noqa: E402
                                      ingest_explainer)
         # THE TARGET COMES FROM THE DAY'S FROZEN CONTRACT. Not a literal,
@@ -759,6 +778,10 @@ def main() -> int:
                               "rejected_detail": validation.get("rejected"),
                               "warnings_detail": validation.get("warnings")},
               "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0},
+              # The durable record that the whole response was refused, and
+              # why. Without this the report shows a day that simply had no
+              # ChatGPT content, which is a different thing entirely.
+              "contract_refused": contract_refused,
               "details": []}
 
     # ---- media -----------------------------------------------------------
@@ -814,7 +837,10 @@ def main() -> int:
                        date=args.date, rejected=refused)
 
     # ---- punch-up (guarded) ---------------------------------------------
-    if not args.no_punchup:
+    if contract_refused:
+        report["punchup"]["contract_refused"] = len(contract_refused)
+        print("[phase-b] skipping punch-up — contract mismatch")
+    if not args.no_punchup and not contract_refused:
         for slug, pkg in packages.items():
             rewrite = idx["scripts"].get(slug)
             if not rewrite:
