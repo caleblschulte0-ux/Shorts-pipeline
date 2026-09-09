@@ -96,6 +96,70 @@ def data_provenance(sc: dict) -> dict:
     return {"ok": not reasons, "reasons": reasons}
 
 
+def data_is_a_finding(sc: dict) -> dict:
+    """A RANKING WHOSE TAIL IS ZERO IS MISSING DATA WEARING A FINDING'S CLOTHES.
+
+    `data_provenance` above checks that a source is real, dated and official.
+    It never looks at the NUMBERS, so a dataset can carry a perfect World Bank
+    citation and still say something that is not true.
+
+    On 2026-09-09 this channel authored, rendered and titled a video
+    `oil-rich-algeria-runs-on-0-fossil-fuels-at-home` from a "Top 5 countries"
+    ranking that read:
+
+        Kosovo 86.1, Albania 0.0, Algeria 0.0, Angola 0.0, Antigua 0.0
+
+    — the first four countries ALPHABETICALLY, which is what a tie among
+    ABSENT values sorts to. Algeria does not run on 0% fossil fuels; the
+    publisher has no row for it. The forge's spread guard had been inverted by
+    its own divide-by-zero fallback (`max(abs(tail), 1e-9)`), so the flattest
+    possible data scored as the biggest finding in the catalogue and got
+    picked twice in one evening.
+
+    The forge is fixed, but the forge is not the only producer: a ChatGPT
+    takeover authors datasets, and 1,116 of these files already sit on disk.
+    So the READER refuses it too, and this is the half that holds.
+
+    Deliberately narrow. It fires ONLY on a ranking, because a ranking is
+    ordered by value — a 0 inside the top five means fewer than five entities
+    have a value at all. A trend or a comparison reaches zero honestly all the
+    time ("Moon landings since 1972: zero" is a real beat this channel has
+    run), and nothing here touches those.
+    """
+    reasons = []
+    for i, seg in enumerate(sc.get("segments", [])):
+        p = _seg_data_path(seg)
+        if p is None:
+            continue
+        try:
+            d = json.loads(p.read_text())
+        except Exception:  # noqa: BLE001 — data_provenance reports this
+            continue
+        if str(d.get("insight_type", "")).strip().lower() != "rank":
+            continue
+        pts = [x for x in (d.get("points") or [])
+               if isinstance(x, dict) and x.get("value") is not None]
+        if len(pts) < 2:
+            continue
+        try:
+            vals = [float(x["value"]) for x in pts]
+        except (TypeError, ValueError):
+            continue
+        zeros = [str(x.get("label", "?"))
+                 for x, v in zip(pts, vals) if v == 0.0]
+        if zeros and max(vals) != 0.0:
+            reasons.append(
+                f"seg{i} ({p.name}): a RANKING with {len(zeros)} of "
+                f"{len(vals)} entries at exactly 0 "
+                f"({', '.join(zeros[:4])}) — in a list ordered by value that "
+                f"is missing data, not a result")
+        elif vals and max(vals) == 0.0:
+            reasons.append(
+                f"seg{i} ({p.name}): a RANKING where every entry is 0 — "
+                f"there is no finding here")
+    return {"ok": not reasons, "reasons": reasons}
+
+
 # ---------------------------------------------------------------------------
 # Rule 3 — premise bar
 # ---------------------------------------------------------------------------
@@ -246,16 +310,20 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     """Real-data + premise checks, combined. Run BEFORE rendering so a story
     that can never publish doesn't burn a render."""
     prov = data_provenance(sc)
+    # The numbers themselves, not just the citation over them.
+    finding = data_is_a_finding(sc)
     prem = premise_ok(sc, use_llm=use_llm)
     # A story that says one thing three times can never be a good video, and
     # finding that out costs one file read rather than a render.
     dist = beats_are_distinct(sc)
     reasons = ([f"data: {r}" for r in prov["reasons"]]
+               + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
                + [f"beats: {r}" for r in dist["reasons"]])
-    return {"ok": prov["ok"] and prem["ok"] and dist["ok"], "reasons": reasons,
-            "data_ok": prov["ok"], "premise_ok": prem["ok"],
-            "beats_ok": dist["ok"]}
+    return {"ok": prov["ok"] and finding["ok"] and prem["ok"] and dist["ok"],
+            "reasons": reasons,
+            "data_ok": prov["ok"] and finding["ok"],
+            "premise_ok": prem["ok"], "beats_ok": dist["ok"]}
 
 
 if __name__ == "__main__":

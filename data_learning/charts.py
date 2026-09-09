@@ -790,6 +790,45 @@ def _bar_lw(n: int, frac: float = 0.58) -> float:
     return max(40.0, row_px * 0.5 * 72.0 / SERIES_DPI)
 
 
+#: Average glyph advance as a fraction of font size, for a bold sans face.
+#: Measured, not guessed: DejaVu Sans Bold's mean advance over [A-Za-z0-9 ()%]
+#: is 0.60 em, and 0.58 is that with a little slack so the fitter errs small.
+_ADV = 0.58
+
+
+def _fit_fontsize(text, max_pts: float, size: int, min_size: int = 14) -> int:
+    """The largest size at or below `size` whose text fits `max_pts` points.
+
+    matplotlib has no cheap width measurement without a live renderer, and the
+    charts had NO fitting at all — so every long label was drawn at its
+    nominal size and simply overlapped whatever was next to it. The showrunner
+    reported that as unreadable text, over and over, on the chart path
+    specifically:
+
+        "'1969-1972 (Apollo era)' and '1973-2024 (since)' print over each
+         other AND on top of the subtitle; all three are unreadable"
+                                    fifty-years-since-moon-landing, 2026-09-09
+        "'Russian Federation 121649000' overlaps 'India 153868700' at the
+         moment the whole point is supposed to land"      algeria, 2026-09-09
+        "axis labels truncated mid-word ('1963 (all', '2006 (yea')"
+                                    bald-eagle-population-rebound, 2026-09-09
+
+    An estimate is the right tool here: it is monotonic in length, it never
+    needs a draw, and erring small costs a point of type where erring large
+    costs the label.
+    """
+    n = max(1, len(str(text)))
+    size = int(size)
+    while size > min_size and n * size * _ADV > max_pts:
+        size -= 1
+    return size
+
+
+def _axes_pts(frac: float) -> float:
+    """Width in POINTS of `frac` of the card — the unit `_fit_fontsize` wants."""
+    return SERIES_W * 72.0 * float(frac)
+
+
 def _lblalpha(reveal: float) -> float:
     """Number labels fade in as the bar/line reaches them — and they have to be
     UP long enough to read.
@@ -870,12 +909,20 @@ def _story_bars(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
 
 def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0):
     """Two tall rounded columns with big numbers — for comparisons."""
-    hi, lo = insight.items[0], insight.items[1]
-    pair = [(hi, HIGHLIGHT), (lo, ACCENT)]
-    vmax = max(hi.value, lo.value)
+    # DRAW ORDER IS THE INSIGHT'S ORDER — which is chronological for a
+    # then-and-now (see `insights._comparison`) — but WHICH COLUMN IS THE
+    # WINNER is decided by the value. Those were the same thing while items
+    # arrived sorted by magnitude, and pinning the host and the inside-number
+    # to `items[0]` now would hang them off the smaller bar.
+    left, right = insight.items[0], insight.items[1]
+    pair = [(left, HIGHLIGHT), (right, ACCENT)]
+    win = 0 if left.value >= right.value else 1
+    hi = insight.items[win]
+    vmax = max(left.value, right.value)
     # Tall axes + WIDE columns so two bars actually fill the 9:16 card (they used
     # to read as 'two short capsules in a narrow band' = empty_void).
-    ax = fig.add_axes([0.08, 0.11, 0.84, 0.74])
+    _AX = (0.08, 0.11, 0.84, 0.74)          # left, bottom, width, height
+    ax = fig.add_axes(list(_AX))
     ax.set_facecolor("none")
     lw = 165
     xs = [0.28, 0.72]
@@ -895,7 +942,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
         # _compose_story routes ANY two-item insight here, so a 2-row ranking in
         # metres/dollars/counts rendered "10211%". _ulabel is what every other
         # chart kind already uses.
-        if j == 0:
+        if j == win:
             t = ax.text(x, vmax * 0.16, _ulabel(p.value, insight.unit),
                         ha="center",
                         va="center", fontsize=42, color="white",
@@ -905,7 +952,14 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
                         ha="center", fontsize=46, color=TEXT, fontweight="bold",
                         zorder=4, alpha=_lblalpha(reveal))
         arts.append((p.value, "art", t, None))
-        ax.text(x, -vmax * 0.30, p.label, ha="center", fontsize=28,
+        # THE BUDGET IS THE GAP BETWEEN THE TWO CENTRES, not half the axes.
+        # Both labels are centred, at 0.28 and 0.72, so each may occupy at
+        # most the 0.44 between them — 0.40 leaves a gutter. And the y sits
+        # BELOW the bar's round cap (a 165pt cap overshoots y=0 by 0.13 vmax)
+        # and INSIDE the ylim, because at -0.30 the labels were drawn outside
+        # the axes box in the strip the source footer occupies.
+        ax.text(x, -vmax * 0.22, p.label, ha="center",
+                fontsize=_fit_fontsize(p.label, _axes_pts(0.84 * 0.40), 28),
                 color=color, fontweight="bold", zorder=4)
     ax.text(0.5, vmax * 0.5, "vs", ha="center", va="center", fontsize=34,
             color=SUBTLE, fontstyle="italic", zorder=4)
@@ -920,7 +974,24 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
                 va="bottom", fontsize=19, color=WARN, fontweight="bold",
                 zorder=4)
     ax.set_xlim(0, 1)
-    ax.set_ylim(-vmax * 0.20, vmax * 1.12)   # winning column nearly fills the card
+    # THE ROUND CAP OVERSHOOTS THE VALUE, and nothing accounted for it.
+    #
+    # `solid_capstyle="round"` on a 165pt line puts half a linewidth of ink
+    # ABOVE the datum — a tenth of the axes height. At ylim 1.12 the tallest
+    # column's value sits at 0.92 of the axes and its cap reaches 1.02, so the
+    # cap was drawn across the subtitle band and ate the label:
+    #
+    #     "MASSACH[        ] VS MISSISSIPPI"
+    #
+    # which reads as the mascot occluding text and is not the mascot at all.
+    # `_clamp_host` already keeps HIM below `SUB_Y`; the bar had no such rule.
+    # Derived rather than tuned, so it stays right if `lw` or the axes box
+    # moves.
+    _cap = (lw / 2.0) / (_AX[3] * SERIES_H * 72.0)      # cap, axes fraction
+    _room = (SUB_Y - _AX[1]) / _AX[3] - _cap - 0.022    # headroom for the value
+    _lo = -0.30
+    _hi = max(1.12, (1.0 - _lo) / max(0.05, _room) + _lo)
+    ax.set_ylim(vmax * _lo, vmax * _hi)
     ax.set_xticks([])
     ax.set_yticks([])
     for s in ax.spines.values():
@@ -933,7 +1004,7 @@ def _story_versus(fig, plt, insight: Insight, subtitle: str, reveal: float = 1.0
     # unlike lift_arc which the gate read as 'perches on top, swallowed'.
     _htip = max(hi.value * max(0.0, min(1.0, reveal)), vmax * 0.02)
     _act_c = _perf_action(insight, "comparison")
-    _bake_host(ax, xs[0], _htip, _act_c, _beat(),
+    _bake_host(ax, xs[win], _htip, _act_c, _beat(),
                zoom=0.8, align=_perf_align(_act_c, (0.5, 0.78)))
     insight.host_baked = True
     return ax, arts

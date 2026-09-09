@@ -279,7 +279,28 @@ def fetch_rank(spec: dict, countries: dict) -> dict | None:
         return None
     rows.sort(key=lambda t: -t[1])
     top = rows[:5]
-    if top[0][1] <= 0 or top[0][1] / max(abs(top[-1][1]), 1e-9) < 2.0:
+    # A ZERO IN THE TAIL IS AN ABSENCE, NOT A SPREAD.
+    #
+    # This guard exists to refuse a flat ranking — five identical bars, no
+    # "whoa" — and its own divide-by-zero guard INVERTED it. With `top[-1]`
+    # at 0.0 the denominator falls back to 1e-9 and the ratio comes out at
+    # 8.6e10, so the flattest possible data scored as the most spectacular
+    # finding in the catalogue. The forge preferentially picks high spread, so
+    # it did not merely allow this shape, it hunted for it.
+    #
+    # It shipped on 2026-09-09 as `oil-rich-algeria-runs-on-0-fossil-fuels-at-
+    # home`: "Top 5 countries" on fossil fuel energy consumption, reading
+    # Kosovo 86.1, then Albania, Algeria, Angola and Antigua at 0.0 — the
+    # first four countries ALPHABETICALLY, which is what a tie among absent
+    # values sorts to. Algeria does not run on 0% fossil fuels. The World Bank
+    # has no row for it, and the title of the video was the missing number.
+    #
+    # In a ranking ordered by value, a 0 inside the top five means fewer than
+    # five entities have a value at all. That is never a finding.
+    lead, tail = top[0][1], abs(top[-1][1])
+    if lead <= 0 or tail <= 0:
+        return None
+    if lead / tail < 2.0:
         return None      # no spread -> five identical bars, and no "whoa"
     pts = [{"label": n, "value": _round(v)} for n, v in top]
     yr = max((y for y in years if y), default="")

@@ -380,6 +380,25 @@ in the closing seconds. Longest frozen run over a 60-frame build, before and
 after: gauge 14→0, funnel 12→0, staircase 8→0, tower 25→7, nest 12→7,
 pipes 4→2.
 
+**The CHART path is the other half of the render and it had none of this.**
+`viz_scene` got `fit_text` and a de-collision pass; `charts.py` had no text
+fitting at all, so every long label was drawn at its nominal size and simply
+overlapped whatever was beside it — "axis labels truncated mid-word ('1963
+(all', '2006 (yea')", two labels "printed over each other into unreadable
+mush". `_fit_fontsize` + `_axes_pts` are the matplotlib-side equivalent; the
+estimate is deliberate (monotonic in length, no renderer needed, and erring
+small costs a point of type where erring large costs the label).
+
+Two more came out of the same render, and both were one unaccounted-for
+number. **A round cap overshoots its datum** by half a linewidth — a tenth of
+the axes height on a 165pt column — so the tallest bar was drawn across the
+subtitle and ate it ("MASSACH[ ] VS MISSISSIPPI"), which reads as the mascot
+occluding text and is not the mascot at all. And **time must run left to
+right**: `insights._comparison` sorted a pair by magnitude, so a
+then-and-now was drawn newest-first and the bald eagle's 417→71,467 comeback
+rendered as a collapse under the words "one of the biggest wildlife
+comebacks". Two PLACES may be ordered by size; two DATES may not.
+
 **Measure with the FURNITURE.** The studio draws the title near the top and
 burns the caption near the bottom of every frame, so measuring a bare machine
 over-reports the void at both ends — the first sweep flagged ten machines that

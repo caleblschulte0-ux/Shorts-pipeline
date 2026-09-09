@@ -131,10 +131,41 @@ def _share(ds: Dataset, pts: list[DataPoint]) -> Insight:
                    facts, None, star.label)
 
 
+def _leading_year(label) -> int | None:
+    """The calendar year a label starts with, or None.
+
+    Tolerant of what the label says after it — "1963 (all-time low)" and
+    "2019 (two-dose era)" are both dates, and a strict `len <= 7` test reads
+    them as names.
+    """
+    t = str(label or "").strip()
+    if len(t) < 4 or not t[:4].isdigit():
+        return None
+    y = int(t[:4])
+    return y if 1500 <= y <= 2200 else None
+
+
 def _comparison(ds: Dataset, pts: list[DataPoint], base: DataPoint | None) -> Insight:
     ordered = T.sort_desc(pts)
     hi, lo = ordered[0], ordered[-1]
     items = [hi, lo]
+    # BEFORE AND AFTER ARE NOT BIG AND SMALL.
+    #
+    # Two PLACES may be ordered by size; two DATES may not. `_story_versus`
+    # draws `items[0]` on the left, so sorting a then-and-now by magnitude puts
+    # the later year first and the chart runs backwards in time.
+    #
+    # `bald-eagle-population-rebound`, 2026-09-09, on the closing beat:
+    #
+    #     "the closing chart runs 2020 -> 1963 left-to-right, so the line
+    #      falls steeply as the narration says 'one of the biggest wildlife
+    #      comebacks' — the picture contradicts the words at the punchline"
+    #
+    # 417 pairs in 1963 and 71,467 in 2020 is the biggest recovery story the
+    # channel has, and it was drawn as a collapse.
+    _ya, _yb = _leading_year(hi.label), _leading_year(lo.label)
+    if _ya is not None and _yb is not None and _ya != _yb:
+        items = [hi, lo] if _ya < _yb else [lo, hi]
     facts = [
         Fact("F1", f"{hi.label} {_fmt(hi.value, ds.unit)} {ds.unit}", hi.value, ds.unit),
         Fact("F2", f"{lo.label} {_fmt(lo.value, ds.unit)} {ds.unit}", lo.value, ds.unit),
